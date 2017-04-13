@@ -112,7 +112,7 @@ export default class App {
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
         // This is provides a way to get async data from several sources in the app before anything else runs
-        // FIXME: this is wrong. move this and make it less bad!
+        // TODO: this is wrong. move this and make it less bad!
         $.when(
             $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.getJSON('assets/airlines/airlines.json'),
@@ -151,7 +151,7 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
-        // FIXME: this entire method needs to be re-written. this is a temporary implemenation used to
+        // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
@@ -164,17 +164,17 @@ export default class App {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
-        // FIXME: Temporary
+        // TODO: Temporary
         window.gameController = this.gameController;
 
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
-        // FIXME: Temporary
+        // TODO: Temporary
         window.airportController = this.airportController;
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
-        // FIXME: Temporary
+        // TODO: Temporary
         window.aircraftController = this.aircraftController;
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
@@ -473,7 +473,7 @@ export default class App {
         this.updateViewControls();
     };
 
-    // FIXME: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
+    // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
     // due to jQuery and because this does not belong in the `AirportModel`
     /**
      * Update visibility of icons at the bottom of the view that allow toggling of

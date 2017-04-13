@@ -12,7 +12,7 @@ const Animation = (options) => {
     this.start = 0;
     this.animating = false;
 
-    // FIXME: lodash this block; .get() all the things
+    // TODO: lodash this block; .get() all the things
     if (options) {
         if ('value' in options) {
             this.value = options.value;

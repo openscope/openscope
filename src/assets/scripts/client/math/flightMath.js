@@ -89,7 +89,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
  * @returns {array}         location of the projected fix, in decimal-degrees [lat,lon]
  */
 export const fixRadialDist = (fix, radial, dist) => {
-    // FIXME: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
+    // TODO: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
     // convert GPS coordinates to radians
     fix = [
         degreesToRadians(fix[0]),

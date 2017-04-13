@@ -271,7 +271,7 @@ export default class AircraftConflict {
         if (conflict) {
             const hdg_difference = abs(angle_offset(a1.groundTrack, a2.groundTrack));
 
-            // FIXME: couldnt these two ifs be combined to something like:
+            // TODO: couldnt these two ifs be combined to something like:
             // if (hdg_difference >= degreesToRadians(15) && hdg_difference > degreesToRadians(165)) {}
             if (hdg_difference >= degreesToRadians(15)) {
                 if (hdg_difference > degreesToRadians(165)) {

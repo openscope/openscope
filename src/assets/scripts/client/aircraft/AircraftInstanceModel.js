@@ -137,7 +137,7 @@ export default class AircraftInstanceModel {
          */
         this.isRemovable = false;
 
-        // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
+        // TODO: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
         this.aircraftStripView = null;
         this.$html = null;
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
@@ -505,7 +505,7 @@ export default class AircraftInstanceModel {
         return true;
     }
 
-    // FIXME: is this method still in use?
+    // TODO: is this method still in use?
     /**
      * @for AircraftInstanceModel
      * @method pushHistory

@@ -56,7 +56,7 @@ export default class AirportModel {
         this.onAirportChange = onAirportChange;
         this.data = {};
 
-        // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
+        // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
         this.loading = false;

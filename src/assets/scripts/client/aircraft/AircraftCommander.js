@@ -515,7 +515,6 @@ export default class AircraftCommander {
         }
 
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
-            // FIXME: this is showing immediately after a to clearance.
             return [false, 'already taking off'];
         }
 

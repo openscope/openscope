@@ -928,7 +928,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController) {
         if (this._isDeparture()) {
-            // FIXME: this may be dead, please remove if it is
+            // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
                 type: 'departure'
             }];

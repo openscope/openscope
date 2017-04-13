@@ -311,7 +311,7 @@ export const groupNumbers = (callsign, airline) => {
 
         return s.join(' ');
     } else {
-        // FIXME: this block is unreachable
+        // TODO: this block is unreachable
         switch (callsign.length) {
             case 0:
                 return callsign; break;

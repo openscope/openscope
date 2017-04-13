@@ -672,7 +672,7 @@ export default class ConvasController {
                         write_sid_name = false;
                     }
 
-                    // FIXME: this is duplicated in the if block above. need to consolidate
+                    // TODO: this is duplicated in the if block above. need to consolidate
                     const fixName = fixList[j].replace('*', '');
                     let fix = this._navigationLibrary.getFixRelativePosition(fixName);
 

@@ -418,7 +418,7 @@ export default class StandardRouteModel extends BaseModel {
         let entrySegmentItems = [];
         let exitSegmentItems = [];
 
-        // FIXME: this if is overly defensive. every route should have an entry, body and exit
+        // TODO: this if is overly defensive. every route should have an entry, body and exit
         if (this._entryCollection) {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
 
@@ -430,7 +430,7 @@ export default class StandardRouteModel extends BaseModel {
             entrySegmentItems = _get(entrySegment, 'items', []);
         }
 
-        // FIXME: this if is overly defensive. every route should have an entry, body and exit
+        // TODO: this if is overly defensive. every route should have an entry, body and exit
         if (this._exitCollection) {
             const exitSegment = this._exitCollection.findSegmentByName(exit);
 
