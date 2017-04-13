@@ -34,6 +34,15 @@ ava('.proceedDirect() sets the correct #_mcp mode', (t) => {
     t.true(pilot._mcp.headingMode === 'LNAV');
 });
 
+ava('.proceedDirect() returns to the correct flightPhase after a hold', (t) => {
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    pilot._fms.setFlightPhase('HOLD');
+
+    pilot.proceedDirect(waypointNameMock);
+
+    t.true(pilot._fms.currentPhase === 'CRUISE');
+});
+
 ava('.proceedDirect() returns success message when finished', (t) => {
     const expectedResult = [true, 'proceed direct SUNST'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);

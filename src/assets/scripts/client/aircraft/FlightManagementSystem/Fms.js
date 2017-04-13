@@ -6,6 +6,7 @@ import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
+import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import LegModel from './LegModel';
@@ -127,13 +128,19 @@ export default class Fms {
         /**
         * Current flight phase of an aircraft
         *
-        * Currently only supports `arrival` and `departure`
-        *
         * @property currentPhase
         * @type {string}
         * @default ''
         */
         this.currentPhase = '';
+
+        /**
+         * @property _flightPhaseHistory
+         * @type {array<string>}
+         * @default []
+         * @private
+         */
+        this._flightPhaseHistory = [];
 
         /**
          * Route expected for this flight. Will change as ATC amends it.
@@ -397,7 +404,10 @@ export default class Fms {
     setArrivalRunway = (runwayName) => this._updateRunwayAssignment(runwayName);
 
     /**
-     * Set the phase
+     * Set the `#currentPhase`
+     *
+     * this value is used to determine how to calculate and aircraft's next
+     * altitude, heading and speed.
      *
      * @for Fms
      * @method setFlightPhase
@@ -407,6 +417,12 @@ export default class Fms {
         if (!_has(FLIGHT_PHASE, phase)) {
             return new TypeError(`Expected known flight phase, but received '${phase}'`);
         }
+
+        if (this.currentPhase === phase) {
+            return;
+        }
+
+        this._addPhaseToFlightHistory(phase);
 
         this.currentPhase = phase;
     }
@@ -684,6 +700,33 @@ export default class Fms {
 
         this._trimLegCollectionAtIndex(legIndex);
         this._prependLegCollectionWithRouteAmendment(amendmentRouteString);
+    }
+
+    /**
+     * Unset `HOLD` as the `#currentPhase` only if `HOLD` is the `#currentPhase`
+     *
+     * @Fms
+     * @method exitHoldIfHolding
+     */
+    exitHoldIfHolding() {
+        if (this.currentPhase !== FLIGHT_PHASE.HOLD) {
+            return;
+        }
+
+        this._exitHoldToPreviousFlightPhase();
+    }
+
+    /**
+     * Sets `#currentPhase` to its previous value
+     *
+     * This method should only be called from `.exitHoldIfHolding()`, which performs
+     * the requisit checks for correct `#flightPhase`
+     *
+     * @for Fms
+     * @method _exitHoldToPreviousFlightPhase
+     */
+    _exitHoldToPreviousFlightPhase() {
+        this.currentPhase = _last(this._flightPhaseHistory);
     }
 
     /**
@@ -1261,5 +1304,20 @@ export default class Fms {
      */
     _updateRunwayAssignment(runwayName) {
         this._runwayName = runwayName;
+    }
+
+    /**
+     * Add the `#currentPhase` to `#_flightPhaseHistory`
+     *
+     * @for Fms
+     * @method _addPhaseToFlightHistory
+     * @private
+     */
+    _addPhaseToFlightHistory() {
+        if (this.currentPhase === '') {
+            return;
+        }
+
+        this._flightPhaseHistory.push(this.currentPhase);
     }
 }

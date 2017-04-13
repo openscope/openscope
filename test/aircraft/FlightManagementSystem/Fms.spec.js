@@ -453,6 +453,34 @@ ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new rout
     t.true(fms.legCollection[2].routeString === expectedResult[2]);
 });
 
+ava('.exitHoldIfHolding() returns early when #currentPhase is not HOLD', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _exitHoldToPreviousFlightPhaseSpy = sinon.spy(fms, '_exitHoldToPreviousFlightPhase');
+
+    fms.exitHoldIfHolding();
+
+    t.true(_exitHoldToPreviousFlightPhaseSpy.notCalled);
+});
+
+ava('.exitHoldIfHolding() calls _exitHoldToPreviousFlightPhase when #currentPhase is HOLD', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _exitHoldToPreviousFlightPhaseSpy = sinon.spy(fms, '_exitHoldToPreviousFlightPhase');
+    fms.setFlightPhase('HOLD');
+
+    fms.exitHoldIfHolding();
+
+    t.true(_exitHoldToPreviousFlightPhaseSpy.calledOnce);
+});
+
+ava('._exitHoldToPreviousFlightPhase() reverts #currentPhase to the value that was set previous to HOLD', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    fms.setFlightPhase('HOLD');
+
+    fms._exitHoldToPreviousFlightPhase();
+
+    t.true(fms.currentPhase === 'CRUISE');
+});
+
 ava('.isValidRoute() returns true when passed a valid directRouteString', (t) => {
     const fms = buildFmsMock();
 

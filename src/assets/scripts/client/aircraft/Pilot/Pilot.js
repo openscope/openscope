@@ -161,6 +161,7 @@ export default class Pilot {
             }
         }
 
+        this._fms.exitHoldIfHolding();
         this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
 
@@ -342,6 +343,7 @@ export default class Pilot {
         }
 
         this._fms.replaceRouteUpToSharedRouteSegment(routeString);
+        this._fms.exitHoldIfHolding();
 
         // Build readback
         const readback = {};
@@ -584,6 +586,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
+        this._fms.exitHoldIfHolding();
         this._fms.setArrivalRunway(runwayModel.name);
         this.hasApproachClearance = true;
 
@@ -673,6 +676,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypoint(waypointName);
+        this._fms.exitHoldIfHolding();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];
