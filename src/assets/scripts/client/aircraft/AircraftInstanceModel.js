@@ -833,6 +833,8 @@ export default class AircraftInstanceModel {
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
         this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
+
+        this.overrideTarget();
     }
 
     /**
@@ -896,18 +898,20 @@ export default class AircraftInstanceModel {
             case FLIGHT_PHASE.DESCENT:
                 break;
 
-            case FLIGHT_PHASE.APPROACH: {
-                // // FIXME: this is wrong
-                // this.target.expedite = this.__fms__.currentWaypoint.expedite;
-                // this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
-                // // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
-                // this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
+            case FLIGHT_PHASE.APPROACH:
+                break;
+
+            case FLIGHT_PHASE.LANDING: {
+                // this.target.heading = this.mcp.heading;
+                // // TODO: This should be the runway elevation, not zero
+                // this.target.altitude = 0;
+                //
+                // if (this.altitude === this.target.altitude) {
+                //     this.target.speed = 0;
+                // }
 
                 break;
             }
-
-            case FLIGHT_PHASE.LANDING:
-                break;
 
             default:
                 break;
@@ -1004,6 +1008,7 @@ export default class AircraftInstanceModel {
 
             case FLIGHT_PHASE.APPROACH: {
                 if (this.altitude < airportModel.minDescentAltitude) {
+                    this.mcp.setHeadingFieldValue(this.heading);
                     this.setFlightPhase(FLIGHT_PHASE.LANDING);
                 }
 
@@ -1207,18 +1212,17 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedHeadingToInterceptCourse() {
-        // TODO: abstract this to be not specific to ILS interception, but interception of a 'course' to a 'datum'
         // Guide aircraft onto the localizer
-        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
-        const runwayHeading = radians_normalize(runway.angle);
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = nm(approachOffset[0]);
-        const headingDifference = angle_offset(runwayHeading, this.heading);
-        const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
-        const angleAwayFromLocalizer = runwayHeading - bearingFromAircaftToRunway;
+        const datum = this.mcp.nav1Datum;
+        const course = this.mcp.course;
+        const courseOffset = getOffset(this, datum.relativePosition, course);
+        const lateralDistanceFromCourse_nm = nm(courseOffset[0]);
+        const headingDifference = angle_offset(course, this.heading);
+        const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(datum);
+        const angleAwayFromLocalizer = course - bearingFromAircaftToRunway;
         const turnTimeInSeconds = abs(headingDifference) / PERFORMANCE.TURN_RATE;    // time to turn headingDifference degrees
-        const turning_radius = this.speed * (turnTimeInSeconds * TIME.ONE_SECOND_IN_HOURS);  // dist covered in the turn, nm
-        const distanceCoveredDuringTurn = turning_radius * abs(headingDifference);
+        const turningRadius = this.speed * (turnTimeInSeconds * TIME.ONE_SECOND_IN_HOURS);  // dist covered in the turn, nm
+        const distanceCoveredDuringTurn = turningRadius * abs(headingDifference);
         const distanceToLocalizer = lateralDistanceFromCourse_nm / sin(headingDifference); // dist from the localizer intercept point, nm
         const distanceEarly = 0.5;    // start turn early, to avoid overshoots from tailwind
         const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
@@ -1231,16 +1235,15 @@ export default class AircraftInstanceModel {
         const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
-        const interceptAngleIsShallow = abs(interceptAngle) < minimumInterceptAngle;
         const isAlignedWithCourse = abs(lateralDistanceFromCourse_nm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
         if (isAlignedWithCourse) {
-            return runwayHeading + interceptAngle;
+            return course + interceptAngle;
         }
 
         interceptAngle = spread(interceptAngle, -minimumInterceptAngle, minimumInterceptAngle);
-        const interceptHeading = runwayHeading + interceptAngle;
+        const interceptHeading = course + interceptAngle;
 
         // TODO: This should be abstracted
         if (this.mcp.heading < this.mcp.course) {
