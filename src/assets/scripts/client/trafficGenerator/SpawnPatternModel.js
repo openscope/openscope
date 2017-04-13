@@ -61,7 +61,7 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * Provides easy access to a specific scheduleId
          *
-         * @DEPRECATED
+         * @deprecated
          * @property scheduleId
          * @type {number}
          * @default -1
