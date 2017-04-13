@@ -1,4 +1,5 @@
 /* eslint-disable max-len, import/prefer-default-export */
+// NOTE: Remove `simplifySpeeds` after 5/1/2017
 /**
  * Name enumeration of available game options
  *

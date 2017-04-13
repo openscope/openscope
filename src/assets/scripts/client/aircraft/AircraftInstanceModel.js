@@ -1466,12 +1466,6 @@ export default class AircraftInstanceModel {
 
         this.updateGroundSpeedPhysics();
 
-        // if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-        //     this.updateGroundSpeedPhysics(scaleSpeed);
-        // } else {
-        //     this.updateSimpleGroundSpeedPhysics(scaleSpeed);
-        // }
-
         this.distance = vlen(this.positionModel.relativePosition);
         this.radial = vradial(this.positionModel.relativePosition);
 
@@ -1633,10 +1627,6 @@ export default class AircraftInstanceModel {
      * @param scaleSpeed
      */
     updateGroundSpeedPhysics() {
-        if (window.gameController.game.option.get('simplifySpeeds') === 'yes') {
-            return this.updateSimpleGroundSpeedPhysics();
-        }
-
         // TODO: Much of this should be abstracted to helper functions
 
         // Calculate true air speed vector
@@ -1688,22 +1678,24 @@ export default class AircraftInstanceModel {
         // }
     }
 
+    // NOTE: Remove after 5/1/2017
     /**
      * This uses the current speed information to update the ground speed and position
      *
      * @for AircraftInstanceModel
      * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
+     * @deprecated
      */
     updateSimpleGroundSpeedPhysics() {
-        const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
-        const distanceTraveled_nm = this.speed * hoursElapsed;
-
-        this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
-
-        // TODO: Is this nonsense actually needed, or can we remove it?
-        this.groundSpeed = this.speed;
-        this.groundTrack = this.heading;
+        // const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        // const distanceTraveled_nm = this.speed * hoursElapsed;
+        //
+        // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
+        //
+        // // TODO: Is this nonsense actually needed, or can we remove it?
+        // this.groundSpeed = this.speed;
+        // this.groundTrack = this.heading;
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
