@@ -270,6 +270,7 @@ export default class Pilot {
             return [false, 'SID name not understood'];
         }
 
+        // TODO: this should no be randomized
         const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
         const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
@@ -278,7 +279,11 @@ export default class Pilot {
         }
 
         if (!standardRouteModel.hasFixName(departureRunway)) {
-            return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
+            return [
+                false,
+                `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid ` +
+                `from Runway ${departureRunway.toUpperCase()}`
+            ];
         }
 
         this._mcp.setAltitudeVnav();

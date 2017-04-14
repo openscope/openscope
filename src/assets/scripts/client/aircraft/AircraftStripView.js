@@ -106,8 +106,8 @@ export default class AircraftStripView {
         this.$element.append(this.$speed);
         this.$element.addClass(this.findClassnameForFlightCateogry());
         // TODO: this doesnt appear to be doing what the below comment says it should be doing
-        // show fp route on hover
-        this.$element.prop('title', this.flightPlan);
+        // set the title property to the flightPlan so it shows on hover
+        // this.$element.prop('title', this.flightPlan);
 
         return this;
     }

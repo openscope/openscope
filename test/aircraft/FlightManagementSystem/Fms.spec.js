@@ -95,6 +95,33 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     t.true(result.length === 14);
 });
 
+ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(fms.flightPlanRoute === expectedResult);
+
+    fms.nextWaypoint();
+    fms.nextWaypoint();
+    fms.nextWaypoint();
+
+    t.true(fms.flightPlanRoute === expectedResult);
+});
+
+ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResultBeforeReplacement = 'cowby..bikkr..dag.kepec3.klas';
+    const expectedResult = 'cowby..bikkr..mlf.grnpa1.klas';
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(fms.flightPlanRoute === expectedResultBeforeReplacement);
+
+    fms.nextWaypoint();
+    fms.nextWaypoint();
+    fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
+
+    t.true(fms.flightPlanRoute === expectedResult);
+});
+
 ava('.init() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock();
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
@@ -366,7 +393,7 @@ ava('.replaceDepartureProcedure() returns early if the nextRouteString matches t
     t.false(_findLegIndexForProcedureTypeSpy.called);
 });
 
-ava('.replaceDepartureProcedure() calls prepend leg when no departure procedure exists', (t) => {
+ava('.replaceDepartureProcedure() calls .prependLeg() when no departure procedure exists', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
     const fms = buildFmsMockForDeparture();
     const prependLegSpy = sinon.spy(fms, 'prependLeg');
@@ -394,6 +421,16 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
 
     t.true(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
+    t.true(fms.legCollection.length === 1);
+});
+
+ava('.replaceDepartureProcedure() updates the #flightPlanRoute property', (t) => {
+    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
+    const fms = buildFmsMockForDeparture();
+
+    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
+
+    t.true(fms.flightPlanRoute === nextRouteStringMock.toLowerCase());
 });
 
 ava('.replaceArrivalProcedure() returns early if the nextRouteString matches the current route', (t) => {
@@ -776,4 +813,24 @@ ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each routeStr
 
     t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
     t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
+});
+
+ava('._updatePreviousRouteSegments() does not add a routeString to #_previousRouteSegments when it already exists in the list', (t) => {
+    const routeStringMock = 'COWBY';
+    const fms = buildFmsMock(isComplexRoute);
+    fms._previousRouteSegments[0] = routeStringMock;
+
+    fms._updatePreviousRouteSegments(routeStringMock);
+
+    t.true(fms._previousRouteSegments.length === 1);
+});
+
+ava('._updatePreviousRouteSegments() adds a routeString to #_previousRouteSegments when it does not already exist in the list', (t) => {
+    const routeStringMock = 'COWBY';
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms._updatePreviousRouteSegments(routeStringMock);
+
+    t.true(fms._previousRouteSegments.length === 1);
+    t.true(fms._previousRouteSegments[0] === routeStringMock);
 });

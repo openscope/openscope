@@ -106,11 +106,12 @@ export default class Fms {
         /**
         * routeSegments of legs that have been completed
         *
-        * Used to generate #flightPlan
+        * Used to generate #flightPlanRoute
         *
         * @property _previousRouteSegments
-        * @type {array}
+        * @type {array<string>}
         * @default []
+        * @private
         */
         this._previousRouteSegments = [];
 
@@ -143,15 +144,6 @@ export default class Fms {
         this._flightPhaseHistory = [];
 
         /**
-         * Route expected for this flight. Will change as ATC amends it.
-         *
-         * @property flightPlanRoute
-         * @type {string}
-         * @default ''
-         */
-        this.flightPlanRoute = '';
-
-        /**
          * Altitude expected for this flight. Will change as ATC amends it.
          *
          * @property flightPlanAltitude
@@ -180,7 +172,7 @@ export default class Fms {
      *          a single aircraft
      *
      * @property currentRunway
-     * @return {string}
+     * @type {string}
      */
     get currentRunwayName() {
         return this._runwayName;
@@ -204,7 +196,7 @@ export default class Fms {
      * Assumed to ALWAYS be the first `LegModel` in the `legCollection`
      *
      * @property currentLeg
-     * @return {LegModel}
+     * @type {LegModel}
      */
     get currentLeg() {
         return this.legCollection[0];
@@ -220,7 +212,7 @@ export default class Fms {
      * - `dag.kepec3.klas`
      *
      * @property currentRoute
-     * @return {string}
+     * @type {string}
      */
     get currentRoute() {
         const routeSegments = _map(this.legCollection, (legModel) => legModel.routeString);
@@ -232,13 +224,25 @@ export default class Fms {
      * Flight plan as filed
      *
      * @method flightPlan
-     * @return {object}
+     * @type {object}
      */
     get flightPlan() {
         return {
             altitude: this.flightPlanAltitude,
             route: this.flightPlanRoute
         };
+    }
+
+    /**
+     * Route expected for this flight. Will change as ATC amends it.
+     *
+     * @property flightPlanRoute
+     * @type {string}
+     */
+    get flightPlanRoute() {
+        const previousAndCurrentRouteStrings = this._previousRouteSegments.concat(this.currentRoute);
+
+        return previousAndCurrentRouteStrings.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
     // TODO: this should move to a class method
@@ -251,7 +255,7 @@ export default class Fms {
      * Using a getter here to stay in line with the previous api.
      *
      * @property waypoints
-     * @return {array<WaypointModel>}
+     * @type {array<WaypointModel>}
      */
     get waypoints() {
         const waypointList = _map(this.legCollection, (legModel) => {
@@ -271,11 +275,9 @@ export default class Fms {
      * @param aircraftInitProps {object}
      */
     init({ category, model, route }) {
-        this.flightPlanRoute = route.toLowerCase();
-        this.flightPlanAltitude = model.ceiling;
         this._setCurrentPhaseFromCategory(category);
-        // TODO: For aircraft not yet in flight, this should not happen until we are cleared on
-        // this (or an amended) route by ATC.
+
+        this.flightPlanAltitude = model.ceiling;
         this.legCollection = this._buildLegCollection(route);
     }
 
@@ -289,7 +291,6 @@ export default class Fms {
         this._navigationLibrary = null;
         this._previousRouteSegments = [];
         this._runwayName = '';
-        this.flightPlanRoute = '';
         this.flightPlanAltitude = -1;
         this.legCollection = [];
         this.currentPhase = '';
@@ -510,9 +511,8 @@ export default class Fms {
      * @method nextWaypoint
      */
     nextWaypoint() {
-        this._previousRouteSegments.push(this.currentLeg.routeString);
-
         if (!this.currentLeg.hasNextWaypoint()) {
+            this._updatePreviousRouteSegments(this.currentLeg.routeString);
             this._moveToNextLeg();
 
             return;
@@ -533,7 +533,6 @@ export default class Fms {
     replaceCurrentFlightPlan(routeString) {
         this._destroyLegCollection();
 
-        this.flightPlanRoute = routeString;
         this.legCollection = this._buildLegCollection(routeString);
     }
 
@@ -665,7 +664,6 @@ export default class Fms {
         // TODO: we may need to update the runway in this method
         this._destroyLegCollection();
 
-        this.flightPlanRoute = routeString;
         this.legCollection = this._buildLegCollection(routeString);
     }
 
@@ -1320,5 +1318,21 @@ export default class Fms {
         }
 
         this._flightPhaseHistory.push(this.currentPhase);
+    }
+
+    /**
+     * Adds a `routeString` to `#_previousRouteSegments` only when it is not
+     * already present in the list
+     *
+     * @for Fms
+     * @method _updatePreviousRouteSegments
+     * @param routeString {string}             a valid routeString
+     */
+    _updatePreviousRouteSegments(routeString) {
+        if (this._previousRouteSegments.indexOf(routeString) !== -1) {
+            return;
+        }
+
+        this._previousRouteSegments.push(routeString);
     }
 }
