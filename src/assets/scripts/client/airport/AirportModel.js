@@ -395,6 +395,7 @@ export default class AirportModel {
                         const r1 = this.runways[rwy1][rwy1end];
                         const r2 = this.runways[rwy2][rwy2end];
                         const offset = getOffset(r1, r2.relativePosition, r1.angle);
+
                         this.metadata.rwy[r1.name][r2.name] = {};
 
                         // generate this runway pair's relationship data
