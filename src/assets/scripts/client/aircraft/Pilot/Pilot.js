@@ -334,13 +334,13 @@ export default class Pilot {
         const isValid = this._fms.isValidRoute(routeString);
 
         if (!isValid) {
-            return [false, `requested route of "${routeString}" is invalid`];
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
         if (!this._fms.isValidRouteAmendment(routeString)) {
             return [
                 false,
-                `requested route of "${routeString}" is invalid, it must contain a Waypoint in the current route`
+                `requested route of "${routeString.toUpperCase()}" is invalid, it must contain a Waypoint in the current route`
             ];
         }
 
@@ -349,7 +349,7 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to: ${this._fms.currentRoute}`;
+        readback.log = `rerouting to: ${this._fms.currentRoute.toUpperCase()}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];

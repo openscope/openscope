@@ -7,7 +7,7 @@ import {
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 
-const invalidRouteString = 'a..b.c.d';
+const invalidRouteString = 'A..B.C.D';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const amendRouteString = 'HITME..HOLDM..BIKKR';
 
@@ -19,7 +19,7 @@ function buildPilotWithComplexRoute() {
 }
 
 ava('.applyPartialRouteAmendment() returns an error with passed an invalid routeString', (t) => {
-    const expectedResult = [false, 'requested route of "a..b.c.d" is invalid'];
+    const expectedResult = [false, 'requested route of "A..B.C.D" is invalid'];
     const pilot = buildPilotWithComplexRoute();
     const result = pilot.applyPartialRouteAmendment(invalidRouteString);
 
@@ -47,7 +47,7 @@ ava('.applyPartialRouteAmendment() returns a success message when complete', (t)
     const expectedResult = [
         true,
         {
-            log: 'rerouting to: hitme..holdm..bikkr..dag.kepec3.klas',
+            log: 'rerouting to: HITME..HOLDM..BIKKR..DAG.KEPEC3.KLAS',
             say: 'rerouting as requested'
         }
     ];

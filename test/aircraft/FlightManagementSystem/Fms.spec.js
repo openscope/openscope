@@ -255,7 +255,7 @@ ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.l
 });
 
 ava('.nextWaypoint() calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
+    const fms = buildFmsMock();
     const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
 
     fms.nextWaypoint();
@@ -271,6 +271,16 @@ ava('.nextWaypoint() removes the first LegModel from legCollection when the firs
     fms.nextWaypoint();
 
     t.true(fms.legCollection.length === length - 1);
+});
+
+ava('.nextWaypoint() does not call ._moveToNextWaypointInLeg() after calling ._moveToNextLeg() ', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
+
+
+    fms.nextWaypoint();
+
+    t.true(_moveToNextWaypointInLegSpy.notCalled);
 });
 
 ava('.replaceCurrentFlightPlan() calls ._destroyLegCollection()', (t) => {
@@ -318,13 +328,22 @@ ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoi
     t.true(fms.currentLeg.routeString === 'dag.kepec3.klas');
 });
 
-ava('.skipToWaypoint() does nothing is the waypoint to skip to is the #currentWaypoint', (t) => {
+ava('.skipToWaypoint() does nothing if the waypoint to skip to is the #currentWaypoint', (t) => {
     const waypointNameMock = 'cowby';
     const fms = buildFmsMock(isComplexRoute);
 
     fms.skipToWaypoint(waypointNameMock);
 
     t.true(fms.currentLeg.routeString === waypointNameMock);
+});
+
+ava('.skipToWaypoint() skips to a waypoint in a different leg', (t) => {
+    const waypointNameMock = 'sunst';
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.skipToWaypoint(waypointNameMock);
+
+    t.true(fms.currentWaypoint.name === waypointNameMock);
 });
 
 ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {

@@ -514,6 +514,8 @@ export default class Fms {
 
         if (!this.currentLeg.hasNextWaypoint()) {
             this._moveToNextLeg();
+
+            return;
         }
 
         this._moveToNextWaypointInLeg();
@@ -1003,7 +1005,8 @@ export default class Fms {
     _buildLegCollection(routeString) {
         const routeStringSegments = routeStringFormatHelper(routeString);
         const legsForRoute = _map(routeStringSegments,
-            (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment));
+            (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment)
+        );
 
         return legsForRoute;
     }
