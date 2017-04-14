@@ -32,12 +32,12 @@ ava.skip('.findRunwayModelByName() returns a RunwayModel when passed a runway na
     console.log(result);
 });
 
-ava('_buildRunwayMetaData() builds an object with a key for each runway name', (t) => {
+ava('_buildRunwayRelationships() builds an object with a key for each runway name', (t) => {
     const expectedResult = ['07L', '25R', '07R', '25L', '01R', '19L', '01L', '19R'];
     const collection = new RunwayCollection(RUNWAY_LIST_MOCK, airportModelFixture);
     collection._runwayRelationships = {};
 
-    collection._buildRunwayMetaData();
+    collection._buildRunwayRelationships();
 
     const result = Object.keys(collection._runwayRelationships);
 

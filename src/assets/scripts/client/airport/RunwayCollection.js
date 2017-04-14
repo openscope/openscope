@@ -44,7 +44,7 @@ export default class RunwayCollection extends BaseCollection {
         this._airportPosition = airportPositionModel;
 
         this._buildRunwayModels(runwayJson);
-        this._buildRunwayMetaData();
+        this._buildRunwayRelationships();
     }
 
     /**
@@ -85,27 +85,42 @@ export default class RunwayCollection extends BaseCollection {
     /**
      *
      *
+     * This method mutates `#_runwayRelationships`
+     *
      * @for RunwayCollection
-     * @method _buildRunwayMetaData
+     * @method _buildRunwayRelationships
      */
-    _buildRunwayMetaData() {
+    _buildRunwayRelationships() {
         for (let i = 0; i < this.length; i++) {
             const primaryRunway = this._items[i];
+            // create subobject with primaryRunway name as the key
             this._runwayRelationships[primaryRunway.name] = {};
 
-            for (let j = 0; j < this.length; j++) {
-                const comparatorRunway = this._items[j];
+            this._buildRunwayRelationshipsForRunway(primaryRunway);
+        }
+    }
 
-                if (primaryRunway.name === comparatorRunway.name) {
-                    // eslint-disable-next-line no-continue
-                    continue;
-                }
+    /**
+     *
+     *
+     * This method mutates `#_runwayRelationships`
+     *
+     * @method _buildRunwayRelationshipsForRunway
+     * @param runwayModel {runwayModel}
+     */
+    _buildRunwayRelationshipsForRunway(runwayModel) {
+        for (let i = 0; i < this.length; i++) {
+            const comparatorRunway = this._items[i];
 
-                this._runwayRelationships[primaryRunway.name][comparatorRunway.name] = new RunwayRelationshipModel(
-                    primaryRunway,
-                    comparatorRunway
-                );
+            if (runwayModel.name === comparatorRunway.name) {
+                // eslint-disable-next-line no-continue
+                continue;
             }
+
+            this._runwayRelationships[runwayModel.name][comparatorRunway.name] = new RunwayRelationshipModel(
+                runwayModel,
+                comparatorRunway
+            );
         }
     }
 }
