@@ -1255,7 +1255,7 @@ k
             const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
             const lineheight = 4.5; // height of text row (used for spacing basis)
             const row1text = cs;
-            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.groundSpeed * 0.1), 2)}`;
+            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {
