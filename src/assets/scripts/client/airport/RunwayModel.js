@@ -19,7 +19,7 @@ export default class RunwayModel extends BaseModel {
     constructor(options = {}, end, airportModel) {
         super();
 
-        this.airport = null;
+        this.airportModel = null;
         this.angle = null;
         this.delay = 2;
         this.ils = {
@@ -89,7 +89,7 @@ export default class RunwayModel extends BaseModel {
      * @param airportModel {AirportModel}
      */
     parse(data, end, airportModel) {
-        this.airport = airportModel;
+        this.airportModel = airportModel;
         this.name = data.name[end];
 
         if (data.delay) {
@@ -102,13 +102,13 @@ export default class RunwayModel extends BaseModel {
                 : 0;
             const thisSide = new StaticPositionModel(
                 data.end[end],
-                this.airport.positionModel,
-                this.airport.magneticNorth
+                this.airportModel.positionModel,
+                this.airportModel.magneticNorth
             );
             const farSide = new StaticPositionModel(
                 data.end[farSideIndex],
-                this.airport.positionModel,
-                this.airport.magneticNorth
+                this.airportModel.positionModel,
+                this.airportModel.magneticNorth
             );
 
             // relative position, based on center of map
