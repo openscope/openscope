@@ -10,19 +10,23 @@
     - Adds ability to define hold waypoints with a symbol `@`
     - Splits `PositionModel` into two new classes; `StaticPositionModel` and `DynamicPositionModel`
     - Work on this issue also resolves or invalidates previously recorded issues:
-        - Add `.hasFix()` method to FixCollection [#158](https://github.com/openscope/openscope/issues/158)
-        - Create getter in `AircraftInstanceModel` to get the current runway [#129](https://github.com/openscope/openscope/issues/129)
-        - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
-        - create RouteBuilder class and smooth out RouteModel [#144](https://github.com/openscope/openscope/issues/144)
-        - Implied holding in route strings [#114](https://github.com/openscope/openscope/issues/114)
         - `aircraftInstanceModel.fms` has a circular dependency with `aircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
         - Using STAR command to change aircraft's assigned STAR throws errors [#73](https://github.com/openscope/openscope/issues/73)
         - Abstract current waypoint altitude and speed setting [#77](https://github.com/openscope/openscope/issues/77)
         - Add Leg to modelSourcePool [#78](https://github.com/openscope/openscope/issues/78)
         - Refactor fms param out of Leg [#79](https://github.com/openscope/openscope/issues/79)
+        - Extend RouteModel, or add new layer, to handle compound routes [#81](https://github.com/openscope/openscope/issues/81)
         - Rerouting aircraft causes it to climb to unassigned altitude [#86](https://github.com/openscope/openscope/issues/86)
-        - deprecate aircraft eid [#87](https://github.com/openscope/openscope/issues/87)
+        - deprecate `aircraft.eid` [#87](https://github.com/openscope/openscope/issues/87)
+        - Implied holding in route strings [#114](https://github.com/openscope/openscope/issues/114)
+        - Rerouting uncleared aircraft onto SID fails [#122](https://github.com/openscope/openscope/issues/122)
+        - Using "fix" command yields legs with lower case route [#123](https://github.com/openscope/openscope/issues/123)
+        - Create getter in `AircraftInstanceModel` to get the current runway [#129](https://github.com/openscope/openscope/issues/129)
+        - create RouteBuilder class and smooth out RouteModel [#144](https://github.com/openscope/openscope/issues/144)
+        - `fix` command with multiple arguments skips to last fix [#153](https://github.com/openscope/openscope/issues/153)
+        - Add `.hasFix()` method to FixCollection [#158](https://github.com/openscope/openscope/issues/158)
         - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
+        - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
 
 
 
