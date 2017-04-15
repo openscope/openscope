@@ -140,23 +140,19 @@ export default class Pilot {
      * @param currentHeading {number}
      * @param heading        {number}                   the heading to maintain, in radians_normalize
      * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
-     * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a number of degrees to turn
+     * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a
+     *                                                  number of degrees to turn
      * @return {array}                                  [success of operation, readback]
      */
-    maintainHeading(currentHeading, heading, direction, incremental) {
-        let degrees;
-        let nextHeadingInRadians = degreesToRadians(heading);
+    maintainHeading(currentHeading, headingOrDegrees, direction, incremental) {
+        const nextHeadingInRadians = degreesToRadians(headingOrDegrees);
         let correctedHeading = nextHeadingInRadians;
 
-        // TODO: is this correct? if a heading with a direction is supplied, it will only be honored if it is also incremental
         if (incremental) {
-            degrees = heading;
+            // if direction is left
+            correctedHeading = radians_normalize(currentHeading - nextHeadingInRadians);
 
-            // TODO: abstract this logic
-            if (direction === 'left') {
-                // the `degreesToRadians` part can be pulled out so it is done only once
-                correctedHeading = radians_normalize(currentHeading - nextHeadingInRadians);
-            } else if (direction === 'right') {
+            if (direction === 'right') {
                 correctedHeading = radians_normalize(currentHeading + nextHeadingInRadians);
             }
         }
@@ -165,18 +161,17 @@ export default class Pilot {
         this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
 
-        const headingReadback = heading_to_string(correctedHeading);
+        const headingStr = heading_to_string(correctedHeading);
         const readback = {};
-        readback.log = `fly heading ${headingReadback}`;
-        readback.say = `fly heading ${radio_heading(headingReadback)}`;
+        readback.log = `fly heading ${headingStr}`;
+        readback.say = `fly heading ${radio_heading(headingStr)}`;
 
         if (incremental) {
-            readback.log = `turn ${degrees} degrees ${direction}`;
-            readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
-        // TODO: Im not sure this block is needed or even used
-        // } else if (direction) {
-        //     readback.log = `turn ${direction} heading ${headingReadback}`;
-        //     readback.say = `turn ${direction} heading ${radio_heading(headingReadback)}`;
+            readback.log = `turn ${headingOrDegrees} degrees ${direction}`;
+            readback.say = `turn ${groupNumbers(headingOrDegrees)} degrees ${direction}`;
+        } else if (direction) {
+            readback.log = `turn ${direction} heading ${headingStr}`;
+            readback.say = `turn ${direction} heading ${radio_heading(headingStr)}`;
         }
 
         return [true, readback];

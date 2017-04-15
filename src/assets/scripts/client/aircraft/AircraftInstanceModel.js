@@ -1489,6 +1489,8 @@ export default class AircraftInstanceModel {
      */
     updateAircraftTurnPhysics() {
         if (this.isOnGround() || this.heading === this.target.heading) {
+            this.target.turn = null;
+
             return;
         }
 
