@@ -18,14 +18,14 @@ ava.after(() => {
     FixCollection.removeItems();
 });
 
-ava.serial('FixCollection throws when an attempt to instantiate is made with invalid params', t => {
+ava.serial('throws when an attempt to instantiate is made with invalid params', t => {
     t.throws(() => new FixCollection());
 
     t.true(FixCollection._items.length === 0);
     t.true(FixCollection.length === 0);
 });
 
-ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
+ava.serial('sets its properties when it receives a valid fixList', t => {
     FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.true(FixCollection._items.length > 0);
@@ -36,6 +36,20 @@ ava.serial('.addFixToCollection() throws if it doesnt receive a FixModel instanc
     t.throws(() => FixCollection.addFixToCollection({}));
 });
 
+ava.serial('.findFixByName() returns null when passed a null value', t => {
+    let result = FixCollection.findFixByName(null);
+    t.true(result === null);
+
+    result = FixCollection.findFixByName(undefined);
+    t.true(result === null);
+});
+
+ava.serial('.findFixByName() returns null when a FixModel does not exist within the collection', t => {
+    const result = FixCollection.findFixByName('');
+
+    t.true(result === null);
+});
+
 ava.serial('.findFixByName() returns a FixModel if it exists within the collection', t => {
     const result = FixCollection.findFixByName('BAKRR');
 
@@ -43,24 +57,18 @@ ava.serial('.findFixByName() returns a FixModel if it exists within the collecti
     t.true(result instanceof FixModel);
 });
 
-ava.serial('.findFixByName() returns a FixMode if it exists within the collection and is passed as lowercase', t => {
+ava.serial('.findFixByName() returns a FixModel when passed a lowercase fixName', t => {
     const result = FixCollection.findFixByName('bakrr');
 
     t.true(result.name === 'BAKRR');
     t.true(result instanceof FixModel);
 });
 
-ava.serial('.findFixByName() returns a FixMode if it exists within the collection and is passed as mixed case', t => {
+ava.serial('.findFixByName() returns a FixModel when passed a mixed case fixName', t => {
     const result = FixCollection.findFixByName('bAkRr');
 
     t.true(result.name === 'BAKRR');
     t.true(result instanceof FixModel);
-});
-
-ava.serial('.findFixByName() returns null if a FixModel does not exist within the collection', t => {
-    const result = FixCollection.findFixByName('');
-
-    t.true(result === null);
 });
 
 ava.serial('.getFixRelativePosition() returns the position of a FixModel', t => {

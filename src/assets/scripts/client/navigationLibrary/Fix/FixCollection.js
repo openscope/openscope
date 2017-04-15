@@ -74,6 +74,10 @@ class FixCollection extends BaseCollection {
      * @return {FixModel|null}
      */
     findFixByName(fixName) {
+        if (!fixName) {
+            return null;
+        }
+
         const fixModel = _find(this._items, { name: fixName.toUpperCase() });
 
         // if a fix is not found, _find() returns `undefined` so we specifically return null here if a fix is not found
