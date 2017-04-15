@@ -142,8 +142,6 @@ export default class AircraftController {
             const baseAircraftProps = this._buildAircraftProps(spawnPatternModel, isPreSpawn);
             const initializationProps = Object.assign({}, baseAircraftProps, preSpawnHeadingAndPosition);
 
-            console.log('+++', initializationProps);
-
             this._createAircraftWithInitializationProps(initializationProps);
         }
     };

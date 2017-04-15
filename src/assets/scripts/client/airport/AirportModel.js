@@ -1,5 +1,4 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
-import $ from 'jquery';
 import _ceil from 'lodash/ceil';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -53,6 +52,7 @@ export default class AirportModel {
     constructor(options = {}, updateRun, onAirportChange) {
         if (!updateRun || !onAirportChange) {
             console.log('::: ERROR', !updateRun, !onAirportChange);
+
             return;
         }
 
@@ -307,9 +307,16 @@ export default class AirportModel {
                 const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
                 const lineStartCoordinates = [line[0], line[1]];
                 const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
-                const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
+                const startPosition = DynamicPositionModel.calculateRelativePosition(
+                    lineStartCoordinates,
+                    ...airportPositionAndDeclination
+                );
+                const endPosition = DynamicPositionModel.calculateRelativePosition(
+                    lineEndCoordinates,
+                    ...airportPositionAndDeclination
+                );
                 const lineVerticesRelativePositions = [...startPosition, ...endPosition];
+
                 outputMap.push(lineVerticesRelativePositions);
             });
         });
@@ -326,37 +333,39 @@ export default class AirportModel {
         }
 
         _forEach(restrictedAreas, (area) => {
-            // TODO: what is `obj` going to be? need better name.
-            const obj = {};
+            const restrictedArea = {};
+
             if (area.name) {
-                obj.name = area.name;
+                restrictedArea.name = area.name;
             }
 
-            obj.height = parseElevation(area.height);
-            // TODO: Remove _map, move relativePosition value to const, then return that const
-            obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth))];
+            restrictedArea.height = parseElevation(area.height);
+            restrictedArea.coordinates = _map(
+                area.coordinates,
+                (point) => DynamicPositionModel.calculateRelativePosition(
+                    point,
+                    this._positionModel,
+                    this.magneticNorth
+                )
+            );
+
+            let coordsMax = restrictedArea.coordinates[0];
+            let coordsMin = restrictedArea.coordinates[0];
+
+            _forEach(restrictedArea.coordinates, (v) => {
+                coordsMax = [
+                    Math.max(v[0], coordsMax[0]),
+                    Math.max(v[1], coordsMax[1])
+                ];
+                coordsMin = [
+                    Math.min(v[0], coordsMin[0]),
+                    Math.min(v[1], coordsMin[1])
+                ];
             });
 
-            // TODO: is this right? max and min are getting set to the same value?
-            // const coords = obj.coordinates;
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            restrictedArea.center = vscale(vadd(coordsMax, coordsMin), 0.5);
 
-            _forEach(obj.coordinates, (v) => {
-                coords_max = [
-                    Math.max(v[0], coords_max[0]),
-                    Math.max(v[1], coords_max[1])
-                ];
-                coords_min = [
-                    Math.min(v[0], coords_min[0]),
-                    Math.min(v[1], coords_min[1])
-                ];
-            });
-
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
-
-            this.restricted_areas.push(obj);
+            this.restricted_areas.push(restrictedArea);
         });
     }
 
@@ -543,44 +552,50 @@ export default class AirportModel {
     }
 
     parseTerrain(data) {
-        // TODO: reassignment of this to apt is not needed here. change apt to this.
-        // terrain must be in geojson format
-        const apt = this;
-        apt.terrain = {};
+        const GEOMETRY_TYPE = {
+            LINE_STRING: 'LineString',
+            POLYGON: 'Polygon'
+        };
 
-        _forEach(data.features, (f) => {
+        // terrain must be in geojson format
+        this.terrain = {};
+
+        _forEach(data.features, (terrainFeature) => {
             // const f = data.features[i];
             // m => ft, rounded to 1K (but not divided)
-            const ele = round(f.properties.elevation / 0.3048, 1000);
+            const elevationKey = round(terrainFeature.properties.elevation / 0.3048, 1000);
 
-            if (!apt.terrain[ele]) {
-                apt.terrain[ele] = [];
+            if (!this.terrain[elevationKey]) {
+                this.terrain[elevationKey] = [];
             }
 
-            let multipoly = f.geometry.coordinates;
+            let multipoly = terrainFeature.geometry.coordinates;
             // TODO: add enumeration
-            if (f.geometry.type === 'LineString') {
+            if (terrainFeature.geometry.type === GEOMETRY_TYPE.LINE_STRING) {
                 multipoly = [[multipoly]];
             }
 
             // TODO: add enumeration
-            if (f.geometry.type === 'Polygon') {
+            if (terrainFeature.geometry.type === GEOMETRY_TYPE.POLYGON) {
                 multipoly = [multipoly];
             }
 
-            $.each(multipoly, (i, poly) => {
+            _forEach(multipoly, (poly) => {
                 // multipoly contains several polys
                 // each poly has 1st outer ring and other rings are holes
-                apt.terrain[ele].push($.map(poly, (line_string) => {
-                    return [
-                        $.map(line_string, (pt) => {
-                            pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
-                            const pos = new StaticPositionModel(pt, apt.positionModel, apt.magneticNorth);
+                const terrainPoly = _map(poly, (line_string) => {
+                    const lineStringPointSet = _map(line_string, (point) => {
+                        // `StaticPositionModel` requires [lat,lon] order
+                        point.reverse();
+                        const pos = new StaticPositionModel(point, this.positionModel, this.magneticNorth);
 
-                            return [pos.relativePosition];
-                        })
-                    ];
-                }));
+                        return [pos.relativePosition];
+                    });
+
+                    return [lineStringPointSet];
+                });
+
+                this.terrain[elevationKey].push(terrainPoly);
             });
         });
     }
