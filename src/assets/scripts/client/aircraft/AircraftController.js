@@ -135,9 +135,11 @@ export default class AircraftController {
      * @private
      */
     createPreSpawnAircraftWithSpawnPatternModel = (spawnPatternModel) => {
+        const isPreSpawn = true;
+
         for (let i = 0; i < spawnPatternModel.preSpawnAircraftList.length; i++) {
             const preSpawnHeadingAndPosition = spawnPatternModel.preSpawnAircraftList[i];
-            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel);
+            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel, isPreSpawn);
             const initializationProps = Object.assign({}, baseAircraftProps, preSpawnHeadingAndPosition);
 
             this._createAircraftWithInitializationProps(initializationProps);
@@ -384,14 +386,6 @@ export default class AircraftController {
      * @param  {Aircraft} aircraft - the aircraft to remove
      */
     removeAllAircraftConflictsForAircraft(aircraft) {
-        // _each(this.conflicts, (conflict) => {
-        //     if (_includes(conflict.aircraft, aircraft)) {
-        //         this.removeConflict(conflict);
-        //     }
-        // });
-
-        // _each(aircraft.conflicts, (conflict) => conflict.destroy());
-
         for (const otherAircraftCallsign in aircraft.conflicts) {
             aircraft.conflicts[otherAircraftCallsign].destroy();
         }
@@ -416,10 +410,11 @@ export default class AircraftController {
      * @for AircraftController
      * @method _buildAircraftProps
      * @param spawnPatternModel {SpawnPatternModel}
+     * @param isPreSpawn {boolean} [default = false]
      * @return {object}
      * @private
      */
-    _buildAircraftProps(spawnPatternModel) {
+    _buildAircraftProps(spawnPatternModel, isPreSpawn = false) {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
@@ -430,16 +425,22 @@ export default class AircraftController {
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
+        // TODO: this may need to be reworked.
+        // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
+        // airspace can safely enter controlled airspace properly
+        const altitude = isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
+            ? 18000
+            : spawnPatternModel.altitude;
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
 
         return {
             destination,
             fleet,
+            altitude,
             callsign: flightNumber,
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
             airlineCallsign: airlineModel.radioName,
-            altitude: spawnPatternModel.altitude,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
             positionModel: dynamicPositionModel,
