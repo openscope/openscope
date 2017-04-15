@@ -237,7 +237,7 @@ export default class AircraftCommander {
         const airport = window.airportController.airport_get();
         const { angle: runwayHeading } = airport.getRunway(aircraft.rwy_dep);
 
-        return aircraft.pilot.clearedAsFiled(airport.initial_alt, runwayHeading, aircraft.model.speed.cruise);
+        return aircraft.pilot.clearedAsFiled();
     }
 
     /**
@@ -498,11 +498,16 @@ export default class AircraftCommander {
         const runway = airport.getRunway(aircraft.rwy_dep);
         // TODO: this should be a method on the Runway. `findAircraftPositionInQueue(aircraft)`
         const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
+        const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
         const wind = airport.getWind();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
         const readback = {};
+
+        if (!isInQueue) {
+            return [false, 'unable to take off, we\'re completely lost'];
+        }
 
         if (!aircraft.isOnGround()) {
             return [false, 'unable to take off, we\'re already airborne'];
@@ -523,27 +528,30 @@ export default class AircraftCommander {
             return [false, 'already taking off'];
         }
 
-        // TODO: the logic here should be reversed to handle falsey inside the if block
-        if (runway.removeQueue(aircraft)) {
-            aircraft.mode = FLIGHT_MODES.TAKEOFF;
-            aircraft.takeoffTime = this._gameController.game_time();
+        if (spotInQueue > 0) {
+            readback.log = `number ${spotInQueue} behind ${aircraftAhead.callsign}`;
+            readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
 
-            aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-            aircraft.pilot.initiateTakeoff();
-            aircraft.scoreWind('taking off');
-
-            readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.rwy_dep}, ` +
-                'cleared for takeoff';
-            readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
-                `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`;
-
-            return [true, readback];
+            return [false, readback];
         }
 
-        readback.log = `number ${spotInQueue} behind ${aircraftAhead.callsign}`;
-        readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
+        if (!aircraft.pilot.hasDepartureClearance) {
+            return [false, 'unable to take off, we never received an IFR clearance'];
+        }
 
-        return [false, readback];
+        runway.removeAircraftFromQueue(aircraft);
+        aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
+        aircraft.takeoffTime = this._gameController.game_time();
+        aircraft.mode = FLIGHT_MODES.TAKEOFF;
+        aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
+        aircraft.scoreWind('taking off');
+
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.rwy_dep}, ` +
+            'cleared for takeoff';
+        readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`;
+
+        return [true, readback];
     }
 
     /**

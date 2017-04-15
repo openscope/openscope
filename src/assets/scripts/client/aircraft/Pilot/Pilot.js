@@ -64,12 +64,22 @@ export default class Pilot {
         this._fms = fms;
 
         /**
+         * Whether the aircraft has received a clearance to conduct an approach to a runway
          *
          * @property hasApproachClearance
          * @type {boolean}
          * @default false
          */
         this.hasApproachClearance = false;
+
+        /**
+         * Whether the aircraft has received an IFR clearance to their destination
+         *
+         * @property hasDepartureClearance
+         * @type {boolean}
+         * @default false
+         */
+        this.hasDepartureClearance = false;
     }
 
     /**
@@ -259,6 +269,8 @@ export default class Pilot {
      * @return {array}                  [success of operation, readback]
      */
     applyDepartureProcedure(procedureId, departureRunway, airportIcao) {
+        this.hasDepartureClearance = true;
+
         const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
 
         if (_isNil(standardRouteModel)) {
@@ -302,6 +314,8 @@ export default class Pilot {
      * @return {array}              [success of operation, readback]
      */
     applyNewRoute(routeString, runway) {
+        this.hasDepartureClearance = true;
+
         const isValid = this._fms.isValidRoute(routeString, runway);
 
         if (!isValid) {
@@ -389,25 +403,14 @@ export default class Pilot {
      * @for Pilot
      * @method clearedAsFiled
      * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
-     * @param {Number} runwayHeading    the magnetic heading of the runway, in radians
-     * @param {Number} cruiseSpeed      the cruise speed of the aircraft, in knots
      * @return {Array}                  [success of operation, readback]
      */
-    clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
-        this._mcp.enable();
-        this._mcp.setAltitudeFieldValue(initialAltitude);
-        this._mcp.setAltitudeHold();
-        this._mcp.setHeadingFieldValue(runwayHeading);
-        this._mcp.setHeadingLnav();
-        this._mcp.setSpeedFieldValue(cruiseSpeed);
-        this._mcp.setSpeedN1();
+    clearedAsFiled() {
+        this.hasDepartureClearance = true;
 
         const readback = {};
-        readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
-                `${this._fms.flightPlanAltitude} 10 minutes after departure`;
-        readback.say = `cleared to destination as filed. Climb and maintain ${radio_altitude(initialAltitude)}, ` +
-                `expect ${radio_altitude(this._fms.flightPlanAltitude)}, ${radio_spellOut('10')} minutes ` +
-                'after departure';
+        readback.log = 'cleared to destination as filed';
+        readback.say = 'cleared to destination as filed';
 
         return [true, readback];
     }
@@ -641,14 +644,40 @@ export default class Pilot {
     }
 
     /**
-     * Set Mcp speed mode for takeoff
+     * Initialize all autopilot systems after being given an IFR clearance to destination
      *
      * @for Pilot
-     * @method initiateTakeoff
+     * @method configureForTakeoff
+     * @param initialAltitude {number} the altitude aircraft can automatically climb to at this airport
+     * @param runway {RunwayModel} the runway taking off on
+     * @param cruiseSpeed {number} the cruise speed of the aircraft, in knots
      */
-    initiateTakeoff() {
-        this._mcp.setSpeedN1();
-        this._mcp.enable();
+    configureForTakeoff(initialAltitude, runway, cruiseSpeed) {
+        if (this._mcp.altitude === -1) {
+            this._mcp.setAltitudeFieldValue(initialAltitude);
+        }
+
+        if (this._mcp.altitudeMode === MCP_MODE.ALTITUDE.OFF) {
+            this._mcp.setAltitudeHold();
+        }
+
+        if (this._mcp.heading === -1) {
+            this._mcp.setHeadingFieldValue(runway.angle);
+        }
+
+        if (this._mcp.headingMode === MCP_MODE.HEADING.OFF) {
+            this._mcp.setHeadingLnav();
+        }
+
+        if (this._mcp.speed === -1) {
+            this._mcp.setSpeedFieldValue(cruiseSpeed);
+        }
+
+        if (this._mcp.speedMode === MCP_MODE.SPEED.OFF) {
+            this._mcp.setSpeedN1();
+        }
+
+        return [true, `${runway.name}, cleared for takeoff`];
     }
 
     /**
@@ -682,6 +711,18 @@ export default class Pilot {
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];
+    }
+
+    /**
+     * End of takeoff, stop hand flying, and give the autopilot control of the aircraft
+     * Note: This should be done when the phase changes from takeoff to climb
+     * Note: The 'raise landing gear' portion has no relevance, and exists solely for specificity of context
+     *
+     * @for Pilot
+     * @method raiseLandingGearAndActivateAutopilot
+     */
+    raiseLandingGearAndActivateAutopilot() {
+        this._mcp.enable();
     }
 
     /**
@@ -800,7 +841,7 @@ export default class Pilot {
      */
     stopWaitingInRunwayQueueAndReturnToGate() {
         // TODO: this will likely need to be called from somewhere other than the `AircraftCommander`
-        // TODO: remove aircraft from the runway queue (`Runway.removeQueue()`)
+        // TODO: remove aircraft from the runway queue (`Runway.removeAircraftFromQueue()`)
         this._fms.flightPhase = FLIGHT_MODES.APRON;
 
         return [true, 'taxiing back to the gate'];

@@ -154,22 +154,6 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     * Removes the specified aircraft from the runway queue
-     *
-     * @for RunwayModel
-     * @method removeQueue
-     * @param  {Aircraft}
-     * @return {Boolean}
-     */
-    removeQueue(aircraft) {
-        if (_includes(this.queue, aircraft)) {
-            this.queue = _without(this.queue, aircraft);
-
-            return true;
-        }
-    }
-
-    /**
     * Calculate the height of the glideslope for a runway's ILS at a given distance on final
     *
     * @for RunwayModel

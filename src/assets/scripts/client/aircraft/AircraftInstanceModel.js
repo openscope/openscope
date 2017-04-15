@@ -835,7 +835,7 @@ export default class AircraftInstanceModel {
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
 
         // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
-        // this.overrideTarget();
+        this.overrideTarget();
     }
 
     /**
@@ -845,33 +845,36 @@ export default class AircraftInstanceModel {
     overrideTarget() {
         switch (this.flightPhase) {
             case FLIGHT_PHASE.APRON:
-                this.target.altitude = this.altitude;
-                this.target.expedite = false;
-                this.target.heading = this.heading;
-                this.target.speed = 0;
+                // TODO: Is this needed?
+                // this.target.altitude = this.altitude;
+                // this.target.expedite = false;
+                // this.target.heading = this.heading;
+                // this.target.speed = 0;
 
                 break;
 
             case FLIGHT_PHASE.TAXI:
-                this.target.altitude = this.altitude;
-                this.target.expedite = false;
-                this.target.heading = this.heading;
-                this.target.speed = 0;
+                // TODO: Is this needed?
+                // this.target.altitude = this.altitude;
+                // this.target.expedite = false;
+                // this.target.heading = this.heading;
+                // this.target.speed = 0;
 
                 break;
 
             case FLIGHT_PHASE.WAITING:
-                this.target.altitude = this.altitude;
-                this.target.expedite = false;
-                this.target.heading = this.heading;
-                this.target.speed = 0;
+                // TODO: Is this needed?
+                // this.target.altitude = this.altitude;
+                // this.target.expedite = false;
+                // this.target.heading = this.heading;
+                // this.target.speed = 0;
 
                 break;
 
             case FLIGHT_PHASE.TAKEOFF: {
                 this.target.altitude = this.altitude;
 
-                if (this.speed > this.model.speed.min) {
+                if (this.speed >= this.model.speed.min) {
                     this.target.altitude = this.model.ceiling;
                 }
 
@@ -880,7 +883,7 @@ export default class AircraftInstanceModel {
                 this.target.speed = this.model.speed.min;
 
                 // TODO: Enumerate the '-999' invalid value
-                if (this.mcp.heading === -999) {
+                if (this.mcp.heading === -1) {
                     console.warn(`${this.callsign} took off with no directional instructions!`);
                 }
 
@@ -903,6 +906,7 @@ export default class AircraftInstanceModel {
                 break;
 
             case FLIGHT_PHASE.LANDING: {
+                // TODO: Is this needed?
                 // this.target.heading = this.mcp.heading;
                 // // TODO: This should be the runway elevation, not zero
                 // this.target.altitude = 0;
@@ -974,8 +978,7 @@ export default class AircraftInstanceModel {
 
             case FLIGHT_PHASE.TAKEOFF:
                 if ((this.altitude - runwayModel.elevation) > PERFORMANCE.TAKEOFF_TURN_ALTITUDE) {
-                    // TODO: setting mode here is temporary until mode is switched to `#flightPhase`. remove this
-                    this.mode = FLIGHT_MODES.CRUISE;
+                    this.pilot.raiseLandingGearAndActivateAutopilot();
                     this.setFlightPhase(FLIGHT_PHASE.CLIMB);
                 }
 
@@ -1447,10 +1450,6 @@ export default class AircraftInstanceModel {
         // SPEED
         this.updateSpeedPhysics();
 
-        if (!this.positionModel) {
-            return;
-        }
-
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.relativePositionHistory.length === 0) {
@@ -1467,11 +1466,7 @@ export default class AircraftInstanceModel {
         this.updateGroundSpeedPhysics();
 
         this.distance = vlen(this.positionModel.relativePosition);
-        this.radial = vradial(this.positionModel.relativePosition);
-
-        if (this.radial < 0) {
-            this.radial += tau();
-        }
+        this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
 
         // TODO: I am not sure what this has to do with aircraft Physics
         const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
@@ -1523,10 +1518,11 @@ export default class AircraftInstanceModel {
     updateAltitudePhysics() {
         this.trend = 0;
 
-        // TODO: abstract to class method
-        if (this.speed <= this.model.speed.min && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
-            return;
-        }
+        // TODO: Is this needed?
+        // // TODO: abstract to class method
+        // if (this.speed <= this.model.speed.min && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
+        //     return;
+        // }
 
         if (this.target.altitude < this.altitude) {
             this.decreaseAircraftAltitude();
