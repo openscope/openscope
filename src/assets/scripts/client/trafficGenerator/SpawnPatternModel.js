@@ -412,6 +412,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
+        // We return early here if the object is empty because we pre-hydrate objects to improve load speeds of the app.
         if (_isEmpty(spawnPatternJson)) {
             return;
         }
