@@ -1,5 +1,4 @@
 /* eslint-disable max-len, import/prefer-default-export */
-// NOTE: Remove `simplifySpeeds` after 5/1/2017
 /**
  * Name enumeration of available game options
  *
@@ -10,7 +9,6 @@
 export const GAME_OPTION_NAMES = {
     CONTROL_METHOD: 'controlMethod',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
-    SIMPLIFY_SPEEDS: 'simplifySpeeds',
     SOFT_CEILING: 'softCeiling'
 };
 
@@ -46,19 +44,8 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.SIMPLIFY_SPEEDS,
-        defaultValue: 'yes',
-        description: 'Use simplified airspeeds',
-        help: 'Controls use of a simplified calculation which results in aircraft always moving across the ground at the speed assigned.  In reality aircraft will move faster as they increase altitude.',
-        type: 'select',
-        data: [
-            ['Yes', 'yes'],
-            ['No', 'no']
-        ]
-    },
-    {
         name: GAME_OPTION_NAMES.SOFT_CEILING,
-        defaultValue: 'no',
+        defaultValue: 'yes',
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
         type: 'select',
