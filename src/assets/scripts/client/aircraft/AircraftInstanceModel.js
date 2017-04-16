@@ -150,7 +150,6 @@ export default class AircraftInstanceModel {
         this.relativePositionHistory = [];
 
         this.category = options.category; // 'arrival' or 'departure'
-        this.mode = FLIGHT_MODES.CRUISE;
 
         /**
          * the following diagram illustrates all allowed mode transitions:
@@ -329,7 +328,7 @@ export default class AircraftInstanceModel {
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             const airport = window.airportController.airport_get();
 
-            this.mode = FLIGHT_MODES.APRON;
+            this.setFlightPhase(FLIGHT_MODES.APRON);
             this.altitude = airport.positionModel.elevation;
             this.speed = 0;
 
@@ -500,7 +499,7 @@ export default class AircraftInstanceModel {
      */
     cancelLanding() {
         // TODO: add fms.clearRunwayAssignment()?
-        this.mode = FLIGHT_MODES.CRUISE;
+        this.setFlightPhase(FLIGHT_MODES.CRUISE);
 
         return true;
     }
@@ -622,9 +621,9 @@ export default class AircraftInstanceModel {
      * @method isTaxiing
      */
     isTaxiing() {
-        return this.mode === FLIGHT_MODES.APRON ||
-            this.mode === FLIGHT_MODES.TAXI ||
-            this.mode === FLIGHT_MODES.WAITING;
+        return this.flightPhase === FLIGHT_MODES.APRON ||
+            this.flightPhase === FLIGHT_MODES.TAXI ||
+            this.flightPhase === FLIGHT_MODES.WAITING;
     }
 
     /**
@@ -634,7 +633,7 @@ export default class AircraftInstanceModel {
      * @method isTakeoff
      */
     isTakeoff() {
-        return this.isTaxiing() || this.mode === FLIGHT_MODES.TAKEOFF;
+        return this.isTaxiing() || this.flightPhase === FLIGHT_MODES.TAKEOFF;
     }
 
     // TODO: the logic in this method can be cleaned up and simplified
@@ -643,9 +642,9 @@ export default class AircraftInstanceModel {
      * @method isVisible
      */
     isVisible() {
-        // TODO: this if/else if would be cleaner with just if (this.mode === FLIGHT_MODES.WAITING) {}
+        // TODO: this if/else if would be cleaner with just if (this.flightPhase === FLIGHT_MODES.WAITING) {}
         // hide aircraft on twys
-        if (this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI) {
+        if (this.flightPhase === FLIGHT_MODES.APRON || this.flightPhase === FLIGHT_MODES.TAXI) {
             return false;
         }
 
@@ -654,7 +653,7 @@ export default class AircraftInstanceModel {
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
             const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
-            return this.mode === FLIGHT_MODES.WAITING && nextInRunwayQueue;
+            return this.flightPhase === FLIGHT_MODES.WAITING && nextInRunwayQueue;
         }
 
         return true;
@@ -1661,7 +1660,7 @@ export default class AircraftInstanceModel {
         //     let crab_angle = 0;
         //
         //     // Compensate for crosswind while tracking a fix or on ILS
-        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
+        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.flightPhase === FLIGHT_MODES.LANDING) {
         //         // TODO: this should be abstracted to a helper function
         //         const offset = angle_offset(this.heading, wind.angle + Math.PI);
         //         crab_angle = Math.asin((wind.speed * sin(offset)) / indicatedAirspeed);
@@ -1958,7 +1957,7 @@ export default class AircraftInstanceModel {
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 
         // TODO: update to look at `#flightPhase`
-        switch (this.mode) {
+        switch (this.flightPhase) {
             case FLIGHT_MODES.APRON:
                 this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
 
@@ -2016,7 +2015,7 @@ export default class AircraftInstanceModel {
 
                 break;
             default:
-                throw new TypeError(`Invalid FLIGHT_MODE ${this.mode} passed to .updateStrip()`);
+                throw new TypeError(`Invalid FLIGHT_MODE ${this.flightPhase} passed to .updateStrip()`);
         }
     }
 

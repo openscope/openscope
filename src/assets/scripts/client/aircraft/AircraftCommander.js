@@ -436,7 +436,7 @@ export default class AircraftCommander {
     runTaxi(aircraft, data) {
         let taxiDestination = data[0];
         const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
-        const flightPhase = aircraft.mode;
+        const flightPhase = aircraft.flightPhase;
 
         // Set the runway to taxi to
         if (!taxiDestination) {
@@ -454,7 +454,6 @@ export default class AircraftCommander {
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.rwy_dep = runway.name;
         aircraft.taxi_start = this._gameController.game_time();
-        aircraft.mode = FLIGHT_MODES.TAXI;
 
         runway.addAircraftToQueue(aircraft);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
@@ -478,7 +477,7 @@ export default class AircraftCommander {
         const aircraft = args[0];
         const uiController = args[1];
 
-        aircraft.mode = FLIGHT_MODES.WAITING;
+        aircraft.setFlightPhase(FLIGHT_MODES.WAITING);
 
         uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.rwy_dep}`);
         speech_say([
@@ -513,18 +512,18 @@ export default class AircraftCommander {
             return [false, 'unable to take off, we\'re already airborne'];
         }
 
-        if (aircraft.mode === FLIGHT_MODES.APRON) {
+        if (aircraft.flightPhase === FLIGHT_MODES.APRON) {
             return [false, 'unable to take off, we\'re still at the gate'];
         }
 
-        if (aircraft.mode === FLIGHT_MODES.TAXI) {
+        if (aircraft.flightPhase === FLIGHT_MODES.TAXI) {
             readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
             readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.rwy_dep)}`;
 
             return [false, readback];
         }
 
-        if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
+        if (aircraft.flightPhase === FLIGHT_MODES.TAKEOFF) {
             return [false, 'already taking off'];
         }
 
@@ -542,7 +541,6 @@ export default class AircraftCommander {
         runway.removeAircraftFromQueue(aircraft);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
         aircraft.takeoffTime = this._gameController.game_time();
-        aircraft.mode = FLIGHT_MODES.TAKEOFF;
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
@@ -581,7 +579,7 @@ export default class AircraftCommander {
     runAbort(aircraft) {
         const airport = this._airportController.airport_get();
 
-        switch (aircraft.mode) {
+        switch (aircraft.flightPhase) {
             case FLIGHT_MODES.TAXI:
                 return aircraft.pilot.stopOutboundTaxiAndReturnToGate();
             case FLIGHT_MODES.WAITING:
