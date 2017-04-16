@@ -433,6 +433,9 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTaxi(aircraft, data) {
+        if (aircraft.isAirborne()) {
+            return [false, 'unable to taxi, we\'re already airborne'];
+        }
         let taxiDestination = data[0];
         const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
         const flightPhase = aircraft.flightPhase;
