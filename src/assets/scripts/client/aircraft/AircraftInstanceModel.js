@@ -1955,7 +1955,6 @@ export default class AircraftInstanceModel {
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 
-        // TODO: update to look at `#flightPhase`
         switch (this.flightPhase) {
             case FLIGHT_PHASE.APRON:
                 this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
@@ -1973,6 +1972,9 @@ export default class AircraftInstanceModel {
                 this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
 
                 break;
+            case FLIGHT_PHASE.CLIMB:
+            case FLIGHT_PHASE.HOLD:
+            case FLIGHT_PHASE.DESCENT:
             case FLIGHT_PHASE.CRUISE:
                 let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
                 let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
@@ -2007,6 +2009,7 @@ export default class AircraftInstanceModel {
                 );
 
                 break;
+            case FLIGHT_PHASE.APPROACH:
             case FLIGHT_PHASE.LANDING:
                 destinationDisplay = this.fms.getDestinationAndRunwayName();
 

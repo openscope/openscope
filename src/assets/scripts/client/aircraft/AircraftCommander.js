@@ -585,7 +585,7 @@ export default class AircraftCommander {
                 return aircraft.pilot.stopWaitingInRunwayQueueAndReturnToGate();
             case FLIGHT_PHASE.LANDING:
                 return aircraft.pilot.goAround(aircraft.heading, aircraft.speed, airport.elevation);
-            case FLIGHT_PHASE.CRUISE:
+            case FLIGHT_PHASE.APPROACH:
                 return aircraft.pilot.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
             default:
                 return [false, 'we aren\'t doing anything that can be aborted'];
