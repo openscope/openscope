@@ -5,7 +5,7 @@ import _uniqueId from 'lodash/uniqueId';
 import { round } from '../math/core';
 import {
     FLIGHT_CATEGORY,
-    FLIGHT_MODES,
+    FLIGHT_PHASE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
@@ -277,7 +277,7 @@ export default class AircraftStripView {
      */
     updateViewForApron(destinationText, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.APRON);
+        this.$heading.text(FLIGHT_PHASE.APRON);
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
@@ -293,7 +293,7 @@ export default class AircraftStripView {
      */
     updateViewForTaxi(destinationText, hasAltitude, altitudeText) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.TAXI);
+        this.$heading.text(FLIGHT_PHASE.TAXI);
         this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
         if (hasAltitude) {
@@ -319,7 +319,7 @@ export default class AircraftStripView {
      */
     updateViewForWaiting(destinationText, hasClearance, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.WAITING);
+        this.$heading.text(FLIGHT_PHASE.WAITING);
         this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
         if (hasClearance) {
@@ -338,7 +338,7 @@ export default class AircraftStripView {
      * @param destinationText {string}
      */
     updateViewForTakeoff(destinationText) {
-        this.$heading.text(FLIGHT_MODES.TAKEOFF);
+        this.$heading.text(FLIGHT_PHASE.TAKEOFF);
 
         if (_isString(destinationText)) {
             this.$destination.text(destinationText.toUpperCase());

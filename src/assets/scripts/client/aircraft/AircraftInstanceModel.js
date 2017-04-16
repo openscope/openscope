@@ -40,7 +40,6 @@ import {
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
-    FLIGHT_MODES,
     FLIGHT_PHASE,
     PERFORMANCE,
     WAYPOINT_NAV_MODE
@@ -328,7 +327,7 @@ export default class AircraftInstanceModel {
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             const airport = window.airportController.airport_get();
 
-            this.setFlightPhase(FLIGHT_MODES.APRON);
+            this.setFlightPhase(FLIGHT_PHASE.APRON);
             this.altitude = airport.positionModel.elevation;
             this.speed = 0;
 
@@ -499,7 +498,7 @@ export default class AircraftInstanceModel {
      */
     cancelLanding() {
         // TODO: add fms.clearRunwayAssignment()?
-        this.setFlightPhase(FLIGHT_MODES.CRUISE);
+        this.setFlightPhase(FLIGHT_PHASE.CRUISE);
 
         return true;
     }
@@ -621,9 +620,9 @@ export default class AircraftInstanceModel {
      * @method isTaxiing
      */
     isTaxiing() {
-        return this.flightPhase === FLIGHT_MODES.APRON ||
-            this.flightPhase === FLIGHT_MODES.TAXI ||
-            this.flightPhase === FLIGHT_MODES.WAITING;
+        return this.flightPhase === FLIGHT_PHASE.APRON ||
+            this.flightPhase === FLIGHT_PHASE.TAXI ||
+            this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
     /**
@@ -633,7 +632,7 @@ export default class AircraftInstanceModel {
      * @method isTakeoff
      */
     isTakeoff() {
-        return this.isTaxiing() || this.flightPhase === FLIGHT_MODES.TAKEOFF;
+        return this.isTaxiing() || this.flightPhase === FLIGHT_PHASE.TAKEOFF;
     }
 
     // TODO: the logic in this method can be cleaned up and simplified
@@ -642,9 +641,9 @@ export default class AircraftInstanceModel {
      * @method isVisible
      */
     isVisible() {
-        // TODO: this if/else if would be cleaner with just if (this.flightPhase === FLIGHT_MODES.WAITING) {}
+        // TODO: this if/else if would be cleaner with just if (this.flightPhase === FLIGHT_PHASE.WAITING) {}
         // hide aircraft on twys
-        if (this.flightPhase === FLIGHT_MODES.APRON || this.flightPhase === FLIGHT_MODES.TAXI) {
+        if (this.flightPhase === FLIGHT_PHASE.APRON || this.flightPhase === FLIGHT_PHASE.TAXI) {
             return false;
         }
 
@@ -653,7 +652,7 @@ export default class AircraftInstanceModel {
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
             const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
-            return this.flightPhase === FLIGHT_MODES.WAITING && nextInRunwayQueue;
+            return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
         }
 
         return true;
@@ -1660,7 +1659,7 @@ export default class AircraftInstanceModel {
         //     let crab_angle = 0;
         //
         //     // Compensate for crosswind while tracking a fix or on ILS
-        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.flightPhase === FLIGHT_MODES.LANDING) {
+        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.flightPhase === FLIGHT_PHASE.LANDING) {
         //         // TODO: this should be abstracted to a helper function
         //         const offset = angle_offset(this.heading, wind.angle + Math.PI);
         //         crab_angle = Math.asin((wind.speed * sin(offset)) / indicatedAirspeed);
@@ -1958,23 +1957,23 @@ export default class AircraftInstanceModel {
 
         // TODO: update to look at `#flightPhase`
         switch (this.flightPhase) {
-            case FLIGHT_MODES.APRON:
+            case FLIGHT_PHASE.APRON:
                 this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
 
                 break;
-            case FLIGHT_MODES.TAXI:
+            case FLIGHT_PHASE.TAXI:
                 this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
 
                 break;
-            case FLIGHT_MODES.WAITING:
+            case FLIGHT_PHASE.WAITING:
                 this.aircraftStripView.updateViewForWaiting(destinationDisplay, this.mcp.isEnabled, hasAltitude);
 
                 break;
-            case FLIGHT_MODES.TAKEOFF:
+            case FLIGHT_PHASE.TAKEOFF:
                 this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
 
                 break;
-            case FLIGHT_MODES.CRUISE:
+            case FLIGHT_PHASE.CRUISE:
                 let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
                 let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
                 const isFollowingSid = this.fms.isFollowingSid();
@@ -2008,7 +2007,7 @@ export default class AircraftInstanceModel {
                 );
 
                 break;
-            case FLIGHT_MODES.LANDING:
+            case FLIGHT_PHASE.LANDING:
                 destinationDisplay = this.fms.getDestinationAndRunwayName();
 
                 this.aircraftStripView.updateViewForLanding(destinationDisplay);

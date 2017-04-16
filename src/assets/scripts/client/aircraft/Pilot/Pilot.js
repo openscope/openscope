@@ -21,7 +21,7 @@ import {
 import { radians_normalize } from '../../math/circle';
 import {
     FLIGHT_CATEGORY,
-    FLIGHT_MODES
+    FLIGHT_PHASE
 } from '../../constants/aircraftConstants';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
 
@@ -825,7 +825,7 @@ export default class Pilot {
      * @return {Array} [success of operation, readback]
      */
     stopOutboundTaxiAndReturnToGate() {
-        this._fms.flightPhase = FLIGHT_MODES.APRON;
+        this._fms.flightPhase = FLIGHT_PHASE.APRON;
         // TODO: What to do with this little number....?
         // aircraft.taxi_start = 0;
 
@@ -842,7 +842,7 @@ export default class Pilot {
     stopWaitingInRunwayQueueAndReturnToGate() {
         // TODO: this will likely need to be called from somewhere other than the `AircraftCommander`
         // TODO: remove aircraft from the runway queue (`Runway.removeAircraftFromQueue()`)
-        this._fms.flightPhase = FLIGHT_MODES.APRON;
+        this._fms.flightPhase = FLIGHT_PHASE.APRON;
 
         return [true, 'taxiing back to the gate'];
     }
@@ -859,15 +859,15 @@ export default class Pilot {
      * @return {array}                  [success of operation, readback]
      */
     taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (flightPhase === FLIGHT_MODES.TAXI) {
+        if (flightPhase === FLIGHT_PHASE.TAXI) {
             return [false, 'already taxiing'];
         }
 
-        if (flightPhase === FLIGHT_MODES.WAITING) {
+        if (flightPhase === FLIGHT_PHASE.WAITING) {
             return [false, 'already taxiied and waiting in runway queue'];
         }
 
-        if (!isDeparture || flightPhase !== FLIGHT_MODES.APRON) {
+        if (!isDeparture || flightPhase !== FLIGHT_PHASE.APRON) {
             return [false, 'unable to taxi'];
         }
 

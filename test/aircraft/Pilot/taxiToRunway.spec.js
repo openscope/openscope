@@ -5,22 +5,22 @@ import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
-import { FLIGHT_MODES } from '../../../src/assets/scripts/client/constants/aircraftConstants';
+import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 
 const runwayMock = '19L';
 
-ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_MODES.TAXI', (t) => {
+ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.TAXI', (t) => {
     const expectedResult = [false, 'already taxiing'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_MODES.TAXI);
+    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_PHASE.TAXI);
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_MODES.WAITING', (t) => {
+ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.WAITING', (t) => {
     const expectedResult = [false, 'already taxiied and waiting in runway queue'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_MODES.WAITING);
+    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_PHASE.WAITING);
 
     t.deepEqual(result, expectedResult);
 });
@@ -28,15 +28,15 @@ ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_MODES.
 ava('.taxiToRunway() returns an error when isDeparture is false', (t) => {
     const expectedResult = [false, 'unable to taxi'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.taxiToRunway(runwayMock, false, FLIGHT_MODES.APRON);
+    const result = pilot.taxiToRunway(runwayMock, false, FLIGHT_PHASE.APRON);
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.taxiToRunway() returns an error when flightPhase is not equal to FLIGHT_MODES.APRON', (t) => {
+ava('.taxiToRunway() returns an error when flightPhase is not equal to FLIGHT_PHASE.APRON', (t) => {
     const expectedResult = [false, 'unable to taxi'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_MODES.ARRIVAL);
+    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_PHASE.ARRIVAL);
 
     t.deepEqual(result, expectedResult);
 });
@@ -50,7 +50,7 @@ ava('.taxiToRunway() returns a success message when finished', (t) => {
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_MODES.APRON);
+    const result = pilot.taxiToRunway(runwayMock, true, FLIGHT_PHASE.APRON);
 
     t.deepEqual(result, expectedResult);
 });

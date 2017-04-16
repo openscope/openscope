@@ -8,7 +8,6 @@ import {
     radio_spellOut
 } from '../utilities/radioUtilities';
 import {
-    FLIGHT_MODES,
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
@@ -80,7 +79,7 @@ export default class AircraftCommander {
             const command = commands[i][0];
             const args = commands[i].splice(1);
 
-            if (command === FLIGHT_MODES.TAKEOFF) {
+            if (command === FLIGHT_PHASE.TAKEOFF) {
                 deferred.push([command, args]);
 
                 continue;
@@ -477,7 +476,7 @@ export default class AircraftCommander {
         const aircraft = args[0];
         const uiController = args[1];
 
-        aircraft.setFlightPhase(FLIGHT_MODES.WAITING);
+        aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
 
         uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.rwy_dep}`);
         speech_say([
@@ -512,18 +511,18 @@ export default class AircraftCommander {
             return [false, 'unable to take off, we\'re already airborne'];
         }
 
-        if (aircraft.flightPhase === FLIGHT_MODES.APRON) {
+        if (aircraft.flightPhase === FLIGHT_PHASE.APRON) {
             return [false, 'unable to take off, we\'re still at the gate'];
         }
 
-        if (aircraft.flightPhase === FLIGHT_MODES.TAXI) {
+        if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
             readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
             readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.rwy_dep)}`;
 
             return [false, readback];
         }
 
-        if (aircraft.flightPhase === FLIGHT_MODES.TAKEOFF) {
+        if (aircraft.flightPhase === FLIGHT_PHASE.TAKEOFF) {
             return [false, 'already taking off'];
         }
 
@@ -580,13 +579,13 @@ export default class AircraftCommander {
         const airport = this._airportController.airport_get();
 
         switch (aircraft.flightPhase) {
-            case FLIGHT_MODES.TAXI:
+            case FLIGHT_PHASE.TAXI:
                 return aircraft.pilot.stopOutboundTaxiAndReturnToGate();
-            case FLIGHT_MODES.WAITING:
+            case FLIGHT_PHASE.WAITING:
                 return aircraft.pilot.stopWaitingInRunwayQueueAndReturnToGate();
-            case FLIGHT_MODES.LANDING:
+            case FLIGHT_PHASE.LANDING:
                 return aircraft.pilot.goAround(aircraft.heading, aircraft.speed, airport.elevation);
-            case FLIGHT_MODES.CRUISE:
+            case FLIGHT_PHASE.CRUISE:
                 return aircraft.pilot.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
             default:
                 return [false, 'we aren\'t doing anything that can be aborted'];
