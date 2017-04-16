@@ -73,6 +73,7 @@ export default class AircraftCommander {
 
         let response = [];
         let response_end = '';
+        let redResponse = false;
         const deferred = [];
 
         for (let i = 0; i < commands.length; i++) {
@@ -88,6 +89,10 @@ export default class AircraftCommander {
             let retval = this.run(aircraft, command, args);
 
             if (retval) {
+                if (!retval[0]) {
+                    redResponse = true;
+                }
+
                 if (!_has(retval[1], 'log') || !_has(retval[1], 'say')) {
                     // TODO: reassigning a value using itself is dangerous. this should be re-wroked
                     retval = [
@@ -113,6 +118,9 @@ export default class AircraftCommander {
             const retval = this.run(aircraft, command, args);
 
             if (retval) {
+                if (!retval[0]) {
+                    redResponse = true;
+                }
                 // TODO: fix the logic here this very purposly using `!=`. length is not an object and thus,
                 // never null but by using coercion it evaluates to falsey if its not an array
                 // true if array, and not log/say object
@@ -130,8 +138,8 @@ export default class AircraftCommander {
 
         if (commands.length === 0) {
             response = [{
-                say: 'not understood',
-                log: 'not understood'
+                say: 'say again',
+                log: 'say again'
             }];
             response_end = 'say again';
         }
@@ -144,7 +152,7 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            this._uiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`);
+            this._uiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
             speech_say([
                 { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
