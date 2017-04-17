@@ -214,6 +214,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'kelp',
+            level: 'beginner',
+            name: 'El Paso International Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'kjfk',
         //     level: 'hard',
