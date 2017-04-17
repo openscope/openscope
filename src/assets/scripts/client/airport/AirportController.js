@@ -24,13 +24,9 @@ export default class AirportController {
      * @param updateRun {function}
      * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange, navigationLibrary) {
+    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
-        // The navigation library doesnt belong here. this is a temp fix so api doesn't
-        // change too drastically too quickly
-        // TODO: move calling of sidCollection and starCollection methods elsewhere
-        this._navigationLibrary = navigationLibrary;
 
         this.airport = airport;
         this.airport.airports = {};
@@ -84,7 +80,8 @@ export default class AirportController {
     ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
-        if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
+        if (
+            _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
             _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
@@ -125,8 +122,7 @@ export default class AirportController {
                 wip
             },
             this.updateRun,
-            this.onAirportChange,
-            this._navigationLibrary
+            this.onAirportChange
         );
 
         this.airport_add(airport);

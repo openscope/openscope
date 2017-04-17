@@ -1,3 +1,5 @@
+import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
+
 export const AIRCRAFT_DEFINITION_MOCK = {
     name: 'Boeing 737-700',
     icao: 'B737',
@@ -27,7 +29,7 @@ export const AIRCRAFT_DEFINITION_MOCK = {
         landing: 125,
         cruise: 460,
         cruiseM: null,
-        max:  525,
+        max: 525,
         maxM: null
     },
     capability: {
@@ -62,7 +64,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
             takeoff: 1.900,
             landing: 1.400
         },
-        speed:{
+        speed: {
             min: 115,
             landing: 130,
             cruise: 454,
@@ -77,17 +79,51 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
     }
 ];
 
-export const AIRCRAFT_INITIALIZATION_PROPS_MOCK = {
+export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     callsign: '432',
     destination: 'KLAS',
-    fleet: '',
+    fleet: 'default',
+    airline: 'aal',
+    airlineCallsign: 'speedbird',
+    altitude: 28000,
+    speed: 320,
+    category: 'departure',
+    icao: 'b737',
+    model: AIRCRAFT_DEFINITION_MOCK,
+    route: 'KLAS.COWBY6.GUP',
+    waypoints: []
+};
+
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
+    callsign: '432',
+    destination: 'KLAS',
+    fleet: 'default',
     airline: 'aal',
     airlineCallsign: 'speedbird',
     altitude: 28000,
     speed: 320,
     category: 'arrival',
     icao: 'b737',
-    model: null,
+    model: AIRCRAFT_DEFINITION_MOCK,
     route: 'DAG.KEPEC3.KLAS',
     waypoints: []
+};
+
+export const HOLD_WAYPOINT_MOCK = {
+    turnDirection: 'left',
+    legLength: '3min',
+    name: '@COWBY',
+    positionModel: STATIC_POSITION_MODEL_MOCK,
+    altitudeRestriction: -1,
+    speedRestriction: -1
+};
+
+export const HOLD_AT_PRESENT_LOCATION_MOCK = {
+    isHold: true,
+    turnDirection: 'left',
+    legLength: '3min',
+    name: 'GPS',
+    positionModel: STATIC_POSITION_MODEL_MOCK,
+    altitudeRestriction: -1,
+    speedRestriction: -1
 };

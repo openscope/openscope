@@ -141,7 +141,7 @@ export default class InputController {
         this.$window.on('keydown', (event) => this.onKeydownHandler(event));
         this.$commandInput.on('keydown', (event) => this.onCommandInputKeydownHandler(event));
         this.$commandInput.on('input', (event) => this.onCommandInputChangeHandler(event));
-        // FIXME: these are non-standard events and will be deprecated soon. this should be moved
+        // TODO: these are non-standard events and will be deprecated soon. this should be moved
         // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
         // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
         // this.$commandInput.on('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
@@ -288,7 +288,7 @@ export default class InputController {
 
             if (nearest[0]) {
                 if (nearest[1] < window.uiController.px_to_km(80)) {
-                    this.input.callsign = nearest[0].getCallsign().toUpperCase();
+                    this.input.callsign = nearest[0].callsign.toUpperCase();
 
                     this.input_select(this.input.callsign);
                 } else {
@@ -382,7 +382,7 @@ export default class InputController {
 
         prop.input.callsign = match[1];
         let number = 0;
-        // FIXME: this is a very mutable property. perhaps it should be something else?
+        // TODO: this is a very mutable property. perhaps it should be something else?
         match = null;
         prop.canvas.dirty = true;
 
@@ -641,7 +641,7 @@ export default class InputController {
         }
 
         matches = _map(aircrafts, (aircraft) => {
-            return aircraft.getCallsign();
+            return aircraft.callsign;
         });
 
         if (aircrafts.length === 1 && (prop.input.data || val[val.length - 1] === ' ')) {
@@ -797,7 +797,7 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.AUTO:
-                // FIXME: does this function exist anywhere?
+                // TODO: does this function exist anywhere?
                 // aircraft_toggle_auto();
                 //
                 // if (prop.aircraft.auto.enabled) {

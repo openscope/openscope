@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "gulp build --prod",
-    "test": "nyc --require babel-core/register ava --serial --concurrency=5",
+    "test": "nyc --require babel-core/register ava --concurrency=5",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "coverage": "npm run test && npm run report",

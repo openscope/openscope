@@ -28,6 +28,18 @@ export default class StandardRouteCollection extends BaseCollection {
             return;
         }
 
+        /**
+         * Current cache of found routes, organized by `ICAO.ENTRY.EXIT` strings
+         *
+         * By leveraging this cache, we are able to pre-find routes for verification,
+         * but also store them so subsequent finds return from the cache.
+         *
+         * @property _cache
+         * @type {Object}
+         * @default {}
+         */
+        this._cache = {};
+
         return this._init(standardRouteEnum);
     }
 
@@ -79,27 +91,6 @@ export default class StandardRouteCollection extends BaseCollection {
         return this;
     }
 
-    // TODO: update implementations to accept the FixModel instead of an array
-    /**
-     * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
-     *
-     * @for StandardRouteCollection
-     * @method getSID
-     * @param icao {string}
-     * @param exitFixName {string}
-     * @param runwayName {string}
-     * @return {array}
-     */
-    findFixesForSidByRunwayAndExit(icao, exitFixName, runwayName) {
-        if (!icao) {
-            return;
-        }
-
-        const sid = this.findRouteByIcao(icao);
-
-        return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
-    }
-
     /**
      * Finds a list of fixes for the entry and body segments of a given route
      *
@@ -119,48 +110,43 @@ export default class StandardRouteCollection extends BaseCollection {
         return route.findFixesAndRestrictionsForEntryAndBody(entryFixName);
     }
 
-    // TODO: update implementations to accept the FixModel instead of an array
     /**
-     * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
+     * Find a list of `StandardWaypointModel`s for a specific route
      *
-     * Used to gather all the fixes for a give STAR route.
+     * Acts as a fascade for `_findOrAddRouteToCache`.
      *
      * @for StandardRouteCollection
-     * @method getSID
+     * @method findRouteWaypointsForRouteByEntryAndExit
      * @param icao {string}
-     * @param entryFixName {string}
-     * @param runwayName {string} (optional)
-     * @return {array}
+     * @param entry {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardRouteWaypointModel>}
      */
-    findFixesForStarByEntryAndRunway(icao, entryFixName, runwayName) {
+    findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
         if (!icao) {
             return;
         }
 
-        const star = this.findRouteByIcao(icao);
-
-        return star.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
+        return this._findOrAddRouteToCache(icao, entry, exit, isPreSpawn);
     }
 
     /**
      * Find a list of `StandardWaypointModel`s for a specific route
      *
      * @for StandardRouteCollection
-     * @method findFixModelsForRouteByEntryAndExit
+     * @method findRouteWaypointsForRouteByEntryAndExit
      * @param icao {string}
      * @param entry {string}
      * @param exit {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {StandardRouteModel}
+     * @return {array<WaypointModel>}
      */
-    findFixModelsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
-        if (!icao) {
-            return;
-        }
+    generateFmsWaypointModelsForRoute(icao, entry, exit) {
+        const isPreSpawn = false;
+        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn);
+        const result = _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
 
-        const route = this.findRouteByIcao(icao);
-
-        return route.findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        return result;
     }
 
     /**
@@ -173,8 +159,6 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {string}
      */
     findRandomExitPointForSIDIcao(icao) {
-        // console.warn('StandardRouteCollection.findRandomExitPointForSIDIcao() will be deprecated in the next release');
-
         const sid = this.findRouteByIcao(icao);
 
         // if sid doesnt have any exit points it ends at fix for which the SID is named
@@ -224,7 +208,7 @@ export default class StandardRouteCollection extends BaseCollection {
         _forEach(routeList, (route) => {
             const routeModel = new StandardRouteModel(route);
 
-            this._addSidToCollection(routeModel);
+            this._addRouteModelToCollection(routeModel);
         });
 
         return this;
@@ -234,11 +218,11 @@ export default class StandardRouteCollection extends BaseCollection {
      * Add a `StandardRouteModel` to the collection and update length.
      *
      * @for StandardRouteCollection
-     * @method _addSidToCollection
+     * @method _addRouteModelToCollection
      * @param routeModel {StandardRouteModel}
      * @private
      */
-    _addSidToCollection(routeModel) {
+    _addRouteModelToCollection(routeModel) {
         if (!(routeModel instanceof StandardRouteModel)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Expected routeModel to be an instance of StandardRouteModel, instead received ${routeModel}`);
@@ -247,5 +231,39 @@ export default class StandardRouteCollection extends BaseCollection {
         this._items.push(routeModel);
 
         return this;
+    }
+
+    /**
+     * Find the requested route in `_cache` or find the route and add it t the cache
+     *
+     * Allows a route to be validated by first finding them and then adding it to the _cache.
+     * Imprpves performance by not having to search for routes that have already been found.
+     *
+     * @for StandardRouteCollection
+     * @method findRouteWaypointsForRouteByEntryAndExit
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    _findOrAddRouteToCache(icao, entry, exit, isPreSpawn) {
+        const cacheKey = `${icao}.${entry}.${exit}`;
+
+        if (!_isNil(this._cache[cacheKey]) && !isPreSpawn) {
+            return this._cache[cacheKey];
+        }
+
+        const routeModel = this.findRouteByIcao(icao);
+
+        if (typeof routeModel === 'undefined') {
+            // TODO: there will need to be some feedback here but should still fail quietly
+            return;
+        }
+
+        const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        this._cache[cacheKey] = routeWaypoints;
+
+        return routeWaypoints;
     }
 }

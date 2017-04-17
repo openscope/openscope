@@ -1,17 +1,21 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
 import $ from 'jquery';
+import _ceil from 'lodash/ceil';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
-import PositionModel from '../base/PositionModel';
+import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayModel from './RunwayModel';
+import StaticPositionModel from '../base/StaticPositionModel';
+import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
+import { PERFORMANCE } from '../constants/aircraftConstants';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -43,18 +47,17 @@ export default class AirportModel {
      * @param updateRun {function}
      * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun, onAirportChange, navigationLibrary) {
-        if (!updateRun || !onAirportChange || !navigationLibrary) {
-            console.log('::: ERROR', !updateRun, !onAirportChange, !navigationLibrary);
+    constructor(options = {}, updateRun, onAirportChange) {
+        if (!updateRun || !onAirportChange) {
+            console.log('::: ERROR', !updateRun, !onAirportChange);
             return;
         }
 
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
-        this._navigationLibrary = navigationLibrary;
         this.data = {};
 
-        // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
+        // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
         this.loading = false;
@@ -63,12 +66,10 @@ export default class AirportModel {
         this.wip = null;
         this.radio = null;
         this.level = null;
-        this.position = null;
+        this._positionModel = null;
         this.runways = [];
         // TODO: rename to `runwayName`
         this.runway = null;
-        // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
-        // this.fixes = {};
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -83,8 +84,6 @@ export default class AirportModel {
             runway: null,
             departure: null
         };
-        // this.departures = [];
-        // this.arrivals = [];
 
         this.wind  = {
             speed: 10,
@@ -101,27 +100,77 @@ export default class AirportModel {
     }
 
     /**
-     * @property real_fixes
-     * @return {array<FixModel>}
-     */
-    get real_fixes() {
-        return this._navigationLibrary.realFixes;
-    }
-
-    /**
      * @property elevation
      * @return {number}
      */
     get elevation() {
-        return this.position.elevation;
+        return this._positionModel.elevation;
     }
 
     /**
-     * @property magnetic_north
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property position
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for AirportModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
+    }
+
+    /**
+     * Fascade to access the airport's position's magnetic declination value
+     *
+     * @for AirportModel
+     * @property magneticNorth
      * @return {number}
      */
-    get magnetic_north() {
-        return this.position.magneticNorthInRadians;
+    get magneticNorth() {
+        return this._positionModel.magneticNorth;
+    }
+
+    /**
+     * Minimum altitude an aircraft can be assigned to.
+     *
+     * @property minAssignableAltitude
+     * @return {number}
+     */
+    get minAssignableAltitude() {
+        return _ceil(this.elevation + 1000, -2);
+    }
+
+    /**
+     * Minimum descent altitude of an instrument approach
+     *
+     * This is 200 feet AGL but every airport is at a different elevation
+     * This provides easy access to the correct value from within an aircraft
+     *
+     * @property minDescentAltitude
+     * @return {number}
+     */
+    get minDescentAltitude() {
+        return Math.floor(this.elevation + PERFORMANCE.INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE);
+    }
+
+    /**
+     * Maximum altitude an aircraft can be assigned to.
+     *
+     * @property maxAssignableAltitude
+     * @return {number}
+     */
+    get maxAssignableAltitude() {
+        return this.ctr_ceiling;
     }
 
     /**
@@ -134,14 +183,14 @@ export default class AirportModel {
         this.icao = _get(data, 'icao', this.icao).toLowerCase();
         this.level = _get(data, 'level', this.level);
         this.wip = _get(data, 'wip', this.wip);
-        // exit early if `position` doesnt exist in data. on app initialiazation, we loop through every airport
+        // exit early if `position` doesn't exist in data. on app initialiazation, we loop through every airport
         // in the `airportLoadList` and instantiate a model for each but wont have the full data set until the
         // airport json file is loaded.
         if (!data.position) {
             return;
         }
 
-        this.setCurrentPosition(data.position, data.magnetic_north);
+        this.setCurrentPosition(data.position, degreesToRadians(data.magnetic_north));
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
@@ -151,7 +200,6 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-        // this.fixes = _get(data, 'fixes', {});
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -167,14 +215,14 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method setCurrentPosition
-     * @param currentPosition {array}
+     * @param gpsCoordinates {array<number>} [latitude, longitude]
+     * @param magneticNorth {number} magnetic declination (variation), in radians
      */
-    setCurrentPosition(currentPosition, magneticNorth) {
-        if (!currentPosition) {
+    setCurrentPosition(gpsCoordinates, magneticNorth) {
+        if (!isValidGpsCoordinatePair(gpsCoordinates)) {
             return;
         }
-
-        this.position = new PositionModel(currentPosition, null, magneticNorth);
+        this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
     }
 
     /**
@@ -193,22 +241,19 @@ export default class AirportModel {
         this.airspace = _map(airspace, (airspaceSection) => {
             return new AirspaceModel(
                 airspaceSection,
-                this.position,
-                this.magnetic_north
+                this._positionModel,
+                this._positionModel.magneticNorth
             );
         });
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(this.airspace);
 
-        // change ctr_radius to point along perimeter that's farthest from rr_center
-        // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
-
         this.ctr_radius = Math.max(..._map(
-            this.perimeter.poly, (v) => vlen(
+            this.perimeter.poly, (vertexPosition) => vlen(
                 vsub(
-                    v.position,
-                    PositionModel.calculatePosition(this.rr_center, this.position, this.magnetic_north)
+                    vertexPosition.relativePosition,
+                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._positionModel, this.magneticNorth)
                 )
             )
         ));
@@ -224,9 +269,11 @@ export default class AirportModel {
             return;
         }
 
+        // TODO: move this to a `RunwayCollection` class
         _forEach(runways, (runway) => {
-            runway.reference_position = this.position;
-            runway.magnetic_north = this.magnetic_north;
+            // TODO: This should not be happening here, but rather during creation of the runway's `StaticPositionModel`
+            runway.relative_position = this._positionModel;
+            runway._magneticNorth = this.magneticNorth;
 
             // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
 
@@ -249,13 +296,17 @@ export default class AirportModel {
 
         _forEach(maps, (map, key) => {
             this.maps[key] = [];
+            const outputMap = this.maps[key];
             const lines = map;
 
             _forEach(lines, (line) => {
-                const start = PositionModel.calculatePosition([line[0], line[1]], this.position, this.magnetic_north);
-                const end = PositionModel.calculatePosition([line[2], line[3]], this.position, this.magnetic_north);
-
-                this.maps[key].push([start[0], start[1], end[0], end[1]]);
+                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
+                const lineStartCoordinates = [line[0], line[1]];
+                const lineEndCoordinates = [line[2], line[3]];
+                const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
+                const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
+                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
+                outputMap.push(lineVerticesRelativePositions);
             });
         });
     }
@@ -278,8 +329,9 @@ export default class AirportModel {
             }
 
             obj.height = parseElevation(area.height);
+            // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(PositionModel.calculatePosition(v, this.position, this.magnetic_north))];
+                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
@@ -323,7 +375,7 @@ export default class AirportModel {
      * @method buildRunwayMetaData
      */
     buildRunwayMetaData() {
-        // TODO: translate these to _forEach()
+        // TODO: move this logic to a `RunwayController` class
         for (const rwy1 in this.runways) {
             for (const rwy1end in this.runways[rwy1]) {
                 // setup primary runway object
@@ -338,13 +390,13 @@ export default class AirportModel {
                         // setup secondary runway subobject
                         const r1 = this.runways[rwy1][rwy1end];
                         const r2 = this.runways[rwy2][rwy2end];
-                        const offset = getOffset(r1, r2.position, r1.angle);
+                        const offset = getOffset(r1, r2.relativePosition, r1.angle);
                         this.metadata.rwy[r1.name][r2.name] = {};
 
                         // generate this runway pair's relationship data
                         this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
                         this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
-                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
+                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.relativePosition, r1.angle, r2.relativePosition, r2.angle);
                         this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
                     }
                 }
@@ -484,10 +536,10 @@ export default class AirportModel {
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
-                            pt.reverse();   // `PositionModel` requires [lat,lon] order
-                            const pos = new PositionModel(pt, apt.position, apt.magnetic_north);
+                            pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
+                            const pos = new StaticPositionModel(pt, apt.positionModel, apt.magneticNorth);
 
-                            return [pos.position];
+                            return [pos.relativePosition];
                         })
                     ];
                 }));
@@ -615,49 +667,6 @@ export default class AirportModel {
     }
 
     /**
-     * @for AirportModel
-     * @param id {string}
-     * @param exit {string}
-     * @param runway {string}
-     * @return {array}
-     */
-    getSID(id, exit, runway) {
-        // console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
-    }
-
-    /**
-     * @for AirportModel
-     * @method getSIDExitPoint
-     * @param icao {string}  Name of SID
-     * @return {string}  Name of Exit fix in SID
-     */
-    getSIDExitPoint(icao) {
-        // console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(icao);
-    }
-
-    /**
-     * Return an array of [Waypoint, fixRestrictions] for a given STAR
-     *
-     * Note: Passing a value for 'rwy' will help the fms distinguish between
-     *       different branches of a STAR, when it splits into different paths
-     *       for landing on different runways (eg 'HAWKZ4, landing south' vs
-     *       'HAWKZ4, landing north'). Not strictly required, but not passing
-     *       it will cause an incomplete route in many cases (depends on the
-     *       design of the actual STAR in the airport's json file).
-     *
-     * @param {string} id - the identifier for the STAR (eg 'LENDY6')
-     * @param {string} entry - the entryPoint from which to join the STAR
-     * @param {string} rwy - (optional) the planned arrival runway
-     * @return {array<string>}
-     */
-    getSTAR(id, entry, rwy) {
-        // console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
-    }
-
-    /**
      *
      *
      */
@@ -666,6 +675,7 @@ export default class AirportModel {
             return null;
         }
 
+        // TODO: move below to a `RunwayCollection` class
         name = name.toLowerCase();
 
         for (let i = 0; i < this.runways.length; i++) {

@@ -20,5 +20,5 @@ export const time = () => {
  * @return {number}
  */
 export const calculateDeltaTime = (lastFrame) => {
-    return Math.min(time() - lastFrame, 1 / 20);
+    return time() - lastFrame;
 };

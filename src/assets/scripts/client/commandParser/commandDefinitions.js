@@ -9,10 +9,7 @@
  *
  * @fileoverview
  */
-import {
-    convertToThousands,
-    convertStringToNumber
-} from '../utilities/unitConverters';
+import { convertStringToNumber } from '../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
@@ -92,7 +89,7 @@ const ZERO_ARG_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    descendViaSTAR: {
+    descendViaStar: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
