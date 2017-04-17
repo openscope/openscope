@@ -931,6 +931,7 @@ export default class ConvasController {
             cc.save();
 
             let tail_length = aircraft.groundSpeed / 15;
+
             if (match) {
                 tail_length = 15;
             }

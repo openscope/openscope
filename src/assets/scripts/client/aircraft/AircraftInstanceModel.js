@@ -1639,7 +1639,6 @@ export default class AircraftInstanceModel {
         const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
         const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
 
-
         // Calculate ground speed and direction
         const flightPathVector = vadd(flightThroughAirVector, windVector);
         const groundTrack = vradial(flightPathVector);
@@ -1650,6 +1649,9 @@ export default class AircraftInstanceModel {
         const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
+
+        this.groundTrack = groundTrack;
+        this.groundSpeed = groundSpeed;
 
         // TODO: is this needed anymore?
         // TODO: Fix this to prevent drift (being blown off course)
