@@ -328,6 +328,7 @@ export default class Fms {
 
     /**
      * Return the name of the airport and the assigned runway, if following an arrival procedure
+     * or just the assigned runway when not on a procedure
      *
      * @for Fms
      * @method getDestinationAndRunwayName
@@ -335,7 +336,7 @@ export default class Fms {
      */
     getDestinationAndRunwayName() {
         if (!this.isFollowingStar()) {
-            return null;
+            return `${this._runwayName}`;
         }
 
         return `${this.currentLeg.exitName} ${this._runwayName}`;
