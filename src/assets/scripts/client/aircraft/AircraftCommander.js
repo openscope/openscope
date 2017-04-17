@@ -459,7 +459,7 @@ export default class AircraftCommander {
             return [false, `no runway ${taxiDestination.toUpperCase()}`];
         }
 
-        const readback = aircraft.pilot.taxiToRunway(runway.name, isDeparture, flightPhase);
+        const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunway = runway;
