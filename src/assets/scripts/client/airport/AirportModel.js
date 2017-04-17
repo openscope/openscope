@@ -295,6 +295,7 @@ export default class AirportModel {
 
         _forEach(maps, (map, key) => {
             this.maps[key] = [];
+            const outputMap = this.maps[key];
             const lines = map;
 
             _forEach(lines, (line) => {
@@ -304,7 +305,7 @@ export default class AirportModel {
                 const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
                 const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
                 const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-                this.maps[key].push(...lineVerticesRelativePositions);
+                outputMap.push(lineVerticesRelativePositions);
             });
         });
     }
