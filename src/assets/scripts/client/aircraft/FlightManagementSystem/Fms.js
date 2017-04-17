@@ -82,7 +82,7 @@ export default class Fms {
     /**
      * @constructor
      * @param aircraftInitProps {object}
-     * @param initialRunwayAssignment {string}
+     * @param initialRunwayAssignment {RunwayModel}
      * @param typeDefinitionModel {AircraftTypeDefinitionModel}
      * @param navigationLibrary {NavigationLibrary}
      */
@@ -115,16 +115,24 @@ export default class Fms {
         */
         this._previousRouteSegments = [];
 
+        // TODO: Use this!
         /**
-         * Name of the initial runway assigned for takeoff/landing.
+         * Airport the aircraft arrives to
          *
-         * This value is likely to change as an aircraft moves through the airspace.
-         *
-         * @property _runwayName
-         * @type {string}
-         * @private
+         * @for Fms
+         * @property arrivalAirport
+         * @type {AirportModel}
          */
-        this._runwayName = initialRunwayAssignment;
+        this.arrivalAirport = null;
+
+        /**
+         * Name of runway used at arrival airport
+         *
+         * @for Fms
+         * @property arrivalRunway
+         * @type {RunwayModel}
+         */
+        this.arrivalRunway = initialRunwayAssignment;
 
         /**
         * Current flight phase of an aircraft
@@ -134,6 +142,25 @@ export default class Fms {
         * @default ''
         */
         this.currentPhase = '';
+
+        // TODO: Use this!
+        /**
+         * Airport the aircraft departs from
+         *
+         * @for Fms
+         * @property departureAirport
+         * @type {AirportModel}
+         */
+        this.departureAirport = null;
+
+        /**
+         * Name of runway used at departure airport
+         *
+         * @for Fms
+         * @property departureRunway
+         * @type {RunwayModel}
+         */
+        this.departureRunway = initialRunwayAssignment;
 
         /**
          * @property _flightPhaseHistory
@@ -164,6 +191,10 @@ export default class Fms {
         this.init(aircraftInitProps);
     }
 
+    get currentRunway() {
+        return this.arrivalRunway || this.departureRunway;
+    }
+
     /**
      * The name of the currently assigned runway
      *
@@ -171,11 +202,11 @@ export default class Fms {
      *          both departure and arrival runways are supported for
      *          a single aircraft
      *
-     * @property currentRunway
+     * @property currentRunwayName
      * @type {string}
      */
     get currentRunwayName() {
-        return this._runwayName;
+        return this.currentRunway.name;
     }
 
     /**
@@ -290,10 +321,11 @@ export default class Fms {
     destroy() {
         this._navigationLibrary = null;
         this._previousRouteSegments = [];
-        this._runwayName = '';
+        this.arrivalRunway = '';
+        this.currentPhase = '';
+        this.departureRunway = '';
         this.flightPlanAltitude = -1;
         this.legCollection = [];
-        this.currentPhase = '';
     }
 
     /**
@@ -336,10 +368,10 @@ export default class Fms {
      */
     getDestinationAndRunwayName() {
         if (!this.isFollowingStar()) {
-            return `${this._runwayName}`;
+            return `${this.currentRunwayName}`;
         }
 
-        return `${this.currentLeg.exitName} ${this._runwayName}`;
+        return `${this.currentLeg.exitName} ${this.currentRunwayName}`;
     }
 
     /**
@@ -1022,7 +1054,7 @@ export default class Fms {
      * @private
      */
     _buildLegModelFromRouteSegment(routeSegment) {
-        return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
+        return new LegModel(routeSegment, this.currentRunwayName, this.currentPhase, this._navigationLibrary);
     }
 
     /**
@@ -1036,7 +1068,7 @@ export default class Fms {
     _createLegWithHoldWaypoint(waypointProps) {
         const legModel = new LegModel(
             waypointProps.name,
-            this._runwayName,
+            this.currentRunwayName,
             this.currentPhase,
             this._navigationLibrary,
             waypointProps
@@ -1203,7 +1235,7 @@ export default class Fms {
         const legModel = this.legCollection[legIndex];
 
         legModel.destroy();
-        legModel.init(routeString, this._runwayName, this.currentPhase);
+        legModel.init(routeString, this.currentRunwayName, this.currentPhase);
     }
 
     /**
@@ -1290,6 +1322,7 @@ export default class Fms {
         }
     }
 
+    // TODO: This should be individualized for amending arrival and departure runway assignments
     /**
      * Changes the current runway assignment
      *
@@ -1303,7 +1336,8 @@ export default class Fms {
      * @private
      */
     _updateRunwayAssignment(runwayName) {
-        this._runwayName = runwayName;
+        this.arrivalRunway = runwayName;
+        this.departureRunway = runwayName;
     }
 
     /**
