@@ -87,8 +87,6 @@ export default class AircraftInstanceModel {
         this.groundSpeed  = 0;          // Groundspeed (GS), knots
         this.groundTrack  = 0;          //
         this.takeoffTime  = 0;          //
-        this.rwy_dep      = null;       // Departure Runway (to use, currently using, or used)
-        this.rwy_arr      = null;       // Arrival Runway (to use, currently using, or used)
         this.approachOffset = 0;        // Distance laterally from the approach path
         this.approachDistance = 0;      // Distance longitudinally from the threshold
         this.radial       = 0;          // Angle from airport center to aircraft
@@ -193,18 +191,6 @@ export default class AircraftInstanceModel {
 
         this.createStrip();
         this.updateStrip();
-    }
-
-    /**
-     * The name of the currently assigned runway
-     *
-     * @property initialRunwayAssignment
-     * @return {string}
-     */
-    get initialRunwayAssignment() {
-        return this.rwy_dep
-            ? this.rwy_dep
-            : this.rwy_arr;
     }
 
     /**
@@ -563,7 +549,7 @@ export default class AircraftInstanceModel {
     isOnGround() {
         const errorAllowanceInFeet = 5;
         const airport = window.airportController.airport_get();
-        const runway = airport.getRunway(this.initialRunwayAssignment);
+        const runway = this.fms.currentRunway;
         const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
@@ -626,7 +612,7 @@ export default class AircraftInstanceModel {
 
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
-            const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
+            const runway = window.airportController.airport_get().getRunway(this.fms.departureRunway);
             const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
             return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
@@ -660,7 +646,7 @@ export default class AircraftInstanceModel {
 
         const airport = window.airportController.airport_get();
         const wind = airport.wind;
-        const runway = airport.getRunway(this.initialRunwayAssignment);
+        const runway = this.fms.currentRunway;
         const angle =  abs(angle_offset(runway.angle, wind.angle));
 
         // TODO: these two bits of math should be abstracted to helper functions
@@ -928,7 +914,7 @@ export default class AircraftInstanceModel {
      */
     updateFlightPhase() {
         const airportModel = window.airportController.airport_get();
-        const runwayModel = airportModel.getRunway(this.rwy_dep);
+        const runwayModel = this.fms.departureRunway;
 
         if (this._shouldEnterHoldingPattern()) {
             this.setFlightPhase(FLIGHT_PHASE.HOLD);
@@ -1367,7 +1353,7 @@ export default class AircraftInstanceModel {
      */
     updateLandingFinalSpeedControl() {
         let nextSpeed = this.speed;
-        const runway  = window.airportController.airport_get().getRunway(this.rwy_arr);
+        const runway  = this.fms.arrivalRunway;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         // Final Approach Speed Control
         let startSpeed = null;

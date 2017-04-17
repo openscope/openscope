@@ -178,9 +178,9 @@ export default class AircraftConflict {
         // Check for the same runway, different ends and under about 6 miles
         if (
             (!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
-            (this.aircraft[0].rwy_dep !== null) &&
-            (this.aircraft[0].rwy_dep !== this.aircraft[1].rwy_dep) &&
-            (airport.getRunway(this.aircraft[1].rwy_dep) === airport.getRunway(this.aircraft[0].rwy_dep)) &&
+            (this.aircraft[0].fms.departureRunway !== null) &&
+            (this.aircraft[0].fms.departureRunway !== this.aircraft[1].fms.departureRunway) &&
+            (airport.getRunway(this.aircraft[1].fms.departureRunway) === airport.getRunway(this.aircraft[0].fms.departureRunway)) &&
             (this.distance < 10)
         ) {
             if (!this.conflicts.runwayCollision) {
@@ -221,8 +221,8 @@ export default class AircraftConflict {
 
 
         // Established on precision guided approaches && both are following different instrument approaches
-        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.rwy_arr !== a2.rwy_arr)) {
-            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
+        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.fms.arrivalRunway.name !== a2.fms.arrivalRunway.name)) {
+            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:

@@ -592,7 +592,7 @@ export default class Pilot {
         }
 
         this._fms.exitHoldIfHolding();
-        this._fms.setArrivalRunway(runwayModel.name);
+        this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
         const readback = {};
