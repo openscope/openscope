@@ -178,7 +178,6 @@ export default class AircraftInstanceModel {
 
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
-        this.assignInitialRunway(options);
         this.parse(options);
         this.initFms(options);
 
@@ -282,30 +281,6 @@ export default class AircraftInstanceModel {
         });
     }
 
-    /**
-     * Initial Runway Assignment
-     *
-     * @for AircraftInstanceModel
-     * @method assignInitialRunway
-     * @param options {object}
-     */
-    assignInitialRunway(options) {
-        const runway = window.airportController.airport_get().runway;
-
-        switch (options.category) {
-            case FLIGHT_CATEGORY.ARRIVAL:
-                this.rwy_arr = runway;
-
-                break;
-            case FLIGHT_CATEGORY.DEPARTURE:
-                this.rwy_dep = runway;
-
-                break;
-            default:
-                break;
-        }
-    }
-
     parse(data) {
         // TODO: these _gets can likely be removed
         this.positionModel = _get(data, 'positionModel', this.positionModel);
@@ -322,10 +297,12 @@ export default class AircraftInstanceModel {
     }
 
     initFms(data) {
-        this.fms = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
+        const airport = window.airportController.airport_get();
+        const initialRunway = airport.getRunway(airport.runway);
+
+        this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            const airport = window.airportController.airport_get();
 
             this.setFlightPhase(FLIGHT_PHASE.APRON);
             this.altitude = airport.positionModel.elevation;

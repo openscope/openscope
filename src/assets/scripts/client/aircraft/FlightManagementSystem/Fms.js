@@ -132,7 +132,7 @@ export default class Fms {
          * @property arrivalRunway
          * @type {RunwayModel}
          */
-        this.arrivalRunway = initialRunwayAssignment;
+        this.arrivalRunway = null;
 
         /**
         * Current flight phase of an aircraft
@@ -160,7 +160,7 @@ export default class Fms {
          * @property departureRunway
          * @type {RunwayModel}
          */
-        this.departureRunway = initialRunwayAssignment;
+        this.departureRunway = null;
 
         /**
          * @property _flightPhaseHistory
@@ -188,7 +188,7 @@ export default class Fms {
          */
         this.legCollection = [];
 
-        this.init(aircraftInitProps);
+        this.init(aircraftInitProps, initialRunwayAssignment);
     }
 
     get currentRunway() {
@@ -305,8 +305,9 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ category, model, route }) {
+    init({ category, model, route }, initialRunwayAssignment) {
         this._setCurrentPhaseFromCategory(category);
+        this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
 
         this.flightPlanAltitude = model.ceiling;
         this.legCollection = this._buildLegCollection(route);
@@ -425,17 +426,29 @@ export default class Fms {
      *
      * @for fms
      * @method setDepartureRunway
-     * @param runwayName {string}
+     * @param runwayModel {RunwayModel}
      */
-    setDepartureRunway = (runwayName) => this._updateRunwayAssignment(runwayName)
+    setDepartureRunway(runwayModel) {
+        if (!_isObject(runwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+        }
+
+        this.departureRunway = runwayModel;
+    }
 
     /**
      *
      * @for fms
      * @method setArrivalRunway
-     * @param runwayName {string}
+     * @param runwayModel {RunwayModel}
      */
-    setArrivalRunway = (runwayName) => this._updateRunwayAssignment(runwayName);
+    setArrivalRunway(runwayModel) {
+        if (!_isObject(runwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+        }
+
+        this.arrivalRunway = runwayModel;
+    }
 
     /**
      * Set the `#currentPhase`
@@ -1263,6 +1276,14 @@ export default class Fms {
         }
     }
 
+    _setInitialRunwayAssignmentFromCategory(category, runway) {
+        if (category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.setArrivalRunway(runway);
+        } else if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.setDepartureRunway(runway);
+        }
+    }
+
     /**
      * Given a `procedureId` find the `#collectionName` that
      * procedure belongs to, then translate that `#collectionName`
@@ -1320,24 +1341,6 @@ export default class Fms {
 
             this.prependLeg(legModel);
         }
-    }
-
-    // TODO: This should be individualized for amending arrival and departure runway assignments
-    /**
-     * Changes the current runway assignment
-     *
-     * Currently used for both departures and arrivals, this may
-     * need to be extended in the future to support dedicated
-     * properties for each departure and arrival runway assignments.
-     *
-     * @for Fms
-     * @method _updateRunwayAssignment
-     * @param runwayName {string}
-     * @private
-     */
-    _updateRunwayAssignment(runwayName) {
-        this.arrivalRunway = runwayName;
-        this.departureRunway = runwayName;
     }
 
     /**
