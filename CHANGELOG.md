@@ -1,6 +1,7 @@
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
+- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
 
 
 
