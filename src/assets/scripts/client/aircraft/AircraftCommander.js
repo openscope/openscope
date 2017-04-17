@@ -242,7 +242,7 @@ export default class AircraftCommander {
      */
     runClearedAsFiled(aircraft) {
         const airport = window.airportController.airport_get();
-        const { angle: runwayHeading } = airport.getRunway(aircraft.rwy_dep);
+        const { angle: runwayHeading } = airport.getRunway(aircraft.fms.departureRunway);
 
         return aircraft.pilot.clearedAsFiled();
     }
@@ -355,7 +355,7 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const departureRunway = aircraft.rwy_dep;
+        const departureRunway = aircraft.fms.departureRunway;
         const { icao: airportIcao } = this._airportController.airport_get();
         const response = aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
 
@@ -377,7 +377,7 @@ export default class AircraftCommander {
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
-        const arrivalRunway = aircraft.rwy_arr;
+        const arrivalRunway = aircraft.fms.arrivalRunway;
         const { name: airportName } = this._airportController.airport_get();
 
         return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
@@ -459,10 +459,10 @@ export default class AircraftCommander {
             return [false, `no runway ${taxiDestination.toUpperCase()}`];
         }
 
-        const readback = aircraft.pilot.taxiToRunway(runway.name, isDeparture, flightPhase);
+        const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.rwy_dep = runway.name;
+        aircraft.fms.departureRunway = runway;
         aircraft.taxi_start = this._gameController.game_time();
 
         runway.addAircraftToQueue(aircraft);
@@ -489,10 +489,10 @@ export default class AircraftCommander {
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
 
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.rwy_dep}`);
+        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway}`);
         speech_say([
             { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.rwy_dep)}` }
+            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway)}` }
         ]);
     }
 
@@ -504,7 +504,7 @@ export default class AircraftCommander {
      */
     runTakeoff(aircraft) {
         const airport = this._airportController.airport_get();
-        const runway = airport.getRunway(aircraft.rwy_dep);
+        const runway = airport.getRunway(aircraft.fms.departureRunway);
         // TODO: this should be a method on the Runway. `findAircraftPositionInQueue(aircraft)`
         const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
         const isInQueue = spotInQueue > -1;
@@ -527,8 +527,8 @@ export default class AircraftCommander {
         }
 
         if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
-            readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
-            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.rwy_dep)}`;
+            readback.log = `unable to take off, we're still taxiing to runway ${aircraft.fms.departureRunway}`;
+            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.fms.departureRunway)}`;
 
             return [false, readback];
         }
@@ -554,10 +554,10 @@ export default class AircraftCommander {
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
-        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.rwy_dep}, ` +
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.fms.departureRunway}, ` +
             'cleared for takeoff';
         readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
-            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`;
+            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.fms.departureRunway)}, cleared for takeoff`;
 
         return [true, readback];
     }

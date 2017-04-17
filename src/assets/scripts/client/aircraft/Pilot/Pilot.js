@@ -560,14 +560,14 @@ export default class Pilot {
      * @for pilot
      * @method conductInstrumentApproach
      * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param runway {RunwayModel}        the runway the approach ends at
+     * @param runwayModel {RunwayModel}   the runway the approach ends at
      * @param interceptAltitude {number}  the altitude to maintain until established on the localizer
      * @param heading {number}            current aircraft heading (in radians)
      * @return {array}                    [success of operation, readback]
      */
     conductInstrumentApproach(approachType, runwayModel, interceptAltitude, heading) {
         if (_isNil(runwayModel)) {
-            return [false, 'the specified runwayModel does not exist'];
+            return [false, 'the specified runway does not exist'];
         }
 
         if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
@@ -592,7 +592,7 @@ export default class Pilot {
         }
 
         this._fms.exitHoldIfHolding();
-        this._fms.setArrivalRunway(runwayModel.name);
+        this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
         const readback = {};
@@ -852,11 +852,11 @@ export default class Pilot {
      *
      * @for Pilot
      * @method taxiToRunway
-     * @param taxiDestination {string}  runway.name, runway has already been verified by the
-     *                                  time it is sent to this method
-     * @param isDeparture {boolean}     whether the aircraft's flightPhase is DEPARTURE
-     * @param flightPhase {string}      the flight phase of the aircraft
-     * @return {array}                  [success of operation, readback]
+     * @param taxiDestination {RunwayModel}  runway has already been verified by the
+     *                                       time it is sent to this method
+     * @param isDeparture {boolean}         whether the aircraft's flightPhase is DEPARTURE
+     * @param flightPhase {string}          the flight phase of the aircraft
+     * @return {array}                      [success of operation, readback]
      */
     taxiToRunway(taxiDestination, isDeparture, flightPhase) {
         if (flightPhase === FLIGHT_PHASE.TAXI) {
@@ -874,8 +874,8 @@ export default class Pilot {
         this._fms.setDepartureRunway(taxiDestination);
 
         const readback = {};
-        readback.log = `taxi to runway ${taxiDestination}`;
-        readback.say = `taxi to runway ${radio_runway(taxiDestination)}`;
+        readback.log = `taxi to runway ${taxiDestination.name}`;
+        readback.say = `taxi to runway ${radio_runway(taxiDestination.name)}`;
 
         return [true, readback];
     }

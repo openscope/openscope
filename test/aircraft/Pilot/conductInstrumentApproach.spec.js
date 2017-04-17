@@ -16,7 +16,7 @@ const altitudeMock = 7000;
 const headingMock = 3.839724354387525; // 220 in degrees
 
 ava('.conductInstrumentApproach() returns error when no runway is provided', (t) => {
-    const expectedResult = [false, 'the specified runwayModel does not exist'];
+    const expectedResult = [false, 'the specified runway does not exist'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.conductInstrumentApproach(approachTypeMock, null, altitudeMock, headingMock);
 
@@ -39,7 +39,7 @@ ava('.conductInstrumentApproach() calls .setArrivalRunway() with the runwayName'
 
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
 
-    t.true(setArrivalRunwaySpy.calledWithExactly(runwayModelMock.name));
+    t.true(setArrivalRunwaySpy.calledWithExactly(runwayModelMock));
 });
 
 ava('.conductInstrumentApproach() calls ._interceptCourse() with the correct properties', (t) => {

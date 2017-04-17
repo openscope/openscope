@@ -4,6 +4,7 @@ import _isEqual from 'lodash/isEqual';
 
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
+import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
@@ -18,7 +19,7 @@ const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
-const runwayAssignmentMock = '19L';
+const runwayAssignmentMock = airportModelFixture.getRunway('19L');
 const isComplexRoute = true;
 
 function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
@@ -126,29 +127,43 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock();
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
 
-    fms.init(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    fms.init(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock);
 
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
-ava('.setDepartureRunway() sets a runway name to #currentRunwayName', (t) => {
-    const nextRunwayMock = '19R';
+ava('.setDepartureRunway() changes #departureRunway to the ', (t) => {
+    const nextRunwayMock = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
 
     fms.setDepartureRunway(nextRunwayMock);
 
-    t.true(fms.currentRunwayName === nextRunwayMock);
+    t.true(_isEqual(fms.departureRunway, nextRunwayMock));
+});
+
+ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
+    const nextRunwayName = '19R';
+    const fms = buildFmsMockForDeparture();
+
+    t.throws(() => fms.setDepartureRunway(nextRunwayName));
 });
 
 ava.todo('.setDepartureRunway() validates route with changed runway');
 
 ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
-    const nextRunwayMock = '19R';
+    const nextRunwayMock = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
 
     fms.setArrivalRunway(nextRunwayMock);
 
-    t.true(fms.currentRunwayName === nextRunwayMock);
+    t.true(_isEqual(fms.arrivalRunway, nextRunwayMock));
+});
+
+ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {
+    const nextRunwayName = '19R';
+    const fms = buildFmsMockForDeparture();
+
+    t.throws(() => fms.setArrivalRunway(nextRunwayName));
 });
 
 ava.todo('.setArrivalRunway() validates route with changed runway');

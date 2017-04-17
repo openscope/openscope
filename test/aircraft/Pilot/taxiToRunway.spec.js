@@ -1,13 +1,15 @@
 import ava from 'ava';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import { airportModelFixture } from '../../fixtures/airportFixtures';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 
-const runwayMock = '19L';
+const runwayName = '19L';
+const runwayMock = airportModelFixture.getRunway(runwayName);
 
 ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.TAXI', (t) => {
     const expectedResult = [false, 'already taxiing'];
