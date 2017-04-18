@@ -241,9 +241,6 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
-        const airport = window.airportController.airport_get();
-        const { angle: runwayHeading } = airport.getRunway(aircraft.fms.departureRunway);
-
         return aircraft.pilot.clearedAsFiled();
     }
 
@@ -489,10 +486,10 @@ export default class AircraftCommander {
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
 
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway}`);
+        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway.name}`);
         speech_say([
             { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway)}` }
+            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway.name)}` }
         ]);
     }
 
@@ -504,8 +501,7 @@ export default class AircraftCommander {
      */
     runTakeoff(aircraft) {
         const airport = this._airportController.airport_get();
-        const runway = airport.getRunway(aircraft.fms.departureRunway);
-        // TODO: this should be a method on the Runway. `findAircraftPositionInQueue(aircraft)`
+        const runway = aircraft.fms.departureRunway;
         const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
@@ -527,8 +523,8 @@ export default class AircraftCommander {
         }
 
         if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
-            readback.log = `unable to take off, we're still taxiing to runway ${aircraft.fms.departureRunway}`;
-            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.fms.departureRunway)}`;
+            readback.log = `unable to take off, we're still taxiing to runway ${runway.name}`;
+            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(runway.name)}`;
 
             return [false, readback];
         }
@@ -554,10 +550,10 @@ export default class AircraftCommander {
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
-        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.fms.departureRunway}, ` +
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${runway.name}, ` +
             'cleared for takeoff';
         readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
-            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.fms.departureRunway)}, cleared for takeoff`;
+            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(runway.name)}, cleared for takeoff`;
 
         return [true, readback];
     }

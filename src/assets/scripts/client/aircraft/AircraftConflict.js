@@ -170,17 +170,15 @@ export default class AircraftConflict {
      * Check for a potential head-on collision on a runway
      */
     checkRunwayCollision() {
-        // Check if the aircraft are on a potential collision course
-        // on the runway
-        const airport = window.airportController.airport_get();
+        // Check if the aircraft are on a potential collision course on the runway
 
         // TODO: this logic block needs its own method.
         // Check for the same runway, different ends and under about 6 miles
         if (
             (!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
-            (this.aircraft[0].fms.departureRunway !== null) &&
-            (this.aircraft[0].fms.departureRunway !== this.aircraft[1].fms.departureRunway) &&
-            (airport.getRunway(this.aircraft[1].fms.departureRunway) === airport.getRunway(this.aircraft[0].fms.departureRunway)) &&
+            (this.aircraft[0].fms.currentRunway !== null) &&
+            (this.aircraft[0].fms.currentRunway !== this.aircraft[1].fms.currentRunway) &&
+            (this.aircraft[1].fms.currentRunway.name === this.aircraft[0].fms.currentRunway.name) &&
             (this.distance < 10)
         ) {
             if (!this.conflicts.runwayCollision) {
