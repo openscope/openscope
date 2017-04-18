@@ -2,12 +2,12 @@
     "icao": "flg",
     "name": "Endeavor Air",
     "callsign": {
-        "name": "Flagship",
+        "name": "Endeavor",
         "length": 3
     },
     "fleets": {
         "default": [
-            ["CRJ2", 35 ],
+            ["CRJ2", 44 ],
             ["CRJ9", 81 ]
         ]
     }
