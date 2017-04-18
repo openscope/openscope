@@ -1560,7 +1560,6 @@ export default class AircraftInstanceModel {
     updateSpeedPhysics() {
         let speedChange = 0;
         const differenceBetweenPresentAndTargetSpeeds = this.speed - this.target.speed;
-        const decelerationFactorDueToGroundBraking = 3.5;
 
         if (differenceBetweenPresentAndTargetSpeeds === 0) {
             return;
@@ -1570,7 +1569,7 @@ export default class AircraftInstanceModel {
             speedChange = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
             if (this.isOnGround()) {
-                speedChange *= decelerationFactorDueToGroundBraking;
+                speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
             speedChange  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
