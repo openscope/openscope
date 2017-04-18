@@ -35,6 +35,7 @@ import {
 import {
     degreesToRadians,
     heading_to_string,
+    km,
     nm,
     UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
@@ -1167,12 +1168,20 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
-        const glideDatum = this.mcp.nav1Datum;
-        const distanceFromDatum_nm = this.positionModel.distanceToPosition(glideDatum);
-        const slope = Math.tan(degreesToRadians(3));
-        const distanceFromDatum_ft = distanceFromDatum_nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
-        const glideslopeAltitude = glideDatum.elevation + (slope * (distanceFromDatum_ft));
-        const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
+        // GENERALIZED CODE
+        // const glideDatum = this.mcp.nav1Datum;
+        // const distanceFromDatum_nm = this.positionModel.distanceToPosition(glideDatum);
+        // const slope = Math.tan(degreesToRadians(3));
+        // const distanceFromDatum_ft = distanceFromDatum_nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
+        // const glideslopeAltitude = glideDatum.elevation + (slope * (distanceFromDatum_ft));
+        // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
+
+        // ILS SPECIFIC CODE
+        const runway = this.fms.arrivalRunway;
+        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const distanceOnFinal_km = offset[1];
+        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinal_km);
+        const altitudeToTarget = Math.min(this.mcp.altitude, glideslopeAltitude);
 
         return altitudeToTarget;
     }
