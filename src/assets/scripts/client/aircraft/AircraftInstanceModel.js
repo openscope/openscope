@@ -872,14 +872,12 @@ export default class AircraftInstanceModel {
                 break;
 
             case FLIGHT_PHASE.LANDING: {
-                // TODO: Is this needed?
-                // this.target.heading = this.mcp.heading;
-                // // TODO: This should be the runway elevation, not zero
-                // this.target.altitude = 0;
-                //
-                // if (this.altitude === this.target.altitude) {
-                //     this.target.speed = 0;
-                // }
+                this.target.heading = this.mcp.course;
+
+                if (this.altitude <= this.mcp.nav1Datum.elevation) {
+                    this.altitude = this.mcp.nav1Datum.elevation;
+                    this.target.speed = 0;
+                }
 
                 break;
             }
@@ -975,8 +973,7 @@ export default class AircraftInstanceModel {
                 break;
 
             case FLIGHT_PHASE.APPROACH: {
-                if (this.altitude < airportModel.minDescentAltitude) {
-                    this.mcp.setHeadingFieldValue(this.heading);
+                if (this.positionModel.distanceToPosition(this.mcp.nav1Datum) < AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM) {
                     this.setFlightPhase(FLIGHT_PHASE.LANDING);
                 }
 
@@ -1008,6 +1005,10 @@ export default class AircraftInstanceModel {
             this.updateTargetHeadingForHold();
 
             return;
+        }
+
+        if (this.flightPhase === FLIGHT_PHASE.LANDING) {
+            return this._calculateTargetedHeadingDuringLanding();
         }
 
         switch (this.mcp.headingMode) {
@@ -1045,7 +1046,7 @@ export default class AircraftInstanceModel {
         }
 
         if (this.flightPhase === FLIGHT_PHASE.LANDING) {
-            return this.updateLandingFinalSpeedControl();
+            return this._calculateTargetedSpeedDuringLanding();
         }
 
         switch (this.mcp.speedMode) {
@@ -1108,6 +1109,10 @@ export default class AircraftInstanceModel {
     _calculateTargetedAltitude() {
         if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
             return;
+        }
+
+        if (this.flightPhase === FLIGHT_PHASE.LANDING) {
+            return this._calculateTargetedAltitudeDuringLanding();
         }
 
         switch (this.mcp.altitudeMode) {
@@ -1350,36 +1355,72 @@ export default class AircraftInstanceModel {
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
 
     /* vvvvvvv THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS vvvvvvv */
+
     /**
-     * Updates the heading for a landing aircraft
+     * Calculates the altitude for a landing aircraft
      *
      * @for AircraftInstanceModel
-     * @method updateLandingFinalSpeedControl
+     * @method _calculateTargetedAltitudeDuringLanding
+     * @return {number}
      */
-    updateLandingFinalSpeedControl() {
-        let nextSpeed = this.speed;
+    _calculateTargetedAltitudeDuringLanding() {
+        const runway = this.fms.arrivalRunway;
+        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const distanceOnFinal_km = offset[1];
+
+        if (distanceOnFinal_km > 0) {
+            return this._calculateTargetedAltitudeToInterceptGlidepath();
+        }
+
+        return runway.elevation;
+    }
+
+    /**
+     * Calculates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedHeadingDuringLanding
+     * @return {number}
+     */
+    _calculateTargetedHeadingDuringLanding() {
+        const runway = this.fms.arrivalRunway;
+        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const distanceOnFinal_nm = nm(offset[1]);
+
+        if (distanceOnFinal_nm > 0) {
+            const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
+
+            return bearingFromAircaftToRunway;
+        }
+
+        return runway.angle;
+    }
+
+    /**
+     * Calculates the speed for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedSpeedDuringLanding
+     * @return {number}
+     */
+    _calculateTargetedSpeedDuringLanding() {
+        let startSpeed = this.speed;
         const runway  = this.fms.arrivalRunway;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
-        // Final Approach Speed Control
-        let startSpeed = null;
+        const distanceOnFinal_nm = nm(offset[1]);
 
-        if (this.fms.currentWaypoint.speedRestriction > 0)  {
-            startSpeed = this.fms.currentWaypoint.speedRestriction;
+        if (distanceOnFinal_nm <= 0 && this.isOnGround())  {
+            return 0;
         }
 
-        if (this.isOnGround()) {
-            nextSpeed = 0;
-
-            return nextSpeed;
+        if (this.mcp.speedMode === MCP_MODE.SPEED.HOLD) {
+            startSpeed = this.mcp.speed;
         }
 
-        const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
-        const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
-
-        nextSpeed = extrapolate_range_clamp(
-            dist_final_app_spd,
-            offset[1],
-            dist_assigned_spd,
+        const nextSpeed = extrapolate_range_clamp(
+            AIRPORT_CONSTANTS.LANDING_FINAL_APPROACH_SPEED_DISTANCE_NM,
+            distanceOnFinal_nm,
+            AIRPORT_CONSTANTS.LANDING_ASSIGNED_SPEED_DISTANCE_NM,
             this.model.speed.landing,
             startSpeed
         );

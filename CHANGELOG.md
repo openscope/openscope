@@ -57,6 +57,7 @@
 - Fixes bug with departures at SAME [#303](https://github.com/openscope/openscope/issues/303)
 - Fixes coordinates for PAM at EHAM [#321](https://github.com/openscope/openscope/issues/321)
 - Ensure aircraft reach their targeted speed [#340](https://github.com/openscope/openscope/issues/340)
+- Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
 
 
 
