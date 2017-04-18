@@ -12,9 +12,9 @@ An ATC simulator in HTML5.
 
 It is possible to run this application locally. You will need to have [`node`](https://nodejs.org/en/download/) and [`npm`](https://docs.npmjs.com/getting-started/installing-node) installed in order for this to work. For more information, view the [tools documentation](tools/README.md).
 
-## Privacy
+## Privacy Discolsures
 
-Page hits are tracked with Google Analytics, so feel free to use an adblocker. The tracking is used only to get the number of page hits.
+Page hits are tracked with Google Analytics.
 
 ## Contributing
 
