@@ -1,0 +1,15 @@
+{
+    "icao": "cks",
+    "name": "Kalitta Air",
+    "callsign": {
+        "name": "Connie",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B742",  1],
+            ["B744", 13],
+            ["B763",  2]
+        ]
+    }
+}

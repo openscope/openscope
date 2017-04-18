@@ -1,0 +1,20 @@
+{
+    "icao": "tae",
+    "name": "TAME",
+    "callsign": {
+        "name": "tahmay",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319",  4],
+            ["A320",  4],
+            ["A332",  1],
+            ["AT45",  3],
+            ["E190",  3]
+        ],
+        "long": [
+            ["A332",  1]
+        ]
+    }
+}

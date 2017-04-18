@@ -1,0 +1,20 @@
+{
+    "icao": "cxa",
+    "name": "XiamenAir",
+    "callsign": {
+        "name": "Xiamen Air",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737",  11],
+            ["B738", 121],
+            ["B752",   4],
+            ["B788",   6],
+            ["B789",   2]
+        ],
+        "jfk": [
+            ["B789",  1]
+        ]
+    }
+}

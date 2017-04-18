@@ -1,0 +1,21 @@
+{
+    "icao": "iss",
+    "name": "Meridiana",
+    "callsign": {
+        "name": "Meridiana",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+          ["B737",  1],
+          ["B738",  6],
+          ["B762",  1],
+          ["B763",  3],
+          ["MD82",  4]
+        ],
+        "long": [
+          ["B762",  1],
+          ["B763",  3]
+        ]
+    }
+}

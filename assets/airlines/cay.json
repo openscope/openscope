@@ -1,0 +1,17 @@
+{
+    "icao": "cay",
+    "name": "Cayman Aiways",
+    "callsign": {
+        "name": "Cayman",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733",  4],
+            ["B738",  1]
+        ],
+        "short": [
+            ["DHC6",  2]
+        ]
+    }
+}

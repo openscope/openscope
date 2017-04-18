@@ -1,0 +1,18 @@
+{
+    "icao": "voi",
+    "name": "Volaris",
+    "callsign": {
+        "name": "Volaris",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 12],
+            ["A320", 44],
+            ["A321", 10]
+        ],
+        "jfk": [
+            ["A320",  1]
+        ]
+    }
+}
