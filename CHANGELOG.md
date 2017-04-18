@@ -1,4 +1,4 @@
-## 5.0.0 (March 19, 2017)
+## 5.0.0 (April 20, 2017)
 ---
 ### Major
 - Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
@@ -28,27 +28,8 @@
         - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
         - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
 
-
-
-
-
-
-
-
-
-
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-
-
-
-
-
-
-
-
-
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
@@ -56,9 +37,6 @@
 - Fixes Firefox compatibility issue by changing ajax to getJSON  [#263](https://github.com/openscope/openscope/issues/259)
 - Fixes bug with departures at SAME [#303](https://github.com/openscope/openscope/issues/303)
 - Fixes coordinates for PAM at EHAM [#321](https://github.com/openscope/openscope/issues/321)
-
-
-
 
 
 ## 4.1.2 (February 20, 2017)
