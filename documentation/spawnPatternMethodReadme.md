@@ -2,6 +2,7 @@ At the very least, an arrival stream MUST have definitions for the
 following parameters. Additional may be required if the spawn method
 is set to one other than 'random'.
 
+```
             BARE MINIMUM PARAMETERS:
    PARAMETER   REQ      PARAMETER DESCRIPTION
 +-------------+---+-------------------------------+
@@ -20,6 +21,7 @@ is set to one other than 'random'.
 | 'speed'     | * | speed to spawn at (knots)     |
 +-------------+---+-------------------------------+
   * *see index.md for route format (ex: 'BSR.BSR1.KSFO')*
+```
 
 
 ### Random (default)
@@ -30,10 +32,12 @@ the prescribed spawn rate. Thus, you may randomly get some back-to-back,
 and some massive gaps in your traffic, just as it is most likely to occur
 in real life.
 
+```
        PARAMETERS SPECIFIC TO 'RANDOM':
 +-----------------------------------------------+
 | only the "bare minimum parameters" are needed |
 +-----------------------------------------------+
+```
 
 
 ### Cyclic
@@ -47,6 +51,7 @@ a linear fashion. Spawn rate will start at 'frequency', and steadily
 increase to ('frequency' + 'variation'), then steadily decrease to
 ('frequency' - 'variation').
 
+```
                PARAMETERS SPECIFIC TO 'CYCLIC':
    PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
 +-------------+---+------------------------------------+-------+
@@ -58,6 +63,7 @@ increase to ('frequency' + 'variation'), then steadily decrease to
 +-------------+---+------------------------------------+-------+
 |     (also include "bare minimum parameters" - see above)     |
 +--------------------------------------------------------------+
+```
 
 
 # Wave
@@ -69,6 +75,7 @@ As a result, less time will be spent right at the average, and the flow
 of traffic will have changes in arrival rates that come along slightly
 sooner. Overall, very similar to cyclic though.
 
+```
                 PARAMETERS SPECIFIC TO 'WAVE':
    PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
 +-------------+---+------------------------------------+-------+
@@ -80,6 +87,7 @@ sooner. Overall, very similar to cyclic though.
 +-------------+---+------------------------------------+-------+
 |     (also include "bare minimum parameters" - see above)     |
 +--------------------------------------------------------------+
+```
 
 
 ### Surge
@@ -97,6 +105,7 @@ Note that if you request something that's impossible to deliver, like either...
 clamped the arrival rate to match the entrail and speed settings, and it tells
 you what range of frequencies it is mathematically capable of delivering.
 
+```
               PARAMETERS SPECIFIC TO 'SURGE':
   PARAMETER  REQ        PARAMETER DESCRIPTION         DEFAULT
 +-----------+---+---------------------------------------------+-------+
@@ -110,3 +119,4 @@ you what range of frequencies it is mathematically capable of delivering.
 +-----------+---+---------------------------------------------+-------+
 |        (also include "bare minimum parameters" - see above)         |
 +---------------------------------------------------------------------+
+```
