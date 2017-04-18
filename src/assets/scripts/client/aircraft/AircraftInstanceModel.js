@@ -1558,28 +1558,29 @@ export default class AircraftInstanceModel {
      * @method updateWarning
      */
     updateSpeedPhysics() {
-        let difference = null;
+        let speedChange = 0;
+        const differenceBetweenPresentAndTargetSpeeds = this.speed - this.target.speed;
+        const decelerationFactorDueToGroundBraking = 3.5;
 
-        if (this.target.speed < this.speed - 0.01) {
-            difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
-
-            if (this.isOnGround()) {
-                // What is 3.5 is this restiance/breaking power?
-                difference *= 3.5;
-            }
-        } else if (this.target.speed > this.speed + 0.01) {
-            difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-            difference *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
+        if (differenceBetweenPresentAndTargetSpeeds === 0) {
+            return;
         }
 
-        if (difference) {
-            const offset = this.speed - this.target.speed;
+        if (this.speed > this.target.speed) {
+            speedChange = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
-            if (abs(offset) < abs(difference)) {
-                this.speed = this.target.speed;
-            } else {
-                this.speed += difference;
+            if (this.isOnGround()) {
+                speedChange *= decelerationFactorDueToGroundBraking;
             }
+        } else if (this.speed < this.target.speed) {
+            speedChange  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
+            speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
+        }
+
+        if (abs(speedChange) > abs(differenceBetweenPresentAndTargetSpeeds)) {
+            this.speed = this.target.speed;
+        } else {
+            this.speed += speedChange;
         }
     }
 
