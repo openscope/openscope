@@ -1576,10 +1576,10 @@ export default class AircraftInstanceModel {
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
+        this.speed += speedChange;
+
         if (abs(speedChange) > abs(differenceBetweenPresentAndTargetSpeeds)) {
             this.speed = this.target.speed;
-        } else {
-            this.speed += speedChange;
         }
     }
 
