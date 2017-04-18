@@ -676,8 +676,6 @@ export default class Pilot {
         if (this._mcp.speedMode === MCP_MODE.SPEED.OFF) {
             this._mcp.setSpeedN1();
         }
-
-        return [true, `${runway.name}, cleared for takeoff`];
     }
 
     /**

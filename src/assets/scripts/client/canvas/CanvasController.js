@@ -715,21 +715,20 @@ export default class ConvasController {
     }
 
     /**
+     * Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
+     *
      * @for CanvasController
      * @method canvas_draw_separation_indicator
      * @param cc
      * @param aircraft
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-        const runwayName = aircraft.fms.currentRunwayName;
-        const rwy = window.airportController.airport_get().getRunway(runwayName);
-
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }
 
-        const angle = rwy.angle + Math.PI;
+        const runway = aircraft.fms.currentRunway;
+        const oppositeOfRunwayHeading = runway.angle + Math.PI;
 
         cc.strokeStyle = COLORS.RED_08;
         cc.lineWidth = 3;
@@ -737,7 +736,7 @@ export default class ConvasController {
             window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
             -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
-        cc.rotate(angle);
+        cc.rotate(oppositeOfRunwayHeading);
         cc.beginPath();
         cc.moveTo(-5, -window.uiController.km_to_px(5.556));  // 5.556km = 3.0nm
         cc.lineTo(+5, -window.uiController.km_to_px(5.556));  // 5.556km = 3.0nm
