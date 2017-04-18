@@ -495,11 +495,16 @@ export default class AircraftInstanceModel {
      * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
      *
      * @for AircraftInstanceModel
-     * @method isEstablished
+     * @method isEstablishedOnCourse
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
+        const runway = this.fms.arrivalRunway;
+
+        if (!runway) {
+            return false;
+        }
+
         const runwayHeading = runway.angle;
         const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
         const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
@@ -612,7 +617,7 @@ export default class AircraftInstanceModel {
 
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
-            const runway = window.airportController.airport_get().getRunway(this.fms.departureRunway);
+            const runway = this.fms.departureRunway;
             const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
             return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
