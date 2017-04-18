@@ -1,4 +1,4 @@
-## 5.0.0 (March 19, 2017)
+## 5.0.0 (April 20, 2017)
 ---
 ### Major
 - Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
@@ -28,27 +28,8 @@
         - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
         - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
 
-
-
-
-
-
-
-
-
-
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-
-
-
-
-
-
-
-
-
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
@@ -59,9 +40,6 @@
 - Ensure aircraft reach their targeted speed [#340](https://github.com/openscope/openscope/issues/340)
 - Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
 - Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
-
-
-
 
 
 ## 4.1.2 (February 20, 2017)
