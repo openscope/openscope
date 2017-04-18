@@ -18,7 +18,13 @@ Page hits are tracked with Google Analytics, so feel free to use an adblocker. T
 
 ## Contributing
 
-We use an [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) when adding features. If you would like to contribute, please [contact us](http://slack.openscope.co/) and we'll help as soon as we can! Thank you!
+We use the [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) for managing branches.  If you would like to contribute, you will be expected to use appropriate branch names based on this methodology (and we can help if you have questions).
+
+Don't know Javascript?  That's cool, we're always looking for beta testers and/or airport contributors.  If you would like to add a new airport, or help update existing airports, please read the [Airport Documentation]() to get up to speed on what is expected in that file.
+
+## Slack
+
+Please join us on our [Slack Channel](http://slack.openscope.co/) if you have questions, comments or would like to contribute.  We can then add you to the organization so you can begin committing to this repo.
 
 ## License
 
@@ -31,11 +37,3 @@ MIT.
 The following files are **NOT** MIT licensed:
 
 * [`terrain.svg`](http://www.flaticon.com/free-icon/mountain-summit_27798) by [OCHA](http://www.flaticon.com/authors/ocha) is licensed CC BY 3.0.
-
-<!--
-
-## Donate
-
-bitcoin: 1PLsixE3eYPL86VJJEV3t1E6LTVvmVHoe3
-
--->
