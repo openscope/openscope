@@ -206,19 +206,19 @@ export const getGrouping = (groupable) => {
     const digit1 = groupable[0];
     const digit2 = groupable[1];
 
-    if (digit1 === 0) {
-        if (digit2 === 0) {
+    if (digit1 === '0') {
+        if (digit2 === '0') {
             return 'hundred';
         }
         // just digits (eg 'zero seven')
         return `${radio_names[digit1]} ${radio_names[digit2]}`;
-    } else if (digit1 === 1) {
+    } else if (digit1 === '1') {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
     } else if (digit1 >= 2) {
         const firstDigit = `${digit1}0`;
 
-        if (digit2 === 0) {
+        if (digit2 === '0') {
             // to avoid 'five twenty zero'
             return radio_names[firstDigit];
         }
