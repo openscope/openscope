@@ -5,6 +5,7 @@
 - Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
 - Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)
+- New Airport: KSTL (St. Louis Lambert International Airport, MO) [#349](https://github.com/openscope/openscope/issues/349)
 
 
 
