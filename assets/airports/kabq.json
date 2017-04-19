@@ -24,31 +24,31 @@
       "ceiling": 200,
       "airspace_class": "C",
       "poly": [
-      	["N35d26m17.000", "W106d38m58.000"],
-      	["N35d09m34.000", "W106d17m06.000"],
-      	["N35d09m49.000", "W106d07m09.000"],
-      	["N34d57m25.000", "W106d06m51.000"],
-      	["N34d47m15.000", "W106d05m21.000"],
-      	["N34d28m30.000", "W106d23m10.000"],
-      	["N34d29m12.000", "W106d57m07.000"],
-      	["N34d54m30.000", "W107d20m32.000"],
-      	["N35d16m26.000", "W107d14m30.000"],
-      	["N35d25m05.000", "W107d05m32.000"]
+        ["N35d26m17.000", "W106d38m58.000"],
+        ["N35d09m34.000", "W106d17m06.000"],
+        ["N35d09m49.000", "W106d07m09.000"],
+        ["N34d57m25.000", "W106d06m51.000"],
+        ["N34d47m15.000", "W106d05m21.000"],
+        ["N34d28m30.000", "W106d23m10.000"],
+        ["N34d29m12.000", "W106d57m07.000"],
+        ["N34d54m30.000", "W107d20m32.000"],
+        ["N35d16m26.000", "W107d14m30.000"],
+        ["N35d25m05.000", "W107d05m32.000"]
       ]
     }
   ],
   "fixes": {
-  	"_FYSTA21": ["N35.01002339748", "W106.64442200415"],
-  	"_FYSTA26": ["N35.04177393230", "W106.70272049467"],
-  	"_GRZZZ8": ["N35.04346350146", "W106.48781308717"],
-  	"_JEMEZ3": ["N35.07840353075", "W106.56558012799"],
-  	"_JEMEZ8": ["N35.04333564298", "W106.46751555512"],
-  	"_JETOK3": ["N35.10894408693", "W106.53097505410"],
-  	"_MNZNO3": ["N35.04174166667", "W106.60707222221"],
-  	"_MNZNO8": ["N35.04406388887", "W106.57552500000"],
-  	"_RDRNR3": ["N35.07229419826", "W106.57249802355"],
-  	"_RDRNR8": ["N35.04323831220", "W106.44359057687"],
-  	"ABQ":   ["N35.04378932939529", "W106.81631469274380"],
+    "_FYSTA21": ["N35.01002339748", "W106.64442200415"],
+    "_FYSTA26": ["N35.04177393230", "W106.70272049467"],
+    "_GRZZZ8": ["N35.04346350146", "W106.48781308717"],
+    "_JEMEZ3": ["N35.07840353075", "W106.56558012799"],
+    "_JEMEZ8": ["N35.04333564298", "W106.46751555512"],
+    "_JETOK3": ["N35.10894408693", "W106.53097505410"],
+    "_MNZNO3": ["N35.04174166667", "W106.60707222221"],
+    "_MNZNO8": ["N35.04406388887", "W106.57552500000"],
+    "_RDRNR3": ["N35.07229419826", "W106.57249802355"],
+    "_RDRNR8": ["N35.04323831220", "W106.44359057687"],
+    "ABQ":   ["N35.04378932939529", "W106.81631469274380"],
     "ACH":   ["N35.11169156933861", "W105.03993349331488"],
     "ACMIE": ["N34.94893374059512", "W106.67489518281567"],
     "ADYOS": ["N35.04764944407416", "W106.92471313025065"],
@@ -167,7 +167,7 @@
     "ZUN":   ["N34.96576096364239", "W109.15452575246168"]
   },
   "runways":[
-  	{
+    {
       "name": ["3", "21"],
       "end": [["N35d01m20.09", "W106d37m50.17", "5305ft"], ["N35d02m30.27", "W106d36m25.46", "5316ft"]],
       "delay": [8, 5],
@@ -193,7 +193,7 @@
     }
   ],
   "sids": {
-  	"ADYOS3": {
+    "ADYOS3": {
       "icao": "ADYOS3",
       "name": "Adios Three",
       "rwy": {
@@ -276,7 +276,7 @@
         "JLPNO": ["POYOH", "JLPNO"]
       },
       "draw": [
-      	["_FYSTA26", "BLUUN"],
+        ["_FYSTA26", "BLUUN"],
         ["_FYSTA21", "BLUUN", "BURQI", "FYSTA", "MACHO", "FTI*"],
         ["FYSTA", "POYOH", "JLPNO*"]
       ]
@@ -294,7 +294,7 @@
         "TCC": ["JLPNO", "TCC"]
       },
       "draw": [
-      	["TYILR", "ROWHO", "GRZZZ", "DNIDE", "FTI*"],
+        ["TYILR", "ROWHO", "GRZZZ", "DNIDE", "FTI*"],
         ["DNIDE", "JLPNO", "TCC*"]
       ]
     },
@@ -310,7 +310,7 @@
         "JEMEZ": ["JEMEZ"]
       },
       "draw": [
-      	["TYILR", "GRREN", "FIREY"],
+        ["TYILR", "GRREN", "FIREY"],
         ["_JEMEZ3", "GRREN"],
         ["JEMEZ"]
       ]
@@ -386,7 +386,7 @@
     }
   },
   "stars": {
-  	"COLTR3": {
+    "COLTR3": {
       "icao": "COLTR3",
       "name": "Colter Three",
       "entryPoints": {
@@ -395,7 +395,7 @@
       },
       "body": [["COLTR", "A170"], ["YYLEE", "A140|S250"]],
       "rwy": {
-      	"3":  [["CYOTE", "A120"], ["TNTOE", "A100|S210"], "PLNET"],
+        "3":  [["CYOTE", "A120"], ["TNTOE", "A100|S210"], "PLNET"],
         "8":  [["CYOTE", "A120"], ["TNTOE", "A100|S210"], "PLNET"],
         "21": [["TACOH", "A100|S210"]],
         "26": [["TACOH", "A100|S210"]]
@@ -410,7 +410,7 @@
       },
       "body": [["KRKEE", "A240|S270"], ["ELRRA", "A150"], ["XMRKS", "A130|S250"]],
       "rwy": {
-      	"3":  [["SHWNA", "A100"], ["BIBQU", "A80|S210"]],
+        "3":  [["SHWNA", "A100"], ["BIBQU", "A80|S210"]],
         "8":  [["AMRRA", "A110"], ["UNCIR", "A80|S210"]],
         "21": [["AMRRA", "A110"], ["FOXRR", "A100|S210"]],
         "26": [["STIKI", "A100|S210"], ["BRNDO", "A90"]]
@@ -426,7 +426,7 @@
       },
       "body": [["LOWBO", "A180"], ["JOKLO", "A160|S250"], ["ITUNE", "A140"]],
       "rwy": {
-      	"3":  [["MUSCC", "A120"], ["DWNLD", "A110"], ["CMSTR", "A90|S210"]],
+        "3":  [["MUSCC", "A120"], ["DWNLD", "A110"], ["CMSTR", "A90|S210"]],
         "8":  [["MUSCC", "A120"], ["DWNLD", "A110"], ["CMSTR", "A90|S210"]],
         "21": [["SDUNX", "A100"], ["PASEO", "A100"], ["NODME", "A90|S210"]],
         "26": [["SDUNX", "A100"], ["PASEO", "A100"], ["NODME", "A90|S210"]]
@@ -440,7 +440,7 @@
       },
       "body": [["LZZRD", "A160|S250"], ["MKYON", "A140"]],
       "rwy": {
-      	"3":  [["HAPEE", "A130"], ["COMRO", "A100|S210"]],
+        "3":  [["HAPEE", "A130"], ["COMRO", "A100|S210"]],
         "8":  [["HAPEE", "A130"], ["COMRO", "A100|S210"]],
         "21": [["SOPPA", "A120"], ["PILLA", "A100|S210"]],
         "26": [["SOPPA", "A120"], ["PILLA", "A100|S210"]]
@@ -456,7 +456,7 @@
       },
       "body": [["SNDIA", "A170"], ["VLCNO", "A150|S250"], ["ASIDE", "A110|S250"]],
       "rwy": {
-      	"3":  [["CRSTN", "A90|S210"]],
+        "3":  [["CRSTN", "A90|S210"]],
         "8":  [["CRSTN", "A90|S210"]],
         "21": [["CADAT", "A90|S210"]],
         "26": [["CADAT", "A90|S210"]]
@@ -469,8 +469,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.GRZZZ3.FTI",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 2,
       "airlines": [
@@ -492,8 +492,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.JEMEZ3.JEMEZ",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 2,
       "airlines": [
@@ -515,8 +515,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.MNZNO3.CME",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 3,
       "airlines": [
@@ -537,8 +537,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.MNZNO3.TXO",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 2,
       "airlines": [
@@ -562,8 +562,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.RDRNR3.ZUN",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 4,
       "airlines": [
@@ -584,8 +584,8 @@
       "destination": "",
       "category": "departure",
       "route": "KABQ.RDRNR3.GUP",
-      "altitude": null,
-      "speed": null,
+      "altitude": "",
+      "speed": "",
       "method": "random",
       "rate": 3,
       "airlines": [
