@@ -1301,7 +1301,8 @@
             "destination": "",
             "category": "departure",
             "route": "MDSD.AVRES.KARUM",
-            "altitude": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1318,7 +1319,8 @@
             "destination": "",
             "category": "departure",
             "route": "MDSD.KANAM.DCR",
-            "altitude": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1336,7 +1338,8 @@
             "destination": "",
             "category": "departure",
             "route": "MDSD.KERSO.ASIVO",
-            "altitude": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -1362,7 +1365,8 @@
             "destination": "",
             "category": "departure",
             "route": "MDSD.LECKY.PALAS",
-            "altitude": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1380,7 +1384,8 @@
             "destination": "",
             "category": "departure",
             "route": "MDSD.MIROX.MELLA",
-            "altitude": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 3,
             "airlines": [
