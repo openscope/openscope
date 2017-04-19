@@ -138,6 +138,16 @@ export const PROCEDURE_TYPE = {
  */
 export const PERFORMANCE = {
     /**
+     * Factor by which to increase the speed of deceleration on the ground as opposed
+     * to while in flight, due to the effects of reverse thrust and braking
+     *
+     * @property DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING
+     * @type {Number}
+     * @final
+     */
+    DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING: 3.5,
+
+    /**
     * Maximum distance from the current waypoint to allow us to proceed to the next waypoint
     * due to a tight turn, without requiring us to continue toward the current waypoint.
     *
