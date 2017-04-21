@@ -40,7 +40,7 @@
 - Ensure aircraft reach their targeted speed [#340](https://github.com/openscope/openscope/issues/340)
 - Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
 - Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
-
+- Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero' [#338](https://github.com/openscope/openscope/issues/338)
 
 ## 4.1.2 (February 20, 2017)
 ---
