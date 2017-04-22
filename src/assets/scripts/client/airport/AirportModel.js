@@ -1,5 +1,4 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
-import $ from 'jquery';
 import _ceil from 'lodash/ceil';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -342,8 +341,10 @@ export default class AirportModel {
 
             obj.height = parseElevation(area.height);
             // TODO: Remove _map, move relativePosition value to const, then return that const
-            obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth))];
+            obj.coordinates = _map(area.coordinates, (v) => {
+                return [
+                    DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                ];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
