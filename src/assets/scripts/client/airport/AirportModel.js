@@ -6,6 +6,7 @@ import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
+import RunwayCollection from './RunwayCollection';
 import RunwayModel from './RunwayModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
@@ -73,6 +74,9 @@ export default class AirportModel {
         this.level = null;
         this._positionModel = null;
         this.runways = [];
+        this._runwayCollection = null;
+        // TODO: rename to `runwayName`
+        this.runway = null;
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -203,6 +207,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
+        this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -226,6 +231,7 @@ export default class AirportModel {
         if (!isValidGpsCoordinatePair(gpsCoordinates)) {
             return;
         }
+
         this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
     }
 
@@ -253,16 +259,22 @@ export default class AirportModel {
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(this.airspace);
 
-        this.ctr_radius = Math.max(..._map(
-            this.perimeter.poly, (vertexPosition) => vlen(
-                vsub(
-                    vertexPosition.relativePosition,
-                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._positionModel, this.magneticNorth)
+        this.ctr_radius = Math.max(
+            ..._map(this.perimeter.poly, (vertexPosition) => vlen(
+                    vsub(
+                        vertexPosition.relativePosition,
+                        DynamicPositionModel.calculateRelativePosition(
+                            this.rr_center,
+                            this._positionModel,
+                            this.magneticNorth
+                        )
+                    )
                 )
             )
-        ));
+        );
     }
 
+    // DEPRECATE: after `#_runwayCollection` is implemented
     /**
      * @for AirportModel
      * @method buildAirportRunways
@@ -383,6 +395,20 @@ export default class AirportModel {
         this.wind.angle = degreesToRadians(currentWind.angle);
     }
 
+    /**
+     *
+     *
+     * @for AirportModel
+     * @method getRunwayRelationshipForRunwayNames
+     * @param  primaryRunwayName {string}
+     * @param  comparatorRunwayName {string}
+     * @return {RunwayRelationshipModel|undefined}
+     */
+    getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName) {
+        return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
+    }
+
+    // DEPRECATE: after `#_runwayCollection` is implemented
     /**
      * @for AirportModel
      * @method buildRunwayMetaData
@@ -523,32 +549,32 @@ export default class AirportModel {
     }
 
     // TODO: Implement changing winds, then bring this method back to life
+    // DEPRECATE: after `#_runwayCollection` is implemented
     /**
      * @for AirportModel
      * @method updateRunway
      * @deprecated
      */
     updateRunway(length = 0) {
-        // // TODO: this method contains some ambiguous names. need better names.
-        // const wind = this.getWind();
-        // const headwind = {};
-        //
-        // for (let i = 0; i < this.runways.length; i++) {
-        //     const runway = this.runways[i];
-        //     headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
-        //     headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
-        // }
-        //
-        // let best_runway = '';
-        // let best_runway_headwind = -Infinity;
-        // for (const runway in headwind) {
-        //     if (headwind[runway] > best_runway_headwind && this.getRunway(runway).length > length) {
-        //         best_runway = runway;
-        //         best_runway_headwind = headwind[runway];
-        //     }
-        // }
-        //
-        // this.runway = best_runway;
+        this.runway = this._runwayCollection.findBestRunwayForWind();
+    }
+
+    // TODO: what does this function do and why do we need it
+    /**
+     *
+     * @for AirportModel
+     * @method setRunwayTimeout
+     */
+    setRunwayTimeout() {
+        this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
+    }
+
+    /**
+     * @for AirportModel
+     * @method selectRunway
+     */
+    selectRunway() {
+        return this.runway;
     }
 
     parseTerrain(data) {
@@ -725,25 +751,28 @@ export default class AirportModel {
      * @for AirportModel
      * @method getRunway
      * @param name {string} name of the runway, eg '28R'
-     * @return {RunwayModel}
+     * @return {RunwayModel|null}
      */
     getRunway(name) {
-        if (!name) {
-            return null;
-        }
+        return this._runwayCollection.findRunwayModelByName(name);
 
-        // TODO: move below to a `RunwayCollection` class
-        name = name.toLowerCase();
-
-        for (let i = 0; i < this.runways.length; i++) {
-            if (this.runways[i][0].name.toLowerCase() === name) {
-                return this.runways[i][0];
-            }
-            if (this.runways[i][1].name.toLowerCase() === name) {
-                return this.runways[i][1];
-            }
-        }
-
-        return null;
+        // if (!name) {
+        //     return null;
+        // }
+        //
+        // // TODO: move below to a `RunwayCollection` class
+        // name = name.toLowerCase();
+        //
+        // for (let i = 0; i < this.runways.length; i++) {
+        //     if (this.runways[i][0].name.toLowerCase() === name) {
+        //         return this.runways[i][0];
+        //     }
+        //
+        //     if (this.runways[i][1].name.toLowerCase() === name) {
+        //         return this.runways[i][1];
+        //     }
+        // }
+        //
+        // return null;
     }
 }

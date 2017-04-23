@@ -219,8 +219,13 @@ export default class AircraftConflict {
 
 
         // Established on precision guided approaches && both are following different instrument approaches
-        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.fms.arrivalRunway.name !== a2.fms.arrivalRunway.name)) {
-            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
+        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) &&
+            (a1.fms.arrivalRunway.name !== a2.fms.arrivalRunway.name)) {
+            const runwayRelationship = window.airportController.airport_get().getRunwayRelationshipForRunwayNames(
+                a1.fms.arrivalRunway.name,
+                a2.fms.arrivalRunway.name
+            );
+            // const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:
