@@ -491,7 +491,7 @@ export default class AirportModel {
      * @method getWind
      * @return wind {number}
      */
-    getWind() {
+    getWind = () => {
         return this.wind;
 
         // TODO: what does this method do and why do we need it?
@@ -506,7 +506,7 @@ export default class AirportModel {
         wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
-    }
+    };
 
     // TODO: Implement changing winds, then bring this method back to life
     // DEPRECATE: after `#_runwayCollection` is implemented
@@ -528,14 +528,6 @@ export default class AirportModel {
     setRunwayTimeout() {
         this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
-    //
-    // /**
-    //  * @for AirportModel
-    //  * @method selectRunway
-    //  */
-    // selectRunway() {
-    //     return this.runway;
-    // }
 
     parseTerrain(data) {
         const GEOMETRY_TYPE = {

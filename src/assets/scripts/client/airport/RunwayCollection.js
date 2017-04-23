@@ -4,6 +4,8 @@ import _isArray from 'lodash/isArray';
 import BaseCollection from '../base/BaseCollection';
 import RunwayModel from './RunwayModel';
 import RunwayRelationshipModel from './RunwayRelationshipModel';
+import { extrapolate_range_clamp } from '../math/core';
+import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
  * Collection of `RunwayModel`s
@@ -83,6 +85,35 @@ export default class RunwayCollection extends BaseCollection {
     destroy() {
         this._airportPositionModel = null;
         this._runwayRelationships = {};
+    }
+
+    findBestRunwayForWind(getCurrentWindProps) {
+        // FIXME: figure out what this does and move it to a more appropriate home
+        const ra = (n) => {
+            const deviation = degreesToRadians(10);
+
+            return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
+        };
+
+        let best_runway = '';
+        let best_runway_headwind = -Infinity;
+        const headwind = {};
+        const wind = getCurrentWindProps();
+
+        for (let i = 0; i < this._items.length; i++) {
+            const runway = this._items[i];
+
+            headwind[runway.name] = Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
+        }
+
+        for (const runway in headwind) {
+            if (headwind[runway] > best_runway_headwind) {
+                best_runway = runway;
+                best_runway_headwind = headwind[runway];
+            }
+        }
+
+        return best_runway;
     }
 
     /**

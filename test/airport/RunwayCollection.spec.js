@@ -3,7 +3,10 @@ import ava from 'ava';
 import RunwayCollection from '../../src/assets/scripts/client/airport/RunwayCollection';
 import RunwayModel from '../../src/assets/scripts/client/airport/RunwayModel';
 import RunwayRelationshipModel from '../../src/assets/scripts/client/airport/RunwayRelationshipModel';
-import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
+import {
+    airportModelFixture,
+    airportPositionFixtureKLAS
+} from '../fixtures/airportFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
 const RUNWAY_LIST_MOCK = AIRPORT_JSON_KLAS_MOCK.runways;
@@ -67,7 +70,15 @@ ava('.areRunwaysParallel() returns false given two runwayName strings for non-pa
 });
 
 ava.skip('.findBestRunwayForWind()', (t) => {
+    const getWindMock = () => ({
+        speed: 6,
+        angle: 3.839724354387525
+    });
+    const collection = new RunwayCollection(RUNWAY_LIST_MOCK, airportPositionFixtureKLAS);
+    const result = collection.findBestRunwayForWind(getWindMock);
 
+    // TODO: this result varies and should be investigated as to why
+    t.true(result === '25L');
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {

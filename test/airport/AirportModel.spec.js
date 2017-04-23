@@ -12,6 +12,15 @@ ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange));
 });
 
+ava('.updateRunway() calls #_runwayCollection.findBestRunwayForWind()', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const findBestRunwayForWindSpy = sinon.spy(model._runwayCollection, 'findBestRunwayForWind');
+
+    model.updateRunway();
+
+    t.true(findBestRunwayForWindSpy.called);
+});
+
 ava('.getRunwayByName() returns null when passed an invalid runwayName', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getRunway();
