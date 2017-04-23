@@ -713,6 +713,7 @@ export default class Pilot {
 
     /**
      * End of takeoff, stop hand flying, and give the autopilot control of the aircraft
+     *
      * Note: This should be done when the phase changes from takeoff to climb
      * Note: The 'raise landing gear' portion has no relevance, and exists solely for specificity of context
      *
