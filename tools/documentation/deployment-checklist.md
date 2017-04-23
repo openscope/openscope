@@ -1,58 +1,116 @@
-## Pre-Deployment Checklist
-This should happen one or two weeks prior to a release.  This step will create a new release branch and deploy to a staging server
+## General
+Most of this can only be done by repository administrators, who are members of the `openscope-admins` team on GitHub, and have access to the openScope app pipeline on Heroku.
 
-_you will need and access to heroku in order to update deploy settings_
+## Heroku Apps
+There are four types of apps we use on Heroku: the [`production`](https://openscope-prod.herokuapp.com/) app, the [`staging`](https://openscope-staging.herokuapp.com/) app, the [`development`](https://openscope-dev.herokuapp.com/) app, and then review apps admins can very easily spool up for individual feature branches. With all of these apps, when new code is pushed to their respective branch on the openScope repository, the app will automatically begin to rebuild. This takes about five minutes, and will re-deploy if the build succeeds. You can tell when the process has completed because a message will be displayed in slack in the `dev` channel, showing the results of the build.
 
-1. checkout and pull `develop`
-1. create a new branch off of `develop` with the title `release/x.x.x` where the `X`s are the version number of the planned release
-    - _We do not keep a long running release branch but, instead, create a new one every time off of develop_
-1. push `release/x.x.x`
-1. open a new pull request for this release branch. title it with the version number and target the `master` branch.
+The __production__ app is the exact same one that the website uses. When you visit [www.openscope.co](http://www.openscope.co), you are actually interacting with this app through Heroku. We want to keep this app as reliable and pristine as possible.
 
-## New Release Deployment Checklist
-_you will need admin access on the repo in order to make changes directly on the `master` and `develop` branches_
+The __staging__ app is only in use briefly, at the end of each sprint. It represents what the production app _will be_ after work from the current sprint is merged. It is vital that we diligently test this app for a few days before pushing the changes to production, because we want to prevent exposing our regular users to annoying bugs that we could have caught before releasing.
 
-1. checkout and pull `master`
-1. checkout and pull 'release/x.x.x'
-1. run `npm run build`
-    - _verify build succeeds and all tests pass_
-1. checkout and pull `develop`
-1. run `npm run build`
-    - _verify build succeeds and all tests pass_
-1. merge `release` into `develop` with `git merge release/x.x.x`
-1. run `npm run build`
-    - _verify build succeeds and all tests pass_
-1. checkout `release/x.x.x`
-1. bump version number in `package.json`
-    - _This could be either a minor or major bump, depending on work completed in the sprint._
-1. make the following changes to the `CHANGELOG` file:
-    - update version number and release date
-    - remove the extra empty lines in each section (which we use to mitigate possible merge conflicts)
-1. after saving both `package.json` and `CHANGELOG` files, commit these changes with the following commit message:  `ARCH - update `CHANGELOG` and bump version number for release`
-1. push `release/x.x.x`
-    - _this will trigger a build on our [staging](https://openscope-staging.herokuapp.com/) server_
-1. checkout `master`
-1. pull `release/x.x.x` into `master`
-1. run `npm run build`
-    - _verify build succeeds and all tests pass_
-1. create a version tag with `git tag vX.X.X`
-1. push the new tag
-1. push `master`
-    - _this will trigger a build on our [production](https://openscope-prod.herokuapp.com/) server_
-1. checkout `develop`
-1. pull `master` into `develop`
-1. run `npm run build`
-    - _verify build succeeds and all tests pass_
-1. create the next sprint's section in the `CHANGELOG` and commit with the following message: `ARCH - update `CHANGELOG` for next sprint's work`
-1. push `develop`
+The __development__ app is where we merge all features and bugfixes during the development phase of the sprint. Occasionally, things will break here, which is a fact of life. At the end of the sprint, we review, and fix anything that may have inadvertently been broken.
 
-## Add Release Notes
-1. navigate to [https://github.com/openscope/openscope/tags](https://github.com/openscope/openscope/tags), find the tag that was pushed in the section above and click on the `add release notes` link
-1. set the title to `vX.X.X`, where the `X`s are the version number of the release
-1. copy the applicable sprint's section in the `CHANGELOG`
-1. click `Publish Release`
+The __review__ apps can be created (by admins only) at the click of a button for any open pull request. This can be very useful if you are not set up to build and host your app locally on your computer, because you can still continue to see the results of your changes.
 
-## Sprint Cleanup
-- close current milestone
-- [zube] verify all items in active sprint have been either closed or deferred to another sprint
-- [zube] close active sprint
+## Processes of Each Sprint
+Each sprint is considered to progress through these three phases. Further details about each phase can be found in the sections below. The development phase lasts the majority of the sprint, with the first two days of the sprint being reserved to the initialization phase, and the last three being reserved to the testing phase.
+
+1. __Initialization Phase__ _(first two days)_
+1. __Development Phase__
+1. __Testing Phase__ _(last three days)_
+
+The checklists below must be completed at the beginning of the phase for which they are named.
+
+_Note: Except on the first merge of a bugfix/feature/hotfix branch, please always use `git merge branchName` with up-to-date local branches, and not `git pull origin branchName`, as the latter forces a non-FF merge, which is often undesirable._
+
+In total, each sprint cycle will include the following actions in the following order:
+
+1. Complete "Before Initialization Phase Checklist".
+1. Complete "Sprint Closeout Procedures".
+1. Complete "Before Development Phase Checklist".
+1. Proceed with development in accordance with the "Development Procedures".
+1. Complete "Before Testing Phase Checklist".
+1. Complete "Release Procedures".
+
+---
+
+### Before Initialization Phase Checklist
+1. Checkout `develop`.
+1. Commit with `ARCH - Prepare CHANGELOG and set beta version for upcoming sprint`.
+    - Set version number to planned number for this sprint, plus `-BETA`, eg `v5.2.0-BETA`.
+    - Prepare changelog for next sprint by adding sections and whitespace.
+1. If build succeeds and all tests pass, push `develop` to origin.
+
+_Only hotfix branches should be merged (to `master --> develop`) during this phase._
+
+Upon completion of the initialization phase, complete the sprint closeout procedure.
+
+### Before Development Phase Checklist
+1. Attempt to merge `master` into `develop` with `git merge master`.
+    - If master contains no hotfixes, git should reply `Already up-to-date.`.
+    - If master contains hotfixes, git will merge the changes (by FF if possible).
+1. If changes _were_ merged, push to origin.
+
+_Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) during this phase._
+
+### Before Testing Phase Checklist
+At least three days prior to the end of the sprint, we will create a "release" branch that represents the state of the simulator after the current sprint's work would be merged into master. This release branch has a short lifespan, and exists to provide an end-user testing platform (through our staging app) as well as separation from the `develop` branch in case we want delay the release to master, but allow the next sprint to begin on schedule.
+
+1. Create new branch `release/#.#.#` from `develop`.
+1. Open a pull request for `release/#.#.#` into `master`.
+    - Include a title of the version number, eg 'v5.2.0'.
+    - Include a description of 'Deploy v5.2.0'.
+1. On Heroku, change staging app to point to this new release branch.
+1. Broadcast publishing of testing app, and seek bug reports or feedback.
+1. Merge any applicable bugfix branches into `release/#.#.#`.
+    - And then on `develop`, run `git merge release/#.#.#` (results in a FF) and push.
+
+_Only bugfix branches should be merged (to `release/#.#.# --> develop`) during this phase._
+
+Upon completion of the testing phase, conduct the release procedure (outlined below).
+
+---
+
+## Development Procedures
+1. Merge all feature and bugfix branches:
+    - Use non-FF merges into `develop`, using either of the below commands:
+        - `git pull origin feature/###` (merges local version of branch)
+        - `git merge --no-ff feature/###` (merges latest version of upstream branch)
+    - Set/amend the merge commit's message to take the following form:
+        - Include summary of `Merge [feature/bugfix]/branchName (#PRNumber)`.
+        - Include description that very briefly explains the purpose of that branch.
+1. Merge all hotfix branches:
+    - Use non-FF merges into `master`, using either of the below commands:
+        - `git pull origin bugfix/###` (merges local version of branch)
+        - `git merge --no-ff bugfix/###` (merges latest version of upstream branch)
+    - Set/amend the merge commit's message to take the following form:
+        - Include summary of `Merge hotfix/branchName (#PRNumber)`.
+        - Include description that very briefly explains the purpose of that branch.
+    - Merge `master` into `develop` with `git merge master`.
+
+### Release Procedures
+1. Attempt to merge `release` into `develop` with `git merge release/#.#.#`.
+    - By design, `develop` should contain no changes, resulting in git replying that develop is `Already up-to-date.`.
+1. Checkout `release/#.#.#`.
+1. Create commit `ARCH - Finalize CHANGELOG and set version number for v#.#.# release`.
+    - Set new release's version number:
+        - in `package.json`.
+        - in `VERSION` within `App.js`.
+    - Clean up changelog file.
+        - Remove the extra empty lines in each section.
+        - Update current sprint's version number and release date.
+1. Merge `release/#.#.#` into `master` with `git merge --no-ff release/#.#.#`.
+    - Include summary of `Deploy v5.2.0 (#123)`.
+1. Ensure all tests are passing on `develop` and `release/#.#.#` and `master`.
+1. Push `develop` and `release/#.#.#` and `master` to origin.
+1. Checkout `master` and create and push a new version tag.
+    - `git tag v#.#.#` and `git push --tags`
+1. In the repository's [tags](https://github.com/openscope/openscope/tags), find the newly created tag and add release notes.
+    - Include title of the version number, eg `v5.2.0`.
+    - Include a description copied from the `CHANGELOG`.
+
+### Sprint Closeout Procedures
+1. Clean up sprint board and milestone.
+    - Ensure they only contain resolved items.
+    - Move any items that have not been resolved.
+1. Close sprint (Zube) and milestone (GitHub).
