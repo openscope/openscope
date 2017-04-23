@@ -1,7 +1,13 @@
 # Airport Format
 
-* [Template](## Template)
-* [Property Descriptions](## Property Descriptions)
+* [Property Descriptions](#property-descriptions)
+    * [Airspace](#airspace)
+    * [Fixes](#fixes)
+    * [Runways](#runways)
+    * [SIDs](#sids)
+    * [STARs](#stars)
+    * [SpawnPatterns](#spawnPatterns)
+    * [Maps](#maps)
 
 The airport JSON file must be in "[assets/airports](assets/airports)"; the filename
 should be `icao.json` where "icao" is the lowercase four-letter ICAO
@@ -11,7 +17,7 @@ See the comments for information on the correct structure to use.
 
 ## Example
 
-_Note: This is an **abbreviated** version of [klas.json](assets/airports/klas.json)._
+_Note: The code block shown below is an **abbreviated** version of [klas.json](assets/airports/klas.json)._
 ```javascript
 {
     "radio": {
