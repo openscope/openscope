@@ -39,12 +39,12 @@ export default class RunwayCollection extends BaseCollection {
 
         /**
          *
-         * @property _airportPosition
+         * @property _airportPositionModel
          * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._airportPosition = null;
+        this._airportPositionModel = null;
 
         /**
          *
@@ -68,7 +68,7 @@ export default class RunwayCollection extends BaseCollection {
      * @param airportPositionModel {StaticPositionModel}
      */
     _init(runwayJson, airportPositionModel) {
-        this._airportPosition = airportPositionModel;
+        this._airportPositionModel = airportPositionModel;
 
         this._buildRunwayModels(runwayJson);
         this._buildRunwayRelationships();
@@ -81,7 +81,7 @@ export default class RunwayCollection extends BaseCollection {
      * @method destroy
      */
     destroy() {
-        this._airportPosition = null;
+        this._airportPositionModel = null;
         this._runwayRelationships = {};
     }
 
@@ -137,8 +137,8 @@ export default class RunwayCollection extends BaseCollection {
      */
     _buildRunwayModels(runwayJson) {
         _forEach(runwayJson, (runway) => {
-            this._addRunwayToCollection(new RunwayModel(runway, 0, this._airportPosition));
-            this._addRunwayToCollection(new RunwayModel(runway, 1, this._airportPosition));
+            this._addRunwayToCollection(new RunwayModel(runway, 0, this._airportPositionModel));
+            this._addRunwayToCollection(new RunwayModel(runway, 1, this._airportPositionModel));
         });
     }
 

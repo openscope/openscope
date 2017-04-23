@@ -80,9 +80,6 @@ export default class AirportModel {
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
-        this.metadata = {
-            rwy: {}
-        };
         // array of areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
         this.airspace = null;
         // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
@@ -216,7 +213,6 @@ export default class AirportModel {
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        this.buildRunwayMetaData();
         // this.updateRunway();
         // this.setRunwayTimeout();
     }
@@ -408,42 +404,6 @@ export default class AirportModel {
         return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
     }
 
-    // DEPRECATE: after `#_runwayCollection` is implemented
-    /**
-     * @for AirportModel
-     * @method buildRunwayMetaData
-     */
-    buildRunwayMetaData() {
-        // TODO: move this logic to a `RunwayController` class
-        for (const rwy1 in this.runways) {
-            for (const rwy1end in this.runways[rwy1]) {
-                // setup primary runway object
-                this.metadata.rwy[this.runways[rwy1][rwy1end].name] = {};
-
-                for (const rwy2 in this.runways) {
-                    if (rwy1 === rwy2) {
-                        continue;
-                    }
-
-                    for (const rwy2end in this.runways[rwy2]) {
-                        // setup secondary runway subobject
-                        const r1 = this.runways[rwy1][rwy1end];
-                        const r2 = this.runways[rwy2][rwy2end];
-                        const offset = getOffset(r1, r2.relativePosition, r1.angle);
-
-                        this.metadata.rwy[r1.name][r2.name] = {};
-
-                        // generate this runway pair's relationship data
-                        this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
-                        this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
-                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.relativePosition, r1.angle, r2.relativePosition, r2.angle);
-                        this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
-                    }
-                }
-            }
-        }
-    }
-
     /**
      * @for AirportModel
      * @method set
@@ -555,8 +515,8 @@ export default class AirportModel {
      * @method updateRunway
      * @deprecated
      */
-    updateRunway(length = 0) {
-        this.runway = this._runwayCollection.findBestRunwayForWind();
+    updateRunway() {
+        this.runway = this._runwayCollection.findBestRunwayForWind(this.getWind);
     }
 
     // TODO: what does this function do and why do we need it
@@ -568,14 +528,14 @@ export default class AirportModel {
     setRunwayTimeout() {
         this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
-
-    /**
-     * @for AirportModel
-     * @method selectRunway
-     */
-    selectRunway() {
-        return this.runway;
-    }
+    //
+    // /**
+    //  * @for AirportModel
+    //  * @method selectRunway
+    //  */
+    // selectRunway() {
+    //     return this.runway;
+    // }
 
     parseTerrain(data) {
         const GEOMETRY_TYPE = {
@@ -732,6 +692,7 @@ export default class AirportModel {
         this.data = response;
         this.loading = false;
         this.loaded = true;
+
         this.parse(response);
         this.set();
     }
@@ -755,24 +716,5 @@ export default class AirportModel {
      */
     getRunway(name) {
         return this._runwayCollection.findRunwayModelByName(name);
-
-        // if (!name) {
-        //     return null;
-        // }
-        //
-        // // TODO: move below to a `RunwayCollection` class
-        // name = name.toLowerCase();
-        //
-        // for (let i = 0; i < this.runways.length; i++) {
-        //     if (this.runways[i][0].name.toLowerCase() === name) {
-        //         return this.runways[i][0];
-        //     }
-        //
-        //     if (this.runways[i][1].name.toLowerCase() === name) {
-        //         return this.runways[i][1];
-        //     }
-        // }
-        //
-        // return null;
     }
 }

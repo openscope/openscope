@@ -225,7 +225,6 @@ export default class AircraftConflict {
                 a1.fms.arrivalRunway.name,
                 a2.fms.arrivalRunway.name
             );
-            // const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:
@@ -264,7 +263,7 @@ export default class AircraftConflict {
 
         // TODO: this should be another class method: hasSeparationViolation(applicableLatSepMin)
         // Considering all of the above cases,...
-        violation = (this.distance < applicableLatSepMin);
+        violation = this.distance < applicableLatSepMin;
         // TODO: enumerate the magic number.
         // TODO: this should be another class method
         conflict = (this.distance < applicableLatSepMin + 1.852 && !disableNotices) || violation;  // +1.0nm
@@ -375,6 +374,7 @@ export default class AircraftConflict {
      */
     _isOutsideBoundingBox() {
         this._recalculateLateralAndVerticalDistances();
+
         return this.distance > MAXIMUM_SEPARATION_KM;
     }
 
