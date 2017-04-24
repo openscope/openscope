@@ -202,7 +202,7 @@ export default class AircraftCommander {
         const airport = this._airportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
-            aircraft.currentAltitude,
+            aircraft.altitude,
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
