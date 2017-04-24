@@ -201,8 +201,8 @@ _all properties in this section are required_
 },
 ```
 
-- **ICAO** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
-- **IATA** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
+- **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
+- **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
 - **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
 - **ctr_radius** ― The radius (in kilometers) of the controlled airspace that aircraft are simulated within. Outside of this radius aircraft are removed, so ensure it is large enough for your airspace.
 - **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
@@ -210,7 +210,7 @@ _all properties in this section are required_
 - **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 - **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
 - **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-- **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in `[assets/airports/terrain](assets/airports/terrain)`.
+- **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](../..assets/airports/terrain).
 - **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 ```javascript
 "wind": {
