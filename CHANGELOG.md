@@ -25,6 +25,10 @@
 
 
 
+## 5.0.1 (April 24, 2017)
+---
+### Hotfix
+- Updates `AircraftStripView` to display departure procedures with the correct `NAME.EXIT` shape [#359](https://github.com/openscope/openscope/issues/359)
 
 
 ## 5.0.0 (April 21, 2017)
