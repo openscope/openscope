@@ -1,4 +1,5 @@
 [noaa-calculator]: https://www.ngdc.noaa.gov/geomag-web/#declination
+[faa-airspace]: https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true
 
 # Airport Format
 
@@ -15,15 +16,11 @@
     * [Latitude, Longitude, Elevation](#latitude-longitude-elevation)
     * [Identifiers](#icao-and-iata-identifiers)
 
-The airport JSON file must be in "[assets/airports](assets/airports)"; the filename
-should be `icao.json` where "icao" is the lowercase four-letter ICAO
-airport code, such as "ksfo" or "kmsp".  If this is a new airport, there
-should also be an entry added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order.
-See the comments for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there should also be an entry added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
 
 ## Example
 
-_Note: The code block shown below is an **abbreviated** version of [klas.json](assets/airports/klas.json)._
+_Note: The code block shown below is an abbreviated version of [klas.json](assets/airports/klas.json)._
 ```javascript
 {
     "radio": {
@@ -193,7 +190,7 @@ _Note: The code block shown below is an **abbreviated** version of [klas.json](a
 ## Property Descriptions
 
 ### Base Airport Properties
-__all properties in this section are required__
+_all properties in this section are required_
 
 - **radio** ― The radio callsigns for each controller:
 ```javascript
@@ -204,21 +201,25 @@ __all properties in this section are required__
 },
 ```
 
-- **ICAO** ― ICAO identifier of the airport. __see [ICAO identifiers](#icao-and-iata-identifiers) for more information__
-- **IATA** ― IATA identifier of the airport. __see [IATA identifiers](#icao-and-iata-identifiers) for more information__
-- **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) __see this [NOAA calculator][noaa-calculator] if you can't find this value__
+- **ICAO** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
+- **IATA** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
+- **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
 - **ctr_radius** ― The radius (in kilometers) of the controlled airspace that aircraft are simulated within. Outside of this radius aircraft are removed, so ensure it is large enough for your airspace.
 - **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 - **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
-- **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: __see [lat, lon, elev](#latitude-longitude-elevation) for formatting__)
+- **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 - **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
-- **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: __see [lat, lon, elev](#latitude-longitude-elevation) for formatting__)
+- **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 - **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in `[assets/airports/terrain](assets/airports/terrain)`.
-- **wind** ― The true heading (in degrees) and speed (in knots) of the current wind at the airport.
-
+- **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
+```javascript
+"wind": {
+    "angle": 220,
+    "speed": 6
+}
+```
 
 ### airspace
-The airspace of the airport. (Multiple airspace areas may be defined, and will all be included in the "airspace". This allows for advanced airspace stratification.)
  ```javascript
  "airspace": [
      {
@@ -232,10 +233,14 @@ The airspace of the airport. (Multiple airspace areas may be defined, and will a
      }
  ],
 ```
-* **floor** ― The altitude at which the airspace begins.
-* **ceiling** ― The altitude at which the airspace ends.
-* **airspace_class** ― The FAA class of the airspace. *(see [this FAA document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) for more details)*
-* **poly** ― The coordinates of the airspace. (in latitude, longitude: *see [lat, lon, elev](#latitude-longitude-elevation) for formatting*)
+Position definition of the airport airspace.  Multiple airspace areas may be defined and will all be included in the airspace. This allows for advanced airspace stratification.
+- **_At least one airspace definition is required for an airport_**
+- **_All object properties are always required_**
+
+* **floor** ― The altitude (in feet) at which the airspace begins.
+* **ceiling** ― The altitude (in [FL][#flight-level] feet) at which the airspace ends.
+* **airspace_class** ― The FAA class of the airspace. _see [this FAA document](faa-airspace) for more details_
+* **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
 
 ### fixes
@@ -249,12 +254,11 @@ The airspace of the airport. (Multiple airspace areas may be defined, and will a
     "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
 },
 ```
-
 All fixes, navaids, waypoints, intersections, and airport locations. (in latitude, longitude: *see [lat, lon, elev](### Latitude, Longitude, Elevation) for formatting*)
 
 ### runways
 ```javascript
-"runways":[
+"runways": [
     {
         "name": ["07L", "25R"],
         "name_offset": [[0, 0], [0, 0]],
@@ -390,7 +394,7 @@ The runways usable by aircraft.
 ```
 Contains the parameters used to determine how and where aircraft are spawned into the simulation.  At least one `spawnPattern` is required so that aircraft can be added to the simulation.
 
-__see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern__
+_see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
 
 
 ### maps
@@ -426,3 +430,10 @@ For `lat, lon, elev` values, these formats are acceptable:
 Identifiers are unique codes used to differentiate airports, fixes, aircraft, etc. (ex: "KSFO" for the San Francisco Airport).  ICAO (the International Civil Aviation Organization) is an international aviation authority that sets safety and consistency standards that make worldwide travel more standardized. ICAO maintains many lists of things they assign their own identifiers (such as aircraft type designators, airport identifiers, etc). Wherever we have those identifiers stored, they will have the label "icao".
 
 IATA is another international aviation organization (like ICAO) which maintains their own set of identifiers. We include the IATA identifiers for airports in all airport `.json` files, though they are not currently used for anything.
+
+### Flight Level
+
+Flight levels [2] are described by a number, which is this nominal altitude (or, pressure altitude) in hecto-feet, while being a multiple of 500 ft, therefore always ending on 0 or 5. Therefore, a pressure altitude of, for example, 32,000 feet is referred to as "flight level 320".
+
+Flight levels are usually designated in writing as FLxxx, where xxx is a two or three-digit number indicating the pressure altitude in units of 100 feet. In radio communications, FL290 would be pronounced as "flight level two nine(r) zero." The phrase "flight level" makes it clear that this refers to the standardized pressure altitude.
+_definition taken from [WikiPedia](https://en.wikipedia.org/wiki/Flight_level)_
