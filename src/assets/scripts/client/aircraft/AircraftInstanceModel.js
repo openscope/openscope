@@ -1964,10 +1964,7 @@ export default class AircraftInstanceModel {
         const heading = heading_to_string(this.mcp.heading);
         const altitude = this.mcp.altitude;
         const speed = this.mcp.speed;
-
-        let destinationDisplay = !this.pilot.hasDepartureClearance
-            ? this.destination
-            : this.fms.getProcedureAndExitName();
+        let destinationDisplay = this.fms.getProcedureAndExitName();
         const altitudeText = this.taxi_next
             ? 'ready'
             : null;
@@ -1977,11 +1974,11 @@ export default class AircraftInstanceModel {
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.APRON:
-                this.aircraftStripView.updateViewForApron(this.destination, hasAltitude);
+                this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
 
                 break;
             case FLIGHT_PHASE.TAXI:
-                this.aircraftStripView.updateViewForTaxi(this.destination, hasAltitude, altitudeText);
+                this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
 
                 break;
             case FLIGHT_PHASE.WAITING:
