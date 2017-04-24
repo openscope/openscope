@@ -192,5 +192,12 @@ ava('does not throw when passed version command', t => {
     t.notThrows(() => new CommandParser('version'));
 
     const model = new CommandParser('version');
+
     t.true(model.command === 'version');
+});
+
+ava('provides a default value for the timewarp command when no args are passed', (t) => {
+    const model = new CommandParser('timewarp');
+
+    t.true(model.args[0] === 0);
 });
