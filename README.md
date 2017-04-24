@@ -29,11 +29,3 @@ Please join us on our [Slack Channel](http://slack.openscope.co/) if you have qu
 ## License
 
 MIT.
-
-**Note:** The license was formerly CC0. It was set before I was familiar with licensing options.
-
-### Exceptions
-
-The following files are **NOT** MIT licensed:
-
-* [`terrain.svg`](http://www.flaticon.com/free-icon/mountain-summit_27798) by [OCHA](http://www.flaticon.com/authors/ocha) is licensed CC BY 3.0.
