@@ -1957,17 +1957,14 @@ export default class AircraftInstanceModel {
      * @method updateStrip
      */
     updateStrip() {
-        if (this.projected) {
+        if (this.projected || !this.inside_ctr) {
             return;
         }
 
         const heading = heading_to_string(this.mcp.heading);
         const altitude = this.mcp.altitude;
         const speed = this.mcp.speed;
-
-        let destinationDisplay = !this.mcp.isEnabled
-            ? this.destination
-            : this.fms.getProcedureAndExitName();
+        let destinationDisplay = this.fms.getProcedureAndExitName();
         const altitudeText = this.taxi_next
             ? 'ready'
             : null;
@@ -1985,7 +1982,11 @@ export default class AircraftInstanceModel {
 
                 break;
             case FLIGHT_PHASE.WAITING:
-                this.aircraftStripView.updateViewForWaiting(destinationDisplay, this.mcp.isEnabled, hasAltitude);
+                this.aircraftStripView.updateViewForWaiting(
+                    destinationDisplay,
+                    this.pilot.hasDepartureClearance,
+                    hasAltitude
+                );
 
                 break;
             case FLIGHT_PHASE.TAKEOFF:
