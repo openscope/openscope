@@ -10,7 +10,7 @@ The __staging__ app is only in use briefly, at the end of each sprint. It repres
 
 The __development__ app is where we merge all features and bugfixes during the development phase of the sprint. Occasionally, things will break here, which is a fact of life. At the end of the sprint, we review, and fix anything that may have inadvertently been broken.
 
-The __review__ apps can be created (by admins only) at the click of a button for any open pull request. This can be very useful if you are not set up to build and host your app locally on your computer, because you can still continue to see the results of your changes.
+The __review__ apps can be created (by admins only) at the click of a button for any open pull request. This can be very useful if you are not set up to build and host your app locally on your computer, because you can still continue to see the results of your changes, or for those times a specific branch needs to be shared with the wider development group to facilitate heavier testing.
 
 ## Processes of Each Sprint
 Each sprint is considered to progress through these three phases. Further details about each phase can be found in the sections below. The development phase lasts the majority of the sprint, with the first two days of the sprint being reserved to the initialization phase, and the last three being reserved to the testing phase.
@@ -47,14 +47,14 @@ Upon completion of the initialization phase, complete the sprint closeout proced
 
 ### Before Development Phase Checklist
 1. Attempt to merge `master` into `develop` with `git merge master`.
-    - If master contains no hotfixes, git should reply `Already up-to-date.`.
-    - If master contains hotfixes, git will merge the changes (by FF if possible).
+    - If master contains no unmerged hotfixes, git should reply `Already up-to-date.`.
+    - If master contains unmerged hotfixes, git will merge the changes (by FF if possible).
 1. If changes _were_ merged, push to origin.
 
 _Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) during this phase._
 
 ### Before Testing Phase Checklist
-At least three days prior to the end of the sprint, we will create a "release" branch that represents the state of the simulator after the current sprint's work would be merged into master. This release branch has a short lifespan, and exists to provide an end-user testing platform (through our staging app) as well as separation from the `develop` branch in case we want delay the release to master, but allow the next sprint to begin on schedule.
+At least three days prior to the end of the sprint, we will create a "release" branch that represents the state of the simulator after the current sprint's work would be merged into master. This release branch has a short lifespan, and exists to provide an end-user testing platform (through our staging app) as well as separation from the `develop` branch in case we want to delay the release to master, but allow the next sprint to begin on schedule.
 
 1. Create new branch `release/#.#.#` from `develop`.
 1. Open a pull request for `release/#.#.#` into `master`.
@@ -89,7 +89,7 @@ Upon completion of the testing phase, conduct the release procedure (outlined be
     - Merge `master` into `develop` with `git merge master`.
 
 ### Release Procedures
-1. Attempt to merge `release` into `develop` with `git merge release/#.#.#`.
+1. Attempt to merge `release/#.#.#` into `develop` with `git merge release/#.#.#`.
     - By design, `develop` should contain no changes, resulting in git replying that develop is `Already up-to-date.`.
 1. Checkout `release/#.#.#`.
 1. Create commit `ARCH - Finalize CHANGELOG and set version number for v#.#.# release`.
