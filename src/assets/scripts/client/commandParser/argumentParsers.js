@@ -183,7 +183,7 @@ export const holdParser = (args) => {
  * @return {array<number>}
  */
 export const timewarpParser = (args = []) => {
-    const defaultTimewarpValue = 0;
+    const defaultTimewarpValue = 1;
 
     if (args.length === 0) {
         return [defaultTimewarpValue];
