@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies */
 import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
@@ -8,6 +7,7 @@ import _tail from 'lodash/tail';
 import CommandParser from '../../src/assets/scripts/client/commandParser/CommandParser';
 import CommandModel from '../../src/assets/scripts/client/commandParser/CommandModel';
 
+const VERSION_COMMAND_MOCK = 'version';
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AA777';
 const CAF_MOCK = 'caf';
@@ -186,4 +186,18 @@ ava('when passed dct TOR it creates the correct command with the correct argumen
 
     t.true(model.args[0][0] === 'direct');
     t.true(model.args[0][1] === 'tor');
+});
+
+ava('does not throw when passed version command', t => {
+    t.notThrows(() => new CommandParser('version'));
+
+    const model = new CommandParser('version');
+
+    t.true(model.command === 'version');
+});
+
+ava('provides a default value for the timewarp command when no args are passed', (t) => {
+    const model = new CommandParser('timewarp');
+
+    t.true(model.args[0] === 1);
 });
