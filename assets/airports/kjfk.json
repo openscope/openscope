@@ -603,7 +603,7 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-                ["flg", 1]
+                ["edv", 1]
             ]
         },
         {
