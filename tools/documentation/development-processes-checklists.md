@@ -73,41 +73,45 @@ Upon completion of the testing phase, conduct the release procedure (outlined be
 
 ## Development Procedures
 1. Merge all feature and bugfix branches:
-    - Use non-FF merges into `develop`, using either of the below commands:
+    - Use non-FF merges into `develop` via "the green button" or either of the below commands:
         - `git pull origin feature/###` (merges local version of branch)
         - `git merge --no-ff feature/###` (merges latest version of upstream branch)
     - Set/amend the merge commit's message to take the following form:
-        - Include summary of `Merge [feature/bugfix]/branchName (#PRNumber)`.
+        - Include summary of `Merge [feature/bugfix]/### (#PRNumber)`.
         - Include description that very briefly explains the purpose of that branch.
 1. Merge all hotfix branches:
-    - Use non-FF merges into `master`, using either of the below commands:
-        - `git pull origin bugfix/###` (merges local version of branch)
-        - `git merge --no-ff bugfix/###` (merges latest version of upstream branch)
+    - Use non-FF merges into `master` via "the green button" or either of the below commands:
+        - `git pull origin hotfix/###` (merges local version of branch)
+        - `git merge --no-ff hotfix/###` (merges latest version of upstream branch)
     - Set/amend the merge commit's message to take the following form:
-        - Include summary of `Merge hotfix/branchName (#PRNumber)`.
+        - Include summary of `Merge hotfix/### (#PRNumber)`.
         - Include description that very briefly explains the purpose of that branch.
     - Merge `master` into `develop` with `git merge master`.
+        - Note that this merge _will_ have conflicts due to the different version numbers and changelog. Resolve and allow the merge commit.
+        - Include summary of `Merge hotfix/359 (#361) from master`.
+        - Include the same description in the second line.
 
 ### Release Procedures
-1. Attempt to merge `release/#.#.#` into `develop` with `git merge release/#.#.#`.
-    - By design, `develop` should contain no changes, resulting in git replying that develop is `Already up-to-date.`.
 1. Checkout `release/#.#.#`.
-1. Create commit `ARCH - Finalize CHANGELOG and set version number for v#.#.# release`.
+1. Commit and push to origin the following finalizations to the release branch.
     - Set new release's version number:
         - in `package.json`.
         - in `VERSION` within `App.js`.
     - Clean up changelog file.
         - Remove the extra empty lines in each section.
         - Update current sprint's version number and release date.
-1. Merge `release/#.#.#` into `master` with `git merge --no-ff release/#.#.#`.
+    - Use commit message `ARCH - Finalize CHANGELOG and set version number for v#.#.# release`
+1. Merge `release/#.#.#` into `master` using the pull request titled with the new version number.
     - Include summary of `Deploy v5.2.0 (#123)`.
-1. Ensure all tests are passing on `develop` and `release/#.#.#` and `master`.
-1. Push `develop` and `release/#.#.#` and `master` to origin.
-1. Checkout `master` and create and push a new version tag.
+<!-- 1. Push `develop` and `release/#.#.#` to origin. -->
+1. Checkout `master` locally and create and push a new version tag.
     - `git tag v#.#.#` and `git push --tags`
 1. In the repository's [tags](https://github.com/openscope/openscope/tags), find the newly created tag and add release notes.
     - Include title of the version number, eg `v5.2.0`.
     - Include a description copied from the `CHANGELOG`.
+1. Merge `release/#.#.#` into `develop` with `git merge release/#.#.#`.
+    - By design, `develop` should contain no changes, resulting in a fast-forward merge.
+1. Ensure all tests are passing on `develop`, and push to origin.
 
 ### Sprint Closeout Procedures
 1. Clean up sprint board and milestone.
