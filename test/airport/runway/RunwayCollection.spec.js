@@ -1,13 +1,13 @@
 import ava from 'ava';
 
-import RunwayCollection from '../../src/assets/scripts/client/airport/runway/RunwayCollection';
-import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
-import RunwayRelationshipModel from '../../src/assets/scripts/client/airport/runway/RunwayRelationshipModel';
+import RunwayCollection from '../../../src/assets/scripts/client/airport/runway/RunwayCollection';
+import RunwayModel from '../../../src/assets/scripts/client/airport/runway/RunwayModel';
+import RunwayRelationshipModel from '../../../src/assets/scripts/client/airport/runway/RunwayRelationshipModel';
 import {
     airportModelFixture,
     airportPositionFixtureKLAS
-} from '../fixtures/airportFixtures';
-import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
+} from '../../fixtures/airportFixtures';
+import { AIRPORT_JSON_KLAS_MOCK } from '../_mocks/airportJsonMock';
 
 const RUNWAY_LIST_MOCK = AIRPORT_JSON_KLAS_MOCK.runways;
 
