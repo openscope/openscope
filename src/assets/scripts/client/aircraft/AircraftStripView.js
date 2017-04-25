@@ -278,6 +278,7 @@ export default class AircraftStripView {
     updateViewForApron(destinationText, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         this.$heading.text(FLIGHT_PHASE.APRON);
+        this.$destination.text(destinationText.toUpperCase());
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
@@ -295,6 +296,8 @@ export default class AircraftStripView {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         this.$heading.text(FLIGHT_PHASE.TAXI);
         this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$destination.text(destinationText.toUpperCase());
+        this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
@@ -303,11 +306,6 @@ export default class AircraftStripView {
         if (altitudeText) {
             this.$altitude.text(altitudeText);
         }
-
-        // if (_isString(destinationText)) {
-        //     this.$destination.text(destinationText.toUpperCase());
-        //     this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        // }
     }
 
     /**
@@ -321,9 +319,9 @@ export default class AircraftStripView {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         this.$heading.text(FLIGHT_PHASE.WAITING);
         this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$destination.text(destinationText.toUpperCase());
 
         if (hasClearance) {
-            this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
 
@@ -386,6 +384,7 @@ export default class AircraftStripView {
         switch (navMode) {
             case WAYPOINT_NAV_MODE.FIX:
                 this.$heading.text(headingText);
+                this.$destination.text(destinationText.toUpperCase());
 
                 if (isFollowingSID) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
@@ -396,7 +395,6 @@ export default class AircraftStripView {
 
                 if (isFollowingSTAR) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
-                    this.$destination.text(destinationText.toUpperCase());
                     this.$destination.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
 
                     if (fixRestrictions.altitude) {

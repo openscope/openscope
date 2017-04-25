@@ -32,8 +32,8 @@ const prop = {};
 // imported as needed in each file.
 require('./util');
 
-// saved as this.prop.version and this.prop.version_string
-const VERSION = [5, 0, 0];
+// Used to display the version number in the console
+const VERSION = '5.1.0-BETA';
 
 // are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
@@ -80,7 +80,6 @@ export default class App {
         this.prop.complete = false;
         this.prop.temp = 'nothing here';
         this.prop.version = VERSION;
-        this.prop.version_string = `v${VERSION.join('.')}`;
         this.prop.time = {};
         this.prop.time.start = time();
         this.prop.time.frames = 0;
@@ -208,7 +207,7 @@ export default class App {
         window.uiController = this.uiController;
         // window.canvasController = this.canvasController;
 
-        log(`Version ${this.prop.version_string}`);
+        console.info(`openScope Air Traffic Control Simulator, Version v${this.prop.version}`);
 
         return this.init_pre()
                    .init()

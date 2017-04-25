@@ -278,7 +278,7 @@
             "method": "random",
             "rate": 8,
             "airlines": [
-                ["flg", 8],
+                ["edv", 8],
                 ["dal", 8],
                 ["gjs", 6],
                 ["rpa", 6],
