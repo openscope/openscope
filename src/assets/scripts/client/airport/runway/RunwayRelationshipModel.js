@@ -1,9 +1,9 @@
 import _uniqueId from 'lodash/uniqueId';
-import { degreesToRadians } from '../utilities/unitConverters';
-import { abs } from '../math/core';
-import { angle_offset } from '../math/circle';
-import { getOffset } from '../math/flightMath';
-import { raysIntersect } from '../math/vector';
+import { degreesToRadians } from '../../utilities/unitConverters';
+import { abs } from '../../math/core';
+import { angle_offset } from '../../math/circle';
+import { getOffset } from '../../math/flightMath';
+import { raysIntersect } from '../../math/vector';
 
 export default class RunwayRelationshipModel {
     constructor(primaryRunway, comparatorRunway) {

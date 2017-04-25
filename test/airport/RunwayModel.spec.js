@@ -1,6 +1,6 @@
 import ava from 'ava';
 
-import RunwayModel from '../../src/assets/scripts/client/airport/RunwayModel';
+import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
 import { airportModelFixture } from '../fixtures/airportFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 

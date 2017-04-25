@@ -6,33 +6,18 @@ import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
-import RunwayCollection from './RunwayCollection';
-import RunwayModel from './RunwayModel';
+import RunwayCollection from './runway/RunwayCollection';
+import RunwayModel from './runway/RunwayModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
-import { angle_offset } from '../math/circle';
-import { getOffset } from '../math/flightMath';
-import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
+import { round, sin, extrapolate_range_clamp } from '../math/core';
+import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
 import { STORAGE_KEY } from '../constants/storageKeys';
-
-// TODO: This function should really live in a different file and have tests.
-// what does ra stand for? runway angle? what about n? need better names here.
-/**
- * @function ra
- * @param n {numer}
- * @return {number}
- */
-const ra = (n) => {
-    const deviation = degreesToRadians(10);
-
-    return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
-};
 
 const DEFAULT_CTR_RADIUS_NM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;

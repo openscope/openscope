@@ -2,7 +2,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
-import RunwayModel from '../../src/assets/scripts/client/airport/RunwayModel';
+import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
 const onUpdateRunStub = sinon.stub();

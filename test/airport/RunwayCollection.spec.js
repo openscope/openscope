@@ -1,8 +1,8 @@
 import ava from 'ava';
 
-import RunwayCollection from '../../src/assets/scripts/client/airport/RunwayCollection';
-import RunwayModel from '../../src/assets/scripts/client/airport/RunwayModel';
-import RunwayRelationshipModel from '../../src/assets/scripts/client/airport/RunwayRelationshipModel';
+import RunwayCollection from '../../src/assets/scripts/client/airport/runway/RunwayCollection';
+import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
+import RunwayRelationshipModel from '../../src/assets/scripts/client/airport/runway/RunwayRelationshipModel';
 import {
     airportModelFixture,
     airportPositionFixtureKLAS

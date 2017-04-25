@@ -1,18 +1,21 @@
 import _without from 'lodash/without';
-import BaseModel from '../base/BaseModel';
-import StaticPositionModel from '../base/StaticPositionModel';
-import { abs, tan } from '../math/core';
-import { km, km_ft, degreesToRadians } from '../utilities/unitConverters';
+import BaseModel from '../../base/BaseModel';
+import StaticPositionModel from '../../base/StaticPositionModel';
+import { abs, tan } from '../../math/core';
+import { km, km_ft, degreesToRadians } from '../../utilities/unitConverters';
 
 /**
+ *
+ *
  * @class RunwayModel
+ * @extends BaseModel
  */
 export default class RunwayModel extends BaseModel {
     /**
      * @for RunwayModel
      * @constructor
      * @param options {object}
-     * @param end
+     * @param end {number}
      * @param airportModel {AirportModel}
      */
     constructor(options = {}, end, airportModel) {
