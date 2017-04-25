@@ -1,4 +1,39 @@
-## 5.0.0 (March 19, 2017)
+## 5.1.0 (May 20, 2017)
+---
+### Major
+
+
+
+
+### Features
+- adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
+
+
+
+
+
+
+
+
+
+### Bugfixes
+- Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
+
+
+
+
+
+
+
+
+
+## 5.0.1 (April 24, 2017)
+---
+### Hotfix
+- Updates `AircraftStripView` to display departure procedures with the correct `NAME.EXIT` shape [#359](https://github.com/openscope/openscope/issues/359)
+
+
+## 5.0.0 (April 21, 2017)
 ---
 ### Major
 - Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
@@ -28,27 +63,9 @@
         - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
         - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
 
-
-
-
-
-
-
-
-
-
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-
-
-
-
-
-
-
-
-
+- Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
@@ -56,10 +73,10 @@
 - Fixes Firefox compatibility issue by changing ajax to getJSON  [#263](https://github.com/openscope/openscope/issues/259)
 - Fixes bug with departures at SAME [#303](https://github.com/openscope/openscope/issues/303)
 - Fixes coordinates for PAM at EHAM [#321](https://github.com/openscope/openscope/issues/321)
-
-
-
-
+- Ensure aircraft reach their targeted speed [#340](https://github.com/openscope/openscope/issues/340)
+- Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
+- Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
+- Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero' [#338](https://github.com/openscope/openscope/issues/338)
 
 ## 4.1.2 (February 20, 2017)
 ---

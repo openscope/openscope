@@ -787,7 +787,7 @@ export default class InputController {
     processSystemCommand(commandParser) {
         switch (commandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
-                window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+                window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
 
                 return true;
 

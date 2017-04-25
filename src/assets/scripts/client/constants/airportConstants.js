@@ -29,11 +29,21 @@ export const AIRPORT_CONSTANTS = {
     DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS: 250,
 
     /**
+     * Distance out along final approach course where the FAF is located
+     *
+     * @memberof AIRPORT_CONSTANTS
+     * @property FINAL_APPROACH_FIX_DISTANCE_NM
+     * @type {number}
+     * @final
+     */
+    FINAL_APPROACH_FIX_DISTANCE_NM: 4,
+
+    /**
      * Maximum allowable indicated airspeed for aircraft below 10,000 feet MSL
      *
      * @memberof AIRPORT_CONSTANTS
      * @property MAX_SPEED_BELOW_10K_FEET
-     * @type {Number}
+     * @type {number}
      * @final
      */
     MAX_SPEED_BELOW_10K_FEET: 250,
