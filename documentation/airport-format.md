@@ -15,6 +15,7 @@
 * [Reference](#reference)
     * [Latitude, Longitude, Elevation](#latitude-longitude-elevation)
     * [Identifiers](#icao-and-iata-identifiers)
+    * [Flight Level](#flight-level)
 
 The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there should also be an entry added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
 
@@ -219,6 +220,7 @@ _all properties in this section are required_
 }
 ```
 
+
 ### airspace
  ```javascript
  "airspace": [
@@ -234,13 +236,14 @@ _all properties in this section are required_
  ],
 ```
 Position definition of the airport airspace.  Multiple airspace areas may be defined and will all be included in the airspace. This allows for advanced airspace stratification.
+
+- **floor** ― The altitude (in feet) at which the airspace begins.
+- **ceiling** ― The altitude (in [FL][#flight-level] feet) at which the airspace ends.
+- **airspace_class** ― The FAA class of the airspace. _see [this FAA document](faa-airspace) for more details_
+- **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+
 - **_At least one airspace definition is required for an airport_**
 - **_All object properties are always required_**
-
-* **floor** ― The altitude (in feet) at which the airspace begins.
-* **ceiling** ― The altitude (in [FL][#flight-level] feet) at which the airspace ends.
-* **airspace_class** ― The FAA class of the airspace. _see [this FAA document](faa-airspace) for more details_
-* **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
 
 ### fixes
@@ -254,7 +257,15 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
     "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
 },
 ```
-All fixes, navaids, waypoints, intersections, and airport locations. (in latitude, longitude: *see [lat, lon, elev](### Latitude, Longitude, Elevation) for formatting*)
+Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
+```javascript
+"BAKRR": ["N36.07582112978773", "W114.95309917207562"]
+```
+Sometimes, there is a need for a specific point in space that is not a real life fix.  In cases such as this, a fix can be created thusly:
+```javascript
+"_NAPSE068": ["N36.11211", "W115.14661"],
+```
+
 
 ### runways
 ```javascript
@@ -267,18 +278,38 @@ All fixes, navaids, waypoints, intersections, and airport locations. (in latitud
             ["N36d4m35.05", "W115d7m15.93", "2033ft"]
         ],
         "ils": [false, true]
-    },
-    {
-        "name": ["07R", "25L"],
-        "end": [
-            ["N36d4m25.04", "W115d9m41.15", "2157ft"],
-            ["N36d4m25.17", "W115d7m32.96", "2049ft"]
-        ],
-        "ils": [false, true]
     }
 ],
 ```
-The runways usable by aircraft.
+- **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one runway is `09` the other runway should be `270`.
+- **name_offset** -
+- **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+- **ils** - Boolean property used to indicate if a runway is ILS capable
+
+Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
+
+```javascript
+// Runway 07L
+{
+    "name": "07L",
+    "name_offset": [0, 0],
+    "end": [
+        ["N36d4m34.82", "W115d10m16.98", "2179ft"]
+
+    ],
+    "ils": false
+}
+
+// Runway 07R
+{
+    "name": "25R",
+    "name_offset": [0, 0],
+    "end": [
+        ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+    ],
+    "ils": true
+}
+```
 
 
 ### sids
