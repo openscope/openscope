@@ -64,6 +64,16 @@ export default class RunwayCollection extends BaseCollection {
     /**
      *
      *
+     * @property runways
+     * @return {array<RunwayModel>}
+     */
+    get runways() {
+        return this._items;
+    }
+
+    /**
+     *
+     *
      * @for RunwayCollection
      * @method _init
      * @param runwayJson {array<object>}

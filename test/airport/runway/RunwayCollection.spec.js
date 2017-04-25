@@ -30,8 +30,11 @@ ava('sets #_items when instantiated', (t) => {
     t.true(collection.length === 8);
 });
 
-ava.skip('provides #runways getter that returns the contents of #_items', (t) => {
+ava('provides #runways getter that returns the contents of #_items', (t) => {
+    const collection = new RunwayCollection(RUNWAY_LIST_MOCK, airportPositionFixtureKLAS);
 
+    t.true(collection.runways.length === 8);
+    t.true(collection.runways[0] instanceof RunwayModel);
 });
 
 ava('.findRunwayModelByName() returns null when passed an invalid runway name', (t) => {
