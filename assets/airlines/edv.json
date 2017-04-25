@@ -1,9 +1,9 @@
 {
-    "icao": "flg",
+    "icao": "edv",
     "name": "Endeavor Air",
     "callsign": {
         "name": "Endeavor",
-        "length": 4
+        "length": 3
     },
     "fleets": {
         "default": [
