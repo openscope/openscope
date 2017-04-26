@@ -202,6 +202,38 @@
         }
     ],
     "sids": {
+        "KEMEV": {
+            "icao": "KEMEV",
+            "name": "Kemev",
+            "suffix": {"03":"3M", "21":"1N"},
+            "rwy": {
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "RULOB", "KEMEV"],
+                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+            },
+            "exitPoints": {
+                "LARYS": ["LARYS", "A90+"]
+            },
+            "draw": [
+                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "RULOB", "KEMEV"],
+                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+            ]
+        },
+        "KORAL": {
+            "icao": "KORAL",
+            "name": "Koral",
+            "suffix": {"03":"1V", "21":"1N"},
+            "rwy": {
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "KORAL"],
+                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+            },
+            "exitPoints": {
+                "LARYS": ["LARYS", "A90+"]
+            },
+            "draw": [
+                ["LTE04", "LTE12", "KORAL"],
+                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+            ]
+        },
         "LARYS": {
             "icao": "LARYS",
             "name": "Larys",
@@ -215,6 +247,38 @@
             },
             "draw": [
                 ["LTE04", "LTE12", "LZR", "ELNAN", "LARYS"],
+                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+            ]
+        },
+        "LORPO": {
+            "icao": "LORPO",
+            "name": "Lorpo",
+            "suffix": {"03":"3M", "21":"1N"},
+            "rwy": {
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "RULOB", "KOSIB", ["LORPO", "A90+"]],
+                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+            },
+            "exitPoints": {
+                "LARYS": ["LARYS", "A90+"]
+            },
+            "draw": [
+                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "RULOB", "KOSIB", "LORPO"],
+                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+            ]
+        },
+        "TENDA": {
+            "icao": "TENDA",
+            "name": "Tenda",
+            "suffix": {"03":"7M", "21":"1N"},
+            "rwy": {
+                "03": [["LTE04", "A16+"], "LINDE", ["TENDA", "A50+"]],
+                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+            },
+            "exitPoints": {
+                "LARYS": ["LARYS", "A90+"]
+            },
+            "draw": [
+                ["LTE04", "LINDE", "TENDA"],
                 ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
             ]
         }
