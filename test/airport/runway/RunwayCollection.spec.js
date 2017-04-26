@@ -84,9 +84,7 @@ ava.skip('.findBestRunwayForWind()', (t) => {
     t.true(result === '25L');
 });
 
-ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {
-
-});
+ava.todo('.removeAircraftFromAllRunwayQueues()');
 
 ava('_buildRunwayRelationships() builds an object with a key for each runway name', (t) => {
     const expectedResult = ['07L', '25R', '07R', '25L', '01R', '19L', '01L', '19R'];

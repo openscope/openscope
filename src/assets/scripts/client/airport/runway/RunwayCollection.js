@@ -97,6 +97,11 @@ export default class RunwayCollection extends BaseCollection {
         this._runwayRelationships = {};
     }
 
+    /**
+     *
+     *
+     * @method findBestRunwayForWind
+     */
     findBestRunwayForWind(getCurrentWindProps) {
         // FIXME: figure out what this does and move it to a more appropriate home
         const ra = (n) => {
@@ -124,6 +129,26 @@ export default class RunwayCollection extends BaseCollection {
         }
 
         return best_runway;
+    }
+
+    /**
+     * Loop through all the `RunwayModel`s in the collection and
+     * call the `.removeAircraftFromQueue()` method on each.
+     *
+     * This is a catchall method used for cleanup
+     *
+     * This method is overkill and can likely be removed in
+     * the near future
+     *
+     * @for RunwayCollection
+     * @method removeAircraftFromAllRunwayQueues
+     */
+    removeAircraftFromAllRunwayQueues(aircraft) {
+        for (let i = 0; i < this.length; i++) {
+            const runwayModel = this._items[i];
+
+            runwayModel.removeAircraftFromQueue(aircraft);
+        }
     }
 
     /**

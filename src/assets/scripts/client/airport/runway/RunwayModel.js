@@ -145,17 +145,6 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     * Adds the specified aircraft to the runway queue
-     *
-     * @for RunwayModel
-     * @method addAircraftToQueue
-     * @param {Aircraft}
-     */
-    addAircraftToQueue(aircraft) {
-        this.queue.push(aircraft);
-    }
-
-    /**
     * Calculate the height of the glideslope for a runway's ILS at a given distance on final
     *
     * @for RunwayModel
@@ -175,6 +164,28 @@ export default class RunwayModel extends BaseModel {
 
         // TODO: this logic could be abstracted to a helper.
         return this.elevation + (rise * km_ft(distance));
+    }
+
+    /**
+     * Adds the specified aircraft to the runway queue
+     *
+     * @for RunwayModel
+     * @method addAircraftToQueue
+     * @param {Aircraft}
+     */
+    addAircraftToQueue(aircraft) {
+        this.queue.push(aircraft);
+    }
+
+    /**
+     * Remove the specified aircraft from the runway queue
+     *
+     * @for RunwayModel
+     * @method removeAircraftFromQueue
+     * @param aircraft {AircraftInstanceModel}
+     */
+    removeAircraftFromQueue(aircraft) {
+        this.queue = _without(this.queue, aircraft);
     }
 
     /**
@@ -199,17 +210,6 @@ export default class RunwayModel extends BaseModel {
      */
     isAircraftNextInQueue(aircraft) {
         return this.positionOfAircraftInQueue(aircraft) === 0;
-    }
-
-    /**
-     * Remove the specified aircraft from the runway queue
-     *
-     * @for RunwayModel
-     * @method removeAircraftFromQueue
-     * @param aircraft {AircraftInstanceModel}
-     */
-    removeAircraftFromQueue(aircraft) {
-        this.queue = _without(this.queue, aircraft);
     }
 
     /**

@@ -694,4 +694,15 @@ export default class AirportModel {
     getRunway(name) {
         return this._runwayCollection.findRunwayModelByName(name);
     }
+
+    /**
+     * Remove an aircraft for all runway queues
+     *
+     * @for AirportModel
+     * @method removeAircraftFromAllRunwayQueues
+     * @param  aircraft {AircraftInstanceModel}
+     */
+    removeAircraftFromAllRunwayQueues(aircraft) {
+        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraft);
+    }
 }

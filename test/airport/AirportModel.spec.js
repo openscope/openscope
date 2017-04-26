@@ -21,16 +21,17 @@ ava('.updateRunway() calls #_runwayCollection.findBestRunwayForWind()', (t) => {
     t.true(findBestRunwayForWindSpy.called);
 });
 
-ava('.getRunwayByName() returns null when passed an invalid runwayName', (t) => {
+ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getRunway();
 
     t.true(result === null);
 });
 
-ava('.getRunwayByName() returns a RunwayModel when passed a valid runwayName', (t) => {
+ava('.removeAircraftFromAllRunwayQueues()', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
-    const result = model.getRunway('07l');
+    const removeAircraftFromAllRunwayQueuesSpy = sinon.spy(model._runwayCollection, 'removeAircraftFromAllRunwayQueues');
+    model.removeAircraftFromAllRunwayQueues({});
 
-    t.true(result instanceof RunwayModel);
+    t.true(removeAircraftFromAllRunwayQueuesSpy.calledOnce);
 });
