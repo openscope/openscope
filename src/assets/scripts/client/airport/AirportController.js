@@ -199,9 +199,9 @@ export default class AirportController {
      * Remove an aircraft from the queue of any runway(s) at the AirportModel
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
-     * @param  {aircraft} aircraft The aircraft to remove
+     * @param  aircraft {AircraftInstanceModel}
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
-        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft);
+        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft.id);
     }
 }

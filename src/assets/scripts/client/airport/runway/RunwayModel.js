@@ -16,14 +16,57 @@ export default class RunwayModel extends BaseModel {
      * @constructor
      * @param options {object}
      * @param end {number}
-     * @param airportModel {AirportModel}
+     * @param airportPositionModel {StaticPositionModel}
      */
-    constructor(options = {}, end, airportModel) {
+    constructor(options = {}, end, airportPositionModel) {
         super();
 
-        this.airportModel = null;
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
+        this.airportPositionModel = null;
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
+        this._positionModel = null;
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
+        this.name = '';
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.angle = null;
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.delay = 2;
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.ils = {
             // TODO: what do these numbers mean? enumerate the magic numbers
             enabled: true,
@@ -31,14 +74,40 @@ export default class RunwayModel extends BaseModel {
             gs_maxHeight: 9999,
             gs_gradient: degreesToRadians(3)
         };
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.labelPos = [];
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.length = null;
-        this.name = '';
-        this._positionModel = null;
-        this.queue = [];
+
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.sepFromAdjacent = km(3);
 
-        this.parse(options, end, airportModel);
+        /**
+         *
+         * @property
+         * @type
+         * @default
+         */
+        this.queue = [];
+
+        this._init(options, end, airportPositionModel);
     }
 
     /**
@@ -80,18 +149,18 @@ export default class RunwayModel extends BaseModel {
      * @return {number}
      */
     get elevation() {
-        return this._positionModel.elevation || this.airportModel.elevation;
+        return this._positionModel.elevation || this.airportPositionModel.elevation;
     }
 
     /**
      * @for RunwayModel
-     * @method parse
+     * @method _init
      * @param data
      * @param end
-     * @param airportModel {AirportModel}
+     * @param airportPositionModel {AirportModel}
      */
-    parse(data, end, airportModel) {
-        this.airportModel = airportModel;
+    _init(data, end, airportPositionModel) {
+        this.airportPositionModel = airportPositionModel;
         this.name = data.name[end];
 
         if (data.delay) {
@@ -104,13 +173,13 @@ export default class RunwayModel extends BaseModel {
                 : 0;
             const thisSide = new StaticPositionModel(
                 data.end[end],
-                this.airportModel.positionModel,
-                this.airportModel.magneticNorth
+                this.airportPositionModel.positionModel,
+                this.airportPositionModel.magneticNorth
             );
             const farSide = new StaticPositionModel(
                 data.end[farSideIndex],
-                this.airportModel.positionModel,
-                this.airportModel.magneticNorth
+                this.airportPositionModel.positionModel,
+                this.airportPositionModel.magneticNorth
             );
 
             // relative position, based on center of map
@@ -171,10 +240,10 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method addAircraftToQueue
-     * @param {Aircraft}
+     * @param aircraftId {string}
      */
-    addAircraftToQueue(aircraft) {
-        this.queue.push(aircraft);
+    addAircraftToQueue(aircraftId) {
+        this.queue.push(aircraftId);
     }
 
     /**
@@ -182,10 +251,10 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method removeAircraftFromQueue
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraftId {string}
      */
-    removeAircraftFromQueue(aircraft) {
-        this.queue = _without(this.queue, aircraft);
+    removeAircraftFromQueue(aircraftId) {
+        this.queue = _without(this.queue, aircraftId);
     }
 
     /**
@@ -193,11 +262,11 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method isAircraftInQueue
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraftId {string}
      * @return {boolean}
      */
-    isAircraftInQueue(aircraft) {
-        return this.positionOfAircraftInQueue(aircraft) !== -1;
+    isAircraftInQueue(aircraftId) {
+        return this.positionOfAircraftInQueue(aircraftId) !== -1;
     }
 
     /**

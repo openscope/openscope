@@ -463,7 +463,7 @@ export default class AircraftCommander {
         aircraft.fms.departureRunway = runway;
         aircraft.taxi_start = this._gameController.game_time();
 
-        runway.addAircraftToQueue(aircraft);
+        runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         this._gameController.game_timeout(
@@ -501,6 +501,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
+        // FIXME: update some of this queue logic to live in the RunwayModel
         const airport = this._airportController.airport_get();
         const runway = aircraft.fms.departureRunway;
         const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
@@ -545,7 +546,7 @@ export default class AircraftCommander {
             return [false, 'unable to take off, we never received an IFR clearance'];
         }
 
-        runway.removeAircraftFromQueue(aircraft);
+        runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
         aircraft.takeoffTime = this._gameController.game_time();
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);

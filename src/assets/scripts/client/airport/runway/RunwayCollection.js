@@ -143,11 +143,11 @@ export default class RunwayCollection extends BaseCollection {
      * @for RunwayCollection
      * @method removeAircraftFromAllRunwayQueues
      */
-    removeAircraftFromAllRunwayQueues(aircraft) {
+    removeAircraftFromAllRunwayQueues(aircraftId) {
         for (let i = 0; i < this.length; i++) {
             const runwayModel = this._items[i];
 
-            runwayModel.removeAircraftFromQueue(aircraft);
+            runwayModel.removeAircraftFromQueue(aircraftId);
         }
     }
 

@@ -239,7 +239,6 @@ export default class AirportModel {
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(this.airspace);
-
         this.ctr_radius = Math.max(
             ..._map(this.perimeter.poly, (vertexPosition) => vlen(
                     vsub(
@@ -702,7 +701,7 @@ export default class AirportModel {
      * @method removeAircraftFromAllRunwayQueues
      * @param  aircraft {AircraftInstanceModel}
      */
-    removeAircraftFromAllRunwayQueues(aircraft) {
-        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraft);
+    removeAircraftFromAllRunwayQueues(aircraftId) {
+        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
     }
 }
