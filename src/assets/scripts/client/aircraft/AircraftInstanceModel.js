@@ -2005,7 +2005,14 @@ export default class AircraftInstanceModel {
                     altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
                     speed: this.fms.currentWaypoint.speedRestriction !== -1
                 };
-                destinationDisplay = this.fms.getProcedureAndExitName();
+
+                // TODO: this will need to be addressed when the AircraftStripView is refactored
+                // this block is a bandaid to prevent `destinationDisplay` from being undefined
+                destinationDisplay = this.fms.currentWaypoint.name;
+
+                if (isFollowingStar || isFollowingSid) {
+                    destinationDisplay = this.fms.getProcedureAndExitName();
+                }
 
                 if (this.fms.currentWaypoint.isHold) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
