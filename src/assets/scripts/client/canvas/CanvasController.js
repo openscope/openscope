@@ -1523,10 +1523,10 @@ k
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${prop.ui.terrain.colors[elevation]}, `;
+            const color = `rgba(${prop.ui.terrain.COLORS[elevation]}, `;
 
-            cc.strokeStyle = `${color} ${prop.ui.terrain.border_opacity})`;
-            cc.fillStyle = `${color} ${prop.ui.terrain.fill_opacity})`;
+            cc.strokeStyle = `${color} ${prop.ui.terrain.BORDER_OPACITY})`;
+            cc.fillStyle = `${color} ${prop.ui.terrain.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1587,11 +1587,11 @@ k
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${prop.ui.terrain.colors[j]}, ${prop.ui.terrain.fill_opacity})`;
+                cc.fillStyle = `rgba(${prop.ui.terrain.COLORS[j]}, ${prop.ui.terrain.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${prop.ui.terrain.colors[i]}, ${prop.ui.terrain.border_opacity})`;
+            cc.strokeStyle = `rgba(${prop.ui.terrain.COLORS[i]}, ${prop.ui.terrain.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations

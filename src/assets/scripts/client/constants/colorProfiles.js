@@ -36,23 +36,23 @@ const DATA_BLOCK_COLOR_DEFAULT = {
     SELECTED: DATA_BLOCK_COLOR_SELECTED_DEFAULT
 };
 
-// const TERRAIN_COLOR_DEFAULT = {
-//     LEVEL_1: ,
-//     LEVEL_2: ,
-//     LEVEL_3: ,
-//     LEVEL_4: ,
-//     LEVEL_5: ,
-//     LEVEL_6: ,
-//     LEVEL_7: ,
-//     LEVEL_8: ,
-//     LEVEL_9: ,
-//     LEVEL_10: ,
-//     LEVEL_11: ,
-//     LEVEL_12: ,
-//     LEVEL_13: ,
-//     LEVEL_14: ,
-//     LEVEL_15:
-// };
+/**
+ * @property TERRAIN_COLORS
+ * @type {Object}
+ * @final
+ */
+const TERRAIN_COLOR_DEFAULT = {
+    BORDER_OPACITY: 1,
+    FILL_OPACITY: 0.1,
+    COLORS: {
+        1000: '26, 150, 65',
+        2000: '119, 194, 92',
+        3000: '255, 255, 192',
+        4000: '253, 201, 128',
+        5000: '240, 124, 74',
+        6000: '156, 81, 31'
+    }
+};
 
 // const TERRAIN_COLOR_PROFILES = {
 //     DEFAULT: TERRAIN_COLOR_DEFAULT
@@ -82,7 +82,7 @@ const COLOR_DEFAULT = {
     RUNWAY_EXTENDED_CENTERLINE: COLORS.DARK_PALE_GREEN,
     RUNWAY_LABELS: COLORS.WHITE_08,
     SID: COLORS.BLUE_06,
-    // TERRAIN: TERRAIN_COLOR_DEFAULT,
+    TERRAIN: TERRAIN_COLOR_DEFAULT,
     TOP_ROW_TEXT: COLORS.WHITE_08,
     TRAILING_SEPARATION_INDICATOR: COLORS.RED_08,
     WIND_VANE: WIND_VANE_COLOR_DEFAULT,
