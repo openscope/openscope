@@ -11,6 +11,7 @@ export const BASE_CANVAS_FONT = '10px monoOne, monospace';
  * @final
  */
 export const COLORS = {
+    BLACK_07: 'rgba(0, 0, 0, 0.7)',
     WHITE_00: 'rgba(255, 255, 255, 0)',
     WHITE_02: 'rgba(255, 255, 255, 0.2)',
     WHITE_03: 'rgba(255, 255, 255, 0.2)',

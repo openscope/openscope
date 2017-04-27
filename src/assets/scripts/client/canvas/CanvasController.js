@@ -571,8 +571,8 @@ export default class ConvasController {
             );
 
             // draw outline (draw with eraser)
-            cc.strokeStyle = 'rgba(0, 0, 0, 0.67)';
-            cc.fillStyle = 'rgba(0, 0, 0, 0.67)';
+            cc.strokeStyle = COLORS.GRAY;
+            cc.fillStyle = COLORS.GRAY;
             cc.globalCompositeOperation = 'destination-out';
             cc.lineWidth = 4;
 
@@ -837,16 +837,22 @@ export default class ConvasController {
         const alerts = aircraft.hasAlerts();
 
         if (!aircraft.inside_ctr) {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.LIGHT_SILVER_03;
         } else if (almost_match) {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.GRAIN_BROWN;
         } else if (match) {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.WHITE;
         } else if (aircraft.warning || alerts[1]) {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.RED;
         } else if (aircraft.hit) {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.CORAL_RED;
         } else {
+            // FIXME: What are these for? Need to know so i can add them to the color profile
             cc.fillStyle = COLORS.WHITE;
         }
 
@@ -984,6 +990,7 @@ k
         window.gameController.game.delta = save_delta;
         cc.save();
 
+        // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             cc.strokeStyle = COLORS.DEPARTURE_COLOR;
         } else {
@@ -1034,6 +1041,7 @@ k
      * @param cc
      */
     canvas_draw_all_aircraft(cc) {
+        // FIXME: How is this different from at line 793?
         cc.fillStyle = COLORS.LIGHT_SILVER;
         cc.strokeStyle = COLORS.LIGHT_SILVER;
         cc.lineWidth = 2;
@@ -1279,7 +1287,7 @@ k
         cc.lineWidth = 4;
 
         // Outer circle
-        cc.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        cc.fillStyle = COLORS.BLACK_07;
         cc.beginPath();
         cc.arc(0, 0, size2, 0, tau());
         cc.fill();
@@ -1438,7 +1446,7 @@ k
      */
     // Draw range rings for ENGM airport to assist in point merge
     canvas_draw_engm_range_rings(cc) {
-        cc.strokeStyle = 'rgba(200, 255, 200, 0.3)';
+        cc.strokeStyle = COLORS.LIGHT_PALE_GREEN;
         cc.setLineDash([3, 6]);
 
         this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
@@ -1498,6 +1506,7 @@ k
             return;
         }
 
+        // FIXME: Does this even end up getting used?
         cc.strokeStyle = COLORS.WHITE_04;
         cc.fillStyle = COLORS.WHITE_02;
         cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
@@ -1618,6 +1627,7 @@ k
             cc.fillStyle = 'transparent';
             this.canvas_draw_poly(cc, area.coordinates);
 
+            // FIXME: Is the restricted airspace EVER filled???
             cc.fillStyle = COLORS.RESTRICTED_AIRSPACE_FILL;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
@@ -1699,6 +1709,8 @@ k
     }
 
     /**
+     * Draw the compass around the scope edge
+     *
      * @for CanvasController
      * @method canvas_draw_directions
      * @param cc
@@ -1727,8 +1739,8 @@ k
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
         cc.save();
-        cc.strokeStyle = COLORS.LIGHT_SILVER;
-        cc.fillStyle = COLORS.WHITE;
+        cc.strokeStyle = COLORS.WHITE;
+        cc.fillStyle = COLORS.RED;
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
