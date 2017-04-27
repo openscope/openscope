@@ -394,7 +394,7 @@ export default class ConvasController {
                 return;
             }
 
-            cc.strokeStyle = '#465';
+            cc.strokeStyle = COLORS.DARK_PALE_GREEN;
             cc.lineWidth = 1;
 
             cc.beginPath();
@@ -542,11 +542,10 @@ export default class ConvasController {
         cc.lineTo(-4, 3);
         cc.closePath();
         cc.fill();
-        cc.stroke();
+        // cc.stroke();
 
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
-        cc.strokeText(name, 0, 6);
         cc.fillText(name, 0, 6);
     }
 
@@ -570,15 +569,6 @@ export default class ConvasController {
                 -round(window.uiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
-            // draw outline (draw with eraser)
-            cc.strokeStyle = COLORS.GRAY;
-            cc.fillStyle = COLORS.GRAY;
-            cc.globalCompositeOperation = 'destination-out';
-            cc.lineWidth = 4;
-
-            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
-
-            cc.strokeStyle = COLORS.WHITE_00;
             cc.fillStyle = COLORS.WHITE_05;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
@@ -603,8 +593,8 @@ export default class ConvasController {
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
 
-        cc.strokeStyle = COLORS.DEPARTURE_COLOR;
-        cc.fillStyle = COLORS.DEPARTURE_COLOR;
+        cc.strokeStyle = COLORS.BLUE_06;
+        cc.fillStyle = COLORS.BLUE_06;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -887,8 +877,12 @@ export default class ConvasController {
             -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
 
+        // aircraft vector lines / projected track lines
         if (!aircraft.hit) {
             cc.save();
+
+            cc.fillStyle = COLORS.WHITE;
+            cc.strokeStyle = COLORS.WHITE;
 
             let tail_length = aircraft.groundSpeed / 15;
 
@@ -992,7 +986,7 @@ k
 
         // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = COLORS.DEPARTURE_COLOR;
+            cc.strokeStyle = COLORS.BLUE_06;
         } else {
             cc.strokeStyle = COLORS.RED_06;
             lockedStroke = COLORS.RED;
@@ -1109,18 +1103,23 @@ k
             }
 
             // set color, intensity, and style elements
-            let alpha = 0.2;
+            let red = COLORS.RED_02;
+            let green = COLORS.GREEN_02;
+            let blue = COLORS.BLUE_02;
+            let white = COLORS.WHITE_02;
+
             if (match) {
-                alpha = 0.9;
+                red = COLORS.RED_09;
+                green = COLORS.GREEN_09;
+                blue = COLORS.BLUE_09;
+                white = COLORS.WHITE_09;
             } else if (aircraft.inside_ctr) {
-                // else if (almost_match) var alpha = 0.75;
-                alpha = 0.5;
+                red = COLORS.RED_05;
+                green = COLORS.GREEN_05;
+                blue = COLORS.BLUE_05;
+                white = COLORS.WHITE_05;
             }
 
-            const red = `rgba(224, 128, 128, ${alpha})`;
-            const green = `rgba( 76, 118, 97, ${alpha})`;
-            const blue = `rgba(128, 255, 255, ${alpha})`;
-            const white = `rgba(255, 255, 255, ${alpha})`;
             cc.textBaseline = 'middle';
 
             // Move to center of where the data block is to be drawn
