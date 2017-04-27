@@ -16,6 +16,7 @@ import {
     COLORS,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
+import { COLOR_PROFILES } from '../constants/colorProfiles';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -48,6 +49,8 @@ export default class ConvasController {
         this.canvas.draw_restricted = true;
         this.canvas.draw_sids = true;
         this.canvas.draw_terrain = true;
+
+        this.colorProfile = COLOR_PROFILES.DEFAULT;
 
         return this._init()
                     .enable();
@@ -394,7 +397,7 @@ export default class ConvasController {
                 return;
             }
 
-            cc.strokeStyle = COLORS.DARK_PALE_GREEN;
+            cc.strokeStyle = this.colorProfile.RUNWAY_EXTENDED_CENTERLINE;
             cc.lineWidth = 1;
 
             cc.beginPath();
@@ -448,8 +451,8 @@ export default class ConvasController {
             return;
         }
 
-        cc.strokeStyle = COLORS.WHITE_04;
-        cc.fillStyle = COLORS.WHITE_04;
+        cc.strokeStyle = this.colorProfile.RUNWAY;
+        cc.fillStyle = this.colorProfile.RUNWAY;
         cc.lineWidth = 4;
 
         const airport = window.airportController.airport_get();
@@ -483,7 +486,7 @@ export default class ConvasController {
             return;
         }
 
-        cc.fillStyle = COLORS.WHITE_08;
+        cc.fillStyle = this.colorProfile.RUNWAY_LABELS;
 
         const airport = window.airportController.airport_get();
         for (let i = 0; i < airport.runways.length; i++) {
@@ -502,8 +505,8 @@ export default class ConvasController {
      * @param cc
      */
     canvas_draw_scale(cc) {
-        cc.fillStyle = COLORS.WHITE_08;
-        cc.strokeStyle = COLORS.WHITE_08;
+        cc.fillStyle = this.colorProfile.TOP_ROW_TEXT;
+        cc.strokeStyle = this.colorProfile.TOP_ROW_TEXT;
 
         const offset = 10;
         const height = 5;
@@ -569,7 +572,7 @@ export default class ConvasController {
                 -round(window.uiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
-            cc.fillStyle = COLORS.WHITE_05;
+            cc.fillStyle = this.colorProfile.FIX_FILL;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
@@ -593,8 +596,8 @@ export default class ConvasController {
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
 
-        cc.strokeStyle = COLORS.BLUE_06;
-        cc.fillStyle = COLORS.BLUE_06;
+        cc.strokeStyle = this.colorProfile.SID;
+        cc.fillStyle = this.colorProfile.SID;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -675,7 +678,7 @@ export default class ConvasController {
         const runway = aircraft.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.angle + Math.PI;
 
-        cc.strokeStyle = COLORS.RED_08;
+        cc.strokeStyle = this.colorProfile.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
         cc.translate(
             window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
@@ -702,10 +705,10 @@ export default class ConvasController {
         if (aircraftAlerts[0]) {
             if (aircraftAlerts[1]) {
                 // red violation circle
-                cc.strokeStyle = COLORS.RED;
+                cc.strokeStyle = this.colorProfile.RING_VIOLATION;
             } else {
                 // white warning circle
-                cc.strokeStyle = COLORS.WHITE_02;
+                cc.strokeStyle = this.colorProfile.RING_CONFLICT;
             }
         } else {
             cc.strokeStyle = cc.fillStyle;
@@ -717,6 +720,7 @@ export default class ConvasController {
         cc.restore();
     }
 
+    // TODO: This likely has no purpose, and should be removed.
     /**
      * @for CanvasController
      * @method canvas_draw_aircraft_departure_window
@@ -727,7 +731,7 @@ export default class ConvasController {
         const angle = aircraft.destination - Math.PI / 2;
 
         cc.save();
-        cc.strokeStyle = COLORS.DEPARTURE_STROKE;
+        cc.strokeStyle = this.colorProfile.RADAR_TARGET_PROJECTION_DEPARTURE;
         cc.beginPath();
         cc.arc(
             this.canvas.panX,
@@ -780,9 +784,9 @@ export default class ConvasController {
         cc.save();
 
         if (!aircraft.inside_ctr) {
-            cc.fillStyle = COLORS.LIGHT_SILVER;
+            cc.fillStyle = this.colorProfile.RADAR_TARGET_OUTSIDE_RANGE;
         } else {
-            cc.fillStyle = COLORS.WHITE;
+            cc.fillStyle = this.colorProfile.RADAR_TARGET_IN_RANGE;
         }
 
         const length = aircraft.relativePositionHistory.length;
@@ -852,9 +856,9 @@ export default class ConvasController {
             cc.save();
 
             if (!aircraft.inside_ctr) {
-                cc.fillStyle = COLORS.WHITE_03;
+                cc.fillStyle = this.colorProfile.RADAR_TARGET_OUTSIDE_RANGE;
             } else {
-                cc.fillStyle = COLORS.WHITE;
+                cc.fillStyle = this.colorProfile.RADAR_TARGET_IN_RANGE;
             }
 
             const w = this.canvas.size.width / 2;
@@ -881,8 +885,8 @@ export default class ConvasController {
         if (!aircraft.hit) {
             cc.save();
 
-            cc.fillStyle = COLORS.WHITE;
-            cc.strokeStyle = COLORS.WHITE;
+            cc.fillStyle = this.colorProfile.PROJECTED_TRACK_LINES;
+            cc.strokeStyle = this.colorProfile.PROJECTED_TRACK_LINES;
 
             let tail_length = aircraft.groundSpeed / 15;
 
@@ -986,10 +990,10 @@ k
 
         // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = COLORS.BLUE_06;
+            cc.strokeStyle = this.colorProfile.RADAR_TARGET_PROJECTION_DEPARTURE;
         } else {
-            cc.strokeStyle = COLORS.RED_06;
-            lockedStroke = COLORS.RED;
+            cc.strokeStyle = this.colorProfile.RADAR_TARGET_PROJECTION_ARRIVAL;
+            lockedStroke = this.colorProfile.RADAR_TARGET_ESTABLISHED_ON_APPROACH;
         }
 
         cc.globalCompositeOperation = 'screen';
@@ -1103,21 +1107,21 @@ k
             }
 
             // set color, intensity, and style elements
-            let red = COLORS.RED_02;
-            let green = COLORS.GREEN_02;
-            let blue = COLORS.BLUE_02;
-            let white = COLORS.WHITE_02;
+            let red = this.colorProfile.DATA_BLOCK.OUT_OF_RANGE.ARRIVAL_BAR;
+            let green = this.colorProfile.DATA_BLOCK.OUT_OF_RANGE.BACKGROUND;
+            let blue = this.colorProfile.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
+            let white = this.colorProfile.DATA_BLOCK.OUT_OF_RANGE.TEXT;
 
             if (match) {
-                red = COLORS.RED_09;
-                green = COLORS.GREEN_09;
-                blue = COLORS.BLUE_09;
-                white = COLORS.WHITE_09;
+                red = this.colorProfile.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
+                green = this.colorProfile.DATA_BLOCK.SELECTED.BACKGROUND;
+                blue = this.colorProfile.DATA_BLOCK.SELECTED.DEPARTURE_BAR;
+                white = this.colorProfile.DATA_BLOCK.SELECTED.TEXT;
             } else if (aircraft.inside_ctr) {
-                red = COLORS.RED_05;
-                green = COLORS.GREEN_05;
-                blue = COLORS.BLUE_05;
-                white = COLORS.WHITE_05;
+                red = this.colorProfile.DATA_BLOCK.IN_RANGE.ARRIVAL_BAR;
+                green = this.colorProfile.DATA_BLOCK.IN_RANGE.BACKGROUND;
+                blue = this.colorProfile.DATA_BLOCK.IN_RANGE.DEPARTURE_BAR;
+                white = this.colorProfile.DATA_BLOCK.IN_RANGE.TEXT;
             }
 
             cc.textBaseline = 'middle';
@@ -1221,9 +1225,9 @@ k
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {
-                cc.fillStyle = COLORS.WHITE_08;
+                cc.fillStyle = this.colorProfile.DATA_BLOCK.IN_RANGE.TEXT;
             } else {
-                cc.fillStyle = COLORS.WHITE_02;
+                cc.fillStyle = this.colorProfile.DATA_BLOCK.OUT_OF_RANGE.TEXT;
             }
 
             if (aircraft.trend === 0) {
@@ -1286,7 +1290,7 @@ k
         cc.lineWidth = 4;
 
         // Outer circle
-        cc.fillStyle = COLORS.BLACK_07;
+        cc.fillStyle = this.colorProfile.WIND_VANE.OUTER_RING_FILL;
         cc.beginPath();
         cc.arc(0, 0, size2, 0, tau());
         cc.fill();
@@ -1295,11 +1299,11 @@ k
         cc.lineWidth = 1;
         cc.beginPath();
         cc.arc(0, 0, dot / 2, 0, tau());
-        cc.strokeStyle = COLORS.WHITE_07;
+        cc.strokeStyle = this.colorProfile.WIND_VANE.INNER_RING_STROKE;
         cc.stroke();
 
         // Wind Value
-        cc.fillStyle = COLORS.WHITE_07;
+        cc.fillStyle = this.colorProfile.WIND_VANE.WIND_SPEED_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'center';
         cc.font = '9px monoOne, monospace';
@@ -1328,15 +1332,15 @@ k
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
         // Color wind line red for high-wind
         if (highwind) {
-            cc.strokeStyle = COLORS.BRIGHT_RED;
+            cc.strokeStyle = this.colorProfile.WIND_VANE.DIRECTION_LINE_GUSTY;
         } else {
-            cc.strokeStyle = COLORS.WHITE_07;
+            cc.strokeStyle = this.colorProfile.WIND_VANE.DIRECTION_LINE;
         }
 
         cc.lineWidth = 2;
         cc.stroke();
         cc.restore();
-        cc.fillStyle = COLORS.WHITE_07;
+        cc.fillStyle = this.colorProfile.WIND_VANE.WIND_SPEED_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
 
@@ -1365,8 +1369,8 @@ k
      */
     canvas_draw_ctr(cc) {
         // Draw a gentle fill color with border within the bounds of the airport's ctr_radius
-        cc.strokeStyle = COLORS.AIRSPACE_RADIUS_STROKE;
-        cc.fillStyle = COLORS.AIRSPACE_RADIUS_FILL;
+        cc.strokeStyle = this.colorProfile.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.colorProfile.AIRSPACE_FILL;
         cc.beginPath();
         cc.arc(0, 0, window.airportController.airport_get().ctr_radius * prop.ui.scale, 0, tau());
         cc.fill();
@@ -1387,8 +1391,8 @@ k
         }
 
         // style
-        cc.strokeStyle = COLORS.AIRSPACE_RADIUS_STROKE;
-        cc.fillStyle = COLORS.AIRSPACE_RADIUS_FILL;
+        cc.strokeStyle = this.colorProfile.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.colorProfile.AIRSPACE_FILL;
 
         // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
@@ -1445,7 +1449,7 @@ k
      */
     // Draw range rings for ENGM airport to assist in point merge
     canvas_draw_engm_range_rings(cc) {
-        cc.strokeStyle = COLORS.LIGHT_PALE_GREEN;
+        cc.strokeStyle = this.colorProfile.RANGE_RING_COLOR;
         cc.setLineDash([3, 6]);
 
         this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
@@ -1469,7 +1473,7 @@ k
             cc.beginPath();
             cc.linewidth = 1;
             cc.arc(0, 0, rangeRingRadius * prop.ui.scale * i, 0, tau());
-            cc.strokeStyle = COLORS.AIRSPACE_RANGE_RING_COLOR;
+            cc.strokeStyle = this.colorProfile.RANGE_RING_COLOR;
             cc.stroke();
         }
     }
@@ -1505,7 +1509,7 @@ k
             return;
         }
 
-        // FIXME: Does this even end up getting used?
+        // FIXME: Does this even end up getting used? Convert to use of `this.colorProfile`
         cc.strokeStyle = COLORS.WHITE_04;
         cc.fillStyle = COLORS.WHITE_02;
         cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
@@ -1592,7 +1596,7 @@ k
 
             // write elevation signs only for the outer elevations
             if (i === max_elevation || i === 1000) {
-                cc.fillStyle = COLORS.WHITE;
+                cc.fillStyle = this.colorProfile.COMPASS_TEXT;
                 cc.textAlign = 'center';
                 cc.textBaseline = 'top';
                 cc.fillText(`${i}'`, box_width / 2 + 0.5, offset + 2);
@@ -1612,7 +1616,7 @@ k
             return;
         }
 
-        cc.strokeStyle = COLORS.RESTRICTED_AIRSPACE_STROKE;
+        cc.strokeStyle = this.colorProfile.RESTRICTED_AIRSPACE_FILL;
         cc.lineWidth = Math.max(prop.ui.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1627,7 +1631,7 @@ k
             this.canvas_draw_poly(cc, area.coordinates);
 
             // FIXME: Is the restricted airspace EVER filled???
-            cc.fillStyle = COLORS.RESTRICTED_AIRSPACE_FILL;
+            cc.fillStyle = this.colorProfile.RESTRICTED_AIRSPACE_FILL;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
@@ -1664,7 +1668,7 @@ k
             return;
         }
 
-        cc.strokeStyle = COLORS.VIDEO_MAP_STROKE;
+        cc.strokeStyle = this.colorProfile.VIDEO_MAP;
         cc.lineWidth = prop.ui.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1694,7 +1698,7 @@ k
      */
     canvas_draw_crosshairs(cc) {
         cc.save();
-        cc.strokeStyle = COLORS.CROSSHAIR_STROKE;
+        cc.strokeStyle = this.colorProfile.CROSSHAIR_STROKE;
         cc.lineWidth = 3;
         cc.beginPath();
         cc.moveTo(-10, 0);
@@ -1738,8 +1742,8 @@ k
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
         cc.save();
-        cc.strokeStyle = COLORS.WHITE;
-        cc.fillStyle = COLORS.RED;
+        cc.strokeStyle = this.colorProfile.COMPASS_HASH;
+        cc.fillStyle = this.colorProfile.COMPASS_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
