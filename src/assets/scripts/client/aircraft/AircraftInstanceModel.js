@@ -285,7 +285,7 @@ export default class AircraftInstanceModel {
 
     initFms(data) {
         const airport = window.airportController.airport_get();
-        const initialRunway = airport.getRunway(airport.runway);
+        const initialRunway = airport.getActiveRunwayForCategory(this.category);
 
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 

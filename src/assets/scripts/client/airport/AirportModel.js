@@ -15,7 +15,10 @@ import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
-import { PERFORMANCE } from '../constants/aircraftConstants';
+import {
+    FLIGHT_CATEGORY,
+    PERFORMANCE
+} from '../constants/aircraftConstants';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -70,7 +73,6 @@ export default class AirportModel {
         this.level = null;
         this._positionModel = null;
         this.runways = [];
-        this.runway = null;
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -424,6 +426,29 @@ export default class AirportModel {
         this.start = window.gameController.game_time();
 
         this.updateRun(true);
+    }
+
+    /**
+     * Get RunwayModel in use for 'arrival' or 'departure', as specified in call
+     *
+     * @for AirportModel
+     * @method getActiveRunwayForCategory
+     * @param category {string} whether the arrival or departure runway is being queried
+     * @return {RunwayModel}
+     */
+    getActiveRunwayForCategory(category) {
+        if (category === FLIGHT_CATEGORY.ARRIVAL) {
+            return this.arrivalRunway;
+        }
+
+        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            return this.departureRunway;
+        }
+
+        console.warn('Did not expect a query for runway that applies to aircraft of category ' +
+            `'${category}'! Returning the arrival runway (${this.arrivalRunway.name})`);
+
+        return this.arrivalRunway;
     }
 
     /**

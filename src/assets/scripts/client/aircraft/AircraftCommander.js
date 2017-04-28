@@ -447,7 +447,7 @@ export default class AircraftCommander {
 
         // Set the runway to taxi to
         if (!taxiDestination) {
-            taxiDestination = this._airportController.airport_get().departureRunway;
+            taxiDestination = this._airportController.airport_get().departureRunway.name;
         }
 
         const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
