@@ -261,9 +261,29 @@ Each navaid located within or around the airport airspace in latitude, longitude
 ```javascript
 "BAKRR": ["N36.07582112978773", "W114.95309917207562"]
 ```
-Sometimes, there is a need for a specific point in space that is not a real life fix.  In cases such as this, a fix can be created thusly:
-```javascript
-"_NAPSE068": ["N36.11211", "W115.14661"],
+You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  There are a few different situations where you might need to use invisible fixes:
+
+1. To simulate fly-over way points, can be seen in my updated version of EIDW #208
+1. To simulate DME arches, can be seen in SAME
+1. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
+
+They're used when we need aircraft to fly over a fix that doesn't have an official name or coordinates and should be named using the following conventions:
+
+* The fixes should be located at the thresholds of the runways for which they are named.
+```
+"_RWY33L": [42.354662, -70.991598]
+```
+* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form
+this would be the fix name, three digit bearing, and three digit distance in nautical miles
+all of these should be marked as RNAV fixes (via the underscore prefix)
+```
+"_AUTUM220015": [42.324333, -71.736833]
+```
+* Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold
+this would be the runway name, two digit distance in nautical miles, then DME
+all of these should be marked as RNAV fixes (via the underscore prefix)
+```
+"_RWY33L01DME": [42.342838, -70.975751]
 ```
 
 
