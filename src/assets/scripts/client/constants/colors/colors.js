@@ -1,9 +1,9 @@
 /**
- * @property COLORS
+ * @property COLOR
  * @type {Object}
  * @final
  */
-export const COLORS = {
+export const COLOR = {
     DARK_PALE_GREEN: 'rgba(68, 102, 85, 1)',
     MODERATE_GREEN: 'rgba(15, 25, 20, 1)',
     LIGHT_PALE_GREEN: 'rgba(200, 255, 200, 0.3)',

@@ -1,12 +1,12 @@
 /**
- * @property TERRAIN_COLORS
+ * @property TERRAIN_COLOR_DEFAULT
  * @type {Object}
  * @final
  */
 const TERRAIN_COLOR_DEFAULT = {
     BORDER_OPACITY: 1,
     FILL_OPACITY: 0.1,
-    COLORS: {
+    COLOR: {
         1000: '26, 150, 65',
         2000: '119, 194, 92',
         3000: '255, 255, 192',
@@ -16,6 +16,6 @@ const TERRAIN_COLOR_DEFAULT = {
     }
 };
 
-export const TERRAIN_THEMES = {
+export const TERRAIN_THEME = {
     DEFAULT: TERRAIN_COLOR_DEFAULT
 };

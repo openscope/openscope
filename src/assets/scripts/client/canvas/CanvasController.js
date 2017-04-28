@@ -15,7 +15,7 @@ import {
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
-import { COLORS } from '../constants/colors/colors';
+import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -832,22 +832,22 @@ export default class ConvasController {
 
         if (!aircraft.inside_ctr) {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.LIGHT_SILVER_03;
+            cc.fillStyle = COLOR.LIGHT_SILVER_03;
         } else if (almost_match) {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.GRAIN_BROWN;
+            cc.fillStyle = COLOR.GRAIN_BROWN;
         } else if (match) {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.WHITE;
+            cc.fillStyle = COLOR.WHITE;
         } else if (aircraft.warning || alerts[1]) {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.RED;
+            cc.fillStyle = COLOR.RED;
         } else if (aircraft.hit) {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.CORAL_RED;
+            cc.fillStyle = COLOR.CORAL_RED;
         } else {
             // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLORS.WHITE;
+            cc.fillStyle = COLOR.WHITE;
         }
 
         cc.strokeStyle = cc.fillStyle;
@@ -1040,8 +1040,8 @@ k
      */
     canvas_draw_all_aircraft(cc) {
         // FIXME: How is this different from at line 793?
-        cc.fillStyle = COLORS.LIGHT_SILVER;
-        cc.strokeStyle = COLORS.LIGHT_SILVER;
+        cc.fillStyle = COLOR.LIGHT_SILVER;
+        cc.strokeStyle = COLOR.LIGHT_SILVER;
         cc.lineWidth = 2;
 
         // console.time('canvas_draw_all_aircraft')
@@ -1510,8 +1510,8 @@ k
         }
 
         // FIXME: Does this even end up getting used? Convert to use of `this.theme`
-        cc.strokeStyle = COLORS.WHITE_04;
-        cc.fillStyle = COLORS.WHITE_02;
+        cc.strokeStyle = COLOR.WHITE_04;
+        cc.fillStyle = COLOR.WHITE_02;
         cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
         cc.lineJoin = 'round';
 
@@ -1523,7 +1523,7 @@ k
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${prop.ui.terrain.COLORS[elevation]}, `;
+            const color = `rgba(${prop.ui.terrain.COLOR[elevation]}, `;
 
             cc.strokeStyle = `${color} ${prop.ui.terrain.BORDER_OPACITY})`;
             cc.fillStyle = `${color} ${prop.ui.terrain.FILL_OPACITY})`;
@@ -1587,11 +1587,11 @@ k
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${prop.ui.terrain.COLORS[j]}, ${prop.ui.terrain.FILL_OPACITY})`;
+                cc.fillStyle = `rgba(${prop.ui.terrain.COLOR[j]}, ${prop.ui.terrain.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${prop.ui.terrain.COLORS[i]}, ${prop.ui.terrain.BORDER_OPACITY})`;
+            cc.strokeStyle = `rgba(${prop.ui.terrain.COLOR[i]}, ${prop.ui.terrain.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
@@ -1616,7 +1616,7 @@ k
             return;
         }
 
-        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE_FILL;
+        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE_STROKE;
         cc.lineWidth = Math.max(prop.ui.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
