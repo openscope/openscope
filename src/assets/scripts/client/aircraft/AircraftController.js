@@ -8,6 +8,7 @@ import _without from 'lodash/without';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
+import StripViewController from './StripView/StripViewController';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
@@ -77,16 +78,14 @@ export default class AircraftController {
          */
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
+        prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
         // TODO: this should its own collection class
         this.aircraft.list = [];
-
         this.aircraft.auto = { enabled: false };
-
         this.conflicts = [];
-
-        prop.aircraft = aircraft;
+        this._stripViewCollection = new StripViewController();
     }
 
     /**
@@ -164,6 +163,7 @@ export default class AircraftController {
         const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
 
         this.addItem(aircraftModel);
+        this.initAircraftStripView(aircraftModel);
     }
 
     /**
@@ -307,6 +307,20 @@ export default class AircraftController {
                 i -= 1;
             }
         }
+    }
+
+    /**
+     *
+     * @method updateAircraftStrips
+     * @return
+     */
+    updateAircraftStrips() {
+        // console.log('updateAircraftStrips');
+    }
+
+    initAircraftStripView(aircraftModel) {
+        this._stripViewCollection.createStripView(aircraftModel.viewModel);
+        console.log(this._stripViewCollection);
     }
 
     /**

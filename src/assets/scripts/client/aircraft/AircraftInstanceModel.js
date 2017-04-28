@@ -190,8 +190,8 @@ export default class AircraftInstanceModel {
             this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
         }
 
-        this.createStrip();
-        this.updateStrip();
+        // this.createStrip();
+        // this.updateStrip();
     }
 
     /**
@@ -223,6 +223,20 @@ export default class AircraftInstanceModel {
      */
     get relativePosition() {
         return this.positionModel.relativePosition;
+    }
+
+
+    get viewModel() {
+        return {
+            id: this._id,
+            callsign: this.callsign,
+            altitude: this.altitude,
+            heading: this.heading,
+            speed: this.speed,
+            model: this.model,
+            fms: this.fms,
+            mcp: this.mcp
+        }
     }
 
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
@@ -1876,7 +1890,7 @@ export default class AircraftInstanceModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
-        this.updateStrip();
+        // this.updateStrip();
     }
 
     /**

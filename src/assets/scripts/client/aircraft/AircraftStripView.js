@@ -41,7 +41,6 @@ export default class AircraftStripView {
      * @param aircraftInstanceModel {AircraftInstanceModel}
      */
     constructor(aircraftInstanceModel) {
-        // TODO: change to use lodash _uniqueId
         this._id = _uniqueId('aircraftStripView-');
 
         this.$element = null;

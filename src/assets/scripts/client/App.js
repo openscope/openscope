@@ -355,6 +355,7 @@ export default class App {
      */
     updatePre() {
         this.gameController.update_pre();
+        this.aircraftController.aircraft_update();
 
         return this;
     }
@@ -365,6 +366,7 @@ export default class App {
      */
     updatePost() {
         this.canvasController.canvas_update_post();
+        this.aircraftController.updateAircraftStrips();
 
         return this;
     }
@@ -388,7 +390,6 @@ export default class App {
         requestAnimationFrame(() => this.update());
 
         this.updatePre();
-        this.aircraftController.aircraft_update();
         this.updatePost();
         this.incrementFrame();
         this.gameClockView.update();
