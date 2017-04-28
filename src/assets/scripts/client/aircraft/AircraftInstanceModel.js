@@ -103,7 +103,12 @@ export default class AircraftInstanceModel {
         this.taxi_start   = 0;          //
         this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
         this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
-        this.inside_ctr   = false;      // Inside ATC Airspace
+
+        /**
+         * @property isInsideAirspace
+         * @type {boolean}
+         */
+        this.isInsideAirspace   = false;      // Inside ATC Airspace
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
@@ -136,9 +141,9 @@ export default class AircraftInstanceModel {
         this.isRemovable = false;
 
         // TODO: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
-        this.aircraftStripView = null;
-        this.$html = null;
-        this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
+        // this.aircraftStripView = null;
+        // this.$html = null;
+        // this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
@@ -233,10 +238,12 @@ export default class AircraftInstanceModel {
             altitude: this.altitude,
             heading: this.heading,
             speed: this.speed,
+            isDeparture: this.isDeparture(),
+            isArrival: this.isArrival(),
             model: this.model,
             fms: this.fms,
             mcp: this.mcp
-        }
+        };
     }
 
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
@@ -294,7 +301,7 @@ export default class AircraftInstanceModel {
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
         this.destination = _get(data, 'destination', this.destination);
-        this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
+        this.isInsideAirspace = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
@@ -327,14 +334,14 @@ export default class AircraftInstanceModel {
      * @param inbound {}
      */
     crossBoundary(inbound) {
-        this.inside_ctr = inbound;
+        this.isInsideAirspace = inbound;
 
         if (this.projected) {
             return;
         }
 
         // Crossing into the center
-        if (this.inside_ctr) {
+        if (this.isInsideAirspace) {
             this.showStrip();
             this.callUp();
 
@@ -493,6 +500,14 @@ export default class AircraftInstanceModel {
         if (this.history.length > 10) {
             this.history.splice(0, this.history.length - 10);
         }
+    }
+
+    isDeparture() {
+        return this.fms.isDeparture();
+    }
+
+    isArrival() {
+        return this.fms.isArrival();
     }
 
     /**
@@ -1501,7 +1516,7 @@ export default class AircraftInstanceModel {
         // TODO: I am not sure what this has to do with aircraft Physics
         const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
-        if (isInsideAirspace !== this.inside_ctr) {
+        if (isInsideAirspace !== this.isInsideAirspace) {
             this.crossBoundary(isInsideAirspace);
         }
     }
@@ -1946,141 +1961,141 @@ export default class AircraftInstanceModel {
 
     // TODO: aircraft strip methods below will be abstracted and de-coupled from this model
 
-    /**
-     * Create the aircraft's flight strip and add to strip bay
-     */
-    createStrip() {
-        this.aircraftStripView = new AircraftStripView(this);
-
-        this.$html = this.aircraftStripView.$element;
-        // Add the strip to the html
-        const scrollPos = this.$strips.scrollTop();
-        this.$strips.prepend(this.aircraftStripView.$element);
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
-
-        // Determine whether or not to show the strip in our bay
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.aircraftStripView.hide();
-        }
-    }
-
-    // TODO: move these view methods to `AircraftStripView` or a different file
-    /**
-     * @for AircraftInstanceModel
-     * @method updateStrip
-     */
-    updateStrip() {
-        if (this.projected || !this.inside_ctr) {
-            return;
-        }
-
-        const heading = heading_to_string(this.mcp.heading);
-        const altitude = this.mcp.altitude;
-        const speed = this.mcp.speed;
-        let destinationDisplay = this.fms.getProcedureAndExitName();
-        const altitudeText = this.taxi_next
-            ? 'ready'
-            : null;
-        const hasAltitude = this.mcp.altitude !== -1;
-
-        this.aircraftStripView.update(heading, altitude, this.destination, speed);
-
-        switch (this.flightPhase) {
-            case FLIGHT_PHASE.APRON:
-                this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
-
-                break;
-            case FLIGHT_PHASE.TAXI:
-                this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
-
-                break;
-            case FLIGHT_PHASE.WAITING:
-                this.aircraftStripView.updateViewForWaiting(
-                    destinationDisplay,
-                    this.pilot.hasDepartureClearance,
-                    hasAltitude
-                );
-
-                break;
-            case FLIGHT_PHASE.TAKEOFF:
-                this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
-
-                break;
-            case FLIGHT_PHASE.CLIMB:
-            case FLIGHT_PHASE.HOLD:
-            case FLIGHT_PHASE.DESCENT:
-            case FLIGHT_PHASE.CRUISE:
-                let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
-                let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
-                const isFollowingSid = this.fms.isFollowingSid();
-                const isFollowingStar = this.fms.isFollowingStar();
-                const fixRestrictions = {
-                    altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
-                    speed: this.fms.currentWaypoint.speedRestriction !== -1
-                };
-                destinationDisplay = this.fms.getProcedureAndExitName();
-
-                if (this.fms.currentWaypoint.isHold) {
-                    cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
-                    headingDisplay = 'holding';
-                    destinationDisplay = this.fms.getDestinationName();
-                } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
-                    headingDisplay = this.mcp.headingInDegrees;
-                    destinationDisplay = this.fms.getDestinationName();
-                } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
-                    cruiseNavMode = WAYPOINT_NAV_MODE.RWY;
-                    headingDisplay = 'intercept';
-                    destinationDisplay = this.fms.getDestinationAndRunwayName();
-                }
-
-                this.aircraftStripView.updateViewForCruise(
-                    cruiseNavMode,
-                    headingDisplay,
-                    destinationDisplay,
-                    isFollowingSid,
-                    isFollowingStar,
-                    fixRestrictions
-                );
-
-                break;
-            case FLIGHT_PHASE.APPROACH:
-            case FLIGHT_PHASE.LANDING:
-                destinationDisplay = this.fms.getDestinationAndRunwayName();
-
-                this.aircraftStripView.updateViewForLanding(destinationDisplay);
-
-                break;
-            default:
-                throw new TypeError(`Invalid FLIGHT_MODE ${this.flightPhase} passed to .updateStrip()`);
-        }
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method showStrip
-     */
-    showStrip() {
-        this.$html.detach();
-
-        const scrollPos = this.$strips.scrollTop();
-
-        this.$strips.prepend(this.$html);
-        this.$html.show();
-        // TODO enumerate the magic number
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + 45);
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method hideStrip
-     */
-    hideStrip() {
-        this.$html.hide(600);
-    }
-
-    cleanup() {
-        this.$html.remove();
-    }
+    // /**
+    //  * Create the aircraft's flight strip and add to strip bay
+    //  */
+    // createStrip() {
+    //     this.aircraftStripView = new AircraftStripView(this);
+    //
+    //     this.$html = this.aircraftStripView.$element;
+    //     // Add the strip to the html
+    //     const scrollPos = this.$strips.scrollTop();
+    //     this.$strips.prepend(this.aircraftStripView.$element);
+    //     // shift scroll down one strip's height
+    //     this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
+    //
+    //     // Determine whether or not to show the strip in our bay
+    //     if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+    //         this.aircraftStripView.hide();
+    //     }
+    // }
+    //
+    // // TODO: move these view methods to `AircraftStripView` or a different file
+    // /**
+    //  * @for AircraftInstanceModel
+    //  * @method updateStrip
+    //  */
+    // updateStrip() {
+    //     if (this.projected || !this.isInsideAirspace) {
+    //         return;
+    //     }
+    //
+    //     const heading = heading_to_string(this.mcp.heading);
+    //     const altitude = this.mcp.altitude;
+    //     const speed = this.mcp.speed;
+    //     let destinationDisplay = this.fms.getProcedureAndExitName();
+    //     const altitudeText = this.taxi_next
+    //         ? 'ready'
+    //         : null;
+    //     const hasAltitude = this.mcp.altitude !== -1;
+    //
+    //     this.aircraftStripView.update(heading, altitude, this.destination, speed);
+    //
+    //     switch (this.flightPhase) {
+    //         case FLIGHT_PHASE.APRON:
+    //             this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
+    //
+    //             break;
+    //         case FLIGHT_PHASE.TAXI:
+    //             this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
+    //
+    //             break;
+    //         case FLIGHT_PHASE.WAITING:
+    //             this.aircraftStripView.updateViewForWaiting(
+    //                 destinationDisplay,
+    //                 this.pilot.hasDepartureClearance,
+    //                 hasAltitude
+    //             );
+    //
+    //             break;
+    //         case FLIGHT_PHASE.TAKEOFF:
+    //             this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
+    //
+    //             break;
+    //         case FLIGHT_PHASE.CLIMB:
+    //         case FLIGHT_PHASE.HOLD:
+    //         case FLIGHT_PHASE.DESCENT:
+    //         case FLIGHT_PHASE.CRUISE:
+    //             let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
+    //             let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
+    //             const isFollowingSid = this.fms.isFollowingSid();
+    //             const isFollowingStar = this.fms.isFollowingStar();
+    //             const fixRestrictions = {
+    //                 altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
+    //                 speed: this.fms.currentWaypoint.speedRestriction !== -1
+    //             };
+    //             destinationDisplay = this.fms.getProcedureAndExitName();
+    //
+    //             if (this.fms.currentWaypoint.isHold) {
+    //                 cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
+    //                 headingDisplay = 'holding';
+    //                 destinationDisplay = this.fms.getDestinationName();
+    //             } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
+    //                 headingDisplay = this.mcp.headingInDegrees;
+    //                 destinationDisplay = this.fms.getDestinationName();
+    //             } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
+    //                 cruiseNavMode = WAYPOINT_NAV_MODE.RWY;
+    //                 headingDisplay = 'intercept';
+    //                 destinationDisplay = this.fms.getDestinationAndRunwayName();
+    //             }
+    //
+    //             this.aircraftStripView.updateViewForCruise(
+    //                 cruiseNavMode,
+    //                 headingDisplay,
+    //                 destinationDisplay,
+    //                 isFollowingSid,
+    //                 isFollowingStar,
+    //                 fixRestrictions
+    //             );
+    //
+    //             break;
+    //         case FLIGHT_PHASE.APPROACH:
+    //         case FLIGHT_PHASE.LANDING:
+    //             destinationDisplay = this.fms.getDestinationAndRunwayName();
+    //
+    //             this.aircraftStripView.updateViewForLanding(destinationDisplay);
+    //
+    //             break;
+    //         default:
+    //             throw new TypeError(`Invalid FLIGHT_MODE ${this.flightPhase} passed to .updateStrip()`);
+    //     }
+    // }
+    //
+    // /**
+    //  * @for AircraftInstanceModel
+    //  * @method showStrip
+    //  */
+    // showStrip() {
+    //     this.$html.detach();
+    //
+    //     const scrollPos = this.$strips.scrollTop();
+    //
+    //     this.$strips.prepend(this.$html);
+    //     this.$html.show();
+    //     // TODO enumerate the magic number
+    //     // shift scroll down one strip's height
+    //     this.$strips.scrollTop(scrollPos + 45);
+    // }
+    //
+    // /**
+    //  * @for AircraftInstanceModel
+    //  * @method hideStrip
+    //  */
+    // hideStrip() {
+    //     this.$html.hide(600);
+    // }
+    //
+    // cleanup() {
+    //     this.$html.remove();
+    // }
 }

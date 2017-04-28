@@ -155,6 +155,7 @@ export default class StripViewModel extends BaseModel {
         this._aircraftType = stripViewModel.model;
         this._infoBoxBottom = stripViewModel.fms.getProcedureAndExitName();
         this._speed = stripViewModel.speed;
+        this._categoryClassName = this.findClassnameForFlightCateogry(stripViewModel);
 
         return this;
     }
@@ -203,7 +204,7 @@ export default class StripViewModel extends BaseModel {
         this.$element.append(this.$aircraftTypeView);
         this.$element.append(this.$infoBoxBottomView);
         this.$element.append(this.$speedView);
-        this.$element.addClass(SELECTORS.CLASSNAMES.DEPARTURE);
+        this.$element.addClass(this._categoryClassName);
 
         return this;
     }
@@ -247,6 +248,21 @@ export default class StripViewModel extends BaseModel {
      */
     hide(duration = 0) {
         this.$element.hide(duration);
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method findClassnameForFlightCateogry
+     * @return {string}
+     */
+    findClassnameForFlightCateogry(stripViewModel) {
+        let className = SELECTORS.CLASSNAMES.ARRIVAL;
+
+        if (stripViewModel.isDeparture) {
+            className = SELECTORS.CLASSNAMES.DEPARTURE;
+        }
+
+        return className;
     }
 
     /**

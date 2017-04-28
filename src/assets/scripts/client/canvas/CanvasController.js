@@ -834,7 +834,7 @@ export default class ConvasController {
 
         cc.save();
 
-        if (!aircraft.inside_ctr) {
+        if (!aircraft.isInsideAirspace) {
             cc.fillStyle = COLORS.LIGHT_SILVER;
         } else {
             cc.fillStyle = COLORS.WHITE;
@@ -842,7 +842,7 @@ export default class ConvasController {
 
         const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
-            if (!aircraft.inside_ctr) {
+            if (!aircraft.isInsideAirspace) {
                 cc.globalAlpha = 0.3 / (length - i);
             } else {
                 cc.globalAlpha = 1 / (length - i);
@@ -881,7 +881,7 @@ export default class ConvasController {
 
         const alerts = aircraft.hasAlerts();
 
-        if (!aircraft.inside_ctr) {
+        if (!aircraft.isInsideAirspace) {
             cc.fillStyle = COLORS.LIGHT_SILVER_03;
         } else if (almost_match) {
             cc.fillStyle = COLORS.GRAIN_BROWN;
@@ -900,7 +900,7 @@ export default class ConvasController {
         if (match) {
             cc.save();
 
-            if (!aircraft.inside_ctr) {
+            if (!aircraft.isInsideAirspace) {
                 cc.fillStyle = COLORS.WHITE_03;
             } else {
                 cc.fillStyle = COLORS.WHITE;
@@ -1149,7 +1149,7 @@ k
             let alpha = 0.2;
             if (match) {
                 alpha = 0.9;
-            } else if (aircraft.inside_ctr) {
+            } else if (aircraft.isInsideAirspace) {
                 // else if (almost_match) var alpha = 0.75;
                 alpha = 0.5;
             }
@@ -1258,7 +1258,7 @@ k
             const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
-            if (aircraft.inside_ctr) {
+            if (aircraft.isInsideAirspace) {
                 cc.fillStyle = COLORS.WHITE_08;
             } else {
                 cc.fillStyle = COLORS.WHITE_02;

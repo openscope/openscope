@@ -1035,6 +1035,35 @@ export default class Fms {
     }
 
     /**
+     *
+     *
+     * @for Fms
+     * @method isDeparture
+     * @return {boolean}
+     */
+    isDeparture() {
+        return this.currentPhase === FLIGHT_PHASE.APRON ||
+            this.currentPhase === FLIGHT_PHASE.TAXI ||
+            this.currentPhase === FLIGHT_PHASE.WAITING ||
+            this.currentPhase === FLIGHT_PHASE.TAKEOFF ||
+            this.currentPhase === FLIGHT_PHASE.CLIMB;
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method isArrival
+     * @return {boolean}
+     */
+    isArrival() {
+        return this.currentPhase === FLIGHT_PHASE.CRUISE ||
+            this.currentPhase === FLIGHT_PHASE.DESCENT ||
+            this.currentPhase === FLIGHT_PHASE.APPROACH ||
+            this.currentPhase === FLIGHT_PHASE.LANDING;
+    }
+
+    /**
      * From a routeString, find each routeString segment and create
      * new `LegModels` for each segment then retun that list.
      *
