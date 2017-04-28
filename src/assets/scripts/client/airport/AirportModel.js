@@ -59,6 +59,8 @@ export default class AirportModel {
 
         // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
+        this.arrivalRunway = null;
+        this.departureRunway = null;
         this.loaded = false;
         this.loading = false;
         this.name = null;
@@ -68,7 +70,6 @@ export default class AirportModel {
         this.level = null;
         this._positionModel = null;
         this.runways = [];
-        // TODO: rename to `runwayName`
         this.runway = null;
         this.maps = {};
         this.airways = {};
@@ -427,18 +428,6 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method unset
-     */
-    unset() {
-        if (!this.timeout.runway) {
-            return;
-        }
-
-        window.gameController.game_clear_timeout(this.timeout.runway);
-    }
-
-    /**
-     * @for AirportModel
      * @method getWind
      * @return wind {number}
      */
@@ -457,51 +446,6 @@ export default class AirportModel {
         wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
-    }
-
-    /**
-     * @for AirportModel
-     * @method updateRunway
-     */
-    updateRunway(length = 0) {
-        // TODO: this method contains some ambiguous names. need better names.
-        const wind = this.getWind();
-        const headwind = {};
-
-        for (let i = 0; i < this.runways.length; i++) {
-            const runway = this.runways[i];
-            headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
-            headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
-        }
-
-        let best_runway = '';
-        let best_runway_headwind = -Infinity;
-        for (const runway in headwind) {
-            if (headwind[runway] > best_runway_headwind && this.getRunway(runway).length > length) {
-                best_runway = runway;
-                best_runway_headwind = headwind[runway];
-            }
-        }
-
-        this.runway = best_runway;
-    }
-
-    // TODO: what does this function do and why do we need it
-    /**
-     *
-     * @for AirportModel
-     * @method setRunwayTimeout
-     */
-    setRunwayTimeout() {
-        this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
-    }
-
-    /**
-     * @for AirportModel
-     * @method selectRunway
-     */
-    selectRunway() {
-        return this.runway;
     }
 
     parseTerrain(data) {
