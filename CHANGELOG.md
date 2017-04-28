@@ -18,6 +18,7 @@
 
 ### Bugfixes
 - Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
+- Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 
 
 
