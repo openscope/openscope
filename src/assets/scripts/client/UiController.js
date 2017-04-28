@@ -9,7 +9,7 @@ import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
-import { COLOR_PROFILES } from './constants/colorProfiles';
+import { THEME } from './constants/colors/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const ui = {};
@@ -64,7 +64,7 @@ export default class UiController {
         this.ui.scale_min = 1; // min scale
         this.ui.scale = this.ui.scale_default;
         // TODO: This belongs in the CanvasController, not UiController
-        this.ui.terrain = COLOR_PROFILES.DEFAULT.TERRAIN;
+        this.ui.terrain = THEME.DEFAULT.TERRAIN;
 
 
         return this._init()
@@ -175,7 +175,7 @@ export default class UiController {
         prop.ui.scale_max = 80; // max scale
         prop.ui.scale_min = 1; // min scale
         prop.ui.scale = prop.ui.scale_default;
-        prop.ui.terrain = COLOR_PROFILES.DEFAULT.TERRAIN;
+        prop.ui.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
