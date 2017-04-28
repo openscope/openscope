@@ -72,6 +72,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'efhk',
+            level: 'easy',
+            name: 'Helsinki Airport'
+        },
+        {
             icao: 'egcc',
             level: 'hard',
             name: 'Manchester Airport',
