@@ -211,8 +211,8 @@ export default class AirportModel {
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
         this.buildRunwayMetaData();
-        this.updateRunway();
-        this.setRunwayTimeout();
+        // this.updateRunway();
+        // this.setRunwayTimeout();
     }
 
     /**
@@ -471,6 +471,35 @@ export default class AirportModel {
         wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
+    }
+
+    // TODO: Implement changing winds, then bring this method back to life
+    /**
+     * @for AirportModel
+     * @method updateRunway
+     * @deprecated
+     */
+    updateRunway(length = 0) {
+        // // TODO: this method contains some ambiguous names. need better names.
+        // const wind = this.getWind();
+        // const headwind = {};
+        //
+        // for (let i = 0; i < this.runways.length; i++) {
+        //     const runway = this.runways[i];
+        //     headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
+        //     headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
+        // }
+        //
+        // let best_runway = '';
+        // let best_runway_headwind = -Infinity;
+        // for (const runway in headwind) {
+        //     if (headwind[runway] > best_runway_headwind && this.getRunway(runway).length > length) {
+        //         best_runway = runway;
+        //         best_runway_headwind = headwind[runway];
+        //     }
+        // }
+        //
+        // this.runway = best_runway;
     }
 
     parseTerrain(data) {
