@@ -222,6 +222,9 @@ _all properties in this section are required_
 
 
 ### airspace
+_All properties in this section are required for each airspace section_
+_At least one airspace definition is required for an airport_
+
  ```javascript
  "airspace": [
      {
@@ -242,11 +245,10 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 - **airspace_class** ― The FAA class of the airspace. _see [this FAA document](faa-airspace) for more details_
 - **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
-- **_At least one airspace definition is required for an airport_**
-- **_All object properties are always required_**
-
 
 ### fixes
+_All fixes listed within the Standard Routes need to be defined within this section_
+
 ```javascript
 "fixes": {
     "_NAPSE068": ["N36.11211", "W115.14661"],
@@ -331,8 +333,35 @@ Runways are defined in pairs because a runway can be used from either direction.
 }
 ```
 
+## Standard Procedures
+
+Standard Procedures consist of SIDs and STARs and, at a very high level, all contain three segments:
+1. Entry - the start of the procedure. can be on one of (possibly) several transition routes that feed into a central segment (the Body)
+2. Body - shared segment that all aircraft on the route will follow
+3. Exit - end of the procedure. can be one of (possibly) several exit segments
+
+This structure is used to work with both SIDs and STARs within the app.  Though it's not important to know for an airport file, it is a good thing to keep in mind.
+
+Fixes within the segments can be defined in several different ways:
+```javascript
+// fix name only
+"07L": ["WASTE", "COMPS"]
+
+// fix name with altitude restriction
+"07L": ["WASTE", ["BAKRR", "A70"], "COMPS"]
+
+// fix name with speed restriction
+"07L": ["WASTE", ["BAKRR", "S200"], "COMPS"]
+
+// fix name with altitude and speed restriction with min or max
+"07L": ["WASTE", ["BAKRR", "A70+|S250-"], "COMPS"]
+```
+These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
+
 
 ### sids
+_All properties in this section are required for each route definition_
+
 ```javascript
 "sids": {
     "COWBY6": {
@@ -364,10 +393,28 @@ Runways are defined in pairs because a runway can be used from either direction.
     }
 },
 ```
-"Standard Instrument Departure" procedures.
+STAR is an acronym for _Standard Instrument Departure Procedure_.
+
+- **icao** - icao identifier of the route, should match the object key in spelling and casing
+```
+"COWBY6": {
+    "icao": "COWBY6"
+}
+```
+- **name** - spoken name of the route used for read backs.
+- **suffix** -
+- **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
+- **body** - (2d array of strings) fix names for the `Body` segment.
+- **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
+- **draw** - (2d array of strings)
+
+- _The `body` section must contain at least one fix_
+- _The `exitPoints` section must contain at least one fix_
 
 
 ### stars
+_All properties in this section are required for each route definition_
+
 ```javascript
 "stars": {
     "GRNPA1": {
@@ -403,10 +450,25 @@ Runways are defined in pairs because a runway can be used from either direction.
     }
 },
 ```
-"Standard Terminal Arrival Route" procedures.
+STAR is an acronym for _Standard Terminal Arrival Route_
+
+- **icao** - icao identifier of the route, should match the object key in spelling and casing
+```
+"GRNPA1": {
+    "icao": "GRNPA1"
+}
+```
+- **name** - spoken name of the route used for read backs.
+- **suffix** -
+- **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
+- **body** - (2d array of strings) fix names for the `Body` segment.
+- **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
+- **draw** - (2d array of strings)
 
 
 ### spawnPatterns
+_At least one `spawnPattern` is required to get aircraft populating into the app_
+
 ```javascript
 "spawnPatterns": [
     {
@@ -414,9 +476,9 @@ Runways are defined in pairs because a runway can be used from either direction.
         "destination": "",
         "category": "departure",
         "route": "KLAS.COWBY6.GUP",
-        "altitude": 0,
+        "altitude": "",
+        "speed": "",
         "method": "random",
-        "entrail": [10, 22],
         "rate": 5,
         "airlines": [
             ["amx", 2],
@@ -433,7 +495,6 @@ Runways are defined in pairs because a runway can be used from either direction.
         "altitude": [30000, 40000],
         "speed": 320
         "method": "random",
-        "entrail": [10, 22],
         "rate": 10,
         "airlines": [
             ["aca/long", 4],
