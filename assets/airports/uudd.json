@@ -18,6 +18,8 @@
         "angle": 2,
         "speed": 5
     },
+    "arrivalRunway": "32R",
+    "departureRunway": "32R",
     "fixes": {
         "ABMAS": ["N55d35m49", "E37d51m05"],
         "AMTAM": ["N55d36m10", "E37d46m17"],

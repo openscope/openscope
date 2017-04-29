@@ -207,6 +207,7 @@ export default class AirportModel {
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.buildAirportRunways(data.runways);
+        this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
@@ -426,6 +427,44 @@ export default class AirportModel {
         this.start = window.gameController.game_time();
 
         this.updateRun(true);
+    }
+
+    /**
+     * Set the airport's active arrival runway
+     *
+     * @for AirportModel
+     * @method setArrivalRunway
+     * @param runwayModel {RunwayModel}
+     */
+    setArrivalRunway(runwayModel) {
+        this.arrivalRunway = runwayModel;
+    }
+
+    /**
+     * Set active arrival/departure runways from the runway names
+     *
+     * @for AirportModel
+     * @method setActiveRunwaysFromNames
+     * @param arrivalRunwayName {string}
+     * @param departureRunwayName {string}
+     */
+    setActiveRunwaysFromNames(arrivalRunwayName, departureRunwayName) {
+        const arrivalRunwayModel = this.getRunway(arrivalRunwayName);
+        const departureRunwayModel = this.getRunway(departureRunwayName);
+
+        this.setArrivalRunway(arrivalRunwayModel);
+        this.setDepartureRunway(departureRunwayModel);
+    }
+
+    /**
+     * Set the airport's active departure runway
+     *
+     * @for AirportModel
+     * @method setDepartureRunway
+     * @param runwayModel {RunwayModel}
+     */
+    setDepartureRunway(runwayModel) {
+        this.departureRunway = runwayModel;
     }
 
     /**
