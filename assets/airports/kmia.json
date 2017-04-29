@@ -42,6 +42,8 @@
         "angle": 140,
         "speed": 9
     },
+    "arrivalRunway": "12",
+    "departureRunway": "8R",
     "fixes": {
         "_R12-1DME" : ["N25d48.450340", "W80d19.102247"],
         "_R26L-1DME": ["N25d48.166981", "W80d15.065267"],
