@@ -81,6 +81,14 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
             "ils": [false, true]
         }
     ],
+    "airways": {
+        "J1": ["OAK", "RBL"],
+        "J110": ["CZQ", "SNS", "OAK"],
+        "J143": ["ENI", "PYE"],
+        "J501": ["NIECE", "PYE", "BSR"],
+        "T257": ["PYE", "SUTRO", "ISIFU", "BSR"],
+        "V28": ["SPOOK", "KATSO", "LIN", "ORANG", "HAIRE", "ALTAM", "SALAD", "OAK"]
+    },
     "sids": {
         "COWBY6": {
             "icao": "COWBY6",
