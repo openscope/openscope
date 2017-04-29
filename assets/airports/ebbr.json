@@ -19,6 +19,8 @@
         "angle": 230,
         "speed": 6
     },
+    "arrivalRunway": "25R",
+    "departureRunway": "25R",
     "fixes": {
         "EBBR":  ["N50d54m05.0", "E004d29m04.0"],
         "NORTH": ["N51.6204689", "E4.484444400"],

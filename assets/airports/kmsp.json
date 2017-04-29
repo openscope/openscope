@@ -39,6 +39,8 @@
         "angle": 300,
         "speed": 8
     },
+    "arrivalRunway": "30L",
+    "departureRunway": "30R",
     "fixes": {
         "KMSP" : ["N44.884188", "W93.215083"],
         "NORTH": ["N45.604023", "W93.215083"],
