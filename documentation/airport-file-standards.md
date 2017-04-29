@@ -62,9 +62,8 @@ To maintain uniformity in all airport files, all keys used in the file must be i
 - The first object within the `airspace` array must represent the airspace's _outer perimeter_, which encompasses all other airspace sections.
 - All runways should be sorted numerically (then L-C-R) by the primary end
 - All SIDs/STARs must be sorted alphabetically by ID
-- Spawn patterns should have _departure_ patterns, then _arrival_ patterns, then any _overflight_ patterns.
-
-Please note that spawnPatterns must include all keys, even if they are not used.
+- Spawn patterns should be in the exact form described in the [spawn pattern readme](spawnPatternReadme.md).
+    - Please note that spawnPatterns must include all keys, even those that are not used.
 
 ---
 
