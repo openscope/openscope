@@ -420,11 +420,11 @@ SID is an acronym for _Standard Instrument Departure_.
 }
 ```
 - **name** - spoken name of the route used for read backs.
-- **suffix** -
+- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific departing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
 - **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
-- **draw** - (2d array of strings)
+- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes.
 
 - _The `body` section must contain at least one fix_
 - _The `exitPoints` section must contain at least one fix_
@@ -477,11 +477,11 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 }
 ```
 - **name** - spoken name of the route used for read backs.
-- **suffix** -
+- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific landing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
 - **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
-- **draw** - (2d array of strings)
+- **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes.
 
 
 ### spawnPatterns
@@ -563,7 +563,6 @@ IATA is another international aviation organization (like ICAO) which maintains 
 
 ### Flight Level
 
-Flight levels [2] are described by a number, which is this nominal altitude (or, pressure altitude) in hecto-feet, while being a multiple of 500 ft, therefore always ending on 0 or 5. Therefore, a pressure altitude of, for example, 32,000 feet is referred to as "flight level 320".
+Flight levels are described by a number, which is this nominal altitude (or, pressure altitude) in hecto-feet, while being a multiple of 500 ft, therefore always ending on 0 or 5. Therefore, a pressure altitude of, for example, 32,000 feet is referred to as "flight level 320".
 
 Flight levels are usually designated in writing as FLxxx, where xxx is a two or three-digit number indicating the pressure altitude in units of 100 feet. In radio communications, FL290 would be pronounced as "flight level two nine(r) zero." The phrase "flight level" makes it clear that this refers to the standardized pressure altitude.
-_definition taken from [WikiPedia](https://en.wikipedia.org/wiki/Flight_level)_
