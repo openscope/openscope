@@ -1,12 +1,12 @@
 ## 5.1.0 (May 20, 2017)
 ---
-### Major
 
 
 
 
 ### Features
 - adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
+- Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
 - allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
 
 
