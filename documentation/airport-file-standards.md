@@ -14,7 +14,7 @@ If you have not contributed before, please note that we will need to add you to 
 
 ## Standard Requirements
 ### Terrain GeoJSON File
-Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you.
+Even if it is empty, a terrain file must be included as part of the pull request. We ask that the [qGIS](http://www.qgis.org/en/site/) files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See [this demo video](https://youtu.be/tWky-8QWFWo) for the only way we've currently figured out to generate terrain. If you happen to know anybody who is handy with GIS software, we could sure use some help figuring out how to improve this process, because it is _definitely_ not the way the "pros" would do it.
 
 ### Polygonal Airspace Boundary
 An airspace boundary must be defined with GPS coordinates. Previously, we allowed just a "airspace center" and "airspace radius", but now there must be a defined edge to the airspace.
@@ -24,13 +24,13 @@ All procedures for a given airport must be included in the pull request. Not all
 
 ### Accurate traffic level (and info to back it up)
 The traffic level must be commensurate with real-world levels, with the arrival and departure rates. Airports can be very quiet during some hours, and very busy during others-- therefore, the traffic included in the airport file shall be:
-- not less than `yearly operations / 8760` (hourly equivalent of yearly rate)
-- not more than `3x yearly operations / 8760` (hourly equivalent of yearly rate)
+- not less than `yearly operations / 8760` (hourly rate averaged over one year)
+- not more than `3x yearly operations / 8760` (hourly rate averaged over one year)
 
 A reference link shall be provided, validating the yearly traffic count, so the reviewer may confirm that the traffic level is appropriate.
 
 ### Base video map
-A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. qGIS is the best place to do this.
+A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. Using [qGIS](http://www.qgis.org/en/site/) is the best way to do this.
 
 ### Spacing
 To maintain uniformity in all airport files, only single spaces should be used.
