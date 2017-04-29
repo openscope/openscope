@@ -8,6 +8,7 @@
     * [Airspace](#airspace)
     * [Fixes](#fixes)
     * [Runways](#runways)
+    * [Airways](#airways)
     * [SIDs](#sids)
     * [STARs](#stars)
     * [SpawnPatterns](#spawnPatterns)
@@ -17,7 +18,7 @@
     * [Identifiers](#icao-and-iata-identifiers)
     * [Flight Level](#flight-level)
 
-The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there should also be an entry added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
 
 ## Example
 
@@ -55,9 +56,10 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
         }
     ],
     "fixes": {
-        "_NAPSE068": ["N36.11211", "W115.14661"],
+        "_RWY19L02DME": [36.12883621109, -115.13620132796],
+        "_RWY19R02DME": [36.12992510899, -115.13907057136],
         "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
-        "BCE":   ["N37.68918661436860", "W112.30389943797489"],
+        "BCE"  : ["N37.68918661436860", "W112.30389943797489"],
         "BESSY": ["N36.10772192196994", "W115.28956463349111"],
         "BETHL": ["N36.88434886833625", "W112.44043432584908"],
         "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
@@ -65,7 +67,6 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
     "runways":[
         {
             "name": ["07L", "25R"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [
                 ["N36d4m34.82", "W115d10m16.98", "2179ft"],
                 ["N36d4m35.05", "W115d7m15.93", "2033ft"]
@@ -82,12 +83,12 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
         }
     ],
     "airways": {
-        "J1": ["OAK", "RBL"],
-        "J110": ["CZQ", "SNS", "OAK"],
-        "J143": ["ENI", "PYE"],
-        "J501": ["NIECE", "PYE", "BSR"],
-        "T257": ["PYE", "SUTRO", "ISIFU", "BSR"],
-        "V28": ["SPOOK", "KATSO", "LIN", "ORANG", "HAIRE", "ALTAM", "SALAD", "OAK"]
+        "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
+        "J146": ["LAS", "NOOTN"],
+        "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
+        "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+        "Q15": ["CHILY", "DOVEE", "BIKKR"],
+        "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
     },
     "sids": {
         "COWBY6": {
@@ -95,8 +96,8 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
             "name": "Cowboy Six",
             "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
             "rwy": {
-                "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
                 "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
                 "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
                 "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
@@ -113,7 +114,8 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
             "draw": [
                 ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
                 ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
-                ["_NAPSE068", "NAPSE", "RIOOS", "COMPS"],
+                ["_RWY19L02DME", "NAPSE"],
+                ["_RWY19R02DME", "NAPSE", "RIOOS", "COMPS"],
                 ["COWBY", "NAVHO", "DRK*"]
             ]
         }
@@ -248,9 +250,9 @@ _At least one airspace definition is required for an airport_
 ```
 Position definition of the airport airspace.  Multiple airspace areas may be defined and will all be included in the airspace. This allows for advanced airspace stratification.
 
-- **floor** ― The altitude (in feet) at which the airspace begins.
-- **ceiling** ― The altitude (in [FL][#flight-level] feet) at which the airspace ends.
-- **airspace_class** ― The FAA class of the airspace. _see [this FAA document](faa-airspace) for more details_
+- **floor** ― The lowest altitude (in [flight levels](#flight-level)) included in the airspace.
+- **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
+- **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](faa-airspace) and find the closest match based on the way the local airspace is treated.
 - **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
 
@@ -259,7 +261,8 @@ _All fixes listed within the Standard Routes need to be defined within this sect
 
 ```javascript
 "fixes": {
-    "_NAPSE068": ["N36.11211", "W115.14661"],
+    "_RWY19L02DME": [36.12883621109, -115.13620132796],
+    "_RWY19R02DME": [36.12992510899, -115.13907057136],
     "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
     "BCE":   ["N37.68918661436860", "W112.30389943797489"],
     "BESSY": ["N36.10772192196994", "W115.28956463349111"],
@@ -271,27 +274,23 @@ Each navaid located within or around the airport airspace in latitude, longitude
 ```javascript
 "BAKRR": ["N36.07582112978773", "W114.95309917207562"]
 ```
-You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  There are a few different situations where you might need to use invisible fixes:
+You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
 
-1. To simulate fly-over way points, can be seen in my updated version of EIDW #208
-1. To simulate DME arches, can be seen in SAME
+1. To simulate fly-over waypoints (examples in EIDW)
+1. To simulate DME arcs (can be seen in SAME)
 1. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
 
-They're used when we need aircraft to fly over a fix that doesn't have an official name or coordinates and should be named using the following conventions:
+They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
 
 * The fixes should be located at the thresholds of the runways for which they are named.
 ```
 "_RWY33L": [42.354662, -70.991598]
 ```
-* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form
-this would be the fix name, three digit bearing, and three digit distance in nautical miles
-all of these should be marked as RNAV fixes (via the underscore prefix)
+* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as RNAV fixes (via the underscore prefix).
 ```
 "_AUTUM220015": [42.324333, -71.736833]
 ```
-* Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold
-this would be the runway name, two digit distance in nautical miles, then DME
-all of these should be marked as RNAV fixes (via the underscore prefix)
+* Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold. This would be the runway name, two digit distance in nautical miles, then `DME`. All of these should be marked as RNAV fixes (via the underscore prefix).
 ```
 "_RWY33L01DME": [42.342838, -70.975751]
 ```
@@ -302,7 +301,6 @@ all of these should be marked as RNAV fixes (via the underscore prefix)
 "runways": [
     {
         "name": ["07L", "25R"],
-        "name_offset": [[0, 0], [0, 0]],
         "end": [
             ["N36d4m34.82", "W115d10m16.98", "2179ft"],
             ["N36d4m35.05", "W115d7m15.93", "2033ft"]
@@ -311,10 +309,9 @@ all of these should be marked as RNAV fixes (via the underscore prefix)
     }
 ],
 ```
-- **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one runway is `09` the other runway should be `270`.
-- **name_offset** -
+- **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
 - **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
-- **ils** - Boolean property used to indicate if a runway is ILS capable
+- **ils** - Boolean property used to indicate if a runway has an ILS approach
 
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
@@ -322,7 +319,6 @@ Runways are defined in pairs because a runway can be used from either direction.
 // Runway 07L
 {
     "name": "07L",
-    "name_offset": [0, 0],
     "end": [
         ["N36d4m34.82", "W115d10m16.98", "2179ft"]
 
@@ -333,13 +329,26 @@ Runways are defined in pairs because a runway can be used from either direction.
 // Runway 07R
 {
     "name": "25R",
-    "name_offset": [0, 0],
     "end": [
         ["N36d4m35.05", "W115d7m15.93", "2033ft"]
     ],
     "ils": true
 }
 ```
+
+### Airways
+```javascript
+"airways": {
+    "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
+    "J146": ["LAS", "NOOTN"],
+    "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
+    "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+    "Q15": ["CHILY", "DOVEE", "BIKKR"],
+    "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
+},
+```
+
+Each fix along each airway in successive order (direction does not matter). And of course, all fixes entered here must be defined in the `fixes` section.
 
 ## Standard Procedures
 
@@ -377,8 +386,8 @@ _All properties in this section are required for each route definition_
         "name": "Cowboy Six",
         "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
         "rwy": {
-            "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-            "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+            "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+            "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
             "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
             "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
             "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
@@ -395,13 +404,14 @@ _All properties in this section are required for each route definition_
         "draw": [
             ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
             ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
-            ["_NAPSE068", "NAPSE", "RIOOS", "COMPS"],
+            ["_RWY19R02DME", "NAPSE"],
+            ["_RWY19L02DME", "NAPSE", "RIOOS", "COMPS"],
             ["COWBY", "NAVHO", "DRK*"]
         ]
     }
 },
 ```
-STAR is an acronym for _Standard Instrument Departure Procedure_.
+SID is an acronym for _Standard Instrument Departure_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
 ```
@@ -458,7 +468,7 @@ _All properties in this section are required for each route definition_
     }
 },
 ```
-STAR is an acronym for _Standard Terminal Arrival Route_
+STAR is an acronym for _Standard Terminal Arrival Route_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
 ```
