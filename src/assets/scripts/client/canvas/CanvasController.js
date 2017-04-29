@@ -1596,7 +1596,7 @@ k
             return;
         }
 
-        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE_STROKE;
+        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE;
         cc.lineWidth = Math.max(prop.ui.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1611,7 +1611,7 @@ k
             this.canvas_draw_poly(cc, area.coordinates);
 
             // FIXME: Is the restricted airspace EVER filled???
-            cc.fillStyle = this.theme.RESTRICTED_AIRSPACE_FILL;
+            cc.fillStyle = this.theme.RESTRICTED_AIRSPACE;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
