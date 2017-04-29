@@ -18,6 +18,8 @@
         "angle": 255,
         "speed": 6
     },
+    "arrivalRunway": "24",
+    "departureRunway": "24",
     "fixes": {
         "_EINN287050": ["N52d52.04m0", "W10d16.20m0"],
         "_EINN067050": ["N53d05.19m0", "W07d42.26m0"],

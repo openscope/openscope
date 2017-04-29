@@ -18,6 +18,8 @@
         "angle": 150,
         "speed": 5
     },
+    "arrivalRunway": "15",
+    "departureRunway": "15",
     "_comment": "Waypoints base on real and virtual charts http://download.diegolima.org/Cartas%20Aereas/app_dep/sbgl.pdf",
     "_comment": "1 block fix > FICO 15 ARRIVAL ZANA>AROB>PCX>IRIM>FICO",
     "_comment": "2 block fix > LOCK 15 ARRIVAL TUBO>COTA>MADU>LOCK",

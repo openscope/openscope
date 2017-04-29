@@ -155,10 +155,6 @@ export default class AirportController {
             return;
         }
 
-        if (this.airport.current) {
-            this.airport.current.unset();
-        }
-
         const nextAirportModel = this.airport.airports[icao];
         this.airport.current = nextAirportModel;
 

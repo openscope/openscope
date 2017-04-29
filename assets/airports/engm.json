@@ -17,7 +17,10 @@
     "wind": {
         "angle": 190,
         "speed": 8
-        },"airspace": [
+    },
+    "arrivalRunway": "19R",
+    "departureRunway": "19R",
+    "airspace": [
             {
                 "floor": 0,
                 "ceiling": 215,
