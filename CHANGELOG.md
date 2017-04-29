@@ -7,7 +7,7 @@
 
 ### Features
 - adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
-
+- allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
 
 
 
