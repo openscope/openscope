@@ -830,26 +830,6 @@ export default class ConvasController {
 
         const alerts = aircraft.hasAlerts();
 
-        if (!aircraft.inside_ctr) {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.LIGHT_SILVER_03;
-        } else if (almost_match) {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.GRAIN_BROWN;
-        } else if (match) {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.WHITE;
-        } else if (aircraft.warning || alerts[1]) {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.RED;
-        } else if (aircraft.hit) {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.CORAL_RED;
-        } else {
-            // FIXME: What are these for? Need to know so i can add them to the color profile
-            cc.fillStyle = COLOR.WHITE;
-        }
-
         cc.strokeStyle = cc.fillStyle;
 
         if (match) {
