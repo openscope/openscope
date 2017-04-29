@@ -1,7 +1,6 @@
+# Airport File Standards generateFlightNumberWithAirlineModel
+
 ---
-title: Aircraft File Standards
----
-[back to index](index.html)
 
 ## Overview
 This document serves as a checklist for airport contributors to review to ensure their airport file is "up to snuff". There are two levels of airports: `Standard` and `Premium`, the latter designator being used only for our most pristine, complete, realistic, and well-documented airports. In order for a new airport to be merged, it must at least meet all the `Standard` specifications listed in the section below. If it does not meet these requirements, it will require extra work before being merged. It will often require a team of people to complete work on an airport, because of the wide variety of tasks to complete.
@@ -14,7 +13,7 @@ If you have not contributed before, please note that we will need to add you to 
 
 ## Standard Requirements
 ### Terrain GeoJSON File
-Even if it is empty, a terrain file must be included as part of the pull request. We ask that the [qGIS](http://www.qgis.org/en/site/) files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See [this demo video](https://youtu.be/tWky-8QWFWo) for the only way we've currently figured out to generate terrain. If you happen to know anybody who is handy with GIS software, we could sure use some help figuring out how to improve this process, because it is _definitely_ not the way the "pros" would do it.
+Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See the Reference Materials for a video demonstrating an example of the only way we've currently figured out to generate terrain. If you happen to know anybody who is handy with GIS software, we could sure use some help figuring out how to improve this process, because it is _definitely_ not the way the "pros" would do it.
 
 ### Polygonal Airspace Boundary
 An airspace boundary must be defined with GPS coordinates. Previously, we allowed just a "airspace center" and "airspace radius", but now there must be a defined edge to the airspace.
@@ -30,7 +29,7 @@ The traffic level must be commensurate with real-world levels, with the arrival 
 A reference link shall be provided, validating the yearly traffic count, so the reviewer may confirm that the traffic level is appropriate.
 
 ### Base video map
-A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. Using [qGIS](http://www.qgis.org/en/site/) is the best way to do this.
+A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. Using qGIS (see reference materials) is the best way to do this.
 
 ### Spacing
 To maintain uniformity in all airport files, only single spaces should be used.
@@ -54,15 +53,15 @@ The _single_ exception to this rule is in the `fixes` section, where all five-an
 For custom RNAV fixes, such as `_RWY22L05DME`, these shall use single spaces.
 
 ### Bracket Newlines
-To maintain uniformity in all airport files, please follow the same newline conventions as the example file shown in the [airport format](./airport-format.html) document.
+To maintain uniformity in all airport files, please follow the same newline conventions as the example file shown in the Airport Format Document (see Reference Materials.
 
 ### Key order
-To maintain uniformity in all airport files, all keys used in the file must be included in the same order as they appear in the [airport format](./airport-format.html) document.
+To maintain uniformity in all airport files, all keys used in the file must be included in the same order as they appear in the Airport Format Document (see Reference Materials).
 - All fixes must be sorted alphabetically.
 - The first object within the `airspace` array must represent the airspace's _outer perimeter_, which encompasses all other airspace sections.
 - All runways should be sorted numerically (then L-C-R) by the primary end
 - All SIDs/STARs must be sorted alphabetically by ID
-- Spawn patterns should be in the exact form described in the [spawn pattern readme](spawnPatternReadme.md).
+- Spawn patterns should be in the exact form described in the Spawn Pattern Format Document (see Reference Materials).
     - Please note that spawnPatterns must include all keys, even those that are not used.
 
 ---
@@ -86,3 +85,11 @@ The airspace in the submitted airport must have the same stratification (aka 'sh
 
 ### Exceptionally high realism (subjective to local knowledge)
 In general, in order to achieve "Premier Airport" status, the airport must be accurate to its real-world counterpart to the maximum degree achievable with the current limitations of the simulator. This requirement is subjective, and may often require that we find individuals who are familiar with the airspace and can verify its authenticity. So while choosing an airport to bring into the level of the "Premium" designation, be sure to choose one where you know we can get feedback from people who control (or fly) in that airspace on a regular basis.
+
+---
+
+## Further Reference Materials
+- [Terrain Generation Demo](https://youtu.be/tWky-8QWFWo)
+- [qGIS (for GPS-referenced modeling)](http://www.qgis.org/en/site/)
+- [Airport Format Document](./airport-format.html)
+- [Spawn Pattern Format Document](spawnPatternReadme.md)
