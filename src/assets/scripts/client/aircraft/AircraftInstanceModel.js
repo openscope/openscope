@@ -723,16 +723,16 @@ export default class AircraftInstanceModel {
         let alt_say;
 
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const altdiff = this.altitude - this.pilot.sayTargetedAltitude();
+            const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
             if (Math.abs(altdiff) > 200) {
                 if (altdiff > 0) {
-                    alt_log = `descending through ${alt} for ${this.target.altitude}`;
-                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `descending through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;
