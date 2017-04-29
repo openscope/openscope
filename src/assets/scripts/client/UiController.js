@@ -9,23 +9,10 @@ import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
+import { THEME } from './constants/colors/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const ui = {};
-
-/**
- * @property TERRAIN_COLORS
- * @type {Object}
- * @final
- */
-const TERRAIN_COLORS = {
-    1000: '26, 150, 65',
-    2000: '119, 194, 92',
-    3000: '255, 255, 192',
-    4000: '253, 201, 128',
-    5000: '240, 124, 74',
-    6000: '156, 81, 31'
-};
 
 /**
  * @property UI_OPTIONS_TEMPLATE
@@ -76,11 +63,8 @@ export default class UiController {
         this.ui.scale_max = 80; // max scale
         this.ui.scale_min = 1; // min scale
         this.ui.scale = this.ui.scale_default;
-        this.ui.terrain = {
-            colors: TERRAIN_COLORS,
-            border_opacity: 1,
-            fill_opacity: 0.1
-        };
+        // TODO: This belongs in the CanvasController, not UiController
+        this.ui.terrain = THEME.DEFAULT.TERRAIN;
 
 
         return this._init()
@@ -191,18 +175,7 @@ export default class UiController {
         prop.ui.scale_max = 80; // max scale
         prop.ui.scale_min = 1; // min scale
         prop.ui.scale = prop.ui.scale_default;
-        prop.ui.terrain = {
-            colors: {
-                1000: '26, 150, 65',
-                2000: '119, 194, 92',
-                3000: '255, 255, 192',
-                4000: '253, 201, 128',
-                5000: '240, 124, 74',
-                6000: '156, 81, 31'
-            },
-            border_opacity: 1,
-            fill_opacity: 0.1
-        };
+        prop.ui.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
