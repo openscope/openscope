@@ -383,6 +383,11 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
+        if (!this.currentLeg.isProcedure) {
+            return this.currentWaypoint.name;
+        }
+
+        // TODO: is this needed?
         if (!this.isFollowingStar()) {
             return null;
         }
