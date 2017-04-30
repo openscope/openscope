@@ -901,6 +901,18 @@ export default class AircraftInstanceModel {
         if (this.altitude < 10000) {
             this.target.speed = Math.min(this.target.speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
         }
+
+        if (this.target.altitude > this.model.ceiling) {
+            this.target.altitude = this.model.ceiling;
+        }
+
+        if (this.target.speed > this.model.speed.max) {
+            this.target.speed = this.model.speed.max;
+        }
+
+        if (this.target.speed < this.model.speed.min && this.isAirborne()) {
+            this.target.speed = this.model.speed.min;
+        }
     }
 
     /**
