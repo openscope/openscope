@@ -1,3 +1,4 @@
+import _find from 'lodash/find';
 import _without from 'lodash';
 import BaseCollection from '../../base/BaseCollection';
 
@@ -45,16 +46,6 @@ export default class StripViewCollection extends BaseCollection {
      *
      *
      * @for StripViewCollection
-     * @method update
-     */
-    update() {
-
-    }
-
-    /**
-     *
-     *
-     * @for StripViewCollection
      * @method addItem
      */
     addItem(stripViewModel) {
@@ -69,5 +60,17 @@ export default class StripViewCollection extends BaseCollection {
      */
     removeItem(stripViewModel) {
         this._items = _without(this._items, stripViewModel);
+    }
+
+    /**
+     *
+     *
+     * @for StripViewCollection
+     * @method findByAircraftId
+     * @param aircraftId {number}
+     * @return {StripViewModel}
+     */
+    findByAircraftId(aircraftId) {
+        return _find(this._items, { aircraftId: aircraftId });
     }
 }

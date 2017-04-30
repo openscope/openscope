@@ -234,9 +234,11 @@ export default class StripViewModel extends BaseModel {
      *
      *
      * @method update
+     * @param aircraftModel {AircraftInstanceModel}
      */
-    update() {
-
+    update(aircraftModel) {
+        // shouldUpdate
+        // _updateStripView
     }
 
     /**

@@ -1087,14 +1087,13 @@ k
             }
 
             // set color, intensity, and style elements
+            let alpha = 0.9;
             let red = this.theme.DATA_BLOCK.OUT_OF_RANGE.ARRIVAL_BAR;
             let green = this.theme.DATA_BLOCK.OUT_OF_RANGE.BACKGROUND;
             let blue = this.theme.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
             let white = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
 
-            if (match) {
-                alpha = 0.9;
-            } else if (aircraft.inside_ctr) {
+            if (aircraft.inside_ctr) {
                 // else if (almost_match) var alpha = 0.75;
                 alpha = 0.5;
                 red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;

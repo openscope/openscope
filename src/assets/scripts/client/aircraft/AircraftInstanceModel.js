@@ -1,18 +1,16 @@
 /* eslint-disable max-len, no-undef */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _uniqueId from 'lodash/uniqueId';
-import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
-import { tau, radians_normalize, angle_offset } from '../math/circle';
+import { radians_normalize, angle_offset } from '../math/circle';
 import { abs, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import {
@@ -75,7 +73,7 @@ export default class AircraftInstanceModel {
      */
     constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
-        this._id = _uniqueId('aircraft-');
+        this.id = _uniqueId('aircraft-');
         this._navigationLibrary = navigationLibrary;
         this.positionModel = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
@@ -228,7 +226,7 @@ export default class AircraftInstanceModel {
 
     get viewModel() {
         return {
-            id: this._id,
+            id: this.id,
             callsign: this.callsign,
             altitude: this.altitude,
             heading: this.heading,
@@ -337,7 +335,6 @@ export default class AircraftInstanceModel {
 
         // Crossing into the center
         if (this.inside_ctr) {
-            this.showStrip();
             this.callUp();
 
             return;
@@ -1953,144 +1950,4 @@ export default class AircraftInstanceModel {
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
     }
-
-    // TODO: aircraft strip methods below will be abstracted and de-coupled from this model
-
-    // /**
-    //  * Create the aircraft's flight strip and add to strip bay
-    //  */
-    // createStrip() {
-    //     this.aircraftStripView = new AircraftStripView(this);
-    //
-    //     this.$html = this.aircraftStripView.$element;
-    //     // Add the strip to the html
-    //     const scrollPos = this.$strips.scrollTop();
-    //     this.$strips.prepend(this.aircraftStripView.$element);
-    //     // shift scroll down one strip's height
-    //     this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
-    //
-    //     // Determine whether or not to show the strip in our bay
-    //     if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-    //         this.aircraftStripView.hide();
-    //     }
-    // }
-    //
-    // // TODO: move these view methods to `AircraftStripView` or a different file
-    // /**
-    //  * @for AircraftInstanceModel
-    //  * @method updateStrip
-    //  */
-    // updateStrip() {
-    //     if (this.projected || !this.inside_ctr) {
-    //         return;
-    //     }
-    //
-    //     const heading = heading_to_string(this.mcp.heading);
-    //     const altitude = this.mcp.altitude;
-    //     const speed = this.mcp.speed;
-    //     let destinationDisplay = this.fms.getProcedureAndExitName();
-    //     const altitudeText = this.taxi_next
-    //         ? 'ready'
-    //         : null;
-    //     const hasAltitude = this.mcp.altitude !== -1;
-    //
-    //     this.aircraftStripView.update(heading, altitude, this.destination, speed);
-    //
-    //     switch (this.flightPhase) {
-    //         case FLIGHT_PHASE.APRON:
-    //             this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
-    //
-    //             break;
-    //         case FLIGHT_PHASE.TAXI:
-    //             this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
-    //
-    //             break;
-    //         case FLIGHT_PHASE.WAITING:
-    //             this.aircraftStripView.updateViewForWaiting(
-    //                 destinationDisplay,
-    //                 this.pilot.hasDepartureClearance,
-    //                 hasAltitude
-    //             );
-    //
-    //             break;
-    //         case FLIGHT_PHASE.TAKEOFF:
-    //             this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
-    //
-    //             break;
-    //         case FLIGHT_PHASE.CLIMB:
-    //         case FLIGHT_PHASE.HOLD:
-    //         case FLIGHT_PHASE.DESCENT:
-    //         case FLIGHT_PHASE.CRUISE:
-    //             let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
-    //             let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
-    //             const isFollowingSid = this.fms.isFollowingSid();
-    //             const isFollowingStar = this.fms.isFollowingStar();
-    //             const fixRestrictions = {
-    //                 altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
-    //                 speed: this.fms.currentWaypoint.speedRestriction !== -1
-    //             };
-    //             destinationDisplay = this.fms.getProcedureAndExitName();
-    //
-    //             if (this.fms.currentWaypoint.isHold) {
-    //                 cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
-    //                 headingDisplay = 'holding';
-    //                 destinationDisplay = this.fms.getDestinationName();
-    //             } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
-    //                 headingDisplay = this.mcp.headingInDegrees;
-    //                 destinationDisplay = this.fms.getDestinationName();
-    //             } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
-    //                 cruiseNavMode = WAYPOINT_NAV_MODE.RWY;
-    //                 headingDisplay = 'intercept';
-    //                 destinationDisplay = this.fms.getDestinationAndRunwayName();
-    //             }
-    //
-    //             this.aircraftStripView.updateViewForCruise(
-    //                 cruiseNavMode,
-    //                 headingDisplay,
-    //                 destinationDisplay,
-    //                 isFollowingSid,
-    //                 isFollowingStar,
-    //                 fixRestrictions
-    //             );
-    //
-    //             break;
-    //         case FLIGHT_PHASE.APPROACH:
-    //         case FLIGHT_PHASE.LANDING:
-    //             destinationDisplay = this.fms.getDestinationAndRunwayName();
-    //
-    //             this.aircraftStripView.updateViewForLanding(destinationDisplay);
-    //
-    //             break;
-    //         default:
-    //             throw new TypeError(`Invalid FLIGHT_MODE ${this.flightPhase} passed to .updateStrip()`);
-    //     }
-    // }
-    //
-    // /**
-    //  * @for AircraftInstanceModel
-    //  * @method showStrip
-    //  */
-    // showStrip() {
-    //     this.$html.detach();
-    //
-    //     const scrollPos = this.$strips.scrollTop();
-    //
-    //     this.$strips.prepend(this.$html);
-    //     this.$html.show();
-    //     // TODO enumerate the magic number
-    //     // shift scroll down one strip's height
-    //     this.$strips.scrollTop(scrollPos + 45);
-    // }
-    //
-    // /**
-    //  * @for AircraftInstanceModel
-    //  * @method hideStrip
-    //  */
-    // hideStrip() {
-    //     this.$html.hide(600);
-    // }
-    //
-    // cleanup() {
-    //     this.$html.remove();
-    // }
 }

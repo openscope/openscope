@@ -45,8 +45,19 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method update
+     * @param aircraftList {array<AircraftInstanceModel>}
      */
-    update() {}
+    update(aircraftList) {
+        for (let i = 0; i < aircraftList.length; i++) {
+            const aircraftModel = aircraftList[i];
+
+            if (aircraftModel.inside_ctr) {
+                const stripViewModel = this._collection.findByAircraftId(aircraftModel.id);
+
+                stripViewModel.update(aircraftModel);
+            }
+        }
+    }
 
     /**
      *
@@ -60,7 +71,17 @@ export default class StripViewController {
 
         this._collection.addItem(stripViewModel);
 
+        this.showStripView(stripViewModel);
+    }
+
+    /**
+     *
+     *
+     * @method showStripView
+     */
+    showStripView(stripViewModel) {
         const scrollPosition = this.$strips.scrollTop();
+
         this.$strips.prepend(stripViewModel.$element);
         // shift scroll down one strip's height
         this.$strips.scrollTop(scrollPosition + StripViewModel.HEIGHT);
@@ -71,7 +92,9 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method removeStripView
-     * @param
+     * @param aircraftModel {AircraftInstanceModel}
      */
-    removeStripView() {}
+    removeStripView(aircraftModel) {
+        console.log('removeStripView', aircraftModel.id, aircraftModel.callsign);
+    }
 }

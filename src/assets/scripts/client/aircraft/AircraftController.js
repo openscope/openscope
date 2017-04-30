@@ -9,7 +9,6 @@ import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
@@ -85,7 +84,7 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
-        this._stripViewCollection = new StripViewController();
+        this._stripViewController = new StripViewController();
     }
 
     /**
@@ -212,7 +211,7 @@ export default class AircraftController {
      */
     aircraft_remove_all() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.aircraft.list[i].cleanup();
+            this.removeStripView(this.aircraft.list[i]);
         }
 
         this.aircraft.list = [];
@@ -221,15 +220,15 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_remove
+     * @param aircraftModel {AircraftInstanceModel}
      */
-    aircraft_remove(aircraft) {
-        window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+    aircraft_remove(aircraftModel) {
+        window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
-        this.removeFlightNumberFromList(aircraft);
-        this.removeAircraftInstanceModelFromList(aircraft);
-        this.removeAllAircraftConflictsForAircraft(aircraft);
-
-        aircraft.cleanup();
+        this.removeFlightNumberFromList(aircraftModel);
+        this.removeAircraftInstanceModelFromList(aircraftModel);
+        this.removeAllAircraftConflictsForAircraft(aircraftModel);
+        this.removeStripView(aircraftModel);
     }
 
     /**
@@ -315,12 +314,22 @@ export default class AircraftController {
      * @return
      */
     updateAircraftStrips() {
-        // console.log('updateAircraftStrips');
+        this._stripViewController.update(this.aircraft.list);
     }
 
     initAircraftStripView(aircraftModel) {
-        this._stripViewCollection.createStripView(aircraftModel.viewModel);
-        console.log(this._stripViewCollection);
+        this._stripViewController.createStripView(aircraftModel.viewModel);
+        console.log(this._stripViewController);
+    }
+
+    /**
+     *
+     * @for AircraftController
+     * @method removeStripView
+     * @param aircraftModel {AircraftInstanceModel}
+     */
+    removeStripView(aircraftModel) {
+        this._stripViewController.removeStripView(aircraftModel);
     }
 
     /**
@@ -467,6 +476,9 @@ export default class AircraftController {
 
     /**
      * Given an `airlineId`, find a random aircraft type from the airline.
+     *
+     * This is useful for when we need to create an aircraft to spawn and
+     * only know the airline that it belongs to.
      *
      * @for AircraftController
      * @method _getRandomAircraftTypeDefinitionForAirlineId
