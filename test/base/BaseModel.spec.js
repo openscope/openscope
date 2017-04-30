@@ -31,12 +31,6 @@ ava('instantiates with an _id property', t => {
     t.true(_isString(model._id));
 });
 
-ava('instantiates with an _id with string property', t => {
-    const model = new BaseModel('string');
-
-    t.true(_isString(model._id));
-});
-
 ava('._init() throws when called from BaseModel', t => {
     const model = new BaseModel();
 
