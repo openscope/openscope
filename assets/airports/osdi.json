@@ -19,6 +19,8 @@
         "angle": 110,
         "speed": 2
     },
+    "arrivalRunway": "05L",
+    "departureRunway": "05L",
     "fixes": {
         "ABBAS":    ["N33d26m00.00",    "E037d43m50.00"],
         "ADRA":     ["N33d36m80.00",    "E036d30m00.00"],

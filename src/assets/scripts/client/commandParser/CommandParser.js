@@ -166,8 +166,14 @@ export default class CommandParser {
         const commandIndex = 0;
         const argIndex = 1;
         const commandName = commandArgSegments[commandIndex];
+        const commandArgs = commandArgSegments[argIndex];
         const commandModel = new CommandModel(commandName);
-        commandModel.args.push(commandArgSegments[argIndex]);
+
+        // undefined will happen with zeroArgument system commands, so we check for that here
+        // and add only when args are defined
+        if (typeof commandArgs !== 'undefined') {
+            commandModel.args.push(commandArgs);
+        }
 
         this.command = commandName;
         this.commandList.push(commandModel);
