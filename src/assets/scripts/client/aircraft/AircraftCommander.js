@@ -202,7 +202,7 @@ export default class AircraftCommander {
         const airport = this._airportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
-            aircraft.currentAltitude,
+            aircraft.altitude,
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
@@ -447,7 +447,8 @@ export default class AircraftCommander {
 
         // Set the runway to taxi to
         if (!taxiDestination) {
-            taxiDestination = this._airportController.airport_get().runway;
+            const airport = this._airportController.airport_get();
+            taxiDestination = airport.departureRunway.name;
         }
 
         const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());

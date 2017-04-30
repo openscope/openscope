@@ -1,13 +1,14 @@
 ## 5.1.0 (May 20, 2017)
 ---
-### Major
 
 
 
 
 ### Features
 - adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
-
+- Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
+- allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
+- adds [airport-file-standards](tools/documentation/deployment-checklist.md) document [#367](https://github.com/openscope/openscope/issues/367)
 
 
 
@@ -18,7 +19,9 @@
 
 ### Bugfixes
 - Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
-
+- Deprecates and removes `AircraftController._setDestinationFromRouteOrProcedure()` as it was implemented to maintain a previous api which is no longer used [#370](https://github.com/openscope/openscope/issues/370)
+- Ensure the verbal and text instructions/readbacks state the correct directionality [#188](https://github.com/openscope/openscope/issues/188)
+- Updates Pilot.applyDepartureProcedure() to use RunwayModel correctly [#396](https://github.com/openscope/openscope/issues/396)
 
 
 

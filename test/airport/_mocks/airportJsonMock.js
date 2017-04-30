@@ -19,6 +19,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "angle": 220,
         "speed": 6
     },
+    "arrivalRunway": "25L",
+    "departureRunway": "25R",
     "airspace": [
         {
             "floor": 0,
