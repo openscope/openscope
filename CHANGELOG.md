@@ -23,7 +23,7 @@
 - Ensure the verbal and text instructions/readbacks state the correct directionality [#188](https://github.com/openscope/openscope/issues/188)
 - Updates Pilot.applyDepartureProcedure() to use RunwayModel correctly [#396](https://github.com/openscope/openscope/issues/396)
 - Updates `fms.getDestinationName()` to return the `fixName` when `currentLeg` is not a procedure [#399](https://github.com/openscope/openscope/issues/399)
-
+- Fix wrong PTL length and set to 1 minute [#394](https://github.com/openscope/openscope/issues/394)
 
 
 
