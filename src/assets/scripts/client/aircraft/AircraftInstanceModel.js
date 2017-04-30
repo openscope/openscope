@@ -103,12 +103,7 @@ export default class AircraftInstanceModel {
         this.taxi_start   = 0;          //
         this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
         this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
-
-        /**
-         * @property isInsideAirspace
-         * @type {boolean}
-         */
-        this.isInsideAirspace   = false;      // Inside ATC Airspace
+        this.inside_ctr   = false;      // Inside ATC Airspace
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
@@ -141,7 +136,7 @@ export default class AircraftInstanceModel {
         this.isRemovable = false;
 
         // TODO: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
-        // this.aircraftStripView = null;
+        this.aircraftStripView = null;
         // this.$html = null;
         // this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
@@ -301,7 +296,7 @@ export default class AircraftInstanceModel {
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
         this.destination = _get(data, 'destination', this.destination);
-        this.isInsideAirspace = data.category === FLIGHT_CATEGORY.DEPARTURE;
+        this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
@@ -334,14 +329,14 @@ export default class AircraftInstanceModel {
      * @param inbound {}
      */
     crossBoundary(inbound) {
-        this.isInsideAirspace = inbound;
+        this.inside_ctr = inbound;
 
         if (this.projected) {
             return;
         }
 
         // Crossing into the center
-        if (this.isInsideAirspace) {
+        if (this.inside_ctr) {
             this.showStrip();
             this.callUp();
 
@@ -502,14 +497,6 @@ export default class AircraftInstanceModel {
         }
     }
 
-    isDeparture() {
-        return this.fms.isDeparture();
-    }
-
-    isArrival() {
-        return this.fms.isArrival();
-    }
-
     /**
      * Return whether the aircraft is off the ground
      *
@@ -519,6 +506,14 @@ export default class AircraftInstanceModel {
      */
     isAirborne() {
         return !this.isOnGround();
+    }
+
+    isDeparture() {
+        return this.fms.isDeparture();
+    }
+
+    isArrival() {
+        return this.fms.isArrival();
     }
 
     /**
@@ -1516,7 +1511,7 @@ export default class AircraftInstanceModel {
         // TODO: I am not sure what this has to do with aircraft Physics
         const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
-        if (isInsideAirspace !== this.isInsideAirspace) {
+        if (isInsideAirspace !== this.inside_ctr) {
             this.crossBoundary(isInsideAirspace);
         }
     }
@@ -1986,7 +1981,7 @@ export default class AircraftInstanceModel {
     //  * @method updateStrip
     //  */
     // updateStrip() {
-    //     if (this.projected || !this.isInsideAirspace) {
+    //     if (this.projected || !this.inside_ctr) {
     //         return;
     //     }
     //

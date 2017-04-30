@@ -67,7 +67,7 @@ export default class AircraftCommander {
      * @param commands {CommandParser}
      */
     runCommands(aircraft, commands) {
-        if (!aircraft.isInsideAirspace) {
+        if (!aircraft.inside_ctr) {
             return true;
         }
 

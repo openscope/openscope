@@ -783,7 +783,7 @@ export default class ConvasController {
 
         cc.save();
 
-        if (!aircraft.isInsideAirspace) {
+        if (!aircraft.inside_ctr) {
             cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
         } else {
             cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
@@ -791,7 +791,7 @@ export default class ConvasController {
 
         const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
-            if (!aircraft.isInsideAirspace) {
+            if (!aircraft.inside_ctr) {
                 cc.globalAlpha = 0.3 / (length - i);
             } else {
                 cc.globalAlpha = 1 / (length - i);
@@ -835,7 +835,7 @@ export default class ConvasController {
         if (match) {
             cc.save();
 
-            if (!aircraft.isInsideAirspace) {
+            if (!aircraft.inside_ctr) {
                 cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
             } else {
                 cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
@@ -1094,7 +1094,7 @@ k
 
             if (match) {
                 alpha = 0.9;
-            } else if (aircraft.isInsideAirspace) {
+            } else if (aircraft.inside_ctr) {
                 // else if (almost_match) var alpha = 0.75;
                 alpha = 0.5;
                 red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
@@ -1203,7 +1203,7 @@ k
             const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
-            if (aircraft.isInsideAirspace) {
+            if (aircraft.inside_ctr) {
                 cc.fillStyle = this.theme.DATA_BLOCK.IN_RANGE.TEXT;
             } else {
                 cc.fillStyle = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
