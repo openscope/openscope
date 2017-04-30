@@ -22,6 +22,7 @@
 - Deprecates and removes `AircraftController._setDestinationFromRouteOrProcedure()` as it was implemented to maintain a previous api which is no longer used [#370](https://github.com/openscope/openscope/issues/370)
 - Ensure the verbal and text instructions/readbacks state the correct directionality [#188](https://github.com/openscope/openscope/issues/188)
 - Updates Pilot.applyDepartureProcedure() to use RunwayModel correctly [#396](https://github.com/openscope/openscope/issues/396)
+- Updates `fms.getDestinationName()` to return the `fixName` when `currentLeg` is not a procedure [#399](https://github.com/openscope/openscope/issues/399)
 
 
 
