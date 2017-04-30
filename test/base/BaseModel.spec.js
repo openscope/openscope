@@ -5,20 +5,18 @@ import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
 ava('sets the #_id when passed valid parameters', (t) => {
-    const modelInt = new BaseModel();
-    t.true(modelInt._id.indexOf('BaseModel') !== -1);
+    let model = new BaseModel();
+    t.true(model._id.indexOf('BaseModel') !== -1);
 
-    const modelBool = new BaseModel('string');
-    t.true(modelBool._id.indexOf('string') !== -1);
-    console.log(modelBool._id);
+    model = new BaseModel('modelName');
+    t.true(model._id.indexOf('modelName') !== -1);
+
 });
 
-ava('makes sure the model fails to instantiate with any incorrect', t => {
-    t.notThrows(() => new BaseModel());
+ava('throws when passed invalid parameters', t => {
     t.throws(() => new BaseModel([]));
     t.throws(() => new BaseModel({}));
     t.throws(() => new BaseModel(42));
-    t.notThrows(() => new BaseModel('string'));
     t.throws(() => new BaseModel(false));
 });
 
@@ -28,15 +26,15 @@ ava('makes sure the model in instantiates with the correct data type', t => {
 });
 
 ava('instantiates with an _id property', t => {
-    const resultEmpty = new BaseModel();
+    const model = new BaseModel();
 
-    t.true(_isString(resultEmpty._id));
+    t.true(_isString(model._id));
 });
 
 ava('instantiates with an _id with string property', t => {
-    const resultString = new BaseModel('string');
+    const model = new BaseModel('string');
 
-    t.true(_isString(resultString._id));
+    t.true(_isString(model._id));
 });
 
 ava('._init() throws when called from BaseModel', t => {
