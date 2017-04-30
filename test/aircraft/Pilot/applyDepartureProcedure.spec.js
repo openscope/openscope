@@ -8,14 +8,16 @@ import {
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 
-const runwayMock = '19L';
+const runwayModelMock = {
+    name: '19L'
+};
 const sidIdMock = 'COWBY6';
 const airportIcaoMock = 'KLAS';
 
 ava('.applyDepartureProcedure() returns an error when passed an invalid sidId', (t) => {
     const expectedResult = [false, 'SID name not understood'];
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-    const result = pilot.applyDepartureProcedure('~!@#$%', runwayMock, airportIcaoMock);
+    const result = pilot.applyDepartureProcedure('~!@#$%', runwayModelMock, airportIcaoMock);
 
     t.true(_isEqual(result, expectedResult));
 });
@@ -30,15 +32,18 @@ ava('.applyDepartureProcedure() returns an error when passed an invalid runway',
 
 ava('.applyDepartureProcedure() returns an error when passed a runway incompatable for the route', (t) => {
     const expectedResult = [false, 'unable, the COWBOY SIX departure not valid from Runway ~!@#$%'];
+    const invalidRunwayModelMock = {
+        name: '~!@#$%'
+    };
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-    const result = pilot.applyDepartureProcedure(sidIdMock, '~!@#$%', airportIcaoMock);
+    const result = pilot.applyDepartureProcedure(sidIdMock, invalidRunwayModelMock, airportIcaoMock);
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.applyDepartureProcedure() should set mcp altitude and speed modes to `VNAV`', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-    pilot.applyDepartureProcedure(sidIdMock, runwayMock, airportIcaoMock);
+    pilot.applyDepartureProcedure(sidIdMock, runwayModelMock, airportIcaoMock);
 
     t.true(pilot._mcp.altitudeMode === 'VNAV');
     t.true(pilot._mcp.speedMode === 'VNAV');
@@ -46,7 +51,7 @@ ava('.applyDepartureProcedure() should set mcp altitude and speed modes to `VNAV
 
 ava('.applyDepartureProcedure() returns a success message after success', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-    const result = pilot.applyDepartureProcedure(sidIdMock, runwayMock, airportIcaoMock);
+    const result = pilot.applyDepartureProcedure(sidIdMock, runwayModelMock, airportIcaoMock);
 
     t.true(_isArray(result));
     t.true(result[0]);

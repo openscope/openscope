@@ -263,12 +263,12 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}      the identifier for the procedure
-     * @param departureRunway {String}  the identifier for the runway to use for departure
-     * @param airportIcao {string}      airport icao identifier
-     * @return {array}                  [success of operation, readback]
+     * @param procedureId {String}                the identifier for the procedure
+     * @param departureRunwayModel {RunwayModel}  the identifier for the runway to use for departure
+     * @param airportIcao {string}                airport icao identifier
+     * @return {array}                            [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, departureRunway, airportIcao) {
+    applyDepartureProcedure(procedureId, departureRunwayModel, airportIcao) {
         this.hasDepartureClearance = true;
 
         const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
@@ -277,25 +277,25 @@ export default class Pilot {
             return [false, 'SID name not understood'];
         }
 
-        // TODO: this should no be randomized
+        // TODO: this should not be randomized
         const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
         const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
-        if (!departureRunway) {
+        if (!departureRunwayModel) {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
 
-        if (!standardRouteModel.hasFixName(departureRunway)) {
+        if (!standardRouteModel.hasFixName(departureRunwayModel.name)) {
             return [
                 false,
                 `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${departureRunway.toUpperCase()}`
+                `from Runway ${departureRunwayModel.name.toUpperCase()}`
             ];
         }
 
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeStr, departureRunway);
+        this._fms.replaceDepartureProcedure(routeStr, departureRunwayModel);
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
