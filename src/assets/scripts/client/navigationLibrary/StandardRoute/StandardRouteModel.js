@@ -157,7 +157,7 @@ export default class StandardRouteModel extends BaseModel {
          */
         this._entryCollection = null;
 
-        this._init(standardRoute);
+        return this._init(standardRoute);
     }
 
     /**
