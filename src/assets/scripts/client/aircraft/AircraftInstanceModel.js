@@ -185,7 +185,11 @@ export default class AircraftInstanceModel {
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const bottomAltitude = this.fms.getBottomAltitude();
+            let bottomAltitude = this.fms.getBottomAltitude();
+
+            if (bottomAltitude === Infinity) {
+                bottomAltitude = this.altitude;
+            }
 
             this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
         }
@@ -896,6 +900,18 @@ export default class AircraftInstanceModel {
         // TODO: Isn't this covered by `this._calculateLegalSpeed()`?
         if (this.altitude < 10000) {
             this.target.speed = Math.min(this.target.speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
+        }
+
+        if (this.target.altitude > this.model.ceiling) {
+            this.target.altitude = this.model.ceiling;
+        }
+
+        if (this.target.speed > this.model.speed.max) {
+            this.target.speed = this.model.speed.max;
+        }
+
+        if (this.target.speed < this.model.speed.min && this.isAirborne()) {
+            this.target.speed = this.model.speed.min;
         }
     }
 
