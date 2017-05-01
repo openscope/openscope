@@ -799,6 +799,10 @@ export default class Fms {
     isValidRoute(routeString, runway = '') {
         const routeSegments = routeStringFormatHelper(routeString);
 
+        if (!routeSegments) {
+            return false;
+        }
+
         for (let i = 0; i < routeSegments.length; i++) {
             let isValid = false;
             const segment = routeSegments[i];
