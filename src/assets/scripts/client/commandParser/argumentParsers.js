@@ -173,3 +173,25 @@ export const holdParser = (args) => {
 
     return [turnDirection, legLength, fixName];
 };
+
+/**
+ * the `timewarp` command needs to be able to provide a default value,
+ * this parser allows us to do that.
+ *
+ * @method timewarpParser
+ * @param  {array|undefined} [args=[]]
+ * @return {array<number>}
+ */
+export const timewarpParser = (args = []) => {
+    const defaultTimewarpValue = 1;
+
+    if (args.length === 0) {
+        return [defaultTimewarpValue];
+    }
+
+    // calling method is expecting an array with values that will get spread later, thus we purposly
+    // return an array here
+    return [
+        convertStringToNumber(args[0])
+    ];
+};

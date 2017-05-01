@@ -383,11 +383,25 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
-        if (!this.isFollowingStar()) {
-            return null;
+        if (this.isFollowingStar()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            // TODO: This would actually be better as [0,1] than [1,2]
+            // eg `THHMP.CAVLR3.KIAD` --> `THHMP.CAVLR3` instead of `CAVLR3.KIAD`
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
         }
 
-        return this.currentLeg.exitName;
+        if (this.isFollowingSid()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
+        }
+
+        const lastPointOnRoute = _last(this.flightPlanRoute.split('.'));
+
+        return lastPointOnRoute;
     }
 
     /**
@@ -631,16 +645,18 @@ export default class Fms {
      * reset it with a new departure procedure.
      *
      * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` without a departure
+     * `LegModel` with a new routeString. If a `LegModel` with a departure
      * procedure cannot be found, then we create a new `LegModel` and place it
      * at the beginning of the `#legCollection`.
      *
      * @for Fms
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @param departureRunway {string}
+     * @param departureRunwayModel {RunwayModel}
      */
-    replaceDepartureProcedure(routeString, departureRunway) {
+    replaceDepartureProcedure(routeString, departureRunwayModel) {
+        // TODO: update runway information here, if needed
+
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;
@@ -791,6 +807,10 @@ export default class Fms {
      */
     isValidRoute(routeString, runway = '') {
         const routeSegments = routeStringFormatHelper(routeString);
+
+        if (!routeSegments) {
+            return false;
+        }
 
         for (let i = 0; i < routeSegments.length; i++) {
             let isValid = false;

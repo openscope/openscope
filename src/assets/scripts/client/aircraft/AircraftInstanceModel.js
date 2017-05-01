@@ -185,7 +185,11 @@ export default class AircraftInstanceModel {
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const bottomAltitude = this.fms.getBottomAltitude();
+            let bottomAltitude = this.fms.getBottomAltitude();
+
+            if (bottomAltitude === Infinity) {
+                bottomAltitude = this.altitude;
+            }
 
             this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
         }
@@ -285,7 +289,7 @@ export default class AircraftInstanceModel {
 
     initFms(data) {
         const airport = window.airportController.airport_get();
-        const initialRunway = airport.getRunway(airport.runway);
+        const initialRunway = airport.getActiveRunwayForCategory(this.category);
 
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
@@ -723,16 +727,16 @@ export default class AircraftInstanceModel {
         let alt_say;
 
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const altdiff = this.altitude - this.pilot.sayTargetedAltitude();
+            const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
             if (Math.abs(altdiff) > 200) {
                 if (altdiff > 0) {
-                    alt_log = `descending through ${alt} for ${this.target.altitude}`;
-                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `descending through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;
@@ -896,6 +900,18 @@ export default class AircraftInstanceModel {
         // TODO: Isn't this covered by `this._calculateLegalSpeed()`?
         if (this.altitude < 10000) {
             this.target.speed = Math.min(this.target.speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
+        }
+
+        if (this.target.altitude > this.model.ceiling) {
+            this.target.altitude = this.model.ceiling;
+        }
+
+        if (this.target.speed > this.model.speed.max) {
+            this.target.speed = this.model.speed.max;
+        }
+
+        if (this.target.speed < this.model.speed.min && this.isAirborne()) {
+            this.target.speed = this.model.speed.min;
         }
     }
 
@@ -2005,7 +2021,14 @@ export default class AircraftInstanceModel {
                     altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
                     speed: this.fms.currentWaypoint.speedRestriction !== -1
                 };
-                destinationDisplay = this.fms.getProcedureAndExitName();
+
+                // TODO: this will need to be addressed when the AircraftStripView is refactored
+                // this block is a bandaid to prevent `destinationDisplay` from being undefined
+                destinationDisplay = this.fms.currentWaypoint.name;
+
+                if (isFollowingStar || isFollowingSid) {
+                    destinationDisplay = this.fms.getProcedureAndExitName();
+                }
 
                 if (this.fms.currentWaypoint.isHold) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
