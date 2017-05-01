@@ -1,21 +1,10 @@
-## 5.1.0 (May 20, 2017)
+## 5.1.0 (May 1, 2017)
 ---
-
-
-
-
 ### Features
 - adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
 - Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
 - allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
 - adds [airport-file-standards](tools/documentation/deployment-checklist.md) document [#367](https://github.com/openscope/openscope/issues/367)
-
-
-
-
-
-
-
 
 ### Bugfixes
 - Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
@@ -28,8 +17,6 @@
 - Fix datablock speed to show GS, not IAS [#395](https://github.com/openscope/openscope/issues/395)
 - Ensure red response is given to `rr FIXXA..FIXXB` [#408](https://github.com/openscope/openscope/issues/408)
 - Fix strip update crash for arrivals on vectors [#410](https://github.com/openscope/openscope/issues/410)
-
-
 
 
 ## 5.0.1 (April 24, 2017)
@@ -82,6 +69,7 @@
 - Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
 - Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
 - Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero' [#338](https://github.com/openscope/openscope/issues/338)
+
 
 ## 4.1.2 (February 20, 2017)
 ---
