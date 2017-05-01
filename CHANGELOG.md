@@ -27,7 +27,7 @@
 - Fixes broken link in [airport-format](tools/documentation/airport-format.md) [#404](https://github.com/openscope/openscope/issues/404)
 - Fix datablock speed to show GS, not IAS [#395](https://github.com/openscope/openscope/issues/395)
 - Ensure red response is given to `rr FIXXA..FIXXB` [#408](https://github.com/openscope/openscope/issues/408)
-
+- Fix strip update crash for arrivals on vectors [#410](https://github.com/openscope/openscope/issues/410)
 
 
 

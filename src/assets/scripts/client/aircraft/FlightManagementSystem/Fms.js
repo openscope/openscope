@@ -383,16 +383,25 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
-        if (!this.currentLeg.isProcedure) {
-            return this.currentWaypoint.name;
+        if (this.isFollowingStar()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            // TODO: This would actually be better as [0,1] than [1,2]
+            // eg `THHMP.CAVLR3.KIAD` --> `THHMP.CAVLR3` instead of `CAVLR3.KIAD`
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
         }
 
-        // TODO: is this needed?
-        if (!this.isFollowingStar()) {
-            return null;
+        if (this.isFollowingSid()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
         }
 
-        return this.currentLeg.exitName;
+        const lastPointOnRoute = _last(this.flightPlanRoute.split('.'));
+
+        return lastPointOnRoute;
     }
 
     /**

@@ -786,19 +786,17 @@ ava('.getDestinationAndRunwayName() returns the name of the current arrival icao
     t.true(result === 'KLAS 19L');
 });
 
-ava('.getDestinationName() returns the currentWaypoint.name when #isProcedure is false', (t) => {
-    const expectedResult = 'dag';
+ava('.getDestinationName() when .isFollowingStar() is true', (t) => {
+    const expectedResult = 'kepec3.klas';
     const fms = buildFmsMock();
-    fms.legCollection[0].isProcedure = false;
-
     const result = fms.getDestinationName();
 
     t.true(result === expectedResult);
 });
 
-ava('.getDestinationName() returns the #currentLeg.exitName when #isFollowingStar is true', (t) => {
-    const expectedResult = 'KLAS';
-    const fms = buildFmsMock();
+ava('.getDestinationName() when .isFollowingSid() is true', (t) => {
+    const expectedResult = 'cowby6.gup';
+    const fms = buildFmsMockForDeparture();
     const result = fms.getDestinationName();
 
     t.true(result === expectedResult);
