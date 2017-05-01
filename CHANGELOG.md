@@ -25,7 +25,7 @@
 - Updates `fms.getDestinationName()` to return the `fixName` when `currentLeg` is not a procedure [#399](https://github.com/openscope/openscope/issues/399)
 - Fix wrong PTL length and set to 1 minute [#394](https://github.com/openscope/openscope/issues/394)
 - Fixes broken link in [airport-format](tools/documentation/airport-format.md) [#404](https://github.com/openscope/openscope/issues/404)
-
+- Fix datablock speed to show GS, not IAS [#395](https://github.com/openscope/openscope/issues/395)
 
 
 
