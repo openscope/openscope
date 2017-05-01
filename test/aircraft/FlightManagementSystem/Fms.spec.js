@@ -14,10 +14,12 @@ import {
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 
 const directRouteString = 'COWBY';
+const improperDirectRouteStringMock = 'COWBY.BIKKR';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
+const improperProcedureRouteStringMock = 'MLF..GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = airportModelFixture.getRunway('19L');
 const isComplexRoute = true;
@@ -582,6 +584,24 @@ ava('.isValidRoute() returns true when passed a valid departure procedureRouteSt
     const fms = buildFmsMock();
 
     t.true(fms.isValidRoute(departureProcedureRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an invalid use of a directRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute(improperDirectRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an invalid use of a procedureRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute(improperProcedureRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an empty string', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute('', runwayAssignmentMock));
 });
 
 ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
