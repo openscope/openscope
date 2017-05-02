@@ -88,6 +88,41 @@ export default class StripViewController {
     }
 
     /**
+     * Find as `StripViewModel` and attempt to add an active state
+     *
+     * @for StripViewController
+     * @method selectStripView
+     * @param  aircraftModel {AircraftInstanceModel}
+     */
+    selectStripView(aircraftModel) {
+        console.log('selectStripView', aircraftModel.id, aircraftModel.callsign);
+        const stripModel = this._collection.findByAircraftId(aircraftModel.id);
+
+        if (!stripModel) {
+            throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
+        }
+
+        stripModel.addActiveState();
+    }
+
+    /**
+     * Find as `StripViewModel` and attempt to remove an active state
+     *
+     * @for StripViewController
+     * @method deselectStripView
+     * @param  aircraftModel {AircraftInstanceModel}
+     */
+    deselectStripView(aircraftModel) {
+        const stripModel = this._collection.findByAircraftId(aircraftModel.id);
+
+        if (!stripModel) {
+            throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
+        }
+
+        stripModel.removeActiveState();
+    }
+
+    /**
      *
      *
      * @for StripViewController

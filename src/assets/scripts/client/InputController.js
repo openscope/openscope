@@ -84,8 +84,12 @@ const KEY_CODES = {
 export default class InputController {
     /**
      * @constructor
+     * @param $element {JQuery|HTML Element}
+     * @param aircraftCommander {AircraftCommander}
+     * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
+     *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander) {
+    constructor($element, aircraftCommander, onSelectAircraftStrip) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
@@ -93,6 +97,7 @@ export default class InputController {
         this.$sidebar = null;
 
         this._aircraftCommander = aircraftCommander;
+        this._onSelectAircraftStrip = onSelectAircraftStrip;
 
         this.input = input;
         this.input.command = '';
@@ -392,22 +397,23 @@ export default class InputController {
             if (aircraft.matchCallsign(prop.input.callsign)) {
                 number += 1;
                 match = aircraft;
-                // TODO: this should be from an encapsulated class on the window.
-                aircraft.$html.addClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+                this._onSelectAircraftStrip(aircraft);
             }
         }
 
+        // Scroll the stripView list so the selected strip is in view
         // TODO: this logic block should be either abstracted or simplified.
-        if (number === 1 && (
-                match.$html.offset().top < 0 ||
-                (
-                    (match.$html.offset().top + match.$html.height() - this.$sidebar.offset().top) >
-                    this.$sidebar.height()
-                )
-            )
-        ) {
-            this.$sidebar.scrollTop(this.$sidebar.scrollTop() + match.$html.offset().top - (this.$sidebar.height() / 2));
-        }
+        // if (number === 1 && (
+        //         match.$html.offset().top < 0 ||
+        //         (
+        //             (match.$html.offset().top + match.$html.height() - this.$sidebar.offset().top) >
+        //             this.$sidebar.height()
+        //         )
+        //     )
+        // ) {
+        //     this.$sidebar.scrollTop(this.$sidebar.scrollTop() + match.$html.offset().top - (this.$sidebar.height() / 2));
+        // }
     }
 
     /**

@@ -46,9 +46,9 @@ export default class StripViewModel extends BaseModel {
     /**
      *
      * @constructor
-     * @param stripViewModel {object}
+     * @param aircraftModel {object}
      */
-    constructor(stripViewModel) {
+    constructor(aircraftModel) {
         super();
 
         /**
@@ -60,15 +60,60 @@ export default class StripViewModel extends BaseModel {
 
         /**
          *
+         *
          * @property aircraftId
          * @type {string}
          */
-        this.aircraftId = stripViewModel.id;
+        this.aircraftId = aircraftModel.id;
 
+        /**
+         *
+         *
+         * @property _flightPhase
+         * @type
+         * @default
+         * @private
+         */
         this._flightPhase = '';
+
+        /**
+         *
+         *
+         * @property _callsign
+         * @type
+         * @default
+         * @private
+         */
         this._callsign = '';
+
+        /**
+         *
+         *
+         * @property _altitude
+         * @type
+         * @default
+         * @private
+         */
         this._altitude = -1;
+
+        /**
+         *
+         *
+         * @property _aircraftType
+         * @type
+         * @default
+         * @private
+         */
         this._aircraftType = '';
+
+        /**
+         *
+         *
+         * @property _speed
+         * @type
+         * @default
+         * @private
+         */
         this._speed = -1;
 
         /**
@@ -135,7 +180,7 @@ export default class StripViewModel extends BaseModel {
         this.$speedView = null;
 
 
-        return this._init(stripViewModel)
+        return this._init(aircraftModel)
             ._createChildren()
             ._setupHandlers()
             ._layout()
@@ -146,16 +191,22 @@ export default class StripViewModel extends BaseModel {
      *
      *
      * @method _init
-     * @param stripViewModel {object}
+     * @param aircraftModel {object}
      */
-    _init(stripViewModel) {
-        this._flightPhase = stripViewModel.fms.currentPhase;
-        this._callsign = stripViewModel.callsign;
-        this._altitude = stripViewModel.altitude;
-        this._aircraftType = stripViewModel.model;
-        this._infoBoxBottom = stripViewModel.fms.getProcedureAndExitName();
-        this._speed = stripViewModel.speed;
-        this._categoryClassName = this.findClassnameForFlightCateogry(stripViewModel);
+    _init(aircraftModel) {
+        this._flightPhase = aircraftModel.fms.currentPhase;
+        this._callsign = aircraftModel.callsign;
+        // TODO: make this not a ternary
+        this._altitude = aircraftModel.mcp.altitude !== -1
+            ? aircraftModel.mcp.altitude
+            : 0;
+        this._aircraftType = aircraftModel.model;
+        this._infoBoxBottom = aircraftModel.fms.getProcedureAndExitName();
+        // TODO: make this not a ternary
+        this._speed = aircraftModel.mcp.speed !== -1
+            ? aircraftModel.mcp.speed
+            : 0;
+        this._categoryClassName = this.findClassnameForFlightCateogry(aircraftModel);
 
         return this;
     }
@@ -233,12 +284,49 @@ export default class StripViewModel extends BaseModel {
     /**
      *
      *
+     * @for StripViewModel
+     * @method shouldUpdate
+     * @param  aircraftModel {AircraftInstanceModel}
+     * @return {boolean}
+     */
+    shouldUpdate(aircraftModel) {
+        return aircraftModel.fms.currentPhase !== this._flightPhase ||
+            aircraftModel.mcp.altitude !== this._altitude ||
+            aircraftModel.mcp.speed !== this._speed;
+    }
+
+    /**
+     *
+     *
      * @method update
      * @param aircraftModel {AircraftInstanceModel}
      */
     update(aircraftModel) {
-        // shouldUpdate
+        if (!this.shouldUpdate(aircraftModel)) {
+            return;
+        }
+
         // _updateStripView
+    }
+
+    /**
+     * Add active css classname
+     *
+     * @for StripViewModel
+     * @method addActiveState
+     */
+    addActiveState() {
+        this.$element.addClass(SELECTORS.CLASSNAMES.ACTIVE);
+    }
+
+    /**
+     * Remove active css classname
+     *
+     * @for StripViewModel
+     * @method removeActiveState
+     */
+    removeActiveState() {
+        this.$element.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
     /**
@@ -257,10 +345,10 @@ export default class StripViewModel extends BaseModel {
      * @method findClassnameForFlightCateogry
      * @return {string}
      */
-    findClassnameForFlightCateogry(stripViewModel) {
+    findClassnameForFlightCateogry(aircraftModel) {
         let className = SELECTORS.CLASSNAMES.ARRIVAL;
 
-        if (stripViewModel.isDeparture) {
+        if (aircraftModel.isDeparture()) {
             className = SELECTORS.CLASSNAMES.DEPARTURE;
         }
 
@@ -289,6 +377,23 @@ export default class StripViewModel extends BaseModel {
         return aircraftIcao.toUpperCase();
     }
 
+    // TODO: this feels like a utility function
+    /**
+     *
+     * @method _getValueOrZero
+     * @param  {[type]}        prop [description]
+     * @return {[type]}             [description]
+     */
+    _getValueOrZero(prop) {
+        let valueOrZero = prop;
+
+        if (prop === -1) {
+            valueOrZero = 0;
+        }
+
+        return valueOrZero;
+    }
+
     /**
      * Click handler for a single click on an AircraftStripView
      *
@@ -298,7 +403,8 @@ export default class StripViewModel extends BaseModel {
      */
     onClickHandler = (event) => {
         console.log('onClickHandler');
-        window.inputController.input_select(this.callsign);
+
+        window.inputController.input_select(this._callsign);
     };
 
     /**

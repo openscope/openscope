@@ -32,19 +32,14 @@ import {
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
-    heading_to_string,
-    km,
     nm,
-    UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
-    PERFORMANCE,
-    WAYPOINT_NAV_MODE
+    PERFORMANCE
 } from '../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS, AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
-import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import { TIME } from '../constants/globalConstants';
@@ -187,9 +182,6 @@ export default class AircraftInstanceModel {
 
             this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
         }
-
-        // this.createStrip();
-        // this.updateStrip();
     }
 
     /**
@@ -353,7 +345,6 @@ export default class AircraftInstanceModel {
             return this.arrivalExit();
         }
 
-        this.hideStrip();
         this.setIsRemovable();
 
         // TODO: this seems redundant. if its already in the leg its in the fms.
@@ -1271,7 +1262,6 @@ export default class AircraftInstanceModel {
     updateLandingFailedLanding() {
         // Failed Approach
         if ((this.approachDistance > 0.100) && (!this.projected)) {
-            this.updateStrip();
             this.cancelLanding();
 
             const isWarning = true;
@@ -1897,7 +1887,6 @@ export default class AircraftInstanceModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
-        // this.updateStrip();
     }
 
     /**

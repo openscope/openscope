@@ -309,6 +309,18 @@ export default class AircraftController {
     }
 
     /**
+    *
+    *
+    * @for AircraftController
+    * @method initAircraftStripView
+    * @param  aircraftModel {AircraftInstanceModel}
+    */
+    initAircraftStripView(aircraftModel) {
+        this._stripViewController.createStripView(aircraftModel);
+        console.log(this._stripViewController);
+    }
+
+    /**
      *
      * @method updateAircraftStrips
      * @return
@@ -317,10 +329,16 @@ export default class AircraftController {
         this._stripViewController.update(this.aircraft.list);
     }
 
-    initAircraftStripView(aircraftModel) {
-        this._stripViewController.createStripView(aircraftModel.viewModel);
-        console.log(this._stripViewController);
-    }
+    /**
+     * Show a `stripView` as selected
+     *
+     * @for AircraftController
+     * @method onSelectAircraftStrip
+     * @param  aircraftModel {AircraftInstanceModel}
+     */
+    onSelectAircraftStrip = (aircraftModel) => {
+        this._stripViewController.selectStripView(aircraftModel);
+    };
 
     /**
      *
