@@ -398,6 +398,8 @@ ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the n
     t.true(_isEqual(result, expectedResult));
 });
 
+ava.todo('.replaceDepartureProcedure() updates the current runway assignment');
+
 ava('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
     const routeStringMock = DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK.route;
     const fms = buildFmsMockForDeparture();

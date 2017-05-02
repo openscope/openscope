@@ -1,309 +1,568 @@
----
-title: Airport format
----
-[back to index](index.html)
+[noaa-calculator]: https://www.ngdc.noaa.gov/geomag-web/#declination
+[faa-airspace]: https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true
 
-# Airport format
+# Airport Format
 
-The airport JSON file must be in `assets/airports`; the filename
-should be `icao.json` where `icao` is the lowercase four-letter ICAO
-airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there
-should also be an entry added to the end of [`airportLoadList.js`](../src.assets/scripts/airport/airportLoadList.js)
-See the comments for information on the correct structure to use.
-```
+* [Property Descriptions](#property-descriptions)
+    * [Base Airport Properties](#base-airport-properties)
+    * [Airspace](#airspace)
+    * [Fixes](#fixes)
+    * [Runways](#runways)
+    * [Airways](#airways)
+    * [SIDs](#sids)
+    * [STARs](#stars)
+    * [SpawnPatterns](#spawnPatterns)
+    * [Maps](#maps)
+* [Reference](#reference)
+    * [Latitude, Longitude, Elevation](#latitude-longitude-elevation)
+    * [Identifiers](#icao-and-iata-identifiers)
+    * [Flight Level](#flight-level)
+
+The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+
+## Example
+
+_Note: The code block shown below is an abbreviated version of [klas.json](assets/airports/klas.json)._
+```javascript
 {
-  "radio": {
-    "twr": "controller callsign for tower",
-    "app": "controller callsign for approach control",
-    "dep": "controller callsign for departure control"
-  },
-  "icao": "KSFO",             // uppercase ICAO airport code
-  "iata": "SFO",              // uppercase IATA airport code
-  "magnetic_north": 13.7,     // magnetic declination, in degrees EAST!
-  "ctr_radius": 80,           // radius from 'position' that the airspace extends
-  "ctr_ceiling": 10000,       // elevation up to which the airspace extends
-  "initial_alt": 5000         // alt departures climb to if given "as-filed" clearance, but no "climb-via-sid" or altitude assignment
-  "position", ["lat", "lon", "elevation"]  // the latitude/longitude of the "center" of the airport; see comments below
-  "rr_radius_nm": 5,          // radius of range rings, nautical miles
-  "rr_center": ["lat", "lon"],// position where range rings are centered, nautical miles
-  "has_terrain": true,        // true/false for if has an associated GeoJSON terrain file in assets/airports/terrain
-  "wind": {     // wind is used for score, and can affect aircraft's ground tracks if enabled in settings
-    "angle": 0, // the heading, in degrees, that the wind is coming from
-    "speed": 3  // the speed, in knots, of the wind
-  },
-  "fixes": {
-    "FIXNAME", ["lat", "lon"] // the position, in GPS coordinates, of the fix
-  },
-  "runways": [
-    {
-      "name":        ["36", "18"],     // the name of each end of the runway
-      "name_offset": [[0, 0], [0, 0]], // the offset, in km, of the runway text when drawn on the map
-      "end":         [                 // the ends of the runway
-                       ["lat", "lon", "elevation"],
-                       ["lat", "lon", "elevation"]
-                     ],
-      "delay":       [2, 2],           // the number of seconds it takes to taxi to the end of the runway
-      "sepFromAdjacent": [2.5, 2.5],   // Distance in nautical miles that another aircraft can come while on parallel approach paths, a violation will occur at 85% of this value
-      "ils":         [true, false]     // not used yet; indicates whether or not that end of the runway has ILS
-    }
-  ],
-  "sids": {   // contains all SIDs available at this airport
-    "OFFSH9": { // (req) must match ICAO identifier
-      "icao": "OFFSH9",           // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
-      "name": "Offshore Nine" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
-      "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to SID name based on runway (eg '2C' for 'EKERN 2C').
-                                                          // Common for European-style SIDs. If not needed (like in USA), leave this part out.
-      "rwy": {  // (req) ALL runways usable on this SID must be listed below. If a runway isn't listed, aircraft departing
-                // that runway will need to be re-assigned a different SID or runway (this is realistic and intended).
-          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array
-          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // of fixes, entered as strings. As shown, you may also enter an array containing the fix name and restrictions
-          "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In
-          "28R": [["SENZY", "A25+"], "ZUPAX"]   // that example, restrictions of Altitude 5,000' or lower, and Speed 220kts or higher would be placed on that fix.
+    "radio": {
+        "twr": "Las Vegas Tower",
+        "app": "Las Vegas Approach",
+        "dep": "Las Vegas Departure"
+    },
+    "icao": "KLAS",
+    "iata": "LAS",
+    "magnetic_north": 11.9,
+    "ctr_radius": 80,
+    "ctr_ceiling": 19000,
+    "initial_alt": 19000,
+    "position": ["N36.080056", "W115.15225", "2181ft"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N36.080056", "W115.15225"],
+    "has_terrain": true,
+    "wind": {
+        "angle": 220,
+        "speed": 6
+    },
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 190,
+            "airspace_class": "B",
+            "poly": [
+                ["N35d57m50.000", "W115d51m15.000"],
+                ["N35d34m30.000", "W115d29m00.000"]
+            ]
+        }
+    ],
+    "fixes": {
+        "_RWY19L02DME": [36.12883621109, -115.13620132796],
+        "_RWY19R02DME": [36.12992510899, -115.13907057136],
+        "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
+        "BCE"  : ["N37.68918661436860", "W112.30389943797489"],
+        "BESSY": ["N36.10772192196994", "W115.28956463349111"],
+        "BETHL": ["N36.88434886833625", "W112.44043432584908"],
+        "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
+    },
+    "runways":[
+        {
+            "name": ["07L", "25R"],
+            "end": [
+                ["N36d4m34.82", "W115d10m16.98", "2179ft"],
+                ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+            ],
+            "ils": [false, true]
         },
-      "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be
-                                    // helpful to put some of it here, while all segments follow the same path.
-      "exitPoints": {     // (optional) Defines exitPoints for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
-          "SNS": ["SNS"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
-          "BSR": ["BSR"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
-      },
-      "draw": [["SEPDY","ZUPAX"], ["SENZY","ZUPAX","EUGEN","SHOEY*"], ["SHOEY","SNS*"], ["SHOEY","BSR*"]]
-        // (req) This "draw" section is what defines how the SID is to be drawn on the scope in blue.
-        // The array contains multiple arrays that are a series of points to draw fixes between.
-        // In this case, SEPDY->ZUPAX, SENZY->ZUPAX->EUGEN->SHOEY, SHOEY->SNS, SHOEY->BSR are the lines drawn.
-        // Additionally, you'll notice three asterisks ('*'). This is an optional flag that, if invoked for "FIXXX"
-        // will tell canvas.js to write "OFFSH9.FIXXX" next to FIXXX on the scope. If no such flags are present,
-        // then the ICAO identifier for the SID will be drawn at the last point of the "draw" array. For european-
-        // style SIDs, where they always end at the fix for which the SID is named, don't use the flags. But if your SID
-        // has transitions, like in the N/S Americas, United Kingdom, etc, be sure to flag all the transition fixes.
-    }
-  },
-  "stars": {  // contains all STARS available at this airport
-    "PYE1" : {
-      "icao": "PYE1",               // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
-      "name": "Point Reyes One" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
-      "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to STAR name based on runway (eg '7W' for 'MIKOV 7W').
-                                                          // Common for European-style STARs. If not needed (like in USA), leave this part out.
-      "entryPoints": {    // (optional) Defines entryPoints for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
-          "ENI": ["ENI"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
-          "MXW": ["MXW"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
-      },
-      "body": ["PYE", ["STINS", "A230|S250"], "HADLY"], // (optional) This is where you store the waypoints when all segments are along the same path
-      "rwy": {  // (optional) For runway-transitions (eg "descending via HAWKZ4, landing north")
-          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // List fixes here that are specific to a particular runway configuration.
-          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // If any runways are listed, all must be listed.
-          "28L": [["SENZY", "A25+"], "ZUPAX"],
-          "28R": [["SENZY", "A25+"], "ZUPAX"]
-      },
-      "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
-        // (req) This "draw" section is what defines how the SID is to be drawn on the scope.
-        // The array contains multiple arrays that are a series of points to draw fixes between.
-        // In this case, ENI->PYE, MXW->PYE, PYE->STINS->HADLY->OSI are the lines drawn.
-        // Additionally, you'll notice two asterisks ('*'). This is an optional flag that, if invoked for "FIXXX"
-        // will tell canvas.js to write "FIXXX.PYE1" next to FIXXX on the scope. If no such flags are present,
-        // then the ICAO identifier for the SID will be drawn at the first point of the "draw" array. For european-
-        // style STARs, where they always end at the fix for which the STAR is named, don't use the flags.
-    }
-  },
-  "departures": {
-    "airlines": [
-      ["three-letter ICAO airline code/fleet", 0], // see "Aircraft/Airline selectors" below
-      ...
+        {
+            "name": ["07R", "25L"],
+            "end": [
+                ["N36d4m25.04", "W115d9m41.15", "2157ft"],
+                ["N36d4m25.17", "W115d7m32.96", "2049ft"]
+            ],
+            "ils": [false, true]
+        }
     ],
-    "destinations": [
-      "LISST", "OF", "SIDS", "ACRFT", "WILLL", "FLYYY", "TO"  // these must each be a defined SID above
+    "airways": {
+        "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
+        "J146": ["LAS", "NOOTN"],
+        "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
+        "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+        "Q15": ["CHILY", "DOVEE", "BIKKR"],
+        "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
+    },
+    "sids": {
+        "COWBY6": {
+            "icao": "COWBY6",
+            "name": "Cowboy Six",
+            "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+            "rwy": {
+                "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
+                "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
+                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+            },
+            "body": ["COWBY"],
+            "exitPoints": {
+                "DRK": ["NAVHO", "DRK"],
+                "GUP": [["MOSBI", "A150+"], "GUP"],
+                "INW": [["CUTRO", "A150+"], "INW"]
+            },
+            "draw": [
+                ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
+                ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
+                ["_RWY19L02DME", "NAPSE"],
+                ["_RWY19R02DME", "NAPSE", "RIOOS", "COMPS"],
+                ["COWBY", "NAVHO", "DRK*"]
+            ]
+        }
+    },
+    "stars": {
+        "GRNPA1": {
+            "icao": "GRNPA1",
+            "name": "Grandpa One",
+            "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+            "entryPoints": {
+                "BETHL": ["BETHL", ["HOLDM", "A270"]],
+                "BCE": ["BCE"],
+                "DVC": ["DVC", "BETHL", ["HOLDM", "A270"]],
+                "MLF": ["MLF"]
+            },
+            "body": [
+                ["KSINO", "A170"],
+                ["LUXOR", "A120|S250"],
+                ["GRNPA", "A110"],
+                ["DUBLX", "A90"],
+                ["FRAWG", "A80|S210"],
+                "TRROP",
+                "LEMNZ"
+            ],
+            "rwy": {
+                "01L": [],
+                "01R": [],
+                "07L": [],
+                "07R": [],
+                "19L": [],
+                "19R": [],
+                "25L": [],
+                "25R": []
+            },
+            "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "KLAS",
+            "destination": "",
+            "category": "departure",
+            "route": "KLAS.COWBY6.GUP",
+            "altitude": 0,
+            "method": "random",
+            "entrail": [10, 22],
+            "rate": 5,
+            "airlines": [
+                ["amx", 2],
+                ["aca/long", 4],
+                ["asa", 3],
+                ["aay", 15]
+            ],
+        },
+        {
+            "origin": "",
+            "destination": "KLAS",
+            "category": "arrival",
+            "route": "BETHL.GRNPA1.KLAS",
+            "altitude": [30000, 40000],
+            "speed": 320
+            "method": "random",
+            "entrail": [10, 22],
+            "rate": 10,
+            "airlines": [
+                ["aca/long", 4],
+                ["aay", 15],
+                ["aal", 10]
+            ],
+        }
     ],
-    "type": ,
-    "offset": ,
-    "frequency": [3, 4] // the frequency, in minutes, of a new departing aircraft. A random number is chosen between the two.
-  },
-  "arrivals": [
-    {   // Basic 1
-      "type": "random",
-      "radial": 170,        // the direction, in degrees, of arriving aircraft when they spawn; these will come from the south. ONLY use 'radial' with heading-based arrivals.
-      "heading": 350,       // the direction airplanes will be pointing when they spawn; will be opposite of "radial" if omitted
-      "frequency": 10,
-      "altitude": 10000,
-      "speed": 250,
-      "airlines": [ ... ]
-    },
-    {   // Basic 2
-      "type": "random",
-      "fixes": ["MOVDD", "RISTI", "CEDES"],   // list of fixes to fly to after spawning.
-      "frequency": 10,
-      "altitude": 10000,
-      "speed": 250,
-      "airlines": [ ... ]
-    },
-    {   // Advanced, based on a route of flight (like a STAR, for example)
-      "type": "random",               // options include 'random', 'cyclic', 'wave', and 'surge' (see below for descriptions)
-      "route":   "QUINN.BDEGA2.KSFO", // route to follow (spawn at first point)
-      "frequency": 10,              // spawn rate of this stream, in acph
-      "altitude":  [20000, 24000],  // altitude to spawn at (either a value, or altitude range via array)
-      "speed":    280,              // speed to spawn at
-      "airlines": [ ... ]           // same as in "departures"
-    },
-    ...
-  ]
+    "maps": {
+        "base": [
+            ["N36d38m01.199", "W114d36m17.219", "N36d36m32.337", "W114d34m19.673"],
+            ["N36d36m27.904", "W114d36m12.534", "N36d38m06.271", "W114d34m20.227"],
+            ["N35d56m01.371", "W114d51m25.735", "N35d57m09.977", "W114d51m43.334"],
+            ["N35d56m42.691", "W114d52m17.075", "N35d56m28.981", "W114d50m51.994"]
+        ]
+    }
 }
 ```
 
-For `lat, lon, elevation` fields, you can either use the standard `[x, y]`
-notation or the new `["LAT", "LON", "ELEVATION"]` notation. The latter uses this
-format:
+## Property Descriptions
 
-    ["N or S followed by a latitude", "W or E followed by a longitude", "optional altitude ending in 'ft' or 'm'"]
-where latitude and longitude are numbers that follow this format:
-    <degrees>[d|°][<minutes>m[<seconds>s]]
+### Base Airport Properties
+_all properties in this section are required_
 
-Examples of acceptable positions:
-  [  40.94684722   ,  -76.61727778   ], // decimal degrees
-  [ "N40.94684722" , "W76.61727778"  ], // decimal degrees
-  [  "N40d56.811"  ,  "W076d37.037   ], // degrees, decimal minutes
-  [ "N40d56m48.65" , "W076d37m02.20" ]  // degrees, minutes, decimal seconds
-
-If you use a `["lat", "lon"]` combination for any `position`, you
-_must_ set the `position` of the airport as well; if you use `end`,
-`length` and `angle` are not needed (but can be used to override
-`end`).
-
-Aircraft scheduling
--------------------
-The 'type' key in an arrival or departure block determines the algorithm
-that will be used to spawn the aircraft. Each type take slightly different
-parameters in order for you to shape the airport's traffic to your liking.
-
-
-## Bare Minimum Elements
-
-At the very least, an arrival stream MUST have definitions for the
-following parameters. Additional may be required if the spawn method
-is set to one other than 'random'.
-
-            BARE MINIMUM PARAMETERS:
-   PARAMETER   REQ      PARAMETER DESCRIPTION
-+-------------+---+-------------------------------+
-| 'airlines'  | * | weighted array of airlines    |
-+-------------+---+-------------------------------+
-| 'altitude'  | * | altitude to spawn at          |
-+-------------+---+-------------------------------+
-| 'frequency' | * | spawn rate, aircraft per hour |
-+-------------+---+-------------------------------+
-| 'heading'   | * | heading to fly on spawn       |
-|    (OR)     |   |                               |
-|  'fixes'    | * | array of fixes to go to       |
-|    (OR)     |   |                               |
-|  'route'    | * | properly formatted route*     |
-+-------------+---+-------------------------------+
-| 'speed'     | * | speed to spawn at (knots)     |
-+-------------+---+-------------------------------+
-  *see index.md for route format (ex: 'BSR.BSR1.KSFO')
-
-
-### Random (default)
-
-If the 'type' key is omitted, this spawning method will be used. The
-aircraft will be spawned at random intervals that average out to achieve
-the prescribed spawn rate. Thus, you may randomly get some back-to-back,
-and some massive gaps in your traffic, just as it is most likely to occur
-in real life.
-
-       PARAMETERS SPECIFIC TO 'RANDOM':
-+-----------------------------------------------+
-| only the "bare minimum parameters" are needed |
-+-----------------------------------------------+
-
-
-### Cyclic
-
-The cyclic algorithm creates a stream of varying density. This will be more
-predictable than 'random', and can be shaped to your liking. Basically, you
-define the 'frequency', which is the average spawn rate, and an additional
-'variance' parameter that adds some swells and lulls in the traffic. During
-the cycle, the spawn rate will range throughout frequency +/- variation in
-a linear fashion. Spawn rate will start at 'frequency', and steadily
-increase to ('frequency' + 'variation'), then steadily decrease to
-('frequency' - 'variation').
-
-               PARAMETERS SPECIFIC TO 'CYCLIC':
-   PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
-+-------------+---+------------------------------------+-------+
-| 'offset'    |   | min into the cycle to start at     | 0     |
-+-------------+---+------------------------------------+-------+
-| 'period'    |   | length of each cycle, in minutes   | 30    |
-+-------------+---+------------------------------------+-------+
-| 'variation' | * | the amount to +/- from 'frequency' | 0     |
-+-------------+---+------------------------------------+-------+
-|     (also include "bare minimum parameters" - see above)     |
-+--------------------------------------------------------------+
-
-
-# Wave
-
-The wave algorithm works exactly like the cyclic algorithm, however,
-instead of a linear shift between arrival rates, the arrival rate will
-vary throughout ('frequency' +/- 'variation') in a sinusoidal pattern.
-As a result, less time will be spent right at the average, and the flow
-of traffic will have changes in arrival rates that come along slightly
-sooner. Overall, very similar to cyclic though.
-
-                PARAMETERS SPECIFIC TO 'WAVE':
-   PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
-+-------------+---+------------------------------------+-------+
-| 'offset'    |   | min into the cycle to start at     | 0     |
-+-------------+---+------------------------------------+-------+
-| 'period'    |   | length of each cycle, in minutes   | 30    |
-+-------------+---+------------------------------------+-------+
-| 'variation' | * | the amount to +/- from 'frequency' | 0     |
-+-------------+---+------------------------------------+-------+
-|     (also include "bare minimum parameters" - see above)     |
-+--------------------------------------------------------------+
-
-
-### Surge
-
-The wave algorithm generates a group of aircraft back to back. For departures
-the spacing is 10 seconds, for arrivals, you can specify the entrail distance
-while in and out of the "surge". This way, a "surge" can be gentle, or extreme,
-and at any arrival rate.
-
-Note that if you request something that's impossible to deliver, like either...
-   - "frequency": 50, "entrail": [ 7, 15] <-- even if all are 7MIT, that's 35acph
-   - "frequency": 7,  "entrail": [10, 25] <-- even if all are 25MIT, that's 10acph
-   - Note: The above assumes spawn speed of 250kts, for example purposes
-...the game will throw a warning in the console advising you that it has
-clamped the arrival rate to match the entrail and speed settings, and it tells
-you what range of frequencies it is mathematically capable of delivering.
-
-              PARAMETERS SPECIFIC TO 'SURGE':
-  PARAMETER  REQ        PARAMETER DESCRIPTION         DEFAULT
-+-----------+---+---------------------------------------------+-------+
-| 'offset'  |   | min into the cycle to start at              | 0     |
-+-----------+---+---------------------------------------------+-------+
-| 'period'  |   | length of each cycle, in minutes            | 30    |
-+-----------+---+---------------------------------------------+-------+
-|           |   | array of:                                   |       |
-| 'entrail' | * | [ miles between arrivals during the surge,  | [5.5, | <-- only for arrivals
-|           |   |   miles between arrivals during the lull  ] |  10]  |
-+-----------+---+---------------------------------------------+-------+
-|        (also include "bare minimum parameters" - see above)         |
-+---------------------------------------------------------------------+
-
-
-
-Aircraft/Airline selectors
---------------------------
-
-Both departure and arrival blocks specify a weighted list of airlines
-to use for that block.  The airline code may be optionally followed by
-a particular fleet for that operator.
-
-Example:
+- **radio** ― The radio callsigns for each controller:
+```javascript
+"radio": {
+    "twr": "Las Vegas Tower",
+    "app": "Las Vegas Approach",
+    "dep": "Las Vegas Departure"
+},
 ```
-"airlines": [
-  ["BAW", 10],
-  ["AAL/long", 2]
-]
 
-Select an aircraft from BAW's (British Airways) default fleet five
-times as often as an aircraft is selected from AAL's (American
-Airlines) long haul fleet.
+- **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
+- **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
+- **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
+- **ctr_radius** ― The radius (in kilometers) of the controlled airspace that aircraft are simulated within. Outside of this radius aircraft are removed, so ensure it is large enough for your airspace.
+- **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
+- **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
+- **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+- **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
+- **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+- **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](../..assets/airports/terrain).
+- **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
+```javascript
+"wind": {
+    "angle": 220,
+    "speed": 6
+}
+```
+
+
+### airspace
+_All properties in this section are required for each airspace section_
+_At least one airspace definition is required for an airport_
+
+ ```javascript
+ "airspace": [
+     {
+         "floor": 0,
+         "ceiling": 190,
+         "airspace_class": "B",
+         "poly": [
+             ["N35d57m50.000", "W115d51m15.000"],
+             ["N35d34m30.000", "W115d29m00.000"]
+         ]
+     }
+ ],
+```
+Position definition of the airport airspace.  Multiple airspace areas may be defined and will all be included in the airspace. This allows for advanced airspace stratification.
+
+- **floor** ― The lowest altitude (in [flight levels](#flight-level)) included in the airspace.
+- **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
+- **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](faa-airspace) and find the closest match based on the way the local airspace is treated.
+- **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+
+
+### fixes
+_All fixes listed within the Standard Routes need to be defined within this section_
+
+```javascript
+"fixes": {
+    "_RWY19L02DME": [36.12883621109, -115.13620132796],
+    "_RWY19R02DME": [36.12992510899, -115.13907057136],
+    "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
+    "BCE":   ["N37.68918661436860", "W112.30389943797489"],
+    "BESSY": ["N36.10772192196994", "W115.28956463349111"],
+    "BETHL": ["N36.88434886833625", "W112.44043432584908"],
+    "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
+},
+```
+Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
+```javascript
+"BAKRR": ["N36.07582112978773", "W114.95309917207562"]
+```
+You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
+
+1. To simulate fly-over waypoints (examples in EIDW)
+1. To simulate DME arcs (can be seen in SAME)
+1. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
+
+They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
+
+* The fixes should be located at the thresholds of the runways for which they are named.
+```
+"_RWY33L": [42.354662, -70.991598]
+```
+* Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as RNAV fixes (via the underscore prefix).
+```
+"_AUTUM220015": [42.324333, -71.736833]
+```
+* Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold. This would be the runway name, two digit distance in nautical miles, then `DME`. All of these should be marked as RNAV fixes (via the underscore prefix).
+```
+"_RWY33L01DME": [42.342838, -70.975751]
+```
+
+
+### runways
+```javascript
+"runways": [
+    {
+        "name": ["07L", "25R"],
+        "end": [
+            ["N36d4m34.82", "W115d10m16.98", "2179ft"],
+            ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+        ],
+        "ils": [false, true]
+    }
+],
+```
+- **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
+- **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
+- **ils** - Boolean property used to indicate if a runway has an ILS approach
+
+Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
+
+```javascript
+// Runway 07L
+{
+    "name": "07L",
+    "end": [
+        ["N36d4m34.82", "W115d10m16.98", "2179ft"]
+
+    ],
+    "ils": false
+}
+
+// Runway 07R
+{
+    "name": "25R",
+    "end": [
+        ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+    ],
+    "ils": true
+}
+```
+
+### Airways
+```javascript
+"airways": {
+    "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
+    "J146": ["LAS", "NOOTN"],
+    "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
+    "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
+    "Q15": ["CHILY", "DOVEE", "BIKKR"],
+    "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
+},
+```
+
+Each fix along each airway in successive order (direction does not matter). And of course, all fixes entered here must be defined in the `fixes` section.
+
+## Standard Procedures
+
+Standard Procedures consist of SIDs and STARs and, at a very high level, all contain three segments:
+1. Entry - the start of the procedure. can be on one of (possibly) several transition routes that feed into a central segment (the Body)
+2. Body - shared segment that all aircraft on the route will follow
+3. Exit - end of the procedure. can be one of (possibly) several exit segments
+
+This structure is used to work with both SIDs and STARs within the app.  Though it's not important to know for an airport file, it is a good thing to keep in mind.
+
+Fixes within the segments can be defined in several different ways:
+```javascript
+// fix name only
+"07L": ["WASTE", "COMPS"]
+
+// fix name with altitude restriction
+"07L": ["WASTE", ["BAKRR", "A70"], "COMPS"]
+
+// fix name with speed restriction
+"07L": ["WASTE", ["BAKRR", "S200"], "COMPS"]
+
+// fix name with altitude and speed restriction with min or max
+"07L": ["WASTE", ["BAKRR", "A70+|S250-"], "COMPS"]
+```
+These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
+
+
+### sids
+_All properties in this section are required for each route definition_
+
+```javascript
+"sids": {
+    "COWBY6": {
+        "icao": "COWBY6",
+        "name": "Cowboy Six",
+        "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+        "rwy": {
+            "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+            "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+            "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
+            "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
+            "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+            "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+            "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+            "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+        },
+        "body": ["COWBY"],
+        "exitPoints": {
+            "DRK": ["NAVHO", "DRK"],
+            "GUP": [["MOSBI", "A150+"], "GUP"],
+            "INW": [["CUTRO", "A150+"], "INW"]
+        },
+        "draw": [
+            ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
+            ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
+            ["_RWY19R02DME", "NAPSE"],
+            ["_RWY19L02DME", "NAPSE", "RIOOS", "COMPS"],
+            ["COWBY", "NAVHO", "DRK*"]
+        ]
+    }
+},
+```
+SID is an acronym for _Standard Instrument Departure_.
+
+- **icao** - icao identifier of the route, should match the object key in spelling and casing
+```
+"COWBY6": {
+    "icao": "COWBY6"
+}
+```
+- **name** - spoken name of the route used for read backs.
+- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific departing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
+- **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
+- **body** - (2d array of strings) fix names for the `Body` segment.
+- **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
+- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes.
+
+- _The `body` section must contain at least one fix_
+- _The `exitPoints` section must contain at least one fix_
+
+
+### stars
+_All properties in this section are required for each route definition_
+
+```javascript
+"stars": {
+    "GRNPA1": {
+        "icao": "GRNPA1",
+        "name": "Grandpa One",
+        "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+        "entryPoints": {
+            "BETHL": ["BETHL", ["HOLDM", "A270"]],
+            "BCE": ["BCE"],
+            "DVC": ["DVC", "BETHL", ["HOLDM", "A270"]],
+            "MLF": ["MLF"]
+        },
+        "body": [
+            ["KSINO", "A170"],
+            ["LUXOR", "A120|S250"],
+            ["GRNPA", "A110"],
+            ["DUBLX", "A90"],
+            ["FRAWG", "A80|S210"],
+            "TRROP",
+            "LEMNZ"
+        ],
+        "rwy": {
+            "01L": [],
+            "01R": [],
+            "07L": [],
+            "07R": [],
+            "19L": [],
+            "19R": [],
+            "25L": [],
+            "25R": []
+        },
+        "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+    }
+},
+```
+STAR is an acronym for _Standard Terminal Arrival Route_.
+
+- **icao** - icao identifier of the route, should match the object key in spelling and casing
+```
+"GRNPA1": {
+    "icao": "GRNPA1"
+}
+```
+- **name** - spoken name of the route used for read backs.
+- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific landing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
+- **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
+- **body** - (2d array of strings) fix names for the `Body` segment.
+- **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
+- **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes.
+
+
+### spawnPatterns
+_At least one `spawnPattern` is required to get aircraft populating into the app_
+
+```javascript
+"spawnPatterns": [
+    {
+        "origin": "KLAS",
+        "destination": "",
+        "category": "departure",
+        "route": "KLAS.COWBY6.GUP",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 5,
+        "airlines": [
+            ["amx", 2],
+            ["aca/long", 4],
+            ["asa", 3],
+            ["aay", 15]
+        ],
+    },
+    {
+        "origin": "",
+        "destination": "KLAS",
+        "category": "arrival",
+        "route": "BETHL.GRNPA1.KLAS",
+        "altitude": [30000, 40000],
+        "speed": 320
+        "method": "random",
+        "rate": 10,
+        "airlines": [
+            ["aca/long", 4],
+            ["aay", 15],
+            ["aal", 10]
+        ],
+    }
+],
+```
+Contains the parameters used to determine how and where aircraft are spawned into the simulation.  At least one `spawnPattern` is required so that aircraft can be added to the simulation.
+
+_see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
+
+
+### maps
+```javascript
+"maps": {
+    "base": [
+        ["N36d38m01.199", "W114d36m17.219", "N36d36m32.337", "W114d34m19.673"],
+        ["N36d36m27.904", "W114d36m12.534", "N36d38m06.271", "W114d34m20.227"],
+        ["N35d56m01.371", "W114d51m25.735", "N35d57m09.977", "W114d51m43.334"],
+        ["N35d56m42.691", "W114d52m17.075", "N35d56m28.981", "W114d50m51.994"]
+    ]
+}
+```
+Markings on the scope that depict various characteristics of the airspace. When available, this will be an actual Radar Video Map used by the real-world facility.
+
+---
+
+## Reference
+
+### Latitude, Longitude, Elevation
+
+For `lat, lon, elev` values, these formats are acceptable:
+* [40.94684722, -76.61727778, "866ft"]
+* ["N40.94684722", "W76.61727778", "866ft"]
+* ["N40d56.811", "W076d37.037", "866ft"]
+* ["N40d56m48.65", "W076d37m02.20", "866ft"]
+
+*Note: For `lat, lon` values, just omit the elevation.*
+
+
+### ICAO and IATA identifiers
+
+Identifiers are unique codes used to differentiate airports, fixes, aircraft, etc. (ex: "KSFO" for the San Francisco Airport).  ICAO (the International Civil Aviation Organization) is an international aviation authority that sets safety and consistency standards that make worldwide travel more standardized. ICAO maintains many lists of things they assign their own identifiers (such as aircraft type designators, airport identifiers, etc). Wherever we have those identifiers stored, they will have the label "icao".
+
+IATA is another international aviation organization (like ICAO) which maintains their own set of identifiers. We include the IATA identifiers for airports in all airport `.json` files, though they are not currently used for anything.
+
+### Flight Level
+
+Flight levels are described by a number, which is this nominal altitude (or, pressure altitude) in hecto-feet, while being a multiple of 500 ft, therefore always ending on 0 or 5. Therefore, a pressure altitude of, for example, 32,000 feet is referred to as "flight level 320".
+
+Flight levels are usually designated in writing as FLxxx, where xxx is a two or three-digit number indicating the pressure altitude in units of 100 feet. In radio communications, FL290 would be pronounced as "flight level two nine(r) zero." The phrase "flight level" makes it clear that this refers to the standardized pressure altitude.

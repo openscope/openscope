@@ -631,16 +631,18 @@ export default class Fms {
      * reset it with a new departure procedure.
      *
      * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` without a departure
+     * `LegModel` with a new routeString. If a `LegModel` with a departure
      * procedure cannot be found, then we create a new `LegModel` and place it
      * at the beginning of the `#legCollection`.
      *
      * @for Fms
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @param departureRunway {string}
+     * @param departureRunwayModel {RunwayModel}
      */
-    replaceDepartureProcedure(routeString, departureRunway) {
+    replaceDepartureProcedure(routeString, departureRunwayModel) {
+        // TODO: update runway information here, if needed
+
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;

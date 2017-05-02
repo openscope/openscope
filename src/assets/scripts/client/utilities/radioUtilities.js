@@ -206,19 +206,19 @@ export const getGrouping = (groupable) => {
     const digit1 = groupable[0];
     const digit2 = groupable[1];
 
-    if (digit1 === 0) {
-        if (digit2 === 0) {
+    if (digit1 === '0') {
+        if (digit2 === '0') {
             return 'hundred';
         }
         // just digits (eg 'zero seven')
         return `${radio_names[digit1]} ${radio_names[digit2]}`;
-    } else if (digit1 === 1) {
+    } else if (digit1 === '1') {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
     } else if (digit1 >= 2) {
         const firstDigit = `${digit1}0`;
 
-        if (digit2 === 0) {
+        if (digit2 === '0') {
             // to avoid 'five twenty zero'
             return radio_names[firstDigit];
         }
@@ -323,6 +323,10 @@ export const groupNumbers = (callsign, airline) => {
                 return `${radio_names[callsign[0]]} ${getGrouping(callsign.substr(1))}`;
                 break;
             case 4:
+                if (callsign[1] === '0' && callsign[2] === '0' && callsign[3] === '0') {
+                    return `${getGrouping(callsign[0])} thousand`;
+                }
+
                 return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;
                 break;
             default:
@@ -422,24 +426,26 @@ export const radio_altitude = (altitude) => {
 };
 
 /**
+ * Return a portion of a control instruction (as a string) indicating the correct
+ * direction of a change in assigned altitude or speed.
  *
  * @function radio_trend
- * @param category
- * @param measured
- * @param target
+ * @param category {string} either 'altitude' or 'speed'
+ * @param currentValue {number} current altitude/speed of the aircraft
+ * @param nextValue {number} the altitude/speed being assigned to the aircraft
  * @return {string}
  */
-export const radio_trend = (category, measured, target) => {
+export const radio_trend = (category, currentValue, nextValue) => {
     const CATEGORIES = {
         altitude: ['descend and maintain', 'climb and maintain', 'maintain'],
         speed: ['reduce speed to', 'increase speed to', 'maintain present speed of']
     };
 
-    if (measured > target) {
+    if (currentValue > nextValue) {
         return CATEGORIES[category][0];
     }
 
-    if (measured < target) {
+    if (currentValue < nextValue) {
         return CATEGORIES[category][1];
     }
 

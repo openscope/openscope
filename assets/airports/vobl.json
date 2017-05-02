@@ -18,6 +18,8 @@
         "angle": 180,
         "speed": 0
     },
+    "arrivalRunway": "27",
+    "departureRunway": "27",
     "fixes": {
         "UNSAL":    ["N14d24m08.00",    "E076d09m94.00"],
         "XIVIL":    ["N13d17m66.00",    "E078d55m07.00"],

@@ -18,6 +18,8 @@
         "angle": 260,
         "speed": 10
     },
+    "arrivalRunway": "24L",
+    "departureRunway": "24L",
     "fixes": {
         "_KLAX347060": ["N34d56.63m0", "W118d25.76m0"],
         "_KLAX169060": ["N32d56.45m0", "W118d25.74m0"],
