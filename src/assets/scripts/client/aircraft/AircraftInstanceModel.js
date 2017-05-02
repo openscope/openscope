@@ -75,7 +75,7 @@ export default class AircraftInstanceModel {
      */
     constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
-        this._id = _uniqueId('aircraft-');
+        this.id = _uniqueId('aircraft-');
         this._navigationLibrary = navigationLibrary;
         this.positionModel = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
@@ -294,7 +294,6 @@ export default class AircraftInstanceModel {
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-
             this.setFlightPhase(FLIGHT_PHASE.APRON);
             this.altitude = airport.positionModel.elevation;
             this.speed = 0;
@@ -623,7 +622,7 @@ export default class AircraftInstanceModel {
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
             const runway = this.fms.departureRunway;
-            const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
+            const nextInRunwayQueue = runway.isAircraftNextInQueue(this.id);
 
             return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
         }

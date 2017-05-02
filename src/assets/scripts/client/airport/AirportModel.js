@@ -1,4 +1,4 @@
-/* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
+/* eslint-disable func-names, camelcase, max-len, object-shorthand */
 import _ceil from 'lodash/ceil';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -69,12 +69,12 @@ export default class AirportModel {
         this.airspace = null;
         // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
         this.perimeter = null;
-        this.timeout  = {
+        this.timeout = {
             runway: null,
             departure: null
         };
 
-        this.wind  = {
+        this.wind = {
             speed: 10,
             angle: 0
         };
@@ -198,8 +198,6 @@ export default class AirportModel {
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        // this.updateRunway();
-        // this.setRunwayTimeout();
     }
 
     /**
@@ -376,19 +374,6 @@ export default class AirportModel {
     }
 
     /**
-     *
-     *
-     * @for AirportModel
-     * @method getRunwayRelationshipForRunwayNames
-     * @param  primaryRunwayName {string}
-     * @param  comparatorRunwayName {string}
-     * @return {RunwayRelationshipModel|undefined}
-     */
-    getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName) {
-        return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
-    }
-
-    /**
      * @for AirportModel
      * @method set
      */
@@ -410,15 +395,26 @@ export default class AirportModel {
     }
 
     /**
-     * Set the airport's active arrival runway
-     *
      * @for AirportModel
-     * @method setArrivalRunway
-     * @param runwayModel {RunwayModel}
+     * @method getWind
+     * @return wind {number}
      */
-    setArrivalRunway(runwayModel) {
-        this.arrivalRunway = runwayModel;
-    }
+    getWind = () => {
+        return this.wind;
+
+        // TODO: what does this method do and why do we need it?
+        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
+        // const wind = Object.assign({}, this.wind);
+        // let s = 1;
+        // const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // // TODO: why is this var getting reassigned to a magic number?
+        // s = 100;
+        // const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
+        //
+        // return wind;
+    };
 
     /**
      * Set active arrival/departure runways from the runway names
@@ -434,6 +430,17 @@ export default class AirportModel {
 
         this.setArrivalRunway(arrivalRunwayModel);
         this.setDepartureRunway(departureRunwayModel);
+    }
+
+    /**
+     * Set the airport's active arrival runway
+     *
+     * @for AirportModel
+     * @method setArrivalRunway
+     * @param runwayModel {RunwayModel}
+     */
+    setArrivalRunway(runwayModel) {
+        this.arrivalRunway = runwayModel;
     }
 
     /**
@@ -471,29 +478,19 @@ export default class AirportModel {
     }
 
     /**
+     *
+     *
      * @for AirportModel
-     * @method getWind
-     * @return wind {number}
+     * @method getRunwayRelationshipForRunwayNames
+     * @param  primaryRunwayName {string}
+     * @param  comparatorRunwayName {string}
+     * @return {RunwayRelationshipModel|undefined}
      */
-    getWind = () => {
-        return this.wind;
-
-        // TODO: what does this method do and why do we need it?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = Object.assign({}, this.wind);
-        let s = 1;
-        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        // TODO: why is this var getting reassigned to a magic number?
-        s = 100;
-        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-
-        return wind;
-    };
+    getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName) {
+        return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
+    }
 
     // TODO: Implement changing winds, then bring this method back to life
-    // DEPRECATE: after `#_runwayCollection` is implemented
     /**
      * @for AirportModel
      * @method updateRunway
@@ -503,16 +500,43 @@ export default class AirportModel {
         this.runway = this._runwayCollection.findBestRunwayForWind(this.getWind);
     }
 
-    // TODO: what does this function do and why do we need it
+    // TODO: leaving this here for when we implement variable winds
+    // /**
+    //  * @for AirportModel
+    //  * @method setRunwayTimeout
+    //  */
+    // setRunwayTimeout() {
+    //     this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
+    // }
+
     /**
+     * Return the RunwayModel with the provided name
      *
      * @for AirportModel
-     * @method setRunwayTimeout
+     * @method getRunway
+     * @param name {string} name of the runway, eg '28R'
+     * @return {RunwayModel|null}
      */
-    setRunwayTimeout() {
-        this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
+    getRunway(name) {
+        return this._runwayCollection.findRunwayModelByName(name);
     }
 
+    /**
+     * Remove an aircraft for all runway queues
+     *
+     * @for AirportModel
+     * @method removeAircraftFromAllRunwayQueues
+     * @param  aircraft {AircraftInstanceModel}
+     */
+    removeAircraftFromAllRunwayQueues(aircraftId) {
+        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
+    }
+
+    /**
+     * @for AirportModel
+     * @method parseTerrain
+     * @param  data {object}
+     */
     parseTerrain(data) {
         const GEOMETRY_TYPE = {
             LINE_STRING: 'LineString',
@@ -680,28 +704,5 @@ export default class AirportModel {
      */
     getRestrictedAreas() {
         return _get(this, 'restricted_areas', null);
-    }
-
-    /**
-     * Return the RunwayModel with the provided name
-     *
-     * @for AirportModel
-     * @method getRunway
-     * @param name {string} name of the runway, eg '28R'
-     * @return {RunwayModel|null}
-     */
-    getRunway(name) {
-        return this._runwayCollection.findRunwayModelByName(name);
-    }
-
-    /**
-     * Remove an aircraft for all runway queues
-     *
-     * @for AirportModel
-     * @method removeAircraftFromAllRunwayQueues
-     * @param  aircraft {AircraftInstanceModel}
-     */
-    removeAircraftFromAllRunwayQueues(aircraftId) {
-        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
     }
 }
