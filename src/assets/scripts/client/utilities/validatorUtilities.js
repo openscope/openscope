@@ -6,7 +6,7 @@ import _isObject from 'lodash/isObject';
  * This will return true if it is not an object or it is empty
  *
  * @funtion isNotObjectOrIsEmpty
- * @param input {object}
+ * @param input {*}
  * @return {boolean}
  */
 export const isEmptyObject = (value) => {
@@ -17,7 +17,7 @@ export const isEmptyObject = (value) => {
  * This will return true if it is not an array or it is empty
  *
  * @funtion isNotObjectOrIsEmpty
- * @param input {object}
+ * @param input {*}
  * @return {boolean}
  */
 export const isEmptyOrNotArray = (value) => {
