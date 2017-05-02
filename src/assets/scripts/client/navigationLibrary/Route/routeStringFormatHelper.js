@@ -23,6 +23,16 @@ const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
 const DIRECT_SEPARATION_SYMBOL = '..';
 
 /**
+ *
+ *
+ * @property HOLD_SEGMENT_SYMBOL
+ * @type {string}
+ * @final
+ */
+const HOLD_SEGMENT_SYMBOL = '@';
+
+
+/**
  * A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
  *
  * @property MAXIMUM_PROCEDUURE_SEGMENT_LENGTH
@@ -32,7 +42,7 @@ const DIRECT_SEPARATION_SYMBOL = '..';
 const MAXIMUM_PROCEDUURE_SEGMENT_LENGTH = 3;
 
 /**
- *
+ * Encapsulation of a regex used to determine if spaces exist within a string
  *
  * @function _hasSpaces
  * @param {string} str
@@ -41,7 +51,9 @@ const MAXIMUM_PROCEDUURE_SEGMENT_LENGTH = 3;
 const _hasSpaces = (str) => REGEX.WHITESPACE.test(str);
 
 /**
+ * Produce an array of items separated by `..`
  *
+ * Used to find the `directRouteSegments` of a `routeString`
  *
  * @function _explodeDirectRouteSegments
  * @param str {string}
@@ -50,7 +62,9 @@ const _hasSpaces = (str) => REGEX.WHITESPACE.test(str);
 const _explodeDirectRouteSegments = (str) => str.split(DIRECT_SEPARATION_SYMBOL);
 
 /**
+ * Produce an array of items separated by `.`
  *
+ * Used to find the `procedureRouteSegments` of a `routeString`
  *
  * @function _explodeProcedureRouteSegments
  * @param str {string}
@@ -64,7 +78,6 @@ const _explodeProcedureRouteSegments = (str) => str.split(PROCEDURE_SEGMENT_SEPA
  * ex:
  *   - input: "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
  *   - output: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
- *
  *
  * directRouteSegments - defined as the string segments between `..` portions of a route string
  * procedureRouteSegments - defined as the string segments between `.` portions of a route string
@@ -123,8 +136,7 @@ export const routeStringFormatHelper = (routeString) => {
 
         for (let j = 0; j < posteriorProcedureRouteSegments.length; j++) {
             // use the last fixname from the previous procedure and combine it with the posteriorProcedureRouteSegments
-            routeStringSection = `${nextProcedureRouteSegment}.` +
-                `${posteriorProcedureRouteSegments[j].join(PROCEDURE_SEGMENT_SEPARATION_SYMBOL)}`;
+            routeStringSection = `${nextProcedureRouteSegment}.${posteriorProcedureRouteSegments[j].join(PROCEDURE_SEGMENT_SEPARATION_SYMBOL)}`;
             nextProcedureRouteSegment = _last(posteriorProcedureRouteSegments[j]);
 
             formattedRoute.push(routeStringSection);
@@ -133,3 +145,12 @@ export const routeStringFormatHelper = (routeString) => {
 
     return formattedRoute;
 };
+
+/**
+ *
+ *
+ * @function extractFixnameFromHoldSegment
+ * @param  {[type]}                      holdSegment [description]
+ * @return {[type]}                                  [description]
+ */
+export const extractFixnameFromHoldSegment = (holdSegment) => holdSegment.split(HOLD_SEGMENT_SYMBOL)[1];

@@ -18,6 +18,8 @@
         "angle": 250,
         "speed": 5
     },
+    "arrivalRunway": "25L",
+    "departureRunway": "25L",
     "fixes": {
         "ABBEY": ["N22d16m11.00", "E114d55m25.92"],
         "ALAPI": ["N22d09m52.88", "E114d12m13.09"],

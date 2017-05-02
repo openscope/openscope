@@ -32,8 +32,8 @@ const prop = {};
 // imported as needed in each file.
 require('./util');
 
-// saved as this.prop.version and this.prop.version_string
-const VERSION = [4, 1, 2];
+// Used to display the version number in the console
+const VERSION = '5.2.0-BETA';
 
 // are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
@@ -80,7 +80,6 @@ export default class App {
         this.prop.complete = false;
         this.prop.temp = 'nothing here';
         this.prop.version = VERSION;
-        this.prop.version_string = `v${VERSION.join('.')}`;
         this.prop.time = {};
         this.prop.time.start = time();
         this.prop.time.frames = 0;
@@ -112,11 +111,11 @@ export default class App {
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
         // This is provides a way to get async data from several sources in the app before anything else runs
-        // FIXME: this is wrong. move this and make it less bad!
+        // TODO: this is wrong. move this and make it less bad!
         $.when(
-            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
-            $.ajax('assets/airlines/airlines.json'),
-            $.ajax('assets/aircraft/aircraft.json')
+            $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+            $.getJSON('assets/airlines/airlines.json'),
+            $.getJSON('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 this.setupChildren(
@@ -151,30 +150,34 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
-        // FIXME: this entire method needs to be re-written. this is a temporary implemenation used to
+        // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
+        // IMPORTANT:
+        // The order in which the following classes are instantiated is extremely important. Changing
+        // this order could break a lot of things. This interdependency is something we should
+        // work on reducing in the future.
+
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
-        // FIXME: Temporary
+        // TODO: Temporary
         window.gameController = this.gameController;
 
-        this.navigationLibrary = new NavigationLibrary(initialAirportData);
-        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
-        // FIXME: Temporary
+        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
+        // TODO: Temporary
         window.airportController = this.airportController;
 
+        this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
-        // FIXME: Temporary
+        // TODO: Temporary
         window.aircraftController = this.aircraftController;
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
-
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);
@@ -204,7 +207,7 @@ export default class App {
         window.uiController = this.uiController;
         // window.canvasController = this.canvasController;
 
-        log(`Version ${this.prop.version_string}`);
+        console.info(`openScope Air Traffic Control Simulator, Version v${this.prop.version}`);
 
         return this.init_pre()
                    .init()
@@ -469,7 +472,7 @@ export default class App {
         this.updateViewControls();
     };
 
-    // FIXME: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
+    // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
     // due to jQuery and because this does not belong in the `AirportModel`
     /**
      * Update visibility of icons at the bottom of the view that allow toggling of

@@ -1,3 +1,4 @@
+import _isNil from 'lodash/isNil';
 import { distanceToPoint } from '../math/circle';
 import { REGEX } from '../constants/globalConstants';
 
@@ -8,47 +9,49 @@ import { REGEX } from '../constants/globalConstants';
  */
 export const hasCardinalDirectionInCoordinate = (coordinate) => REGEX.COMPASS_DIRECTION.test(coordinate);
 
+// TODO: Are these two functions really needed to be separate?
 /**
  * @function calculateDistanceToPointForX
- * @param referencePostion {PositionModel}
+ * @param referencePosition {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return x {number}
  */
-export const calculateDistanceToPointForX = (referencePostion, latitude, longitude) => {
+export const calculateDistanceToPointForX = (referencePosition, latitude, longitude) => {
     let x = distanceToPoint(
-        referencePostion.latitude,
-        referencePostion.longitude,
+        referencePosition.latitude,
+        referencePosition.longitude,
         latitude,
         longitude
     );
 
-    if (referencePostion.longitude > longitude) {
+    if (referencePosition.longitude > longitude) {
         x *= -1;
     }
 
     return x;
 };
 
+// TODO: Are these two functions really needed to be separate?
 /**
  *
  *
  * @function calculateDistanceToPointForY
- * @param referencePostion {PositionModel}
+ * @param referencePosition {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return y {number}
  */
-export const calculateDistanceToPointForY = (referencePostion, latitude, longitude) => {
+export const calculateDistanceToPointForY = (referencePosition, latitude, longitude) => {
     let y = distanceToPoint(
-        referencePostion.latitude,
-        referencePostion.longitude,
+        referencePosition.latitude,
+        referencePosition.longitude,
         latitude,
         longitude
     );
 
 
-    if (referencePostion.latitude > latitude) {
+    if (referencePosition.latitude > latitude) {
         y *= -1;
     }
 
@@ -65,9 +68,8 @@ export const calculateDistanceToPointForY = (referencePostion, latitude, longitu
  * @return {object}
  */
 export const adjustForMagneticNorth = (originalX, originalY, magneticNorth) => {
-    let t = Math.atan2(originalY, originalX) + magneticNorth;
+    const t = Math.atan2(originalY, originalX) + magneticNorth;
     const r = Math.sqrt((originalX * originalX) + (originalY * originalY));
-
 
     const x = r * Math.cos(t);
     const y = r * Math.sin(t);
@@ -76,4 +78,35 @@ export const adjustForMagneticNorth = (originalX, originalY, magneticNorth) => {
         x,
         y
     };
+};
+
+/**
+ * Returns whether provided GPS coordinate pair is valid
+ *
+ * @function isValidGpsCoordinatePair
+ * @param  gpsCoordinates {array<number>} in the shape of [latitude, longitude]
+ * @return {Boolean}
+ */
+export const isValidGpsCoordinatePair = (gpsCoordinates) => {
+    const hasContent = !_isNil(gpsCoordinates);
+    const hasTwoOrThreeElements = gpsCoordinates.length === 2 || gpsCoordinates.length === 3;
+    const firstTwoElementsHaveSameType = typeof gpsCoordinates[0] === typeof gpsCoordinates[1];
+
+    if (!hasContent || !hasTwoOrThreeElements || !firstTwoElementsHaveSameType) {
+        return false;
+    }
+
+    const latitude = gpsCoordinates[0];
+    const longitude = gpsCoordinates[1];
+
+    if (typeof latitude === 'number') {
+        return true;
+    } else if (typeof latitude === 'string') {
+        const latFirstCharIsNorthOrSouth = ['N', 'S'].indexOf(latitude[0].toUpperCase()) !== -1;
+        const lonFirstCharIsEastOrWest = ['E', 'W'].indexOf(longitude[0].toUpperCase()) !== -1;
+
+        return latFirstCharIsNorthOrSouth && lonFirstCharIsEastOrWest;
+    }
+
+    return false;
 };

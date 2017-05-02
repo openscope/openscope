@@ -18,6 +18,8 @@
         "angle": 25,
         "speed": 6
     },
+    "arrivalRunway": "5",
+    "departureRunway": "5",
     "fixes": {
         "LTBA": ["N40.976898", "E28.814600"],
         "NORTH": ["N41.697227", "E28.814600"],

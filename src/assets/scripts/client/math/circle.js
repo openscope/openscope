@@ -66,7 +66,7 @@ export const degrees_normalize = (degrees) => {
  */
 export const radians_normalize = (radians) => {
     if (radians >= 0) {
-      return radians % (tau());
+      return radians % tau();
     }
 
     return tau() + (radians % tau());

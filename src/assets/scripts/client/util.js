@@ -126,7 +126,7 @@ function lpad(n, width) {
     return x.substr(x.length - width, width);
 }
 
-// FIXME: unused
+// TODO: unused
 // function endsWith(str, suffix) {
 //     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 // }

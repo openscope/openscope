@@ -18,6 +18,8 @@
         "angle": 320,
         "speed": 4
     },
+    "arrivalRunway": "36",
+    "departureRunway": "36",
     "airspace": [
         {
             "floor": 20,
@@ -785,7 +787,7 @@
         {
             "origin": "",
             "destination": "same",
-            "category": "departure",
+            "category": "arrival",
             "route": "JUA.BRA1.SAME",
             "altitude": 35000,
             "speed": 300,
@@ -801,7 +803,7 @@
         {
             "origin": "",
             "destination": "same",
-            "category": "departure",
+            "category": "arrival",
             "route": "SOLER.SAL1.SAME",
             "altitude": [30000, 40000],
             "speed": 300,

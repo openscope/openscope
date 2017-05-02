@@ -1,19 +1,14 @@
 import $ from 'jquery';
+import _isString from 'lodash/isString';
+import _round from 'lodash/round';
+import _uniqueId from 'lodash/uniqueId';
 import { round } from '../math/core';
 import {
     FLIGHT_CATEGORY,
-    FLIGHT_MODES,
+    FLIGHT_PHASE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
-
-/**
- * unique id for each AircraftStripView instance
- *
- * @property ID
- * @type {number}
- */
-let ID = 0;
 
 /**
  * Root html element
@@ -45,9 +40,9 @@ export default class AircraftStripView {
      *                           from the `AircraftInstanceModel`
      * @param aircraftInstanceModel {AircraftInstanceModel}
      */
-    constructor(callsign = '', aircraftInstanceModel) {
+    constructor(aircraftInstanceModel) {
         // TODO: change to use lodash _uniqueId
-        this._id = ID++;
+        this._id = _uniqueId('aircraftStripView-');
 
         this.$element = null;
         this.$callsign = null;
@@ -58,17 +53,17 @@ export default class AircraftStripView {
         this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
-        this.callsign = callsign;
+        this.callsign = aircraftInstanceModel.callsign;
         this.icao = aircraftInstanceModel.model.icao;
         this.destination = aircraftInstanceModel.destination;
         this.weightclass = aircraftInstanceModel.model.weightclass;
         this.category = aircraftInstanceModel.category;
-        this.flightPlan = aircraftInstanceModel.fms.fp.route.join(' ');
+        this.flightPlan = aircraftInstanceModel.fms.flightPlanRoute;
 
         return this._init()
                     .setupHandlers(aircraftInstanceModel)
                     .layout()
-                    .redraw()
+                    .redraw();
     }
 
     /**
@@ -103,7 +98,6 @@ export default class AircraftStripView {
      * @method layout
      */
     layout() {
-        // TODO: some of the static HTML here could be moved to template constants
         this.$element.append(this.$callsign);
         this.$element.append(this.$heading);
         this.$element.append(this.$altitude);
@@ -112,8 +106,8 @@ export default class AircraftStripView {
         this.$element.append(this.$speed);
         this.$element.addClass(this.findClassnameForFlightCateogry());
         // TODO: this doesnt appear to be doing what the below comment says it should be doing
-        // show fp route on hover
-        this.$element.prop('title', this.flightPlan);
+        // set the title property to the flightPlan so it shows on hover
+        // this.$element.prop('title', this.flightPlan);
 
         return this;
     }
@@ -189,12 +183,16 @@ export default class AircraftStripView {
      * @return aircraftIcao {string}
      */
     buildIcaoWithWeightClass() {
+        const HEAVY_LETTER = 'H';
+        const SUPER_LETTER = 'U';
+
         let aircraftIcao = this.icao;
 
-        // TODO: indexOf is goofy here, this can be simplified
         // Bottom Line Data
-        if (['H', 'U'].indexOf(this.weightclass) > -1) {
-            aircraftIcao = `H/${this.icao}`;
+        if (this.weightclass.indexOf(HEAVY_LETTER) !== -1) {
+            aircraftIcao = `${HEAVY_LETTER}/${this.icao}`;
+        } else if (this.weightclass.indexOf(SUPER_LETTER) !== -1) {
+            aircraftIcao = `${SUPER_LETTER}/${this.icao}`;
         }
 
         return aircraftIcao.toUpperCase();
@@ -251,18 +249,24 @@ export default class AircraftStripView {
     /**
      * @for AircraftStripView
      * @method updateAircraftTelemetryText
-     * @param headingText {string}
-     * @param altitudeText {string}
-     * @param destinationText {string}
-     * @param currentSpeedText {string}
+     * @param heading {string}
+     * @param altitude {string}
+     * @param destination {string}
+     * @param speed {string}
      */
-    updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText) {
-        // FIXME: the `Math.ceil` calls here are temporary and should be removed. this is
-        // masking a larger problem but is being used as a quick fix
-        this.$heading.text(headingText.toUpperCase());
-        this.$altitude.text(Math.ceil(altitudeText));
-        this.$destination.text(destinationText.toUpperCase());
-        this.$speed.text(Math.ceil(currentSpeedText));
+    updateAircraftTelemetryText(heading, altitude, destination, speed) {
+        const altitudeDisplay = altitude !== -1
+            ? _round(altitude, -2)
+            : '-';
+
+        const speedDisplay = speed !== -1
+            ? _round(speed, 0)
+            : '-';
+
+        this.$altitude.text(altitudeDisplay);
+        this.$destination.text(destination.toUpperCase());
+        this.$heading.text(heading.toUpperCase());
+        this.$speed.text(speedDisplay);
     }
 
     /**
@@ -270,21 +274,14 @@ export default class AircraftStripView {
      * @method updateViewForApron
      * @param destinationText {string}
      * @param hasAltitude {boolean}
-     * @param isFollowingSID {boolean}
      */
-    updateViewForApron(destinationText, hasAltitude, isFollowingSID) {
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+    updateViewForApron(destinationText, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.APRON);
+        this.$heading.text(FLIGHT_PHASE.APRON);
+        this.$destination.text(destinationText.toUpperCase());
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-
-        if (isFollowingSID) {
-            // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText.toUpperCase());
-            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
     }
 
@@ -293,25 +290,18 @@ export default class AircraftStripView {
      * @method updateViewForTaxi
      * @param destinationText {string}
      * @param hasAltitude {boolean}
-     * @param isFollowingSID {boolean}
      * @param altitudeText {string}
      */
-    updateViewForTaxi(destinationText, hasAltitude, isFollowingSID, altitudeText) {
-        // TODO: abstract FROM HERE
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+    updateViewForTaxi(destinationText, hasAltitude, altitudeText) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.TAXI);
+        this.$heading.text(FLIGHT_PHASE.TAXI);
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$destination.text(destinationText.toUpperCase());
+        this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
-
-        if (isFollowingSID) {
-            // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText.toUpperCase());
-            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-        // TODO: abstract TO HERE
 
         if (altitudeText) {
             this.$altitude.text(altitudeText);
@@ -322,22 +312,21 @@ export default class AircraftStripView {
      * @for AircraftStripView
      * @method updateViewForWaiting
      * @param destinationText {string}
+     * @param hasClearance {boolean}
      * @param hasAltitude {boolean}
-     * @param isFollowingSID {boolean}
      */
-    updateViewForWaiting(destinationText, hasAltitude, isFollowingSID) {
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+    updateViewForWaiting(destinationText, hasClearance, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.WAITING);
+        this.$heading.text(FLIGHT_PHASE.WAITING);
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$destination.text(destinationText.toUpperCase());
+
+        if (hasClearance) {
+            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
 
         if (hasAltitude) {
             this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-
-        if (isFollowingSID) {
-            // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText.toUpperCase());
-            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
     }
 
@@ -346,10 +335,10 @@ export default class AircraftStripView {
      * @method updateTakeOffView
      * @param destinationText {string}
      */
-    updateViewForTakeoff(destinationText, isFollowingSID) {
-        this.$heading.text(FLIGHT_MODES.TAKEOFF);
+    updateViewForTakeoff(destinationText) {
+        this.$heading.text(FLIGHT_PHASE.TAKEOFF);
 
-        if (isFollowingSID) {
+        if (_isString(destinationText)) {
             this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
         }
@@ -373,6 +362,7 @@ export default class AircraftStripView {
         this.$destination.text(destinationText.toUpperCase());
     }
 
+    // TODO: remove this switch and split up to be inline with `aircraft.flightPhase`
     /**
      * @for AircraftStripView
      * @method updateViewForCruise
@@ -391,20 +381,26 @@ export default class AircraftStripView {
         isFollowingSTAR = false,
         fixRestrictions = {}
     ) {
+
+        if (destinationText === null) {
+            console.warn('Failed to update flight strip destination!');
+            return;
+        }
+
         switch (navMode) {
             case WAYPOINT_NAV_MODE.FIX:
                 this.$heading.text(headingText);
+                this.$destination.text(destinationText.toUpperCase());
 
                 if (isFollowingSID) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
-                    this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                     this.$destination.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                    this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                     this.$speed.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                 }
 
                 if (isFollowingSTAR) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
-                    this.$destination.text(destinationText.toUpperCase());
                     this.$destination.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
 
                     if (fixRestrictions.altitude) {
@@ -425,10 +421,11 @@ export default class AircraftStripView {
                 // attempting ILS intercept
                 this.$heading.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$heading.text(headingText.toUpperCase());
-                this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
-                this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$destination.text(destinationText.toUpperCase());
+                this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+
                 break;
             default:
                 break;
@@ -454,8 +451,10 @@ export default class AircraftStripView {
      * @param  event {jquery event}
      */
     onDoubleClickHandler = (event) => {
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
+        const { positionModel } = event.data;
+
+        prop.canvas.panX = 0 - round(window.uiController.km_to_px(positionModel.relativePosition[0]));
+        prop.canvas.panY = round(window.uiController.km_to_px(positionModel.relativePosition[1]));
         prop.canvas.dirty = true;
     };
 }

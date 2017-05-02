@@ -18,6 +18,8 @@
         "angle": 310,
         "speed": 5
     },
+    "arrivalRunway": "28L",
+    "departureRunway": "28R",
     "fixes": {
         "_FAITH085033": ["N37d19.07m0", "W121d10.80m0"],
         "_MOVDD038018": ["N37d50.88m0", "W121d09.11m0"],
@@ -235,6 +237,12 @@
                 "GEEHH": [["GEEHH", "A240+|S280"], ["BGGLO", "A190+|S280"]]
             },
             "body": [["LOZIT", "A160-|S280"], ["BDEGA", "A130-"], ["CORKK", "A110|S250"], "BRIXX"],
+            "rwy": {
+                "10L": [],
+                "10R": [],
+                "28L": [],
+                "28R": []
+            },
             "draw": [["DEEAN*","LOZIT"], ["QUINN*","BGGLO","LOZIT"], ["JONNE*","BGGLO","LOZIT"], ["MSCAT*","BGGLO","LOZIT"], ["GEEHH*","BGGLO","LOZIT"], ["LOZIT","BDEGA","CORKK","BRIXX"]]
         },
         "BSR2": {
@@ -244,6 +252,12 @@
                 "BSR": ["BSR"]
             },
             "body": ["CARME", "ANJEE", ["SKUNK", "A120-|S280"], ["BOLDR", "A100|S250"], "MENLO"],
+            "rwy": {
+                "10L": [],
+                "10R": [],
+                "28L": [],
+                "28R": []
+            },
             "draw": [["BSR*","CARME","ANJEE","SKUNK","BOLDR","MENLO"]]
         },
         "DYAMD2": {
@@ -253,6 +267,12 @@
                 "DYAMD": [["DYAMD", "A270+"]]
             },
             "body": [["LAANE", "A260-|S280"], "ALWYS", ["FLOWZ", "A190-|S280"], ["CEDES", "A120-|S250"], ["FRELY", "A80|S240"], ["ARCHI", "A70|S230"]],
+            "rwy": {
+                "10L": [],
+                "10R": [],
+                "28L": [],
+                "28R": []
+            },
             "draw": [["DYAMD*","LAANE","ALWYS","FLOWZ","CEDES","FRELY","ARCHI"]]
         },
         "PYE1": {
@@ -263,6 +283,12 @@
                 "MXW": ["MXW"]
             },
             "body": [["PYE", "A240|S280"], ["STINS", "A230|S250"], ["HADLY", "A100-|S230"], ["OSI", "A30|S210"]],
+            "rwy": {
+                "10L": [],
+                "10R": [],
+                "28L": [],
+                "28R": []
+            },
             "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
         },
         "YOSEM3": {
@@ -272,6 +298,12 @@
                 "YOSEM": ["YOSEM"]
             },
             "body": [["SNORA", "A270+|S280"], ["FRIGG", "A190-"], ["SOOIE", "A130-|S250"], ["FAITH", "A80"]],
+            "rwy": {
+                "10L": [],
+                "10R": [],
+                "28L": [],
+                "28R": []
+            },
             "draw": [["YOSEM*","SNORA","FRIGG","SOOIE","FAITH"]]
         }
     },

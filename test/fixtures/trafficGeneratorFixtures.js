@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import { navigationLibraryFixture } from './navigationLibraryFixtures';

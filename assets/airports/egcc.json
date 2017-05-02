@@ -18,7 +18,8 @@
         "angle": 160,
         "speed": 7
     },
-
+    "arrivalRunway": "23L",
+    "departureRunway": "23L",
     "fixes": {
         "12MCT":    ["N53d22m13.000", "W002d16m50.000"],
         "AMLET":    ["N53d16m07.000", "W001d50m18.000"],

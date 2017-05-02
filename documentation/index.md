@@ -1,30 +1,3 @@
----
-title: Index
----
-
-# Welcome to the ATC Documentation.
-
-## Pages
-
-* [Airport format](airport-format.html)
-* [Airline format](airline-format.html)
-* [Aircraft separation](aircraft-separation.html)
-* [Scoring](scoring.html)
-* [Documentation format](README.html)
-
-## Background
-
-ATC stands for Air Traffic Controller, which is the role you take in this simulator.
-
-> Air traffic control (ATC) is a service provided by ground-based
-controllers who direct aircraft on the ground and through controlled
-airspace, and can provide advisory services to aircraft in non-controlled
-airspace. The primary purpose of ATC worldwide is to prevent collisions,
-organize and expedite the flow of traffic, and provide information and
-other support for pilots. - [Wikipedia](https://en.wikipedia.org/wiki/Air_traffic_control)
-
----
-
 ## Command Reference
 
 Although the tutorial gives a large amount of information, if you find
@@ -224,15 +197,11 @@ print out above the command bar.
 
 _Syntax -_ `AAL123 sr`
 
-### Fix
-_Aliases -_ `f` / `fix` / `track`
+### ~~Fix~~
+~~_Aliases -_ `f` / `fix` / `track`~~
 
-_Information -_ This command instructs the aircraft to fly direct to a fix
-or list of fixes before proceeding to the next point on their currently
-assigned route. This method is neither realistic nor preferred, thus, you
-should probably use the more powerful `route` or `rr` commands.
-
-_Syntax -_ `AAL123 f [fixname]`
+~~_Syntax -_ `AAL123 f [fixname]`~~
+*_This command has been deprecated_*
 
 ### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`

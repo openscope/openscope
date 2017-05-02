@@ -18,6 +18,8 @@
         "angle": 350,
         "speed": 7
     },
+    "arrivalRunway": "1R",
+    "departureRunway": "30",
     "airspace": [
         {
             "floor": 0,
@@ -913,7 +915,7 @@
             "airlines": [
                 ["eny", 10],
                 ["aal", 9],
-                ["flg", 9],
+                ["edv", 9],
                 ["vrd", 4]
             ]
         },

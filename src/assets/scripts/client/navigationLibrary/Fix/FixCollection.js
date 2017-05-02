@@ -24,7 +24,7 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method addItems
      * @param fixList {object}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      */
     addItems(fixList, referencePosition) {
         if (this.length !== 0) {
@@ -74,6 +74,10 @@ class FixCollection extends BaseCollection {
      * @return {FixModel|null}
      */
     findFixByName(fixName) {
+        if (!fixName) {
+            return null;
+        }
+
         const fixModel = _find(this._items, { name: fixName.toUpperCase() });
 
         // if a fix is not found, _find() returns `undefined` so we specifically return null here if a fix is not found
@@ -82,11 +86,11 @@ class FixCollection extends BaseCollection {
 
     /**
      * @for FixCollection
-     * @method getFixPositionCoordinates
+     * @method getFixRelativePosition
      * @param fixName {string}
      * @return {array<number>}
      */
-    getFixPositionCoordinates(fixName) {
+    getFixRelativePosition(fixName) {
         const fixModel = this.findFixByName(fixName);
 
         if (!fixModel) {
@@ -94,7 +98,7 @@ class FixCollection extends BaseCollection {
             return null;
         }
 
-        return fixModel.position
+        return fixModel.relativePosition;
     }
 
     /**
@@ -121,7 +125,7 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method _buildFixModelsFromList
      * @param fixList {object}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      * @private
      */
     _buildFixModelsFromList(fixList, referencePosition) {

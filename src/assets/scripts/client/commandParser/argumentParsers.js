@@ -1,3 +1,4 @@
+import _defaultTo from 'lodash/defaultTo';
 import { isValidDirectionString } from './argumentValidators';
 import {
     convertToThousands,
@@ -127,6 +128,7 @@ export const findHoldCommandByType = (type, args) => {
                     continue;
                 }
 
+                // make sure we return only `left` or `right`
                 return directionNormalizer(arg);
             case HOLD_COMMAND_ARG_NAMES.LEG_LENGTH:
                 if (!isLegLengthArg(arg)) {
@@ -160,8 +162,36 @@ export const findHoldCommandByType = (type, args) => {
 export const holdParser = (args) => {
     // existing api is expeting undefined values to be exactly null
     const fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
-    const turnDirection = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args);
-    const legLength = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args);
+    const turnDirection = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args),
+        'right'
+    );
+    const legLength = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
+        '1min'
+    );
 
     return [turnDirection, legLength, fixName];
+};
+
+/**
+ * the `timewarp` command needs to be able to provide a default value,
+ * this parser allows us to do that.
+ *
+ * @method timewarpParser
+ * @param  {array|undefined} [args=[]]
+ * @return {array<number>}
+ */
+export const timewarpParser = (args = []) => {
+    const defaultTimewarpValue = 1;
+
+    if (args.length === 0) {
+        return [defaultTimewarpValue];
+    }
+
+    // calling method is expecting an array with values that will get spread later, thus we purposly
+    // return an array here
+    return [
+        convertStringToNumber(args[0])
+    ];
 };
