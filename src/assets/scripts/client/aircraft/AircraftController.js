@@ -12,12 +12,14 @@ import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
+import { tau } from '../math/circle';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
