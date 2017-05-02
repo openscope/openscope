@@ -1,7 +1,7 @@
 ## 5.2.0 (June 1, 2017)
 ---
 ### Features
-
+- Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
 
 
 
