@@ -40,7 +40,7 @@ ava('.isEmptyOrNotArray returns true when passed an empty object', (t) => {
     t.true(isEmptyOrNotArray(null));
 });
 
-ava('.isEmptyOrNotArray return false when passed an array with arguments', (t) => {
+ava('.isEmptyOrNotArray return false when passed an array with values', (t) => {
     t.false(isEmptyOrNotArray([1, 2, 3]));
 });
 
