@@ -1,6 +1,5 @@
 /* eslint-disable max-len, no-undef */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -12,9 +11,19 @@ import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
-import { tau, radians_normalize, angle_offset } from '../math/circle';
-import { abs, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
-import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
+import { radians_normalize, angle_offset } from '../math/circle';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance,
+    calculateCrosswindAngle
+} from '../math/flightMath';
+import {
+    abs,
+    cos,
+    extrapolate_range_clamp,
+    sin,
+    spread
+} from '../math/core';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -35,9 +44,7 @@ import {
 import {
     degreesToRadians,
     heading_to_string,
-    km,
-    nm,
-    UNIT_CONVERSION_CONSTANTS
+    nm
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
@@ -45,7 +52,10 @@ import {
     PERFORMANCE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
-import { AIRPORT_CONSTANTS, AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
+import {
+    AIRPORT_CONSTANTS,
+    AIRPORT_CONTROL_POSITION_NAME
+} from '../constants/airportConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
@@ -655,7 +665,7 @@ export default class AircraftInstanceModel {
         const airport = window.airportController.airport_get();
         const wind = airport.wind;
         const runway = this.fms.currentRunway;
-        const angle =  abs(angle_offset(runway.angle, wind.angle));
+        const angle = runway.calculateCrosswindAngleForRunway(wind.angle);
 
         // TODO: these two bits of math should be abstracted to helper functions
         windForRunway.cross = sin(angle) * wind.speed;

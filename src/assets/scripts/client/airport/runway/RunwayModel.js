@@ -1,8 +1,16 @@
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
-import { abs, tan } from '../../math/core';
-import { km, km_ft, degreesToRadians } from '../../utilities/unitConverters';
+import {
+    abs,
+    tan
+} from '../../math/core';
+import { calculateCrosswindAngle } from '../../math/flightMath';
+import {
+    km,
+    km_ft,
+    degreesToRadians
+} from '../../utilities/unitConverters';
 
 /**
  *
@@ -288,5 +296,17 @@ export default class RunwayModel extends BaseModel {
      */
     getAircraftQueuePosition(aircraftId) {
         return this.queue.indexOf(aircraftId);
+    }
+
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method calculateCrosswindAngleForRunway
+     * @param windAngle {number}
+     * @return {number}  in radians
+     */
+    calculateCrosswindAngleForRunway(windAngle) {
+        return calculateCrosswindAngle(this.angle, windAngle);
     }
 }
