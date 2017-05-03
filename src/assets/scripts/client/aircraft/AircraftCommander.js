@@ -504,7 +504,7 @@ export default class AircraftCommander {
         // FIXME: update some of this queue logic to live in the RunwayModel
         const airport = this._airportController.airport_get();
         const runway = aircraft.fms.departureRunwayModel;
-        const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
+        const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
         const wind = airport.getWind();

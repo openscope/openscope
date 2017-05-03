@@ -304,13 +304,21 @@ They're used when we need aircraft to fly over a location that doesn't have an a
             ["N36d4m34.82", "W115d10m16.98", "2179ft"],
             ["N36d4m35.05", "W115d7m15.93", "2033ft"]
         ],
-        "ils": [false, true]
+        "ils": [false, true],
+        "ils_distance":[30, 25],
+        "loc_maxDist": [28, 20],
+        "glideslope": [3.00, 2.50]
     }
 ],
 ```
 - **name** - Name of each runway in the pair.  Names should reflect a 180 degree difference. so if one end if `"Runway 9"` (or `"Runway 09"`, depending on the country) the other runway should be `"Runway 27"`.
 - **end** - Latitude, Longitude, and Elevation of the runway threshold (the spot where the numbers would be painted). _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 - **ils** - Boolean property used to indicate if a runway has an ILS approach
+- **ils_distance** - Distance the ILS extends away from the runway
+- **glideslope** - Descent angle of the ILS glideslope
+- **loc_maxDist** -
+- **ils_gs_maxHeight** - _not found in any airport file_
+- **sepFromAdjacent** - _not found in any airport file_
 
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
@@ -325,7 +333,7 @@ Runways are defined in pairs because a runway can be used from either direction.
     "ils": false
 }
 
-// Runway 07R
+// Runway 25R
 {
     "name": "25R",
     "end": [

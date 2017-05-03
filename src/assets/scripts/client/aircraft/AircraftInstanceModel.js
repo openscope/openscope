@@ -622,9 +622,8 @@ export default class AircraftInstanceModel {
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
             const runway = this.fms.departureRunwayModel;
-            const nextInRunwayQueue = runway.isAircraftNextInQueue(this.id);
 
-            return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
+            return this.flightPhase === FLIGHT_PHASE.WAITING && runway.isAircraftNextInQueue(this.id);
         }
 
         return true;
