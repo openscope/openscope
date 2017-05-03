@@ -1,25 +1,20 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
-import { tau } from '../math/circle';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
