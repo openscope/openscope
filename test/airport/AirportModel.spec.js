@@ -42,21 +42,21 @@ ava('.getActiveRunwayForCategory() returns the correct RunwayModel for departure
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.DEPARTURE);
 
-    t.true(result.name === model.departureRunway.name);
+    t.true(result.name === model.departureRunwayModel.name);
 });
 
 ava('.getActiveRunwayForCategory() returns the correct RunwayModel for arrival', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.ARRIVAL);
 
-    t.true(result.name === model.arrivalRunway.name);
+    t.true(result.name === model.arrivalRunwayModel.name);
 });
 
 ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid category is passed', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getActiveRunwayForCategory('threeve');
 
-    t.true(result.name === model.arrivalRunway.name);
+    t.true(result.name === model.arrivalRunwayModel.name);
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {

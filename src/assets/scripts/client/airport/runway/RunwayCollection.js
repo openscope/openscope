@@ -26,8 +26,7 @@ export default class RunwayCollection extends BaseCollection {
 
         if (!_isArray(runwayJson)) {
             throw new TypeError(
-                'Invalid parameter passed to RunwayCollection. Expected an array ' +
-                `but found ${typeof runwayJson}`
+                `Invalid parameter passed to RunwayCollection. Expected an array but found ${typeof runwayJson}`
             );
         }
 
@@ -38,6 +37,14 @@ export default class RunwayCollection extends BaseCollection {
          * @type {array<RunwayModel>}
          * @default []
          */
+
+         /**
+          * @inherited
+          * @memberof BaseCollection
+          * @property length
+          * @type {number}
+          * @default #_items.length
+          */
 
         /**
          *
@@ -62,7 +69,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Public fascade for `#_items`
      *
      * @property runways
      * @return {array<RunwayModel>}
@@ -152,8 +159,6 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
-     *
      * @for RunwayCollection
      * @method findRunwayModelByName
      * @param
@@ -164,8 +169,6 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
-     *
      * @for RunwayCollection
      * @method getRunwayRelationshipForRunwayNames
      * @param  primaryRunwayName {string}
@@ -195,8 +198,6 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
-     *
      * @for RunwayCollection
      * @method _buildRunwayModels
      * @param runwayJson {array<object>}
@@ -209,8 +210,6 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
-     *
      * @for RunwayCollection
      * @method _addRunwayToCollection
      * @param runwayModel {RunwayModel}
@@ -249,15 +248,12 @@ export default class RunwayCollection extends BaseCollection {
         for (let i = 0; i < this.length; i++) {
             const comparatorRunway = this._items[i];
 
-            if (runwayModel.name === comparatorRunway.name) {
-                // eslint-disable-next-line no-continue
-                continue;
+            if (runwayModel.name !== comparatorRunway.name) {
+                this._runwayRelationships[runwayModel.name][comparatorRunway.name] = new RunwayRelationshipModel(
+                    runwayModel,
+                    comparatorRunway
+                );
             }
-
-            this._runwayRelationships[runwayModel.name][comparatorRunway.name] = new RunwayRelationshipModel(
-                runwayModel,
-                comparatorRunway
-            );
         }
     }
 }

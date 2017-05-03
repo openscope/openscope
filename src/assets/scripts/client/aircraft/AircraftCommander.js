@@ -352,7 +352,7 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const departureRunway = aircraft.fms.departureRunway;
+        const departureRunway = aircraft.fms.departureRunwayModel;
         const { icao: airportIcao } = this._airportController.airport_get();
         const response = aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
 
@@ -374,7 +374,7 @@ export default class AircraftCommander {
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
-        const arrivalRunway = aircraft.fms.arrivalRunway;
+        const arrivalRunway = aircraft.fms.arrivalRunwayModel;
         const { name: airportName } = this._airportController.airport_get();
 
         return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
@@ -448,7 +448,7 @@ export default class AircraftCommander {
         // Set the runway to taxi to
         if (!taxiDestination) {
             const airport = this._airportController.airport_get();
-            taxiDestination = airport.departureRunway.name;
+            taxiDestination = airport.departureRunwayModel.name;
         }
 
         const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
@@ -460,7 +460,7 @@ export default class AircraftCommander {
         const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.fms.departureRunway = runway;
+        aircraft.fms.departureRunwayModel = runway;
         aircraft.taxi_start = this._gameController.game_time();
 
         runway.addAircraftToQueue(aircraft.id);
@@ -487,10 +487,10 @@ export default class AircraftCommander {
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
 
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway.name}`);
+        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunwayModel.name}`);
         speech_say([
             { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway.name)}` }
+            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunwayModel.name)}` }
         ]);
     }
 
@@ -503,7 +503,7 @@ export default class AircraftCommander {
     runTakeoff(aircraft) {
         // FIXME: update some of this queue logic to live in the RunwayModel
         const airport = this._airportController.airport_get();
-        const runway = aircraft.fms.departureRunway;
+        const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];

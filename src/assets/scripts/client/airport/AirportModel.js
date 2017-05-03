@@ -1,4 +1,4 @@
-/* eslint-disable func-names, camelcase, max-len, object-shorthand */
+/* eslint-disable max-len */
 import _ceil from 'lodash/ceil';
 import _chunk from 'lodash/chunk';
 import _forEach from 'lodash/forEach';
@@ -8,11 +8,10 @@ import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayCollection from './runway/RunwayCollection';
-import RunwayModel from './runway/RunwayModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, sin, extrapolate_range_clamp } from '../math/core';
+import { round } from '../math/core';
 import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
     FLIGHT_CATEGORY,
@@ -25,8 +24,6 @@ const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
 
 /**
- *
- *
  * @class AirportModel
  */
 export default class AirportModel {
@@ -49,8 +46,8 @@ export default class AirportModel {
 
         // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
-        this.arrivalRunway = null;
-        this.departureRunway = null;
+        this.arrivalRunwayModel = null;
+        this.departureRunwayModel = null;
         this.loaded = false;
         this.loading = false;
         this.name = null;
@@ -62,6 +59,7 @@ export default class AirportModel {
         // this.runways = [];
         this._runwayCollection = null;
         // TODO: rename to `runwayName`
+        //
         this.runway = null;
         this.maps = {};
         this.airways = {};
@@ -70,6 +68,7 @@ export default class AirportModel {
         this.airspace = null;
         // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
         this.perimeter = null;
+
         this.timeout = {
             runway: null,
             departure: null
@@ -80,9 +79,9 @@ export default class AirportModel {
             angle: 0
         };
 
-        this.ctr_radius = 80;
-        this.ctr_ceiling = 10000;
-        this.initial_alt = 5000;
+        this.ctr_radius = DEFAULT_CTR_RADIUS_NM;
+        this.ctr_ceiling = DEFAULT_CTR_CEILING_FT;
+        this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
         this.rr_radius_nm = 0;
         this.rr_center = 0;
 
@@ -141,9 +140,14 @@ export default class AirportModel {
     }
 
     /**
+     * This will return an array of two-value arrays containing a `RunwayModel`
+     * for each end of a runway.
      *
+     * This should only be used by the `CanvasController` for drawig runways.
+     * This returns data in this shape in an effort to maintain a previous api.
      *
-     * @property _runways
+     * @property runways
+     * @return {array<array<RunwayModel>>}
      */
     get runways() {
         return _chunk(this._runwayCollection.runways, 2);
@@ -212,8 +216,8 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method setCurrentPosition
-     * @param gpsCoordinates {array<number>} [latitude, longitude]
-     * @param magneticNorth {number} magnetic declination (variation), in radians
+     * @param gpsCoordinates {array<number>}  [latitude, longitude]
+     * @param magneticNorth {number}          magnetic declination (variation), in radians
      */
     setCurrentPosition(gpsCoordinates, magneticNorth) {
         if (!isValidGpsCoordinatePair(gpsCoordinates)) {
@@ -342,15 +346,6 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method getRestrictedAreas
-     * @return {array|null}
-     */
-    getRestrictedAreas() {
-        return _get(this, 'restricted_areas', null);
-    }
-
-    /**
-     * @for AirportModel
      * @method updateCurrentWind
      * @param currentWind
      */
@@ -366,6 +361,7 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method set
+     * @param airportJson {object}
      */
     set(airportJson) {
         if (!this.loaded) {
@@ -430,7 +426,7 @@ export default class AirportModel {
      * @param runwayModel {RunwayModel}
      */
     setArrivalRunway(runwayModel) {
-        this.arrivalRunway = runwayModel;
+        this.arrivalRunwayModel = runwayModel;
     }
 
     /**
@@ -441,7 +437,7 @@ export default class AirportModel {
      * @param runwayModel {RunwayModel}
      */
     setDepartureRunway(runwayModel) {
-        this.departureRunway = runwayModel;
+        this.departureRunwayModel = runwayModel;
     }
 
     /**
@@ -454,17 +450,17 @@ export default class AirportModel {
      */
     getActiveRunwayForCategory(category) {
         if (category === FLIGHT_CATEGORY.ARRIVAL) {
-            return this.arrivalRunway;
+            return this.arrivalRunwayModel;
         }
 
         if (category === FLIGHT_CATEGORY.DEPARTURE) {
-            return this.departureRunway;
+            return this.departureRunwayModel;
         }
 
         console.warn('Did not expect a query for runway that applies to aircraft of category ' +
-            `'${category}'! Returning the arrival runway (${this.arrivalRunway.name})`);
+            `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
 
-        return this.arrivalRunway;
+        return this.arrivalRunwayModel;
     }
 
     /**

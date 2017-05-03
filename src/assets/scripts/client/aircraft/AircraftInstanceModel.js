@@ -503,7 +503,7 @@ export default class AircraftInstanceModel {
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = this.fms.arrivalRunway;
+        const runway = this.fms.arrivalRunwayModel;
 
         if (!runway) {
             return false;
@@ -621,7 +621,7 @@ export default class AircraftInstanceModel {
 
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
-            const runway = this.fms.departureRunway;
+            const runway = this.fms.departureRunwayModel;
             const nextInRunwayQueue = runway.isAircraftNextInQueue(this.id);
 
             return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
@@ -933,7 +933,7 @@ export default class AircraftInstanceModel {
      */
     updateFlightPhase() {
         const airportModel = window.airportController.airport_get();
-        const runwayModel = this.fms.departureRunway;
+        const runwayModel = this.fms.departureRunwayModel;
 
         if (this._shouldEnterHoldingPattern()) {
             this.setFlightPhase(FLIGHT_PHASE.HOLD);
@@ -1192,7 +1192,7 @@ export default class AircraftInstanceModel {
         // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
 
         // ILS SPECIFIC CODE
-        const runway = this.fms.arrivalRunway;
+        const runway = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         const distanceOnFinal_km = offset[1];
         const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinal_km);
@@ -1388,7 +1388,7 @@ export default class AircraftInstanceModel {
      * @return {number}
      */
     _calculateTargetedAltitudeDuringLanding() {
-        const runway = this.fms.arrivalRunway;
+        const runway = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         const distanceOnFinal_km = offset[1];
 
@@ -1407,7 +1407,7 @@ export default class AircraftInstanceModel {
      * @return {number}
      */
     _calculateTargetedHeadingDuringLanding() {
-        const runway = this.fms.arrivalRunway;
+        const runway = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
@@ -1429,7 +1429,7 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedSpeedDuringLanding() {
         let startSpeed = this.speed;
-        const runway  = this.fms.arrivalRunway;
+        const runway  = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 

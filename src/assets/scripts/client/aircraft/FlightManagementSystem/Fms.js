@@ -132,7 +132,7 @@ export default class Fms {
          * @property arrivalRunway
          * @type {RunwayModel}
          */
-        this.arrivalRunway = null;
+        this.arrivalRunwayModel = null;
 
         /**
         * Current flight phase of an aircraft
@@ -160,7 +160,7 @@ export default class Fms {
          * @property departureRunway
          * @type {RunwayModel}
          */
-        this.departureRunway = null;
+        this.departureRunwayModel = null;
 
         /**
          * @property _flightPhaseHistory
@@ -192,7 +192,7 @@ export default class Fms {
     }
 
     get currentRunway() {
-        return this.arrivalRunway || this.departureRunway;
+        return this.arrivalRunwayModel || this.departureRunwayModel;
     }
 
     /**
@@ -322,10 +322,10 @@ export default class Fms {
     destroy() {
         this._navigationLibrary = null;
         this._previousRouteSegments = [];
-        this.arrivalRunway = '';
+        this.arrivalRunwayModel = '';
         this.currentPhase = '';
-        this.departureRunway = null;
-        this.arrivalRunway = null;
+        this.departureRunwayModel = null;
+        this.arrivalRunwayModel = null;
         this.flightPlanAltitude = -1;
         this.legCollection = [];
     }
@@ -448,7 +448,7 @@ export default class Fms {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
 
-        this.departureRunway = runwayModel;
+        this.departureRunwayModel = runwayModel;
     }
 
     /**
@@ -462,7 +462,7 @@ export default class Fms {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
 
-        this.arrivalRunway = runwayModel;
+        this.arrivalRunwayModel = runwayModel;
     }
 
     /**
