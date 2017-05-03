@@ -1,5 +1,6 @@
 /* eslint-disable func-names, camelcase, max-len, object-shorthand */
 import _ceil from 'lodash/ceil';
+import _chunk from 'lodash/chunk';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -58,7 +59,7 @@ export default class AirportModel {
         this.radio = null;
         this.level = null;
         this._positionModel = null;
-        this.runways = [];
+        // this.runways = [];
         this._runwayCollection = null;
         // TODO: rename to `runwayName`
         this.runway = null;
@@ -140,6 +141,15 @@ export default class AirportModel {
     }
 
     /**
+     *
+     *
+     * @property _runways
+     */
+    get runways() {
+        return _chunk(this._runwayCollection.runways, 2);
+    }
+
+    /**
      * Minimum descent altitude of an instrument approach
      *
      * This is 200 feet AGL but every airport is at a different elevation
@@ -193,7 +203,6 @@ export default class AirportModel {
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
-        this.buildAirportRunways(data.runways);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
@@ -250,32 +259,6 @@ export default class AirportModel {
                 )
             )
         );
-    }
-
-    // DEPRECATE: after `#_runwayCollection` is implemented
-    /**
-     * @for AirportModel
-     * @method buildAirportRunways
-     * @param runways {array}
-     */
-    buildAirportRunways(runways) {
-        if (!runways) {
-            return;
-        }
-
-        // TODO: move this to a `RunwayCollection` class
-        _forEach(runways, (runway) => {
-            // TODO: This should not be happening here, but rather during creation of the runway's `StaticPositionModel`
-            runway.relative_position = this._positionModel;
-            runway._magneticNorth = this.magneticNorth;
-
-            // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
-
-            this.runways.push([
-                new RunwayModel(runway, 0, this),
-                new RunwayModel(runway, 1, this)
-            ]);
-        });
     }
 
     /**
@@ -357,6 +340,15 @@ export default class AirportModel {
 
             this.restricted_areas.push(obj);
         });
+    }
+
+    /**
+     * @for AirportModel
+     * @method getRestrictedAreas
+     * @return {array|null}
+     */
+    getRestrictedAreas() {
+        return _get(this, 'restricted_areas', null);
     }
 
     /**
@@ -695,14 +687,5 @@ export default class AirportModel {
 
         this.parse(response);
         this.set();
-    }
-
-    /**
-     * @for AirportModel
-     * @method getRestrictedAreas
-     * @return {array|null}
-     */
-    getRestrictedAreas() {
-        return _get(this, 'restricted_areas', null);
     }
 }

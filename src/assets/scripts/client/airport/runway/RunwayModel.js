@@ -173,12 +173,12 @@ export default class RunwayModel extends BaseModel {
                 : 0;
             const thisSide = new StaticPositionModel(
                 data.end[end],
-                this.airportPositionModel.positionModel,
+                this.airportPositionModel,
                 this.airportPositionModel.magneticNorth
             );
             const farSide = new StaticPositionModel(
                 data.end[farSideIndex],
-                this.airportPositionModel.positionModel,
+                this.airportPositionModel,
                 this.airportPositionModel.magneticNorth
             );
 
