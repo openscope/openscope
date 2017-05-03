@@ -306,22 +306,20 @@ export default class AirportModel {
         }
 
         _forEach(restrictedAreas, (area) => {
-            // TODO: what is `obj` going to be? need better name.
+            // TODO: find a better name for `obj`
             const obj = {};
+
             if (area.name) {
                 obj.name = area.name;
             }
 
             obj.height = parseElevation(area.height);
-            // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = _map(area.coordinates, (v) => {
                 return [
                     DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
                 ];
             });
 
-            // TODO: is this right? max and min are getting set to the same value?
-            // const coords = obj.coordinates;
             let coords_max = obj.coordinates[0];
             let coords_min = obj.coordinates[0];
 
@@ -470,7 +468,7 @@ export default class AirportModel {
     }
 
     /**
-     *
+     * Return a `RunwayRelationshipModel` given two runway names
      *
      * @for AirportModel
      * @method getRunwayRelationshipForRunwayNames
@@ -486,7 +484,6 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method updateRunway
-     * @deprecated
      */
     updateRunway() {
         this.runway = this._runwayCollection.findBestRunwayForWind(this.getWind);
@@ -502,7 +499,7 @@ export default class AirportModel {
     // }
 
     /**
-     * Return the RunwayModel with the provided name
+     * Return a `RunwayModel` for the provided name
      *
      * @for AirportModel
      * @method getRunway

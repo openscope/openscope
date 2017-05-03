@@ -3,6 +3,7 @@ import sinon from 'sinon';
 
 import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
 import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
+import { FLIGHT_CATEGORY } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
 const onUpdateRunStub = sinon.stub();
@@ -35,6 +36,27 @@ ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => 
     const result = model.getRunway();
 
     t.true(result === null);
+});
+
+ava('.getActiveRunwayForCategory() returns the correct RunwayModel for departure', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.DEPARTURE);
+
+    t.true(result.name === model.departureRunway.name);
+});
+
+ava('.getActiveRunwayForCategory() returns the correct RunwayModel for arrival', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.ARRIVAL);
+
+    t.true(result.name === model.arrivalRunway.name);
+});
+
+ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid category is passed', (t) => {
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const result = model.getActiveRunwayForCategory('threeve');
+
+    t.true(result.name === model.arrivalRunway.name);
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {

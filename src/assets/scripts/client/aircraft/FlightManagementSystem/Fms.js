@@ -324,7 +324,8 @@ export default class Fms {
         this._previousRouteSegments = [];
         this.arrivalRunway = '';
         this.currentPhase = '';
-        this.departureRunway = '';
+        this.departureRunway = null;
+        this.arrivalRunway = null;
         this.flightPlanAltitude = -1;
         this.legCollection = [];
     }
