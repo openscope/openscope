@@ -78,6 +78,14 @@ ava('.isAircraftNextInQueue() returns true only when an aircraftId is at index 0
     t.false(model.isAircraftNextInQueue('threeve'));
 });
 
+ava('.isOnApproachCourse()', (t) => {
+
+});
+
+ava('.isOnCorrectApproachHeading()', (t) => {
+
+});
+
 ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given runway based on a given windAngle', (t) => {
     const windAngleMock = 3.839724354387525;
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);

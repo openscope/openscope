@@ -5,12 +5,18 @@ import {
     abs,
     tan
 } from '../../math/core';
-import { calculateCrosswindAngle } from '../../math/flightMath';
+import { angle_offset } from '../../math/circle';
+import {
+    calculateCrosswindAngle,
+    getOffset
+} from '../../math/flightMath';
 import {
     km,
     km_ft,
+    nm,
     degreesToRadians
 } from '../../utilities/unitConverters';
+import { PERFORMANCE } from '../../constants/aircraftConstants';
 
 /**
  *
@@ -308,5 +314,33 @@ export default class RunwayModel extends BaseModel {
      */
     calculateCrosswindAngleForRunway(windAngle) {
         return calculateCrosswindAngle(this.angle, windAngle);
+    }
+
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method isOnApproachCourse
+     * @return {boolean}
+     */
+    isOnApproachCourse(aircraftModel) {
+        const approachOffset = getOffset(aircraftModel, this.relativePosition, this.angle);
+        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
+
+        return lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+    }
+
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method isOnCorrectApproachHeading
+     * @param  aircraftheading {number}
+     * @return {boolean}
+     */
+    isOnCorrectApproachHeading(aircraftheading) {
+        const heading_diff = abs(angle_offset(aircraftheading, this.angle));
+
+        return heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
     }
 }

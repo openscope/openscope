@@ -14,8 +14,7 @@ import { speech_say } from '../speech';
 import { radians_normalize, angle_offset } from '../math/circle';
 import {
     getOffset,
-    calculateTurnInitiaionDistance,
-    calculateCrosswindAngle
+    calculateTurnInitiaionDistance
 } from '../math/flightMath';
 import {
     abs,
@@ -513,21 +512,15 @@ export default class AircraftInstanceModel {
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = this.fms.arrivalRunwayModel;
+        const runwayModel = this.fms.arrivalRunwayModel;
 
-        if (!runway) {
+        if (!runwayModel) {
             return false;
         }
 
-        const runwayHeading = runway.angle;
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
-        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
 
-        return onApproachCourse && onCorrectHeading;
-
+        // FIXME: can the below be removed?
         // const courseDatum = this.mcp.nav1Datum;
         // const course = this.mcp.course;
         // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
@@ -568,8 +561,7 @@ export default class AircraftInstanceModel {
     isOnGround() {
         const errorAllowanceInFeet = 5;
         const airport = window.airportController.airport_get();
-        const runway = this.fms.currentRunway;
-        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
+        const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
@@ -683,6 +675,7 @@ export default class AircraftInstanceModel {
      */
     moveToRunway(runwayModel) {
         this.positionModel.setCoordinates(runwayModel.positionModel.gps);
+
         this.heading = runwayModel.angle;
         this.altitude = runwayModel.elevation;
     }
@@ -941,7 +934,6 @@ export default class AircraftInstanceModel {
      * @method updateFlightPhase
      */
     updateFlightPhase() {
-        const airportModel = window.airportController.airport_get();
         const runwayModel = this.fms.departureRunwayModel;
 
         if (this._shouldEnterHoldingPattern()) {
@@ -1203,8 +1195,8 @@ export default class AircraftInstanceModel {
         // ILS SPECIFIC CODE
         const runway = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runway.relativePosition, runway.angle);
-        const distanceOnFinal_km = offset[1];
-        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinal_km);
+        const distanceOnFinalKm = offset[1];
+        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinalKm);
         const altitudeToTarget = Math.min(this.mcp.altitude, glideslopeAltitude);
 
         return altitudeToTarget;
