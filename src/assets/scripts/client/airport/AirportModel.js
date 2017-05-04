@@ -57,7 +57,6 @@ export default class AirportModel {
         this.radio = null;
         this.level = null;
         this._positionModel = null;
-        // this.runways = [];
         this._runwayCollection = null;
         // TODO: rename to `runwayName`
         //
@@ -144,7 +143,7 @@ export default class AirportModel {
      * This will return an array of two-value arrays containing a `RunwayModel`
      * for each end of a runway.
      *
-     * This should only be used by the `CanvasController` for drawig runways.
+     * This should only be used by the `CanvasController` for drawing runways.
      * This returns data in this shape in an effort to maintain a previous api.
      *
      * @property runways
@@ -390,7 +389,7 @@ export default class AirportModel {
     getWind = () => {
         return this.wind;
 
-        // TODO: what does this method do and why do we need it?
+        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
         // const wind = Object.assign({}, this.wind);
         // let s = 1;

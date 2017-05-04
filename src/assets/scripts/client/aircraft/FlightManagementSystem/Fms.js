@@ -322,7 +322,6 @@ export default class Fms {
     destroy() {
         this._navigationLibrary = null;
         this._previousRouteSegments = [];
-        this.arrivalRunwayModel = '';
         this.currentPhase = '';
         this.departureRunwayModel = null;
         this.arrivalRunwayModel = null;
