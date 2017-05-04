@@ -12,10 +12,7 @@
 
 
 ### Bugfixes
-
-
-
-
+- Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 
 
 
