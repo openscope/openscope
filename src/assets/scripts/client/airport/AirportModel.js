@@ -33,11 +33,12 @@ export default class AirportModel {
      * @param updateRun {function}
      * @param onAirportChange {function}  callback method to call onAirportChange
      */
+    // istanbul-ignore-next
     constructor(options = {}, updateRun, onAirportChange) {
         if (!updateRun || !onAirportChange) {
-            console.log('::: ERROR', !updateRun, !onAirportChange);
-
-            return;
+            throw new TypeError('AirportModel was called to instantiate with missing parameters. ' +
+                'Both updateRun() and onAirportChange() functions.'
+            );
         }
 
         this.updateRun = updateRun;
@@ -277,6 +278,7 @@ export default class AirportModel {
 
         _forEach(maps, (map, key) => {
             this.maps[key] = [];
+
             const outputMap = this.maps[key];
             const lines = map;
 
@@ -528,8 +530,7 @@ export default class AirportModel {
             POLYGON: 'Polygon'
         };
 
-        // TODO: reassignment of this to apt is not needed here. change apt to this.
-        // terrain must be in geojson format
+        // reassigning `this` to maintain correct scope wen working in multiple nested `_forEach()` and `_map()` loops
         const apt = this;
         apt.terrain = {};
 
@@ -543,12 +544,10 @@ export default class AirportModel {
             }
 
             let multipoly = f.geometry.coordinates;
-            // TODO: add enumeration
             if (f.geometry.type === GEOMETRY_TYPE.LINE_STRING) {
                 multipoly = [[multipoly]];
             }
 
-            // TODO: add enumeration
             if (f.geometry.type === GEOMETRY_TYPE.POLYGON) {
                 multipoly = [multipoly];
             }
