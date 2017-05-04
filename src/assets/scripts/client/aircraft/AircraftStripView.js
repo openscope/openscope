@@ -380,6 +380,12 @@ export default class AircraftStripView {
         isFollowingSTAR = false,
         fixRestrictions = {}
     ) {
+
+        if (destinationText === null) {
+            console.warn('Failed to update flight strip destination!');
+            return;
+        }
+
         switch (navMode) {
             case WAYPOINT_NAV_MODE.FIX:
                 this.$heading.text(headingText);
