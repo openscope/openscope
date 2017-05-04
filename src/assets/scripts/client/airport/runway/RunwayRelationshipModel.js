@@ -11,6 +11,7 @@ import { raysIntersect } from '../../math/vector';
 import { SEPARATION } from '../../constants/aircraftConstants';
 
 /**
+ * Describes a relationship between two `RunwayModel`s
  *
  * @class RunwayRelationshipModel
  */
@@ -72,7 +73,7 @@ export default class RunwayRelationshipModel {
     }
 
     /**
-     *
+     * Calculate relationship values for each runway pair
      *
      * @for RunwayRelationshipModel
      * @method calculateRelationshipValues

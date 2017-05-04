@@ -47,7 +47,6 @@ export default class RunwayCollection extends BaseCollection {
           */
 
         /**
-         *
          * @property _airportPositionModel
          * @type {StaticPositionModel}
          * @default null
@@ -56,7 +55,8 @@ export default class RunwayCollection extends BaseCollection {
         this._airportPositionModel = null;
 
         /**
-         *
+         * Dictionary of all airport runways, organized by runway name, that
+         * contains a `RunwayRelationshipModel` for each runway
          *
          * @property _runwayRelationships
          * @type object
@@ -79,7 +79,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Initialize the instance
      *
      * @for RunwayCollection
      * @method _init
@@ -105,9 +105,14 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
+     * Based on the current wind, find the most appropriate runway for use
      *
+     * Used to find a default runway
      *
+     * @for findBestRunwayForWind
      * @method findBestRunwayForWind
+     * @param getCurrentWindProps {function<object>}
+     * @return bestRunway {string}
      */
     findBestRunwayForWind(getCurrentWindProps) {
         // FIXME: figure out what this does and move it to a more appropriate home
@@ -117,8 +122,8 @@ export default class RunwayCollection extends BaseCollection {
             return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
         };
 
-        let best_runway = '';
-        let best_runway_headwind = -Infinity;
+        let bestRunway = '';
+        let bestRunwayHeadwind = -Infinity;
         const headwind = {};
         const wind = getCurrentWindProps();
 
@@ -129,13 +134,13 @@ export default class RunwayCollection extends BaseCollection {
         }
 
         for (const runway in headwind) {
-            if (headwind[runway] > best_runway_headwind) {
-                best_runway = runway;
-                best_runway_headwind = headwind[runway];
+            if (headwind[runway] > bestRunwayHeadwind) {
+                bestRunway = runway;
+                bestRunwayHeadwind = headwind[runway];
             }
         }
 
-        return best_runway;
+        return bestRunway;
     }
 
     /**
@@ -180,7 +185,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Given two runway names, find if the runways are parallel
      *
      * @for RunwayCollection
      * @method areRunwaysParallel
@@ -219,7 +224,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Build the `#_runwayRelationships` dictionary
      *
      * This method mutates `#_runwayRelationships`
      *
@@ -237,7 +242,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Create a `RunwayRelationshipModel` for each `runwayModel`.
      *
      * This method mutates `#_runwayRelationships`
      *

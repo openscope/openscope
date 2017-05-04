@@ -19,7 +19,7 @@ import {
 import { PERFORMANCE } from '../../constants/aircraftConstants';
 
 /**
- *
+ * Describes a single runway at an airport
  *
  * @class RunwayModel
  * @extends BaseModel
@@ -44,7 +44,6 @@ export default class RunwayModel extends BaseModel {
         this.airportPositionModel = null;
 
         /**
-         *
          * @property _positionModel
          * @type {StaticPositionModel|null}
          * @default null
@@ -78,7 +77,6 @@ export default class RunwayModel extends BaseModel {
         this.delay = 2;
 
         /**
-         *
          * @property ils
          * @type {object}
          */
@@ -306,7 +304,8 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     *
+     * Wrapper for `calculateCrosswindAngleForRunway()` where an implementor needs only the `windAngle`
+     * to calculate the crosswind angle
      *
      * @for RunwayModel
      * @method calculateCrosswindAngleForRunway
@@ -318,7 +317,7 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     *
+     * Boolean helper used to determine if an aircraftModel is on an approach course
      *
      * @for RunwayModel
      * @method isOnApproachCourse
@@ -332,7 +331,7 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     *
+     * Boolean helper used to determine if an aircraftModel is on the correct approach heading.
      *
      * @for RunwayModel
      * @method isOnCorrectApproachHeading
