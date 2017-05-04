@@ -128,68 +128,7 @@
         }
     ],
     "fixes": {
-        "SAMAR": ["N30d54m00.0", "W14d24m54.0"],
-        "RODIM": ["N28d52m12.0", "W13d38m54.0"],
-        "MAPOV": ["N28d50m24.0", "W13d30m36.0"],
-        "PERER": ["N28d58m18.0", "W13d25m54.0"],
-        "ARVEM": ["N29d21m30.0", "W13d35m06.0"],
-        "RIPIX": ["N29d00m12.0", "W13d33m30.0"],
-        "RR450": ["N29d05m24.0", "W13d26m24.0"],
-        "PEPES": ["N30d37m06.0", "W14d16m00.0"],
-        "VASTO": ["N30d30m36.0", "W13d34m24.0"],
-        "GILDI": ["N30d08m18.0", "W13d33m18.0"],
-        "AMAPI": ["N29d01m00.0", "W13d05m06.0"],
-        "KORAL": ["N29d43m54.0", "W12d34m42.0"],
-        "DIBIB": ["N29d16m18.0", "W13d20m12.0"],
-        "POKAB": ["N29d21m42.0", "W13d11m18.0"],
-        "GAMVA": ["N29d28m12.0", "W13d00m42.0"],
-        "TENDA": ["N28d31m60.0", "W13d38m24.0"],
-        "TOSPU": ["N28d27m24.0", "W13d40m42.0"],
-        "NIDOM": ["N28d21m24.0", "W13d39m42.0"],
-        "FV621": ["N28d14m24.0", "W13d35m24.0"],
-        "FV622": ["N28d06m24.0", "W13d36m30.0"],
-        "FV623": ["N28d00m24.0", "W13d42m30.0"],
-        "SOTAD": ["N27d58m30.0", "W13d51m18.0"],
-        "LTE04": ["N29d00m06.0", "W13d33m24.0"],
-        "LTE12": ["N29d05m30.0", "W13d25m42.0"],
-        "LZR": ["N29d10m00.0", "W13d30m36.0"],
-        "ELNAN": ["N29d07m48.0", "W13d40m36.0"],
-        "SOMOB": ["N29d00m48.0", "W13d42m30.0"],
-        "KOSIB": ["N28d35m12.0", "W14d12m48.0"],
-        "LORPO": ["N28d13m00.0", "W14d39m06.0"],
-        "LTE53": ["N28d52m12.0", "W13d38m54.0"],
-        "250LT": ["N28d53m31.3", "W13d44m03.4"],
-        "52LTE": ["N28d53m04.6", "W13d45m05.9"],
-        "GOMSU": ["N28d47m36.0", "W13d58m00.0"],
-        "235LT": ["N28d52m17.9", "W13d43m33.8"],
-        "246LT": ["N28d53m38.0", "W13d44m25.6"],
-        "257LT": ["N28d55m05.2", "W13d44m59.1"],
-        "263LT": ["N28d55m21.3", "W13d45m01.7"],
-        "MAPED": ["N28d55m06.0", "W14d04m60.0"],
-        "LARYS": ["N28d52m18.0", "W14d50m06.0"],
-        "DEVLA": ["N29d14m54.0", "W12d43m06.0"],
-        "ASTAM": ["N28d58m54.0", "W13d18m54.0"],
-        "ALEDU": ["N28d54m06.0", "W13d20m42.0"],
-        "RR401": ["N28d46m54.0", "W13d16m36.0"],
-        "RR402": ["N28d38m54.0", "W13d17m06.0"],
-        "BAPAL": ["N28d41m18.0", "W13d25m48.0"],
-        "GARGO": ["N28d43m36.0", "W13d34m30.0"],
-        "LOBSO": ["N28d45m12.0", "W13d40m12.0"],
-        "GOLFY": ["N28d47m12.0", "W13d41m48.0"],
-        "LTE01": ["N28d55m18.0", "W13d37m12.0"],
-        "LTE41": ["N28d54m03.3", "W14d23m08.9"],
-        "LTE15": ["N28d55m48.6", "W13d53m21.6"],
-        "254LT": ["N28d53m17.7", "W13d50m21.1"],
-        "242LT": ["N28d50m46.6", "W13d49m11.0"],
-        "230LT": ["N28d48m31.6", "W13d47m26.7"],
-        "233LT": ["N28d48m19.9", "W13d47m14.8"],
-        "221LT": ["N28d46m28.6", "W13d44m58.9"],
-        "TERTO": ["N30d06m18.0", "W12d43m00.0"],
-        "GINAS": ["N29d30m24.0", "W13d07m60.0"],
-        "NIRPO": ["N29d14m12.0", "W13d13m42.0"],
-        "PEPOM": ["N29d53m54.0", "W12d58m54.0"],
-        "RASEP": ["N28d41m42.0", "W14d26m48.0"],
-        "GDV71": ["N28d45m52.4", "W14d19m58.2"]
+        "LTE53": ["N29d01m25.9", "W13d32m56.5"]
     },
     "runways": [
         {
@@ -202,36 +141,54 @@
         }
     ],
     "sids": {
+        "BAMKU": {
+            "icao": "BAMKU",
+            "name": "Bamku",
+            "suffix": {"03":"2M", "21":"2N"},
+            "rwy": {
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["UMOTO", "A90|S220"]],
+                "21": [["RODIM", "A13+"], ["UMOTO", "A40+|S220"]]
+            },
+            "body": [["FV731", "A90|S220"], ["FV732", "A90|S220"]],
+            "exitPoints": {
+                "BAMKU": [["BAMKU", "A60+|S220"]]
+            },
+            "draw": [
+                ["RIPIX", "RR450", "UMOTO"],
+                ["RODIM", "UMOTO", "FV731", "FV732", "BAMKU"]
+            ]
+        },
         "KEMEV": {
             "icao": "KEMEV",
             "name": "Kemev",
-            "suffix": {"03":"3M", "21":"1N"},
+            "suffix": {"03":"3M", "21":"3N"},   
             "rwy": {
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "RULOB", "KEMEV"],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"]],
+                "21": [["LTE53", "A13+"], "GOMSU"]
             },
+            "body": ["RULOB"],
             "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+                "KEMEV": [["KEMEV", "A40+"]]
             },
             "draw": [
-                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "RULOB", "KEMEV"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "RULOB"],
+                ["LTE53", "GOMSU", "RULOB", "KEMEV"]
             ]
         },
         "KORAL": {
             "icao": "KORAL",
             "name": "Koral",
-            "suffix": {"03":"1V", "21":"1N"},
+            "suffix": {"03":"6M", "21":"5N"},
             "rwy": {
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "KORAL"],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "DIBIB", "POKAB", ["GAMVA", "A120"]],
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], "AMAPI"]
             },
             "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+                "KORAL": ["KORAL"]
             },
             "draw": [
-                ["LTE04", "LTE12", "KORAL"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"],
+                ["RODIM", "MAPOV", "AMAPI", "KORAL"]
             ]
         },
         "LARYS": {
@@ -239,15 +196,15 @@
             "name": "Larys",
             "suffix": {"03":"1M", "21":"1N"},
             "rwy": {
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN"],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR"],
+                "21": [["LTE53", "A13+"], ["MAPED", "A50+"]]
             },
             "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+                "LARYS": [["LARYS", "A90+"]]
             },
             "draw": [
-                ["LTE04", "LTE12", "LZR", "ELNAN", "LARYS"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["LTE04", "LTE12", "LZR", "LARYS"],
+                ["LTE53", "MAPED", "LARYS"]
             ]
         },
         "LORPO": {
@@ -255,619 +212,153 @@
             "name": "Lorpo",
             "suffix": {"03":"3M", "21":"1N"},
             "rwy": {
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "RULOB", "KOSIB", ["LORPO", "A90+"]],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"]],
+                "21": [["LTE53", "A13+"], ["GOMSU", "A50+"]]
             },
+            "body": [["KOSIB", "A80+"]],
             "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+                "LORPO": [["LORPO", "A90+"]]
             },
             "draw": [
-                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "RULOB", "KOSIB", "LORPO"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "KOSIB"],
+                ["LTE53", "GOMSU", "KOSIB", "LORPO"]
+            ]
+        },
+        "SAMAR": {
+            "icao": "SAMAR",
+            "name": "Samar",
+            "suffix": {"03":"1Y", "21":"5N"},
+            "rwy": {
+                "03": [["RR450", "A45+"]],
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"]]
+            },
+            "body": [["PEPES", "A260+"]],
+            "exitPoints": {
+                "SAMAR": [["SAMAR", "A340+"]]
+            },
+            "draw": [
+                ["RR450", "PEPES"],
+                ["RODIM", "MAPOV", "PERER", "ARVEM", "PEPES", "SAMAR"]
+            ]
+        },
+        "SOTAD": {
+            "icao": "SOTAD",
+            "name": "Sotad",
+            "suffix": {"03":"2M", "21":"1N"},
+            "rwy": {
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"]],
+                "21": [["RODIM", "A13+"]]
+            },
+            "body": ["TENDA", "TOSPU", ["NIDOM", "A80|S220"], ["FV621", "A80|S220"], ["FV622", "A80|S220"], ["FV623", "A80|S220"]],
+            "exitPoints": {
+                "SOTAD": [["SOTAD", "A50+|S220"]]
+            },
+            "draw": [
+                ["RIPIX", "RR450", "TENDA"],
+                ["RODIM", "TENDA", "TOSPU", "NIDOM", "FV621", "FV622", "FV623", "SOTAD"]
             ]
         },
         "TENDA": {
             "icao": "TENDA",
             "name": "Tenda",
-            "suffix": {"03":"7M", "21":"1N"},
+            "suffix": {"03":"7M", "21":"3N"},
             "rwy": {
-                "03": [["LTE04", "A16+"], "LINDE", ["TENDA", "A50+"]],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+                "03": [["LTE04", "A16+"], "LINDE"],
+                "21": [["LTE53", "A13+"]]
             },
             "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+                "TENDA": [["TENDA", "A50+"]]
             },
             "draw": [
                 ["LTE04", "LINDE", "TENDA"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["LTE53", "TENDA"]
+            ]
+        },
+        "VASTO": {
+            "icao": "VASTO",
+            "name": "Vasto",
+            "suffix": {"03":"1Y", "21":"5N"},
+            "rwy": {
+                "03": [["RR450", "A45+"]],
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"]]
+            },
+            "body": [["GILDI", "A120+"]],
+            "exitPoints": {
+                "VASTO": [["VASTO", "A160+"]]
+            },
+            "draw": [
+                ["RR450", "GILDI"],
+                ["RODIM", "MAPOV", "PERER", "ARVEM", "GILDI", "VASTO"]
             ]
         }
     },
     "stars": {
-        "DEVL3P": {
-            "icao": "DEVL3P",
-            "name": "Devla Three Papa",
+        "DEVLA": {
+            "icao": "DEVLA",
+            "name": "Devla",
+            "suffix": {"03":"3P", "21":"3Q"},
             "entryPoints": {
-                "DEVLA": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"]]
+                "SOMOM": ["SOMOM"]
             },
-            "body": [["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-            "draw": [["DEVLA", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
-        },
-        "TERT6P": {
-            "icao": "TERT6P",
-            "name": "Terto six Papa",
-            "entryPoints": {
-                "TERTO": [["TERTO", "A150"], "PEPOM"]
+            "body": ["DEVLA"],
+            "rwy": {
+                "03": ["ASTAM", ["ALEDU", "S220"], ["RR401", "S220"], ["RR402", "S220"], ["BAPAL", "S220"]],
+                "21": ["RR511", "RR512", ["RR513", "S250"], ["RR514", "S230"], ["DETIV", "S230"], ["RR516", "S220"], ["RR517", "S220"], ["RR518", "S220"], ["RR519", "S220"], "NAVIM"]
             },
-            "body": ["GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-            "draw": [["TERTO", "PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
-        },
-        "LARY2P": {
-            "icao": "LARY2P",
-            "name": "Larys Two Papa",
-            "entryPoints": {
-                "LARYS": ["LARYS",["LTE41", "S220"]]
-            },
-            "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
-            "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
-        },
-        "RASE2P": {
-            "icao": "RASE2P",
-            "name": "Rasep Two Papa",
-            "entryPoints": {
-                "RASEP": ["RASEP", ["GDV71", "S220"]]
-            },
-            "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
-            "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
-        }
-    },
-    "spawnPatterns": [
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.SAMAR.SAMAR",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
+            "draw": [
+                ["SOMOM*", "DEVLA", "ASTAM", "ALEDU", "RR401", "RR402", "BAPAL"],
+                ["RR511", "RR512", "RR513", "RR514", "DETIV", "RR516", "RR517", "RR518", "RR519", "NAVIM"]
             ]
         },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.VASTO.VASTO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.KORAL.KORAL",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.SOTAD.SOTAD",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.LORPO.LORPO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.LARYS.LARYS",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "GCRR",
-            "category": "arrival",
-            "route": "DEVLA.DEVL3P.GCRR",
-            "altitude": 12000,
-            "speed": 220,
-            "method": "random",
-            "rate": 7,
-            "airlines": [
-                ["ryr", 3],
-                ["gmi", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["sxd", 3],
-                ["aea", 1],
-                ["tvs", 1],
-                ["ber", 2],
-                ["ent", 2],
-                ["nax", 2],
-                ["sas", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "GCRR",
-            "category": "arrival",
-            "route": "TERTO.TERT6P.GCRR",
-            "altitude": 15000,
-            "speed": 280,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["ryr", 4],
-                ["vlg", 3],
-                ["tcx", 3],
-                ["exs", 3],
-                ["tom", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["ein", 2],
-                ["ibs", 2],
-                ["aea", 1],
-                ["baw", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "GCRR",
-            "category": "arrival",
-            "route": "LARYS.LARY2P.GCRR",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ibb", 3],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "GCRR",
-            "category": "arrival",
-            "route": "RASEP.RASE2P.GCRR",
-            "altitude": 12000,
-            "speed": 280,
-            "method": "random",
-            "rate": 0,
-            "airlines": [
-                ["cnf", 4],
-                ["ibb", 3]
-            ]
-        }
-    ]
-}{
-    "radio": {
-        "twr": "Lanzarote Tower",
-        "app": "Canaries Approach",
-        "dep": "Canaries Approach"
-    },
-    "icao": "GCRR",
-    "iata": "ACE",
-    "magnetic_north": -4.00,
-    "ctr_radius": 410.0,
-    "ctr_ceiling": 245,
-    "initial_alt": 4000,
-    "position": ["N28d56m42.00", "W13d36m18.00"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N28d56m42.00", "W13d36m18.00"],
-    "has_terrain": true,
-    "wind": {
-        "angle": 355,
-        "speed": 6
-    },
-    "airspace": [
-        {
-            "floor": 0,
-            "ceiling": 245,
-            "airspace_class": "C",
-            "poly": [
-                ["N30d00m00.00", "W020d00m00"],
-                ["N31d39m00.00", "W017d25m00"],
-                ["N31d30m00.00", "W015d45m00"],
-                ["N30d00m00.00", "W012d30m00"],
-                ["N28d15m00.00", "W013d00m00"],
-                ["N25d00m00.00", "W015d30m00"],
-                ["N25d00m00.00", "W020d00m00"],
-                ["N30d00m00.00", "W020d00m00"]
-            ]
-        }
-    ],
-    "restricted": [
-        {
-            "name": "GCR150",
-            "height": "3500ft",
-            "coordinates": [
-                ["N29d03m54.00", "W013d46m39.00"],
-                ["N29d00m04.00", "W013d42m23.00"],
-                ["N28d58m35.00", "W013d46m06.00"],
-                ["N28d59m10.00", "W013d50m24.00"], 
-                ["N29d02m24.00", "W013d49m08.00"],
-                ["N29d03m54.00", "W013d46m39.00"]
-            ]
-        },
-        {
-            "name": "GCD20A",
-            "height": "4000ft",
-            "coordinates": [
-                ["N27d30m00.00", "W016d00m00.00"],
-                ["N27d30m00.00", "W015d30m00.00"],
-                ["N27d20m00.00", "W015d30m00.00"],
-                ["N27d20m00.00", "W016d00m00.00"],
-                ["N27d30m00.00", "W016d00m00.00"]
-            ]
-        },
-        {
-            "name": "GCD20B",
-            "height": "28000ft",
-            "coordinates": [
-                ["N27d20m00.00", "W015d50m07.00"],
-                ["N26d49m23.00", "W016d09m17.00"],
-                ["N26d43m09.00", "W016d07m40.00"],
-                ["N26d35m01.00", "W015d42m01.00"],
-                ["N27d19m55.00", "W015d36m45.00"],
-                ["N27d20m00.00", "W015d50m07.00"]
-            ]
-        },
-        {
-            "name": "GCD51",
-            "height": "4000ft",
-            "coordinates": [
-                ["N27d55m50.00", "W015d21m44.00"],
-                ["N27d59m44.00", "W015d16m40.00"],
-                ["N27d52m13.00", "W015d16m20.00"],
-                ["N27d55m50.00", "W015d21m44.00"]
-            ]
-        },
-        {
-            "name": "GCD53",
-            "height": "32000ft",
-            "coordinates": [
-                ["N28d10m08.00", "W015d24m22.00"],
-                ["N28d16m39.00", "W015d19m27.00"],
-                ["N28d16m39.00", "W015d31m38.00"],
-                ["N28d10m08.00", "W015d24m22.00"]
-            ]
-        },
-        {
-            "name": "GCD54",
-            "height": "4000ft",
-            "coordinates": [
-                ["N28d10m08.00", "W015d25m10.00"],
-                ["N28d12m18.00", "W015d19m06.00"],
-                ["N28d05m30.00", "W015d20m08.00"],
-                ["N28d09m39.00", "W015d25m10.00"],
-                ["N28d10m08.00", "W015d25m10.00"]
-            ]
-        },
-        {
-            "name": "GCD75",
-            "height": "6500ft",
-            "coordinates": [
-                ["N28d09m30.00", "W015d24m00.00"],
-                ["N28d09m30.00", "W015d26m00.00"],
-                ["N28d11m00.00", "W015d26m00.00"],
-                ["N28d11m00.00", "W015d24m00.00"],
-                ["N28d09m30.00", "W015d24m00.00"]
-            ]
-        },
-        {
-            "name": "GCD78",
-            "height": "12000ft",
-            "coordinates": [
-                ["N27d46m00.00", "W015d33m00.00"],
-                ["N27d46m00.00", "W015d36m00.00"],
-                ["N27d43m00.00", "W015d36m00.00"],
-                ["N27d43m00.00", "W015d33m00.00"],
-                ["N27d46m00.00", "W015d33m00.00"]
-            ]
-        }
-    ],
-    "fixes": {
-        "SAMAR": ["N30d54m00.0", "W14d24m54.0"],
-        "RODIM": ["N28d52m12.0", "W13d38m54.0"],
-        "MAPOV": ["N28d50m24.0", "W13d30m36.0"],
-        "PERER": ["N28d58m18.0", "W13d25m54.0"],
-        "ARVEM": ["N29d21m30.0", "W13d35m06.0"],
-        "RIPIX": ["N29d00m12.0", "W13d33m30.0"],
-        "RR450": ["N29d05m24.0", "W13d26m24.0"],
-        "PEPES": ["N30d37m06.0", "W14d16m00.0"],
-        "VASTO": ["N30d30m36.0", "W13d34m24.0"],
-        "GILDI": ["N30d08m18.0", "W13d33m18.0"],
-        "AMAPI": ["N29d01m00.0", "W13d05m06.0"],
-        "KORAL": ["N29d43m54.0", "W12d34m42.0"],
-        "DIBIB": ["N29d16m18.0", "W13d20m12.0"],
-        "POKAB": ["N29d21m42.0", "W13d11m18.0"],
-        "GAMVA": ["N29d28m12.0", "W13d00m42.0"],
-        "TENDA": ["N28d31m60.0", "W13d38m24.0"],
-        "TOSPU": ["N28d27m24.0", "W13d40m42.0"],
-        "NIDOM": ["N28d21m24.0", "W13d39m42.0"],
-        "FV621": ["N28d14m24.0", "W13d35m24.0"],
-        "FV622": ["N28d06m24.0", "W13d36m30.0"],
-        "FV623": ["N28d00m24.0", "W13d42m30.0"],
-        "SOTAD": ["N27d58m30.0", "W13d51m18.0"],
-        "LTE04": ["N29d00m06.0", "W13d33m24.0"],
-        "LTE12": ["N29d05m30.0", "W13d25m42.0"],
-        "LZR": ["N29d10m00.0", "W13d30m36.0"],
-        "ELNAN": ["N29d07m48.0", "W13d40m36.0"],
-        "SOMOB": ["N29d00m48.0", "W13d42m30.0"],
-        "KOSIB": ["N28d35m12.0", "W14d12m48.0"],
-        "LORPO": ["N28d13m00.0", "W14d39m06.0"],
-        "LTE53": ["N28d52m12.0", "W13d38m54.0"],
-        "250LT": ["N28d53m31.3", "W13d44m03.4"],
-        "52LTE": ["N28d53m04.6", "W13d45m05.9"],
-        "GOMSU": ["N28d47m36.0", "W13d58m00.0"],
-        "235LT": ["N28d52m17.9", "W13d43m33.8"],
-        "246LT": ["N28d53m38.0", "W13d44m25.6"],
-        "257LT": ["N28d55m05.2", "W13d44m59.1"],
-        "263LT": ["N28d55m21.3", "W13d45m01.7"],
-        "MAPED": ["N28d55m06.0", "W14d04m60.0"],
-        "LARYS": ["N28d52m18.0", "W14d50m06.0"],
-        "DEVLA": ["N29d14m54.0", "W12d43m06.0"],
-        "ASTAM": ["N28d58m54.0", "W13d18m54.0"],
-        "ALEDU": ["N28d54m06.0", "W13d20m42.0"],
-        "RR401": ["N28d46m54.0", "W13d16m36.0"],
-        "RR402": ["N28d38m54.0", "W13d17m06.0"],
-        "BAPAL": ["N28d41m18.0", "W13d25m48.0"],
-        "GARGO": ["N28d43m36.0", "W13d34m30.0"],
-        "LOBSO": ["N28d45m12.0", "W13d40m12.0"],
-        "GOLFY": ["N28d47m12.0", "W13d41m48.0"],
-        "LTE01": ["N28d55m18.0", "W13d37m12.0"],
-        "LTE41": ["N28d54m03.3", "W14d23m08.9"],
-        "LTE15": ["N28d55m48.6", "W13d53m21.6"],
-        "254LT": ["N28d53m17.7", "W13d50m21.1"],
-        "242LT": ["N28d50m46.6", "W13d49m11.0"],
-        "230LT": ["N28d48m31.6", "W13d47m26.7"],
-        "233LT": ["N28d48m19.9", "W13d47m14.8"],
-        "221LT": ["N28d46m28.6", "W13d44m58.9"],
-        "TERTO": ["N30d06m18.0", "W12d43m00.0"],
-        "GINAS": ["N29d30m24.0", "W13d07m60.0"],
-        "NIRPO": ["N29d14m12.0", "W13d13m42.0"],
-        "PEPOM": ["N29d53m54.0", "W12d58m54.0"],
-        "RASEP": ["N28d41m42.0", "W14d26m48.0"],
-        "GDV71": ["N28d45m52.4", "W14d19m58.2"]
-    },
-    "runways": [
-        {
-            "name": ["03", "21"],
-            "end":  [
-                ["N28d56m08.96", "W013d36m38.94"],
-                ["N28d57m18.40", "W013d35m58.67"]
-            ],
-            "ils":  [true, false]
-        }
-    ],
-    "sids": {
         "LARYS": {
             "icao": "LARYS",
             "name": "Larys",
-            "suffix": {"03":"1M", "21":"1N"},
-            "rwy": {
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN"],
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]]
+            "suffix": {"03":"2P", "21":"2X"},
+            "entryPoints": {
+                "TFN": ["TFN"]
             },
-            "exitPoints": {
-                "LARYS": ["LARYS", "A90+"]
+            "body": ["LARYS"],
+            "rwy": {
+                "03": ["MAPED"],
+                "21": ["MOTID", "LUNOB"]
             },
             "draw": [
-                ["LTE04", "LTE12", "LZR", "ELNAN", "LARYS"],
-                ["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"]
+                ["TFN*", "LARYS", "MAPED"],
+                ["LARYS", "MOTID", "LUNOB"]
             ]
-        }
-    },
-    "stars": {
-        "DEVL3P": {
-            "icao": "DEVL3P",
-            "name": "Devla Three Papa",
-            "entryPoints": {
-                "DEVLA": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"]]
-            },
-            "body": [["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-            "draw": [["DEVLA", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
         },
-        "TERT6P": {
-            "icao": "TERT6P",
-            "name": "Terto six Papa",
+        "RASEP": {
+            "icao": "RASEP",
+            "name": "RASEP",
+            "suffix": {"03":"2P", "21":"2Q"},
             "entryPoints": {
-                "TERTO": [["TERTO", "A150"], "PEPOM"]
+                "RASEP": ["RASEP"]
             },
-            "body": ["GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-            "draw": [["TERTO", "PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+            "body": ["MAPED"],
+            "rwy": {
+                "03": [],
+                "21": ["LUNOB"]
+            },
+            "draw": [
+                ["RASEP", "MAPED", "LUNOB"]
+            ]
         },
-        "LARY2P": {
-            "icao": "LARY2P",
-            "name": "Larys Two Papa",
+        "TERTO": {
+            "icao": "TERTO",
+            "name": "TERTO",
+            "suffix": {"03":"6P", "21":"3Q"},
             "entryPoints": {
-                "LARYS": ["LARYS",["LTE41", "S220"]]
+                "TERTO": ["TERTO"]
             },
-            "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
-            "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
-        },
-        "RASE2P": {
-            "icao": "RASE2P",
-            "name": "Rasep Two Papa",
-            "entryPoints": {
-                "RASEP": ["RASEP", ["GDV71", "S220"]]
+            "body": ["PEPOM"],
+            "rwy": {
+                "03": ["GINAS", "POKAB", "NIRPO", "ASTAM", ["ALEDU", "S220"], ["RR401", "S220"], ["RR402", "S220"], ["BAPAL", "S220"]],
+                "21": [["GAKMI", "S250"], ["DETIV", "S230"], ["RR516", "S220"], ["RR517", "S220"], ["RR518", "S220"], ["RR519", "S220"], "NAVIM"]
             },
-            "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
-            "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
+            "draw": [
+                ["TERTO", "PEPOM", "GINAS", "POKAB", "NIRPO", "ASTAM", "ALEDU", "RR401", "RR402", "BAPAL"],
+                ["GAKMI", "DETIV", "RR516", "RR517", "RR518", "RR519", "NAVIM"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -875,72 +366,32 @@
             "origin": "GCRR",
             "destination": "",
             "category": "departure",
-            "route": "GCRR.SAMAR.SAMAR",
+            "route": "GCRR.BAMKU.BAMKU",
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 4,
+            "rate": 1,
             "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
+                ["cnf", 2],
+                ["ibb", 2],
+                ["prw", 2],
+                ["tvs", 6]
             ]
         },
         {
             "origin": "GCRR",
             "destination": "",
             "category": "departure",
-            "route": "GCRR.VASTO.VASTO",
+            "route": "GCRR.KEMEV.KEMEV",
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 4,
+            "rate": 0.5,
             "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
+                ["ibb", 2],
+                ["cnf", 2],
+                ["prw", 2],
+                ["tvs", 6]
             ]
         },
         {
@@ -951,104 +402,36 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 4,
+            "rate": 1,
             "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.SOTAD.SOTAD",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
-            ]
-        },
-        {
-            "origin": "GCRR",
-            "destination": "",
-            "category": "departure",
-            "route": "GCRR.LORPO.LORPO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
-                ["baw", 1],
-                ["n/lightGA", 1]
+                ["aea", 4],
+                ["aua", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["nly", 1],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
             ]
         },
         {
@@ -1059,106 +442,359 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 4,
+            "rate": 1,
             "airlines": [
-                ["ibb", 6],
-                ["ryr", 7],
-                ["cnf", 4],
-                ["vlg", 3],
-                ["gmi", 3],
-                ["exs", 3],
-                ["tcx", 3],
-                ["tom", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["sxd", 3],
-                ["tra", 2],
-                ["aea", 2],
-                ["ber", 2],
-                ["ein", 2],
-                ["ibs", 2],
-                ["nax", 2],
-                ["ent", 2],
-                ["sas", 2],
-                ["tvs", 1],
+                ["ein", 3],
+                ["aea", 4],
+                ["aua", 1],
                 ["baw", 1],
-                ["n/lightGA", 1]
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.LORPO.LORPO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["ibb", 2],
+                ["cnf", 2],
+                ["prw", 2],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.SAMAR.SAMAR",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ein", 3],
+                ["aea", 4],
+                ["aua", 1],
+                ["baw", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.SOTAD.SOTAD",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ibb", 2],
+                ["cnf", 2],
+                ["prw", 2],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.TENDA.TENDA",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ibb", 2],
+                ["cnf", 2],
+                ["prw", 2],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.VASTO.VASTO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ein", 3],
+                ["aea", 4],
+                ["aua", 1],
+                ["baw", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
             ]
         },
         {
             "origin": "",
             "destination": "GCRR",
             "category": "arrival",
-            "route": "DEVLA.DEVL3P.GCRR",
-            "altitude": 12000,
-            "speed": 220,
+            "route": "SOMOM.DEVLA.GCRR",
+            "altitude": 10000,
+            "speed": 250,
             "method": "random",
-            "rate": 7,
+            "rate": 1,
             "airlines": [
-                ["ryr", 3],
-                ["gmi", 3],
-                ["cfg", 3],
-                ["tui", 3],
-                ["sxd", 3],
-                ["aea", 1],
-                ["tvs", 1],
-                ["ber", 2],
-                ["ent", 2],
-                ["nax", 2],
-                ["sas", 2]
+                ["aea", 4],
+                ["aua", 1],
+                ["baw", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
             ]
         },
         {
             "origin": "",
             "destination": "GCRR",
             "category": "arrival",
-            "route": "TERTO.TERT6P.GCRR",
-            "altitude": 15000,
-            "speed": 280,
+            "route": "TFN.LARYS.GCRR",
+            "altitude": 10000,
+            "speed": 250,
             "method": "random",
-            "rate": 10,
+            "rate": 1,
             "airlines": [
-                ["ryr", 4],
-                ["vlg", 3],
-                ["tcx", 3],
-                ["exs", 3],
-                ["tom", 3],
-                ["mon", 3],
-                ["ezy", 3],
-                ["ein", 2],
-                ["ibs", 2],
-                ["aea", 1],
-                ["baw", 1]
+                ["ein", 3],
+                ["aea", 4],
+                ["aua", 1],
+                ["baw", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
             ]
         },
         {
             "origin": "",
             "destination": "GCRR",
             "category": "arrival",
-            "route": "LARYS.LARY2P.GCRR",
-            "altitude": 12000,
-            "speed": 280,
+            "route": "RASEP.RASEP.GCRR",
+            "altitude": 10000,
+            "speed": 250,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["ibb", 3],
-                ["n/lightGA", 1]
+                ["ibb", 2],
+                ["cnf", 2],
+                ["prw", 2],
+                ["tvs", 6]
             ]
         },
         {
             "origin": "",
             "destination": "GCRR",
             "category": "arrival",
-            "route": "RASEP.RASE2P.GCRR",
-            "altitude": 12000,
-            "speed": 280,
+            "route": "TERTO.TERTO.GCRR",
+            "altitude": 10000,
+            "speed": 250,
             "method": "random",
-            "rate": 0,
+            "rate": 1,
             "airlines": [
-                ["cnf", 4],
-                ["ibb", 3]
+                ["ein", 3],
+                ["aea", 4],
+                ["aua", 1],
+                ["baw", 1],
+                ["cfg", 8],
+                ["ezy", 9],
+                ["ezs", 1],
+                ["edw", 1],
+                ["ewg", 1],
+                ["fin", 1],
+                ["gmi", 6],
+                ["ibs", 1],
+                ["exs", 9],
+                ["lgl", 1],
+                ["mon", 4],
+                ["nly", 1],
+                ["nax", 3],
+                ["prw", 2],
+                ["ryr", 33],
+                ["tvs", 6],
+                ["sxd", 8],
+                ["tra", 4],
+                ["tui", 6],
+                ["vlg", 7],
+                ["wzz", 2],
+                ["cnd", 1],
+                ["ent", 1],
+                ["jtg", 2],
+                ["nos", 1],
+                ["nvr", 3],
+                ["sas", 1],
+                ["tcx", 9],
+                ["tcw", 1],
+                ["vkg", 2],
+                ["tom", 16],
+                ["tfl", 2],
+                ["jaf", 4],
+                ["blx", 5]
             ]
         }
     ]
