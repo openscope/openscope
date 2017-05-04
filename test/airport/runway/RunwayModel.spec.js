@@ -32,11 +32,17 @@ ava('#gps returns the gps coordinates for a runway', (t) => {
     t.deepEqual(model.gps, expectedResult);
 });
 
-ava('#elevation returns the elevation of the runway when present in the #_positionModel', (t) => {
-    const expectedResult = 2179;
+ava('#elevation returns #_positionModel.elevation if it exists', (t) => {
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
 
-    t.true(model.elevation === expectedResult);
+    t.true(model.elevation === model._positionModel.elevation);
+});
+
+ava('#elevation returns #airportPositionModel.elevation if #_positionModel.elevation does not exist', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    model._positionModel.elevation = null;
+
+    t.true(model.elevation === model.airportPositionModel.elevation);
 });
 
 ava('.addAircraftToQueue() adds an aircraft#id to the queue', (t) => {
@@ -78,13 +84,9 @@ ava('.isAircraftNextInQueue() returns true only when an aircraftId is at index 0
     t.false(model.isAircraftNextInQueue('threeve'));
 });
 
-ava('.isOnApproachCourse()', (t) => {
-
-});
-
-ava('.isOnCorrectApproachHeading()', (t) => {
-
-});
+// these two need an aircraftModel to be able to test
+ava.todo('.isOnApproachCourse()');
+ava.todo('.isOnCorrectApproachHeading()');
 
 ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given runway based on a given windAngle', (t) => {
     const windAngleMock = 3.839724354387525;

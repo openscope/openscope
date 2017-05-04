@@ -32,6 +32,7 @@ export default class RunwayModel extends BaseModel {
      * @param end {number}
      * @param airportPositionModel {StaticPositionModel}
      */
+     // istanbul ignore next
     constructor(options = {}, end, airportPositionModel) {
         super();
 

@@ -33,7 +33,7 @@ export default class AirportModel {
      * @param updateRun {function}
      * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    // istanbul-ignore-next
+    // istanbul ignore next
     constructor(options = {}, updateRun, onAirportChange) {
         if (!updateRun || !onAirportChange) {
             throw new TypeError('AirportModel was called to instantiate with missing parameters. ' +
