@@ -225,12 +225,9 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
 };
 
 /**
- *
- *
  * @function calculateCrosswindAngle
  * @param runwayAngle {number}
  * @param windAngle {number}
+ * @return {number}
  */
-export const calculateCrosswindAngle = (runwayAngle, windAngle) => {
-    return abs(angle_offset(runwayAngle, windAngle));
-};
+export const calculateCrosswindAngle = (runwayAngle, windAngle) => abs(angle_offset(runwayAngle, windAngle));
