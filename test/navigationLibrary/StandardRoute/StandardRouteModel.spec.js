@@ -16,7 +16,7 @@ import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
-    STAR_WITH_SIFFIX,
+    STAR_WITH_SUFFIX,
     SID_LIST_MOCK,
     SID_WITHOUT_BODY_MOCK,
     SID_WITHOUT_EXIT_MOCK,
@@ -78,7 +78,7 @@ ava('creates a dictionary #_icaoWithSuffix madeup of icao + suffix with the runw
         GRNPA14A: '25L',
         GRNPA14B: '25R'
     };
-    const model = new StandardRouteModel(STAR_WITH_SIFFIX);
+    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
 
     t.deepEqual(model._icaoWithSuffixDictionary, expectedResult);
 });
@@ -121,7 +121,7 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
 });
 
 ava('.getSegmentNameForIcaoWithSuffix() throws if called with invalid parameters', (t) => {
-    const model = new StandardRouteModel(STAR_WITH_SIFFIX);
+    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
 
     t.throws(() => model.getSegmentNameForIcaoWithSuffix('GRNPA1'));
     t.notThrows(() => model.getSegmentNameForIcaoWithSuffix('GRNPA11A'));
@@ -212,7 +212,7 @@ ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypo
 });
 
 ava('.hasSuffix() returns true only when it receives an icao + suffix', (t) => {
-    const model = new StandardRouteModel(STAR_WITH_SIFFIX);
+    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
 
     t.false(model.hasSuffix('GRNPA'));
     t.true(model.hasSuffix('GRNPA11A'));
@@ -220,7 +220,7 @@ ava('.hasSuffix() returns true only when it receives an icao + suffix', (t) => {
 
 ava('._getSegmentNameFromIcaoWithSuffix() returns a runwayName for an icao + suffix', (t) => {
     const expectedResult = '01L';
-    const model = new StandardRouteModel(STAR_WITH_SIFFIX);
+    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
     const result = model._getSegmentNameFromIcaoWithSuffix('GRNPA11A');
 
     t.true(result === expectedResult);

@@ -96,7 +96,7 @@ export const STAR_WITHOUT_RWY = {
     'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ']
 };
 
-export const STAR_WITH_SIFFIX = {
+export const STAR_WITH_SUFFIX = {
     'icao': 'GRNPA1',
     'name': 'Grandpa One',
     'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
