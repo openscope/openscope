@@ -14,6 +14,7 @@ import {
 const SID_ICAO_MOCK = 'SHEAD9';
 const STAR_ICAO_MOCK = 'GRNPA1';
 const STAR_SUFFIX_ICAO_MOCK = 'GRNPA11A';
+const SID_SUFFIX_ICAO_MOCK = 'COWBY61A';
 const ENTRY_FIXNAME_MOCK = 'MLF';
 const RUNWAY_NAME_MOCK = '19R';
 
@@ -29,13 +30,13 @@ ava('exits early when no paramaters are passed', (t) => {
 });
 
 ava('adds a list of StandardRoutes to the collection and updates the .length property', (t) => {
-    const collection = new StandardRouteCollection(SID_LIST_MOCK);
+    const collection = new StandardRouteCollection(SID_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
 
     t.true(collection._items.length === collection.length);
 });
 
 ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and body segments of a route', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection.findEntryAndBodyFixesForRoute(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK);
 
     t.true(result.length === 8);
@@ -45,7 +46,7 @@ ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and 
 ava('.findRandomExitPointForSIDIcao() returns the name of a random exitPoint from within a SID route', (t) => {
     const ICAO = 'COWBY6';
     const possibleResults = ['DRK', 'GUP', 'INW'];
-    const collection = new StandardRouteCollection(SID_LIST_MOCK);
+    const collection = new StandardRouteCollection(SID_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
     const result = collection.findRandomExitPointForSIDIcao(ICAO);
 
     t.true(possibleResults.indexOf(result) !== -1);
@@ -53,14 +54,14 @@ ava('.findRandomExitPointForSIDIcao() returns the name of a random exitPoint fro
 
 ava('.findRandomExitPointForSIDIcao() returns the name of this StandardRoute if no exitPoints exist', (t) => {
     const ICAO = 'TRALR6';
-    const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK);
+    const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
     const result = collection.findRandomExitPointForSIDIcao(ICAO);
 
     t.true(result === ICAO);
 });
 
 ava('.findRouteWaypointsForRouteByEntryAndExit() calls _findRouteOrAddToCache()', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const _findRouteOrAddToCacheSpy = sinon.spy(collection, '_findRouteOrAddToCache');
 
     collection.findRouteWaypointsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
@@ -69,21 +70,21 @@ ava('.findRouteWaypointsForRouteByEntryAndExit() calls _findRouteOrAddToCache()'
 });
 
 ava('.findRouteWaypointsForRouteByEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection.findRouteWaypointsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
     t.true(result.length === 8);
 });
 
 ava('.findRouteWaypointsForRouteByEntryAndExit() returns early if not provided an `icao`', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection.findRouteWaypointsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.findRouteByIcao() calls .findRouteByIcaoWithSuffix() when an icao cannot be found', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const findRouteByIcaoWithSuffixSpy = sinon.spy(collection, 'findRouteByIcaoWithSuffix');
 
     collection.findRouteByIcao(STAR_SUFFIX_ICAO_MOCK);
@@ -92,21 +93,21 @@ ava('.findRouteByIcao() calls .findRouteByIcaoWithSuffix() when an icao cannot b
 });
 
 ava('.findRouteByIcaoWithSuffix() returns null when a route cannot be found', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection.findRouteByIcaoWithSuffix();
 
     t.true(result === null);
 });
 
 ava('.findRouteByIcaoWithSuffix() returns a route model when a route and suffix is found', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection.findRouteByIcao(STAR_SUFFIX_ICAO_MOCK);
 
     t.true(result.icao === 'GRNPA1');
 });
 
 ava('.hasRoute() returns a boolean if a route exists within the collection', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
 
     t.false(collection.hasRoute(SID_ICAO_MOCK));
     t.false(collection.hasRoute(''));
@@ -116,13 +117,13 @@ ava('.hasRoute() returns a boolean if a route exists within the collection', (t)
 });
 
 ava('._addRouteModelToCollection() throws if it doesnt receive a SidModel', (t) => {
-    const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK);
+    const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
 
     t.throws(() => collection._addRouteModelToCollection({}));
 });
 
 ava('._findRouteOrAddToCache() does not call .findStandardRouteWaypointModelsForEntryAndExit() if routes exists in cache', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const findStandardRouteWaypointModelsForEntryAndExitSpy = sinon.spy(collection._items[0], 'findStandardRouteWaypointModelsForEntryAndExit');
 
     collection._findRouteOrAddToCache(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
@@ -132,7 +133,7 @@ ava('._findRouteOrAddToCache() does not call .findStandardRouteWaypointModelsFor
 });
 
 ava('._findRouteOrAddToCache() calls ._findRouteWaypointModels() if the route is not in the cache', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const _findRouteWaypointModelsSpy = sinon.spy(collection, '_findRouteWaypointModels');
 
     collection._findRouteOrAddToCache(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
@@ -142,7 +143,7 @@ ava('._findRouteOrAddToCache() calls ._findRouteWaypointModels() if the route is
 
 ava('._findRouteOrAddToCache() adds a newly fetched route to #_cache', (t) => {
     const routeStringKey = `${STAR_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
 
     t.true(_isEmpty(collection._cache));
 
@@ -154,7 +155,7 @@ ava('._findRouteOrAddToCache() adds a newly fetched route to #_cache', (t) => {
 
 ava('._findRouteWaypointModels() calls .findStandardRouteWaypointModelsForEntryAndExit() with the correct parameters what passed an icao with a suffix', (t) => {
     const routeStringKey = `${STAR_SUFFIX_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const findStandardRouteWaypointModelsForEntryAndExitSpy = sinon.spy(collection._items[0], 'findStandardRouteWaypointModelsForEntryAndExit');
 
     collection._findRouteWaypointModels(STAR_SUFFIX_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK, false, routeStringKey);
@@ -166,19 +167,57 @@ ava('._findRouteWaypointModels() calls .findStandardRouteWaypointModelsForEntryA
     ));
 });
 
-ava('._findRouteWaypointModels() returns the correct RouteModel when passed an icao with a suffix', (t) => {
+ava('._findRouteWaypointModels() returns the correct RouteModel when passed an icao with a suffix for a STAR', (t) => {
     const routeStringKey = `${STAR_SUFFIX_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const result = collection._findRouteWaypointModels(STAR_SUFFIX_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK, false, routeStringKey);
     const resultWaypointNameList = result.map(x => x.name);
 
     t.true(resultWaypointNameList.length === 9);
+    t.true(resultWaypointNameList[0] === ENTRY_FIXNAME_MOCK);
     t.true(resultWaypointNameList[8] === 'THREEVE');
+});
+
+ava('._findRouteWaypointModels() returns the correct RouteModel when passed a mixed case icao with a suffix for a STAR', (t) => {
+    const starSuffixIcaoMock = 'GrnPa11a';
+    const routeStringKey = `${starSuffixIcaoMock}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
+    const result = collection._findRouteWaypointModels(starSuffixIcaoMock, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK, false, routeStringKey);
+    const resultWaypointNameList = result.map(x => x.name);
+
+    t.true(resultWaypointNameList.length === 9);
+    t.true(resultWaypointNameList[0] === ENTRY_FIXNAME_MOCK);
+    t.true(resultWaypointNameList[8] === 'THREEVE');
+});
+
+ava('._findRouteWaypointModels() returns the correct RouteModel when passed an icao with a suffix for a SID', (t) => {
+    const exitFixnameMock = 'DRK';
+    const routeStringKey = `${SID_SUFFIX_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
+    const collection = new StandardRouteCollection(SID_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
+    const result = collection._findRouteWaypointModels(SID_SUFFIX_ICAO_MOCK, '25L', exitFixnameMock, false, routeStringKey);
+    const resultWaypointNameList = result.map(x => x.name);
+
+    t.true(resultWaypointNameList.length === 7);
+    t.true(resultWaypointNameList[0] === '_NAPSE068');
+    t.true(resultWaypointNameList[6] === exitFixnameMock);
+});
+
+ava('._findRouteWaypointModels() returns the correct RouteModel when passed a mixed case icao with a suffix for a SID', (t) => {
+    const exitFixnameMock = 'DRK';
+    const sidSuffixIcaoMock = 'cOWbY61a';
+    const routeStringKey = `${sidSuffixIcaoMock}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
+    const collection = new StandardRouteCollection(SID_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.SID);
+    const result = collection._findRouteWaypointModels(sidSuffixIcaoMock, '25L', exitFixnameMock, false, routeStringKey);
+    const resultWaypointNameList = result.map(x => x.name);
+
+    t.true(resultWaypointNameList.length === 7);
+    t.true(resultWaypointNameList[0] === '_NAPSE068');
+    t.true(resultWaypointNameList[6] === exitFixnameMock);
 });
 
 ava('._findRouteWaypointModels() calls ._findRouteOrAddToCache() again with a deconstructed icao and suffix', (t) => {
     const routeStringKey = `${STAR_SUFFIX_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     const _findRouteOrAddToCacheSpy = sinon.spy(collection, '_findRouteOrAddToCache');
 
     collection._findRouteWaypointModels(STAR_SUFFIX_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK, false, routeStringKey);
@@ -188,7 +227,7 @@ ava('._findRouteWaypointModels() calls ._findRouteOrAddToCache() again with a de
 
 ava('._findRouteWaypointModels() adds the found route to the cache with the correct cacheKey', (t) => {
     const routeStringKey = `${STAR_SUFFIX_ICAO_MOCK}.${ENTRY_FIXNAME_MOCK}.${RUNWAY_NAME_MOCK}`;
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK, StandardRouteCollection.ROUTE_TYPE.STAR);
     collection._findRouteWaypointModels(STAR_SUFFIX_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK, false, routeStringKey);
 
     const cacheKeys = Object.keys(collection._cache);

@@ -120,11 +120,11 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.getExitForIcaoWithSuffix() throws if called with invalid parameters', (t) => {
+ava('.getSegmentNameForIcaoWithSuffix() throws if called with invalid parameters', (t) => {
     const model = new StandardRouteModel(STAR_WITH_SIFFIX);
 
-    t.throws(() => model.getExitForIcaoWithSuffix('GRNPA1'));
-    t.notThrows(() => model.getExitForIcaoWithSuffix('GRNPA11A'));
+    t.throws(() => model.getSegmentNameForIcaoWithSuffix('GRNPA1'));
+    t.notThrows(() => model.getSegmentNameForIcaoWithSuffix('GRNPA11A'));
 });
 
 ava('.hasExitPoints() returns a boolean', t => {
@@ -218,10 +218,10 @@ ava('.hasSuffix() returns true only when it receives an icao + suffix', (t) => {
     t.true(model.hasSuffix('GRNPA11A'));
 });
 
-ava('._getExitSegmentNameFromIcaoWithSuffix() returns a runwayName for an icao + suffix', (t) => {
+ava('._getSegmentNameFromIcaoWithSuffix() returns a runwayName for an icao + suffix', (t) => {
     const expectedResult = '01L';
     const model = new StandardRouteModel(STAR_WITH_SIFFIX);
-    const result = model._getExitSegmentNameFromIcaoWithSuffix('GRNPA11A');
+    const result = model._getSegmentNameFromIcaoWithSuffix('GRNPA11A');
 
     t.true(result === expectedResult);
 });

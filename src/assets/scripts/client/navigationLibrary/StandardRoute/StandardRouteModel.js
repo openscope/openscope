@@ -278,18 +278,18 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Public fascade for `._getExitSegmentNameFromIcaoWithSuffix()`
+     * Public fascade for `._getSegmentNameFromIcaoWithSuffix()`
      *
-     * @method getExitForIcaoWithSuffix
+     * @method getSegmentNameForIcaoWithSuffix
      * @param icaoWithSuffix {string}
      * @return {string}
      */
-    getExitForIcaoWithSuffix(icaoWithSuffix) {
+    getSegmentNameForIcaoWithSuffix(icaoWithSuffix) {
         if (!this.hasSuffix(icaoWithSuffix)) {
             throw new Error(`Attempted to find an exit for an icao without a suffix: ${icaoWithSuffix}`);
         }
 
-        return this._getExitSegmentNameFromIcaoWithSuffix(icaoWithSuffix);
+        return this._getSegmentNameFromIcaoWithSuffix(icaoWithSuffix);
     }
 
     /**
@@ -546,10 +546,10 @@ export default class StandardRouteModel extends BaseModel {
      * and is known to have a suffix.
      *
      * @for StandardRouteModel
-     * @method _getExitSegmentNameFromIcaoWithSuffix
+     * @method _getSegmentNameFromIcaoWithSuffix
      * @param  icaoWithSuffix
      */
-    _getExitSegmentNameFromIcaoWithSuffix(icaoWithSuffix) {
+    _getSegmentNameFromIcaoWithSuffix(icaoWithSuffix) {
         return this._icaoWithSuffixDictionary[icaoWithSuffix];
     }
 }

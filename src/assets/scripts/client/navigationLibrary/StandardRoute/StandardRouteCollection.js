@@ -1,5 +1,6 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
@@ -17,15 +18,30 @@ import StandardRouteModel from './StandardRouteModel';
  */
 export default class StandardRouteCollection extends BaseCollection {
     /**
+     *
+     * @type {Object}
+     */
+    static ROUTE_TYPE = {
+        SID: 'SID',
+        STAR: 'STAR'
+    };
+
+    /**
      * @constructor
      * @param standardRouteEnum {object}
+     * @param routeType {ROUTE_TYPE}
      */
     /* istanbul ignore next */
-    constructor(standardRouteEnum) {
+    constructor(standardRouteEnum, routeType) {
         super();
 
         if (typeof standardRouteEnum === 'undefined') {
             return;
+        }
+
+        if (!_has(StandardRouteCollection.ROUTE_TYPE, routeType)) {
+            console.log(`Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE but received: ${routeType}`);
+            // throw new TypeError('Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE but received: ${routeType}');
         }
 
         /**
@@ -45,6 +61,15 @@ export default class StandardRouteCollection extends BaseCollection {
          * @type {number}
          */
         // this.length = -1;
+
+        /**
+         *
+         * @property _type
+         * @type {ROUTE_TYPE}
+         * @defafult ''
+         * @private
+         */
+        this._type = routeType;
 
         /**
          * Current cache of found routes, organized by `ICAO.ENTRY.EXIT` strings
@@ -227,11 +252,11 @@ export default class StandardRouteCollection extends BaseCollection {
      * @param icao {string}
      * @return {StandardRouteModel|null}
      */
-    findRouteByIcaoWithSuffix(icao) {
+    findRouteByIcaoWithSuffix(icao = '') {
         for (let i = 0; i < this.length; i++) {
             const routeModel = this._items[i];
 
-            if (routeModel.hasSuffix(icao)) {
+            if (routeModel.hasSuffix(icao.toUpperCase())) {
                 return routeModel;
             }
         }
@@ -319,31 +344,56 @@ export default class StandardRouteCollection extends BaseCollection {
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @param cacheKey
-     * @return {array<StandardRouteWaypointModel>}
+     * @param cacheKey {string}    the key used to store the found route in `#_cache`
+     * @return {function|array<StandardRouteWaypointModel>}
      */
     _findRouteWaypointModels(icao, entry, exit, isPreSpawn, cacheKey) {
-        const routeModel = this.findRouteByIcao(icao);
+        const uppercaseIcao = icao.toUpperCase();
+        const routeModel = this.findRouteByIcao(uppercaseIcao);
 
         if (typeof routeModel === 'undefined') {
             // TODO: there will need to be some feedback here but should still fail quietly
             return;
         }
 
-        if (routeModel.hasSuffix(icao)) {
-            // an `icaoWithSuffix` will contain the icao and an exit segmentName. here we deconstruct those
-            // parts and re-assign the appropriate parameters with the data we need.
-            // eslint-disable no-param-reassign
-            exit = routeModel.getExitForIcaoWithSuffix(icao);
-            icao = routeModel.icao;
-
+        if (routeModel.hasSuffix(uppercaseIcao)) {
             // using recursion here so we can leverage the cache with the correct keys
-            return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
+            return this._destructureIcaoWithSuffixAndRouteModel(routeModel, uppercaseIcao, entry, exit, isPreSpawn);
         }
 
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
         this._cache[cacheKey] = routeWaypoints;
 
         return routeWaypoints;
+    }
+
+    /**
+     *
+     *
+     * an `icaoWithSuffix` will contain the icao and an exit segmentName. here we deconstruct those
+     * parts and re-assign the appropriate parameters with the data we need.
+     *
+     * using recursion here so we can leverage the cache with the correct keys
+     *
+     * @for StandardRouteCollection
+     * @method _destructureIcaoWithSuffixAndRouteModel
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return
+     */
+    _destructureIcaoWithSuffixAndRouteModel(routeModel, icao, entry, exit, isPreSpawn) {
+        if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
+            exit = routeModel.getSegmentNameForIcaoWithSuffix(icao);
+            icao = routeModel.icao;
+
+            return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
+        }
+
+        entry = routeModel.getSegmentNameForIcaoWithSuffix(icao);
+        icao = routeModel.icao;
+
+        return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
     }
 }

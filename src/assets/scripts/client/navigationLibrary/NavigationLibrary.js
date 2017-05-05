@@ -99,8 +99,8 @@ export default class NavigationLibrary {
         this._referencePosition = new StaticPositionModel(airportJson.position, null, degreesToRadians(airportJson.magnetic_north));
 
         FixCollection.addItems(fixes, this._referencePosition);
-        this._sidCollection = new StandardRouteCollection(sids);
-        this._starCollection = new StandardRouteCollection(stars);
+        this._sidCollection = new StandardRouteCollection(sids, StandardRouteCollection.ROUTE_TYPE.SID);
+        this._starCollection = new StandardRouteCollection(stars, StandardRouteCollection.ROUTE_TYPE.STAR);
     }
 
     /**
