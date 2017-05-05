@@ -336,7 +336,13 @@ export default class StandardRouteCollection extends BaseCollection {
     }
 
     /**
+     * Find a list of `StandardRouteWaypointModel` objects for a given route
      *
+     * This method should only be it if the requested route doesn't already
+     * exist in `#_cache`
+     *
+     * A route should only ever be searched for once, subsequent searches
+     * should be returned from `#_cache`
      *
      * @for StandardRouteCollection
      * @method _findRouteWaypointModels
@@ -368,30 +374,34 @@ export default class StandardRouteCollection extends BaseCollection {
     }
 
     /**
+     * Extract an `icao` and `suffix` from a passed in icao and call `._findRouteOrAddToCache()`
      *
-     *
-     * an `icaoWithSuffix` will contain the icao and an exit segmentName. here we deconstruct those
+     * An `icaoWithSuffix` will contain the icao and an exit segmentName. here we deconstruct those
      * parts and re-assign the appropriate parameters with the data we need.
      *
-     * using recursion here so we can leverage the cache with the correct keys
+     * The method should be called from within `._findRouteOrAddToCache()`, or as a return
+     * from another method within `._findRouteOrAddToCache()`. That way we can recurse
+     * back through that method and store the route in `#_cache` correctly
      *
      * @for StandardRouteCollection
      * @method _destructureIcaoWithSuffixAndRouteModel
-     * @param icao {string}
+     * @param icaoWithSuffix {string}
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return
+     * @return {function}
      */
-    _destructureIcaoWithSuffixAndRouteModel(routeModel, icao, entry, exit, isPreSpawn) {
+    _destructureIcaoWithSuffixAndRouteModel(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
+        let icao;
+
         if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
-            exit = routeModel.getSegmentNameForIcaoWithSuffix(icao);
+            exit = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
             icao = routeModel.icao;
 
             return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
         }
 
-        entry = routeModel.getSegmentNameForIcaoWithSuffix(icao);
+        entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
         icao = routeModel.icao;
 
         return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
