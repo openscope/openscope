@@ -94,6 +94,9 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Finds a list of fixes for the entry and body segments of a given route
      *
+     * Used primarily in the `SpawnPatterns` for calculating initial
+     * heading of arriving aircraft
+     *
      * @for StandardRouteCollection
      * @method findEntryAndBodyFixesForRoute
      * @param icao {string}
@@ -113,7 +116,7 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Find a list of `StandardWaypointModel`s for a specific route
      *
-     * Acts as a fascade for `_findOrAddRouteToCache`.
+     * Acts as a fascade for `_findRouteOrAddToCache`.
      *
      * @for StandardRouteCollection
      * @method findRouteWaypointsForRouteByEntryAndExit
@@ -128,14 +131,14 @@ export default class StandardRouteCollection extends BaseCollection {
             return;
         }
 
-        return this._findOrAddRouteToCache(icao, entry, exit, isPreSpawn);
+        return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
     }
 
     /**
      * Find a list of `StandardWaypointModel`s for a specific route
      *
      * @for StandardRouteCollection
-     * @method findRouteWaypointsForRouteByEntryAndExit
+     * @method generateFmsWaypointModelsForRoute
      * @param icao {string}
      * @param entry {string}
      * @param exit {string}
@@ -180,10 +183,37 @@ export default class StandardRouteCollection extends BaseCollection {
      * @for StandardRouteCollection
      * @method findRouteByIcao
      * @param icao {string}
-     * @return {StandardRouteModel|undefined}
+     * @return {StandardRouteModel|null}
      */
-    findRouteByIcao(icao) {
-        return _find(this._items, { icao: icao.toUpperCase() });
+    findRouteByIcao(icao = '') {
+        let routeWithIcao = _find(this._items, { icao: icao.toUpperCase() });
+
+        if (_isNil(routeWithIcao)) {
+            routeWithIcao = this.findRouteByIcaoWithSuffix(icao);
+        }
+
+        return routeWithIcao;
+    }
+
+    /**
+     * Attempt to find a `StandardRouteModel` by an icao
+     * that also contains a suffix
+     *
+     * @for StandardRouteCollection
+     * @method findRouteByIcaoWithSuffix
+     * @param icao {string}
+     * @return {StandardRouteModel|null}
+     */
+    findRouteByIcaoWithSuffix(icao) {
+        for (let i = 0; i < this.length; i++) {
+            const routeModel = this._items[i];
+
+            if (routeModel.hasSuffix(icao)) {
+                return routeModel;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -240,21 +270,39 @@ export default class StandardRouteCollection extends BaseCollection {
      * Imprpves performance by not having to search for routes that have already been found.
      *
      * @for StandardRouteCollection
-     * @method findRouteWaypointsForRouteByEntryAndExit
+     * @method _findRouteOrAddToCache
      * @param icao {string}
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @return {array<StandardRouteWaypointModel>}
      */
-    _findOrAddRouteToCache(icao, entry, exit, isPreSpawn) {
+    _findRouteOrAddToCache(icao, entry, exit, isPreSpawn) {
         const cacheKey = `${icao}.${entry}.${exit}`;
 
         if (!_isNil(this._cache[cacheKey]) && !isPreSpawn) {
             return this._cache[cacheKey];
         }
 
+        return this._findRouteWaypointModels(icao, entry, exit, isPreSpawn, cacheKey);
+    }
+
+    /**
+     *
+     *
+     * @for StandardRouteCollection
+     * @method _findRouteWaypointModels
+     * @param icao
+     * @param entry
+     * @param exit
+     * @param isPreSpawn
+     * @param cacheKey
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    _findRouteWaypointModels(icao, entry, exit, isPreSpawn, cacheKey) {
         const routeModel = this.findRouteByIcao(icao);
+
+        console.log('$$$', icao, routeModel.icao);
 
         if (typeof routeModel === 'undefined') {
             // TODO: there will need to be some feedback here but should still fail quietly

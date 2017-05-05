@@ -82,6 +82,15 @@ export default class StandardRouteModel extends BaseModel {
         this.icao = '';
 
         /**
+         *
+         *
+         * @proeprty
+         * @type {array<string>}
+         * @default {}
+         */
+        this._icaoWithSuffixDictionary = {};
+
+        /**
          * List of fixes in the order that they should be drawn
          *
          * Pulled straight from the json file.
@@ -177,6 +186,7 @@ export default class StandardRouteModel extends BaseModel {
         this.entryPoints = _get(standardRoute, 'entryPoints', {});
         this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
 
+        this._buildIcaoWithSuffixList(standardRoute);
         this._buildEntryAndExitCollections(standardRoute);
     }
 
@@ -294,6 +304,18 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Determine if the passed `icao` contains a suffix
+     *
+     * @for StandardRouteModel
+     * @property hasSuffix
+     * @param icao {string}
+     * @return {boolean}
+     */
+    hasSuffix(icao) {
+        return _has(this._icaoWithSuffixDictionary, icao);
+    }
+
+    /**
      * Build a new RouteSegmentModel for a segmentFixList
      *
      * `body` segment is expected to be an array, so instead of creating a collection like with `rwy` and
@@ -332,6 +354,23 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     *
+     *
+     * @for StandardRouteModel
+     * @method _buildIcaoWithSuffixList
+     * @param  standardRoute {object}
+     */
+    _buildIcaoWithSuffixList(standardRoute) {
+        if (!_has(standardRoute, 'suffix')) {
+            return;
+        }
+
+        _forEach(standardRoute.suffix, (value, key) => {
+            this._icaoWithSuffixDictionary[`${this.icao}${value}`] = key;
+        });
+    }
+
+    /**
      * Determine if the `standardRoute` is a sid or a star and build the entry/exit collections
      * with the correct data.
      *
@@ -340,7 +379,7 @@ export default class StandardRouteModel extends BaseModel {
      *
      * @for StandardRouteModel
      * @method _buildEntryAndExitCollections
-     * @param standardRoute
+     * @param standardRoute {object}
      * @private
      */
     _buildEntryAndExitCollections(standardRoute) {
@@ -472,5 +511,19 @@ export default class StandardRouteModel extends BaseModel {
             waypoint.distanceFromPreviousWaypoint = distance;
             waypoint.previousStandardWaypointName = previousWaypoint.name;
         });
+    }
+
+    /**
+     * Return an exitSegment name for an icao with suffix
+     *
+     * This method assumes an `icao` has already passed through `hasSuffix()`
+     * and is known to have a suffix.
+     *
+     * @for StandardRouteModel
+     * @method _getExitSegmentNameFromIcaoWithSuffix
+     * @param  icao
+     */
+    _getExitSegmentNameFromIcaoWithSuffix(icao) {
+        return this._icaoWithSuffixDictionary[icao];
     }
 }

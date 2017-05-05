@@ -4,6 +4,7 @@ export const STAR_LIST_MOCK = {
     'GRNPA1': {
         'icao': 'GRNPA1',
         'name': 'Grandpa One',
+        'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
         'entryPoints': {
             'BETHL': ['BETHL', ['HOLDM', 'A270']],
             'BCE':   ['BCE'],
@@ -93,6 +94,29 @@ export const STAR_WITHOUT_RWY = {
         'MLF':   ['MLF']
     },
     'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ']
+};
+
+export const STAR_WITH_SIFFIX = {
+    'icao': 'GRNPA1',
+    'name': 'Grandpa One',
+    'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
+    'entryPoints': {
+        'BETHL': ['BETHL', ['HOLDM', 'A270']],
+        'BCE':   ['BCE'],
+        'DVC':   ['DVC', 'BETHL', ['HOLDM', 'A270']],
+        'MLF':   ['MLF']
+    },
+    'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ'],
+    'rwy': {
+        '01L': [],
+        '01R': [],
+        '07L': [],
+        '07R': [],
+        '19L': [],
+        '19R': [],
+        '25L': [],
+        '25R': []
+    }
 };
 
 export const SID_LIST_MOCK = {
