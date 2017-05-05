@@ -13,7 +13,7 @@ export const STAR_LIST_MOCK = {
         },
         'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ'],
         'rwy': {
-            '01L': [],
+            '01L': ['THREEVE'],
             '01R': [],
             '07L': [],
             '07R': [],

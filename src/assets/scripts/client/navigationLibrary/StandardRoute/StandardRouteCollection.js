@@ -29,6 +29,24 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         /**
+         * Inherited from `BaseCollection`
+         *
+         * @property _items
+         * @type {array}
+         * @default []
+         * @private
+         */
+        // this._items = [];
+
+        /**
+         * Inherited from `BaseCollection`
+         *
+         * @property length
+         * @type {number}
+         */
+        // this.length = -1;
+
+        /**
          * Current cache of found routes, organized by `ICAO.ENTRY.EXIT` strings
          *
          * By leveraging this cache, we are able to pre-find routes for verification,
@@ -146,7 +164,12 @@ export default class StandardRouteCollection extends BaseCollection {
      */
     generateFmsWaypointModelsForRoute(icao, entry, exit) {
         const isPreSpawn = false;
-        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn);
+        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(
+            icao,
+            entry,
+            exit,
+            isPreSpawn
+        );
         const result = _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
 
         return result;
@@ -292,21 +315,30 @@ export default class StandardRouteCollection extends BaseCollection {
      *
      * @for StandardRouteCollection
      * @method _findRouteWaypointModels
-     * @param icao
-     * @param entry
-     * @param exit
-     * @param isPreSpawn
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @param cacheKey
      * @return {array<StandardRouteWaypointModel>}
      */
     _findRouteWaypointModels(icao, entry, exit, isPreSpawn, cacheKey) {
         const routeModel = this.findRouteByIcao(icao);
 
-        console.log('$$$', icao, routeModel.icao);
-
         if (typeof routeModel === 'undefined') {
             // TODO: there will need to be some feedback here but should still fail quietly
             return;
+        }
+
+        if (routeModel.hasSuffix(icao)) {
+            // an `icaoWithSuffix` will contain the icao and an exit segmentName. here we deconstruct those
+            // parts and re-assign the appropriate parameters with the data we need.
+            // eslint-disable no-param-reassign
+            exit = routeModel.getExitForIcaoWithSuffix(icao);
+            icao = routeModel.icao;
+
+            // using recursion here so we can leverage the cache with the correct keys
+            return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
         }
 
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);

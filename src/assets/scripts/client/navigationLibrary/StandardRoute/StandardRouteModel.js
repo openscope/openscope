@@ -82,7 +82,7 @@ export default class StandardRouteModel extends BaseModel {
         this.icao = '';
 
         /**
-         *
+         * Dictionary of `icaoWithSuffix` keys and `exitName` values
          *
          * @proeprty
          * @type {array<string>}
@@ -206,6 +206,7 @@ export default class StandardRouteModel extends BaseModel {
         this._bodySegmentModel = null;
         this._exitCollection = null;
         this._entryCollection = null;
+        this._icaoWithSuffixDictionary = {};
 
         return this;
     }
@@ -274,6 +275,21 @@ export default class StandardRouteModel extends BaseModel {
         }
 
         return this._exitCollection.gatherFixNamesForCollection();
+    }
+
+    /**
+     * Public fascade for `._getExitSegmentNameFromIcaoWithSuffix()`
+     *
+     * @method getExitForIcaoWithSuffix
+     * @param icaoWithSuffix {string}
+     * @return {string}
+     */
+    getExitForIcaoWithSuffix(icaoWithSuffix) {
+        if (!this.hasSuffix(icaoWithSuffix)) {
+            throw new Error(`Attempted to find an exit for an icao without a suffix: ${icaoWithSuffix}`);
+        }
+
+        return this._getExitSegmentNameFromIcaoWithSuffix(icaoWithSuffix);
     }
 
     /**
@@ -354,7 +370,17 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Creates a dictionary of `icaoWithSuffix` keys and `exitName` as values
      *
+     * Example:
+     * ```
+     *  const icaoWithSuffix = 'GRNPA11A';
+     *
+     *  // is then added to the dictionary thusly:
+     *  this._icaoWithSuffixDictionary = {
+     *      'GRNPA11A': '01L'
+     *  };
+     * ```
      *
      * @for StandardRouteModel
      * @method _buildIcaoWithSuffixList
@@ -514,16 +540,16 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Return an exitSegment name for an icao with suffix
+     * Return an exitSegment name for `icaoWithSuffix`
      *
-     * This method assumes an `icao` has already passed through `hasSuffix()`
+     * This method assumes an `icaoWithSuffix` has already passed through `.hasSuffix()`
      * and is known to have a suffix.
      *
      * @for StandardRouteModel
      * @method _getExitSegmentNameFromIcaoWithSuffix
-     * @param  icao
+     * @param  icaoWithSuffix
      */
-    _getExitSegmentNameFromIcaoWithSuffix(icao) {
-        return this._icaoWithSuffixDictionary[icao];
+    _getExitSegmentNameFromIcaoWithSuffix(icaoWithSuffix) {
+        return this._icaoWithSuffixDictionary[icaoWithSuffix];
     }
 }
