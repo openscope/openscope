@@ -104,7 +104,7 @@ export const altitudeValidator = (args = []) => {
         return hasLengthError;
     }
 
-    let numberFromString = convertStringToNumber(args[0]);
+    const numberFromString = convertStringToNumber(args[0]);
 
     if (_isNaN(numberFromString)) {
         return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
