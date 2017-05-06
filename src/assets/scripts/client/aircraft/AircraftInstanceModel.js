@@ -82,6 +82,7 @@ export default class AircraftInstanceModel {
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
         this.flightNumber = '';         // Flight Number ONLY (eg. '551')
+        this.transponderCode = '';
         this.heading      = 0;          // Magnetic Heading
         this.altitude     = 0;          // Altitude, ft MSL
         this.speed        = 0;          // Indicated Airspeed (IAS), knots
