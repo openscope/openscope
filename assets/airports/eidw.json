@@ -1386,6 +1386,7 @@
     "OLAP": {
       "icao": "OLAP",
       "name": "Olapo",
+      "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1K"},
       "entryPoints": {
         "ERNAN": ["ERNAN", "_PREOLAPO"]
       },
@@ -1399,6 +1400,7 @@
     "BAML": {
       "icao": "BAML",
       "name": "Bamli",
+      "suffix": {"10":"1R", "28":"1L", "34":"1K"},
       "entryPoints": {
         "BEL": ["BEL", "LIRGU"]
       },
@@ -1411,6 +1413,7 @@
     "NIMA": {
       "icao": "NIMA",
       "name": "Nimat",
+      "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
         "NELBO": [["NELBO", "A250|S350"], ["NUMPI", "A180|S300"]]
       },
@@ -1424,6 +1427,7 @@
     "BOYN": {
       "icao": "BOYN",
       "name": "Boyne",
+      "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
         "EGNS": ["EGNS", ["IOM", "A200-"]]
       },
@@ -1437,6 +1441,7 @@
     "BAGS": {
       "icao": "BAGS",
       "name": "Bagso",
+      "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
         "RAMOX": [["RAMOX", "A170|S300"], ["OGTUG", "A140|S250"]]
       },
@@ -1450,6 +1455,7 @@
     "LIPG": {
       "icao": "LIPG",
       "name": "Lipgo",
+      "suffix": {"10":"1R", "28":"1L", "16":"1U", "34":"1S"},
       "entryPoints": {
         "BADSI": ["BADSI", ["ABLIN", "A160|S300"], ["IRKUM", "A100|S250"]]
       },
@@ -1463,6 +1469,7 @@
     "VATR": {
       "icao": "VATR",
       "name": "Vatry",
+      "suffix": {"10":"1R", "28":"1L", "16":"1U", "34":"1S"},
       "entryPoints": {
         "STU": ["STU", ["PEMOB", "A270-"]]
       },
@@ -1476,6 +1483,7 @@
     "BUNE": {
       "icao": "BUNE",
       "name": "Buned",
+      "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
         "EVRIN": ["EVRIN", ["NEXAT", "A360-"]]
       },
@@ -1489,6 +1497,7 @@
     "SUTE": {
       "icao": "SUTE",
       "name": "Sutex",
+      "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
         "CRK": ["CRK", ["TISMO", "A380-"], ["CML", "A300-"]]
       },
@@ -1502,6 +1511,7 @@
     "OSGA": {
       "icao": "OSGA",
       "name": "Osgar",
+      "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
         "SHA": ["SHA", ["TOMTO", "A350-"], ["TORLU", "A280"]]
       },
@@ -1665,7 +1675,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.DEXEN.LUTIP ",
+            "route": "EIDW.DEXEN.LUTIP",
             "altitude": "",
             "speed": "",
             "method": "random",
