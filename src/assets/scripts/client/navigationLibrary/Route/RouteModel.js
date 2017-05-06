@@ -1,8 +1,8 @@
 import BaseModel from '../../base/BaseModel';
 import {
     HOLD_SEGMENT_SYMBOL,
-    MAXIMUM_ROUTE_SEGMENT_LENGTH,
-    SEGMENT_SEPARATION_SYMBOL,
+    ROUTE_SEGMENT_MAX_LENGTH,
+    PROCEDURE_SEGMENT_DIVIDER,
     VECTOR_SEGMENT_SYMBOL
 } from '../../constants/navigation/routeConstants';
 
@@ -113,7 +113,7 @@ export default class RouteModel extends BaseModel {
      * @private
      */
     _extractSegmentNamesFromRouteCode(routeCode) {
-        const routeSegments = routeCode.split(SEGMENT_SEPARATION_SYMBOL);
+        const routeSegments = routeCode.split(PROCEDURE_SEGMENT_DIVIDER);
 
         return {
             entry: routeSegments[0],
@@ -153,8 +153,8 @@ RouteModel.isProcedureRouteString = (routeString) => {
         return false;
     }
 
-    const elements = routeString.split(SEGMENT_SEPARATION_SYMBOL);
-    const hasRightNumberOfElements = elements.length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    const elements = routeString.split(PROCEDURE_SEGMENT_DIVIDER);
+    const hasRightNumberOfElements = elements.length === ROUTE_SEGMENT_MAX_LENGTH;
     const isDirectRouteSegment = elements[1] === '';
 
     return hasRightNumberOfElements && !isDirectRouteSegment;

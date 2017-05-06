@@ -1,11 +1,11 @@
 /**
 * Symbol that divides each direct segment
 *
-* @enum DIRECT_SEPARATION_SYMBOL
+* @enum DIRECT_SEGMENT_DIVIDER
 * @type {string}
 * @final
 */
-export const DIRECT_SEPARATION_SYMBOL = '..';
+export const DIRECT_SEGMENT_DIVIDER = '..';
 
 /**
 * Symbol that prepends a fixname indicating the aircraft should enter
@@ -18,40 +18,22 @@ export const DIRECT_SEPARATION_SYMBOL = '..';
 export const HOLD_SEGMENT_SYMBOL = '@';
 
 /**
-* A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
-*
-* @enum MAXIMUM_PROCEDURE_SEGMENT_LENGTH
-* @type {number}
-* @final
-*/
-export const MAXIMUM_PROCEDURE_SEGMENT_LENGTH = 3;
-
-/**
-* A route is assumed to have, at most, three parts.
-*
-* @enum MAXIMUM_ROUTE_SEGMENT_LENGTH
-* @type {number}
-* @final
-*/
-export const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
-
-/**
 * Symbol that divides each route segment
 *
-* @enum PROCEDURE_SEGMENT_SEPARATION_SYMBOL
+* @enum PROCEDURE_SEGMENT_DIVIDER
 * @type {string}
 * @final
 */
-export const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
+export const PROCEDURE_SEGMENT_DIVIDER = '.';
 
 /**
-* Symbol that divides each route segment
+* A procedure segment has, at most, three parts (ex: `BETHL.GRNPA1.KLAS`)
 *
-* @enum SEGMENT_SEPARATION_SYMBOL
-* @type {string}
+* @enum ROUTE_SEGMENT_MAX_LENGTH
+* @type {number}
 * @final
 */
-export const SEGMENT_SEPARATION_SYMBOL = '.';
+export const ROUTE_SEGMENT_MAX_LENGTH = 3;
 
 /**
  * Symbols that prepends a three digit number, indicating that the created waypoint
