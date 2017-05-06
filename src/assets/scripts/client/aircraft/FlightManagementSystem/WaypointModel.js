@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import { VECTOR_SEGMENT_SYMBOL } from '../../constants/navigation/routeConstants';
 import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { degreesToRadians } from '../../utilities/unitConverters';
 
 /**
  * Symbol used to denote an RNAV waypoint
@@ -233,9 +234,10 @@ export default class WaypointModel {
      * @type {number}
      */
     get vector() {
-        const heading = parseInt(extractHeadingFromVectorSegment(this._name), 10);
+        const headingInDegrees = parseInt(extractHeadingFromVectorSegment(this._name), 10);
+        const headingInRadians = degreesToRadians(headingInDegrees);
 
-        return heading;
+        return headingInRadians;
     }
 
     /**
