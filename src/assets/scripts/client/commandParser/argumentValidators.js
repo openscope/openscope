@@ -248,7 +248,7 @@ export const squawkValidator = (args = []) => {
         return ERROR_MESSAGE.SINGLE_ARG_LENGTH;
     }
 
-    if (REGEX.TRANSPONDER_CODE.exec(args[0]) == null) {
+    if (!REGEX.TRANSPONDER_CODE.test(args[0])) {
         return ERROR_MESSAGE.INVALID_SQUAWK;
     }
 };
