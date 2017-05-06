@@ -1,7 +1,7 @@
 ## 5.2.0 (June 1, 2017)
 ---
 ### Features
-
+- Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
 
 
 
