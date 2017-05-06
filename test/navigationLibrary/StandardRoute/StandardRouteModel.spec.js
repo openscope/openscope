@@ -33,9 +33,6 @@ ava.after(() => FixCollection.removeItems());
 ava('throws when instantiated with invaild parameters', t => {
     t.throws(() => new StandardRouteModel());
     t.throws(() => new StandardRouteModel([]));
-    t.throws(() => new StandardRouteModel(''));
-    t.throws(() => new StandardRouteModel(42));
-    t.throws(() => new StandardRouteModel(false));
 });
 
 ava('does not throw when instantiated with vaild parameters', t => {
