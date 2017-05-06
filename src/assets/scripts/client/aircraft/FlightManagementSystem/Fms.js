@@ -825,7 +825,7 @@ export default class Fms {
                 isValid = this._navigationLibrary.hasFix(fixName);
             } else if (RouteModel.isVectorRouteString(segment)) {
                 const heading = extractHeadingFromVectorSegment(segment);
-                const isValidNumber = !isNan(heading);
+                const isValidNumber = !isNaN(heading);
                 const isThreeDigits = heading.length === 3;
 
                 isValid = isValidNumber && isThreeDigits;

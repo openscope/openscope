@@ -234,6 +234,10 @@ export default class WaypointModel {
      * @type {number}
      */
     get vector() {
+        if (!this.isVector) {
+            return;
+        }
+
         const headingInDegrees = parseInt(extractHeadingFromVectorSegment(this._name), 10);
         const headingInRadians = degreesToRadians(headingInDegrees);
 
