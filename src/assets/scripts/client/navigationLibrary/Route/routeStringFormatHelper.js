@@ -7,7 +7,8 @@ import {
     DIRECT_SEPARATION_SYMBOL,
     HOLD_SEGMENT_SYMBOL,
     MAXIMUM_PROCEDURE_SEGMENT_LENGTH,
-    PROCEDURE_SEGMENT_SEPARATION_SYMBOL
+    PROCEDURE_SEGMENT_SEPARATION_SYMBOL,
+    VECTOR_SEGMENT_SYMBOL
 } from '../../constants/navigation/routeConstants';
 
 /**
@@ -116,10 +117,19 @@ export const routeStringFormatHelper = (routeString) => {
 };
 
 /**
- *
+ * Return the fix name from a `holdRouteString`
  *
  * @function extractFixnameFromHoldSegment
- * @param  {[type]}                      holdSegment [description]
- * @return {[type]}                                  [description]
+ * @param routeString {string} eg `@COWBY`
+ * @return {string} eg `COWBY`
  */
-export const extractFixnameFromHoldSegment = (holdSegment) => holdSegment.split(HOLD_SEGMENT_SYMBOL)[1];
+export const extractFixnameFromHoldSegment = (routeString) => routeString.split(HOLD_SEGMENT_SYMBOL)[1];
+
+/**
+ * Return the heading from a `vectorRouteString`
+ *
+ * @function extractFixnameFromHoldSegment
+ * @param  routeString {string} eg `#320`
+ * @return {string} eg `320`
+ */
+export const extractHeadingFromVectorSegment = (routeString) => routeString.split(VECTOR_SEGMENT_SYMBOL)[1];
