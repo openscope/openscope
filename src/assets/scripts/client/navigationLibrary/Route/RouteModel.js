@@ -1,32 +1,9 @@
 import BaseModel from '../../base/BaseModel';
-
-/**
- * Symbol that prepends a fixname indicating the aircraft should enter
- * a holding pattern once it arrives at the fix.
- *
- * @property
- * @type {string}
- * @final
- */
-const HOLD_SEGMENT_SYMBOL = '@';
-
-/**
- * Symbol that divides each route segment
- *
- * @property SEGMENT_SEPARATION_SYMBOL
- * @type {string}
- * @final
- */
-const SEGMENT_SEPARATION_SYMBOL = '.';
-
-/**
- * A route is assumed to have, at most, three parts.
- *
- * @property MAXIMUM_ROUTE_SEGMENT_LENGTH
- * @type {number}
- * @final
- */
-const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
+import {
+    HOLD_SEGMENT_SYMBOL,
+    MAXIMUM_ROUTE_SEGMENT_LENGTH,
+    SEGMENT_SEPARATION_SYMBOL
+} from '../../constants/navigation/routeConstants';
 
 // TODO: this class needs a better name
 /**

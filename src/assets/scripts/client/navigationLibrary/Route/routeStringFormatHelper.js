@@ -3,43 +3,12 @@ import _drop from 'lodash/drop';
 import _last from 'lodash/last';
 import _isString from 'lodash/isString';
 import { REGEX } from '../../constants/globalConstants';
-
-/**
- * Symbol that divides each route segment
- *
- * @property PROCEDURE_SEGMENT_SEPARATION_SYMBOL
- * @type {string}
- * @final
- */
-const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
-
-/**
- * Symbol that divides each direct segment
- *
- * @property DIRECT_SEPARATION_SYMBOL
- * @type {string}
- * @final
- */
-const DIRECT_SEPARATION_SYMBOL = '..';
-
-/**
- *
- *
- * @property HOLD_SEGMENT_SYMBOL
- * @type {string}
- * @final
- */
-const HOLD_SEGMENT_SYMBOL = '@';
-
-
-/**
- * A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
- *
- * @property MAXIMUM_PROCEDUURE_SEGMENT_LENGTH
- * @type {number}
- * @final
- */
-const MAXIMUM_PROCEDUURE_SEGMENT_LENGTH = 3;
+import {
+    DIRECT_SEPARATION_SYMBOL,
+    HOLD_SEGMENT_SYMBOL,
+    MAXIMUM_PROCEDUURE_SEGMENT_LENGTH,
+    PROCEDURE_SEGMENT_SEPARATION_SYMBOL
+} from '../../constants/navigation/routeConstants';
 
 /**
  * Encapsulation of a regex used to determine if spaces exist within a string
