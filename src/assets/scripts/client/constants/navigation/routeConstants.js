@@ -52,3 +52,13 @@ export const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
 * @final
 */
 export const SEGMENT_SEPARATION_SYMBOL = '.';
+
+/**
+ * Symbols that prepends a three digit number, indicating that the created waypoint
+ * should simply be to follow the given heading until told to proceed to next waypoint
+ *
+ * @enum VECTOR_SEGMENT_SYMBOL
+ * @type {String}
+ * @final
+ */
+export const VECTOR_SEGMENT_SYMBOL = '#';
