@@ -1,4 +1,6 @@
 import _get from 'lodash/get';
+import { VECTOR_SEGMENT_SYMBOL } from '../../constants/navigation/routeConstants';
+import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
  * Symbol used to denote an RNAV waypoint
@@ -131,6 +133,16 @@ export default class WaypointModel {
          */
         this.isHold = false;
 
+        /**
+         * Flag used to determine if a waypoint is for a vector
+         *
+         * @for WaypointModel
+         * @property _isVector
+         * @type {boolean}
+         * @default false
+         */
+        this._isVector = false;
+
         this.init(waypointProps);
     }
 
@@ -203,6 +215,30 @@ export default class WaypointModel {
     }
 
     /**
+     * Returns whether `this` is a vector waypoint
+     *
+     * @for WaypointModel
+     * @property isVector
+     * @return {boolean}
+     */
+    get isVector() {
+        return this._isVector;
+    }
+
+    /**
+     * When `#_isVector` is true, this gets the heading that should be flown
+     *
+     * @for WaypointModel
+     * @property vector
+     * @type {number}
+     */
+    get vector() {
+        const heading = parseInt(extractHeadingFromVectorSegment(this._name), 10);
+
+        return heading;
+    }
+
+    /**
      * Initialize the class properties
      *
      * Should be run only on instantiation
@@ -216,6 +252,7 @@ export default class WaypointModel {
         this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
+        this._isVector = waypointProps.name.indexOf(VECTOR_SEGMENT_SYMBOL) !== -1;
 
         // these properties will only be available for holding pattern waypoints
         this.isHold = _get(waypointProps, 'isHold', this.isHold);
