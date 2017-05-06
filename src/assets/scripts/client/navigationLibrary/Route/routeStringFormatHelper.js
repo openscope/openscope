@@ -6,7 +6,7 @@ import { REGEX } from '../../constants/globalConstants';
 import {
     DIRECT_SEPARATION_SYMBOL,
     HOLD_SEGMENT_SYMBOL,
-    MAXIMUM_PROCEDUURE_SEGMENT_LENGTH,
+    MAXIMUM_PROCEDURE_SEGMENT_LENGTH,
     PROCEDURE_SEGMENT_SEPARATION_SYMBOL
 } from '../../constants/navigation/routeConstants';
 
@@ -83,7 +83,7 @@ export const routeStringFormatHelper = (routeString) => {
             continue;
         }
 
-        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, MAXIMUM_PROCEDUURE_SEGMENT_LENGTH);
+        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, MAXIMUM_PROCEDURE_SEGMENT_LENGTH);
 
         // is a procedure, eg SID, STAR, IAP, airway, etc.
         if (procedureRouteSegments.length < 3) {
@@ -99,7 +99,7 @@ export const routeStringFormatHelper = (routeString) => {
         // chop up the multilink
         const subsequentRouteSegmentsLength = 2;
         const posteriorProcedureRouteSegments = _chunk(
-            _drop(procedureRouteSegments, MAXIMUM_PROCEDUURE_SEGMENT_LENGTH), subsequentRouteSegmentsLength
+            _drop(procedureRouteSegments, MAXIMUM_PROCEDURE_SEGMENT_LENGTH), subsequentRouteSegmentsLength
         );
         let nextProcedureRouteSegment = _last(initialProcedureRouteSegment);
 

@@ -20,11 +20,11 @@ export const HOLD_SEGMENT_SYMBOL = '@';
 /**
 * A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
 *
-* @enum MAXIMUM_PROCEDUURE_SEGMENT_LENGTH
+* @enum MAXIMUM_PROCEDURE_SEGMENT_LENGTH
 * @type {number}
 * @final
 */
-export const MAXIMUM_PROCEDUURE_SEGMENT_LENGTH = 3;
+export const MAXIMUM_PROCEDURE_SEGMENT_LENGTH = 3;
 
 /**
 * A route is assumed to have, at most, three parts.
