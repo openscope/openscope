@@ -51,7 +51,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     // istanbul ignore next
     constructor(spawnPatternJson, navigationLibrary, airportController) {
-        super(spawnPatternJson, navigationLibrary, airportController);
+        super();
 
         /**
          * Schedule reference id

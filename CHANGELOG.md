@@ -1,6 +1,8 @@
 ## 5.2.0 (June 1, 2017)
 ---
 ### Features
+- Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
+- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
 
 
@@ -10,13 +12,9 @@
 
 
 
-
 ### Bugfixes
-
-
-
-
-
+- Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
+- Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
 
 
 
@@ -84,6 +82,7 @@
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
 - Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
+
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
