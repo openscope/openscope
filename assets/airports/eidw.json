@@ -1099,8 +1099,8 @@
       },
       "draw": [["ERUDA", "DODIG", "SUROX"], ["OP", "BATED"], ["DUB", "DWN28", "DWW04"], ["_LIFFY10", "DWW04", "SUROX"]]
     },
-    "SUROX (AB)": {
-      "icao": "SUROX (AB)",
+    "SUROX(AB)": {
+      "icao": "SUROX(AB)",
       "name": "Surox",
       "suffix": {"10":"6F", "28":"1B", "16":"5P", "34":"1H"},
       "rwy": {
@@ -1195,8 +1195,8 @@
       },
       "draw": [["LEMTA", "DODIG", "INKUR"], ["_LIFFY5", "INKUR"], ["DWS77", "DWS78", "NITIL"], ["DWN28", "INKUR"], ["_BAL11", "DWW06", "INKUR"]]
     },
-    "INKUR (AB)": {
-      "icao": "INKUR (AB)",
+    "INKUR(AB)": {
+      "icao": "INKUR(AB)",
       "name": "Inkur",
       "suffix": {"10":"6F", "28":"5B", "16":"5P"},
       "rwy": {
@@ -1241,8 +1241,8 @@
       },
       "draw": [["NEPOD", "OLONO"]]
     },
-    "OLONO (AB)": {
-      "icao": "OLONO (AB)",
+    "OLONO(AB)": {
+      "icao": "OLONO(AB)",
       "name": "Olono",
       "suffix": {"10":"2F", "28":"1B", "16":"1P", "34":"5H"},
       "rwy": {
@@ -1273,8 +1273,8 @@
       },
       "draw": [["DW554", "IRDEX", "ERVAD", "NEPOD"], ["_DEXEN20", "BAL"], ["DWS77", "DWS81"], ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL", "NEPOD", "BEPAN"]]
     },
-    "BEPAN (AB)": {
-      "icao": "BEPAN (AB)",
+    "BEPAN(AB)": {
+      "icao": "BEPAN(AB)",
       "name": "Bepan",
       "suffix": {"10":"2F", "28":"1B", "16":"1P", "34":"5H"},
       "rwy": {
@@ -1305,8 +1305,8 @@
       },
       "draw": [["LEMTA", "ROTEV"], ["_LIFFY21", "DWN29"], ["ERUDA", "ROTEV"], ["DWN29", "ROTEV"]]
     },
-    "ROTEV (AB)": {
-      "icao": "ROTEV (AB)",
+    "ROTEV(AB)": {
+      "icao": "ROTEV(AB)",
       "name": "Rotev",
       "suffix": {"10":"6F", "28":"1B", "16":"5P", "34":"1H"},
       "rwy": {
@@ -1337,8 +1337,8 @@
       },
       "draw": [["DW551", "LEMTA", "NEVRI"], ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"], ["_KISHA6", "DWN29", "NEVRI"]]
     },
-    "NEVRI (AB)": {
-      "icao": "NEVRI (AB)",
+    "NEVRI(AB)": {
+      "icao": "NEVRI(AB)",
       "name": "Nevri",
       "suffix": {"10":"6F", "28":"1B", "16":"5P", "34":"1H"},
       "rwy": {
@@ -1368,8 +1368,8 @@
       },
       "draw": [["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "PELIG"], ["DWS78", "PELIG"], ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "PELIG"]]
     },
-    "PELIG (AB)": {
-      "icao": "PELIG (AB)",
+    "PELIG(AB)": {
+      "icao": "PELIG(AB)",
       "name": "Pelig",
       "suffix": {"34":"5H"},
       "rwy": {
@@ -1538,7 +1538,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.SUROX (AB).ENULA",
+            "route": "EIDW.SUROX(AB).ENULA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1619,7 +1619,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.BEPAN (AB).BANBA",
+            "route": "EIDW.BEPAN(AB).BANBA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1652,7 +1652,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.INKUR (AB).SHA",
+            "route": "EIDW.INKUR(AB).SHA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1717,7 +1717,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.OLONO (AB).CRK",
+            "route": "EIDW.OLONO(AB).CRK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1748,7 +1748,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.ROTEV (AB).GOTNA",
+            "route": "EIDW.ROTEV(AB).GOTNA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1785,7 +1785,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.NEVRI (AB).BEL",
+            "route": "EIDW.NEVRI(AB).BEL",
             "altitude": "",
             "speed": "",
             "method": "random",
