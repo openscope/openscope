@@ -11,7 +11,7 @@ export const DIRECT_SEPARATION_SYMBOL = '..';
 * Symbol that prepends a fixname indicating the aircraft should enter
 * a holding pattern once it arrives at the fix.
 *
-* @enum
+* @enum HOLD_SEGMENT_SYMBOL
 * @type {string}
 * @final
 */
