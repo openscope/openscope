@@ -2,19 +2,29 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
-import { km, degreesToRadians } from '../utilities/unitConverters';
+import {
+    degreesToRadians,
+    km,
+    km_to_px
+} from '../utilities/unitConverters';
 import { time } from '../utilities/timeHelpers';
 import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
-import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
+import {
+    positive_intersection_with_rect,
+    vectorize_2d,
+    vscale
+} from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
 import { FLIGHT_PHASE, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import {
+    AIRCRAFT_DRAW_OPTIONS,
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
+import { TIME } from '../constants/globalConstants';
 import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
 
@@ -861,28 +871,7 @@ export default class ConvasController {
             -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
 
-        // aircraft vector lines / projected track lines
-        if (!aircraft.hit) {
-            cc.save();
-
-            cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
-            cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
-
-            let tail_length = aircraft.groundSpeed / 15;
-
-            if (match) {
-                tail_length = 15;
-            }
-
-            const angle = aircraft.groundTrack;
-            const end = vscale(vturn(angle), tail_length);
-
-            cc.beginPath();
-            cc.moveTo(0, 0);
-            cc.lineTo(end[0], -end[1]);
-            cc.stroke();
-            cc.restore();
-        }
+        this.canvas_draw_aircraft_vector_lines(cc, aircraft);
 
         if (aircraft.notice || alerts[0]) {
             this.canvas_draw_aircraft_rings(cc, aircraft);
@@ -891,6 +880,38 @@ export default class ConvasController {
         cc.beginPath();
         cc.arc(0, 0, size, 0, tau());
         cc.fill();
+    }
+
+    /**
+     * Draw aircraft "vector lines" aka "projected track lines" (PTLs)
+     * Note: These extend in front of aircraft a definable number of minutes
+     *
+     * @for CanvasController
+     * @method canvas_draw_aircraft_vector_lines
+     * @param cc {canvas}
+     * @param aircraft {AircraftInstanceModel}
+     */
+    canvas_draw_aircraft_vector_lines(cc, aircraft) {
+        // aircraft vector lines / projected track lines
+        if (!aircraft.hit) {
+            cc.save();
+
+            cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
+            cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
+
+            const lineLengthInHours = AIRCRAFT_DRAW_OPTIONS.PTL_LENGTH * TIME.ONE_MINUTE_IN_HOURS;
+            const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
+            const groundTrackVector = vectorize_2d(aircraft.groundTrack);
+            const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
+            const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], prop.ui.scale);
+            const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], prop.ui.scale);
+
+            cc.beginPath();
+            cc.moveTo(0, 0);
+            cc.lineTo(screenPositionOffsetX, -screenPositionOffsetY);
+            cc.stroke();
+            cc.restore();
+        }
     }
 
     /**
@@ -1201,7 +1222,7 @@ k
             const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
             const lineheight = 4.5; // height of text row (used for spacing basis)
             const row1text = cs;
-            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
+            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.groundSpeed * 0.1), 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {

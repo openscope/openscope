@@ -1,5 +1,4 @@
 [noaa-calculator]: https://www.ngdc.noaa.gov/geomag-web/#declination
-[faa-airspace]: https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true
 
 # Airport Format
 
@@ -252,7 +251,7 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 
 - **floor** ― The lowest altitude (in [flight levels](#flight-level)) included in the airspace.
 - **ceiling** ― The highest altitude (in [flight levels](#flight-level)) included in the airspace.
-- **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](faa-airspace) and find the closest match based on the way the local airspace is treated.
+- **airspace_class** ― The FAA class of the airspace. For non-US airports, please review [this FAA airspace classification document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) and find the closest match based on the way the local airspace is treated.
 - **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
 

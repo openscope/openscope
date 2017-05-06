@@ -1,14 +1,8 @@
-## 5.1.0 (May 20, 2017)
+## 5.2.0 (June 1, 2017)
 ---
-
-
-
-
 ### Features
-- adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
-- Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
-- allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
-- adds [airport-file-standards](tools/documentation/deployment-checklist.md) document [#367](https://github.com/openscope/openscope/issues/367)
+- Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
+
 
 
 
@@ -18,16 +12,34 @@
 
 
 ### Bugfixes
+- Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
+- Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
+
+
+
+
+
+
+
+## 5.1.0 (May 1, 2017)
+---
+### Features
+- adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
+- Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
+- allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
+- adds [airport-file-standards](tools/documentation/deployment-checklist.md) document [#367](https://github.com/openscope/openscope/issues/367)
+
+### Bugfixes
 - Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
 - Deprecates and removes `AircraftController._setDestinationFromRouteOrProcedure()` as it was implemented to maintain a previous api which is no longer used [#370](https://github.com/openscope/openscope/issues/370)
 - Ensure the verbal and text instructions/readbacks state the correct directionality [#188](https://github.com/openscope/openscope/issues/188)
 - Updates Pilot.applyDepartureProcedure() to use RunwayModel correctly [#396](https://github.com/openscope/openscope/issues/396)
-
-
-
-
-
-
+- Updates `fms.getDestinationName()` to return the `fixName` when `currentLeg` is not a procedure [#399](https://github.com/openscope/openscope/issues/399)
+- Fix wrong PTL length and set to 1 minute [#394](https://github.com/openscope/openscope/issues/394)
+- Fixes broken link in [airport-format](tools/documentation/airport-format.md) [#404](https://github.com/openscope/openscope/issues/404)
+- Fix datablock speed to show GS, not IAS [#395](https://github.com/openscope/openscope/issues/395)
+- Ensure red response is given to `rr FIXXA..FIXXB` [#408](https://github.com/openscope/openscope/issues/408)
+- Fix strip update crash for arrivals on vectors [#410](https://github.com/openscope/openscope/issues/410)
 
 
 ## 5.0.1 (April 24, 2017)
@@ -83,6 +95,7 @@
 - Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
 - Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
 - Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero' [#338](https://github.com/openscope/openscope/issues/338)
+
 
 ## 4.1.2 (February 20, 2017)
 ---

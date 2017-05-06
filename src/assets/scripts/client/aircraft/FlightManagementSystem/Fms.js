@@ -13,7 +13,8 @@ import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
     routeStringFormatHelper,
-    extractFixnameFromHoldSegment
+    extractFixnameFromHoldSegment,
+    extractHeadingFromVectorSegment
 } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     FLIGHT_CATEGORY,
@@ -383,11 +384,25 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
-        if (!this.isFollowingStar()) {
-            return null;
+        if (this.isFollowingStar()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            // TODO: This would actually be better as [0,1] than [1,2]
+            // eg `THHMP.CAVLR3.KIAD` --> `THHMP.CAVLR3` instead of `CAVLR3.KIAD`
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
         }
 
-        return this.currentLeg.exitName;
+        if (this.isFollowingSid()) {
+            const routeString = this.currentLeg.routeString;
+            const routeStringElements = routeString.split('.');
+
+            return `${routeStringElements[1]}.${routeStringElements[2]}`;
+        }
+
+        const lastPointOnRoute = _last(this.flightPlanRoute.split('.'));
+
+        return lastPointOnRoute;
     }
 
     /**
@@ -794,6 +809,10 @@ export default class Fms {
     isValidRoute(routeString, runway = '') {
         const routeSegments = routeStringFormatHelper(routeString);
 
+        if (!routeSegments) {
+            return false;
+        }
+
         for (let i = 0; i < routeSegments.length; i++) {
             let isValid = false;
             const segment = routeSegments[i];
@@ -804,6 +823,12 @@ export default class Fms {
                 const fixName = extractFixnameFromHoldSegment(segment);
 
                 isValid = this._navigationLibrary.hasFix(fixName);
+            } else if (RouteModel.isVectorRouteString(segment)) {
+                const heading = extractHeadingFromVectorSegment(segment);
+                const isValidNumber = !isNaN(heading);
+                const isThreeDigits = heading.length === 3;
+
+                isValid = isValidNumber && isThreeDigits;
             } else {
                 isValid = this._navigationLibrary.hasFix(segment);
             }
