@@ -53,6 +53,7 @@ export default class StandardRouteModel extends BaseModel {
      * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
      *
      * @constructor
+     * @for StandardRouteModel
      * @param standardRoute {object}
      */
     /* istanbul ignore next */
