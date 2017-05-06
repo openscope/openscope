@@ -2,7 +2,7 @@
 ---
 ### Features
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
-
+- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 
 
 
@@ -80,8 +80,6 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
 
 
