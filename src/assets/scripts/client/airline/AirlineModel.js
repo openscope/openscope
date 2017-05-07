@@ -11,6 +11,7 @@ import _uniq from 'lodash/uniq';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import { choose } from '../utilities/generalUtilities';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * An aircraft operating agency
@@ -29,9 +30,9 @@ export default class AirlineModel extends BaseModel {
      */
     /* istanbul ignore next */
     constructor(airlineDefinition) {
-        super(airlineDefinition);
+        super();
 
-        if (!_isObject(airlineDefinition) || _isArray(airlineDefinition) || _isEmpty(airlineDefinition)) {
+       if (isEmptyObject(airlineDefinition)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
         }

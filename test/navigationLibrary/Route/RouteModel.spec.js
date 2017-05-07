@@ -6,6 +6,7 @@ import RouteModel from '../../../src/assets/scripts/client/navigationLibrary/Rou
 const ROUTE_MOCK = 'BETHL.GRNPA1.KLAS';
 const DIRECT_ROUTE_MOCK = 'BETHL..GRNPA..25R';
 const HOLD_ROUTE_MOCK = '@COWBY';
+const VECTOR_ROUTE_MOCK = '#260';
 
 ava('returns early when instantiated with invalid parameters', t => {
     t.notThrows(() => new RouteModel());
@@ -65,6 +66,18 @@ ava('isProcedureRouteString accepts a routeString with direct sections and retur
     t.false(RouteModel.isProcedureRouteString(DIRECT_ROUTE_MOCK));
 });
 
-ava('isHoldRouteString accepts a routeString with a holdSegment and returns true', (t) => {
+ava('isHoldRouteString returns true when passed a routeString containing a holdSegment', (t) => {
     t.true(RouteModel.isHoldRouteString(HOLD_ROUTE_MOCK));
+});
+
+ava('isHoldRouteString returns false when passed a routeString without any holdSegments', (t) => {
+    t.false(RouteModel.isHoldRouteString(DIRECT_ROUTE_MOCK));
+});
+
+ava('isVectorRouteString returns true when passed a routeString containing a vectorSegment', (t) => {
+    t.true(RouteModel.isVectorRouteString(VECTOR_ROUTE_MOCK));
+});
+
+ava('isVectorRouteString returns false when passed a routeString without any vectorSegments', (t) => {
+    t.false(RouteModel.isVectorRouteString(DIRECT_ROUTE_MOCK));
 });

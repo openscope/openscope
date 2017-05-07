@@ -1,6 +1,7 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import BaseModel from '../base/BaseModel';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * Provides a definition for a specific type of aircraft.
@@ -21,8 +22,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     constructor(aircraftTypeDefinition) {
         super();
-
-        if (!_isObject(aircraftTypeDefinition) || _isEmpty(aircraftTypeDefinition)) {
+        if (isEmptyObject(aircraftTypeDefinition)) {
             throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be an object');
         }
 

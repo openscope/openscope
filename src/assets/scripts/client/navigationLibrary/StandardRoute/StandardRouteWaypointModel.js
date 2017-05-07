@@ -103,7 +103,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param routeWaypoint {array|string}
      */
     constructor(routeWaypoint) {
-        super(routeWaypoint);
+        super();
 
         if (typeof routeWaypoint === 'undefined') {
             return this;

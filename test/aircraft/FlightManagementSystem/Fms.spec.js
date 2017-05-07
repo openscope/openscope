@@ -17,6 +17,7 @@ const directRouteString = 'COWBY';
 const improperDirectRouteStringMock = 'COWBY.BIKKR';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
+const complexRouteStringWithVector = 'COWBY..#180..BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
 const improperProcedureRouteStringMock = 'MLF..GRNPA1.KLAS';
@@ -572,6 +573,12 @@ ava('.isValidRoute() returns true when passed a valid complexRouteString that in
     const fms = buildFmsMock();
 
     t.true(fms.isValidRoute(complexRouteStringWithHold, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns true when passed a valid complexRouteString that includes a vector', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(complexRouteStringWithVector, runwayAssignmentMock));
 });
 
 ava('.isValidRoute() returns true when passed a valid arrival procedureRouteString', (t) => {

@@ -3,7 +3,8 @@ import _isEqual from 'lodash/isEqual';
 
 import {
     routeStringFormatHelper,
-    extractFixnameFromHoldSegment
+    extractFixnameFromHoldSegment,
+    extractHeadingFromVectorSegment
 } from '../../../src/assets/scripts/client/navigationLibrary/Route/routeStringFormatHelper';
 
 ava('.routeStringFormatHelper() throws when passed invalid parameters', (t) => {
@@ -53,6 +54,14 @@ ava('.extractFixnameFromHoldSegment() returns a fixname when passed a holdSegmen
     const expectedResult = 'COWBY';
     const holdStringMock = '@COWBY';
     const result = extractFixnameFromHoldSegment(holdStringMock);
+
+    t.true(result === expectedResult);
+});
+
+ava('.extractHeadingFromVectorSegment() returns the correct number when passed a vectorSegment', (t) => {
+    const vectorRouteStringMock = '#230';
+    const expectedResult = '230';
+    const result = extractHeadingFromVectorSegment(vectorRouteStringMock);
 
     t.true(result === expectedResult);
 });

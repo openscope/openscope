@@ -9,6 +9,7 @@ import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import SpawnPatternModel from './SpawnPatternModel';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * A collection of `SpawnPatternModel` objects
@@ -27,15 +28,15 @@ export default class SpawnPatternCollection extends BaseCollection {
     constructor(airportJson, navigationLibrary, airportController) {
         super(airportJson, navigationLibrary);
 
-        if (!_isObject(airportJson) || _isEmpty(airportJson)) {
+        if (isEmptyObject(airportJson)) {
             throw new TypeError('Invalid parameter passed to SpawnPatternCollection');
         }
 
-        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+        if (isEmptyObject(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternCollection');
         }
 
-        if (!_isObject(airportController) || _isEmpty(airportController)) {
+        if (isEmptyObject(airportController)) {
             throw new TypeError('Invalid AirportController passed to SpawnPatternCollection');
         }
 
