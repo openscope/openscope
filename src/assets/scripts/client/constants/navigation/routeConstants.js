@@ -8,6 +8,15 @@
 export const DIRECT_SEGMENT_DIVIDER = '..';
 
 /**
+ * Symbol that prepends a fixname indicating the aircraft should pass completely
+ * over the fix before turning toward the next fix on their route
+ *
+ * @enum FLY_OVER_FIX_SYMOL
+ * @type {string}
+ */
+export const FLY_OVER_FIX_SYMBOL = '^';
+
+/**
 * Symbol that prepends a fixname indicating the aircraft should enter
 * a holding pattern once it arrives at the fix.
 *
@@ -40,7 +49,7 @@ export const ROUTE_SEGMENT_MAX_LENGTH = 3;
  * should simply be to follow the given heading until told to proceed to next waypoint
  *
  * @enum VECTOR_SEGMENT_SYMBOL
- * @type {String}
+ * @type {string}
  * @final
  */
 export const VECTOR_SEGMENT_SYMBOL = '#';
