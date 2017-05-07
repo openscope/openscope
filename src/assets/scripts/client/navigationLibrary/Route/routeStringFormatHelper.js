@@ -5,10 +5,10 @@ import _isString from 'lodash/isString';
 import { REGEX } from '../../constants/globalConstants';
 import {
     DIRECT_SEGMENT_DIVIDER,
-    HOLD_FIX_SYMBOL,
+    HOLD_WAYPOINT_PREFIX,
     ROUTE_SEGMENT_MAX_LENGTH,
     PROCEDURE_SEGMENT_DIVIDER,
-    VECTOR_SEGMENT_SYMBOL
+    VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 
 /**
@@ -123,7 +123,7 @@ export const routeStringFormatHelper = (routeString) => {
  * @param routeString {string} eg `@COWBY`
  * @return {string} eg `COWBY`
  */
-export const extractFixnameFromHoldSegment = (routeString) => routeString.split(HOLD_FIX_SYMBOL)[1];
+export const extractFixnameFromHoldSegment = (routeString) => routeString.split(HOLD_WAYPOINT_PREFIX)[1];
 
 /**
  * Return the heading from a `vectorRouteString`
@@ -132,4 +132,4 @@ export const extractFixnameFromHoldSegment = (routeString) => routeString.split(
  * @param  routeString {string} eg `#320`
  * @return {string} eg `320`
  */
-export const extractHeadingFromVectorSegment = (routeString) => routeString.split(VECTOR_SEGMENT_SYMBOL)[1];
+export const extractHeadingFromVectorSegment = (routeString) => routeString.split(VECTOR_WAYPOINT_PREFIX)[1];

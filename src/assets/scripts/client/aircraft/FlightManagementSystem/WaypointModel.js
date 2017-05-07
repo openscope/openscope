@@ -1,8 +1,8 @@
 import _get from 'lodash/get';
 import {
     RNAV_WAYPOINT_DISPLAY_NAME,
-    RNAV_WAYPOINT_SYMBOL,
-    VECTOR_SEGMENT_SYMBOL
+    RNAV_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { degreesToRadians } from '../../utilities/unitConverters';
@@ -147,7 +147,7 @@ export default class WaypointModel {
      * @return {string}
      */
     get name() {
-        if (this._name.indexOf(RNAV_WAYPOINT_SYMBOL) !== -1) {
+        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== -1) {
             return RNAV_WAYPOINT_DISPLAY_NAME;
         }
 
@@ -246,7 +246,7 @@ export default class WaypointModel {
         this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
-        this._isVector = waypointProps.name.indexOf(VECTOR_SEGMENT_SYMBOL) !== -1;
+        this._isVector = waypointProps.name.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
 
         // these properties will only be available for holding pattern waypoints
         this.isHold = _get(waypointProps, 'isHold', this.isHold);
