@@ -4,6 +4,7 @@ import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
+import _pick from 'lodash/pick';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
@@ -234,35 +235,38 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {StandardRouteModel|null}
      */
     findRouteByIcao(icao = '') {
+        // TODO: return the `_find()`
         let routeWithIcao = _find(this._items, { icao: icao.toUpperCase() });
 
-        if (_isNil(routeWithIcao)) {
-            routeWithIcao = this.findRouteByIcaoWithSuffix(icao);
-        }
+        // if (_isNil(routeWithIcao)) {
+        //     console.log('YESSSS');
+        //     routeWithIcao = this.findRouteByIcaoWithSuffix(icao);
+        // }
 
         return routeWithIcao;
     }
 
-    /**
-     * Attempt to find a `StandardRouteModel` by an icao
-     * that also contains a suffix
-     *
-     * @for StandardRouteCollection
-     * @method findRouteByIcaoWithSuffix
-     * @param icao {string}
-     * @return {StandardRouteModel|null}
-     */
-    findRouteByIcaoWithSuffix(icao = '') {
-        for (let i = 0; i < this.length; i++) {
-            const routeModel = this._items[i];
-
-            if (routeModel.hasSuffix(icao.toUpperCase())) {
-                return routeModel;
-            }
-        }
-
-        return null;
-    }
+    // FIXME: deprecate
+    // /**
+    //  * Attempt to find a `StandardRouteModel` by an icao
+    //  * that also contains a suffix
+    //  *
+    //  * @for StandardRouteCollection
+    //  * @method findRouteByIcaoWithSuffix
+    //  * @param icao {string}
+    //  * @return {StandardRouteModel|null}
+    //  */
+    // findRouteByIcaoWithSuffix(icao = '') {
+    //     for (let i = 0; i < this.length; i++) {
+    //         const routeModel = this._items[i];
+    //
+    //         if (routeModel.hasSuffix(icao.toUpperCase())) {
+    //             return routeModel;
+    //         }
+    //     }
+    //
+    //     return null;
+    // }
 
     /**
      * @for StandardRouteCollection
@@ -287,6 +291,7 @@ export default class StandardRouteCollection extends BaseCollection {
             const routeModel = new StandardRouteModel(route);
 
             this._addRouteModelToCollection(routeModel);
+            this._generateSuffixRouteModels(route);
         });
 
         return this;
@@ -312,6 +317,37 @@ export default class StandardRouteCollection extends BaseCollection {
     }
 
     /**
+     * Create additional `StandardRouteModel` objects for each suffix defined for a route
+     *
+     * This gives us access to a `StandardRouteModel` for each suffix and allows us
+     * to use existing apis to work with each model.
+     *
+     * @for StandardRouteCollection
+     * @method _generateSuffixRouteModels
+     * @param route {object}
+     */
+    _generateSuffixRouteModels(route) {
+        if (!_has(route, 'suffix')) {
+            return;
+        }
+
+        _forEach(route.suffix, (suffix, key) => {
+            const suffixRouteProps = Object.assign(
+                {},
+                route,
+                {
+                    icao: `${route.icao}${suffix}`,
+                    rwy: _pick(route.rwy, key),
+                    suffix: _pick(route.suffix, key)
+                }
+            );
+            const suffixRouteModel = new StandardRouteModel(suffixRouteProps);
+
+            this._addRouteModelToCollection(suffixRouteModel);
+        });
+    }
+
+    /**
      * Find the requested route in `_cache` or find the route and add it t the cache
      *
      * Allows a route to be validated by first finding them and then adding it to the _cache.
@@ -326,7 +362,7 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {array<StandardRouteWaypointModel>}
      */
     _findRouteOrAddToCache(icao, entry, exit, isPreSpawn) {
-        const cacheKey = `${icao}.${entry}.${exit}`;
+        const cacheKey = this._generateCacheKey(icao, entry, exit);
 
         if (!_isNil(this._cache[cacheKey]) && !isPreSpawn) {
             return this._cache[cacheKey];
@@ -363,8 +399,7 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         if (routeModel.hasSuffix(uppercaseIcao)) {
-            // using recursion here so we can leverage the cache with the correct keys
-            return this._destructureIcaoWithSuffixAndRouteModel(routeModel, uppercaseIcao, entry, exit, isPreSpawn);
+            return this._findAndCacheRouteWithSuffix(routeModel, uppercaseIcao, entry, exit, isPreSpawn);
         }
 
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
@@ -384,26 +419,44 @@ export default class StandardRouteCollection extends BaseCollection {
      * back through that method and store the route in `#_cache` correctly
      *
      * @for StandardRouteCollection
-     * @method _destructureIcaoWithSuffixAndRouteModel
+     * @method _findAndCacheRouteWithSuffix
      * @param icaoWithSuffix {string}
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @return {function}
      */
-    _destructureIcaoWithSuffixAndRouteModel(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
+    _findAndCacheRouteWithSuffix(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
         let icao;
 
         if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
             exit = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
             icao = routeModel.icao;
-
-            return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
+        } else {
+            entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
+            icao = routeModel.icao;
         }
 
-        entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
-        icao = routeModel.icao;
+        const cacheKey = this._generateCacheKey(icao, entry, exit);
+        const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        this._cache[cacheKey] = routeWaypoints;
 
-        return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
+        return routeWaypoints;
+    }
+
+    /**
+     * Single place to build the string used for keys in `#_cache`
+     *
+     * Abstracted here to contain the logic in one place.
+     *
+     * @for StandardRouteCollection
+     * @method _generateCacheKey
+     * @param icao  {string}
+     * @param entry {string}
+     * @param exit  {string}
+     * @return {string}
+     */
+    _generateCacheKey(icao, entry, exit) {
+        return `${icao}.${entry}.${exit}`;
     }
 }

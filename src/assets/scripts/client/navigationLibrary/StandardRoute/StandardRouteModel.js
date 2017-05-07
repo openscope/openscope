@@ -392,7 +392,13 @@ export default class StandardRouteModel extends BaseModel {
         }
 
         _forEach(standardRoute.suffix, (value, key) => {
-            this._icaoWithSuffixDictionary[`${this.icao}${value}`] = key;
+            let dictionaryKey = standardRoute.icao;
+
+            if (standardRoute.icao.indexOf(value) === -1) {
+                dictionaryKey = `${standardRoute.icao}${value}`;
+            }
+
+            this._icaoWithSuffixDictionary[dictionaryKey] = key;
         });
     }
 
