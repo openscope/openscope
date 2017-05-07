@@ -1,23 +1,11 @@
 import _get from 'lodash/get';
-import { VECTOR_SEGMENT_SYMBOL } from '../../constants/navigation/routeConstants';
+import {
+    RNAV_WAYPOINT_DISPLAY_NAME,
+    RNAV_WAYPOINT_SYMBOL,
+    VECTOR_SEGMENT_SYMBOL
+} from '../../constants/navigation/routeConstants';
 import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { degreesToRadians } from '../../utilities/unitConverters';
-
-/**
- * Symbol used to denote an RNAV waypoint
- *
- * @property RNAV_WAYPOINT_SYMBOL
- * @type {string}
- * @final
- */
-const RNAV_WAYPOINT_SYMBOL = '_';
-
-/**
- * @property RNAV_WAYPOINT
- * @type {string}
- * @final
- */
-const RNAV_WAYPOINT = 'RNAV';
 
 /**
  * A representation of navigation point within a flight plan.
@@ -160,7 +148,7 @@ export default class WaypointModel {
      */
     get name() {
         if (this._name.indexOf(RNAV_WAYPOINT_SYMBOL) !== -1) {
-            return RNAV_WAYPOINT;
+            return RNAV_WAYPOINT_DISPLAY_NAME;
         }
 
         return this._name;

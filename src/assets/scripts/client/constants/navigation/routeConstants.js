@@ -36,6 +36,22 @@ export const HOLD_FIX_SYMBOL = '@';
 export const PROCEDURE_SEGMENT_DIVIDER = '.';
 
 /**
+* @enum RNAV_WAYPOINT_DISPLAY_NAME
+* @type {string}
+* @final
+*/
+export const RNAV_WAYPOINT_DISPLAY_NAME = 'RNAV';
+
+/**
+ * Symbol used to denote an RNAV waypoint
+ *
+ * @enum RNAV_WAYPOINT_SYMBOL
+ * @type {string}
+ * @final
+ */
+export const RNAV_WAYPOINT_SYMBOL = '_';
+
+/**
 * A procedure segment has, at most, three parts (ex: `BETHL.GRNPA1.KLAS`)
 *
 * @enum ROUTE_SEGMENT_MAX_LENGTH
