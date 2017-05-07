@@ -11,11 +11,11 @@ export const DIRECT_SEGMENT_DIVIDER = '..';
 * Symbol that prepends a fixname indicating the aircraft should enter
 * a holding pattern once it arrives at the fix.
 *
-* @enum HOLD_SEGMENT_SYMBOL
+* @enum HOLD_FIX_SYMBOL
 * @type {string}
 * @final
 */
-export const HOLD_SEGMENT_SYMBOL = '@';
+export const HOLD_FIX_SYMBOL = '@';
 
 /**
 * Symbol that divides each route segment

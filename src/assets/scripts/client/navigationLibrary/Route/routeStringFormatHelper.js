@@ -5,7 +5,7 @@ import _isString from 'lodash/isString';
 import { REGEX } from '../../constants/globalConstants';
 import {
     DIRECT_SEGMENT_DIVIDER,
-    HOLD_SEGMENT_SYMBOL,
+    HOLD_FIX_SYMBOL,
     ROUTE_SEGMENT_MAX_LENGTH,
     PROCEDURE_SEGMENT_DIVIDER,
     VECTOR_SEGMENT_SYMBOL
@@ -123,7 +123,7 @@ export const routeStringFormatHelper = (routeString) => {
  * @param routeString {string} eg `@COWBY`
  * @return {string} eg `COWBY`
  */
-export const extractFixnameFromHoldSegment = (routeString) => routeString.split(HOLD_SEGMENT_SYMBOL)[1];
+export const extractFixnameFromHoldSegment = (routeString) => routeString.split(HOLD_FIX_SYMBOL)[1];
 
 /**
  * Return the heading from a `vectorRouteString`
