@@ -209,6 +209,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "COWBY6": {
             "icao": "COWBY6",
             "name": "Cowboy Six",
+            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "rwy": {
                 "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
                 "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
@@ -287,6 +288,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "GRNPA1": {
             "icao": "GRNPA1",
             "name": "Grandpa One",
+            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "entryPoints": {
                 "BETHL": ["BETHL", ["HOLDM", "A270"]],
                 "BCE":   ["BCE"],

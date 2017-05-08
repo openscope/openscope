@@ -96,7 +96,11 @@ export default class NavigationLibrary {
     init(airportJson) {
         const { fixes, sids, stars } = airportJson;
 
-        this._referencePosition = new StaticPositionModel(airportJson.position, null, degreesToRadians(airportJson.magnetic_north));
+        this._referencePosition = new StaticPositionModel(
+            airportJson.position,
+            null,
+            degreesToRadians(airportJson.magnetic_north)
+        );
 
         FixCollection.addItems(fixes, this._referencePosition);
         this._sidCollection = new StandardRouteCollection(sids, StandardRouteCollection.ROUTE_TYPE.SID);
@@ -274,5 +278,32 @@ export default class NavigationLibrary {
         );
 
         return staticPositionModel;
+    }
+
+    /**
+     * Determine if a procedureRouteString contains a suffix route
+     *
+     * Used from the `AircraftCommander` for branching logic that will
+     * enable updating of a runway for a particular suffix route
+     *
+     * @NavigationLibrary
+     * @method isSuffixRoute
+     * @param procedureRouteString {string}
+     * @param procedureType {string}
+     * @return {boolean}
+     */
+    isSuffixRoute(procedureRouteString, procedureType) {
+        if (!RouteModel.isProcedureRouteString(procedureRouteString)) {
+            return false;
+        }
+
+        const { procedure } = new RouteModel(procedureRouteString);
+        let route = this._sidCollection.findRouteByIcao(procedure);
+
+        if (procedureType === 'STAR') {
+            route = this._starCollection.findRouteByIcao(procedure);
+        }
+
+        return route.hasSuffix();
     }
 }

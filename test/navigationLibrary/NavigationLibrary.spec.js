@@ -5,6 +5,9 @@ import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPo
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 
+const sidSuffixRouteStringMock = 'MLF.COWBY61A.KLAS';
+const starSuffixRouteStringMock = 'KLAS.GRNPA11A.DRK';
+
 ava('throws when called without an airportJson', (t) => {
     t.throws(() => new NavigationLibrary());
 });
@@ -36,4 +39,24 @@ ava('.generateStaticPositionModelForLatLong() returns a DynamicPositionModel fro
     const result = navigationLibrary.generateStaticPositionModelForLatLong(latLongMock, airportPositionFixtureKLAS, airportPositionFixtureKLAS.magneticNorth);
 
     t.true(result instanceof DynamicPositionModel);
+});
+
+ava('.isSuffixRoute() returns false when passed a  direct routeString ', (t) => {
+    const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+
+    t.false(navigationLibrary.isSuffixRoute('THREEVE', 'STAR'));
+});
+
+ava('.isSuffixRoute() returns false when passed a routeString not associated with a suffix StandardRouteModel', (t) => {
+    const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    const result = navigationLibrary.isSuffixRoute(starSuffixRouteStringMock, 'STAR');
+
+    t.true(result);
+});
+
+ava('.isSuffixRoute() returns true when passed a routeString associated with a suffix StandardRouteModel', (t) => {
+    const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    const result = navigationLibrary.isSuffixRoute(sidSuffixRouteStringMock, 'SID');
+
+    t.true(result);
 });

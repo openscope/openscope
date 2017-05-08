@@ -371,13 +371,35 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSTAR
      * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
+     * @return {array}   [success of operation, readback]
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
+        // TODO: why are we passing this if we already have it?
         const arrivalRunway = aircraft.fms.arrivalRunway;
-        const { name: airportName } = this._airportController.airport_get();
+        const airportModel = this._airportController.airport_get();
 
-        return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
+        if (this._navigationLibrary.isSuffixRoute(routeString, 'STAR')) {
+            return this._runSTARforSuffix(aircraft, airportModel, routeString);
+        }
+
+        return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportModel.name);
+    }
+
+    /**
+     *
+     *
+     * @method _runSTARforSuffix
+     * @return {array}   [success of operation, readback]
+     */
+    _runSTARforSuffix(aircraft, airportModel, routeString) {
+        console.log('_runSTARforSuffix', routeString);
+        // const routeModel = this._navigationLibrary.starCollection.getRouteFromProcedureStr
+        // const runwayName = routeModel.getSuffixSegmentName('STAR');
+        // const runwayModel = airportModel.getRunway(runwayName);
+        //
+        // return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
+        return false;
     }
 
     /**
