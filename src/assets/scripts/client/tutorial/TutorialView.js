@@ -388,8 +388,42 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Fixes',
             text: ['Instead of guiding each aircraft based on heading, you can also clear each aircraft to proceed to a fix or navaid (shown on the map',
-                   'as a small triangle). Just use the command &lsquo;fix&rsquo; and the name of a fix, and the aircraft will fly to it. Upon passing the',
+                   'as a small triangle). Just use the command &lsquo;route&rsquo; and the name of a fix, and the aircraft will fly to it. Upon passing the',
                    'fix, it will continue flying along its present heading.'
+               ].join(' '),
+            parse: (t) => {
+                if (prop.aircraft.list.length <= 0) {
+                    return t;
+                }
+
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
+            },
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Say Route',
+            text: ['With the capability to edit the route, you obviously will need a way to know what their current route is. Typically, this is displayed',
+                   'in the flight progress strip. However, to preserve screen space, you will instead have to check the route by this command &lsquo;route&rsquo;',
+                   'and the route will print out above the command bar.'
+               ].join(' '),
+            parse: (t) => {
+                if (prop.aircraft.list.length <= 0) {
+                    return t;
+                }
+
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
+            },
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
+            title: 'Proceed Direct',
+            text: ['The command &lsquo;pd&rsquo; instructs the aircraft to go direct to a navigational fix, taking a shortcut. For example, if an',
+                   'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C. After flying ',
+                   'past the last fix, the aircraft will continue flying straight.'
                ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
