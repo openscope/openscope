@@ -15,6 +15,8 @@
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
+- Removes fix command from tutorial and replaces it with infomation on 'route', 'Say Route', and 'Proceed Direct' [#356](https://github.com/openscope/openscope/issues/356)
+
 
 
 
