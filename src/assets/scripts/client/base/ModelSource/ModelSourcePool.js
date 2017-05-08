@@ -91,9 +91,13 @@ class ModelSourcePool extends BaseCollection {
     releaseReusable(constructorName, ...args) {
         let model = this._findModelByConstructorName(constructorName);
 
-        if (!model) {
-            model = new CLASS_MAP[constructorName](...args);
+        if(model){
+            model.init(...args);
+            return model;
         }
+
+        model = new CLASS_MAP[constructorName](...args);
+
         // if (constructorName === 'SpawnPatternModel') {debugger;}
         model.init(...args);
 
