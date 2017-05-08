@@ -1314,11 +1314,11 @@ export default class AircraftInstanceModel {
         const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
-        const wantToFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
+        const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
         let shouldMoveToNextFix = closeToBeingOverFix;
 
         if (!this.fms.currentWaypoint.isFlyOverWaypoint) {
-            shouldMoveToNextFix = closeToBeingOverFix || wantToFlyByFix;
+            shouldMoveToNextFix = closeToBeingOverFix || shouldFlyByFix;
         }
 
         if (shouldMoveToNextFix) {
