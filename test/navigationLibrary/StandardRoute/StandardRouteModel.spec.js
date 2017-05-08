@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
@@ -16,7 +15,6 @@ import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
-    STAR_WITH_SUFFIX,
     SID_LIST_MOCK,
     SID_WITHOUT_BODY_MOCK,
     SID_WITHOUT_EXIT_MOCK,
@@ -25,6 +23,9 @@ import {
 
 const SID_MOCK = SID_LIST_MOCK.SHEAD9;
 const STAR_MOCK = STAR_LIST_MOCK.TYSSN4;
+const SID_WITH_SUFFIX = SID_LIST_MOCK.COWBY6;
+const STAR_WITH_SUFFIX = STAR_LIST_MOCK.GRNPA1;
+const SUFFIX_MOCK = '01L';
 const RUNWAY_NAME_MOCK = '25L';
 const ENTRY_FIXNAME_MOCK = 'DRK';
 
@@ -37,17 +38,44 @@ ava('throws when instantiated with invaild parameters', t => {
 });
 
 ava('does not throw when instantiated with vaild parameters', t => {
-    const result = new StandardRouteModel(SID_MOCK);
-
     t.notThrows(() => new StandardRouteModel(STAR_MOCK));
     t.notThrows(() => new StandardRouteModel(SID_MOCK));
     t.notThrows(() => new StandardRouteModel(SID_WITHOUT_BODY_MOCK));
     t.notThrows(() => new StandardRouteModel(STAR_WITHOUT_RWY));
-    t.true(result.name === SID_MOCK.name);
-    t.true(result.icao === SID_MOCK.icao);
+});
+
+ava('sets collections correctly', (t) => {
+    const result = new StandardRouteModel(SID_MOCK);
+
     t.true(result._entryCollection instanceof RouteSegmentCollection);
     t.true(result._bodySegmentModel instanceof RouteSegmentModel);
     t.true(result._exitCollection instanceof RouteSegmentCollection);
+});
+
+ava('does not set #_suffixKey when instantiated without a suffixKey argument', (t) => {
+    const model = new StandardRouteModel(SID_WITH_SUFFIX);
+
+    t.true(model._suffixKey === '');
+});
+
+ava('sets #_suffixKey when instantiated with a suffixKey argument', (t) => {
+    const model = new StandardRouteModel(SID_WITH_SUFFIX, SUFFIX_MOCK);
+
+    t.true(model._suffixKey === SUFFIX_MOCK);
+});
+
+ava('trims the #rwy object to a single rwy key when instantiated with a suffixKey argument', (t) => {
+    let model = new StandardRouteModel(SID_WITH_SUFFIX, SUFFIX_MOCK);
+    let rwyKeys = Object.keys(model.rwy);
+
+    t.true(rwyKeys.length === 1);
+    t.true(rwyKeys[0] === SUFFIX_MOCK);
+
+    model = new StandardRouteModel(STAR_WITH_SUFFIX, SUFFIX_MOCK);
+    rwyKeys = Object.keys(model.rwy);
+
+    t.true(rwyKeys.length === 1);
+    t.true(rwyKeys[0] === SUFFIX_MOCK);
 });
 
 ava('.findStandardRouteWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
@@ -62,22 +90,6 @@ ava('.findStandardRouteWaypointModelsForEntryAndExit() returns a list of `Standa
     t.true(result.length === 8);
     t.true(result[0] instanceof StandardRouteWaypointModel);
     t.true(result[0].position !== null);
-});
-
-ava('creates a dictionary #_icaoWithSuffix madeup of icao + suffix with the runway name as a value', (t) => {
-    const expectedResult = {
-        GRNPA11A: '01L',
-        GRNPA11B: '01R',
-        GRNPA12A: '07L',
-        GRNPA12B: '07R',
-        GRNPA13A: '19L',
-        GRNPA13B: '19R',
-        GRNPA14A: '25L',
-        GRNPA14B: '25R'
-    };
-    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
-
-    t.deepEqual(model._icaoWithSuffixDictionary, expectedResult);
 });
 
 ava('.findStandardRouteWaypointModelsForEntryAndExit() does call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is true', t => {
@@ -117,13 +129,6 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.getSegmentNameForIcaoWithSuffix() throws if called with invalid parameters', (t) => {
-    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
-
-    t.throws(() => model.getSegmentNameForIcaoWithSuffix('GRNPA1'));
-    t.notThrows(() => model.getSegmentNameForIcaoWithSuffix('GRNPA11A'));
-});
-
 ava('.hasExitPoints() returns a boolean', t => {
     let model;
 
@@ -132,6 +137,14 @@ ava('.hasExitPoints() returns a boolean', t => {
 
     model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK.TRALR6);
     t.false(model.hasExitPoints());
+});
+
+ava('.hasSuffix() returns true only when it represents a suffix StandardRouteModel', (t) => {
+    let model = new StandardRouteModel(STAR_MOCK);
+    t.false(model.hasSuffix());
+
+    model = new StandardRouteModel(STAR_WITH_SUFFIX, SUFFIX_MOCK);
+    t.true(model.hasSuffix());
 });
 
 ava('._buildSegmentCollection() returns null if segment is undefined', t => {
@@ -206,19 +219,4 @@ ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypo
     const result = model._findStandardWaypointModelsForRoute('BETHL', '');
 
     t.true(result.length === 9);
-});
-
-ava('.hasSuffix() returns true only when it receives an icao + suffix', (t) => {
-    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
-
-    t.false(model.hasSuffix('GRNPA'));
-    t.true(model.hasSuffix('GRNPA11A'));
-});
-
-ava('._getSegmentNameFromIcaoWithSuffix() returns a runwayName for an icao + suffix', (t) => {
-    const expectedResult = '01L';
-    const model = new StandardRouteModel(STAR_WITH_SUFFIX);
-    const result = model._getSegmentNameFromIcaoWithSuffix('GRNPA11A');
-
-    t.true(result === expectedResult);
 });

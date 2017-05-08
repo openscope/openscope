@@ -332,16 +332,17 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         _forEach(route.suffix, (suffix, key) => {
-            const suffixRouteProps = Object.assign(
-                {},
-                route,
-                {
-                    icao: `${route.icao}${suffix}`,
-                    rwy: _pick(route.rwy, key),
-                    suffix: _pick(route.suffix, key)
-                }
-            );
-            const suffixRouteModel = new StandardRouteModel(suffixRouteProps);
+            // const suffixRouteProps = Object.assign(
+            //     {},
+            //     route,
+            //     {
+            //         icao: `${route.icao}${suffix}`,
+            //         rwy: _pick(route.rwy, key),
+            //         suffix: _pick(route.suffix, key)
+            //     }
+            // );
+            const suffixRouteModel = new StandardRouteModel(route, key);
+            // const suffixRouteModel = new StandardRouteModel(suffixRouteProps);
 
             this._addRouteModelToCollection(suffixRouteModel);
         });
@@ -429,13 +430,13 @@ export default class StandardRouteCollection extends BaseCollection {
     _findAndCacheRouteWithSuffix(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
         let icao;
 
-        if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
-            exit = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
-            icao = routeModel.icao;
-        } else {
-            entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
-            icao = routeModel.icao;
-        }
+        // if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
+        //     exit = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
+        //     icao = routeModel.icao;
+        // } else {
+        //     entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
+        //     icao = routeModel.icao;
+        // }
 
         const cacheKey = this._generateCacheKey(icao, entry, exit);
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);

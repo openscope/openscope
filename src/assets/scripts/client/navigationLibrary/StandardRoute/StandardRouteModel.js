@@ -2,10 +2,9 @@ import _compact from 'lodash/compact';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
-import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
+import _pick from 'lodash/pick';
 import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
@@ -25,6 +24,7 @@ export default class StandardRouteModel extends BaseModel {
      *  {
      *    'icao': 'SHEAD9',
      *    'name': 'Shead Nine',
+     *    'suffix': {'01L': '1A'},
      *    'rwy': {
      *      '01L': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
      *      '01R': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
@@ -53,15 +53,21 @@ export default class StandardRouteModel extends BaseModel {
      * - `exitPoints` becomes the  `_exitCollection`. will only be present on SID routes
      * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
      *
+     * The above can also be passed with a `suffix` property. This comes in the shape of `RUNWAY: SUFFIX`.
+     * When suffixes are present, the `StandardRouteCollection` will attempt to create a `StandardRouteModel`
+     * for each suffix. This simplifies the lookup logic because we then only need to search by `icao`
+     * insead of having to logic the `icao` + `suffix`.
+     *
      * @constructor
      * @for StandardRouteModel
      * @param standardRoute {object}
+     * @param suffixKey {string}         [optional]
      */
     /* istanbul ignore next */
-    constructor(standardRoute) {
+    constructor(standardRoute, suffixKey = '') {
         super();
 
-       if (isEmptyObject(standardRoute)) {
+        if (isEmptyObject(standardRoute)) {
             throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
 
@@ -84,13 +90,18 @@ export default class StandardRouteModel extends BaseModel {
         this.icao = '';
 
         /**
-         * Dictionary of `icaoWithSuffix` keys and `exitName` values
+         * Key from the `suffix` object of a route model.
          *
-         * @proeprty
-         * @type {array<string>}
-         * @default {}
+         * Should be passed in from the `StandardRouteCollection`.
+         * Is used here to determine if this is a suffix `StandardRouteCollection`
+         * and to figure out which runways need to be kept for this particular route
+         *
+         * @property _suffixKey
+         * @type {string}
+         * @default ''
+         * @private
          */
-        this._icaoWithSuffixDictionary = {};
+        this._suffixKey = suffixKey;
 
         /**
          * List of fixes in the order that they should be drawn
@@ -188,7 +199,7 @@ export default class StandardRouteModel extends BaseModel {
         this.entryPoints = _get(standardRoute, 'entryPoints', {});
         this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
 
-        this._buildIcaoWithSuffixList(standardRoute);
+        this._buildRouteWithSuffix(standardRoute);
         this._buildEntryAndExitCollections(standardRoute);
     }
 
@@ -205,10 +216,10 @@ export default class StandardRouteModel extends BaseModel {
         this.body = [];
         this.exitPoints = [];
         this.draw = [];
+        this._suffixKey = '';
         this._bodySegmentModel = null;
         this._exitCollection = null;
         this._entryCollection = null;
-        this._icaoWithSuffixDictionary = {};
 
         return this;
     }
@@ -280,21 +291,6 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Public fascade for `._getSegmentNameFromIcaoWithSuffix()`
-     *
-     * @method getSegmentNameForIcaoWithSuffix
-     * @param icaoWithSuffix {string}
-     * @return {string}
-     */
-    getSegmentNameForIcaoWithSuffix(icaoWithSuffix) {
-        if (!this.hasSuffix(icaoWithSuffix)) {
-            throw new Error(`Attempted to find an exit for an icao without a suffix: ${icaoWithSuffix}`);
-        }
-
-        return this._getSegmentNameFromIcaoWithSuffix(icaoWithSuffix);
-    }
-
-    /**
      * Does the `_exitCollection` have any exitPoints?
      *
      * @for StandardRouteModel
@@ -322,15 +318,14 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Determine if the passed `icao` contains a suffix
+     * Determine if this `StandardRouteModel` represents a suffix route
      *
      * @for StandardRouteModel
      * @property hasSuffix
-     * @param icao {string}
      * @return {boolean}
      */
-    hasSuffix(icao) {
-        return _has(this._icaoWithSuffixDictionary, icao);
+    hasSuffix() {
+        return this._suffixKey !== '';
     }
 
     /**
@@ -372,36 +367,25 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Creates a dictionary of `icaoWithSuffix` keys and `exitName` as values
+     * If this represents a suffix route, update the `#icao` and `rwy` object
      *
-     * Example:
-     * ```
-     *  const icaoWithSuffix = 'GRNPA11A';
-     *
-     *  // is then added to the dictionary thusly:
-     *  this._icaoWithSuffixDictionary = {
-     *      'GRNPA11A': '01L'
-     *  };
-     * ```
+     * This method should be run only once on instantiation.
+     * This method mutates both properties before the `_buildEntryAndExitCollections()`
+     * method is fired. By updating the `rwy` object, this forces the resulting collection
+     * object to contain only the runway applicatble to the suffix.
      *
      * @for StandardRouteModel
-     * @method _buildIcaoWithSuffixList
+     * @method _buildRouteWithSuffix
      * @param  standardRoute {object}
      */
-    _buildIcaoWithSuffixList(standardRoute) {
-        if (!_has(standardRoute, 'suffix')) {
+    _buildRouteWithSuffix(standardRoute) {
+        if (this._suffixKey === '') {
             return;
         }
 
-        _forEach(standardRoute.suffix, (value, key) => {
-            let dictionaryKey = standardRoute.icao;
-
-            if (standardRoute.icao.indexOf(value) === -1) {
-                dictionaryKey = `${standardRoute.icao}${value}`;
-            }
-
-            this._icaoWithSuffixDictionary[dictionaryKey] = key;
-        });
+        const suffixVal = standardRoute.suffix[this._suffixKey];
+        this.icao = `${standardRoute.icao}${suffixVal}`;
+        this.rwy = _pick(standardRoute.rwy, this._suffixKey);
     }
 
     /**
@@ -545,19 +529,5 @@ export default class StandardRouteModel extends BaseModel {
             waypoint.distanceFromPreviousWaypoint = distance;
             waypoint.previousStandardWaypointName = previousWaypoint.name;
         });
-    }
-
-    /**
-     * Return an exitSegment name for `icaoWithSuffix`
-     *
-     * This method assumes an `icaoWithSuffix` has already passed through `.hasSuffix()`
-     * and is known to have a suffix.
-     *
-     * @for StandardRouteModel
-     * @method _getSegmentNameFromIcaoWithSuffix
-     * @param  icaoWithSuffix
-     */
-    _getSegmentNameFromIcaoWithSuffix(icaoWithSuffix) {
-        return this._icaoWithSuffixDictionary[icaoWithSuffix];
     }
 }
