@@ -133,6 +133,8 @@ export default class WaypointModel {
          */
         this.isHold = false;
 
+        // TODO: This should be moved to the StandardRouteWaypointModel
+        // Follow the same pattern as #_isFlyOverWaypoint
         /**
          * Flag used to determine if a waypoint is for a vector
          *
@@ -269,7 +271,8 @@ export default class WaypointModel {
         this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
-        this._isVector = waypointProps.name.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+        this._isFlyOverWaypoint = waypointProps.isFlyOverWaypoint;
+        this._isVector = waypointProps.isVector;
 
         // these properties will only be available for holding pattern waypoints
         this.isHold = _get(waypointProps, 'isHold', this.isHold);

@@ -3,6 +3,10 @@ import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
+import {
+    FLY_OVER_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/navigation/routeConstants';
 
 /**
  * @property NAME_INDEX
@@ -146,6 +150,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @private
          */
         this._altitude = -1;
+
+        /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
 
         /**
          * Required speed for a waypoint
@@ -296,12 +311,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _init(routeWaypoint) {
         // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
-            this.name = routeWaypoint;
+            this.name = routeWaypoint.replace(FLY_OVER_WAYPOINT_PREFIX, '');
+            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
 
             return this;
         }
 
-        this.name = routeWaypoint[NAME_INDEX];
+        this.name = routeWaypoint[NAME_INDEX].replace(FLY_OVER_WAYPOINT_PREFIX, '');
+        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
@@ -368,9 +388,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     toWaypointModel() {
         const waypointProps = {
+            altitudeRestriction: this._altitude,
+            isFlyOverWaypoint: this._isFlyOverWaypoint,
+            isVector: this._isVector,
             name: this.name,
             positionModel: this.positionModel,
-            altitudeRestriction: this._altitude,
             speedRestriction: this._speed
         };
 
