@@ -7,86 +7,15 @@ import {
     FLY_OVER_WAYPOINT_PREFIX,
     VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
-
-/**
- * @property NAME_INDEX
- * @type {number}
- * @final
- */
-const NAME_INDEX = 0;
-
-/**
- * @property RESTRICTION_INDEX
- * @type {number}
- * @final
- */
-const RESTRICTION_INDEX = 1;
-
-/**
- * @property RESTRICTION_SEPARATOR
- * @type {string}
- * @final
- */
-const RESTRICTION_SEPARATOR = '|';
-
-/**
- * @property ALTITUDE_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const ALTITUDE_RESTRICTION_PREFIX = 'A';
-
-/**
- * @property SPEED_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const SPEED_RESTRICTION_PREFIX = 'S';
-
-/**
- * Symbol denoting a greater than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const ABOVE_SYMBOL = '+';
-
-/**
- * Symbol denoting a less than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const BELOW_SYMBOL = '-';
-
-/**
- * Number to used to convert a FL altitude to an altitude in thousands
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const FL_TO_THOUSANDS_MULTIPLIER = 100;
-
-/**
- * Enumeration for an invalid index number.
- *
- * @property INVALID_INDEX
- * @type {number}
- * @final
- */
-const INVALID_INDEX = -1;
-
-/**
- * Enumeration for the radix value of `parseInt`
- *
- * @proeprty DECIMAL_RADIX
- * @type {number}
- * @final
- */
-const DECIMAL_RADIX = 10;
+import {
+    ALTITUDE_RESTRICTION_PREFIX,
+    DECIMAL_RADIX,
+    FL_TO_THOUSANDS_MULTIPLIER,
+    NAME_INDEX,
+    RESTRICTION_INDEX,
+    RESTRICTION_SEPARATOR,
+    SPEED_RESTRICTION_PREFIX
+} from '../../constants/navigation/waypointConstants';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
