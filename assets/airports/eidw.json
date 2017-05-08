@@ -28,22 +28,22 @@
       "poly": [
         ["N54.161067061", "W6.761329640"],
         ["N53.916714845", "W5.500648488"],
-        ["N53.520412900", "W5.498954000"],  
-        ["N53.506310100", "W5.489351800"],  
-        ["N53.491929400", "W5.481006100"],  
-        ["N53.477309900", "W5.473937600"],  
-        ["N53.462491700", "W5.468163800"],  
-        ["N53.447515200", "W5.463698700"],  
-        ["N53.432420900", "W5.460552600"],  
-        ["N53.417249900", "W5.458732300"],  
-        ["N53.402043200", "W5.458241200"],  
-        ["N53.386841700", "W5.459079200"],  
-        ["N53.371686700", "W5.461242600"],  
-        ["N53.356619100", "W5.464724400"],  
-        ["N53.341679500", "W5.469514000"],  
-        ["N53.326908000", "W5.475597500"],  
-        ["N53.312344600", "W5.482957600"],  
-        ["N53.298028600", "W5.491573800"],  
+        ["N53.520412900", "W5.498954000"],
+        ["N53.506310100", "W5.489351800"],
+        ["N53.491929400", "W5.481006100"],
+        ["N53.477309900", "W5.473937600"],
+        ["N53.462491700", "W5.468163800"],
+        ["N53.447515200", "W5.463698700"],
+        ["N53.432420900", "W5.460552600"],
+        ["N53.417249900", "W5.458732300"],
+        ["N53.402043200", "W5.458241200"],
+        ["N53.386841700", "W5.459079200"],
+        ["N53.371686700", "W5.461242600"],
+        ["N53.356619100", "W5.464724400"],
+        ["N53.341679500", "W5.469514000"],
+        ["N53.326908000", "W5.475597500"],
+        ["N53.312344600", "W5.482957600"],
+        ["N53.298028600", "W5.491573800"],
         ["N53.283998700", "W5.501422200"],
         ["N52.333073347", "W5.500648488"],
         ["N52.614555848", "W6.618507374"],
@@ -331,11 +331,11 @@
     "RONON": ["N53d42m33.90", "W6d36m19.20"],
     "ROTEV": ["N54d01m43.70", "W6d03m58.40"],
     "RUBAR": ["N53d08m08.90", "W5d48m05.40"],
-    "SHA  ": ["N52.72098925", "W8.88519287"],
+    "SHA"  : ["N52.72098925", "W8.88519287"],
     "SIVNA": ["N53d11m52.30", "W5d38m27.70"],
     "SOPEP": ["N53d21m05.90", "W5d52m29.40"],
     "SORIN": ["N53d08m29.30", "W5d48m22.50"],
-    "STU  ": ["N51.99468997", "W5.04016113"],
+    "STU"  : ["N51.99468997", "W5.04016113"],
     "SUGAD": ["N53d17m22.50", "W5d31m39.80"],
     "SUROX": ["N53d59m48.00", "W6d59m36.50"],
     "SUTEX": ["N52d49m28.00", "W6d55m49.00"],
@@ -1074,7 +1074,7 @@
     {
       "name": ["10", "28"],
       "end": [
-        ["N53d25m20.75", "W6d17m24.27", "242ft"], 
+        ["N53d25m20.75", "W6d17m24.27", "242ft"],
         ["N53d25m12.94", "W6d15m02.08", "202ft"]
       ],
       "ils": [true, true]
@@ -1082,7 +1082,7 @@
     {
       "name": ["16", "34"],
       "end": [
-        ["N53d26m13.16", "W6d15m43.12", "217ft"], 
+        ["N53d26m13.16", "W6d15m43.12", "217ft"],
         ["N53d25m11.66", "W6d14m58.54", "202ft"]
       ],
       "ils": [true, true]
@@ -1105,8 +1105,8 @@
       },
       "draw": [
         ["ERUDA", "DODIG", "SUROX"],
-        ["OP", "BATED"], 
-        ["DUB", "DWN28", "DWW04"], 
+        ["OP", "BATED"],
+        ["DUB", "DWN28", "DWW04"],
         ["_LIFFY10", "DWW04", "SUROX"]
       ]
     },
@@ -1125,7 +1125,7 @@
         "SUROX": ["SUROX"]
       },
       "draw": [
-        ["DW931", "LEMTA"], 
+        ["DW931", "LEMTA"],
         ["SUROX"]
       ]
     },
@@ -1144,8 +1144,8 @@
         "LIFFY": ["LIFFY"]
       },
       "draw": [
-        ["DW551", "LIFFY"], 
-        ["DWN26", "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "_KISHA7", "_KISHA8", "_KISHA9", "_KISHA10", "_KISHA11", "_KISHA12", "_KISHA13", "_KISHA14", "_KISHA15", "_KISHA16", "_KISHA17", "_KISHA18", "_KISHA19", "_KISHA20", "_KISHA21", "_KISHA22", "_KISHA23", "_KISHA24", "_KISHA25", "_KISHA26", "_KISHA27", "BATED"], ["OE", "_LIFFY1", "_LIFFY2", "_LIFFY3", "_LIFFY4", "_LIFFY5", "_LIFFY6", "_LIFFY7", "_LIFFY8", "_LIFFY9", "_LIFFY10", "_LIFFY11", "_LIFFY12", "_LIFFY13", "_LIFFY14", "_LIFFY15", "_LIFFY16", "_LIFFY17", "_LIFFY18", "_LIFFY19", "_LIFFY20", "_LIFFY21", "_LIFFY22", "_LIFFY23", "_LIFFY24", "_LIFFY25", "_LIFFY26", "_LIFFY27", "_LIFFY28", "_LIFFY29", "_LIFFY30", "_DUB276", "DUB", "LIFFY"], 
+        ["DW551", "LIFFY"],
+        ["DWN26", "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "_KISHA7", "_KISHA8", "_KISHA9", "_KISHA10", "_KISHA11", "_KISHA12", "_KISHA13", "_KISHA14", "_KISHA15", "_KISHA16", "_KISHA17", "_KISHA18", "_KISHA19", "_KISHA20", "_KISHA21", "_KISHA22", "_KISHA23", "_KISHA24", "_KISHA25", "_KISHA26", "_KISHA27", "BATED"], ["OE", "_LIFFY1", "_LIFFY2", "_LIFFY3", "_LIFFY4", "_LIFFY5", "_LIFFY6", "_LIFFY7", "_LIFFY8", "_LIFFY9", "_LIFFY10", "_LIFFY11", "_LIFFY12", "_LIFFY13", "_LIFFY14", "_LIFFY15", "_LIFFY16", "_LIFFY17", "_LIFFY18", "_LIFFY19", "_LIFFY20", "_LIFFY21", "_LIFFY22", "_LIFFY23", "_LIFFY24", "_LIFFY25", "_LIFFY26", "_LIFFY27", "_LIFFY28", "_LIFFY29", "_LIFFY30", "_DUB276", "DUB", "LIFFY"],
         ["DWS77", "LIFFY"]
       ]
     },
@@ -1182,9 +1182,9 @@
         "PESIT": ["PESIT"]
       },
       "draw": [
-        ["ERVAD", "PESIT"], 
-        ["DWS80", "DW682"], 
-        ["OE", "DWW02", "BAL"], 
+        ["ERVAD", "PESIT"],
+        ["DWS80", "DW682"],
+        ["OE", "DWW02", "BAL"],
         ["NEPOD", "PESIT"]
       ]
     },
@@ -1203,8 +1203,8 @@
         "PESIT": ["ABIDO", "PESIT"]
       },
       "draw": [
-        ["DW679", "IRDEX"], 
-        ["DWS81", "NEPOD"], 
+        ["DW679", "IRDEX"],
+        ["DWS81", "NEPOD"],
         ["ABIDO"]
       ]
     },
@@ -1216,17 +1216,17 @@
         "10": [["DW551", "A30+"], "LEMTA", "DODIG"],
         "28": [["OE", "A30++"], "_LIFFY1", "_LIFFY2", "_LIFFY3", "_LIFFY4", "_LIFFY5"],
         "16": [["DWS77", "A30+"], "DWS78", "NITIL"],
-        "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "DWW06"]   
+        "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "DWW06"]
       },
       "body": [],
       "exitPoints": {
         "INKUR": ["INKUR"]
       },
       "draw": [
-        ["LEMTA", "DODIG", "INKUR"], 
-        ["_LIFFY5", "INKUR"], 
-        ["DWS77", "DWS78", "NITIL"], 
-        ["DWN28", "INKUR"], 
+        ["LEMTA", "DODIG", "INKUR"],
+        ["_LIFFY5", "INKUR"],
+        ["DWS77", "DWS78", "NITIL"],
+        ["DWN28", "INKUR"],
         ["_BAL11", "DWW06", "INKUR"]
       ]
     },
@@ -1237,7 +1237,7 @@
       "rwy": {
         "10": ["DW931", "LEMTA", "DODIG", "INKUR"],
         "28": ["DUB", "DWN28"],
-        "16": ["OE"]     
+        "16": ["OE"]
       },
       "body": [],
       "exitPoints": {
@@ -1261,8 +1261,8 @@
         "DEXEN": [["DEXEN", "A120+"]]
       },
       "draw": [
-        ["DW554", "DW555", "DEXEN"], 
-        ["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "_DEXEN6", "_DEXEN7", "_DEXEN8", "_DEXEN9", "_DEXEN10", "_DEXEN11", "_DEXEN12", "_DEXEN13", "_DEXEN14", "_DEXEN15", "_DEXEN16", "_DEXEN17", "_DEXEN18", "_DEXEN19", "_DEXEN20", "_DEXEN21", "_DEXEN22", "_DEXEN23", "_DEXEN24", "_DEXEN25", "_DEXEN26", "_DEXEN27", "_DEXEN28", "_DEXEN29", "_DEXEN292", "DEXEN"], 
+        ["DW554", "DW555", "DEXEN"],
+        ["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "_DEXEN6", "_DEXEN7", "_DEXEN8", "_DEXEN9", "_DEXEN10", "_DEXEN11", "_DEXEN12", "_DEXEN13", "_DEXEN14", "_DEXEN15", "_DEXEN16", "_DEXEN17", "_DEXEN18", "_DEXEN19", "_DEXEN20", "_DEXEN21", "_DEXEN22", "_DEXEN23", "_DEXEN24", "_DEXEN25", "_DEXEN26", "_DEXEN27", "_DEXEN28", "_DEXEN29", "_DEXEN292", "DEXEN"],
         ["DWS81", "DEXEN"]
       ]
     },
@@ -1317,9 +1317,9 @@
         "BEPAN": ["BEPAN"]
       },
       "draw": [
-        ["DW554", "IRDEX", "ERVAD", "NEPOD"], 
-        ["_DEXEN20", "BAL"], 
-        ["DWS77", "DWS81"], 
+        ["DW554", "IRDEX", "ERVAD", "NEPOD"],
+        ["_DEXEN20", "BAL"],
+        ["DWS77", "DWS81"],
         ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL", "NEPOD", "BEPAN"]
       ]
     },
@@ -1356,9 +1356,9 @@
         "ROTEV": ["ROTEV"]
       },
       "draw": [
-        ["LEMTA", "ROTEV"], 
-        ["_LIFFY21", "DWN29"], 
-        ["ERUDA", "ROTEV"], 
+        ["LEMTA", "ROTEV"],
+        ["_LIFFY21", "DWN29"],
+        ["ERUDA", "ROTEV"],
         ["DWN29", "ROTEV"]
       ]
     },
@@ -1395,8 +1395,8 @@
         "NEVRI": ["NEVRI"]
       },
       "draw": [
-        ["DW551", "LEMTA", "NEVRI"], 
-        ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"], 
+        ["DW551", "LEMTA", "NEVRI"],
+        ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"],
         ["_KISHA6", "DWN29", "NEVRI"]
       ]
     },
@@ -1432,8 +1432,8 @@
         "PELIG": ["PELIG"]
       },
       "draw": [
-        ["_DEXEN5", "PELIG"], 
-        ["DWS78", "PELIG"], 
+        ["_DEXEN5", "PELIG"],
+        ["DWS78", "PELIG"],
         ["_BAL17", "PELIG"]
       ]
     },
