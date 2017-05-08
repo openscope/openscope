@@ -112,6 +112,17 @@ export default class WaypointModel {
         this.timer = -999;
 
         /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for WaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
+
+        /**
          * Flag used to determine if a waypoint is for a holding pattern
          *
          * Typically used from the fms as `fms#currentWaypoint`
@@ -168,7 +179,8 @@ export default class WaypointModel {
      *
      * This is used to match an existing API
      *
-     * @propert hold
+     * @for WaypointModel
+     * @property hold
      * @return {object}
      */
     get hold() {
@@ -197,10 +209,21 @@ export default class WaypointModel {
      * Fascade to access relative position
      *
      * @for WaypointModel
+     * @property relativePosition
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
         return this._positionModel.relativePosition;
+    }
+
+    /**
+     * Returns whether `this` is a fly-over waypoint
+     * @for WaypointModel
+     * @property isFlyOverWaypoint
+     * @return {boolean}
+     */
+    get isFlyOverWaypoint() {
+        return this._isFlyOverWaypoint;
     }
 
     /**
