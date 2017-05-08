@@ -4,7 +4,7 @@
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
 - Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
-
+- Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 
 
 
