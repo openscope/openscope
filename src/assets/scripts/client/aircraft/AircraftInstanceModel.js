@@ -1867,7 +1867,7 @@ export default class AircraftInstanceModel {
      * @private
      */
     _shouldEnterHoldingPattern() {
-        if (!this.fms.currentWaypoint.isHold) {
+        if (!this.fms.currentWaypoint || !this.fms.currentWaypoint.isHold) {
             return false;
         }
 
