@@ -36,11 +36,11 @@ export default class AircraftStripView {
      * @for AircraftStripView
      * @constructor
      * @param callsign {string}  this property is a result of a function call and not directly tied to the
-     *                           `AircraftInstanceModel`, thus it is included explicitly intead of obtainined
-     *                           from the `AircraftInstanceModel`
-     * @param aircraftInstanceModel {AircraftInstanceModel}
+     *                           `AircraftModel`, thus it is included explicitly intead of obtainined
+     *                           from the `AircraftModel`
+     * @param AircraftModel {AircraftModel}
      */
-    constructor(aircraftInstanceModel) {
+    constructor(AircraftModel) {
         // TODO: change to use lodash _uniqueId
         this._id = _uniqueId('aircraftStripView-');
 
@@ -53,15 +53,15 @@ export default class AircraftStripView {
         this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
-        this.callsign = aircraftInstanceModel.callsign;
-        this.icao = aircraftInstanceModel.model.icao;
-        this.destination = aircraftInstanceModel.destination;
-        this.weightclass = aircraftInstanceModel.model.weightclass;
-        this.category = aircraftInstanceModel.category;
-        this.flightPlan = aircraftInstanceModel.fms.flightPlanRoute;
+        this.callsign = AircraftModel.callsign;
+        this.icao = AircraftModel.model.icao;
+        this.destination = AircraftModel.destination;
+        this.weightclass = AircraftModel.model.weightclass;
+        this.category = AircraftModel.category;
+        this.flightPlan = AircraftModel.fms.flightPlanRoute;
 
         return this._init()
-                    .setupHandlers(aircraftInstanceModel)
+                    .setupHandlers(AircraftModel)
                     .layout()
                     .redraw();
     }
@@ -86,9 +86,9 @@ export default class AircraftStripView {
      * @for AircraftStripView
      * @method setupHandlers
      */
-    setupHandlers(aircraftInstanceModel) {
+    setupHandlers(AircraftModel) {
         this.$element.on('click', this.onClickHandler);
-        this.$element.on('dblclick', aircraftInstanceModel, this.onDoubleClickHandler);
+        this.$element.on('dblclick', AircraftModel, this.onDoubleClickHandler);
 
         return this;
     }

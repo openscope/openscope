@@ -180,7 +180,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method isAircraftInQueue
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {boolean}
      */
     isAircraftInQueue(aircraft) {
@@ -192,7 +192,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method isAircraftNextInQueue
-     * @param  aircraft {AircraftInstanceModel}
+     * @param  aircraft {AircraftModel}
      * @return {Boolean}
      */
     isAircraftNextInQueue(aircraft) {
@@ -204,7 +204,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method removeAircraftFromQueue
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     removeAircraftFromQueue(aircraft) {
         this.queue = _without(this.queue, aircraft);
@@ -215,7 +215,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method positionOfAircraftInQueue
-     * @param  aircraft {AircraftInstanceModel}
+     * @param  aircraft {AircraftModel}
      * @return {number}
      */
     positionOfAircraftInQueue(aircraft) {

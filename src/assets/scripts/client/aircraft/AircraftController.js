@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
-import AircraftInstanceModel from './AircraftInstanceModel';
+import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
@@ -88,11 +88,11 @@ export default class AircraftController {
     }
 
     /**
-     * Adds an `AircraftInstanceModel` to the collection
+     * Adds an `AircraftModel` to the collection
      *
      * @for AircraftController
      * @method addItem
-     * @param item {AircraftInstanceModel}
+     * @param item {AircraftModel}
      */
     addItem(item) {
         this.aircraft.list.push(item);
@@ -145,12 +145,12 @@ export default class AircraftController {
     };
 
     /**
-     * Accept a pre-built object that can be used to create an `AircraftInstanceModel`
+     * Accept a pre-built object that can be used to create an `AircraftModel`
      * and then add it to the collection.
      *
      * This could be a spawning aircraft or one that already exists along a route.
      *
-     * This method is the *_single place_* to create a new `AircraftInstanceModel`.
+     * This method is the *_single place_* to create a new `AircraftModel`.
      * Any method that needs to create a new aircraft should be routed through here.
      *
      * @for AircraftController
@@ -159,7 +159,7 @@ export default class AircraftController {
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
+        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
 
         this.addItem(aircraftModel);
     }
@@ -224,7 +224,7 @@ export default class AircraftController {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
 
         this.removeFlightNumberFromList(aircraft);
-        this.removeAircraftInstanceModelFromList(aircraft);
+        this.removeAircraftModelFromList(aircraft);
         this.removeAllAircraftConflictsForAircraft(aircraft);
 
         aircraft.cleanup();
@@ -310,7 +310,7 @@ export default class AircraftController {
     /**
      * @method debug
      * @param  {string} [callsign='']
-     * @return {AircraftInstanceModel|null}
+     * @return {AircraftModel|null}
      */
     debug(callsign = '') {
         return this._findAircraftByCallsign(callsign);
@@ -319,7 +319,7 @@ export default class AircraftController {
     /**
      * @method _findAircraftByCallsign
      * @param  {string} [callsign='']
-     * @return {AircraftInstanceModel|null}
+     * @return {AircraftModel|null}
      * @private
      */
     _findAircraftByCallsign(callsign = '') {
@@ -334,10 +334,10 @@ export default class AircraftController {
      * Remove the specified aircraft from `AircraftController.aircraft`
      *
      * @for AircraftController
-     * @method removeAircraftInstanceModelFromList
+     * @method removeAircraftModelFromList
      * @param  {Aircraft} aircraft the aircraft to remove
      */
-    removeAircraftInstanceModelFromList(aircraft) {
+    removeAircraftModelFromList(aircraft) {
         this.aircraft.list = _without(this.aircraft.list, aircraft);
     }
 
@@ -403,7 +403,7 @@ export default class AircraftController {
     }
 
     /**
-     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     * Used to build up the appropriate data needed to instantiate an `AircraftModel`
      *
      * @for AircraftController
      * @method _buildAircraftProps

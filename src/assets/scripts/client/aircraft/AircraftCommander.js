@@ -63,7 +63,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runCommands
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param commands {CommandParser}
      */
     runCommands(aircraft, commands) {
@@ -167,7 +167,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method run
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param command {string}
      * @param data {array}
      * @return {function}
@@ -191,7 +191,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runAltitude
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array}  [success of operation, readback]
      */
@@ -215,7 +215,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runHeading
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -237,7 +237,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runClearedAsFiled
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
@@ -247,7 +247,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runClimbViaSID
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
     runClimbViaSID(aircraft) {
@@ -257,7 +257,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runDescendViaStar
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -271,7 +271,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSpeed
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      */
     runSpeed(aircraft, data) {
@@ -290,7 +290,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runHold
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -327,7 +327,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runFlyPresentHeading
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
         return aircraft.pilot.maintainPresentHeading(aircraft.heading);
@@ -336,7 +336,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSayRoute
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array}   [success of operation, readback]
      */
     runSayRoute(aircraft) {
@@ -346,7 +346,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSID
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array}   [success of operation, readback]
      */
@@ -497,7 +497,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runTakeoff
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
@@ -562,7 +562,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runLanding
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      */
     runLanding(aircraft, data) {
@@ -581,7 +581,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runAbort
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runAbort(aircraft) {
         const airport = this._airportController.airport_get();
@@ -603,7 +603,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runDelete
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runDelete(aircraft) {
         window.aircraftController.aircraft_remove(aircraft);

@@ -55,13 +55,13 @@
 - Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
     - This represents a ground-up, from scratch, re-build of the flight management system with new classes: `Fms`, `LegModel`, and `WaypointModel`
     - Introduces the `ModeController` that completely separates Altitude, Heading and Speed settings from the FMS and allowing the FMS to be in charge of the flight plan and any fixRestrictions defined for a given route
-    - Adds `Pilot` class that acts as a coordinator layer between the `AircraftCommander`, `AircraftInstanceModel`, `ModeController`, and `Fms`
+    - Adds `Pilot` class that acts as a coordinator layer between the `AircraftCommander`, `AircraftModel`, `ModeController`, and `Fms`
     - Completely reworks how `Aircraft.target` is calculated
     - Introduces the concept of `flightPhase`, and begins integrating that property in lieu of category (arrival/departure)
     - Adds ability to define hold waypoints with a symbol `@`
     - Splits `PositionModel` into two new classes; `StaticPositionModel` and `DynamicPositionModel`
     - Work on this issue also resolves or invalidates previously recorded issues:
-        - `aircraftInstanceModel.fms` has a circular dependency with `aircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
+        - `AircraftModel.fms` has a circular dependency with `AircraftModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
         - Using STAR command to change aircraft's assigned STAR throws errors [#73](https://github.com/openscope/openscope/issues/73)
         - Abstract current waypoint altitude and speed setting [#77](https://github.com/openscope/openscope/issues/77)
         - Add Leg to modelSourcePool [#78](https://github.com/openscope/openscope/issues/78)
@@ -72,7 +72,7 @@
         - Implied holding in route strings [#114](https://github.com/openscope/openscope/issues/114)
         - Rerouting uncleared aircraft onto SID fails [#122](https://github.com/openscope/openscope/issues/122)
         - Using "fix" command yields legs with lower case route [#123](https://github.com/openscope/openscope/issues/123)
-        - Create getter in `AircraftInstanceModel` to get the current runway [#129](https://github.com/openscope/openscope/issues/129)
+        - Create getter in `AircraftModel` to get the current runway [#129](https://github.com/openscope/openscope/issues/129)
         - create RouteBuilder class and smooth out RouteModel [#144](https://github.com/openscope/openscope/issues/144)
         - `fix` command with multiple arguments skips to last fix [#153](https://github.com/openscope/openscope/issues/153)
         - Add `.hasFix()` method to FixCollection [#158](https://github.com/openscope/openscope/issues/158)
@@ -161,7 +161,7 @@
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
 - Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
-- Moves aircraft command logic from `AircraftInstanceModel` to new `AircraftCommander` class [#181](https://github.com/n8rzz/atc/issues/181)
+- Moves aircraft command logic from `AircraftModel` to new `AircraftCommander` class [#181](https://github.com/n8rzz/atc/issues/181)
 - Adds `spawnPatterns` to airport json and vastly simplifies aircraft creation. Work on this issue ended up resolving many other smaller issues listed below. [#243](https://github.com/n8rzz/atc/issues/243)
   - Restructure `Airport.departures` to utilize routes [#229](https://github.com/n8rzz/atc/issues/229)
   - Abstract inline fix object out of ArrivalBase [#56](https://github.com/n8rzz/atc/issues/56)
@@ -176,7 +176,7 @@
 - Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
     - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
 - Changes the names from having the flags in their name by adding WIP variable to the `AIRPORT_LOAD_LIST` in `airportLoadList` [#205](https://github.com/n8rzz/atc/issues/205)
-- Fixes white space in that is displayed from the `AircraftInstanceModel` [#192](https://github.com/n8rzz/atc/issues/192)
+- Fixes white space in that is displayed from the `AircraftModel` [#192](https://github.com/n8rzz/atc/issues/192)
 - Adds cache to travis build [#233](https://github.com/n8rzz/atc/issues/233)
 
 ### Bugfixes
@@ -200,7 +200,7 @@
 ## 3.2.0 (December 20, 2016)
 ---
 ### Major
-* Integrates `sidCollection` and `starCollection` with `RouteModel` within `AircraftInstanceModel` [#53](https://github.com/n8rzz/atc/issues/53)
+* Integrates `sidCollection` and `starCollection` with `RouteModel` within `AircraftModel` [#53](https://github.com/n8rzz/atc/issues/53)
     - Creates getters for `currentLeg` and `currentWaypoint`
     - Abstracts restrictions logic to live within `Waypoint`
     - Consolidates `runSID()` and `climbViaSid()` logic
@@ -217,7 +217,7 @@
 - Moves creation of Legs and Waypoints to constants instead of as method arguments [#135](https://github.com/n8rzz/atc/issues/135)
 - Moves `.parseCoordinate()` out of `PositionModel` and into `unitConverters` [#17](https://github.com/n8rzz/atc/issues/17)
 - Moves flight management system files to `FlightManagementSystem` folder [#128](https://github.com/n8rzz/atc/issues/128)
-- Adds `RouteModel` to `AircraftInstanceModel.runSTAR` for easier handling of a route string [#163](https://github.com/n8rzz/atc/issues/163)
+- Adds `RouteModel` to `AircraftModel.runSTAR` for easier handling of a route string [#163](https://github.com/n8rzz/atc/issues/163)
 - Adds static `calculatePosition` method to `PositionModel` and abstracts common functions [#159](https://github.com/n8rzz/atc/issues/159)
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)

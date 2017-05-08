@@ -6,7 +6,7 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
 /**
  * Provides a definition for a specific type of aircraft.
  *
- * Encapsulates an aircraft json file into a JS class that can be used to create an `AircraftInstanceModel`.
+ * Encapsulates an aircraft json file into a JS class that can be used to create an `AircraftModel`.
  *
  * It is important to note that this is not a `type` in the programming sense, this is in reference to
  * a specific aircraft type.

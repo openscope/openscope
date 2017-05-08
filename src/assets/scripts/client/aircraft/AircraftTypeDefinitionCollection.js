@@ -8,9 +8,9 @@ import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
- * Collection of `AircraftInstanceModel` objects
+ * Collection of `AircraftModel` objects
  *
- * Responsible for creating new `AircraftInstanceModel` objects when a spawnInterval
+ * Responsible for creating new `AircraftModel` objects when a spawnInterval
  * fires its `createAircraftWithSpawnPatternModel` callback.
  *
  * This collection also keeps a list of `AircraftTypeDefinitionModel` objects, which define each

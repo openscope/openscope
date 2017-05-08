@@ -64,11 +64,11 @@ const FLIGHT_RULES = {
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *
- * @class AircraftInstanceModel
+ * @class AircraftModel
  */
-export default class AircraftInstanceModel {
+export default class AircraftModel {
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @constructor
      * @param options {object}
      * @param navigationLibrary {NavigationLibrary}
@@ -201,7 +201,7 @@ export default class AircraftInstanceModel {
     /**
      * Current flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property flightPhase
      * @type {string}
      */
@@ -210,7 +210,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property callsign
      * @return {string}
      */
@@ -221,7 +221,7 @@ export default class AircraftInstanceModel {
     /**
      * Fascade to access relative position
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property relativePosition
      * @type {array<number>} [kilometersNorth, kilometersEast]
      */
@@ -232,7 +232,7 @@ export default class AircraftInstanceModel {
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
     // method that will check collisions
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method buildCurrentTerrainRanges
      */
     buildCurrentTerrainRanges() {
@@ -257,7 +257,7 @@ export default class AircraftInstanceModel {
     /**
      * Set up links to restricted areas
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method buildRestrictedAreaLinks
      */
     buildRestrictedAreaLinks() {
@@ -301,7 +301,7 @@ export default class AircraftInstanceModel {
 
             return;
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
-            throw new Error('Invalid #category found in AircraftInstanceModel');
+            throw new Error('Invalid #category found in AircraftModel');
         }
 
         if (data.nextFix) {
@@ -312,7 +312,7 @@ export default class AircraftInstanceModel {
     /**
      * Called when the aircraft crosses the airspace boundary (ie, leaving our airspace)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method crossBoundary
      * @param inbound {}
      */
@@ -336,7 +336,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method onAirspaceExit
      */
     onAirspaceExit() {
@@ -366,7 +366,7 @@ export default class AircraftInstanceModel {
     /**
      * An arriving aircraft is exiting the airpsace
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method arrivalExit
      */
     arrivalExit() {
@@ -376,7 +376,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method matchCallsign
      * @param callsign {string}
      */
@@ -389,7 +389,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getRadioCallsign
      * @return cs {string}
      */
@@ -417,7 +417,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getClimbRate
      * @return {number}
      */
@@ -453,7 +453,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method cancelFix
      */
     cancelFix() {
@@ -461,7 +461,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method cancelLanding
      */
     cancelLanding() {
@@ -473,7 +473,7 @@ export default class AircraftInstanceModel {
 
     // TODO: is this method still in use?
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method pushHistory
      */
     pushHistory() {
@@ -488,7 +488,7 @@ export default class AircraftInstanceModel {
     /**
      * Return whether the aircraft is off the ground
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isAirborne
      * @return {boolean}
      */
@@ -499,7 +499,7 @@ export default class AircraftInstanceModel {
     /**
      * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isEstablishedOnCourse
      * @return {boolean}
      */
@@ -533,7 +533,7 @@ export default class AircraftInstanceModel {
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isInsideAirspace
      * @param  {airport} airport the airport whose airspace we are checking
      * @return {Boolean}
@@ -553,7 +553,7 @@ export default class AircraftInstanceModel {
     /**
      * Aircraft has "weight-on-wheels" (on the ground)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isOnGround
      */
     isOnGround() {
@@ -567,7 +567,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isStopped
      */
     isStopped() {
@@ -578,7 +578,7 @@ export default class AircraftInstanceModel {
     /**
      * Return whether the aircraft is in flight AND below its stall speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isStalling
      * @return {boolean}
      */
@@ -589,7 +589,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isTaxiing
      */
     isTaxiing() {
@@ -601,7 +601,7 @@ export default class AircraftInstanceModel {
     /**
      * Returns whether the aircraft is currently taking off
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isTakeoff
      */
     isTakeoff() {
@@ -610,7 +610,7 @@ export default class AircraftInstanceModel {
 
     // TODO: the logic in this method can be cleaned up and simplified
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isVisible
      */
     isVisible() {
@@ -636,7 +636,7 @@ export default class AircraftInstanceModel {
      *
      * Provides a single source to change the value of `#isRemovable`.
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method setIsRemovable
      */
     setIsRemovable() {
@@ -645,7 +645,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this should be a method in the `AirportModel`
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getWind
      */
     getWind() {
@@ -669,7 +669,7 @@ export default class AircraftInstanceModel {
     /**
      * Reposition the aircraft to the location of the specified runway
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method moveToRunway
      * @param runwayModel {RunwayModel}
      */
@@ -680,7 +680,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method radioCall
      * @param msg {string}
      * @param sectorType {string}
@@ -719,7 +719,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method callUp
      */
     callUp() {
@@ -763,7 +763,7 @@ export default class AircraftInstanceModel {
 
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method scoreWind
      * @param action
      */
@@ -796,7 +796,7 @@ export default class AircraftInstanceModel {
     /**
      * Update the aircraft's targeted telemetry (altitude, heading, and speed)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateTarget
      */
     updateTarget() {
@@ -810,7 +810,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method overrideTarget
      */
     overrideTarget() {
@@ -918,7 +918,7 @@ export default class AircraftInstanceModel {
     /**
      * Fascade to set the fms's flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method setFlightPhase
      * @param phase {string}
      */
@@ -929,7 +929,7 @@ export default class AircraftInstanceModel {
     /**
      * Update the FMS's flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateFlightPhase
      */
     updateFlightPhase() {
@@ -1009,7 +1009,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted heading
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeading
      * @private
      */
@@ -1053,7 +1053,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedSpeed
      * @private
      */
@@ -1103,7 +1103,7 @@ export default class AircraftInstanceModel {
      * This method limits the aircraft's speed to a maximum of a specific speed
      * while below 10,000 feet MSL, to comply with regulations.
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateLegalSpeed
      * @param speed {number} desired speed
      * @return {number}      permitted speed
@@ -1119,7 +1119,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted altitude
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitude
      * @private
      */
@@ -1179,7 +1179,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the altitude to target while intercepting a vertically aligned course
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitudeToInterceptGlidepath
      * @private
      */
@@ -1205,7 +1205,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the heading to target while intercepting a horizontally aligned course
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingToInterceptCourse
      * @private
      */
@@ -1260,7 +1260,7 @@ export default class AircraftInstanceModel {
     /**
      * Cancels the landing and disaply message
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateLandingFailedLanding
      */
     updateLandingFailedLanding() {
@@ -1283,7 +1283,7 @@ export default class AircraftInstanceModel {
 
     /**
      * This will display a waring and record an illegal approach event
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method warnInterceptAngle
      */
     warnInterceptAngle() {
@@ -1296,7 +1296,7 @@ export default class AircraftInstanceModel {
     /**
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingLnav
      */
     _calculateTargetedHeadingLnav() {
@@ -1334,7 +1334,7 @@ export default class AircraftInstanceModel {
     /**
      * This will sets up and prepares the aircraft to hold
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateTargetHeadingForHold
      */
     updateTargetHeadingForHold() {
@@ -1388,7 +1388,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculates the altitude for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitudeDuringLanding
      * @return {number}
      */
@@ -1407,7 +1407,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculates the heading for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingDuringLanding
      * @return {number}
      */
@@ -1428,7 +1428,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculates the speed for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedSpeedDuringLanding
      * @return {number}
      */
@@ -1460,7 +1460,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updatePhysics
      */
     updatePhysics() {
@@ -1515,7 +1515,7 @@ export default class AircraftInstanceModel {
     /**
      * This turns the aircraft if it is not on the ground and has not arived at its destenation
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAircraftTurnPhysics
      */
     updateAircraftTurnPhysics() {
@@ -1548,7 +1548,7 @@ export default class AircraftInstanceModel {
     /**
      * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAltitudePhysics
      */
     updateAltitudePhysics() {
@@ -1570,7 +1570,7 @@ export default class AircraftInstanceModel {
     /**
     * Decreases the aircrafts altitude
     *
-    * @for AircraftInstanceModel
+    * @for AircraftModel
     * @method decreaseAircraftAltitude
     */
     decreaseAircraftAltitude() {
@@ -1597,7 +1597,7 @@ export default class AircraftInstanceModel {
     /**
     * Increases the aircrafts altitude
     *
-    * @for AircraftInstanceModel
+    * @for AircraftModel
     * @method increaseAircraftAltitude
     */
     increaseAircraftAltitude() {
@@ -1624,7 +1624,7 @@ export default class AircraftInstanceModel {
     /**
      * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateWarning
      */
     updateSpeedPhysics() {
@@ -1656,7 +1656,7 @@ export default class AircraftInstanceModel {
     /**
      * This calculates the ground speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateVectorPhysics
      * @param scaleSpeed
      */
@@ -1718,7 +1718,7 @@ export default class AircraftInstanceModel {
     /**
      * This uses the current speed information to update the ground speed and position
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
      * @deprecated
@@ -1736,7 +1736,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateWarning
      */
     updateWarning() {
@@ -1879,13 +1879,13 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAuto
      */
     updateAuto() {}
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method update
      */
     update() {
@@ -1900,7 +1900,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method addConflict
      * @param {AircraftConflict} conflict
      * @param {Aircraft} conflictingAircraft
@@ -1910,7 +1910,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method checkConflict
      * @param {Aircraft} conflictingAircraft
      */
@@ -1925,7 +1925,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method hasAlerts
      */
     hasAlerts() {
@@ -1942,7 +1942,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method removeConflict
      * @param {Aircraft} conflictingAircraft
      */
@@ -1973,7 +1973,7 @@ export default class AircraftInstanceModel {
 
     // TODO: move these view methods to `AircraftStripView` or a different file
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateStrip
      */
     updateStrip() {
@@ -2070,7 +2070,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method showStrip
      */
     showStrip() {
@@ -2086,7 +2086,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method hideStrip
      */
     hideStrip() {
