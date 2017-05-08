@@ -133,8 +133,6 @@ export default class WaypointModel {
          */
         this.isHold = false;
 
-        // TODO: This should be moved to the StandardRouteWaypointModel
-        // Follow the same pattern as #_isFlyOverWaypoint
         /**
          * Flag used to determine if a waypoint is for a vector
          *
