@@ -4,7 +4,6 @@ import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
-import _pick from 'lodash/pick';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
@@ -41,8 +40,9 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         if (!_has(StandardRouteCollection.ROUTE_TYPE, routeType)) {
-            console.log(`Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE but received: ${routeType}`);
-            // throw new TypeError('Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE but received: ${routeType}');
+            throw new TypeError('Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE ' +
+                `but received: ${routeType}`
+            );
         }
 
         /**
@@ -97,6 +97,7 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {array}
      */
     get draw() {
+        /* istanbul ignore next */
         return _map(this._items, (item) => {
             const sidForCanvas = {};
             sidForCanvas.identifier = item.icao;
@@ -235,38 +236,8 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {StandardRouteModel|null}
      */
     findRouteByIcao(icao = '') {
-        // TODO: return the `_find()`
-        let routeWithIcao = _find(this._items, { icao: icao.toUpperCase() });
-
-        // if (_isNil(routeWithIcao)) {
-        //     console.log('YESSSS');
-        //     routeWithIcao = this.findRouteByIcaoWithSuffix(icao);
-        // }
-
-        return routeWithIcao;
+        return _find(this._items, { icao: icao.toUpperCase() });
     }
-
-    // FIXME: deprecate
-    // /**
-    //  * Attempt to find a `StandardRouteModel` by an icao
-    //  * that also contains a suffix
-    //  *
-    //  * @for StandardRouteCollection
-    //  * @method findRouteByIcaoWithSuffix
-    //  * @param icao {string}
-    //  * @return {StandardRouteModel|null}
-    //  */
-    // findRouteByIcaoWithSuffix(icao = '') {
-    //     for (let i = 0; i < this.length; i++) {
-    //         const routeModel = this._items[i];
-    //
-    //         if (routeModel.hasSuffix(icao.toUpperCase())) {
-    //             return routeModel;
-    //         }
-    //     }
-    //
-    //     return null;
-    // }
 
     /**
      * @for StandardRouteCollection
@@ -332,17 +303,7 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         _forEach(route.suffix, (suffix, key) => {
-            // const suffixRouteProps = Object.assign(
-            //     {},
-            //     route,
-            //     {
-            //         icao: `${route.icao}${suffix}`,
-            //         rwy: _pick(route.rwy, key),
-            //         suffix: _pick(route.suffix, key)
-            //     }
-            // );
             const suffixRouteModel = new StandardRouteModel(route, key);
-            // const suffixRouteModel = new StandardRouteModel(suffixRouteProps);
 
             this._addRouteModelToCollection(suffixRouteModel);
         });
@@ -428,17 +389,13 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {function}
      */
     _findAndCacheRouteWithSuffix(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
-        let icao;
+        if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
+            exit = routeModel.getSuffixSegmentName(this._type);
+        } else {
+            entry = routeModel.getSuffixSegmentName(this._type);
+        }
 
-        // if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
-        //     exit = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
-        //     icao = routeModel.icao;
-        // } else {
-        //     entry = routeModel.getSegmentNameForIcaoWithSuffix(icaoWithSuffix);
-        //     icao = routeModel.icao;
-        // }
-
-        const cacheKey = this._generateCacheKey(icao, entry, exit);
+        const cacheKey = this._generateCacheKey(icaoWithSuffix, entry, exit);
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
         this._cache[cacheKey] = routeWaypoints;
 

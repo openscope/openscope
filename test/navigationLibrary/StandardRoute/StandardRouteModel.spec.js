@@ -78,6 +78,8 @@ ava('trims the #rwy object to a single rwy key when instantiated with a suffixKe
     t.true(rwyKeys[0] === SUFFIX_MOCK);
 });
 
+ava.todo('sets the appropriate collection with the correct number of keys when instantiated with a suffix route');
+
 ava('.findStandardRouteWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
     const expectedArguments = ['MLF', '19R'];
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
@@ -127,6 +129,18 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     const result = model.gatherExitPointNames();
 
     t.true(_isEqual(result, expectedResult));
+});
+
+ava('.getSuffixSegmentName() returns the name of the segment a suffix is applied to', (t) => {
+    let model = new StandardRouteModel(STAR_WITH_SUFFIX, SUFFIX_MOCK);
+    let result = model.getSuffixSegmentName('STAR');
+
+    t.true(result === '01L');
+
+    model = new StandardRouteModel(SID_WITH_SUFFIX, SUFFIX_MOCK);
+    result = model.getSuffixSegmentName('SID');
+
+    t.true(result === '01L');
 });
 
 ava('.hasExitPoints() returns a boolean', t => {

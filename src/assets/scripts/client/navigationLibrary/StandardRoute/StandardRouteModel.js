@@ -291,6 +291,26 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     *
+     *
+     * Should only be called after verifying that this is a suffix `StandardRouteModel`
+     *
+     * @for StandardRouteModel
+     * @method getSuffixSegmentName
+     * @param procedureType {string}
+     * @return {string}
+     */
+    getSuffixSegmentName(procedureType) {
+        let collection = this._exitCollection.findSegmentByName(this._suffixKey);
+
+        if (procedureType === 'SID') {
+            collection = this._entryCollection.findSegmentByName(this._suffixKey);
+        }
+
+        return collection.name;
+    }
+
+    /**
      * Does the `_exitCollection` have any exitPoints?
      *
      * @for StandardRouteModel
@@ -392,6 +412,10 @@ export default class StandardRouteModel extends BaseModel {
      * Determine if the `standardRoute` is a sid or a star and build the entry/exit collections
      * with the correct data.
      *
+     * We evaluate `#rwy` instead of `standardRoute.rwy` here because suffix routes will
+     * have transformed `#rwy` to use only the runway for the suffix. All other cases
+     * will maintain the shape of `standardRoute.rwy`.
+     *
      * STARS will have `entryPoints` defined so `rwy` becomes the `_exitCollection`
      * SIDS will have `exitPoints` defined so `rwy` becomes the `_entryCollection`
      *
@@ -403,9 +427,9 @@ export default class StandardRouteModel extends BaseModel {
     _buildEntryAndExitCollections(standardRoute) {
         if (_has(standardRoute, 'entryPoints')) {
             this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
-            this._exitCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._exitCollection = this._buildSegmentCollection(this.rwy);
         } else if (_has(standardRoute, 'exitPoints')) {
-            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._entryCollection = this._buildSegmentCollection(this.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
         } else if (_has(standardRoute, 'rwy')) {
             console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
