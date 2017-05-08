@@ -215,26 +215,26 @@
     "BADSI": ["N52.65828210", "W4.77136231"],
     "BAGSO": ["N53d40m48.00", "W5d30m00.00"],
     "BAKUR": ["N52.24170463", "W5.68029785"],
-    "BAL":   ["N53d17m59.60", "W6d26m52.00"],
+    "BAL"  : ["N53d17m59.60", "W6d26m52.00"],
     "BAMLI": ["N54d08m28.00", "W6d39m04.00"],
     "BANBA": ["N51.95272942", "W6.23913574"],
     "BAPDA": ["N53d37m40.00", "W6d24m03.70"],
     "BATED": ["N53d29m42.80", "W6d06m42.80"],
-    "BEL":   ["N54.66112372", "W6.22998047"],
+    "BEL"  : ["N54.66112372", "W6.22998047"],
     "BEPAN": ["N52d31m36.20", "W6d15m49.50"],
     "BERMO": ["N53d17m38.90", "W6d24m50.80"],
     "BIVDI": ["N53d10m59.50", "W6d40m05.60"],
     "BOYNE": ["N53d46m02.00", "W5d30m00.00"],
     "BUNED": ["N52d37m22.00", "W6d37m48.00"],
-    "CML":   ["N52.45377775", "W7.48004151"],
-    "CRK":   ["N51.84064245", "W8.49426270"],
+    "CML"  : ["N52.45377775", "W7.48004151"],
+    "CRK"  : ["N51.84064245", "W8.49426270"],
     "DETAX": ["N53d14m30.70", "W6d12m35.60"],
     "DEXEN": ["N53d16m49.40", "W5d30m00.00"],
     "DIGAN": ["N52.93694168", "W8.19744874"],
     "DIMUS": ["N52.23968641", "W6.25140381"],
     "DIRUM": ["N53d00m09.70", "W6d39m40.00"],
     "DODIG": ["N53d57m46.00", "W6d29m34.00"],
-    "DUB":   ["N53d29m57.80", "W6d18m25.60"],
+    "DUB"  : ["N53d29m57.80", "W6d18m25.60"],
     "DUNLO": ["N53d19m48.00", "W5d30m00.00"],
     "DW551": ["N53d24m44.50", "W6d06m31.40"],
     "DW554": ["N53d24m38.80", "W6d04m51.60"],
@@ -263,7 +263,7 @@
     "DWW02": ["N53.40474272", "W6.53034209"],
     "DWW04": ["N53d44m17.90", "W6d52m52.90"],
     "DWW06": ["N53.55423300", "W6.62402343"],
-    "EGNS":  ["N54.08332062", "W4.62332153"],
+    "EGNS" : ["N54.08332062", "W4.62332153"],
     "EKREN": ["N53d38m43.00", "W5d45m53.10"],
     "ELBON": ["N53d35m34.10", "W6d09m21.60"],
     "ENOKU": ["N53.10106063", "W7.66076661"],
@@ -283,7 +283,7 @@
     "IDEXA": ["N53.47050160", "W5.16412354"],
     "INKUR": ["N53d35m51.30", "W7d23m28.60"],
     "INTOP": ["N53d13m27.40", "W6d06m32.40"],
-    "IOM":   ["N54.06691032", "W4.76348877"],
+    "IOM"  : ["N54.06691032", "W4.76348877"],
     "IRDEX": ["N53d11m45.10", "W6d03m50.10"],
     "IRKUM": ["N52d59m48.00", "W5d22m39.00"],
     "KANUS": ["N53d06m30.50", "W6d26m52.10"],
@@ -311,11 +311,11 @@
     "NIMAT": ["N53d57m54.10", "W5d44m31.70"],
     "NITIL": ["N53d28m00.00", "W6d37m55.00"],
     "NUMPI": ["N54.14441939", "W5.59332276"],
-    "OE":    ["N53.43010119", "W6.42773436"],
+    "OE"   : ["N53.43010119", "W6.42773436"],
     "OGTUG": ["N53.67002933", "W5.14727783"],
     "OLAPO": ["N53d46m49.00", "W7d17m41.00"],
     "OLONO": ["N52d43m23.10", "W6d46m44.40"],
-    "OP":    ["N53.41378839", "W6.13833617"],
+    "OP"   : ["N53.41378839", "W6.13833617"],
     "ORVEN": ["N53d39m53.50", "W6d11m29.80"],
     "OSGAR": ["N53d02m57.90", "W7d16m12.80"],
     "OSLEX": ["N53d21m55.80", "W6d41m44.50"],
@@ -331,11 +331,11 @@
     "RONON": ["N53d42m33.90", "W6d36m19.20"],
     "ROTEV": ["N54d01m43.70", "W6d03m58.40"],
     "RUBAR": ["N53d08m08.90", "W5d48m05.40"],
-    "SHA":   ["N52.72098925", "W8.88519287"],
+    "SHA  ": ["N52.72098925", "W8.88519287"],
     "SIVNA": ["N53d11m52.30", "W5d38m27.70"],
     "SOPEP": ["N53d21m05.90", "W5d52m29.40"],
     "SORIN": ["N53d08m29.30", "W5d48m22.50"],
-    "STU":   ["N51.99468997", "W5.04016113"],
+    "STU  ": ["N51.99468997", "W5.04016113"],
     "SUGAD": ["N53d17m22.50", "W5d31m39.80"],
     "SUROX": ["N53d59m48.00", "W6d59m36.50"],
     "SUTEX": ["N52d49m28.00", "W6d55m49.00"],
@@ -1073,12 +1073,18 @@
   "runways":[
     {
       "name": ["10", "28"],
-      "end": [["N53d25m20.75", "W6d17m24.27", "242ft"], ["N53d25m12.94", "W6d15m02.08", "202ft"]],
+      "end": [
+        ["N53d25m20.75", "W6d17m24.27", "242ft"], 
+        ["N53d25m12.94", "W6d15m02.08", "202ft"]
+      ],
       "ils": [true, true]
     },
     {
       "name": ["16", "34"],
-      "end": [["N53d26m13.16", "W6d15m43.12", "217ft"], ["N53d25m11.66", "W6d14m58.54", "202ft"]],
+      "end": [
+        ["N53d26m13.16", "W6d15m43.12", "217ft"], 
+        ["N53d25m11.66", "W6d14m58.54", "202ft"]
+      ],
       "ils": [true, true]
     }
   ],
@@ -1093,11 +1099,16 @@
         "16": [["DWS77", "A30+"], "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "DODIG"],
         "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "DWW06", "DWW04"]
       },
-      "body": ["SUROX"],
+      "body": [],
       "exitPoints": {
-        "ENULA": ["ENULA"]
+        "SUROX": ["SUROX"]
       },
-      "draw": [["ERUDA", "DODIG", "SUROX"], ["OP", "BATED"], ["DUB", "DWN28", "DWW04"], ["_LIFFY10", "DWW04", "SUROX"]]
+      "draw": [
+        ["ERUDA", "DODIG", "SUROX"],
+        ["OP", "BATED"], 
+        ["DUB", "DWN28", "DWW04"], 
+        ["_LIFFY10", "DWW04", "SUROX"]
+      ]
     },
     "SUROX(AB)": {
       "icao": "SUROX(AB)",
@@ -1109,11 +1120,14 @@
         "16": ["OP", "BATED", "ERUDA", "DODIG"],
         "34": ["DUB", "DWN28", "DWW04"]
       },
-      "body": ["SUROX"],
+      "body": [],
       "exitPoints": {
-        "ENULA": ["ENULA"]
+        "SUROX": ["SUROX"]
       },
-      "draw": [["DW931", "LEMTA"], ["SUROX"]]
+      "draw": [
+        ["DW931", "LEMTA"], 
+        ["SUROX"]
+      ]
     },
     "LIFFY": {
       "icao": "LIFFY",
@@ -1125,11 +1139,15 @@
         "16": [["DWS77", "A30+"]],
         "34": [["DWN26", "A30+"], "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "_KISHA7", "_KISHA8", "_KISHA9", "_KISHA10", "_KISHA11", "_KISHA12", "_KISHA13", "_KISHA14", "_KISHA15", "_KISHA16", "_KISHA17", "_KISHA18", "_KISHA19", "_KISHA20", "_KISHA21", "_KISHA22", "_KISHA23", "_KISHA24", "_KISHA25", "_KISHA26", "_KISHA27", "BATED"]
       },
-      "body": ["LIFFY"],
+      "body": [],
       "exitPoints": {
-        "GINIS": ["IDEXA", "GINIS"]
+        "LIFFY": ["LIFFY"]
       },
-      "draw": [["DW551", "LIFFY"], ["DWN26", "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "_KISHA7", "_KISHA8", "_KISHA9", "_KISHA10", "_KISHA11", "_KISHA12", "_KISHA13", "_KISHA14", "_KISHA15", "_KISHA16", "_KISHA17", "_KISHA18", "_KISHA19", "_KISHA20", "_KISHA21", "_KISHA22", "_KISHA23", "_KISHA24", "_KISHA25", "_KISHA26", "_KISHA27", "BATED"], ["OE", "_LIFFY1", "_LIFFY2", "_LIFFY3", "_LIFFY4", "_LIFFY5", "_LIFFY6", "_LIFFY7", "_LIFFY8", "_LIFFY9", "_LIFFY10", "_LIFFY11", "_LIFFY12", "_LIFFY13", "_LIFFY14", "_LIFFY15", "_LIFFY16", "_LIFFY17", "_LIFFY18", "_LIFFY19", "_LIFFY20", "_LIFFY21", "_LIFFY22", "_LIFFY23", "_LIFFY24", "_LIFFY25", "_LIFFY26", "_LIFFY27", "_LIFFY28", "_LIFFY29", "_LIFFY30", "_DUB276", "DUB", "LIFFY"], ["DWS77", "LIFFY"]]
+      "draw": [
+        ["DW551", "LIFFY"], 
+        ["DWN26", "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "_KISHA7", "_KISHA8", "_KISHA9", "_KISHA10", "_KISHA11", "_KISHA12", "_KISHA13", "_KISHA14", "_KISHA15", "_KISHA16", "_KISHA17", "_KISHA18", "_KISHA19", "_KISHA20", "_KISHA21", "_KISHA22", "_KISHA23", "_KISHA24", "_KISHA25", "_KISHA26", "_KISHA27", "BATED"], ["OE", "_LIFFY1", "_LIFFY2", "_LIFFY3", "_LIFFY4", "_LIFFY5", "_LIFFY6", "_LIFFY7", "_LIFFY8", "_LIFFY9", "_LIFFY10", "_LIFFY11", "_LIFFY12", "_LIFFY13", "_LIFFY14", "_LIFFY15", "_LIFFY16", "_LIFFY17", "_LIFFY18", "_LIFFY19", "_LIFFY20", "_LIFFY21", "_LIFFY22", "_LIFFY23", "_LIFFY24", "_LIFFY25", "_LIFFY26", "_LIFFY27", "_LIFFY28", "_LIFFY29", "_LIFFY30", "_DUB276", "DUB", "LIFFY"], 
+        ["DWS77", "LIFFY"]
+      ]
     },
     "KISHA": {
       "icao": "KISHA",
@@ -1141,11 +1159,13 @@
         "16": ["OP", "BATED"],
         "34": ["BATED"]
       },
-      "body": ["KISHA", "LIFFY"],
+      "body": [],
       "exitPoints": {
-        "GINIS": ["IDEXA", "GINIS"]
+        "LIFFY": ["KISHA", "LIFFY"]
       },
-      "draw": [["KISHA"]]
+      "draw": [
+        ["KISHA"]
+      ]
     },
     "PESIT": {
       "icao": "PESIT",
@@ -1157,11 +1177,16 @@
         "16": [["DWS77", "A30+"], "DWS81", "NEPOD"],
         "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL", "NEPOD"]
       },
-      "body": ["PESIT"],
+      "body": [],
       "exitPoints": {
-        "STU": ["BAKUR", "STU"]
+        "PESIT": ["PESIT"]
       },
-      "draw": [["ERVAD", "PESIT"], ["DWS80", "DW682"], ["OE", "DWW02", "BAL"], ["NEPOD", "PESIT"]]
+      "draw": [
+        ["ERVAD", "PESIT"], 
+        ["DWS80", "DW682"], 
+        ["OE", "DWW02", "BAL"], 
+        ["NEPOD", "PESIT"]
+      ]
     },
     "ABIDO": {
       "icao": "ABIDO",
@@ -1173,11 +1198,15 @@
         "16": ["DWS81", "NEPOD"],
         "34": ["OE", "DWW02", "BAL", "NEPOD"]
       },
-      "body": ["ABIDO", "PESIT"],
+      "body": [],
       "exitPoints": {
-        "STU": ["BAKUR", "STU"]
+        "PESIT": ["ABIDO", "PESIT"]
       },
-      "draw": [["DW679", "IRDEX"], ["DWS81", "NEPOD"], ["ABIDO"]]
+      "draw": [
+        ["DW679", "IRDEX"], 
+        ["DWS81", "NEPOD"], 
+        ["ABIDO"]
+      ]
     },
     "INKUR": {
       "icao": "INKUR",
@@ -1189,11 +1218,17 @@
         "16": [["DWS77", "A30+"], "DWS78", "NITIL"],
         "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "DWW06"]   
       },
-      "body": ["INKUR"],
+      "body": [],
       "exitPoints": {
-        "SHA": ["KORAK", "RIKUL", "SHA"]
+        "INKUR": ["INKUR"]
       },
-      "draw": [["LEMTA", "DODIG", "INKUR"], ["_LIFFY5", "INKUR"], ["DWS77", "DWS78", "NITIL"], ["DWN28", "INKUR"], ["_BAL11", "DWW06", "INKUR"]]
+      "draw": [
+        ["LEMTA", "DODIG", "INKUR"], 
+        ["_LIFFY5", "INKUR"], 
+        ["DWS77", "DWS78", "NITIL"], 
+        ["DWN28", "INKUR"], 
+        ["_BAL11", "DWW06", "INKUR"]
+      ]
     },
     "INKUR(AB)": {
       "icao": "INKUR(AB)",
@@ -1204,11 +1239,13 @@
         "28": ["DUB", "DWN28"],
         "16": ["OE"]     
       },
-      "body": ["INKUR"],
+      "body": [],
       "exitPoints": {
-        "SHA": ["KORAK", "RIKUL", "SHA"]
+        "INKUR": ["INKUR"]
       },
-      "draw": [["INKUR"]]
+      "draw": [
+        ["INKUR"]
+      ]
     },
     "DEXEN": {
       "icao": "DEXEN",
@@ -1219,11 +1256,15 @@
         "28": [["OE", "A30+"], "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "_DEXEN6", "_DEXEN7", "_DEXEN8", "_DEXEN9", "_DEXEN10", "_DEXEN11", "_DEXEN12", "_DEXEN13", "_DEXEN14", "_DEXEN15", "_DEXEN16", "_DEXEN17", "_DEXEN18", "_DEXEN19", "_DEXEN20", "_DEXEN21", "_DEXEN22", "_DEXEN23", "_DEXEN24", "_DEXEN25", "_DEXEN26", "_DEXEN27", "_DEXEN28", "_DEXEN29", "_DEXEN292"],
         "16": [["DWS77", "A30+"], "DWS81"]
       },
-      "body": [["DEXEN", "A120+"]],
+      "body": [],
       "exitPoints": {
-        "LUTIP": ["LOMVO", "LUTIP"]
+        "DEXEN": [["DEXEN", "A120+"]]
       },
-      "draw": [["DW554", "DW555", "DEXEN"], ["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "_DEXEN6", "_DEXEN7", "_DEXEN8", "_DEXEN9", "_DEXEN10", "_DEXEN11", "_DEXEN12", "_DEXEN13", "_DEXEN14", "_DEXEN15", "_DEXEN16", "_DEXEN17", "_DEXEN18", "_DEXEN19", "_DEXEN20", "_DEXEN21", "_DEXEN22", "_DEXEN23", "_DEXEN24", "_DEXEN25", "_DEXEN26", "_DEXEN27", "_DEXEN28", "_DEXEN29", "_DEXEN292", "DEXEN"], ["DWS81", "DEXEN"]]
+      "draw": [
+        ["DW554", "DW555", "DEXEN"], 
+        ["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "_DEXEN6", "_DEXEN7", "_DEXEN8", "_DEXEN9", "_DEXEN10", "_DEXEN11", "_DEXEN12", "_DEXEN13", "_DEXEN14", "_DEXEN15", "_DEXEN16", "_DEXEN17", "_DEXEN18", "_DEXEN19", "_DEXEN20", "_DEXEN21", "_DEXEN22", "_DEXEN23", "_DEXEN24", "_DEXEN25", "_DEXEN26", "_DEXEN27", "_DEXEN28", "_DEXEN29", "_DEXEN292", "DEXEN"], 
+        ["DWS81", "DEXEN"]
+      ]
     },
     "OLONO": {
       "icao": "OLONO",
@@ -1235,11 +1276,13 @@
         "16": [["DWS77", "A30+"], "DWS81"],
         "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL"]
       },
-      "body": ["NEPOD", "OLONO"],
+      "body": ["NEPOD"],
       "exitPoints": {
-        "CRK": ["CML", "TISMO", "CRK"]
+        "OLONO": ["OLONO"]
       },
-      "draw": [["NEPOD", "OLONO"]]
+      "draw": [
+        ["NEPOD", "OLONO"]
+      ]
     },
     "OLONO(AB)": {
       "icao": "OLONO(AB)",
@@ -1251,11 +1294,13 @@
         "16": ["DWS81"],
         "34": ["OE", "DWW02", "BAL"]
       },
-      "body": ["NEPOD", "OLONO"],
+      "body": ["NEPOD"],
       "exitPoints": {
-        "CRK": ["CML", "TISMO", "CRK"]
+        "OLONO": ["OLONO"]
       },
-      "draw": [["OLONO"]]
+      "draw": [
+        ["OLONO"]
+      ]
     },
     "BEPAN": {
       "icao": "BEPAN",
@@ -1267,11 +1312,16 @@
         "16": [["DWS77", "A30+"], "DWS81"],
         "34": [["DWN26", "A30+"], "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL"]
       },
-      "body": ["NEPOD", "BEPAN"],
+      "body": ["NEPOD"],
       "exitPoints": {
-        "BANBA": ["DIMUS", "BANBA"]
+        "BEPAN": ["BEPAN"]
       },
-      "draw": [["DW554", "IRDEX", "ERVAD", "NEPOD"], ["_DEXEN20", "BAL"], ["DWS77", "DWS81"], ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL", "NEPOD", "BEPAN"]]
+      "draw": [
+        ["DW554", "IRDEX", "ERVAD", "NEPOD"], 
+        ["_DEXEN20", "BAL"], 
+        ["DWS77", "DWS81"], 
+        ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "_BAL18", "_BAL19", "_BAL20", "_BAL21", "_BAL22", "_BAL23", "_BAL24", "_BAL25", "_BAL26", "BAL", "NEPOD", "BEPAN"]
+      ]
     },
     "BEPAN(AB)": {
       "icao": "BEPAN(AB)",
@@ -1283,11 +1333,13 @@
         "16": ["DWS81"],
         "34": ["OE", "DWW02", "BAL"]
       },
-      "body": ["NEPOD", "BEPAN"],
+      "body": ["NEPOD"],
       "exitPoints": {
-        "BANBA": ["DIMUS", "BANBA"]
+        "BEPAN": ["BEPAN"]
       },
-      "draw": [["BEPAN"]]
+      "draw": [
+        ["BEPAN"]
+      ]
     },
     "ROTEV": {
       "icao": "ROTEV",
@@ -1299,11 +1351,16 @@
         "16": [["DWS77", "A30+"], "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA"],
         "34": [["DWN26", "A30+"], "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "DWN29"]
       },
-      "body": ["ROTEV", "GOTNA"],
+      "body": [],
       "exitPoints": {
-        "GOTNA": ["GOTNA"]
+        "ROTEV": ["ROTEV"]
       },
-      "draw": [["LEMTA", "ROTEV"], ["_LIFFY21", "DWN29"], ["ERUDA", "ROTEV"], ["DWN29", "ROTEV"]]
+      "draw": [
+        ["LEMTA", "ROTEV"], 
+        ["_LIFFY21", "DWN29"], 
+        ["ERUDA", "ROTEV"], 
+        ["DWN29", "ROTEV"]
+      ]
     },
     "ROTEV(AB)": {
       "icao": "ROTEV(AB)",
@@ -1315,11 +1372,13 @@
         "16": ["OP", "BATED", "ERUDA"],
         "34": ["DUB", "DWN29"]
       },
-      "body": ["ROTEV", "GOTNA"],
+      "body": [],
       "exitPoints": {
-        "GOTNA": ["GOTNA"]
+        "ROTEV": ["ROTEV"]
       },
-      "draw": [["ROTEV"]]
+      "draw": [
+        ["ROTEV"]
+      ]
     },
     "NEVRI": {
       "icao": "NEVRI",
@@ -1331,11 +1390,15 @@
         "16": [["DWS77", "A30+"], "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA"],
         "34": [["DWN26", "A30+"], "_KISHA1", "_KISHA2", "_KISHA3", "_KISHA4", "_KISHA5", "_KISHA6", "DWN29"]
       },
-      "body": ["NEVRI"],
+      "body": [],
       "exitPoints": {
-        "BEL": ["ABSUN", "BEL"]
+        "NEVRI": ["NEVRI"]
       },
-      "draw": [["DW551", "LEMTA", "NEVRI"], ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"], ["_KISHA6", "DWN29", "NEVRI"]]
+      "draw": [
+        ["DW551", "LEMTA", "NEVRI"], 
+        ["DWS77", "_BATED1", "_BATED2", "_BATED3", "_BATED4", "_BATED5", "_BATED6", "_BATED7", "_BATED8", "_BATED9", "_BATED10", "_BATED11", "_BATED12", "_BATED13", "_BATED14", "_BATED15", "_BATED16", "_BATED17", "_BATED18", "_BATED19", "_BATED20", "_BATED21", "_BATED22", "_BATED23", "_BATED24", "_BATED25", "_BATED26", "_BATED27", "_BATED28", "_BATED29", "BATED", "ERUDA", "NEVRI"], 
+        ["_KISHA6", "DWN29", "NEVRI"]
+      ]
     },
     "NEVRI(AB)": {
       "icao": "NEVRI(AB)",
@@ -1347,11 +1410,13 @@
         "16": ["OP", "BATED", "ERUDA"],
         "34": ["DUB", "DWN29"]
       },
-      "body": ["NEVRI"],
+      "body": [],
       "exitPoints": {
-        "BEL": ["ABSUN", "BEL"]
+        "NEVRI": ["NEVRI"]
       },
-      "draw": [["NEVRI"]]
+      "draw": [
+        ["NEVRI"]
+      ]
     },
     "PELIG": {
       "icao": "PELIG",
@@ -1362,11 +1427,15 @@
         "16": [["DWS77", "A30+"], "DWS78"],
         "34": [["DWN26", "A30+"]]
       },
-      "body": ["PELIG"],
+      "body": [],
       "exitPoints": {
-        "SHA": ["ENOKU", "DIGAN", "SHA"]
+        "PELIG": ["PELIG"]
       },
-      "draw": [["OE", "_DEXEN1", "_DEXEN2", "_DEXEN3", "_DEXEN4", "_DEXEN5", "PELIG"], ["DWS78", "PELIG"], ["DWN26", "_BAL1", "_BAL2", "_BAL3", "_BAL4", "_BAL5", "_BAL6", "_BAL7", "_BAL8", "_BAL9", "_BAL10", "_BAL11", "_BAL12", "_BAL13", "_BAL14", "_BAL15", "_BAL16", "_BAL17", "PELIG"]]
+      "draw": [
+        ["_DEXEN5", "PELIG"], 
+        ["DWS78", "PELIG"], 
+        ["_BAL17", "PELIG"]
+      ]
     },
     "PELIG(AB)": {
       "icao": "PELIG(AB)",
@@ -1375,11 +1444,13 @@
       "rwy": {
         "34": ["OE", ["DWW02", "A40+"]]
       },
-      "body": ["PELIG"],
+      "body": [],
       "exitPoints": {
-        "SHA": ["ENOKU", "DIGAN", "SHA"]
+        "PELIG": ["PELIG"]
       },
-      "draw": [["PELIG"]]
+      "draw": [
+        ["PELIG"]
+      ]
     }
   },
   "stars": {
@@ -1388,13 +1459,14 @@
       "name": "Olapo",
       "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1K"},
       "entryPoints": {
-        "ERNAN": ["ERNAN", "_PREOLAPO"]
+        "OLAPO": ["OLAPO"]
       },
+      "body": [],
       "rwy": {
-        "10": [["OLAPO", "A170"], ["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-        "28": [["OLAPO", "A250|S350"], ["RONON", "A170|S300"], ["ORVEN", "A120|S250"], ["GIRAS", "A100|S240"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-        "16": [["OLAPO", "A120|S250"], ["ULTAG", "A60|S220"]],
-        "34": [["OLAPO", "A230"], ["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
+        "10": [["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+        "28": [["RONON", "A170|S300"], ["ORVEN", "A120|S250"], ["GIRAS", "A100|S240"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+        "16": [["ULTAG", "A60|S220"]],
+        "34": [["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
       }
     },
     "BAML": {
@@ -1402,12 +1474,13 @@
       "name": "Bamli",
       "suffix": {"10":"1R", "28":"1L", "34":"1K"},
       "entryPoints": {
-        "BEL": ["BEL", "LIRGU"]
+        "BAMLI": ["BAMLI"]
       },
+      "body": [],
       "rwy": {
-        "10": [["BAMLI", "A160"], ["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-        "28": [["BAMLI", "A250"], ["RONON", "A170"], ["ORVEN", "A120"], ["GIRAS", "A100"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-        "34": [["BAMLI", "A230"], ["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
+        "10": [["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+        "28": [["RONON", "A170"], ["ORVEN", "A120"], ["GIRAS", "A100"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+        "34": [["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
       }
     },
     "NIMA": {
@@ -1415,13 +1488,14 @@
       "name": "Nimat",
       "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
-        "NELBO": [["NELBO", "A250|S350"], ["NUMPI", "A180|S300"]]
+        "NIMAT": ["NIMAT"]
       },
+      "body": [],
       "rwy": {
-        "10": [["NIMAT", "A200-"], ["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-        "28": [["NIMAT", "A140|S250"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-        "16": [["NIMAT", "A120"], ["KERAV", "A60"]],
-        "34": [["NIMAT", "A120"], ["KERAV", "A60"]]
+        "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+        "28": [["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+        "16": [["KERAV", "A60"]],
+        "34": [["KERAV", "A60"]]
       }
     },
     "BOYN": {
@@ -1429,13 +1503,14 @@
       "name": "Boyne",
       "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
-        "EGNS": ["EGNS", ["IOM", "A200-"]]
+        "BOYNE": ["BOYNE"]
       },
+      "body": [],
       "rwy": {
-        "10": [["BOYNE", "A180"], ["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-        "28": [["BOYNE", "A110"], ["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-        "16": [["BOYNE", "A90"], ["ADSIS", "A70"], ["KERAV", "A60"]],
-        "34": [["BOYNE", "A90"], ["ADSIS", "A70"], ["KERAV", "A60"]]
+        "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+        "28": [["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+        "16": [["ADSIS", "A70"], ["KERAV", "A60"]],
+        "34": [["ADSIS", "A70"], ["KERAV", "A60"]]
       }
     },
     "BAGS": {
@@ -1443,13 +1518,14 @@
       "name": "Bagso",
       "suffix": {"10":"1R", "28":"1L", "16":"1K", "34":"1K"},
       "entryPoints": {
-        "RAMOX": [["RAMOX", "A170|S300"], ["OGTUG", "A140|S250"]]
+        "BAGSO": ["BAGSO"]
       },
+      "body": [],
       "rwy": {
-        "10": [["BAGSO", "A170"], ["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-        "28": [["BAGSO", "A100"], ["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-        "16": [["BAGSO", "A90"], ["ADSIS", "A70"], ["KERAV", "A60"]],
-        "34": [["BAGSO", "A90"], ["ADSIS", "A70"], ["KERAV", "A60"]]
+        "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+        "28": [["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+        "16": [["ADSIS", "A70"], ["KERAV", "A60"]],
+        "34": [["ADSIS", "A70"], ["KERAV", "A60"]]
       }
     },
     "LIPG": {
@@ -1457,13 +1533,14 @@
       "name": "Lipgo",
       "suffix": {"10":"1R", "28":"1L", "16":"1U", "34":"1S"},
       "entryPoints": {
-        "BADSI": ["BADSI", ["ABLIN", "A160|S300"], ["IRKUM", "A100|S250"]]
+        "LIPGO": ["LIPGO"]
       },
+      "body": [],
       "rwy": {
-        "10": [["LIPGO", "A180|S300"], ["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-        "28": [["LIPGO", "A80|S240"], ["PEKOK", "A70"], ["SIVNA", "A70|S230"], "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-        "16": [["LIPGO", "A250|S350"], ["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-        "34": [["LIPGO", "A100|S250"], ["SORIN", "A60"]]
+        "10": [["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
+        "28": [["PEKOK", "A70"], ["SIVNA", "A70|S230"], "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+        "16": [["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
+        "34": [["SORIN", "A60"]]
       }
     },
     "VATR": {
@@ -1471,13 +1548,14 @@
       "name": "Vatry",
       "suffix": {"10":"1R", "28":"1L", "16":"1U", "34":"1S"},
       "entryPoints": {
-        "STU": ["STU", ["PEMOB", "A270-"]]
+        "VATRY": ["VATRY"]
       },
+      "body": [],
       "rwy": {
-        "10": [["VATRY", "A250|S350"], ["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-        "28": [["VATRY", "A180|S300"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-        "16": [["VATRY", "A320"], ["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-        "34": [["VATRY", "A170|S300"], ["SORIN", "A60"]]
+        "10": [["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
+        "28": [["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+        "16": [["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
+        "34": [["SORIN", "A60"]]
       }
     },
     "BUNE": {
@@ -1485,13 +1563,14 @@
       "name": "Buned",
       "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
-        "EVRIN": ["EVRIN", ["NEXAT", "A360-"]]
+        "BUNED": ["BUNED"]
       },
+      "body": [],
       "rwy": {
-        "10": [["BUNED", "A190|S300"], ["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-        "28": [["BUNED", "A240|S350"], ["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-        "16": [["BUNED", "A280|S350"], ["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-        "34": [["BUNED", "A230|S350"], ["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
+        "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
+        "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+        "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
+        "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
       }
     },
     "SUTE": {
@@ -1499,13 +1578,14 @@
       "name": "Sutex",
       "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
-        "CRK": ["CRK", ["TISMO", "A380-"], ["CML", "A300-"]]
+        "SUTEX": ["SUTEX"]
       },
+      "body": [],
       "rwy": {
-        "10": [["SUTEX", "A160|S270"], ["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-        "28": [["SUTEX", "A210|S350"], ["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-        "16": [["SUTEX", "A250|S350"], ["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-        "34": [["SUTEX", "A200|S350"], ["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
+        "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
+        "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+        "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
+        "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
       }
     },
     "OSGA": {
@@ -1513,13 +1593,14 @@
       "name": "Osgar",
       "suffix": {"10":"1R", "28":"1L", "16":"4U", "34":"1S"},
       "entryPoints": {
-        "SHA": ["SHA", ["TOMTO", "A350-"], ["TORLU", "A280"]]
+        "OSGAR": ["OSGAR"]
       },
+      "body": [],
       "rwy": {
-        "10": [["OSGAR", "A190|S300"], ["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-        "28": [["OSGAR", "A240|S350"], ["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-        "16": [["OSGAR", "A280|S350"], ["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-        "34": [["OSGAR", "A230|S350"], ["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
+        "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
+        "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+        "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
+        "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
       }
     }
   },
@@ -1528,7 +1609,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.SUROX.ENULA",
+            "route": "EIDW.SUROX.SUROX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1548,7 +1629,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.SUROX(AB).ENULA",
+            "route": "EIDW.SUROX(AB).SUROX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1561,7 +1642,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.LIFFY.GINIS",
+            "route": "EIDW.LIFFY.LIFFY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1590,7 +1671,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.KISHA.GINIS",
+            "route": "EIDW.KISHA.LIFFY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1604,7 +1685,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.BEPAN.BANBA",
+            "route": "EIDW.BEPAN.BEPAN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1629,7 +1710,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.BEPAN(AB).BANBA",
+            "route": "EIDW.BEPAN(AB).BEPAN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1642,7 +1723,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.INKUR.SHA",
+            "route": "EIDW.INKUR.INKUR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1662,7 +1743,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.INKUR(AB).SHA",
+            "route": "EIDW.INKUR(AB).INKUR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1675,7 +1756,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.DEXEN.LUTIP",
+            "route": "EIDW.DEXEN.DEXEN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1705,7 +1786,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.OLONO.CRK",
+            "route": "EIDW.OLONO.OLONO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1727,7 +1808,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.OLONO(AB).CRK",
+            "route": "EIDW.OLONO(AB).OLONO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1740,7 +1821,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.ROTEV.GOTNA",
+            "route": "EIDW.ROTEV.ROTEV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1758,7 +1839,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.ROTEV(AB).GOTNA",
+            "route": "EIDW.ROTEV(AB).ROTEV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1772,7 +1853,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.NEVRI.BEL",
+            "route": "EIDW.NEVRI.NEVRI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1795,7 +1876,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.NEVRI(AB).BEL",
+            "route": "EIDW.NEVRI(AB).NEVRI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1809,7 +1890,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.PESIT.STU",
+            "route": "EIDW.PESIT.PESIT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1837,7 +1918,7 @@
             "origin": "EIDW",
             "destination": "",
             "category": "departure",
-            "route": "EIDW.ABIDO.STU",
+            "route": "EIDW.ABIDO.PESIT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1851,8 +1932,8 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "ERNAN.OLAP.EIDW",
-            "altitude": 34000,
+            "route": "ERNAN.._PREOLAPO..OLAPO.OLAP.EIDW",
+            "altitude": 25000,
             "speed": 350,
             "method": "random",
             "rate": 3,
@@ -1876,9 +1957,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "CRK.SUTE.EIDW",
-            "altitude": [32000, 43000],
-            "speed": 350,
+            "route": "CRK..TISMO..CML..SUTEX.SUTE.EIDW",
+            "altitude": 21000,
+            "speed": 320,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1901,9 +1982,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "RAMOX.BAGS.EIDW",
-            "altitude": 17000,
-            "speed": 350,
+            "route": "RAMOX..OGTUG..BAGSO.BAGS.EIDW",
+            "altitude": 10000,
+            "speed": 240,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -1933,9 +2014,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "NELBO.NIMA.EIDW",
-            "altitude": 25000,
-            "speed": 350,
+            "route": "NELBO..NUMPI..NIMAT.NIMA.EIDW",
+            "altitude": 14000,
+            "speed": 250,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1952,9 +2033,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "STU.VATR.EIDW",
-            "altitude": 31000,
-            "speed": 350,
+            "route": "STU..PEMOB..VATRY.VATR.EIDW",
+            "altitude": 18000,
+            "speed": 300,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1980,9 +2061,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "BADSI.LIPG.EIDW",
-            "altitude": 19000,
-            "speed": 350,
+            "route": "BADSI..ABLIN..IRKUM..LIPGO.LIPG.EIDW",
+            "altitude": 8000,
+            "speed": 240,
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -2008,9 +2089,9 @@
             "origin": "",
             "destination": "EIDW",
             "category": "arrival",
-            "route": "EGNS.BOYN.EIDW",
-            "altitude": 22000,
-            "speed": 350,
+            "route": "EGNS..IOM..BOYNE.BOYN.EIDW",
+            "altitude": 11000,
+            "speed": 240,
             "method": "random",
             "rate": 1,
             "airlines": [
