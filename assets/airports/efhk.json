@@ -748,7 +748,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 8],
@@ -774,7 +774,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 8],
@@ -800,7 +800,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 8],
@@ -826,7 +826,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 2],
@@ -852,7 +852,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 4],
                 ["dlh", 8],
@@ -883,7 +883,7 @@
             "altitude": null,
             "speed": null,
             "airlines":    [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 4],
                 ["dlh", 8],
@@ -915,7 +915,7 @@
             "speed": null,
             "airlines":    [
                 ["fin/long", 4],
-                ["fin", 65],
+                ["fin/short", 65],
                 ["nax", 12],
                 ["sas", 1]
             ]
@@ -930,7 +930,7 @@
             "altitude": null,
             "speed": null,
             "airlines": [
-                ["fin", 65],
+                ["fin/short", 65],
                 ["nax", 5]
             ]
         },
@@ -945,7 +945,7 @@
             "speed": null,
             "airlines": [
                 ["fin/long", 20],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["jal/long", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -963,7 +963,7 @@
             "speed": null,
             "airlines": [
                 ["fin/long", 20],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["jal/long", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -981,7 +981,7 @@
             "speed": null,
             "airlines": [
                 ["fin/long", 20],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["jal/long", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -999,7 +999,7 @@
             "speed": null,
             "airlines": [
                 ["fin/long", 20],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["jal/long", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -1017,7 +1017,7 @@
             "speed": null,
             "airlines": [
                 ["fin/long", 20],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["jal/long", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -1034,7 +1034,7 @@
             "altitude": null,
             "speed": null,
             "airlines": [
-                ["fin", 2]
+                ["fin/short", 2]
             ]
         },
 
@@ -1048,7 +1048,7 @@
             "altitude": 18000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 8],
@@ -1077,7 +1077,7 @@
             "altitude": 14000,
             "speed": 280,
             "airlines": [
-                ["fin", 65],
+                ["fin/short", 65],
                 ["nax", 5]
             ]
         },
@@ -1091,7 +1091,7 @@
             "altitude": 18000,
             "speed": 280,
             "airlines": [
-                ["fin", 65],
+                ["fin/short", 65],
                 ["nax", 5],
                 ["fin/long", 5]
             ]
@@ -1108,7 +1108,7 @@
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["afl", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -1125,7 +1125,7 @@
             "altitude": 28000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 8],
@@ -1154,7 +1154,7 @@
             "altitude": 16000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
 
@@ -1176,7 +1176,7 @@
             "altitude": 12000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
 
@@ -1198,7 +1198,7 @@
             "altitude": 22000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 12],
                 ["dlh", 1],
@@ -1226,7 +1226,7 @@
             "altitude": 25000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 1],
                 ["dlh", 8],
@@ -1256,7 +1256,7 @@
             "altitude": 15000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 6],
                 ["dlh", 8],
@@ -1288,7 +1288,7 @@
             "altitude": 19000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["dlh", 2],
                 ["ber", 2],
@@ -1315,7 +1315,7 @@
             "altitude": 22000,
             "speed": 280,
             "airlines": [
-                ["fin", 90],
+                ["fin/short", 90],
                 ["nax", 30],
                 ["sas", 4],
                 ["dlh", 8],
@@ -1348,7 +1348,7 @@
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
-                ["fin", 10],
+                ["fin/short", 10],
                 ["qtr", 1],
                 ["thy", 1],
                 ["afl", 1],
