@@ -73,7 +73,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'efhk',
-            level: 'easy',
+            level: 'medium',
             name: 'Helsinki Airport',
             wip: true
         },
