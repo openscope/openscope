@@ -234,11 +234,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyArrivalProcedure
-     * @param routeString {String}  route string in the form of `entry.procedure.airport`
-     * @return {Array}              [success of operation, readback]
+     * @param routeString {string}       route string in the form of `entry.procedure.airport`
+     * @param runwayModel {RunwayModel}
+     * @param airportName {string}
+     * @return {array}                   [success of operation, readback]
      */
-    applyArrivalProcedure(routeString, arrivalRunway, airportName) {
-        if (!this._fms.isValidProcedureRoute(routeString, arrivalRunway, FLIGHT_CATEGORY.ARRIVAL)) {
+    applyArrivalProcedure(routeString, runwayModel, airportName) {
+        if (!this._fms.isValidProcedureRoute(routeString, runwayModel, FLIGHT_CATEGORY.ARRIVAL)) {
             // TODO: may need a better message here
             return [false, 'STAR name not understood'];
         }
@@ -247,11 +249,11 @@ export default class Pilot {
         const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
 
         // TODO: set mcp modes here
-        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
+        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, runwayModel);
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure} arrival`;
+        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure.toUpperCase()} arrival`;
         readback.say = `cleared to ${airportName} via the ${starModel.name.toUpperCase()} arrival`;
 
         return [true, readback];
@@ -263,39 +265,39 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}                the identifier for the procedure
-     * @param departureRunwayModel {RunwayModel}  the identifier for the runway to use for departure
-     * @param airportIcao {string}                airport icao identifier
-     * @return {array}                            [success of operation, readback]
+     * @param procedureId {String}          the identifier for the procedure
+     * @param runwayModel {RunwayModel}     RunwayModel used for departure
+     * @param airportIcao {string}          airport icao identifier
+     * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, departureRunwayModel, airportIcao) {
-        this.hasDepartureClearance = true;
-
+    applyDepartureProcedure(procedureId, runwayModel, airportIcao) {
         const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
 
         if (_isNil(standardRouteModel)) {
             return [false, 'SID name not understood'];
         }
 
+        if (!runwayModel) {
+            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
+        }
+
         // TODO: this should not be randomized
         const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
         const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
-        if (!departureRunwayModel) {
-            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-        }
-
-        if (!standardRouteModel.hasFixName(departureRunwayModel.name)) {
+        if (!standardRouteModel.hasFixName(runwayModel.name)) {
             return [
                 false,
                 `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${departureRunwayModel.name.toUpperCase()}`
+                `from Runway ${runwayModel.name.toUpperCase()}`
             ];
         }
 
+        this.hasDepartureClearance = true;
+
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeStr, departureRunwayModel);
+        this._fms.replaceDepartureProcedure(routeStr, runwayModel);
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;

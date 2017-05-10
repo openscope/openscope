@@ -1,5 +1,6 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -9,7 +10,8 @@ import {
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_PHASE,
-    FLIGHT_CATEGORY
+    FLIGHT_CATEGORY,
+    PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
 
 /**
@@ -352,9 +354,14 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const departureRunway = aircraft.fms.departureRunway;
-        const { icao: airportIcao } = this._airportController.airport_get();
-        const response = aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
+        const runwayModel = aircraft.fms.departureRunway;
+        const airportModel = this._airportController.airport_get();
+
+        if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
+            return this._runSIDforSuffix(aircraft, airportModel, sidId);
+        }
+
+        const response = aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
 
         if (!response[0]) {
             return response;
@@ -369,6 +376,22 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
+     * @method _runSIDforSuffix
+     * @param  aircraft {AircraftModel}
+     * @param airportModel {AirportModel}
+     * @param sidId {strig}
+     * @return {array}  [success of operation, readback]
+     */
+    _runSIDforSuffix(aircraft, airportModel, sidId) {
+        const routeModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
+        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
+        const runwayModel = airportModel.getRunway(runwayName);
+
+        return aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
+    }
+
+    /**
+     * @for AircraftCommander
      * @method runSTAR
      * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
      * @return {array}   [success of operation, readback]
@@ -376,30 +399,37 @@ export default class AircraftCommander {
     runSTAR(aircraft, data) {
         const routeString = data[0];
         // TODO: why are we passing this if we already have it?
-        const arrivalRunway = aircraft.fms.arrivalRunway;
+        const runwayModel = aircraft.fms.arrivalRunway;
         const airportModel = this._airportController.airport_get();
 
-        if (this._navigationLibrary.isSuffixRoute(routeString, 'STAR')) {
+        if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {
             return this._runSTARforSuffix(aircraft, airportModel, routeString);
         }
 
-        return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportModel.name);
+        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
     }
 
     /**
+     * Used only for suffix routes.
      *
+     * Suffix routes apply to a specific runway.
+     * This method will find and pass on the correct `RunwayModel`
+     * to the `Pilot`.
      *
+     * @for AircraftCommander
      * @method _runSTARforSuffix
-     * @return {array}   [success of operation, readback]
+     * @param aircraft {AircraftModel}
+     * @param airportModel {AirportModel}
+     * @param routeString {string}
+     * @return {array}  [success of operation, readback]
      */
     _runSTARforSuffix(aircraft, airportModel, routeString) {
-        console.log('_runSTARforSuffix', routeString);
-        // const routeModel = this._navigationLibrary.starCollection.getRouteFromProcedureStr
-        // const runwayName = routeModel.getSuffixSegmentName('STAR');
-        // const runwayModel = airportModel.getRunway(runwayName);
-        //
-        // return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
-        return false;
+        const routeStringModel = new RouteModel(routeString);
+        const routeModel = this._navigationLibrary.starCollection.findRouteByIcao(routeStringModel.procedure);
+        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
+        const runwayModel = airportModel.getRunway(runwayName);
+
+        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
     }
 
     /**

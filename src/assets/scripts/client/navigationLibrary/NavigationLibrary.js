@@ -4,7 +4,10 @@ import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { degreesToRadians } from '../utilities/unitConverters';
-import { FLIGHT_PHASE } from '../constants/aircraftConstants';
+import {
+    FLIGHT_PHASE,
+    PROCEDURE_TYPE
+} from '../constants/aircraftConstants';
 
 /**
  *
@@ -288,22 +291,28 @@ export default class NavigationLibrary {
      *
      * @NavigationLibrary
      * @method isSuffixRoute
-     * @param procedureRouteString {string}
+     * @param routeString {string}
      * @param procedureType {string}
      * @return {boolean}
      */
-    isSuffixRoute(procedureRouteString, procedureType) {
-        if (!RouteModel.isProcedureRouteString(procedureRouteString)) {
-            return false;
+    isSuffixRoute(routeString, procedureType) {
+        let route;
+
+        switch (procedureType) {
+            case PROCEDURE_TYPE.SID:
+                route = this._sidCollection.findRouteByIcao(routeString);
+
+                break;
+            case PROCEDURE_TYPE.STAR:
+                const { procedure } = new RouteModel(routeString);
+
+                route = this._starCollection.findRouteByIcao(procedure);
+
+                break;
+            default:
+                return false;
         }
 
-        const { procedure } = new RouteModel(procedureRouteString);
-        let route = this._sidCollection.findRouteByIcao(procedure);
-
-        if (procedureType === 'STAR') {
-            route = this._starCollection.findRouteByIcao(procedure);
-        }
-
-        return route.hasSuffix();
+        return typeof route !== 'undefined' && route.hasSuffix();
     }
 }
