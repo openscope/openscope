@@ -4,7 +4,7 @@
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
 - Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
-- Renamed AircraftInstanceModel  with AircraftModel  [#402](https://github.com/openscope/openscope/issues/1402)
+- Renamed AircraftInstanceModel with AircraftModel  [#402](https://github.com/openscope/openscope/issues/1402)
 
 
 
@@ -56,7 +56,7 @@
 - Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
     - This represents a ground-up, from scratch, re-build of the flight management system with new classes: `Fms`, `LegModel`, and `WaypointModel`
     - Introduces the `ModeController` that completely separates Altitude, Heading and Speed settings from the FMS and allowing the FMS to be in charge of the flight plan and any fixRestrictions defined for a given route
-    - Adds `Pilot` class that acts as a coordinator layer between the `AircraftCommander`, `AircraftModel`, `ModeController`, and `Fms`
+    - Adds `Pilot` class that acts as a coordinator layer between the `AircraftCommander`, `AircraftInstanceModel`, `ModeController`, and `Fms`
     - Completely reworks how `Aircraft.target` is calculated
     - Introduces the concept of `flightPhase`, and begins integrating that property in lieu of category (arrival/departure)
     - Adds ability to define hold waypoints with a symbol `@`
