@@ -24,7 +24,7 @@
         {
             "floor": 0,
             "ceiling": 100,
-            "airspace_class": "C",
+            "airspace_class": "B",
             "poly": [
                 ["N051d39m08.000", "E007d29m10.000"],
                 ["N051d17m25.000", "E007d41m24.000"],
