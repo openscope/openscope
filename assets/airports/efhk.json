@@ -256,106 +256,69 @@
             "name": "ASTIV",
             "suffix": {"22R":"3N"},
             "rwy": {
-                 "22R": ["_22RDME25", "HK451", ["ASTIV", "S250-"]]
+                 "22R": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["_22RDME25", "HK451", "ASTIV"],
-                     ["ASTIV", "DOBAN*"],
-                     ["ASTIV", "RENKU*"]]
+            "body": ["_22RDME25", "HK451", ["ASTIV", "S250-"]],
+            "draw": [["_22RDME25", "HK451", "ASTIV"]]
         },
         "DEVKA": {
             "icao": "DEVKA",
             "name": "DEVKA",
             "suffix": {"22L":"1F"},
             "rwy": {
-                 "22L": [["VAVIS", "S230-"], ["DEVKA", "S230-"]]
+                 "22L": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["VAVIS", "DEVKA"],
-                     ["DEVKA", "DOBAN*"],
-                     ["DEVKA", "RENKU*"]]
+            "body": [["VAVIS", "S230-"], ["DEVKA", "S230-"]],
+            "draw": [["VAVIS", "DEVKA"]]
         },
         "ELPEN": {
             "icao": "ELPEN",
             "name": "ELPEN",
             "suffix": {"04R":"4C"},
             "rwy": {
-                 "04R": ["HK416", ["ELPEN", "S250-"]]
+                 "04R": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["HK416", "ELPEN"],
-                     ["ELPEN", "ARVEP*"],
-                     ["ELPEN", "DOBAN*"],
-                     ["ELPEN", "RENKU*"]]
+            "body": ["HK416", ["ELPEN", "S250-"]],
+            "draw": [["HK416", "ELPEN"]]
         },
         "ENUTO": {
             "icao": "ENUTO",
             "name": "ENUTO",
             "suffix": {"22R":"3N"},
             "rwy": {
-                 "22R": ["_22RDME25", "HK461", ["HK427", "S250-"], "ENUTO"]
+                 "22R": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "IDEPI": ["IDEPI"],
-                "NEPEK": ["NEPEK"],
-                "TEVRU": ["TEVRU"]
-            },
-            "draw": [["_22RDME25", "HK461", "HK427", "ENUTO"],
-                     ["ENUTO", "ARVEP*"],
-                     ["ENUTO", "IDEPI*"],
-                     ["ENUTO", "NEPEK*"],
-                     ["ENUTO", "TEVRU*"]]
+            "body": ["_22RDME25", "HK461", ["HK427", "S250-"], "ENUTO"],
+            "draw": [["_22RDME25", "HK461", "HK427", "ENUTO"]]
         },
         "ERSAV": {
             "icao": "ERSAV",
             "name": "ERSAV",
             "suffix": {"33":"3P"},
             "rwy": {
-                 "33": [["ERSAV", "S250-"]]
+                 "33": []
             },
-            "exitPoints": {
-                "ADIVO": ["ADIVO"],
-                "KUVEM": ["KUVEM"],
-                "NUNTO": ["NUNTO"]
-            },
-            "draw": [["ERSAV"],
-                     ["ERSAV", "ADIVO*"],
-                     ["ERSAV", "KUVEM*"],
-                     ["ERSAV", "NUNTO*"]]
+            "body": [["ERSAV", "S250-"]],
+            "draw": [["ERSAV"]]
         },
         "GIRLA": {
             "icao": "GIRLA",
             "name": "GIRLA",
             "suffix": {"15":"3D"},
             "rwy": {
-                 "15": [["RIPVI", "S250-"], "GIRLA"]
+                 "15": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["RIPVI", "GIRLA"],
-                     ["GIRLA", "DOBAN*"],
-                     ["GIRLA", "RENKU*"]]
+            "body": [["RIPVI", "S250-"], "GIRLA"],
+            "draw": [["RIPVI", "GIRLA"]]
         },
         "GOVMI": {
             "icao": "GOVMI",
             "name": "GOVMI",
             "suffix": {"15":"2D"},
             "rwy": {
-                 "15": [["LAVTU", "S250-"], "GOVMI"]
+                 "15": []
             },
+            "body": [["LAVTU", "S250-"], "GOVMI"],
             "draw": [["LAVTU", "GOVMI"]]
         },
         "IDMOP": {
@@ -363,239 +326,150 @@
             "name": "IDMOP",
             "suffix": {"33":"3P"},
             "rwy": {
-                 "33": [["IDMOP", "S250-"]]
+                 "33": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "IDEPI": ["IDEPI"]
-            },
-            "draw": [["IDMOP"],
-                     ["IDMOP", "ARVEP*"],
-                     ["IDMOP", "IDEPI*"]]
+            "body": [["IDMOP", "S250-"]],
+            "draw": [["IDMOP"]]
         },
         "LULAB": {
             "icao": "LULAB",
             "name": "LULAB",
             "suffix": {"04R":"2C"},
             "rwy": {
-                 "04R": ["HK416", ["LULAB", "S250-"]]
+                 "04R": []
             },
-            "exitPoints": {
-                "NEPEK": ["NEPEK"],
-                "TEVRU": ["TEVRU"]
-            },
-            "draw": [["HK416", "LULAB"],
-                     ["LULAB", "NEPEK*"],
-                     ["LULAB", "TEVRU*"]]
+            "body": ["HK416", ["LULAB", "S250-"]],
+            "draw": [["HK416", "LULAB"]]
         },
         "NIDAG": {
             "icao": "NIDAG",
             "name": "NIDAG",
             "suffix": {"15":"2U"},
             "rwy": {
-                 "15": [["NIDAG", "S250-"]]
+                 "15": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["NIDAG"],
-                     ["NIDAG", "DOBAN*"],
-                     ["NIDAG", "RENKU*"]]
+            "body": [["NIDAG", "S250-"]],
+            "draw": [["NIDAG"]]
         },
         "NUTRU": {
             "icao": "NUTRU",
             "name": "NUTRU",
             "suffix": {"15":"3D"},
             "rwy": {
-                 "15": [["NUTRU", "S250-"]]
+                 "15": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "IDEPI": ["IDEPI"]
-            },
-            "draw": [["NUTRU"],
-                     ["NUTRU", "ARVEP*"],
-                     ["NUTRU", "IDEPI*"]]
+            "body": [["NUTRU", "S250-"]],
+            "draw": [["NUTRU"]]
         },
         "PENAD": {
             "icao": "PENAD",
             "name": "PENAD",
             "suffix": {"22L":"5F"},
             "rwy": {
-                 "22L": [["VAVIS", "S230-"], ["HK418", "A25+|S230-"], "PENAD"]
+                 "22L": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "IDEPI": ["IDEPI"]
-            },
-            "draw": [["VAVIS", "HK418", "PENAD"],
-                     ["PENAD", "ARVEP*"],
-                     ["PENAD", "IDEPI*"]]
+            "body": [["VAVIS", "S230-"], ["HK418", "A25+|S230-"], "PENAD"],
+            "draw": [["VAVIS", "HK418", "PENAD"]]
         },
         "REDBO": {
             "icao": "REDBO",
             "name": "REDBO",
             "suffix": {"33":"3P"},
             "rwy": {
-                 "33": [["REDBO", "S250-"]]
+                 "33": []
             },
-            "exitPoints": {
-                "NEPEK": ["NEPEK"],
-                "TEVRU": ["TEVRU"]
-            },
-            "draw": [["REDBO"],
-                     ["REDBO", "NEPEK*"],
-                     ["REDBO", "TEVRU*"]]
+            "body": [["REDBO", "S250-"]],
+            "draw": [["REDBO"]]
         },
         "RILBO": {
             "icao": "RILBO",
             "name": "RILBO",
             "suffix": {"22R":"1N"},
             "rwy": {
-                 "22R": ["_22RDME25", "HK451", ["ASTIV", "S250-"], "RILBO"]
+                 "22R": []
             },
-            "exitPoints": {
-                "NUNTO": ["NUNTO"]
-            },
-            "draw": [["_22RDME25", "HK451", "ASTIV", "RILBO"],
-                     ["RILBO", "NUNTO*"]]
+            "body": ["_22RDME25", "HK451", ["ASTIV", "S250-"], "RILBO"],
+            "draw": [["_22RDME25", "HK451", "ASTIV", "RILBO"]]
         },
         "RIPVI": {
             "icao": "RIPVI",
             "name": "RIPVI",
             "suffix": {"15":"3D"},
             "rwy": {
-                 "15": [["RIPVI", "S250-"]]
+                 "15": []
             },
-            "exitPoints": {
-                "ADIVO": ["ADIVO"],
-                "KUVEM": ["KUVEM"],
-                "NEPEK": ["NEPEK"],
-                "NUNTO": ["NUNTO"],
-                "TEVRU": ["TEVRU"]
-            },
-            "draw": [["RIPVI"],
-                     ["RIPVI", "ADIVO*"],
-                     ["RIPVI", "KUVEM*"],
-                     ["RIPVI", "NEPEK*"],
-                     ["RIPVI", "NUNTO*"],
-                     ["RIPVI", "TEVRU*"]]
+            "body": [["RIPVI", "S250-"]],
+            "draw": [["RIPVI"]]
         },
         "ROLAT": {
             "icao": "ROLAT",
             "name": "ROLAT",
             "suffix": {"04R":"3S"},
             "rwy": {
-                 "04R": ["HK419", ["ROLAT", "S250-"]]
+                 "04R": []
             },
-            "exitPoints": {
-                "ARVEP": ["ARVEP"],
-                "DOBAN": ["DOBAN"],
-                "IDEPI": ["IDEPI"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["HK419", "ROLAT"],
-                     ["ROLAT", "ARVEP*"],
-                     ["ROLAT", "DOBAN*"],
-                     ["ROLAT", "IDEPI*"],
-                     ["ROLAT", "RENKU*"]]
+            "body": ["HK419", ["ROLAT", "S250-"]],
+            "draw": [["HK419", "ROLAT"]]
         },
         "UNURU": {
             "icao": "UNURU",
             "name": "UNURU",
             "suffix": {"04L":"4Z"},
             "rwy": {
-                 "04L": ["HK903", ["UNURU", "S250-"]]
+                 "04L": []
             },
-            "exitPoints": {
-                "ADIVO": ["ADIVO"],
-                "KUVEM": ["KUVEM"],
-                "NEPEK": ["NEPEK"],
-                "NUNTO": ["NUNTO"],
-                "TEVRU": ["TEVRU"]
-            },
-            "draw": [["HK903", "UNURU"],
-                     ["UNURU", "ADIVO*"],
-                     ["UNURU", "KUVEM*"],
-                     ["UNURU", "NEPEK*"],
-                     ["UNURU", "NUNTO*"],
-                     ["UNURU", "TEVRU*"]]
+            "body": ["HK903", ["UNURU", "S250-"]],
+            "draw": [["HK903", "UNURU"]]
         },
         "UREDA": {
             "icao": "UREDA",
             "name": "UREDA",
             "suffix": {"22R":"3N"},
             "rwy": {
-                 "22R": ["_22RDME25", "HK428", ["UREDA", "S250-"]]
+                 "22R": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["_22RDME25", "HK428", "UREDA"],
-                     ["UREDA", "DOBAN*"],
-                     ["UREDA", "RENKU*"]]
+            "body": ["_22RDME25", "HK428", ["UREDA", "S250-"]],
+            "draw": [["_22RDME25", "HK428", "UREDA"]]
         },
         "VAGIP": {
             "icao": "VAGIP",
             "name": "VAGIP",
             "suffix": {"22R":"1N"},
             "rwy": {
-                 "22R": ["_22RDME25", "HK461", ["VAGIP", "S250-"]]
+                 "22R": []
             },
-            "exitPoints": {
-                "ADIVO": ["ADIVO"],
-                "KUVEM": ["KUVEM"]
-            },
-            "draw": [["_22RDME25", "HK461", "VAGIP"],
-                     ["VAGIP", "ADIVO*"],
-                     ["VAGIP", "KUVEM*"]]
+            "body": ["_22RDME25", "HK461", ["VAGIP", "S250-"]],
+            "draw": [["_22RDME25", "HK461", "VAGIP"]]
         },
         "VAMRA": {
             "icao": "VAMRA",
             "name": "VAMRA",
             "suffix": {"33":"1P"},
             "rwy": {
-                 "33": [["ERSAV", "S250-"], "VAMRA"]
+                 "33": []
             },
-            "exitPoints": {
-                "DOBAN": ["DOBAN"],
-                "RENKU": ["RENKU"]
-            },
-            "draw": [["ERSAV", "VAMRA"],
-                     ["VAMRA", "DOBAN*"],
-                     ["VAMRA", "RENKU*"]]
+            "body": [["ERSAV", "S250-"], "VAMRA"],
+            "draw": [["ERSAV", "VAMRA"]]
         },
         "VETUD": {
             "icao": "VETUD",
             "name": "VETUD",
             "suffix": {"04R":"3C"},
             "rwy": {
-                 "04R": ["HK416", ["LULAB", "S250-"], "VETUD"]
+                 "04R": []
             },
-            "exitPoints": {
-                "ADIVO": ["ADIVO"],
-                "KUVEM": ["KUVEM"],
-                "NUNTO": ["NUNTO"]
-            },
-            "draw": [["HK416", "LULAB", "VETUD"],
-                     ["VETUD", "ADIVO*"],
-                     ["VETUD", "KUVEM*"],
-                     ["VETUD", "NUNTO*"]]
+            "body": ["HK416", ["LULAB", "S250-"], "VETUD"],
+            "draw": [["HK416", "LULAB", "VETUD"]]
         },
         "XOMRI": {
             "icao": "XOMRI",
             "name": "XOMRI",
             "suffix": {"04R":"1C"},
             "rwy": {
-                 "04R": ["HK416", ["XOMRI", "S250-"]]
+                 "04R": []
             },
-            "exitPoints": {
-                "IDEPI": ["IDEPI"]
-            },
-            "draw": [["HK416", "XOMRI"],
-                     ["XOMRI", "IDEPI*"]]
+            "body": ["HK416", ["XOMRI", "S250-"]],
+            "draw": [["HK416", "XOMRI"]]
         }
     },
 
@@ -808,7 +682,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.RILBO.NUNTO..PISOX",
+            "route": "EFHK.RILBO.RILBO..NUNTO..PISOX",
             "rate": 1.2,
             "altitude": null,
             "speed": null,
@@ -834,7 +708,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.RILBO.NUNTO..ABSER",
+            "route": "EFHK.RILBO.RILBO..NUNTO..ABSER",
             "rate": 1.2,
             "altitude": null,
             "speed": null,
@@ -860,7 +734,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.VAGIP.KUVEM..UMUGI",
+            "route": "EFHK.VAGIP.VAGIP..KUVEM..UMUGI",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -886,7 +760,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.VAGIP.ADIVO..PEPIG",
+            "route": "EFHK.VAGIP.VAGIP..ADIVO..PEPIG",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -912,7 +786,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.UREDA.DOBAN..MUSTI",
+            "route": "EFHK.UREDA.UREDA..DOBAN..MUSTI",
             "rate": 4.8,
             "altitude": null,
             "speed": null,
@@ -943,7 +817,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.UREDA.DOBAN..TLL",
+            "route": "EFHK.UREDA.UREDA..DOBAN..TLL",
             "rate": 1.2,
             "altitude": null,
             "speed": null,
@@ -974,7 +848,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.NEPEK..NISVI",
+            "route": "EFHK.ENUTO.ENUTO..NEPEK..NISVI",
             "rate": 1.8,
             "altitude": null,
             "speed": null,
@@ -990,7 +864,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.TEVRU..DIPUM",
+            "route": "EFHK.ENUTO.ENUTO..TEVRU..DIPUM",
             "rate": 1.8,
             "altitude": null,
             "speed": null,
@@ -1004,7 +878,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.IDEPI..TUSBI",
+            "route": "EFHK.ENUTO.ENUTO..IDEPI..TUSBI",
             "rate": 1.8,
             "altitude": null,
             "speed": null,
@@ -1022,7 +896,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.ARVEP..RATMU..ARLOM",
+            "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..ARLOM",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -1040,7 +914,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.ARVEP..RATMU..INLOG",
+            "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..INLOG",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -1058,7 +932,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.ARVEP..RATMU..OLEMA",
+            "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..OLEMA",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -1076,7 +950,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.ENUTO.ARVEP..RATMU..RATLA",
+            "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..RATLA",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
@@ -1094,7 +968,7 @@
             "origin": "EFHK",
             "category": "departure",
             "method": "random",
-            "route": "EFHK.UREDA.RENKU..TN425",
+            "route": "EFHK.UREDA.UREDA..RENKU..TN425",
             "rate": 0.6,
             "altitude": null,
             "speed": null,
