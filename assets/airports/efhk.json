@@ -616,7 +616,15 @@
                 "22R": [["HK804", "A35+"], ["HK881", "A30+|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : [["HK846", "A35+|S220-"], "HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["DIVAM", "PEXEN"],
+                ["PEXEN", "HK803", "HK801", "PODOM"],
+                ["PEXEN", "HK813", "HK811", "GEDLO"],
+                ["PEXEN", "HK804", "HK766", "HK817", "SUTAX", "HK822", "HK821", "ELKUN"],
+                ["PEXEN", "HK804", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"],
+                ["PEXEN", "HK804", "HK881", "HK883", "TEDMU"],
+                ["PEXEN", "HK846", "HK861", "OBONU"]
+            ]
         },
         "INTOR": {
             "icao": "INTOR",
@@ -637,7 +645,15 @@
                 "22R": [["HK881", "A30+|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : ["HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["INTOR", "BALTI", "HK806"],
+                ["HK806", "HK804", "HK801", "PODOM"],
+                ["HK806", "HK901", "HK894", "HK814", "HK811", "GEDLO"],
+                ["HK806", "HK817", "SUTAX", "HK822", "HK821", "ELKUN"],
+                ["HK806", "HK891", "LUVEX", "HK906", "HK904", "BIMVU"],
+                ["HK806", "HK881", "HK883", "TEDMU"],
+                ["HK806", "HK861", "OBONU"]
+            ]
         },
         "LAKUT": {
             "icao": "LAKUT",
@@ -658,7 +674,15 @@
                 "22R": [["HK886", "A30+"], ["ADBIX", "A20+|S220-"], ["HK887", "A20|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : ["VIBEP", "HK862", ["HK846", "A35+|S220-"], "HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["LAKUT", "MAROM"],
+                ["MAROM", "VIBEP", "HK802", "HK801", "PODOM"],
+                ["MAROM", "VIBEP", "HK899", "HK811", "GEDLO"],
+                ["MAROM", "HK823", "HK822", "HK821", "ELKUN"],
+                ["MAROM", "HK886", "NODMO", "HK907", "HK904", "BIMVU"],
+                ["MAROM", "HK886", "ADBIX", "HK887", "HK883", "TEDMU"],
+                ["MAROM", "VIBEP", "HK862", "HK846", "HK861", "OBONU"]
+            ]
         },
         "LUSEP": {
             "icao": "LUSEP",
@@ -677,21 +701,33 @@
                 "22R": [["HK902", "A30+|S220-"], ["HK887", "A20|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : ["HK863", ["HK844", "A30+|S220-"], "HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["LUSEP", "NAPUN"],
+                ["NAPUN", "HK890", "NEMVI", "HK802", "HK801", "PODOM"],
+                ["NAPUN", "HK890", "HK897", "HK899", "HK811", "GEDLO"],
+                ["NAPUN", "HK889", "HK888", "HK822", "HK821", "ELKUN"],
+                ["NAPUN", "HK902", "HK907", "HK904", "BIMVU"],
+                ["NAPUN", "HK902", "HK887", "HK883", "TEDMU"],
+                ["NAPUN", "HK863", "HK844", "HK861", "OBONU"]
+            ]
         },
         "MAROM": {
             "icao": "MAROM",
             "name": "MAROM",
             "suffix": {"04L":"4B"},
             "body": [["MAROM", "A70+|S250-"], ["HK871", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
-            "draw": []
+            "draw": [
+                ["MAROM", "HK871", "HK849", "HK851", "HK852", "PODOM"]
+            ]
         },
         "NAPUN": {
             "icao": "NAPUN",
             "name": "NAPUN",
             "suffix": {"04L":"1B"},
             "body": [["NAPUN", "A70+|S250-"], "HK890", ["HK896", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
-            "draw": []
+            "draw": [
+                ["NAPUN", "HK890", "HK896", "HK849", "HK851", "HK852", "PODOM"]
+            ]
         },
         "PEXEN": {
             "icao": "PEXEN",
@@ -705,7 +741,11 @@
                 "04L": [["HK874", "A30+|S220-"], ["HK873", "A30+"], ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
                 "22R": [["HK886", "A30+"], ["ADBIX", "A20+|S220-"], ["HK887", "A20|S220-"], "HK883", ["TEDMU", "A20|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["PEXEN", "KUDOP"],
+                ["KUDOP", "HK874", "HK873", "HK851", "HK852", "PODOM"],
+                ["KUDOP", "HK886", "ADBIX", "HK887", "HK883", "TEDMU"]
+            ]
         },
         "ROPAM": {
             "icao": "ROPAM",
@@ -723,7 +763,15 @@
                 "22R": [["HK881", "A30+|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : [["HK844", "A30+|S220-"], "HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["ROPAM"],
+                ["ROPAM", "HK711", "HK804", "HK801", "PODOM"],
+                ["ROPAM", "HK711", "HK894", "HK814", "HK811", "GEDLO"],
+                ["ROPAM", "HK817", "SUTAX", "HK822", "HK821", "ELKUN"],
+                ["ROPAM", "HK906", "HK904", "BIMVU"],
+                ["ROPAM", "HK881", "HK883", "TEDMU"],
+                ["ROPAM", "HK844", "HK861", "OBONU"]
+            ]
         },
         "VEPIN": {
             "icao": "VEPIN",
@@ -742,7 +790,15 @@
                 "22R": [["HK893", "A30+|S220-"], "HK883", ["TEDMU", "A20|S210-"]],
                 "33" : [["HK844", "A30+|S220-"], "HK861", ["OBONU", "A30+|S210-"]]
             },
-            "draw": []
+            "draw": [
+                ["VEPIN", "MAMOP"],
+                ["MAMOP", "HK807", "HK711", "HK804", "HK801", "PODOM"],
+                ["MAMOP", "HK807", "HK711", "HK894", "HK814", "HK811", "GEDLO"],
+                ["MAMOP", "HK888", "HK822", "HK821", "ELKUN"],
+                ["MAMOP", "HK892", "HK904", "BIMVU"],
+                ["MAMOP", "HK893", "HK883", "TEDMU"],
+                ["MAMOP", "HK844", "HK861", "OBONU"]
+            ]
         }
     },
 
