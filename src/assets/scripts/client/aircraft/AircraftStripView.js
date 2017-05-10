@@ -40,7 +40,7 @@ export default class AircraftStripView {
      *                           from the `AircraftModel`
      * @param AircraftModel {AircraftModel}
      */
-    constructor(AircraftModel) {
+    constructor(aircraftModel) {
         // TODO: change to use lodash _uniqueId
         this._id = _uniqueId('aircraftStripView-');
 
@@ -53,15 +53,15 @@ export default class AircraftStripView {
         this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
-        this.callsign = AircraftModel.callsign;
-        this.icao = AircraftModel.model.icao;
-        this.destination = AircraftModel.destination;
-        this.weightclass = AircraftModel.model.weightclass;
-        this.category = AircraftModel.category;
-        this.flightPlan = AircraftModel.fms.flightPlanRoute;
+        this.callsign = aircraftModel.callsign;
+        this.icao = aircraftModel.model.icao;
+        this.destination = aircraftModel.destination;
+        this.weightclass = aircraftModel.model.weightclass;
+        this.category = aircraftModel.category;
+        this.flightPlan = aircraftModel.fms.flightPlanRoute;
 
         return this._init()
-                    .setupHandlers(AircraftModel)
+                    .setupHandlers(aircraftModel)
                     .layout()
                     .redraw();
     }
@@ -86,9 +86,9 @@ export default class AircraftStripView {
      * @for AircraftStripView
      * @method setupHandlers
      */
-    setupHandlers(AircraftModel) {
+    setupHandlers(aircraftModel) {
         this.$element.on('click', this.onClickHandler);
-        this.$element.on('dblclick', AircraftModel, this.onDoubleClickHandler);
+        this.$element.on('dblclick', aircraftModel, this.onDoubleClickHandler);
 
         return this;
     }
