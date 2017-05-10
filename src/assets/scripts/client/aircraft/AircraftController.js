@@ -1,19 +1,17 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
@@ -36,7 +34,7 @@ export default class AircraftController {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
                 `Expected and array but received ${typeof aircraftTypeDefinitionList}`);

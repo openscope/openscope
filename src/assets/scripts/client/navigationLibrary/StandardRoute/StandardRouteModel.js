@@ -11,6 +11,7 @@ import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 import { distance2d } from '../../math/distance';
 import { nm } from '../../utilities/unitConverters';
+import { isEmptyObject } from '../../utilities/validatorUtilities';
 
 /**
  * Accepts a single route belonging to a SID or STAR and provides methods to reason about its contents.
@@ -53,13 +54,14 @@ export default class StandardRouteModel extends BaseModel {
      * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
      *
      * @constructor
+     * @for StandardRouteModel
      * @param standardRoute {object}
      */
     /* istanbul ignore next */
     constructor(standardRoute) {
         super();
 
-        if (!_isObject(standardRoute) || _isArray(standardRoute)) {
+       if (isEmptyObject(standardRoute)) {
             throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
 

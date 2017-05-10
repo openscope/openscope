@@ -161,7 +161,7 @@
                 "1L" : [["SEPDY", "A16+"], "WAMMY"],
                 "1R" : [["SEPDY", "A16+"], "WAMMY"],
                 "28L": [["SENZY", "A25+"], "WAMMY"],
-                "28R": [["SENZY", "A25+"], "WAMMY"]
+                "28R": ["#260", ["SENZY", "A25+"], "WAMMY"]
             },
             "body": [["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
             "exitPoints": {

@@ -17,6 +17,7 @@ import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: this may need to live somewhere else
 /**
@@ -50,7 +51,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     // istanbul ignore next
     constructor(spawnPatternJson, navigationLibrary, airportController) {
-        super(spawnPatternJson, navigationLibrary, airportController);
+        super();
 
         /**
          * Schedule reference id
@@ -427,15 +428,16 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
-        if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
+        // We return early here if the object is empty because we pre-hydrate objects to improve load speeds of the app.
+        if (_isEmpty(spawnPatternJson)) {
             return;
         }
 
-        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+        if (isEmptyObject(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
-        if (!_isObject(airportController) || _isEmpty(airportController)) {
+        if (isEmptyObject(airportController)) {
             throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
         }
 

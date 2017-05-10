@@ -29,6 +29,7 @@ export const ERROR_MESSAGE = {
     ONE_OR_TWO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or two arguments`,
     ONE_TO_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one, two, or three arguments`,
     ONE_OR_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or three arguments`,
+    ALTITUDE_MUST_BE_NUMBER: `${INVALID_ARG}. Altitude must be a number`,
     ALTITUDE_EXPEDITE_ARG: `${INVALID_ARG}. Altitude accepts only "expedite" or "x" as a second argument`,
     HEADING_MUST_BE_NUMBER: `${INVALID_ARG}. Heading must be a number`,
     MUST_BE_STRING: `${INVALID_ARG}. Must be a string`,
