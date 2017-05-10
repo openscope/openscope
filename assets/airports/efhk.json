@@ -753,7 +753,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.RILBO.NUNTO..PISOX",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -779,7 +779,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.RILBO.NUNTO..ABSER",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -805,7 +805,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.VAGIP.KUVEM..UMUGI",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -831,7 +831,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.VAGIP.ADIVO..PEPIG",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -857,7 +857,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.UREDA.DOBAN..MUSTI",
-            "rate": 8,
+            "rate": 4.8,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -888,7 +888,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.UREDA.DOBAN..TLL",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -919,7 +919,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.NEPEK..NISVI",
-            "rate": 3,
+            "rate": 1.8,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -935,7 +935,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.TEVRU..DIPUM",
-            "rate": 3,
+            "rate": 1.8,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -949,7 +949,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.IDEPI..TUSBI",
-            "rate": 3,
+            "rate": 1.8,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -967,7 +967,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ARVEP..RATMU..ARLOM",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -985,7 +985,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ARVEP..RATMU..INLOG",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1003,7 +1003,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ARVEP..RATMU..OLEMA",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1021,7 +1021,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ARVEP..RATMU..RATLA",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1039,7 +1039,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.UREDA.RENKU..TN425",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1053,7 +1053,7 @@
             "category": "arrival",
             "method": "random",
             "route": "NIPIB.DIVAM.EFHK",
-            "rate": 5,
+            "rate": 3.6,
             "altitude": 18000,
             "speed": 280,
             "airlines": [
@@ -1082,7 +1082,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ERNUT.LUSEP.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 14000,
             "speed": 280,
             "airlines": [
@@ -1096,7 +1096,7 @@
             "category": "arrival",
             "method": "random",
             "route": "OTPAL.LUSEP.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 18000,
             "speed": 280,
             "airlines": [
@@ -1111,7 +1111,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ROKVI.VEPIN.EFHK",
-            "rate": 3,
+            "rate": 1.8,
             "altitude": 15000,
             "speed": 280,
             "airlines": [
@@ -1130,7 +1130,7 @@
             "category": "arrival",
             "method": "random",
             "route": "PEKUX.LAKUT.EFHK",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": 28000,
             "speed": 280,
             "airlines": [
@@ -1159,7 +1159,7 @@
             "category": "arrival",
             "method": "random",
             "route": "IPMOT.LAKUT.EFHK",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": 16000,
             "speed": 280,
             "airlines": [
@@ -1181,7 +1181,7 @@
             "category": "arrival",
             "method": "random",
             "route": "AMROT.LAKUT.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 12000,
             "speed": 280,
             "airlines": [
@@ -1203,7 +1203,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ODESO.LAKUT.EFHK",
-            "rate": 4,
+            "rate": 3,
             "altitude": 22000,
             "speed": 280,
             "airlines": [
@@ -1231,7 +1231,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ARSAM.INTOR.EFHK",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": 25000,
             "speed": 280,
             "airlines": [
@@ -1261,7 +1261,7 @@
             "category": "arrival",
             "method": "random",
             "route": "SORPA.INTOR.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 15000,
             "speed": 280,
             "airlines": [
@@ -1293,7 +1293,7 @@
             "category": "arrival",
             "method": "random",
             "route": "GEPTA.INTOR.EFHK",
-            "rate": 1,
+            "rate": 0.6,
             "altitude": 19000,
             "speed": 280,
             "airlines": [
@@ -1320,7 +1320,7 @@
             "category": "arrival",
             "method": "random",
             "route": "BEKNA.INTOR.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 22000,
             "speed": 280,
             "airlines": [
@@ -1351,7 +1351,7 @@
             "category": "arrival",
             "method": "random",
             "route": "LEDUN.ROPAM.EFHK",
-            "rate": 2,
+            "rate": 1.2,
             "altitude": 10000,
             "speed": 250,
             "airlines": [
