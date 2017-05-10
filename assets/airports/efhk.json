@@ -258,7 +258,10 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_22RDME25", "HK451", ["ASTIV", "S250-"]],
+            "body": ["_22RDME25", "HK451"],
+            "exitPoints": {
+                 "ASTIV": [["ASTIV", "S250-"]]
+            },
             "draw": [["_22RDME25", "HK451", "ASTIV"]]
         },
         "DEVKA": {
@@ -268,7 +271,10 @@
             "rwy": {
                  "22L": []
             },
-            "body": [["VAVIS", "S230-"], ["DEVKA", "S230-"]],
+            "body": [["VAVIS", "S230-"]],
+            "exitPoints": {
+                 "DEVKA": [["DEVKA", "S230-"]]
+            },
             "draw": [["VAVIS", "DEVKA"]]
         },
         "ELPEN": {
@@ -278,7 +284,10 @@
             "rwy": {
                  "04R": []
             },
-            "body": ["HK416", ["ELPEN", "S250-"]],
+            "body": ["HK416"],
+            "exitPoints": {
+                 "ELPEN": [["ELPEN", "S250-"]]
+            },
             "draw": [["HK416", "ELPEN"]]
         },
         "ENUTO": {
@@ -288,7 +297,10 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_22RDME25", "HK461", ["HK427", "S250-"], "ENUTO"],
+            "body": ["_22RDME25", "HK461", ["HK427", "S250-"]],
+            "exitPoints": {
+                 "ENUTO": ["ENUTO"]
+            },
             "draw": [["_22RDME25", "HK461", "HK427", "ENUTO"]]
         },
         "ERSAV": {
@@ -298,7 +310,10 @@
             "rwy": {
                  "33": []
             },
-            "body": [["ERSAV", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "ERSAV": [["ERSAV", "S250-"]]
+            },
             "draw": [["ERSAV"]]
         },
         "GIRLA": {
@@ -308,7 +323,10 @@
             "rwy": {
                  "15": []
             },
-            "body": [["RIPVI", "S250-"], "GIRLA"],
+            "body": [["RIPVI", "S250-"]],
+            "exitPoints": {
+                 "GIRLA": ["GIRLA"]
+            },
             "draw": [["RIPVI", "GIRLA"]]
         },
         "GOVMI": {
@@ -318,7 +336,10 @@
             "rwy": {
                  "15": []
             },
-            "body": [["LAVTU", "S250-"], "GOVMI"],
+            "body": [["LAVTU", "S250-"]],
+            "exitPoints": {
+                 "GOVMI": ["GOVMI"]
+            },
             "draw": [["LAVTU", "GOVMI"]]
         },
         "IDMOP": {
@@ -328,7 +349,10 @@
             "rwy": {
                  "33": []
             },
-            "body": [["IDMOP", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "IDMOP": [["IDMOP", "S250-"]]
+            },
             "draw": [["IDMOP"]]
         },
         "LULAB": {
@@ -338,7 +362,10 @@
             "rwy": {
                  "04R": []
             },
-            "body": ["HK416", ["LULAB", "S250-"]],
+            "body": ["HK416"],
+            "exitPoints": {
+                 "LULAB": [["LULAB", "S250-"]]
+            },
             "draw": [["HK416", "LULAB"]]
         },
         "NIDAG": {
@@ -348,7 +375,10 @@
             "rwy": {
                  "15": []
             },
-            "body": [["NIDAG", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "NIDAG": [["NIDAG", "S250-"]]
+            },
             "draw": [["NIDAG"]]
         },
         "NUTRU": {
@@ -358,7 +388,10 @@
             "rwy": {
                  "15": []
             },
-            "body": [["NUTRU", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "NUTRU": [["NUTRU", "S250-"]]
+            },
             "draw": [["NUTRU"]]
         },
         "PENAD": {
@@ -368,7 +401,10 @@
             "rwy": {
                  "22L": []
             },
-            "body": [["VAVIS", "S230-"], ["HK418", "A25+|S230-"], "PENAD"],
+            "body": [["VAVIS", "S230-"], ["HK418", "A25+|S230-"]],
+            "exitPoints": {
+                 "PENAD": ["PENAD"]
+            },
             "draw": [["VAVIS", "HK418", "PENAD"]]
         },
         "REDBO": {
@@ -378,7 +414,10 @@
             "rwy": {
                  "33": []
             },
-            "body": [["REDBO", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "REDBO": [["REDBO", "S250-"]]
+            },
             "draw": [["REDBO"]]
         },
         "RILBO": {
@@ -388,7 +427,10 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_22RDME25", "HK451", ["ASTIV", "S250-"], "RILBO"],
+            "body": ["_22RDME25", "HK451", ["ASTIV", "S250-"]],
+            "exitPoints": {
+                 "RILBO": ["RILBO"]
+            },
             "draw": [["_22RDME25", "HK451", "ASTIV", "RILBO"]]
         },
         "RIPVI": {
@@ -398,7 +440,10 @@
             "rwy": {
                  "15": []
             },
-            "body": [["RIPVI", "S250-"]],
+            "body": [],
+            "exitPoints": {
+                 "RIPVI": [["RIPVI", "S250-"]]
+            },
             "draw": [["RIPVI"]]
         },
         "ROLAT": {
@@ -408,7 +453,10 @@
             "rwy": {
                  "04R": []
             },
-            "body": ["HK419", ["ROLAT", "S250-"]],
+            "body": ["HK419"],
+            "exitPoints": {
+                 "ROLAT": [["ROLAT", "S250-"]]
+            },
             "draw": [["HK419", "ROLAT"]]
         },
         "UNURU": {
@@ -418,7 +466,10 @@
             "rwy": {
                  "04L": []
             },
-            "body": ["HK903", ["UNURU", "S250-"]],
+            "body": ["HK903"],
+            "exitPoints": {
+                 "UNURU": [["UNURU", "S250-"]]
+            },
             "draw": [["HK903", "UNURU"]]
         },
         "UREDA": {
@@ -428,7 +479,10 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_22RDME25", "HK428", ["UREDA", "S250-"]],
+            "body": ["_22RDME25", "HK428"],
+            "exitPoints": {
+                 "UREDA": [["UREDA", "S250-"]]
+            },
             "draw": [["_22RDME25", "HK428", "UREDA"]]
         },
         "VAGIP": {
@@ -438,7 +492,10 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_22RDME25", "HK461", ["VAGIP", "S250-"]],
+            "body": ["_22RDME25", "HK461"],
+            "exitPoints": {
+                 "VAGIP": [["VAGIP", "S250-"]]
+            },
             "draw": [["_22RDME25", "HK461", "VAGIP"]]
         },
         "VAMRA": {
@@ -448,7 +505,10 @@
             "rwy": {
                  "33": []
             },
-            "body": [["ERSAV", "S250-"], "VAMRA"],
+            "body": [["ERSAV", "S250-"]],
+            "exitPoints": {
+                 "VAMRA": ["VAMRA"]
+            },
             "draw": [["ERSAV", "VAMRA"]]
         },
         "VETUD": {
@@ -458,7 +518,10 @@
             "rwy": {
                  "04R": []
             },
-            "body": ["HK416", ["LULAB", "S250-"], "VETUD"],
+            "body": ["HK416", ["LULAB", "S250-"]],
+            "exitPoints": {
+                 "VETUD": ["VETUD"]
+            },
             "draw": [["HK416", "LULAB", "VETUD"]]
         },
         "XOMRI": {
@@ -468,7 +531,10 @@
             "rwy": {
                  "04R": []
             },
-            "body": ["HK416", ["XOMRI", "S250-"]],
+            "body": ["HK416"],
+            "exitPoints": {
+                 "XOMRI": [["XOMRI", "S250-"]]
+            },
             "draw": [["HK416", "XOMRI"]]
         }
     },
