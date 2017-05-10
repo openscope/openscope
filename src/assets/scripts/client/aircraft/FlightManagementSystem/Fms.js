@@ -13,7 +13,8 @@ import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
     routeStringFormatHelper,
-    extractFixnameFromHoldSegment
+    extractFixnameFromHoldSegment,
+    extractHeadingFromVectorSegment
 } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     FLIGHT_CATEGORY,
@@ -822,6 +823,12 @@ export default class Fms {
                 const fixName = extractFixnameFromHoldSegment(segment);
 
                 isValid = this._navigationLibrary.hasFix(fixName);
+            } else if (RouteModel.isVectorRouteString(segment)) {
+                const heading = extractHeadingFromVectorSegment(segment);
+                const isValidNumber = !isNaN(heading);
+                const isThreeDigits = heading.length === 3;
+
+                isValid = isValidNumber && isThreeDigits;
             } else {
                 isValid = this._navigationLibrary.hasFix(segment);
             }

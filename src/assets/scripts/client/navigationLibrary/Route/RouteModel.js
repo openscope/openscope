@@ -1,32 +1,10 @@
 import BaseModel from '../../base/BaseModel';
-
-/**
- * Symbol that prepends a fixname indicating the aircraft should enter
- * a holding pattern once it arrives at the fix.
- *
- * @property
- * @type {string}
- * @final
- */
-const HOLD_SEGMENT_SYMBOL = '@';
-
-/**
- * Symbol that divides each route segment
- *
- * @property SEGMENT_SEPARATION_SYMBOL
- * @type {string}
- * @final
- */
-const SEGMENT_SEPARATION_SYMBOL = '.';
-
-/**
- * A route is assumed to have, at most, three parts.
- *
- * @property MAXIMUM_ROUTE_SEGMENT_LENGTH
- * @type {number}
- * @final
- */
-const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
+import {
+    HOLD_SEGMENT_SYMBOL,
+    ROUTE_SEGMENT_MAX_LENGTH,
+    PROCEDURE_SEGMENT_DIVIDER,
+    VECTOR_SEGMENT_SYMBOL
+} from '../../constants/navigation/routeConstants';
 
 // TODO: this class needs a better name
 /**
@@ -135,7 +113,7 @@ export default class RouteModel extends BaseModel {
      * @private
      */
     _extractSegmentNamesFromRouteCode(routeCode) {
-        const routeSegments = routeCode.split(SEGMENT_SEPARATION_SYMBOL);
+        const routeSegments = routeCode.split(PROCEDURE_SEGMENT_DIVIDER);
 
         return {
             entry: routeSegments[0],
@@ -175,8 +153,8 @@ RouteModel.isProcedureRouteString = (routeString) => {
         return false;
     }
 
-    const elements = routeString.split(SEGMENT_SEPARATION_SYMBOL);
-    const hasRightNumberOfElements = elements.length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    const elements = routeString.split(PROCEDURE_SEGMENT_DIVIDER);
+    const hasRightNumberOfElements = elements.length === ROUTE_SEGMENT_MAX_LENGTH;
     const isDirectRouteSegment = elements[1] === '';
 
     return hasRightNumberOfElements && !isDirectRouteSegment;
@@ -195,3 +173,17 @@ RouteModel.isProcedureRouteString = (routeString) => {
  * @static
  */
 RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_SEGMENT_SYMBOL) !== -1;
+
+/**
+ * Used to determine if a string is in the shape of a `vectorRouteString`
+ *
+ * Example:
+ * - `#320`
+ *
+ * @for RouteModel
+ * @method isVectorRouteString
+ * @param routeString {string}
+ * @return {boolean}
+ * @static
+ */
+RouteModel.isVectorRouteString = (routeString) => routeString.indexOf(VECTOR_SEGMENT_SYMBOL) !== -1;
