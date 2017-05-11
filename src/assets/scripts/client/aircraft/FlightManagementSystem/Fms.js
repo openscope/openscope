@@ -116,16 +116,6 @@ export default class Fms {
         */
         this._previousRouteSegments = [];
 
-        // TODO: Use this!
-        /**
-         * Airport the aircraft arrives to
-         *
-         * @for Fms
-         * @property arrivalAirport
-         * @type {AirportModel}
-         */
-        this.arrivalAirport = null;
-
         /**
          * Name of runway used at arrival airport
          *
@@ -143,16 +133,6 @@ export default class Fms {
         * @default ''
         */
         this.currentPhase = '';
-
-        // TODO: Use this!
-        /**
-         * Airport the aircraft departs from
-         *
-         * @for Fms
-         * @property departureAirport
-         * @type {AirportModel}
-         */
-        this.departureAirport = null;
 
         /**
          * Name of runway used at departure airport
@@ -192,6 +172,15 @@ export default class Fms {
         this.init(aircraftInitProps, initialRunwayAssignment);
     }
 
+    /**
+     * Provides access to the `RunwayModel` currently associated with the Fms
+     *
+     * It is assumed only an arrival or departure runway will
+     * exist at any one time
+     *
+     * @property currentRunway
+     * @return {RunwayModel}
+     */
     get currentRunway() {
         return this.arrivalRunway || this.departureRunway;
     }
@@ -384,6 +373,9 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
+        // TODO: this method should use the `RouteModel` to get the various pieces below
+        // TODO: determine if this method is even needed after `AircraftStrip` enhancements
+        // coming in https://github.com/openscope/openscope/issues/285
         if (this.isFollowingStar()) {
             const routeString = this.currentLeg.routeString;
             const routeStringElements = routeString.split('.');
@@ -438,12 +430,15 @@ export default class Fms {
     }
 
     /**
+     * Encapsulates setting `#departureRunway`
      *
      * @for fms
      * @method setDepartureRunway
      * @param runwayModel {RunwayModel}
      */
     setDepartureRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
@@ -452,13 +447,15 @@ export default class Fms {
     }
 
     /**
+     * Encapsulates setting of `#arrivalRunway`
      *
      * @for fms
      * @method setArrivalRunway
      * @param runwayModel {RunwayModel}
      */
     setArrivalRunway(runwayModel) {
-        // TODO: this should be an `instanceof` check
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }

@@ -106,8 +106,8 @@ export default class NavigationLibrary {
         );
 
         FixCollection.addItems(fixes, this._referencePosition);
-        this._sidCollection = new StandardRouteCollection(sids, StandardRouteCollection.ROUTE_TYPE.SID);
-        this._starCollection = new StandardRouteCollection(stars, StandardRouteCollection.ROUTE_TYPE.STAR);
+        this._sidCollection = new StandardRouteCollection(sids, PROCEDURE_TYPE.SID);
+        this._starCollection = new StandardRouteCollection(stars, PROCEDURE_TYPE.STAR);
     }
 
     /**

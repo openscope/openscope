@@ -291,7 +291,8 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     *
+     * Given a procedureId that is known to be for a suffix route, this method will
+     * return the segment name associated with that suffix.
      *
      * Should only be called after verifying that this is a suffix `StandardRouteModel`
      *

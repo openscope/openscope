@@ -375,6 +375,12 @@ export default class AircraftCommander {
     }
 
     /**
+     * Used only for suffix routes.
+     *
+     * Suffix routes apply to a specific runway.
+     * This method will find and pass on the correct `RunwayModel`
+     * to the `Pilot`.
+     *
      * @for AircraftCommander
      * @method _runSIDforSuffix
      * @param  aircraft {AircraftModel}

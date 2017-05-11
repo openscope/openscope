@@ -7,6 +7,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
+import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
 
 /**
  * Accept `sids` or `stars` data from an airport json file and create a collection of model objects.
@@ -15,33 +16,25 @@ import StandardRouteModel from './StandardRouteModel';
  * Creates a `StandardRouteModel` for each route defined in the StandardRoute.
  *
  * @class StandardRouteCollection
+ * @extends BaseCollection
  */
 export default class StandardRouteCollection extends BaseCollection {
     /**
-     *
-     * @type {Object}
-     */
-    static ROUTE_TYPE = {
-        SID: 'SID',
-        STAR: 'STAR'
-    };
-
-    /**
      * @constructor
      * @param standardRouteEnum {object}
-     * @param routeType {ROUTE_TYPE}
+     * @param procedureType {PROCEDURE_TYPE}
      */
     /* istanbul ignore next */
-    constructor(standardRouteEnum, routeType) {
+    constructor(standardRouteEnum, procedureType) {
         super();
 
         if (typeof standardRouteEnum === 'undefined') {
             return;
         }
 
-        if (!_has(StandardRouteCollection.ROUTE_TYPE, routeType)) {
-            throw new TypeError('Invalid ROUTE_TYPE passed to StandardRouteCollection. Expected one of ROUTE_TYPE ' +
-                `but received: ${routeType}`
+        if (!_has(PROCEDURE_TYPE, procedureType)) {
+            throw new TypeError('Invalid PROCEDURE_TYPE passed to StandardRouteCollection. Expected one of PROCEDURE_TYPE ' +
+                `but received: ${procedureType}`
             );
         }
 
@@ -60,17 +53,18 @@ export default class StandardRouteCollection extends BaseCollection {
          *
          * @property length
          * @type {number}
+         * @default -1
          */
         // this.length = -1;
 
         /**
          *
          * @property _type
-         * @type {ROUTE_TYPE}
-         * @defafult ''
+         * @type {PROCEDURE_TYPE}
+         * @default ''
          * @private
          */
-        this._type = routeType;
+        this._type = procedureType;
 
         /**
          * Current cache of found routes, organized by `ICAO.ENTRY.EXIT` strings
@@ -139,8 +133,7 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Finds a list of fixes for the entry and body segments of a given route
      *
-     * Used primarily in the `SpawnPatterns` for calculating initial
-     * heading of arriving aircraft
+     * Used primarily in `SpawnPatterns` for calculating initial heading of arriving aircraft
      *
      * @for StandardRouteCollection
      * @method findEntryAndBodyFixesForRoute
@@ -389,7 +382,7 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {function}
      */
     _findAndCacheRouteWithSuffix(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
-        if (this._type === StandardRouteCollection.ROUTE_TYPE.STAR) {
+        if (this._type === PROCEDURE_TYPE.STAR) {
             exit = routeModel.getSuffixSegmentName(this._type);
         } else {
             entry = routeModel.getSuffixSegmentName(this._type);
