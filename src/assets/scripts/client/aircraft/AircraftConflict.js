@@ -209,7 +209,7 @@ export default class AircraftConflict {
         let disableNotices = false;
         const a1 = this.aircraft[0];
         const a2 = this.aircraft[1];
-        let applicableLatSepMin = SEPARATION.MIN_STANDARD_LATERAL_KM;
+        let applicableLatSepMin = SEPARATION.STANDARD_LATERAL_KM;
 
 
         // Established on precision guided approaches && both are following different instrument approaches
