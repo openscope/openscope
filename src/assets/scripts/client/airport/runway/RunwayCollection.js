@@ -38,13 +38,13 @@ export default class RunwayCollection extends BaseCollection {
          * @default []
          */
 
-         /**
-          * @inherited
-          * @memberof BaseCollection
-          * @property length
-          * @type {number}
-          * @default #_items.length
-          */
+        /**
+         * @inherited
+         * @memberof BaseCollection
+         * @property length
+         * @type {number}
+         * @default #_items.length
+         */
 
         /**
          * @property _airportPositionModel

@@ -470,7 +470,7 @@ export default class AircraftCommander {
             this._changeFromTaxiToWaiting,
             aircraft.taxi_time,
             null,
-            [aircraft, this._uiController]
+            [aircraft]
         );
 
         return readback;
@@ -483,15 +483,8 @@ export default class AircraftCommander {
      */
     _changeFromTaxiToWaiting(args) {
         const aircraft = args[0];
-        const uiController = args[1];
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
-
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunwayModel.name}`);
-        speech_say([
-            { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunwayModel.name)}` }
-        ]);
     }
 
     /**

@@ -58,8 +58,6 @@ export default class AirportModel {
         this.level = null;
         this._positionModel = null;
         this._runwayCollection = null;
-        // TODO: rename to `runwayName`
-        this.runway = null;
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -482,7 +480,10 @@ export default class AirportModel {
      * @method updateRunway
      */
     updateRunway() {
-        this.runway = this._runwayCollection.findBestRunwayForWind(this.getWind);
+        // const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
+        //
+        // this.setArrivalRunway(bestRunwayForWind);
+        // this.setDepartureRunway(bestRunwayForWind);
     }
 
     // TODO: leaving this here for when we implement variable winds
