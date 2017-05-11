@@ -50,17 +50,17 @@ export default class RunwayRelationshipModel {
 
         /**
          * @property converging
-         * @type {number}
-         * @default -999
+         * @type {boolean}
+         * @default false
          */
-        this.converging = -999;
+        this.converging = false;
 
         /**
          * @property parallel
-         * @type {number}
-         * @default -999
+         * @type {boolean}
+         * @default false
          */
-        this.parallel = -999;
+        this.parallel = false;
 
         /**
          * @property separationMinimum
@@ -137,8 +137,8 @@ export default class RunwayRelationshipModel {
     destroy() {
         this.lateral_dist = -999;
         this.straight_dist = -999;
-        this.converging = -999;
-        this.parallel = -999;
+        this.converging = false;
+        this.parallel = false;
         this.separationMinimum = -999;
     }
 }

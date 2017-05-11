@@ -59,7 +59,6 @@ export default class AirportModel {
         this._positionModel = null;
         this._runwayCollection = null;
         // TODO: rename to `runwayName`
-        //
         this.runway = null;
         this.maps = {};
         this.airways = {};
@@ -508,7 +507,7 @@ export default class AirportModel {
     }
 
     /**
-     * Remove an aircraft for all runway queues
+     * Remove an aircraft from all runway queues
      *
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues

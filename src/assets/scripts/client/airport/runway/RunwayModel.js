@@ -175,6 +175,7 @@ export default class RunwayModel extends BaseModel {
         this.airportPositionModel = airportPositionModel;
         this.name = data.name[end];
 
+        // TODO: deprecate
         if (data.delay) {
             this.delay = data.delay[end];
         }

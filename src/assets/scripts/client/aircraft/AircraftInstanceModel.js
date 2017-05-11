@@ -522,7 +522,7 @@ export default class AircraftInstanceModel {
         // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
         return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
 
-        // FIXME: can the below be removed?
+        // TODO: Use this instead
         // const courseDatum = this.mcp.nav1Datum;
         // const course = this.mcp.course;
         // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
@@ -611,21 +611,20 @@ export default class AircraftInstanceModel {
         return this.isTaxiing() || this.flightPhase === FLIGHT_PHASE.TAKEOFF;
     }
 
-    // TODO: the logic in this method can be cleaned up and simplified
     /**
      * @for AircraftInstanceModel
      * @method isVisible
+     * @return {boolean}
      */
     isVisible() {
-        // hide aircraft on twys
+        // hide aircraft on taxiways
         if (this.flightPhase === FLIGHT_PHASE.APRON || this.flightPhase === FLIGHT_PHASE.TAXI) {
             return false;
         }
 
-        if (this.isTaxiing()) {
+        if (this.flightPhase === FLIGHT_PHASE.WAITING) {
             // show only the first aircraft in the takeoff queue
-            return this.flightPhase === FLIGHT_PHASE.WAITING &&
-                this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
+            return this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
         }
 
         return true;
@@ -634,7 +633,9 @@ export default class AircraftInstanceModel {
     /**
      * Sets `#isRemovable` to true
      *
-     * Provides a single source to change the value of `#isRemovable`.
+     * Provides a single source to change the value of `#isRemovable`
+     * This is evaluated by the `AircraftController` when determining
+     * if an aircraft should be removed or not
      *
      * @for AircraftInstanceModel
      * @method setIsRemovable
@@ -1435,7 +1436,7 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedSpeedDuringLanding() {
         let startSpeed = this.speed;
-        const runwayModel  = this.fms.arrivalRunwayModel;
+        const runwayModel = this.fms.arrivalRunwayModel;
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 

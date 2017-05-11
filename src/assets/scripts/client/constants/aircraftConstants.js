@@ -264,18 +264,18 @@ export const SEPARATION = {
      * Standard Basic Lateral Separation Minimum
      *
      * @memberof SEPARATION
-     * @property MIN_STANDARD_LATERAL_KM
+     * @property STANDARD_LATERAL_KM
      * @type {number}
      * @final
      */
-    MIN_STANDARD_LATERAL_KM: 5.556, // 3nm
+    STANDARD_LATERAL_KM: 5.556, // 3nm
     /**
      * Minimum vertical separation in feet
      *
      * @memberof SEPARATION
-     * @property MIN_VERTICAL_FT
+     * @property VERTICAL_FT
      * @type {number}
      * @final
      */
-    MIN_VERTICAL_FT: 1000
+    VERTICAL_FT: 1000
 };

@@ -197,7 +197,7 @@ export default class AircraftConflict {
      */
     checkProximity() {
         // No conflict or warning if vertical separation is present
-        if (this.altitude >= SEPARATION.MIN_VERTICAL_FT) {
+        if (this.altitude >= SEPARATION.VERTICAL_FT) {
             this.conflicts.proximityConflict = false;
             this.conflicts.proximityViolation = false;
 
