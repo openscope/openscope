@@ -288,7 +288,7 @@
                 "05R": ["DL050", "DL058", "BAM"],
                 "23L": ["DL239", "DL241", "DL244"],
                 "23R": ["DL240", "DL241", "DL244"]
-            }
+            },
             "body": [["LIPMI", "A150+"]],
             "exitPoints": {
                 "COL": ["COL"]
@@ -308,7 +308,7 @@
                 "05R": ["DL050", "DL058", "BAM"],
                 "23L": ["DL239", "DL241", ["DL242", "A150+"]],
                 "23R": ["DL240", "DL241", ["DL242", "A150+"]]
-            }
+            },
             "body": [["ELBAL", "A150+"], "BETZO"],
             "exitPoints": ["DODEN", "A250+"]
             },
@@ -327,7 +327,7 @@
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
                 "23L": ["DL239", "DL241"],
                 "23R": ["DL240", "DL241"]
-            }
+            },
             "body": [],
             "exitPoints": ["GMH"]
             },
@@ -346,7 +346,7 @@
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
                 "23L": ["DL239", "DL241", "ELBAL"],
                 "23R": ["DL240", "DL241", "ELBAL"]
-            }
+            },
             "body": [["DEGOM", "A150+"]],
             "exitPoints": ["KUMIK"]
             },
@@ -365,7 +365,7 @@
                 "05R": ["DL050", "DL051", "DL052"],
                 "23L": [["DL236", "A6+"]],
                 "23R": [["DL237", "A6+"]]
-            }
+            },
             "body": [],
             "exitPoints": ["LMA"]
             },
@@ -384,7 +384,7 @@
                 "05R": ["DL050", "DL053", "NIKOG"],
                 "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM"],
                 "23R": ["DL232", ["DL246", "S190-"], "DL248", "ERKUM"]
-            }
+            },
             "body": ["LUSIX"],
             "exitPoints": ["MEVEL"]
             },
@@ -403,7 +403,7 @@
                 "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
                 "23L": [["DL243", "S210-"], "UBORO", ["NETEX", "S250-"]],
                 "23R": [["DL247", "S210-"], "UBORO", ["NETEX", "S250-"]]
-            }
+            },
             "body": [],
             "exitPoints": [["MODRU", "A210+"]]
             },
@@ -422,7 +422,7 @@
                 "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
                 "23L": [["DL236", "A6+"], "LMA"],
                 "23R": [["DL237", "A6+"], "LMA"]
-            }
+            },
             "body": [],
             "exitPoints": ["NETEX"]
             },
@@ -441,7 +441,7 @@
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
                 "23L": ["DL239", "DL241", "ELBAL"],
                 "23R": ["DL240", "DL241", "ELBAL"]
-            }
+            },
             "body": ["MAMIB", "KULIK"],
             "exitPoints": ["NUDGO"]
             },
@@ -460,7 +460,7 @@
                 "05R": ["DL050", "DL058", "BAM"],
                 "23L": ["DL239", "DL241"],
                 "23R": ["DL240", "DL241"]
-            }
+            },
             "body": [],
             "exitPoints": ["NVO"]
             },
@@ -479,7 +479,7 @@
                 "05R": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
                 "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
                 "23R": ["DL231", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]]
-            }
+            },
             "body": [],
             "exitPoints": ["SONEB"]
             },
