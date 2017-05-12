@@ -160,15 +160,6 @@ ava('.load() does not call .onLoadIntialAirportFromJson() when no parameters are
     t.false(onLoadIntialAirportFromJsonSpy.called);
 });
 
-ava('.updateRunway() calls #_runwayCollection.findBestRunwayForWind()', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
-    const findBestRunwayForWindSpy = sinon.spy(model._runwayCollection, 'findBestRunwayForWind');
-
-    model.updateRunway();
-
-    t.true(findBestRunwayForWindSpy.called);
-});
-
 ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => {
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
     const result = model.getRunway();
