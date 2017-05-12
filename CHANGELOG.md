@@ -16,7 +16,7 @@
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
-
+- Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 
 
 
