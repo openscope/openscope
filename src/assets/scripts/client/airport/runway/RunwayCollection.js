@@ -115,13 +115,6 @@ export default class RunwayCollection extends BaseCollection {
      * @return bestRunway {string}
      */
     findBestRunwayForWind(getCurrentWindProps) {
-        // FIXME: figure out what this does and move it to a more appropriate home
-        const ra = (n) => {
-            const deviation = degreesToRadians(10);
-
-            return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
-        };
-
         let bestRunway = '';
         let bestRunwayHeadwind = -Infinity;
         const headwind = {};
@@ -130,7 +123,7 @@ export default class RunwayCollection extends BaseCollection {
         for (let i = 0; i < this._items.length; i++) {
             const runway = this._items[i];
 
-            headwind[runway.name] = Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
+            headwind[runway.name] = Math.cos(runway.angle - wind.angle) * wind.speed;
         }
 
         for (const runway in headwind) {

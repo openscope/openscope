@@ -41,45 +41,217 @@ export default class AirportModel {
             );
         }
 
+        /**
+         * Provides a way to pause the game loop when changing airports
+         *
+         * @property updateRun
+         * @type {function}
+         * @default App.updateRun()
+         */
         this.updateRun = updateRun;
+
+        /**
+         * Callback method supplied by App that is called when an airport is changed.
+         *
+         * Used to destroy/reset classes and begin instantiation of new ones for the
+         * next airport
+         *
+         * @property onAirportChange
+         * @type {function}
+         * @default App.onAirportChange()
+         */
         this.onAirportChange = onAirportChange;
+
+        /**
+         * cache of airport json data
+         *
+         * used externally when changing airports
+         *
+         * @property data
+         * @type {object}
+         * @default {}
+         */
         this.data = {};
 
-        // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
-        // there is a lot of logic below that can be elimininated by simply instantiating values here.
+        /**
+         * @property arrivalRunwayModel
+         * @type {RunwayModel}
+         * @default null
+         */
         this.arrivalRunwayModel = null;
+
+        /**
+         * @property departureRunwayModel
+         * @type {RunwayModel}
+         * @default null
+         */
         this.departureRunwayModel = null;
+
+        /**
+         * Flag for is an airport has been loaded successfully
+         *
+         * @property loaded
+         * @type {boolean}
+         * @default false
+         */
         this.loaded = false;
+
+        /**
+         * Flag for if an airport is in the process of loading
+         *
+         * @property loading
+         * @type {boolean}
+         * @default false
+         */
         this.loading = false;
+
+        /**
+         * @property name
+         * @type {string}
+         * @default null
+         */
         this.name = null;
+
+        /**
+         * @property icao
+         * @type {string}
+         * @default null
+         */
         this.icao = null;
+
+        /**
+         * Flag for if an airport is a work in progress
+         *
+         * @property wip
+         * @type {boolean}
+         * @default null
+         */
         this.wip = null;
+
+        /**
+         * @property radio
+         * @type
+         * @default null
+         */
         this.radio = null;
+
+        /**
+         * @property level
+         * @type
+         * @default null
+         */
         this.level = null;
+
+        /**
+         * @property _positionModel
+         * @type {StaticPositionModel}
+         * @default null
+         */
         this._positionModel = null;
+
+        /**
+         * @property _runwayCollection
+         * @type {RunwayCollection}
+         * @default null
+         */
         this._runwayCollection = null;
+
+        /**
+         * Dictionary of polys that make up any airport video maps
+         *
+         * @property maps
+         * @type {object}
+         * @default {}
+         */
         this.maps = {};
+
+        // TODO: may need to refactor when implementing Airways
+        /**
+         * @property airways
+         * @type {object}
+         * @default {}
+         */
         this.airways = {};
+
+        /**
+         * @property restricted_areas
+         * @type {array}
+         * @default []
+         */
         this.restricted_areas = [];
-        // array of areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+
+        /**
+         * areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+         *
+         * @property airspace
+         * @type {object}
+         * @default null
+         */
         this.airspace = null;
-        // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
+
+        /**
+         * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
+         *
+         * @property perimeter
+         * @type {object}
+         * @default null
+         */
         this.perimeter = null;
 
+        /**
+         * @property timeout
+         * @type {object}
+         */
         this.timeout = {
             runway: null,
             departure: null
         };
 
+        /**
+         * default wind settings for an airport
+         *
+         * @property wind
+         * @type {object}
+         */
         this.wind = {
             speed: 10,
             angle: 0
         };
 
+
+        /**
+         * @property ctr_radius
+         * @type {nunmber}
+         * @default DEFAULT_CTR_RADIUS_NM
+         */
         this.ctr_radius = DEFAULT_CTR_RADIUS_NM;
+
+        /**
+         * @property ctr_ceiling
+         * @type {nunmber}
+         * @default DEFAULT_CTR_CEILING_FT
+         */
         this.ctr_ceiling = DEFAULT_CTR_CEILING_FT;
+
+        /**
+         * @property initial_alt
+         * @type {nunmber}
+         * @default DEFAULT_INITIAL_ALTITUDE_FT
+         */
         this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
+
+        /**
+         * @property rr_radius_nm
+         * @type {nunmber}
+         * @default 0
+         */
         this.rr_radius_nm = 0;
+
+        /**
+         * @property rr_center
+         * @type {nunmber}
+         * @default 0
+         */
         this.rr_center = 0;
 
         this.parse(options);
