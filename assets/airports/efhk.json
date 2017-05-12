@@ -188,6 +188,7 @@
         "OGELI": ["N60d13m51", "E24d59m16"],
 
         "NIPIB": ["N59d40m57", "E23d00m48"],
+        "RUMEP": ["N59d30m45", "E22d25m56"],
         "ODESO": ["N60d19m34", "E22d39m02"],
         "PEKUX": ["N60d24m19", "E22d37m32"],
         "IPMOT": ["N60d27m11", "E23d10m35"],
@@ -218,6 +219,22 @@
         "TN471": ["N59d34m15.4", "E25d02m47.4"],
         "TN903": ["N59d37m11.0", "E24d26m19.1"],
         "TN425": ["N59d48m10.3", "E24d53m11.0"],
+
+        "ATLUM": ["N59d45m55", "E027d40m08"],
+        "BEVOM": ["N60d27m52", "E022d28m37"],
+        "ENETI": ["N61d04m29", "E023d34m20"],
+        "EVADI": ["N59d20m23", "E021d51m26"],
+        "GONOS": ["N58d56m33", "E025d34m37"],
+        "IBOSU": ["N61d37m12", "E025d17m43"],
+        "IBVUT": ["N60d21m35", "E021d20m40"],
+        "LEMLA": ["N59d24m51", "E025d40m44"],
+        "LONSA": ["N59d04m56", "E023d50m04"],
+        "NAPRU": ["N61d35m04", "E026d05m40"],
+        "NAVOT": ["N59d20m36", "E024d24m51"],
+        "OTKAP": ["N61d04m46", "E027d23m23"],
+        "OTKIL": ["N60d28m30", "E021d22m04"],
+        "RIRIP": ["N60d12m10", "E021d26m03"],
+        "UXADA": ["N60d51m00", "E022d36m48"],
 
         "_22RDME25": ["N60.3089654", "E24.8951079"]
     },
@@ -545,9 +562,9 @@
             "name": "DIVAM",
             "suffix": {"04L":"1B", "04R":"1R", "15":"1M", "22L":"2A", "22R":"2V", "33":"1W"},
             "entryPoints": {
-                "NIPIB": ["NIPIB"]
+                "DIVAM": [["DIVAM", "A100+"]]
             },
-            "body": [["DIVAM", "A100+"], ["PEXEN", "A70+|S250-"]],
+            "body": [["PEXEN", "A70+|S250-"]],
             "rwy": {
                 "04L": [["HK803", "A35+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": [["HK813", "A35+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -571,12 +588,9 @@
             "name": "INTOR",
             "suffix": {"04L":"4B", "04R":"4R", "15":"5M", "22L":"3A", "22R":"3V", "33":"4W"},
             "entryPoints": {
-                "ARSAM": ["ARSAM"],
-                "BEKNA": ["BEKNA"],
-                "GEPTA": ["GEPTA"],
-                "SORPA": ["SORPA"]
+                "INTOR": [["INTOR", "A120+"]]
             },
-            "body": [["INTOR", "A120+"], ["BALTI", "S250-"], "HK806"],
+            "body": [["BALTI", "S250-"], "HK806"],
             "rwy": {
                 "04L": [["HK804", "A30+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": ["HK901", ["HK894", "A33+|S220-"], ["HK814", "A33+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -600,12 +614,9 @@
             "name": "LAKUT",
             "suffix": {"04L":"5B", "04R":"5R", "15":"5M", "22L":"3A", "22R":"3V", "33":"5W"},
             "entryPoints": {
-                "AMROT": ["AMROT"],
-                "IPMOT": ["IPMOT"],
-                "ODESO": ["ODESO"],
-                "PEKUX": ["PEKUX"]
+                "LAKUT": [["LAKUT", "A100+"]]
             },
-            "body": [["LAKUT", "A100+"], ["MAROM", "A70+|S250-"]],
+            "body": [["MAROM", "A70+|S250-"]],
             "rwy": {
                 "04L": ["VIBEP", ["HK802", "A30+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": ["VIBEP", ["HK899", "A33+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -629,10 +640,9 @@
             "name": "LUSEP",
             "suffix": {"04L":"1B", "04R":"1R", "15":"1M", "22L":"2A", "22R":"3V", "33":"1W"},
             "entryPoints": {
-                "ERNUT": ["ERNUT"],
-                "OTPAL": ["OTPAL"]
+                "LUSEP": [["LUSEP", "A100+"]]
             },
-            "body": [["LUSEP", "A100+"], ["NAPUN", "A70+|S250-"]],
+            "body": [["NAPUN", "A70+|S250-"]],
             "rwy": {
                 "04L": ["HK890", ["NEMVI", "A30+|S220-"], ["HK802", "A30+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": ["HK890", "HK897", ["HK899", "A33+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -655,7 +665,10 @@
             "icao": "MAROM",
             "name": "MAROM",
             "suffix": {"04L":"4B"},
-            "body": [["MAROM", "A70+|S250-"], ["HK871", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
+            "entryPoints": {
+                "MAROM": [["MAROM", "A70+|S250-"]]
+            },
+            "body": [["HK871", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
             "draw": [
                 ["MAROM", "HK871", "HK849", "HK851", "HK852", "PODOM"]
             ]
@@ -664,7 +677,10 @@
             "icao": "NAPUN",
             "name": "NAPUN",
             "suffix": {"04L":"1B"},
-            "body": [["NAPUN", "A70+|S250-"], "HK890", ["HK896", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
+            "entryPoints": {
+                "NAPUN": [["NAPUN", "A70+|S250-"]]
+            },
+            "body": ["HK890", ["HK896", "A30+"], "HK849", ["HK851", "A23|S220-"], ["HK852", "A23"], ["PODOM", "A23|S210-"]],
             "draw": [
                 ["NAPUN", "HK890", "HK896", "HK849", "HK851", "HK852", "PODOM"]
             ]
@@ -692,9 +708,9 @@
             "name": "ROPAM",
             "suffix": {"04L":"1B", "04R":"1R", "15":"1M", "22L":"2A", "22R":"2V", "33":"1W"},
             "entryPoints": {
-                "LEDUN": ["LEDUN"]
+                "ROPAM": [["ROPAM", "S250-"]]
             },
-            "body": [["ROPAM", "S250-"]],
+            "body": ["HK711"],
             "rwy": {
                 "04L": ["HK711", ["HK804", "A30+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": ["HK711", ["HK894", "A33+|S220-"], ["HK814", "A33+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -718,10 +734,9 @@
             "name": "VEPIN",
             "suffix": {"04L":"1B", "04R":"1R", "15":"1M", "22L":"2A", "22R":"2V", "33":"1W"},
             "entryPoints": {
-                "ARLOM": ["ARLOM"],
-                "ROKVI": ["ROKVI"]
+                "VEPIN": [["VEPIN", "A100+"]]
             },
-            "body": [["VEPIN", "A100+"], ["MAMOP", "A70+|S250-"]],
+            "body": [["MAMOP", "A70+|S250-"]],
             "rwy": {
                 "04L": ["HK807", "HK711", ["HK804", "A30+|S220-"], "HK801", ["PODOM", "A23+|S210-"]],
                 "04R": ["HK807", "HK711", ["HK894", "A33+|S220-"], ["HK814", "A33+|S220-"], "HK811", ["GEDLO", "A33+|S210-"]],
@@ -1048,7 +1063,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "NIPIB.DIVAM.EFHK",
+            "route": "EVADI..RUMEP..NIPIB..DIVAM.DIVAM.EFHK",
             "rate": 3.6,
             "altitude": 18000,
             "speed": 280,
@@ -1077,7 +1092,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "ERNUT.LUSEP.EFHK",
+            "route": "IBOSU..ERNUT..LUSEP.LUSEP.EFHK",
             "rate": 1.2,
             "altitude": 14000,
             "speed": 280,
@@ -1091,7 +1106,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "OTPAL.LUSEP.EFHK",
+            "route": "NAPRU..OTPAL..LUSEP.LUSEP.EFHK",
             "rate": 1.2,
             "altitude": 18000,
             "speed": 280,
@@ -1106,8 +1121,8 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "ROKVI.VEPIN.EFHK",
-            "rate": 1.8,
+            "route": "OTKAP..ROKVI..VEPIN.VEPIN.EFHK",
+            "rate": 1.6,
             "altitude": 15000,
             "speed": 280,
             "airlines": [
@@ -1125,7 +1140,26 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "PEKUX.LAKUT.EFHK",
+            "route": "RATLA..ARLOM..VEPIN.VEPIN.EFHK",
+            "rate": 0.2,
+            "altitude": 15000,
+            "speed": 280,
+            "airlines": [
+                ["fin/long", 20],
+                ["jal/long", 1],
+                ["fin/short", 10],
+                ["afl", 1],
+                ["vkg", 1],
+                ["tom", 1],
+                ["tui", 1]
+            ]
+        },
+        {
+            "destination": "EFHK",
+            "origin": "",
+            "category": "arrival",
+            "method": "random",
+            "route": "IBVUT..PEKUX..LAKUT.LAKUT.EFHK",
             "rate": 0.6,
             "altitude": 28000,
             "speed": 280,
@@ -1154,7 +1188,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "IPMOT.LAKUT.EFHK",
+            "route": "OTKIL..BEVOM..IPMOT..LAKUT.LAKUT.EFHK",
             "rate": 0.6,
             "altitude": 16000,
             "speed": 280,
@@ -1176,8 +1210,8 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "AMROT.LAKUT.EFHK",
-            "rate": 1.2,
+            "route": "UXADA..AMROT..LAKUT.LAKUT.EFHK",
+            "rate": 0.8,
             "altitude": 12000,
             "speed": 280,
             "airlines": [
@@ -1198,7 +1232,29 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "ODESO.LAKUT.EFHK",
+            "route": "ENETI..AMROT..LAKUT.LAKUT.EFHK",
+            "rate": 0.4,
+            "altitude": 12000,
+            "speed": 280,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+
+                ["baw", 1],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+
+                ["fin/long", 20]
+            ]
+        },
+        {
+            "destination": "EFHK",
+            "origin": "",
+            "category": "arrival",
+            "method": "random",
+            "route": "RIRIP..ODESO..LAKUT.LAKUT.EFHK",
             "rate": 3,
             "altitude": 22000,
             "speed": 280,
@@ -1226,7 +1282,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "ARSAM.INTOR.EFHK",
+            "route": "GONOS..ARSAM..INTOR.INTOR.EFHK",
             "rate": 0.6,
             "altitude": 25000,
             "speed": 280,
@@ -1256,8 +1312,8 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "SORPA.INTOR.EFHK",
-            "rate": 1.2,
+            "route": "LONSA..SORPA..INTOR.INTOR.EFHK",
+            "rate": 0.6,
             "altitude": 15000,
             "speed": 280,
             "airlines": [
@@ -1288,7 +1344,39 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "GEPTA.INTOR.EFHK",
+            "route": "NAVOT..SORPA..INTOR.INTOR.EFHK",
+            "rate": 0.6,
+            "altitude": 15000,
+            "speed": 280,
+            "airlines": [
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 6],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["thy", 1],
+                ["bti", 3],
+
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1],
+
+                ["fin/long", 5]
+            ]
+        },
+        {
+            "destination": "EFHK",
+            "origin": "",
+            "category": "arrival",
+            "method": "random",
+            "route": "LEMLA..GEPTA..INTOR.INTOR.EFHK",
             "rate": 0.6,
             "altitude": 19000,
             "speed": 280,
@@ -1315,7 +1403,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "BEKNA.INTOR.EFHK",
+            "route": "TLL..BEKNA..INTOR.INTOR.EFHK",
             "rate": 1.2,
             "altitude": 22000,
             "speed": 280,
@@ -1346,7 +1434,7 @@
             "origin": "",
             "category": "arrival",
             "method": "random",
-            "route": "LEDUN.ROPAM.EFHK",
+            "route": "ATLUM..LEDUN..ROPAM.ROPAM.EFHK",
             "rate": 1.2,
             "altitude": 10000,
             "speed": 250,
