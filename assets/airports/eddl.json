@@ -277,6 +277,217 @@
             ],
             "ils": [true, true]
         }
-    ]
-
+    ],
+    "sids": {
+        "COL": {
+            "icao": "COL",
+            "name": "COLA",
+            "suffix": {"5L":"3J", "5R":"3Z", "23L":"4T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM"],
+                "05R": ["DL050", "DL058", "BAM"],
+                "23L": ["DL239", "DL241", "DL244"],
+                "23R": ["DL240", "DL241", "DL244"]
+            }
+            "body": [["LIPMI", "A150+"]],
+            "exitPoints": {
+                "COL": ["COL"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "LIPMI", "COL*"],
+                ["DL239", "DL241", "DL244","LIPMI"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "DODEN": {
+            "icao": "DODEN",
+            "name": "DODEN",
+            "suffix": {"5L":"5J", "5R":"5Z", "23L":"8T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM"],
+                "05R": ["DL050", "DL058", "BAM"],
+                "23L": ["DL239", "DL241", ["DL242", "A150+"]],
+                "23R": ["DL240", "DL241", ["DL242", "A150+"]]
+            }
+            "body": [["ELBAL", "A150+"], "BETZO"],
+            "exitPoints": ["DODEN", "A250+"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ELBAL", "BETZO", "DODEN*"],
+                ["DL239", "DL241", "DL242", "ELBAL"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "GMH": {
+            "icao": "GMH",
+            "name": "Germinghausen",
+            "suffix": {"5L":"7Y", "5R":"4Z", "23L":"8T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
+                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
+                "23L": ["DL239", "DL241"],
+                "23R": ["DL240", "DL241"]
+            }
+            "body": [],
+            "exitPoints": ["GMH"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ANAVI", "GMH*"],
+                ["DL239", "DL241", "GMH"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "KUMIK": {
+            "icao": "KUMIK",
+            "name": "KUMIK",
+            "suffix": {"5L":"3J", "5R":"3Z", "23L":"5T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
+                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
+                "23L": ["DL239", "DL241", "ELBAL"],
+                "23R": ["DL240", "DL241", "ELBAL"]
+            }
+            "body": [["DEGOM", "A150+"]],
+            "exitPoints": ["KUMIK"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ANAVI", "DEGOM", "KUMIK*"],
+                ["DL239", "DL241", "ELBAL", "DEGOM"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "LMA": {
+            "icao": "LMA",
+            "name": "LIMA",
+            "suffix": {"5L":"6Y", "5R":"1Z", "23L":"2T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL051", "DL052"],
+                "05R": ["DL050", "DL051", "DL052"],
+                "23L": [["DL236", "A6+"]],
+                "23R": [["DL237", "A6+"]]
+            }
+            "body": [],
+            "exitPoints": ["LMA"]
+            },
+            "draw": [
+                ["DL050", "DL051", "052", "LMA*"],
+                ["DL236", "LMA"],
+                ["DL237", "LMA"]
+            ]
+        },
+        "MEVEL": {
+            "icao": "MEVEL",
+            "name": "MEVEL",
+            "suffix": {"5L":"7J", "5R":"8Z", "23L":"2T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL053", "NIKOG"],
+                "05R": ["DL050", "DL053", "NIKOG"],
+                "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM"],
+                "23R": ["DL232", ["DL246", "S190-"], "DL248", "ERKUM"]
+            }
+            "body": ["LUSIX"],
+            "exitPoints": ["MEVEL"]
+            },
+            "draw": [
+                ["DL050", "DL053", "NIKOG", "LUSIX", "MEVEL*"],
+                ["DL230", "DL246", "DL248", "ERKUM", "LUSIX"],
+                ["DL232", "DL246"]
+            ]
+        },
+        "MODRU": {
+            "icao": "MODRU",
+            "name": "MODRU",
+            "suffix": {"5L":"6J", "5R":"6Z", "23L":"1T", "23R":"1H"},
+            "rwy": {
+                "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
+                "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
+                "23L": [["DL243", "S210-"], "UBORO", ["NETEX", "S250-"]],
+                "23R": [["DL247", "S210-"], "UBORO", ["NETEX", "S250-"]]
+            }
+            "body": [],
+            "exitPoints": [["MODRU", "A210+"]]
+            },
+            "draw": [
+                ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX", "MODRU*"],
+                ["DL243", "UBORO", "NETEX"],
+                ["DL247", "UBORO"]
+            ]
+        },
+        "NETEX": {
+            "icao": "NETEX",
+            "name": "NETEX",
+            "suffix": {"5L":"3J", "5R":"3Z", "23L":"5T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
+                "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
+                "23L": [["DL236", "A6+"], "LMA"],
+                "23R": [["DL237", "A6+"], "LMA"]
+            }
+            "body": [],
+            "exitPoints": ["NETEX"]
+            },
+            "draw": [
+                ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX*"],
+                ["DL236", "LMA", "NETEX"],
+                ["DL237", "LMA", "NETEX"]
+            ]
+        },
+        "NUDGO": {
+            "icao": "NUDGO",
+            "name": "NUDGO",
+            "suffix": {"5L":"3J", "5R":"3Z", "23L":"4T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
+                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
+                "23L": ["DL239", "DL241", "ELBAL"],
+                "23R": ["DL240", "DL241", "ELBAL"]
+            }
+            "body": ["MAMIB", "KULIK"],
+            "exitPoints": ["NUDGO"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ANAVI","MAMIB","KULIK","NUDGO*"],
+                ["DL239", "DL241", "ELBAL", "MAMIB"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "NVO": {
+            "icao": "NVO",
+            "name": "Noervenich",
+            "suffix": {"5L":"1Y", "5R":"1Z", "23L":"1T", "23R":"1U"},
+            "rwy": {
+                "05L": ["DL050", "DL058", "BAM"],
+                "05R": ["DL050", "DL058", "BAM"],
+                "23L": ["DL239", "DL241"],
+                "23R": ["DL240", "DL241"]
+            }
+            "body": [],
+            "exitPoints": ["NVO"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "NVO*"],
+                ["DL239", "DL241", "BAM"],
+                ["DL240", "DL241"]
+            ]
+        },
+        "SONEB": {
+            "icao": "SONEB",
+            "name": "SONEB",
+            "suffix": {"5L":"4J", "5R":"4Z", "23L":"6T", "23R":"2H"},
+            "rwy": {
+                "05L": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
+                "05R": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
+                "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
+                "23R": ["DL231", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]]
+            }
+            "body": [],
+            "exitPoints": ["SONEB"]
+            },
+            "draw": [
+                ["DL050", "DL053", "NIKOG", "LUSIX", "DL054", "SONEB*"]
+                ["DL230", "DL246", "DL248", "ERKUM", "SONEB"],
+                ["DL231", "DL246"]
+            ]
+        }
+    }
 }
