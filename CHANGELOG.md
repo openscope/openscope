@@ -2,9 +2,9 @@
 ---
 ### Features
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
-- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
+- Adds more context to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
-
+- Adds support for suffixes in SID and STAR procedures [#33](https://github.com/openscope/openscope/issues/33)
 
 
 
