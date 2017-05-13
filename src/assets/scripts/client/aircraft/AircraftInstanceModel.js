@@ -91,6 +91,7 @@ export default class AircraftInstanceModel {
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
         this.flightNumber = '';         // Flight Number ONLY (eg. '551')
+        this.transponderCode = '';
         this.heading      = 0;          // Magnetic Heading
         this.altitude     = 0;          // Altitude, ft MSL
         this.speed        = 0;          // Indicated Airspeed (IAS), knots
@@ -1316,8 +1317,12 @@ export default class AircraftInstanceModel {
         const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
-        // TODO: abstract this logic to helper method
-        const shouldMoveToNextFix = closeToBeingOverFix || (closeEnoughToFlyByFix && isTimeToStartTurning);
+        const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
+        let shouldMoveToNextFix = closeToBeingOverFix;
+
+        if (!this.fms.currentWaypoint.isFlyOverWaypoint) {
+            shouldMoveToNextFix = closeToBeingOverFix || shouldFlyByFix;
+        }
 
         if (shouldMoveToNextFix) {
             if (!this.fms.hasNextWaypoint()) {

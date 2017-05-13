@@ -4,6 +4,8 @@
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
 - Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
+- Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
+- Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 - Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
     - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
     - Removes circular reference in AirportModel.runway.airportModel [#58](https://github.com/openscope/openscope/issues/58)
@@ -20,7 +22,7 @@
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
-
+- Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 
 
 
