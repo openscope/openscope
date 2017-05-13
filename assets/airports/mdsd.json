@@ -18,11 +18,13 @@
         "angle": 160,
         "speed": 8
     },
+    "arrivalRunway": "17",
+    "departureRunway": "17",
     "airspace": [
         {
             "floor": 20,
             "ceiling": 195,
-            "airspace_class": "D",
+            "airspace_class": "B",
             "poly": [
                 ["N19.268628216", "W69.708343510"],
                 ["N19.269477000", "W69.667327900"],
@@ -149,6 +151,16 @@
         }
     ],
     "fixes": {
+        "_CDO008015": ["N18.68147700267", "W69.63046059156"],
+        "_CDO059015": ["N18.56153056825", "W69.44139930747"],
+        "_CDO099015": ["N18.39376617374", "W69.40762587936"],
+        "_CDO114015": ["N18.33125348973", "W69.42700342791"],
+        "_CDO167015": ["N18.18848794715", "W69.60791720538"],
+        "_CDO185015": ["N18.18295426018", "W69.69035138938"],
+        "_CDO200015": ["N18.19727202166", "W69.75762505051"],
+        "_CDO237015": ["N18.29673267794", "W69.88808607472"],
+        "_CDO338015": ["N18.66545323752", "W69.76648018680"],
+        "_CDO353015": ["N18.68205633777", "W69.69961238281"],
         "ANTEX": ["N18.47926172559689", "W68.00006103367956"],
         "ASIVO": ["N19.96001109974209", "W69.69250488677127"],
         "AVRES": ["N17.60109191651401", "W69.57497405318657"],
@@ -160,10 +172,10 @@
         "BIBOK": ["N18.75635659366249", "W69.29138945844211"],
         "BOKLO": ["N18.52284590368628", "W69.54757689742311"],
         "BORAS": ["N19.41082044403037", "W70.16720581448901"],
-        "CDO":   ["N18.43290880730685", "W69.66732787399317"],
+        "CDO"  : ["N18.43290880730685", "W69.66732787399317"],
         "DARSI": ["N18.17751673436852", "W68.55862427157659"],
         "DATRU": ["N18.53814548747753", "W69.70928191452317"],
-        "DCR":   ["N17.93170238342801", "W71.64843749857454"],
+        "DCR"  : ["N17.93170238342801", "W71.64843749857454"],
         "DELPO": ["N17.60665508195677", "W69.80417632370886"],
         "EMULU": ["N18.62353753804021", "W69.66650389938376"],
         "ETBOD": ["N18.51659548205915", "W71.88336182028831"],
@@ -200,7 +212,7 @@
         "PODIS": ["N18.27141211345068", "W69.62194060592390"],
         "POKAK": ["N16.00005552600756", "W68.56658935946693"],
         "POLUX": ["N18.06335679897060", "W70.07162475980486"],
-        "PTA":   ["N19.75929377843622", "W70.57040405666240"],
+        "PTA"  : ["N19.75929377843622", "W70.57040405666240"],
         "RAGUS": ["N17.24417034615737", "W70.95858765039880"],
         "RIBES": ["N19.22999208698664", "W69.93475342191901"],
         "SD110": ["N18.47986954194834", "W70.08988951952765"],
@@ -1086,7 +1098,10 @@
     "runways":[
         {
             "name": ["17", "35"],
-            "end": [["N18d26m38.26", "W69d40m27.04", "39ft"], ["N18d24m55.31", "W69d39m49.22", "58ft"]],
+            "end": [
+                ["N18d26m38.26", "W69d40m27.04", "39ft"],
+                ["N18d24m55.31", "W69d39m49.22", "58ft"]
+            ],
             "ils": [true, false]
         }
     ],
@@ -1097,7 +1112,7 @@
             "suffix": {"17":"1J", "35":"1L"},
             "rwy": {
                 "17": ["SD130", ["SD134", "A40-"]],
-                "35": ["SD140", "SD144", "SD145", ["SD146", "A30"], ["SD147", "A40+"]]
+                "35": ["^SD140", "SD144", "SD145", ["SD146", "A30"], ["SD147", "A40+"]]
             },
             "body": ["AVRES"],
             "exitPoints": {
@@ -1108,13 +1123,91 @@
                 ["SD140", "SD144", "SD145", "SD146", "SD147", "AVRES"]
             ]
         },
+        "AVRES1": {
+            "icao": "AVRES1",
+            "name": "Avres One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "AVRES"],
+            "exitPoints": {
+                "KARUM": ["KARUM"]
+            },
+            "draw": [
+                ["CDO", "AVRES"]
+            ]
+        },
+        "AVRES2": {
+            "icao": "AVRES2",
+            "name": "Avres Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO185015", "AVRES"],
+            "exitPoints": {
+                "KARUM": ["KARUM"]
+            },
+            "draw": []
+        },
+        "BIBOK1": {
+            "icao": "BIBOK1",
+            "name": "Bibok One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "_CDO059015", "BIBOK"],
+            "exitPoints": {
+                "BETIR": ["GABOK", "BETUM", "PIXAR", "BETIR"]
+            },
+            "draw": [
+                ["CDO", "BIBOK"]
+            ]
+        },
+        "BIBOK2": {
+            "icao": "BIBOK2",
+            "name": "Bibok Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "CDO", "BIBOK"],
+            "exitPoints": {
+                "BETIR": ["GABOK", "BETUM", "PIXAR", "BETIR"]
+            },
+            "draw": []
+        },
+        "DELPO1": {
+            "icao": "DELPO1",
+            "name": "Delpoh One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "DELPO"],
+            "exitPoints": {
+                "BEROX": ["BEROX"]
+            },
+            "draw": [
+                ["CDO", "DELPO"]
+            ]
+        },
+        "DELPO2": {
+            "icao": "DELPO2",
+            "name": "Delpoh Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO200015", "DELPO"],
+            "exitPoints": {
+                "BEROX": ["BEROX"]
+            },
+            "draw": []
+        },
         "KANAM": {
             "icao": "KANAM",
             "name": "Kahnam",
             "suffix": {"17":"1J", "35":"1L"},
             "rwy": {
                 "17": ["SD130", "SD131", ["SD135", "A40-"]],
-                "35": ["SD140", "SD142", "SD143"]
+                "35": ["^SD140", "SD142", "SD143"]
             },
             "body": ["KANAM"],
             "exitPoints": {
@@ -1125,25 +1218,106 @@
                 ["SD140", "SD142", "SD143", "KANAM"]
             ]
         },
+        "KARIB1": {
+            "icao": "KARIB1",
+            "name": "Kareeb One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "KARIB"],
+            "exitPoints": {
+                "POKAK": ["POKAK"]
+            },
+            "draw": [
+                ["CDO", "KARIB"]
+            ]
+        },
+        "KARIB2": {
+            "icao": "KARIB2",
+            "name": "Kareeb Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO167015", "KARIB"],
+            "exitPoints": {
+                "BEROX": ["BEROX"]
+            },
+            "draw": []
+        },
         "KERSO": {
             "icao": "KERSO",
             "name": "Kerso",
             "suffix": {"17":"1J", "35":"1L"},
             "rwy": {
                 "17": ["SD130", "SD131", ["SD132", "A40-"], ["SD133", "A60+"]],
-                "35": ["SD140", ["SD141", "A35-"]]
+                "35": ["^SD140", ["SD141", "A35-"]]
             },
             "body": ["KERSO"],
             "exitPoints": {
                 "PTA":   ["RIBES", "BORAS", "PTA"],
                 "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
                 "ASIVO": ["PETRI", "KOBET", "ASIVO"]
-
             },
             "draw": [
                 ["SD131", "SD132", "SD133", "KERSO"],
                 ["SD140", "SD141", "KERSO"]
             ]
+        },
+        "KERSO1": {
+            "icao": "KERSO1",
+            "name": "Kerso One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "_CDO008015", "KERSO"],
+            "exitPoints": {
+                "PTA":   ["RIBES", "BORAS", "PTA"],
+                "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
+                "ASIVO": ["PETRI", "KOBET", "ASIVO"]
+            },
+            "draw": [
+                ["CDO", "KERSO"]
+            ]
+        },
+        "KERSO2": {
+            "icao": "KERSO2",
+            "name": "Kerso Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "CDO", "KERSO"],
+            "exitPoints": {
+                "PTA":   ["RIBES", "BORAS", "PTA"],
+                "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
+                "ASIVO": ["PETRI", "KOBET", "ASIVO"]
+            },
+            "draw": []
+        },
+        "KODIX1": {
+            "icao": "KODIX1",
+            "name": "Kohdeex One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "_CDO338015", "KODIX"],
+            "exitPoints": {
+                "ONPAD": ["BIBAS", "POBIN", "ONPAD"]
+            },
+            "draw": [
+                ["CDO", "PITOX", "KODIX"]
+            ]
+        },
+        "KODIX2": {
+            "icao": "KODIX2",
+            "name": "Kohdeex Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "CDO", "PITOX", "KODIX"],
+            "exitPoints": {
+                "ONPAD": ["BIBAS", "POBIN", "ONPAD"]
+            },
+            "draw": []
         },
         "LECKY": {
             "icao": "LECKY",
@@ -1151,7 +1325,7 @@
             "suffix": {"17":"1J", "35":"1L"},
             "rwy": {
                 "17": ["SD130", "SD131"],
-                "35": ["SD140", "SD142", "SD143"]
+                "35": ["^SD140", "SD142", "SD143"]
             },
             "body": ["LECKY"],
             "exitPoints": {
@@ -1162,13 +1336,39 @@
                 ["SD143", "LECKY"]
             ]
         },
+        "LECKY1": {
+            "icao": "LECKY1",
+            "name": "Lecky One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "LECKY"],
+            "exitPoints": {
+                "PALAS": ["POLUX", "GABRA", "RAGUS", "KASOS", "KATIN", "PALAS"]
+            },
+            "draw": [
+                ["CDO", "LECKY"]
+            ]
+        },
+        "LECKY2": {
+            "icao": "LECKY2",
+            "name": "Lecky Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO237015", "LECKY"],
+            "exitPoints": {
+                "PALAS": ["POLUX", "GABRA", "RAGUS", "KASOS", "KATIN", "PALAS"]
+            },
+            "draw": []
+        },
         "MIROX": {
             "icao": "MIROX",
             "name": "Mirox",
             "suffix": {"17":"1J", "35":"1L"},
             "rwy": {
                 "17": ["SD130", "SD131", ["SD132", "A40-"]],
-                "35": ["SD140", "SD144", "SD145", ["SD146", "A30"], ["SD148", "A60+"]]
+                "35": ["^SD140", "SD144", "SD145", ["SD146", "A30"], ["SD148", "A60+"]]
             },
             "body": ["MIROX"],
             "exitPoints": {
@@ -1179,6 +1379,84 @@
                 ["SD132", "MIROX"],
                 ["SD146", "SD148", "MIROX"]
             ]
+        },
+        "PIVAR1": {
+            "icao": "PIVAR1",
+            "name": "Peevar One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "PIVAR"],
+            "exitPoints": {
+                "ANTEX": ["GOSUL", "ANTEX"]
+            },
+            "draw": [
+                ["CDO", "PIVAR"]
+            ]
+        },
+        "PIVAR2": {
+            "icao": "PIVAR2",
+            "name": "Peevar Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO099015", "PIVAR"],
+            "exitPoints": {
+                "ANTEX": ["GOSUL", "ANTEX"]
+            },
+            "draw": []
+        },
+        "POBEX1": {
+            "icao": "POBEX1",
+            "name": "Pohbex One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "CDO", "POBEX"],
+            "exitPoints": {
+                "MELLA": ["MIROX", "DARSI", "POBEP", "MELLA"]
+            },
+            "draw": [
+                ["CDO", "POBEX"]
+            ]
+        },
+        "POBEX2": {
+            "icao": "POBEX2",
+            "name": "Pohbex Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "_CDO114015", "POBEX"],
+            "exitPoints": {
+                "MELLA": ["MIROX", "DARSI", "POBEP", "MELLA"]
+            },
+            "draw": []
+        },
+        "RIBES1": {
+            "icao": "RIBES1",
+            "name": "Reebaes One",
+            "rwy": {
+                "35": []
+            },
+            "body": [["^PITOX", "A30-"], "_CDO353015", "RIBES"],
+            "exitPoints": {
+                "PTA": ["BORAS", "PTA"]
+            },
+            "draw": [
+                ["CDO", "RIBES"]
+            ]
+        },
+        "RIBES2": {
+            "icao": "RIBES2",
+            "name": "Reebaes Two",
+            "rwy": {
+                "17": []
+            },
+            "body": [["^PODIS", "A30-"], "CDO", "RIBES"],
+            "exitPoints": {
+                "PTA": ["BORAS", "PTA"]
+            },
+            "draw": []
         }
     },
     "stars": {
@@ -1194,7 +1472,10 @@
                 "17": [["SD113", "A70|S220-"], ["EMULU", "A30|S210-"]],
                 "35": [["SD122", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
             },
-            "draw": [["BIBOK", "SD113", "EMULU"], ["BIBOK", "SD122", "LETIR", "OTVOG"]]
+            "draw": [
+                ["BIBOK", "SD113", "EMULU"],
+                ["BIBOK", "SD122", "LETIR", "OTVOG"]
+            ]
         },
         "DELPO": {
             "icao": "DELPO",
@@ -1208,7 +1489,10 @@
                 "17": [["SD117", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
                 "35": [["SD125", "A80|S220-"], ["VINRO", "A30|S210-"]]
             },
-            "draw": [["DELPO", "SD117", "VIPKI", "SD119", "EMULU"], ["DELPO", "SD125", "VINRO"]]
+            "draw": [
+                ["DELPO", "SD117", "VIPKI", "SD119", "EMULU"],
+                ["DELPO", "SD125", "VINRO"]
+             ]
         },
         "GABRA": {
             "icao": "GABRA",
@@ -1222,21 +1506,10 @@
                 "17": [["SD118", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
                 "35": [["SD126", "A80|S220-"], ["VINRO", "A30|S210-"]]
             },
-            "draw": [["GABRA", "SD118", "VIPKI"], ["GABRA", "SD126", "VINRO"]]
-        },
-        "KARIB": {
-            "icao": "KARIB",
-            "name": "Kareeb",
-            "suffix": {"17":"1G", "35":"1H"},
-            "entryPoints": {
-                "POKAK": ["POKAK"]
-            },
-            "body": [["KARIB", "A190|S250-"]],
-            "rwy": {
-                "17": [["SD116", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD124", "A80|S220-"], ["OTVOG", "A30|S210-"]]
-            },
-            "draw": [["KARIB", "SD116", "VIPKI"], ["KARIB", "SD124", "OTVOG"]]
+            "draw": [
+                ["GABRA", "SD118", "VIPKI"],
+                ["GABRA", "SD126", "VINRO"]
+            ]
         },
         "GOSUL": {
             "icao": "GOSUL",
@@ -1250,7 +1523,27 @@
                 "17": [["SD114", "A120|S220-"], ["SD115", "A100|S220-"], ["BOKLO", "A60|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
                 "35": [["SD123", "A50|S220-"], ["OTVOG", "A30|S210-"]]
             },
-            "draw": [["GOSUL", "SD114", "SD115", "BOKLO", "SD119"], ["GOSUL", "SD123", "OTVOG"]]
+            "draw": [
+                ["GOSUL", "SD114", "SD115", "BOKLO", "SD119"],
+                ["GOSUL", "SD123", "OTVOG"]
+            ]
+        },
+        "KARIB": {
+            "icao": "KARIB",
+            "name": "Kareeb",
+            "suffix": {"17":"1G", "35":"1H"},
+            "entryPoints": {
+                "POKAK": ["POKAK"]
+            },
+            "body": [["KARIB", "A190|S250-"]],
+            "rwy": {
+                "17": [["SD116", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
+                "35": [["SD124", "A80|S220-"], ["OTVOG", "A30|S210-"]]
+            },
+            "draw": [
+                ["KARIB", "SD116", "VIPKI"],
+                ["KARIB", "SD124", "OTVOG"]
+            ]
         },
         "KODIX": {
             "icao": "KODIX",
@@ -1264,7 +1557,10 @@
                 "17": [["SD111", "A70|S220-"], ["KEPTI", "A30|S210-"]],
                 "35": [["SD120", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
             },
-            "draw": [["KODIX", "SD111", "KEPTI"], ["KODIX", "SD120", "LETIR"]]
+            "draw": [
+                ["KODIX", "SD111", "KEPTI"],
+                ["KODIX", "SD120", "LETIR"]
+            ]
         },
         "OKOSO": {
             "icao": "OKOSO",
@@ -1278,7 +1574,10 @@
                 "17": [["SD110", "A80|S220-"], ["KEPTI", "A30|S210-"]],
                 "35": [["SD127", "A100|S220-"], ["URLOR", "A40|S210-"], ["VINRO", "A30|S210-"]]
             },
-            "draw": [["OKOSO", "SD110", "KEPTI"], ["OKOSO", "SD127", "URLOR", "VINRO"]]
+            "draw": [
+                ["OKOSO", "SD110", "KEPTI"],
+                ["OKOSO", "SD127", "URLOR", "VINRO"]
+            ]
         },
         "RIBES": {
             "icao": "RIBES",
@@ -1292,7 +1591,10 @@
                 "17": [["SD112", "A70|S220-"], ["KEPTI", "A30|S210-"]],
                 "35": [["SD121", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
             },
-            "draw": [["RIBES", "SD112", "KEPTI"], ["RIBES", "SD121", "LETIR"]]
+            "draw": [
+                ["RIBES", "SD112", "KEPTI"],
+                ["RIBES", "SD121", "LETIR"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -1304,14 +1606,14 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1322,15 +1624,15 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["amx",      1],
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["amx", 1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1341,23 +1643,23 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
-                ["aal",      4],
+                ["aal", 4],
                 ["aea/long", 2],
                 ["afr/long", 2],
-                ["cfg",      2],
-                ["cmp",      4],
-                ["dal",      4],
-                ["fdx",      2],
-                ["fwi",      1],
+                ["cfg", 2],
+                ["cmp", 4],
+                ["dal", 4],
+                ["fdx", 2],
+                ["fwi", 1],
                 ["ibe/long", 2],
-                ["jbu",     10],
+                ["jbu", 10],
                 ["n/fastGA", 3],
-                ["nks",      2],
-                ["pwd",      4],
-                ["ual",      2],
-                ["ups",      2]
+                ["nks", 2],
+                ["pwd", 4],
+                ["ual", 2],
+                ["ups", 2]
             ]
         },
         {
@@ -1368,15 +1670,15 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 0.2,
             "airlines": [
-                ["amx",      1],
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["amx", 1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1387,15 +1689,15 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 1.5,
             "airlines": [
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
-                ["fwi",      1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
+                ["fwi", 1],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1406,15 +1708,15 @@
             "altitude": [20000, 25000],
             "speed": 320,
             "method": "random",
-            "rate": 3,
+            "rate": 1.5,
             "airlines": [
                 ["aea/long", 2],
                 ["afr/long", 2],
-                ["cfg",      2],
-                ["fdx",      2],
+                ["cfg", 2],
+                ["fdx", 2],
                 ["ibe/long", 2],
                 ["n/fastGA", 3],
-                ["ups",      2]
+                ["ups", 2]
             ]
         },
         {
@@ -1425,14 +1727,14 @@
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1443,15 +1745,15 @@
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
-            "rate": 1,
+            "rate": 0.2,
             "airlines": [
-                ["amx",      1],
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["amx", 1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1462,14 +1764,14 @@
             "altitude": [30000, 42000],
             "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1480,15 +1782,15 @@
             "altitude": [24000, 32000],
             "speed": 320,
             "method": "random",
-            "rate": 3,
+            "rate": 1.5,
             "airlines": [
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
-                ["fwi",      1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
+                ["fwi", 1],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1499,18 +1801,18 @@
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["amx",      1],
-                ["aal",      4],
-                ["cmp",      4],
-                ["dal",      4],
-                ["fdx",      2],
-                ["fwi",      1],
+                ["amx", 1],
+                ["aal", 4],
+                ["cmp", 4],
+                ["dal", 4],
+                ["fdx", 2],
+                ["fwi", 1],
                 ["n/fastGA", 3],
-                ["nks",      2],
-                ["pwd",      4],
-                ["ups",      2]
+                ["nks", 2],
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1521,15 +1823,15 @@
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["amx",      1],
-                ["ava",      2],
-                ["cmp",      4],
-                ["fdx",      2],
+                ["amx", 1],
+                ["ava", 2],
+                ["cmp", 4],
+                ["fdx", 2],
                 ["n/fastGA", 3],
-                ["pwd",      4],
-                ["ups",      2]
+                ["pwd", 4],
+                ["ups", 2]
             ]
         },
         {
@@ -1540,19 +1842,19 @@
             "altitude": [25000, 28000],
             "speed": 280,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
-                ["aal",      4],
-                ["cmp",      4],
-                ["dal",      4],
-                ["fdx",      2],
-                ["fwi",      1],
-                ["jbu",     10],
+                ["aal", 4],
+                ["cmp", 4],
+                ["dal", 4],
+                ["fdx", 2],
+                ["fwi", 1],
+                ["jbu", 10],
                 ["n/fastGA", 3],
-                ["nks",      2],
-                ["pwd",      4],
-                ["ual",      2],
-                ["ups",      2]
+                ["nks", 2],
+                ["pwd", 4],
+                ["ual", 2],
+                ["ups", 2]
             ]
         }
     ],
