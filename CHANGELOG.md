@@ -21,6 +21,10 @@
 
 
 
+## 5.1.1 (May 12, 2017)
+---
+### Hotfix
+- Fixes or removes from load list all airports that fail to load [#458](https://github.com/openscope/openscope/issues/458)
 
 
 ## 5.1.0 (May 1, 2017)
