@@ -17,7 +17,8 @@ import {
     altitudeValidator,
     fixValidator,
     headingValidator,
-    holdValidator
+    holdValidator,
+    squawkValidator
 } from './argumentValidators';
 import {
     altitudeParser,
@@ -205,6 +206,10 @@ const CUSTOM_ARG_COMMANDS = {
     hold: {
         validate: holdValidator,
         parse: holdParser
+    },
+    squawk: {
+        validate: squawkValidator,
+        parse: noop
     },
     timewarp: {
         validate: zeroOrOneArgumentValidator,
