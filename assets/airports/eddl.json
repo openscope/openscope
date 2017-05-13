@@ -310,7 +310,8 @@
                 "23R": ["DL240", "DL241", ["DL242", "A150+"]]
             },
             "body": [["ELBAL", "A150+"], "BETZO"],
-            "exitPoints": ["DODEN", "A250+"]
+            "exitPoints": {
+                "DODEN": ["DODEN", "A250+"]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "ELBAL", "BETZO", "DODEN*"],
@@ -329,7 +330,8 @@
                 "23R": ["DL240", "DL241"]
             },
             "body": [],
-            "exitPoints": ["GMH"]
+            "exitPoints": {
+                "GMH": ["GMH"]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "ANAVI", "GMH*"],
@@ -348,7 +350,8 @@
                 "23R": ["DL240", "DL241", "ELBAL"]
             },
             "body": [["DEGOM", "A150+"]],
-            "exitPoints": ["KUMIK"]
+            "exitPoints": {
+                "KUMIK": ["KUMIK"]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "ANAVI", "DEGOM", "KUMIK*"],
@@ -367,7 +370,8 @@
                 "23R": [["DL237", "A6+"]]
             },
             "body": [],
-            "exitPoints": ["LMA"]
+            "exitPoints": {
+                "LMA": ["LMA"]
             },
             "draw": [
                 ["DL050", "DL051", "052", "LMA*"],
@@ -386,7 +390,8 @@
                 "23R": ["DL232", ["DL246", "S190-"], "DL248", "ERKUM"]
             },
             "body": ["LUSIX"],
-            "exitPoints": ["MEVEL"]
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
             },
             "draw": [
                 ["DL050", "DL053", "NIKOG", "LUSIX", "MEVEL*"],
@@ -405,7 +410,8 @@
                 "23R": [["DL247", "S210-"], "UBORO", ["NETEX", "S250-"]]
             },
             "body": [],
-            "exitPoints": [["MODRU", "A210+"]]
+            "exitPoints": {
+                "MODRU": [["MODRU", "A210+"]]
             },
             "draw": [
                 ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX", "MODRU*"],
@@ -424,7 +430,8 @@
                 "23R": [["DL237", "A6+"], "LMA"]
             },
             "body": [],
-            "exitPoints": ["NETEX"]
+            "exitPoints": {
+                "NETEX": ["NETEX"]
             },
             "draw": [
                 ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX*"],
@@ -443,7 +450,8 @@
                 "23R": ["DL240", "DL241", "ELBAL"]
             },
             "body": ["MAMIB", "KULIK"],
-            "exitPoints": ["NUDGO"]
+            "exitPoints": {
+                "NUDGO": ["NUDGO"]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "ANAVI","MAMIB","KULIK","NUDGO*"],
@@ -462,7 +470,8 @@
                 "23R": ["DL240", "DL241"]
             },
             "body": [],
-            "exitPoints": ["NVO"]
+            "exitPoints": {
+                "NVO": ["NVO"]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "NVO*"],
@@ -481,10 +490,11 @@
                 "23R": ["DL231", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]]
             },
             "body": [],
-            "exitPoints": ["SONEB"]
+            "exitPoints": {
+                "SONEB": ["SONEB"]
             },
             "draw": [
-                ["DL050", "DL053", "NIKOG", "LUSIX", "DL054", "SONEB*"]
+                ["DL050", "DL053", "NIKOG", "LUSIX", "DL054", "SONEB*"],
                 ["DL230", "DL246", "DL248", "ERKUM", "SONEB"],
                 ["DL231", "DL246"]
             ]
