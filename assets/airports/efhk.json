@@ -1061,7 +1061,7 @@
             "method": "random",
             "route": "EVADI..RUMEP..NIPIB..DIVAM.DIVAM.EFHK",
             "rate": 3.6,
-            "altitude": 25000,
+            "altitude": 29000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1090,7 +1090,7 @@
             "method": "random",
             "route": "IBOSU..ERNUT..LUSEP.LUSEP.EFHK",
             "rate": 1.2,
-            "altitude": 23000,
+            "altitude": 19000,
             "speed": 280,
             "airlines": [
                 ["fin/short", 65],
@@ -1104,7 +1104,7 @@
             "method": "random",
             "route": "NAPRU..OTPAL..LUSEP.LUSEP.EFHK",
             "rate": 1.2,
-            "altitude": 19000,
+            "altitude": 23000,
             "speed": 280,
             "airlines": [
                 ["fin/short", 65],
@@ -1119,7 +1119,7 @@
             "method": "random",
             "route": "OTKAP..ROKVI..VEPIN.VEPIN.EFHK",
             "rate": 1.6,
-            "altitude": 25000,
+            "altitude": 19000,
             "speed": 300,
             "airlines": [
                 ["fin/long", 20],
@@ -1138,7 +1138,7 @@
             "method": "random",
             "route": "RATLA..ARLOM..VEPIN.VEPIN.EFHK",
             "rate": 0.2,
-            "altitude": 29000,
+            "altitude": 25000,
             "speed": 300,
             "airlines": [
                 ["fin/long", 20],
@@ -1186,7 +1186,7 @@
             "method": "random",
             "route": "OTKIL..BEVOM..IPMOT..LAKUT.LAKUT.EFHK",
             "rate": 0.6,
-            "altitude": 25000,
+            "altitude": 29000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1208,7 +1208,7 @@
             "method": "random",
             "route": "UXADA..AMROT..LAKUT.LAKUT.EFHK",
             "rate": 0.8,
-            "altitude": 19000,
+            "altitude": 21000,
             "speed": 280,
             "airlines": [
                 ["fin/short", 90],
@@ -1230,7 +1230,7 @@
             "method": "random",
             "route": "ENETI..AMROT..LAKUT.LAKUT.EFHK",
             "rate": 0.4,
-            "altitude": 21000,
+            "altitude": 19000,
             "speed": 280,
             "airlines": [
                 ["fin/short", 90],
@@ -1252,7 +1252,7 @@
             "method": "random",
             "route": "RIRIP..ODESO..LAKUT.LAKUT.EFHK",
             "rate": 3,
-            "altitude": 23000,
+            "altitude": 25000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1310,7 +1310,7 @@
             "method": "random",
             "route": "LONSA..SORPA..INTOR.INTOR.EFHK",
             "rate": 0.6,
-            "altitude": 29000,
+            "altitude": 31000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1342,7 +1342,7 @@
             "method": "random",
             "route": "NAVOT..SORPA..INTOR.INTOR.EFHK",
             "rate": 0.6,
-            "altitude": 21000,
+            "altitude": 25000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1401,7 +1401,7 @@
             "method": "random",
             "route": "TLL..BEKNA..INTOR.INTOR.EFHK",
             "rate": 1.2,
-            "altitude": 19000,
+            "altitude": 21000,
             "speed": 300,
             "airlines": [
                 ["fin/short", 90],
@@ -1432,7 +1432,7 @@
             "method": "random",
             "route": "ATLUM..LEDUN..ROPAM.ROPAM.EFHK",
             "rate": 1.2,
-            "altitude": 27000,
+            "altitude": 23000,
             "speed": 300,
             "airlines": [
                 ["fin/long", 20],
