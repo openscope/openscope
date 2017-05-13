@@ -7,7 +7,7 @@
 
 ### Features
 
-- Updates Boston Logan Intl. (KBOS) - Updated procedures, added video map, modified airspace, realistic traffic [#228](https://github.com/openscope/openscope/issues/228)
+- Updates Boston Logan Intl. (KBOS) - Updated procedures, added video map and terrain, modified airspace, realistic traffic [#228](https://github.com/openscope/openscope/issues/228)
 
 
 
