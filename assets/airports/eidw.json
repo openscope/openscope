@@ -20,8 +20,6 @@
     },
     "arrivalRunway": "28",
     "departureRunway": "28",
-    "arrivalRunway": "22",
-    "departureRunway": "22",
     "airspace": [
         {
             "floor": 0,
