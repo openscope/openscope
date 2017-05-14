@@ -2,8 +2,16 @@ import _has from 'lodash/has';
 import EventModel from './EventModel';
 
 /**
+ * Creates a static class that should be used for cross class communication.
  *
+ * This is a static class, however, when used it should be reassigned
+ * to a class property `#event`.
  *
+ * Useage:
+ * - responding class `this.event.on('EVENT_NAME', this.onEventCallback)`
+ * - triggering class `this.event.trigger('EVENT_NAME', DATA_TO_PASS)`
+ *
+ * @class EventBus
  */
 class EventBus {
     /**
@@ -11,8 +19,10 @@ class EventBus {
      */
     constructor() {
         /**
+         * Dictionary of `eventNames`
+         *
          * @property _events
-         * @type {object}
+         * @type {object<string, EventModel>}
          * @default {}
          * @private
          */
@@ -20,7 +30,6 @@ class EventBus {
     }
 
     /**
-     *
      * @for EventBus
      * @method destroy
      */
@@ -29,12 +38,14 @@ class EventBus {
     }
 
     /**
-     * register and event with a callback
+     * Register an event with a callback
      *
-     * if an eventName already exists, add the observer to the observers list
+     * If an eventName already exists, add the observer to the observers list
      *
      * @for EventBus
      * @method on
+     * @param eventName {string}   the name of an event
+     * @param callback {function}  function to be called when an event is triggered
      */
     on(eventName, callback) {
         if (this.has(eventName)) {
@@ -44,50 +55,54 @@ class EventBus {
         }
 
         this._events[eventName] = new EventModel(eventName);
-        this._events[eventName].addObserver(callback);
+
+        this._addObserver(eventName, callback);
     }
 
     /**
+     * Remove a callback from the observers list
      *
-     * remove a a callback from the observers list
+     * If multiple observers exist, remove only the one callback from that list
      *
-     * if multiple observers exist, remove only the one callback from that list
-     *
-     * in a full implementation, if this is the only observer, the event should be destroyed
-     * and removed from this._events too.
+     * If `eventName` is the only observer, the event will be destroyed
+     * and removed from `#_events`.
      *
      * @for EventBus
      * @method off
+     * @param eventName {string}   the name of an event
+     * @param callback {function}  function to remove from an events observers list
      */
     off(eventName, callback) {
         if (!this.has(eventName)) {
             return;
         }
 
-        this._events[eventName].removeObserver(callback);
-    }
+        this._removeObserver(eventName, callback);
 
-    /**
-     *
-     * trigger an event
-     *
-     * will result in calling all of the observers listed for a particular
-     * event with the provided arguments
-     *
-     * @for EventBus
-     * @method trigger
-     */
-    trigger(eventName, args) {
-        const event = this._events[eventName];
-        const observers = event.observers;
-        const length = observers.length;
-
-        for (let i = 0; i < length; i++) {
-            observers[i](args);
+        if (this._events[eventName].observers.length < 1) {
+            this._removeEventKey(eventName);
         }
     }
 
     /**
+     * Trigger an event
+     *
+     * Will result in calling all of the observers listed for a particular
+     * event with the provided argument(s)
+     *
+     * @for EventBus
+     * @method trigger
+     */
+    trigger(eventName, ...args) {
+        const observers = this._events[eventName].observers;
+
+        for (let i = 0; i < observers.length; i++) {
+            observers[i](...args);
+        }
+    }
+
+    /**
+     * Boolean helper used to determine if `eventName` exists within `#_events`
      *
      * @for EventBus
      * @method has
@@ -95,6 +110,47 @@ class EventBus {
      */
     has(eventName) {
         return _has(this._events, eventName);
+    }
+
+    /**
+     * Add an observer to an event's observer list
+     *
+     * @for EventBus
+     * @method _addObserver
+     * @param eventName {string}
+     * @param callback {function}
+     * @private
+     */
+    _addObserver(eventName, callback) {
+        this._events[eventName].addObserver(callback);
+    }
+
+    /**
+     * Remove an observer from an event's observer list
+     *
+     * @for EventBus
+     * @method _removeObserver
+     * @param eventName {string}
+     * @param callback {function}
+     * @private
+     */
+    _removeObserver(eventName, callback) {
+        this._events[eventName].removeObserver(callback);
+    }
+
+    /**
+     * Remove a key from `#_events`
+     *
+     * This should only be called after the removal of the last observer
+     * for an `eventName`.
+     *
+     * @for EventBus
+     * @method _removeEventKey
+     * @param eventName {string}
+     * @private
+     */
+    _removeEventKey(eventName) {
+        delete this._events[eventName];
     }
 }
 
