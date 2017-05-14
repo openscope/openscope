@@ -48,7 +48,10 @@
     ],
     "fixes": {
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
+        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
+        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
         "_OLM161026"  : ["N46d32.31m0", "W122d54.11m0"],
+        "_SUMMA329017": ["N46d53.46m0", "W122d05.84m0"],
         "ALKIA": ["N47d37.26m0", "W122d28.45m0"],
         "ARRIE": ["N47d52.79m0", "W123d28.55m0"],
         "ARVAD": ["N47d13.36m0", "W122d34.86m0"],
@@ -141,71 +144,88 @@
         }
     ],
     "sids": {
-        "SUMMA8": {
-            "icao": "SUMMA8",
-            "name": "Summa Eight",
-            "rwy": {
-                "16L": ["NEVJO", "SUMMA"],
-                "16C": ["NEVJO", "SUMMA"],
-                "16R": ["NEVJO", "SUMMA"],
-                "34L": ["NEZUG", "_NEZUG070010", "SUMMA"],
-                "34C": ["NEZUG", "_NEZUG070010", "SUMMA"],
-                "34R": ["NEZUG", "_NEZUG070010", "SUMMA"]
-            },
-            "exitPoints": {
-                "LKV": ["LKV"],
-                "BKE": ["BKE"]
-            },
-            "draw": [["NEVJO", "SUMMA"], ["NEZUG", "_NEZUG070010", "SUMMA"], ["SUMMA", "LKV*"], ["SUMMA", "BKE*"]]
-        },
         "BANGR8": {
             "icao": "BANGR8",
             "name": "Bangor Eight",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]]
+                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
+            "body": [["BANGR", "A100+"]],
             "exitPoints": {
-                "PANGL": ["PANGL"],
-                "ARRIE": ["ARRIE"]
+                "ARRIE": ["ARRIE"],
+                "BANGR": ["BANGR"],
+                "PANGL": ["PANGL"]
             },
-            "draw": [["CAVOB", "RENBE"], ["OTLIE", "RENBE"], ["WESET", "RENBE"], ["RENBE", "RICHR", "TOMRE", "BANGR"], ["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "BREMM", "BANGR"], ["BANGR", "PANGL*"], ["BANGR", "ARRIE*"]]
+            "draw": [
+                ["CAVOB", "RENBE"],
+                ["OTLIE", "RENBE"],
+                ["WESET", "RENBE"],
+                ["RENBE", "RICHR", "TOMRE", "BANGR"],
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "BREMM", "BANGR*"],
+                ["BANGR", "PANGL*"],
+                ["BANGR", "ARRIE*"]
+            ]
         },
         "ELMAA2": {
             "icao": "ELMAA2",
             "name": "Elma Two",
             "rwy": {
-                "16L": [["NICHY", "A30+"], "ELMAA"],
-                "16C": [["NICHY", "A30+"], "ELMAA"],
-                "16R": [["NICHY", "A30+"], "ELMAA"]
+                "16L": [["NICHY", "A30+"]],
+                "16C": [["NICHY", "A30+"]],
+                "16R": [["NICHY", "A30+"]]
             },
+            "body": ["_NICHY250SEA230"],
             "exitPoints": {
-                "HQM": ["HQM"],
-                "CVO": ["CVO"]
+                "CVO": ["ELMAA", "CVO"],
+                "ELMAA": ["ELMAA"],
+                "HQM": ["ELMAA", "HQM"]
             },
-            "draw": [["NICHY", "ELMAA"], ["ELMAA", "HQM*"],["ELMAA", "CVO*"]]
+            "draw": [
+                ["NICHY", "_NICHY250SEA230", "ELMAA*"],
+                ["ELMAA", "HQM*"],
+                ["ELMAA", "CVO*"]
+            ]
         },
         "HAROB5": {
             "icao": "HAROB5",
             "name": "Harob Five",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]]
+                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
+            "body": [],
             "exitPoints": {
-                "HQM": ["HQM"],
-                "ERAVE": ["ERAVE"],
-                "HISKU": ["FEPOT", "HISKU"]
+                "ERAVE": [["HAROB", "A100+"], "ERAVE"],
+                "FEPOT": [["HAROB", "A100+"], "FEPOT"],
+                "HAROB": [["HAROB", "A100+"]],
+                "HISKU": [["HAROB", "A100+"], "FEPOT", "HISKU"],
+                "HQM": [["HAROB", "A100+"], "HQM"]
             },
-            "draw": [["CAVOB", "RENBE"], ["OTLIE", "RENBE"], ["WESET", "RENBE"], ["RENBE", "RICHR", "EMRLD", "HAROB"], ["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "BREMM", "HAROB"], ["HAROB", "HQM*"], ["HAROB", "ERAVE*"], ["HAROB", "FEPOT", "HISKU*"]]
+            "draw": [
+                ["CAVOB", "RENBE"],
+                ["OTLIE", "RENBE"],
+                ["WESET", "RENBE"],
+                ["RENBE", "RICHR", "EMRLD", "HAROB"],
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "BREMM", "HAROB*"],
+                ["HAROB", "HQM*"],
+                ["HAROB", "ERAVE*"],
+                ["HAROB", "FEPOT*", "HISKU*"]
+            ]
         },
         "KMORE4": {
             "icao": "KMORE4",
@@ -215,11 +235,17 @@
                 "34C": ["NESOE"],
                 "34R": ["DODVE"]
             },
-            "body": [["WUREL", "A31+|S250-"], ["ATOME", "S250-"], ["CENEX", "S250-"], ["KTSAP", "S250-"], ["ZUVEN", "A100+|S250-"], ["KMORE", "S250-"]],
+            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP", ["ZUVEN", "A100+"]],
             "exitPoints": {
-                "BLUIT": ["BLUIT"]
+                "BLUIT": [["KMORE", "S250-"], "BLUIT"],
+                "KMORE": [["KMORE", "S250-"]]
             },
-            "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "ZUVEN", "KMORE", "BLUIT*"]]
+            "draw": [
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "CENEX", "KTSAP", "ZUVEN", "KMORE*", "BLUIT*"]
+            ]
         },
         "KTSAP5": {
             "icao": "KTSAP5",
@@ -229,12 +255,40 @@
                 "34C": ["NESOE"],
                 "34R": ["DODVE"]
             },
-            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP"],
+            "body": [["WUREL", "A31+"], "ATOME", "CENEX"],
             "exitPoints": {
-                "TOU": ["TOU"],
-                "BKE": ["BKE"]
+                "KTSAP": ["KTSAP"],
+                "TOU": ["KTSAP", "TOU"]
             },
-            "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "TOU*"]]
+            "draw": [
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "CENEX", "KTSAP*", "TOU*"]
+            ]
+        },
+        "SUMMA9": {
+            "icao": "SUMMA9",
+            "name": "Summa Nine",
+            "rwy": {
+                "16L": ["NEVJO"],
+                "16C": ["NEVJO"],
+                "16R": ["NEVJO"],
+                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "34C": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+            },
+            "exitPoints": {
+                "BKE": ["SUMMA", "BKE"],
+                "LKV": ["SUMMA", "LKV"],
+                "SUMMA": ["SUMMA"]
+            },
+            "draw": [
+                ["NEVJO", "SUMMA"],
+                ["NEZUG", "_NEZUG070010", "SUMMA"],
+                ["SUMMA", "LKV*"],
+                ["SUMMA*", "BKE*"]
+            ]
         }
     },
     "spawnPatterns": [
