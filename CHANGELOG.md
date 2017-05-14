@@ -6,6 +6,9 @@
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
 - Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
+- Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
+
+
 
 
 
