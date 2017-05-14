@@ -1,26 +1,31 @@
 /**
+ * Defines an event and an event's observers
  *
+ * Should be used by the `EventBus` when defining new events
  *
- *
+ * @class EventModel
  */
 export default class EventModel {
     /**
-     *
      * @constructor
-     * @param
+     * @param name {string}
      */
     constructor(name) {
         /**
-         * @property
-         * @type
-         * @default
+         * The name of an event
+         *
+         * @property name
+         * @type {string}
+         * @default ''
          */
         this.name = '';
 
         /**
-         * @property
-         * @type
-         * @default
+         * Functions that will be called when this event is triggered
+         *
+         * @property observers
+         * @type {*[]}
+         * @default []
          */
         this.observers = [];
 
@@ -28,13 +33,21 @@ export default class EventModel {
     }
 
     /**
-     *
      * @for EventModel
      * @method init
      * @param  name {string}
      */
     init(name) {
         this.name = name;
+    }
+
+    /**
+     * @for EventModel
+     * @method destroy
+     */
+    destroy() {
+        this.name = '';
+        this.observers = [];
     }
 
     /**

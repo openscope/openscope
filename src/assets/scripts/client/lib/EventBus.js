@@ -25,7 +25,7 @@ class EventBus {
      * @method destroy
      */
     destroy() {
-        this.events = {};
+        this._events = {};
     }
 
     /**
