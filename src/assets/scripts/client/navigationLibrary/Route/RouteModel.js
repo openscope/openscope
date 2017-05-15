@@ -1,9 +1,9 @@
 import BaseModel from '../../base/BaseModel';
 import {
-    HOLD_SEGMENT_SYMBOL,
+    HOLD_WAYPOINT_PREFIX,
     ROUTE_SEGMENT_MAX_LENGTH,
     PROCEDURE_SEGMENT_DIVIDER,
-    VECTOR_SEGMENT_SYMBOL
+    VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 
 // TODO: this class needs a better name
@@ -149,7 +149,7 @@ export default class RouteModel extends BaseModel {
  * @static
  */
 RouteModel.isProcedureRouteString = (routeString) => {
-    if (routeString.indexOf(HOLD_SEGMENT_SYMBOL) !== -1) {
+    if (routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== -1) {
         return false;
     }
 
@@ -172,7 +172,7 @@ RouteModel.isProcedureRouteString = (routeString) => {
  * @return {boolean}
  * @static
  */
-RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_SEGMENT_SYMBOL) !== -1;
+RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== -1;
 
 /**
  * Used to determine if a string is in the shape of a `vectorRouteString`
@@ -186,4 +186,4 @@ RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_SEGMENT
  * @return {boolean}
  * @static
  */
-RouteModel.isVectorRouteString = (routeString) => routeString.indexOf(VECTOR_SEGMENT_SYMBOL) !== -1;
+RouteModel.isVectorRouteString = (routeString) => routeString.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;

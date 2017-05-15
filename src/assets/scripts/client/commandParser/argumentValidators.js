@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import { convertStringToNumber } from '../utilities/unitConverters';
 import { EXPEDITE } from './commandMap';
 import { ERROR_MESSAGE } from './commandParserMessages';
+import { REGEX } from '../constants/globalConstants';
 
 /**
  * Check that `args` has exactly zero values
@@ -232,5 +233,22 @@ export const holdValidator = (args = []) => {
         if (!_isString(args[i])) {
             return ERROR_MESSAGE.MUST_BE_STRING;
         }
+    }
+};
+
+/**
+ * Checks that `args` has one value that corresponds to a valid squawk
+ *
+ * @function squawkValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+export const squawkValidator = (args = []) => {
+    if (args.length !== 1) {
+        return ERROR_MESSAGE.SINGLE_ARG_LENGTH;
+    }
+
+    if (!REGEX.TRANSPONDER_CODE.test(args[0])) {
+        return ERROR_MESSAGE.INVALID_SQUAWK;
     }
 };
