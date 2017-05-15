@@ -377,7 +377,6 @@ export default class AircraftInstanceModel {
     }
 
     /**
-<<<<<<< HEAD
      * Is an aircraft's current heading within a specific range
      *
      * @for AircraftInstanceModel
@@ -392,8 +391,6 @@ export default class AircraftInstanceModel {
     /**
      * Returns a true value if there is a match from the callsignToMatch
      *
-=======
->>>>>>> 0a1028de43d387a3f128ff03d22b17f27e61fccd
      * @for AircraftInstanceModel
      * @method matchCallsign
      * @param callsign {string}
@@ -401,7 +398,7 @@ export default class AircraftInstanceModel {
     matchCallsign(callsignToMatch) {
         const shouldMatchAnyCallsign = callsignToMatch === '*';
          // checks to see if the given call sign matches the airline Id + callsign format
-        if (shouldMatchAnyCallsign || (callsignToMatch.toUpperCase() === this.getCallsign())) {
+        if (shouldMatchAnyCallsign || (this.airlineId.toUpperCase() + callsignToMatch.toUpperCase() === this.callsign)) {
             return true;
         }
 
