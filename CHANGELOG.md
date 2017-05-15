@@ -90,6 +90,15 @@
 - Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
 
 
+
+
+
+
+
+
+
+
+
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
     - followed up and corrected 2 mistakenly cleared out aircraft files [#259](https://github.com/openscope/openscope/issues/259)
