@@ -7,16 +7,17 @@ import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
-import { bearingToPoint } from '../math/flightMath';
 import { tau } from '../math/circle';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: this may need to live somewhere else
 /**
@@ -50,7 +51,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     // istanbul ignore next
     constructor(spawnPatternJson, navigationLibrary, airportController) {
-        super(spawnPatternJson, navigationLibrary, airportController);
+        super();
 
         /**
          * Schedule reference id
@@ -61,7 +62,7 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * Provides easy access to a specific scheduleId
          *
-         * @DEPRECATED
+         * @deprecated
          * @property scheduleId
          * @type {number}
          * @default -1
@@ -217,24 +218,18 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * @property heading
          * @type {number}
-         * @default -1
+         * @default -999
          */
-        this.heading = -1;
+        this.heading = -999;
 
         /**
          * Initial position of a spawning aircraft
          *
-         * Defaults to [0, 0] which equates the the airport midfield and should
-         * only apply to departing aircraft.
-         *
-         * An arriving aircraft should be assigned a position along an arrival
-         * route, in which case this default will not be used.
-         *
-         * @property position
-         * @type {array}
-         * @default [0, 0]
+         * @property _positionModel
+         * @type {StaticPositionModel}
+         * @default null
          */
-        this.position = [0, 0];
+        this._positionModel = null;
 
         // SPAWN PATTERN PROPERTIES
 
@@ -397,6 +392,28 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property positionModel
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for SpawnPatternModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * Set up the instance properties
@@ -411,15 +428,16 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
-        if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
+        // We return early here if the object is empty because we pre-hydrate objects to improve load speeds of the app.
+        if (_isEmpty(spawnPatternJson)) {
             return;
         }
 
-        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+        if (isEmptyObject(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
-        if (!_isObject(airportController) || _isEmpty(airportController)) {
+        if (isEmptyObject(airportController)) {
             throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
         }
 
@@ -437,6 +455,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
+        this._positionModel = this._generateSelfReferencedAirportPositionModel();
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
@@ -469,7 +488,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumAltitude = -1;
         this.speed = 0;
         this.heading = -1;
-        this.position = [0, 0];
+        this._positionModel = null;
 
         this.cycleStartTime = -1;
         this.rate = -1;
@@ -911,7 +930,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController) {
         if (this._isDeparture()) {
-            // FIXME: this may be dead, please remove if it is
+            // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
                 type: 'departure'
             }];
@@ -946,11 +965,11 @@ export default class SpawnPatternModel extends BaseModel {
 
         const waypointModelList = this._generateWaypointListForRoute(spawnPatternJson.route, navigationLibrary);
         // grab position of first fix/waypoint
-        const initialPosition = waypointModelList[0].position;
+        const initialPosition = waypointModelList[0].positionModel;
         // calculate heading from first fix/waypoint to second fix/waypoint
-        const heading = bearingToPoint(initialPosition, waypointModelList[1].position);
+        const heading = initialPosition.bearingToPosition(waypointModelList[1].positionModel);
 
-        this.position = initialPosition;
+        this._positionModel = initialPosition;
         this.heading = heading;
     }
 
@@ -983,6 +1002,15 @@ export default class SpawnPatternModel extends BaseModel {
         );
 
         return waypointModelList;
+    }
+
+    _generateSelfReferencedAirportPositionModel() {
+        const airportPosition = this._airportController.airport_get().positionModel;
+        const selfReferencingPosition = new StaticPositionModel(airportPosition.gps,
+            airportPosition, airportPosition.magneticNorth
+        );
+
+        return selfReferencingPosition;
     }
 
     /**

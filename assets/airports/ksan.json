@@ -18,6 +18,8 @@
         "angle": 300,
         "speed": 8
     },
+    "arrivalRunway": "27",
+    "departureRunway": "27",
     "fixes": {
         "_KSAN046060": ["N33d16.52m0", "W116d11.36m0"],
         "_KSAN075060": ["N32d47.86m0", "W116d00.37m0"],

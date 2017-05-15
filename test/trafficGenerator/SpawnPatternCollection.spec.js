@@ -12,9 +12,6 @@ ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new SpawnPatternCollection());
     t.throws(() => new SpawnPatternCollection([]));
     t.throws(() => new SpawnPatternCollection({}));
-    t.throws(() => new SpawnPatternCollection(42));
-    t.throws(() => new SpawnPatternCollection('threeve'));
-    t.throws(() => new SpawnPatternCollection(false));
 
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK));
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, []));
@@ -23,12 +20,8 @@ ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, 'threeve'));
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, false));
 
-    t.throws(() => new SpawnPatternCollection(navigationLibraryFixture));
     t.throws(() => new SpawnPatternCollection([], navigationLibraryFixture));
     t.throws(() => new SpawnPatternCollection({}, navigationLibraryFixture));
-    t.throws(() => new SpawnPatternCollection(42, navigationLibraryFixture));
-    t.throws(() => new SpawnPatternCollection('threeve', navigationLibraryFixture));
-    t.throws(() => new SpawnPatternCollection(false, navigationLibraryFixture));
 
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture));
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture, []));

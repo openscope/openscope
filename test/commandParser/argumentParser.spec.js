@@ -6,7 +6,8 @@ import {
     altitudeParser,
     headingParser,
     findHoldCommandByType,
-    holdParser
+    holdParser,
+    timewarpParser
 } from '../../src/assets/scripts/client/commandParser/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
@@ -102,14 +103,14 @@ ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t
 });
 
 ava('.holdParser() returns an array of length 3 when passed a fixname as the only argument', t => {
-    const expectedResult = [null, null, 'dumba'];
+    const expectedResult = ['right', '1min', 'dumba'];
     const result = holdParser(['dumba']);
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.holdParser() returns an array of length 3 when passed a direction and fixname as arguments', t => {
-    const expectedResult = ['left', null, 'dumba'];
+    const expectedResult = ['left', '1min', 'dumba'];
     let result = holdParser(['dumba', 'left']);
     t.true(_isEqual(result, expectedResult));
 
@@ -130,4 +131,16 @@ ava('.holdParser() returns an array of length 3 when passed a direction, legLeng
 
     result = holdParser(['left', 'dumba', '1min']);
     t.true(_isEqual(result, expectedResult));
+});
+
+ava('.timewarpParser() returns an array with 0 as a value when provided no args', (t) => {
+    const result = timewarpParser([]);
+
+    console.log(result);
+});
+
+ava('.timewarpParser() returns an array with 50 as a value when provided as an arg', (t) => {
+    const result = timewarpParser([50]);
+
+    console.log(result);
 });

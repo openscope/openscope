@@ -1,26 +1,23 @@
 import ava from 'ava';
 import sinon from 'sinon';
-import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
-
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK,
-    ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK
 } from './_mocks/spawnPatternMocks';
+import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
 ava('does not throw when called without parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel());
     t.notThrows(() => new SpawnPatternModel([]));
     t.notThrows(() => new SpawnPatternModel({}));
     t.notThrows(() => new SpawnPatternModel(42));
-    t.notThrows(() => new SpawnPatternModel('threeve'));
     t.notThrows(() => new SpawnPatternModel(false));
 });
 
@@ -44,14 +41,13 @@ ava('.init() throws when called with invalid parameters', (t) => {
 
 ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
-    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture, airportControllerFixture));
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
-ava('#position defaults to [0, 0]', (t) => {
+ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
-    t.true(_isEqual(model.position, [0, 0]));
+    t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
 ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
@@ -147,8 +143,6 @@ ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
 
-    console.log(result);
-
     // t.true(result === 360);
 });
 
@@ -189,17 +183,17 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
 
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    t.true(model.heading === -1);
-    t.true(_isEqual(model.position, [0, 0]));
+    t.true(model.heading === -999);
+    t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
-    const expedtedHeadingResult = -1.8520506712692788;
+    const expectedHeadingResult = 4.436187691083426;
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
     model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
-    t.true(model.heading === expedtedHeadingResult);
-    t.true(_isEqual(model.position, expectedPositionResult));
+    t.true(model.heading === expectedHeadingResult);
+    t.true(_isEqual(model.relativePosition, expectedPositionResult));
 });

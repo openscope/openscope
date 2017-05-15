@@ -11,6 +11,7 @@ import _uniq from 'lodash/uniq';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import { choose } from '../utilities/generalUtilities';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * An aircraft operating agency
@@ -29,9 +30,9 @@ export default class AirlineModel extends BaseModel {
      */
     /* istanbul ignore next */
     constructor(airlineDefinition) {
-        super(airlineDefinition);
+        super();
 
-        if (!_isObject(airlineDefinition) || _isArray(airlineDefinition) || _isEmpty(airlineDefinition)) {
+       if (isEmptyObject(airlineDefinition)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
         }
@@ -55,11 +56,11 @@ export default class AirlineModel extends BaseModel {
         /**
          * Radio callsign
          *
-         * @property callsign
+         * @property radioName
          * @type {string}
          * @default 'Default'
          */
-        this.callsign = 'Default';
+        this.radioName = 'Default';
 
         /**
          * Parameters for flight number generation
@@ -161,7 +162,7 @@ export default class AirlineModel extends BaseModel {
     init(airlineDefinition) {
         // TODO: these _get() lines are likely redundant and could be removed only after proper testing
         this.icao = _get(airlineDefinition, 'icao', this.icao).toLowerCase();
-        this.callsign = _get(airlineDefinition, 'callsign.name', this.callsign);
+        this.radioName = _get(airlineDefinition, 'callsign.name', this.radioName);
         this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
         this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
         this.fleets = _get(airlineDefinition, 'fleets');

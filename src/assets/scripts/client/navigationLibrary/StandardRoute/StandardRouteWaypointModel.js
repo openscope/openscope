@@ -1,42 +1,21 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
-import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
-
-/**
- * @property NAME_INDEX
- * @type {number}
- * @final
- */
-const NAME_INDEX = 0;
-
-/**
- * @property RESTRICTION_INDEX
- * @type {number}
- * @final
- */
-const RESTRICTION_INDEX = 1;
-
-/**
- * @property RESTRICTION_SEPARATOR
- * @type {string}
- * @final
- */
-const RESTRICTION_SEPARATOR = '|';
-
-/**
- * @property ALTITUDE_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const ALTITUDE_RESTRICTION_PREFIX = 'A';
-
-/**
- * @property SPEED_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const SPEED_RESTRICTION_PREFIX = 'S';
+import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
+import { REGEX } from '../../constants/globalConstants';
+import {
+    FLY_OVER_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/navigation/routeConstants';
+import {
+    ALTITUDE_RESTRICTION_PREFIX,
+    DECIMAL_RADIX,
+    FL_TO_THOUSANDS_MULTIPLIER,
+    NAME_INDEX,
+    RESTRICTION_INDEX,
+    RESTRICTION_SEPARATOR,
+    SPEED_RESTRICTION_PREFIX
+} from '../../constants/navigation/waypointConstants';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -57,7 +36,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param routeWaypoint {array|string}
      */
     constructor(routeWaypoint) {
-        super(routeWaypoint);
+        super();
 
         if (typeof routeWaypoint === 'undefined') {
             return this;
@@ -92,22 +71,41 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this._restrictions = null;
 
         /**
-         * NOT IN USE
-         *
-         * Required altitude for a fix
+         * Required altitude for a waypoint
          *
          * @property _altitude (optional)
          * @type {number}
          * @default null
          * @private
          */
-        this._altitude = null;
+        this._altitude = -1;
+
+        /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
+
+        /**
+         * Required speed for a waypoint
+         *
+         * @property _speed (optional)
+         * @type {string}
+         * @default null
+         * @private
+         */
+        this._speed = -1;
 
         // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
         /**
          * NOT IN USE
          *
-         * Altitude constraints, if any, for a fix.
+         * Altitude constraint, if any, for a waypoint.
          *
          * @property _altitudeConstraint (options)
          * @type {string}
@@ -119,14 +117,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
         /**
          * NOT IN USE
          *
-         * Speed constraint, if any, for a fix.
+         * Speed constraint, if any, for a waypoint.
          *
-         * @property _speed (optional)
+         * @property _speedConstraint (optional)
          * @type {string}
          * @default null
          * @private
          */
-        this._speed = null;
+        this._speedConstraint = '';
 
         /**
          * Positon information for the current waypoint
@@ -134,12 +132,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * Specific bits of this property are exposed via public getters.
          * This property should never be modified by an exteral method.
          *
-         * @property _waypointPosition
-         * @type {PositionModel}
+         * @property _positionModel
+         * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._waypointPosition = null;
+        this._positionModel = null;
 
         /**
          * Distance in nm from the previous waypoint.
@@ -174,23 +172,13 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Return this waypoint's `position` propery
-     *
-     * @property position
-     * @return {array}
-     */
-    get position() {
-        return this._waypointPosition.position;
-    }
-
-    /**
      * Return this waypoint's `gps` position property
      *
      * @property gps
      * @return {array}
      */
     get gps() {
-        return this._waypointPosition.gps;
+        return this._positionModel.gps;
     }
 
     /**
@@ -200,7 +188,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {array}
      */
     get gpsXY() {
-        return this._waypointPosition.gpsXY;
+        return this._positionModel.gpsXY;
     }
 
     /**
@@ -219,6 +207,28 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property positionModel
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for StandardRouteWaypointModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for StandardRouteWaypointModel
@@ -230,12 +240,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _init(routeWaypoint) {
         // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
-            this.name = routeWaypoint;
+            this.name = routeWaypoint.replace(FLY_OVER_WAYPOINT_PREFIX, '');
+            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
 
             return this;
         }
 
-        this.name = routeWaypoint[NAME_INDEX];
+        this.name = routeWaypoint[NAME_INDEX].replace(FLY_OVER_WAYPOINT_PREFIX, '');
+        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
@@ -253,15 +268,16 @@ export default class StandardRouteWaypointModel extends BaseModel {
     reset() {
         this.name = '';
         this._restrictions = null;
-        this._altitude = null;
+        this._altitude = -1;
         this._altitudeConstraint = '';
-        this._speed = null;
+        this._speed = -1;
+        this._speedConstraint = '';
 
         return this;
     }
 
     /**
-     * Find the matching fix from the `FixCollection` and clone its `PositionModel` this `_waypointPosition`
+     * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
      * @method _clonePoisitonFromFix
@@ -277,27 +293,39 @@ export default class StandardRouteWaypointModel extends BaseModel {
             return this;
         }
 
-        this._waypointPosition = fixModel.clonePosition();
+        this._positionModel = fixModel.clonePosition();
 
         return this;
     }
 
     /**
+     * Build a new `WaypointModel` from the current instance.
+     *
+     * This method provides a way to create a `WaypointModel` with the current
+     * properties of a `StandardRouteWaypointModel` instance.
+     *
+     * This is used by `LegModel` when building a flight plan from a `routeString`. A `procedureRouteString`
+     * will result in finding a list of `StandardRouteWaypointModel`s. From those `StandardRouteWaypointModel`
+     * we need to be able to create `WaypointModel`s that the Fms can consume.
+     *
+     * There is a method of the same name in the `FixModel` that does this same thing
+     * but will be used only for `directRouteStrings`.
+     *
      * @for StandardRouteWaypointModel
-     * @method generateFmsWaypoint
-     * @param airport {AirportInstanceModel}
-     * @return {Waypoint}
+     * @method toWaypointModel
+     * @return {WaypointModel}
      */
-    generateFmsWaypoint(airport) {
-        const fmsWaypoint = {
-            fix: this.name,
-            fixRestrictions: {
-                alt: this._altitude,
-                spd: this._speed
-            }
+    toWaypointModel() {
+        const waypointProps = {
+            altitudeRestriction: this._altitude,
+            isFlyOverWaypoint: this._isFlyOverWaypoint,
+            isVector: this._isVector,
+            name: this.name,
+            positionModel: this.positionModel,
+            speedRestriction: this._speed
         };
 
-        return new Waypoint(fmsWaypoint, airport);
+        return new WaypointModel(waypointProps);
     }
 
     /**
@@ -306,7 +334,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Parse a single string into:
      * - `this._altitude`            = expressed in feet
      * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speed`      = expressed in kts
+     * - `this._speed`               = expressed in kts
      *
      * Exapmles:
      * - "A80+|S210"
@@ -344,8 +372,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param altitudeRestriction {string}
      * @private
      */
-    _setAltitudeRestriction(altitudeRestriction) {
-        this._altitude = altitudeRestriction.substr(1);
+    _setAltitudeRestriction(rawAltitudeStr) {
+        const altitudeRestriction = rawAltitudeStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+
+        this._altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
     }
 
     /**
@@ -354,8 +384,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param speedRestriction {string}
      * @private
      */
-    _setSpeedRestriction(speedRestriction) {
-        this._speed = speedRestriction.substr(1);
+    _setSpeedRestriction(rawSpeedRestrictionStr) {
+        const speedRestriction = rawSpeedRestrictionStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+
+        this._speed = parseInt(speedRestriction, DECIMAL_RADIX);
     }
 
     /**

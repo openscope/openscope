@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, no-undef, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import TutorialStep from './TutorialStep';
@@ -202,7 +202,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -220,7 +220,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -237,7 +237,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -255,7 +255,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -272,7 +272,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -309,7 +309,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign())
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign)
                         .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
                         .replace('{SID_NAME}', prop.aircraft.list[0].destination);
             },
@@ -329,7 +329,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -348,7 +348,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -396,7 +396,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position

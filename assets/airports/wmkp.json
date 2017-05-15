@@ -18,6 +18,8 @@
         "angle": 195,
         "speed": 4
     },
+    "arrivalRunway": "22",
+    "departureRunway": "22",
     "fixes": {
         "LUNTU":  ["N05d41m35.90",  "E100d19m20.10"],
         "ISMAS":  ["N05d43m59.00",  "E100d02m36.80"],

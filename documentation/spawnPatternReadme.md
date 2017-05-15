@@ -1,5 +1,5 @@
 ## Spawn Patterns
-In version 3.3.0 we completely changed how aircraft coming into the system are defined.  We introduced **_Spawn Patterns_**.  Spawn Patterns provide a simple, consistent way to describe aircraft coming into the system.  Spawn Patterns are used for _both_ arrivals and departures.  The shape of the data is exactly the same for both, all keys are expected to be passed all the time.  
+In version 3.3.0 we completely changed how aircraft coming into the system are defined.  We introduced ***Spawn Patterns***.  Spawn Patterns provide a simple, consistent way to describe aircraft coming into the system.  Spawn Patterns are used for _both_ arrivals and departures.  The shape of the data is exactly the same for both, all keys are expected to be passed all the time.  
 
 Lets look at some examples before we continue:
 ```javascript
@@ -63,6 +63,8 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
 * Should be in the shape of a routeString.
   - For direct routes: `FIXXA..FIXXB..FIXXC..FIXXD`
   - For complex routes: `FIXXA..FIXXB..ENTRY.PROCEDURE_ID.EXIT`
+  - Prepend a fix name with `@` to _hold_ at that fix `FIXXA..@FIXXB..FIXXC`
+  - Prepend a three digit heading with `#` to _fly that heading until given further instructions_
 
 #### altitude (* _for arrivals_)
 Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft
@@ -79,6 +81,8 @@ speed an aircraft spawns at expressed in knots
 Defines the method used to calculate delay between aircraft spawns.
 
 * Should always be one of: `cyclic, random, surge, wave`
+
+*See [spawnPatternMethodReadme.md](documentation/spawnPatternMethodReadme.md) for more information*
 
 #### rate*
 Rate at which aircraft spawn expressed in ACPH (aircraft per hour).

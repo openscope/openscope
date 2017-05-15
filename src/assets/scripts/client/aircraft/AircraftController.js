@@ -1,20 +1,20 @@
+/* eslint-disable no-continue */
+import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
+import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen, vradial, vsub } from '../math/vector';
-import { km, kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
-import { calcTurnInitiationDistance } from '../math/flightMath';
-import { tau } from '../math/circle';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
+import { vlen } from '../math/vector';
+import { km } from '../utilities/unitConverters';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -34,10 +34,10 @@ export default class AircraftController {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
-                `received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
+                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -65,7 +65,6 @@ export default class AircraftController {
          */
         this._navigationLibrary = navigationLibrary;
 
-        // TODO: rename to `AircraftTypeDefinitionCollection`
         /**
          * Reference to an `AircraftTypeDefinitionCollection` instance
          *
@@ -134,9 +133,11 @@ export default class AircraftController {
      * @private
      */
     createPreSpawnAircraftWithSpawnPatternModel = (spawnPatternModel) => {
+        const isPreSpawn = true;
+
         for (let i = 0; i < spawnPatternModel.preSpawnAircraftList.length; i++) {
             const preSpawnHeadingAndPosition = spawnPatternModel.preSpawnAircraftList[i];
-            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel);
+            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel, isPreSpawn);
             const initializationProps = Object.assign({}, baseAircraftProps, preSpawnHeadingAndPosition);
 
             this._createAircraftWithInitializationProps(initializationProps);
@@ -172,27 +173,6 @@ export default class AircraftController {
     }
 
     /**
-     * Add a new `AircraftConflict` instance to the list of existing conflicts
-     *
-     * @for AircraftController
-     * @method addConflict
-     * @param  {Aircraft} aircraft      aircraft 1
-     * @param  {Aircraft} otherAircraft aircraft 2
-     */
-    addConflict(aircraft, otherAircraft) {
-        const conflict = new AircraftConflict(aircraft, otherAircraft);
-
-        if (conflict.shouldBeRemoved()) {
-            conflict.destroy();
-            return;
-        }
-
-        this.conflicts.push(conflict);
-        aircraft.addConflict(conflict, otherAircraft);
-        otherAircraft.addConflict(conflict, aircraft);
-    }
-
-    /**
      * @for AircraftController
      * @method aircraft_get_nearest
      * @param position
@@ -203,7 +183,7 @@ export default class AircraftController {
 
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraft = this.aircraft.list[i];
-            const d = distance2d(aircraft.position, position);
+            const d = distance2d(aircraft.relativePosition, position);
 
             if (d < distance && aircraft.isVisible() && !aircraft.hit) {
                 distance = d;
@@ -221,7 +201,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -256,16 +236,20 @@ export default class AircraftController {
      */
     aircraft_update() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.aircraft.list[i].update();
-            this.aircraft.list[i].updateWarning();
+            const aircraft = this.aircraft.list[i];
+            aircraft.update();
+            aircraft.updateWarning();
 
-            // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
+            if (aircraft.isTaxiing()) {
+                continue;
+            }
+
+            // TODO: this section eats up a lot of resources when there are more than 30 aircraft and we
+            //       don't check for taxiing aircraft
             for (let j = i + 1; j < this.aircraft.list.length; j++) {
-                // TODO: need better names here. what is `that`?  what is `other`?
-                const aircraft = this.aircraft.list[i];
                 const otherAircraft = this.aircraft.list[j];
 
-                if (aircraft.checkConflict(otherAircraft)) {
+                if (aircraft.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
                     continue;
                 }
 
@@ -273,8 +257,8 @@ export default class AircraftController {
                 // no violation can occur in this case.
                 // Variation of:
                 // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.position[0] - otherAircraft.position[0]);
-                const dy = abs(aircraft.position[1] - otherAircraft.position[1]);
+                const dx = abs(aircraft.relativePosition[0] - otherAircraft.relativePosition[0]);
+                const dy = abs(aircraft.relativePosition[1] - otherAircraft.relativePosition[1]);
                 const boundingBoxLength = km(8);
 
                 if (dx < boundingBoxLength && dy < boundingBoxLength) {
@@ -284,44 +268,39 @@ export default class AircraftController {
         }
 
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            let remove = false;
             const aircraft = this.aircraft.list[i];
-            // let is_visible = aircraft_visible(aircraft);
 
-            if (aircraft.isStopped() && aircraft.category === 'arrival') {
+            // TODO: these next 3 logic blocks could use some cleaning/abstraction
+            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
+                // TODO: move this to the GAME_EVENTS constant
+                // TODO: move this out of the aircraft model
                 aircraft.scoreWind('landed');
 
-                window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
+                window.uiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
                 window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                remove = true;
+                aircraft.setIsRemovable();
+                this.aircraft_remove(aircraft);
+
+                continue;
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                window.uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
+                window.uiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                aircraft.setIsRemovable();
+
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', radar contact lost' }
                 ]);
-
-                remove = true;
             }
 
             // Clean up the screen from aircraft that are too far
-            if (
-                (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) &&
-                aircraft.fms.currentWaypoint.navmode === 'heading'
-            ) {
-                if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
-                    remove = true;
-                }
-            }
-
-            if (remove) {
+            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
                 this.aircraft_remove(aircraft);
                 i -= 1;
             }
@@ -329,76 +308,26 @@ export default class AircraftController {
     }
 
     /**
-     * Calculate the turn initiation distance for an aircraft to navigate between two fixes.
-     *
-     * References:
-     * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
-     * - The Avionics Handbook, ch 15
-     *
-     * @for AircraftController
-     * @method aircraft_turn_initiation_distance
-     * @param aircraft {AircraftInstanceModel}
-     * @param fix
+     * @method debug
+     * @param  {string} [callsign='']
+     * @return {AircraftInstanceModel|null}
      */
-    aircraft_turn_initiation_distance(aircraft, fix) {
-        // TODO: this function is ripe for refactor. there is a lot of inline logic that can be abstracted and/or pulled out
-        const index = aircraft.fms.indexOfCurrentWaypoint().wp;
-        if (index >= aircraft.fms.waypoints().length - 1) {
-            // if there are no subsequent fixes, fly over 'fix'
-            return 0;
-        }
-
-        // convert knots to m/s
-        const speed = kn_ms(aircraft.speed);
-        // assume nominal bank angle of 25 degrees for all aircraft
-        const bank_angle = degreesToRadians(25);
-
-        // TODO: is there a getNextWaypoint() function?
-        const nextfix = aircraft.fms.waypoint(aircraft.fms.indexOfCurrentWaypoint().wp + 1).location;
-        if (!nextfix) {
-            return 0;
-        }
-
-        let nominal_new_course = vradial(vsub(nextfix, fix));
-        if (nominal_new_course < 0) {
-            // TODO: what is this doing? this should go in a new method.
-            nominal_new_course += tau();
-        }
-
-        let current_heading = aircraft.heading;
-        if (current_heading < 0) {
-            current_heading += tau();
-        }
-
-        // TODO: move to function
-        let course_change = abs(radiansToDegrees(current_heading) - radiansToDegrees(nominal_new_course));
-        if (course_change > 180) {
-            course_change = 360 - course_change;
-        }
-
-        course_change = degreesToRadians(course_change);
-        // meters, bank establishment in 1s
-        const turn_initiation_distance = calcTurnInitiationDistance(speed, bank_angle, course_change);
-
-        return turn_initiation_distance / 1000; // convert m to km
+    debug(callsign = '') {
+        return this._findAircraftByCallsign(callsign);
     }
 
     /**
-     * @for AircraftController
-     * @method aircraft_get
-     * @param eid
+     * @method _findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftInstanceModel|null}
+     * @private
      */
-    aircraft_get(eid = null) {
-        if (eid === null) {
+    _findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
             return null;
         }
 
-        // prevent out-of-range error
-        if (this.aircraft.list.length > eid && eid >= 0) {
-            return this.aircraft.list[eid];
-        }
-
-        return null;
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
     /**
@@ -413,6 +342,41 @@ export default class AircraftController {
     }
 
     /**
+     * Add a new `AircraftConflict` instance to the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method addConflict
+     * @param  {Aircraft} aircraft      aircraft 1
+     * @param  {Aircraft} otherAircraft aircraft 2
+     */
+    addConflict(aircraft, otherAircraft) {
+        const conflict = new AircraftConflict(aircraft, otherAircraft);
+
+        if (conflict.shouldBeRemoved()) {
+            conflict.destroy();
+            return;
+        }
+
+        this.conflicts.push(conflict);
+        aircraft.addConflict(conflict, otherAircraft);
+        otherAircraft.addConflict(conflict, aircraft);
+    }
+
+    /**
+     * Remove an `AircraftConflict` instance from the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method removeConflict
+     * @param  conflict {AircraftConflict} the conflict instance to remove
+     */
+    removeConflict(conflict) {
+        conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
+        conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
+
+        this.conflicts = _without(this.conflicts, conflict);
+    }
+
+    /**
      * Remove any conflicts that involve the specified aircraft
      *
      * @for AircraftController
@@ -420,14 +384,6 @@ export default class AircraftController {
      * @param  {Aircraft} aircraft - the aircraft to remove
      */
     removeAllAircraftConflictsForAircraft(aircraft) {
-        // _each(this.conflicts, (conflict) => {
-        //     if (_includes(conflict.aircraft, aircraft)) {
-        //         this.removeConflict(conflict);
-        //     }
-        // });
-
-        // _each(aircraft.conflicts, (conflict) => conflict.destroy());
-
         for (const otherAircraftCallsign in aircraft.conflicts) {
             aircraft.conflicts[otherAircraftCallsign].destroy();
         }
@@ -447,67 +403,44 @@ export default class AircraftController {
     }
 
     /**
-     * Remove an `AircraftConflict` instance from the list of existing conflicts
-     *
-     * @for AircraftController
-     * @method removeConflict
-     * @param  {AircraftConflict} conflict - the conflict instance to remove
-     */
-    removeConflict(conflict) {
-        conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
-        conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
-
-        this.conflicts = _without(this.conflicts, conflict);
-    }
-
-    // TODO: what is an `eid` and why would it beed to be updated?
-    /**
-     * Adjust all aircraft's eid values
-     *
-     * @for AircraftController
-     * @method update_aircraft_eids
-     */
-    update_aircraft_eids() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            // update eid in aircraft
-            this.aircraft.list[i].eid = i;
-            // update eid in aircraft's fms
-            this.aircraft.list[i].fms.my_aircrafts_eid = i;
-        }
-    }
-
-    /**
      * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
      *
      * @for AircraftController
      * @method _buildAircraftProps
      * @param spawnPatternModel {SpawnPatternModel}
+     * @param isPreSpawn {boolean} [default = false]
      * @return {object}
      * @private
      */
-    _buildAircraftProps(spawnPatternModel) {
+    _buildAircraftProps(spawnPatternModel, isPreSpawn = false) {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this._airlineController.findAirlineById(name);
         // TODO: impove the `airlineModel` logic here
-        // this seems inefficient to find the model here and then passit back to the controller but
+        // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
-        const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
+        // TODO: this may need to be reworked.
+        // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
+        // airspace can safely enter controlled airspace properly
+        const altitude = isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
+            ? 18000
+            : spawnPatternModel.altitude;
+        const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
 
         return {
-            destination,
             fleet,
+            altitude,
+            destination: spawnPatternModel.destination,
             callsign: flightNumber,
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
-            airlineCallsign: airlineModel.callsign,
-            altitude: spawnPatternModel.altitude,
+            airlineCallsign: airlineModel.radioName,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
-            position: spawnPatternModel.position,
+            positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             route: spawnPatternModel.routeString,
@@ -528,30 +461,5 @@ export default class AircraftController {
      */
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
         return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
-    }
-
-    /**
-     * Determines if `destination` is defined and returns route procedure name if it is not
-     *
-     * The reason we set destination to a procedure names is because the `AircraftStripView`
-     * uses this destination property for display. So for departures, who have no true
-     * destination, the procedure name is used instead
-     *
-     * @for AircraftController
-     * @method _setDestinationFromRouteOrProcedure
-     * @param destination {string}
-     * @param route {string}
-     * @return {string}
-     * @private
-     */
-    _setDestinationFromRouteOrProcedure({ destination, routeString }) {
-        let destinationOrProcedure = destination;
-
-        if (!destination) {
-            const routeModel = new RouteModel(routeString);
-            destinationOrProcedure = routeModel.procedure;
-        }
-
-        return destinationOrProcedure;
     }
 }

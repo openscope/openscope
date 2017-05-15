@@ -18,6 +18,8 @@
         "angle": 230,
         "speed": 19
     },
+    "arrivalRunway": "25",
+    "departureRunway": "25",
     "fixes": {
         "_RWY07": ["S54.84202", "W68.26044"],
         "_RWY25": ["S54d50m39.12", "W68d19m3.09"],

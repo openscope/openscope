@@ -9,10 +9,7 @@
  *
  * @fileoverview
  */
-import {
-    convertToThousands,
-    convertStringToNumber
-} from '../utilities/unitConverters';
+import { convertStringToNumber } from '../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
@@ -20,12 +17,14 @@ import {
     altitudeValidator,
     fixValidator,
     headingValidator,
-    holdValidator
+    holdValidator,
+    squawkValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
-    holdParser
+    holdParser,
+    timewarpParser
 } from './argumentParsers';
 
 /**
@@ -92,7 +91,7 @@ const ZERO_ARG_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    descendViaSTAR: {
+    descendViaStar: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
@@ -131,12 +130,6 @@ const SINGLE_ARG_COMMANDS = {
         parse: noop
     },
     rate: {
-        validate: singleArgumentValidator,
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)]
-    },
-    timewarp: {
         validate: singleArgumentValidator,
         // calling method is expecting an array with values that will get spread later, thus we purposly
         // return an array here
@@ -213,6 +206,14 @@ const CUSTOM_ARG_COMMANDS = {
     hold: {
         validate: holdValidator,
         parse: holdParser
+    },
+    squawk: {
+        validate: squawkValidator,
+        parse: noop
+    },
+    timewarp: {
+        validate: zeroOrOneArgumentValidator,
+        parse: timewarpParser
     }
 };
 

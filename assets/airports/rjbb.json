@@ -10,14 +10,16 @@
     "ctr_radius": 80,
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
-    "position": ["N34d26m03.00", "N135d13m58.00"],
+    "position": ["N34d26m03.00", "E135d13m58.00"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N34d26m03.00", "N135d13m58.00"],
+    "rr_center": ["N34d26m03.00", "E135d13m58.00"],
     "has_terrain": false,
     "wind": {
         "angle": 204,
         "speed": 9
     },
+    "arrivalRunway": "24R",
+    "departureRunway": "24R",
     "airspace": [
         {
             "floor": 0,

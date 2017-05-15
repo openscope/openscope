@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
+/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-param-reassign */
 import _includes from 'lodash/includes';
 import _filter from 'lodash/filter';
 import { abs } from '../math/core';
@@ -23,18 +23,16 @@ const MIN_VERTICAL_SEPARATION_FT = 1000;
 export default class AircraftConflict {
     constructor(first, second) {
         this.aircraft = [first, second];
-        this.distance = vlen(vsub(first.position, second.position));
+        this.distance = vlen(vsub(first.relativePosition, second.relativePosition));
         this.distance_delta = 0;
         this.altitude = abs(first.altitude - second.altitude);
-
         this.collided = false;
-
         this.conflicts = {};
         this.violations = {};
 
         if (this.isAlreadyKnown()) {
-            console.warn(`Duplicate conflict between ${this.aircraft[0].getCallsign()} `
-                + `and ${this.aircraft[1].getCallsign()}! Scoring may be inaccurate!`);
+            console.warn(`Duplicate conflict between ${this.aircraft[0].callsign} `
+                + `and ${this.aircraft[1].callsign}! Scoring may be inaccurate!`);
             return;
         }
 
@@ -95,7 +93,7 @@ export default class AircraftConflict {
      */
     _recalculateLateralAndVerticalDistances() {
         const distanceAtLastUpdate = this.distance;
-        this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
+        this.distance = vlen(vsub(this.aircraft[0].relativePosition, this.aircraft[1].relativePosition));
         this.distance_delta = this.distance - distanceAtLastUpdate;
         this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
     }
@@ -147,12 +145,16 @@ export default class AircraftConflict {
         // Collide within 160 feet
         const airport = window.airportController.airport_get();
 
-        if (((this.distance < 0.05) && (this.altitude < 160)) &&
+        if (
+            ((this.distance < 0.05) && (this.altitude < 160)) &&
             (this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport))
         ) {
             this.collided = true;
             const isWarning = true;
-            window.uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
+            window.uiController.ui_log(
+                `${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`,
+                isWarning
+            );
 
             window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
@@ -168,23 +170,24 @@ export default class AircraftConflict {
      * Check for a potential head-on collision on a runway
      */
     checkRunwayCollision() {
-        // Check if the aircraft are on a potential collision course
-        // on the runway
-        const airport = window.airportController.airport_get();
+        // Check if the aircraft are on a potential collision course on the runway
 
         // TODO: this logic block needs its own method.
         // Check for the same runway, different ends and under about 6 miles
-        if ((!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
-            (this.aircraft[0].rwy_dep !== null) &&
-            (this.aircraft[0].rwy_dep !== this.aircraft[1].rwy_dep) &&
-            (airport.getRunway(this.aircraft[1].rwy_dep) === airport.getRunway(this.aircraft[0].rwy_dep)) &&
+        if (
+            (!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
+            (this.aircraft[0].fms.currentRunway !== null) &&
+            (this.aircraft[0].fms.currentRunway !== this.aircraft[1].fms.currentRunway) &&
+            (this.aircraft[1].fms.currentRunway.name === this.aircraft[0].fms.currentRunway.name) &&
             (this.distance < 10)
         ) {
             if (!this.conflicts.runwayCollision) {
+                const isWarning = true;
                 this.conflicts.runwayCollision = true;
+
                 window.uiController.ui_log(
-                    `${this.aircraft[0].getCallsign()} appears on a collision course with` +
-                    ` ${this.aircraft[1].getCallsign()} on the same runway"`,
+                    `${this.aircraft[0].callsign} appears on a collision course with` +
+                    ` ${this.aircraft[1].callsign} on the same runway"`,
                     isWarning
                 );
             }
@@ -216,8 +219,8 @@ export default class AircraftConflict {
 
 
         // Established on precision guided approaches && both are following different instrument approaches
-        if ((a1.isPrecisionGuided() && a2.isPrecisionGuided()) && (a1.rwy_arr !== a2.rwy_arr)) {
-            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
+        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.fms.arrivalRunway.name !== a2.fms.arrivalRunway.name)) {
+            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:
@@ -266,7 +269,7 @@ export default class AircraftConflict {
         if (conflict) {
             const hdg_difference = abs(angle_offset(a1.groundTrack, a2.groundTrack));
 
-            // FIXME: couldnt these two ifs be combined to something like:
+            // TODO: couldnt these two ifs be combined to something like:
             // if (hdg_difference >= degreesToRadians(15) && hdg_difference > degreesToRadians(165)) {}
             if (hdg_difference >= degreesToRadians(15)) {
                 if (hdg_difference > degreesToRadians(165)) {
@@ -282,8 +285,8 @@ export default class AircraftConflict {
                     // Ray intersection from http://stackoverflow.com/a/2932601
                     const ad = vturn(a1.groundTrack);
                     const bd = vturn(a2.groundTrack);
-                    const dx = a2.position[0] - a1.position[0];
-                    const dy = a2.position[1] - a1.position[1];
+                    const dx = a2.relativePosition[0] - a1.relativePosition[0];
+                    const dy = a2.relativePosition[1] - a1.relativePosition[1];
                     const det = bd[0] * ad[1] - bd[1] * ad[0];
                     const u = (dy * bd[0] - dx * bd[1]) / det;  // a1's distance from point of convergence
                     const v = (dy * ad[0] - dx * ad[1]) / det;  // a2's distance from point of convergence
@@ -302,6 +305,9 @@ export default class AircraftConflict {
                 }
             }
         }
+
+        // TODO: if conflict and violation both return booleans, remove the if/else blocks below and
+        // set with those values
 
         // Update Conflicts
         if (conflict) {

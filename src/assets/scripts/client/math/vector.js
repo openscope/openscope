@@ -80,7 +80,7 @@ export const vnorm = (v, length) => {
  * Create a 2D vector
  * Pass a heading (rad) and this will return the corresponding unit vector
  */
-const vectorize_2d = (direction) => {
+export const vectorize_2d = (direction) => {
     return [
         sin(direction),
         cos(direction)
@@ -278,9 +278,9 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 //     const airport = window.airportController.airport_get();
 //
 //     return raysIntersect(
-//         airport.getRunway(rwy1_name).position,
+//         airport.getRunway(rwy1_name).relativePosition,
 //         airport.getRunway(rwy1_name).angle,
-//         airport.getRunway(rwy2_name).position,
+//         airport.getRunway(rwy2_name).relativePosition,
 //         airport.getRunway(rwy2_name).angle,
 //         9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
 //     );
@@ -437,9 +437,7 @@ export const point_to_mpoly = (point, mpoly) => {
  * @param area {array<array>}  The #perimeter property of an `AirspaceModel`
  */
 export const area_to_poly = (area) => {
-    // TODO: this should be _map()
-    // What is the significance of returning `[v.position]`? isnt position already an array?
-    return _map(area.poly, (v) => v.position);
+    return _map(area.poly, (v) => v.relativePosition);
 };
 
 /**

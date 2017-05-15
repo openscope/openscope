@@ -1,25 +1,12 @@
-## 4.2.0 (March 19, 2017)
+## 5.2.0 (June 1, 2017)
 ---
-### Major
-
-
-
-
-
-
-
-
-
-
-
 ### Features
+- Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
+- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
+- Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
+- Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
+- Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 - Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
-- Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-
-
-
-
 
 
 
@@ -27,13 +14,92 @@
 
 
 ### Bugfixes
+- Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
+- Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
+- Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
+
+
+
+
+
+## 5.1.1 (May 12, 2017)
+---
+### Hotfix
+- Fixes or removes from load list all airports that fail to load [#458](https://github.com/openscope/openscope/issues/458)
+
+
+## 5.1.0 (May 1, 2017)
+---
+### Features
+- adds [deployment-checklist](tools/documentation/deployment-checklist.md) document [#316](https://github.com/openscope/openscope/issues/316)
+- Updates the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
+- allow for specification of airport's default arrival and departure runway [#374](https://github.com/openscope/openscope/issues/374)
+- adds [airport-file-standards](tools/documentation/deployment-checklist.md) document [#367](https://github.com/openscope/openscope/issues/367)
+
+### Bugfixes
+- Adds additional check for `undefined` in `CommandParser` when adding args to a `CommandModel` [#364](https://github.com/openscope/openscope/issues/364)
+- Deprecates and removes `AircraftController._setDestinationFromRouteOrProcedure()` as it was implemented to maintain a previous api which is no longer used [#370](https://github.com/openscope/openscope/issues/370)
+- Ensure the verbal and text instructions/readbacks state the correct directionality [#188](https://github.com/openscope/openscope/issues/188)
+- Updates Pilot.applyDepartureProcedure() to use RunwayModel correctly [#396](https://github.com/openscope/openscope/issues/396)
+- Updates `fms.getDestinationName()` to return the `fixName` when `currentLeg` is not a procedure [#399](https://github.com/openscope/openscope/issues/399)
+- Fix wrong PTL length and set to 1 minute [#394](https://github.com/openscope/openscope/issues/394)
+- Fixes broken link in [airport-format](tools/documentation/airport-format.md) [#404](https://github.com/openscope/openscope/issues/404)
+- Fix datablock speed to show GS, not IAS [#395](https://github.com/openscope/openscope/issues/395)
+- Ensure red response is given to `rr FIXXA..FIXXB` [#408](https://github.com/openscope/openscope/issues/408)
+- Fix strip update crash for arrivals on vectors [#410](https://github.com/openscope/openscope/issues/410)
+
+
+## 5.0.1 (April 24, 2017)
+---
+### Hotfix
+- Updates `AircraftStripView` to display departure procedures with the correct `NAME.EXIT` shape [#359](https://github.com/openscope/openscope/issues/359)
+
+
+## 5.0.0 (April 21, 2017)
+---
+### Major
+- Refactors FMS [#139](https://github.com/openscope/openscope/issues/139)
+    - This represents a ground-up, from scratch, re-build of the flight management system with new classes: `Fms`, `LegModel`, and `WaypointModel`
+    - Introduces the `ModeController` that completely separates Altitude, Heading and Speed settings from the FMS and allowing the FMS to be in charge of the flight plan and any fixRestrictions defined for a given route
+    - Adds `Pilot` class that acts as a coordinator layer between the `AircraftCommander`, `AircraftInstanceModel`, `ModeController`, and `Fms`
+    - Completely reworks how `Aircraft.target` is calculated
+    - Introduces the concept of `flightPhase`, and begins integrating that property in lieu of category (arrival/departure)
+    - Adds ability to define hold waypoints with a symbol `@`
+    - Splits `PositionModel` into two new classes; `StaticPositionModel` and `DynamicPositionModel`
+    - Work on this issue also resolves or invalidates previously recorded issues:
+        - `aircraftInstanceModel.fms` has a circular dependency with `aircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
+        - Using STAR command to change aircraft's assigned STAR throws errors [#73](https://github.com/openscope/openscope/issues/73)
+        - Abstract current waypoint altitude and speed setting [#77](https://github.com/openscope/openscope/issues/77)
+        - Add Leg to modelSourcePool [#78](https://github.com/openscope/openscope/issues/78)
+        - Refactor fms param out of Leg [#79](https://github.com/openscope/openscope/issues/79)
+        - Extend RouteModel, or add new layer, to handle compound routes [#81](https://github.com/openscope/openscope/issues/81)
+        - Rerouting aircraft causes it to climb to unassigned altitude [#86](https://github.com/openscope/openscope/issues/86)
+        - deprecate `aircraft.eid` [#87](https://github.com/openscope/openscope/issues/87)
+        - Implied holding in route strings [#114](https://github.com/openscope/openscope/issues/114)
+        - Rerouting uncleared aircraft onto SID fails [#122](https://github.com/openscope/openscope/issues/122)
+        - Using "fix" command yields legs with lower case route [#123](https://github.com/openscope/openscope/issues/123)
+        - Create getter in `AircraftInstanceModel` to get the current runway [#129](https://github.com/openscope/openscope/issues/129)
+        - create RouteBuilder class and smooth out RouteModel [#144](https://github.com/openscope/openscope/issues/144)
+        - `fix` command with multiple arguments skips to last fix [#153](https://github.com/openscope/openscope/issues/153)
+        - Add `.hasFix()` method to FixCollection [#158](https://github.com/openscope/openscope/issues/158)
+        - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
+        - `StaticPositionModel` and enforcing use of Positions where appropriate [#287](https://github.com/openscope/openscope/issues/287)
+
+### Features
+- Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
+- Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
+
+
+### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
     - followed up and corrected 2 mistakenly cleared out aircraft files [#259](https://github.com/openscope/openscope/issues/259)
-
-
-
-
-
+- Fixes Firefox compatibility issue by changing ajax to getJSON  [#263](https://github.com/openscope/openscope/issues/259)
+- Fixes bug with departures at SAME [#303](https://github.com/openscope/openscope/issues/303)
+- Fixes coordinates for PAM at EHAM [#321](https://github.com/openscope/openscope/issues/321)
+- Ensure aircraft reach their targeted speed [#340](https://github.com/openscope/openscope/issues/340)
+- Fixes last-second go-arounds by landing aircraft [#342](https://github.com/openscope/openscope/issues/342)
+- Ensure aircraft follow glideslope [#346](https://github.com/openscope/openscope/issues/346)
+- Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero' [#338](https://github.com/openscope/openscope/issues/338)
 
 
 ## 4.1.2 (February 20, 2017)
@@ -175,7 +241,7 @@
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
-- Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculatePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
+- Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculateRelativePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
 - Adds additional handling to `StandardRouteModel._buildEntryAndExitCollections` to handle case where `entryPoints` and `exitPoints` don't exist in the `airport.sids` definition [#196](https://github.com/n8rzz/atc/issues/196)
     - Originally reported under [#760](https://github.com/zlsa/atc/issues/760)

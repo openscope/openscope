@@ -5,6 +5,7 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import BaseCollection from '../../base/BaseCollection';
 import RouteSegmentModel from './RouteSegmentModel';
+import { isEmptyObject } from '../../utilities/validatorUtilities';
 
 /**
  * A collection of `RouteSegment`s.
@@ -36,7 +37,7 @@ export default class RouteSegmentCollection extends BaseCollection {
     constructor(routeSegments) {
         super();
 
-        if (typeof routeSegments === 'undefined' || !_isObject(routeSegments) || _isArray(routeSegments)) {
+       if (isEmptyObject(routeSegments)) {
             throw new TypeError(`Expected routeSegments to be an object. Instead received ${typeof routeSegments}`);
         }
 
@@ -124,6 +125,8 @@ export default class RouteSegmentCollection extends BaseCollection {
 
     /**
      * Return a list of fixNames for all of the `RouteSegmentModel`s in the collection
+     *
+     * Used when selecting a random exit point for a `sid` route
      *
      * @for RouteSegmentCollection
      * @method gatherFixNamesForCollection
