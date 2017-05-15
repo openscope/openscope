@@ -875,7 +875,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.RILBO.RILBO..NUNTO..PISOX..REKDO",
-            "rate": 1.2,
+            "rate": 2.3,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -901,7 +901,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.RILBO.RILBO..NUNTO..ABSER..EKNID..OLPED",
-            "rate": 1.2,
+            "rate": 2.1,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -1041,7 +1041,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..NEPEK..NISVI",
-            "rate": 1.8,
+            "rate": 1.4,
             "altitude": null,
             "speed": null,
             "airlines":    [
@@ -1057,7 +1057,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..TEVRU..DIPUM..USUPO",
-            "rate": 1.8,
+            "rate": 1.4,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1089,7 +1089,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..ARLOM",
-            "rate": 0.6,
+            "rate": 0.3,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1107,7 +1107,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..INLOG",
-            "rate": 0.6,
+            "rate": 0.3,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1125,7 +1125,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..OLEMA",
-            "rate": 0.6,
+            "rate": 0.3,
             "altitude": null,
             "speed": null,
             "airlines": [
@@ -1143,7 +1143,7 @@
             "category": "departure",
             "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..RATLA",
-            "rate": 0.6,
+            "rate": 0.3,
             "altitude": null,
             "speed": null,
             "airlines": [
