@@ -3,86 +3,19 @@ import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
-
-/**
- * @property NAME_INDEX
- * @type {number}
- * @final
- */
-const NAME_INDEX = 0;
-
-/**
- * @property RESTRICTION_INDEX
- * @type {number}
- * @final
- */
-const RESTRICTION_INDEX = 1;
-
-/**
- * @property RESTRICTION_SEPARATOR
- * @type {string}
- * @final
- */
-const RESTRICTION_SEPARATOR = '|';
-
-/**
- * @property ALTITUDE_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const ALTITUDE_RESTRICTION_PREFIX = 'A';
-
-/**
- * @property SPEED_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const SPEED_RESTRICTION_PREFIX = 'S';
-
-/**
- * Symbol denoting a greater than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const ABOVE_SYMBOL = '+';
-
-/**
- * Symbol denoting a less than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const BELOW_SYMBOL = '-';
-
-/**
- * Number to used to convert a FL altitude to an altitude in thousands
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const FL_TO_THOUSANDS_MULTIPLIER = 100;
-
-/**
- * Enumeration for an invalid index number.
- *
- * @property INVALID_INDEX
- * @type {number}
- * @final
- */
-const INVALID_INDEX = -1;
-
-/**
- * Enumeration for the radix value of `parseInt`
- *
- * @proeprty DECIMAL_RADIX
- * @type {number}
- * @final
- */
-const DECIMAL_RADIX = 10;
+import {
+    FLY_OVER_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/navigation/routeConstants';
+import {
+    ALTITUDE_RESTRICTION_PREFIX,
+    DECIMAL_RADIX,
+    FL_TO_THOUSANDS_MULTIPLIER,
+    NAME_INDEX,
+    RESTRICTION_INDEX,
+    RESTRICTION_SEPARATOR,
+    SPEED_RESTRICTION_PREFIX
+} from '../../constants/navigation/waypointConstants';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -146,6 +79,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @private
          */
         this._altitude = -1;
+
+        /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
 
         /**
          * Required speed for a waypoint
@@ -296,12 +240,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _init(routeWaypoint) {
         // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
-            this.name = routeWaypoint;
+            this.name = routeWaypoint.replace(FLY_OVER_WAYPOINT_PREFIX, '');
+            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
 
             return this;
         }
 
-        this.name = routeWaypoint[NAME_INDEX];
+        this.name = routeWaypoint[NAME_INDEX].replace(FLY_OVER_WAYPOINT_PREFIX, '');
+        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
@@ -368,9 +317,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     toWaypointModel() {
         const waypointProps = {
+            altitudeRestriction: this._altitude,
+            isFlyOverWaypoint: this._isFlyOverWaypoint,
+            isVector: this._isVector,
             name: this.name,
             positionModel: this.positionModel,
-            altitudeRestriction: this._altitude,
             speedRestriction: this._speed
         };
 

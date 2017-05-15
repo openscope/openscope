@@ -15,6 +15,7 @@ import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';
 const ROUTE_WAYPOINT_MOCK = [NAME_MOCK, RESTRICTIONS_MOCK];
+const NAME_FLY_OVER_MOCK = '^BIKKR';
 
 ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
 ava.after(() => FixCollection.removeItems());
@@ -110,4 +111,10 @@ ava('._parseWaypointRestrictions() returns early if no paramater is received', t
 
     t.true(model._altitude === -1);
     t.true(model._speed === -1);
+});
+
+ava('#_isFlyOverWaypoint is true for fix prepended by fly-over character', (t) => {
+    const model = new StandardRouteWaypointModel(NAME_FLY_OVER_MOCK);
+
+    t.true(model._isFlyOverWaypoint);
 });

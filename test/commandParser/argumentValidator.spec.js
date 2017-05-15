@@ -11,7 +11,8 @@ import {
     altitudeValidator,
     fixValidator,
     headingValidator,
-    holdValidator
+    holdValidator,
+    squawkValidator
 } from '../../src/assets/scripts/client/commandParser/argumentValidators';
 
 // TODO: import ERROR_MESSAGE and use actual values to test against
@@ -232,4 +233,40 @@ ava('.holdValidator() returns undefined when passed three strings as arguments',
 
     result = holdValidator(['dumba', 'right', '1nm']);
     t.true(typeof result === 'undefined');
+});
+
+ava('.squawkValidator() returns undefined when passed a valid squawk', t => {
+    let result = squawkValidator(['1111']);
+    t.true(typeof result === 'undefined');
+
+    result = squawkValidator(['1234']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.squawkValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = squawkValidator();
+    t.true(result === 'Invalid argument length. Expected exactly one argument');
+
+    result = squawkValidator([]);
+    t.true(result === 'Invalid argument length. Expected exactly one argument');
+
+    result = squawkValidator(['', '']);
+    t.true(result === 'Invalid argument length. Expected exactly one argument');
+});
+
+ava('.squawkValidator() returns string when passed invalid squawk', t => {
+    let result = squawkValidator(['8888']);
+    t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
+
+    result = squawkValidator(['111']);
+    t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
+
+    result = squawkValidator(['1181']);
+    t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
+
+    result = squawkValidator(['11711']);
+    t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
+
+    result = squawkValidator(['1a11']);
+    t.true(result === 'Invalid argument. Expected \'0000\'-\'7777\' for the transponder code.');
 });
