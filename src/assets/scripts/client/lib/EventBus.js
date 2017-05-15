@@ -4,12 +4,15 @@ import EventModel from './EventModel';
 /**
  * Creates a static class that should be used for cross class communication.
  *
- * This is a static class, however, when used it should be reassigned
- * to a class property `#event`.
+ * This alleviates the need for direct imports between classes. Instead, the class
+ * that performs an action need only `trigger` and any listening classes can respond
+ * with their own internal callback.
  *
- * Useage:
- * - responding class `this.event.on('EVENT_NAME', this.onEventCallback)`
- * - triggering class `this.event.trigger('EVENT_NAME', DATA_TO_PASS)`
+ * As a rule, when this class is used it should be reassigned to a class property `#eventBus`.
+ *
+ * Example:
+ * - triggering class `this.eventBus.trigger('EVENT_NAME', DATA_TO_PASS)`
+ * - responding class `this.eventBus.on('EVENT_NAME', this.onEventCallback)`
  *
  * @class EventBus
  */
@@ -62,9 +65,9 @@ class EventBus {
     /**
      * Remove a callback from the observers list
      *
-     * If multiple observers exist, remove only the one callback from that list
+     * When multiple observers exist, remove only the one callback from that list
      *
-     * If `eventName` is the only observer, the event will be destroyed
+     * When `eventName` is the only observer, the event will be destroyed
      * and removed from `#_events`.
      *
      * @for EventBus
