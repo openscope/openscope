@@ -472,7 +472,7 @@ export default class Aircraft {
      matchCallsign(callsignToMatch) {
          const shouldMatchAnyCallsign = callsignToMatch === '*';
          // checks to see if the given call sign matches the airline Id + callsign format
-         if (shouldMatchAnyCallsign || callsignToMatch.toUpperCase() === this.getCallsign()) {
+         if (shouldMatchAnyCallsign || (callsignToMatch.toUpperCase() === this.getCallsign())) {
              return true;
          }
 
