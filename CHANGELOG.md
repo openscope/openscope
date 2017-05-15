@@ -5,6 +5,8 @@
 - Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
 - Renamed AircraftInstanceModel with AircraftModel  [#402](https://github.com/openscope/openscope/issues/1402)
+- Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
+- Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 
 
 
@@ -16,11 +18,15 @@
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
+- Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 
 
 
 
-
+## 5.1.1 (May 12, 2017)
+---
+### Hotfix
+- Fixes or removes from load list all airports that fail to load [#458](https://github.com/openscope/openscope/issues/458)
 
 
 ## 5.1.0 (May 1, 2017)

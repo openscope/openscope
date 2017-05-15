@@ -42,6 +42,7 @@ const COMMANDS = {
     sayRoute: 'runSayRoute',
     sid: 'runSID',
     speed: 'runSpeed',
+    squawk: 'runSquawk',
     star: 'runSTAR',
     takeoff: 'runTakeoff',
     taxi: 'runTaxi'
@@ -598,6 +599,18 @@ export default class AircraftCommander {
             default:
                 return [false, 'we aren\'t doing anything that can be aborted'];
         }
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSquawk
+     * @param data
+     */
+    runSquawk(aircraft, data) {
+        const squawk = data[0];
+
+        aircraft.transponderCode = squawk;
+        return [true, `squawking ${squawk}`];
     }
 
     /**

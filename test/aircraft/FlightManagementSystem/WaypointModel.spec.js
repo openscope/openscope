@@ -5,15 +5,19 @@ import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightMan
 const fixnameMock = 'COWBY';
 const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
 const waypointMock = {
-    turnDirection: '',
+    altitudeRestriction: -1,
+    isFlyOverWaypoint: false,
+    isVector: false,
     legLength: '',
     name: fixnameMock,
     positionModel: holdFixLocationMock,
-    altitudeRestriction: -1,
-    speedRestriction: -1
+    speedRestriction: -1,
+    turnDirection: ''
 };
 
 const vectorWaypointPropsMock = {
+    isFlyOverWaypoint: false,
+    isVector: true,
     name: '#260'
 };
 
