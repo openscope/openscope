@@ -277,6 +277,62 @@
                 ["WUREL", "ATOME", "CENEX", "KTSAP*", "TOU*"]
             ]
         },
+        "MOUNT8": {
+            "icao": "MOUNT8",
+            "name": "Mountain Eight",
+            "rwy": {
+                "16L": [["NICHY", "A30+"]],
+                "16C": [["NICHY", "A30+"]],
+                "16R": [["NICHY", "A30+"]],
+                "34L": [["NEZUG", "A40+"]],
+                "34C": [["NEZUG", "A40+"]],
+                "34R": [["NEZUG", "A40+"]]
+            },
+            "body": ["#070"],
+            "exitPoints": {
+                "ELN": ["ELN"],
+                "EPH": ["EPH"],
+                "GEG": ["GEG"],
+                "HUH": ["HUH"],
+                "MLP": ["MLP"],
+                "MWH": ["MWH"],
+                "PAE": ["PAE"],
+                "PSC": ["PSC"],
+                "YDC": ["YDC"],
+                "YKM": ["YKM"],
+                "YVR": ["YVR"]
+            }
+        },
+        "SEATL5": {
+            "icao": "SEATL5",
+            "name": "Seattle Five",
+            "rwy": {
+                "16L": ["_SEA161002", "#161"],
+                "16C": ["_SEA161002", "#161"],
+                "16R": ["_SEA161002", "#161"],
+                "34L": ["_SEA341004", "#341"],
+                "34C": ["_SEA341004", "#341"],
+                "34R": ["_SEA341004", "#341"]
+            },
+            "body": [],
+            "exitPoints": {
+                "AST": ["AST"],
+                "BTG": ["BTG"],
+                "ELN": ["ELN"],
+                "EPH": ["EPH"],
+                "EUG": ["EUG"],
+                "HQM": ["HQM"],
+                "HUH": ["HUH"],
+                "OLM": ["OLM"],
+                "PAE": ["PAE"],
+                "TOU": ["TOU"],
+                "UBG": ["UBG"],
+                "YDC": ["YDC"],
+                "YKM": ["YKM"],
+                "YVR": ["YVR"],
+                "YYJ": ["YYJ"]
+            }
+        },
         "SUMMA9": {
             "icao": "SUMMA9",
             "name": "Summa Nine",
