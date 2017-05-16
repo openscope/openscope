@@ -5,6 +5,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
+import EventBus from '../lib/EventBus';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayModel from './RunwayModel';
@@ -19,6 +20,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -55,6 +57,8 @@ export default class AirportModel {
             console.log('::: ERROR', !updateRun, !onAirportChange);
             return;
         }
+
+        this.eventBus = EventBus;
 
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
@@ -657,7 +661,7 @@ export default class AirportModel {
         this.loaded = true;
 
         this.parse(response);
-        this.onAirportChange(this.data);
+        this.eventBus.trigger(EVENT.AIRPORT_CHANGE, this.data);
         this.set();
     };
 
