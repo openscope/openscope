@@ -51,7 +51,7 @@
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
         "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
         "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
-        "_OLM161026"  : ["N46d32.31m0", "W122d54.11m0"],
+        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
         "_SUMMA329017": ["N46d53.46m0", "W122d05.84m0"],
         "ALKIA": ["N47d37.26m0", "W122d28.45m0"],
         "ARRIE": ["N47d52.79m0", "W123d28.55m0"],
@@ -127,20 +127,20 @@
     "runways":[
         {
             "name": ["16L", "34R"],
-            "end":  [["N47d27.83m0", "W122d18.47m0", "432.5ft"], ["N47d25.87m0", "W122d18.48m0", "346.8ft"]],
-            "ils":  [true, true],
+            "end": [["N47d27.83m0", "W122d18.47m0", "432.5ft"], ["N47d25.87m0", "W122d18.48m0", "346.8ft"]],
+            "ils": [true, true],
             "glideslope": [3.00, 2.75]
         },
         {
             "name": ["16C", "34C"],
-            "end":  [["N47d27.83m0", "W122d18.66m0", "429.6ft"], ["N47d26.28m0", "W122d18.67m0", "363.0ft"]],
-            "ils":  [true, true],
+            "end": [["N47d27.83m0", "W122d18.66m0", "429.6ft"], ["N47d26.28m0", "W122d18.67m0", "363.0ft"]],
+            "ils": [true, true],
             "glideslope": [3.00, 3.00]
         },
         {
             "name": ["16R", "34L"],
-            "end":  [["N47d27.83m0", "W122d19.07m0", "415.0ft"], ["N47d26.43m0", "W122d19.08m0", "356.3ft"]],
-            "ils":  [true, true],
+            "end": [["N47d27.83m0", "W122d19.07m0", "415.0ft"], ["N47d26.43m0", "W122d19.08m0", "356.3ft"]],
+            "ils": [true, true],
             "glideslope": [3.00, 3.00]
         }
     ],
@@ -348,7 +348,7 @@
             "speed": 250,
             "method": "random",
             "rate": 7,
-            "airlines":  [
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -382,7 +382,7 @@
             "speed": 250,
             "method": "random",
             "rate": 7,
-            "airlines":  [
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -416,7 +416,7 @@
             "speed": 250,
             "method": "random",
             "rate": 7,
-            "airlines":  [
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -450,7 +450,7 @@
             "speed": 250,
             "method": "random",
             "rate": 7,
-            "airlines":  [
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -484,7 +484,7 @@
             "speed": 250,
             "method": "random",
             "rate": 7,
-            "airlines":  [
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
