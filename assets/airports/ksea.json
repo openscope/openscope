@@ -7,6 +7,7 @@
     "icao": "KSEA",
     "iata": "SEA",
     "magnetic_north": 16,
+    "ctr_radius": 110,
     "ctr_ceiling": 15000,
     "initial_alt": 5000,
     "position": ["N47d26.99m0", "W122d18.71m0"],
@@ -23,7 +24,7 @@
         {
             "floor": 0,
             "ceiling": 150,
-            "airspace_class": "E",
+            "airspace_class": "B",
             "poly": [
                 ["N47.83333330", "W121.69999940"],
                 ["N47.95335007", "W121.97603665"],
