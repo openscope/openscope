@@ -1,6 +1,8 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
 import Airport from './AirportModel';
+import EventBus from '../lib/EventBus';
+import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -25,6 +27,7 @@ export default class AirportController {
      * @param onAirportChange {function} callback to fire when an airport changes
      */
     constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
+        this.eventBus = EventBus;
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
 
@@ -161,7 +164,7 @@ export default class AirportController {
         // if loaded is true, we wont need to load any data thus the call to `onAirportChange` within the
         // success callback will never fire so we do that here.
         if (nextAirportModel.loaded) {
-            this.onAirportChange(nextAirportModel.data);
+            this.eventBus.trigger(EVENT.AIRPORT_CHANGE, nextAirportModel.data);
         }
 
         nextAirportModel.set(airportJson);

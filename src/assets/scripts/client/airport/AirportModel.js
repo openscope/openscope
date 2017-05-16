@@ -5,6 +5,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
+import EventBus from '../lib/EventBus';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayCollection from './runway/RunwayCollection';
@@ -17,6 +18,7 @@ import {
     FLIGHT_CATEGORY,
     PERFORMANCE
 } from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 const DEFAULT_CTR_RADIUS_NM = 80;
@@ -40,6 +42,8 @@ export default class AirportModel {
                 'Both updateRun() and onAirportChange() functions.'
             );
         }
+
+        this.eventBus = EventBus;
 
         /**
          * Provides a way to pause the game loop when changing airports
@@ -814,7 +818,7 @@ export default class AirportModel {
         this.loaded = true;
 
         this.parse(response);
-        this.onAirportChange(this.data);
+        this.eventBus.trigger(EVENT.AIRPORT_CHANGE, this.data);
         this.set();
     };
 
