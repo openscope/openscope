@@ -110,6 +110,8 @@ export const COMMAND_MAP = {
     dct: 'direct',
     abort: 'abort',
     hold: 'hold',
+    squawk: 'squawk',
+    sq: 'squawk',
     delete: 'delete',
     del: 'delete',
     kill: 'delete'
