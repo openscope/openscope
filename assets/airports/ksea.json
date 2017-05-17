@@ -635,7 +635,6 @@
             ]
         },
         {
-            "_name": "OLM1",
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
@@ -669,7 +668,6 @@
             ]
         },
         {
-            "_name": "CHINS1",
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
@@ -703,7 +701,6 @@
             ]
         },
         {
-            "_name": "HAWKZ4 - LDG SOUTH",
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
@@ -737,7 +734,6 @@
             ]
         },
         {
-            "_name": "MARNR5 - LDG SOUTH",
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
@@ -771,7 +767,6 @@
             ]
         },
         {
-            "_name": "GLASR9",
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
