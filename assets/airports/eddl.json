@@ -282,7 +282,7 @@
         "COL": {
             "icao": "COL",
             "name": "COLA",
-            "suffix": {"5L":"3J", "5R":"3Z", "23L":"4T", "23R":"2H"},
+            "suffix": {"05L":"3J", "05R":"3Z", "23L":"4T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM"],
                 "05R": ["DL050", "DL058", "BAM"],
@@ -302,7 +302,7 @@
         "DODEN": {
             "icao": "DODEN",
             "name": "DODEN",
-            "suffix": {"5L":"5J", "5R":"5Z", "23L":"8T", "23R":"2H"},
+            "suffix": {"05L":"5J", "05R":"5Z", "23L":"8T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM"],
                 "05R": ["DL050", "DL058", "BAM"],
@@ -322,7 +322,7 @@
         "GMH": {
             "icao": "GMH",
             "name": "Germinghausen",
-            "suffix": {"5L":"7Y", "5R":"4Z", "23L":"8T", "23R":"2H"},
+            "suffix": {"05L":"7Y", "05R":"4Z", "23L":"8T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM", "ANAVI"],
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
@@ -342,7 +342,7 @@
         "KUMIK": {
             "icao": "KUMIK",
             "name": "KUMIK",
-            "suffix": {"5L":"3J", "5R":"3Z", "23L":"5T", "23R":"2H"},
+            "suffix": {"05L":"3J", "05R":"3Z", "23L":"5T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM", "ANAVI"],
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
@@ -362,7 +362,7 @@
         "LMA": {
             "icao": "LMA",
             "name": "LIMA",
-            "suffix": {"5L":"6Y", "5R":"1Z", "23L":"2T", "23R":"2H"},
+            "suffix": {"05L":"6Y", "05R":"1Z", "23L":"2T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL051", "DL052"],
                 "05R": ["DL050", "DL051", "DL052"],
@@ -382,7 +382,7 @@
         "MEVEL": {
             "icao": "MEVEL",
             "name": "MEVEL",
-            "suffix": {"5L":"7J", "5R":"8Z", "23L":"2T", "23R":"2H"},
+            "suffix": {"05L":"7J", "05R":"8Z", "23L":"2T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL053", "NIKOG"],
                 "05R": ["DL050", "DL053", "NIKOG"],
@@ -402,7 +402,7 @@
         "MODRU": {
             "icao": "MODRU",
             "name": "MODRU",
-            "suffix": {"5L":"6J", "5R":"6Z", "23L":"1T", "23R":"1H"},
+            "suffix": {"05L":"6J", "05R":"6Z", "23L":"1T", "23R":"1H"},
             "rwy": {
                 "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
                 "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
@@ -422,7 +422,7 @@
         "NETEX": {
             "icao": "NETEX",
             "name": "NETEX",
-            "suffix": {"5L":"3J", "5R":"3Z", "23L":"5T", "23R":"2H"},
+            "suffix": {"05L":"3J", "05R":"3Z", "23L":"5T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
                 "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
@@ -442,7 +442,7 @@
         "NUDGO": {
             "icao": "NUDGO",
             "name": "NUDGO",
-            "suffix": {"5L":"3J", "5R":"3Z", "23L":"4T", "23R":"2H"},
+            "suffix": {"05L":"3J", "05R":"3Z", "23L":"4T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM", "ANAVI"],
                 "05R": ["DL050", "DL058", "BAM", "ANAVI"],
@@ -462,7 +462,7 @@
         "NVO": {
             "icao": "NVO",
             "name": "Noervenich",
-            "suffix": {"5L":"1Y", "5R":"1Z", "23L":"1T", "23R":"1U"},
+            "suffix": {"05L":"1Y", "05R":"1Z", "23L":"1T", "23R":"1U"},
             "rwy": {
                 "05L": ["DL050", "DL058", "BAM"],
                 "05R": ["DL050", "DL058", "BAM"],
@@ -482,7 +482,7 @@
         "SONEB": {
             "icao": "SONEB",
             "name": "SONEB",
-            "suffix": {"5L":"4J", "5R":"4Z", "23L":"6T", "23R":"2H"},
+            "suffix": {"05L":"4J", "05R":"4Z", "23L":"6T", "23R":"2H"},
             "rwy": {
                 "05L": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
                 "05R": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
