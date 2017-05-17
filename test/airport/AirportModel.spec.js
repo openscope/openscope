@@ -5,31 +5,12 @@ import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
 import { FLIGHT_CATEGORY } from '../../src/assets/scripts/client/constants/aircraftConstants';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
-let onUpdateRunStub;
-let onAirportChange;
-
-ava.beforeEach(() => {
-    onUpdateRunStub = sinon.stub();
-    onAirportChange = sinon.stub();
-});
-
-ava.afterEach(() => {
-    onUpdateRunStub = null;
-    onAirportChange = null;
-});
-
-ava('throws when passed invalid parameters', (t) => {
-    t.throws(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK, null, null));
-    t.throws(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, null));
-    t.throws(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK, null, onAirportChange));
-});
-
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange));
+    t.notThrows(() => new AirportModel(AIRPORT_JSON_KLAS_MOCK));
 });
 
 ava('#runways retuns an array of RunwayModels with the correct data', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
 
     t.true(model.runways[0][0].name === '07L');
     t.true(model.runways[0][1].name === '25R');
@@ -39,7 +20,7 @@ ava('#runways retuns an array of RunwayModels with the correct data', (t) => {
 
 ava('does not call .setCurrentPosition() when airportData does not have a position value', (t) => {
     const invalidAirportJsonMock = Object.assign({}, AIRPORT_JSON_KLAS_MOCK, { position: null });
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
     model.parse(invalidAirportJsonMock);
@@ -48,7 +29,7 @@ ava('does not call .setCurrentPosition() when airportData does not have a positi
 });
 
 ava('calls .setCurrentPosition() when airportData has a position value', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const setCurrentPositionSpy = sinon.spy(model, 'setCurrentPosition');
 
     model.parse(AIRPORT_JSON_KLAS_MOCK);
@@ -57,7 +38,7 @@ ava('calls .setCurrentPosition() when airportData has a position value', (t) => 
 });
 
 ava('.setCurrentPosition() returns early when passed an invalid coordinate', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model._positionModel = null;
 
     model.setCurrentPosition([]);
@@ -66,7 +47,7 @@ ava('.setCurrentPosition() returns early when passed an invalid coordinate', (t)
 });
 
 ava('.buildAirportAirspace() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.airspace = null;
 
     model.buildAirportAirspace();
@@ -75,7 +56,7 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
 });
 
 ava('.buildAirportMaps() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.maps = null;
 
     model.buildAirportMaps();
@@ -84,7 +65,7 @@ ava('.buildAirportMaps() returns early when passed a null or undefined argument'
 });
 
 ava('.buildRestrictedAreas() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.restricted_areas = null;
 
     model.buildRestrictedAreas();
@@ -93,7 +74,7 @@ ava('.buildRestrictedAreas() returns early when passed a null or undefined argum
 });
 
 ava('.updateCurrentWind() returns early when passed a null or undefined argument', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.wind.speed = 42;
     model.wind.angle = 42;
 
@@ -104,7 +85,7 @@ ava('.updateCurrentWind() returns early when passed a null or undefined argument
 });
 
 ava('.set() calls .load() when #lodaed is false', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const loadSpy = sinon.spy(model, 'load');
     model.loaded = false;
 
@@ -114,7 +95,7 @@ ava('.set() calls .load() when #lodaed is false', (t) => {
 });
 
 ava('.loadTerrain() returns early when #has_terrain is false', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const parseTerrainSpy = sinon.spy(model, 'parseTerrain');
     model.has_terrain = false;
 
@@ -123,27 +104,8 @@ ava('.loadTerrain() returns early when #has_terrain is false', (t) => {
     t.false(parseTerrainSpy.calledOnce);
 });
 
-
-ava('.load() returns early when #loaded is true', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
-    model.loaded = true;
-
-    model.load();
-
-    t.false(onUpdateRunStub.called);
-});
-
-ava('.load() calls .updateRun() when #loaded is false', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
-    model.loaded = false;
-
-    model.load();
-
-    t.true(onUpdateRunStub.calledOnce);
-});
-
 ava('.load() calls .onLoadIntialAirportFromJson() when passed an object', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const onLoadIntialAirportFromJsonSpy = sinon.spy(model, 'onLoadIntialAirportFromJson');
 
     model.load(AIRPORT_JSON_KLAS_MOCK);
@@ -152,7 +114,7 @@ ava('.load() calls .onLoadIntialAirportFromJson() when passed an object', (t) =>
 });
 
 ava('.load() does not call .onLoadIntialAirportFromJson() when no parameters are received', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const onLoadIntialAirportFromJsonSpy = sinon.spy(model, 'onLoadIntialAirportFromJson');
 
     model.load();
@@ -161,35 +123,35 @@ ava('.load() does not call .onLoadIntialAirportFromJson() when no parameters are
 });
 
 ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getRunway();
 
     t.true(result === null);
 });
 
 ava('.getActiveRunwayForCategory() returns the correct RunwayModel for departure', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.DEPARTURE);
 
     t.true(result.name === model.departureRunwayModel.name);
 });
 
 ava('.getActiveRunwayForCategory() returns the correct RunwayModel for arrival', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getActiveRunwayForCategory(FLIGHT_CATEGORY.ARRIVAL);
 
     t.true(result.name === model.arrivalRunwayModel.name);
 });
 
 ava('.getActiveRunwayForCategory() returns the arrivalRunway when an invalid category is passed', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getActiveRunwayForCategory('threeve');
 
     t.true(result.name === model.arrivalRunwayModel.name);
 });
 
 ava.skip('.removeAircraftFromAllRunwayQueues()', (t) => {
-    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK, onUpdateRunStub, onAirportChange);
+    const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const removeAircraftFromAllRunwayQueuesSpy = sinon.spy(model._runwayCollection, 'removeAircraftFromAllRunwayQueues');
     model.removeAircraftFromAllRunwayQueues({});
 

@@ -23,13 +23,9 @@ export default class AirportController {
      * @constructor
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
-     * @param updateRun {function}
-     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
+    constructor(initialAirportData, airportLoadList) {
         this.eventBus = EventBus;
-        this.updateRun = updateRun;
-        this.onAirportChange = onAirportChange;
 
         this.airport = airport;
         this.airport.airports = {};
@@ -116,17 +112,7 @@ export default class AirportController {
             return null;
         }
 
-        // create a new Airport with a reference to this.updateRun()
-        const airport = new Airport(
-            {
-                icao,
-                level,
-                name,
-                wip
-            },
-            this.updateRun,
-            this.onAirportChange
-        );
+        const airport = new Airport({ icao, level, name, wip });
 
         this.airport_add(airport);
 

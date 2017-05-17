@@ -32,39 +32,14 @@ export default class AirportModel {
     /**
      * @constructor
      * @param options {object}
-     * @param updateRun {function}
-     * @param onAirportChange {function}  callback method to call onAirportChange
      */
     // istanbul ignore next
-    constructor(options = {}, updateRun, onAirportChange) {
-        if (!updateRun || !onAirportChange) {
-            throw new TypeError('AirportModel was called to instantiate with missing parameters. ' +
-                'Both updateRun() and onAirportChange() functions.'
-            );
-        }
-
+    constructor(options = {}) {
+        /**
+         * @property EventBus
+         * @type {EventBus}
+         */
         this.eventBus = EventBus;
-
-        /**
-         * Provides a way to pause the game loop when changing airports
-         *
-         * @property updateRun
-         * @type {function}
-         * @default App.updateRun()
-         */
-        this.updateRun = updateRun;
-
-        /**
-         * Callback method supplied by App that is called when an airport is changed.
-         *
-         * Used to destroy/reset classes and begin instantiation of new ones for the
-         * next airport
-         *
-         * @property onAirportChange
-         * @type {function}
-         * @default App.onAirportChange()
-         */
-        this.onAirportChange = onAirportChange;
 
         /**
          * cache of airport json data
@@ -551,7 +526,7 @@ export default class AirportModel {
 
         this.start = window.gameController.game_time();
 
-        this.updateRun(true);
+        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, true);
     }
 
     /**
@@ -789,8 +764,8 @@ export default class AirportModel {
             return;
         }
 
-        this.updateRun(false);
         this.loading = true;
+        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, false);
 
         if (airportJson) {
             this.onLoadIntialAirportFromJson(airportJson);
