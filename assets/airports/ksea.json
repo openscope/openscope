@@ -55,8 +55,6 @@
         "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
         "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
         "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
-        "_SUMMA329017": ["N46d53.46m0", "W122d05.84m0"],
-        "_SUMMA329017": ["N46d53.46m0", "W122d05.84m0"],
         "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
         "ALKIA": ["N47d37.26m0", "W122d28.45m0"],
         "ARRIE": ["N47d52.79m0", "W123d28.55m0"],
@@ -238,15 +236,15 @@
             "icao": "ELMAA2",
             "name": "Elma Two",
             "rwy": {
-                "16L": [["NICHY", "A30+"]],
-                "16C": [["NICHY", "A30+"]],
-                "16R": [["NICHY", "A30+"]]
+                "16L": [],
+                "16C": [],
+                "16R": []
             },
-            "body": ["_NICHY250SEA230"],
+            "body": [["NICHY", "A30+"], "_NICHY250SEA230", "ELMAA"],
             "exitPoints": {
-                "CVO": ["ELMAA", "CVO"],
-                "ELMAA": ["ELMAA"],
-                "HQM": ["ELMAA", "HQM"]
+                "CVO": ["CVO"],
+                "ELMAA": [],
+                "HQM": ["HQM"]
             },
             "draw": [
                 ["NICHY", "_NICHY250SEA230", "ELMAA*"],
@@ -265,13 +263,13 @@
                 "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
                 "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
-            "body": [],
+            "body": [["HAROB", "A100+"]],
             "exitPoints": {
-                "ERAVE": [["HAROB", "A100+"], "ERAVE"],
-                "FEPOT": [["HAROB", "A100+"], "FEPOT"],
-                "HAROB": [["HAROB", "A100+"]],
-                "HISKU": [["HAROB", "A100+"], "FEPOT", "HISKU"],
-                "HQM": [["HAROB", "A100+"], "HQM"]
+                "ERAVE": ["ERAVE"],
+                "FEPOT": ["FEPOT"],
+                "HAROB": [],
+                "HISKU": ["FEPOT", "HISKU"],
+                "HQM": ["HQM"]
             },
             "draw": [
                 ["CAVOB", "RENBE"],
@@ -281,10 +279,10 @@
                 ["CUSBU", "WUREL"],
                 ["NESOE", "WUREL"],
                 ["DODVE", "WUREL"],
-                ["WUREL", "ATOME", "BREMM", "HAROB*"],
+                ["WUREL", "ATOME", "BREMM", "HAROB"],
                 ["HAROB", "HQM*"],
                 ["HAROB", "ERAVE*"],
-                ["HAROB", "FEPOT*", "HISKU*"]
+                ["HAROB*", "FEPOT*", "HISKU*"]
             ]
         },
         "KMORE4": {
@@ -295,10 +293,10 @@
                 "34C": ["NESOE"],
                 "34R": ["DODVE"]
             },
-            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP", ["ZUVEN", "A100+"]],
+            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP", ["ZUVEN", "A100+"], ["KMORE", "S250-"]],
             "exitPoints": {
-                "BLUIT": [["KMORE", "S250-"], "BLUIT"],
-                "KMORE": [["KMORE", "S250-"]]
+                "BLUIT": ["BLUIT"],
+                "KMORE": []
             },
             "draw": [
                 ["CUSBU", "WUREL"],
@@ -315,10 +313,10 @@
                 "34C": ["NESOE"],
                 "34R": ["DODVE"]
             },
-            "body": [["WUREL", "A31+"], "ATOME", "CENEX"],
+            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP"],
             "exitPoints": {
-                "KTSAP": ["KTSAP"],
-                "TOU": ["KTSAP", "TOU"]
+                "KTSAP": [],
+                "TOU": ["TOU"]
             },
             "draw": [
                 ["CUSBU", "WUREL"],
@@ -351,7 +349,8 @@
                 "YDC": ["YDC"],
                 "YKM": ["YKM"],
                 "YVR": ["YVR"]
-            }
+            },
+            "draw": [[]]
         },
         "SEATL5": {
             "icao": "SEATL5",
@@ -381,7 +380,8 @@
                 "YKM": ["YKM"],
                 "YVR": ["YVR"],
                 "YYJ": ["YYJ"]
-            }
+            },
+            "draw": [[]]
         },
         "SUMMA9": {
             "icao": "SUMMA9",
@@ -401,7 +401,7 @@
             },
             "draw": [
                 ["NEVJO", "SUMMA"],
-                ["NEZUG", "_NEZUG070010", "SUMMA"],
+                ["NEZUG", "_NEZUG070PAE139", "_SUMMA326017", "SUMMA"],
                 ["SUMMA", "LKV*"],
                 ["SUMMA*", "BKE*"]
             ]
@@ -425,7 +425,12 @@
                 "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
                 "34C": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
                 "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
-            }
+            },
+            "draw": [
+                ["IMB*", "SUNED*", "YKM"],
+                ["PDT*", "BRUKK", "SUNED", "YKM"],
+                ["YKM", "CHINS*", "RADDY", "HUMPP", "AUBRN"]
+            ]
         },
         "EPH8": {
             "icao": "EPH8",
@@ -442,7 +447,10 @@
                 "34L": ["#163"],
                 "34C": ["#163"],
                 "34R": ["#163"]
-            }
+            },
+            "draw": [
+                ["ODESS*", "EPH*", "SKYKO", "HUVUS", "HETHR"]
+            ]
         },
         "GLASR1": {
             "icao": "GLASR1",
@@ -463,7 +471,12 @@
                 "34L": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
                 "34C": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
                 "34R": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"]
-            }
+            },
+            "draw": [
+                ["MLP*", "GEG*", "TEMPL*", "WITRO", "ODAHL", "GLASR*"],
+                ["YXC*", "ONSET", "LOSTT*", "KRUZR", "GLASR"],
+                ["GLASR", "JAKSN", "WOODI", "HETHR"]
+            ]
         },
         "HAWKZ5": {
             "icao": "HAWKZ5",
@@ -484,7 +497,16 @@
                 "34L": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
                 "34C": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
                 "34R": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
-            }
+            },
+            "draw": [
+                ["LKV*", "BTG*", "HAWKZ*"],
+                ["LMT*", "BTG", "HAWKZ"],
+                ["BTG", "PTERA", "KRIEG*", "HAWKZ"],
+                ["LATAY*", "AAYRR", "HAWKZ"],
+                ["HAWKZ", "LIINE"],
+                ["LIINE", "PIKEZ", "COFAY", "BREVE", "NETTZ", "KWEST", "VASHN"],
+                ["LIINE", "FOOTT", "GOALZ", "SONDR"]
+            ]
         },
         "JAWBN5": {
             "icao": "JAWBN5",
@@ -503,7 +525,13 @@
                 "34L": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
                 "34C": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
                 "34R": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"]
-            }
+            },
+            "draw": [
+                ["TOU*", "JAWBN*"],
+                ["YVR*", "JAWBN"],
+                ["YYJ*", "ORCUS", "JAWBN"],
+                ["JAWBN", "DIGGN", "ALKIA"]
+            ]
         },
         "MARNR6": {
             "icao": "MARNR6",
@@ -525,7 +553,16 @@
                 "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
                 "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
                 "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"]
-            }
+            },
+            "draw": [
+                ["BUHNR*", "MARNR*"],
+                ["JIGEB*", "MARNR"],
+                ["YVR*", "ROESH*", "MARNR"],
+                ["TOU*", "LOOOO", "MARNR"],
+                ["YYJ*", "ORCUS", "MARNR"],
+                ["MARNR", "BOANE", "NEHOS", "GRIFY"],
+                ["MARNR", "PNELA", "VEGGN", "UNITT", "WUBET", "SHIPZ", "EMMSS"]
+            ]
         },
         "OLM2": {
             "icao": "OLM2",
@@ -543,7 +580,12 @@
                 "34L": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
                 "34C": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
                 "34R": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"]
-            }
+            },
+            "draw": [
+                ["BTG*", "COUGA", "OLM*"],
+                ["UBG*", "OLM"],
+                ["OLM", "LACEE", "ARVAD", "FOURT"]
+            ]
         }
     },
     "spawnPatterns": [
