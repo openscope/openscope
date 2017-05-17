@@ -18,6 +18,8 @@
         "angle": 37,
         "speed": 9
     },
+    "arrivalRunway": "05",
+    "departureRunway": "05",
     "airspace": [
         {
             "floor": 0,
@@ -276,27 +278,28 @@
         "ils": [true, false]
     }],
     "sids": {
-        "YHZ3": {
-            "icao": "YHZ3",
-            "name": "Halifax 3",
+        "CYHZ4": {
+            "icao": "CYHZ4",
+            "name": "Halifax Four",
             "rwy": {
-                "14": ["YHZ"],
-                "32": [],
-                "05": ["YHZ"],
-                "23": []
+                "14": ["#053"],
+                "32": ["#323"],
+                "05": ["#053"],
+                "23": ["#233"]
             },
+            "body": [],
             "exitPoints": {
-                "CAAPE":    ["ARDEE", "CAAPE"],
-                "VQI":      ["HIDIG", "YQI"],
-                "NOTOP":    ["IGTAS", "NOTOP"],
-                "NUTBY":    ["PAULO", "NUTBY"],
-                "YZX":      ["YZX"]
+                "CAAPE": ["ARDEE", "CAAPE"],
+                "VQI": ["HIDIG", "YQI"],
+                "NOTOP": ["IGTAS", "NOTOP"],
+                "NUTBY": ["PAULO", "NUTBY"],
+                "YZX": ["YZX"]
             },
             "draw": [
-                ["YHZ", "ARDEE*", "CAAPE"],
-                ["YHZ", "HIDIG*", "YQI"],
-                ["YHZ", "IGTAS*", "NOTOP"],
-                ["YHZ", "PAULO*", "NUTBY"],
+                ["YHZ", "ARDEE", "CAAPE*"],
+                ["YHZ", "HIDIG", "YQI*"],
+                ["YHZ", "IGTAS", "NOTOP*"],
+                ["YHZ", "PAULO", "NUTBY*"],
                 ["YHZ", "YZX*"]
             ]
         }
@@ -347,9 +350,7 @@
             "icao": "LIRLA1",
             "name": "Lirla One",
             "entryPoints": {
-                "AGMIR": [
-                    "AGMIR"
-                ]
+                "AGMIR": ["AGMIR"]
             },
             "body": ["LIRLA"],
             "rwy": {
@@ -369,12 +370,8 @@
             "icao": "PEGGY1",
             "name": "Peggy One",
             "entryPoints": {
-                "TUSKY": [
-                    "TUSKY"
-                ],
-                "ELERI": [
-                    "ELERI"
-                ]
+                "TUSKY": ["TUSKY"],
+                "ELERI": ["ELERI"]
             },
             "body": ["ETGAR"],
             "rwy": {
@@ -396,7 +393,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.YHZ3.CAAPE",
+            "route": "CYHZ.CYHZ4.CAAPE",
             "altitude": null,
             "speed": null,
             "method": "random",
@@ -425,7 +422,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.YHZ3.VQI",
+            "route": "CYHZ.CYHZ4.VQI",
             "altitude": null,
             "speed": null,
             "method": "random",
@@ -454,7 +451,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.YHZ3.NOTOP",
+            "route": "CYHZ.CYHZ4.NOTOP",
             "altitude": null,
             "speed": null,
             "method": "random",
@@ -483,7 +480,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.YHZ3.NUTBY",
+            "route": "CYHZ.CYHZ4.NUTBY",
             "altitude": null,
             "speed": null,
             "method": "random",
@@ -512,7 +509,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.YHZ3.YZX",
+            "route": "CYHZ.CYHZ4.YZX",
             "altitude": null,
             "speed": null,
             "method": "random",
