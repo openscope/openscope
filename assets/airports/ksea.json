@@ -357,6 +357,145 @@
             ]
         }
     },
+    "stars": {
+        "CHINS2": {
+            "icao": "CHINS2",
+            "name": "Chins Two",
+            "entryPoints": {
+                "CHINS": [],
+                "IMB": ["IMB", "SUNED", "YKM"],
+                "PDT": ["PDT", "BRUKK", "SUNED", "YKM"],
+                "SUNED": ["SUNED", "YKM"]
+            },
+            "body": ["CHINS"],
+            "rwy": {
+                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "16C": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "34C": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+            }
+        },
+        "EPH8": {
+            "icao": "EPH8",
+            "name": "Ephrata Eight",
+            "entryPoints": {
+                "EPH": [],
+                "ODESS": ["ODESS"]
+            },
+            "body": ["EPH", "SKYKO", "HUVUS", "HETHR"],
+            "rwy": {
+                "16L": ["#250"],
+                "16C": ["#250"],
+                "16R": ["#250"],
+                "34L": ["#163"],
+                "34C": ["#163"],
+                "34R": ["#163"]
+            }
+        },
+        "GLASR1": {
+            "icao": "GLASR1",
+            "name": "Glasser One",
+            "entryPoints": {
+                "GEG": ["GEG", "TEMPL", "WITRO", "ODAHL"],
+                "GLASR": [],
+                "LOSTT": ["LOSTT", "KRUZR"],
+                "MLP": ["MLP", "GEG", "TEMPL", "WITRO", "ODAHL"],
+                "TEMPL": ["TEMPL", "WITRO", "ODAHL"],
+                "YXC": ["YXC", "ONSET", "LOSTT", "KRUZR"]
+            },
+            "body": ["GLASR"],
+            "rwy": {
+                "16L": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "16C": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "16R": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "34L": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "34C": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "34R": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"]
+            }
+        },
+        "HAWKZ5": {
+            "icao": "HAWKZ5",
+            "name": "Hawks Five",
+            "entryPoints": {
+                "BTG": [["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
+                "HAWKZ": [],
+                "KRIEG": ["KRIEG"],
+                "LATAY": ["LATAY", "AAYRR"],
+                "LKV": ["LKV", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
+                "LMT": ["LMT", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"]
+            },
+            "body": [["HAWKZ", "A120+|S270"], "LIINE"],
+            "rwy": {
+                "16L": [["PIKEZ", "A150-|S250"], "COFAY", ["BREVE", "A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "16C": [["PIKEZ", "A150-|S250"], "COFAY", ["BREVE", "A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "16R": [["PIKEZ", "A150-|S250"], "COFAY", ["BREVE", "A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "34L": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "34C": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "34R": [["FOOTT", "A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
+            }
+        },
+        "JAWBN5": {
+            "icao": "JAWBN5",
+            "name": "Jawbone Five",
+            "entryPoints": {
+                "JAWBN": [],
+                "TOU": ["TOU"],
+                "YVR": ["YVR"],
+                "YYJ": ["YYJ", ["ORCUS", "A170+"]]
+            },
+            "body": [],
+            "rwy": {
+                "16L": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "16C": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "16R": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "34L": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "34C": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "34R": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"]
+            }
+        },
+        "MARNR6": {
+            "icao": "MARNR6",
+            "name": "Mariner Six",
+            "entryPoints": {
+                "BUHNR": [["BUHNR", "A120+"]],
+                "JIGEB": [["JIGEB", "A120+"]],
+                "MARNR": [],
+                "ROESH": ["ROESH"],
+                "TOU": [["TOU", "A200+"], ["LOOOO", "A170+|S280"]],
+                "YVR": [["YVR", "A200+"], "ROESH"],
+                "YYJ": [["YYJ", "A200+"], ["ORCUS", "A170+|S280"]]
+            },
+            "body": [["MARNR", "A120+|S270"]],
+            "rwy": {
+                "16L": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "16C": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "16R": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
+                "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
+                "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"]
+            }
+        },
+        "OLM2": {
+            "icao": "OLM2",
+            "name": "Olympia Two",
+            "entryPoints": {
+                "BTG": ["BTG", "COUGA"],
+                "OLM": [],
+                "UBG": ["UBG"]
+            },
+            "body": [],
+            "rwy": {
+                "16L": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "16C": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "16R": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "34L": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "34C": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "34R": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"]
+            }
+        }
+    },
     "spawnPatterns": [
         {
             "origin": "ksea",
