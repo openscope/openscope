@@ -1,14 +1,15 @@
 {
-  "name": "Germania",
-  "callsign": {
-    "name": "GERMANIA",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A319", 8 ],
-      ["A321", 4 ],
-	  ["B737", 10 ]
-    ]
-  }
+    "icao": "gmi",
+    "name": "Germania",
+    "callsign": {
+        "name": "GERMANIA",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 8 ],
+            ["A321", 4 ],
+            ["B737", 10 ]
+        ]
+    }
 }

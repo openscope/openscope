@@ -1,14 +1,14 @@
 {
-  "name": "Interjet",
-  "icao": "AIJ",
-  "callsign": {
-    "name": "InterJet",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["SU9",  20],
-      ["A320", 42]
-    ]
-  }
+    "icao": "aij",
+    "name": "Interjet",
+    "callsign": {
+        "name": "InterJet",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["SU9",  20],
+            ["A320", 42]
+        ]
+    }
 }

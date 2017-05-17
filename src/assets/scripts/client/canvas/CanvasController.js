@@ -10,7 +10,7 @@ import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { FLIGHT_PHASE, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -419,8 +419,8 @@ export default class ConvasController {
         const angle = runway.angle;
 
         cc.translate(
-            round(window.uiController.km_to_px(runway.position[0])) + this.canvas.panX,
-            -round(window.uiController.km_to_px(runway.position[1])) + this.canvas.panY
+            round(window.uiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
+            -round(window.uiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
         );
         cc.rotate(angle);
 
@@ -461,8 +461,8 @@ export default class ConvasController {
         const text_height = 14;
 
         cc.translate(
-            round(window.uiController.km_to_px(runway.position[0])) + this.canvas.panX,
-            -round(window.uiController.km_to_px(runway.position[1])) + this.canvas.panY
+            round(window.uiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
+            -round(window.uiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
         );
         cc.rotate(angle);
 
@@ -608,13 +608,11 @@ export default class ConvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = window.airportController.airport_get();
-        // TODO: perhaps this could be a model method?
-        _forEach(airport.real_fixes, (fix, i) => {
+        _forEach(this._navigationLibrary.realFixes, (fix, i) => {
             cc.save();
             cc.translate(
-                round(window.uiController.km_to_px(fix.position[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(fix.position[1])) + this.canvas.panY
+                round(window.uiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX,
+                -round(window.uiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
             // draw outline (draw with eraser)
@@ -623,14 +621,14 @@ export default class ConvasController {
             cc.globalCompositeOperation = 'destination-out';
             cc.lineWidth = 4;
 
-            this.canvas_draw_fix(cc, fix.name, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
 
             cc.strokeStyle = COLORS.WHITE_00;
             cc.fillStyle = COLORS.WHITE_05;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
-            this.canvas_draw_fix(cc, fix.name, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
 
             cc.restore();
         });
@@ -674,9 +672,9 @@ export default class ConvasController {
                         write_sid_name = false;
                     }
 
-                    // FIXME: this is duplicated in the if block above. need to consolidate
+                    // TODO: this is duplicated in the if block above. need to consolidate
                     const fixName = fixList[j].replace('*', '');
-                    let fix = this._navigationLibrary.getFixPositionCoordinates(fixName);
+                    let fix = this._navigationLibrary.getFixRelativePosition(fixName);
 
                     if (!fix) {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
@@ -724,9 +722,10 @@ export default class ConvasController {
      */
     canvas_draw_separation_indicator(cc, aircraft) {
         // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint.runway);
+        const runwayName = aircraft.fms.currentRunwayName;
+        const rwy = window.airportController.airport_get().getRunway(runwayName);
 
-        if (!rwy) {
+        if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }
 
@@ -735,8 +734,8 @@ export default class ConvasController {
         cc.strokeStyle = COLORS.RED_08;
         cc.lineWidth = 3;
         cc.translate(
-            window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY
+            window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
+            -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
         cc.rotate(angle);
         cc.beginPath();
@@ -752,10 +751,12 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_aircraft_rings(cc, aircraft) {
+        const aircraftAlerts = aircraft.hasAlerts();
+
         cc.save();
 
-        if (aircraft.hasAlerts()[0]) {
-            if (aircraft.hasAlerts()[1]) {
+        if (aircraftAlerts[0]) {
+            if (aircraftAlerts[1]) {
                 // red violation circle
                 cc.strokeStyle = COLORS.RED;
             } else {
@@ -840,15 +841,15 @@ export default class ConvasController {
             cc.fillStyle = COLORS.WHITE;
         }
 
-        const length = aircraft.position_history.length;
+        const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
             if (!aircraft.inside_ctr) {
                 cc.globalAlpha = 0.3 / (length - i);
             } else {
                 cc.globalAlpha = 1 / (length - i);
                 cc.fillRect(
-                    window.uiController.km_to_px(aircraft.position_history[i][0]) + this.canvas.panX - 1,
-                    -window.uiController.km_to_px(aircraft.position_history[i][1]) + this.canvas.panY - 1,
+                    window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
+                    -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
                     2,
                     2
                 );
@@ -857,11 +858,13 @@ export default class ConvasController {
 
         cc.restore();
 
-        if (aircraft.position_history.length > trailling_length) {
-            aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
+        if (aircraft.relativePositionHistory.length > trailling_length) {
+            aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(
+                aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length
+            );
         }
 
-        if (aircraft.isPrecisionGuided()) {
+        if (aircraft.isEstablishedOnCourse()) {
             cc.save();
             this.canvas_draw_separation_indicator(cc, aircraft);
             cc.restore();
@@ -908,8 +911,8 @@ export default class ConvasController {
             const h = this.canvas.size.height / 2;
 
             cc.translate(
-                clamp(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w),
-                clamp(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h)
+                clamp(-w, window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX, w),
+                clamp(-h, -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY, h)
             );
 
             cc.beginPath();
@@ -920,14 +923,15 @@ export default class ConvasController {
         }
 
         cc.translate(
-            window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY
+            window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
+            -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
 
         if (!aircraft.hit) {
             cc.save();
 
             let tail_length = aircraft.groundSpeed / 15;
+
             if (match) {
                 tail_length = 15;
             }
@@ -962,10 +966,15 @@ export default class ConvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
-        if (aircraft.fms.waypoints.length < 1) {
+        // this is currently not working correctly and not in use
+        return;
+
+        const waypointList = aircraft.fms.waypoints;
+
+        if (waypointList.length <= 1) {
             return;
         }
-
+k
         const start = future_track.length - 1;
         const x = window.uiController.km_to_px(future_track[start][0]) + this.canvas.panX;
         const y = -window.uiController.km_to_px(future_track[start][1]) + this.canvas.panY;
@@ -974,14 +983,10 @@ export default class ConvasController {
         cc.moveTo(x, y);
         cc.setLineDash([3, 10]);
 
-        for (let i = 0; i < aircraft.fms.waypoints.length; i++) {
-            if (!aircraft.fms.waypoints[i].location) {
-                break;
-            }
-
-            const fix = aircraft.fms.waypoints[i].location;
-            const fx = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
-            const fy = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
+        for (let i = 0; i < waypointList.length; i++) {
+            const [x, y] = waypointList[i].relativePosition;
+            const fx = window.uiController.km_to_px(x) + this.canvas.panX;
+            const fy = -window.uiController.km_to_px(y) + this.canvas.panY;
 
             cc.lineTo(fx, fy);
         }
@@ -1007,18 +1012,15 @@ export default class ConvasController {
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
-        twin.fms.aircraft = twin;
         twin.projected = true;
         window.gameController.game.delta = 5;
 
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.isPrecisionGuided() &&
-                twin.category === FLIGHT_CATEGORY.ARRIVAL &&
-                twin.mode === FLIGHT_MODES.LANDING;
+            ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
-            future_track.push([twin.position[0], twin.position[1], ils_locked]);
+            future_track.push([...twin.relativePosition, ils_locked]);
 
             if (ils_locked && twin.altitude < 500) {
                 break;
@@ -1110,7 +1112,7 @@ export default class ConvasController {
             // Initial Setup
             cc.save();
 
-            const cs = aircraft.getCallsign();
+            const cs = aircraft.callsign;
             const paddingLR = 5;
             // width of datablock (scales to fit callsign)
             const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
@@ -1119,9 +1121,9 @@ export default class ConvasController {
             const height = 31;
             const height2 = height / 2;
             // width of colored bar
-            const bar_width = width / 18;
+            const bar_width = 3;
             const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
+            const ILS_enabled = aircraft.pilot.hasApproachClearance;
             const lock_size = height / 3;
             const lock_offset = lock_size / 8;
             const pi = Math.PI;
@@ -1161,13 +1163,13 @@ export default class ConvasController {
 
             // Move to center of where the data block is to be drawn
             const ac_pos = [
-                round(window.uiController.km_to_px(aircraft.position[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(aircraft.position[1])) + this.canvas.panY
+                round(window.uiController.km_to_px(aircraft.relativePosition[0])) + this.canvas.panX,
+                -round(window.uiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
             ];
 
             // game will move FDB to the appropriate position
             if (aircraft.datablockDir === -1) {
-                if (-window.uiController.km_to_px(aircraft.position[1]) + this.canvas.size.height / 2 < height * 1.5) {
+                if (-window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
                     cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
                 } else {
                     cc.translate(ac_pos[0], ac_pos[1] - height2 - 12);
@@ -1234,7 +1236,7 @@ export default class ConvasController {
                 cc.lineTo(0, height2);
                 cc.stroke();  // bottom arc end
 
-                if (aircraft.mode === FLIGHT_MODES.LANDING) {
+                if (aircraft.isEstablishedOnCourse()) {
                     // Localizer Capture Indicator
                     cc.fillStyle = white;
                     cc.beginPath();
@@ -1254,7 +1256,7 @@ export default class ConvasController {
             const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
             const lineheight = 4.5; // height of text row (used for spacing basis)
             const row1text = cs;
-            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.groundSpeed * 0.1), 2)}`;
+            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {
@@ -1430,8 +1432,7 @@ export default class ConvasController {
         // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
             const poly = $.map(airport.perimeter.poly, (v) => {
-                // TODO: this seems strange. are we returning a single-index array everytime? what does v.position look like?
-                return [v.position];
+                return [v.relativePosition];
             });
 
             this.canvas_draw_poly(cc, poly);
@@ -1760,14 +1761,14 @@ export default class ConvasController {
 
         // Get the selected aircraft.
         const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.getCallsign().toUpperCase() === callsign;
+            return p.isVisible() && p.callsign.toUpperCase() === callsign;
         })[0];
 
         if (!aircraft) {
             return;
         }
 
-        const pos = this.to_canvas_pos(aircraft.position);
+        const pos = this.to_canvas_pos(aircraft.relativePosition);
         const rectPos = [0, 0];
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 

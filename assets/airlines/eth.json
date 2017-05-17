@@ -1,10 +1,11 @@
 {
-  "name": "Ethiopian Airlines",
-  "callsign": {
-    "name": "Ethiopian",
-    "length": 3
-  },
-  "fleets": {
+    "icao": "eth",
+    "name": "Ethiopian Airlines",
+    "callsign": {
+        "name": "Ethiopian",
+        "length": 3
+    },
+    "fleets": {
         "default": [
             ["B737", 5 ],
             ["B738", 14],

@@ -1,0 +1,15 @@
+{{#extend "layout"}}
+    {{#content "body" mode="append" }}
+        <div id="clock"></div>
+        <div id="canvases"></div>
+        <div id="log"></div>
+        <input id="command" placeholder="enter command" autofocus="true" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" />
+        {{> _sidebar}}
+        {{> _score}}
+        {{> _controls}}
+        {{> _airportSwitch}}
+        {{> _paused}}
+        {{> _loadingOverlay}}
+        {{> _loadingIndicator}}
+    {{/content}}
+{{/extend}}

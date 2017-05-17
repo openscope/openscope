@@ -99,7 +99,10 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-57858722-1', 'auto');
+      ga('create', 'UA-91575400-1', { 'name': 'openscope' });
+
       ga('send', 'pageview');
+      ga('openscope.send', 'pageview', location.host);
     </script>
   </body>
 </html>

@@ -1,12 +1,13 @@
 {
-  "name": "Air Seoul",
-  "callsign": {
+    "icao": "asv",
     "name": "Air Seoul",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-        ["A321",    1]
-    ]
-  }
+    "callsign": {
+        "name": "Air Seoul",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A321",    1]
+        ]
+    }
 }

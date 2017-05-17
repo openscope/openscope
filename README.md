@@ -1,35 +1,39 @@
-[![Join the chat at https://gitter.im/zlsa/atc](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zlsa/atc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Travis Production Build State](https://img.shields.io/travis/openscope/openscope/master.svg)](https://github.com/openscope/openscope/tree/master)
+[![openScope Current Release](https://img.shields.io/github/release/openscope/openscope.svg)](https://github.com/openscope/openscope/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
+[![Website Status](https://img.shields.io/website-up-down-green-red/http/openscope.co.svg)](http://www.openscope.co)
+
 ## Air Traffic Control
 
 An ATC simulator in HTML5.
 
 ## Running Locally
-It is possible to run this application locally.  You will need to have node and npm install in order for this to work.  For more information, view the [Tools Documentation](tools/README.md)
 
-## Privacy
+It is possible to run this application locally. You will need to have [`node`](https://nodejs.org/en/download/) and [`npm`](https://docs.npmjs.com/getting-started/installing-node) installed in order for this to work. For more information, view the [tools documentation](tools/README.md).
 
-Page hits are tracked with Google Analytics; feel free to use an
-adblocker. The tracking is used only to get the number of page hits.
+## Privacy Discolsures
+
+Page hits are tracked with Google Analytics.
 
 ## Contributing
 
-Just create a pull request and I'll get to it. Thanks for helping!
+We use the [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) for managing branches.  If you would like to contribute, you will be expected to use appropriate branch names based on this methodology (and we can help if you have questions).
+
+Don't know Javascript?  That's cool, we're always looking for beta testers and/or airport contributors.  If you would like to add a new airport, or help update existing airports, please read the [Airport Documentation](https://github.com/openscope/openscope/wiki/Airport.json) to get up to speed on what is expected in that file.
+
+## Slack
+
+Please join us on our [Slack Channel](http://slack.openscope.co/) if you have questions, comments or would like to contribute.  We can then add you to the organization so you can begin committing to this repo.
+
 ## License
 
 MIT.
 
-Note: the license was formerly CC0; it was set before I was familiar with licensing options.
+**Note:** The license was formerly CC0. It was set before I was familiar with licensing options.
 
-## Exceptions
+### Exceptions
 
-The following files are NOT MIT licensed:
+The following files are **NOT** MIT licensed:
 
 * [`terrain.svg`](http://www.flaticon.com/free-icon/mountain-summit_27798) by [OCHA](http://www.flaticon.com/authors/ocha) is licensed CC BY 3.0.
-
-<!--
-
-## Donate
-
-bitcoin: 1PLsixE3eYPL86VJJEV3t1E6LTVvmVHoe3
-
--->

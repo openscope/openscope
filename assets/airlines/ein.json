@@ -1,10 +1,11 @@
 {
-  "name": "Aer Lingus",
-  "callsign": {
-    "name": "Shamrock",
-    "length": 3
-  },
-  "fleets": {
+    "icao": "ein",
+    "name": "Aer Lingus",
+    "callsign": {
+        "name": "Shamrock",
+        "length": 3
+    },
+    "fleets": {
         "default": [
             ["A319", 2 ],
             ["A320", 33 ],

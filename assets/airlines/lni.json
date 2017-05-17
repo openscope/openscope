@@ -1,13 +1,14 @@
 {
-  "name": "Lion Air",
-  "callsign": {
-    "name": "Lion Inter",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["B738", 31],
-	  ["B739", 71]
-    ]
-  }
+    "icao": "lni",
+    "name": "Lion Air",
+    "callsign": {
+        "name": "Lion Inter",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B738", 31],
+            ["B739", 71]
+        ]
+    }
 }

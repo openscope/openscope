@@ -1,14 +1,15 @@
 {
-  "name": "easyJet",
-  "callsign": {
-    "name": "Easy",
-    "length": 4,
-    "alpha": true
-  },
-  "fleets": {
-    "default": [
-      ["A319", 131],
-      ["A320", 97 ]
-    ]
-  }
+    "icao": "ezy",
+    "name": "easyJet",
+    "callsign": {
+        "name": "Easy",
+        "length": 4,
+        "alpha": true
+    },
+    "fleets": {
+        "default": [
+            ["A319", 131],
+            ["A320", 97 ]
+        ]
+    }
 }

@@ -1,12 +1,13 @@
 {
-  "name": "IndiGo",
-  "callsign": {
-    "name": "IFLY",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A320", 109]
-    ]
-  }
+    "icao": "igo",
+    "name": "IndiGo",
+    "callsign": {
+        "name": "IFLY",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 109]
+        ]
+    }
 }

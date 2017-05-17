@@ -63,6 +63,7 @@ export default class SpawnScheduler {
             spawnPatternModel.cycleStart(this._gameController.game.time);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
 
+            // TODO: abstract this to a class method on the `SpawnPatternModel`
             if (
                 spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL &&
                 spawnPatternModel.preSpawnAircraftList.length > 0

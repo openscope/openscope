@@ -1,21 +1,21 @@
 {
-  "icao": "TAM",
-  "name": "LATAM Airlines Brasil",
-  "callsign": {
-    "name": "TAM",
-    "length": 3,
-    "alpha": false
-  },
-  "fleets": {
-    "default": [
-      ["A319", 27],
-      ["A320", 83],
-      ["A321", 30]
-    ],
-    "long": [
-      ["B763", 14],
-      ["B77W", 10],
-      ["A332", 9 ]
-    ]
-  }
+    "icao": "tam",
+    "name": "LATAM Airlines Brasil",
+    "callsign": {
+        "name": "TAM",
+        "length": 3,
+        "alpha": false
+    },
+    "fleets": {
+        "default": [
+            ["A319", 27],
+            ["A320", 83],
+            ["A321", 30]
+        ],
+        "long": [
+            ["B763", 14],
+            ["B77W", 10],
+            ["A332", 9 ]
+        ]
+    }
 }

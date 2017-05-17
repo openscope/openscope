@@ -1,14 +1,15 @@
 {
-  "name": "Vueling",
-  "callsign": {
+    "icao": "vlg",
     "name": "Vueling",
-    "length": 4
-  },
-  "fleets": {
-    "default": [
-      ["A319", 6 ],
-      ["A320", 94],
-      ["A321", 6 ]
-    ]
-  }
+    "callsign": {
+        "name": "Vueling",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["A319", 6 ],
+            ["A320", 94],
+            ["A321", 6 ]
+        ]
+    }
 }

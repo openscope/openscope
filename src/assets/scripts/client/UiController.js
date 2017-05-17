@@ -51,7 +51,7 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-se
 /**
  * @class UiController
  */
-export default class UiView {
+export default class UiController {
     /**
      * @constructor
      */
@@ -351,7 +351,7 @@ export default class UiView {
 
             // TODO: move to a template const
             const { name, icao, wip } = airport;
-            const flagIcon = (wip === true) ? '&#9983' : '';
+            const flagIcon = (wip === true) ? ' &#9983' : '';
             const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
 
             // TODO: replace with an onClick() handler

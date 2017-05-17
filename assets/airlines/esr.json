@@ -1,13 +1,14 @@
 {
-  "name": "Eastar Jet",
-  "callsign": {
-    "name": "Eastarjet",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-        ["B737",     3],
-        ["B738",    14]
-    ]
-  }
+    "icao": "esr",
+    "name": "Eastar Jet",
+    "callsign": {
+        "name": "Eastarjet",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737",     3],
+            ["B738",    14]
+        ]
+    }
 }

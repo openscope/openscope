@@ -1,14 +1,15 @@
 {
-  "name": "AirAsia X",
-  "callsign": {
-    "name": "XANADU",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A332", 1  ],
-	  ["A333", 23 ],
-	  ["A343", 2  ]
-    ]
-  }
+    "icao": "xax",
+    "name": "AirAsia X",
+    "callsign": {
+        "name": "Xanadu",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A332", 1  ],
+            ["A333", 23 ],
+            ["A343", 2  ]
+        ]
+    }
 }

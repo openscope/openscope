@@ -94,7 +94,7 @@ class ModelSourcePool extends BaseCollection {
         if (!model) {
             model = new CLASS_MAP[constructorName](...args);
         }
-
+        // if (constructorName === 'SpawnPatternModel') {debugger;}
         model.init(...args);
 
         return model;

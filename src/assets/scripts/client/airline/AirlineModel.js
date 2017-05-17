@@ -55,11 +55,11 @@ export default class AirlineModel extends BaseModel {
         /**
          * Radio callsign
          *
-         * @property callsign
+         * @property radioName
          * @type {string}
          * @default 'Default'
          */
-        this.callsign = 'Default';
+        this.radioName = 'Default';
 
         /**
          * Parameters for flight number generation
@@ -159,8 +159,9 @@ export default class AirlineModel extends BaseModel {
      * @param airlineDefinition {object}
      */
     init(airlineDefinition) {
-        this.icao = _get(airlineDefinition, 'icao', this.icao);
-        this.callsign = _get(airlineDefinition, 'callsign.name', this.callsign);
+        // TODO: these _get() lines are likely redundant and could be removed only after proper testing
+        this.icao = _get(airlineDefinition, 'icao', this.icao).toLowerCase();
+        this.radioName = _get(airlineDefinition, 'callsign.name', this.radioName);
         this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
         this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
         this.fleets = _get(airlineDefinition, 'fleets');
@@ -228,7 +229,7 @@ export default class AirlineModel extends BaseModel {
                 flightNumber += choose(list);
             }
 
-            return flightNumber
+            return flightNumber;
         }
 
         // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.

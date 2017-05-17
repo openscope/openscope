@@ -1,12 +1,13 @@
 {
-  "name": "Jeju Air",
-  "callsign": {
+    "icao": "jja",
     "name": "Jeju Air",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-        ["B738",    25]
-    ]
-  }
+    "callsign": {
+        "name": "Jeju Air",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B738",    25]
+        ]
+    }
 }

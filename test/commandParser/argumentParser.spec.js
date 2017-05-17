@@ -102,14 +102,14 @@ ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t
 });
 
 ava('.holdParser() returns an array of length 3 when passed a fixname as the only argument', t => {
-    const expectedResult = [null, null, 'dumba'];
+    const expectedResult = ['right', '1min', 'dumba'];
     const result = holdParser(['dumba']);
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.holdParser() returns an array of length 3 when passed a direction and fixname as arguments', t => {
-    const expectedResult = ['left', null, 'dumba'];
+    const expectedResult = ['left', '1min', 'dumba'];
     let result = holdParser(['dumba', 'left']);
     t.true(_isEqual(result, expectedResult));
 

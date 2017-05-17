@@ -1,10 +1,10 @@
 {
-  "name": "LOT",
-  "callsign": {
-    "name": "Lot",
-    "length": 3
-  },
-  
+    "icao": "lot",
+    "name": "LOT",
+    "callsign": {
+        "name": "Lot",
+        "length": 3
+    },
     "fleets": {
         "long": [
             ["B788", 6 ]

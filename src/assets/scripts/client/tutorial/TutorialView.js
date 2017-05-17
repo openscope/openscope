@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, no-undef, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import TutorialStep from './TutorialStep';
@@ -202,7 +202,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -220,7 +220,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -237,7 +237,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -255,7 +255,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -272,7 +272,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentRunwayName);
             },
             side: 'left',
             position: tutorial_position
@@ -309,7 +309,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign())
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign)
                         .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
                         .replace('{SID_NAME}', prop.aircraft.list[0].destination);
             },
@@ -329,7 +329,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -348,7 +348,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -359,7 +359,7 @@ export default class TutorialView {
             text: ['Radar vectors are an air traffic controller\'s way of telling aircraft to fly a specific magnetic heading. We can give aircraft radar',
                    'vectors in three ways. Usually, you will use &lsquo;t l ###&rsquo; or &lsquo;t r ###&rsquo;. Be careful, as it is both easy',
                    'and dangerous to give a turn in the wrong direction. If the heading is only slightly left or right, to avoid choosing the wrong direction,',
-                   'you can tell them to &lsquo;fly heading&rsquo; by typing &lsquo;fh###&rsquo;, and the aircraft will simply turn the shortest direction',
+                   'you can tell them to &lsquo;fly heading&rsquo; by typing &lsquo;fh ###&rsquo;, and the aircraft will simply turn the shortest direction',
                    'to face that heading.'
                ].join(' '),
             parse: (v) => v,
@@ -396,7 +396,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position

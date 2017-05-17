@@ -1,10 +1,11 @@
 {
-  "name": "El Al Israel Airlines",
-  "callsign": {
-    "name": "El Al",
-    "length": 3
-  },
-  "fleets": {
+    "icao": "ely",
+    "name": "El Al Israel Airlines",
+    "callsign": {
+        "name": "El Al",
+        "length": 3
+    },
+    "fleets": {
         "default": [
             ["B738", 15 ],
             ["B739", 8 ]

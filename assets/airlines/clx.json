@@ -1,13 +1,14 @@
 {
-  "name": "Cargolux Airlines International",
-  "callsign": {
-    "name": "Cargolux",
-    "length": 3
-  },
+    "icao": "clx",
+    "name": "Cargolux Airlines International",
+    "callsign": {
+        "name": "Cargolux",
+        "length": 3
+    },
     "fleets": {
-      "default": [
-        ["B744", 8],
-        ["B748", 13]
-      ]
-  }
+        "default": [
+            ["B744", 8],
+            ["B748", 13]
+        ]
+    }
 }

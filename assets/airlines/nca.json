@@ -1,6 +1,6 @@
 {
+    "icao": "nca",
     "name": "Nippon Cargo Airlines",
-    "icao": "NCA",
     "callsign": {
         "name": "Nippon Cargo",
         "length": 3

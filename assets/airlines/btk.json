@@ -1,14 +1,15 @@
 {
-  "name": "Batik Air",
-  "callsign": {
-    "name": "Batik",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["B738", 14],
-	  ["B739", 6],
-      ["A320", 20]
-    ]
-  }
+    "icao": "btk",
+    "name": "Batik Air",
+    "callsign": {
+        "name": "Batik",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B738", 14],
+            ["B739", 6],
+            ["A320", 20]
+        ]
+    }
 }

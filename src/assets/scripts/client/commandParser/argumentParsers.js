@@ -1,3 +1,4 @@
+import _defaultTo from 'lodash/defaultTo';
 import { isValidDirectionString } from './argumentValidators';
 import {
     convertToThousands,
@@ -127,6 +128,7 @@ export const findHoldCommandByType = (type, args) => {
                     continue;
                 }
 
+                // make sure we return only `left` or `right`
                 return directionNormalizer(arg);
             case HOLD_COMMAND_ARG_NAMES.LEG_LENGTH:
                 if (!isLegLengthArg(arg)) {
@@ -160,8 +162,14 @@ export const findHoldCommandByType = (type, args) => {
 export const holdParser = (args) => {
     // existing api is expeting undefined values to be exactly null
     const fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
-    const turnDirection = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args);
-    const legLength = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args);
+    const turnDirection = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args),
+        'right'
+    );
+    const legLength = _defaultTo(
+        findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args),
+        '1min'
+    );
 
     return [turnDirection, legLength, fixName];
 };

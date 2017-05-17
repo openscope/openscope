@@ -125,6 +125,8 @@ export default class RouteSegmentCollection extends BaseCollection {
     /**
      * Return a list of fixNames for all of the `RouteSegmentModel`s in the collection
      *
+     * Used when selecting a random exit point for a `sid` route
+     *
      * @for RouteSegmentCollection
      * @method gatherFixNamesForCollection
      * @return {array}

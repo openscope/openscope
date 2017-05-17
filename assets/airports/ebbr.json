@@ -1,242 +1,242 @@
 {
-  "reference": "https://www.belgocontrol.be/opersite/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
-  "radio": {
-    "twr": "Brussels Tower",
-    "app": "Brussels Approach",
-    "dep": "Brussels Departure"
-  },
-  "icao": "EBBR",
-  "iata": "BRU",
-  "magnetic_north": 0.9,
-  "ctr_radius": 80,
-  "ctr_ceiling": 10000,
-  "initial_alt": 5000,
-  "position": ["N50d54m05.0", "E004d29m04.0", "184ft"],
-  "rr_radius_nm": 5.0,
-  "rr_center": ["N50d54m05.0", "E004d29m04.0"],
-  "has_terrain": false,
-  "wind": {
-    "angle": 230,
-    "speed": 6
-  },
-  "fixes": {
-    "EBBR":  ["N50d54m05.0", "E004d29m04.0"],
-    "NORTH": ["N51.6204689", "E4.484444400"],
-    "EAST":  ["N50.8958544", "E005.6215846"],
-    "SOUTH": ["N50.1822198", "E4.484444400"],
-    "WEST":  ["N50.8958544", "E3.347304339"],
-    "AKOVI": ["N50d44m50.0", "E003d43m07.0"],
-    "ANT":   ["N51d11m25.7", "E004d28m21.3"],
-    "ARVOL": ["N50d32m45.0", "E003d29m49.0"],
-    "BATTY": ["N50d38m57.0", "E005d50m55.6"],
-    "BEKEM": ["N51d25m56.0", "E004d34m48.7"],
-    "BR201": ["N50d59m28.7", "E003d29m36.7"],
-    "BR202": ["N51d15m44.3", "E004d15m26.8"],
-    "BR203": ["N51d14m48.1", "E004d18m15.6"],
-    "BR204": ["N50d42m40.1", "E005d27m49.8"],
-    "BR205": ["N50d45m27.6", "E005d30m38.7"],
-    "BR209": ["N50d54m35.4", "E003d55m06.2"],
-    "CIV":   ["N50d34m26.3", "E003d49m58.4"],
-    "FLO":   ["N50d52m36.0", "E005d08m04.3"],
-    "HUL":   ["N50d44m58.1", "E004d38m29.9"],
-    "KERKY": ["N50d55m37.0", "E003d59m33.4"],
-    "KOK":   ["N51d05m40.9", "E002d39m05.8"],
-    "LNO":   ["N50d35m09.3", "E005d42m37.0"],
-    "NIK":   ["N51d09m54.3", "E004d11m02.2"],
-    "RODRI": ["N50d52m36.0", "E003d51m46.4"],
-    "TULNI": ["N50d33m27.0", "E003d16m56.0"],
-    "WOODY": ["N51d24m20.4", "E004d21m59.3"]
+    "reference": "https://www.belgocontrol.be/opersite/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
+    "radio": {
+        "twr": "Brussels Tower",
+        "app": "Brussels Approach",
+        "dep": "Brussels Departure"
+    },
+    "icao": "EBBR",
+    "iata": "BRU",
+    "magnetic_north": 0.9,
+    "ctr_radius": 80,
+    "ctr_ceiling": 10000,
+    "initial_alt": 5000,
+    "position": ["N50d54m05.0", "E004d29m04.0", "184ft"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N50d54m05.0", "E004d29m04.0"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 230,
+        "speed": 6
+    },
+    "fixes": {
+        "EBBR":  ["N50d54m05.0", "E004d29m04.0"],
+        "NORTH": ["N51.6204689", "E4.484444400"],
+        "EAST":  ["N50.8958544", "E005.6215846"],
+        "SOUTH": ["N50.1822198", "E4.484444400"],
+        "WEST":  ["N50.8958544", "E3.347304339"],
+        "AKOVI": ["N50d44m50.0", "E003d43m07.0"],
+        "ANT":   ["N51d11m25.7", "E004d28m21.3"],
+        "ARVOL": ["N50d32m45.0", "E003d29m49.0"],
+        "BATTY": ["N50d38m57.0", "E005d50m55.6"],
+        "BEKEM": ["N51d25m56.0", "E004d34m48.7"],
+        "BR201": ["N50d59m28.7", "E003d29m36.7"],
+        "BR202": ["N51d15m44.3", "E004d15m26.8"],
+        "BR203": ["N51d14m48.1", "E004d18m15.6"],
+        "BR204": ["N50d42m40.1", "E005d27m49.8"],
+        "BR205": ["N50d45m27.6", "E005d30m38.7"],
+        "BR209": ["N50d54m35.4", "E003d55m06.2"],
+        "CIV":   ["N50d34m26.3", "E003d49m58.4"],
+        "FLO":   ["N50d52m36.0", "E005d08m04.3"],
+        "HUL":   ["N50d44m58.1", "E004d38m29.9"],
+        "KERKY": ["N50d55m37.0", "E003d59m33.4"],
+        "KOK":   ["N51d05m40.9", "E002d39m05.8"],
+        "LNO":   ["N50d35m09.3", "E005d42m37.0"],
+        "NIK":   ["N51d09m54.3", "E004d11m02.2"],
+        "RODRI": ["N50d52m36.0", "E003d51m46.4"],
+        "TULNI": ["N50d33m27.0", "E003d16m56.0"],
+        "WOODY": ["N51d24m20.4", "E004d21m59.3"]
 
-  },
-  "runways": [
-    {
-      "name": ["19", "01"],
-      "name_offset": [[0, 0], [0, 0]],
-      "end": [["N50d54m39.64", "E004d30m04.46", "113ft"], ["N50d53m14.39", "E004d29m29.68", "183ft"]],
-      "delay": [10, 30],
-      "ils": [true, true]
     },
-    {
-      "name": ["25L", "07R"],
-      "name_offset": [[0, 0], [0, 0]],
-      "end": [["N50d53m56.19", "E004d31m23.88", "159ft"], ["N50d53m21.89", "E004d28m55.40", "175ft"]],
-      "delay": [40, 20],
-      "ils": [true, false]
+    "runways": [
+        {
+            "name": ["19", "01"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N50d54m39.64", "E004d30m04.46", "113ft"], ["N50d53m14.39", "E004d29m29.68", "183ft"]],
+            "delay": [10, 30],
+            "ils": [true, true]
+        },
+        {
+            "name": ["25L", "07R"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N50d53m56.19", "E004d31m23.88", "159ft"], ["N50d53m21.89", "E004d28m55.40", "175ft"]],
+            "delay": [40, 20],
+            "ils": [true, false]
+        },
+        {
+            "name": ["25R","07L"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N50d54m41.55", "E004d29m57.79", "110ft"], ["N50d54m00.12", "E004d27m34.43", "129ft"]],
+            "delay": [10, 30],
+            "ils": [true, false]
+        }
+    ],
+    "sids": {
+        "NORTH": {
+            "icao": "NORTH",
+            "name": "NORTH",
+            "rwy": {
+                "19" : ["NORTH"],
+                "01" : ["NORTH"],
+                "25L": ["NORTH"],
+                "25R": ["NORTH"],
+                "07L": ["NORTH"],
+                "07R": ["NORTH"]
+            },
+            "draw": [["EBBR","NORTH"]]
+        },
+        "EAST": {
+            "icao" : "EAST",
+            "name" : "EAST",
+            "rwy": {
+                "19" : ["EAST"],
+                "01" : ["EAST"],
+                "25L": ["EAST"],
+                "25R": ["EAST"],
+                "07L": ["EAST"],
+                "07R": ["EAST"]
+            },
+            "draw": [["EBBR","EAST"]]
+        },
+        "SOUTH": {
+            "icao": "SOUTH",
+            "name": "SOUTH",
+            "rwy": {
+                "19" : ["SOUTH"],
+                "01" : ["SOUTH"],
+                "25L": ["SOUTH"],
+                "25R": ["SOUTH"],
+                "07L": ["SOUTH"],
+                "07R": ["SOUTH"]
+            },
+            "draw": [["EBBR","SOUTH"]]
+        },
+        "WEST": {
+            "icao": "WEST",
+            "name": "WEST",
+            "rwy": {
+                "19" : ["WEST"],
+                "01" : ["WEST"],
+                "25L": ["WEST"],
+                "25R": ["WEST"],
+                "07L": ["WEST"],
+                "07R": ["WEST"]
+            },
+            "draw": [["EBBR","WEST"]]
+        }
     },
-    {
-      "name": ["25R","07L"],
-      "name_offset": [[0, 0], [0, 0]],
-      "end": [["N50d54m41.55", "E004d29m57.79", "110ft"], ["N50d54m00.12", "E004d27m34.43", "129ft"]],
-      "delay": [10, 30],
-      "ils": [true, false]
-    }
-  ],
-  "sids": {
-    "NORTH": {
-      "icao": "NORTH",
-      "name": "NORTH",
-      "rwy": {
-        "19" : ["NORTH"],
-        "01" : ["NORTH"],
-        "25L": ["NORTH"],
-        "25R": ["NORTH"],
-        "07L": ["NORTH"],
-        "07R": ["NORTH"]
-      },
-      "draw": [["EBBR","NORTH"]]
-    },
-    "EAST": {
-      "icao" : "EAST",
-      "name" : "EAST",
-      "rwy": {
-        "19" : ["EAST"],
-        "01" : ["EAST"],
-        "25L": ["EAST"],
-        "25R": ["EAST"],
-        "07L": ["EAST"],
-        "07R": ["EAST"]
-      },
-      "draw": [["EBBR","EAST"]]
-    },
-    "SOUTH": {
-      "icao": "SOUTH",
-      "name": "SOUTH",
-      "rwy": {
-        "19" : ["SOUTH"],
-        "01" : ["SOUTH"],
-        "25L": ["SOUTH"],
-        "25R": ["SOUTH"],
-        "07L": ["SOUTH"],
-        "07R": ["SOUTH"]
-      },
-      "draw": [["EBBR","SOUTH"]]
-    },
-    "WEST": {
-      "icao": "WEST",
-      "name": "WEST",
-      "rwy": {
-        "19" : ["WEST"],
-        "01" : ["WEST"],
-        "25L": ["WEST"],
-        "25R": ["WEST"],
-        "07L": ["WEST"],
-        "07R": ["WEST"]
-      },
-      "draw": [["EBBR","WEST"]]
-    }
-  },
-  "spawnPatterns": [
-    {
-        "origin": "EBBR",
-        "destination": "",
-        "category": "departure",
-        "route": "EBBR.NORTH.NORTH",
-        "altitude": null,
-        "speed": null,
-        "method": "random",
-        "rate": 2,
-        "airlines": [
-            ["ual", 3],
-            ["baw", 5],
-            ["cessna", 4],
-            ["bel", 6]
-        ]
-    },
-    {
-        "origin": "EBBR",
-        "destination": "",
-        "category": "departure",
-        "route": "EBBR.EAST.EAST",
-        "altitude": null,
-        "speed": null,
-        "method": "random",
-        "rate": 2,
-        "airlines": [
-            ["ual", 3],
-            ["baw", 5],
-            ["cessna", 4],
-            ["bel", 6]
-        ]
-    },
-    {
-        "origin": "EBBR",
-        "destination": "",
-        "category": "departure",
-        "route": "EBBR.SOUTH.SOUTH",
-        "altitude": null,
-        "speed": null,
-        "method": "random",
-        "rate": 2,
-        "airlines": [
-            ["ual", 3],
-            ["baw", 5],
-            ["cessna", 4],
-            ["bel", 6]
-        ]
-    },
-    {
-        "origin": "EBBR",
-        "destination": "",
-        "category": "departure",
-        "route": "EBBR.WEST.WEST",
-        "altitude": null,
-        "speed": null,
-        "method": "random",
-        "rate": 2,
-        "airlines": [
-            ["ual", 3],
-            ["baw", 5],
-            ["cessna", 4],
-            ["bel", 6]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "EBBR",
-        "category": "arrival",
-        "route": "TULNI..AKOVI..EBBR",
-        "altitude": [5000, 7000],
-        "speed": 250,
-        "method": "random",
-        "rate": 10,
-        "airlines": [
-            ["ual", 2],
-            ["baw", 5],
-            ["fastga", 20],
-            ["bel", 7]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "EBBR",
-        "category": "arrival",
-        "route": "BATTY..BR205..FLO..EBBR",
-        "altitude": [5000, 8000],
-        "speed": 250,
-        "method": "random",
-        "rate": 10,
-        "airlines": [
-            ["ual", 2],
-            ["baw", 5],
-            ["fastga", 20],
-            ["bel", 7]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "EBBR",
-        "category": "arrival",
-        "route": "KOK..NIK..ANT..EBBR",
-        "altitude": [6000, 7000],
-        "speed": 250,
-        "method": "random",
-        "rate": 15,
-        "airlines": [
-            ["ual", 10],
-            ["baw", 10],
-            ["fastga", 1],
-            ["bel", 12]
-        ]
-    }
-  ]
+    "spawnPatterns": [
+        {
+            "origin": "EBBR",
+            "destination": "",
+            "category": "departure",
+            "route": "EBBR.NORTH.NORTH",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ual", 3],
+                ["baw", 5],
+                ["n/cessna", 4],
+                ["bel", 6]
+            ]
+        },
+        {
+            "origin": "EBBR",
+            "destination": "",
+            "category": "departure",
+            "route": "EBBR.EAST.EAST",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ual", 3],
+                ["baw", 5],
+                ["n/cessna", 4],
+                ["bel", 6]
+            ]
+        },
+        {
+            "origin": "EBBR",
+            "destination": "",
+            "category": "departure",
+            "route": "EBBR.SOUTH.SOUTH",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ual", 3],
+                ["baw", 5],
+                ["n/cessna", 4],
+                ["bel", 6]
+            ]
+        },
+        {
+            "origin": "EBBR",
+            "destination": "",
+            "category": "departure",
+            "route": "EBBR.WEST.WEST",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ual", 3],
+                ["baw", 5],
+                ["n/cessna", 4],
+                ["bel", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EBBR",
+            "category": "arrival",
+            "route": "TULNI..AKOVI..EBBR",
+            "altitude": [5000, 7000],
+            "speed": 250,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["ual", 2],
+                ["baw", 5],
+                ["n/fastGA", 20],
+                ["bel", 7]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EBBR",
+            "category": "arrival",
+            "route": "BATTY..BR205..FLO..EBBR",
+            "altitude": [5000, 8000],
+            "speed": 250,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["ual", 2],
+                ["baw", 5],
+                ["n/fastGA", 20],
+                ["bel", 7]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EBBR",
+            "category": "arrival",
+            "route": "KOK..NIK..ANT..EBBR",
+            "altitude": [6000, 7000],
+            "speed": 250,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["ual", 10],
+                ["baw", 10],
+                ["n/fastGA", 1],
+                ["bel", 12]
+            ]
+        }
+    ]
 }

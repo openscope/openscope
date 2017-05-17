@@ -1,0 +1,28 @@
+{
+  "root": "public",
+  "https_only": false,
+  "routes": {
+    "/assets/*": "/assets/",
+    "/**": "index.html"
+  },
+  "headers": {
+    "/": {
+        "Cache-Control": "no-store, no-cache"
+    },
+    "**.js": {
+        "Cache-Control": "public, max-age=512000"
+    },
+    "**.css": {
+        "Cache-Control": "public, max-age=512000"
+    },
+    "/assets/**": {
+        "Cache-Control": "public, max-age=512000"
+    },
+    "**.json": {
+        "Content-Type": "application/json"
+    },
+    "**.geojson": {
+        "Content-Type": "application/json"
+    }
+  }
+}

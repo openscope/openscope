@@ -1,349 +1,349 @@
 {
-  "radio": {
-    "twr": "Guarulhos Tower",
-    "app": "Guarulhos Approach",
-    "dep": "Guarulhos Departure"
-  },
-  "icao": "SBGR",
-  "iata": "GRU",
-  "magnetic_north": -21.20,
-  "ctr_radius": 80,
-  "ctr_ceiling": 10000,
-  "initial_alt": 5000,
-  "position": ["S23d26.13m0", "W046d28.38m0", "2461.0ft"],
-  "rr_radius_nm": 5.0,
-  "rr_center": ["S23d26.13m0", "W046d28.38m0"],
-  "has_terrain": false,
-  "wind": {
-    "angle": 50,
-    "speed": 10
-  },
-  "fixes": {
-    "ANDOR" : ["S23d45m43.20", "W047d23m04.80"],
-    "ANSUG" : ["S23d16m25.75", "W046d16m30.86"],
-    "BCO"   : ["S23d24.39m0", "W046d23.13m0"],
-    "BGC"   : ["S22d57.09m0", "W046d34.19m0"],
-    "CGO"   : ["S23d37.65m0", "W046d39.28m0"],
-    "CURSE" : ["S24d09m07.20", "W047d09m45.60"],
-    "DAGUB" : ["S22d58.28m0", "W045d38.21m0"],
-    "DIGAX" : ["S22d41m43.96", "W046d17m03.78"],
-    "DORLU" : ["S23d20.82m0", "W045d18.94m0"],
-    "DORMI" : ["S24d00m12.00", "W047d17m47.40"],
-    "DOTNI" : ["S23d33.66m0", "W046d27.47m0"],
-    "EDNUP" : ["S23d34m07.53", "W046d24m57.04"],
-    "EGDUP" : ["S23d28.79m0", "W046d21.32m0"],
-    "EKIDI" : ["S23d07.26m0", "W045d04.69m0"],
-    "EVKUT" : ["S23d35.14m0", "W046d32.11m0"],
-    "GENKO" : ["S23d15.76m0", "W045d43.21m0"],
-    "GR021" : ["S23d14.32m0", "W046d27.21m0"],
-    "GR022" : ["S22d43.21m0", "W046d46.95m0"],
-    "GR023" : ["S22d36.46m0", "W046d58.73m0"],
-    "GR501" : ["S23d22.52m0", "W046d36.01m0"],
-    "GR502" : ["S23d19.02m0", "W046d25.31m0"],
-    "GR602" : ["S23d24.50m0", "W046d48.43m0"],
-    "GR718" : ["S23d10.38m0", "W046d28.81m0"],
-    "GR719" : ["S22d48.52m0", "W046d37.64m0"],
-    "GR722" : ["S23d18.08m0", "W046d37.38m0"],
-    "IBDIK" : ["S22d57m49.80", "W046d16m48.00"],
-    "IG"    : ["S23d27.73m0", "W046d34.40m0"],
-    "IKSUL" : ["S23d27.90m53", "W46d38.37m05"],
-    "ILREN" : ["S23d32.95m0", "W047d07.67m0"],
-    "IS"    : ["S23d32m41.04", "W046d42m45.46"],
-    "ISIMU" : ["S23d31.23m0", "W046d20.32m0"],
-    "IVRAG" : ["S23d19.04m0", "W046d05.35m0"],
-    "KOVLA" : ["S23d20m25.53", "W046d29m58.10"],
-    "KUGLA" : ["S23d40m35.31", "W046d22m34.65"],
-    "LOLAG" : ["S23d49.42m0", "W047d17.68m0"],
-    "MAKVA" : ["S23d07m06.47", "W045d45m25.95"],
-    "MOXEP" : ["S22d24m46.57", "W046d17m20.22"],
-    "MULAP" : ["S22d14.89m0", "W045d28.86m0"],
-    "NIBGA" : ["S24d04.73m0", "W047d14.38m0"],
-    "OBMAV" : ["S23d30.09m0", "W047d36.43m0"],
-    "OGSOR" : ["S23d25.19m0", "W047d10.71m0"],
-    "OPTUK" : ["S23d29m37.42", "W046d26m36.14"],
-    "PAGAL" : ["S23d18m53.33", "W046d24m47.16"],
-    "RCL"   : ["S22d25.81m0", "W047d33.75m0"],
-    "ROKUM" : ["S22d51m27.89", "W046d16m54.32"],
-    "ROMIB" : ["S23d24.45m0", "W045d57.75m0"],
-    "SAT"   : ["S23d58m59.33", "W046d15m48.02"],
-    "SCB"   : ["S23d30.43m0", "W047d22.69m0"],
-    "SCP"   : ["S23d13.99m0", "W045d51.60m0"],
-    "SIPUK" : ["S24d17m31.20", "W046d26m36.60"],
-    "SMR"   : ["S23d31.20m53", "W46d50.37m05"],
-    "SUKNO" : ["S23d09m04.00", "W046d16m37.14"],
-    "SUMRA" : ["S23d26.20m0", "W046d07.21m0"],
-    "TIKTI" : ["S23d32.17m0", "W046d33.03m0"],
-    "TIVNA" : ["S24d03m24.77", "W046d18m22.49"],
-    "TOGES" : ["S23d55m01.80", "W045d57m25.20"],
-    "TOPEP" : ["S23d02.69m0", "W045d50.95m0"],
-    "UBRIR" : ["S22d12.22m0", "W045d48.09m0"],
-    "UKBEV" : ["S22d33.08m0", "W047d04.61m0"],
-    "USAMO" : ["S22d41.56m0", "W045d49.55m0"],
-    "UTGER" : ["S22d45.26m0", "W046d13.83m0"],
-    "VAPEM" : ["S23d10m12.93", "W045d55m44.95"],
-    "VAPIP" : ["S22d55.85m0", "W047d22.14m0"],
-    "VOVBI" : ["S23d34.71m0", "W046d30.59m0"],
-    "VUMEV" : ["S22d53.21m0", "W045d58.64m0"],
+    "radio": {
+        "twr": "Guarulhos Tower",
+        "app": "Guarulhos Approach",
+        "dep": "Guarulhos Departure"
+    },
+    "icao": "SBGR",
+    "iata": "GRU",
+    "magnetic_north": -21.20,
+    "ctr_radius": 80,
+    "ctr_ceiling": 10000,
+    "initial_alt": 5000,
+    "position": ["S23d26.13m0", "W046d28.38m0", "2461.0ft"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["S23d26.13m0", "W046d28.38m0"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 50,
+        "speed": 10
+    },
+    "fixes": {
+        "ANDOR" : ["S23d45m43.20", "W047d23m04.80"],
+        "ANSUG" : ["S23d16m25.75", "W046d16m30.86"],
+        "BCO"   : ["S23d24.39m0", "W046d23.13m0"],
+        "BGC"   : ["S22d57.09m0", "W046d34.19m0"],
+        "CGO"   : ["S23d37.65m0", "W046d39.28m0"],
+        "CURSE" : ["S24d09m07.20", "W047d09m45.60"],
+        "DAGUB" : ["S22d58.28m0", "W045d38.21m0"],
+        "DIGAX" : ["S22d41m43.96", "W046d17m03.78"],
+        "DORLU" : ["S23d20.82m0", "W045d18.94m0"],
+        "DORMI" : ["S24d00m12.00", "W047d17m47.40"],
+        "DOTNI" : ["S23d33.66m0", "W046d27.47m0"],
+        "EDNUP" : ["S23d34m07.53", "W046d24m57.04"],
+        "EGDUP" : ["S23d28.79m0", "W046d21.32m0"],
+        "EKIDI" : ["S23d07.26m0", "W045d04.69m0"],
+        "EVKUT" : ["S23d35.14m0", "W046d32.11m0"],
+        "GENKO" : ["S23d15.76m0", "W045d43.21m0"],
+        "GR021" : ["S23d14.32m0", "W046d27.21m0"],
+        "GR022" : ["S22d43.21m0", "W046d46.95m0"],
+        "GR023" : ["S22d36.46m0", "W046d58.73m0"],
+        "GR501" : ["S23d22.52m0", "W046d36.01m0"],
+        "GR502" : ["S23d19.02m0", "W046d25.31m0"],
+        "GR602" : ["S23d24.50m0", "W046d48.43m0"],
+        "GR718" : ["S23d10.38m0", "W046d28.81m0"],
+        "GR719" : ["S22d48.52m0", "W046d37.64m0"],
+        "GR722" : ["S23d18.08m0", "W046d37.38m0"],
+        "IBDIK" : ["S22d57m49.80", "W046d16m48.00"],
+        "IG"    : ["S23d27.73m0", "W046d34.40m0"],
+        "IKSUL" : ["S23d27.90m53", "W46d38.37m05"],
+        "ILREN" : ["S23d32.95m0", "W047d07.67m0"],
+        "IS"    : ["S23d32m41.04", "W046d42m45.46"],
+        "ISIMU" : ["S23d31.23m0", "W046d20.32m0"],
+        "IVRAG" : ["S23d19.04m0", "W046d05.35m0"],
+        "KOVLA" : ["S23d20m25.53", "W046d29m58.10"],
+        "KUGLA" : ["S23d40m35.31", "W046d22m34.65"],
+        "LOLAG" : ["S23d49.42m0", "W047d17.68m0"],
+        "MAKVA" : ["S23d07m06.47", "W045d45m25.95"],
+        "MOXEP" : ["S22d24m46.57", "W046d17m20.22"],
+        "MULAP" : ["S22d14.89m0", "W045d28.86m0"],
+        "NIBGA" : ["S24d04.73m0", "W047d14.38m0"],
+        "OBMAV" : ["S23d30.09m0", "W047d36.43m0"],
+        "OGSOR" : ["S23d25.19m0", "W047d10.71m0"],
+        "OPTUK" : ["S23d29m37.42", "W046d26m36.14"],
+        "PAGAL" : ["S23d18m53.33", "W046d24m47.16"],
+        "RCL"   : ["S22d25.81m0", "W047d33.75m0"],
+        "ROKUM" : ["S22d51m27.89", "W046d16m54.32"],
+        "ROMIB" : ["S23d24.45m0", "W045d57.75m0"],
+        "SAT"   : ["S23d58m59.33", "W046d15m48.02"],
+        "SCB"   : ["S23d30.43m0", "W047d22.69m0"],
+        "SCP"   : ["S23d13.99m0", "W045d51.60m0"],
+        "SIPUK" : ["S24d17m31.20", "W046d26m36.60"],
+        "SMR"   : ["S23d31.20m53", "W46d50.37m05"],
+        "SUKNO" : ["S23d09m04.00", "W046d16m37.14"],
+        "SUMRA" : ["S23d26.20m0", "W046d07.21m0"],
+        "TIKTI" : ["S23d32.17m0", "W046d33.03m0"],
+        "TIVNA" : ["S24d03m24.77", "W046d18m22.49"],
+        "TOGES" : ["S23d55m01.80", "W045d57m25.20"],
+        "TOPEP" : ["S23d02.69m0", "W045d50.95m0"],
+        "UBRIR" : ["S22d12.22m0", "W045d48.09m0"],
+        "UKBEV" : ["S22d33.08m0", "W047d04.61m0"],
+        "USAMO" : ["S22d41.56m0", "W045d49.55m0"],
+        "UTGER" : ["S22d45.26m0", "W046d13.83m0"],
+        "VAPEM" : ["S23d10m12.93", "W045d55m44.95"],
+        "VAPIP" : ["S22d55.85m0", "W047d22.14m0"],
+        "VOVBI" : ["S23d34.71m0", "W046d30.59m0"],
+        "VUMEV" : ["S22d53.21m0", "W045d58.64m0"],
 
-    "ANISE" : ["S24d36.13m0", "W046d37.52m0"],
-    "IBDIK" : ["S22d57.83m0", "W046d16.80m0"],
-    "MOXEP" : ["S22d24.78m0", "W046d17.34m0"],
-    "SAT"   : ["S23d58.99m0", "W046d15.80m0"],
-    "SIPUK" : ["S24d17.52m0", "W046d26.61m0"],
-    "TOGES" : ["S23d55.03m0", "W045d57.42m0"],
-    "VUKIK" : ["S23d50.94m0", "W045d38.68m0"]
-  },
-  "runways": [
-    {
-      "name": ["9L", "27R"],
-      "name_offset": [[0.4,0.5], [-0.1, 0.5]],
-      "end": [["S23d26m04.24", "W46d29m03.54", "2445ft"], ["S23d25m28.94", "W46d26m52.79", "2441ft"]],
-      "length": 3.700,
-      "delay": [10, 50],
-      "ils": [true, true]
+        "ANISE" : ["S24d36.13m0", "W046d37.52m0"],
+        "IBDIK" : ["S22d57.83m0", "W046d16.80m0"],
+        "MOXEP" : ["S22d24.78m0", "W046d17.34m0"],
+        "SAT"   : ["S23d58.99m0", "W046d15.80m0"],
+        "SIPUK" : ["S24d17.52m0", "W046d26.61m0"],
+        "TOGES" : ["S23d55.03m0", "W045d57.42m0"],
+        "VUKIK" : ["S23d50.94m0", "W045d38.68m0"]
     },
-    {
-      "name": ["9R", "27L"],
-      "name_offset": [[0.1, -0.5], [-0.3, -0.5]],
-      "end": [["S23d26m20.07", "W46d29m14.82", "2450ft"], ["S23d25m52.35", "W46d27m32.18", "2444ft"]],
-      "length": 2.900,
-      "delay": [15, 60],
-      "ils": [true, false]
-    }
-  ],
-  "sids": {
-    "CGO": {
-      "icao": "CGO",
-      "name": "Bonsucesso",
-      "suffix": {"9L":"1B", "9R":"1B", "27L":"1B", "27R":"1B"},
-      "rwy": {
-        "9L": ["BCO", "ISIMU", ["DOTNI", "A70+"], ["VOVBI", "A100-"], ["CGO", "A100+"]],
-        "9R": ["BCO", "ISIMU", ["DOTNI", "A70+"], ["VOVBI", "A100-"], ["CGO", "A100+"]],
-        "27L": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]],
-        "27R": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]]
-      },
-      "exitPoints": {
-        "NIBGA": ["NIBGA"],
-        "LOLAG": ["LOLAG"],
-        "OBMAV": ["ILREN", ["SCB", "A160+"], "OBMAV"],
-        "RCL": ["ILREN", ["OGSOR", "A150+"], ["VAPIP", "A210+"], "RCL"]
-      },
-      "draw": [["BCO","ISIMU","DOTNI","VOVBI","CGO"], ["IG","TIKTI","EVKUT","CGO"], ["CGO","NIBGA*"], ["CGO","LOLAG*"], ["CGO","ILREN"], ["ILREN","SCB","OBMAV*"], ["ILREN","OGSOR","VAPIP","RCL*"]]
+    "runways": [
+        {
+            "name": ["9L", "27R"],
+            "name_offset": [[0.4,0.5], [-0.1, 0.5]],
+            "end": [["S23d26m04.24", "W46d29m03.54", "2445ft"], ["S23d25m28.94", "W46d26m52.79", "2441ft"]],
+            "length": 3.700,
+            "delay": [10, 50],
+            "ils": [true, true]
+        },
+        {
+            "name": ["9R", "27L"],
+            "name_offset": [[0.1, -0.5], [-0.3, -0.5]],
+            "end": [["S23d26m20.07", "W46d29m14.82", "2450ft"], ["S23d25m52.35", "W46d27m32.18", "2444ft"]],
+            "length": 2.900,
+            "delay": [15, 60],
+            "ils": [true, false]
+        }
+    ],
+    "sids": {
+        "CGO": {
+            "icao": "CGO",
+            "name": "Bonsucesso",
+            "suffix": {"9L":"1B", "9R":"1B", "27L":"1B", "27R":"1B"},
+            "rwy": {
+                "9L": ["BCO", "ISIMU", ["DOTNI", "A70+"], ["VOVBI", "A100-"], ["CGO", "A100+"]],
+                "9R": ["BCO", "ISIMU", ["DOTNI", "A70+"], ["VOVBI", "A100-"], ["CGO", "A100+"]],
+                "27L": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]],
+                "27R": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]]
+            },
+            "exitPoints": {
+                "NIBGA": ["NIBGA"],
+                "LOLAG": ["LOLAG"],
+                "OBMAV": ["ILREN", ["SCB", "A160+"], "OBMAV"],
+                "RCL": ["ILREN", ["OGSOR", "A150+"], ["VAPIP", "A210+"], "RCL"]
+            },
+            "draw": [["BCO","ISIMU","DOTNI","VOVBI","CGO"], ["IG","TIKTI","EVKUT","CGO"], ["CGO","NIBGA*"], ["CGO","LOLAG*"], ["CGO","ILREN"], ["ILREN","SCB","OBMAV*"], ["ILREN","OGSOR","VAPIP","RCL*"]]
+        },
+        "ROMIB": {
+            "icao": "ROMIB",
+            "name": "Romib",
+            "suffix": {"27L":"1B", "27R":"1B"},
+            "rwy": {
+                "27L": [["EGDUP", "A110-"], "SUMRA", "ROMIB"],
+                "27R": [["EGDUP", "A110-"], "SUMRA", "ROMIB"]
+            },
+            "exitPoints": {
+                "DORLU": ["DORLU"],
+                "EKIDI": ["EKIDI"],
+                "UBRIR": [["SCP", "A190+"], ["TOPEP", "A230-"], "UBRIR"]
+            },
+            "draw": [["EGDUP","SUMRA","ROMIB"], ["ROMIB","DORLU*"], ["ROMIB","EKIDI*"], ["ROMIB","SCP","TOPEP","UBRIR*"]]
+        },
+        "BGC": {
+            "icao": "BGC",
+            "name": "Bragança",
+            "suffix": {"9L":"2A", "9R":"2A", "27L":"3A", "27R":"1A"},
+            "rwy": {
+                "9L": ["GR502", ["GR021", "A90-"], ["BGC", "A150+"]],
+                "9R": ["GR502", ["GR021", "A90-"], ["BGC", "A150+"]],
+                "27L": ["IG", "GR602", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]],
+                "27R": ["GR501", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]]
+            },
+            "exitPoints": {
+                "UKBEV": [["GR719", "A190-"], ["GR022", "A200-"], ["GR023", "A200-"], "UKBEV"],
+                "MULAP": [["UTGER", "A150-"], "MULAP"]
+            },
+            "draw": [["GR502","GR021","BGC"], ["IG","GR602","GR722"], ["GR501","GR722","GR718","BGC"], ["BGC","GR719","GR022","GR023","UKBEV*"], ["BGC","UTGER","MULAP*"]]
+        },
+        "DORLU": {
+            "icao": "DORLU",
+            "name": "Dorlu",
+            "suffix": {"9L":"1A", "9R":"1A"},
+            "rwy": {
+                "9L": ["BCO", "GENKO"],
+                "9R": ["BCO", "GENKO"]
+            },
+            "exitPoints": {
+                "DORLU": ["DORLU"]
+            },
+            "draw": [["BCO","GENKO","DORLU"]]
+        },
+        "IVRAG": {
+            "icao": "IVRAG",
+            "name": "Ivrag",
+            "suffix": {"9L":"1A", "9R":"1A"},
+            "rwy": {
+                "9L": ["BCO", ["IVRAG", "A60+"]],
+                "9R": ["BCO", ["IVRAG", "A60+"]]
+            },
+            "exitPoints": {
+                "VUMEV": ["VUMEV"],
+                "UBRIR": ["VUMEV", "UBRIR"]
+            },
+            "draw": [["BCO","IVRAG","VUMEV","UBRIR"]]
+        },
+        "SCP": {
+            "icao": "SCP",
+            "name": "São José",
+            "suffix": {"9L":"1A", "9R":"1A"},
+            "rwy": {
+                "9L": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]],
+                "9R": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]]
+            },
+            "exitPoints": {
+                "DAGUB": [["DAGUB", "A140-"]],
+                "UBRIR": [["TOPEP", "A140-"], "USAMO", "UBRIR"],
+                "USAMO": [["TOPEP", "A140-"], "USAMO"],
+                "VUMEV": ["VUMEV"]
+            },
+            "draw": [["BCO","IVRAG","SCP"], ["SCP","DAGUB*"], ["SCP","TOPEP","USAMO*"], ["USAMO","UBRIR*"], ["SCP","VUMEV*"]]
+        }
     },
-    "ROMIB": {
-      "icao": "ROMIB",
-      "name": "Romib",
-      "suffix": {"27L":"1B", "27R":"1B"},
-      "rwy": {
-        "27L": [["EGDUP", "A110-"], "SUMRA", "ROMIB"],
-        "27R": [["EGDUP", "A110-"], "SUMRA", "ROMIB"]
-      },
-      "exitPoints": {
-        "DORLU": ["DORLU"],
-        "EKIDI": ["EKIDI"],
-        "UBRIR": [["SCP", "A190+"], ["TOPEP", "A230-"], "UBRIR"]
-      },
-      "draw": [["EGDUP","SUMRA","ROMIB"], ["ROMIB","DORLU*"], ["ROMIB","EKIDI*"], ["ROMIB","SCP","TOPEP","UBRIR*"]]
-    },
-    "BGC": {
-      "icao": "BGC",
-      "name": "Bragança",
-      "suffix": {"9L":"2A", "9R":"2A", "27L":"3A", "27R":"1A"},
-      "rwy": {
-        "9L": ["GR502", ["GR021", "A90-"], ["BGC", "A150+"]],
-        "9R": ["GR502", ["GR021", "A90-"], ["BGC", "A150+"]],
-        "27L": ["IG", "GR602", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]],
-        "27R": ["GR501", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]]
-      },
-      "exitPoints": {
-        "UKBEV": [["GR719", "A190-"], ["GR022", "A200-"], ["GR023", "A200-"], "UKBEV"],
-        "MULAP": [["UTGER", "A150-"], "MULAP"]
-      },
-      "draw": [["GR502","GR021","BGC"], ["IG","GR602","GR722"], ["GR501","GR722","GR718","BGC"], ["BGC","GR719","GR022","GR023","UKBEV*"], ["BGC","UTGER","MULAP*"]]
-    },
-    "DORLU": {
-      "icao": "DORLU",
-      "name": "Dorlu",
-      "suffix": {"9L":"1A", "9R":"1A"},
-      "rwy": {
-        "9L": ["BCO", "GENKO"],
-        "9R": ["BCO", "GENKO"]
-      },
-      "exitPoints": {
-        "DORLU": ["DORLU"]
-      },
-      "draw": [["BCO","GENKO","DORLU"]]
-    },
-    "IVRAG": {
-      "icao": "IVRAG",
-      "name": "Ivrag",
-      "suffix": {"9L":"1A", "9R":"1A"},
-      "rwy": {
-        "9L": ["BCO", ["IVRAG", "A60+"]],
-        "9R": ["BCO", ["IVRAG", "A60+"]]
-      },
-      "exitPoints": {
-        "VUMEV": ["VUMEV"],
-        "UBRIR": ["VUMEV", "UBRIR"]
-      },
-      "draw": [["BCO","IVRAG","VUMEV","UBRIR"]]
-    },
-    "SCP": {
-      "icao": "SCP",
-      "name": "São José",
-      "suffix": {"9L":"1A", "9R":"1A"},
-      "rwy": {
-        "9L": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]],
-        "9R": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]]
-      },
-      "exitPoints": {
-        "DAGUB": [["DAGUB", "A140-"]],
-        "UBRIR": [["TOPEP", "A140-"], "USAMO", "UBRIR"],
-        "USAMO": [["TOPEP", "A140-"], "USAMO"],
-        "VUMEV": ["VUMEV"]
-      },
-      "draw": [["BCO","IVRAG","SCP"], ["SCP","DAGUB*"], ["SCP","TOPEP","USAMO*"], ["USAMO","UBRIR*"], ["SCP","VUMEV*"]]
-    }
-  },
-  "spawnPatterns":[
-    {
-        "origin": "sbgr",
-        "destination": "",
-        "category": "departure",
-        "route": "SBGR.ROMIB.DORLU",
-        "altitude": "",
-        "speed": "",
-        "method": "random",
-        "rate": 8,
-        "airlines": [
-            ["TAM", 60],
-            ["GLO", 60],
-            ["AZU", 30],
-            ["EMBRAER", 3],
-            ["UPS", 1],
-            ["FDX", 1],
-            ["ACA/long", 2],
-            ["AAL/long", 5],
-            ["aea/long", 2],
-            ["afr/long", 5],
-            ["amx/long", 2],
-            ["ava/long", 2],
-            ["aza/long", 4],
-            ["baw/long", 5],
-            ["cca/long", 2],
-            ["dlh/long", 5],
-            ["ibe/long", 5],
-            ["kal/long", 1],
-            ["klm/long", 3],
-            ["lan", 7],
-            ["uae", 3],
-            ["ual/long", 5],
-            ["FAB", 1]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "sbgr",
-        "category": "arrival",
-        "route": "MOXEP..IBDIK",
-        "altitude": [7000, 8000],
-        "speed":    250,
-        "method": "random",
-        "rate": 17.5,
-        "airlines": [
-            ["TAM", 3],
-            ["GLO", 3],
-            ["AZU", 2],
-            ["EMBRAER", 1],
-            ["UPS", 1],
-            ["FDX", 1],
-            ["ACA/long", 1],
-            ["AAL/long", 1],
-            ["aea/long", 1],
-            ["afr/long", 1],
-            ["amx/long", 1],
-            ["ava/long", 1],
-            ["aza/long", 1],
-            ["baw/long", 1],
-            ["cca/long", 1],
-            ["dlh/long", 1],
-            ["ibe/long", 1],
-            ["kal/long", 1],
-            ["klm/long", 1],
-            ["lan", 1],
-            ["uae", 1],
-            ["ual/long", 1],
-            ["FAB", 1]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "sbgr",
-        "category": "arrival",
-        "route": "VUKIK..TOGES..SAT",
-        "altitude": [6000, 8000],
-        "speed": 250,
-        "method": "random",
-        "rate": 22.5,
-        "airlines": [
-            ["TAM", 3],
-            ["GLO", 3],
-            ["AZU", 3],
-            ["ONE", 3],
-            ["FAB", 1]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "sbgr",
-        "category": "arrival",
-        "route": "ANISE..SIPUK..SAT",
-        "altitude": [5000, 8000],
-        "speed": 250,
-        "method": "random",
-        "rate": 22.5,
-        "airlines":[
-            ["TAM", 3],
-            ["GLO", 3],
-            ["AZU", 3],
-            ["ONE", 2],
-            ["FAB", 1]
-        ]
-    },
-    {
-        "origin": "",
-        "destination": "sbgr",
-        "category": "arrival",
-        "route": "MOXEP..IBDIK",
-        "altitude": [9000, 10000],
-        "speed": 250,
-        "method": "random",
-        "rate": 20,
-        "airlines": [
-            ["TAM", 3],
-            ["GLO", 3],
-            ["AZU", 2],
-            ["EMBRAER", 1],
-            ["UPS", 1],
-            ["FDX", 1],
-            ["ACA/long", 1],
-            ["AAL/long", 1],
-            ["aea/long", 1],
-            ["afr/long", 1],
-            ["amx/long", 1],
-            ["ava/long", 1],
-            ["aza/long", 1],
-            ["baw/long", 1],
-            ["cca/long", 1],
-            ["dlh/long", 1],
-            ["ibe/long", 1],
-            ["kal/long", 1],
-            ["klm/long", 1],
-            ["lan", 1],
-            ["uae", 1],
-            ["ual/long", 1],
-            ["FAB", 1]
-        ]
-    }
-  ]
+    "spawnPatterns":[
+        {
+            "origin": "sbgr",
+            "destination": "",
+            "category": "departure",
+            "route": "SBGR.ROMIB.DORLU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["TAM", 60],
+                ["GLO", 60],
+                ["AZU", 30],
+                ["emb", 3],
+                ["UPS", 1],
+                ["FDX", 1],
+                ["ACA/long", 2],
+                ["AAL/long", 5],
+                ["aea/long", 2],
+                ["afr/long", 5],
+                ["amx/long", 2],
+                ["ava/long", 2],
+                ["aza/long", 4],
+                ["baw/long", 5],
+                ["cca/long", 2],
+                ["dlh/long", 5],
+                ["ibe/long", 5],
+                ["kal/long", 1],
+                ["klm/long", 3],
+                ["lan", 7],
+                ["uae", 3],
+                ["ual/long", 5],
+                ["FAB", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "sbgr",
+            "category": "arrival",
+            "route": "MOXEP..IBDIK",
+            "altitude": [7000, 8000],
+            "speed":    250,
+            "method": "random",
+            "rate": 17.5,
+            "airlines": [
+                ["TAM", 3],
+                ["GLO", 3],
+                ["AZU", 2],
+                ["emb", 1],
+                ["UPS", 1],
+                ["FDX", 1],
+                ["ACA/long", 1],
+                ["AAL/long", 1],
+                ["aea/long", 1],
+                ["afr/long", 1],
+                ["amx/long", 1],
+                ["ava/long", 1],
+                ["aza/long", 1],
+                ["baw/long", 1],
+                ["cca/long", 1],
+                ["dlh/long", 1],
+                ["ibe/long", 1],
+                ["kal/long", 1],
+                ["klm/long", 1],
+                ["lan", 1],
+                ["uae", 1],
+                ["ual/long", 1],
+                ["FAB", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "sbgr",
+            "category": "arrival",
+            "route": "VUKIK..TOGES..SAT",
+            "altitude": [6000, 8000],
+            "speed": 250,
+            "method": "random",
+            "rate": 22.5,
+            "airlines": [
+                ["TAM", 3],
+                ["GLO", 3],
+                ["AZU", 3],
+                ["ONE", 3],
+                ["FAB", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "sbgr",
+            "category": "arrival",
+            "route": "ANISE..SIPUK..SAT",
+            "altitude": [5000, 8000],
+            "speed": 250,
+            "method": "random",
+            "rate": 22.5,
+            "airlines":[
+                ["TAM", 3],
+                ["GLO", 3],
+                ["AZU", 3],
+                ["ONE", 2],
+                ["FAB", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "sbgr",
+            "category": "arrival",
+            "route": "MOXEP..IBDIK",
+            "altitude": [9000, 10000],
+            "speed": 250,
+            "method": "random",
+            "rate": 20,
+            "airlines": [
+                ["TAM", 3],
+                ["GLO", 3],
+                ["AZU", 2],
+                ["emb", 1],
+                ["UPS", 1],
+                ["FDX", 1],
+                ["ACA/long", 1],
+                ["AAL/long", 1],
+                ["aea/long", 1],
+                ["afr/long", 1],
+                ["amx/long", 1],
+                ["ava/long", 1],
+                ["aza/long", 1],
+                ["baw/long", 1],
+                ["cca/long", 1],
+                ["dlh/long", 1],
+                ["ibe/long", 1],
+                ["kal/long", 1],
+                ["klm/long", 1],
+                ["lan", 1],
+                ["uae", 1],
+                ["ual/long", 1],
+                ["FAB", 1]
+            ]
+        }
+    ]
 }

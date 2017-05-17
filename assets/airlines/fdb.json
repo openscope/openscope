@@ -1,12 +1,13 @@
 {
-  "name": "Flydubai",
-  "callsign": {
-    "name": "Sky Dubai",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-        ["B738", 50]
-    ]
-  }
+    "icao": "fdb",
+    "name": "Flydubai",
+    "callsign": {
+        "name": "Sky Dubai",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B738", 50]
+        ]
+    }
 }

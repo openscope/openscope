@@ -1,10 +1,10 @@
-/* eslint-disable arrow-parens, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
+import _isArray from 'lodash/isArray';
 
 import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
+import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
 import {
     airportPositionFixtureKSFO,
@@ -32,9 +32,9 @@ ava('sets only `name` when provided a string', t => {
 
     t.true(typeof model._id === 'string');
     t.true(model.name === NAME_MOCK);
-    t.true(model._altitude === null);
+    t.true(model._altitude === -1);
     t.true(model._altitudeConstraint === '');
-    t.true(model._speed === null);
+    t.true(model._speed === -1);
 });
 
 ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
@@ -61,14 +61,15 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
     t.true(spy.callCount === 1);
 });
 
-ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t => {
+ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const result = model.generateFmsWaypoint(airportModelFixture);
+    const result = model.toWaypointModel();
 
-    t.true(result instanceof Waypoint);
-    t.true(model.name === result.fix);
-    t.true(model._altitude === result.fixRestrictions.alt);
-    t.true(model._speed === result.fixRestrictions.spd);
+    t.true(result instanceof WaypointModel);
+    t.true(result.name === model.name.toLowerCase());
+    t.true(_isArray(result.relativePosition));
+    t.true(result.altitudeRestriction === 8000);
+    t.true(result.speedRestriction === 250);
 });
 
 ava('._parseWaypointRestrictions() extracts alititude and speed restrictions from a waypointRestrictions string', t => {
@@ -76,19 +77,19 @@ ava('._parseWaypointRestrictions() extracts alititude and speed restrictions fro
 
     model._parseWaypointRestrictions(RESTRICTIONS_MOCK);
 
-    t.true(model._altitude === '80+');
-    t.true(model._speed === '250');
+    t.true(model._altitude === 8000);
+    t.true(model._speed === 250);
 });
 
 ava('._parseWaypointRestrictions() extracts an alititude restriction from a waypointRestrictions string by calling ._setAltitudeRestriction()', t => {
     const model = new StandardRouteWaypointModel(['BAKRR', 'A80+']);
     const spy = sinon.spy(model, '_setAltitudeRestriction');
 
-    model._parseWaypointRestrictions('A80+');
+    model._parseWaypointRestrictions('A180+');
 
     t.true(spy.callCount === 1);
-    t.true(model._altitude === '80+');
-    t.true(model._speed === null);
+    t.true(model._altitude === 18000);
+    t.true(model._speed === -1);
 });
 
 ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointRestrictions string by calling ._setSpeedRestriction()', t => {
@@ -98,8 +99,8 @@ ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointR
     model._parseWaypointRestrictions('XYZ|S280');
 
     t.true(spy.callCount === 1);
-    t.true(model._altitude === null);
-    t.true(model._speed === '280');
+    t.true(model._altitude === -1);
+    t.true(model._speed === 280);
 });
 
 ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {
@@ -107,6 +108,6 @@ ava('._parseWaypointRestrictions() returns early if no paramater is received', t
 
     model._parseWaypointRestrictions();
 
-    t.true(model._altitude === null);
-    t.true(model._speed === null);
+    t.true(model._altitude === -1);
+    t.true(model._speed === -1);
 });

@@ -127,10 +127,10 @@
                 "09": [["BL401", "A60"], ["PAMOT", "A90"], "ANIRO"]
             },
             "draw": [
-                ["BL401", "PAMOT", "ANIRO"] 
+                ["BL401", "PAMOT", "ANIRO"]
             ]
         },
-         "APGUN5": {
+        "APGUN5": {
             "icao": "APGUN5",
             "name": "Apgun Five",
             "rwy": {
@@ -138,7 +138,7 @@
             },
             "draw": [
                 ["BL502", "BL505", "BL506", "BL507", "OMUKA"],
-                ["TTR"] 
+                ["TTR"]
             ]
         },
         "APGUN6": {
@@ -148,7 +148,7 @@
                 "09": [["BL402", "A35"], "BL403", ["BL404", "A90"], "OMUKA", "APGUN", "TTR"]
             },
             "draw": [
-                ["BL402", "BL403", "BL404", "OMUKA", "APGUN", "TTR"] 
+                ["BL402", "BL403", "BL404", "OMUKA", "APGUN", "TTR"]
             ]
         },
         "GUNIM5N": {
@@ -159,7 +159,7 @@
             },
             "draw": [
                 ["BL503", "OPAMO"],
-                ["GUNIM"] 
+                ["GUNIM"]
             ]
         },
         "GUNIM5S": {
@@ -190,7 +190,7 @@
                 "09": [["BL401", "A60"], ["BL406", "A90"], "OPAMO", "GUNIM"]
             },
             "draw": [
-                ["BL401", "BL406", "OPAMO", "GUNIM"] 
+                ["BL401", "BL406", "OPAMO", "GUNIM"]
             ]
         },
         "GUNIM6S": {
@@ -213,7 +213,7 @@
                 ["BL406", "BL407", "GUNIM"]
             ]
         },
-         "LATID5": {
+        "LATID5": {
             "icao": "LATID5",
             "name": "Latid Five",
             "rwy": {
@@ -557,14 +557,14 @@
             ]
         }
     },
-    "arrivals": [     
+    "arrivals": [
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "TIRUCHIRAPALLI.DUNDI.VOBL",
             "frequency":    7,
             "altitude":     12000,
-            "speed":		210,
-            "offset":		2,
+            "speed":        210,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["axm",  1],
@@ -582,12 +582,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "RIKBU.GELAT.VOBL",
             "frequency":    3,
             "altitude":     24000,
-            "speed":		300,
-            "offset":		2,
+            "speed":        300,
+            "offset":        2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
@@ -606,12 +606,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "UNSAL.GELAT.VOBL",
             "frequency":    4,
             "altitude":     21000,
-            "speed":		300,
-            "offset":		2,
+            "speed":        300,
+            "offset":        2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
@@ -630,12 +630,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "LUMPU.LUMPU.VOBL",
             "frequency":    7,
             "altitude":     18000,
-            "speed":		270,
-            "offset":		2,
+            "speed":        270,
+            "offset":        2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
@@ -654,12 +654,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "VABDI.PUTOT.VOBL",
             "frequency":    7,
             "altitude":     21000,
-            "speed":		280,
-            "offset":		2,
+            "speed":        280,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["iad",  7],
@@ -674,12 +674,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "GUNIM.RATOM.VOBL",
             "frequency":    4,
             "altitude":     27000,
-            "speed":		330,
-            "offset":		2,
+            "speed":        330,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["llr",  3],
@@ -694,12 +694,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "PEXEG.RATOM.VOBL",
             "frequency":    3,
             "altitude":     21000,
-            "speed":		300,
-            "offset":		2,
+            "speed":        300,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["llr",  3],
@@ -714,12 +714,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "GUNIM.RATOM5B.VOBL",
             "frequency":    2,
             "altitude":     25000,
-            "speed":		330,
-            "offset":		2,
+            "speed":        330,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["llr",  3],
@@ -734,12 +734,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "PEXEG.RATOM5B.VOBL",
             "frequency":    5,
             "altitude":     22000,
-            "speed":		300,
-            "offset":		2,
+            "speed":        300,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["llr",  3],
@@ -754,15 +754,15 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "UGABA.RUBOX.VOBL",
             "frequency":    17,
             "altitude":     18000,
-            "speed":		320,
-            "offset":		2,
+            "speed":        320,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
-                ["iad",  7], 
+                ["iad",  7],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
@@ -771,12 +771,12 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "type":         "cyclic",
             "route":        "XIVIL.TENKY.VOBL",
             "frequency":    17,
             "altitude":     14000,
-            "speed":		270,
-            "offset":		2,
+            "speed":        270,
+            "offset":        2,
             "airlines": [
                 ["aic", 11],
                 ["axm",  1],

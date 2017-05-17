@@ -1,10 +1,10 @@
 {
-  "name": "Bulgaria Air",
-  "callsign": {
-    "name": "Flying Bulgaria",
-    "length": 3
-  },
-  
+    "icao": "lzb",
+    "name": "Bulgaria Air",
+    "callsign": {
+        "name": "Flying Bulgaria",
+        "length": 3
+    },
     "fleets": {
         "default": [
             ["A319", 2 ],

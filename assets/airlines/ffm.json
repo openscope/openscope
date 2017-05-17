@@ -1,13 +1,14 @@
 {
-  "name": "Firefly",
-  "callsign": {
+    "icao": "ffm",
     "name": "Firefly",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["AT72", 12],
-      ["AT76",  8]
-    ]
-  }
+    "callsign": {
+        "name": "Firefly",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 12],
+            ["AT76",  8]
+        ]
+    }
 }
