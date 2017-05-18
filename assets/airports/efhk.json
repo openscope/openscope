@@ -323,7 +323,7 @@
         "_RW22L": ["N60d19m50.49", "E24d58m44.73"],
         "_RW22R": ["N60d19m52.11", "E24d56m38.01"],
         "_RW33": ["N60d18m25.44", "E24d59m17.83"],
-        "_RWY22R025DME": ["N60.3089654", "E24.8951079"],
+        "_RWY22R02.50DME": ["N60.30854815", "E24.89421932"],
         "SORPA": ["N59d37m01", "E24d50m49"],
         "SUTAX": ["N60d29m38.26", "E24d59m05.08"],
         "TEDMU": ["N60d27m46.64", "E25d14m09.63"],
@@ -386,11 +386,11 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R025DME", "HK451"],
+            "body": ["_RWY22R02.50DME", "HK451"],
             "exitPoints": {
                  "ASTIV": [["ASTIV", "S250-"]]
             },
-            "draw": [["_RWY22R025DME", "HK451", "ASTIV"]]
+            "draw": [["_RWY22R02.50DME", "HK451", "ASTIV"]]
         },
         "DEVKA": {
             "icao": "DEVKA",
@@ -425,11 +425,11 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R025DME", "HK461", ["HK427", "S250-"]],
+            "body": ["_RWY22R02.50DME", "HK461", ["HK427", "S250-"]],
             "exitPoints": {
                  "ENUTO": ["ENUTO"]
             },
-            "draw": [["_RWY22R025DME", "HK461", "HK427", "ENUTO"]]
+            "draw": [["_RWY22R02.50DME", "HK461", "HK427", "ENUTO"]]
         },
         "ERSAV": {
             "icao": "ERSAV",
@@ -555,11 +555,11 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R025DME", "HK451", ["ASTIV", "S250-"]],
+            "body": ["_RWY22R02.50DME", "HK451", ["ASTIV", "S250-"]],
             "exitPoints": {
                  "RILBO": ["RILBO"]
             },
-            "draw": [["_RWY22R025DME", "HK451", "ASTIV", "RILBO"]]
+            "draw": [["_RWY22R02.50DME", "HK451", "ASTIV", "RILBO"]]
         },
         "RIPVI": {
             "icao": "RIPVI",
@@ -607,11 +607,11 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R025DME", "HK428"],
+            "body": ["_RWY22R02.50DME", "HK428"],
             "exitPoints": {
                  "UREDA": [["UREDA", "S250-"]]
             },
-            "draw": [["_RWY22R025DME", "HK428", "UREDA"]]
+            "draw": [["_RWY22R02.50DME", "HK428", "UREDA"]]
         },
         "VAGIP": {
             "icao": "VAGIP",
@@ -620,11 +620,11 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R025DME", "HK461"],
+            "body": ["_RWY22R02.50DME", "HK461"],
             "exitPoints": {
                  "VAGIP": [["VAGIP", "S250-"]]
             },
-            "draw": [["_RWY22R025DME", "HK461", "VAGIP"]]
+            "draw": [["_RWY22R02.50DME", "HK461", "VAGIP"]]
         },
         "VAMRA": {
             "icao": "VAMRA",
