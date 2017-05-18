@@ -547,10 +547,14 @@ export default class StandardRouteModel extends BaseModel {
                 previousWaypoint = waypoint;
             }
 
-            const distance = this.calculateDistanceBetweenWaypoints(
-                waypoint.relativePosition,
-                previousWaypoint.relativePosition
-            );
+            let distance = 0;
+            if (!waypoint.isVector && !previousWaypoint.isVector) {
+                distance = this.calculateDistanceBetweenWaypoints(
+                    waypoint.relativePosition,
+                    previousWaypoint.relativePosition
+                );
+            }
+
             waypoint.distanceFromPreviousWaypoint = distance;
             waypoint.previousStandardWaypointName = previousWaypoint.name;
         });

@@ -94,8 +94,13 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
 
     for (let i = 0; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.relativePosition;
         let previousWaypoint = waypoint;
+
+        if (waypoint.isVector || previousWaypoint.isVector) {
+            continue;
+        }
+
+        const waypointPosition = waypoint.relativePosition;
         let previousPosition = waypoint.relativePosition;
 
         if (i > 0) {
