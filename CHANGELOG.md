@@ -10,7 +10,7 @@
 - Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
     - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
     - Removes circular reference in AirportModel.runway.airportModel [#58](https://github.com/openscope/openscope/issues/58)
-
+- Updates `SpawnPatternModel` to use the `AirportModel.arrivalRunway` property when gathering waypoint models needed to calculate initial aircraft heading [#469](https://github.com/openscope/openscope/issues/469)
 
 
 
