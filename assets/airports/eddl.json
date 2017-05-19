@@ -592,7 +592,7 @@
             "name": "XAMOD",
             "suffix": {"05L":"2X", "23R":"2G"},
             "entryPoints": {
-                "HMM": ["XAMOD"]
+                "XAMOD": ["XAMOD"]
             },
             "body": [
                 [""]
