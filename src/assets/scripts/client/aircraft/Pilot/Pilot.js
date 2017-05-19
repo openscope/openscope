@@ -577,7 +577,7 @@ export default class Pilot {
         // TODO: split these two method calls and the corresponding ifs to a new method
         const datum = runwayModel.positionModel;
         const course = runwayModel.angle;
-        const descentAngle = runwayModel.ils.gs_gradient;
+        const descentAngle = runwayModel.ils.glideslopeGradient;
         const lateralGuidance = this._interceptCourse(datum, course);
         const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle, interceptAltitude);
 

@@ -141,7 +141,7 @@ ava('.setDepartureRunway() changes #departureRunway to the ', (t) => {
 
     fms.setDepartureRunway(nextRunwayMock);
 
-    t.true(_isEqual(fms.departureRunway, nextRunwayMock));
+    t.true(_isEqual(fms.departureRunwayModel, nextRunwayMock));
 });
 
 ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -159,7 +159,7 @@ ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
 
     fms.setArrivalRunway(nextRunwayMock);
 
-    t.true(_isEqual(fms.arrivalRunway, nextRunwayMock));
+    t.true(_isEqual(fms.arrivalRunwayModel, nextRunwayMock));
 });
 
 ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {

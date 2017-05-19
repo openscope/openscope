@@ -1,6 +1,5 @@
 /* eslint-disable max-len, no-undef */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -12,9 +11,18 @@ import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
-import { tau, radians_normalize, angle_offset } from '../math/circle';
-import { abs, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
-import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
+import { radians_normalize, angle_offset } from '../math/circle';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance
+} from '../math/flightMath';
+import {
+    abs,
+    cos,
+    extrapolate_range_clamp,
+    sin,
+    spread
+} from '../math/core';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -35,9 +43,7 @@ import {
 import {
     degreesToRadians,
     heading_to_string,
-    km,
-    nm,
-    UNIT_CONVERSION_CONSTANTS
+    nm
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
@@ -45,7 +51,10 @@ import {
     PERFORMANCE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
-import { AIRPORT_CONSTANTS, AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
+import {
+    AIRPORT_CONSTANTS,
+    AIRPORT_CONTROL_POSITION_NAME
+} from '../constants/airportConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
@@ -75,7 +84,7 @@ export default class AircraftInstanceModel {
      */
     constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
-        this._id = _uniqueId('aircraft-');
+        this.id = _uniqueId('aircraft-');
         this._navigationLibrary = navigationLibrary;
         this.positionModel = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
@@ -295,7 +304,6 @@ export default class AircraftInstanceModel {
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-
             this.setFlightPhase(FLIGHT_PHASE.APRON);
             this.altitude = airport.positionModel.elevation;
             this.speed = 0;
@@ -505,21 +513,17 @@ export default class AircraftInstanceModel {
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = this.fms.arrivalRunway;
+        const runwayModel = this.fms.arrivalRunwayModel;
 
-        if (!runway) {
+        if (!runwayModel) {
             return false;
         }
 
-        const runwayHeading = runway.angle;
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
-        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        // TODO: the `this` here is ugly, but will be needed until `getOffset`
+        // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
+        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
 
-        return onApproachCourse && onCorrectHeading;
-
+        // TODO: Use this instead
         // const courseDatum = this.mcp.nav1Datum;
         // const course = this.mcp.course;
         // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
@@ -560,8 +564,7 @@ export default class AircraftInstanceModel {
     isOnGround() {
         const errorAllowanceInFeet = 5;
         const airport = window.airportController.airport_get();
-        const runway = this.fms.currentRunway;
-        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
+        const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
@@ -609,24 +612,20 @@ export default class AircraftInstanceModel {
         return this.isTaxiing() || this.flightPhase === FLIGHT_PHASE.TAKEOFF;
     }
 
-    // TODO: the logic in this method can be cleaned up and simplified
     /**
      * @for AircraftInstanceModel
      * @method isVisible
+     * @return {boolean}
      */
     isVisible() {
-        // TODO: this if/else if would be cleaner with just if (this.flightPhase === FLIGHT_PHASE.WAITING) {}
-        // hide aircraft on twys
+        // hide aircraft on taxiways
         if (this.flightPhase === FLIGHT_PHASE.APRON || this.flightPhase === FLIGHT_PHASE.TAXI) {
             return false;
         }
 
-        if (this.isTaxiing()) {
+        if (this.flightPhase === FLIGHT_PHASE.WAITING) {
             // show only the first aircraft in the takeoff queue
-            const runway = this.fms.departureRunway;
-            const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
-
-            return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
+            return this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
         }
 
         return true;
@@ -635,7 +634,9 @@ export default class AircraftInstanceModel {
     /**
      * Sets `#isRemovable` to true
      *
-     * Provides a single source to change the value of `#isRemovable`.
+     * Provides a single source to change the value of `#isRemovable`
+     * This is evaluated by the `AircraftController` when determining
+     * if an aircraft should be removed or not
      *
      * @for AircraftInstanceModel
      * @method setIsRemovable
@@ -655,10 +656,9 @@ export default class AircraftInstanceModel {
             head: 0
         };
 
-        const airport = window.airportController.airport_get();
-        const wind = airport.wind;
-        const runway = this.fms.currentRunway;
-        const angle =  abs(angle_offset(runway.angle, wind.angle));
+        const { wind } = window.airportController.airport_get();
+        // const wind = airport.wind;
+        const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
         // TODO: these two bits of math should be abstracted to helper functions
         windForRunway.cross = sin(angle) * wind.speed;
@@ -675,7 +675,8 @@ export default class AircraftInstanceModel {
      * @param runwayModel {RunwayModel}
      */
     moveToRunway(runwayModel) {
-        this.positionModel.setCoordinates(runwayModel.positionModel.gps);
+        this.positionModel.setCoordinates(runwayModel.gps);
+
         this.heading = runwayModel.angle;
         this.altitude = runwayModel.elevation;
     }
@@ -934,8 +935,7 @@ export default class AircraftInstanceModel {
      * @method updateFlightPhase
      */
     updateFlightPhase() {
-        const airportModel = window.airportController.airport_get();
-        const runwayModel = this.fms.departureRunway;
+        const runwayModel = this.fms.departureRunwayModel;
 
         if (this._shouldEnterHoldingPattern()) {
             this.setFlightPhase(FLIGHT_PHASE.HOLD);
@@ -1194,10 +1194,10 @@ export default class AircraftInstanceModel {
         // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
 
         // ILS SPECIFIC CODE
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
-        const distanceOnFinal_km = offset[1];
-        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinal_km);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const distanceOnFinalKm = offset[1];
+        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
         const altitudeToTarget = Math.min(this.mcp.altitude, glideslopeAltitude);
 
         return altitudeToTarget;
@@ -1215,18 +1215,20 @@ export default class AircraftInstanceModel {
         const datum = this.mcp.nav1Datum;
         const course = this.mcp.course;
         const courseOffset = getOffset(this, datum.relativePosition, course);
-        const lateralDistanceFromCourse_nm = nm(courseOffset[0]);
+        const lateralDistanceFromCourseNm = nm(courseOffset[0]);
         const headingDifference = angle_offset(course, this.heading);
         const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(datum);
         const angleAwayFromLocalizer = course - bearingFromAircaftToRunway;
         const turnTimeInSeconds = abs(headingDifference) / PERFORMANCE.TURN_RATE;    // time to turn headingDifference degrees
+        // TODO: this should be moved to a class method `.getTurningRadius()`
         const turningRadius = this.speed * (turnTimeInSeconds * TIME.ONE_SECOND_IN_HOURS);  // dist covered in the turn, nm
         const distanceCoveredDuringTurn = turningRadius * abs(headingDifference);
-        const distanceToLocalizer = lateralDistanceFromCourse_nm / sin(headingDifference); // dist from the localizer intercept point, nm
+        const distanceToLocalizer = lateralDistanceFromCourseNm / sin(headingDifference); // dist from the localizer intercept point, nm
         const distanceEarly = 0.5;    // start turn early, to avoid overshoots from tailwind
         const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
         const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
+        // TODO: this logic is confusing, simplify
         if (!(shouldAttemptIntercept || inTheWindow)) {
             return this.mcp.heading;
         }
@@ -1234,7 +1236,7 @@ export default class AircraftInstanceModel {
         const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
-        const isAlignedWithCourse = abs(lateralDistanceFromCourse_nm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
         if (isAlignedWithCourse) {
@@ -1398,15 +1400,15 @@ export default class AircraftInstanceModel {
      * @return {number}
      */
     _calculateTargetedAltitudeDuringLanding() {
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_km = offset[1];
 
         if (distanceOnFinal_km > 0) {
             return this._calculateTargetedAltitudeToInterceptGlidepath();
         }
 
-        return runway.elevation;
+        return runwayModel.elevation;
     }
 
     /**
@@ -1417,17 +1419,17 @@ export default class AircraftInstanceModel {
      * @return {number}
      */
     _calculateTargetedHeadingDuringLanding() {
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm > 0) {
-            const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
+            const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runwayModel.positionModel);
 
             return bearingFromAircaftToRunway;
         }
 
-        return runway.angle;
+        return runwayModel.angle;
     }
 
     /**
@@ -1439,8 +1441,8 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedSpeedDuringLanding() {
         let startSpeed = this.speed;
-        const runway  = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm <= 0 && this.isOnGround())  {

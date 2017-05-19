@@ -1,5 +1,13 @@
-import { sin, cos, tan, abs } from './core';
-import { tau } from './circle';
+import {
+    abs,
+    sin,
+    cos,
+    tan
+} from './core';
+import {
+    tau,
+    angle_offset
+} from './circle';
 import { distance2d } from './distance';
 import {
     vradial,
@@ -9,12 +17,12 @@ import {
     distance_to_poly,
     area_to_poly
 } from './vector';
-import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import {
     kn_ms,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
+import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 
 /**
  * @function calcTurnRadius
@@ -215,3 +223,11 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     // convert m to km
     return turnInitiationDistance / 1000;
 };
+
+/**
+ * @function calculateCrosswindAngle
+ * @param runwayAngle {number}
+ * @param windAngle {number}
+ * @return {number}
+ */
+export const calculateCrosswindAngle = (runwayAngle, windAngle) => abs(angle_offset(runwayAngle, windAngle));

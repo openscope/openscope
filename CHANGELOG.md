@@ -7,6 +7,10 @@
 - Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 - Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
+- Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
+    - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
+    - Removes circular reference in AirportModel.runway.airportModel [#58](https://github.com/openscope/openscope/issues/58)
+
 
 
 

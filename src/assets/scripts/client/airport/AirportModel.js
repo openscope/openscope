@@ -1,6 +1,6 @@
-/* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
-import $ from 'jquery';
+/* eslint-disable max-len */
 import _ceil from 'lodash/ceil';
+import _chunk from 'lodash/chunk';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -8,14 +8,12 @@ import _map from 'lodash/map';
 import EventBus from '../lib/EventBus';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
-import RunwayModel from './RunwayModel';
+import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
-import { angle_offset } from '../math/circle';
-import { getOffset } from '../math/flightMath';
-import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
+import { round } from '../math/core';
+import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
     FLIGHT_CATEGORY,
     PERFORMANCE
@@ -23,84 +21,216 @@ import {
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
-// TODO: This function should really live in a different file and have tests.
-// what does ra stand for? runway angle? what about n? need better names here.
-/**
- * @function ra
- * @param n {numer}
- * @return {number}
- */
-const ra = (n) => {
-    const deviation = degreesToRadians(10);
-
-    return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
-};
-
 const DEFAULT_CTR_RADIUS_NM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
 
 /**
- *
- *
  * @class AirportModel
  */
 export default class AirportModel {
     /**
      * @constructor
      * @param options {object}
-     * @param updateRun {function}
-     * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun, onAirportChange) {
-        if (!updateRun || !onAirportChange) {
-            console.log('::: ERROR', !updateRun, !onAirportChange);
-            return;
-        }
-
+    // istanbul ignore next
+    constructor(options = {}) {
+        /**
+         * @property EventBus
+         * @type {EventBus}
+         */
         this.eventBus = EventBus;
 
-        this.updateRun = updateRun;
-        this.onAirportChange = onAirportChange;
+        /**
+         * cache of airport json data
+         *
+         * used externally when changing airports
+         *
+         * @property data
+         * @type {object}
+         * @default {}
+         */
         this.data = {};
 
-        // TODO: All properties of this class should be instantiated here, even if they wont have values yet.
-        // there is a lot of logic below that can be elimininated by simply instantiating values here.
-        this.arrivalRunway = null;
-        this.departureRunway = null;
+        /**
+         * @property arrivalRunwayModel
+         * @type {RunwayModel}
+         * @default null
+         */
+        this.arrivalRunwayModel = null;
+
+        /**
+         * @property departureRunwayModel
+         * @type {RunwayModel}
+         * @default null
+         */
+        this.departureRunwayModel = null;
+
+        /**
+         * Flag for is an airport has been loaded successfully
+         *
+         * @property loaded
+         * @type {boolean}
+         * @default false
+         */
         this.loaded = false;
+
+        /**
+         * Flag for if an airport is in the process of loading
+         *
+         * @property loading
+         * @type {boolean}
+         * @default false
+         */
         this.loading = false;
+
+        /**
+         * @property name
+         * @type {string}
+         * @default null
+         */
         this.name = null;
+
+        /**
+         * @property icao
+         * @type {string}
+         * @default null
+         */
         this.icao = null;
+
+        /**
+         * Flag for if an airport is a work in progress
+         *
+         * @property wip
+         * @type {boolean}
+         * @default null
+         */
         this.wip = null;
+
+        /**
+         * @property radio
+         * @type
+         * @default null
+         */
         this.radio = null;
+
+        /**
+         * @property level
+         * @type
+         * @default null
+         */
         this.level = null;
+
+        /**
+         * @property _positionModel
+         * @type {StaticPositionModel}
+         * @default null
+         */
         this._positionModel = null;
-        this.runways = [];
+
+        /**
+         * @property _runwayCollection
+         * @type {RunwayCollection}
+         * @default null
+         */
+        this._runwayCollection = null;
+
+        /**
+         * Dictionary of polys that make up any airport video maps
+         *
+         * @property maps
+         * @type {object}
+         * @default {}
+         */
         this.maps = {};
+
+        // TODO: may need to refactor when implementing Airways
+        /**
+         * @property airways
+         * @type {object}
+         * @default {}
+         */
         this.airways = {};
+
+        /**
+         * @property restricted_areas
+         * @type {array}
+         * @default []
+         */
         this.restricted_areas = [];
-        this.metadata = {
-            rwy: {}
-        };
-        // array of areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+
+        /**
+         * areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+         *
+         * @property airspace
+         * @type {object}
+         * @default null
+         */
         this.airspace = null;
-        // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
+
+        /**
+         * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
+         *
+         * @property perimeter
+         * @type {object}
+         * @default null
+         */
         this.perimeter = null;
-        this.timeout  = {
+
+        /**
+         * @property timeout
+         * @type {object}
+         */
+        this.timeout = {
             runway: null,
             departure: null
         };
 
-        this.wind  = {
+        /**
+         * default wind settings for an airport
+         *
+         * @property wind
+         * @type {object}
+         */
+        this.wind = {
             speed: 10,
             angle: 0
         };
 
-        this.ctr_radius = 80;
-        this.ctr_ceiling = 10000;
-        this.initial_alt = 5000;
+
+        /**
+         * @property ctr_radius
+         * @type {nunmber}
+         * @default DEFAULT_CTR_RADIUS_NM
+         */
+        this.ctr_radius = DEFAULT_CTR_RADIUS_NM;
+
+        /**
+         * @property ctr_ceiling
+         * @type {nunmber}
+         * @default DEFAULT_CTR_CEILING_FT
+         */
+        this.ctr_ceiling = DEFAULT_CTR_CEILING_FT;
+
+        /**
+         * @property initial_alt
+         * @type {nunmber}
+         * @default DEFAULT_INITIAL_ALTITUDE_FT
+         */
+        this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
+
+        /**
+         * @property rr_radius_nm
+         * @type {nunmber}
+         * @default 0
+         */
         this.rr_radius_nm = 0;
+
+        /**
+         * @property rr_center
+         * @type {nunmber}
+         * @default 0
+         */
         this.rr_center = 0;
 
         this.parse(options);
@@ -158,6 +288,20 @@ export default class AirportModel {
     }
 
     /**
+     * This will return an array of two-value arrays containing a `RunwayModel`
+     * for each end of a runway.
+     *
+     * This should only be used by the `CanvasController` for drawing runways.
+     * This returns data in this shape in an effort to maintain a previous api.
+     *
+     * @property runways
+     * @return {array<array<RunwayModel>>}
+     */
+    get runways() {
+        return _chunk(this._runwayCollection.runways, 2);
+    }
+
+    /**
      * Minimum descent altitude of an instrument approach
      *
      * This is 200 feet AGL but every airport is at a different elevation
@@ -207,29 +351,27 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
+        this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
-        this.buildAirportRunways(data.runways);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        this.buildRunwayMetaData();
-        // this.updateRunway();
-        // this.setRunwayTimeout();
     }
 
     /**
      * @for AirportModel
      * @method setCurrentPosition
-     * @param gpsCoordinates {array<number>} [latitude, longitude]
-     * @param magneticNorth {number} magnetic declination (variation), in radians
+     * @param gpsCoordinates {array<number>}  [latitude, longitude]
+     * @param magneticNorth {number}          magnetic declination (variation), in radians
      */
     setCurrentPosition(gpsCoordinates, magneticNorth) {
         if (!isValidGpsCoordinatePair(gpsCoordinates)) {
             return;
         }
+
         this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
     }
 
@@ -256,40 +398,19 @@ export default class AirportModel {
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(this.airspace);
-
-        this.ctr_radius = Math.max(..._map(
-            this.perimeter.poly, (vertexPosition) => vlen(
-                vsub(
-                    vertexPosition.relativePosition,
-                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._positionModel, this.magneticNorth)
+        this.ctr_radius = Math.max(
+            ..._map(this.perimeter.poly, (vertexPosition) => vlen(
+                    vsub(
+                        vertexPosition.relativePosition,
+                        DynamicPositionModel.calculateRelativePosition(
+                            this.rr_center,
+                            this._positionModel,
+                            this.magneticNorth
+                        )
+                    )
                 )
             )
-        ));
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildAirportRunways
-     * @param runways {array}
-     */
-    buildAirportRunways(runways) {
-        if (!runways) {
-            return;
-        }
-
-        // TODO: move this to a `RunwayCollection` class
-        _forEach(runways, (runway) => {
-            // TODO: This should not be happening here, but rather during creation of the runway's `StaticPositionModel`
-            runway.relative_position = this._positionModel;
-            runway._magneticNorth = this.magneticNorth;
-
-            // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
-
-            this.runways.push([
-                new RunwayModel(runway, 0, this),
-                new RunwayModel(runway, 1, this)
-            ]);
-        });
+        );
     }
 
     /**
@@ -304,6 +425,7 @@ export default class AirportModel {
 
         _forEach(maps, (map, key) => {
             this.maps[key] = [];
+
             const outputMap = this.maps[key];
             const lines = map;
 
@@ -311,9 +433,16 @@ export default class AirportModel {
                 const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
                 const lineStartCoordinates = [line[0], line[1]];
                 const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
-                const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
+                const startPosition = DynamicPositionModel.calculateRelativePosition(
+                    lineStartCoordinates,
+                    ...airportPositionAndDeclination
+                );
+                const endPosition = DynamicPositionModel.calculateRelativePosition(
+                    lineEndCoordinates,
+                    ...airportPositionAndDeclination
+                );
                 const lineVerticesRelativePositions = [...startPosition, ...endPosition];
+
                 outputMap.push(lineVerticesRelativePositions);
             });
         });
@@ -330,20 +459,20 @@ export default class AirportModel {
         }
 
         _forEach(restrictedAreas, (area) => {
-            // TODO: what is `obj` going to be? need better name.
+            // TODO: find a better name for `obj`
             const obj = {};
+
             if (area.name) {
                 obj.name = area.name;
             }
 
             obj.height = parseElevation(area.height);
-            // TODO: Remove _map, move relativePosition value to const, then return that const
-            obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth))];
+            obj.coordinates = _map(area.coordinates, (v) => {
+                return [
+                    DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                ];
             });
 
-            // TODO: is this right? max and min are getting set to the same value?
-            // const coords = obj.coordinates;
             let coords_max = obj.coordinates[0];
             let coords_min = obj.coordinates[0];
 
@@ -380,41 +509,8 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method buildRunwayMetaData
-     */
-    buildRunwayMetaData() {
-        // TODO: move this logic to a `RunwayController` class
-        for (const rwy1 in this.runways) {
-            for (const rwy1end in this.runways[rwy1]) {
-                // setup primary runway object
-                this.metadata.rwy[this.runways[rwy1][rwy1end].name] = {};
-
-                for (const rwy2 in this.runways) {
-                    if (rwy1 === rwy2) {
-                        continue;
-                    }
-
-                    for (const rwy2end in this.runways[rwy2]) {
-                        // setup secondary runway subobject
-                        const r1 = this.runways[rwy1][rwy1end];
-                        const r2 = this.runways[rwy2][rwy2end];
-                        const offset = getOffset(r1, r2.relativePosition, r1.angle);
-                        this.metadata.rwy[r1.name][r2.name] = {};
-
-                        // generate this runway pair's relationship data
-                        this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
-                        this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
-                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.relativePosition, r1.angle, r2.relativePosition, r2.angle);
-                        this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @for AirportModel
      * @method set
+     * @param airportJson {object}
      */
     set(airportJson) {
         if (!this.loaded) {
@@ -430,19 +526,30 @@ export default class AirportModel {
 
         this.start = window.gameController.game_time();
 
-        this.updateRun(true);
+        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, true);
     }
 
     /**
-     * Set the airport's active arrival runway
-     *
      * @for AirportModel
-     * @method setArrivalRunway
-     * @param runwayModel {RunwayModel}
+     * @method getWind
+     * @return wind {number}
      */
-    setArrivalRunway(runwayModel) {
-        this.arrivalRunway = runwayModel;
-    }
+    getWind = () => {
+        return this.wind;
+
+        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
+        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
+        // const wind = Object.assign({}, this.wind);
+        // let s = 1;
+        // const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // // TODO: why is this var getting reassigned to a magic number?
+        // s = 100;
+        // const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
+        //
+        // return wind;
+    };
 
     /**
      * Set active arrival/departure runways from the runway names
@@ -461,6 +568,17 @@ export default class AirportModel {
     }
 
     /**
+     * Set the airport's active arrival runway
+     *
+     * @for AirportModel
+     * @method setArrivalRunway
+     * @param runwayModel {RunwayModel}
+     */
+    setArrivalRunway(runwayModel) {
+        this.arrivalRunwayModel = runwayModel;
+    }
+
+    /**
      * Set the airport's active departure runway
      *
      * @for AirportModel
@@ -468,7 +586,7 @@ export default class AirportModel {
      * @param runwayModel {RunwayModel}
      */
     setDepartureRunway(runwayModel) {
-        this.departureRunway = runwayModel;
+        this.departureRunwayModel = runwayModel;
     }
 
     /**
@@ -481,73 +599,88 @@ export default class AirportModel {
      */
     getActiveRunwayForCategory(category) {
         if (category === FLIGHT_CATEGORY.ARRIVAL) {
-            return this.arrivalRunway;
+            return this.arrivalRunwayModel;
         }
 
         if (category === FLIGHT_CATEGORY.DEPARTURE) {
-            return this.departureRunway;
+            return this.departureRunwayModel;
         }
 
         console.warn('Did not expect a query for runway that applies to aircraft of category ' +
-            `'${category}'! Returning the arrival runway (${this.arrivalRunway.name})`);
+            `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
 
-        return this.arrivalRunway;
+        return this.arrivalRunwayModel;
     }
 
     /**
+     * Return a `RunwayRelationshipModel` given two runway names
+     *
      * @for AirportModel
-     * @method getWind
-     * @return wind {number}
+     * @method getRunwayRelationshipForRunwayNames
+     * @param  primaryRunwayName {string}
+     * @param  comparatorRunwayName {string}
+     * @return {RunwayRelationshipModel|undefined}
      */
-    getWind() {
-        return this.wind;
-
-        // TODO: what does this method do and why do we need it?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = Object.assign({}, this.wind);
-        let s = 1;
-        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        // TODO: why is this var getting reassigned to a magic number?
-        s = 100;
-        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-
-        return wind;
+    getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName) {
+        return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
     }
 
     // TODO: Implement changing winds, then bring this method back to life
     /**
      * @for AirportModel
      * @method updateRunway
-     * @deprecated
      */
-    updateRunway(length = 0) {
-        // // TODO: this method contains some ambiguous names. need better names.
-        // const wind = this.getWind();
-        // const headwind = {};
+    updateRunway() {
+        // const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
         //
-        // for (let i = 0; i < this.runways.length; i++) {
-        //     const runway = this.runways[i];
-        //     headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
-        //     headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
-        // }
-        //
-        // let best_runway = '';
-        // let best_runway_headwind = -Infinity;
-        // for (const runway in headwind) {
-        //     if (headwind[runway] > best_runway_headwind && this.getRunway(runway).length > length) {
-        //         best_runway = runway;
-        //         best_runway_headwind = headwind[runway];
-        //     }
-        // }
-        //
-        // this.runway = best_runway;
+        // this.setArrivalRunway(bestRunwayForWind);
+        // this.setDepartureRunway(bestRunwayForWind);
     }
 
+    // TODO: leaving this here for when we implement variable winds
+    // /**
+    //  * @for AirportModel
+    //  * @method setRunwayTimeout
+    //  */
+    // setRunwayTimeout() {
+    //     this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
+    // }
+
+    /**
+     * Return a `RunwayModel` for the provided name
+     *
+     * @for AirportModel
+     * @method getRunway
+     * @param name {string} name of the runway, eg '28R'
+     * @return {RunwayModel|null}
+     */
+    getRunway(name) {
+        return this._runwayCollection.findRunwayModelByName(name);
+    }
+
+    /**
+     * Remove an aircraft from all runway queues
+     *
+     * @for AirportModel
+     * @method removeAircraftFromAllRunwayQueues
+     * @param  aircraft {AircraftInstanceModel}
+     */
+    removeAircraftFromAllRunwayQueues(aircraftId) {
+        return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
+    }
+
+    /**
+     * @for AirportModel
+     * @method parseTerrain
+     * @param  data {object}
+     */
     parseTerrain(data) {
-        // TODO: reassignment of this to apt is not needed here. change apt to this.
-        // terrain must be in geojson format
+        const GEOMETRY_TYPE = {
+            LINE_STRING: 'LineString',
+            POLYGON: 'Polygon'
+        };
+
+        // reassigning `this` to maintain correct scope wen working in multiple nested `_forEach()` and `_map()` loops
         const apt = this;
         apt.terrain = {};
 
@@ -561,29 +694,28 @@ export default class AirportModel {
             }
 
             let multipoly = f.geometry.coordinates;
-            // TODO: add enumeration
-            if (f.geometry.type === 'LineString') {
+            if (f.geometry.type === GEOMETRY_TYPE.LINE_STRING) {
                 multipoly = [[multipoly]];
             }
 
-            // TODO: add enumeration
-            if (f.geometry.type === 'Polygon') {
+            if (f.geometry.type === GEOMETRY_TYPE.POLYGON) {
                 multipoly = [multipoly];
             }
 
-            $.each(multipoly, (i, poly) => {
+            _forEach(multipoly, (poly) => {
                 // multipoly contains several polys
                 // each poly has 1st outer ring and other rings are holes
-                apt.terrain[ele].push($.map(poly, (line_string) => {
-                    return [
-                        $.map(line_string, (pt) => {
-                            pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
-                            const pos = new StaticPositionModel(pt, apt.positionModel, apt.magneticNorth);
+                const terrainAtElevation = _map(poly, (line_string) => {
+                    return _map(line_string, (point) => {
+                        // `StaticPositionModel` requires [lat,lon] order
+                        const latLongPoint = point.slice().reverse();
+                        const pos = new StaticPositionModel(latLongPoint, apt.positionModel, apt.magneticNorth);
 
-                            return [pos.relativePosition];
-                        })
-                    ];
-                }));
+                        return pos.relativePosition;
+                    });
+                });
+
+                apt.terrain[ele].push(terrainAtElevation);
             });
         });
     }
@@ -632,8 +764,8 @@ export default class AirportModel {
             return;
         }
 
-        this.updateRun(false);
         this.loading = true;
+        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, false);
 
         if (airportJson) {
             this.onLoadIntialAirportFromJson(airportJson);
@@ -694,44 +826,8 @@ export default class AirportModel {
         this.data = response;
         this.loading = false;
         this.loaded = true;
+
         this.parse(response);
         this.set();
-    }
-
-    /**
-     * @for AirportModel
-     * @method getRestrictedAreas
-     * @return {array|null}
-     */
-    getRestrictedAreas() {
-        return _get(this, 'restricted_areas', null);
-    }
-
-    /**
-     * Return the RunwayModel with the provided name
-     *
-     * @for AirportModel
-     * @method getRunway
-     * @param name {string} name of the runway, eg '28R'
-     * @return {RunwayModel}
-     */
-    getRunway(name) {
-        if (!name) {
-            return null;
-        }
-
-        // TODO: move below to a `RunwayCollection` class
-        name = name.toLowerCase();
-
-        for (let i = 0; i < this.runways.length; i++) {
-            if (this.runways[i][0].name.toLowerCase() === name) {
-                return this.runways[i][0];
-            }
-            if (this.runways[i][1].name.toLowerCase() === name) {
-                return this.runways[i][1];
-            }
-        }
-
-        return null;
     }
 }
