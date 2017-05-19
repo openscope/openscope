@@ -535,17 +535,17 @@
             "name": "DOMUX",
             "suffix": {"05L":"2X", "23R":"2G"},
             "entryPoints": {
-                "ADEMI": ["ADEMI"]
+                "DOMUX": ["DOMUX"]
             },
             "body": [
-                ["INBAX", "DOMUX"]
+                []
             ],
             "rwy": {
                 "05L": ["DOLAV", "LEBTI"],
                 "23R": ["BAM"]
             },
             "draw": [
-                ["ADEMI", "INBAX", "DOMUX*", "DOLAV", "LEBTI"],
+                ["DOMUX*", "DOLAV", "LEBTI"],
                 ["DOMUX", "BAM"]
             ]
         },
@@ -592,17 +592,17 @@
             "name": "XAMOD",
             "suffix": {"05L":"2X", "23R":"2G"},
             "entryPoints": {
-                "HMM": ["HMM"]
+                "HMM": ["XAMOD"]
             },
             "body": [
-                ["XAMOD"]
+                [""]
             ],
             "rwy": {
                 "05L": ["BOMBA", "GAPNU", "RONAD"],
                 "23R": ["BOT"]
             },
             "draw": [
-                ["HMM", "XAMOD*", "BOMBA", "GAPNU", "RONAD"],
+                ["XAMOD*", "BOMBA", "GAPNU", "RONAD"],
                 ["XAMOD", "BOT"]
             ]
         }        
