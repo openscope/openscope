@@ -142,7 +142,7 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
     const waypointModelList = navigationLibrary.findWaypointModelsForStar(
         activeRouteModel.procedure,
         activeRouteModel.entry,
-        airport.arrivalRunway.name,
+        airport.arrivalRunwayModel.name,
         isPreSpawn
     );
 

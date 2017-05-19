@@ -23,13 +23,9 @@ export default class AirportController {
      * @constructor
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
-     * @param updateRun {function}
-     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
+    constructor(initialAirportData, airportLoadList) {
         this.eventBus = EventBus;
-        this.updateRun = updateRun;
-        this.onAirportChange = onAirportChange;
 
         this.airport = airport;
         this.airport.airports = {};
@@ -116,17 +112,7 @@ export default class AirportController {
             return null;
         }
 
-        // create a new Airport with a reference to this.updateRun()
-        const airport = new Airport(
-            {
-                icao,
-                level,
-                name,
-                wip
-            },
-            this.updateRun,
-            this.onAirportChange
-        );
+        const airport = new Airport({ icao, level, name, wip });
 
         this.airport_add(airport);
 
@@ -202,16 +188,9 @@ export default class AirportController {
      * Remove an aircraft from the queue of any runway(s) at the AirportModel
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
-     * @param  {aircraft} aircraft The aircraft to remove
+     * @param  aircraft {AircraftInstanceModel}
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
-        const runwayPrimaryEndIndex = 0;
-        const runwaySecondaryEndIndex = 1;
-        const runways = this.airport_get().runways;
-
-        for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][runwayPrimaryEndIndex].removeAircraftFromQueue(aircraft);
-            runways[runwayPair][runwaySecondaryEndIndex].removeAircraftFromQueue(aircraft);
-        }
+        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft.id);
     }
 }

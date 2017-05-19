@@ -100,9 +100,22 @@ export default class App {
             this.prop.log = LOG.WARNING;
         }
 
-        this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        return this.createHandlers()
+            .initiateDataLoad(airportLoadList, initialAirportToLoad);
+    }
 
-        return this.initiateDataLoad(airportLoadList, initialAirportToLoad);
+    /**
+     * Create event handlers
+     *
+     * @for App
+     * @method createHandlers
+     * @chainable
+     */
+    createHandlers() {
+        this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this.eventBus.on(EVENT.SHOULD_PAUSE_UPDATE_LOOP, this.updateRun);
+
+        return this;
     }
 
     /**
@@ -171,7 +184,7 @@ export default class App {
         // TODO: Temporary
         window.gameController = this.gameController;
 
-        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
+        this.airportController = new AirportController(initialAirportData, airportLoadList);
         // TODO: Temporary
         window.airportController = this.airportController;
 

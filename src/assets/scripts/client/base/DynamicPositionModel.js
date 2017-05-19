@@ -6,21 +6,19 @@ import {
     calculateDistanceToPointForY,
     isValidGpsCoordinatePair
 } from './positionModelHelpers';
-import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
-import {
-    DEFAULT_SCREEN_POSITION,
-    GPS_COORDINATE_INDEX,
-    RELATIVE_POSITION_OFFSET_INDEX
-} from '../constants/positionConstants';
-import {
-    radians_normalize
-} from '../math/circle';
+import { radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
     parseElevation,
     radiansToDegrees
 } from '../utilities/unitConverters';
+import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
+import {
+    DEFAULT_SCREEN_POSITION,
+    GPS_COORDINATE_INDEX,
+    RELATIVE_POSITION_OFFSET_INDEX
+} from '../constants/positionConstants';
 
 /**
  * @class Position

@@ -57,6 +57,11 @@ ava.serial('.off() removes the event from #_events when no other observers exist
     t.true(typeof EventBus._events.click === 'undefined');
 });
 
+ava.serial('.trigger() does not throw when an event does not exist', (t) => {
+    t.notThrows(() => EventBus.trigger(eventNameMock, 11, 3));
+});
+
+
 ava.serial('.trigger() calls each observer with #args', (t) => {
     let val = 0;
     const triggerFnMock = (plus, minus = 0) => {
