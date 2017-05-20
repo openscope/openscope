@@ -353,7 +353,7 @@ export default class UiController {
         this.$airportListNotes.append(notes);
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method px_to_km
@@ -364,7 +364,7 @@ export default class UiController {
         return pixels / prop.ui.scale;
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method km_to_px
