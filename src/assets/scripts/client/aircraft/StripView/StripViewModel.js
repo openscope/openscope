@@ -1,8 +1,10 @@
 import $ from 'jquery';
 import _uniqueId from 'lodash/uniqueId';
 import BaseModel from '../../base/BaseModel';
+import EventBus from '../../lib/EventBus';
 import { round } from '../../math/core';
 import { SELECTORS } from '../../constants/selectors';
+import { EVENT } from '../../constants/eventNames';
 
 /**
  * Root html element
@@ -57,6 +59,9 @@ export default class StripViewModel extends BaseModel {
          * @private
          */
         this._id = _uniqueId('aircraftStripView-');
+
+
+        this._eventBus = EventBus;
 
         /**
          *
@@ -401,10 +406,9 @@ export default class StripViewModel extends BaseModel {
      * @method onClickHandler
      * @param event {jquery event}
      */
+    // eslint-disable-next-line no-unused-vars
     onClickHandler = (event) => {
-        console.log('onClickHandler');
-
-        window.inputController.input_select(this._callsign);
+        this._eventBus.trigger(EVENT.STRIP_CLICK, this._callsign);
     };
 
     /**
@@ -414,8 +418,9 @@ export default class StripViewModel extends BaseModel {
      * @method onDoubleClickHandler
      * @param  event {jquery event}
      */
+    // eslint-disable-next-line no-unused-vars
     onDoubleClickHandler = (event) => {
-        console.log('onDoubleClick');
+        console.log('onDoubleClick', this._callsign);
         const { positionModel } = event.data;
 
         // TODO: move to CanvasController

@@ -1,10 +1,11 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
-import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import CommandParser from './commandParser/CommandParser';
+import EventBus from './lib/EventBus';
 import { clamp } from './math/core';
+import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 
@@ -99,6 +100,8 @@ export default class InputController {
         this._aircraftCommander = aircraftCommander;
         this._onSelectAircraftStrip = onSelectAircraftStrip;
 
+        this._eventBus = EventBus;
+
         this.input = input;
         this.input.command = '';
         this.input.callsign = '';
@@ -135,6 +138,8 @@ export default class InputController {
      * @method setupHandlers
      */
     setupHandlers() {
+        this._eventBus.on(EVENT.STRIP_CLICK, this.input_select);
+
         return this;
     }
 
@@ -171,6 +176,8 @@ export default class InputController {
         this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
+
+        this._eventBus.on(EVENT.STRIP_CLICK, this.input_select);
 
         return this.destroy();
     }
@@ -433,17 +440,18 @@ export default class InputController {
      * @method input_select
      * @param callsign {string}
      */
-    input_select(callsign) {
+    input_select = (callsign) => {
+        let nextCommandInputValue = '';
+
         if (callsign) {
-            this.$commandInput.val(`${callsign} `);
-        } else {
-            this.$commandInput.val('');
+            nextCommandInputValue = `${callsign} `;
         }
 
+        this.$commandInput.val(nextCommandInputValue);
         this.$commandInput.focus();
 
         this.onCommandInputChangeHandler();
-    }
+    };
 
     /**
      * @for InputController
@@ -475,19 +483,18 @@ export default class InputController {
                 prop.input.history_item = null;
 
                 break;
-
             case KEY_CODES.PAGE_UP:
                 // recall previous callsign
                 this.input_history_prev();
                 e.preventDefault();
-                break;
 
+                break;
             case KEY_CODES.PAGE_DOWN:
                 // recall subsequent callsign
                 this.input_history_next();
                 e.preventDefault();
-                break;
 
+                break;
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
@@ -497,7 +504,6 @@ export default class InputController {
                 }
 
                 break;
-
             case KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} \u2B61 `);
@@ -508,8 +514,8 @@ export default class InputController {
                     this.input_history_prev();
                     e.preventDefault();
                 }
-                break;
 
+                break;
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
@@ -519,7 +525,6 @@ export default class InputController {
                 }
 
                 break;
-
             case KEY_CODES.DOWN_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} \u2B63 `);
@@ -532,49 +537,42 @@ export default class InputController {
                 }
 
                 break;
-
             case KEY_CODES.MULTIPLY:
                 this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.ADD:
                 this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.EQUALS: // mac + (actually `=`)
                 this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.SUBTRACT:
                 this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.DASH: // mac -
                 this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.DIVIDE:
                 this.$commandInput.val(`${currentCommandInputValue} takeoff `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-
             case KEY_CODES.TAB:
                 if (!prop.input.tab_compl.matches) {
                     this.tab_completion_match();
@@ -584,7 +582,6 @@ export default class InputController {
                 e.preventDefault();
 
                 break;
-
             case KEY_CODES.ESCAPE:
                 const currentCommandValue = this.$commandInput.val();
 
@@ -832,6 +829,7 @@ export default class InputController {
                 localStorage.clear();
                 location.reload();
 
+                break;
             case PARSED_COMMAND_NAME.AIRPORT:
                 // TODO: it may be better to do this in the parser
                 const airportIcao = commandParser.args[0];

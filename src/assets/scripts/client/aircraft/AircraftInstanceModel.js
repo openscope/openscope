@@ -1823,8 +1823,9 @@ export default class AircraftInstanceModel {
                 }
             }
 
+            // this was a $.each() and may need to verified that its working with _forEach()
             // raise warning if in at least one restricted area
-            $.each(this.restricted.list, (k, v) => {
+            _forEach(this.restricted.list, (k, v) => {
                 warning = warning || v.inside;
             });
         }
