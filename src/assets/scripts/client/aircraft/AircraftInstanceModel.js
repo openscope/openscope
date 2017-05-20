@@ -1,5 +1,4 @@
 /* eslint-disable max-len, no-undef */
-import $ from 'jquery';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -41,8 +40,7 @@ import {
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
-    nm,
-    heading_to_string,
+    nm
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
@@ -53,7 +51,6 @@ import {
     AIRPORT_CONSTANTS,
     AIRPORT_CONTROL_POSITION_NAME
 } from '../constants/airportConstants';
-import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import { TIME } from '../constants/globalConstants';
