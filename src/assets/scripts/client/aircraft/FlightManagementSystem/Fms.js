@@ -120,7 +120,7 @@ export default class Fms {
          * Name of runway used at arrival airport
          *
          * @for Fms
-         * @property arrivalRunway
+         * @property arrivalRunwayModel
          * @type {RunwayModel}
          */
         this.arrivalRunwayModel = null;
@@ -138,7 +138,7 @@ export default class Fms {
          * Name of runway used at departure airport
          *
          * @for Fms
-         * @property departureRunway
+         * @property departureRunwayModel
          * @type {RunwayModel}
          */
         this.departureRunwayModel = null;
@@ -430,7 +430,7 @@ export default class Fms {
     }
 
     /**
-     * Encapsulates setting `#departureRunway`
+     * Encapsulates setting `#departureRunwayModel`
      *
      * @for fms
      * @method setDepartureRunway
@@ -447,7 +447,7 @@ export default class Fms {
     }
 
     /**
-     * Encapsulates setting of `#arrivalRunway`
+     * Encapsulates setting of `#arrivalRunwayModel`
      *
      * @for fms
      * @method setArrivalRunway
@@ -659,7 +659,7 @@ export default class Fms {
             return;
         }
 
-        if (this.departureRunway.name !== runwayModel.name) {
+        if (this.departureRunwayModel.name !== runwayModel.name) {
             this.setDepartureRunway(runwayModel);
         }
 
@@ -697,7 +697,7 @@ export default class Fms {
             return;
         }
 
-        if (this.arrivalRunway.name !== runwayModel.name) {
+        if (this.arrivalRunwayModel.name !== runwayModel.name) {
             this.setArrivalRunway(runwayModel);
         }
 
