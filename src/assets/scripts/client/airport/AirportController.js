@@ -1,6 +1,8 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
 import Airport from './AirportModel';
+import EventBus from '../lib/EventBus';
+import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -21,12 +23,9 @@ export default class AirportController {
      * @constructor
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
-     * @param updateRun {function}
-     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
-        this.updateRun = updateRun;
-        this.onAirportChange = onAirportChange;
+    constructor(initialAirportData, airportLoadList) {
+        this.eventBus = EventBus;
 
         this.airport = airport;
         this.airport.airports = {};
@@ -113,17 +112,7 @@ export default class AirportController {
             return null;
         }
 
-        // create a new Airport with a reference to this.updateRun()
-        const airport = new Airport(
-            {
-                icao,
-                level,
-                name,
-                wip
-            },
-            this.updateRun,
-            this.onAirportChange
-        );
+        const airport = new Airport({ icao, level, name, wip });
 
         this.airport_add(airport);
 
@@ -161,7 +150,7 @@ export default class AirportController {
         // if loaded is true, we wont need to load any data thus the call to `onAirportChange` within the
         // success callback will never fire so we do that here.
         if (nextAirportModel.loaded) {
-            this.onAirportChange(nextAirportModel.data);
+            this.eventBus.trigger(EVENT.AIRPORT_CHANGE, nextAirportModel.data);
         }
 
         nextAirportModel.set(airportJson);
@@ -199,16 +188,9 @@ export default class AirportController {
      * Remove an aircraft from the queue of any runway(s) at the AirportModel
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
-     * @param  {aircraft} aircraft The aircraft to remove
+     * @param  aircraft {AircraftInstanceModel}
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
-        const runwayPrimaryEndIndex = 0;
-        const runwaySecondaryEndIndex = 1;
-        const runways = this.airport_get().runways;
-
-        for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][runwayPrimaryEndIndex].removeAircraftFromQueue(aircraft);
-            runways[runwayPair][runwaySecondaryEndIndex].removeAircraftFromQueue(aircraft);
-        }
+        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft.id);
     }
 }
