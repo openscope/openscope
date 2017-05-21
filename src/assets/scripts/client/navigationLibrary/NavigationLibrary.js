@@ -186,19 +186,6 @@ export default class NavigationLibrary {
     }
 
     /**
-     * Fascade Method
-     *
-     * @for NavigationLibrary
-     * @method findEntryAndBodyFixesForRoute
-     * @param routeName {string}
-     * @param entryFixName {string}
-     * @return {array<StandardRouteWaypointModel>}
-     */
-    findEntryAndBodyFixesForRoute(routeName, entryFixName) {
-        return this._starCollection.findEntryAndBodyFixesForRoute(routeName, entryFixName);
-    }
-
-    /**
      * Finds the collectionName a given `procedureId` belongs to.
      *
      * This is useful when trying to find a particular route without

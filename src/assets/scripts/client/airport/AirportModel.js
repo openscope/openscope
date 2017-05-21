@@ -85,6 +85,8 @@ export default class AirportModel {
         this.loading = false;
 
         /**
+         * Name of the airport
+         *
          * @property name
          * @type {string}
          * @default null
@@ -92,6 +94,8 @@ export default class AirportModel {
         this.name = null;
 
         /**
+         * ICAO identifier of the airport
+         *
          * @property icao
          * @type {string}
          * @default null
@@ -129,6 +133,8 @@ export default class AirportModel {
         this._positionModel = null;
 
         /**
+         * Collection of all airport `RunwayModel` objects
+         *
          * @property _runwayCollection
          * @type {RunwayCollection}
          * @default null
