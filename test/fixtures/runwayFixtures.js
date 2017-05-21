@@ -1,4 +1,4 @@
-import RunwayModel from '../../src/assets/scripts/client/airport/RunwayModel';
+import RunwayModel from '../../src/assets/scripts/client/airport/runway/RunwayModel';
 import { airportPositionFixtureKLAS } from './airportFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 

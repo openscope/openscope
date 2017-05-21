@@ -507,7 +507,7 @@ export default class AircraftCommander {
         // Set the runway to taxi to
         if (!taxiDestination) {
             const airport = this._airportController.airport_get();
-            taxiDestination = airport.departureRunway.name;
+            taxiDestination = airport.departureRunwayModel.name;
         }
 
         const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
@@ -519,17 +519,17 @@ export default class AircraftCommander {
         const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.fms.departureRunway = runway;
+        aircraft.fms.departureRunwayModel = runway;
         aircraft.taxi_start = this._gameController.game_time();
 
-        runway.addAircraftToQueue(aircraft);
+        runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         this._gameController.game_timeout(
             this._changeFromTaxiToWaiting,
             aircraft.taxi_time,
             null,
-            [aircraft, this._uiController]
+            [aircraft]
         );
 
         return readback;
@@ -542,15 +542,8 @@ export default class AircraftCommander {
      */
     _changeFromTaxiToWaiting(args) {
         const aircraft = args[0];
-        const uiController = args[1];
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
-
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway.name}`);
-        speech_say([
-            { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway.name)}` }
-        ]);
     }
 
     /**
@@ -560,9 +553,10 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
+        // FIXME: update some of this queue logic to live in the RunwayModel
         const airport = this._airportController.airport_get();
-        const runway = aircraft.fms.departureRunway;
-        const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
+        const runway = aircraft.fms.departureRunwayModel;
+        const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
         const wind = airport.getWind();
@@ -604,7 +598,7 @@ export default class AircraftCommander {
             return [false, 'unable to take off, we never received an IFR clearance'];
         }
 
-        runway.removeAircraftFromQueue(aircraft);
+        runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
         aircraft.takeoffTime = this._gameController.game_time();
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);

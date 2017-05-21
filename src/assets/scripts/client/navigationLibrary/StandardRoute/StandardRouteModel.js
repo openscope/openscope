@@ -21,7 +21,7 @@ export default class StandardRouteModel extends BaseModel {
     /**
      * Expects an object in the form of (taken from `klas.sids.SHEAD9`):
      *
-     *  {
+     *  SHEAD9: {
      *    'icao': 'SHEAD9',
      *    'name': 'Shead Nine',
      *    'suffix': {'01L': '1A'},
