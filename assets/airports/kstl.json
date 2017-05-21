@@ -876,7 +876,7 @@
             "category": "arrival",
             "route": "VHP.AARCH1.KSTL",
             "altitude": [30000, 40000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 7,
             "airlines": [
@@ -895,7 +895,7 @@
             "category": "arrival",
             "route": "VISQA.BOOSH1.KSTL",
             "altitude": [32000, 42000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 7,
             "airlines": [
@@ -915,7 +915,7 @@
             "category": "arrival",
             "route": "BUM.KAYLA1.KSTL",
             "altitude": [31000, 39000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 4,
             "airlines": [
@@ -935,7 +935,7 @@
             "category": "arrival",
             "route": "IRK.LORLE1.KSTL",
             "altitude": [33000, 41000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 2,
             "airlines": [
