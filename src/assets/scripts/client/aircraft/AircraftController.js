@@ -3,6 +3,7 @@ import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
+import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
@@ -15,6 +16,7 @@ import { distance2d } from '../math/distance';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
+import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
 
@@ -67,6 +69,16 @@ export default class AircraftController {
         this._navigationLibrary = navigationLibrary;
 
         /**
+         * Local reference to static `EventBus` class
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         * @default EventBus
+         * @private
+         */
+        this._eventBus = EventBus;
+
+        /**
          * Reference to an `AircraftTypeDefinitionCollection` instance
          *
          * Provides definitions for all available aircraft types
@@ -84,6 +96,25 @@ export default class AircraftController {
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
         this._stripViewController = new StripViewController();
+
+        return this.init()
+            .enable();
+    }
+
+    init() {
+        return this;
+    }
+
+    enable() {
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+
+        return this;
+    }
+
+    disable() {
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+
+        return this;
     }
 
     /**
@@ -507,4 +538,21 @@ export default class AircraftController {
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
         return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
     }
+
+    /**
+     * Triggered `EventBus` callback
+     *
+     * This method allows us to find an `AircraftModel` from a callsign,
+     * then trigger another event for the `CanvasController`.
+     *
+     * @for AircraftController
+     * @method _onStripDoubleClickhandler
+     * @param callsign
+     */
+    _onStripDoubleClickhandler = (callsign) => {
+        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const [x, y] = relativePosition;
+
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+    };
 }

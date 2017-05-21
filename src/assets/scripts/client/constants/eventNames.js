@@ -1,4 +1,10 @@
 /**
+ * Enum containing all triggerable events triggered via the `EventBus`
+ *
+ * Before adding an event, every effort should be made to communicate
+ * accross classes with direct imports. Events are available but can
+ * be harder to debug and follow. Use with caution.
+ *
  * @property EVENT
  * @type {Object}
  * @final
@@ -28,6 +34,15 @@ export const EVENT = {
      * @type {string}
      */
     STRIP_DOUBLE_CLICK: 'string-double-click',
+
+    /**
+     * An aircraft has been located and needs to be centered in the view
+     *
+     * @memberof EVENT
+     * @property REQUEST_TO_CENTER_POINT_IN_VIEW
+     * @type {string}
+     */
+    REQUEST_TO_CENTER_POINT_IN_VIEW: 'request-to-center-point-in-view',
 
     /**
      * Fired when the update loop should be either paused or resumed.

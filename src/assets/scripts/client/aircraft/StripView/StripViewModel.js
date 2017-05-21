@@ -412,7 +412,11 @@ export default class StripViewModel extends BaseModel {
     };
 
     /**
-     * Click handler for a double-click on an AircraftStripView
+     * Handler for a double-click on an AircraftStripView
+     *
+     * Initiates a two-step event process, though undesired, is necessary.
+     * We don't (and shouldn't) have access to the `AircraftController` or the
+     * `CanvasController` from within this class.
      *
      * @for AircraftStripView
      * @method onDoubleClickHandler
@@ -420,12 +424,6 @@ export default class StripViewModel extends BaseModel {
      */
     // eslint-disable-next-line no-unused-vars
     onDoubleClickHandler = (event) => {
-        console.log('onDoubleClick', this._callsign);
-        const { positionModel } = event.data;
-
-        // TODO: move to CanvasController
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(positionModel.relativePosition[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(positionModel.relativePosition[1]));
-        prop.canvas.dirty = true;
+        this._eventBus.trigger(EVENT.STRIP_DOUBLE_CLICK, this._callsign);
     };
 }

@@ -219,11 +219,9 @@ export default class App {
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
-        // window.airlineController = this.airlineController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
-        // window.canvasController = this.canvasController;
 
         console.info(`openScope Air Traffic Control Simulator, Version v${this.prop.version}`);
 
