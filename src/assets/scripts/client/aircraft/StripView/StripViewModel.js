@@ -2,32 +2,51 @@ import $ from 'jquery';
 import _uniqueId from 'lodash/uniqueId';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
-import { round } from '../../math/core';
+import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
 import { SELECTORS } from '../../constants/selectors';
 import { EVENT } from '../../constants/eventNames';
 
 /**
- * Root html element
- *
- * @property AIRCRAFT_STRIP_TEMPLATE
- * @type {string}
+ * @property CLASSNAMES
+ * @type {object<string, string}
  * @final
  */
-const AIRCRAFT_STRIP_TEMPLATE = '<li class="strip"></li>';
-
-/**
- * Build a span with a classname and/or content string.
- *
- * Used when initializing templates. Removes the need for having individual template
- * constants for each line when the only difference is a classname and content.
- *
- * @for StripViewModel
- * @param className {string}
- * @param content {string}
- */
-const buildSpanForViewItem = (className, content = '') => {
-    return `<span class="${className}">${content}</span>`;
+const CLASSNAMES = {
+    CALLSIGN: 'js-stripView-callsign',
+    TRANSPONDER: 'js-stripView-transponder',
+    DEPARTURE_AIRPORT_ID: 'js-stripView-departureAirportId',
+    FLIGHT_PLAN: 'js-stripView-flightPlan',
+    AIRCRAFT_MODEL: 'js-stripView-aircraftModel',
+    ALTITUDE: 'js-stripView-altitude',
+    ARRIVAL_AIRPORT_ID: 'js-stripView-arrivalAirportId',
+    AIRCRAFT_ID: 'js-stripView-aircraftId',
+    FLIGHT_PLAN_ALTITUDE: 'js-stripView-flightPlanAltitude',
+    ALTERNATE_AIRPORT_ID: 'js-stripView-alternateAirportId',
+    REMARKS: 'js-stripView-remarks'
 };
+
+// /**
+//  * Root html element
+//  *
+//  * @property AIRCRAFT_STRIP_TEMPLATE
+//  * @type {string}
+//  * @final
+//  */
+// const AIRCRAFT_STRIP_TEMPLATE = '<li class="strip"></li>';
+
+// /**
+//  * Build a span with a classname and/or content string.
+//  *
+//  * Used when initializing templates. Removes the need for having individual template
+//  * constants for each line when the only difference is a classname and content.
+//  *
+//  * @for StripViewModel
+//  * @param className {string}
+//  * @param content {string}
+//  */
+// const buildSpanForViewItem = (className, content = '') => {
+//     return `<span class="${className}">${content}</span>`;
+// };
 
 /**
  *
@@ -43,7 +62,7 @@ export default class StripViewModel extends BaseModel {
      * @type {number}
      * @static
      */
-    static HEIGHT = 45;
+    static HEIGHT = 60;
 
     /**
      *
@@ -60,66 +79,15 @@ export default class StripViewModel extends BaseModel {
          */
         this._id = _uniqueId('aircraftStripView-');
 
-
+        /**
+         * Internal reference to `EventBus` class
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         * @default EventBus
+         * @private
+         */
         this._eventBus = EventBus;
-
-        /**
-         *
-         *
-         * @property aircraftId
-         * @type {string}
-         */
-        this.aircraftId = aircraftModel.id;
-
-        /**
-         *
-         *
-         * @property _flightPhase
-         * @type
-         * @default
-         * @private
-         */
-        this._flightPhase = '';
-
-        /**
-         *
-         *
-         * @property _callsign
-         * @type
-         * @default
-         * @private
-         */
-        this._callsign = '';
-
-        /**
-         *
-         *
-         * @property _altitude
-         * @type
-         * @default
-         * @private
-         */
-        this._altitude = -1;
-
-        /**
-         *
-         *
-         * @property _aircraftType
-         * @type
-         * @default
-         * @private
-         */
-        this._aircraftType = '';
-
-        /**
-         *
-         *
-         * @property _speed
-         * @type
-         * @default
-         * @private
-         */
-        this._speed = -1;
 
         /**
          *
@@ -129,6 +97,67 @@ export default class StripViewModel extends BaseModel {
          * @default null
          */
         this.$element = null;
+
+        // TODO: not in use
+        /**
+         * Reference to the `AircraftModel#id` property
+         *
+         * @property aircraftId
+         * @type {string}
+         */
+        this.aircraftId = aircraftModel.id;
+
+        // /**
+        //  *
+        //  *
+        //  * @property _flightPhase
+        //  * @type
+        //  * @default
+        //  * @private
+        //  */
+        // this._flightPhase = '';
+
+        /**
+         *
+         *
+         * @property _callsign
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._callsign = '';
+
+        /**
+         *
+         *
+         * @property _aircraftType
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._aircraftType = '';
+
+        // /**
+        //  *
+        //  *
+        //  * @property _altitude
+        //  * @type
+        //  * @default
+        //  * @private
+        //  */
+        // this._altitude = -1;
+
+
+        // /**
+        //  *
+        //  *
+        //  * @property _speed
+        //  * @type
+        //  * @default
+        //  * @private
+        //  */
+        // this._speed = -1;
+
 
         /**
          *
@@ -142,47 +171,47 @@ export default class StripViewModel extends BaseModel {
         /**
          *
          *
-         * @property $infoBoxTopView
-         * @type {JQuery Element}
-         * @default null
-         */
-        this.$infoBoxTopView = null;
-
-        /**
-         *
-         *
-         * @property $altitudeView
-         * @type {JQuery Element}
-         * @default null
-         */
-        this.$altitudeView = null;
-
-        /**
-         *
-         *
          * @property $aircraftTypeView
          * @type {JQuery Element}
          * @default null
          */
         this.$aircraftTypeView = null;
 
-        /**
-         *
-         *
-         * @property $infoBoxBottomView
-         * @type {JQuery Element}
-         * @default null
-         */
-        this.$infoBoxBottomView = null;
+        // /**
+        //  *
+        //  *
+        //  * @property $infoBoxTopView
+        //  * @type {JQuery Element}
+        //  * @default null
+        //  */
+        // this.$infoBoxTopView = null;
 
-        /**
-         *
-         *
-         * @property $speedView
-         * @type {JQuery Element}
-         * @default null
-         */
-        this.$speedView = null;
+        // /**
+        //  *
+        //  *
+        //  * @property $altitudeView
+        //  * @type {JQuery Element}
+        //  * @default null
+        //  */
+        // this.$altitudeView = null;
+
+        // /**
+        //  *
+        //  *
+        //  * @property $infoBoxBottomView
+        //  * @type {JQuery Element}
+        //  * @default null
+        //  */
+        // this.$infoBoxBottomView = null;
+
+        // /**
+        //  *
+        //  *
+        //  * @property $speedView
+        //  * @type {JQuery Element}
+        //  * @default null
+        //  */
+        // this.$speedView = null;
 
 
         return this._init(aircraftModel)
@@ -199,19 +228,20 @@ export default class StripViewModel extends BaseModel {
      * @param aircraftModel {object}
      */
     _init(aircraftModel) {
-        this._flightPhase = aircraftModel.fms.currentPhase;
+        // FIXME: move this logic to `AircraftModel.getViewModel()`
+        // this._flightPhase = aircraftModel.fms.currentPhase;
         this._callsign = aircraftModel.callsign;
-        // TODO: make this not a ternary
-        this._altitude = aircraftModel.mcp.altitude !== -1
-            ? aircraftModel.mcp.altitude
-            : 0;
         this._aircraftType = aircraftModel.model;
-        this._infoBoxBottom = aircraftModel.fms.getProcedureAndExitName();
-        // TODO: make this not a ternary
-        this._speed = aircraftModel.mcp.speed !== -1
-            ? aircraftModel.mcp.speed
-            : 0;
-        this._categoryClassName = this.findClassnameForFlightCateogry(aircraftModel);
+        // // TODO: make this not a ternary
+        // this._altitude = aircraftModel.mcp.altitude !== -1
+        //     ? aircraftModel.mcp.altitude
+        //     : 0;
+        // this._infoBoxBottom = aircraftModel.fms.getProcedureAndExitName();
+        // // TODO: make this not a ternary
+        // this._speed = aircraftModel.mcp.speed !== -1
+        //     ? aircraftModel.mcp.speed
+        //     : 0;
+        // this._categoryClassName = this.findClassnameForFlightCateogry(aircraftModel);
 
         return this;
     }
@@ -223,13 +253,13 @@ export default class StripViewModel extends BaseModel {
      * @method _createChildren
      */
     _createChildren() {
-        this.$element = $(AIRCRAFT_STRIP_TEMPLATE);
-        this.$callsignView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.CALLSIGN, this._callsign.toUpperCase()));
-        this.$infoBoxTopView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.HEADING, this._flightPhase.toUpperCase()));
-        this.$altitudeView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.ALTITUDE, this._altitude));
-        this.$aircraftTypeView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.AIRCRAFT, this._buildIcaoWithWeightClass()));
-        this.$infoBoxBottomView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.DESTINATION, this._infoBoxBottom));
-        this.$speedView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.SPEED, this._speed));
+        this.$element = $(STRIP_VIEW_TEMPLATE);
+        this.$callsignView = this.$element.find(CLASSNAMES.CALLSIGN);
+        this.$aircraftTypeView = this.$element.find(CLASSNAMES.AIRCRAFT_MODEL);
+        // this.$infoBoxTopView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.HEADING, this._flightPhase.toUpperCase()));
+        // this.$altitudeView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.ALTITUDE, this._altitude));
+        // this.$infoBoxBottomView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.DESTINATION, this._infoBoxBottom));
+        // this.$speedView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.SPEED, this._speed));
 
         return this;
     }
@@ -254,13 +284,13 @@ export default class StripViewModel extends BaseModel {
      * @method _layout
      */
     _layout() {
-        this.$element.append(this.$callsignView);
-        this.$element.append(this.$infoBoxTopView);
-        this.$element.append(this.$altitudeView);
-        this.$element.append(this.$aircraftTypeView);
-        this.$element.append(this.$infoBoxBottomView);
-        this.$element.append(this.$speedView);
-        this.$element.addClass(this._categoryClassName);
+        this.$callsignView.text(this._callsign);
+        this.$aircraftTypeView.text(this._aircraftType);
+        // this.$element.append(this.$infoBoxTopView);
+        // this.$element.append(this.$altitudeView);
+        // this.$element.append(this.$infoBoxBottomView);
+        // this.$element.append(this.$speedView);
+        // this.$element.addClass(this._categoryClassName);
 
         return this;
     }
@@ -345,59 +375,60 @@ export default class StripViewModel extends BaseModel {
         this.$element.hide(duration);
     }
 
-    /**
-     * @for AircraftStripView
-     * @method findClassnameForFlightCateogry
-     * @return {string}
-     */
-    findClassnameForFlightCateogry(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
+    // /**
+    //  * @for AircraftStripView
+    //  * @method findClassnameForFlightCateogry
+    //  * @return {string}
+    //  */
+    // findClassnameForFlightCateogry(aircraftModel) {
+    //     let className = SELECTORS.CLASSNAMES.ARRIVAL;
 
-        if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
-        }
+    //     if (aircraftModel.isDeparture()) {
+    //         className = SELECTORS.CLASSNAMES.DEPARTURE;
+    //     }
 
-        return className;
-    }
+    //     return className;
+    // }
 
-    /**
-     * @for StripViewModel
-     * @method _buildIcaoWithWeightClass
-     * @return aircraftIcao {string}
-     * @private
-     */
-    _buildIcaoWithWeightClass() {
-        const HEAVY_LETTER = 'H';
-        const SUPER_LETTER = 'U';
+    // TODO: this should live in the `AircraftTypeDefinitionModel` or the `AircraftModel` iteslf (or both)
+    // /**
+    //  * @for StripViewModel
+    //  * @method _buildIcaoWithWeightClass
+    //  * @return aircraftIcao {string}
+    //  * @private
+    //  */
+    // _buildIcaoWithWeightClass() {
+    //     const HEAVY_LETTER = 'H';
+    //     const SUPER_LETTER = 'U';
 
-        let aircraftIcao = this._aircraftType.icao;
+    //     let aircraftIcao = this._aircraftType.icao;
 
-        // Bottom Line Data
-        if (this._aircraftType.weightclass === HEAVY_LETTER) {
-            aircraftIcao = `${HEAVY_LETTER}/${this._aircraftType.icao}`;
-        } else if (this._aircraftType.weightclass === SUPER_LETTER) {
-            aircraftIcao = `${SUPER_LETTER}/${this._aircraftType.icao}`;
-        }
+    //     // Bottom Line Data
+    //     if (this._aircraftType.weightclass === HEAVY_LETTER) {
+    //         aircraftIcao = `${HEAVY_LETTER}/${this._aircraftType.icao}`;
+    //     } else if (this._aircraftType.weightclass === SUPER_LETTER) {
+    //         aircraftIcao = `${SUPER_LETTER}/${this._aircraftType.icao}`;
+    //     }
 
-        return aircraftIcao.toUpperCase();
-    }
+    //     return aircraftIcao.toUpperCase();
+    // }
 
     // TODO: this feels like a utility function
-    /**
-     *
-     * @method _getValueOrZero
-     * @param  {[type]}        prop [description]
-     * @return {[type]}             [description]
-     */
-    _getValueOrZero(prop) {
-        let valueOrZero = prop;
+    // /**
+    //  *
+    //  * @method _getValueOrZero
+    //  * @param  {[type]}        prop [description]
+    //  * @return {[type]}             [description]
+    //  */
+    // _getValueOrZero(prop) {
+    //     let valueOrZero = prop;
 
-        if (prop === -1) {
-            valueOrZero = 0;
-        }
+    //     if (prop === -1) {
+    //         valueOrZero = 0;
+    //     }
 
-        return valueOrZero;
-    }
+    //     return valueOrZero;
+    // }
 
     /**
      * Click handler for a single click on an AircraftStripView

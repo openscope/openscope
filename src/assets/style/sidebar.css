@@ -1,17 +1,17 @@
 @import "strip.css";
 
-#sidebar {
+/*#sidebar {
     height: calc(100% - 36px);
-    width: 250px;
+    width: 500px;
     position: absolute;
     top: 0;
     right: 0;
     color: #ddd;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    background-color: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);*/
 }
 
-#sidebar #strips {
+/*#sidebar #strips {
     width: 100%;
     max-height: 100%;
     padding-left: 8px;
@@ -20,7 +20,72 @@
     bottom: 0;
     font-size: 80%;
     overflow-y: scroll;
+}*/
+
+.stripView {
+    height: calc(100% - 36px);
+    width: 500px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+    font-family: Monospace, serif;
+    font-size: 12px;
+    max-width: 500px;
+    overflow: hidden;
+    background-color: #000000;
 }
+
+.stripView-list {
+    max-height: 100%;
+    list-style-type: none;
+    overflow-y: scroll
+}
+
+.stripViewItem {
+    border: 1px solid #222;
+}
+
+.stripView-list > * + * {
+    border-top: none;
+}
+
+.stripViewItem-table {
+    width: 100%;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.stripView-table-td {
+    padding: 5px;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.stripView-table-td + .stripView-table-td {
+    border-left: 1px solid
+}
+
+.stripView-table-td > span {
+    float: right;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+1) {
+    width: 70px;
+    text-align: left;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+2),
+.stripView-table-tr > .stripView-table-td:nth-child(0n+3) {
+    width: 50px;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+4) {
+    text-align: left;
+}
+
+
 
 .nice-scrollbar::-webkit-scrollbar {
     width: 8px;

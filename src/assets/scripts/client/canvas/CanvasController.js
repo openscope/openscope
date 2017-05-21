@@ -204,7 +204,7 @@ export default class ConvasController {
             this.canvas.size.height = this.$window.height();
         }
 
-        this.canvas.size.width -= 250;
+        // this.canvas.size.width -= 250;
         this.canvas.size.height -= 36;
 
         _forEach(this.canvas.contexts, (context) => {
