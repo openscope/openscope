@@ -870,14 +870,14 @@
 
     "spawnPatterns": [
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.RILBO.RILBO..NUNTO..PISOX..REKDO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
             "rate": 2.3,
-            "altitude": null,
-            "speed": null,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -896,14 +896,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.RILBO.RILBO..NUNTO..ABSER..EKNID..OLPED",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
             "rate": 2.1,
-            "altitude": null,
-            "speed": null,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -922,14 +922,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.VAGIP.VAGIP..KUVEM..UMUGI..USITU",
-            "rate": 0.6,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -948,14 +948,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.VAGIP.VAGIP..ADIVO..PEPIG..POGOK",
-            "rate": 0.6,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -974,14 +974,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.UREDA.UREDA..DOBAN..MUSTI",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
             "rate": 4.8,
-            "altitude": null,
-            "speed": null,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1005,14 +1005,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.UREDA.UREDA..DOBAN..TLL",
-            "rate": 1.2,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 1.2,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1036,14 +1036,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..NEPEK..NISVI",
-            "rate": 1.4,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 1.4,
             "airlines": [
                 ["fin/long", 4],
                 ["fin/short", 65],
@@ -1052,28 +1052,28 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..TEVRU..DIPUM..USUPO",
-            "rate": 1.4,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 1.4,
             "airlines": [
                 ["fin/short", 65],
                 ["nax", 5]
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..IDEPI..TUSBI..ADOPO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
             "rate": 1.8,
-            "altitude": null,
-            "speed": null,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1084,14 +1084,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..ARLOM",
-            "rate": 0.3,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.3,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1102,14 +1102,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..INLOG",
-            "rate": 0.3,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.3,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1120,14 +1120,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..OLEMA",
-            "rate": 0.3,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.3,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1138,14 +1138,14 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.ENUTO.ENUTO..ARVEP..RATMU..RATLA",
-            "rate": 0.3,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.3,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1156,28 +1156,28 @@
             ]
         },
         {
-            "destination": "",
             "origin": "EFHK",
+            "destination": "",
             "category": "departure",
-            "method": "random",
             "route": "EFHK.UREDA.UREDA..RENKU..TN425",
-            "rate": 0.6,
             "altitude": null,
             "speed": null,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 2]
             ]
         },
 
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "EVADI..RUMEP..NIPIB..DIVAM.DIVAM.EFHK",
-            "rate": 3.6,
             "altitude": 29000,
             "speed": 300,
+            "method": "random",
+            "rate": 3.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1199,28 +1199,28 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "IBOSU..ERNUT..LUSEP.LUSEP.EFHK",
-            "rate": 1.2,
             "altitude": 19000,
             "speed": 280,
+            "method": "random",
+            "rate": 1.2,
             "airlines": [
                 ["fin/short", 65],
                 ["nax", 5]
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "NAPRU..OTPAL..LUSEP.LUSEP.EFHK",
-            "rate": 1.2,
             "altitude": 23000,
             "speed": 280,
+            "method": "random",
+            "rate": 1.2,
             "airlines": [
                 ["fin/short", 65],
                 ["nax", 5],
@@ -1228,14 +1228,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "OTKAP..ROKVI..VEPIN.VEPIN.EFHK",
-            "rate": 1.6,
             "altitude": 19000,
             "speed": 300,
+            "method": "random",
+            "rate": 1.6,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
@@ -1247,14 +1247,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "RATLA..ARLOM..VEPIN.VEPIN.EFHK",
-            "rate": 0.2,
             "altitude": 25000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
@@ -1266,14 +1266,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "IBVUT..PEKUX..LAKUT.LAKUT.EFHK",
-            "rate": 0.6,
             "altitude": 27000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1295,14 +1295,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "OTKIL..BEVOM..IPMOT..LAKUT.LAKUT.EFHK",
-            "rate": 0.6,
             "altitude": 29000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1317,14 +1317,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "UXADA..AMROT..LAKUT.LAKUT.EFHK",
-            "rate": 0.8,
             "altitude": 21000,
             "speed": 280,
+            "method": "random",
+            "rate": 0.8,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1339,14 +1339,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "ENETI..AMROT..LAKUT.LAKUT.EFHK",
-            "rate": 0.4,
             "altitude": 19000,
             "speed": 280,
+            "method": "random",
+            "rate": 0.4,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1361,14 +1361,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "RIRIP..ODESO..LAKUT.LAKUT.EFHK",
-            "rate": 3,
             "altitude": 25000,
             "speed": 300,
+            "method": "random",
+            "rate": 3,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1389,14 +1389,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "GONOS..ARSAM..INTOR.INTOR.EFHK",
-            "rate": 0.6,
             "altitude": 29000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1419,14 +1419,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "LONSA..SORPA..INTOR.INTOR.EFHK",
-            "rate": 0.6,
             "altitude": 31000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1451,14 +1451,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "NAVOT..SORPA..INTOR.INTOR.EFHK",
-            "rate": 0.6,
             "altitude": 25000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1483,14 +1483,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "LEMLA..GEPTA..INTOR.INTOR.EFHK",
-            "rate": 0.6,
             "altitude": 23000,
             "speed": 300,
+            "method": "random",
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1510,14 +1510,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "TLL..BEKNA..INTOR.INTOR.EFHK",
-            "rate": 1.2,
             "altitude": 21000,
             "speed": 300,
+            "method": "random",
+            "rate": 1.2,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -1541,14 +1541,14 @@
             ]
         },
         {
-            "destination": "EFHK",
             "origin": "",
+            "destination": "EFHK",
             "category": "arrival",
-            "method": "random",
             "route": "ATLUM..LEDUN..ROPAM.ROPAM.EFHK",
-            "rate": 1.2,
             "altitude": 23000,
             "speed": 300,
+            "method": "random",
+            "rate": 1.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
