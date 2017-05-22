@@ -37,13 +37,6 @@ ava('adds a list of StandardRoutes to the collection and updates the .length pro
     t.true(collection._items.length === collection.length);
 });
 
-ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and body segments of a route', (t) => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
-    const result = collection.findEntryAndBodyFixesForRoute(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK);
-
-    t.true(result.length === 8);
-});
-
 // This test is inconsistent and may need to be refactored. It passes sometimes and fails other.
 ava('.findRandomExitPointForSIDIcao() returns the name of a random exitPoint from within a SID route', (t) => {
     const ICAO = 'COWBY6';
