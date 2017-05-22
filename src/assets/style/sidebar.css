@@ -24,7 +24,7 @@
 
 .stripView {
     height: calc(100% - 36px);
-    width: 500px;
+    width: 400px;
     position: absolute;
     top: 0;
     right: 0;
@@ -34,6 +34,11 @@
     max-width: 500px;
     overflow: hidden;
     background-color: #000000;
+    transition: ease-in-out all 0.3s;
+}
+
+.mix-stripView_isHidden {
+    right: -390px;
 }
 
 .stripView-list {

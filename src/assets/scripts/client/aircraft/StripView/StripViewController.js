@@ -15,7 +15,8 @@ export default class StripViewController {
     constructor() {
         this._collection = null;
 
-        this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
+        this.$stripView = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW);
+        this.$stripViewList = $(SELECTORS.DOM_SELECTORS.STRIPS);
         this.$stripListTrigger = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_TRIGGER);
 
         return this._init()
@@ -90,15 +91,15 @@ export default class StripViewController {
      * @method showStripView
      */
     showStripView(stripViewModel) {
-        const scrollPosition = this.$strips.scrollTop();
+        const scrollPosition = this.$stripViewList.scrollTop();
 
-        this.$strips.prepend(stripViewModel.$element);
+        this.$stripViewList.prepend(stripViewModel.$element);
         // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPosition + StripViewModel.HEIGHT);
+        this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
 
     /**
-     * Find as `StripViewModel` and attempt to add an active state
+     * Find a `StripViewModel` and attempt to add an active state
      *
      * @for StripViewController
      * @method selectStripView
@@ -150,6 +151,7 @@ export default class StripViewController {
      * @param event {JQueryEventObject}
      */
     _onStripListToggle = (event) => {
-        console.log('StripViewController._onStripListToggle', event);
+        console.log('StripViewController._onStripListToggle');
+        this.$stripView.toggleClass('mix-stripView_isHidden');
     };
 }
