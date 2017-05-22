@@ -347,7 +347,6 @@ export default class AircraftController {
     */
     initAircraftStripView(aircraftModel) {
         this._stripViewController.createStripView(aircraftModel);
-        console.log(this._stripViewController);
     }
 
     /**

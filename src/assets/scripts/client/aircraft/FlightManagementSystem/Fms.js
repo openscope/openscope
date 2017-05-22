@@ -252,9 +252,11 @@ export default class Fms {
         return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
+    // FIXME: this does not look to be in use
     /**
      * Flight plan as filed
      *
+     * @deprecated
      * @method flightPlan
      * @type {object}
      */

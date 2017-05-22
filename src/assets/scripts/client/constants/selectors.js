@@ -39,6 +39,7 @@ export const CLASSNAMES = {
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     STRIP: 'strip',
+    STRIP_VIEW_TRIGGER: 'js-stripView-trigger',
     SWITCH_AIRPORT: 'switch-airport',
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',

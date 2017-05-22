@@ -30,13 +30,14 @@
     right: 0;
     margin: 0 auto;
     font-family: Monospace, serif;
-    font-size: 12px;
+    font-size: 10px;
     max-width: 500px;
     overflow: hidden;
     background-color: #000000;
 }
 
 .stripView-list {
+    /*padding-left: 5px;*/
     max-height: 100%;
     list-style-type: none;
     overflow-y: scroll
@@ -47,17 +48,19 @@
 }
 
 .stripView-list > * + * {
+    margin-top: 3px;
     border-top: none;
 }
 
 .stripViewItem-table {
     width: 100%;
     background-color: #ffffff;
+    border-collapse: collapse;
     box-sizing: border-box;
 }
 
 .stripView-table-td {
-    padding: 5px;
+    padding: 3px 5px;
     text-align: center;
     overflow: hidden;
     vertical-align: top;
@@ -85,22 +88,33 @@
     text-align: left;
 }
 
+.stripView-trigger {
+    height: 100%;
+    width: 10px;
+    float: left;
+    cursor: pointer;
+    background-color: #000000;
+    transition: ease-in-out all 0.2s;
+}
 
+.stripView-trigger:hover {
+    background-color: #333333;
+}
 
 .nice-scrollbar::-webkit-scrollbar {
     width: 8px;
-    padding: 2px;
+    padding: 4px;
 }
 
 .nice-scrollbar::-webkit-scrollbar-thumb {
     width: 4px;
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.nice-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
+.nice-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
 .nice-scrollbar::-webkit-scrollbar-thumb:active {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
 }

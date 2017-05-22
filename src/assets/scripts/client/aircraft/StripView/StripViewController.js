@@ -16,8 +16,10 @@ export default class StripViewController {
         this._collection = null;
 
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
+        this.$stripListTrigger = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_TRIGGER);
 
-        return this._init();
+        return this._init()
+            .enable();
     }
 
     /**
@@ -28,6 +30,14 @@ export default class StripViewController {
      */
     _init() {
         this._collection = new StripViewCollection();
+
+        return this;
+    }
+
+    enable() {
+        this.$stripListTrigger.on('click', this._onStripListToggle);
+
+        return this;
     }
 
     /**
@@ -95,7 +105,6 @@ export default class StripViewController {
      * @param  aircraftModel {AircraftInstanceModel}
      */
     selectStripView(aircraftModel) {
-        console.log('selectStripView', aircraftModel.id, aircraftModel.callsign);
         const stripModel = this._collection.findByAircraftId(aircraftModel.id);
 
         if (!stripModel) {
@@ -132,4 +141,15 @@ export default class StripViewController {
     removeStripView(aircraftModel) {
         console.log('removeStripView', aircraftModel.id, aircraftModel.callsign);
     }
+
+    /**
+     *
+     *
+     * @for StripViewController
+     * @method _onStripListToggle
+     * @param event {JQueryEventObject}
+     */
+    _onStripListToggle = (event) => {
+        console.log('StripViewController._onStripListToggle', event);
+    };
 }

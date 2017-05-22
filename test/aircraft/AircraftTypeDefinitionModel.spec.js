@@ -15,3 +15,26 @@ ava('throws when passed invalid parameters', (t) => {
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK));
 });
+
+ava('._buildIcaoWithWeightClass() returns the icao when not a heavy/super weightclass', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    const result = model._buildIcaoWithWeightClass();
+
+    t.true(result === 'B737');
+});
+
+ava('._buildIcaoWithWeightClass() returns the correct string for H weightclass', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightclass = 'H';
+    const result = model._buildIcaoWithWeightClass();
+
+    t.true(result === 'H/B737');
+});
+
+ava('._buildIcaoWithWeightClass() returns the correct string for S weightclass', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightclass = 'U';
+    const result = model._buildIcaoWithWeightClass();
+
+    t.true(result === 'U/B737');
+});
