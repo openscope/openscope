@@ -1,0 +1,261 @@
+{
+	"reference": "https://skyvector.com/airport/CVG/Cincinnati-Northern-Kentucky-International-Airport",
+	"reference2": "http://www.rocketroute.com/notam.php?lang=en&icao=KCVG",
+	"radio": {
+		"twr": "Cincinnati Tower",
+		"app": "Cincinnati Approach",
+		"dep": "Cincinnati Departure"
+	},
+	"icao": "KCVG",
+	"iata": "CVG",
+	"magnetic_north": -4,
+	"ctr_radius": 80,
+	"ctr_ceiling": 20000,
+	"initial_alt": 10000,
+	"position": ["N39d2.93", "W084d40.07", "896ft"],
+	"rr_radius_nm": 30,
+	"rr_center": ["N39d2.93", "W084d40.07"],
+	"has_terrain": false,
+	"wind": {
+		"angle": 0,
+		"speed": 0
+	},
+	"fixes": {
+		"KCVG": ["N39.048611", "W84.667778"],
+		"ESTES": ["N38.983333", "W84.666111"],
+		"ACRES": ["N39.034722", "W84.8725"],
+		"LOSTB": ["N39.156111", "W84.781667"],
+		"CAINT": ["N38.935278", "W84.568056"],
+		"MUELL": ["N38.823333", "W84.684722"],
+		"VERON": ["N38.816944", "W84.671111"],
+		"RYAN": ["N38.803611", "W84.661111"],
+		"CONRA": ["N38.706389", "W84.599722"],
+		"GENE": ["N38.703889", "W84.391667"],
+		"SUN": ["N38.925833", "W84.911667"],
+		"FIELD": ["N39.056944", "W85.035556"],
+		"KLUK": ["N39.103333", "W84.418611"],
+		"WEST": ["N39.259167", "W84.774167"],
+		"RAYLE": ["N39.3", "W84.749722"],
+		"KISZ": ["N39.246667", "W84.388889"],
+		"KNOLL": ["N39.386944", "W84.797778"],
+		"KHAO": ["N39.363611", "W84.521944"],
+		"FLEGE": ["N39.362778", "W84.341111"]
+	},
+	"runways": [{
+		"name": ["09", "27"],
+		"name_offset": [
+			[0, 0],
+			[0, 0]
+		],
+		"end": [
+			["N39d2.78", "W84d41.71", "883.3ft"],
+			["N39d2.78", "W84d39.17", "874.9ft"]
+		],
+		"delay": [10, 10],
+		"ils": [true, true]
+	}, {
+		"name": ["18C", "36C"],
+		"name_offset": [
+			[0, 0],
+			[0, 0]
+		],
+		"end": [
+			["N39d3.88", "W84d40.12", "874.6ft"],
+			["N39d2.07", "W84d40.12", "840.9ft"]
+		],
+		"delay": [10, 10],
+		"ils": [true, true]
+	}, {
+		"name": ["18L", "36R"],
+		"name_offset": [
+			[0, 0],
+			[0, 0]
+		],
+		"end": [
+			["N39d3.35", "W84d38.80", "886.2ft"],
+			["N39d1.70", "W84d38.81", "896.2ft"]
+		],
+		"delay": [10, 10],
+		"ils": [true, true]
+	}, {
+		"name": ["18R", "36L"],
+		"name_offset": [
+			[0, 0],
+			[0, 0]
+		],
+		"end": [
+			["N39d4.25", "W84d41.02", "865.4ft"],
+			["N39d2.94", "W84d41.03", "873.4ft"]
+		],
+		"delay": [10, 10],
+		"ils": [true, true]
+	}],
+	"sids": {
+		"NORTH": {
+			"icao": "NORTH",
+			"name": "NORTH",
+			"rwy": {
+				"19": ["NORTH"],
+				"01": ["NORTH"],
+				"25L": ["NORTH"],
+				"25R": ["NORTH"],
+				"07L": ["NORTH"],
+				"07R": ["NORTH"]
+			},
+			"draw": [
+				["EBBR", "NORTH"]
+			]
+		},
+		"EAST": {
+			"icao": "EAST",
+			"name": "EAST",
+			"rwy": {
+				"19": ["EAST"],
+				"01": ["EAST"],
+				"25L": ["EAST"],
+				"25R": ["EAST"],
+				"07L": ["EAST"],
+				"07R": ["EAST"]
+			},
+			"draw": [
+				["EBBR", "EAST"]
+			]
+		},
+		"SOUTH": {
+			"icao": "SOUTH",
+			"name": "SOUTH",
+			"rwy": {
+				"19": ["SOUTH"],
+				"01": ["SOUTH"],
+				"25L": ["SOUTH"],
+				"25R": ["SOUTH"],
+				"07L": ["SOUTH"],
+				"07R": ["SOUTH"]
+			},
+			"draw": [
+				["EBBR", "SOUTH"]
+			]
+		},
+		"WEST": {
+			"icao": "WEST",
+			"name": "WEST",
+			"rwy": {
+				"19": ["WEST"],
+				"01": ["WEST"],
+				"25L": ["WEST"],
+				"25R": ["WEST"],
+				"07L": ["WEST"],
+				"07R": ["WEST"]
+			},
+			"draw": [
+				["EBBR", "WEST"]
+			]
+		}
+	},
+	"spawnPatterns": [{
+		"origin": "EBBR",
+		"destination": "",
+		"category": "departure",
+		"route": "EBBR.NORTH.NORTH",
+		"altitude": null,
+		"speed": null,
+		"method": "random",
+		"rate": 2,
+		"airlines": [
+			["ual", 3],
+			["baw", 5],
+			["n/cessna", 4],
+			["bel", 6]
+		]
+	}, {
+		"origin": "EBBR",
+		"destination": "",
+		"category": "departure",
+		"route": "EBBR.EAST.EAST",
+		"altitude": null,
+		"speed": null,
+		"method": "random",
+		"rate": 2,
+		"airlines": [
+			["ual", 3],
+			["baw", 5],
+			["n/cessna", 4],
+			["bel", 6]
+		]
+	}, {
+		"origin": "EBBR",
+		"destination": "",
+		"category": "departure",
+		"route": "EBBR.SOUTH.SOUTH",
+		"altitude": null,
+		"speed": null,
+		"method": "random",
+		"rate": 2,
+		"airlines": [
+			["ual", 3],
+			["baw", 5],
+			["n/cessna", 4],
+			["bel", 6]
+		]
+	}, {
+		"origin": "EBBR",
+		"destination": "",
+		"category": "departure",
+		"route": "EBBR.WEST.WEST",
+		"altitude": null,
+		"speed": null,
+		"method": "random",
+		"rate": 2,
+		"airlines": [
+			["ual", 3],
+			["baw", 5],
+			["n/cessna", 4],
+			["bel", 6]
+		]
+	}, {
+		"origin": "",
+		"destination": "EBBR",
+		"category": "arrival",
+		"route": "TULNI..AKOVI..EBBR",
+		"altitude": [5000, 7000],
+		"speed": 250,
+		"method": "random",
+		"rate": 10,
+		"airlines": [
+			["ual", 2],
+			["baw", 5],
+			["n/fastGA", 20],
+			["bel", 7]
+		]
+	}, {
+		"origin": "",
+		"destination": "EBBR",
+		"category": "arrival",
+		"route": "BATTY..BR205..FLO..EBBR",
+		"altitude": [5000, 8000],
+		"speed": 250,
+		"method": "random",
+		"rate": 10,
+		"airlines": [
+			["ual", 2],
+			["baw", 5],
+			["n/fastGA", 20],
+			["bel", 7]
+		]
+	}, {
+		"origin": "",
+		"destination": "EBBR",
+		"category": "arrival",
+		"route": "KOK..NIK..ANT..EBBR",
+		"altitude": [6000, 7000],
+		"speed": 250,
+		"method": "random",
+		"rate": 15,
+		"airlines": [
+			["ual", 10],
+			["baw", 10],
+			["n/fastGA", 1],
+			["bel", 12]
+		]
+	}]
+}

@@ -424,6 +424,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'hard',
             name: 'Shanghai Pudong International Airport',
             wip: true
-        }
+        },
+		{
+			icao: 'kcvg'
+			level: 'easy'
+			name: 'Cincinnati-Northern Kentucky International Airport'
+			wip: true
+		}
     ];
 })();
