@@ -75,7 +75,7 @@
     - Adds ability to define hold waypoints with a symbol `@`
     - Splits `PositionModel` into two new classes; `StaticPositionModel` and `DynamicPositionModel`
     - Work on this issue also resolves or invalidates previously recorded issues:
-        - `AircraftInstanceModel.fms` has a circular dependency with `AircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
+        - `aircraftInstanceModel.fms` has a circular dependency with `aircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
         - Using STAR command to change aircraft's assigned STAR throws errors [#73](https://github.com/openscope/openscope/issues/73)
         - Abstract current waypoint altitude and speed setting [#77](https://github.com/openscope/openscope/issues/77)
         - Add Leg to modelSourcePool [#78](https://github.com/openscope/openscope/issues/78)
@@ -227,7 +227,7 @@
 - Implements `modelSourceFactory` and `modelSourcePool` [#77](https://github.com/n8rzz/atc/issues/77)
 - Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
 - Moves properties shared by all `Arrival` types up to `ArrivalBase` [#55](https://github.com/n8rzz/atc/issues/55)
-- Removes `$.each()` from `AirportModel` in favor of `_forEach()` and uses `_get()` inside `AircraftInstanceModel.parse()` instead of if statements [#52](https://github.com/n8rzz/atc/issues/52)
+- Removes `$.each()` from `AirportModel` in favor of `_forEach()` and uses `_get()` inside `aircraftInstanceModel.parse()` instead of if statements [#52](https://github.com/n8rzz/atc/issues/52)
 - Moves creation of Legs and Waypoints to constants instead of as method arguments [#135](https://github.com/n8rzz/atc/issues/135)
 - Moves `.parseCoordinate()` out of `PositionModel` and into `unitConverters` [#17](https://github.com/n8rzz/atc/issues/17)
 - Moves flight management system files to `FlightManagementSystem` folder [#128](https://github.com/n8rzz/atc/issues/128)
