@@ -7,22 +7,22 @@ import { SELECTORS } from '../../constants/selectors';
 import { EVENT } from '../../constants/eventNames';
 
 /**
- * @property CLASSNAMES
+ * @property STRIP_VIEW_SELECTORS
  * @type {object<string, string}
  * @final
  */
-const CLASSNAMES = {
-    CALLSIGN: 'js-stripView-callsign',
-    TRANSPONDER: 'js-stripView-transponder',
-    DEPARTURE_AIRPORT_ID: 'js-stripView-departureAirportId',
-    FLIGHT_PLAN: 'js-stripView-flightPlan',
-    AIRCRAFT_MODEL: 'js-stripView-aircraftModel',
-    ALTITUDE: 'js-stripView-altitude',
-    ARRIVAL_AIRPORT_ID: 'js-stripView-arrivalAirportId',
-    AIRCRAFT_ID: 'js-stripView-aircraftId',
-    FLIGHT_PLAN_ALTITUDE: 'js-stripView-flightPlanAltitude',
-    ALTERNATE_AIRPORT_ID: 'js-stripView-alternateAirportId',
-    REMARKS: 'js-stripView-remarks'
+const STRIP_VIEW_SELECTORS = {
+    CALLSIGN: '.js-stripView-callsign',
+    TRANSPONDER: '.js-stripView-transponder',
+    DEPARTURE_AIRPORT_ID: '.js-stripView-departureAirportId',
+    FLIGHT_PLAN: '.js-stripView-flightPlan',
+    AIRCRAFT_MODEL: '.js-stripView-aircraftModel',
+    ALTITUDE: '.js-stripView-altitude',
+    ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
+    AIRCRAFT_ID: '.js-stripView-aircraftId',
+    FLIGHT_PLAN_ALTITUDE: '.js-stripView-flightPlanAltitude',
+    ALTERNATE_AIRPORT_ID: '.js-stripView-alternateAirportId',
+    REMARKS: '.js-stripView-remarks'
 };
 
 // /**
@@ -254,8 +254,8 @@ export default class StripViewModel extends BaseModel {
      */
     _createChildren() {
         this.$element = $(STRIP_VIEW_TEMPLATE);
-        this.$callsignView = this.$element.find(CLASSNAMES.CALLSIGN);
-        this.$aircraftTypeView = this.$element.find(CLASSNAMES.AIRCRAFT_MODEL);
+        this.$callsignView = this.$element.find(STRIP_VIEW_SELECTORS.CALLSIGN);
+        this.$aircraftTypeView = this.$element.find(STRIP_VIEW_SELECTORS.AIRCRAFT_MODEL);
         // this.$infoBoxTopView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.HEADING, this._flightPhase.toUpperCase()));
         // this.$altitudeView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.ALTITUDE, this._altitude));
         // this.$infoBoxBottomView = $(buildSpanForViewItem(SELECTORS.CLASSNAMES.DESTINATION, this._infoBoxBottom));
