@@ -21,11 +21,5 @@ export const EVENT = {
      * @property SHOULD_PAUSE_UPDATE_LOOP
      * @type {string}
      */
-    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
-
-    /**
-     *
-     *
-     */
-    SHOW_WIP_AIRPORTS: 'show-wip-airports'
+    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop'
 };

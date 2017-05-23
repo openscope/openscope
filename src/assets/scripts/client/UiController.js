@@ -306,10 +306,6 @@ export default class UiController {
      * @return {DOM element|string}
      */
     buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
-        if (flagIcon !== '') {
-            // console.log(`${icao.toUpperCase()} is listed as WIP and will be skipped`);
-        }
-
         return `<li class="airport icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
@@ -328,8 +324,9 @@ export default class UiController {
     }
 
     /**
-     *
-     *
+     * @for UiController
+     * @method _buildAirportList
+     * @private
      */
     _buildAirportList() {
         // clear out the contents of this element
@@ -343,7 +340,7 @@ export default class UiController {
         for (let i = 0; i < airports.length; i++) {
             const { name, icao, level, wip } = this._airportController.airport.airports[airports[i]];
 
-            if (!shouldShowWipAirports) {
+            if (!shouldShowWipAirports && wip) {
                 continue;
             }
 

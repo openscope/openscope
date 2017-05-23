@@ -389,8 +389,15 @@ export default class GameController {
     }
 
     /**
+     * Facade for `game.option.get`
      *
+     * Allows for classes that import the `GameController` single-level
+     * access to any game option value
+     *
+     * @for GameController
+     * @method getGameOption
      * @param optionName {string}
+     * @return {string}
      */
     getGameOption(optionName) {
         return this.game.option.get(optionName);
