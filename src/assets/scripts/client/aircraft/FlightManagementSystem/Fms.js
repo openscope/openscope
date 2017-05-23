@@ -116,21 +116,11 @@ export default class Fms {
         */
         this._previousRouteSegments = [];
 
-        // TODO: Use this!
-        /**
-         * Airport the aircraft arrives to
-         *
-         * @for Fms
-         * @property arrivalAirport
-         * @type {AirportModel}
-         */
-        this.arrivalAirport = null;
-
         /**
          * Name of runway used at arrival airport
          *
          * @for Fms
-         * @property arrivalRunway
+         * @property arrivalRunwayModel
          * @type {RunwayModel}
          */
         this.arrivalRunwayModel = null;
@@ -144,21 +134,11 @@ export default class Fms {
         */
         this.currentPhase = '';
 
-        // TODO: Use this!
-        /**
-         * Airport the aircraft departs from
-         *
-         * @for Fms
-         * @property departureAirport
-         * @type {AirportModel}
-         */
-        this.departureAirport = null;
-
         /**
          * Name of runway used at departure airport
          *
          * @for Fms
-         * @property departureRunway
+         * @property departureRunwayModel
          * @type {RunwayModel}
          */
         this.departureRunwayModel = null;
@@ -192,6 +172,15 @@ export default class Fms {
         this.init(aircraftInitProps, initialRunwayAssignment);
     }
 
+    /**
+     * Provides access to the `RunwayModel` currently associated with the Fms
+     *
+     * It is assumed only an arrival or departure runway will
+     * exist at any one time
+     *
+     * @property currentRunway
+     * @return {RunwayModel}
+     */
     get currentRunway() {
         return this.arrivalRunwayModel || this.departureRunwayModel;
     }
@@ -384,6 +373,9 @@ export default class Fms {
      * @return {string}
      */
     getDestinationName() {
+        // TODO: this method should use the `RouteModel` to get the various pieces below
+        // TODO: determine if this method is even needed after `AircraftStrip` enhancements
+        // coming in https://github.com/openscope/openscope/issues/285
         if (this.isFollowingStar()) {
             const routeString = this.currentLeg.routeString;
             const routeStringElements = routeString.split('.');
@@ -438,12 +430,15 @@ export default class Fms {
     }
 
     /**
+     * Encapsulates setting `#departureRunwayModel`
      *
      * @for fms
      * @method setDepartureRunway
      * @param runwayModel {RunwayModel}
      */
     setDepartureRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
@@ -452,12 +447,15 @@ export default class Fms {
     }
 
     /**
+     * Encapsulates setting of `#arrivalRunwayModel`
      *
      * @for fms
      * @method setArrivalRunway
      * @param runwayModel {RunwayModel}
      */
     setArrivalRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
@@ -653,14 +651,16 @@ export default class Fms {
      * @for Fms
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @param departureRunwayModel {RunwayModel}
+     * @param runwayModel {RunwayModel}
      */
-    replaceDepartureProcedure(routeString, departureRunwayModel) {
-        // TODO: update runway information here, if needed
-
+    replaceDepartureProcedure(routeString, runwayModel) {
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;
+        }
+
+        if (this.departureRunwayModel.name !== runwayModel.name) {
+            this.setDepartureRunway(runwayModel);
         }
 
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
@@ -689,15 +689,18 @@ export default class Fms {
      * @for Fms
      * @method replaceArrivalProcedure
      * @param routeString {string}
-     * @param arrivalRunway {string}
+     * @param runwayModel {RunwayModel}
      */
-    replaceArrivalProcedure(routeString, arrivalRunway) {
+    replaceArrivalProcedure(routeString, runwayModel) {
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;
         }
 
-        // TODO: we may need to update the runway in this method
+        if (this.arrivalRunwayModel.name !== runwayModel.name) {
+            this.setArrivalRunway(runwayModel);
+        }
+
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
@@ -878,6 +881,7 @@ export default class Fms {
             return true;
         }
 
+        // TODO: abstract this to a method or combine with if/returns below
         // find the prcedure model from the correct collection based on flightPhase
         const procedureModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
             ? this.findStarByProcedureId(routeStringModel.procedure)
@@ -1303,7 +1307,17 @@ export default class Fms {
         }
     }
 
+    /**
+     * Set the appropriate runway property with the passed `RunwayModel`
+     *
+     * @for Fms
+     * @method _setInitialRunwayAssignmentFromCategory
+     * @param category {string}
+     * @param runway {RunwayModel}
+     * @private
+     */
     _setInitialRunwayAssignmentFromCategory(category, runway) {
+        // TODO: change to switch with a default throw
         if (category === FLIGHT_CATEGORY.ARRIVAL) {
             this.setArrivalRunway(runway);
         } else if (category === FLIGHT_CATEGORY.DEPARTURE) {

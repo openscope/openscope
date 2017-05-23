@@ -2,10 +2,9 @@ import _compact from 'lodash/compact';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
-import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
+import _pick from 'lodash/pick';
 import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
@@ -25,6 +24,7 @@ export default class StandardRouteModel extends BaseModel {
      *  SHEAD9: {
      *    'icao': 'SHEAD9',
      *    'name': 'Shead Nine',
+     *    'suffix': {'01L': '1A'},
      *    'rwy': {
      *      '01L': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
      *      '01R': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
@@ -53,15 +53,21 @@ export default class StandardRouteModel extends BaseModel {
      * - `exitPoints` becomes the  `_exitCollection`. will only be present on SID routes
      * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
      *
+     * The above can also be passed with a `suffix` property. This comes in the shape of `RUNWAY: SUFFIX`.
+     * When suffixes are present, the `StandardRouteCollection` will attempt to create a `StandardRouteModel`
+     * for each suffix. This simplifies the lookup logic because we then only need to search by `icao`
+     * insead of having to logic the `icao` + `suffix`.
+     *
      * @constructor
      * @for StandardRouteModel
      * @param standardRoute {object}
+     * @param suffixKey {string}         [optional]
      */
     /* istanbul ignore next */
-    constructor(standardRoute) {
+    constructor(standardRoute, suffixKey = '') {
         super();
 
-       if (isEmptyObject(standardRoute)) {
+        if (isEmptyObject(standardRoute)) {
             throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
 
@@ -82,6 +88,20 @@ export default class StandardRouteModel extends BaseModel {
          * @default ''
          */
         this.icao = '';
+
+        /**
+         * Key from the `suffix` object of a route model.
+         *
+         * Should be passed in from the `StandardRouteCollection`.
+         * Is used here to determine if this is a suffix `StandardRouteCollection`
+         * and to figure out which runways need to be kept for this particular route
+         *
+         * @property _suffixKey
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._suffixKey = suffixKey;
 
         /**
          * List of fixes in the order that they should be drawn
@@ -179,6 +199,7 @@ export default class StandardRouteModel extends BaseModel {
         this.entryPoints = _get(standardRoute, 'entryPoints', {});
         this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
 
+        this._buildRouteWithSuffix(standardRoute);
         this._buildEntryAndExitCollections(standardRoute);
     }
 
@@ -195,6 +216,7 @@ export default class StandardRouteModel extends BaseModel {
         this.body = [];
         this.exitPoints = [];
         this.draw = [];
+        this._suffixKey = '';
         this._bodySegmentModel = null;
         this._exitCollection = null;
         this._entryCollection = null;
@@ -269,6 +291,27 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Given a procedureId that is known to be for a suffix route, this method will
+     * return the segment name associated with that suffix.
+     *
+     * Should only be called after verifying that this is a suffix `StandardRouteModel`
+     *
+     * @for StandardRouteModel
+     * @method getSuffixSegmentName
+     * @param procedureType {string}
+     * @return {string}
+     */
+    getSuffixSegmentName(procedureType) {
+        let collection = this._exitCollection.findSegmentByName(this._suffixKey);
+
+        if (procedureType === 'SID') {
+            collection = this._entryCollection.findSegmentByName(this._suffixKey);
+        }
+
+        return collection.name;
+    }
+
+    /**
      * Does the `_exitCollection` have any exitPoints?
      *
      * @for StandardRouteModel
@@ -293,6 +336,17 @@ export default class StandardRouteModel extends BaseModel {
     hasFixName(fixName) {
         return this._entryCollection && !_isNil(this._entryCollection.findSegmentByName(fixName)) ||
             this._exitCollection && !_isNil(this._exitCollection.findSegmentByName(fixName));
+    }
+
+    /**
+     * Determine if this `StandardRouteModel` represents a suffix route
+     *
+     * @for StandardRouteModel
+     * @property hasSuffix
+     * @return {boolean}
+     */
+    hasSuffix() {
+        return this._suffixKey !== '';
     }
 
     /**
@@ -334,23 +388,49 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * If this represents a suffix route, update the `#icao` and `rwy` object
+     *
+     * This method should be run only once on instantiation.
+     * This method mutates both properties before the `_buildEntryAndExitCollections()`
+     * method is fired. By updating the `rwy` object, this forces the resulting collection
+     * object to contain only the runway applicatble to the suffix.
+     *
+     * @for StandardRouteModel
+     * @method _buildRouteWithSuffix
+     * @param  standardRoute {object}
+     */
+    _buildRouteWithSuffix(standardRoute) {
+        if (this._suffixKey === '') {
+            return;
+        }
+
+        const suffixVal = standardRoute.suffix[this._suffixKey];
+        this.icao = `${standardRoute.icao}${suffixVal}`;
+        this.rwy = _pick(standardRoute.rwy, this._suffixKey);
+    }
+
+    /**
      * Determine if the `standardRoute` is a sid or a star and build the entry/exit collections
      * with the correct data.
+     *
+     * We evaluate `#rwy` instead of `standardRoute.rwy` here because suffix routes will
+     * have transformed `#rwy` to use only the runway for the suffix. All other cases
+     * will maintain the shape of `standardRoute.rwy`.
      *
      * STARS will have `entryPoints` defined so `rwy` becomes the `_exitCollection`
      * SIDS will have `exitPoints` defined so `rwy` becomes the `_entryCollection`
      *
      * @for StandardRouteModel
      * @method _buildEntryAndExitCollections
-     * @param standardRoute
+     * @param standardRoute {object}
      * @private
      */
     _buildEntryAndExitCollections(standardRoute) {
         if (_has(standardRoute, 'entryPoints')) {
             this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
-            this._exitCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._exitCollection = this._buildSegmentCollection(this.rwy);
         } else if (_has(standardRoute, 'exitPoints')) {
-            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._entryCollection = this._buildSegmentCollection(this.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
         } else if (_has(standardRoute, 'rwy')) {
             console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
