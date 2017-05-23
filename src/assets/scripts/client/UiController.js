@@ -402,6 +402,15 @@ export default class UiController {
      * @method _drawAirportListFooter
      */
     _drawAirportListFooter() {
+        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+
+        if (!shouldShowWipAirports) {
+            const notes = $('<span class="words">Additional WIP airports are availalbe by selecting the show all option in the settings window (the gear icon)</span>');
+            this.$airportListNotes.append(notes);
+
+            return;
+        }
+
         const symbol = $('<span class="symbol">&#9983</span>');
         this.$airportListNotes.append(symbol);
 
