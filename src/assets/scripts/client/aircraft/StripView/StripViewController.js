@@ -61,11 +61,12 @@ export default class StripViewController {
     update(aircraftList) {
         for (let i = 0; i < aircraftList.length; i++) {
             const aircraftModel = aircraftList[i];
+            const stripViewModel = this._collection.findByAircraftId(aircraftModel.id);
 
             if (aircraftModel.inside_ctr) {
-                const stripViewModel = this._collection.findByAircraftId(aircraftModel.id);
-
                 stripViewModel.update(aircraftModel);
+            } else {
+                stripViewModel.hide();
             }
         }
     }
@@ -81,16 +82,17 @@ export default class StripViewController {
         const stripViewModel = new StripViewModel(aircraftModel);
 
         this._collection.addItem(stripViewModel);
-
-        this.showStripView(stripViewModel);
+        this._addViewToStripList(stripViewModel);
     }
 
     /**
      *
      *
-     * @method showStripView
+     * @for StripViewController
+     * @method _addViewToStripList
+     * @param stripViewModel {StripViewModel}
      */
-    showStripView(stripViewModel) {
+    _addViewToStripList(stripViewModel) {
         const scrollPosition = this.$stripViewList.scrollTop();
 
         this.$stripViewList.prepend(stripViewModel.$element);
@@ -112,25 +114,26 @@ export default class StripViewController {
             throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
         }
 
+        this.$stripViewList.children().removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         stripModel.addActiveState();
     }
 
-    /**
-     * Find as `StripViewModel` and attempt to remove an active state
-     *
-     * @for StripViewController
-     * @method deselectStripView
-     * @param  aircraftModel {AircraftInstanceModel}
-     */
-    deselectStripView(aircraftModel) {
-        const stripModel = this._collection.findByAircraftId(aircraftModel.id);
+    // /**
+    //  * Find as `StripViewModel` and attempt to remove an active state
+    //  *
+    //  * @for StripViewController
+    //  * @method deselectStripView
+    //  * @param  aircraftModel {AircraftInstanceModel}
+    //  */
+    // deselectStripView(aircraftModel) {
+    //     const stripModel = this._collection.findByAircraftId(aircraftModel.id);
 
-        if (!stripModel) {
-            throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
-        }
+    //     if (!stripModel) {
+    //         throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
+    //     }
 
-        stripModel.removeActiveState();
-    }
+    //     stripModel.removeActiveState();
+    // }
 
     /**
      *
@@ -151,7 +154,6 @@ export default class StripViewController {
      * @param event {JQueryEventObject}
      */
     _onStripListToggle = (event) => {
-        console.log('StripViewController._onStripListToggle');
         this.$stripView.toggleClass('mix-stripView_isHidden');
     };
 }

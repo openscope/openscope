@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
+import _random from 'lodash/random';
 import _uniqueId from 'lodash/uniqueId';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
@@ -86,7 +87,8 @@ export default class AircraftInstanceModel {
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
         this.flightNumber = '';         // Flight Number ONLY (eg. '551')
-        this.transponderCode = '';
+        // FIXME: temporary inclusion, should be removed before merging to develop
+        this.transponderCode = _random(1201, 5999);
         this.heading      = 0;          // Magnetic Heading
         this.altitude     = 0;          // Altitude, ft MSL
         this.speed        = 0;          // Indicated Airspeed (IAS), knots
@@ -140,10 +142,6 @@ export default class AircraftInstanceModel {
          */
         this.isRemovable = false;
 
-        // TODO: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
-        this.aircraftStripView = null;
-        // this.$html = null;
-        // this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
@@ -178,7 +176,6 @@ export default class AircraftInstanceModel {
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
             ? window.gameController.game_time()
             : null;
-
 
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();

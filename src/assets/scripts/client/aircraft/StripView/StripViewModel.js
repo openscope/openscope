@@ -13,40 +13,17 @@ import { EVENT } from '../../constants/eventNames';
  */
 const STRIP_VIEW_SELECTORS = {
     CALLSIGN: '.js-stripView-callsign',
-    TRANSPONDER: '.js-stripView-transponder',
-    DEPARTURE_AIRPORT_ID: '.js-stripView-departureAirportId',
-    FLIGHT_PLAN: '.js-stripView-flightPlan',
     AIRCRAFT_MODEL: '.js-stripView-aircraftModel',
-    ALTITUDE: '.js-stripView-altitude',
-    ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
     AIRCRAFT_ID: '.js-stripView-aircraftId',
+    TRANSPONDER: '.js-stripView-transponder',
+    ALTITUDE: '.js-stripView-altitude',
     FLIGHT_PLAN_ALTITUDE: '.js-stripView-flightPlanAltitude',
+    DEPARTURE_AIRPORT_ID: '.js-stripView-departureAirportId',
+    ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
     ALTERNATE_AIRPORT_ID: '.js-stripView-alternateAirportId',
+    FLIGHT_PLAN: '.js-stripView-flightPlan',
     REMARKS: '.js-stripView-remarks'
 };
-
-// /**
-//  * Root html element
-//  *
-//  * @property AIRCRAFT_STRIP_TEMPLATE
-//  * @type {string}
-//  * @final
-//  */
-// const AIRCRAFT_STRIP_TEMPLATE = '<li class="strip"></li>';
-
-// /**
-//  * Build a span with a classname and/or content string.
-//  *
-//  * Used when initializing templates. Removes the need for having individual template
-//  * constants for each line when the only difference is a classname and content.
-//  *
-//  * @for StripViewModel
-//  * @param className {string}
-//  * @param content {string}
-//  */
-// const buildSpanForViewItem = (className, content = '') => {
-//     return `<span class="${className}">${content}</span>`;
-// };
 
 /**
  *
@@ -147,6 +124,35 @@ export default class StripViewModel extends BaseModel {
          */
         this._altitude = -1;
 
+        /**
+         *
+         *
+         * @property _arrivalAirport
+         * @type
+         * @default
+         * @private
+         */
+        this._arrivalAirport = '';
+
+        /**
+         *
+         *
+         * @property _departureAirport
+         * @type
+         * @default
+         * @private
+         */
+        this._departureAirport = '';
+
+        /**
+         *
+         *
+         * @property _alternateAirport
+         * @type
+         * @default
+         * @private
+         */
+        this._alternateAirport = '';
 
         /**
          *
@@ -194,6 +200,10 @@ export default class StripViewModel extends BaseModel {
          */
         this.$altitudeView = null;
 
+        this.$arrivalAirportView = null;
+        this.$departureAirportView = null;
+        this.$alternateAirportView = null;
+
         /**
          *
          *
@@ -217,17 +227,19 @@ export default class StripViewModel extends BaseModel {
      * @param aircraftModel {object}
      */
     _init(aircraftModel) {
-        // FIXME: move this logic to `AircraftModel.getViewModel()`
+        // FIXME: move this to `AircraftModel.getViewModel()`
 
         this._callsign = aircraftModel.callsign;
-        // this._transponder = aircraftModel.transponderCode;
+        this._transponder = aircraftModel.transponderCode;
         this._aircraftType = aircraftModel.model.icaoWithWeightClass;
         // // TODO: make this not a ternary
         this._altitude = aircraftModel.mcp.altitude !== -1
             ? aircraftModel.mcp.altitude
             : 0;
         this._flightPlan = aircraftModel.fms.flightPlanRoute.toUpperCase();
-        this._categoryClassName = this.findClassnameForFlightCateogry(aircraftModel);
+        this._categoryClassName = this._findClassnameForFlightCategory(aircraftModel);
+
+        this._setArrivalDepartureAirportIds(aircraftModel);
 
         return this;
     }
@@ -244,6 +256,9 @@ export default class StripViewModel extends BaseModel {
         this.$transponderView = this.$element.find(STRIP_VIEW_SELECTORS.TRANSPONDER);
         this.$aircraftTypeView = this.$element.find(STRIP_VIEW_SELECTORS.AIRCRAFT_MODEL);
         this.$altitudeView = this.$element.find(STRIP_VIEW_SELECTORS.ALTITUDE);
+        this.$arrivalAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ARRIVAL_AIRPORT_ID);
+        this.$departureAirportView = this.$element.find(STRIP_VIEW_SELECTORS.DEPARTURE_AIRPORT_ID);
+        this.$alternateAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ALTERNATE_AIRPORT_ID);
         this.$flightPlanView = this.$element.find(STRIP_VIEW_SELECTORS.FLIGHT_PLAN);
 
         return this;
@@ -273,6 +288,9 @@ export default class StripViewModel extends BaseModel {
         this.$transponderView.text(this._transponder);
         this.$aircraftTypeView.text(this._aircraftType);
         this.$altitudeView.text(this._altitude);
+        this.$departureAirportView.text(this._departureAirport);
+        this.$arrivalAirportView.text(this._arrivalAirport);
+        this.$alternateAirportView.text(this._alternateAirport);
         this.$flightPlanView.text(this._flightPlan);
         this.$element.addClass(this._categoryClassName);
 
@@ -306,14 +324,13 @@ export default class StripViewModel extends BaseModel {
      *
      *
      * @for StripViewModel
-     * @method shouldUpdate
-     * @param  aircraftModel {AircraftInstanceModel}
-     * @return {boolean}
+     * @method destroy
+     * @chainable
      */
-    shouldUpdate(aircraftModel) {
-        return aircraftModel.mcp.altitude !== this._altitude ||
-            aircraftModel.mcp.speed !== this._speed;
+    destroy() {
+        return this;
     }
+
 
     /**
      *
@@ -322,11 +339,15 @@ export default class StripViewModel extends BaseModel {
      * @param aircraftModel {AircraftInstanceModel}
      */
     update(aircraftModel) {
-        if (!this.shouldUpdate(aircraftModel)) {
+        if (!this._shouldUpdate(aircraftModel)) {
+            this.show();
+
             return;
         }
 
-        // _updateStripView
+        this.hide();
+        // this._updateStripView(aircraftModel);
+        this.show();
     }
 
     /**
@@ -350,47 +371,26 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     *
+     *
+     * @for StripViewModel
+     * @method show
+     * @param duration {number} [optional=0]
+     */
+    show(duration = 0) {
+        this.$element.show(duration);
+    }
+
+    /**
      * Fascade method for jquery `.hide()`
      *
      * @for AircraftStripView
      * @method hide
-     * @param duration {number}
+     * @param duration {number} [optional=0]
      */
     hide(duration = 0) {
         this.$element.hide(duration);
     }
-
-    /**
-     * @for AircraftStripView
-     * @method findClassnameForFlightCateogry
-     * @return {string}
-     */
-    findClassnameForFlightCateogry(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
-
-        if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
-        }
-
-        return className;
-    }
-
-    // TODO: this feels like a utility function
-    // /**
-    //  *
-    //  * @method _getValueOrZero
-    //  * @param  {[type]}        prop [description]
-    //  * @return {[type]}             [description]
-    //  */
-    // _getValueOrZero(prop) {
-    //     let valueOrZero = prop;
-
-    //     if (prop === -1) {
-    //         valueOrZero = 0;
-    //     }
-
-    //     return valueOrZero;
-    // }
 
     /**
      * Click handler for a single click on an AircraftStripView
@@ -419,4 +419,50 @@ export default class StripViewModel extends BaseModel {
     onDoubleClickHandler = (event) => {
         this._eventBus.trigger(EVENT.STRIP_DOUBLE_CLICK, this._callsign);
     };
+
+    /**
+     *
+     *
+     * @for StripViewModel
+     * @method shouldUpdate
+     * @param  aircraftModel {AircraftInstanceModel}
+     * @return {boolean}
+     * @private
+     */
+    _shouldUpdate(aircraftModel) {
+        return false;
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method _findClassnameForFlightCategory
+     * @return {string}
+     */
+    _findClassnameForFlightCategory(aircraftModel) {
+        let className = SELECTORS.CLASSNAMES.ARRIVAL;
+
+        if (aircraftModel.isDeparture()) {
+            className = SELECTORS.CLASSNAMES.DEPARTURE;
+        }
+
+        return className;
+    }
+
+    /**
+     *
+     *
+     * @for StripViewModel
+     * @method _setArrivalDepartureAirportIds
+     * @param aircraftModel {AircraftInstanceModel}
+     * @private
+     */
+    _setArrivalDepartureAirportIds(aircraftModel) {
+        if (aircraftModel.isDeparture()) {
+            this._departureAirport = 'KSFO';
+
+            return;
+        }
+
+        this._arrivalAirport = 'KSFO';
+    }
 }

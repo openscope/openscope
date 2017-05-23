@@ -160,8 +160,6 @@ export default class AircraftCommander {
             ]);
         }
 
-        aircraft.updateStrip();
-
         return true;
     }
 
