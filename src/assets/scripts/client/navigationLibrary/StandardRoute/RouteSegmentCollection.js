@@ -37,7 +37,7 @@ export default class RouteSegmentCollection extends BaseCollection {
     constructor(routeSegments) {
         super();
 
-       if (isEmptyObject(routeSegments)) {
+        if (isEmptyObject(routeSegments)) {
             throw new TypeError(`Expected routeSegments to be an object. Instead received ${typeof routeSegments}`);
         }
 

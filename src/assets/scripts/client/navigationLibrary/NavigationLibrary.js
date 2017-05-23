@@ -4,7 +4,10 @@ import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { degreesToRadians } from '../utilities/unitConverters';
-import { FLIGHT_PHASE } from '../constants/aircraftConstants';
+import {
+    FLIGHT_PHASE,
+    PROCEDURE_TYPE
+} from '../constants/aircraftConstants';
 
 /**
  *
@@ -96,11 +99,15 @@ export default class NavigationLibrary {
     init(airportJson) {
         const { fixes, sids, stars } = airportJson;
 
-        this._referencePosition = new StaticPositionModel(airportJson.position, null, degreesToRadians(airportJson.magnetic_north));
+        this._referencePosition = new StaticPositionModel(
+            airportJson.position,
+            null,
+            degreesToRadians(airportJson.magnetic_north)
+        );
 
         FixCollection.addItems(fixes, this._referencePosition);
-        this._sidCollection = new StandardRouteCollection(sids);
-        this._starCollection = new StandardRouteCollection(stars);
+        this._sidCollection = new StandardRouteCollection(sids, PROCEDURE_TYPE.SID);
+        this._starCollection = new StandardRouteCollection(stars, PROCEDURE_TYPE.STAR);
     }
 
     /**
@@ -261,5 +268,38 @@ export default class NavigationLibrary {
         );
 
         return staticPositionModel;
+    }
+
+    /**
+     * Determine if a procedureRouteString contains a suffix route
+     *
+     * Used from the `AircraftCommander` for branching logic that will
+     * enable updating of a runway for a particular suffix route
+     *
+     * @NavigationLibrary
+     * @method isSuffixRoute
+     * @param routeString {string}
+     * @param procedureType {string}
+     * @return {boolean}
+     */
+    isSuffixRoute(routeString, procedureType) {
+        let route;
+
+        switch (procedureType) {
+            case PROCEDURE_TYPE.SID:
+                route = this._sidCollection.findRouteByIcao(routeString);
+
+                break;
+            case PROCEDURE_TYPE.STAR:
+                const { procedure } = new RouteModel(routeString);
+
+                route = this._starCollection.findRouteByIcao(procedure);
+
+                break;
+            default:
+                return false;
+        }
+
+        return typeof route !== 'undefined' && route.hasSuffix();
     }
 }
