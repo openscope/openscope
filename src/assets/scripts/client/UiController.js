@@ -280,6 +280,11 @@ export default class UiController {
      * @return {DOM element|string}
      */
     buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
+        console.log(window.gameController);
+        if (flagIcon !== '') {
+            console.log(`${icao.toUpperCase()} is listed as WIP and will be skipped`);
+        }
+
         return `<li class="airport icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
