@@ -7,6 +7,7 @@ import _keys from 'lodash/keys';
 import _startCase from 'lodash/startCase';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
+import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/colors/themes';
@@ -41,9 +42,15 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-se
 export default class UiController {
     /**
      * @constructor
+     * @param $element
+     * @param
      */
-    constructor($element) {
+    constructor($element, gameController, airportController, canvasController) {
         this.$element = $element;
+        this._gameController = gameController;
+        this._airportController = airportController;
+        this._canvasController = canvasController;
+
         this.$airportList = null;
         this.$airportListNotes = null;
         this.$toggleTutorial = null;
@@ -58,6 +65,7 @@ export default class UiController {
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
 
+        prop.ui = ui;
         this.ui = ui;
         this.ui.scale_default = 8; // pixels per km
         this.ui.scale_max = 80; // max scale
@@ -68,7 +76,8 @@ export default class UiController {
 
 
         return this._init()
-                    .enable();
+            .setupHandlers()
+            .enable();
     }
 
     /**
@@ -96,6 +105,15 @@ export default class UiController {
 
     /**
      * @for UiController
+     * @method setupHandlers
+     * @chainable
+     */
+    setupHandlers() {
+        return this;
+    }
+
+    /**
+     * @for UiController
      * @method enable
      */
     enable() {
@@ -103,6 +121,7 @@ export default class UiController {
         this.$fastForwards.on('click', (event) => window.gameController.game_timewarp_toggle(event));
         this.$pauseToggle.on('click', (event) => window.gameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => window.gameController.game_unpause(event));
+
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
         this.$toggleLabels.on('click', (event) => this.canvas_labels_toggle(event));
@@ -123,6 +142,7 @@ export default class UiController {
         this.$fastForwards.off('click', (event) => window.gameController.game_timewarp_toggle(event));
         this.$pauseToggle.off('click', (event) => window.gameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => window.gameController.game_unpause(event));
+
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
         this.$toggleLabels.off('click', (event) => this.canvas_labels_toggle(event));
@@ -170,12 +190,12 @@ export default class UiController {
      * @method ui_init_pre
      */
     ui_init_pre() {
-        prop.ui = ui;
-        prop.ui.scale_default = 8; // pixels per km
-        prop.ui.scale_max = 80; // max scale
-        prop.ui.scale_min = 1; // min scale
-        prop.ui.scale = prop.ui.scale_default;
-        prop.ui.terrain = THEME.DEFAULT.TERRAIN;
+        this.ui = ui;
+        this.ui.scale_default = 8; // pixels per km
+        this.ui.scale_max = 80; // max scale
+        this.ui.scale_min = 1; // min scale
+        this.ui.scale = this.ui.scale_default;
+        this.ui.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
@@ -231,6 +251,12 @@ export default class UiController {
             const $currentTarget = $(event.currentTarget);
 
             window.gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+
+            if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
+                console.log('onChange');
+
+                this._buildAirportList();
+            }
         });
 
         $optionSelector.append($selector);
@@ -280,9 +306,8 @@ export default class UiController {
      * @return {DOM element|string}
      */
     buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
-        console.log(window.gameController);
         if (flagIcon !== '') {
-            console.log(`${icao.toUpperCase()} is listed as WIP and will be skipped`);
+            // console.log(`${icao.toUpperCase()} is listed as WIP and will be skipped`);
         }
 
         return `<li class="airport icao-${icao.toLowerCase()}">` +
@@ -298,59 +323,88 @@ export default class UiController {
      * @method ui_complete
      */
     ui_complete() {
-        const airports = _keys(prop.airport.airports).sort();
-        const icon = '&#9992;';
+        this._buildAirportList();
+        this._drawAirportListFooter();
+    }
+
+    /**
+     *
+     *
+     */
+    _buildAirportList() {
+        // clear out the contents of this element
+        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
+        this.$airportList.empty();
+
+        const airports = _keys(this._airportController.airport.airports).sort();
+        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
-        let airport;
 
         for (let i = 0; i < airports.length; i++) {
-            airport = prop.airport.airports[airports[i]];
+            const { name, icao, level, wip } = this._airportController.airport.airports[airports[i]];
 
-            switch (airport.level) {
-                case 'beginner':
-                    difficulty = icon;
-                    break;
-                case 'easy':
-                    difficulty = icon.repeat(2);
-                    break;
-                case 'medium':
-                    difficulty = icon.repeat(3);
-                    break;
-                case 'hard':
-                    difficulty = icon.repeat(4);
-                    break;
-                case 'expert':
-                    difficulty = icon.repeat(5);
-                    break;
-                default:
-                    difficulty = '?';
-                    break;
+            if (!shouldShowWipAirports) {
+                continue;
             }
 
-            // TODO: move to a template const
-            const { name, icao, wip } = airport;
-            const flagIcon = (wip === true) ? ' &#9983' : '';
+            difficulty = this._buildAirportListIconForDifficultyLevel(level);
+            const flagIcon = wip
+                ? ' &#9983'
+                : '';
             const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
 
             // TODO: replace with an onClick() handler
-            $airportListItem.click(airport.icao.toLowerCase(), (event) => {
-                if (event.data !== window.airportController.airport_get().icao) {
-                    window.airportController.airport_set(event.data);
+            $airportListItem.click(icao.toLowerCase(), (event) => {
+                if (event.data !== this._airportController.airport_get().icao) {
+                    this._airportController.airport_set(event.data);
                     this.ui_airport_close();
                 }
             });
 
             this.$airportList.append($airportListItem);
         }
+    }
 
-        this.drawAirportListFooter();
+    /**
+     *  @for UiController
+     * @method _buildAirportListIconForDifficultyLevel
+     * @param difficultyLevel {string}
+     * @return difficulty {string}
+     * @private
+     */
+    _buildAirportListIconForDifficultyLevel(difficultyLevel) {
+        let difficulty;
+        const icon = '&#9992;';
+
+        switch (difficultyLevel) {
+            case 'beginner':
+                difficulty = icon;
+                break;
+            case 'easy':
+                difficulty = icon.repeat(2);
+                break;
+            case 'medium':
+                difficulty = icon.repeat(3);
+                break;
+            case 'hard':
+                difficulty = icon.repeat(4);
+                break;
+            case 'expert':
+                difficulty = icon.repeat(5);
+                break;
+            default:
+                difficulty = '?';
+                break;
+        }
+
+        return difficulty;
     }
 
     /**
      * @for UiController
-     * @method drawAirportListFooter
+     * @method _drawAirportListFooter
      */
-    drawAirportListFooter() {
+    _drawAirportListFooter() {
         const symbol = $('<span class="symbol">&#9983</span>');
         this.$airportListNotes.append(symbol);
 
@@ -358,7 +412,7 @@ export default class UiController {
         this.$airportListNotes.append(notes);
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method px_to_km
@@ -366,10 +420,10 @@ export default class UiController {
      * @return {number}
      */
     px_to_km(pixels) {
-        return pixels / prop.ui.scale;
+        return pixels / this.ui.scale;
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method km_to_px
@@ -377,7 +431,7 @@ export default class UiController {
      * @return {number}
      */
     km_to_px(kilometers) {
-        return kilometers * prop.ui.scale;
+        return kilometers * this.ui.scale;
     }
 
     /**
@@ -385,8 +439,7 @@ export default class UiController {
      * @method ui_after_zoom
      */
     ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = prop.ui.scale;
-
+        localStorage[STORAGE_KEY.ATC_SCALE] = this.ui.scale;
         prop.canvas.dirty = true;
     }
 
@@ -400,10 +453,10 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        prop.ui.scale *= 0.9;
+        this.ui.scale *= 0.9;
 
-        if (prop.ui.scale < prop.ui.scale_min) {
-            prop.ui.scale = prop.ui.scale_min;
+        if (this.ui.scale < this.ui.scale_min) {
+            this.ui.scale = this.ui.scale_min;
         }
 
         this.ui_after_zoom();
@@ -422,9 +475,9 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        prop.ui.scale /= 0.9;
-        if (prop.ui.scale > prop.ui.scale_max) {
-            prop.ui.scale = prop.ui.scale_max;
+        this.ui.scale /= 0.9;
+        if (this.ui.scale > this.ui.scale_max) {
+            this.ui.scale = this.ui.scale_max;
         }
 
         this.ui_after_zoom();
@@ -438,7 +491,7 @@ export default class UiController {
      * @method ui_zoom_reset
      */
     ui_zoom_reset() {
-        prop.ui.scale = prop.ui.scale_default;
+        this.ui.scale = this.ui.scale_default;
 
         this.ui_after_zoom();
     }
@@ -576,6 +629,6 @@ export default class UiController {
             return;
         }
 
-        prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+        this.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }

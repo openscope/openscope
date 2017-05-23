@@ -387,4 +387,12 @@ export default class GameController {
     complete() {
         this.game.paused = false;
     }
+
+    /**
+     *
+     * @param optionName {string}
+     */
+    getGameOption(optionName) {
+        return this.game.option.get(optionName);
+    }
 }
