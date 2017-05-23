@@ -131,27 +131,6 @@ export default class StandardRouteCollection extends BaseCollection {
     }
 
     /**
-     * Finds a list of fixes for the entry and body segments of a given route
-     *
-     * Used primarily in `SpawnPatterns` for calculating initial heading of arriving aircraft
-     *
-     * @for StandardRouteCollection
-     * @method findEntryAndBodyFixesForRoute
-     * @param icao {string}
-     * @param entryFixName {string}
-     * @return {array}
-     */
-    findEntryAndBodyFixesForRoute(icao, entryFixName) {
-        if (!icao) {
-            return;
-        }
-
-        const route = this.findRouteByIcao(icao);
-
-        return route.findFixesAndRestrictionsForEntryAndBody(entryFixName);
-    }
-
-    /**
      * Find a list of `StandardWaypointModel`s for a specific route
      *
      * Acts as a fascade for `_findRouteOrAddToCache`.
