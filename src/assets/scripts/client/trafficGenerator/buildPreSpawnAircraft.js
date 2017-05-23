@@ -92,30 +92,31 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
     let distanceFromClosestFixToAirspaceBoundary = 0;
     let totalDistance = 0;
 
-    for (let i = 0; i < waypointModelList.length; i++) {
+    // Iteration started at index 1 to ensure two elements are available. It is
+    // already an expectation that aircraft must have two waypoints, so this
+    // should not be a problem here.
+    for (let i = 1; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        let previousWaypoint = waypoint;
+        const previousWaypoint = waypointModelList[i - 1];
 
+        // TODO: Refactor to avoid continue statement
         if (waypoint.isVector || previousWaypoint.isVector) {
             continue;
         }
 
         const waypointPosition = waypoint.relativePosition;
-        let previousPosition = waypoint.relativePosition;
+        const previousPosition = waypoint.relativePosition;
 
-        if (i > 0) {
-            previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.relativePosition;
-        }
-
-        if (isWithinAirspace(airport, waypointPosition) && i > 0) {
+        if (isWithinAirspace(airport, waypointPosition)) {
             distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+            totalDistance += distanceFromClosestFixToAirspaceBoundary;
 
-            continue;
+            break;
         }
 
-        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
-        // `FixModels`, in which case this line will return `NaN`
+        // this will only work for `StandardRouteWaypointModel` objects.
+        // #_buildWaypointModelListFromRoute may also return `FixModels`, in
+        // which case this line will return `NaN`.
         totalDistance += waypoint.distanceFromPreviousWaypoint;
     }
 
