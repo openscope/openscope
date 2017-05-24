@@ -1095,7 +1095,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.3,
+            "rate": 0.4,
             "airlines": [
                 ["fin/long", 20],
                 ["fin/short", 10],
@@ -1113,14 +1113,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.3,
+            "rate": 0.2,
             "airlines": [
-                ["fin/long", 20],
-                ["fin/short", 10],
-                ["jal/long", 1],
-                ["vkg", 1],
-                ["tom", 1],
-                ["tui", 1]
+                ["fin/short", 10]
             ]
         },
         {
