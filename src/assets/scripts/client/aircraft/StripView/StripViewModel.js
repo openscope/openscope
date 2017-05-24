@@ -26,7 +26,9 @@ const STRIP_VIEW_SELECTORS = {
 };
 
 /**
+ * Encapsulation of data and view elements for a single aircraft progress strip
  *
+ * Handles display and updating of an aircraft progress strip
  *
  * @class StripViewModel
  * @extends BaseModel
@@ -42,12 +44,11 @@ export default class StripViewModel extends BaseModel {
     static HEIGHT = 60;
 
     /**
-     *
      * @constructor
      * @param aircraftModel {object}
      */
     constructor(aircraftModel) {
-        super();
+        super('stripViewModel');
 
         /**
          * @property _id
@@ -67,7 +68,7 @@ export default class StripViewModel extends BaseModel {
         this._eventBus = EventBus;
 
         /**
-         *
+         * Root HTML Element
          *
          * @property $element
          * @type {JQuery Element}
@@ -75,9 +76,11 @@ export default class StripViewModel extends BaseModel {
          */
         this.$element = null;
 
-        // TODO: not in use
         /**
          * Reference to the `AircraftModel#id` property
+         *
+         * Used only for associating a `StripViewModel` with a
+         * specific `aircraftId`
          *
          * @property aircraftId
          * @type {string}
@@ -85,7 +88,7 @@ export default class StripViewModel extends BaseModel {
         this.aircraftId = aircraftModel.id;
 
         /**
-         *
+         * Aircraft callsign
          *
          * @property _callsign
          * @type {string}
@@ -105,7 +108,7 @@ export default class StripViewModel extends BaseModel {
         this._aircraftType = '';
 
         /**
-         *
+         * Aircraft transponder code
          *
          * @property _transponder
          * @type {number}
@@ -125,7 +128,7 @@ export default class StripViewModel extends BaseModel {
         this._altitude = -1;
 
         /**
-         *
+         * Arrival airport icao
          *
          * @property _arrivalAirport
          * @type
@@ -135,7 +138,7 @@ export default class StripViewModel extends BaseModel {
         this._arrivalAirport = '';
 
         /**
-         *
+         * Departure airport icao
          *
          * @property _departureAirport
          * @type
@@ -145,7 +148,7 @@ export default class StripViewModel extends BaseModel {
         this._departureAirport = '';
 
         /**
-         *
+         * Alternate airport icao
          *
          * @property _alternateAirport
          * @type
@@ -155,7 +158,7 @@ export default class StripViewModel extends BaseModel {
         this._alternateAirport = '';
 
         /**
-         *
+         * Route string that represents the 'filed' flight plan
          *
          * @property _flightPlan
          * @type {string}
@@ -165,7 +168,7 @@ export default class StripViewModel extends BaseModel {
         this._flightPlan = '';
 
         /**
-         *
+         * HTML Element that holds the `#_callsign` value
          *
          * @property
          * @type {JQuery Element}
@@ -174,7 +177,7 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView = null;
 
         /**
-         *
+         * HTML Element that holds the `#_aircraftType` value
          *
          * @property $aircraftTypeView
          * @type {JQuery Element}
@@ -183,7 +186,7 @@ export default class StripViewModel extends BaseModel {
         this.$aircraftTypeView = null;
 
         /**
-         *
+         * HTML Element that holds the `#_transponderCode` value
          *
          * @property $transponderView
          * @type {JQuery Element}
@@ -192,7 +195,7 @@ export default class StripViewModel extends BaseModel {
         this.$transponderView = null;
 
         /**
-         *
+         * HTML Element that holds the `#_altitude` value
          *
          * @property $altitudeView
          * @type {JQuery Element}
@@ -210,7 +213,7 @@ export default class StripViewModel extends BaseModel {
         this.$alternateAirportView = null;
 
         /**
-         *
+         * HTML Element that holds the `#_flightPlan` value
          *
          * @property $_flightPlanView
          * @type {JQuery Element}
@@ -226,11 +229,14 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Initialize the instance
      *
+     * Should be run once only on instantiation
      *
      * @for StripViewModel
      * @method _init
      * @param aircraftModel {object}
+     * @chainable
      */
     _init(aircraftModel) {
         const {
@@ -247,7 +253,7 @@ export default class StripViewModel extends BaseModel {
         this._aircraftType = icaoWithWeightClass;
         this._altitude = altitude;
         this._flightPlan = flightPlan;
-        this._categoryClassName = this._findClassnameForFlightCategory(aircraftModel);
+        this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
 
         this._setArrivalDepartureAirportIds(aircraftModel);
 
@@ -255,10 +261,13 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Set initial element references
      *
+     * Should be run once only on instantiation
      *
      * @for StripViewModel
      * @method _createChildren
+     * @chainable
      */
     _createChildren() {
         this.$element = $(STRIP_VIEW_TEMPLATE);
@@ -275,10 +284,13 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Create event handlers
      *
+     * Should be run once only on instantiation
      *
      * @for StripViewModel
      * @method _setupHandlers
+     * @chainable
      */
     _setupHandlers() {
         this.$element.on('click', this.onClickHandler);
@@ -288,10 +300,11 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     *
+     * Set the layout with the correct data
      *
      * @for StripViewModel
      * @method _layout
+     * @chainable
      */
     _layout() {
         this.$callsignView.text(this._callsign);
@@ -312,15 +325,16 @@ export default class StripViewModel extends BaseModel {
      *
      * @for StripViewModel
      * @method _render
+     * @chainable
      */
     _redraw() {
         return this;
     }
 
-
     /**
      *
      *
+     * @for StripViewModel
      * @method reset
      */
     reset() {
@@ -331,7 +345,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     *
+     * Destroy the instance
      *
      * @for StripViewModel
      * @method destroy
@@ -340,7 +354,6 @@ export default class StripViewModel extends BaseModel {
     destroy() {
         return this;
     }
-
 
     /**
      *
@@ -381,7 +394,9 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Show the `$element`
      *
+     * Facade for jquery method `.show()`
      *
      * @for StripViewModel
      * @method show
@@ -392,7 +407,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Fascade method for jquery `.hide()`
+     * Fascade for jquery method `.hide()`
      *
      * @for AircraftStripView
      * @method hide
@@ -431,7 +446,10 @@ export default class StripViewModel extends BaseModel {
     };
 
     /**
+     * Encapsulation of boolean logic used to determine if the view needs to be updated
      *
+     * This method provides an implementation an 'early exit', so if the view doesn't
+     * need to be updated it can be skipped.
      *
      * @for StripViewModel
      * @method shouldUpdate
@@ -444,11 +462,13 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Return a classname based on whether an aircraft is a `departure` or an `arrival`
+     *
      * @for AircraftStripView
-     * @method _findClassnameForFlightCategory
+     * @method _buildClassnameForFlightCategory
      * @return {string}
      */
-    _findClassnameForFlightCategory(aircraftModel) {
+    _buildClassnameForFlightCategory(aircraftModel) {
         let className = SELECTORS.CLASSNAMES.ARRIVAL;
 
         if (aircraftModel.isDeparture()) {
@@ -458,6 +478,7 @@ export default class StripViewModel extends BaseModel {
         return className;
     }
 
+    // FIXME: remove this method before merge. these values should come from `AircraftModel.getViewModel()`
     /**
      *
      *

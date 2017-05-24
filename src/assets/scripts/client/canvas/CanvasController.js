@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
-import EventBus from '../lib/EventBus'
+import EventBus from '../lib/EventBus';
 import {
     degreesToRadians,
     km,

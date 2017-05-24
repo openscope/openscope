@@ -3,7 +3,7 @@ import _without from 'lodash';
 import BaseCollection from '../../base/BaseCollection';
 
 /**
- *
+ * Collection used to manage `StripViewModel` objects
  *
  * @class StripViewCollection
  * @extends BaseCollection
@@ -16,14 +16,27 @@ export default class StripViewCollection extends BaseCollection {
     constructor() {
         super();
 
-        // this._items
-        // this.length
+        /**
+         * Inherited from `BaseCollection`
+         *
+         * @property _items
+         * @type {array<any>}
+         * @default []
+         * @private
+         */
+
+        /**
+         * Inherited from `BaseCollection`
+         *
+         * @property length
+         * @type {number}
+         */
 
         return this._init();
     }
 
     /**
-     *
+     * Initialize the instance
      *
      * @for StripViewCollection
      * @method _init
@@ -33,7 +46,7 @@ export default class StripViewCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Reset the instance
      *
      * @for StripViewCollection
      * @method reset
@@ -43,7 +56,7 @@ export default class StripViewCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Add a `StripViewModel` instance to the collection
      *
      * @for StripViewCollection
      * @method addItem
@@ -53,7 +66,7 @@ export default class StripViewCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Remove a `StripViewModel` instance from the collection
      *
      * @for StripViewCollection
      * @method removeItem
@@ -63,14 +76,14 @@ export default class StripViewCollection extends BaseCollection {
     }
 
     /**
-     *
+     * Find a `StripViewModel` in the collection by an `aircraftid`
      *
      * @for StripViewCollection
-     * @method findByAircraftId
+     * @method findStripByAircraftId
      * @param aircraftId {number}
-     * @return {StripViewModel}
+     * @return {StripViewModel|undefined}
      */
-    findByAircraftId(aircraftId) {
+    findStripByAircraftId(aircraftId) {
         return _find(this._items, { aircraftId: aircraftId });
     }
 }
