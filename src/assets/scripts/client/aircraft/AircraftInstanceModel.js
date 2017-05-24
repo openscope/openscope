@@ -228,22 +228,6 @@ export default class AircraftInstanceModel {
         return this.positionModel.relativePosition;
     }
 
-
-    get viewModel() {
-        return {
-            id: this.id,
-            callsign: this.callsign,
-            altitude: this.altitude,
-            heading: this.heading,
-            speed: this.speed,
-            isDeparture: this.isDeparture(),
-            isArrival: this.isArrival(),
-            model: this.model,
-            fms: this.fms,
-            mcp: this.mcp
-        };
-    }
-
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
     // method that will check collisions
     /**
@@ -321,6 +305,33 @@ export default class AircraftInstanceModel {
         if (data.nextFix) {
             this.fms.skipToWaypoint(data.nextFix);
         }
+    }
+
+    /**
+     *
+     * @for AircraftModel
+     * @method getViewModel
+     * @return {object<string, string>}
+     */
+    getViewModel() {
+        let altitude = this.mcp.altitude;
+
+        if (altitude === -1) {
+            altitude = '';
+        }
+
+        return {
+            id: this.id,
+            // heading: this.heading,
+            // speed: this.speed,
+            // isDeparture: this.isDeparture(),
+            // isArrival: this.isArrival(),
+
+            callsign: this.callsign,
+            transponderCode: this.transponderCode,
+            icaoWithWeightClass: this.model.icaoWithWeightClass,
+            flightPlan: this.fms.flightPlanRoute.toUpperCase()
+        };
     }
 
     /**

@@ -200,8 +200,13 @@ export default class StripViewModel extends BaseModel {
          */
         this.$altitudeView = null;
 
+
         this.$arrivalAirportView = null;
+
+
         this.$departureAirportView = null;
+
+
         this.$alternateAirportView = null;
 
         /**
@@ -223,20 +228,25 @@ export default class StripViewModel extends BaseModel {
     /**
      *
      *
+     * @for StripViewModel
      * @method _init
      * @param aircraftModel {object}
      */
     _init(aircraftModel) {
-        // FIXME: move this to `AircraftModel.getViewModel()`
+        const {
+            // id,
+            callsign,
+            icaoWithWeightClass,
+            transponderCode,
+            altitude,
+            flightPlan
+        } = aircraftModel.getViewModel();
 
-        this._callsign = aircraftModel.callsign;
-        this._transponder = aircraftModel.transponderCode;
-        this._aircraftType = aircraftModel.model.icaoWithWeightClass;
-        // // TODO: make this not a ternary
-        this._altitude = aircraftModel.mcp.altitude !== -1
-            ? aircraftModel.mcp.altitude
-            : 0;
-        this._flightPlan = aircraftModel.fms.flightPlanRoute.toUpperCase();
+        this._callsign = callsign;
+        this._transponder = transponderCode;
+        this._aircraftType = icaoWithWeightClass;
+        this._altitude = altitude;
+        this._flightPlan = flightPlan;
         this._categoryClassName = this._findClassnameForFlightCategory(aircraftModel);
 
         this._setArrivalDepartureAirportIds(aircraftModel);
