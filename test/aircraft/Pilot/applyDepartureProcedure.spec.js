@@ -12,6 +12,7 @@ const runwayModelMock = {
     name: '19L'
 };
 const sidIdMock = 'COWBY6';
+const suffixSidIdMock = 'COWBY61A';
 const airportIcaoMock = 'KLAS';
 
 ava('.applyDepartureProcedure() returns an error when passed an invalid sidId', (t) => {
@@ -20,6 +21,7 @@ ava('.applyDepartureProcedure() returns an error when passed an invalid sidId', 
     const result = pilot.applyDepartureProcedure('~!@#$%', runwayModelMock, airportIcaoMock);
 
     t.true(_isEqual(result, expectedResult));
+    t.false(pilot.hasDepartureClearance);
 });
 
 ava('.applyDepartureProcedure() returns an error when passed an invalid runway', (t) => {
@@ -28,6 +30,7 @@ ava('.applyDepartureProcedure() returns an error when passed an invalid runway',
     const result = pilot.applyDepartureProcedure(sidIdMock, null, airportIcaoMock);
 
     t.true(_isEqual(result, expectedResult));
+    t.false(pilot.hasDepartureClearance);
 });
 
 ava('.applyDepartureProcedure() returns an error when passed a runway incompatable for the route', (t) => {
@@ -39,6 +42,7 @@ ava('.applyDepartureProcedure() returns an error when passed a runway incompatab
     const result = pilot.applyDepartureProcedure(sidIdMock, invalidRunwayModelMock, airportIcaoMock);
 
     t.true(_isEqual(result, expectedResult));
+    t.false(pilot.hasDepartureClearance);
 });
 
 ava('.applyDepartureProcedure() should set mcp altitude and speed modes to `VNAV`', (t) => {
