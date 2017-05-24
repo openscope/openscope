@@ -380,7 +380,7 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R02.50DME", "HK451"],
+            "body": ["^_RWY22R02.50DME", "HK451"],
             "exitPoints": {
                  "ASTIV": [["ASTIV", "S250-"]]
             },
@@ -419,7 +419,7 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R02.50DME", "HK461", ["HK427", "S250-"]],
+            "body": ["^_RWY22R02.50DME", "HK461", ["HK427", "S250-"]],
             "exitPoints": {
                  "ENUTO": ["ENUTO"]
             },
@@ -549,7 +549,7 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R02.50DME", "HK451", ["ASTIV", "S250-"]],
+            "body": ["^_RWY22R02.50DME", "HK451", ["ASTIV", "S250-"]],
             "exitPoints": {
                  "RILBO": ["RILBO"]
             },
@@ -601,7 +601,7 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R02.50DME", "HK428"],
+            "body": ["^_RWY22R02.50DME", "HK428"],
             "exitPoints": {
                  "UREDA": [["UREDA", "S250-"]]
             },
@@ -614,7 +614,7 @@
             "rwy": {
                  "22R": []
             },
-            "body": ["_RWY22R02.50DME", "HK461"],
+            "body": ["^_RWY22R02.50DME", "HK461"],
             "exitPoints": {
                  "VAGIP": [["VAGIP", "S250-"]]
             },
