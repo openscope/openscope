@@ -1731,7 +1731,9 @@ k
 
         // Get the selected aircraft.
         const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.callsign.toUpperCase() === callsign || p.callsign.toUpperCase() === (p.airlineId.toUpperCase()) + callsign;
+            const aircraftCallsign = p.callsign.toUpperCase();
+            const callsignWithAirlineId = (p.airlineId.toUpperCase()) + callsign;
+            return p.isVisible() && aircraftCallsign === callsign || aircraftCallsign === callsignWithAirlineId;
         })[0];
 
         if (!aircraft) {
