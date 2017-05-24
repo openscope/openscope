@@ -91,7 +91,7 @@ export default class InputController {
      * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
      *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander, uiController, onSelectAircraftStrip) {
+    constructor($element, aircraftCommander, uiController, aircraftController) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
@@ -100,10 +100,11 @@ export default class InputController {
 
         this._aircraftCommander = aircraftCommander;
         this._uiController = uiController;
-        this._onSelectAircraftStrip = onSelectAircraftStrip;
+        this._aircraftController = aircraftController;
 
         this._eventBus = EventBus;
 
+        prop.input = input;
         this.input = input;
         this.input.command = '';
         this.input.callsign = '';
@@ -216,19 +217,19 @@ export default class InputController {
      * @method input_init_pre
      */
     input_init_pre() {
-        // TODO: these prop properties can be removed except for `prop.input`
-        prop.input = input;
-        prop.input.command = '';
-        prop.input.callsign = '';
-        prop.input.data = '';
-        prop.input.history = [];
-        prop.input.history_item = null;
-        prop.input.click = [0, 0];
-        prop.input.positions = '';
-        prop.input.tab_compl = {};
-        prop.input.mouseDelta = [0, 0];
-        prop.input.mouseDown = [0, 0];
-        prop.input.isMouseDown = false;
+        // TODO: these prop properties can be removed except for `this.input`
+        this.input = input;
+        this.input.command = '';
+        this.input.callsign = '';
+        this.input.data = '';
+        this.input.history = [];
+        this.input.history_item = null;
+        this.input.click = [0, 0];
+        this.input.positions = '';
+        this.input.tab_compl = {};
+        this.input.mouseDelta = [0, 0];
+        this.input.mouseDown = [0, 0];
+        this.input.isMouseDown = false;
     }
 
     /**
@@ -250,16 +251,16 @@ export default class InputController {
      * @param event {jquery Event}
      */
     onMouseMoveHandler(event) {
-        if (!prop.input.isMouseDown) {
+        if (!this.input.isMouseDown) {
             return this;
         }
 
-        prop.input.mouseDelta = [
-            event.pageX - prop.input.mouseDown[0],
-            event.pageY - prop.input.mouseDown[1]
+        this.input.mouseDelta = [
+            event.pageX - this.input.mouseDown[0],
+            event.pageY - this.input.mouseDown[1]
         ];
-        prop.canvas.panX = prop.input.mouseDelta[0];
-        prop.canvas.panY = prop.input.mouseDelta[1];
+        prop.canvas.panX = this.input.mouseDelta[0];
+        prop.canvas.panY = this.input.mouseDelta[1];
         prop.canvas.dirty = true;
     }
 
@@ -269,7 +270,7 @@ export default class InputController {
      * @param event {jquery Event}
      */
     onMouseUpHandler(event) {
-        prop.input.isMouseDown = false;
+        this.input.isMouseDown = false;
     }
 
     /**
@@ -284,11 +285,11 @@ export default class InputController {
             this._uiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning
-            prop.input.mouseDown = [
+            this.input.mouseDown = [
                 event.pageX - prop.canvas.panX,
                 event.pageY - prop.canvas.panY
             ];
-            prop.input.isMouseDown = true;
+            this.input.isMouseDown = true;
 
             // Aircraft label selection
             let position = [event.pageX, -event.pageY];
@@ -317,7 +318,7 @@ export default class InputController {
 
             position[0] = parseFloat(position[0].toFixed(2));
             position[1] = parseFloat(position[1].toFixed(2));
-            prop.input.positions += `[${position.join(',')}]`;
+            this.input.positions += `[${position.join(',')}]`;
 
             return false;
         }
@@ -377,38 +378,31 @@ export default class InputController {
      * @method input_parse
      */
     input_parse() {
-        const $strip = this.$element.find(SELECTORS.DOM_SELECTORS.STRIP);
-        $strip.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.input.callsign = '';
+        this.input.data = '';
 
-        prop.input.callsign = '';
-        prop.input.data = '';
-
-        if (prop.input.command.length === 0) {
+        if (this.input.command.length === 0) {
             return;
         }
 
         // TODO: move to master REGEX constant
-        let match = /^\s*(\w+)/.exec(prop.input.command);
+        const match = /^\s*(\w+)/.exec(this.input.command);
 
         if (!match) {
             return;
         }
 
-        prop.input.callsign = match[1];
-        let number = 0;
-        // TODO: this is a very mutable property. perhaps it should be something else?
-        match = null;
+        this.input.callsign = match[1];
         prop.canvas.dirty = true;
 
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            const aircraft = prop.aircraft.list[i];
+        // TODO: this looks like it should happen in the `AircraftController`
+        for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
+            const aircraft = this._aircraftController.aircraft.list[i];
 
-            if (aircraft.matchCallsign(prop.input.callsign)) {
-                number += 1;
-                match = aircraft;
+            if (aircraft.matchCallsign(this.input.callsign)) {
+                this._aircraftController.onSelectAircraftStrip(aircraft);
 
-                // FIXME: this should be moved to the EventBus
-                this._onSelectAircraftStrip(aircraft);
+                break;
             }
         }
 
@@ -433,7 +427,7 @@ export default class InputController {
     onCommandInputChangeHandler() {
         this.tab_completion_reset();
 
-        prop.input.command = this.$commandInput.val();
+        this.input.command = this.$commandInput.val();
 
         this.input_parse();
     }
@@ -475,15 +469,15 @@ export default class InputController {
                 this.input_parse();
 
                 if (this.input_run()) {
-                    prop.input.history.unshift(prop.input.callsign);
+                    this.input.history.unshift(this.input.callsign);
                     this.$commandInput.val('');
-                    prop.input.command = '';
+                    this.input.command = '';
 
                     this.tab_completion_reset();
                     this.input_parse();
                 }
 
-                prop.input.history_item = null;
+                this.input.history_item = null;
 
                 break;
             case KEY_CODES.PAGE_UP:
@@ -577,7 +571,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.TAB:
-                if (!prop.input.tab_compl.matches) {
+                if (!this.input.tab_compl.matches) {
                     this.tab_completion_match();
                 }
 
@@ -609,14 +603,14 @@ export default class InputController {
      * @param opt
      */
     tab_completion_cycle(opt) {
-        const matches = prop.input.tab_compl.matches;
+        const matches = this.input.tab_compl.matches;
 
         if (!matches || matches.length === 0) {
             return;
         }
 
         // TODO: this block needs some work. this initial assignment looks to be overwritten every time.
-        let i = prop.input.tab_compl.cycle_item;
+        let i = this.input.tab_compl.cycle_item;
         if (opt.backwards) {
             i = (i <= 0) ? matches.length - 1 : i - 1;
         } else {
@@ -625,8 +619,8 @@ export default class InputController {
 
         this.$commandInput.val(`${matches[i]} `);
 
-        prop.input.command = matches[i];
-        prop.input.tab_compl.cycle_item = i;
+        this.input.command = matches[i];
+        this.input.tab_compl.cycle_item = i;
 
         this.input_parse();
     }
@@ -638,11 +632,11 @@ export default class InputController {
     tab_completion_match() {
         let matches;
         const val = this.$commandInput.val();
-        let aircrafts = prop.aircraft.list;
+        let aircrafts = this._aircraftController.aircraft.list;
 
-        if (prop.input.callsign) {
+        if (this.input.callsign) {
             aircrafts = aircrafts.filter((a) => {
-                return a.matchCallsign(prop.input.callsign);
+                return a.matchCallsign(this.input.callsign);
             });
         }
 
@@ -650,20 +644,20 @@ export default class InputController {
             return aircraft.callsign;
         });
 
-        if (aircrafts.length === 1 && (prop.input.data || val[val.length - 1] === ' ')) {
+        if (aircrafts.length === 1 && (this.input.data || val[val.length - 1] === ' ')) {
             // TODO: update inline functions
             matches = aircrafts[0].COMMANDS.filter((c) => {
-                return c.toLowerCase().indexOf(prop.input.data.toLowerCase()) === 0;
+                return c.toLowerCase().indexOf(this.input.data.toLowerCase()) === 0;
             })
             .map((c) => {
-                return val.substring(0, prop.input.callsign.length + 1) + c;
+                return val.substring(0, this.input.callsign.length + 1) + c;
             });
         }
 
         this.tab_completion_reset();
 
-        prop.input.tab_compl.matches = matches;
-        prop.input.tab_compl.cycle_item = -1;
+        this.input.tab_compl.matches = matches;
+        this.input.tab_compl.cycle_item = -1;
     }
 
     /**
@@ -671,7 +665,7 @@ export default class InputController {
      * @method tab_completion_reset
      */
     tab_completion_reset() {
-        prop.input.tab_compl = {};
+        this.input.tab_compl = {};
     }
 
     /**
@@ -679,7 +673,7 @@ export default class InputController {
      * @method input_history_clamp
      */
     input_history_clamp() {
-        prop.input.history_item = clamp(0, prop.input.history_item, prop.input.history.length - 1);
+        this.input.history_item = clamp(0, this.input.history_item, this.input.history.length - 1);
     }
 
     /**
@@ -687,19 +681,19 @@ export default class InputController {
      * @method input_history_prev
      */
     input_history_prev() {
-        if (prop.input.history.length === 0) {
+        if (this.input.history.length === 0) {
             return;
         }
 
-        if (prop.input.history_item == null) {
-            prop.input.history.unshift(prop.input.command);
-            prop.input.history_item = 0;
+        if (this.input.history_item == null) {
+            this.input.history.unshift(this.input.command);
+            this.input.history_item = 0;
         }
 
-        prop.input.history_item += 1;
+        this.input.history_item += 1;
         this.input_history_clamp();
 
-        const command = `${prop.input.history[prop.input.history_item]} `;
+        const command = `${this.input.history[this.input.history_item]} `;
         this.$commandInput.val(command.toUpperCase());
 
         this.onCommandInputChangeHandler();
@@ -710,26 +704,26 @@ export default class InputController {
      * @method input_history_next
      */
     input_history_next() {
-        if (prop.input.history.length === 0 || !prop.input.history_item) {
+        if (this.input.history.length === 0 || !this.input.history_item) {
             return;
         }
 
-        prop.input.history_item -= 1;
+        this.input.history_item -= 1;
 
-        if (prop.input.history_item <= 0) {
-            this.$commandInput.val(prop.input.history[0]);
+        if (this.input.history_item <= 0) {
+            this.$commandInput.val(this.input.history[0]);
 
             this.onCommandInputChangeHandler();
 
-            prop.input.history.splice(0, 1);
-            prop.input.history_item = null;
+            this.input.history.splice(0, 1);
+            this.input.history_item = null;
 
             return;
         }
 
         this.input_history_clamp();
 
-        const command = `${prop.input.history[prop.input.history_item]} `;
+        const command = `${this.input.history[this.input.history_item]} `;
 
         this.$commandInput.val(command.toUpperCase());
         this.onCommandInputChangeHandler();
@@ -754,7 +748,7 @@ export default class InputController {
     _parseUserCommand() {
         let result;
         // this could use $commandInput.val() as an alternative
-        const userCommand = prop.input.command.trim().toLowerCase();
+        const userCommand = this.input.command.trim().toLowerCase();
 
         // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
@@ -806,7 +800,7 @@ export default class InputController {
                 // TODO: does this function exist anywhere?
                 // aircraft_toggle_auto();
                 //
-                // if (prop.aircraft.auto.enabled) {
+                // if (this._aircraftController.aircraft.auto.enabled) {
                 //     this._uiController.ui_log('automatic controller ENGAGED');
                 // } else {
                 //     this._uiController.ui_log('automatic controller OFF');
@@ -866,8 +860,8 @@ export default class InputController {
         let matches = 0;
         let match = -1;
 
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            const aircraft = prop.aircraft.list[i];
+        for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
+            const aircraft = this._aircraftController.aircraft.list[i];
 
             if (aircraft.matchCallsign(commandParser.callsign)) {
                 matches += 1;
@@ -887,7 +881,7 @@ export default class InputController {
             return true;
         }
 
-        const aircraft = prop.aircraft.list[match];
+        const aircraft = this._aircraftController.aircraft.list[match];
 
         return this._aircraftCommander.runCommands(aircraft, commandParser.args);
     }

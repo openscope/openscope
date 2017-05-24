@@ -200,7 +200,7 @@ export default class App {
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController.onSelectAircraftStrip);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
