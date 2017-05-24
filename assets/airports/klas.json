@@ -179,7 +179,7 @@
     "sids": {
         "BOACH6": {
             "icao": "BOACH6",
-            "name": "Boach Six",
+            "name": "Boach Seven",
             "rwy": {
                 "01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
                 "01R": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
@@ -258,7 +258,7 @@
         },
         "TRALR6": {
             "icao": "TRALR6",
-            "name": "Trailer Six",
+            "name": "Trailer Seven",
             "rwy": {
                 "01L": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
