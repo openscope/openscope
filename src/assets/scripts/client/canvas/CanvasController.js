@@ -1733,7 +1733,7 @@ k
         const aircraft = prop.aircraft.list.filter((p) => {
             const aircraftCallsign = p.callsign.toUpperCase();
             const callsignWithAirlineId = (p.airlineId.toUpperCase()) + callsign;
-            return p.isVisible() && aircraftCallsign === callsign || aircraftCallsign === callsignWithAirlineId;
+            return p.isVisible() && aircraftCallsign === callsign || p.isVisible() && aircraftCallsign === callsignWithAirlineId;
         })[0];
 
         if (!aircraft) {
