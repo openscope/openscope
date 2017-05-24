@@ -321,7 +321,7 @@
             },
             "body": [["ELBAL", "A150+"], "BETZO"],
             "exitPoints": {
-                "DODEN": ["DODEN", "A250+"]
+                "DODEN": [["DODEN", "A250+"]]
             },
             "draw": [
                 ["DL050", "DL058", "BAM", "ELBAL", "BETZO", "DODEN*"],
@@ -384,7 +384,7 @@
                 "LMA": ["LMA"]
             },
             "draw": [
-                ["DL050", "DL051", "052", "LMA*"],
+                ["DL050", "DL051", "DL052", "LMA*"],
                 ["DL236", "LMA"],
                 ["DL237", "LMA"]
             ]
@@ -518,9 +518,7 @@
             "entryPoints": {
                 "BIKMU": ["BIKMU"]
             },
-            "body": [
-                [""]
-            ],
+            "body": [],
             "rwy": {
                 "05L": ["RONAD"],
                 "23R": ["BOT"]
@@ -537,9 +535,7 @@
             "entryPoints": {
                 "DOMUX": ["DOMUX"]
             },
-            "body": [
-                []
-            ],
+            "body": [],
             "rwy": {
                 "05L": ["DOLAV", "LEBTI"],
                 "23R": ["BAM"]
@@ -556,9 +552,7 @@
             "entryPoints": {
                 "LMA": ["LMA"]
             },
-            "body": [
-                [""]
-            ],
+            "body": [],
             "rwy": {
                 "05L": ["IBIKO", "GAPNU", "RONAD"],
                 "23R": ["BOT"]
@@ -575,9 +569,7 @@
             "entryPoints": {
                 "TEBRO": ["TEBRO"]
             },
-            "body": [
-                [""]
-            ],
+            "body": [],
             "rwy": {
                 "05L": ["VALSU", "GAPNU", "RONAD"],
                 "23R": ["AGEDA", "XAMOD", "BOT"]
@@ -594,9 +586,7 @@
             "entryPoints": {
                 "XAMOD": ["XAMOD"]
             },
-            "body": [
-                [""]
-            ],
+            "body": [],
             "rwy": {
                 "05L": ["BOMBA", "GAPNU", "RONAD"],
                 "23R": ["BOT"]
