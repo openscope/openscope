@@ -130,26 +130,6 @@ export default class StripViewController {
     }
 
     /**
-     * Add `StripViewModel` to the `$stripViewList`
-     *
-     * @for StripViewController
-     * @method _addViewToStripList
-     * @param stripViewModel {StripViewModel}
-     * @private
-     */
-    _addViewToStripList(stripViewModel) {
-        if (!(stripViewModel instanceof StripViewModel)) {
-            throw new TypeError(`Expected an instance of StripViewModel but reveiced ${typeof stripViewModel}`);
-        }
-
-        const scrollPosition = this.$stripViewList.scrollTop();
-
-        this.$stripViewList.prepend(stripViewModel.$element);
-        // shift scroll down one strip's height
-        this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
-    }
-
-    /**
      * Find a `StripViewModel` and attempt to add an active state
      *
      * @for StripViewController
@@ -175,7 +155,34 @@ export default class StripViewController {
      * @param aircraftModel {AircraftInstanceModel}
      */
     removeStripView(aircraftModel) {
-        console.log('removeStripView', aircraftModel.id, aircraftModel.callsign);
+        const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        if (!stripViewModel) {
+            throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
+        }
+
+        stripViewModel.destroy();
+        this._collection.removeItem(stripViewModel);
+    }
+
+    /**
+     * Add `StripViewModel` to the `$stripViewList`
+     *
+     * @for StripViewController
+     * @method _addViewToStripList
+     * @param stripViewModel {StripViewModel}
+     * @private
+     */
+    _addViewToStripList(stripViewModel) {
+        if (!(stripViewModel instanceof StripViewModel)) {
+            throw new TypeError(`Expected an instance of StripViewModel but reveiced ${typeof stripViewModel}`);
+        }
+
+        const scrollPosition = this.$stripViewList.scrollTop();
+
+        this.$stripViewList.prepend(stripViewModel.$element);
+        // shift scroll down one strip's height
+        this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
 
     /**

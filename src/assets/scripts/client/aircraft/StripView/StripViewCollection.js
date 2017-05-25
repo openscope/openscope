@@ -1,5 +1,5 @@
 import _find from 'lodash/find';
-import _without from 'lodash';
+import _without from 'lodash/without';
 import BaseCollection from '../../base/BaseCollection';
 
 /**

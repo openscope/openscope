@@ -51,11 +51,10 @@ export default class StripViewModel extends BaseModel {
         super('stripViewModel');
 
         /**
-         * @property _id
+         * @property id
          * @type {string}
-         * @private
          */
-        this._id = _uniqueId('aircraftStripView-');
+        this.id = _uniqueId('aircraftStripView-');
 
         /**
          * Internal reference to `EventBus` class
@@ -335,9 +334,9 @@ export default class StripViewModel extends BaseModel {
      *
      *
      * @for StripViewModel
-     * @method reset
+     * @method disable
      */
-    reset() {
+    disable() {
         this.$element.off('click', this.onClickHandler);
         this.$element.off('dblclick', this.onDoubleClickHandler);
 
@@ -352,6 +351,32 @@ export default class StripViewModel extends BaseModel {
      * @chainable
      */
     destroy() {
+        this.disable();
+
+        this.$element.remove();
+
+
+        this.id = '';
+        this._eventBus = null;
+        this.$element = null;
+        this.aircraftId = '';
+        this._callsign = '';
+        this._aircraftType = '';
+        this._transponder = 1200;
+        this._altitude = -1;
+        this._arrivalAirport = '';
+        this._departureAirport = '';
+        this._alternateAirport = '';
+        this._flightPlan = '';
+        this.$callsignView = null;
+        this.$aircraftTypeView = null;
+        this.$transponderView = null;
+        this.$altitudeView = null;
+        this.$arrivalAirportView = null;
+        this.$departureAirportView = null;
+        this.$alternateAirportView = null;
+        this.$flightPlanView = null;
+
         return this;
     }
 
