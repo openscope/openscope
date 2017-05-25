@@ -17,14 +17,14 @@ export const STRIP_VIEW_TEMPLATE = '<li class="stripViewItem">' +
 '           </tr>' +
 '           <tr class="stripView-table-tr">' +
 '               <td class="stripView-table-td js-stripView-aircraftModel" title="Aircraft Model"></td>' +
-'               <td class="stripView-table-td js-stripView-altitude" title="Assigned Altitude"></td>' +
+'               <td class="stripView-table-td mix-stripView-table_borderTop js-stripView-altitude" title="Assigned Altitude">-</td>' +
 '               <td class="stripView-table-td js-stripView-arrivalAirportId" title="Arrival Airport Identifier"></td>' +
 '           </tr>' +
 '           <tr class="stripView-table-tr">' +
 '               <td class="stripView-table-td js-stripView-aircraftId" title="Aircraft ID">' +
 '                   793 <span class="js-stripView-flightRules" title="IFR (I) or VFR (V)">I</span>' +
 '               </td>' +
-'               <td class="stripView-table-td js-stripView-flightPlanAltitude" title="Flight Plan Altitude"></td>' +
+'               <td class="stripView-table-td mix-stripView-table_borderTop js-stripView-flightPlanAltitude" title="Flight Plan Altitude">-</td>' +
 '               <td class="stripView-table-td js-stripView-alternateAirportId" title="Alternate Airport Identifier"></td>' +
 '               <td class="stripView-table-td js-stripView-remarks" title="Remarks"></td>' +
 '           </tr>' +

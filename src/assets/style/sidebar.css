@@ -103,6 +103,10 @@
     text-align: left;
 }
 
+.mix-stripView-table_borderTop {
+    border-top: 1px solid;
+}
+
 .stripView-trigger {
     height: 100%;
     width: 10px;
