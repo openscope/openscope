@@ -15,11 +15,11 @@
     "rr_center": ["N53d51m57.69",  "W001d39m38.77"],
     "has_terrain": false,
     "wind": {
-        "angle": 230,
-        "speed": 0
+        "angle": 270,
+        "speed": 10
     },
-    "arrivalRunway": "14",
-    "departureRunway": "14",
+    "arrivalRunway": "32",
+    "departureRunway": "32",
     "fixes": {
         "_EGNM165050": ["N53.43199862756", "W001.46564026324"],
         "_EGNM300050": ["N54.08842200093", "W002.32289085237"],
@@ -58,9 +58,7 @@
     "runways": [
         {
             "name": ["14", "32"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N53d52m17.15", "W001d40m08.68"], ["N53d51m37.31", "W001d39m07.44"]],
-            "length": 2.250,
             "ils": [true, true]
         }
     ],
@@ -114,27 +112,6 @@
         }
     },
     "spawnPatterns": [
-        {
-            "origin": "EGNM",
-            "destination": "",
-            "category": "departure",
-            "route": "EGNM.POL.POL",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["ein",  2],
-                ["baw",  1],
-                ["ezy",  1],
-                ["bee",  3],
-                ["exs", 51],
-                ["klc",  1],
-                ["mon", 13],
-                ["ryr", 22],
-                ["tom",  9]
-            ]
-        },
         {
             "origin": "EGNM",
             "destination": "",
