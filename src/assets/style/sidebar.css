@@ -45,7 +45,7 @@
     max-height: 100%;
     width: calc(100% - 10px);
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 10px;
     overflow-y: scroll;
     list-style-type: none;

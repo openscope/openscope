@@ -99,14 +99,18 @@ export default class AircraftInstanceModel {
         this.approachDistance = 0;      // Distance longitudinally from the threshold
         this.radial       = 0;          // Angle from airport center to aircraft
         this.distance     = 0;          //
-        this.destination  = null;       // Destination they're flying to
+
+        /**
+         *
+         *
+         */
+        this.destination = '';
         this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
         this.history      = [];         // Array of previous positions
         this.restricted   = { list: [] };
         this.notice       = false;      // Whether aircraft
         this.warning      = false;      //
         this.hit          = false;      // Whether aircraft has crashed
-        this.taxi_next    = false;      //
         this.taxi_start   = 0;          //
         this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
         this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
@@ -314,10 +318,15 @@ export default class AircraftInstanceModel {
      * @return {object<string, string>}
      */
     getViewModel() {
-        let altitude = this.mcp.altitude;
+        let assignedAltitude = this.mcp.altitude;
+        let flightPlanAltitude = this.fms.flightPlanAltitude;
 
-        if (altitude === -1) {
-            altitude = '';
+        if (assignedAltitude === -1) {
+            assignedAltitude = '-';
+        }
+
+        if (flightPlanAltitude === -1) {
+            flightPlanAltitude = '-';
         }
 
         return {
@@ -326,10 +335,11 @@ export default class AircraftInstanceModel {
             // speed: this.speed,
             // isDeparture: this.isDeparture(),
             // isArrival: this.isArrival(),
-
             callsign: this.callsign,
             transponderCode: this.transponderCode,
             icaoWithWeightClass: this.model.icaoWithWeightClass,
+            assignedAltitude,
+            flightPlanAltitude,
             flightPlan: this.fms.flightPlanRoute.toUpperCase()
         };
     }

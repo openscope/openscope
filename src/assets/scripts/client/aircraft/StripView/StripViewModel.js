@@ -16,7 +16,7 @@ const STRIP_VIEW_SELECTORS = {
     AIRCRAFT_MODEL: '.js-stripView-aircraftModel',
     AIRCRAFT_ID: '.js-stripView-aircraftId',
     TRANSPONDER: '.js-stripView-transponder',
-    ALTITUDE: '.js-stripView-altitude',
+    ASSIGNED_ALTITUDE: '.js-stripView-assignedAltitude',
     FLIGHT_PLAN_ALTITUDE: '.js-stripView-flightPlanAltitude',
     DEPARTURE_AIRPORT_ID: '.js-stripView-departureAirportId',
     ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
@@ -50,6 +50,7 @@ export default class StripViewModel extends BaseModel {
     constructor(aircraftModel) {
         super('stripViewModel');
 
+        // FIXME: this is dulpicating the inherited `#_id` from `BaseModel`
         /**
          * @property id
          * @type {string}
@@ -119,12 +120,18 @@ export default class StripViewModel extends BaseModel {
         /**
          *
          *
-         * @property _altitude
+         */
+        this._assignedAltitude = -1;
+
+        /**
+         *
+         *
+         * @property _flightPlanAltitude
          * @type
          * @default
          * @private
          */
-        this._altitude = -1;
+        this._flightPlanAltitude = -1;
 
         /**
          * Arrival airport icao
@@ -194,13 +201,19 @@ export default class StripViewModel extends BaseModel {
         this.$transponderView = null;
 
         /**
-         * HTML Element that holds the `#_altitude` value
          *
-         * @property $altitudeView
+         *
+         */
+        this.$assignedAltitudeView = null;
+
+        /**
+         * HTML Element that holds the `#_flightPlanAltitude` value
+         *
+         * @property $flightPlanAltitudeView
          * @type {JQuery Element}
          * @default null
          */
-        this.$altitudeView = null;
+        this.$flightPlanAltitudeView = null;
 
 
         this.$arrivalAirportView = null;
@@ -243,14 +256,16 @@ export default class StripViewModel extends BaseModel {
             callsign,
             icaoWithWeightClass,
             transponderCode,
-            altitude,
+            assignedAltitude,
+            flightPlanAltitude,
             flightPlan
         } = aircraftModel.getViewModel();
 
         this._callsign = callsign;
         this._transponder = transponderCode;
         this._aircraftType = icaoWithWeightClass;
-        this._altitude = altitude;
+        this._assignedAltitude = assignedAltitude;
+        this._flightPlanAltitude = flightPlanAltitude;
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
 
@@ -273,7 +288,8 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView = this.$element.find(STRIP_VIEW_SELECTORS.CALLSIGN);
         this.$transponderView = this.$element.find(STRIP_VIEW_SELECTORS.TRANSPONDER);
         this.$aircraftTypeView = this.$element.find(STRIP_VIEW_SELECTORS.AIRCRAFT_MODEL);
-        this.$altitudeView = this.$element.find(STRIP_VIEW_SELECTORS.ALTITUDE);
+        this.$assignedAltitudeView = this.$element.find(STRIP_VIEW_SELECTORS.ASSIGNED_ALTITUDE);
+        this.$flightPlanAltitudeView = this.$element.find(STRIP_VIEW_SELECTORS.FLIGHT_PLAN_ALTITUDE);
         this.$arrivalAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ARRIVAL_AIRPORT_ID);
         this.$departureAirportView = this.$element.find(STRIP_VIEW_SELECTORS.DEPARTURE_AIRPORT_ID);
         this.$alternateAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ALTERNATE_AIRPORT_ID);
@@ -309,7 +325,8 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView.text(this._callsign);
         this.$transponderView.text(this._transponder);
         this.$aircraftTypeView.text(this._aircraftType);
-        this.$altitudeView.text(this._altitude);
+        this.$assignedAltitudeView.text(this._assignedAltitude);
+        this.$flightPlanAltitudeView.text(this._flightPlanAltitude);
         this.$departureAirportView.text(this._departureAirport);
         this.$arrivalAirportView.text(this._arrivalAirport);
         this.$alternateAirportView.text(this._alternateAirport);
@@ -352,9 +369,7 @@ export default class StripViewModel extends BaseModel {
      */
     destroy() {
         this.disable();
-
         this.$element.remove();
-
 
         this.id = '';
         this._eventBus = null;
@@ -363,7 +378,8 @@ export default class StripViewModel extends BaseModel {
         this._callsign = '';
         this._aircraftType = '';
         this._transponder = 1200;
-        this._altitude = -1;
+        this._assignedAltitude = -1;
+        this._flightPlanAltitude = -1;
         this._arrivalAirport = '';
         this._departureAirport = '';
         this._alternateAirport = '';
@@ -371,7 +387,7 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView = null;
         this.$aircraftTypeView = null;
         this.$transponderView = null;
-        this.$altitudeView = null;
+        this.$flightPlanAltitudeView = null;
         this.$arrivalAirportView = null;
         this.$departureAirportView = null;
         this.$alternateAirportView = null;
@@ -394,7 +410,7 @@ export default class StripViewModel extends BaseModel {
         }
 
         this.hide();
-        // this._updateStripView(aircraftModel);
+        this._updateStripView(aircraftModel);
         this.show();
     }
 
@@ -470,21 +486,6 @@ export default class StripViewModel extends BaseModel {
         this._eventBus.trigger(EVENT.STRIP_DOUBLE_CLICK, this._callsign);
     };
 
-    /**
-     * Encapsulation of boolean logic used to determine if the view needs to be updated
-     *
-     * This method provides an implementation an 'early exit', so if the view doesn't
-     * need to be updated it can be skipped.
-     *
-     * @for StripViewModel
-     * @method shouldUpdate
-     * @param  aircraftModel {AircraftInstanceModel}
-     * @return {boolean}
-     * @private
-     */
-    _shouldUpdate(aircraftModel) {
-        return false;
-    }
 
     /**
      * Return a classname based on whether an aircraft is a `departure` or an `arrival`
@@ -501,6 +502,26 @@ export default class StripViewModel extends BaseModel {
         }
 
         return className;
+    }
+
+    /**
+     * Encapsulation of boolean logic used to determine if the view needs to be updated
+     *
+     * This method provides an implementation an 'early exit', so if the view doesn't
+     * need to be updated it can be skipped.
+     *
+     * @for StripViewModel
+     * @method shouldUpdate
+     * @param  aircraftModel {AircraftInstanceModel}
+     * @return {boolean}
+     * @private
+     */
+    _shouldUpdate(aircraftModel) {
+        const viewModel = aircraftModel.getViewModel();
+
+        return this._assignedAltitude !== viewModel.assignedAltitude ||
+            this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
+            this._flightPlan !== viewModel.flightPlan;
     }
 
     // FIXME: remove this method before merge. these values should come from `AircraftModel.getViewModel()`
@@ -520,5 +541,24 @@ export default class StripViewModel extends BaseModel {
         }
 
         this._arrivalAirport = 'KSFO';
+    }
+
+    /**
+     *
+     *
+     * @param {AircraftModel} aircraftModel
+     */
+    _updateStripView(aircraftModel) {
+        const {
+            assignedAltitude,
+            flightPlanAltitude,
+            flightPlan
+        } = aircraftModel.getViewModel();
+
+        this._assignedAltitude = assignedAltitude;
+        this._flightPlanAltitude = flightPlanAltitude;
+        this._flightPlan = flightPlan;
+
+        return this._layout();
     }
 }

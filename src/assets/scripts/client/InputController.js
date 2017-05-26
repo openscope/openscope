@@ -448,6 +448,8 @@ export default class InputController {
         this.$commandInput.focus();
 
         this.onCommandInputChangeHandler();
+
+        // TODO: trigger active class removal in StripView
     };
 
     /**

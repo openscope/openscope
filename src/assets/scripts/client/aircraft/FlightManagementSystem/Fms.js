@@ -155,8 +155,8 @@ export default class Fms {
          * Altitude expected for this flight. Will change as ATC amends it.
          *
          * @property flightPlanAltitude
-         * @type {Object}
-         * @default ''
+         * @type {number}
+         * @default -1
          */
         this.flightPlanAltitude = -1;
 
