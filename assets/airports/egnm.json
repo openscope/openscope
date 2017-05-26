@@ -165,7 +165,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 3,
             "airlines": [
                 ["ein",  2],
                 ["baw",  1],
@@ -186,7 +186,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["ein",  2],
                 ["exs", 51],
@@ -202,7 +202,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["bee",  3]
             ]
@@ -215,7 +215,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["ezy",  1],
                 ["exs", 51],
@@ -231,7 +231,7 @@
             "altitude": 8000,
             "speed": 250,
             "method": "random",
-            "rate": 4,
+            "rate": 2,
             "airlines": [
                 ["baw",  1],
                 ["bee",  3],
