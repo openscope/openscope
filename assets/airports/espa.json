@@ -133,11 +133,15 @@
 
     "sids": {
         "BESLA": {
-            "icao": "BESLA3C",
-            "name": "Besla Three Charlie",
+            "icao": "BESLA",
+            "name": "Besla",
+            "suffix": { "14":"3B", "32":"3C" },
             "rwy": {
-                "14": ["_32", "D130G", "D119I", "D101I", "D083I", "D065I", "D047I", "D029I", "D017I", "BESLA"],
-                "32": ["_14", "D292I", "D315K", "D330K", "D345K", "D352K", "BESLA"]
+                "14": ["_32", "D130G", "D119I", "D101I", "D083I", "D065I", "D047I", "D029I", "D017I"],
+                "32": ["_14", "D292I", "D315K", "D330K", "D345K", "D352K"]
+            },
+            "exitPoints": {
+                "BESLA": ["BESLA"]
             },
             "draw": [
                 ["_32", "D130G", "D119I", "D101I", "D083I", "D065I", "D047I", "D029I", "D017I", "BESLA"],
@@ -149,8 +153,11 @@
             "name": "Risem",
             "suffix": {"14":"4B", "32":"4C"},
             "rwy": {
-                "14": ["_32", "SLU03", "RISEM"],
-                "32": ["_14", "RISEM"]
+                "14": ["_32", "SLU03"],
+                "32": ["_14"]
+            },
+            "exitPoints": {
+                "RISEM": ["RISEM"]
             },
             "draw": [
                 ["_32", "SLU03", "RISEM"],
@@ -162,8 +169,11 @@
             "name": "Sonin",
             "suffix": {"14":"3P", "32":"3R"},
             "rwy": {
-                "14": ["_32", "SLU03", "SONIN"],
-                "32": ["_14", "OL", "SONIN"]
+                "14": ["_32", "SLU03"],
+                "32": ["_14", "OL"]
+            },
+            "exitPoints": {
+                "SONIN": ["SONIN"]
             },
             "draw": [
                 ["_32", "SLU03", "SONIN"],
@@ -175,8 +185,11 @@
             "name": "Verag",
             "suffix": {"14":"4B", "32":"4C"},
             "rwy": {
-                "14": ["_32", "SLU03", "VERAG"],
-                "32": ["_14", "VERAG"]
+                "14": ["_32", "SLU03"],
+                "32": ["_14"]
+            },
+            "exitPoints": {
+                "VERAG": ["VERAG"]
             },
             "draw": [
                 ["_32", "SLU03", "VERAG"],
