@@ -50,13 +50,6 @@ export default class StripViewModel extends BaseModel {
     constructor(aircraftModel) {
         super('stripViewModel');
 
-        // FIXME: this is dulpicating the inherited `#_id` from `BaseModel`
-        /**
-         * @property id
-         * @type {string}
-         */
-        this.id = _uniqueId('aircraftStripView-');
-
         /**
          * Internal reference to `EventBus` class
          *
@@ -201,8 +194,11 @@ export default class StripViewModel extends BaseModel {
         this.$transponderView = null;
 
         /**
+         * HTML Element that holds the `#_assignedAltitude` value
          *
-         *
+         * @property $assignedAltitudeView
+         * @type {JQuery Element}
+         * @default null
          */
         this.$assignedAltitudeView = null;
 
@@ -215,13 +211,31 @@ export default class StripViewModel extends BaseModel {
          */
         this.$flightPlanAltitudeView = null;
 
-
+        /**
+         * HTML Element that hold the `#_arrivalAirport` value
+         *
+         * @property $arrivalAirportView
+         * @type {JQuery Element}
+         * @default null
+         */
         this.$arrivalAirportView = null;
 
-
+        /**
+         * HTML Element that hold the `#_departureAirport` value
+         *
+         * @property $departureAirportView
+         * @type {JQuery Element}
+         * @default null
+         */
         this.$departureAirportView = null;
 
-
+        /**
+         * HTML Element that hold the `#_alternateAirport` value
+         *
+         * @property $alternateAirportView
+         * @type {JQuery Element}
+         * @default null
+         */
         this.$alternateAirportView = null;
 
         /**
@@ -252,11 +266,12 @@ export default class StripViewModel extends BaseModel {
      */
     _init(aircraftModel) {
         const {
-            // id,
             callsign,
             icaoWithWeightClass,
             transponderCode,
             assignedAltitude,
+            arrivalAirportId,
+            departureAirportId,
             flightPlanAltitude,
             flightPlan
         } = aircraftModel.getViewModel();
@@ -266,10 +281,10 @@ export default class StripViewModel extends BaseModel {
         this._aircraftType = icaoWithWeightClass;
         this._assignedAltitude = assignedAltitude;
         this._flightPlanAltitude = flightPlanAltitude;
+        this._arrivalAirport = arrivalAirportId;
+        this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
-
-        this._setArrivalDepartureAirportIds(aircraftModel);
 
         return this;
     }
@@ -348,7 +363,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     *
+     * Disable the instance ane tear down handlers
      *
      * @for StripViewModel
      * @method disable
@@ -399,6 +414,7 @@ export default class StripViewModel extends BaseModel {
     /**
      *
      *
+     * @for StripViewModel
      * @method update
      * @param aircraftModel {AircraftInstanceModel}
      */
@@ -521,42 +537,31 @@ export default class StripViewModel extends BaseModel {
 
         return this._assignedAltitude !== viewModel.assignedAltitude ||
             this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
+            this._arrivalAirport !== viewModel.arrivalAirportId ||
+            this._departureAirport !== viewModel.departureAirportId ||
             this._flightPlan !== viewModel.flightPlan;
     }
 
-    // FIXME: remove this method before merge. these values should come from `AircraftModel.getViewModel()`
     /**
-     *
      *
      * @for StripViewModel
-     * @method _setArrivalDepartureAirportIds
-     * @param aircraftModel {AircraftInstanceModel}
-     * @private
-     */
-    _setArrivalDepartureAirportIds(aircraftModel) {
-        if (aircraftModel.isDeparture()) {
-            this._departureAirport = 'KSFO';
-
-            return;
-        }
-
-        this._arrivalAirport = 'KSFO';
-    }
-
-    /**
-     *
-     *
+     * @method _updateStripView
      * @param {AircraftModel} aircraftModel
+     * @private
      */
     _updateStripView(aircraftModel) {
         const {
             assignedAltitude,
+            arrivalAirportId,
+            departureAirportId,
             flightPlanAltitude,
             flightPlan
         } = aircraftModel.getViewModel();
 
         this._assignedAltitude = assignedAltitude;
         this._flightPlanAltitude = flightPlanAltitude;
+        this._arrivalAirport = arrivalAirportId;
+        this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
 
         return this._layout();

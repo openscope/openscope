@@ -505,6 +505,7 @@ export default class AircraftController {
         return {
             fleet,
             altitude,
+            origin: spawnPatternModel.origin,
             destination: spawnPatternModel.destination,
             callsign: flightNumber,
             category: spawnPatternModel.category,

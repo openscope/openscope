@@ -101,10 +101,27 @@ export default class AircraftInstanceModel {
         this.distance     = 0;          //
 
         /**
+         * The origin ariport for an aircraft
          *
+         * This will only be populated for dpearture aircraft
          *
+         * @property origin
+         * @type {string}
+         * @default ''
+         */
+        this.origin = '';
+
+        /**
+         * The destination airpot of an aircraft
+         *
+         * This will only be populated for arrivals
+         *
+         * @property destination
+         * @type {string}
+         * @default ''
          */
         this.destination = '';
+
         this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
         this.history      = [];         // Array of previous positions
         this.restricted   = { list: [] };
@@ -276,7 +293,7 @@ export default class AircraftInstanceModel {
     }
 
     parse(data) {
-        // TODO: these _gets can likely be removed
+        // TODO: the `_get()` below are doing the same thing as a `_defaultTo()` would do
         this.positionModel = _get(data, 'positionModel', this.positionModel);
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
@@ -286,14 +303,16 @@ export default class AircraftInstanceModel {
         this.heading = _get(data, 'heading', this.heading);
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
+        this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
+
+        // TODO: this assumes and arrival spawns outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
         const airport = window.airportController.airport_get();
         const initialRunway = airport.getActiveRunwayForCategory(this.category);
-
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
@@ -312,6 +331,13 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Build an object that contains all the correct data, in the correct shape,
+     * so it can be injected into the view.
+     *
+     * This method should only be used by the `StripView` classes when instantiating
+     * or updating the aircraft progress strips.
+     *
+     * The data here should be considered read-only.
      *
      * @for AircraftModel
      * @method getViewModel
@@ -331,15 +357,13 @@ export default class AircraftInstanceModel {
 
         return {
             id: this.id,
-            // heading: this.heading,
-            // speed: this.speed,
-            // isDeparture: this.isDeparture(),
-            // isArrival: this.isArrival(),
             callsign: this.callsign,
             transponderCode: this.transponderCode,
             icaoWithWeightClass: this.model.icaoWithWeightClass,
             assignedAltitude,
             flightPlanAltitude,
+            arrivalAirportId: this.destination,
+            departureAirportId: this.origin,
             flightPlan: this.fms.flightPlanRoute.toUpperCase()
         };
     }
