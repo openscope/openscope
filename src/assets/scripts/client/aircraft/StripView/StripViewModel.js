@@ -343,6 +343,12 @@ export default class StripViewModel extends BaseModel {
     /**
      * Set the layout with the correct data
      *
+     * This method will be run on instantiation to set up the view for the first time
+     * and will also run on every subsequent re-render.
+     *
+     * We do not selectively render, if one property has changed
+     * (as determined by `_shouldUpdate()`) we re-draw everything in one shot.
+     *
      * @for StripViewModel
      * @method _layout
      * @chainable
@@ -424,7 +430,8 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     *
+     * Update the instance with new information or return
+     * early if nothing has changed
      *
      * @for StripViewModel
      * @method update
@@ -476,6 +483,8 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Hide the `$element`
+     *
      * Fascade for jquery method `.hide()`
      *
      * @for AircraftStripView
@@ -556,7 +565,9 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Update class properties with new values from the `AircraftModel`
      *
+     * This method should only be run after `_shouldUpdate()` returns true
      *
      * @for StripViewModel
      * @method _updateStripView

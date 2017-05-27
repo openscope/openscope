@@ -107,6 +107,10 @@ export default class StripViewController {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
+            // TODO: this should be looked at again
+            // an aircraft strip is created on instantiation, which works for departures where a strip
+            // is shown immediately. For arrivals, this does not work so well. We need to `$.detach() the
+            // strip and re-add it to the list so it is at the end of the list.
             if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
                 stripViewModel.$element.detach();
                 this._addViewToStripList(stripViewModel);

@@ -350,17 +350,19 @@ export default class AircraftController {
     }
 
     /**
+     * Update all the `StripViewModel` objects with up-to-date aircraft data
      *
+     * This is a **HOT** method and will run within the game loop
      *
+     * @for AircraftController
      * @method updateAircraftStrips
-     * @return
      */
     updateAircraftStrips() {
         this._stripViewController.update(this.aircraft.list);
     }
 
     /**
-     * Show a `stripView` as selected
+     * Show a `StripViewModel` as selected
      *
      * @for AircraftController
      * @method onSelectAircraftStrip
@@ -371,7 +373,9 @@ export default class AircraftController {
     };
 
     /**
+     *  Remove a `StripViewModel` associated with the `aircraftModel`
      *
+     * This will remove it from the DOM and properly destroy the model.
      *
      * @for AircraftController
      * @method removeStripView
