@@ -339,17 +339,18 @@ export default class AircraftController {
     }
 
     /**
-    *
-    *
-    * @for AircraftController
-    * @method initAircraftStripView
-    * @param  aircraftModel {AircraftInstanceModel}
-    */
+     *
+     *
+     * @for AircraftController
+     * @method initAircraftStripView
+     * @param  aircraftModel {AircraftInstanceModel}
+     */
     initAircraftStripView(aircraftModel) {
         this._stripViewController.createStripView(aircraftModel);
     }
 
     /**
+     *
      *
      * @method updateAircraftStrips
      * @return
@@ -370,6 +371,7 @@ export default class AircraftController {
     };
 
     /**
+     *
      *
      * @for AircraftController
      * @method removeStripView

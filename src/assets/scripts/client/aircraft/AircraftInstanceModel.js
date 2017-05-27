@@ -357,6 +357,7 @@ export default class AircraftInstanceModel {
 
         return {
             id: this.id,
+            insideCenter: this.inside_ctr,
             callsign: this.callsign,
             transponderCode: this.transponderCode,
             icaoWithWeightClass: this.model.icaoWithWeightClass,

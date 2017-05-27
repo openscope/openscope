@@ -81,6 +81,15 @@ export default class StripViewModel extends BaseModel {
         this.aircraftId = aircraftModel.id;
 
         /**
+         *
+         *
+         * @property insideCenter
+         * @type {boolean}
+         * @default false
+         */
+        this.insideCenter = false;
+
+        /**
          * Aircraft callsign
          *
          * @property _callsign
@@ -267,6 +276,7 @@ export default class StripViewModel extends BaseModel {
     _init(aircraftModel) {
         const {
             callsign,
+            insideCenter,
             icaoWithWeightClass,
             transponderCode,
             assignedAltitude,
@@ -277,6 +287,7 @@ export default class StripViewModel extends BaseModel {
         } = aircraftModel.getViewModel();
 
         this._callsign = callsign;
+        this.insideCenter = insideCenter;
         this._transponder = transponderCode;
         this._aircraftType = icaoWithWeightClass;
         this._assignedAltitude = assignedAltitude;
@@ -390,6 +401,7 @@ export default class StripViewModel extends BaseModel {
         this._eventBus = null;
         this.$element = null;
         this.aircraftId = '';
+        this.insideCenter = false;
         this._callsign = '';
         this._aircraftType = '';
         this._transponder = 1200;
@@ -535,7 +547,8 @@ export default class StripViewModel extends BaseModel {
     _shouldUpdate(aircraftModel) {
         const viewModel = aircraftModel.getViewModel();
 
-        return this._assignedAltitude !== viewModel.assignedAltitude ||
+        return this.insideCenter !== viewModel.insideCenter ||
+            this._assignedAltitude !== viewModel.assignedAltitude ||
             this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
             this._arrivalAirport !== viewModel.arrivalAirportId ||
             this._departureAirport !== viewModel.departureAirportId ||
@@ -544,6 +557,7 @@ export default class StripViewModel extends BaseModel {
 
     /**
      *
+     *
      * @for StripViewModel
      * @method _updateStripView
      * @param {AircraftModel} aircraftModel
@@ -551,6 +565,7 @@ export default class StripViewModel extends BaseModel {
      */
     _updateStripView(aircraftModel) {
         const {
+            insideCenter,
             assignedAltitude,
             arrivalAirportId,
             departureAirportId,
@@ -558,6 +573,7 @@ export default class StripViewModel extends BaseModel {
             flightPlan
         } = aircraftModel.getViewModel();
 
+        this.insideCenter = insideCenter;
         this._assignedAltitude = assignedAltitude;
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;

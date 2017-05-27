@@ -6,7 +6,8 @@
  * @type {string|HTMLElement}
  * @final
  */
-export const STRIP_VIEW_TEMPLATE = '<li class="stripViewItem">' +
+export const STRIP_VIEW_TEMPLATE = '' +
+'<li class="stripViewItem">' +
 '   <table class="stripViewItem-table">' +
 '       <tbody>' +
 '           <tr class="stripView-table-tr">' +

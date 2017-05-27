@@ -49,11 +49,13 @@
     left: 10px;
     overflow-y: scroll;
     list-style-type: none;
+    transform: scaleY(-1);
 }
 
 .stripViewItem {
     border: 1px solid #222;
     transition: ease-in-out margin 0.15s;
+    transform: scaleY(-1);
 }
 
 .active,

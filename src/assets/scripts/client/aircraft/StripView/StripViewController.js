@@ -107,6 +107,11 @@ export default class StripViewController {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
+            if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
+                stripViewModel.$element.detach();
+                this._addViewToStripList(stripViewModel);
+            }
+
             if (aircraftModel.inside_ctr) {
                 stripViewModel.update(aircraftModel);
             } else {
@@ -180,7 +185,7 @@ export default class StripViewController {
 
         const scrollPosition = this.$stripViewList.scrollTop();
 
-        this.$stripViewList.prepend(stripViewModel.$element);
+        this.$stripViewList.append(stripViewModel.$element);
         // shift scroll down one strip's height
         this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
@@ -193,6 +198,7 @@ export default class StripViewController {
      * @param event {JQueryEventObject}
      * @private
      */
+    // eslint-disable-next-line no-unused-vars
     _onStripListToggle = (event) => {
         this.$stripView.toggleClass('mix-stripView_isHidden');
     };
