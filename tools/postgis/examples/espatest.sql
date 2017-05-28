@@ -1,15 +1,15 @@
 -- Bearings are MAG, get the correction
 UPDATE openscope.config
   SET north_correction = 
-    (openscope.load_airport('/home/user/openscope-pg/examples/espa.json')->>'magnetic_north')::numeric;
+    (openscope.load_airport('/home/user/openscope/tools/examples/espa.json')->>'magnetic_north')::numeric;
 
 -- Read fixes & runway data
 WITH fixes AS (
   SELECT fix
-  FROM openscope.load_fixes('/home/user/openscope-pg/examples/espa.json') AS fix
+  FROM openscope.load_fixes('/home/user/openscope/tools/examples/espa.json') AS fix
 ), rwys AS (
   SELECT rwy
-  FROM openscope.load_runways('/home/user/openscope-pg/examples/espa.json') AS rwy
+  FROM openscope.load_runways('/home/user/openscope/tools/examples/espa.json') AS rwy
 
 ), arcs AS (
   SELECT *
