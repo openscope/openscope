@@ -99,7 +99,6 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
         const waypoint = waypointModelList[i];
         const previousWaypoint = waypointModelList[i - 1];
 
-        // TODO: Refactor to avoid continue statement
         if (waypoint.isVector || previousWaypoint.isVector) {
             continue;
         }
