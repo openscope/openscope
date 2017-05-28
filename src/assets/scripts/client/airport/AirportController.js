@@ -2,18 +2,12 @@ import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
 import Airport from './AirportModel';
 import EventBus from '../lib/EventBus';
+import { DEFAULT_AIRPORT_ICAO } from '../constants/airportConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const airport = {};
-
-/**
- * @property DEFAULT_AIRPORT_ICAO
- * @type {string}
- * @final
- */
-const DEFAULT_AIRPORT_ICAO = 'ksfo';
 
 /**
  * @class AirportController
