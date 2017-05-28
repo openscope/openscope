@@ -94,7 +94,7 @@ export default class ConvasController {
      * @method enable
      */
     enable() {
-        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterAircraftInView);
+        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
 
         return this;
     }
@@ -1125,15 +1125,12 @@ k
             }
 
             // set color, intensity, and style elements
-            let alpha = 0.9;
             let red = this.theme.DATA_BLOCK.OUT_OF_RANGE.ARRIVAL_BAR;
             let green = this.theme.DATA_BLOCK.OUT_OF_RANGE.BACKGROUND;
             let blue = this.theme.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
             let white = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
 
             if (aircraft.inside_ctr) {
-                // else if (almost_match) var alpha = 0.75;
-                alpha = 0.5;
                 red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
                 green = this.theme.DATA_BLOCK.SELECTED.BACKGROUND;
                 blue = this.theme.DATA_BLOCK.SELECTED.DEPARTURE_BAR;
@@ -1834,11 +1831,11 @@ k
      * the x,y of an aircrafts relativePosition
      *
      * @for CanvasController
-     * @method _onCenterAircraftInView
+     * @method _onCenterPointInView
      * @param x {number}    relativePosition.x
      * @param y {number}    relativePosition.y
      */
-    _onCenterAircraftInView = ({ x, y }) => {
+    _onCenterPointInView = ({ x, y }) => {
         this.canvas.panX = 0 - round(window.uiController.km_to_px(x));
         this.canvas.panY = round(window.uiController.km_to_px(y));
         this.dirty = true;

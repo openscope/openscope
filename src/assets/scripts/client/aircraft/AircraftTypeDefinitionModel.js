@@ -156,7 +156,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.speed = aircraftTypeDefinition.speed;
         this.capability = aircraftTypeDefinition.capability;
 
-        this.icaoWithWeightClass = this._buildIcaoWithWeightClass();
+        this.icaoWithWeightClass = this._buildTypeForStripView();
     }
 
     /**
@@ -183,22 +183,19 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * Build the string used for `#icaoWithWeightClass`
      *
      * @for AircraftTypeDefinitionModel
-     * @method _buildIcaoWithWeightClass
+     * @method _buildTypeForStripView
      * @return {string}
      * @private
      */
-    _buildIcaoWithWeightClass() {
+    _buildTypeForStripView() {
         const HEAVY_LETTER = 'H';
         const SUPER_LETTER = 'U';
-        let aircraftIcao = this.icao;
+        let aircraftIcao = `${this.icao}/L`;
 
         switch (this.weightclass) {
-            case HEAVY_LETTER:
-                aircraftIcao = `${HEAVY_LETTER}/${this.icao}`;
-
-                break;
             case SUPER_LETTER:
-                aircraftIcao = `${SUPER_LETTER}/${this.icao}`;
+            case HEAVY_LETTER:
+                aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
 
                 break;
             default:
