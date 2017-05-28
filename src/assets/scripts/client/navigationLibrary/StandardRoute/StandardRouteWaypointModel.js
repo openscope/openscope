@@ -276,6 +276,8 @@ export default class StandardRouteWaypointModel extends BaseModel {
         return this;
     }
 
+    // TODO: why do we need to clone?
+    // TODO ClonePoisitonFromFix -> clonePositionFromFix
     /**
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
