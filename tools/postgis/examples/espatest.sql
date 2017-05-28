@@ -54,6 +54,7 @@ UNION ALL
   FROM arcs
 
 UNION ALL
+-- Radials intersection
   SELECT openscope.radials_intersection(
        (SELECT fix FROM fixes WHERE (fix).name = 'SLU'), 335,
        (SELECT fix FROM fixes WHERE (fix).name = 'OL'), 3, true)
