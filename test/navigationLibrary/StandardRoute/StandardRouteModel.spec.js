@@ -15,10 +15,11 @@ import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
+    STAR_WITH_ONLY_VECTORS,
+    STAR_WITHOUT_RWY,
     SID_LIST_MOCK,
     SID_WITHOUT_BODY_MOCK,
-    SID_WITHOUT_EXIT_MOCK,
-    STAR_WITHOUT_RWY
+    SID_WITHOUT_EXIT_MOCK
 } from './_mocks/standardRouteMocks';
 
 const SID_MOCK = SID_LIST_MOCK.SHEAD9;
@@ -233,4 +234,24 @@ ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypo
     const result = model._findStandardWaypointModelsForRoute('BETHL', '');
 
     t.true(result.length === 9);
+});
+
+ava('._updateWaypointsWithPreviousWaypointData() calls calculateDistanceBetweenWaypoints() if none are vector waypoints', (t) => {
+    const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+    const spy = sinon.spy(model, 'calculateDistanceBetweenWaypoints');
+    const isPreSpawn = true;
+
+    model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
+
+    t.true(spy.called);
+});
+
+ava('._updateWaypointsWithPreviousWaypointData() does not call calculateDistanceBetweenWaypoints() if any are vector waypoints', (t) => {
+    const modelWithVectors = new StandardRouteModel(STAR_WITH_ONLY_VECTORS);
+    const spyForModelWithVectors = sinon.spy(modelWithVectors, 'calculateDistanceBetweenWaypoints');
+    const isPreSpawn = true;
+
+    modelWithVectors.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
+
+    t.true(spyForModelWithVectors.notCalled);
 });
