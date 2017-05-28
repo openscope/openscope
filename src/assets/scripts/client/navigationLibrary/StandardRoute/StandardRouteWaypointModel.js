@@ -5,6 +5,7 @@ import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
 import {
     FLY_OVER_WAYPOINT_PREFIX,
+    HOLD_WAYPOINT_PREFIX,
     VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import {
@@ -298,7 +299,18 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @private
      */
     clonePositionFromFix() {
-        const fixModel = FixCollection.findFixByName(this.name);
+        if (this.name[0] === VECTOR_WAYPOINT_PREFIX) {
+            return;
+        }
+
+        let name = this.name;
+
+        if (this.name[0] === HOLD_WAYPOINT_PREFIX
+            || this.name[0] === FLY_OVER_WAYPOINT_PREFIX) {
+            name = this.name.substr(1);
+        }
+
+        const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
             console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
