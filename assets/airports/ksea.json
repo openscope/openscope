@@ -350,7 +350,19 @@
                 "YKM": ["YKM"],
                 "YVR": ["YVR"]
             },
-            "draw": [[]]
+            "draw": [
+                ["ELN*"],
+                ["EPH*"],
+                ["GEG*"],
+                ["HUH*"],
+                ["MLP*"],
+                ["MWH*"],
+                ["PAE*"],
+                ["PSC*"],
+                ["YDC*"],
+                ["YKM*"],
+                ["YVR*"]
+            ]
         },
         "SEATL5": {
             "icao": "SEATL5",
@@ -381,7 +393,23 @@
                 "YVR": ["YVR"],
                 "YYJ": ["YYJ"]
             },
-            "draw": [[]]
+            "draw": [
+                ["AST*"],
+                ["BTG*"],
+                ["ELN*"],
+                ["EPH*"],
+                ["EUG*"],
+                ["HQM*"],
+                ["HUH*"],
+                ["OLM*"],
+                ["PAE*"],
+                ["TOU*"],
+                ["UBG*"],
+                ["YDC*"],
+                ["YKM*"],
+                ["YVR*"],
+                ["YYJ*"]
+            ]
         },
         "SUMMA9": {
             "icao": "SUMMA9",
