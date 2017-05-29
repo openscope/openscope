@@ -12,6 +12,7 @@
     - Removes circular reference in AirportModel.runway.airportModel [#58](https://github.com/openscope/openscope/issues/58)
 - Updates `SpawnPatternModel` to use the `AirportModel.arrivalRunway` property when gathering waypoint models needed to calculate initial aircraft heading [#469](https://github.com/openscope/openscope/issues/469)
 - Adds support for suffixes in SID and STAR procedures [#33](https://github.com/openscope/openscope/issues/33)
+- Adds game option to include/hide WIP airports in the airport list [#476](https://github.com/openscope/openscope/issues/476)
 
 
 
@@ -27,6 +28,7 @@
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
 - Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
+- Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 
 
 

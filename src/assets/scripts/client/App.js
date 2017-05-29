@@ -198,7 +198,7 @@ export default class App {
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.uiController = new UiController(this.$element);
+        this.uiController = new UiController(this.$element, this.gameController, this.airportController, this.canvasController);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
