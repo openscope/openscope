@@ -365,7 +365,7 @@ export default class AircraftInstanceModel {
             flightPlanAltitude,
             arrivalAirportId: this.destination,
             departureAirportId: this.origin,
-            flightPlan: this.fms.flightPlanRoute.toUpperCase()
+            flightPlan: this.fms.getFlightPlanRouteForStripView()
         };
     }
 

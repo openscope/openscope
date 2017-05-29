@@ -107,7 +107,7 @@ export default class Fms {
         /**
         * routeSegments of legs that have been completed
         *
-        * Used to generate #flightPlanRoute
+        * Used to generate a routeString for an entire, original, route
         *
         * @property _previousRouteSegments
         * @type {array<string>}
@@ -241,33 +241,6 @@ export default class Fms {
         return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
-    // FIXME: this does not look to be in use
-    /**
-     * Flight plan as filed
-     *
-     * @deprecated
-     * @method flightPlan
-     * @type {object}
-     */
-    get flightPlan() {
-        return {
-            altitude: this.flightPlanAltitude,
-            route: this.flightPlanRoute
-        };
-    }
-
-    /**
-     * Route expected for this flight. Will change as ATC amends it.
-     *
-     * @property flightPlanRoute
-     * @type {string}
-     */
-    get flightPlanRoute() {
-        const previousAndCurrentRouteStrings = this._previousRouteSegments.concat(this.currentRoute);
-
-        return previousAndCurrentRouteStrings.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
-    }
-
     // TODO: this should move to a class method
     /**
      * Returns a flattened array of each `WaypointModel` in the flightPlan
@@ -322,84 +295,6 @@ export default class Fms {
     }
 
     /**
-     * Return the name of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureName
-     * @return {string}
-     */
-    getProcedureName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureName;
-    }
-
-    /**
-     * Return the name and exit point of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureAndExitName
-     * @return {string}
-     */
-    getProcedureAndExitName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureAndExitName;
-    }
-
-    /**
-     * Return the name of the airport and the assigned runway, if following an arrival procedure
-     * or just the assigned runway when not on a procedure
-     *
-     * @for Fms
-     * @method getDestinationAndRunwayName
-     * @return {string}
-     */
-    getDestinationAndRunwayName() {
-        if (!this.isFollowingStar()) {
-            return `${this.currentRunwayName}`;
-        }
-
-        return `${this.currentLeg.exitName} ${this.currentRunwayName}`;
-    }
-
-    /**
-     * Return the name of the airport, if following an arrival procedure
-     *
-     * @for Fms
-     * @method getDestinationName
-     * @return {string}
-     */
-    getDestinationName() {
-        // TODO: this method should use the `RouteModel` to get the various pieces below
-        // TODO: determine if this method is even needed after `AircraftStrip` enhancements
-        // coming in https://github.com/openscope/openscope/issues/285
-        if (this.isFollowingStar()) {
-            const routeString = this.currentLeg.routeString;
-            const routeStringElements = routeString.split('.');
-
-            // TODO: This would actually be better as [0,1] than [1,2]
-            // eg `THHMP.CAVLR3.KIAD` --> `THHMP.CAVLR3` instead of `CAVLR3.KIAD`
-            return `${routeStringElements[1]}.${routeStringElements[2]}`;
-        }
-
-        if (this.isFollowingSid()) {
-            const routeString = this.currentLeg.routeString;
-            const routeStringElements = routeString.split('.');
-
-            return `${routeStringElements[1]}.${routeStringElements[2]}`;
-        }
-
-        const lastPointOnRoute = _last(this.flightPlanRoute.split('.'));
-
-        return lastPointOnRoute;
-    }
-
-    /**
      * Collects the `.getProcedureTopAltitude()` value from each `LegModel`
      * in the `#legCollection`, then finds and returns the highest value
      *
@@ -429,6 +324,41 @@ export default class Fms {
         );
 
         return Math.min(...minAltitudeFromLegs);
+    }
+
+    /**
+     * Route expected for this flight.
+     *
+     * This should be used only in the view, with the `StripViewModel`.
+     * This method will produce a non-standard `routeString` with spaces
+     * used as segment separators instead of the usual `..` or `.`
+     *
+     * Will change as ATC amends it.
+     *
+     * @for Fms
+     * @method getFlightPlanRouteForStripView
+     * @return {string}
+     */
+    getFlightPlanRouteForStripView() {
+        const currentRouteSegments = _map(this.legCollection, (legModel) => legModel.routeString);
+        const previousAndCurrentRouteSegments = this._previousRouteSegments.concat(currentRouteSegments);
+        const transformedRouteSegments = [];
+
+        for (let i = 0; i < previousAndCurrentRouteSegments.length; i++) {
+            const segment = previousAndCurrentRouteSegments[i];
+
+            if (segment.indexOf('.') === -1) {
+                transformedRouteSegments.push(segment);
+
+                continue;
+            }
+
+            // if we've made it here we assume a procedure segment
+            const procedureSegments = segment.split('.');
+            transformedRouteSegments.push(procedureSegments.join(' '));
+        }
+
+        return transformedRouteSegments.join(' ').toUpperCase();
     }
 
     /**
