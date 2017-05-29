@@ -1733,7 +1733,7 @@ k
 
         // Get the selected aircraft.
         const aircraft = prop.aircraft.list.filter((p) => {
-            const shouldDisplayNavDirections = p.matchCallsign(callsign);
+            const shouldDisplayNavDirections = p.matchCallsign(callsign) && p.isVisible();
 
             return shouldDisplayNavDirections;
         })[0];
