@@ -7,6 +7,8 @@
 - Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 - Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
+- Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
+
 
 
 
