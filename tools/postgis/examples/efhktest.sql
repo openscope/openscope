@@ -10,6 +10,6 @@ WITH fixes AS (
        (SELECT rwy FROM rwys WHERE (rwy).name = '22R'),
        (SELECT fix FROM fixes WHERE (fix).name = 'HEL'), 2.5) AS fix
 )
-    
+
 SELECT openscope.asfixes(fix)
 FROM calc;

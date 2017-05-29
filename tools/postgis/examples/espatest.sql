@@ -1,6 +1,6 @@
 -- Bearings are MAG, get the correction
 UPDATE openscope.config
-  SET north_correction = 
+  SET north_correction =
     (openscope.load_airport('/home/user/openscope/assets/airports/espa.json')->>'magnetic_north')::numeric;
 
 -- Read fixes & runway data
