@@ -7,8 +7,8 @@ WITH fixes AS (
 
 ), calc AS (
   SELECT openscope.rwy_dep_dme(
-       (SELECT rwy from rwys where (rwy).name = '22R'),
-       (select fix from fixes where (fix).name = 'HEL'), 2.5) AS fix
+       (SELECT rwy FROM rwys WHERE (rwy).name = '22R'),
+       (SELECT fix FROM fixes WHERE (fix).name = 'HEL'), 2.5) AS fix
 )
     
 SELECT openscope.asfixes(fix)
