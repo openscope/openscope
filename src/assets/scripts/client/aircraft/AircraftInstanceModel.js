@@ -108,6 +108,7 @@ export default class AircraftInstanceModel {
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
+        this.isSelected = false;
 
         /**
          * Flag used to determine if an aircraft is established on a holding pattern

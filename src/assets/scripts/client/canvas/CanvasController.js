@@ -7,6 +7,7 @@ import {
     km,
     km_to_px
 } from '../utilities/unitConverters';
+//import { shouldMatchAnyCallsign  } from '../aircraft/AircraftInstanceModel';
 import { time } from '../utilities/timeHelpers';
 import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
 import { tau } from '../math/circle';
@@ -27,6 +28,7 @@ import {
 import { TIME } from '../constants/globalConstants';
 import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
+
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -1731,9 +1733,9 @@ k
 
         // Get the selected aircraft.
         const aircraft = prop.aircraft.list.filter((p) => {
-            const aircraftCallsign = p.callsign.toUpperCase();
-            const callsignWithAirlineId = (p.airlineId.toUpperCase()) + callsign;
-            return p.isVisible() && aircraftCallsign === callsign || p.isVisible() && aircraftCallsign === callsignWithAirlineId;
+            const shouldDisplayNavDirections = p.matchCallsign(callsign);
+
+            return shouldDisplayNavDirections;
         })[0];
 
         if (!aircraft) {
