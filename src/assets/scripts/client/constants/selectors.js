@@ -40,6 +40,7 @@ export const CLASSNAMES = {
     SPEED_5: 'speed-5',
     STRIP: 'strip',
     STRIP_VIEW: 'js-stripView',
+    STRIP_VIEW_IS_HIDDEN: 'mix-stripView_isHidden',
     STRIP_VIEW_LIST: 'js-stripView-list',
     STRIP_VIEW_TRIGGER: 'js-stripView-trigger',
     SWITCH_AIRPORT: 'switch-airport',

@@ -294,6 +294,19 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Does `#$element` currently have the active css classname applied
+     *
+     * This is useful when trying to find the current active `stripView`
+     * by looping through the `StripViewCollection#_items`.
+     *
+     * @property isActive
+     * @type {boolean}
+     */
+    get isActive() {
+        return this.$element.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
+    }
+
+    /**
      * Initialize the instance
      *
      * Should be run once only on instantiation
@@ -364,8 +377,8 @@ export default class StripViewModel extends BaseModel {
      * @chainable
      */
     _setupHandlers() {
-        this.$element.on('click', this.onClickHandler);
-        this.$element.on('dblclick', this.onDoubleClickHandler);
+        this.$element.on('click', this._onClickHandler);
+        this.$element.on('dblclick', this._onDoubleClickHandler);
 
         return this;
     }
@@ -417,8 +430,8 @@ export default class StripViewModel extends BaseModel {
      * @method disable
      */
     disable() {
-        this.$element.off('click', this.onClickHandler);
-        this.$element.off('dblclick', this.onDoubleClickHandler);
+        this.$element.off('click', this._onClickHandler);
+        this.$element.off('dblclick', this._onDoubleClickHandler);
 
         return this;
     }
@@ -530,14 +543,18 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Click handler for a single click on an AircraftStripView
+     * Click handler for a single click on `StripViewModel`
+     *
+     * This handler will prevent event bubbling
      *
      * @for AircraftStripView
-     * @method onClickHandler
+     * @method _onClickHandler
      * @param event {jquery event}
+     * @private
      */
-    // eslint-disable-next-line no-unused-vars
-    onClickHandler = (event) => {
+    _onClickHandler = (event) => {
+        event.stopPropagation();
+
         this._eventBus.trigger(EVENT.STRIP_CLICK, this._callsign);
     };
 
@@ -548,12 +565,16 @@ export default class StripViewModel extends BaseModel {
      * We don't (and shouldn't) have access to the `AircraftController` or the
      * `CanvasController` from within this class.
      *
+     * This handler will prevent event bubbling
+     *
      * @for AircraftStripView
-     * @method onDoubleClickHandler
+     * @method _onDoubleClickHandler
      * @param  event {jquery event}
+     * @private
      */
-    // eslint-disable-next-line no-unused-vars
-    onDoubleClickHandler = (event) => {
+    _onDoubleClickHandler = (event) => {
+        event.stopPropagation();
+
         this._eventBus.trigger(EVENT.STRIP_DOUBLE_CLICK, this._callsign);
     };
 

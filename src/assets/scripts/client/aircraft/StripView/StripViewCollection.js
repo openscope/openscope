@@ -76,6 +76,19 @@ export default class StripViewCollection extends BaseCollection {
     }
 
     /**
+     * Find an active `StripViewModel`.
+     *
+     * Active is defined by the presence of a specific css classname
+     *
+     * @for StripViewCollection
+     * @method findActiveStripViewModel
+     * @return {StripViewModel}
+     */
+    findActiveStripViewModel() {
+        return _find(this._items, { isActive: true });
+    }
+
+    /**
      * Find a `StripViewModel` in the collection by an `aircraftid`
      *
      * @for StripViewCollection

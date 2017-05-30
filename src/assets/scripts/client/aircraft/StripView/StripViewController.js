@@ -74,6 +74,7 @@ export default class StripViewController {
      */
     enable() {
         this.$stripListTrigger.on('click', this._onStripListToggle);
+        this.$stripViewList.on('click', this._onStripListClickOutsideStripViewModel);
 
         return this;
     }
@@ -149,11 +150,27 @@ export default class StripViewController {
         const stripModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripModel) {
-            throw Error(`No StripModel found for selected Aircraft: ${aircraftModel.callsign}`);
+            throw Error(`No StripViewModel found for selected Aircraft: ${aircraftModel.callsign}`);
         }
 
-        this.$stripViewList.children().removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this._findAndDeselectActiveStripView();
         stripModel.addActiveState();
+    }
+
+    /**
+     * Given a `stripViewModel`, call the `.removeActiveState()` method
+     * that will remove the active css classname
+     *
+     * @for StripViewController
+     * @method deselectStripView
+     * @param stripViewModel {StripViewModel}
+     */
+    deselectStripView(stripViewModel) {
+        if (!(stripViewModel instanceof StripViewModel)) {
+            throw new TypeError(`Expected stripViewModel to be an instance of StripViewModel but instead found ${typeof stripViewModel}`);
+        }
+
+        stripViewModel.removeActiveState();
     }
 
     /**
@@ -195,6 +212,28 @@ export default class StripViewController {
     }
 
     /**
+     * Method used to deselect an active `StripViewModel` when
+     * the specific model is not known.
+     *
+     * This useful for when a click is registered within the
+     * `stripViewList`, but not on a specific `StripViewModel`
+     * or when an event is triggered to clear the active callsign
+     *
+     * @for StripViewController
+     * @method _findAndDeselectActiveStripView
+     * @private
+     */
+    _findAndDeselectActiveStripView() {
+        const activeStripViewModel = this._collection.findActiveStripViewModel();
+
+        if (!activeStripViewModel) {
+            return;
+        }
+
+        this.deselectStripView(activeStripViewModel);
+    }
+
+    /**
      * Event handler for when a `StripViewModel` instance is clicked
      *
      * @for StripViewController
@@ -204,6 +243,20 @@ export default class StripViewController {
      */
     // eslint-disable-next-line no-unused-vars
     _onStripListToggle = (event) => {
-        this.$stripView.toggleClass('mix-stripView_isHidden');
+        this.$stripView.toggleClass(SELECTORS.CLASSNAMES.STRIP_VIEW_IS_HIDDEN);
+    };
+
+    /**
+     * Event handler for when a click is registered within the `$stripViewList`
+     * but not targeting a specific `StripViewModel`
+     *
+     * @for StripViewController
+     * @method _onStripListClickOutsideStripViewModel
+     * @param event {JQueryEventObject}
+     * @private
+     */
+    // eslint-disable-next-line no-unused-vars
+    _onStripListClickOutsideStripViewModel = (event) => {
+        this._findAndDeselectActiveStripView();
     };
 }
