@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /**
- * HTML element use for each `StripViewModel`
+ * HTML element used for each `StripViewModel`
  *
  * @property STRIP_VIEW_TEMPLATE
  * @type {string|HTMLElement}

@@ -403,7 +403,13 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Update teh view with new data
      *
+     * This method will be run on instantiation to initialize the view with data,
+     * and will be run again any time updatable data has changed.
+     *
+     * After instantiation, this method should only be run after `._shouldUpdate()`
+     * has returned true.
      *
      * @for StripViewModel
      * @method _render
@@ -543,6 +549,23 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
+     * Return a classname based on whether an aircraft is a `departure` or an `arrival`
+     *
+     * @for AircraftStripView
+     * @method _buildClassnameForFlightCategory
+     * @return {string}
+     */
+    _buildClassnameForFlightCategory(aircraftModel) {
+        let className = SELECTORS.CLASSNAMES.ARRIVAL;
+
+        if (aircraftModel.isDeparture()) {
+            className = SELECTORS.CLASSNAMES.DEPARTURE;
+        }
+
+        return className;
+    }
+
+    /**
      * Click handler for a single click on `StripViewModel`
      *
      * This handler will prevent event bubbling
@@ -578,22 +601,6 @@ export default class StripViewModel extends BaseModel {
         this._eventBus.trigger(EVENT.STRIP_DOUBLE_CLICK, this._callsign);
     };
 
-    /**
-     * Return a classname based on whether an aircraft is a `departure` or an `arrival`
-     *
-     * @for AircraftStripView
-     * @method _buildClassnameForFlightCategory
-     * @return {string}
-     */
-    _buildClassnameForFlightCategory(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
-
-        if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
-        }
-
-        return className;
-    }
 
     /**
      * Encapsulation of boolean logic used to determine if the view needs to be updated
@@ -622,7 +629,7 @@ export default class StripViewModel extends BaseModel {
      * Update class properties with new values from the `AircraftModel`
      *
      * This method should only be run after `_shouldUpdate()` returns true
-     * This method will only update thh mutable properties of a `StripViewModel`
+     * This method will only update the mutable properties of `StripViewModel`
      *
      * @for StripViewModel
      * @method _updateStripView

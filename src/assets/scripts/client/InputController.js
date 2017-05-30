@@ -409,19 +409,6 @@ export default class InputController {
                 break;
             }
         }
-
-        // Scroll the stripView list so the selected strip is in view
-        // TODO: this logic block should be either abstracted or simplified.
-        // if (number === 1 && (
-        //         match.$html.offset().top < 0 ||
-        //         (
-        //             (match.$html.offset().top + match.$html.height() - this.$sidebar.offset().top) >
-        //             this.$sidebar.height()
-        //         )
-        //     )
-        // ) {
-        //     this.$sidebar.scrollTop(this.$sidebar.scrollTop() + match.$html.offset().top - (this.$sidebar.height() / 2));
-        // }
     }
 
     /**
@@ -452,8 +439,6 @@ export default class InputController {
         this.$commandInput.focus();
 
         this.onCommandInputChangeHandler();
-
-        // TODO: trigger active class removal in StripView
     };
 
     /**

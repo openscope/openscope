@@ -358,7 +358,9 @@ export default class AircraftController {
     }
 
     /**
+     * Create a new `StripViewModel` for a new `AircraftModel` instance
      *
+     * This method should only be run during instantiation of a new `AircraftModel`
      *
      * @for AircraftController
      * @method initAircraftStripView
@@ -380,9 +382,8 @@ export default class AircraftController {
         this._stripViewController.update(this.aircraft.list);
     }
 
-
     /**
-     *  Remove a `StripViewModel` associated with the `aircraftModel`
+     * Remove a `StripViewModel` associated with the `aircraftModel`
      *
      * This will remove it from the DOM and properly destroy the model.
      *
@@ -429,7 +430,7 @@ export default class AircraftController {
     }
 
     /**
-     * Remove the specified aircraft from `AircraftController.aircraft`
+     * Remove the specified aircraft from `AircraftController.aircraft.list`
      *
      * @for AircraftController
      * @method removeAircraftInstanceModelFromList
