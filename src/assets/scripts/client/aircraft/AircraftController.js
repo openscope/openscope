@@ -117,7 +117,7 @@ export default class AircraftController {
      */
     enable() {
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
-        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
+        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
 
         return this;
@@ -395,6 +395,17 @@ export default class AircraftController {
     }
 
     /**
+     * Public facade for `._onSelectAircraftStrip`
+     *
+     * @for AircraftController
+     * @method onSelectAircraftStrip
+     * @param aircaftModel {AircraftModel}
+     */
+    onSelectAircraftStrip = (aircraftModel) => {
+        this._onSelectAircraftStrip(aircraftModel);
+    }
+
+    /**
      * @method debug
      * @param  {string} [callsign='']
      * @return {AircraftInstanceModel|null}
@@ -559,7 +570,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method _onSelectAircraftStrip
-     * @param  aircraftModel {AircraftInstanceModel}
+     * @param  aircraftModel {AircraftModel}
      * @private
      */
     _onSelectAircraftStrip = (aircraftModel) => {
