@@ -13,7 +13,9 @@
 - Updates `SpawnPatternModel` to use the `AirportModel.arrivalRunway` property when gathering waypoint models needed to calculate initial aircraft heading [#469](https://github.com/openscope/openscope/issues/469)
 - Adds support for suffixes in SID and STAR procedures [#33](https://github.com/openscope/openscope/issues/33)
 - Adds game option to include/hide WIP airports in the airport list [#476](https://github.com/openscope/openscope/issues/476)
-
+- Adds `StripViewController`, `StripViewCollection`, and `StripViewModel` classes [#285](https://github.com/openscope/openscope/issues/285)
+    - Removes progress strip logic from the `AircraftModel`
+    - Completely reworks CSS for `StripViewList`
 
 
 
