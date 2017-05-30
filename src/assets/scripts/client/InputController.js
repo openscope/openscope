@@ -141,7 +141,6 @@ export default class InputController {
      * @method setupHandlers
      */
     setupHandlers() {
-        this._eventBus.on(EVENT.STRIP_CLICK, this.input_select);
 
         return this;
     }
@@ -163,6 +162,8 @@ export default class InputController {
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
 
+        this._eventBus.on(EVENT.STRIP_CLICK, this.input_select);
+
         return this;
     }
 
@@ -180,7 +181,7 @@ export default class InputController {
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
 
-        this._eventBus.on(EVENT.STRIP_CLICK, this.input_select);
+        this._eventBus.off(EVENT.STRIP_CLICK, this.input_select);
 
         return this.destroy();
     }
@@ -281,6 +282,7 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
+        // TODO: this should use early returns instead of the else if
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
             this._uiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
@@ -296,18 +298,20 @@ export default class InputController {
             position[0] -= prop.canvas.size.width / 2;
             position[1] += prop.canvas.size.height / 2;
 
-            const nearest = window.aircraftController.aircraft_get_nearest([
+            const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
                 this._uiController.px_to_km(position[0] - prop.canvas.panX),
                 this._uiController.px_to_km(position[1] + prop.canvas.panY)
             ]);
 
-            if (nearest[0]) {
-                if (nearest[1] < this._uiController.px_to_km(80)) {
-                    this.input.callsign = nearest[0].callsign.toUpperCase();
+            if (aircraftModel) {
+                if (distanceFromPosition < this._uiController.px_to_km(80)) {
+                    this.input.callsign = aircraftModel.callsign.toUpperCase();
 
                     this.input_select(this.input.callsign);
+                    this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
                 } else {
                     this.input_select();
+                    this._eventBus.trigger(EVENT.DESELECT_ACTIVE_STRIP_VIEW, {});
                 }
             }
 

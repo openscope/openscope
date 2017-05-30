@@ -101,18 +101,37 @@ export default class AircraftController {
             .enable();
     }
 
+    /**
+     * @for AircraftController
+     * @method init
+     * @chainable
+     */
     init() {
         return this;
     }
 
+    /**
+     * @for AircraftController
+     * @method enable
+     * @chainable
+     */
     enable() {
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
+        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
 
         return this;
     }
 
+    /**
+     * @for AircraftController
+     * @method disable
+     * @chainable
+     */
     disable() {
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
+        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
 
         return this;
     }
@@ -361,16 +380,6 @@ export default class AircraftController {
         this._stripViewController.update(this.aircraft.list);
     }
 
-    /**
-     * Show a `StripViewModel` as selected
-     *
-     * @for AircraftController
-     * @method onSelectAircraftStrip
-     * @param  aircraftModel {AircraftInstanceModel}
-     */
-    onSelectAircraftStrip = (aircraftModel) => {
-        this._stripViewController.selectStripView(aircraftModel);
-    };
 
     /**
      *  Remove a `StripViewModel` associated with the `aircraftModel`
@@ -544,6 +553,38 @@ export default class AircraftController {
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
         return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
     }
+
+    /**
+     * Show a `StripViewModel` as selected
+     *
+     * @for AircraftController
+     * @method _onSelectAircraftStrip
+     * @param  aircraftModel {AircraftInstanceModel}
+     * @private
+     */
+    _onSelectAircraftStrip = (aircraftModel) => {
+        if (!aircraftModel.inside_ctr) {
+            return;
+        }
+
+        this._stripViewController.selectStripView(aircraftModel);
+    };
+
+    /**
+     * Remove the css classname used to show a `StripViewModel` as selected.
+     *
+     * This method is usually called when it is not known what, or if,
+     * a `StripViewModel` is active.
+     *
+     * This method is called as the result of an event
+     *
+     * @for AircraftController
+     * @method _onDeselectActiveStripView
+     * @private
+     */
+    _onDeselectActiveStripView = () => {
+        this._stripViewController.findAndDeselectActiveStripView();
+    };
 
     /**
      * Triggered `EventBus` callback

@@ -18,13 +18,34 @@ export const EVENT = {
     AIRPORT_CHANGE: 'airport-change',
 
     /**
+     * A click was registered outside of a specific `StripViewModel`
+     * and the active strip, if any, should have the `active`
+     * css classname removed
+     *
+     * @memberof EVENT
+     * @property DESELECT_ACTIVE_STRIP_VIEW
+     * @type {string}
+     */
+    DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
+
+    /**
+     * An aircraft data block was clicked and the corresponding
+     * `StripViewModel` must also be selected
+     *
+     * @memberof EVENT
+     * @property SELECT_STRIP_VIEW_FROM_DATA_BLOCK
+     * @type {string}
+     */
+    SELECT_STRIP_VIEW_FROM_DATA_BLOCK: 'select-strip-view-from-data-block',
+
+    /**
      * An aircraft progress strip was clicked
      *
      * @memberof EVENT
      * @property STRIP_CLICK
      * @type {string}
      */
-    STRIP_CLICK: 'string-click',
+    STRIP_CLICK: 'strip-click',
 
     /**
      * An aircraft progress strip was double clicked
@@ -33,7 +54,7 @@ export const EVENT = {
      * @property STRIP_DOUBLE_CLICK
      * @type {string}
      */
-    STRIP_DOUBLE_CLICK: 'string-double-click',
+    STRIP_DOUBLE_CLICK: 'strip-double-click',
 
     /**
      * An aircraft has been located and needs to be centered in the view
