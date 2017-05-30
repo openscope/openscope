@@ -18,6 +18,15 @@ export const airportControllerFixture = new AirportController(
     navigationLibraryFixture
 );
 
+export const airportControllerKlasFixture = new AirportController(
+    AIRPORT_JSON_KLAS_MOCK,
+    AIRPORT_LOAD_LIST_MOCK,
+    updateRunStub,
+    onAirportChangeStub,
+    navigationLibraryFixture
+);
+airportControllerKlasFixture.airport_set('klas', AIRPORT_JSON_KLAS_MOCK);
+
 export const airportModelFixture = new AirportModel(
     AIRPORT_JSON_KLAS_MOCK,
     updateRunStub,
