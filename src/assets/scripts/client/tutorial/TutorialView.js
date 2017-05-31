@@ -422,8 +422,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Proceed Direct',
             text: ['The proceed direct command &lsquo;pd&rsquo; instructs an aircraft to go directly to a waypoint in the flight plan. For example, if an',
-                   'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C. After flying ',
-                   'past the last fix, the aircraft will continue the flight plan as filed.'
+                   'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C.'
                ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
