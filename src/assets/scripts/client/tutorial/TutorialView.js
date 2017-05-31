@@ -436,18 +436,6 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Shortcuts',
-            text: ['You can give an aircraft a shortcut in a chain of fixes through use of the &lsquo;direct&rsquo;',
-                   'command (&lsquo;dct&rsquo;). Also, you can add more fixes to the end of that list with the',
-                   '&lsquo;proceed&rsquo; (&lsquo;pr&rsquo;) command. This is useful with overflights, and while you can have',
-                   'departing aircraft use these commands, it is probably easier to assign them a SID if one is available at your airport.'
-               ].join(' '),
-            parse: (v) => v,
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
             title: 'Bon voyage, aircraft!',
             text: ['When the aircraft crosses the airspace boundary, it will ',
                    'automatically remove itself from the flight strip bay on the right.',
