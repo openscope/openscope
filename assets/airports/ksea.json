@@ -919,7 +919,7 @@
             "destination": "ksea",
             "category": "arrival",
             "route": "MLP.GLASR1.KSEA",
-            "altitude": [180000, 36000],
+            "altitude": [18000, 36000],
             "speed": 320,
             "method": "random",
             "rate": 10,
