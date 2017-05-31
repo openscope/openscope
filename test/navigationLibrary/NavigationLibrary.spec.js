@@ -55,20 +55,20 @@ ava('.isSuffixRoute() returns true when passed a routeString associated with a s
     t.true(result);
 });
 
-ava('.isAirborneFlightPhase() returns true when passed `APRON`', (t) => {
+ava('.isGroundedFlightPhase() returns true when passed `APRON`', (t) => {
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
 
-    t.true(navigationLibrary.isAirborneFlightPhase('APRON'));
+    t.true(navigationLibrary.isGroundedFlightPhase('APRON'));
 });
 
-ava('.isAirborneFlightPhase() returns true when passed `TAXI`', (t) => {
+ava('.isGroundedFlightPhase() returns true when passed `TAXI`', (t) => {
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
 
-    t.true(navigationLibrary.isAirborneFlightPhase('TAXI'));
+    t.true(navigationLibrary.isGroundedFlightPhase('TAXI'));
 });
 
-ava('.isAirborneFlightPhase() returns true when passed `WAITING`', (t) => {
+ava('.isGroundedFlightPhase() returns true when passed `WAITING`', (t) => {
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
 
-    t.true(navigationLibrary.isAirborneFlightPhase('WAITING'));
+    t.true(navigationLibrary.isGroundedFlightPhase('WAITING'));
 });

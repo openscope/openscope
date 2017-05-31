@@ -232,8 +232,7 @@ export default class NavigationLibrary {
         const routeModel = new RouteModel(procedureRouteSegment);
         let standardRouteWaypointModelList;
 
-        // TODO: As amended, this may be an unsafe assumption. Needs to be reexaimed.
-        if (this.isAirborneFlightPhase(flightPhase)) {
+        if (this.isGroundedFlightPhase(flightPhase)) {
             standardRouteWaypointModelList = this._sidCollection.generateFmsWaypointModelsForRoute(
                 routeModel.procedure,
                 runway,
@@ -308,11 +307,11 @@ export default class NavigationLibrary {
      * indicates an aircraft is still on the ground or en-route
      *
      * @for NavigationLibrary
-     * @method isAirborneFlightPhase
+     * @method isGroundedFlightPhase
      * @param flightPhase {string}
      * @return {boolean}
      */
-    isAirborneFlightPhase(flightPhase) {
+    isGroundedFlightPhase(flightPhase) {
         return flightPhase === FLIGHT_PHASE.APRON ||
             flightPhase === FLIGHT_PHASE.TAXI ||
             flightPhase === FLIGHT_PHASE.WAITING;
