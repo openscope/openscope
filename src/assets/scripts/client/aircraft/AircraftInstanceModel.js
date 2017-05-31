@@ -377,18 +377,6 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * Is an aircraft's current heading within a specific range
-     *
-     * @for AircraftInstanceModel
-     * @method isHeadingInsideDepartureWindow
-     */
-    isHeadingInsideDepartureWindow() {
-        // TODO: enumerate the magic number
-        // Within 5 degrees of destination heading
-        return abs(this.radial - this.destination) < 0.08726;
-    }
-
-    /**
      * Returns a true value if there is a match from the callsignToMatch
      *
      * @for AircraftInstanceModel
