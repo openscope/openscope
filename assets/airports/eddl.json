@@ -6,7 +6,7 @@
     },
     "icao": "EDDL",
     "iata": "DUS",
-    "magnetic_north": 0.7,
+    "magnetic_north": 1.0,
     "ctr_radius": 80,
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
