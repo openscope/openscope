@@ -2,12 +2,12 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _filter from 'lodash/filter';
 import {
     degreesToRadians,
     km,
     km_to_px
 } from '../utilities/unitConverters';
-//import { shouldMatchAnyCallsign  } from '../aircraft/AircraftInstanceModel';
 import { time } from '../utilities/timeHelpers';
 import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
 import { tau } from '../math/circle';
@@ -1732,7 +1732,7 @@ k
         }
 
         // Get the selected aircraft.
-        const aircraft = prop.aircraft.list.filter((p) => {
+        const aircraft = _filter(prop.aircraft.list, (p) => {
             const shouldDisplayNavDirections = p.matchCallsign(callsign) && p.isVisible();
 
             return shouldDisplayNavDirections;
