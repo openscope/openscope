@@ -363,8 +363,8 @@ export default class AircraftInstanceModel {
             icaoWithWeightClass: this.model.icaoWithWeightClass,
             assignedAltitude,
             flightPlanAltitude,
-            arrivalAirportId: this.destination,
-            departureAirportId: this.origin,
+            arrivalAirportId: this.destination.toUpperCase(),
+            departureAirportId: this.origin.toUpperCase(),
             flightPlan: this.fms.getFlightPlanRouteForStripView()
         };
     }
