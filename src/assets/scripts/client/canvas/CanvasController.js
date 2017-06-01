@@ -914,7 +914,7 @@ export default class ConvasController {
         cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
         cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
 
-        const ptlLengthMultiplier = this._gameController.getPtlLengthMultiplier();
+        const ptlLengthMultiplier = this._gameController.getPtlLength();
         const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
         const groundTrackVector = vectorize_2d(aircraft.groundTrack);

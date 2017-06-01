@@ -405,10 +405,16 @@ export default class GameController {
     }
 
     /**
+     * Get the curretn `PTL_LENGTH` value and return a number.
      *
-     * @method getPtlLengthMultiplier
+     * Used by the `CanvasController` to get a number value (this will be stored as a string
+     * due to existing api) that can be used when drawing the PTL for each aircraft.
+     *
+     * @for GameController
+     * @method getPtlLength
+     * @return {number}
      */
-    getPtlLengthMultiplier() {
+    getPtlLength() {
         const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
 
         return parseFloat(currentPtlVal);

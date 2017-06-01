@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
 import _startCase from 'lodash/startCase';
 import { speech_toggle } from './speech';
@@ -19,7 +20,7 @@ const ui = {};
  * @type {string}
  * @final
  */
-const UI_OPTIONS_TEMPLATE = '<div id="options-dialog" class="dialog"></div>';
+const UI_OPTIONS_TEMPLATE = '<div class="option-dialog"></div>';
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
@@ -242,7 +243,7 @@ export default class UiController {
         $container.append(`<span class="option-description">${option.description}</span>`);
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
-        const $selector = $(`<select id="opt-${option.name}" name="${option.name}"></select>`);
+        const $selector = $(`<select name="${option.name}"></select>`);
         const selectedOption = this._gameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
@@ -274,16 +275,21 @@ export default class UiController {
      *
      * @for UiController
      * @method _buildOptionTemplate
-     * @param optionData
+     * @param optionData {array<string>}
      * @param selectedOption {string}
-     * @return optionSelectTempalate {string}
+     * @return optionSelectTempalate {HTML Element}
      * @private
      */
     _buildOptionSelectTemplate(optionData, selectedOption) {
-        let optionSelectTempalate = `<option value="${optionData}">${_startCase(optionData)}</option>`;
+        // optionData coming in to this method will always be a string (due to existing api) but could contain
+        // valid numbers. here we test for valid number and build `optionDataDisplay` accordingly.
+        const optionDataDisplay = _isNaN(parseFloat(optionData))
+            ? _startCase(optionData)
+            : parseFloat(optionData);
+        let optionSelectTempalate = `<option value="${optionData}">${optionDataDisplay}</option>`;
 
         if (optionData === selectedOption) {
-            optionSelectTempalate = `<option value="${optionData}" selected>${_startCase(optionData)}</option>`;
+            optionSelectTempalate = `<option value="${optionData}" selected>${optionDataDisplay}</option>`;
         }
 
         return optionSelectTempalate;
