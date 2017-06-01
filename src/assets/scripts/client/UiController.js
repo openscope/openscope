@@ -44,11 +44,10 @@ export default class UiController {
      * @param $element
      * @param
      */
-    constructor($element, gameController, airportController, canvasController) {
+    constructor($element, gameController, airportController) {
         this.$element = $element;
         this._gameController = gameController;
         this._airportController = airportController;
-        this._canvasController = canvasController;
 
         this.$airportList = null;
         this.$airportListNotes = null;
@@ -284,7 +283,7 @@ export default class UiController {
         let optionSelectTempalate = `<option value="${optionData}">${_startCase(optionData)}</option>`;
 
         if (optionData === selectedOption) {
-            optionSelectTempalate = `<option value="${optionData}" selected="selected">${_startCase(optionData)}</option>`;
+            optionSelectTempalate = `<option value="${optionData}" selected>${_startCase(optionData)}</option>`;
         }
 
         return optionSelectTempalate;

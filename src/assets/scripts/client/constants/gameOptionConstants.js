@@ -40,9 +40,8 @@ export const GAME_OPTION_VALUES = [
         description: 'Projected Track Line (PTL) Length',
         type: 'select',
         data: [
-            ['30sec', '0.5'],
-            ['1min', '1'],
-            ['2min', '2']
+            ['1', '1'],
+            ['0.5', '0.5']
         ]
     },
     {

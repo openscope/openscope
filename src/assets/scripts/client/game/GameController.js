@@ -3,6 +3,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
 
@@ -401,5 +402,15 @@ export default class GameController {
      */
     getGameOption(optionName) {
         return this.game.option.get(optionName);
+    }
+
+    /**
+     *
+     * @method getPtlLengthMultiplier
+     */
+    getPtlLengthMultiplier() {
+        const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
+
+        return parseFloat(currentPtlVal);
     }
 }
