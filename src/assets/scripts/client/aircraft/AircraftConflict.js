@@ -39,6 +39,7 @@ export default class AircraftConflict {
      * @method destroy
      */
     destroy() {
+        // TODO: this should be moved to an EventBus trigger
         window.aircraftController.removeConflict(this);
     }
 

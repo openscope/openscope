@@ -3,9 +3,11 @@ import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
+import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
+import StripViewController from './StripView/StripViewController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
@@ -14,6 +16,7 @@ import { distance2d } from '../math/distance';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
+import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
 
@@ -66,6 +69,16 @@ export default class AircraftController {
         this._navigationLibrary = navigationLibrary;
 
         /**
+         * Local reference to static `EventBus` class
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         * @default EventBus
+         * @private
+         */
+        this._eventBus = EventBus;
+
+        /**
          * Reference to an `AircraftTypeDefinitionCollection` instance
          *
          * Provides definitions for all available aircraft types
@@ -75,16 +88,52 @@ export default class AircraftController {
          */
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
+        prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
         // TODO: this should its own collection class
         this.aircraft.list = [];
-
         this.aircraft.auto = { enabled: false };
-
         this.conflicts = [];
+        this._stripViewController = new StripViewController();
 
-        prop.aircraft = aircraft;
+        return this.init()
+            .enable();
+    }
+
+    /**
+     * @for AircraftController
+     * @method init
+     * @chainable
+     */
+    init() {
+        return this;
+    }
+
+    /**
+     * @for AircraftController
+     * @method enable
+     * @chainable
+     */
+    enable() {
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
+        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+
+        return this;
+    }
+
+    /**
+     * @for AircraftController
+     * @method disable
+     * @chainable
+     */
+    disable() {
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
+        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+
+        return this;
     }
 
     /**
@@ -162,6 +211,7 @@ export default class AircraftController {
         const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
 
         this.addItem(aircraftModel);
+        this.initAircraftStripView(aircraftModel);
     }
 
     /**
@@ -210,7 +260,7 @@ export default class AircraftController {
      */
     aircraft_remove_all() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.aircraft.list[i].cleanup();
+            this.removeStripView(this.aircraft.list[i]);
         }
 
         this.aircraft.list = [];
@@ -219,15 +269,15 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_remove
+     * @param aircraftModel {AircraftInstanceModel}
      */
-    aircraft_remove(aircraft) {
-        window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+    aircraft_remove(aircraftModel) {
+        window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
-        this.removeFlightNumberFromList(aircraft);
-        this.removeAircraftInstanceModelFromList(aircraft);
-        this.removeAllAircraftConflictsForAircraft(aircraft);
-
-        aircraft.cleanup();
+        this.removeFlightNumberFromList(aircraftModel);
+        this.removeAircraftInstanceModelFromList(aircraftModel);
+        this.removeAllAircraftConflictsForAircraft(aircraftModel);
+        this.removeStripView(aircraftModel);
     }
 
     /**
@@ -308,6 +358,55 @@ export default class AircraftController {
     }
 
     /**
+     * Create a new `StripViewModel` for a new `AircraftModel` instance
+     *
+     * This method should only be run during instantiation of a new `AircraftModel`
+     *
+     * @for AircraftController
+     * @method initAircraftStripView
+     * @param  aircraftModel {AircraftInstanceModel}
+     */
+    initAircraftStripView(aircraftModel) {
+        this._stripViewController.createStripView(aircraftModel);
+    }
+
+    /**
+     * Update all the `StripViewModel` objects with up-to-date aircraft data
+     *
+     * This is a **HOT** method and will run within the game loop
+     *
+     * @for AircraftController
+     * @method updateAircraftStrips
+     */
+    updateAircraftStrips() {
+        this._stripViewController.update(this.aircraft.list);
+    }
+
+    /**
+     * Remove a `StripViewModel` associated with the `aircraftModel`
+     *
+     * This will remove it from the DOM and properly destroy the model.
+     *
+     * @for AircraftController
+     * @method removeStripView
+     * @param aircraftModel {AircraftInstanceModel}
+     */
+    removeStripView(aircraftModel) {
+        this._stripViewController.removeStripView(aircraftModel);
+    }
+
+    /**
+     * Public facade for `._onSelectAircraftStrip`
+     *
+     * @for AircraftController
+     * @method onSelectAircraftStrip
+     * @param aircaftModel {AircraftModel}
+     */
+    onSelectAircraftStrip = (aircraftModel) => {
+        this._onSelectAircraftStrip(aircraftModel);
+    }
+
+    /**
      * @method debug
      * @param  {string} [callsign='']
      * @return {AircraftInstanceModel|null}
@@ -331,7 +430,7 @@ export default class AircraftController {
     }
 
     /**
-     * Remove the specified aircraft from `AircraftController.aircraft`
+     * Remove the specified aircraft from `AircraftController.aircraft.list`
      *
      * @for AircraftController
      * @method removeAircraftInstanceModelFromList
@@ -433,6 +532,7 @@ export default class AircraftController {
         return {
             fleet,
             altitude,
+            origin: spawnPatternModel.origin,
             destination: spawnPatternModel.destination,
             callsign: flightNumber,
             category: spawnPatternModel.category,
@@ -452,6 +552,9 @@ export default class AircraftController {
     /**
      * Given an `airlineId`, find a random aircraft type from the airline.
      *
+     * This is useful for when we need to create an aircraft to spawn and
+     * only know the airline that it belongs to.
+     *
      * @for AircraftController
      * @method _getRandomAircraftTypeDefinitionForAirlineId
      * @param airlineId {string}
@@ -462,4 +565,53 @@ export default class AircraftController {
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
         return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
     }
+
+    /**
+     * Show a `StripViewModel` as selected
+     *
+     * @for AircraftController
+     * @method _onSelectAircraftStrip
+     * @param  aircraftModel {AircraftModel}
+     * @private
+     */
+    _onSelectAircraftStrip = (aircraftModel) => {
+        if (!aircraftModel.inside_ctr) {
+            return;
+        }
+
+        this._stripViewController.selectStripView(aircraftModel);
+    };
+
+    /**
+     * Remove the css classname used to show a `StripViewModel` as selected.
+     *
+     * This method is usually called when it is not known what, or if,
+     * a `StripViewModel` is active.
+     *
+     * This method is called as the result of an event
+     *
+     * @for AircraftController
+     * @method _onDeselectActiveStripView
+     * @private
+     */
+    _onDeselectActiveStripView = () => {
+        this._stripViewController.findAndDeselectActiveStripView();
+    };
+
+    /**
+     * Triggered `EventBus` callback
+     *
+     * This method allows us to find an `AircraftModel` from a callsign,
+     * then trigger another event for the `CanvasController`.
+     *
+     * @for AircraftController
+     * @method _onStripDoubleClickhandler
+     * @param callsign
+     */
+    _onStripDoubleClickhandler = (callsign) => {
+        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const [x, y] = relativePosition;
+
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+    };
 }

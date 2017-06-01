@@ -1,0 +1,122 @@
+.stripView {
+    height: calc(100% - 36px);
+    width: 400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+    font-family: Monospace, serif;
+    font-size: 12px;
+    max-width: 500px;
+    background-color: #000000;
+    transition: ease-in-out all 0.3s;
+}
+
+.mix-stripView_isHidden {
+    right: -390px;
+}
+
+.stripView-list {
+    max-height: 100%;
+    width: calc(100% - 10px);
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    overflow-y: scroll;
+    list-style-type: none;
+    transform: scaleY(-1);
+}
+
+.stripViewItem {
+    border: 1px solid #222;
+    transition: ease-in-out margin 0.15s;
+    transform: scaleY(-1);
+}
+
+.active,
+.stripViewItem:hover {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.stripView-list > * + * {
+    margin-top: 3px;
+    border-top: none;
+}
+
+.stripViewItem-table {
+    width: 100%;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+.stripView-table-td {
+    padding: 3px 5px;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.stripView-table-td + .stripView-table-td {
+    border-left: 1px solid
+}
+
+.stripView-table-td > span {
+    float: right;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+1) {
+    width: 70px;
+    text-align: left;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+2),
+.stripView-table-tr > .stripView-table-td:nth-child(0n+3) {
+    width: 50px;
+}
+
+.stripView-table-tr > .stripView-table-td:nth-child(0n+4) {
+    text-align: left;
+}
+
+.mix-stripView-table_borderTop {
+    border-top: 1px solid;
+}
+
+
+.stripView-trigger {
+    height: 100%;
+    width: 10px;
+    float: left;
+    cursor: pointer;
+    background-color: #000000;
+}
+
+.stripView-trigger:after {
+    position: absolute;
+    top: 40%;
+    left: -25px;
+    padding: 20px 10px 20px 10px;
+    background: #000000;
+    color: #ffffff;
+    font-weight: 700;
+    content: '|<';
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.stripView-trigger:hover:after,
+.stripView-trigger:hover {
+    background-color: #333333;
+}
+
+
+.departure {
+    border-left: 5px solid rgba(128, 255, 255, 0.8);
+}
+
+.arrival {
+    border-left: 5px solid rgba(224, 128, 128, 0.8);
+}

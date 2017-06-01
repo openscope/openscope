@@ -13,6 +13,9 @@
 - Updates `SpawnPatternModel` to use the `AirportModel.arrivalRunway` property when gathering waypoint models needed to calculate initial aircraft heading [#469](https://github.com/openscope/openscope/issues/469)
 - Adds support for suffixes in SID and STAR procedures [#33](https://github.com/openscope/openscope/issues/33)
 - Adds game option to include/hide WIP airports in the airport list [#476](https://github.com/openscope/openscope/issues/476)
+- Adds `StripViewController`, `StripViewCollection`, and `StripViewModel` classes [#285](https://github.com/openscope/openscope/issues/285)
+    - Removes progress strip logic from the `AircraftModel`
+    - Completely reworks CSS for `StripViewList`
 - Adds `.isGroundedFlightPhase()` and implements this helper in `.buildWaypointModelsForProcedure()` [#491](https://github.com/openscope/openscope/issues/491)
     - This allows for waypointModels to be build from the correct collection based on `flightPhase`
 
@@ -28,9 +31,11 @@
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
+- Removes fix command from tutorial and replaces it with infomation on 'route', 'Say Route', and 'Proceed Direct' [#356](https://github.com/openscope/openscope/issues/356)
 - Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
+
 
 
 
