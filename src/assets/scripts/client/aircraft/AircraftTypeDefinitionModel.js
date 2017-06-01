@@ -45,6 +45,16 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
 
         /**
+         * Icao identifier that includes a weightclass
+         * designation when `Heavy` or `Super`
+         *
+         * @property icaoWithWeightClass
+         * @type {string}
+         * @default ''
+         */
+        this.icaoWithWeightClass = '';
+
+        /**
          * Describes the number and type of engines
          *
          * @property engines
@@ -145,6 +155,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.runway = aircraftTypeDefinition.runway;
         this.speed = aircraftTypeDefinition.speed;
         this.capability = aircraftTypeDefinition.capability;
+
+        this.icaoWithWeightClass = this._buildTypeForStripView();
     }
 
     /**
@@ -156,6 +168,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     destroy() {
         this.name = '';
         this.icao = '';
+        this.icaoWithWeightClass = '';
         this.engines = null;
         this.weightclass = '';
         this.category = null;
@@ -164,5 +177,31 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.runway = null;
         this.speed = null;
         this.capability = null;
+    }
+
+    /**
+     * Build the string used for `#icaoWithWeightClass`
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method _buildTypeForStripView
+     * @return {string}
+     * @private
+     */
+    _buildTypeForStripView() {
+        const HEAVY_LETTER = 'H';
+        const SUPER_LETTER = 'U';
+        let aircraftIcao = `${this.icao}/L`;
+
+        switch (this.weightclass) {
+            case SUPER_LETTER:
+            case HEAVY_LETTER:
+                aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
+
+                break;
+            default:
+                break;
+        }
+
+        return aircraftIcao.toUpperCase();
     }
 }

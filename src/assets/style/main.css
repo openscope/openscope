@@ -6,12 +6,14 @@
 @import "pause.css";
 @import "command.css";
 @import "log.css";
+@import "stripView.css";
 @import "sidebar.css";
 @import "loading.css";
 @import "tutorial.css";
 @import "airport.css";
 @import "score.css";
 @import "option_dialog.css";
+
 
 html,body {
   height: 100%;

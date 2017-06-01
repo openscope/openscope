@@ -162,8 +162,6 @@ export default class AircraftCommander {
             ]);
         }
 
-        aircraft.updateStrip();
-
         return true;
     }
 
@@ -671,6 +669,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftInstanceModel}
      */
     runDelete(aircraft) {
+        // TODO: this should be moved to an EventBus trigger
         window.aircraftController.aircraft_remove(aircraft);
     }
 
