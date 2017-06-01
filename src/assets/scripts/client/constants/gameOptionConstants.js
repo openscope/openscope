@@ -8,6 +8,7 @@
  */
 export const GAME_OPTION_NAMES = {
     CONTROL_METHOD: 'controlMethod',
+    PTL_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports'
@@ -31,6 +32,17 @@ export const GAME_OPTION_VALUES = [
         data: [
             ['Classic', 'classic'],
             ['Arrow Keys', 'arrows']
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.PTL_LENGTH,
+        defaultValue: '1',
+        description: 'Projected Track Line (PTL) Length',
+        type: 'select',
+        data: [
+            ['30sec', '0.5'],
+            ['1min', '1'],
+            ['2min', '2']
         ]
     },
     {

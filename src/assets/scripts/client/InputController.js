@@ -1,6 +1,5 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
 import $ from 'jquery';
-import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import CommandParser from './commandParser/CommandParser';
