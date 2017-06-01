@@ -16,11 +16,11 @@ import { THEME } from './constants/colors/themes';
 const ui = {};
 
 /**
- * @property UI_OPTIONS_TEMPLATE
+ * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTIONS_TEMPLATE = '<div class="option-dialog"></div>';
+const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
@@ -34,7 +34,7 @@ const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
  * @type {string}
  * @final
  */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-select"></span>';
+const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 
 /**
  * @class UiController
@@ -214,7 +214,7 @@ export default class UiController {
     ui_init() {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
-        const $options = $(UI_OPTIONS_TEMPLATE);
+        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
         const descriptions = this._gameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {

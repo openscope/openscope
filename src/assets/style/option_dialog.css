@@ -1,6 +1,5 @@
 .option-dialog {
     width: 480px;
-    height: auto;
     margin-left: -240px;
     padding: 12px 15px;
     position: absolute;
@@ -21,26 +20,16 @@
     pointer-events: auto;
 }
 
-.option-dialog span.option-description {
+.option-description {
     display: inline-block;
     width: 65%;
 }
 
-.option-dialog span.option-selector {
+.option-type-select {
     display: inline-block;
     width: 35%;
     position: absolute;
     right: 0px;
-}
-
-.option-dialog select {
-    width: 100%;
-    padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
-    background-color: rgba(15, 25, 20, 1);
-    border: 0;
-    border-radius: 3px;
-    appearance: none;
-    cursor: pointer;
 }
 
 .option-type-select::after {
@@ -53,4 +42,14 @@
     line-height: 1;
     content: "\25BC";
     pointer-events: none;
+}
+
+.option-dialog select {
+    width: 100%;
+    padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
+    background-color: rgba(15, 25, 20, 1);
+    border: 0;
+    border-radius: 3px;
+    appearance: none;
+    cursor: pointer;
 }
