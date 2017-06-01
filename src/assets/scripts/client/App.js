@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
+import EventBus from './lib/EventBus';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirportController from './airport/AirportController';
@@ -19,6 +20,7 @@ import CanvasController from './canvas/CanvasController';
 import GameClockView from './game/GameClockView';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
+import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
 import { LOG } from './constants/logLevel';
 
@@ -64,6 +66,7 @@ export default class App {
          * @default body
          */
         this.$element = $(element);
+        this.eventBus = EventBus;
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
@@ -97,7 +100,22 @@ export default class App {
             this.prop.log = LOG.WARNING;
         }
 
-        return this.initiateDataLoad(airportLoadList, initialAirportToLoad);
+        return this.createHandlers()
+            .initiateDataLoad(airportLoadList, initialAirportToLoad);
+    }
+
+    /**
+     * Create event handlers
+     *
+     * @for App
+     * @method createHandlers
+     * @chainable
+     */
+    createHandlers() {
+        this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this.eventBus.on(EVENT.SHOULD_PAUSE_UPDATE_LOOP, this.updateRun);
+
+        return this;
     }
 
     /**
@@ -166,7 +184,7 @@ export default class App {
         // TODO: Temporary
         window.gameController = this.gameController;
 
-        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
+        this.airportController = new AirportController(initialAirportData, airportLoadList);
         // TODO: Temporary
         window.airportController = this.airportController;
 
@@ -180,7 +198,7 @@ export default class App {
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.uiController = new UiController(this.$element);
+        this.uiController = new UiController(this.$element, this.gameController, this.airportController, this.canvasController);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
         this.inputController = new InputController(this.$element, this.aircraftCommander);
         this.gameClockView = new GameClockView(this.$element);

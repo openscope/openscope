@@ -973,17 +973,18 @@ export default class SpawnPatternModel extends BaseModel {
         this.heading = heading;
     }
 
+    // TODO: add support for `FIXXA..FIXXB.PRCDR1.FIXXC` route strings
     /**
-     *
+     * Given a `routeString`, find the `FixModel`s or `WaypointModel`s associated with that route.
      *
      * @for SpawnPatternModel
      * @method _generateWaypointListForRoute
-     * @param route {string}
+     * @param routeString {string}
      * @param navigationLibrary {NavigationLibrary}
      * @return {array<FixModel>|array<StandardWaypointModel>}
      */
-    _generateWaypointListForRoute(route, navigationLibrary) {
-        const formattedRoute = routeStringFormatHelper(route);
+    _generateWaypointListForRoute(routeString, navigationLibrary) {
+        const formattedRoute = routeStringFormatHelper(routeString);
 
         if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
             // this assumes that if a routeString is not a procedure, it will be a list of fixes. this may be
@@ -995,19 +996,30 @@ export default class SpawnPatternModel extends BaseModel {
             return [initialWaypoint, nextWaypoint];
         }
 
+        const isPreSpawn = false;
         const routeModel = new RouteModel(formattedRoute[0]);
-        const waypointModelList = navigationLibrary.findEntryAndBodyFixesForRoute(
+        const waypointModelList = navigationLibrary.starCollection.findRouteWaypointsForRouteByEntryAndExit(
             routeModel.procedure,
-            routeModel.entry
+            routeModel.entry,
+            this._airportController.getInitialArrivalRunwayName(),
+            isPreSpawn
         );
 
         return waypointModelList;
     }
 
+    /**
+     *
+     * @for SpawnPatternModel
+     * @method _generateSelfReferencedAirportPositionModel
+     * @return {StaticPositionModel}
+     */
     _generateSelfReferencedAirportPositionModel() {
         const airportPosition = this._airportController.airport_get().positionModel;
-        const selfReferencingPosition = new StaticPositionModel(airportPosition.gps,
-            airportPosition, airportPosition.magneticNorth
+        const selfReferencingPosition = new StaticPositionModel(
+            airportPosition.gps,
+            airportPosition,
+            airportPosition.magneticNorth
         );
 
         return selfReferencingPosition;

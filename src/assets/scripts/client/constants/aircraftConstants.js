@@ -109,21 +109,10 @@ export const WAYPOINT_NAV_MODE = {
 };
 
 /**
- * Enumeration of possible FLight Plan Leg types.
- *
- * @property FP_LEG_TYPE
+ * @property PROCEDURE_TYPE
  * @type {Object}
  * @final
  */
-export const FP_LEG_TYPE = {
-    SID: 'sid',
-    STAR: 'star',
-    IAP: 'iap',
-    AWY: 'awy',
-    FIX: 'fix',
-    MANUAL: '[manual]'
-};
-
 export const PROCEDURE_TYPE = {
     SID: 'SID',
     STAR: 'STAR'
@@ -252,4 +241,41 @@ export const PERFORMANCE = {
      * @final
      */
     TYPICAL_CLIMB_FACTOR: 0.7
+};
+
+/**
+ * Separation distances between aircraft
+ *
+ * @property SEPARATION
+ * @type {Object}
+ * @final
+ */
+export const SEPARATION = {
+    /**
+     * 14.816km = 8nm (max possible sep minmum)
+     *
+     * @memberof SEPARATION
+     * @property MAX_KM
+     * @type {number}
+     * @final
+     */
+    MAX_KM: 14.816,
+    /**
+     * Standard Basic Lateral Separation Minimum
+     *
+     * @memberof SEPARATION
+     * @property STANDARD_LATERAL_KM
+     * @type {number}
+     * @final
+     */
+    STANDARD_LATERAL_KM: 5.556, // 3nm
+    /**
+     * Minimum vertical separation in feet
+     *
+     * @memberof SEPARATION
+     * @property VERTICAL_FT
+     * @type {number}
+     * @final
+     */
+    VERTICAL_FT: 1000
 };

@@ -86,6 +86,14 @@ export const ARRIVAL_PATTERN_WAVE_MOCK = Object.assign(
     }
 );
 
+export const ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK = Object.assign(
+    {},
+    ARRIVAL_PATTERN_MOCK,
+    {
+        route: 'MLF.GRNPA9.KLAS'
+    }
+);
+
 export const SPAWN_PATTERN_LIST = [
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK

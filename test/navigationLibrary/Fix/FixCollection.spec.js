@@ -87,11 +87,11 @@ ava.serial('.getFixRelativePosition() returns null if a FixModel does not exist 
 ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prepending thier name', t => {
     const result = FixCollection.findRealFixes();
 
-    t.true(result.length === 104);
+    t.true(result.length === 105);
 });
 
 ava.serial('.addItems() resets _items when it is called with an existing collection', t => {
-    t.true(FixCollection.length === 105);
+    t.true(FixCollection.length === 106);
 
     FixCollection.addItems(SMALL_FIX_LIST_MOCK);
 

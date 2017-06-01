@@ -5,15 +5,8 @@ import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
 import { km_ft, degreesToRadians } from '../utilities/unitConverters';
+import { SEPARATION } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
-
-// TODO: move these to a constants file
-// 14.816km = 8nm (max possible sep minmum)
-const MAXIMUM_SEPARATION_KM = 14.816;
-// Standard Basic Lateral Separation Minimum
-const STANDARD_LATERAL_SEPARATION_MINIMUM_KM = 5.556; // 3nm
-// Minimum vertical separation in feet
-const MIN_VERTICAL_SEPARATION_FT = 1000;
 
 /**
  * Details about aircraft in close proximity in relation to 'the rules'
@@ -123,7 +116,7 @@ export default class AircraftConflict {
             return;
         }
 
-
+        // TODO: replace magic numbers with enum
         // Ignore aircraft in the first minute of their flight
         if ((window.gameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
             (window.gameController.game_time() - this.aircraft[0].takeoffTime < 60)) {
@@ -151,6 +144,7 @@ export default class AircraftConflict {
         ) {
             this.collided = true;
             const isWarning = true;
+
             window.uiController.ui_log(
                 `${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`,
                 isWarning
@@ -203,7 +197,7 @@ export default class AircraftConflict {
      */
     checkProximity() {
         // No conflict or warning if vertical separation is present
-        if (this.altitude >= MIN_VERTICAL_SEPARATION_FT) {
+        if (this.altitude >= SEPARATION.VERTICAL_FT) {
             this.conflicts.proximityConflict = false;
             this.conflicts.proximityViolation = false;
 
@@ -215,51 +209,27 @@ export default class AircraftConflict {
         let disableNotices = false;
         const a1 = this.aircraft[0];
         const a2 = this.aircraft[1];
-        let applicableLatSepMin = STANDARD_LATERAL_SEPARATION_MINIMUM_KM;
+        let applicableLatSepMin = SEPARATION.STANDARD_LATERAL_KM;
 
 
         // Established on precision guided approaches && both are following different instrument approaches
-        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.fms.arrivalRunway.name !== a2.fms.arrivalRunway.name)) {
-            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.fms.arrivalRunway.name][a2.fms.arrivalRunway.name];
+        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) &&
+            (a1.fms.arrivalRunwayModel.name !== a2.fms.arrivalRunwayModel.name)) {
+            const runwayRelationship = window.airportController.airport_get().getRunwayRelationshipForRunwayNames(
+                a1.fms.arrivalRunwayModel.name,
+                a2.fms.arrivalRunwayModel.name
+            );
 
-            // Determine applicable lateral separation minima for conducting
-            // parallel simultaneous dependent approaches on these runways:
             if (runwayRelationship.parallel) {
                 // hide notices for aircraft on adjacent final approach courses
                 disableNotices = true;
-
-                // TODO: this should be a helper function: findSeparationMinimum = (feetBetween) => {};
-                const feetBetween = km_ft(runwayRelationship.lateral_dist);
-                if (feetBetween < 2500) {
-                    // Runways separated by <2500'
-                    applicableLatSepMin = STANDARD_LATERAL_SEPARATION_MINIMUM_KM;  // 3.0nm
-                } else if (feetBetween >= 2500 && feetBetween <= 3600) {
-                    // 2500'-3600'
-                    applicableLatSepMin = 1.852;  // 1.0nm
-                } else if (feetBetween > 3600 && feetBetween <= 4300) {
-                    // 3600'-4300'
-                    applicableLatSepMin = 2.778;  // 1.5nm
-                } else if (feetBetween > 4300 && feetBetween <= 9000) {
-                    // 4300'-9000'
-                    applicableLatSepMin = 3.704;  // 2.0nm
-                } else if (feetBetween > 9000) {
-                    // Runways separated by >9000'
-                    applicableLatSepMin = STANDARD_LATERAL_SEPARATION_MINIMUM_KM;  // 3.0nm
-                }
-                // Note: The above does not take into account the (more complicated)
-                // rules for dual/triple simultaneous parallel dependent approaches as
-                // outlined by FAA JO 7110.65, para 5-9-7. Users playing at any of our
-                // airports that have triple parallels may be able to "get away with"
-                // the less restrictive rules, whilst their traffic may not be 100%
-                // legal. It's just complicated and not currently worthwhile to add
-                // rules for running trips at this point... maybe later. -@erikquinn
-                // Reference: FAA JO 7110.65, section 5-9-6
+                applicableLatSepMin = runwayRelationship.separationMinimum;
             }
         }
 
         // TODO: this should be another class method: hasSeparationViolation(applicableLatSepMin)
         // Considering all of the above cases,...
-        violation = (this.distance < applicableLatSepMin);
+        violation = this.distance < applicableLatSepMin;
         // TODO: enumerate the magic number.
         // TODO: this should be another class method
         conflict = (this.distance < applicableLatSepMin + 1.852 && !disableNotices) || violation;  // +1.0nm
@@ -370,7 +340,8 @@ export default class AircraftConflict {
      */
     _isOutsideBoundingBox() {
         this._recalculateLateralAndVerticalDistances();
-        return this.distance > MAXIMUM_SEPARATION_KM;
+
+        return this.distance > SEPARATION.MAX_KM;
     }
 
     /**
