@@ -16,7 +16,7 @@
 - Adds `StripViewController`, `StripViewCollection`, and `StripViewModel` classes [#285](https://github.com/openscope/openscope/issues/285)
     - Removes progress strip logic from the `AircraftModel`
     - Completely reworks CSS for `StripViewList`
-
+- Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 
 
 
