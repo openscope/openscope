@@ -18,7 +18,7 @@
         "angle": 220,
         "speed": 4
     },
-    "arrivalRunway": "27R",
+    "arrivalRunway": "27L",
     "departureRunway": "27R",
     "airspace": [
         {
@@ -890,16 +890,12 @@
     "runways": [
         {
             "name": ["09L", "27R"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N51d28m38.89", "W0d29m22.65", "79ft"], ["N51d28m39.63", "W0d25m59.74", "78ft"]],
-            "length": 3.8946,
             "ils": [true, true]
         },
         {
             "name": ["09R", "27L"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [["N51d27m53.19", "W0d29m13.01", "75ft"], ["N51d27m53.83", "W0d26m2.68", "77ft"]],
-            "length": 3.6532,
             "ils": [true, true]
         }
     ],
