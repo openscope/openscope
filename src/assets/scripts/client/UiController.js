@@ -247,8 +247,8 @@ export default class UiController {
         const selectedOption = this._gameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
-        for (let i = 0; i < option.data.length; i++) {
-            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.data[i][1], selectedOption);
+        for (let i = 0; i < option.optionList.length; i++) {
+            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
 
             $selector.append($optionSelectTempalate);
         }
@@ -281,15 +281,15 @@ export default class UiController {
      * @private
      */
     _buildOptionSelectTemplate(optionData, selectedOption) {
-        // optionData coming in to this method will always be a string (due to existing api) but could contain
-        // valid numbers. here we test for valid number and build `optionDataDisplay` accordingly.
-        const optionDataDisplay = _isNaN(parseFloat(optionData))
-            ? _startCase(optionData)
-            : parseFloat(optionData);
-        let optionSelectTempalate = `<option value="${optionData}">${optionDataDisplay}</option>`;
+        // the `selectedOption` coming in to this method will always be a string (due to existing api) but
+        // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
+        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
+            ? parseFloat(selectedOption)
+            : selectedOption
+        let optionSelectTempalate = `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
 
-        if (optionData === selectedOption) {
-            optionSelectTempalate = `<option value="${optionData}" selected>${optionDataDisplay}</option>`;
+        if (optionData.value === parsedSelectedOption) {
+            optionSelectTempalate = `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;
         }
 
         return optionSelectTempalate;

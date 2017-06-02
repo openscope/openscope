@@ -1,3 +1,11 @@
+.option {
+    position: relative;
+}
+
+.option + .option {
+    margin-top: 2px;
+}
+
 .option-dialog {
     width: 480px;
     margin-left: -240px;
@@ -6,7 +14,7 @@
     top: 20%;
     left: 50%;
     background-color: rgba(15, 25, 20, 1);
-    color: #ddd;
+    color: #dddddd;
     font-size: 12px;
     opacity: 0;
     border-radius: 1px;
@@ -33,13 +41,9 @@
 }
 
 .option-type-select::after {
-    height: 1em;
     position: absolute;
-    right: 1.2em;
-    top: 50%;
-    margin-top: -.5em;
-    font-size: .625em;
-    line-height: 1;
+    top: 15%;
+    font-size: 8px;
     content: "\25BC";
     pointer-events: none;
 }
