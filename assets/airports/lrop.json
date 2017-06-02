@@ -1,0 +1,701 @@
+{
+    "radio": {
+        "twr": "Otopeni Tower",
+        "app": "Bucharest Approach",
+        "dep": "Bucharest Radar"
+    },
+    "icao": "LROP",
+    "iata": "OTP",
+    "magnetic_north": 2.1,
+    "ctr_radius": 180,
+    "ctr_ceiling": 17500,
+    "initial_alt": 6000,
+    "position": ["N44d34m16.00", "E26d05m06.00", "314ft"],
+    "rr_radius_nm": 5,          
+    "rr_center": ["N44d34m16.00", "E26d05m06.00"],
+    "has_terrain": false,        
+    "wind": {
+        "angle": 0,  
+        "speed": 0  
+    },
+    "airspace": [{
+        "floor": 0,
+        "ceiling": 175,
+        "airspace_class": "A",
+        "poly": [
+            ["N045d04m34.000", "E025d11m30.000"],
+            ["N045d04m34.000", "E026d27m15.000"],
+            ["N044d53m23.000", "E026d58m01.000"],
+            ["N044d20m00.000", "E027d00m00.000"],
+            ["N044d00m00.000", "E025d40m00.000"],
+            ["N044d04m47.000", "E025d15m11.000"],
+            ["N044d37m37.000", "E025d08m58.000"]
+        ]
+    }],
+    "restricted": [{
+        "name": "LRR3",
+        "height": "10500ft",
+        "coordinates": [
+            ["N44d30m25.00", "E26d14m00.00"],
+            ["N44d27m20.00", "E25d58m30.00"],
+            ["N44d21m00.00", "E26d04m00.00"],
+            ["N44d21m00.00", "E26d14m00.00"]
+       ]
+    }],
+    "fixes": {
+        "POLUN": ["N44d14m14.722", "E025d13m24.144"],
+        "BUKEL": ["N45d04m40.121", "E025d43m32.572"],
+        "DENAK": ["N45d00m08.205", "E026d26m08.489"],
+        "DEXIM": ["N44d42m33.075", "E026d45m14.335"],
+        "DILAS": ["N44d33m22.101", "E025d49m14.534"],
+        "INDOR": ["N44d39m45.251", "E026d06m43.720"],
+        "IPRAS": ["N44d41m23.131", "E026d28m49.043"],
+        "NETUL": ["N44d41m43.375", "E026d58m42.826"],
+        "OBELA": ["N44d32m43.559", "E025d49m38.210"],
+        "OBUGA": ["N44d06m32.436", "E026d05m39.380"],
+        "OP081": ["N44d32m09.364", "E025d42m23.583"],
+        "OP082": ["N44d31m36.111", "E025d35m26.669"],
+        "OP083": ["N44d31m02.437", "E025d28m29.898"],
+        "OP084": ["N44d36m41.147", "E025d27m35.999"],
+        "OP085": ["N44d37m14.883", "E025d34m33.431"],
+        "OP086": ["N44d37m48.198", "E025d41m31.008"],
+        "OP087": ["N44d38m21.089", "E025d48m28.725"],
+        "OP088": ["N44d44m19.029", "E025d47m33.699"],
+        "OSTAL": ["N44d16m40.502", "E026d46m22.377"],
+        "SORDU": ["N44d02m33.097", "E025d26m48.226"],
+        "TEVRO": ["N44d20m47.081", "E025d30m07.333"],
+        "TOBAG": ["N44d22m37.978", "E026d42m09.949"],
+        "TOSVI": ["N44d45m14.010", "E025d09m40.719"],
+        "TUTIX": ["N44d14m24.422", "E025d31m07.611"],
+        "UVALU": ["N44d42m38.891", "E025d26m38.864"],
+        "BOGVI": ["N44d42m03.093", "E026d38m07.810"],
+        "DILIM": ["N44d37m13.027", "E026d50m37.704"],
+        "DONOX": ["N44d11m05.174", "E025d54m23.878"],
+        "ESUXU": ["N44d27m30.793", "E026d26m06.479"],
+        "IDARU": ["N44d38m24.506", "E026d58m54.475"],
+        "ITVUK": ["N44d28m00.963", "E026d33m03.413"],
+        "IVDEK": ["N44d28m30.711", "E026d40m00.469"],
+        
+        "SOKRU": ["N44d59m34.136", "E025d19m49.048"],
+        "OKAGO": ["N44d47m48.779", "E026d34m19.568"],
+
+
+        "GOMDI": ["N44d51m54.285", "E025d56m39.717"],
+        "TABAV": ["N44d53m22.808", "E026d58m01.012"],
+        "USIRO": ["N44d14m30.397", "E025d45m52.599"],
+        "EKSUN": ["N44d55m13.731", "E026d17m08.121"],
+        "ELKAV": ["N44d55m43.219", "E026d51m38.107"],
+        "ETUXA": ["N44d49m34.939", "E026d17m57.475"],
+        "OP881": ["N44d35m05.531", "E026d11m36.734"],
+        "OP882": ["N44d34m24.940", "E026d11m42.684"],
+        "OP883": ["N44d35m42.748", "E026d19m57.990"],
+        "OP884": ["N44d35m02.161", "E026d20m03.842"],
+        "OP885": ["N44d37m04.432", "E026d38m48.993"],
+        "OP886": ["N44d36m19.747", "E026d37m56.725"],
+        "OP887": ["N44d37m54.519", "E026d50m45.222"],
+        "OP888": ["N44d37m06.677", "E026d49m05.656"],
+        "OP889": ["N44d21m59.577", "E026d21m56.214"],
+        "OP890": ["N44d46m02.123", "E026d10m00.159"],
+        "OP891": ["N44d49m16.707", "E026d02m38.662"],
+        
+        "ENIMA": ["N45d04m46.00", "E24d54m09.00"],
+        "PELUR": ["N45d17m12.00", "E25d29m18.00"],
+        "LAPKA": ["N45d17m34.00", "E26d30m33.00"],
+        "URELA": ["N45d29m48.00", "E26d33m40.00"],
+        "RIVOS": ["N44d39m21.00", "E27d39m17.00"],
+        "DIRAL": ["N44d30m39.00", "E27d33m15.00"],
+        "KOMAN": ["N43d59m00.00", "E26d13m00.00"],
+        "ARGES": ["N44d04m56.00", "E26d49m36.00"],
+        "RASUB": ["N43d58m44.00", "E25d25m06.00"],
+        "ORTIP": ["N43d58m40.00", "E25d19m59.00"],
+        "ELVAB": ["N44d09m52.00", "E25d05m27.00"],
+        "VIKBI": ["N44d15m31.00", "E24d39m21.00"],
+        "UBOGU": ["N44d45m47.00", "E24d40m06.00"],
+        "VAMON": ["N44d23m58.00", "E24d40m47.00"],
+        "BULEN": ["N43d45m00.00", "E25d49m00.00"],
+        "PEMOK": ["N44d21m52.90", "E24d20m54.50"],
+        "LAMIT": ["N45d06m14.00", "E23d22m29.00"],
+        "KODRU": ["N46d11m32.00", "E28d07m26.00"],
+        "FOCSA": ["N45d59m41.00", "E26d41m23.00"],
+        "SOMOV": ["N43d42m00.00", "E24d51m00.00"],
+        
+        "DESUX": ["N44d56m22.808", "E25d50m05.231"],
+        "ETOGO": ["N44d48m12.135", "E26d39m49.158"],
+        "OP661": ["N44d34m15.091", "E26d00m30.398"],
+        "OP662": ["N44d33m34.496", "E26d00m36.476"],
+        "OP663": ["N44d33m42.936", "E25d53m33.041"],
+        "OP664": ["N44d33m02.339", "E25d53m39.201"],
+        "OP665": ["N44d33m19.188", "E25d48m28.348"],
+        "OP666": ["N44d32m31.096", "E25d46m59.069"],
+        "OP667": ["N44d45m11.509", "E25d58m51.759"],
+        "SISGU": ["N44d22m09.891", "E25d27m52.661"],
+        "UTOKI": ["N44d44m39.242", "E25d51m53.111"],
+        "LEVTA": ["N44d35m22.004", "E26d24m34.540"],
+        "OP261": ["N44d35m54.055", "E26d31m56.977"],
+        "OP262": ["N44d36m23.872", "E26d38m54.962"],
+        "OP264": ["N44d41m33.225", "E26d31m09.155"],
+        "OP265": ["N44d41m02.931", "E26d24m10.624"],
+        "OP267": ["N44d38m39.017", "E25d52m18.761"],
+        "OP268": ["N44d31m40.866", "E26d16m12.538"],
+        "OP269": ["N44d29m13.863", "E25d44m14.476"],
+        "RARIT": ["N44d36m04.377", "E26d24m53.323"],
+        "TUMOP": ["N44d19m03.599", "E26d17m49.709"],
+        "UTIDI": ["N44d15m10.031", "E26d14m01.934"],
+        
+        "OPT": ["N44.591565", "E26.559542"],
+        "STJ": ["N44.918561", "E25.977028"],
+        "FLR": ["N44.500828", "E25.708167"],
+        "OPE": ["N44.574667", "E26.211333"],
+        "OPW": ["N44.557744", "E25.984633"],
+        "OTL": ["N44.570256", "E26.000617"],
+        "OTR": ["N44.588000", "E26.235333"],
+        "BSE": ["N44.529636", "E26.230536"],
+        "BSW": ["N44.472086", "E25.951997"],
+
+        "BIVBU": ["N44d55m14.00", "E24d19m54.00"] 
+
+    },
+    "runways": [
+        {
+            "name": ["08R", "26L"],
+            "end": [
+                ["N44.564661", "E26.076747", "314ft"],
+                ["N44.56797", "E26.120428", "314ft"]
+            ],
+            "sepFromAdjacent": [2.5, 2.5],
+            "ils": [true, true]
+        },
+        {
+            "name": ["08L", "26R"],
+            "end": [                
+                ["N44.576622", "E26.0841", "313ft"],
+                ["N44.579925", "E26.127764", "313ft"]
+            ],
+            "sepFromAdjacent": [2.5, 2.5],
+            "ils": [true, true]
+        }
+    ],
+    "sids": {   
+        "SOKRU": { 
+            "icao": "SOKRU",       
+            "name": "Sokru Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {
+                "08R": [["OP882", "S220-"], "OP890", ["OP891", "A45+"], "GOMDI"],
+                "08L": [["OP881", "A09+|S220-"], "OP890", ["OP891", "A45+"], "GOMDI"],
+                "26R": [["OP663", "S250-"], "UTOKI"],
+                "26L": [["OP664", "S250-"], "UTOKI"]
+            },
+            "body": [],
+            "exitPoints": {     
+                "SOKRU": [["SOKRU", "A110+"]] 
+            },
+            "draw": [
+                ["OP881", "OP890", "OP891", "GOMDI", "SOKRU"],
+                ["OP882", "OP890", "OP891", "GOMDI", "SOKRU"],
+                ["OP663", "UTOKI", "SOKRU"],
+                ["OP664", "UTOKI", "SOKRU"]
+            ]
+        },
+        "POLUN": { 
+            "icao": "POLUN",       
+            "name": "Polun Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {  
+                "08R": [["OP884", "A40+|S250-"], "OP889", "USIRO"],
+                "08L": [["OP883", "A40+|S250-"], "OP889", "USIRO"],
+                "26R": [["OP665", "A40+"], "SISGU"],
+                "26L": [["OP666", "A40+"], "SISGU"]
+            },
+            "body": [], 
+            "exitPoints": { 
+              "POLUN": ["POLUN"] 
+            },
+            "draw": [
+                ["OP884", "OP889", "USIRO", "POLUN"],
+                ["OP883", "OP889", "USIRO", "POLUN"],
+                ["OP665", "SISGU", "POLUN"],
+                ["OP666", "SISGU", "POLUN"]
+            ]
+        },
+        "NETUL": { 
+            "icao": "NETUL",       
+            "name": "Netul Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {  
+                "08R": ["OP888"],
+                "08L": ["OP887"],
+                "26R": [["OP662", "S210-"], ["OP667", "S270-"], "ETOGO"],
+                "26L": [["OP661", "S210-"], ["OP667", "S270-"], "ETOGO"]
+            },
+            "body": [], 
+            "exitPoints": { 
+              "NETUL": ["NETUL"] 
+            },
+            "draw": [
+                ["OP887", "NETUL"],
+                ["OP888", "NETUL"],
+                ["OP662", "OP667", "ETOGO", "NETUL"],
+                ["OP661", "OP667", "ETOGO", "NETUL"]
+            ]
+        },
+        "IDARU": { 
+            "icao": "IDARU",       
+            "name": "Idaru Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {  
+                "08R": ["OP888"],
+                "08L": ["OP887"],
+                "26R": [["OP662", "S210-"], ["OP667", "S270-"], "ETOGO"],
+                "26L": [["OP661", "S210-"], ["OP667", "S270-"], "ETOGO"]
+            },
+            "body": [], 
+            "exitPoints": { 
+              "IDARU": ["IDARU"] 
+            },
+            "draw": [
+                ["OP882", "OP884", "OP887", "IDARU"],
+                ["OP882", "OP884", "OP888", "IDARU"],
+                ["OP662", "OP667", "ETOGO", "IDARU"],
+                ["OP661", "OP667", "ETOGO", "IDARU"]
+            ]
+        },
+        "DENAK": { 
+            "icao": "DENAK",       
+            "name": "Denak Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {  
+                "08R": [["OP884", "S270-"], "ETUXA", "EKSUN"],
+                "08L": [["OP883", "S270-"], "ETUXA", "EKSUN"],
+                "26R": [["OP662", "S210-"], "OP667"],
+                "26L": [["OP661", "S210-"], "OP667"]
+            },
+            "body": [], 
+            "exitPoints": { 
+              "DENAK": [["DENAK", "A110+"]] 
+            },
+            "draw": [
+                ["OP884", "ETUXA", "EKSUN", "DENAK"],
+                ["OP883", "ETUXA", "EKSUN", "DENAK"],
+                ["OP662", "OP667", "DENAK"],
+                ["OP661", "OP667", "DENAK"]
+            ]
+        },
+        "BUKEL": { 
+            "icao": "BUKEL",       
+            "name": "Bukel Departure",
+            "suffix": {"08R": "1K", "08L": "1K", "26R": "1M", "26L": "1M"},
+            "rwy": {  
+                "08R": [["OP884", "S270-"], "ETUXA"],
+                "08L": [["OP883", "S270-"], "ETUXA"],
+                "26R": [["OP662", "S210-"], ["OP667", "A45+"], "DESUX"],
+                "26L": [["OP661", "S210-"], ["OP667", "A45+"], "DESUX"]
+            },
+            "body": [], 
+            "exitPoints": { 
+              "BUKEL": [["BUKEL", "A110+"]] 
+            },
+            "draw": [
+                ["OP884", "ETUXA", "BUKEL"],
+                ["OP883", "ETUXA", "BUKEL"],
+                ["OP662", "OP667", "DESUX", "BUKEL"],
+                ["OP661", "OP667", "DESUX", "BUKEL"]
+            ]
+        }
+    },
+    "stars": {  
+        "DENAK" : {
+            "icao": "DENAK",
+            "name": "Denak Arrival",
+            "suffix": {"08R": "1U", "08L": "1U", "26R": "2X", "26L": "2X"},
+            "entryPoints": {
+                "DENAK": [["FOCSA", "KODRU"], "LAPKA", "DENAK"]
+            },
+            "body": [], 
+            "rwy": {
+                "08R": [["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082","OP081", ["DILAS", "A25+|S210-"]],
+                "08L": [["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082","OP081", ["OBELA", "A25+|S210-"]],
+                "26R": [["OKAGO", "A45+"], ["BOGVI", "A35+|S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": [["OKAGO", "A45+"], ["BOGVI", "A35+|S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"],
+                ["DENAK", "OKAGO", "BOGVI", "OP262", "OP261", "RARIT"],
+                ["DENAK", "OKAGO", "BOGVI", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "NETUL" : {
+            "icao": "NETUL",
+            "name": "Netul Arrival",
+            "suffix": {"08R": "2U", "08L": "2U", "26R": "1X", "26L": "1X"},
+            "entryPoints": {
+                "NETUL": ["RIVOS", "NETUL"]
+            },
+            "body": [], 
+            "rwy": {
+                "08R": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                "08L": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                "26R": [["DILIM", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": [["DILIM", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["NETUL", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["NETUL", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"],
+                ["NETUL", "DILIM", "OP262", "OP261", "RARIT"],
+                ["NETUL", "DILIM", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "IDARU" : {
+            "icao": "IDARU",
+            "name": "Idaru Arrival",
+            "suffix": {"08R": "2U", "08L": "2U", "26R": "1X", "26L": "1X"},
+            "entryPoints": {
+                "IDARU": ["DIRAL", "IDARU"]
+            },
+            "body": [], 
+                "rwy": {
+                    "08R": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                    "08L": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                    "26R": [["DILIM", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                    "26L": [["DILIM", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+                },
+                "draw": [
+                    ["IDARU", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                    ["IDARU", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"],
+                    ["IDARU", "DILIM", "OP262", "OP261", "RARIT"],
+                    ["IDARU", "DILIM", "OP262", "OP261", "LEVTA"]
+                ]
+        },
+        "OSTAL" : {
+            "icao": "OSTAL",
+            "name": "Ostal Arrival",
+            "suffix": {"08R": "1U", "08L": "1U", "26R": "1X", "26L": "1X"},
+            "entryPoints": {
+                "OSTAL": ["ARGES", "OSTAL"]
+            },
+            "body": [], 
+             "rwy": {
+                "08R": ["TOBAG", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                "08L": ["TOBAG", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                "26R": ["TOBAG", ["IVDEK", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": ["TOBAG", ["IVDEK", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+             },
+             "draw": [
+                  ["OSTAL", "TOBAG", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                  ["OSTAL", "TOBAG", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"],
+                  ["OSTAL", "TOBAG", "IVDEK", "OP262", "OP261", "LEVTA"],
+                  ["OSTAL", "TOBAG", "IVDEK", "OP262", "OP261", "RARIT"]
+              ]
+        },
+        "TOSVI" : {
+            "icao": "TOSVI",
+            "name": "Tosvi Arrival",
+            "suffix": {"08R": "2U", "08L": "2U", "26R": "3X", "26L": "3X"},
+            "entryPoints": {
+                "TOSVI": ["LAMIT", "TOSVI"]
+            },
+            "body": [], 
+            "rwy": {
+                "08R": [["UVALU", "A70+"], ["OP088", "S230-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                "08L": [["UVALU", "A70+"], ["OP088", "S230-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                "26R": [["UVALU", "A70+"], "OP267", ["INDOR", "A70+"], ["OP265", "S230-"], "OP264", ["BOGVI", "A35+|S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": [["UVALU", "A70+"], "OP267", ["INDOR", "A70+"], ["OP265", "S230-"], "OP264", ["BOGVI", "A35+|S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["TOSVI", "UVALU", "OP088", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["TOSVI", "UVALU", "OP088", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"],
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "RARIT"]
+            ]
+        },
+        "TOSVI1R" : {
+            "icao": "TOSVI1R",
+            "name": "Tosvi One Romeo Arrival",
+            "suffix": {"26R": "", "26L": ""},
+            "entryPoints": {
+                "TOSVI": ["TOSVI"]
+            },
+            "body": [], 
+            "rwy": {
+                "26R": ["OP269", ["OP268", "A70+|S230-"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": ["OP269", ["OP268", "A70+|S230-"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"]
+            ]
+        },
+        "SORDU" : {
+            "icao": "SORDU",
+            "name": "Sordu Arrival",
+            "suffix": {"08R": "1U", "08L": "1U", "26R": "1X", "26L": "1X"},
+            "entryPoints": {
+                "SORDU": ["SOMOV", "SORDU"]
+            },
+            "body": [], 
+            "rwy": {
+                "08R": ["TUTIX", ["TEVRO", "A70+|S240-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                "08L": ["TUTIX", ["TEVRO", "A70+|S240-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                "26R": ["DONOX", "UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": ["DONOX", "UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["SORDU", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
+                ["SORDU", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "OBELA"],
+                ["SORDU", "DONOX", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"],
+                ["SORDU", "DONOX", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "OBUGA" : {
+            "icao": "OBUGA",
+            "name": "Obuga Arrival",
+            "suffix": {"08R": "1U", "08L": "1U", "26R": "1X", "26L": "1X"},
+            "entryPoints": {
+                "OBUGA": ["KOMAN", "OBUGA"]
+            },
+            "body": [], 
+            "rwy": {
+                "08R": [["TEVRO", "A70+|S240-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["OBELA", "A25+|S210-"]],
+                "08L": [["TEVRO", "A70+|S240-"], ["OP083", "A35-|S220-"], "OP082", "OP081", ["DILAS", "A25+|S210-"]],
+                "26R": ["UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": ["UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
+                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "OBELA"],
+                ["OBUGA", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"],
+                ["OBUGA", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.SOKRU.SOKRU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+               ["ROT", 5],
+               ["RYR", 4],
+               ["BAW", 1],
+               ["AFR", 1],
+               ["KLM", 1],
+               ["DLH", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.BUKEL.BUKEL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["ROT", 5],
+                ["RYR", 4],
+                ["BAW", 1],
+                ["AFR", 1],
+                ["KLM", 1],
+                ["DLH", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.DENAK.DENAK",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ROT", 5],
+                ["EWG", 1],
+                ["LOT", 1],
+                ["SWR", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.NETUL.NETUL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ROT", 3],
+                ["THY", 2],
+                ["PGT", 1],
+                ["QTR", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.IDARU.IDARU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ROT", 3],
+                ["THY", 2],
+                ["PGT", 1],
+                ["QTR", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.POLUN.POLUN",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 3],
+                ["RYR", 2],
+                ["ASL", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "TOSVI.TOSVI.LROP",
+            "altitude": [11000, 14000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 15,
+            "airlines": [
+                ["ROT", 5],
+                ["RYR", 4],
+                ["DLH", 3],
+                ["KLM", 2],
+                ["ASL", 1],
+                ["AFR", 2],
+                ["BAW", 1],
+                ["EWG", 1],
+                ["LOT", 1],
+                ["SWR", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "OBUGA.OBUGA.LROP",
+            "altitude": [14000, 17000],
+            "speed": 250,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 3],
+                ["THY", 2],
+                ["PGT", 1],
+                ["QTR", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "OSTAL.OSTAL.LROP",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 3],
+                ["THY", 2],
+                ["PGT", 1],
+                ["QTR", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "DENAK.DENAK.LROP",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 5],
+                ["RYR", 4],
+                ["CSA", 1],
+                ["LOT", 1]
+            ]
+        },
+        {   
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "NETUL.NETUL.LROP",
+            "altitude":  [17000, 20000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ROT", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "IDARU.IDARU.LROP",
+            "altitude":  [17000, 20000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ROT", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "DENAK.DENAK.LROP",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 5],
+                ["RYR", 4],
+                ["CSA", 1],
+                ["LOT", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "SORDU.SORDU.LROP",
+            "altitude": [14000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ROT", 3],
+                ["RYR", 2],
+                ["ASL", 1]
+            ]
+        }
+    ]
+    
+}
