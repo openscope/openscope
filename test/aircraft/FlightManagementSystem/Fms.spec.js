@@ -381,6 +381,26 @@ ava('.skipToWaypoint() skips to a waypoint in a different leg', (t) => {
     t.true(fms.currentWaypoint.name === waypointNameMock);
 });
 
+ava('.getNextWaypointModel() returns the `WaypointModel` for the next Waypoint in the collection', (t) => {
+    const fms = buildFmsMock();
+    const waypointModel = fms.getNextWaypointModel();
+    const expectedResult = 'misen';
+
+    t.true(waypointModel._name === expectedResult);
+});
+
+ava('.getNextWaypointModel() returns null when fewer than two WaypointModels remaining in collection', (t) => {
+    const fms = buildFmsMock();
+
+    fms.skipToWaypoint('prino');
+
+    const result = fms.getNextWaypointModel();
+    const expectedResult = null;
+
+
+    t.true(result === expectedResult);
+});
+
 ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
     const expectedResult = [-87.64380662924125, -129.57471627889475];
     const fms = buildFmsMock();
@@ -740,7 +760,6 @@ ava('._findLegIndexForProcedureType() returns -1 when a procedure type cannot be
 
     t.true(result === -1);
 });
-
 
 ava('._findLegIndexForProcedureType() returns an array index for a specific procedure type', (t) => {
     const fms = buildFmsMock(isComplexRoute);
