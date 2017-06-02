@@ -203,7 +203,7 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     const nominalBankAngleDegrees = 25;
     const speed = kn_ms(aircraft.speed);
     const bankAngle = degreesToRadians(nominalBankAngleDegrees);
-    const nextWaypointModel = aircraft.fms.currentLeg.nextWaypoint;
+    const nextWaypointModel = aircraft.fms.getNextWaypointModel();
 
     if (!aircraft.fms.hasNextWaypoint() || nextWaypointModel.isVector) {
         return 0;
