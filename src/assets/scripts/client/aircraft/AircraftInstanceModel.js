@@ -405,10 +405,9 @@ export default class AircraftInstanceModel {
 
         this.setIsRemovable();
 
-        // TODO: this seems redundant. if its already in the leg its in the fms.
-        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
+        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
             this.radioCall(
-                `leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
+                'leaving radar coverage without proper clearance',
                 AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
                 true
             );

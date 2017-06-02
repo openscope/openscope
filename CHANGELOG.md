@@ -18,6 +18,7 @@
     - Completely reworks CSS for `StripViewList`
 - Adds `.isGroundedFlightPhase()` and implements this helper in `.buildWaypointModelsForProcedure()` [#491](https://github.com/openscope/openscope/issues/491)
     - This allows for waypointModels to be build from the correct collection based on `flightPhase`
+- Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 
 
 
