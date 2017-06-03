@@ -1324,7 +1324,7 @@
             "suffix": {"16":"5M", "28":"5A", "34":"5G"},
             "rwy": {
                 "16": [["^DWS77", "A30+"], "DWS78"],
-                "28": [["OP", "A30+"]],
+                "28": [["^OE", "A30+"]],
                 "34": [["^DWN26", "A30+"]]
             },
             "body": [],
@@ -1463,11 +1463,15 @@
             },
             "body": [],
             "rwy": {
-                "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-                "16": [["ADSIS", "A70"], ["KERAV", "A60"]],
-                "28": [["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-                "34": [["ADSIS", "A70"], ["KERAV", "A60"]]
-            }
+                "10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80|S230-"], ["NEKIL", "A40"]],
+                "16": ["ADSIS", ["KERAV", "A60"]],
+                "28": ["ADSIS", ["KERAV", "A80|S230-"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80|S230-"], "NARMU", ["LAPMO", "A30|S180-"]],
+                "34": ["ADSIS", ["KERAV", "A60"]]
+            },
+            "draw": [
+                ["BAGSO", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"],
+                ["BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"]
+            ]
         },
         "BAML": {
             "icao": "BAML",
@@ -1478,10 +1482,14 @@
             },
             "body": [],
             "rwy": {
-                "10": [["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-                "28": [["RONON", "A170"], ["ORVEN", "A120"], ["GIRAS", "A100"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-                "34": [["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
-            }
+                "10": [["EPIDU", "S230-"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80|S230-"], ["NEKIL", "A40"]],
+                "28": ["RONON", "ORVEN", "GIRAS", ["KERAV", "A80|S230-"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80|S230-"], "NARMU", ["LAPMO", "A30|S180-"]],
+                "34": ["RONON", ["ORVEN", "S250-"], "GIRAS", ["KERAV", "A60"]]
+            },
+            "draw": [
+                ["BAMLI", "EPIDU", "ADNAL"],
+                ["BAMLI", "RONON", "ORVEN", "GIRAS", "KERAV"]
+            ]
         },
         "BOYN": {
             "icao": "BOYN",
@@ -1492,11 +1500,15 @@
             },
             "body": [],
             "rwy": {
-                "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
-                "16": [["ADSIS", "A70"], ["KERAV", "A60"]],
-                "28": [["ADSIS", "A90"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-                "34": [["ADSIS", "A70"], ["KERAV", "A60"]]
-            }
+                "10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80|S230-"], ["NEKIL", "A40"]],
+                "16": ["ADSIS", ["KERAV", "A60"]],
+                "28": ["ADSIS", ["KERAV", "A80|S230-"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80|S230-"], "NARMU", ["LAPMO", "A30|S180-"]],
+                "34": ["ADSIS", ["KERAV", "A60"]]
+            },
+            "draw": [
+                ["BOYNE", "ADSIS"],
+                ["BOYNE", "EKREN"]
+            ]
         },
         "BUNE": {
             "icao": "BUNE",
@@ -1507,26 +1519,37 @@
             },
             "body": [],
             "rwy": {
-                "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-                "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-                "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-                "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
-            }
+                "10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70|S230-"], ["OSLEX", "A50"]],
+                "16": ["DIRUM", "KEPOR", ["OTNER", "S250-"], "DWN27", ["ULTAG", "A60|S220-"]],
+                "28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70|S230-"], "SOPEP", ["LAPMO", "A30|S180-"]],
+                "34": ["DIRUM", ["KEPOR", "S250-"], "ARVOK", ["SORIN", "A60"]]
+            },
+            "draw": [
+                ["BUNED", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
+                ["DIRUM", "KANUS", "BABON"],
+                ["DIRUM", "KEPOR", "OTNER", "DWN27", "ULTAG"]
+            ]
         },
         "LIPG": {
             "icao": "LIPG",
             "name": "Lipgo",
             "suffix": {"10":"1R", "16":"1U", "28":"1L", "34":"1S"},
             "entryPoints": {
-                "LIPGO": ["LIPGO"]
+                "LIPGO": [["LIPGO", "S240-"]]
             },
             "body": [],
             "rwy": {
-                "10": [["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-                "16": [["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-                "28": [["PEKOK", "A70"], ["SIVNA", "A70|S230"], "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+                "10": ["RUBAR", "DETAX", ["BERMO", "A70|S230-"], "BABON", "BIVDI", "DW754", ["DW755", "A70|S230-"], ["OSLEX", "A50"]],
+                "16": ["RUBAR", ["OTNER", "S250-"], "DWN27", ["ULTAG", "A60|S220-"]],
+                "28": [["PEKOK", "A70"], ["SIVNA", "A70|S230-"], "SUGAD", "DW704", "DW705", ["DW706", "A70|S230-"], "SOPEP", ["LAPMO", "A30|S180-"]],
                 "34": [["SORIN", "A60"]]
-            }
+            },
+            "draw": [
+                ["LIPGO", "RUBAR", "DETAX", "BERMO", "BABON", "BIVDI", "DW754", "DW755", "OSLEX"],
+                ["RUBAR", "OTNER"],
+                ["LIPGO", "PEKOK", "SIVNA"],
+                ["LIPGO", "SORIN"]
+            ]
         },
         "NIMA": {
             "icao": "NIMA",
@@ -1537,11 +1560,15 @@
             },
             "body": [],
             "rwy": {
-                "10": [["EKREN", "A140"], ["ELBON", "A100"], ["ASDER", "A80|S230"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+                "10": ["EKREN", "ELBON", ["ASDER", "A80|S230-"], "AKIVA", "ADNAL", "APRUT", "DW865", ["DW866", "A80|S230-"], ["NEKIL", "A40"]],
                 "16": [["KERAV", "A60"]],
-                "28": [["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
+                "28": [["KERAV", "A80|S230-"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80|S230-"], "NARMU", ["LAPMO", "A30|S180-"]],
                 "34": [["KERAV", "A60"]]
-            }
+            },
+            "draw": [
+                ["NIMAT", "EKREN"],
+                ["NIMAT", "KERAV"]
+            ]
         },
         "OLAP": {
             "icao": "OLAP",
@@ -1552,11 +1579,16 @@
             },
             "body": [],
             "rwy": {
-                "10": [["EPIDU", "A100|S230"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80"], ["NEKIL", "A40"]],
+                "10": [["EPIDU", "S230-"], ["ADNAL", "A80"], "APRUT", "DW865", ["DW866", "A80|S230-"], ["NEKIL", "A40"]],
                 "16": [["ULTAG", "A60|S220"]],
-                "28": [["RONON", "A170|S300"], ["ORVEN", "A120|S250"], ["GIRAS", "A100|S240"], ["KERAV", "A80|S230"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80"], ["NARMU", "A30|S200"], ["LAPMO", "A30|S180"]],
-                "34": [["RONON", "A150"], ["ORVEN", "A100|S250"], ["GIRAS", "A80"], ["KERAV", "A60"]]
-            }
+                "28": ["RONON", "ORVEN", "GIRAS", ["KERAV", "A80|S230-"], "KOGAX", "KUDOM", "DW814", "DW815", ["DW816", "A80|S230-"], "NARMU", ["LAPMO", "A30|S180-"]],
+                "34": ["RONON", ["ORVEN", "S250-"], "GIRAS", ["KERAV", "A60"]]
+            },
+            "draw": [
+                ["OLAPO", "EPIDU"],
+                ["OLAPO", "ULTAG"],
+                ["OLAPO", "RONON"]
+            ]
         },
         "OSGA": {
             "icao": "OSGA",
@@ -1567,11 +1599,14 @@
             },
             "body": [],
             "rwy": {
-                "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-                "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-                "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-                "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
-            }
+                "10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70|S230-"], ["OSLEX", "A50"]],
+                "16": ["DIRUM", "KEPOR", ["OTNER", "S250-"], "DWN27", ["ULTAG", "A60|S220-"]],
+                "28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70|S230-"], "SOPEP", ["LAPMO", "A30|S180-"]],
+                "34": ["DIRUM", ["KEPOR", "S250-"], "ARVOK", ["SORIN", "A60"]]
+            },
+            "draw": [
+                ["OSGAR", "DIRUM"]
+            ]
         },
         "SUTE": {
             "icao": "SUTE",
@@ -1582,11 +1617,14 @@
             },
             "body": [],
             "rwy": {
-                "10": [["DIRUM", "A120|S250"], ["KANUS", "A90|S230"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-                "16": [["DIRUM", "A210|S300"], ["KEPOR", "A170|S270"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-                "28": [["DIRUM", "A170|S300"], ["KEPOR", "A130|S270"], ["ARVOK", "A100|S250"], ["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
-                "34": [["DIRUM", "A160|S280"], ["KEPOR", "A120|S250"], ["ARVOK", "A90|S240"], ["SORIN", "A60"]]
-            }
+                "10": ["DIRUM", ["KANUS", "S230-"], ["BABON", "A70"], "BIVDI", "DW754", ["DW755", "A70|S230-"], ["OSLEX", "A50"]],
+                "16": ["DIRUM", "KEPOR", ["OTNER", "S250-"], "DWN27", ["ULTAG", "A60|S220-"]],
+                "28": ["DIRUM", "KEPOR", "ARVOK", ["SORIN", "A70|S230-"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70|S230-"], "SOPEP", ["LAPMO", "A30|S180-"]],
+                "34": ["DIRUM", ["KEPOR", "S250-"], "ARVOK", ["SORIN", "A60"]]
+            },
+            "draw": [
+                ["SUTEX", "DIRUM"]
+            ]
         },
         "VATR": {
             "icao": "VATR",
@@ -1597,11 +1635,15 @@
             },
             "body": [],
             "rwy": {
-                "10": [["RUBAR", "A140|S250"], ["DETAX", "A90"], ["BERMO", "A70|S230"], "BABON", "BIVDI", "DW754", ["DW755", "A70"], ["OSLEX", "A50"]],
-                "16": [["RUBAR", "A210|S300"], ["OTNER", "A150|S250"], ["DWN27", "A80"], ["ULTAG", "A60|S220"]],
-                "28": [["SORIN", "A70|S230"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70"], ["SOPEP", "A30"], ["LAPMO", "A30|S180"]],
+                "10": ["RUBAR", "DETAX", ["BERMO", "A70|S230-"], "BABON", "BIVDI", "DW754", ["DW755", "A70|S230-"], ["OSLEX", "A50"]],
+                "16": ["RUBAR", ["OTNER", "S250-"], "DWN27", ["ULTAG", "A60|S220-"]],
+                "28": [["SORIN", "A70|S230-"], "SIVNA", "SUGAD", "DW704", "DW705", ["DW706", "A70|S230-"], "SOPEP", ["LAPMO", "A30|S180-"]],
                 "34": [["SORIN", "A60"]]
-            }
+            },
+            "draw": [
+                ["VATRY", "RUBAR"],
+                ["VATRY", "SORIN"]
+            ]
         }
     },
     "spawnPatterns": [
