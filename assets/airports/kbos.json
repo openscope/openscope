@@ -291,7 +291,7 @@
         },
         {
             "name": ["9", "27"],
-            "end": [ 
+            "end": [
                 ["N42d21m20.76", "W71d00m46.54", "17ft"],
                 ["N42d21m36.83", "W70d59m15.86", "15ft"]
             ],
@@ -300,7 +300,7 @@
         {
             "name": ["14", "32"],
             "end": [
-                ["N42d21m23.08", "W71d01m23.92", "16ft"], 
+                ["N42d21m23.08", "W71d01m23.92", "16ft"],
                 ["N42d20m55.01", "W71d00m29.81", "19ft"]
             ],
             "ils": [false, false]
@@ -308,7 +308,7 @@
         {
             "name": ["15L", "33R"],
             "end": [
-                ["N42d22m24.93", "W71d00m32.98", "15ft"], 
+                ["N42d22m24.93", "W71d00m32.98", "15ft"],
                 ["N42d22m07.01", "W71d00m08.97", "14ft"]
             ],
             "ils": [false, false]
@@ -316,7 +316,7 @@
         {
             "name": ["15R", "33L"],
             "end": [
-                ["N42d22m27.42", "W71d01m04.53", "19ft"], 
+                ["N42d22m27.42", "W71d01m04.53", "19ft"],
                 ["N42d21m16.79", "W70d59m29.84", "16ft"]
             ],
             "ils": [true, true]
@@ -450,7 +450,7 @@
                 "4L": ["_BOS036004", "#090"],
                 "4R": ["_BOS037004", "#090"],
                 "9": ["#093"],
-                "14":  ["_BOS142001", "#120"],
+                "14": ["_BOS142001", "#120"],
                 "15R": ["_BOS151001", "#120"],
                 "22L": ["#140"],
                 "22R": ["#140"],
@@ -498,7 +498,7 @@
                 ["LFV*"], ["MHT*"], ["MVY*"],
                 ["NELIE*"], ["PATSS*"], ["PSM*"],
                 ["PVD*"], ["REVSS*"], ["SEY*"],
-                ["SSOXS*"] 
+                ["SSOXS*"]
             ]
         },
         "PATSS4": {
@@ -623,14 +623,14 @@
             },
             "body": ["GDM", "BRONC", "LOBBY", "REVER", "BOS"],
             "rwy": {
-                "4R": [],
                 "4L": [],
+                "4R": [],
                 "15R": [],
-                "22R": [],
                 "22L": [],
+                "22R": [],
                 "27": [],
-                "33L": [],
-                "32": []
+                "32": [],
+                "33L": []
             },
             "draw": [
                 ["ALB", "WIKID", "GDM", "BRONC", "LOBBY", "REVER", "BOS"]
@@ -644,14 +644,14 @@
             },
             "body": [["JFUND", "A140"]],
             "rwy": {
-                "4R": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["GRIFI", "A60"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "4L": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["GRIFI", "A60"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "4R": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["GRIFI", "A60"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "15R": [["BADCA", "A100|S250"], ["WACHU", "A70|S210"], "SSAAM", "AADMS"],
-                "22R": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
                 "22L": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
+                "22R": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
                 "27": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["REVER", "A60"], ["SEHAG", "A60|S210"]],
-                "33L": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["BRODI", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
-                "32": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["BRODI", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
+                "32": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["BRODI", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
+                "33L": [["AUTUM", "A120|S270"], ["WINTA", "A100|S250"], ["HRRIS", "A80"], ["SPYSD", "A70|S220"], ["BRODI", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
             },
             "draw": [
                 ["PONCT", "STOLI", "MNSTA", "SEETS", "DUBLE", "BASEZ", "JFUND", "AUTUM", "WINTA", "HRRIS", "SPYSD", "REVER", "SEHAG"],
@@ -671,14 +671,14 @@
             },
             "body": ["PVD", "KRANN"],
             "rwy": {
-                "4R": [],
                 "4L": [],
+                "4R": [],
                 "15R": [],
-                "22R": [],
                 "22L": [],
+                "22R": [],
                 "27": [],
-                "33L": [],
-                "32": []
+                "32": [],
+                "33L": []
             },
             "draw": [
                 ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT", "PVD", "KRANN"],
@@ -696,14 +696,14 @@
             },
             "body": [["EURRO", "A160|S270"], ["OOSHN", "A140|S250"]],
             "rwy": {
-                "4R": [["TTERI", "A140|S250"], ["WAATR", "A100"], ["FLUTI", "A90"], ["GRIFI", "A70"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "4L": [["TTERI", "A140|S250"], ["WAATR", "A100"], ["FLUTI", "A90"], ["GRIFI", "A70"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "4R": [["TTERI", "A140|S250"], ["WAATR", "A100"], ["FLUTI", "A90"], ["GRIFI", "A70"], ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "15R": [["GRGIO", "A90"], ["BRGIT", "A70"], ["HNOVR", "A50|S220"], ["RDHOK", "A50|S210"], ["TKMAN", "A50|S210"]],
-                "22R": [["GRGIO", "A90"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
                 "22L": [["GRGIO", "A90"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
+                "22R": [["GRGIO", "A90"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
                 "27": [["PUDJJ", "A90"], ["AYBEE", "A60|S210"]],
-                "33L": [["TTERI", "A110|S250"], ["WAATR", "A70"], ["PLGRM", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
-                "32": [["TTERI", "A110|S250"], ["WAATR", "A70"], ["PLGRM", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
+                "32": [["TTERI", "A110|S250"], ["WAATR", "A70"], ["PLGRM", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
+                "33L": [["TTERI", "A110|S250"], ["WAATR", "A70"], ["PLGRM", "A60"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
             },
             "draw": [
                 ["FERNZ", "LONEY", "RODEE", "EURRO"],
@@ -724,14 +724,14 @@
             },
             "body": [["RUIZE", "A230|S350"], ["AWLIN", "A220|S320"], ["BANKI", "A210|S300"], ["ROBUC", "A180|S260"], ["PROVI", "A160"], ["JOODY", "A140"]],
             "rwy": {
+                "4L": [["SOFEE", "A100|S220"], ["ERNEI", "A80"], ["GOSHI", "A60|S210"]],
                 "4R": [["SOFEE", "A100|S220"], ["ERNEI", "A80"], ["GOSHI", "A60|S210"]],
-                "4L": [["SOFEE", "A100|S220"], ["ERNEI", "A80"], ["GOSHI", "A60|S210"]], 
                 "15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
-                "22R": [["KRANN", "A120|S250"], ["CRADL", "A100"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
                 "22L": [["KRANN", "A120|S250"], ["CRADL", "A100"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
+                "22R": [["KRANN", "A120|S250"], ["CRADL", "A100"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
                 "27": [["KRANN", "A120|S250"], ["CRADL", "A100"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
-                "33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60|S220"], ["BBOGG", "A60|S210"]],
-                "32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60|S220"], ["BBOGG", "A60|S210"]]
+                "32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60|S220"], ["BBOGG", "A60|S210"]],
+                "33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60|S220"], ["BBOGG", "A60|S210"]]
             },
             "draw": [
                 ["MERIT", "RUIZE", "AWLIN", "BANKI", "ROBUC", "PROVI", "JOODY", "KRANN", "CRADL", "KLEBB", "HOKDU"],
@@ -751,14 +751,14 @@
             },
             "body": ["JEWIT", "FOSTY", "HEFTY", "WOONS"],
             "rwy": {
-                "4R": [],
                 "4L": [],
+                "4R": [],
                 "15R": [],
-                "22R": [],
                 "22L": [],
+                "22R": [],
                 "27": [],
-                "33L": [],
-                "32": []
+                "32": [],
+                "33L": []
             },
             "draw": [
                 ["ORW", "JEWIT", "FOSTY", "HEFTY", "WOONS"]
@@ -991,7 +991,7 @@
             "rate": 7,
             "period": 60,
             "variation": 5,
-            "airlines":  [
+            "airlines": [
                 ["aal/long", 4],
                 ["aca", 3],
                 ["afr/long", 3],
@@ -1022,7 +1022,7 @@
             "speed": 450,
             "method": "random",
             "rate": 3,
-            "airlines":  [
+            "airlines": [
                 ["aal", 10],
                 ["dal", 7],
                 ["jbu", 40],
@@ -1039,7 +1039,7 @@
             "category": "arrival",
             "route": "JFK.ROBUC2.KBOS",
             "altitude": [37000, 41000],
-            "speed":  450,
+            "speed": 450,
             "method": "random",
             "rate": 12,
             "airlines": [
