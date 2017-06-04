@@ -1,20 +1,41 @@
-[![Travis Production Build State](https://img.shields.io/travis/openscope/openscope/master.svg)](https://github.com/openscope/openscope/tree/master)
 [![openScope Current Release](https://img.shields.io/github/release/openscope/openscope.svg)](https://github.com/openscope/openscope/releases)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![Travis Production Build State](https://img.shields.io/travis/openscope/openscope/master.svg)](https://github.com/openscope/openscope/tree/master)
+[![Coverage Status](https://coveralls.io/repos/github/openscope/openscope/badge.svg?branch=develop)](https://coveralls.io/github/openscope/openscope?branch=develop)
 [![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
-[![Website Status](https://img.shields.io/website-up-down-green-red/http/openscope.co.svg)](http://www.openscope.co)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
 ## Air Traffic Control
 
 An ATC simulator in HTML5.
 
-## Running Locally
+## Quick Start
 
-It is possible to run this application locally. You will need to have [`node`](https://nodejs.org/en/download/) and [`npm`](https://docs.npmjs.com/getting-started/installing-node) installed in order for this to work. For more information, view the [tools documentation](tools/README.md).
+_Prerequisites: In order to successfully complete this quick start, you will need to have the following installed locally:_
+- [Git](https://git-scm.com/downloads)
+- [Node](https://nodejs.org/en/download/)
 
-## Privacy Discolsures
+_Installation directions are beyond the scope of this document.  Instead, search the [Google](http://google.com).  Installing these two packages has been written about ad-nauseum._
 
-Page hits are tracked with Google Analytics.
+From a terminal (or GitBash for Windows users), run the following commands:
+1. `git clone https://github.com/openscope/openscope.git`
+1. `cd openscope`
+1. `npm install`
+1. `npm run build`
+1. `npm run server`
+
+Once that finishes doing it's thing, you should see something close to the following in the terminal:
+```bash
+> node ./public/assets/scripts/server/index.js
+
+Listening on PORT 3003
+```
+
+Success!!
+
+You you do not see this message and are having trouble getting set up, please join us on [Slack](http://slack.openscope.co) and someone will be able to troubleshoot with you.
+
+For more information on the available tools, please view the [Tools Readme](tools/README.md).
+
 
 ## Contributing
 
@@ -28,4 +49,8 @@ Please join us on our [Slack Channel](http://slack.openscope.co/) if you have qu
 
 ## License
 
-MIT.
+MIT
+
+## Privacy Discolsures
+
+Page hits are tracked with Google Analytics.
