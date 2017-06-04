@@ -29,7 +29,6 @@ import { TIME } from '../constants/globalConstants';
 import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
 
-
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
 
