@@ -33,6 +33,7 @@ export default class AirportController {
         this._airportListToLoad = airportLoadList;
         // eslint-disable-next-line no-undef
         prop.airport = airport;
+
         return this.init()
                    .ready(initialAirportData);
     }
@@ -169,6 +170,24 @@ export default class AirportController {
     }
 
     /**
+     * Return the name of the `arrivalRunwayModel`.
+     *
+     * This should be used only in the `SpawnPatternModel` when determining initial
+     * heading for arrival aircraft. We only need the name so we can properly select
+     * an exit segment of a STAR.
+     *
+     * Sometimes route definitions do not contain enough waypoints in the entry and body
+     * segments. This gives us a way to guess the runway and grab an exit segment.
+     *
+     * @for AirportController
+     * @method getInitialArrivalRunwayName
+     * @return {string}
+     */
+    getInitialArrivalRunwayName() {
+        return this.airport.current.arrivalRunwayModel.name;
+    }
+
+    /**
      * @method hasStoredIcao
      * @return {boolean}
      */
@@ -185,7 +204,8 @@ export default class AirportController {
     }
 
     /**
-     * Remove an aircraft from the queue of any runway(s) at the AirportModel
+     * Remove an aircraft from the queue of any `AirportModel` `RunwayModel`(s)
+     *
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
      * @param  aircraft {AircraftInstanceModel}

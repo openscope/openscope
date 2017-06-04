@@ -9,7 +9,8 @@
 export const GAME_OPTION_NAMES = {
     CONTROL_METHOD: 'controlMethod',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
-    SOFT_CEILING: 'softCeiling'
+    SOFT_CEILING: 'softCeiling',
+    INCLUDE_WIP_AIRPORTS: 'includeWipAirports'
 };
 
 /**
@@ -53,5 +54,17 @@ export const GAME_OPTION_VALUES = [
             ['Yes', 'yes'],
             ['No', 'no']
         ]
+    },
+    {
+        name: GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS,
+        defaultValue: 'no',
+        description: 'Include WIP Airports',
+        help: 'Will include all available airports including those marked as Work In Progress.',
+        type: 'select',
+        data: [
+            ['Yes', 'yes'],
+            ['No', 'no']
+        ]
+
     }
 ];

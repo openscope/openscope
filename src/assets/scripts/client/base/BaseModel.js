@@ -11,6 +11,7 @@ import _isString from 'lodash/isString';
 export default class BaseModel {
     constructor(modelName = 'BaseModel') {
         const optionalIdPrefix = this._buildIdPrefix(modelName);
+
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -19,8 +20,6 @@ export default class BaseModel {
          * @private
          */
         this._id = _uniqueId(optionalIdPrefix);
-
-
     }
 
     /**
@@ -55,7 +54,7 @@ export default class BaseModel {
      *
      * @for BaseModel
      * @method veriftyModelName
-     * @param {string / Object}
+     * @param {string}
      * @private
      */
     _buildIdPrefix(modelName) {
@@ -66,5 +65,4 @@ export default class BaseModel {
         // Default option since it is an optional parameter
         return `${modelName}-`;
     }
-
 }

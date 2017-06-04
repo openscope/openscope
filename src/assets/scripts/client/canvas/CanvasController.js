@@ -2,28 +2,40 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import EventBus from '../lib/EventBus';
 import {
     degreesToRadians,
     km,
     km_to_px
 } from '../utilities/unitConverters';
-import { time } from '../utilities/timeHelpers';
-import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
-import { tau } from '../math/circle';
-import { distance2d } from '../math/distance';
+import {
+    sin,
+    cos,
+    round,
+    calculateMiddle,
+    extrapolate_range_clamp,
+    clamp
+} from '../math/core';
 import {
     positive_intersection_with_rect,
     vectorize_2d,
     vscale
 } from '../math/vector';
-import { SELECTORS } from '../constants/selectors';
-import { LOG } from '../constants/logLevel';
-import { FLIGHT_PHASE, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { time } from '../utilities/timeHelpers';
+import { tau } from '../math/circle';
+import { distance2d } from '../math/distance';
+import {
+    FLIGHT_PHASE,
+    FLIGHT_CATEGORY
+} from '../constants/aircraftConstants';
 import {
     AIRCRAFT_DRAW_OPTIONS,
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
+import { EVENT } from '../constants/eventNames';
+import { SELECTORS } from '../constants/selectors';
+import { LOG } from '../constants/logLevel';
 import { TIME } from '../constants/globalConstants';
 import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
@@ -41,7 +53,10 @@ export default class ConvasController {
     constructor($element, navigationLibrary) {
         this.$window = $(window);
         this.$element = $element;
+
         this._navigationLibrary = navigationLibrary;
+        this._eventBus = EventBus;
+
         this.canvas = canvas;
         this.canvas.contexts = {};
         this.canvas.panY = 0;
@@ -79,6 +94,8 @@ export default class ConvasController {
      * @method enable
      */
     enable() {
+        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+
         return this;
     }
 
@@ -187,7 +204,7 @@ export default class ConvasController {
             this.canvas.size.height = this.$window.height();
         }
 
-        this.canvas.size.width -= 250;
+        // this.canvas.size.width -= 400;
         this.canvas.size.height -= 36;
 
         _forEach(this.canvas.contexts, (context) => {
@@ -1113,16 +1130,11 @@ k
             let blue = this.theme.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
             let white = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
 
-            if (match) {
+            if (aircraft.inside_ctr) {
                 red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
                 green = this.theme.DATA_BLOCK.SELECTED.BACKGROUND;
                 blue = this.theme.DATA_BLOCK.SELECTED.DEPARTURE_BAR;
                 white = this.theme.DATA_BLOCK.SELECTED.TEXT;
-            } else if (aircraft.inside_ctr) {
-                red = this.theme.DATA_BLOCK.IN_RANGE.ARRIVAL_BAR;
-                green = this.theme.DATA_BLOCK.IN_RANGE.BACKGROUND;
-                blue = this.theme.DATA_BLOCK.IN_RANGE.DEPARTURE_BAR;
-                white = this.theme.DATA_BLOCK.IN_RANGE.TEXT;
             }
 
             cc.textBaseline = 'middle';
@@ -1811,4 +1823,21 @@ k
             this.canvas.size.height / 2 + this.canvas.panY - km(pos[1])
         ];
     }
+
+    /**
+     * Center a point in the view
+     *
+     * Used only for centering aircraft, this accepts
+     * the x,y of an aircrafts relativePosition
+     *
+     * @for CanvasController
+     * @method _onCenterPointInView
+     * @param x {number}    relativePosition.x
+     * @param y {number}    relativePosition.y
+     */
+    _onCenterPointInView = ({ x, y }) => {
+        this.canvas.panX = 0 - round(window.uiController.km_to_px(x));
+        this.canvas.panY = round(window.uiController.km_to_px(y));
+        this.dirty = true;
+    };
 }

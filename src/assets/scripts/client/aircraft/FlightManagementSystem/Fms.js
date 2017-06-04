@@ -107,7 +107,7 @@ export default class Fms {
         /**
         * routeSegments of legs that have been completed
         *
-        * Used to generate #flightPlanRoute
+        * Used to generate a routeString for an entire, original, route
         *
         * @property _previousRouteSegments
         * @type {array<string>}
@@ -116,21 +116,11 @@ export default class Fms {
         */
         this._previousRouteSegments = [];
 
-        // TODO: Use this!
-        /**
-         * Airport the aircraft arrives to
-         *
-         * @for Fms
-         * @property arrivalAirport
-         * @type {AirportModel}
-         */
-        this.arrivalAirport = null;
-
         /**
          * Name of runway used at arrival airport
          *
          * @for Fms
-         * @property arrivalRunway
+         * @property arrivalRunwayModel
          * @type {RunwayModel}
          */
         this.arrivalRunwayModel = null;
@@ -144,21 +134,11 @@ export default class Fms {
         */
         this.currentPhase = '';
 
-        // TODO: Use this!
-        /**
-         * Airport the aircraft departs from
-         *
-         * @for Fms
-         * @property departureAirport
-         * @type {AirportModel}
-         */
-        this.departureAirport = null;
-
         /**
          * Name of runway used at departure airport
          *
          * @for Fms
-         * @property departureRunway
+         * @property departureRunwayModel
          * @type {RunwayModel}
          */
         this.departureRunwayModel = null;
@@ -175,8 +155,8 @@ export default class Fms {
          * Altitude expected for this flight. Will change as ATC amends it.
          *
          * @property flightPlanAltitude
-         * @type {Object}
-         * @default ''
+         * @type {number}
+         * @default -1
          */
         this.flightPlanAltitude = -1;
 
@@ -192,6 +172,15 @@ export default class Fms {
         this.init(aircraftInitProps, initialRunwayAssignment);
     }
 
+    /**
+     * Provides access to the `RunwayModel` currently associated with the Fms
+     *
+     * It is assumed only an arrival or departure runway will
+     * exist at any one time
+     *
+     * @property currentRunway
+     * @return {RunwayModel}
+     */
     get currentRunway() {
         return this.arrivalRunwayModel || this.departureRunwayModel;
     }
@@ -252,31 +241,6 @@ export default class Fms {
         return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
-    /**
-     * Flight plan as filed
-     *
-     * @method flightPlan
-     * @type {object}
-     */
-    get flightPlan() {
-        return {
-            altitude: this.flightPlanAltitude,
-            route: this.flightPlanRoute
-        };
-    }
-
-    /**
-     * Route expected for this flight. Will change as ATC amends it.
-     *
-     * @property flightPlanRoute
-     * @type {string}
-     */
-    get flightPlanRoute() {
-        const previousAndCurrentRouteStrings = this._previousRouteSegments.concat(this.currentRoute);
-
-        return previousAndCurrentRouteStrings.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
-    }
-
     // TODO: this should move to a class method
     /**
      * Returns a flattened array of each `WaypointModel` in the flightPlan
@@ -331,81 +295,6 @@ export default class Fms {
     }
 
     /**
-     * Return the name of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureName
-     * @return {string}
-     */
-    getProcedureName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureName;
-    }
-
-    /**
-     * Return the name and exit point of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureAndExitName
-     * @return {string}
-     */
-    getProcedureAndExitName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureAndExitName;
-    }
-
-    /**
-     * Return the name of the airport and the assigned runway, if following an arrival procedure
-     * or just the assigned runway when not on a procedure
-     *
-     * @for Fms
-     * @method getDestinationAndRunwayName
-     * @return {string}
-     */
-    getDestinationAndRunwayName() {
-        if (!this.isFollowingStar()) {
-            return `${this.currentRunwayName}`;
-        }
-
-        return `${this.currentLeg.exitName} ${this.currentRunwayName}`;
-    }
-
-    /**
-     * Return the name of the airport, if following an arrival procedure
-     *
-     * @for Fms
-     * @method getDestinationName
-     * @return {string}
-     */
-    getDestinationName() {
-        if (this.isFollowingStar()) {
-            const routeString = this.currentLeg.routeString;
-            const routeStringElements = routeString.split('.');
-
-            // TODO: This would actually be better as [0,1] than [1,2]
-            // eg `THHMP.CAVLR3.KIAD` --> `THHMP.CAVLR3` instead of `CAVLR3.KIAD`
-            return `${routeStringElements[1]}.${routeStringElements[2]}`;
-        }
-
-        if (this.isFollowingSid()) {
-            const routeString = this.currentLeg.routeString;
-            const routeStringElements = routeString.split('.');
-
-            return `${routeStringElements[1]}.${routeStringElements[2]}`;
-        }
-
-        const lastPointOnRoute = _last(this.flightPlanRoute.split('.'));
-
-        return lastPointOnRoute;
-    }
-
-    /**
      * Collects the `.getProcedureTopAltitude()` value from each `LegModel`
      * in the `#legCollection`, then finds and returns the highest value
      *
@@ -438,12 +327,50 @@ export default class Fms {
     }
 
     /**
+     * Route expected for this flight.
+     *
+     * This should be used only in the view, with the `StripViewModel`.
+     * This method will produce a non-standard `routeString` with spaces
+     * used as segment separators instead of the usual `..` or `.`
+     *
+     * Will change as ATC amends it.
+     *
+     * @for Fms
+     * @method getFlightPlanRouteForStripView
+     * @return {string}
+     */
+    getFlightPlanRouteForStripView() {
+        const currentRouteSegments = _map(this.legCollection, (legModel) => legModel.routeString);
+        const previousAndCurrentRouteSegments = this._previousRouteSegments.concat(currentRouteSegments);
+        const transformedRouteSegments = [];
+
+        for (let i = 0; i < previousAndCurrentRouteSegments.length; i++) {
+            const segment = previousAndCurrentRouteSegments[i];
+
+            if (segment.indexOf('.') === -1) {
+                transformedRouteSegments.push(segment);
+
+                continue;
+            }
+
+            // if we've made it here we assume a procedure segment
+            const procedureSegments = segment.split('.');
+            transformedRouteSegments.push(procedureSegments.join(' '));
+        }
+
+        return transformedRouteSegments.join(' ').toUpperCase();
+    }
+
+    /**
+     * Encapsulates setting `#departureRunwayModel`
      *
      * @for fms
      * @method setDepartureRunway
      * @param runwayModel {RunwayModel}
      */
     setDepartureRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
@@ -452,12 +379,15 @@ export default class Fms {
     }
 
     /**
+     * Encapsulates setting of `#arrivalRunwayModel`
      *
      * @for fms
      * @method setArrivalRunway
      * @param runwayModel {RunwayModel}
      */
     setArrivalRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
@@ -653,14 +583,16 @@ export default class Fms {
      * @for Fms
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @param departureRunwayModel {RunwayModel}
+     * @param runwayModel {RunwayModel}
      */
-    replaceDepartureProcedure(routeString, departureRunwayModel) {
-        // TODO: update runway information here, if needed
-
+    replaceDepartureProcedure(routeString, runwayModel) {
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;
+        }
+
+        if (this.departureRunwayModel.name !== runwayModel.name) {
+            this.setDepartureRunway(runwayModel);
         }
 
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
@@ -689,15 +621,18 @@ export default class Fms {
      * @for Fms
      * @method replaceArrivalProcedure
      * @param routeString {string}
-     * @param arrivalRunway {string}
+     * @param runwayModel {RunwayModel}
      */
-    replaceArrivalProcedure(routeString, arrivalRunway) {
+    replaceArrivalProcedure(routeString, runwayModel) {
         // this is the same procedure that is already set, no need to continue
         if (this.hasLegWithRouteString(routeString)) {
             return;
         }
 
-        // TODO: we may need to update the runway in this method
+        if (this.arrivalRunwayModel.name !== runwayModel.name) {
+            this.setArrivalRunway(runwayModel);
+        }
+
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
@@ -878,6 +813,7 @@ export default class Fms {
             return true;
         }
 
+        // TODO: abstract this to a method or combine with if/returns below
         // find the prcedure model from the correct collection based on flightPhase
         const procedureModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
             ? this.findStarByProcedureId(routeStringModel.procedure)
@@ -1059,6 +995,35 @@ export default class Fms {
      */
     findRandomExitPointForSidProcedureId(procedureId) {
         return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method isDeparture
+     * @return {boolean}
+     */
+    isDeparture() {
+        return this.currentPhase === FLIGHT_PHASE.APRON ||
+            this.currentPhase === FLIGHT_PHASE.TAXI ||
+            this.currentPhase === FLIGHT_PHASE.WAITING ||
+            this.currentPhase === FLIGHT_PHASE.TAKEOFF ||
+            this.currentPhase === FLIGHT_PHASE.CLIMB;
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method isArrival
+     * @return {boolean}
+     */
+    isArrival() {
+        return this.currentPhase === FLIGHT_PHASE.CRUISE ||
+            this.currentPhase === FLIGHT_PHASE.DESCENT ||
+            this.currentPhase === FLIGHT_PHASE.APPROACH ||
+            this.currentPhase === FLIGHT_PHASE.LANDING;
     }
 
     /**
@@ -1303,7 +1268,17 @@ export default class Fms {
         }
     }
 
+    /**
+     * Set the appropriate runway property with the passed `RunwayModel`
+     *
+     * @for Fms
+     * @method _setInitialRunwayAssignmentFromCategory
+     * @param category {string}
+     * @param runway {RunwayModel}
+     * @private
+     */
     _setInitialRunwayAssignmentFromCategory(category, runway) {
+        // TODO: change to switch with a default throw
         if (category === FLIGHT_CATEGORY.ARRIVAL) {
             this.setArrivalRunway(runway);
         } else if (category === FLIGHT_CATEGORY.DEPARTURE) {

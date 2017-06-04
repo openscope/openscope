@@ -82,16 +82,6 @@ ava('#currentRoute returns a routeString for a complex route', (t) => {
     t.true(_isEqual(fms.currentRoute, expectedResult));
 });
 
-ava('#flightPlan returns an empty string when no #_previousRouteSegments exist', (t) => {
-    const expectedResult = {
-        altitude: 41000,
-        route: 'cowby..bikkr..dag.kepec3.klas'
-    };
-    const fms = buildFmsMock(isComplexRoute);
-
-    t.true(_isEqual(fms.flightPlan, expectedResult));
-});
-
 ava('#waypoints returns a single array of all the WaypointModels in the flightPlan', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.waypoints;
@@ -99,31 +89,31 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     t.true(result.length === 14);
 });
 
-ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
-    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+ava('.getFlightPlanRouteForStripView() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResult = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.nextWaypoint();
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 });
 
-ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
-    const expectedResultBeforeReplacement = 'cowby..bikkr..dag.kepec3.klas';
-    const expectedResult = 'cowby..bikkr..mlf.grnpa1.klas';
+ava('.getFlightPlanRouteForStripView() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResultBeforeReplacement = 'COWBY BIKKR DAG KEPEC3 KLAS';
+    const expectedResult = 'COWBY BIKKR MLF GRNPA1 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.flightPlanRoute === expectedResultBeforeReplacement);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResultBeforeReplacement);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 });
 
 ava('.init() calls ._buildLegCollection()', (t) => {
@@ -444,15 +434,6 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     t.true(fms.legCollection.length === 1);
 });
 
-ava('.replaceDepartureProcedure() updates the #flightPlanRoute property', (t) => {
-    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMockForDeparture();
-
-    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
-
-    t.true(fms.flightPlanRoute === nextRouteStringMock.toLowerCase());
-});
-
 ava('.replaceArrivalProcedure() returns early if the nextRouteString matches the current route', (t) => {
     const routeStringMock = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
     const fms = buildFmsMock();
@@ -734,79 +715,6 @@ ava('.isFollowingSid() retruns true when the current Leg is a SID', (t) => {
 
     t.true(fms.isFollowingStar());
     t.false(fms.isFollowingSid());
-});
-
-ava('.getProcedureName() returns null when not on a procedureLeg', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getProcedureName();
-
-    t.true(result === null);
-});
-
-ava('.getProcedureName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getProcedureName();
-
-    t.true(result === 'KEPEC3');
-});
-
-ava('.getProcedureName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getProcedureName();
-
-    t.true(result === 'COWBY6');
-});
-
-ava('.getProcedureAndExitName() returns null when not on a procedureLeg', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === null);
-});
-
-ava('.getProcedureAndExitName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === 'KEPEC3.KLAS');
-});
-
-ava('.getProcedureAndExitName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === 'COWBY6.GUP');
-});
-
-ava('.getDestinationAndRunwayName() returns null when not on a procedureLeg', (t) => {
-    const expectedResult = '19L';
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getDestinationAndRunwayName();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getDestinationAndRunwayName() returns the name of the current arrival icao and runway when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getDestinationAndRunwayName();
-
-    t.true(result === 'KLAS 19L');
-});
-
-ava('.getDestinationName() when .isFollowingStar() is true', (t) => {
-    const expectedResult = 'kepec3.klas';
-    const fms = buildFmsMock();
-    const result = fms.getDestinationName();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getDestinationName() when .isFollowingSid() is true', (t) => {
-    const expectedResult = 'cowby6.gup';
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getDestinationName();
-
-    t.true(result === expectedResult);
 });
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {

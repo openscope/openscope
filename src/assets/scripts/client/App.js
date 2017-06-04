@@ -198,9 +198,9 @@ export default class App {
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.uiController = new UiController(this.$element);
+        this.uiController = new UiController(this.$element, this.gameController, this.airportController, this.canvasController);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
-        this.inputController = new InputController(this.$element, this.aircraftCommander);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
@@ -219,11 +219,9 @@ export default class App {
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
-        // window.airlineController = this.airlineController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
-        // window.canvasController = this.canvasController;
 
         console.info(`openScope Air Traffic Control Simulator, Version v${this.prop.version}`);
 
@@ -373,6 +371,7 @@ export default class App {
      */
     updatePre() {
         this.gameController.update_pre();
+        this.aircraftController.aircraft_update();
 
         return this;
     }
@@ -383,6 +382,7 @@ export default class App {
      */
     updatePost() {
         this.canvasController.canvas_update_post();
+        this.aircraftController.updateAircraftStrips();
 
         return this;
     }
@@ -406,7 +406,6 @@ export default class App {
         requestAnimationFrame(() => this.update());
 
         this.updatePre();
-        this.aircraftController.aircraft_update();
         this.updatePost();
         this.incrementFrame();
         this.gameClockView.update();

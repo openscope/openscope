@@ -181,6 +181,7 @@ export default class ModeController {
         }
 
         this.isEnabled = true;
+
         this._setModeSelectorMode(MCP_MODE_NAME.AUTOPILOT, MCP_MODE.AUTOPILOT.ON);
     }
 
