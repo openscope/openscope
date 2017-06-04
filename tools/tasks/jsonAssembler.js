@@ -32,7 +32,6 @@ function _buildResultList(source, outputFilename) {
             return;
         }
 
-
         // read the file as a string and JSON.parse() the contents.
         const fileData = JSON.parse(fs.readFileSync(fileSource, 'utf8'));
 
