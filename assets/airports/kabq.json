@@ -539,9 +539,9 @@
                 ["MKYON", "SOPPA", "PILLA"]
             ]
         },
-        "LAVAN3": {
-            "icao": "LAVAN3",
-            "name": "Lahvan Three",
+        "MIERA2": {
+            "icao": "MIERA2",
+            "name": "Meera Two",
             "entryPoints": {
                 "CME": ["CME", "CNX"],
                 "TXO": ["TXO"],
