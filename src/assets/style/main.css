@@ -1,24 +1,18 @@
-
 @import "reset.css";
 @import "util.css";
 @import "canvas.css";
-
 @import "font.css";
-
 @import "controls.css";
 @import "pause.css";
-
 @import "command.css";
 @import "log.css";
+@import "stripView.css";
 @import "sidebar.css";
-
 @import "loading.css";
-
 @import "tutorial.css";
-
 @import "airport.css";
-
 @import "score.css";
+
 
 html,body {
   height: 100%;

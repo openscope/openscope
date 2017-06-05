@@ -60,7 +60,7 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     t.true(_interceptGlidepathSpy.calledWithExactly(
         runwayModelMock.positionModel,
         runwayModelMock.angle,
-        runwayModelMock.ils.gs_gradient,
+        runwayModelMock.ils.glideslopeGradient,
         altitudeMock
     ));
 });

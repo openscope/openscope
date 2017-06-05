@@ -1,8 +1,6 @@
 import _keys from 'lodash/keys';
 import FixModel from '../../navigationLibrary/Fix/FixModel';
 import SpawnPatternModel from '../../trafficGenerator/SpawnPatternModel';
-// import Waypoint from '../../aircraft/Waypoint';
-// import DynamicPositionModel from '../DynamicPositionModel';
 
 /**
  * A map of Constructor names to constructor functions
@@ -27,24 +25,6 @@ export const CLASS_MAP = {
      * @final
      */
     SpawnPatternModel: SpawnPatternModel
-
-    // TODO: Future additions to the pool each of these models need some work in orer to integrate
-    // into the pool structure
-    //
-    // /**
-    //  * @memberof CLASS_MAP
-    //  * @property Waypoint
-    //  * @type {Waypoint}
-    //  * @final
-    //  */
-    // Waypoint: Waypoint
-    // /**
-    //  * @memberof CLASS_MAP
-    //  * @property DynamicPositionModel
-    //  * @type {DynamicPositionModel}
-    //  * @final
-    //  */
-    // DynamicPositionModel: DynamicPositionModel
 };
 
 /**

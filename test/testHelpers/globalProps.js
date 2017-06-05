@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import sinon from 'sinon';
 import _noop from 'lodash/noop';
 

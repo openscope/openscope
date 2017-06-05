@@ -23,13 +23,9 @@ export default class AirportController {
      * @constructor
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
-     * @param updateRun {function}
-     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange) {
+    constructor(initialAirportData, airportLoadList) {
         this.eventBus = EventBus;
-        this.updateRun = updateRun;
-        this.onAirportChange = onAirportChange;
 
         this.airport = airport;
         this.airport.airports = {};
@@ -37,6 +33,7 @@ export default class AirportController {
         this._airportListToLoad = airportLoadList;
         // eslint-disable-next-line no-undef
         prop.airport = airport;
+
         return this.init()
                    .ready(initialAirportData);
     }
@@ -116,17 +113,7 @@ export default class AirportController {
             return null;
         }
 
-        // create a new Airport with a reference to this.updateRun()
-        const airport = new Airport(
-            {
-                icao,
-                level,
-                name,
-                wip
-            },
-            this.updateRun,
-            this.onAirportChange
-        );
+        const airport = new Airport({ icao, level, name, wip });
 
         this.airport_add(airport);
 
@@ -183,6 +170,24 @@ export default class AirportController {
     }
 
     /**
+     * Return the name of the `arrivalRunwayModel`.
+     *
+     * This should be used only in the `SpawnPatternModel` when determining initial
+     * heading for arrival aircraft. We only need the name so we can properly select
+     * an exit segment of a STAR.
+     *
+     * Sometimes route definitions do not contain enough waypoints in the entry and body
+     * segments. This gives us a way to guess the runway and grab an exit segment.
+     *
+     * @for AirportController
+     * @method getInitialArrivalRunwayName
+     * @return {string}
+     */
+    getInitialArrivalRunwayName() {
+        return this.airport.current.arrivalRunwayModel.name;
+    }
+
+    /**
      * @method hasStoredIcao
      * @return {boolean}
      */
@@ -199,19 +204,13 @@ export default class AirportController {
     }
 
     /**
-     * Remove an aircraft from the queue of any runway(s) at the AirportModel
+     * Remove an aircraft from the queue of any `AirportModel` `RunwayModel`(s)
+     *
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
-     * @param  {aircraft} aircraft The aircraft to remove
+     * @param  aircraft {AircraftInstanceModel}
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
-        const runwayPrimaryEndIndex = 0;
-        const runwaySecondaryEndIndex = 1;
-        const runways = this.airport_get().runways;
-
-        for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][runwayPrimaryEndIndex].removeAircraftFromQueue(aircraft);
-            runways[runwayPair][runwaySecondaryEndIndex].removeAircraftFromQueue(aircraft);
-        }
+        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft.id);
     }
 }

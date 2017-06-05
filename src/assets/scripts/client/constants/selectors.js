@@ -39,6 +39,10 @@ export const CLASSNAMES = {
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     STRIP: 'strip',
+    STRIP_VIEW: 'js-stripView',
+    STRIP_VIEW_IS_HIDDEN: 'mix-stripView_isHidden',
+    STRIP_VIEW_LIST: 'js-stripView-list',
+    STRIP_VIEW_TRIGGER: 'js-stripView-trigger',
     SWITCH_AIRPORT: 'switch-airport',
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',
@@ -72,8 +76,7 @@ export const IDS = {
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
     SCORE: 'score',
-    SIDEBAR: 'sidebar',
-    STRIPS: 'strips'
+    SIDEBAR: 'sidebar'
 };
 
 /**

@@ -5,7 +5,8 @@ import {
     calcTurnRadius,
     calcTurnInitiationDistance,
     bearingToPoint,
-    fixRadialDist
+    fixRadialDist,
+    calculateCrosswindAngle
 } from '../../src/assets/scripts/client/math/flightMath';
 
 ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
@@ -45,4 +46,13 @@ ava('fixRadialDist() returns a point defined by a direction and distance away fr
 
     t.true(result[0] === expectedResult[0]);
     t.true(result[1] === expectedResult[1]);
+});
+
+ava('.calculateCrosswindAngle() returns a number that represents the crosswind angle', (t) => {
+    const expectedResult = 0.4720489082412385;
+    const runwayAngleMock = 3.3676754461462877;
+    const windAngleMock = 3.839724354387525;
+    const result = calculateCrosswindAngle(runwayAngleMock, windAngleMock);
+
+    t.true(result === expectedResult);
 });
