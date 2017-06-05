@@ -6,7 +6,8 @@
 
 ## Air Traffic Control
 
-An ATC simulator in HTML5.
+An ATC simulator in HTML5. Visit http://openscope.co to begin playing now!
+
 
 ## Quick Start
 
@@ -43,14 +44,17 @@ We use the [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-bran
 
 Don't know Javascript?  That's cool, we're always looking for beta testers and/or airport contributors.  If you would like to add a new airport, or help update existing airports, please read the [Airport Documentation](https://github.com/openscope/openscope/wiki/Airport.json) to get up to speed on what is expected in that file.
 
+
 ## Slack
 
 Please join us on our [Slack Channel](http://slack.openscope.co/) if you have questions, comments or would like to contribute.  We can then add you to the organization so you can begin committing to this repo.
+
 
 ## License
 
 MIT
 
-## Privacy Discolsures
+
+## Privacy Disclosures
 
 Page hits are tracked with Google Analytics.
