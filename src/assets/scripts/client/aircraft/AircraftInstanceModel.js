@@ -450,11 +450,8 @@ export default class AircraftInstanceModel {
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
-    /**
-    * verifies if there is a matched callsign and if the  aircraft is visable.
-
-
-    /**
+     /**
+     * verifies if there is a matched callsign and if the  aircraft is visable.
      * @for AircraftInstanceModel
      * @method getCallsign
      * @return {string}
