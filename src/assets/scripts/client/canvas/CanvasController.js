@@ -912,7 +912,7 @@ export default class ConvasController {
      * @for CanvasController
      * @method canvas_draw_aircraft_vector_lines
      * @param cc {canvas}
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     canvas_draw_aircraft_vector_lines(cc, aircraft) {
         if (aircraft.hit) {

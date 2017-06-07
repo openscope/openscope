@@ -48,7 +48,7 @@ const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
  * really just the collection of `LegModels` and their respective
  * `WaypointModel` objects.
  *
- * This class should always be instantiated from an `AircraftInstanceModel` and
+ * This class should always be instantiated from an `AircraftModel` and
  * always instantiated from some form of `spawnPatternModel` using some kind of
  * routeString.
  *
