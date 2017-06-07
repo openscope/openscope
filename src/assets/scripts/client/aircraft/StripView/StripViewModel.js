@@ -488,7 +488,7 @@ export default class StripViewModel extends BaseModel {
      *
      * @for StripViewModel
      * @method update
-     * @param aircraftModel {AircraftInstanceModel}
+     * @param aircraftModel {AircraftModel}
      */
     update(aircraftModel) {
         if (!this._shouldUpdate(aircraftModel)) {
@@ -610,7 +610,7 @@ export default class StripViewModel extends BaseModel {
      *
      * @for StripViewModel
      * @method shouldUpdate
-     * @param  aircraftModel {AircraftInstanceModel}
+     * @param  aircraftModel {AircraftModel}
      * @return {boolean}
      * @private
      */

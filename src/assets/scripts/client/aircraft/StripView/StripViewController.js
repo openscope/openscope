@@ -99,7 +99,7 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method update
-     * @param aircraftList {array<AircraftInstanceModel>}
+     * @param aircraftList {array<AircraftModel>}
      */
     update(aircraftList) {
         // TODO: this should probably work the other way; loop through list items and find an aircraft.
@@ -130,7 +130,7 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method createStripView
-     * @param aircraftModel {AircraftInstanceModel}
+     * @param aircraftModel {AircraftModel}
      */
     createStripView(aircraftModel) {
         const stripViewModel = new StripViewModel(aircraftModel);
@@ -144,7 +144,7 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method selectStripView
-     * @param  aircraftModel {AircraftInstanceModel}
+     * @param  aircraftModel {AircraftModel}
      */
     selectStripView(aircraftModel) {
         const stripModel = this._collection.findStripByAircraftId(aircraftModel.id);
@@ -200,7 +200,7 @@ export default class StripViewController {
      *
      * @for StripViewController
      * @method removeStripView
-     * @param aircraftModel {AircraftInstanceModel}
+     * @param aircraftModel {AircraftModel}
      */
     removeStripView(aircraftModel) {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);

@@ -61,7 +61,7 @@ export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPo
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
  *
- * @param aircraft {AircraftInstanceModel}      the aircraft in question
+ * @param aircraft {AircraftModel}      the aircraft in question
  * @param target {array}                        positional array of the targeted position [x,y]
  * @param headingThruTarget {number} (optional) The heading the aircraft should
  *                                              be established on when passing the target.
@@ -195,7 +195,7 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
  * - The Avionics Handbook, ch 15
  *
  * @function aircraft_turn_initiation_distance
- * @param aircraft {AircraftInstanceModel}
+ * @param aircraft {AircraftModel}
  * @param fix
  */
 export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition) => {

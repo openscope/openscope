@@ -151,7 +151,7 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
 
 /**
  * Calculate heading, nextFix and position data to be used when creating an
- * `AircraftInstanceModel` along a route.
+ * `AircraftModel` along a route.
  *
  * @function _preSpawn
  * @param spawnPatternJson
@@ -166,7 +166,7 @@ const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
-    // calculate heading, nextFix and position data to be used when creating an `AircraftInstanceModel` along a route
+    // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
     const spawnPositions = _calculateSpawnPositions(waypointModelList, spawnOffsets, airport);
 
     return spawnPositions;
