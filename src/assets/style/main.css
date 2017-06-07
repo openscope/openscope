@@ -12,6 +12,7 @@
 @import "tutorial.css";
 @import "airport.css";
 @import "score.css";
+@import "option_dialog.css";
 
 
 html,body {
@@ -33,66 +34,4 @@ html {
   width: auto;
   padding: 8px;
   z-index: 1000;
-}
-
-#options-dialog {
-  background-color: rgba(15, 25, 20, 1);
-
-  box-shadow: 0 0 0 6px rgba(31, 65, 48, 1.0);
-  border-radius: 1px;
-
-  color: #ddd;
-  font-size: 12px;
-
-  position: absolute;
-  padding: 12px 15px;
-  top: 20%;
-  left: 50%;
-  margin-left: -240px;
-  width: 480px;
-  height: auto;
-
-  opacity: 0;
-  pointer-events: none;
-
-  transition: opacity 0.5s ease;
-}
-
-#options-dialog.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#options-dialog span.option-description {
-    display: inline-block;
-    width: 45%;
-}
-
-#options-dialog span.option-selector {
-    position: absolute;
-    display: inline-block;
-    width: 45%;
-    right: 0px;
-}
-
-#options-dialog select {
-  background-color: rgba(15, 25, 20, 1);
-  padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
-  border: 0;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-}
-
-.option-type-select::after {
-  position: absolute;
-  pointer-events: none;
-  content: "\25BC";
-  height: 1em;
-  font-size: .625em;
-  line-height: 1;
-  right: 1.2em;
-  top: 50%; margin-top: -.5em;
 }
