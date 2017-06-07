@@ -452,7 +452,7 @@ export default class AircraftModel {
 
      /**
      * verifies if there is a matched callsign and if the  aircraft is visable.
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getCallsign
      * @return {string}
      */
