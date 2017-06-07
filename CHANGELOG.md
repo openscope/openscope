@@ -4,8 +4,10 @@
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
 - Adds more context to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 - Adds object helper class for object validation  [#191](https://github.com/openscope/openscope/issues/191)
+- Renamed AircraftInstanceModel with AircraftModel  [#402](https://github.com/openscope/openscope/issues/1402)
 - Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
+- Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
 - Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
 - Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
     - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
@@ -17,6 +19,7 @@
     - Removes progress strip logic from the `AircraftModel`
     - Completely reworks CSS for `StripViewList`
 - Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
+- Adds user setting option to change length of PTL [#423](https://github.com/openscope/openscope/issues/423)
 
 
 
@@ -32,6 +35,7 @@
 - Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
+
 
 
 
@@ -102,6 +106,15 @@
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
 - Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
+
+
+
+
+
+
+
+
+
 
 
 ### Bugfixes
@@ -233,7 +246,7 @@
 - Implements `modelSourceFactory` and `modelSourcePool` [#77](https://github.com/n8rzz/atc/issues/77)
 - Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
 - Moves properties shared by all `Arrival` types up to `ArrivalBase` [#55](https://github.com/n8rzz/atc/issues/55)
-- Removes `$.each()` from `AirportModel` in favor of `_forEach()` and uses `_get()` inside `AircraftModel.parse()` instead of if statements [#52](https://github.com/n8rzz/atc/issues/52)
+- Removes `$.each()` from `AirportModel` in favor of `_forEach()` and uses `_get()` inside `aircraftInstanceModel.parse()` instead of if statements [#52](https://github.com/n8rzz/atc/issues/52)
 - Moves creation of Legs and Waypoints to constants instead of as method arguments [#135](https://github.com/n8rzz/atc/issues/135)
 - Moves `.parseCoordinate()` out of `PositionModel` and into `unitConverters` [#17](https://github.com/n8rzz/atc/issues/17)
 - Moves flight management system files to `FlightManagementSystem` folder [#128](https://github.com/n8rzz/atc/issues/128)

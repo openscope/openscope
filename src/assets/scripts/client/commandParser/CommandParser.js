@@ -54,7 +54,7 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * All available commands are defined in the `commandMap`. Two terms of note are alias and root command.
  * We would call the `takeoff` command a root command and `to` and `cto` alises. The root command is the
  * one that shares the same key as the command definition which gives us the correct validator and parser.
- * The root command is also what the `AircraftInstanceModel` is expecting when it receives commands
+ * The root command is also what the `AircraftModel` is expecting when it receives commands
  * from the `InputController`.
  *
  * @class CommandParser
