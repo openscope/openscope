@@ -24,7 +24,7 @@ export const DEFAULT_CANVAS_SIZE = {
  */
 export const AIRCRAFT_DRAW_OPTIONS = {
     /**
-     * Length of Projected Track Lines ("PTLs"), in minutes. Standard is 1.
+     * Length of Projected Track Lines (PTLs), in minutes. Standard is 1.
      *
      * @memberof AIRCRAFT_DRAW_OPTIONS
      * @property PTL_LENGTH

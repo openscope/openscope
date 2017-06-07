@@ -36,8 +36,8 @@ export default class GameOptions {
     addOption(data) {
         const optionStorageName = `zlsa.atc.option.${data.name}`;
         this._options[data.name] = data;
-
         let dataName = data.defaultValue;
+
         if (_has(localStorage, optionStorageName)) {
             dataName = localStorage[optionStorageName];
         }
