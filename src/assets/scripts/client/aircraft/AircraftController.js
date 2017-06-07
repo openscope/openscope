@@ -269,13 +269,13 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_remove
-     * @param aircraftModel {AircraftInstanceModel}
+     * @param aircraftModel {AircraftModel}
      */
     aircraft_remove(aircraftModel) {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
         this.removeFlightNumberFromList(aircraftModel);
-        this.removeAircraftInstanceModelFromList(aircraftModel);
+        this.removeAircraftModelFromList(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
 
@@ -365,7 +365,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method initAircraftStripView
-     * @param  aircraftModel {AircraftInstanceModel}
+     * @param  aircraftModel {AircraftModel}
      */
     initAircraftStripView(aircraftModel) {
         this._stripViewController.createStripView(aircraftModel);
@@ -390,7 +390,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method removeStripView
-     * @param aircraftModel {AircraftInstanceModel}
+     * @param aircraftModel {AircraftModel}
      */
     removeStripView(aircraftModel) {
         this._stripViewController.removeStripView(aircraftModel);
