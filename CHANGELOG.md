@@ -7,6 +7,7 @@
 - Renamed AircraftInstanceModel with AircraftModel  [#402](https://github.com/openscope/openscope/issues/1402)
 - Add capability for fly-over fixes in route strings [#19](https://github.com/openscope/openscope/issues/19)
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
+- Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
 - Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
 - Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
     - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
@@ -27,8 +28,6 @@
 
 
 
-
-
 ### Bugfixes
 - Fixes coordinate letter issue at SBGL [#385](https://github.com/openscope/openscope/issues/385)
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
@@ -36,6 +35,7 @@
 - Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
+
 
 
 
@@ -106,6 +106,15 @@
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
 - Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
+
+
+
+
+
+
+
+
+
 
 
 ### Bugfixes

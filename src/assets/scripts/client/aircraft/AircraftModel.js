@@ -433,16 +433,33 @@ export default class AircraftModel {
     }
 
     /**
+     * Returns a true value if there is a match from the callsignToMatch
+     *
      * @for AircraftModel
-     * @method matchCallsign
-     * @param callsign {string}
+    * @method matchCallsign
+    * @param callsign {string}
      */
     matchCallsign(callsignToMatch) {
-        if (callsignToMatch === '*') {
+        const shouldMatchAnyCallsign = callsignToMatch === '*';
+         // checks to see if the given call sign matches the airline Id + callsign format
+        if (shouldMatchAnyCallsign || (this.airlineId.toUpperCase() + callsignToMatch.toUpperCase() === this.callsign)) {
             return true;
         }
 
+        // Checks to see if the given callsign matches only the callsign since callsign numbers should be unique
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
+    }
+
+     /**
+     * verifies if there is a matched callsign and if the  aircraft is visable.
+     * @for AircraftModel
+     * @method getCallsign
+     * @return {string}
+     */
+    getCallsign() {
+        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
+        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
     /**

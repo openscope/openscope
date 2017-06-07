@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _filter from 'lodash/filter';
 import EventBus from '../lib/EventBus';
 import {
     degreesToRadians,
@@ -1749,8 +1750,8 @@ k
         }
 
         // Get the selected aircraft.
-        const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.callsign.toUpperCase() === callsign;
+        const aircraft = _filter(prop.aircraft.list, (p) => {
+            return p.matchCallsign(callsign) && p.isVisible();
         })[0];
 
         if (!aircraft) {
