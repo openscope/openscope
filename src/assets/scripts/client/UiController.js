@@ -1,8 +1,8 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef,
-no-param-reassign, class-methods-use-this */
+/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
 import _startCase from 'lodash/startCase';
 import { speech_toggle } from './speech';
@@ -16,11 +16,11 @@ import { THEME } from './constants/colors/themes';
 const ui = {};
 
 /**
- * @property UI_OPTIONS_TEMPLATE
+ * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTIONS_TEMPLATE = '<div id="options-dialog" class="dialog"></div>';
+const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
@@ -34,7 +34,7 @@ const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
  * @type {string}
  * @final
  */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-select"></span>';
+const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 
 /**
  * @class UiController
@@ -45,11 +45,10 @@ export default class UiController {
      * @param $element
      * @param
      */
-    constructor($element, gameController, airportController, canvasController) {
+    constructor($element, gameController, airportController) {
         this.$element = $element;
         this._gameController = gameController;
         this._airportController = airportController;
-        this._canvasController = canvasController;
 
         this.$airportList = null;
         this.$airportListNotes = null;
@@ -215,7 +214,7 @@ export default class UiController {
     ui_init() {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
-        const $options = $(UI_OPTIONS_TEMPLATE);
+        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
         const descriptions = this._gameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -244,12 +243,12 @@ export default class UiController {
         $container.append(`<span class="option-description">${option.description}</span>`);
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
-        const $selector = $(`<select id="opt-${option.name}" name="${option.name}"></select>`);
+        const $selector = $(`<select name="${option.name}"></select>`);
         const selectedOption = this._gameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
-        for (let i = 0; i < option.data.length; i++) {
-            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.data[i][1], selectedOption);
+        for (let i = 0; i < option.optionList.length; i++) {
+            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
 
             $selector.append($optionSelectTempalate);
         }
@@ -276,16 +275,21 @@ export default class UiController {
      *
      * @for UiController
      * @method _buildOptionTemplate
-     * @param optionData
+     * @param optionData {array<string>}
      * @param selectedOption {string}
-     * @return optionSelectTempalate {string}
+     * @return optionSelectTempalate {HTML Element}
      * @private
      */
     _buildOptionSelectTemplate(optionData, selectedOption) {
-        let optionSelectTempalate = `<option value="${optionData}">${_startCase(optionData)}</option>`;
+        // the `selectedOption` coming in to this method will always be a string (due to existing api) but
+        // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
+        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
+            ? parseFloat(selectedOption)
+            : selectedOption
+        let optionSelectTempalate = `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
 
-        if (optionData === selectedOption) {
-            optionSelectTempalate = `<option value="${optionData}" selected="selected">${_startCase(optionData)}</option>`;
+        if (optionData.value === parsedSelectedOption) {
+            optionSelectTempalate = `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;
         }
 
         return optionSelectTempalate;

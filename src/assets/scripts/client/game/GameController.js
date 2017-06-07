@@ -3,6 +3,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
 
@@ -401,5 +402,21 @@ export default class GameController {
      */
     getGameOption(optionName) {
         return this.game.option.get(optionName);
+    }
+
+    /**
+     * Get the curretn `PTL_LENGTH` value and return a number.
+     *
+     * Used by the `CanvasController` to get a number value (this will be stored as a string
+     * due to existing api) that can be used when drawing the PTL for each aircraft.
+     *
+     * @for GameController
+     * @method getPtlLength
+     * @return {number}
+     */
+    getPtlLength() {
+        const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
+
+        return parseFloat(currentPtlVal);
     }
 }
