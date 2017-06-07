@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _filter from 'lodash/filter';
 import EventBus from '../lib/EventBus';
 import {
     degreesToRadians,
@@ -29,7 +30,6 @@ import {
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
 import {
-    AIRCRAFT_DRAW_OPTIONS,
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
@@ -49,14 +49,20 @@ const canvas = {};
 export default class ConvasController {
     /**
      * @constructor
+     * @param $element {JQuery|HTML Element|undefined}
+     * @param navigationLibrary {NavigationLibrary}
+     * @param gameController {GameController}
      */
-    constructor($element, navigationLibrary) {
+    constructor($element, navigationLibrary, gameController) {
         this.$window = $(window);
         this.$element = $element;
 
         this._navigationLibrary = navigationLibrary;
         this._eventBus = EventBus;
 
+        this._gameController = gameController;
+
+        prop.canvas = canvas;
         this.canvas = canvas;
         this.canvas.contexts = {};
         this.canvas.panY = 0;
@@ -78,7 +84,7 @@ export default class ConvasController {
         this.theme = THEME.DEFAULT;
 
         return this._init()
-                    .enable();
+            .enable();
     }
 
     /**
@@ -140,7 +146,7 @@ export default class ConvasController {
      * @method canvas_init_pre
      */
     canvas_init_pre() {
-        prop.canvas = canvas;
+        return this;
     }
 
     /**
@@ -900,35 +906,37 @@ export default class ConvasController {
     }
 
     /**
-     * Draw aircraft "vector lines" aka "projected track lines" (PTLs)
+     * Draw aircraft vector lines (projected track lines or PTL)
+     *
      * Note: These extend in front of aircraft a definable number of minutes
      *
      * @for CanvasController
      * @method canvas_draw_aircraft_vector_lines
      * @param cc {canvas}
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     canvas_draw_aircraft_vector_lines(cc, aircraft) {
-        // aircraft vector lines / projected track lines
-        if (!aircraft.hit) {
-            cc.save();
-
-            cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
-            cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
-
-            const lineLengthInHours = AIRCRAFT_DRAW_OPTIONS.PTL_LENGTH * TIME.ONE_MINUTE_IN_HOURS;
-            const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
-            const groundTrackVector = vectorize_2d(aircraft.groundTrack);
-            const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
-            const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], prop.ui.scale);
-            const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], prop.ui.scale);
-
-            cc.beginPath();
-            cc.moveTo(0, 0);
-            cc.lineTo(screenPositionOffsetX, -screenPositionOffsetY);
-            cc.stroke();
-            cc.restore();
+        if (aircraft.hit) {
+            return;
         }
+        cc.save();
+
+        cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
+        cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
+
+        const ptlLengthMultiplier = this._gameController.getPtlLength();
+        const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
+        const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
+        const groundTrackVector = vectorize_2d(aircraft.groundTrack);
+        const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
+        const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], prop.ui.scale);
+        const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], prop.ui.scale);
+
+        cc.beginPath();
+        cc.moveTo(0, 0);
+        cc.lineTo(screenPositionOffsetX, -screenPositionOffsetY);
+        cc.stroke();
+        cc.restore();
     }
 
     /**
@@ -1742,8 +1750,8 @@ k
         }
 
         // Get the selected aircraft.
-        const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.callsign.toUpperCase() === callsign;
+        const aircraft = _filter(prop.aircraft.list, (p) => {
+            return p.matchCallsign(callsign) && p.isVisible();
         })[0];
 
         if (!aircraft) {

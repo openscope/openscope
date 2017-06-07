@@ -1,0 +1,59 @@
+.option {
+    position: relative;
+}
+
+.option + .option {
+    margin-top: 2px;
+}
+
+.option-dialog {
+    width: 480px;
+    margin-left: -240px;
+    padding: 12px 15px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    background-color: rgba(15, 25, 20, 1);
+    color: #dddddd;
+    font-size: 12px;
+    opacity: 0;
+    border-radius: 1px;
+    box-shadow: 0 0 0 6px rgba(31, 65, 48, 1.0);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.option-dialog.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.option-description {
+    display: inline-block;
+    width: 65%;
+}
+
+.option-type-select {
+    display: inline-block;
+    width: 35%;
+    position: absolute;
+    right: 0px;
+}
+
+.option-type-select::after {
+    position: absolute;
+    top: 15%;
+    font-size: 8px;
+    content: "\25BC";
+    pointer-events: none;
+}
+
+.option-dialog select {
+    width: 100%;
+    padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
+    background-color: rgba(15, 25, 20, 1);
+    border: 0;
+    border-radius: 3px;
+    appearance: none;
+    cursor: pointer;
+}

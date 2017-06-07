@@ -669,7 +669,7 @@ export default class AirportModel {
      *
      * @for AirportModel
      * @method removeAircraftFromAllRunwayQueues
-     * @param  aircraft {AircraftInstanceModel}
+     * @param  aircraft {AircraftModel}
      */
     removeAircraftFromAllRunwayQueues(aircraftId) {
         return this._runwayCollection.removeAircraftFromAllRunwayQueues(aircraftId);
