@@ -1109,6 +1109,25 @@
                 ["ABIDO"]
             ]
         },
+        "BAMLI": {
+            "icao": "BAMLI",
+            "name": "Bamli",
+            "suffix": {"10":"6F", "16":"5P", "28":"1B", "34":"1H"},
+            "rwy": {
+                "10": ["DW931", "LEMTA", "DODIG"],
+                "16": ["OP", "BATED", "ERUDA", "DODIG"],
+                "28": ["DUB", "DWN29"],
+                "34": ["DUB", "DWN29"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BAMLI": ["BAMLI"]
+            },
+            "draw": [
+                ["DODIG", "BAMLI"],
+                ["DWN29", "BAMLI"]
+            ]
+        },
         "BEPAN": {
             "icao": "BEPAN",
             "name": "Bepan",
@@ -1194,7 +1213,7 @@
             "name": "Inkur",
             "suffix": {"10":"6F", "16":"5P", "28":"5B"},
             "rwy": {
-                "10": ["DW931", "LEMTA", "DODIG", "INKUR"],
+                "10": ["DW931", "LEMTA", "DODIG"],
                 "16": ["OE"],
                 "28": ["DUB", "DWN28"]
             },
@@ -1759,6 +1778,19 @@
             "rate": 1,
             "airlines": [
                 ["stk", 15]
+            ]
+        },
+        {
+            "origin": "EIDW",
+            "destination": "",
+            "category": "departure",
+            "route": "EIDW.BAMLI.BAMLI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["stk", 5]
             ]
         },
         {
