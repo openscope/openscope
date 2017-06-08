@@ -263,7 +263,20 @@
         "ZUCKO": ["N38.86762028754997", "W90.07923888602352"],
         "ZULMO": ["N38.59422652686858", "W91.39615630554020"],
         "ZUMAY": ["N38.78786365197386", "W90.27870940605563"],
-        "ZUMLA": ["N38.60270542290813", "W90.09207915702041"]
+        "ZUMLA": ["N38.60270542290813", "W90.09207915702041"],
+        "BREAK": ["N37.31873478109817", "W89.62207030689311"],
+        "SNOKR": ["N37.45698204403254", "W89.69760131275724"],
+        "MWA"  : ["N37.75426692862640", "W89.01164245040928"],
+        "ESSAR": ["N38.35759561918191", "W90.19727324882393"],
+        "UIN"  : ["N39.84787425414117", "W91.27894591734923"],
+        "CNOTA": ["N41.43412995079311", "W92.49011992865613"],
+        "PUTSY": ["N38.67966725003079", "W92.83831786568982"],
+        "FTZ"  : ["N38.69435300202156", "W90.97119140072824"],
+        "AUGST": ["N38.70437402910044", "W90.75634002132014"],
+        "VLA"  : ["N39.09383130026586", "W89.16222381028204"],
+        "LITCH": ["N39.39009306292445", "W89.77711486256693"],
+        "MUZUL": ["N38.90546135925538", "W89.88272094167519"],
+        "SHAAD": ["N38.80969728494748", "W90.18347167411603"]
     },
     "runways":[
         {
@@ -834,7 +847,12 @@
                 "29": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]],
                 "30L": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]],
                 "30R": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]]
-            }
+            },
+            "draw": [
+                ["VHP", "AKBAR", "PRUET", "UKAAY", "AARCH", "PETTI", "KRIYA", "JAAKK", "CHOTO", "GETEE", "HRBEE", "BUELL"],
+                ["RBS", "JARKE", "BASCO", "GORDO", "WLDBL", "HONKK", "AARCH"],
+                ["PETTI", "SSKOT", "EADDS", "OSHIE", "FDRKO"]
+            ]
         },
         "BOOSH1": {
             "icao": "BOOSH1",
@@ -854,7 +872,15 @@
                 "29": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]],
                 "30L": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]],
                 "30R": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]]
-            }
+            },
+            "draw": [
+                ["BNA", "CGI", "DLITE", "FATSS", "BOOSH", "QBALL", "DENAA", "HRTSO", "TEEBE"],
+                ["QBALL", "OOJAY", "PTEES", "CHIKN", "LETRR", "RRIPP", "JBUCK"],
+                ["PXV", "FFOXX", "SAYDI", "MOPOE", "BIDWL", "BOOSH"],
+                ["VISQA", "SCRCH", "CGI"],
+                ["MEM", "CGI"],
+                ["ARG", "CGI"]
+            ]
         },
         "KAYLA1": {
             "icao": "KAYLA1",
@@ -872,7 +898,13 @@
                 "29": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]],
                 "30L": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]],
                 "30R": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]]
-            }
+            },
+            "draw": [
+                ["ANX", "HEBNA", "TRAKE", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
+                ["BGMAC", "GIBEE", "OZZEE", "SNYDR", "HOOOT", "PEJAA", "FLUDD"],
+                ["SGF", "GNNON", "JEXAV", "ZULMO", "KAYLA"],
+                ["BUM", "FEBAP", "TRAKE"]
+            ]
         },
         "LORLE1": {
             "icao": "LORLE1",
@@ -890,7 +922,113 @@
                 "29": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]],
                 "30L": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]],
                 "30R": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]]
-            }
+            },
+            "draw": [
+                ["GUZIK", "SEIZE", "SKOVE", "RIVRS", "LORLE", "GETUP", "TATRR", "MELVY", "BRDWL", "ENNEE", "JYAAR", "DOBLZ"],
+                ["LORLE", "HMFRZ", "VEEGE"],
+                ["IRK", "JUDER", "RIVRS"]
+            ]
+        },
+        "QBALL9": {
+            "icao": "QBALL9",
+            "name": "Cueball Nine",
+            "entryPoints": {
+                "BNA": ["BNA", "VISQA", "SCRCH", "CGI", "BREAK", "SNOKR", "FATSS"],
+                "MEM": ["MEM", "CGI", "BREAK", "SNOKR", "FATSS"],
+                "PXV": ["PXV", "MWA", "FATSS"],
+                "VISQA": ["VISQA", "SCRCH", "CGI", "BREAK", "SNOKR", "FATSS"]
+            },
+            "body": ["QBALL"],
+            "rwy": {
+                "6": ["CHIKN"],
+                "11": ["CHIKN"],
+                "12L": ["CHIKN"],
+                "12R": ["CHIKN"],
+                "24": ["ESSAR"],
+                "29": ["ESSAR"],
+                "30L": ["ESSAR"],
+                "30R": ["ESSAR"]
+            },
+            "draw": [
+                ["BNA", "VISQA", "SCRCH", "CGI", "BREAK", "SNOKR", "FATSS", "QBALL", "CHIKN", "ESSAR"],
+                ["PXV", "MWA", "FATSS"],
+                ["MEM", "CGI"]
+            ]
+        },
+        "RIVRS4": {
+            "icao": "RIVRS4",
+            "name": "Rivers Four",
+            "entryPoints": {
+                "SPI": ["SPI"],
+                "CNOTA": ["CNOTA", "UIN"],
+                "IRK": ["IRK"]
+            },
+            "body": ["RIVRS", "LORLE", "MELVY"],
+            "rwy": {
+                "6": [],
+                "11": [],
+                "12L": [],
+                "12R": [],
+                "24": [],
+                "29": [],
+                "30L": [],
+                "30R": []
+            },
+            "draw": [
+                ["CNOTA", "UIN", "RIVRS", "LORLE", "MELVY"],
+                ["IRK", "RIVRS"],
+                ["SPI", "RIVRS"]
+            ]
+        },
+        "TRAKE9": {
+            "icao": "TRAKE9",
+            "name": "Trake Nine",
+            "entryPoints": {
+                "BUM": ["BUM"],
+                "ANX": ["ANX", "PUTSY"],
+                "SGF": ["SGF"]
+            },
+            "body": ["TRAKE", "KAYLA", "FTZ", "AUGST", "SNYDR"],
+            "rwy": {
+                "6": [],
+                "11": [],
+                "12L": [],
+                "12R": [],
+                "24": [],
+                "29": [],
+                "30L": [],
+                "30R": []
+            },
+            "draw": [
+                ["ANX", "PUTSY", "TRAKE", "KAYLA", "FTZ", "AUGST", "SNYDR"],
+                ["BUM", "TRAKE"],
+                ["SGF", "TRAKE"]
+            ]
+        },
+        "VLA8": {
+            "icao": "VLA8",
+            "name": "Vandalia Eight",
+            "entryPoints": {
+                "VHP": ["VHP", "AKBAR", "VLA", "PETTI"],
+                "RBS": ["RBS", "JARKE", "WLDBL", "VLA", "PETTI"],
+                "SPI": ["SPI", "LITCH"]
+            },
+            "body": ["MUZUL"],
+            "rwy": {
+                "6": ["SHAAD"],
+                "11": ["SHAAD"],
+                "12L": ["SHAAD"],
+                "12R": ["SHAAD"],
+                "24": ["TOY"],
+                "29": ["TOY"],
+                "30L": ["TOY"],
+                "30R": ["TOY"]
+            },
+            "draw": [
+                ["RBS", "JARKE", "WLDBL", "VLA", "PETTI", "MUZUL", "SHAAD"],
+                ["SPI", "LITCH", "MUZUL", "TOY"],
+                ["VHP", "AKBAR", "VLA"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -1273,7 +1411,7 @@
             "origin": "",
             "destination": "kstl",
             "category": "arrival",
-            "route": "IRK.LORLE1.KSTL",
+            "route": "GUZIK.LORLE1.KSTL",
             "altitude": [33000, 41000],
             "speed": 320,
             "method": "random",
@@ -1285,6 +1423,58 @@
                 ["dal", 3],
                 ["skw", 5],
                 ["swa", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kstl",
+            "category": "arrival",
+            "route": "SPI.VLA8.KSTL",
+            "altitude": [10000, 14000],
+            "speed": 180,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["kap", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kstl",
+            "category": "arrival",
+            "route": "PXV.QBALL9.KSTL",
+            "altitude": [8000, 11000],
+            "speed": 180,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["kap", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kstl",
+            "category": "arrival",
+            "route": "SGF.TRAKE9.KSTL",
+            "altitude": [7000, 10000],
+            "speed": 180,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["kap", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kstl",
+            "category": "arrival",
+            "route": "IRK.RIVRS4.KSTL",
+            "altitude": [8000, 11000],
+            "speed": 180,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["kap", 5]
             ]
         }
     ],
