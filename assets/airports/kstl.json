@@ -397,7 +397,7 @@
                 "30L": [["PYUNG", "A25+"]],
                 "30R": [["PYUNG", "A25+"]]
             },
-            "body": ["BGOOD"],
+            "body": ["BRAKK"],
             "exitPoints": {
                 "HLV": ["RMMOS", "HLV"]
             },
