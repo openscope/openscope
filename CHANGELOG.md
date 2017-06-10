@@ -23,7 +23,7 @@
 - Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 - Adds user setting option to change length of PTL [#423](https://github.com/openscope/openscope/issues/423)
 - Updates Dublin (EIDW) - Improved procedures, added terrain and video map, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
-
+- Updates logic to display historical aircraft position for aircraft outside controlled airspace [#508](https://github.com/openscope/openscope/issues/508)
 
 
 
