@@ -397,8 +397,19 @@ ava('.getNextWaypointModel() returns null when fewer than two WaypointModels rem
     const result = fms.getNextWaypointModel();
     const expectedResult = null;
 
-
     t.true(result === expectedResult);
+});
+
+ava('.getNextWaypointModel() returns the first `WaypointModel` of the next leg when at the end of the current leg', (t) => {
+    const shouldUseComplexRoute = true;
+    const fms = buildFmsMock(shouldUseComplexRoute);
+
+    fms.skipToWaypoint('bikkr');
+
+    const waypointModel = fms.getNextWaypointModel();
+    const expectedResult = 'dag';
+
+    t.true(waypointModel._name === expectedResult);
 });
 
 ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
