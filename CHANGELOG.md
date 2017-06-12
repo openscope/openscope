@@ -18,9 +18,13 @@
 - Adds `StripViewController`, `StripViewCollection`, and `StripViewModel` classes [#285](https://github.com/openscope/openscope/issues/285)
     - Removes progress strip logic from the `AircraftModel`
     - Completely reworks CSS for `StripViewList`
+- Adds `.isGroundedFlightPhase()` and implements this helper in `.buildWaypointModelsForProcedure()` [#491](https://github.com/openscope/openscope/issues/491)
+    - This allows for waypointModels to be build from the correct collection based on `flightPhase`
 - Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 - Adds user setting option to change length of PTL [#423](https://github.com/openscope/openscope/issues/423)
 - Updates Dublin (EIDW) - Improved procedures, added terrain and video map, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
+
+
 
 
 
