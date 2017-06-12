@@ -296,23 +296,31 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @for StandardRouteWaypointModel
      * @method clonePositionFromFix
      * @param fixCollection {FixCollection}
+     * @return {StandardRouteWaypointModel}
      * @private
+     * @chainable
      */
     clonePositionFromFix() {
-        if (this.name[0] === VECTOR_WAYPOINT_PREFIX) {
+        const isFlyOverWaypoint = this.name.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+        const isHoldWaypoint = this.name.indexOf(HOLD_WAYPOINT_PREFIX) !== -1;
+        const isVectorWaypoint = this.name.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+
+        if (isVectorWaypoint) {
             return;
         }
 
         let name = this.name;
 
-        if (this.name[0] === HOLD_WAYPOINT_PREFIX
-            || this.name[0] === FLY_OVER_WAYPOINT_PREFIX) {
+        if (isFlyOverWaypoint || isHoldWaypoint) {
+            // remove prefixing character (`@BIKKR` --> `BIKKR`)
             name = this.name.substr(1);
         }
 
         const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
+            // TODO: This console warn should be done elsewehere, so a single console
+            // message can inform the airport designer of all missing fixes at once.
             console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
 
             return this;
