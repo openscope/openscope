@@ -92,25 +92,30 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
     let distanceFromClosestFixToAirspaceBoundary = 0;
     let totalDistance = 0;
 
-    for (let i = 0; i < waypointModelList.length; i++) {
+    // Iteration started at index 1 to ensure two elements are available. It is
+    // already an expectation that aircraft must have two waypoints, so this
+    // should not be a problem here.
+    for (let i = 1; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.relativePosition;
-        let previousWaypoint = waypoint;
-        let previousPosition = waypoint.relativePosition;
+        const previousWaypoint = waypointModelList[i - 1];
 
-        if (i > 0) {
-            previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.relativePosition;
-        }
-
-        if (isWithinAirspace(airport, waypointPosition) && i > 0) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
-
+        if (waypoint.isVector || previousWaypoint.isVector) {
             continue;
         }
 
-        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
-        // `FixModels`, in which case this line will return `NaN`
+        const waypointPosition = waypoint.relativePosition;
+        const previousPosition = waypoint.relativePosition;
+
+        if (isWithinAirspace(airport, waypointPosition)) {
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+            totalDistance += distanceFromClosestFixToAirspaceBoundary;
+
+            break;
+        }
+
+        // this will only work for `StandardRouteWaypointModel` objects.
+        // #_buildWaypointModelListFromRoute may also return `FixModels`, in
+        // which case this line will return `NaN`.
         totalDistance += waypoint.distanceFromPreviousWaypoint;
     }
 
