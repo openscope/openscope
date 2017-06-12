@@ -207,6 +207,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
+     * Return whether this is a vector waypoint
+     *
+     * @for StandardRouteWaypointModel
+     * @property isVector
+     * @type {boolean}
+     */
+    get isVector() {
+        return this._isVector;
+    }
+
+    /**
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
