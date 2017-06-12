@@ -1,0 +1,13 @@
+{
+    "icao": "aut",
+    "name": "Austral Líneas Aéreas",
+    "callsign": {
+        "name": "Austral",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["E190", 26]
+        ]
+    }
+}
