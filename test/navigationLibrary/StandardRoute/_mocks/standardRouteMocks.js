@@ -119,6 +119,18 @@ export const STAR_WITH_SUFFIX = {
     }
 };
 
+export const STAR_WITH_ONLY_VECTORS = {
+    'icao': 'GRNPA1',
+    'name': 'Grandpa One',
+    'entryPoints': {
+        'BETHL': ['BETHL'],
+        'BCE':   ['BCE'],
+        'DVC':   ['DVC'],
+        'MLF':   ['MLF']
+    },
+    'body': ['#130']
+};
+
 export const SID_LIST_MOCK = {
     'BOACH6': {
         'icao': 'BOACH6',

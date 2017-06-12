@@ -537,22 +537,26 @@ export default class StandardRouteModel extends BaseModel {
      *
      * @for StandardRouteModel
      * @method _updateWaypointsWithPreviousWaypointData
-     * @parma waypointModelList {array<StandardRouteWaypointModel>}
+     * @param waypointModelList {array<StandardRouteWaypointModel>}
      * @private
      */
     _updateWaypointsWithPreviousWaypointData(waypointModelList) {
-        _forEach(waypointModelList, (waypoint, i) => {
-            let previousWaypoint = waypointModelList[i - 1];
-            if (i === 0) {
-                previousWaypoint = waypoint;
+        // Starting iterations at i=1 because we need two waypoints in order to
+        // ensure that there is a 'previous' waypoint from which we can measure.
+        for (let i = 1; i < waypointModelList.length; i++) {
+            const waypoint = waypointModelList[i];
+            const previousWaypoint = waypointModelList[i - 1];
+            let distance = 0;
+
+            if (!waypoint.isVector && !previousWaypoint.isVector) {
+                distance = this.calculateDistanceBetweenWaypoints(
+                    waypoint.relativePosition,
+                    previousWaypoint.relativePosition
+                );
             }
 
-            const distance = this.calculateDistanceBetweenWaypoints(
-                waypoint.relativePosition,
-                previousWaypoint.relativePosition
-            );
             waypoint.distanceFromPreviousWaypoint = distance;
             waypoint.previousStandardWaypointName = previousWaypoint.name;
-        });
+        }
     }
 }
