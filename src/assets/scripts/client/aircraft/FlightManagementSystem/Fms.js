@@ -362,6 +362,42 @@ export default class Fms {
     }
 
     /**
+     * Get the next waypoint in the flight plan, if it exists
+     *
+     * @for Fms
+     * @method getNextWaypointModel
+     * @return waypointModel {WaypointModel}
+     */
+    getNextWaypointModel() {
+        if (!this.hasNextWaypoint()) {
+            return null;
+        }
+
+        let waypointModel = this.currentLeg.nextWaypoint;
+
+        if (!this.currentLeg.hasNextWaypoint()) {
+            waypointModel = this.legCollection[1].currentWaypoint;
+        }
+
+        return waypointModel;
+    }
+
+    /**
+     * Get the position of the next waypoint in the flight plan
+     *
+     * Currently only used in `calculateTurnInitiaionDistance()` helper function
+     *
+     * @for Fms
+     * @method getNextWaypointPositionModel
+     * @return waypointPosition {StaticPositionModel}
+     */
+    getNextWaypointPositionModel() {
+        const waypointModel = this.getNextWaypointModel();
+
+        return waypointModel.positionModel;
+    }
+
+    /**
      * Encapsulates setting `#departureRunwayModel`
      *
      * @for fms
@@ -544,31 +580,6 @@ export default class Fms {
 
         this.legCollection = _drop(this.legCollection, legIndex);
         this.currentLeg.skipToWaypointAtIndex(waypointIndex);
-    }
-
-    /**
-     * Get the position of the next waypoint in the flightPlan.
-     *
-     * Currently only Used in `calculateTurnInitiaionDistance()` helper function
-     *
-     * @for Fms
-     * @method getNextWaypointPositionModel
-     * @return waypointPosition {StaticPositionModel}
-     */
-    getNextWaypointPositionModel() {
-        if (!this.hasNextWaypoint()) {
-            console.log('has no next waypoint');
-
-            return null;
-        }
-
-        let waypointPosition = this.currentLeg.nextWaypoint;
-
-        if (!this.currentLeg.hasNextWaypoint()) {
-            waypointPosition = this.legCollection[1].currentWaypoint;
-        }
-
-        return waypointPosition.positionModel;
     }
 
     /**
