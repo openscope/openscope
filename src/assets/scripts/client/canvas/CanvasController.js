@@ -783,15 +783,17 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_aircraft(cc, aircraft) {
-        let almost_match = false;
         let match = false;
 
-        if (
-            prop.input.callsign.length > 1 &&
-            aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
-        ) {
-            almost_match = true;
-        }
+        // TODO: this does not appear to be in use, verify and remove
+        // let almost_match = false;
+        //
+        // if (
+        //     prop.input.callsign.length > 1 &&
+        //     aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
+        // ) {
+        //     almost_match = true;
+        // }
 
         if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
             match = true;
@@ -824,17 +826,19 @@ export default class ConvasController {
 
         const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
+            let alpha = 1 / (length - i);
+
             if (!aircraft.inside_ctr) {
-                cc.globalAlpha = 0.3 / (length - i);
-            } else {
-                cc.globalAlpha = 1 / (length - i);
-                cc.fillRect(
-                    window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
-                    -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
-                    2,
-                    2
-                );
+                alpha = 0.3 / (length - i);
             }
+
+            cc.globalAlpha = alpha;
+            cc.fillRect(
+                window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
+                -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
+                2,
+                2
+            );
         }
 
         cc.restore();
