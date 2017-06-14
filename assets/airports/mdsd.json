@@ -1465,12 +1465,12 @@
             "name": "Bibok",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "BETIR": ["BETIR", ["PIXAR", "A190|S280"], ["BETUM", "A150|S270"], ["GABOK", "A95"]]
+                "BIBOK": [["BIBOK", "A90+|S250-"]]
             },
-            "body": [["BIBOK", "A90|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD113", "A70|S220-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD122", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
+                "17": [["SD113", "A60+|S220-"], ["EMULU", "A30+|S210-"]],
+                "35": [["SD122", "A50+|S220-"], ["LETIR", "A40+|S210-"], ["OTVOG", "A30+|S210-"]]
             },
             "draw": [
                 ["BIBOK", "SD113", "EMULU"],
@@ -1482,15 +1482,15 @@
             "name": "Delpoh",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "BEROX": ["BEROX"]
+                "DELPO": [["DELPO", "A90+|S250-"]]
             },
-            "body": [["DELPO", "A190|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD117", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD125", "A80|S220-"], ["VINRO", "A30|S210-"]]
+                "17": [["SD117", "A50+|S220-"], ["VIPKI", "A40+|S210-"], ["EMULU", "A30+|S210-"]],
+                "35": [["SD125", "A60+|S220-"], ["VINRO", "A30+|S210-"]]
             },
             "draw": [
-                ["DELPO", "SD117", "VIPKI", "SD119", "EMULU"],
+                ["DELPO", "SD117", "VIPKI", "EMULU"],
                 ["DELPO", "SD125", "VINRO"]
              ]
         },
@@ -1499,12 +1499,12 @@
             "name": "Gabrah",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "PALAS": ["PALAS", "KATIN", "KASOS", ["RAGUS", "A390-|S300"]]
+                "GABRA": [["GABRA", "A90+|S250-"]]
             },
-            "body": [["GABRA", "A190|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD118", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD126", "A80|S220-"], ["VINRO", "A30|S210-"]]
+                "17": [["SD118", "A50+|S220-"], ["VIPKI", "A40+|S210-"], ["EMULU", "A30+|S210-"]],
+                "35": [["SD126", "A60+|S220-"], ["VINRO", "A30+|S210-"]]
             },
             "draw": [
                 ["GABRA", "SD118", "VIPKI"],
@@ -1516,12 +1516,12 @@
             "name": "Gohsool",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "ANTEX": ["ANTEX"]
+                "GOSUL": [["GOSUL", "A90+|S250-"]]
             },
-            "body": [["GOSUL", "A190|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD114", "A120|S220-"], ["SD115", "A100|S220-"], ["BOKLO", "A60|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD123", "A50|S220-"], ["OTVOG", "A30|S210-"]]
+                "17": [["SD114", "A70+|S220-"], ["SD115", "A50|S220-"], ["BOKLO", "A40+|S210-"], ["SD119", "A40+|S210-"], ["EMULU", "A30+|S210-"]],
+                "35": [["SD123", "A50|S220-"], ["OTVOG", "A30+|S210-"]]
             },
             "draw": [
                 ["GOSUL", "SD114", "SD115", "BOKLO", "SD119"],
@@ -1533,12 +1533,12 @@
             "name": "Kareeb",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "POKAK": ["POKAK"]
+                "KARIB": [["KARIB", "A90+|S250-"]]
             },
-            "body": [["KARIB", "A190|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD116", "A90|S220-"], ["VIPKI", "A70|S210-"], ["SD119", "A50|S210-"], ["EMULU", "A30|S210-"]],
-                "35": [["SD124", "A80|S220-"], ["OTVOG", "A30|S210-"]]
+                "17": [["SD116", "A50+|S220-"], ["VIPKI", "A40+|S210-"], ["EMULU", "A30+|S210-"]],
+                "35": [["SD124", "A60+|S220-"], ["OTVOG", "A30+|S210-"]]
             },
             "draw": [
                 ["KARIB", "SD116", "VIPKI"],
@@ -1550,12 +1550,12 @@
             "name": "Kohdeex",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "ONPAD": ["ONPAD", ["POBIN", "A290-|S300"], ["BIBAS", "A190|S270"]]
+                "KODIX": [["KODIX", "A90+|S250-"]]
             },
-            "body": [["KODIX", "A140|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD111", "A70|S220-"], ["KEPTI", "A30|S210-"]],
-                "35": [["SD120", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
+                "17": [["SD111", "A60+|S220-"], ["KEPTI", "A30+|S210-"]],
+                "35": [["SD120", "A50+|S220-"], ["LETIR", "A40+|S210-"], ["OTVOG", "A30+|S210-"]]
             },
             "draw": [
                 ["KODIX", "SD111", "KEPTI"],
@@ -1567,12 +1567,12 @@
             "name": "Ohkohsoh",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "ETBOD": ["ETBOD"]
+                "OKOSO": [["OKOSO", "A90+|S250-"]]
             },
-            "body": [["OKOSO", "A160|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD110", "A80|S220-"], ["KEPTI", "A30|S210-"]],
-                "35": [["SD127", "A100|S220-"], ["URLOR", "A40|S210-"], ["VINRO", "A30|S210-"]]
+                "17": [["SD110", "A70+|S220-"], ["KEPTI", "A30+|S210-"]],
+                "35": [["SD127", "A80+|S220-"], ["URLOR", "A40+|S210-"], ["VINRO", "A30+|S210-"]]
             },
             "draw": [
                 ["OKOSO", "SD110", "KEPTI"],
@@ -1584,12 +1584,12 @@
             "name": "Reebaes",
             "suffix": {"17":"1G", "35":"1H"},
             "entryPoints": {
-                "PTA": ["PTA", ["BORAS", "A190|S270"]]
+                "RIBES": [["RIBES", "A90+|S250-"]]
             },
-            "body": [["RIBES", "A140|S250-"]],
+            "body": [],
             "rwy": {
-                "17": [["SD112", "A70|S220-"], ["KEPTI", "A30|S210-"]],
-                "35": [["SD121", "A70|S220-"], ["LETIR", "A50|S210-"], ["OTVOG", "A30|S210-"]]
+                "17": [["SD112", "A60+|S220-"], ["KEPTI", "A30+|S210-"]],
+                "35": [["SD121", "A50+|S220-"], ["LETIR", "A40+|S210-"], ["OTVOG", "A30+|S210-"]]
             },
             "draw": [
                 ["RIBES", "SD112", "KEPTI"],
@@ -1704,7 +1704,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "BETIR.BIBOK.MDSD",
+            "route": "BETIR..PIXAR..BETUM..GABOK..BIBOK.BIBOK.MDSD",
             "altitude": [20000, 25000],
             "speed": 320,
             "method": "random",
@@ -1723,7 +1723,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "BEROX.DELPO.MDSD",
+            "route": "BEROX..DELPO.DELPO.MDSD",
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
@@ -1741,7 +1741,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "PALAS.GABRA.MDSD",
+            "route": "PALAS..KATIN..KASOS..RAGUS..GABRA..GABRA.MDSD",
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
@@ -1760,7 +1760,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "POKAK.KARIB.MDSD",
+            "route": "POKAK..KARIB.KARIB.MDSD",
             "altitude": [30000, 42000],
             "speed": 320,
             "method": "random",
@@ -1778,7 +1778,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ANTEX.GOSUL.MDSD",
+            "route": "ANTEX..GOSUL.GOSUL.MDSD",
             "altitude": [24000, 32000],
             "speed": 320,
             "method": "random",
@@ -1797,7 +1797,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ONPAD.KODIX.MDSD",
+            "route": "ONPAD..POBIN..BIBAS..KODIX..KODIX.MDSD",
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
@@ -1819,7 +1819,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ETBOD.OKOSO.MDSD",
+            "route": "ETBOD..OKOSO.OKOSO.MDSD",
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
@@ -1838,7 +1838,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "PTA.RIBES.MDSD",
+            "route": "PTA..BORAS..RIBES.RIBES.MDSD",
             "altitude": [25000, 28000],
             "speed": 280,
             "method": "random",
