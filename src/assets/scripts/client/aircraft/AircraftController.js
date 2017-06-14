@@ -118,7 +118,7 @@ export default class AircraftController {
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
         /**
-         * List of `#transponderCode` values in use
+         * List of `transponderCode` values in use
          *
          * Each `transponderCode` should be unique, thus we maintain this list
          * so we can know which codes are active.
@@ -641,7 +641,7 @@ export default class AircraftController {
     }
 
     /**
-     * Generate a unique `#transponderCode`
+     * Generate a unique `transponderCode`
      *
      * This method should only be run while building props for a
      * soon-to-be-instantiated `AircraftModel`
@@ -678,7 +678,7 @@ export default class AircraftController {
     }
 
     /**
-     * Remove a `#transponderCode` from the list of `#_transponderCodesInUse`
+     * Remove the `transponderCode` from the list of `#_transponderCodesInUse`
      *
      * @for AircraftController
      * @method _removeTransponderCodeFromUse
@@ -689,7 +689,7 @@ export default class AircraftController {
     }
 
     /**
-     * Boolean helper used to determine if a given `#transponderCode` is already
+     * Boolean helper used to determine if a given `transponderCode` is already
      * present within the `#_transponderCodesInUse` list.
      *
      * @for AircraftController

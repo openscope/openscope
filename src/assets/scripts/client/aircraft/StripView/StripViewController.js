@@ -282,13 +282,15 @@ export default class StripViewController {
     /**
      * Generate a unique number to represent a `CID`
      *
+     * Should be displayed with leading zeros, so a `CID` value of `1` should be displayed as `001`
+     *
      * @for StripViewController
      * @method _generateCidNumber
      * @return nextCid {number}
      * @private
      */
     _generateCidNumber() {
-        const nextCid = _random(100, CID_UPPER_BOUND);
+        const nextCid = _random(1, CID_UPPER_BOUND);
         const nextCidLeft = nextCid - 1;
         const nextCidRight = nextCid + 1;
 
