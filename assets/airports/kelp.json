@@ -13,7 +13,7 @@
     "position": ["N31.807327503657113", "W106.37640380404419", "3962ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N31.807327503657113", "W106.37640380404419"],
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 230,
         "speed": 9
