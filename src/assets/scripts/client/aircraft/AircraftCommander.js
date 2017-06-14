@@ -56,11 +56,12 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, navigationLibrary, gameController, uiController) {
+    constructor(airportController, navigationLibrary, gameController, uiController, onChangeTransponderCode) {
         this._airportController = airportController;
         this._navigationLibrary = navigationLibrary;
         this._gameController = gameController;
         this._uiController = uiController;
+        this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
     /**
@@ -654,13 +655,20 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSquawk
-     * @param data
+     * @param aircraft {AircraftModel}
+     * @param data {array<string>}
+     * @return {array}   [success of operation, readback]
      */
     runSquawk(aircraft, data) {
         const squawk = data[0];
+        const result = this._onChangeTransponderCode(squawk, aircraft);
+        let message = `squawking ${squawk}`;
 
-        aircraft.transponderCode = squawk;
-        return [true, `squawking ${squawk}`];
+        if (!result) {
+            message = `unable to squawk ${squawk}`;
+        }
+
+        return [result, message];
     }
 
     /**

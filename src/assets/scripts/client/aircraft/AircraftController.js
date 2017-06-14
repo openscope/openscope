@@ -296,7 +296,7 @@ export default class AircraftController {
 
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
-        this.removeTransponderCodeFromUse(aircraftModel);
+        this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
     }
@@ -488,17 +488,6 @@ export default class AircraftController {
     }
 
     /**
-     * Remove a `#transponderCode` from the list of `#_transponderCodesInUse`
-     *
-     * @for AircraftController
-     * @method removeTransponderCodeFromUse
-     * @param transponderCode {number}
-     */
-    removeTransponderCodeFromUse({ transponderCode }) {
-        this._transponderCodesInUse = _without(this._transponderCodesInUse, transponderCode);
-    }
-
-    /**
      * Remove any conflicts that involve the specified aircraft
      *
      * @for AircraftController
@@ -523,6 +512,31 @@ export default class AircraftController {
     removeStripView(aircraftModel) {
         this._stripViewController.removeStripView(aircraftModel);
     }
+
+    /**
+     * Called from within the `AircraftCommander` this method is used:
+     * - to verify that the `nextTransponderCode` is valid
+     * - remove the previous `transponderCode` from `#_transponderCodesInUse`
+     * - add `nextTransponderCode` to `#_transponderCodesInUse`
+     *
+     * @for AircraftController
+     * @method onRequestToChangeTransponderCode
+     * @return {boolean}
+     */
+    onRequestToChangeTransponderCode = (transponderStr, aircraftModel) => {
+        const nextTransponderCode = parseInt(transponderStr, 10);
+
+        if (!this._isValidTransponderCode(nextTransponderCode)) {
+            return false;
+        }
+
+        this._removeTransponderCodeFromUse(aircraftModel.transponderCode);
+        this._addTransponderCodeToInUse(nextTransponderCode);
+
+        aircraftModel.transponderCode = nextTransponderCode;
+
+        return true;
+    };
 
     /**
      * Accept a pre-built object that can be used to create an `AircraftModel`
@@ -642,17 +656,62 @@ export default class AircraftController {
         const maxCodeValue = 7499;
         const transponderCode = _random(minCodeValue, maxCodeValue);
 
-        if (
-            this._transponderCodesInUse.indexOf(transponderCode) !== -1 ||
-            INVALID_SQUAWK_CODES.indexOf(transponderCode) !== -1
-        ) {
+        if (!this._isValidTransponderCode(transponderCode)) {
             // the value generated is already in use, recurse back through this method and try again
             this._generateUniqueTransponderCode();
         }
 
-        this._transponderCodesInUse.push(transponderCode);
+        this._addTransponderCodeToInUse(transponderCode);
 
         return transponderCode;
+    }
+
+    /**
+     * Add a given `transponderCode` to the `#_transponderCodesInUse` list
+     *
+     * @for AircraftController
+     * @method _addTransponderCodeToInUse
+     * @param transponderCode {number}
+     */
+    _addTransponderCodeToInUse(transponderCode) {
+        this._transponderCodesInUse.push(transponderCode);
+    }
+
+    /**
+     * Remove a `#transponderCode` from the list of `#_transponderCodesInUse`
+     *
+     * @for AircraftController
+     * @method _removeTransponderCodeFromUse
+     * @param transponderCode {number}
+     */
+    _removeTransponderCodeFromUse({ transponderCode }) {
+        this._transponderCodesInUse = _without(this._transponderCodesInUse, transponderCode);
+    }
+
+    /**
+     * Boolean helper used to determine if a given `#transponderCode` is already
+     * present within the `#_transponderCodesInUse` list.
+     *
+     * @for AircraftController
+     * @method _isTransponderCodeInUse
+     * @param transponderCode {number}
+     * @return {booelean}
+     */
+    _isTransponderCodeInUse(transponderCode) {
+        return this._transponderCodesInUse.indexOf(transponderCode) !== -1;
+    }
+
+    /**
+     * Boolean helper used to determine if a given `transponderCode` is both
+     * not in use and not an invalid transponderCode.
+     *
+     * @for AircraftController
+     * @method _isValidTransponderCode
+     * @param transponderCode {number}
+     * @return {boolean}
+     */
+    _isValidTransponderCode(transponderCode) {
+        return !this._isTransponderCodeInUse(transponderCode) && INVALID_SQUAWK_CODES.indexOf(transponderCode) === -1;
     }
 
     /**

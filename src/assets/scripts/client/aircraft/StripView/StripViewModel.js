@@ -180,10 +180,10 @@ export default class StripViewModel extends BaseModel {
          *
          * @property _transponder
          * @type {number}
-         * @default 1200
+         * @default -1
          * @private
          */
-        this._transponder = 1200;
+        this._transponder = -1;
 
         /**
          * HTML Element that holds the `#_transponderCode` value
@@ -644,6 +644,7 @@ export default class StripViewModel extends BaseModel {
         const viewModel = aircraftModel.getViewModel();
 
         return this.insideCenter !== viewModel.insideCenter ||
+            this._transponder !== viewModel.transponderCode ||
             this._assignedAltitude !== viewModel.assignedAltitude ||
             this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
             this._arrivalAirport !== viewModel.arrivalAirportId ||
@@ -665,6 +666,7 @@ export default class StripViewModel extends BaseModel {
     _updateStripView(aircraftModel) {
         const {
             insideCenter,
+            transponderCode,
             assignedAltitude,
             arrivalAirportId,
             departureAirportId,
@@ -673,6 +675,7 @@ export default class StripViewModel extends BaseModel {
         } = aircraftModel.getViewModel();
 
         this.insideCenter = insideCenter;
+        this._transponder = transponderCode;
         this._assignedAltitude = assignedAltitude;
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
