@@ -18,6 +18,8 @@
         "angle": 230,
         "speed": 9
     },
+    "arrivalRunway": "22",
+    "departureRunway": "22",
     "airspace": [
         {
             "floor": 0,
@@ -538,8 +540,8 @@
             "name": "Atkin Five",
             "rwy": {
                 "8R": [["^_RWY26L04.08DME", "A60+|S220-"], ["JAPOD", "S220-"]],
-                "26L": ["BIVKE"],
-                "22": ["BIVKE"]
+                "22": ["BIVKE"],
+                "26L": ["BIVKE"]
             },
             "body": ["ATKNN"],
             "exitPoints": {
@@ -583,8 +585,8 @@
             "rwy": {
                 "4": ["KERGE", "DOTGE"],
                 "8R": ["MATLE", ["CATEG", "A110+|S250"]],
-                "26L": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]],
-                "22": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]]
+                "22": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]],
+                "26L": ["AKADE", ["HIKEM", "A90+"], ["CATEG", "A110+"]]
             },
             "body": ["LATVE"],
             "exitPoints": {
@@ -602,8 +604,8 @@
             "rwy": {
                 "4": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
                 "8R": ["DAVNE", ["CABSI", "A70-"], "MREDD"],
-                "26L": ["AKADE", "FOBET"],
-                "22": ["AKADE", "FOBET"]
+                "22": ["AKADE", "FOBET"],
+                "26L": ["AKADE", "FOBET"]
             },
             "body": ["NEVUE"],
             "exitPoints": {
@@ -620,8 +622,8 @@
             "rwy": {
                 "4": ["JIMBA", ["BUSEY", "A70-"]],
                 "8R": ["DAVNE", ["BUSEY", "A70-"]],
-                "26L": ["AKADE", ["HIKEM", "A90+"]],
-                "22": ["AKADE", ["HIKEM", "A90+"]]
+                "22": ["AKADE", ["HIKEM", "A90+"]],
+                "26L": ["AKADE", ["HIKEM", "A90+"]]
             },
             "body": ["TDOWN"],
             "exitPoints": {
