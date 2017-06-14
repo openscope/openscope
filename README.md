@@ -24,7 +24,7 @@ From a terminal (or GitBash for Windows users), run the following commands:
 1. `npm run build`
 1. `npm run server`
 
-Once that finishes doing it's thing, you should see something close to the following in the terminal:
+Once that finishes doing its thing, you should see something close to the following in the terminal:
 ```bash
 > node ./public/assets/scripts/server/index.js
 
