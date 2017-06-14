@@ -835,18 +835,18 @@
             "icao": "AARCH1",
             "name": "Arch One",
             "entryPoints": {
-                "AKBAR": [["AKBAR", "A340-|S350"], ["PRUET", "A320-"], ["UKAAY", "A220|S280"]],
-                "RBS": ["RBS", "JARKE", ["BASCO", "A370-"], ["GORDO", "A350-"], ["WLDBL", "A300-"], ["HONKK", "A220|S280"]],
-                "VHP": ["VHP", ["AKBAR", "A340-|S350"], ["PRUET", "A320-"], ["UKAAY", "A220|S280"]]
+                "AKBAR": ["AKBAR", "PRUET", ["UKAAY", "A310-|S280"]],
+                "RBS": ["RBS", "JARKE", "BASCO", "GORDO", "WLDBL", ["HONKK", "A310-|S280"]],
+                "VHP": ["VHP", "AKBAR", "PRUET", ["UKAAY", "A310-|S280"]]
             },
-            "body": [["AARCH", "A180|S280"], ["PETTI", "A120"]],
+            "body": [["AARCH", "A110+|S280"], "PETTI"],
             "rwy": {
-                "11": [["KRIYA", "A110|S280"], ["JAAKK", "A100|S250"], ["CHOTO", "A80|S230"], ["GETEE", "A70|S210"], ["HRBEE", "A60|S210"], ["BUELL", "A50|S210"]],
-                "12L": [["KRIYA", "A110|S280"], ["JAAKK", "A100|S250"], ["CHOTO", "A80|S230"], ["GETEE", "A70|S210"], ["HRBEE", "A60|S210"], ["BUELL", "A50|S210"]],
-                "12R": [["KRIYA", "A110|S280"], ["JAAKK", "A100|S250"], ["CHOTO", "A80|S230"], ["GETEE", "A70|S210"], ["HRBEE", "A60|S210"], ["BUELL", "A50|S210"]],
-                "29": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]],
-                "30L": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]],
-                "30R": [["SSKOT", "A100"], ["EADDS", "A90"], ["OSHIE", "A70|S250"], ["FDRKO", "A60"]]
+                "11": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "12L": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "12R": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "29": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]],
+                "30L": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]],
+                "30R": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]]
             },
             "draw": [
                 ["VHP", "AKBAR", "PRUET", "UKAAY", "AARCH", "PETTI", "KRIYA", "JAAKK", "CHOTO", "GETEE", "HRBEE", "BUELL"],
@@ -858,20 +858,20 @@
             "icao": "BOOSH1",
             "name": "Bush One",
             "entryPoints": {
-                "ARG": ["ARG", ["CGI", "A300-|S350"], ["DLITE", "A240|S280"], ["FATSS", "A180"]],
-                "BNA": ["BNA", ["CGI", "A300-|S350"], ["DLITE", "A240|S280"], ["FATSS", "A180"]],
-                "MEM": ["MEM", ["CGI", "A300-|S350"], ["DLITE", "A240|S280"], ["FATSS", "A180"]],
-                "PXV": ["PXV", ["FFOXX", "A420-"], ["SAYDI", "A390-"], ["MOPOE", "A280|S280"], ["BIDWL", "A200"]],
-                "VISQA": ["VISQA", ["SCRCH", "A330-"], ["CGI", "A300-|S350"], ["DLITE", "A240|S280"], ["FATSS", "A180"]]
+                "ARG": ["ARG", "CGI", ["DLITE", "A310-|S280"], "FATSS"],
+                "BNA": ["BNA", "CGI", ["DLITE", "A310-|S280"], "FATSS"],
+                "MEM": ["MEM", "CGI", ["DLITE", "A310-|S280"], "FATSS"],
+                "PXV": ["PXV", "FFOXX", "SAYDI", ["MOPOE", "A310-|S280"], "BIDWL"],
+                "VISQA": ["VISQA", "SCRCH", "CGI", ["DLITE", "A310-|S280"], "FATSS"]
             },
-            "body": [["BOOSH", "A160|S280"], ["QBALL", "A120"]],
+            "body": [["BOOSH", "A140+|S280"], "QBALL"],
             "rwy": {
-                "11": [["OOJAY", "A110|S280"], ["PTEES", "A100|S250"], ["CHIKN", "A80|S230"], ["LETRR", "A70|S210"], ["RRIPP", "A60|S210"], ["JBUCK", "A50|S210"]],
-                "12L": [["OOJAY", "A110|S280"], ["PTEES", "A100|S250"], ["CHIKN", "A80|S230"], ["LETRR", "A70|S210"], ["RRIPP", "A60|S210"], ["JBUCK", "A50|S210"]],
-                "12R": [["OOJAY", "A110|S280"], ["PTEES", "A100|S250"], ["CHIKN", "A80|S230"], ["LETRR", "A70|S210"], ["RRIPP", "A60|S210"], ["JBUCK", "A50|S210"]],
-                "29": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]],
-                "30L": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]],
-                "30R": [["DENAA", "A110"], ["HRTSO", "A100|S250"], ["TEEBE", "A90"]]
+                "11": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
+                "12L": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
+                "12R": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
+                "29": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]],
+                "30L": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]],
+                "30R": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]]
             },
             "draw": [
                 ["BNA", "CGI", "DLITE", "FATSS", "BOOSH", "QBALL", "DENAA", "HRTSO", "TEEBE"],
@@ -886,18 +886,18 @@
             "icao": "KAYLA1",
             "name": "Kayla One",
             "entryPoints": {
-                "ANX": ["ANX", ["HEBNA", "A240|S280"], ["TRAKE", "A210"], ["NATEM", "A160|S280"]],
-                "BUM": ["BUM", ["FEBAP", "A240|S280"], ["TRAKE", "A210"], ["NATEM", "A160|S280"]],
-                "SGF": ["SGF", ["GNNON", "A390-"], ["JEXAV", "A240|S280"], ["ZULMO", "A160|S280"]]
+                "ANX": ["ANX", ["HEBNA", "A310-|S280"], "TRAKE", ["NATEM", "A230-|S280"]],
+                "BUM": ["BUM", ["FEBAP", "A310-|S280"], "TRAKE", ["NATEM", "A230-|S280"]],
+                "SGF": ["SGF", "GNNON", ["JEXAV", "A310-|S280"], ["ZULMO", "A230-|S280"]]
             },
-            "body": [["KAYLA", "A130"], ["BGMAC", "A110"]],
+            "body": [["KAYLA", "A110+"], "BGMAC"],
             "rwy": {
-                "11": [["DNISE", "A100"], ["ELBRT", "A90|S250"], ["STAAN", "A70|S240"]],
-                "12L": [["DNISE", "A100"], ["ELBRT", "A90|S250"], ["STAAN", "A70|S240"]],
-                "12R": [["DNISE", "A100"], ["ELBRT", "A90|S250"], ["STAAN", "A70|S240"]],
-                "29": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]],
-                "30L": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]],
-                "30R": [["GIBEE", "A110|S280"], ["OZZEE", "A100|S250"], ["SNYDR", "A80|S230"], ["HOOOT", "A70|S210"], ["PEJAA", "A60|S210"], ["FLUDD", "A50|S210"]]
+                "11": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
+                "12L": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
+                "12R": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
+                "29": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]],
+                "30L": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]],
+                "30R": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]]
             },
             "draw": [
                 ["ANX", "HEBNA", "TRAKE", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
@@ -910,18 +910,18 @@
             "icao": "LORLE1",
             "name": "Lorely One",
             "entryPoints": {
-                "GUZIK": ["GUZIK", "SEIZE", ["SKOVE", "A220|S280"]],
-                "IRK": ["IRK", ["JUDER", "A220|S280"]],
-                "SKOVE": [["SKOVE", "A220|S280"]]
+                "GUZIK": ["GUZIK", "SEIZE", ["SKOVE", "A310-|S280"]],
+                "IRK": ["IRK", ["JUDER", "A310-|S280"]],
+                "SKOVE": [["SKOVE", "A310-|S280"]]
             },
-            "body": [["RIVRS", "A140|S280"], ["LORLE", "A120"]],
+            "body": [["RIVRS", "A120+|S280"], "LORLE"],
             "rwy": {
-                "11": [["HMFRZ", "A100"], ["VEEGE", "A90|S250"]],
-                "12L": [["HMFRZ", "A100"], ["VEEGE", "A90|S250"]],
-                "12R": [["HMFRZ", "A100"], ["VEEGE", "A90|S250"]],
-                "29": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]],
-                "30L": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]],
-                "30R": [["GETUP", "A110|S280"], ["TATRR", "A100|S250"], ["MELVY", "90"], ["BRDWL", "A80"], ["ENNEE", "A70|S210"], ["JYAAR", "A60|S210"], ["DOBLZ", "A50|S210"]]
+                "11": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
+                "12L": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
+                "12R": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
+                "29": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]],
+                "30L": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]],
+                "30R": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]]
             },
             "draw": [
                 ["GUZIK", "SEIZE", "SKOVE", "RIVRS", "LORLE", "GETUP", "TATRR", "MELVY", "BRDWL", "ENNEE", "JYAAR", "DOBLZ"],
