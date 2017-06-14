@@ -403,13 +403,13 @@
             "icao": "COLTR3",
             "name": "Colter Three",
             "entryPoints": {
-                "RECKN": ["RECKN", ["ZATOX", "A370-|S350"], ["SNEWP", "A240|S270"]],
-                "TCC": ["TCC", ["ACH", "A310-|S350"], ["TALLR", "A240|S270"]]
+                "RECKN": ["RECKN", "ZATOX", ["SNEWP", "A280-|S270"]],
+                "TCC": ["TCC", "ACH", ["TALLR", "A280-|S270"]]
             },
-            "body": [["COLTR", "A170"], ["YYLEE", "A140|S250"]],
+            "body": [["COLTR", "A180-"], ["YYLEE", "A110+|S250"]],
             "rwy": {
-                "3": [["CYOTE", "A120"], ["TNTOE", "A100|S210"], "PLNET"],
-                "8": [["CYOTE", "A120"], ["TNTOE", "A100|S210"], "PLNET"],
+                "3": ["CYOTE", ["TNTOE", "A100|S210"], "PLNET"],
+                "8": ["CYOTE", ["TNTOE", "A100|S210"], "ACMIE"],
                 "21": [["TACOH", "A100|S210"]],
                 "26": [["TACOH", "A100|S210"]]
             },
@@ -465,12 +465,12 @@
                 "CABNO": ["CABNO"],
                 "KALSE": ["KALSE"]
             },
-            "body": [["KRKEE", "A240|S270"], ["ELRRA", "A150"], ["XMRKS", "A130|S250"]],
+            "body": [["KRKEE", "A280-|S270"], ["ELRRA", "A180-"], ["XMRKS", "A110+|S250"]],
             "rwy": {
-                "3": [["SHWNA", "A100"], ["BIBQU", "A80|S210"]],
-                "8": [["AMRRA", "A110"], ["UNCIR", "A80|S210"]],
-                "21": [["AMRRA", "A110"], ["FOXRR", "A100|S210"]],
-                "26": [["STIKI", "A100|S210"], ["BRNDO", "A90"]]
+                "3": [["SHWNA", "A90+"], ["BIBQU", "A80+|S210"]],
+                "8": [["AMRRA", "A100+"], ["UNCIR", "A80+|S210"]],
+                "21": [["AMRRA", "A100+"], ["FOXRR", "A100|S210"]],
+                "26": [["STIKI", "A100|S210"], ["BRNDO", "A90+"]]
             },
             "draw": [
                 ["CABNO", "KRKEE", "ELRRA", "XMRKS", "SHWNA", "BIBQU"],
@@ -503,16 +503,16 @@
             "icao": "LOWBO3",
             "name": "Lobo Three",
             "entryPoints": {
-                "BRMLY": ["BRMLY", ["JMUZE", "A270|S350"], ["HIKKR", "A250|S270"]],
-                "GUP": ["GUP", ["BUKEE", "A320-|S350"], ["WSTRN", "A250|S270"]],
-                "ROSEI": ["ROSEI", ["SSKYE", "A270|S350"], ["FORUN", "A250|S270"]]
+                "BRMLY": [["BRMLY", "A290+"], ["JMUZE", "A280-"], ["HIKKR", "A260-|S270"]],
+                "GUP": ["GUP", "BUKEE", ["WSTRN", "A260-|S270"]],
+                "ROSEI": [["ROSEI", "A290+"], ["SSKYE", "A280-"], ["FORUN", "A260-|S270"]]
             },
-            "body": [["LOWBO", "A180"], ["JOKLO", "A160|S250"], ["ITUNE", "A140"]],
+            "body": ["LOWBO", ["JOKLO", "A180-|S250"], "ITUNE"],
             "rwy": {
-                "3": [["MUSCC", "A120"], ["DWNLD", "A110"], ["CMSTR", "A90|S210"]],
-                "8": [["MUSCC", "A120"], ["DWNLD", "A110"], ["CMSTR", "A90|S210"]],
-                "21": [["SDUNX", "A100"], ["PASEO", "A100"], ["NODME", "A90|S210"]],
-                "26": [["SDUNX", "A100"], ["PASEO", "A100"], ["NODME", "A90|S210"]]
+                "3": [["MUSCC", "A120-"], ["DWNLD", "A110-"], ["CMSTR", "A90|S210"]],
+                "8": [["MUSCC", "A120-"], ["DWNLD", "A110-"], ["CMSTR", "A90|S210"]],
+                "21": [["SDUNX", "A105-"], ["PASEO", "A100-"], ["NODME", "A90|S210"]],
+                "26": [["SDUNX", "A105-"], ["PASEO", "A100-"], ["NODME", "A90|S210"]]
             },
             "draw": [
                 ["BRMLY", "JMUZE", "HIKKR", "LOWBO", "JOKLO", "ITUNE", "MUSCC", "DWNLD", "CMSTR"],
@@ -525,14 +525,14 @@
             "icao": "LZZRD3",
             "name": "Lizzard Three",
             "entryPoints": {
-                "CME": ["CME", ["LOKKE", "A350-"], ["JETOS", "A300-|S280"], ["BOBYY", "A260"], ["HAKOR", "A210"]]
+                "CME": ["CME", "LOKKE", ["JETOS", "A300-|S280"], "BOBYY", "HAKOR"]
             },
-            "body": [["LZZRD", "A160|S250"], ["MKYON", "A140"]],
+            "body": [["LZZRD", "A180-|S250"], ["MKYON", "A150-"]],
             "rwy": {
-                "3": [["HAPEE", "A130"], ["COMRO", "A100|S210"]],
-                "8": [["HAPEE", "A130"], ["COMRO", "A100|S210"]],
-                "21": [["SOPPA", "A120"], ["PILLA", "A100|S210"]],
-                "26": [["SOPPA", "A120"], ["PILLA", "A100|S210"]]
+                "8": [["HAPEE", "A130-"], ["COMRO", "A100|S210"]],
+                "3": [["HAPEE", "A130-"], ["COMRO", "A100|S210"]],
+                "21": ["SOPPA", ["PILLA", "A100|S210"]],
+                "26": ["SOPPA", ["PILLA", "A100|S210"]]
             },
             "draw": [
                 ["CME", "LOKKE", "JETOS", "BOBYY", "HAKOR", "LZZRD", "MKYON", "HAPEE", "COMRO"],
@@ -564,16 +564,16 @@
             "icao": "SNDIA3",
             "name": "Sandeeah Three",
             "entryPoints": {
-                "DATME": ["DATME", ["EBIDE", "A310-|S350"], ["ESPAN", "A270|S300"], ["DETEC", "A230|S270"]],
-                "FITEE": [["FITEE", "A230|S270"]],
-                "TAMEY": ["TAMEY", ["FITEE", "A230|S270"]]
+                "DATME": ["DATME", "EBIDE", "ESPAN", ["DETEC", "A280-|S270"]],
+                "FITEE": [["FITEE", "A280-|S270"]],
+                "TAMEY": ["TAMEY", ["FITEE", "A280-|S270"]]
             },
-            "body": [["SNDIA", "A170"], ["VLCNO", "A150|S250"], ["ASIDE", "A110|S250"]],
+            "body": ["SNDIA", ["VLCNO", "A160-|S250"], ["ASIDE", "A110-|S250"]],
             "rwy": {
                 "3": [["CRSTN", "A90|S210"]],
                 "8": [["CRSTN", "A90|S210"]],
-                "21": [["CADAT", "A90|S210"]],
-                "26": [["CADAT", "A90|S210"]]
+                "21": [["CADAT", "A90|S210-"]],
+                "26": [["CADAT", "A90|S210-"]]
             },
             "draw": [
                 ["TAMEY", "FITEE", "SNDIA", "VLCNO", "ASIDE", "CRSTN"],
