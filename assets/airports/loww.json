@@ -403,7 +403,12 @@
             "exitPoints": {
                 "ADAMA": ["WW390", "ADAMA"]
             },
-            "draw": [["WW100", "WW390"], ["WW296", "WW286", "WW387", "WW390"], ["WW163", "WW162", "WW390"], ["WW388", "WW389", "WW390", "ADAMA"]]
+            "draw": [
+                ["WW100", "WW390"],
+                ["WW296", "WW286", "WW387", "WW390"],
+                ["WW163", "WW162", "WW390"],
+                ["WW388", "WW389", "WW390", "ADAMA"]
+            ]
         },
         "DITIS": {
             "icao": "DITIS",
@@ -418,7 +423,12 @@
             "exitPoints": {
                 "DITIS": ["WW171", "WW181", "DITIS"]
             },
-            "draw": [["WW151", "WW152", "WW170"], ["WW293", "WW230", "WW266", "WW171"], ["WW267", "WW160", "WW170"], ["WW165", "WW371", "WW374", "WW171", "WW181", "DITIS"]]
+            "draw": [
+                ["WW151", "WW152", "WW170"],
+                ["WW293", "WW230", "WW266", "WW171"],
+                ["WW267", "WW160", "WW170"],
+                ["WW165", "WW371", "WW374", "WW171", "WW181", "DITIS"]
+            ]
         },
         "KOXER": {
             "icao": "KOXER",
@@ -433,7 +443,12 @@
             "exitPoints": {
                 "KOXER": ["KOXER"]
             },
-            "draw": [["WW100", "WW386", "KOXER"], ["WW387", "KOXER"], ["WW162", "KOXER"], ["WW164", "WW373", "KOXER"]]
+            "draw": [
+                ["WW100", "WW386", "KOXER"],
+                ["WW387", "KOXER"],
+                ["WW162", "KOXER"],
+                ["WW164", "WW373", "KOXER"]
+            ]
         },
         "LANUX": {
             "icao": "LANUX",
@@ -448,7 +463,10 @@
             "exitPoints": {
                 "LANUX": ["WW171", ["LANUX", "A240-"]]
             },
-            "draw": [["WW170", "WW171"], ["WW171", "LANUX"]]
+            "draw": [
+                ["WW170", "WW171"],
+                ["WW171", "LANUX"]
+            ]
         },
         "LEDVA": {
             "icao": "LEDVA",
@@ -463,7 +481,12 @@
             "exitPoints": {
                 "LEDVA": ["LEDVA"]
             },
-            "draw": [["WW170", "LEDVA"], ["WW266", "LEDVA"], ["WW160", "WW174", "LEDVA"], ["WW371", "LEDVA"]]
+            "draw": [
+                ["WW170", "LEDVA"],
+                ["WW266", "LEDVA"],
+                ["WW160", "WW174", "LEDVA"],
+                ["WW371", "LEDVA"]
+            ]
         },
         "LUGEM": {
             "icao": "LUGEM",
@@ -478,7 +501,11 @@
             "exitPoints": {
                 "LUGEM": ["LUGEM"]
             },
-            "draw": [["WW100", "WW101", "WW274"], ["WW269", "WW265", "WW379", "WW381"], ["WW304", "WW293", "WW232", "WW231", "LUGEM"]]
+            "draw": [
+                ["WW100", "WW101", "WW274"],
+                ["WW269", "WW265", "WW379", "WW381"],
+                ["WW304", "WW293", "WW232", "WW231", "LUGEM"]
+            ]
         },
         "MEDIX": {
             "icao": "MEDIX",
@@ -493,7 +520,12 @@
             "exitPoints": {
                 "MEDIX": ["MEDIX"]
             },
-            "draw": [["WW101", "WW273"], ["WW231"], ["WW379", "WW382"], ["WW230", "MEDIX"]]
+            "draw": [
+                ["WW101", "WW273"],
+                ["WW231"],
+                ["WW379", "WW382"],
+                ["WW230", "MEDIX"]
+            ]
         },
         "OSPEN": {
             "icao": "OSPEN",
@@ -508,7 +540,12 @@
             "exitPoints": {
                 "OSPEN": ["WW172", "OSPEN"]
             },
-            "draw": [["WW101", "WW172"], ["WW296", "WW300"], ["WW269", "WW378", "WW172"], ["WW304", "WW296", "WW300", "WW172", "OSPEN"]]
+            "draw": [
+                ["WW101", "WW172"],
+                ["WW296", "WW300"],
+                ["WW269", "WW378", "WW172"],
+                ["WW304", "WW296", "WW300", "WW172", "OSPEN"]
+            ]
         },
         "SASAL": {
             "icao": "SASAL",
@@ -523,7 +560,12 @@
             "exitPoints": {
                 "SASAL": ["SASAL"]
             },
-            "draw": [["WW100", "WW261", "WW262", "SASAL"], ["WW296", "WW375"], ["WW268", "SASAL"], ["WW296", "WW375", "WW370", "SASAL"]]
+            "draw": [
+                ["WW100", "WW261", "WW262", "SASAL"],
+                ["WW296", "WW375"],
+                ["WW268", "SASAL"],
+                ["WW296", "WW375", "WW370", "SASAL"]
+            ]
         },
         "SOVIL": {
             "icao": "SOVIL",
@@ -538,7 +580,11 @@
             "exitPoints": {
                 "SOVIL": ["SOVIL"]
             },
-            "draw": [["WW101", "WW275"], ["WW269", "WW377", "WW380"], ["WW304", "WW295", "WW233", "SOVIL"]]
+            "draw": [
+                ["WW101", "WW275"],
+                ["WW269", "WW377", "WW380"],
+                ["WW304", "WW295", "WW233", "SOVIL"]
+            ]
         },
         "STEIN": {
             "icao": "STEIN",
@@ -553,7 +599,11 @@
             "exitPoints": {
                 "STEIN": ["STEIN"]
             },
-            "draw": [["WW262", "STEIN"], ["WW268", "STEIN"], ["WW370", "STEIN"]]
+            "draw": [
+                ["WW262", "STEIN"],
+                ["WW268", "STEIN"],
+                ["WW370", "STEIN"]
+            ]
         },
         "RUPET": {
             "icao": "RUPET",
@@ -568,7 +618,9 @@
             "exitPoints": {
                 "RUPET": ["WW172", "RUPET"]
             },
-            "draw": [["WW172", "RUPET"]]
+            "draw": [
+                ["WW172", "RUPET"]
+            ]
         }
     },
     "stars": {
