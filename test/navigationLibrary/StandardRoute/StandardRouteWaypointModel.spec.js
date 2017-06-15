@@ -38,10 +38,10 @@ ava('sets only `name` when provided a string', t => {
     t.true(model._speed === -1);
 });
 
-ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
+ava('.clonePositionFromFix() does not throw when no fix exists', t => {
     const model = new StandardRouteWaypointModel('ABCD');
 
-    t.notThrows(() => model.clonePoisitonFromFix());
+    t.notThrows(() => model.clonePositionFromFix());
 });
 
 ava('does not call ._parseWaypointRestrictions() when provided a string', t => {

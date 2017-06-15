@@ -353,7 +353,7 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const runwayModel = aircraft.fms.departureRunway;
+        const runwayModel = aircraft.fms.departureRunwayModel;
         const airportModel = this._airportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
@@ -404,7 +404,7 @@ export default class AircraftCommander {
     runSTAR(aircraft, data) {
         const routeString = data[0];
         // TODO: why are we passing this if we already have it?
-        const runwayModel = aircraft.fms.arrivalRunway;
+        const runwayModel = aircraft.fms.arrivalRunwayModel;
         const airportModel = this._airportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {

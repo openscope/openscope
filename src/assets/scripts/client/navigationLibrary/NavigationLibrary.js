@@ -232,8 +232,7 @@ export default class NavigationLibrary {
         const routeModel = new RouteModel(procedureRouteSegment);
         let standardRouteWaypointModelList;
 
-        // TODO: As amended, this may be an unsafe assumption. Needs to be reexaimed.
-        if (flightPhase === FLIGHT_PHASE.APRON) {
+        if (this.isGroundedFlightPhase(flightPhase)) {
             standardRouteWaypointModelList = this._sidCollection.generateFmsWaypointModelsForRoute(
                 routeModel.procedure,
                 runway,
@@ -301,5 +300,20 @@ export default class NavigationLibrary {
         }
 
         return typeof route !== 'undefined' && route.hasSuffix();
+    }
+
+    /**
+     * Encapsulates boolean logic used to determine if a `flightPhase`
+     * indicates an aircraft is still on the ground or en-route
+     *
+     * @for NavigationLibrary
+     * @method isGroundedFlightPhase
+     * @param flightPhase {string}
+     * @return {boolean}
+     */
+    isGroundedFlightPhase(flightPhase) {
+        return flightPhase === FLIGHT_PHASE.APRON ||
+            flightPhase === FLIGHT_PHASE.TAXI ||
+            flightPhase === FLIGHT_PHASE.WAITING;
     }
 }

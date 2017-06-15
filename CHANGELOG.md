@@ -18,9 +18,13 @@
 - Adds `StripViewController`, `StripViewCollection`, and `StripViewModel` classes [#285](https://github.com/openscope/openscope/issues/285)
     - Removes progress strip logic from the `AircraftModel`
     - Completely reworks CSS for `StripViewList`
+- Adds `.isGroundedFlightPhase()` and implements this helper in `.buildWaypointModelsForProcedure()` [#491](https://github.com/openscope/openscope/issues/491)
+    - This allows for waypointModels to be build from the correct collection based on `flightPhase`
 - Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 - Adds user setting option to change length of PTL [#423](https://github.com/openscope/openscope/issues/423)
 - Updates Dublin (EIDW) - Improved procedures, added terrain and video map, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
+- Updates logic to display historical aircraft position for aircraft outside controlled airspace [#508](https://github.com/openscope/openscope/issues/508)
+
 
 
 
@@ -35,6 +39,7 @@
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 - Prevent attempts to access positions of vector waypoints [#467](https://github.com/openscope/openscope/issues/467)
+- Adjusts fix validation for hold/vector/flyover fix names [#451](https://github.com/openscope/openscope/issues/451)
 
 
 
