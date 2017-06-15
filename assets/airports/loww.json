@@ -369,18 +369,18 @@
     },
     "runways":[
         {
-            "name":        ["11", "29"],
+            "name": ["11", "29"],
             "name_offset": [[0, 0], [0, 0]],
-            "end":    [["N48d7m22.13", "E16d32m00.15"], ["N48d6m32.57", "E16d34m32.3"]],
-            "length":      3.4923,
-            "ils":         [true, true]
+            "end": [["N48d7m22.13", "E16d32m00.15"], ["N48d6m32.57", "E16d34m32.3"]],
+            "length": 3.4923,
+            "ils": [true, true]
         },
         {
-            "name":        ["16", "34"],
+            "name": ["16", "34"],
             "name_offset": [[0, 0], [0, 0]],
-            "end":    [["N48d7m11.21", "E16d34m41.46"], ["N48d5m19.07", "E16d35m28.87"]],
-            "length":      3.5888,
-            "ils":         [true, true]
+            "end": [["N48d7m11.21", "E16d34m41.46"], ["N48d5m19.07", "E16d35m28.87"]],
+            "length": 3.5888,
+            "ils": [true, true]
         }
     ],
     "sids": {
@@ -754,18 +754,18 @@
             ]
         },
         {
-            "_name":  "MIKOV",
+            "_name": "MIKOV",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":    "MIKOV.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "MIKOV.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "surge",
             "rate": 17,
             "entrail": [15, 25],
-            "airlines":  [
+            "airlines": [
                 ["adr", 1],
                 ["afl", 3],
                 ["afr", 1],
@@ -794,35 +794,35 @@
             ]
         },
         {
-            "_name":  "NATEX",
+            "_name": "NATEX",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":   "NATEX.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "NATEX.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "random",
             "rate": 4,
-            "airlines":  [
+            "airlines": [
                 ["aua", 3],
                 ["rot", 1]
             ]
         },
         {
-            "_name":  "XANUT",
+            "_name": "XANUT",
             "_n": true,
             "_combines": "OBUTI1W, GBG5W, GRZ6W, ABTAN1W, XANUT1W",
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":    "XANUT.34.LOWW",
+            "route": "XANUT.34.LOWW",
             "altitude": 25000,
-            "speed":    320,
+            "speed": 320,
             "method": "surge",
             "rate": 15,
             "entrail": [15, 30],
-            "airlines":  [
+            "airlines": [
                 ["adr", 4],
                 ["aee", 1],
                 ["amc", 1],
@@ -848,17 +848,17 @@
             ]
         },
         {
-            "_name":  "MASUR",
+            "_name": "MASUR",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":  "MASUR.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "MASUR.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "random",
             "rate": 3,
-            "airlines":  [
+            "airlines": [
                 ["aua", 25],
                 ["dlh", 1],
                 ["gwi", 1],
@@ -869,33 +869,33 @@
             ]
         },
         {
-            "_name":  "REKLU",
+            "_name": "REKLU",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":  "REKLU.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "REKLU.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "random",
             "rate": 1,
-            "airlines":  [
+            "airlines": [
                 ["aua", 3],
                 ["rot", 1]
             ]
         },
         {
-            "_name":  "LANUX",
+            "_name": "LANUX",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":    "LANUX.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "LANUX.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "random",
             "rate": 3,
-            "airlines":  [
+            "airlines": [
                 ["adr", 1],
                 ["afl", 3],
                 ["afr", 1],
@@ -925,17 +925,17 @@
             ]
         },
         {
-            "_name":  "GAMLI",
+            "_name": "GAMLI",
             "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
-            "route":  "GAMLI.34.LOWW",
-            "altitude":  25000,
-            "speed":    320,
+            "route": "GAMLI.34.LOWW",
+            "altitude": 25000,
+            "speed": 320,
             "method": "random",
             "rate": 5,
-            "airlines":  [
+            "airlines": [
                 ["aua", 25],
                 ["dlh", 1],
                 ["gwi", 1],
