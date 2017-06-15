@@ -1,6 +1,7 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
+import RouteModel from '../Route/RouteModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
 import {
@@ -301,9 +302,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @chainable
      */
     clonePositionFromFix() {
-        const isFlyOverWaypoint = this.name.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
-        const isHoldWaypoint = this.name.indexOf(HOLD_WAYPOINT_PREFIX) !== -1;
-        const isVectorWaypoint = this.name.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+        const isFlyOverWaypoint = RouteModel.isFlyOverRouteString(this.name);
+        const isHoldWaypoint = RouteModel.isHoldRouteString(this.name);
+        const isVectorWaypoint = RouteModel.isVectorRouteString(this.name);
 
         if (isVectorWaypoint) {
             return;
