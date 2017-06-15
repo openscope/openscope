@@ -168,7 +168,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this.previousStandardWaypointName = '';
 
         return this._init(routeWaypoint)
-                   .clonePoisitonFromFix();
+                   .clonePositionFromFix();
     }
 
     /**
@@ -293,11 +293,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
-     * @method _clonePoisitonFromFix
+     * @method clonePositionFromFix
      * @param fixCollection {FixCollection}
      * @private
      */
-    clonePoisitonFromFix() {
+    clonePositionFromFix() {
         const fixModel = FixCollection.findFixByName(this.name);
 
         if (!fixModel) {
