@@ -1,5 +1,6 @@
 import BaseModel from '../../base/BaseModel';
 import {
+    FLY_OVER_WAYPOINT_PREFIX,
     HOLD_WAYPOINT_PREFIX,
     ROUTE_SEGMENT_MAX_LENGTH,
     PROCEDURE_SEGMENT_DIVIDER,
@@ -159,6 +160,20 @@ RouteModel.isProcedureRouteString = (routeString) => {
 
     return hasRightNumberOfElements && !isDirectRouteSegment;
 };
+
+/**
+ * Used to determine if a string is in the shape of a `flyOverRouteString`
+ *
+ * Example:
+ * - `^COWBY`
+ *
+ * @for RouteModel
+ * @method isFlyOverRouteString
+ * @param routeString {string}
+ * @return {boolean}
+ * @static
+ */
+RouteModel.isFlyOverRouteString = (routeString) => routeString.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
 
 /**
  * Used to determine if a string is in the shape of a `holdRouteString`
