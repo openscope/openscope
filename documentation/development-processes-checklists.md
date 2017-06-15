@@ -70,27 +70,7 @@ Upon completion of the initialization phase, complete the sprint closeout proced
 
 _Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) during this phase._
 
-
-### Testing Phase Checklist
-At least three days prior to the end of the sprint, we will create a `release` branch that represents the state of the simulator after the current sprint's work. This release branch is temporary and has a short lifespan.  It exists solely to provide a testing environment segregated from both the development and production versions of the app.
-
-1. Create new branch `release/#.#.#` from `develop`.
-1. Open a pull request for `release/#.#.#` into `master`.
-    - Include a title of the version number, eg 'v5.2.0'.
-    - Include a description of 'Deploy v5.2.0'.
-1. On Heroku, change staging app to point to this new release branch.
-1. Broadcast publishing of testing app and seek feedback and/or bug reports. Any bugs should be reported to the `#bugs` room and will be triaged from there.
-1. Merge any applicable bugfix branches into `release/#.#.#`.
-    - Include summary of `Merge bugfix/### into release/#.#.#`
-    - Then on `develop`, run `git merge release/#.#.#` (results in a FF) and push.
-
-_Only bugfix branches should be merged to `release/#.#.#` during this phase. Then, only the `release/#.#.#` branch should be merged into `develop`._
-
-Upon completion of the testing phase, conduct the release procedure (outlined below).
-
----
-
-## Development Procedures
+### Development Procedures
 1. Merging feature and bugfix branches:
     - Use non-FF merges into `develop` via "the green button" or either of the below commands:
         - `git pull origin feature/###` (merges local version of branch)
@@ -109,6 +89,23 @@ Upon completion of the testing phase, conduct the release procedure (outlined be
         - Note that this merge _will_ have conflicts due to the different version numbers and CHANGELOG. Resolve and allow the merge commit.
         - Include summary of `Merge hotfix/359 (#361) from master`.
         - Include the same description in the second line.
+
+### Testing Phase Checklist
+At least three days prior to the end of the sprint, we will create a `release` branch that represents the state of the simulator after the current sprint's work. This release branch is temporary and has a short lifespan.  It exists solely to provide a testing environment segregated from both the development and production versions of the app.
+
+1. Create new branch `release/#.#.#` from `develop`.
+1. Open a pull request for `release/#.#.#` into `master`.
+    - Include a title of the version number, eg 'v5.2.0'.
+    - Include a description of 'Deploy v5.2.0'.
+1. On Heroku, change staging app to point to this new release branch.
+1. Broadcast publishing of testing app and seek feedback and/or bug reports. Any bugs should be reported to the `#bugs` room and will be triaged from there.
+1. Merge any applicable bugfix branches into `release/#.#.#`.
+    - Include summary of `Merge bugfix/### into release/#.#.#`
+    - Then on `develop`, run `git merge release/#.#.#` (results in a FF) and push.
+
+_Only bugfix branches should be merged to `release/#.#.#` during this phase. Then, only the `release/#.#.#` branch should be merged into `develop`._
+
+Upon completion of the testing phase, conduct the release procedure (outlined below).
 
 ### Release Procedure
 1. Checkout `release/#.#.#`.
