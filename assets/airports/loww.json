@@ -719,7 +719,6 @@
             "speed": "",
             "method": "random",
             "rate": 10,
-            "offset": 0,
             "airlines": [
                 ["aar/cargo", 2],
                 ["adr", 5],
@@ -778,7 +777,6 @@
             "speed": "",
             "method": "random",
             "rate": 10,
-            "offset": 0,
             "airlines": [
                 ["aua", 165],
                 ["aua/long", 10],
@@ -798,7 +796,6 @@
             "speed": "",
             "method": "random",
             "rate": 10,
-            "offset": 0,
             "airlines": [
                 ["kal/long", 1],
                 ["kal/cargo", 2],
@@ -812,8 +809,6 @@
             ]
         },
         {
-            "_name": "MIKOV",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
@@ -852,8 +847,6 @@
             ]
         },
         {
-            "_name": "NATEX",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
@@ -868,8 +861,6 @@
             ]
         },
         {
-            "_name": "XANUT",
-            "_n": true,
             "_combines": "OBUTI1W, GBG5W, GRZ6W, ABTAN1W, XANUT1W",
             "origin": "",
             "destination": "loww",
@@ -906,8 +897,6 @@
             ]
         },
         {
-            "_name": "MASUR",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
@@ -927,8 +916,6 @@
             ]
         },
         {
-            "_name": "REKLU",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
@@ -943,8 +930,6 @@
             ]
         },
         {
-            "_name": "LANUX",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
@@ -983,8 +968,6 @@
             ]
         },
         {
-            "_name": "GAMLI",
-            "_n": true,
             "origin": "",
             "destination": "loww",
             "category": "arrival",
