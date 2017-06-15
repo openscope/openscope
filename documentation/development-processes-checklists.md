@@ -67,6 +67,7 @@ Upon completion of the initialization phase, complete the sprint closeout proced
     - If master contains no un-merged hotfixes, git should reply `Already up-to-date.`.
     - If master contains un-merged hotfixes, git will merge the changes (by FF if possible).
 1. If changes _were_ merged, push to origin.
+1. Delete _previous_ release branch, and leave only the _latest_ release branch.
 
 _Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) during this phase._
 
