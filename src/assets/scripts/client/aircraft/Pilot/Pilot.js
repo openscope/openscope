@@ -667,7 +667,6 @@ export default class Pilot {
             this._mcp.setHeadingFieldValue(runway.angle);
         }
 
-        // FIXME: should this be LNAV or HOLD?
         if (this._mcp.headingMode === MCP_MODE.HEADING.OFF) {
             this._mcp.setHeadingLnav();
         }
