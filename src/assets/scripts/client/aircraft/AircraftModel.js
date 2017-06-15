@@ -4,7 +4,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _random from 'lodash/random';
+import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
@@ -576,7 +576,7 @@ export default class AircraftModel {
      * @return {object<string, string>}
      */
     getViewModel() {
-        let assignedAltitude = this.mcp.altitude;
+        let assignedAltitude = _round(this.mcp.altitude);
         let flightPlanAltitude = this.fms.flightPlanAltitude;
 
         if (assignedAltitude === -1) {

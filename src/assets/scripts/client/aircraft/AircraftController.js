@@ -653,7 +653,7 @@ export default class AircraftController {
      */
     _generateUniqueTransponderCode() {
         const minCodeValue = 1203;
-        const maxCodeValue = 7499;
+        const maxCodeValue = 7477;
         const transponderCode = _random(minCodeValue, maxCodeValue);
 
         if (!this._isValidTransponderCode(transponderCode)) {
