@@ -1,19 +1,29 @@
 ## Naming Convention
+We consider there to be essentially three basic categories of changes:
+- `bugfix` (or `hotfix`): for change that fix a documented defect of the simulator
+    - includes GitHub labels `bugfix` (regular bugfixes) and `hotfix` (critical bug fix pushed directly to production)
+- `feature`: for changes that add or notably improve an existing feature
+    - includes GitHub labels `airport work` (new airports only), `enhancement`, and of course `feature`
+- `refactor`: for changes that neither add features nor fix bugs, like code reorganization
+    - includes GitHub labels `airport work` (all airport updates), `devops`, `documentation`, and of course `refactor`
 
-Issues will be tagged with either `feature` or `bugfix` on GitHub. All branches and pull requests should follow a `ISSUE_TYPE/ISSUE_NUMBER` naming pattern. Examples:
+All GitHub issues will be have a label that places it in one of these categories. All branches and pull requests should use names in the shape of `ISSUE_CATEGORY/ISSUE_NUMBER`.
 ```bash
-# Github issue #321 tagged feature
+# Github issue #333 in category 'bugfix'
+bugfix/333
+
+# Github issue #321 in category 'feature'
 feature/321
 
-# Github issue #333 tagged bugfix
-bugfix/333
+# GitHub issue #347 in category 'refactor'
+refactor/347
 ```
 
 Pull Requests should reference the issue number in the first line of the description:
 ```bash
-resolves #321
+Resolves #321.
 
-short description of work done to resolve issue
+Short description of the purpose of these changes
 ```
 
 ## Processes of Each Sprint
@@ -52,8 +62,6 @@ In total, each sprint cycle will include the following actions in the following 
 
 _Only hotfix branches should be merged (to `master --> develop`) during this phase._
 
-Upon completion of the initialization phase, complete the sprint closeout procedure.
-
 
 ### Sprint Closeout Procedure
 1. Clean up sprint board and milestone.
@@ -69,7 +77,7 @@ Upon completion of the initialization phase, complete the sprint closeout proced
 1. If changes _were_ merged, push to origin.
 1. Delete _previous_ release branch, and leave only the _latest_ release branch.
 
-_Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) during this phase._
+_Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) once this checklist has been completed._
 
 ### Development Procedures
 1. Merging feature and bugfix branches:
@@ -77,7 +85,7 @@ _Any feature/bugfix/hotfix branch may be merged (to the appropriate branches) du
         - `git pull origin feature/###` (merges local version of branch)
         - `git merge --no-ff feature/###` (merges latest version of upstream branch)
     - Set/amend the merge commit's message to take the following form:
-        - Include summary of `Merge [feature/bugfix]/### (#PRNumber)`.
+        - Include summary of `Merge [category]/### (#PRNumber)`.
         - Include description that very briefly explains the purpose of that branch.
 1. Merging hotfix branches:
     - Use non-FF merges into `master` via "the green button" or either of the below commands:
@@ -101,12 +109,10 @@ At least three days prior to the end of the sprint, we will create a `release` b
 1. On Heroku, change staging app to point to this new release branch.
 1. Broadcast publishing of testing app and seek feedback and/or bug reports. Any bugs should be reported to the `#bugs` room and will be triaged from there.
 1. Merge any applicable bugfix branches into `release/#.#.#`.
-    - Include summary of `Merge bugfix/### into release/#.#.#`
+    - Include summary of `Merge bugfix/### (#PRNumber)`
     - Then on `develop`, run `git merge release/#.#.#` (results in a FF) and push.
 
 _Only bugfix branches should be merged to `release/#.#.#` during this phase. Then, only the `release/#.#.#` branch should be merged into `develop`._
-
-Upon completion of the testing phase, conduct the release procedure (outlined below).
 
 ### Release Procedure
 1. Checkout `release/#.#.#`.
@@ -127,5 +133,5 @@ Upon completion of the testing phase, conduct the release procedure (outlined be
     - Include title of the version number, eg `v5.2.0`.
     - Include a description copied from the `CHANGELOG`.
 1. Merge `release/#.#.#` into `develop` with `git merge release/#.#.#`.
-    - By design, `develop` should contain no changes, resulting in a fast-forward merge.
+    - By design, `develop` should contain no changes, resulting in git replying `Already up-to-date.`.
 1. Ensure the build succeeds and all tests are passing on `develop`, then push to origin.
