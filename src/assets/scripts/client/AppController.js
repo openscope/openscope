@@ -86,7 +86,7 @@ export default class AppController {
         return this;
     }
 
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList, getDeltaTime) {
+    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
@@ -98,11 +98,6 @@ export default class AppController {
         // The order in which the following classes are instantiated is extremely important. Changing
         // this order could break a lot of things. This interdependency is something we should
         // work on reducing in the future.
-
-        this.gameController = new GameController(getDeltaTime);
-        // TODO: Temporary
-        window.gameController = this.gameController;
-
         this.airportController = new AirportController(initialAirportData, airportLoadList);
         // TODO: Temporary
         window.airportController = this.airportController;
@@ -114,11 +109,11 @@ export default class AppController {
         window.aircraftController = this.aircraftController;
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
-        this.uiController = new UiController(this.$element, this.gameController, this.airportController);
-        this.canvasController = new CanvasController(this.$element, this.navigationLibrary, this.gameController);
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
+        this.uiController = new UiController(this.$element, this.airportController);
+        this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
+        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.uiController);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
 
@@ -134,9 +129,9 @@ export default class AppController {
     }
 
 
-    init_pre() {
+    init_pre(getDeltaTime) {
+        GameController.init_pre(getDeltaTime);
         this.tutorialView.tutorial_init_pre();
-        this.gameController.init_pre();
         this.inputController.input_init_pre();
         this.canvasController.canvas_init_pre();
         this.uiController.ui_init_pre();
@@ -163,7 +158,7 @@ export default class AppController {
 
     complete() {
         this.loadingView.complete();
-        this.gameController.complete();
+        GameController.complete();
         this.canvasController.canvas_complete();
         this.uiController.ui_complete();
     }
@@ -171,7 +166,7 @@ export default class AppController {
 
     updatePre() {
         this.gameClockView.update();
-        this.gameController.update_pre();
+        GameController.update_pre();
         this.aircraftController.aircraft_update();
     }
 
@@ -210,15 +205,14 @@ export default class AppController {
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
         this.spawnPatternCollection.reset();
-        this.gameController.destroyTimers();
+        GameController.destroyTimers();
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);
         this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(
             this.spawnPatternCollection,
-            this.aircraftController,
-            this.gameController
+            this.aircraftController
         );
 
         this.updateViewControls();

@@ -1,6 +1,7 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
+import GameController from '../game/GameController';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -56,10 +57,9 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, navigationLibrary, gameController, uiController) {
+    constructor(airportController, navigationLibrary, uiController) {
         this._airportController = airportController;
         this._navigationLibrary = navigationLibrary;
-        this._gameController = gameController;
         this._uiController = uiController;
     }
 
@@ -199,7 +199,7 @@ export default class AircraftCommander {
     runAltitude(aircraft, data) {
         const altitudeRequested = data[0];
         const expediteRequested = data[1];
-        const shouldUseSoftCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
+        const shouldUseSoftCeiling = GameController.game.option.get('softCeiling') === 'yes';
         const airport = this._airportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
@@ -518,12 +518,12 @@ export default class AircraftCommander {
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunwayModel = runway;
-        aircraft.taxi_start = this._gameController.game_time();
+        aircraft.taxi_start = GameController.game_time();
 
         runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
-        this._gameController.game_timeout(
+        GameController.game_timeout(
             this._changeFromTaxiToWaiting,
             aircraft.taxi_time,
             null,
@@ -598,7 +598,7 @@ export default class AircraftCommander {
 
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = this._gameController.game_time();
+        aircraft.takeoffTime = GameController.game_time();
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 

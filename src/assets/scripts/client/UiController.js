@@ -4,7 +4,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
-import _startCase from 'lodash/startCase';
+import GameController from './game/GameController';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -45,9 +45,8 @@ export default class UiController {
      * @param $element
      * @param
      */
-    constructor($element, gameController, airportController) {
+    constructor($element, airportController) {
         this.$element = $element;
-        this._gameController = gameController;
         this._airportController = airportController;
 
         this.$airportList = null;
@@ -121,9 +120,9 @@ export default class UiController {
      */
     enable() {
         this.$toggleTutorial.on('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.on('click', (event) => this._gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.on('click', (event) => this._gameController.game_pause_toggle(event));
-        this.$pausedImg.on('click', (event) => this._gameController.game_unpause(event));
+        this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
+        this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
@@ -144,9 +143,9 @@ export default class UiController {
      */
     disable() {
         this.$toggleTutorial.off('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.off('click', (event) => this._gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.off('click', (event) => this._gameController.game_pause_toggle(event));
-        this.$pausedImg.off('click', (event) => this._gameController.game_unpause(event));
+        this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
+        this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
@@ -215,7 +214,7 @@ export default class UiController {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
         const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
-        const descriptions = this._gameController.game.option.getDescriptions();
+        const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
             if (opt.type !== 'select') {
@@ -244,7 +243,7 @@ export default class UiController {
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
-        const selectedOption = this._gameController.game.option.get(option.name);
+        const selectedOption = GameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -257,7 +256,7 @@ export default class UiController {
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            this._gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            GameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
 
             if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
                 this._buildAirportList();
@@ -348,7 +347,7 @@ export default class UiController {
         this.$airportList.empty();
 
         const airports = _keys(this._airportController.airport.airports).sort();
-        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
 
         for (let i = 0; i < airports.length; i++) {
@@ -429,7 +428,7 @@ export default class UiController {
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportListNotes.empty();
 
-        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
 
         if (!shouldShowWipAirports) {
             const notes = $('<span class="words">Additional work-in-progress airports can be activated in the settings menu</span>');
@@ -544,7 +543,7 @@ export default class UiController {
         $log.append(html);
         $log.scrollTop($log.get(0).scrollHeight);
 
-        this._gameController.game_timeout((uiLogView) => {
+        GameController.game_timeout((uiLogView) => {
             uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
             setTimeout(() => {

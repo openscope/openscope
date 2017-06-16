@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
 import EventBus from '../lib/EventBus';
+import GameController from '../game/GameController';
 import {
     degreesToRadians,
     km,
@@ -51,16 +52,13 @@ export default class ConvasController {
      * @constructor
      * @param $element {JQuery|HTML Element|undefined}
      * @param navigationLibrary {NavigationLibrary}
-     * @param gameController {GameController}
      */
-    constructor($element, navigationLibrary, gameController) {
+    constructor($element, navigationLibrary) {
         this.$window = $(window);
         this.$element = $element;
 
         this._navigationLibrary = navigationLibrary;
         this._eventBus = EventBus;
-
-        this._gameController = gameController;
 
         prop.canvas = canvas;
         this.canvas = canvas;
@@ -227,11 +225,11 @@ export default class ConvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
+        const elapsed = GameController.game_time() - window.airportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(extrapolate_range_clamp(1, window.gameController.game.speedup, 10, 30, 1));
+        const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
 
-        if (this.canvas.dirty || (!window.gameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
+        if (this.canvas.dirty || (!GameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
             const cc = this.canvas_get('navaids');
             const fading = elapsed < 1;
 
@@ -390,7 +388,7 @@ export default class ConvasController {
     canvas_should_draw() {
         const elapsed = time() - this.canvas.last;
 
-        if (elapsed > (1 / window.gameController.game.speedup)) {
+        if (elapsed > (1 / GameController.game.speedup)) {
             this.canvas.last = time();
             return true;
         }
@@ -858,8 +856,8 @@ export default class ConvasController {
         // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
         // Aircraft
         // Draw the future path
-        if ((window.gameController.game.option.get('drawProjectedPaths') === 'always') ||
-          ((window.gameController.game.option.get('drawProjectedPaths') === 'selected') &&
+        if ((GameController.game.option.get('drawProjectedPaths') === 'always') ||
+          ((GameController.game.option.get('drawProjectedPaths') === 'selected') &&
            ((aircraft.warning || match) && !aircraft.isTaxiing()))
         ) {
             this.canvas_draw_future_track(cc, aircraft);
@@ -928,7 +926,7 @@ export default class ConvasController {
         cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
         cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
 
-        const ptlLengthMultiplier = this._gameController.getPtlLength();
+        const ptlLengthMultiplier = GameController.getPtlLength();
         const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
         const groundTrackVector = vectorize_2d(aircraft.groundTrack);
@@ -995,13 +993,13 @@ k
         let lockedStroke;
         let was_locked = false;
         const future_track = [];
-        const save_delta = window.gameController.game.delta;
+        const save_delta = GameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.projected = true;
-        window.gameController.game.delta = 5;
+        GameController.game.delta = 5;
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1015,7 +1013,7 @@ k
             }
         }
 
-        window.gameController.game.delta = save_delta;
+        GameController.game.delta = save_delta;
         cc.save();
 
         // future track colors
@@ -1744,7 +1742,7 @@ k
      * @param cc
      */
     canvas_draw_directions(cc) {
-        if (window.gameController.game_paused()) {
+        if (GameController.game_paused()) {
             return;
         }
 

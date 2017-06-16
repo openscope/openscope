@@ -4,6 +4,7 @@ import _has from 'lodash/has';
 import _map from 'lodash/map';
 import CommandParser from './commandParser/CommandParser';
 import EventBus from './lib/EventBus';
+import GameController from './game/GameController';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -338,7 +339,7 @@ export default class InputController {
         // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
         const is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-        if (!window.gameController.game_paused()) {
+        if (!GameController.game_paused()) {
             this.$commandInput.focus();
         }
 
@@ -728,7 +729,7 @@ export default class InputController {
      * @return {boolean}
      */
     _isArrowControlMethod() {
-        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+        return GameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
     }
 
     /**
@@ -800,15 +801,15 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.PAUSE:
-                window.gameController.game_pause_toggle();
+                GameController.game_pause_toggle();
 
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
                 if (commandParser.args) {
-                    window.gameController.game.speedup = commandParser.args;
+                    GameController.game.speedup = commandParser.args;
                 } else {
-                    window.gameController.game_timewarp_toggle();
+                    GameController.game_timewarp_toggle();
                 }
 
                 return true;
@@ -831,7 +832,7 @@ export default class InputController {
             case PARSED_COMMAND_NAME.RATE:
                 // TODO: is this if even needed?
                 if (commandParser.args) {
-                    window.gameController.game.frequency = commandParser.args;
+                    GameController.game.frequency = commandParser.args;
                 }
 
                 return true;

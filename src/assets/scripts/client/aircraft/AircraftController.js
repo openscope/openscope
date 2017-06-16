@@ -8,6 +8,7 @@ import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
@@ -18,7 +19,6 @@ import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
@@ -333,7 +333,7 @@ export default class AircraftController {
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+                GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
                 aircraft.setIsRemovable();
                 this.aircraft_remove(aircraft);
 

@@ -1,12 +1,12 @@
 /* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-param-reassign */
 import _includes from 'lodash/includes';
 import _filter from 'lodash/filter';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
-import { km_ft, degreesToRadians } from '../utilities/unitConverters';
+import { degreesToRadians } from '../utilities/unitConverters';
 import { SEPARATION } from '../constants/aircraftConstants';
-import { GAME_EVENTS } from '../game/GameController';
 
 /**
  * Details about aircraft in close proximity in relation to 'the rules'
@@ -119,8 +119,8 @@ export default class AircraftConflict {
 
         // TODO: replace magic numbers with enum
         // Ignore aircraft in the first minute of their flight
-        if ((window.gameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
-            (window.gameController.game_time() - this.aircraft[0].takeoffTime < 60)) {
+        if ((GameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
+            (GameController.game_time() - this.aircraft[1].takeoffTime < 60)) {
             return;
         }
 
@@ -151,7 +151,7 @@ export default class AircraftConflict {
                 isWarning
             );
 
-            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
+            GameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
 
