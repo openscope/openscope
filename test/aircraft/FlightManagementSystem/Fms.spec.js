@@ -8,19 +8,21 @@ import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
     AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 
 const directRouteString = 'COWBY';
-const improperDirectRouteStringMock = 'COWBY.BIKKR';
+const invalidDirectRouteStringMock = 'COWBY.BIKKR';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithVector = 'COWBY..#180..BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
-const improperProcedureRouteStringMock = 'MLF..GRNPA1.KLAS';
+const invalidProcedureRouteStringMock = 'MLF..GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = airportModelFixture.getRunway('19L');
 const isComplexRoute = true;
@@ -41,8 +43,14 @@ function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
     return fms;
 }
 
-function buildFmsMockForDeparture() {
-    const fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+function buildFmsMockForDeparture(customAircraftProps = null) {
+    let fms;
+
+    if (customAircraftProps !== null) {
+        fms = new Fms(customAircraftProps, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    } else {
+        fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    }
 
     return fms;
 }
@@ -54,6 +62,9 @@ ava('throws when called without parameters', (t) => {
 ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => buildFmsMock());
     t.notThrows(() => buildFmsMock(isComplexRoute));
+    t.notThrows(() => buildFmsMock(false, 'COWBY..BIKKR..DAG'));
+    t.notThrows(() => buildFmsMockForDeparture());
+    t.notThrows(() => buildFmsMockForDeparture(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK));
 });
 
 ava('#currentWaypoint returns the first waypoint of the first leg in the #legCollection', (t) => {
@@ -608,13 +619,13 @@ ava('.isValidRoute() returns true when passed a valid departure procedureRouteSt
 ava('.isValidRoute() returns false when passed an invalid use of a directRouteString', (t) => {
     const fms = buildFmsMock();
 
-    t.false(fms.isValidRoute(improperDirectRouteStringMock, runwayAssignmentMock));
+    t.false(fms.isValidRoute(invalidDirectRouteStringMock, runwayAssignmentMock));
 });
 
 ava('.isValidRoute() returns false when passed an invalid use of a procedureRouteString', (t) => {
     const fms = buildFmsMock();
 
-    t.false(fms.isValidRoute(improperProcedureRouteStringMock, runwayAssignmentMock));
+    t.false(fms.isValidRoute(invalidProcedureRouteStringMock, runwayAssignmentMock));
 });
 
 ava('.isValidRoute() returns false when passed an empty string', (t) => {

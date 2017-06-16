@@ -94,6 +94,14 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     waypoints: []
 };
 
+export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = Object.assign(
+    {},
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    {
+        route: 'BESSY..BOACH..HEC'
+    }
+);
+
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     callsign: '432',
     destination: 'KLAS',
@@ -106,6 +114,21 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     icao: 'b737',
     model: AIRCRAFT_DEFINITION_MOCK,
     route: 'DAG.KEPEC3.KLAS',
+    waypoints: []
+};
+
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = {
+    callsign: '432',
+    destination: 'KLAS',
+    fleet: 'default',
+    airline: 'aal',
+    airlineCallsign: 'speedbird',
+    altitude: 28000,
+    speed: 320,
+    category: 'arrival',
+    icao: 'b737',
+    model: AIRCRAFT_DEFINITION_MOCK,
+    route: 'COWBY..BIKKR..DAG',
     waypoints: []
 };
 

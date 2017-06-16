@@ -7,6 +7,7 @@ import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
+    DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
     ARRIVAL_PATTERN_MOCK,
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK,
@@ -42,8 +43,10 @@ ava('.init() throws when called with invalid parameters', (t) => {
 });
 
 ava('does not throw when called with valid parameters', (t) => {
-    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
+    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture, airportControllerFixture));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
 ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
