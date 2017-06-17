@@ -73,35 +73,49 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     t.true(result.speedRestriction === 250);
 });
 
-ava('._parseWaypointRestrictions() extracts alititude and speed restrictions from a waypointRestrictions string', t => {
-    const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
+ava('._parseWaypointRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
+    const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-']);
+    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
+    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
 
-    model._parseWaypointRestrictions(RESTRICTIONS_MOCK);
-
-    t.true(model._altitude === 8000);
-    t.true(model._speed === 250);
+    t.true(modelWithAltitude._altitudeMinimum === 10000);
+    t.true(modelWithAltitude._altitudeMaximum === 14000);
+    t.true(modelWithSpeed._speedMinimum === 210);
+    t.true(modelWithSpeed._speedMaximum === 250);
+    t.true(modelWithAltitudeAndSpeed._altitudeMinimum === 10000);
+    t.true(modelWithAltitudeAndSpeed._altitudeMaximum === 14000);
+    t.true(modelWithAltitudeAndSpeed._speedMinimum === 210);
+    t.true(modelWithAltitudeAndSpeed._speedMaximum === 250);
 });
 
-ava('._parseWaypointRestrictions() extracts an alititude restriction from a waypointRestrictions string by calling ._setAltitudeRestriction()', t => {
-    const model = new StandardRouteWaypointModel(['BAKRR', 'A80+']);
-    const spy = sinon.spy(model, '_setAltitudeRestriction');
+ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
+    const modelWithAltitudeRange = new StandardRouteWaypointModel(['BAKRR', 'A100']);
+    const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
+    const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
 
-    model._parseWaypointRestrictions('A180+');
-
-    t.true(spy.callCount === 1);
-    t.true(model._altitude === 18000);
-    t.true(model._speed === -1);
+    t.true(modelWithAltitudeRange._altitudeMinimum === 10000);
+    t.true(modelWithAltitudeRange._altitudeMaximum === 10000);
+    t.true(modelWithSpeedRange._speedMinimum === 210);
+    t.true(modelWithSpeedRange._speedMaximum === 210);
+    t.true(modelWithAltitudeRangeAndSpeedRange._altitudeMinimum === 10000);
+    t.true(modelWithAltitudeRangeAndSpeedRange._altitudeMaximum === 10000);
+    t.true(modelWithAltitudeRangeAndSpeedRange._speedMinimum === 210);
+    t.true(modelWithAltitudeRangeAndSpeedRange._speedMaximum === 210);
 });
 
-ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointRestrictions string by calling ._setSpeedRestriction()', t => {
-    const model = new StandardRouteWaypointModel(['BAKRR', 'S280']);
-    const spy = sinon.spy(model, '_setSpeedRestriction');
+ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
+    const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+']);
+    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
+    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
 
-    model._parseWaypointRestrictions('XYZ|S280');
-
-    t.true(spy.callCount === 1);
-    t.true(model._altitude === -1);
-    t.true(model._speed === 280);
+    t.true(modelWithAltitude._altitudeMinimum === 10000);
+    t.true(modelWithAltitude._altitudeMaximum === -1);
+    t.true(modelWithSpeed._speedMinimum === -1);
+    t.true(modelWithSpeed._speedMaximum === 210);
+    t.true(modelWithAltitudeAndSpeed._altitudeMinimum === -1);
+    t.true(modelWithAltitudeAndSpeed._altitudeMaximum === 10000);
+    t.true(modelWithAltitudeAndSpeed._speedMinimum === 210);
+    t.true(modelWithAltitudeAndSpeed._speedMaximum === -1);
 });
 
 ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {
