@@ -241,6 +241,75 @@ export default class Fms {
         return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
+    /**
+     * Return the next waypoint which has an altitude restriction
+     *
+     * @for Fms
+     * @property nextAltitudeRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextAltitudeRestrictedWaypoint() {
+        const waypoints = this.getAltitudeRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an "AT" altitude restriction
+     *
+     * @for Fms
+     * @property nextHardAltitudeRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextHardAltitudeRestrictedWaypoint() {
+        const waypoints = this.getAltitudeRestrictedWaypoints().filter((waypoint) => {
+            return waypoint.altitudeMaximum === waypoint.altitudeMinimum;
+        });
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an "AT" speed restriction
+     *
+     * @for Fms
+     * @property nextHardSpeedRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextHardSpeedRestrictedWaypoint() {
+        const waypoints = this.getSpeedRestrictedWaypoints().filter((waypoint) => {
+            return waypoint.speedMaximum === waypoint.speedMinimum;
+        });
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an altitude or speed restriction
+     *
+     * @for Fms
+     * @property nextRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextRestrictedWaypoint() {
+        const waypoints = this.getRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has a speed restriction
+     *
+     * @for Fms
+     * @property nextSpeedRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextSpeedRestrictedWaypoint() {
+        const waypoints = this.getSpeedRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
     // TODO: this should move to a class method
     /**
      * Returns a flattened array of each `WaypointModel` in the flightPlan
@@ -292,6 +361,17 @@ export default class Fms {
         this.arrivalRunwayModel = null;
         this.flightPlanAltitude = -1;
         this.legCollection = [];
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     *
+     * @for Fms
+     * @method getAltitudeRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getAltitudeRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasAltitudeRestriction);
     }
 
     /**
@@ -395,6 +475,28 @@ export default class Fms {
         const waypointModel = this.getNextWaypointModel();
 
         return waypointModel.positionModel;
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     *
+     * @for Fms
+     * @method getRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasRestriction);
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     *
+     * @for Fms
+     * @method getSpeedRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getSpeedRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasSpeedRestriction);
     }
 
     /**

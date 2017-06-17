@@ -188,6 +188,33 @@ export default class WaypointModel {
     }
 
     /**
+     * @for WaypointModel
+     * @property hasAltitudeRestriction
+     * @type {boolean}
+     */
+    get hasAltitudeRestriction() {
+        return this.altitudeMaximum !== -1 || this.altitudeMinimum !== -1;
+    }
+
+    /**
+     * @for WaypointModel
+     * @property hasRestriction
+     * @type {boolean}
+     */
+    get hasRestriction() {
+        return this.hasAltitudeRestriction || this.hasSpeedRestriction;
+    }
+
+    /**
+     * @for WaypointModel
+     * @property hasSpeedRestriction
+     * @type {boolean}
+     */
+    get hasSpeedRestriction() {
+        return this.speedMaximum !== -1 || this.speedMinimum !== -1;
+    }
+
+    /**
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
