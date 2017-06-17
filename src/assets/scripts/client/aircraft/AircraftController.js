@@ -12,7 +12,10 @@ import StripViewController from './StripView/StripViewController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
-import { abs } from '../math/core';
+import {
+    abs,
+    generateRandomOctalWithLength
+} from '../math/core';
 import { distance2d } from '../math/distance';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
@@ -33,11 +36,11 @@ const aircraft = {};
  * The codes listed should still be assignable at the
  * controler's discretion
  *
- * @property INVALID_SQUAWK_CODES
+ * @property RESERVED_SQUAWK_CODES
  * @type {array<number>}
  * @final
  */
-const INVALID_SQUAWK_CODES = [
+const RESERVED_SQUAWK_CODES = [
     // VFR
     1200,
     // gliders
@@ -652,11 +655,9 @@ export default class AircraftController {
      * @private
      */
     _generateUniqueTransponderCode() {
-        const minCodeValue = 1203;
-        const maxCodeValue = 7477;
-        const transponderCode = _random(minCodeValue, maxCodeValue);
+        const transponderCode = generateRandomOctalWithLength(4);
 
-        if (!this._isValidTransponderCode(transponderCode)) {
+        if (!this._isDiscreteTransponderCode(transponderCode)) {
             // the value generated is already in use, recurse back through this method and try again
             this._generateUniqueTransponderCode();
         }
@@ -711,7 +712,20 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isValidTransponderCode(transponderCode) {
-        return !this._isTransponderCodeInUse(transponderCode) && INVALID_SQUAWK_CODES.indexOf(transponderCode) === -1;
+        return RESERVED_SQUAWK_CODES.indexOf(transponderCode) === -1;
+    }
+
+    /**
+     * Helper used to determine if a given `transponderCode` is both
+     * valid and not in use.
+     *
+     * @for AircraftController
+     * @method _isDiscreteTransponderCode
+     * @param transponderCode {number}
+     * @return {boolean}
+     */
+    _isDiscreteTransponderCode(transponderCode) {
+        return !this._isTransponderCodeInUse(transponderCode) && this._isValidTransponderCode(transponderCode);
     }
 
     /**

@@ -576,7 +576,7 @@ export default class AircraftModel {
      * @return {object<string, string>}
      */
     getViewModel() {
-        let assignedAltitude = _round(this.mcp.altitude);
+        let assignedAltitude = this.mcp.altitude;
         let flightPlanAltitude = this.fms.flightPlanAltitude;
 
         if (assignedAltitude === -1) {
