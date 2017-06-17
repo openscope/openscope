@@ -25,7 +25,7 @@ const getInitialAirport = () => {
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
 export default (() => {
-    const airportLoadList = window.AIRPORT_LOAD_LIST;
+    const airportLoadList = (<any>window).AIRPORT_LOAD_LIST;
     const initialAirportToLoad = getInitialAirport();
     const $body = $('body');
 

@@ -1,0 +1,17 @@
+{
+    "files": [
+        "src/assets/scripts/client/main.ts"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "allowUnreachableCode": true,
+        "alwaysStrict": true,
+        "compileOnSave": true,
+        "target": "es5",
+        "exclude": [
+            "node_modules",
+            "public",
+            "**/*.spec.js"
+        ]
+    }
+}
