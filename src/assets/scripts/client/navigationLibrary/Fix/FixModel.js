@@ -140,8 +140,10 @@ export default class FixModel extends BaseModel {
         const waypointProps = {
             name: this.name,
             positionModel: this.clonePosition(),
-            altitudeRestriction: -1,
-            speedRestriction: -1
+            altitudeMaximum: -1,
+            altitudeMinimum: -1,
+            speedMaximum: -1,
+            speedMinimum: -1
         };
 
         // TODO: Move these default behaviors to a constants file

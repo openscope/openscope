@@ -281,8 +281,10 @@ export default class WaypointModel {
     init(waypointProps) {
         this._name = waypointProps.name.toLowerCase();
         this._positionModel = waypointProps.positionModel;
-        this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
-        this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
+        this.speedMaximum = parseInt(waypointProps.speedMaximum, 10);
+        this.speedMinimum = parseInt(waypointProps.speedMinimum, 10);
+        this.altitudeMaximum = parseInt(waypointProps.altitudeMaximum, 10);
+        this.altitudeMinimum = parseInt(waypointProps.altitudeMinimum, 10);
         this._isFlyOverWaypoint = waypointProps.isFlyOverWaypoint;
         this._isVector = waypointProps.isVector;
 
@@ -309,8 +311,10 @@ export default class WaypointModel {
         this._positionModel = null;
 
         this.isHold = false;
-        this.speedRestriction = -1;
-        this.altitudeRestriction = -1;
+        this.speedMaximum = -1;
+        this.speedMinimum = -1;
+        this.altitudeMaximum = -1;
+        this.altitudeMinimum = -1;
         this.timer = -999;
     }
 

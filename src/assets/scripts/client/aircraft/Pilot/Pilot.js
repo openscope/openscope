@@ -804,11 +804,7 @@ export default class Pilot {
      * @method sayTargetedSpeed
      */
     sayTargetedSpeed() {
-        if (this._mcp.speed === MCP_MODE.SPEED.VNAV) {
-            // TODO: how do we handle the cases where there isn't a speedRestriction for a waypoint?
-            return [true, this._fms.currentWaypoint.speed];
-        }
-
+        // TODO: how do we handle the cases where there isn't a speed restriction for a waypoint?
         return [true, this._mcp.speed];
     }
 

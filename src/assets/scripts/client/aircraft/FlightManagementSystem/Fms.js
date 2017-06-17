@@ -499,8 +499,10 @@ export default class Fms {
             inboundHeading,
             name: holdRouteSegment,
             positionModel: holdPosition,
-            altitudeRestriction: INVALID_VALUE,
-            speedRestriction: INVALID_VALUE
+            altitudeMaximum: INVALID_VALUE,
+            altitudeMinimum: INVALID_VALUE,
+            speedMaximum: INVALID_VALUE,
+            speedMinimum: INVALID_VALUE
         };
 
         if (isPositionHold) {

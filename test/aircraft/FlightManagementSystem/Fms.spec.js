@@ -729,7 +729,7 @@ ava('.hasLegWithRouteString() returns true if a LegModel can be found that match
     t.true(fms.hasLegWithRouteString('coWbY'));
 });
 
-ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoints', (t) => {
+ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 24000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getTopAltitude();
@@ -737,7 +737,7 @@ ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoint
     t.true(result === expectedResult);
 });
 
-ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the waypoints', (t) => {
+ava('.getBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 8000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getBottomAltitude();

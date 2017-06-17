@@ -1387,15 +1387,14 @@ export default class AircraftModel {
                 return this._calculateLegalSpeed(this.model.speed.max);
 
             case MCP_MODE.SPEED.VNAV: {
-                const maxSpeed = this.mcp.speed;
-                const waypointSpeed = this.fms.currentWaypoint.speedRestriction;
-                const waypointHasSpeed = waypointSpeed !== -1;
+                const mcpSpeed = this.mcp.speed;
+                const waypointMaxSpeed = this.fms.currentWaypoint.speedMaximum;
 
-                if (waypointHasSpeed) {
-                    return this._calculateLegalSpeed(waypointSpeed);
+                if (waypointMaxSpeed !== -1) {
+                    return this._calculateLegalSpeed(waypointMaxSpeed);
                 }
 
-                return this._calculateLegalSpeed(maxSpeed);
+                return this._calculateLegalSpeed(mcpSpeed);
             }
 
             default:
@@ -1457,19 +1456,23 @@ export default class AircraftModel {
             //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
-                const waypointAltitude = this.fms.currentWaypoint.altitudeRestriction;
-                const waypointHasAltitude = waypointAltitude !== -1;
+                const waypointMaxAltitude = this.fms.currentWaypoint.altitudeMaximum;
+                const waypointMinAltitude = this.fms.currentWaypoint.altitudeMinimum;
+                const waypointHasAltitude = waypointMaxAltitude !== -1 || waypointMinAltitude !== -1;
+                // TODO: Become sensitive to both restrictions, not 'either'
 
                 if (!waypointHasAltitude) {
                     return this.mcp.altitude;
                 }
 
                 if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
-                    return Math.min(waypointAltitude, this.mcp.altitude);
+                    // TODO: Become sensitive to both restrictions, not just one of them
+                    return Math.min(waypointMaxAltitude, this.mcp.altitude);
                 }
 
                 if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
-                    return Math.max(waypointAltitude, this.mcp.altitude);
+                    // TODO: Become sensitive to both restrictions, not just one of them
+                    return Math.max(waypointMinAltitude, this.mcp.altitude);
                 }
 
                 break;
@@ -2332,10 +2335,6 @@ export default class AircraftModel {
                 let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
                 const isFollowingSid = this.fms.isFollowingSid();
                 const isFollowingStar = this.fms.isFollowingStar();
-                const fixRestrictions = {
-                    altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
-                    speed: this.fms.currentWaypoint.speedRestriction !== -1
-                };
 
                 // TODO: this will need to be addressed when the AircraftStripView is refactored
                 // this block is a bandaid to prevent `destinationDisplay` from being undefined
@@ -2363,8 +2362,7 @@ export default class AircraftModel {
                     headingDisplay,
                     destinationDisplay,
                     isFollowingSid,
-                    isFollowingStar,
-                    fixRestrictions
+                    isFollowingStar
                 );
 
                 break;

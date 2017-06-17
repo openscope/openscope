@@ -344,12 +344,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     toWaypointModel() {
         const waypointProps = {
-            altitudeRestriction: this._altitude,
+            altitudeMaximum: this._altitudeMaximum,
+            altitudeMinimum: this._altitudeMinimum,
             isFlyOverWaypoint: this._isFlyOverWaypoint,
             isVector: this._isVector,
             name: this.name,
             positionModel: this.positionModel,
-            speedRestriction: this._speed
+            speedMaximum: this._speedMaximum,
+            speedMinimum: this._speedMinimum
         };
 
         return new WaypointModel(waypointProps);

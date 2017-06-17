@@ -78,7 +78,7 @@ ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
 });
 
-ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
+ava('.getProcedureTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
@@ -101,7 +101,7 @@ ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`',
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
 });
 
-ava('.getProcedureBottomAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
+ava('.getProcedureBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureBottomAltitude();
 
@@ -137,8 +137,10 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].isHold);
     t.true(result[0].name === 'cowby');
-    t.true(result[0].altitudeRestriction === -1);
-    t.true(result[0].speedRestriction === -1);
+    t.true(result[0].altitudeMaximum === -1);
+    t.true(result[0].altitudeMinimum === -1);
+    t.true(result[0].speedMaximum === -1);
+    t.true(result[0].speedMinimum === -1);
     t.true(result[0]._turnDirection === 'right');
     t.true(result[0]._legLength === '1min');
     t.true(result[0].timer === -999);
@@ -152,8 +154,10 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].isHold);
     t.true(result[0].name === 'gps');
-    t.true(result[0].altitudeRestriction === -1);
-    t.true(result[0].speedRestriction === -1);
+    t.true(result[0].altitudeMaximum === -1);
+    t.true(result[0].altitudeMinimum === -1);
+    t.true(result[0].speedMaximum === -1);
+    t.true(result[0].speedMinimum === -1);
     t.true(result[0]._turnDirection === 'left');
     t.true(result[0]._legLength === '3min');
     t.true(result[0].timer === -999);
