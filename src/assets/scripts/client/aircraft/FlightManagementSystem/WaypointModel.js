@@ -26,78 +26,51 @@ export default class WaypointModel {
      */
     constructor(waypointProps) {
         /**
-         * Name of the waypoint
-         *
-         * Should be an ICAO identifier
-         *
-         * @property name
-         * @type {string}
-         * @default ''
-         */
-        this._name = '';
+        * Maximum altitude at which to cross this waypoint
+        *
+        * @for StandardRouteWaypointModel
+        * @property altitudeMaximum
+        * @type {number}
+        */
+        this.altitudeMaximum = -1;
 
         /**
-         * `StaticPositionModel` of the waypoint.
-         *
-         * @property _positionModel
-         * @type {StaticPositionModel}
-         * @default null
-         * @private
-         */
-        this._positionModel = null;
+        * Minimum altitude at which to cross this waypoint
+        *
+        * @for StandardRouteWaypointModel
+        * @property altitudeMinimum
+        * @type {number}
+        */
+        this.altitudeMinimum = -1;
 
         /**
-         * Speed restriction for the waypoint.
+        * Flag used to determine if a waypoint is for a holding pattern
+        *
+        * Typically used from the fms as `fms#currentWaypoint`
+        *
+        * @property
+        * @type {boolean}
+        * @default false
+        */
+        this.isHold = false;
+
+        /**
+         * Maximum speed at which to cross this waypoint
          *
-         * This speed cannot be exceeded.
-         *
-         * @property speedRestriction
+         * @for StandardRouteWaypointModel
+         * @property speedMaximum
          * @type {number}
-         * @default -1
          */
-        this.speedRestriction = -1;
+        this.speedMaximum = -1;
 
         /**
-         * Altitude restriction for the waypoint.
+         * Minimum speed at which to cross this waypoint
          *
-         * This altitude cannot be exceeded.
-         *
-         * @property altitudeRestriction
+         * @for StandardRouteWaypointModel
+         * @property speedMinimum
          * @type {number}
-         * @default -1
          */
-        this.altitudeRestriction = -1;
-
-        /**
-         * Heading to fly during the inbound leg of a holding pattern at this fix
-         * @for WaypointModel
-         * @member _holdingPatternInboundHeading
-         * @type number
-         */
-        this._holdingPatternInboundHeading = null;
-
-        /**
-         * Direction to turn for a holding pattern
-         *
-         * Used only when waypoint is a holding pattern
-         *
-         * @property _turnDirection
-         * @type {string}
-         * @private
-         */
-        this._turnDirection = '';
-
-        /**
-         * Length of each leg in holding pattern.
-         *
-         * Measured in either minutes or nautical miles
-         * Used only when waypoint is a holding pattern
-         *
-         * @property _legLength
-         * @type {string}
-         * @private
-         */
-        this._legLength = '';
+        this.speedMinimum = -1;
 
         /**
          * Timer id for holding pattern
@@ -112,6 +85,14 @@ export default class WaypointModel {
         this.timer = -999;
 
         /**
+        * Heading to fly during the inbound leg of a holding pattern at this fix
+        * @for WaypointModel
+        * @member _holdingPatternInboundHeading
+        * @type number
+        */
+        this._holdingPatternInboundHeading = null;
+
+        /**
          * Flag used to determine if the waypoint must be flown over before the
          * aircraft may proceed to the next fix on their route.
          *
@@ -123,17 +104,6 @@ export default class WaypointModel {
         this._isFlyOverWaypoint = false;
 
         /**
-         * Flag used to determine if a waypoint is for a holding pattern
-         *
-         * Typically used from the fms as `fms#currentWaypoint`
-         *
-         * @property
-         * @type {boolean}
-         * @default false
-         */
-        this.isHold = false;
-
-        /**
          * Flag used to determine if a waypoint is for a vector
          *
          * @for WaypointModel
@@ -142,6 +112,50 @@ export default class WaypointModel {
          * @default false
          */
         this._isVector = false;
+
+        /**
+         * Length of each leg in holding pattern.
+         *
+         * Measured in either minutes or nautical miles
+         * Used only when waypoint is a holding pattern
+         *
+         * @property _legLength
+         * @type {string}
+         * @private
+         */
+        this._legLength = '';
+
+        /**
+        * Name of the waypoint
+        *
+        * Should be an ICAO identifier
+        *
+        * @property name
+        * @type {string}
+        * @default ''
+        */
+        this._name = '';
+
+        /**
+        * `StaticPositionModel` of the waypoint.
+        *
+        * @property _positionModel
+        * @type {StaticPositionModel}
+        * @default null
+        * @private
+        */
+        this._positionModel = null;
+
+        /**
+         * Direction to turn for a holding pattern
+         *
+         * Used only when waypoint is a holding pattern
+         *
+         * @property _turnDirection
+         * @type {string}
+         * @private
+         */
+        this._turnDirection = '';
 
         this.init(waypointProps);
     }
