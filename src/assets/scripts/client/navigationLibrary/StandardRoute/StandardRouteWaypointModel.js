@@ -45,6 +45,20 @@ export default class StandardRouteWaypointModel extends BaseModel {
         }
 
         /**
+         * Distance in nm from the previous waypoint.
+         *
+         * This property is set exterally by the `StandardRouteModel` and used only when called via
+         * `ArrivalBase.preSpawn()`.
+         *
+         * This value is mutable and is not intended to be re-used after its initial use.
+         *
+         * @property distanceFromPreviousWaypoint
+         * @type {number}
+         * @default -1
+         */
+        this.distanceFromPreviousWaypoint = -1;
+
+        /**
          * Name of the fix
          *
          * @property name
@@ -53,6 +67,62 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @private
          */
         this.name = '';
+
+        /**
+         * Name of the previous `StandardWaypointModel` object in a route
+         *
+         * This property is set exterally by the `StandardRouteModel` and used only when called via
+         * `ArrivalBase.preSpawn()`.
+         *
+         * This value is mutable and is not intended to be re-used after its initial use.
+         *
+         * @property previousStandardWaypointName
+         * @type {string}
+         * @default ''
+         */
+        this.previousStandardWaypointName = '';
+
+        /**
+         * Maximum altitude at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property _altitudeMaximum
+         * @type {number}
+         */
+        this._altitudeMaximum = -1;
+
+        /**
+         * Minimum altitude at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property _altitudeMinimum
+         * @type {number}
+         */
+        this._altitudeMinimum = -1;
+
+        /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
+
+        /**
+         * Positon information for the current waypoint
+         *
+         * Specific bits of this property are exposed via public getters.
+         * This property should never be modified by an exteral method.
+         *
+         * @property _positionModel
+         * @type {StaticPositionModel}
+         * @default null
+         * @private
+         */
+        this._positionModel = null;
 
         /**
          * Any restrictions for a given fix
@@ -73,101 +143,22 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this._restrictions = null;
 
         /**
-         * Required altitude for a waypoint
-         *
-         * @property _altitude (optional)
-         * @type {number}
-         * @default null
-         * @private
-         */
-        this._altitude = -1;
-
-        /**
-         * Flag used to determine if the waypoint must be flown over before the
-         * aircraft may proceed to the next fix on their route.
+         * Maximum speed at which to cross this waypoint
          *
          * @for StandardRouteWaypointModel
-         * @property _isFlyOverWaypoint
-         * @type {boolean}
-         * @default false
-         */
-        this._isFlyOverWaypoint = false;
-
-        /**
-         * Required speed for a waypoint
-         *
-         * @property _speed (optional)
-         * @type {string}
-         * @default null
-         * @private
-         */
-        this._speed = -1;
-
-        // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
-        /**
-         * NOT IN USE
-         *
-         * Altitude constraint, if any, for a waypoint.
-         *
-         * @property _altitudeConstraint (options)
-         * @type {string}
-         * @default ''
-         * @private
-         */
-        this._altitudeConstraint = '';
-
-        /**
-         * NOT IN USE
-         *
-         * Speed constraint, if any, for a waypoint.
-         *
-         * @property _speedConstraint (optional)
-         * @type {string}
-         * @default null
-         * @private
-         */
-        this._speedConstraint = '';
-
-        /**
-         * Positon information for the current waypoint
-         *
-         * Specific bits of this property are exposed via public getters.
-         * This property should never be modified by an exteral method.
-         *
-         * @property _positionModel
-         * @type {StaticPositionModel}
-         * @default null
-         * @private
-         */
-        this._positionModel = null;
-
-        /**
-         * Distance in nm from the previous waypoint.
-         *
-         * This property is set exterally by the `StandardRouteModel` and used only when called via
-         * `ArrivalBase.preSpawn()`.
-         *
-         * This value is mutable and is not intended to be re-used after its initial use.
-         *
-         * @property distanceFromPreviousWaypoint
+         * @property _speedMaximum
          * @type {number}
-         * @default -1
          */
-        this.distanceFromPreviousWaypoint = -1;
+        this._speedMaximum = -1;
 
         /**
-         * Name of the previous `StandardWaypointModel` object in a route
+         * Minimum speed at which to cross this waypoint
          *
-         * This property is set exterally by the `StandardRouteModel` and used only when called via
-         * `ArrivalBase.preSpawn()`.
-         *
-         * This value is mutable and is not intended to be re-used after its initial use.
-         *
-         * @property previousStandardWaypointName
-         * @type {string}
-         * @default ''
+         * @for StandardRouteWaypointModel
+         * @property _speedMinimum
+         * @type {number}
          */
-        this.previousStandardWaypointName = '';
+        this._speedMinimum = -1;
 
         return this._init(routeWaypoint)
                    .clonePositionFromFix();
