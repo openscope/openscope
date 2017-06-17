@@ -33,9 +33,10 @@ ava('sets only `name` when provided a string', t => {
 
     t.true(typeof model._id === 'string');
     t.true(model.name === NAME_MOCK);
-    t.true(model._altitude === -1);
-    t.true(model._altitudeConstraint === '');
-    t.true(model._speed === -1);
+    t.true(model._altitudeMaximum === -1);
+    t.true(model._altitudeMinimum === -1);
+    t.true(model._speedMaximum === -1);
+    t.true(model._speedMinimum === -1);
 });
 
 ava('.clonePositionFromFix() does not throw when no fix exists', t => {
@@ -44,18 +45,18 @@ ava('.clonePositionFromFix() does not throw when no fix exists', t => {
     t.notThrows(() => model.clonePositionFromFix());
 });
 
-ava('does not call ._parseWaypointRestrictions() when provided a string', t => {
+ava('does not call ._setRestrictions() when provided a string', t => {
     const model = new StandardRouteWaypointModel(NAME_MOCK);
-    const spy = sinon.spy(model, '_parseWaypointRestrictions');
+    const spy = sinon.spy(model, '_setRestrictions');
 
     model._init(NAME_MOCK);
 
     t.true(spy.callCount === 0);
 });
 
-ava('calls ._parseWaypointRestrictions() when provided and array', t => {
+ava('calls ._setRestrictions() when provided and array', t => {
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const spy = sinon.spy(model, '_parseWaypointRestrictions');
+    const spy = sinon.spy(model, '_setRestrictions');
 
     model._init(ROUTE_WAYPOINT_MOCK);
 
@@ -69,11 +70,13 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     t.true(result instanceof WaypointModel);
     t.true(result.name === model.name.toLowerCase());
     t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeRestriction === 8000);
-    t.true(result.speedRestriction === 250);
+    t.true(result.altitudeMaximum === -1);
+    t.true(result.altitudeMinimum === 8000);
+    t.true(result.speedMaximum === 250);
+    t.true(result.speedMinimum === 250);
 });
 
-ava('._parseWaypointRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
+ava('._setRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-']);
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
@@ -88,7 +91,7 @@ ava('._parseWaypointRestrictions() extracts all restrictions when ranged restric
     t.true(modelWithAltitudeAndSpeed._speedMaximum === 250);
 });
 
-ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
+ava('._setRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
     const modelWithAltitudeRange = new StandardRouteWaypointModel(['BAKRR', 'A100']);
     const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
     const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
@@ -103,7 +106,7 @@ ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT
     t.true(modelWithAltitudeRangeAndSpeedRange._speedMaximum === 210);
 });
 
-ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
+ava('._setRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+']);
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
@@ -118,13 +121,14 @@ ava('._parseWaypointRestrictions() extracts all restrictions when non-ranged "AT
     t.true(modelWithAltitudeAndSpeed._speedMaximum === -1);
 });
 
-ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {
+ava('._setRestrictions() returns early if no paramater is received', t => {
     const model = new StandardRouteWaypointModel(['BAKRR']);
 
-    model._parseWaypointRestrictions();
+    model._setRestrictions();
 
-    t.true(model._altitude === -1);
-    t.true(model._speed === -1);
+    t.true(model._altitudeMaximum === -1);
+    t.true(model._speedMaximum === -1);
+    t.true(model._speedMinimum === -1);
 });
 
 ava('#_isFlyOverWaypoint is true for fix prepended by fly-over character', (t) => {
