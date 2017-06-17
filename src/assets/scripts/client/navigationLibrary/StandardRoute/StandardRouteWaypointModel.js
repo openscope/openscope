@@ -1,10 +1,12 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
+import RouteModel from '../Route/RouteModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
 import {
     FLY_OVER_WAYPOINT_PREFIX,
+    HOLD_WAYPOINT_PREFIX,
     VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import {
@@ -168,7 +170,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this.previousStandardWaypointName = '';
 
         return this._init(routeWaypoint)
-                   .clonePoisitonFromFix();
+                   .clonePositionFromFix();
     }
 
     /**
@@ -293,14 +295,33 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
-     * @method _clonePoisitonFromFix
+     * @method clonePositionFromFix
      * @param fixCollection {FixCollection}
+     * @return {StandardRouteWaypointModel}
      * @private
+     * @chainable
      */
-    clonePoisitonFromFix() {
-        const fixModel = FixCollection.findFixByName(this.name);
+    clonePositionFromFix() {
+        const isFlyOverWaypoint = RouteModel.isFlyOverRouteString(this.name);
+        const isHoldWaypoint = RouteModel.isHoldRouteString(this.name);
+        const isVectorWaypoint = RouteModel.isVectorRouteString(this.name);
+
+        if (isVectorWaypoint) {
+            return;
+        }
+
+        let name = this.name;
+
+        if (isFlyOverWaypoint || isHoldWaypoint) {
+            // remove prefixing character (`@BIKKR` --> `BIKKR`)
+            name = this.name.substr(1);
+        }
+
+        const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
+            // TODO: This console warn should be done elsewehere, so a single console
+            // message can inform the airport designer of all missing fixes at once.
             console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
 
             return this;
