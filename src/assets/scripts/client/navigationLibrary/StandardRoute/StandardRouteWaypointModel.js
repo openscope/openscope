@@ -10,7 +10,9 @@ import {
     VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import {
+    ABOVE_SYMBOL,
     ALTITUDE_RESTRICTION_PREFIX,
+    BELOW_SYMBOL,
     DECIMAL_RADIX,
     FL_TO_THOUSANDS_MULTIPLIER,
     NAME_INDEX,
@@ -258,7 +260,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
-        this._parseWaypointRestrictions(routeWaypoint[RESTRICTION_INDEX]);
+        this._setRestrictions(routeWaypoint[RESTRICTION_INDEX]);
 
         return this;
     }
@@ -368,25 +370,25 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * - "S210"
      *
      * @for StandardRouteWaypointModel
-     * @method _parseWaypointRestrictions
+     * @method _setRestrictions
      * @param waypointRestrictions {string}
      * @private
      */
-    _parseWaypointRestrictions(waypointRestrictions) {
+    _setRestrictions(waypointRestrictions) {
         if (_isNil(waypointRestrictions)) {
             return;
         }
 
-        const restrictionPieces = this._extractRestrictionPieces(waypointRestrictions);
+        const restrictionPieces = waypointRestrictions.split(RESTRICTION_SEPARATOR);
 
         for (let i = 0; i < restrictionPieces.length; i++) {
             const restriction = restrictionPieces[i];
 
             // looking at the first letter of a restrictionPiece here.
             if (restriction[0] === ALTITUDE_RESTRICTION_PREFIX) {
-                this._setAltitudeRestriction(restriction);
+                this._setAltitudeRestriction(restriction.substr(1));
             } else if (restriction[0] === SPEED_RESTRICTION_PREFIX) {
-                this._setSpeedRestriction(restriction);
+                this._setSpeedRestriction(restriction.substr(1));
             }
         }
     }
@@ -397,10 +399,21 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param altitudeRestriction {string}
      * @private
      */
-    _setAltitudeRestriction(rawAltitudeStr) {
-        const altitudeRestriction = rawAltitudeStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+    _setAltitudeRestriction(altitudeRestriction) {
+        const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
 
-        this._altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+        if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
+            this._altitudeMinimum = altitude;
+
+            return;
+        } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== -1) {
+            this._altitudeMaximum = altitude;
+
+            return;
+        }
+
+        this._altitudeMaximum = altitude;
+        this._altitudeMinimum = altitude;
     }
 
     /**
@@ -409,20 +422,20 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param speedRestriction {string}
      * @private
      */
-    _setSpeedRestriction(rawSpeedRestrictionStr) {
-        const speedRestriction = rawSpeedRestrictionStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+    _setSpeedRestriction(speedRestriction) {
+        const speed = parseInt(speedRestriction, DECIMAL_RADIX);
 
-        this._speed = parseInt(speedRestriction, DECIMAL_RADIX);
-    }
+        if (speedRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
+            this._speedMinimum = speed;
 
-    /**
-     * @for StandardRouteWaypointModel
-     * @method _extractRestrictionPieces
-     * @param waypointRestrictions {array<string>}
-     * @@return {string}
-     * @private
-     */
-    _extractRestrictionPieces(waypointRestrictions) {
-        return waypointRestrictions.split(RESTRICTION_SEPARATOR);
+            return;
+        } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== -1) {
+            this._speedMaximum = speed;
+
+            return;
+        }
+
+        this._speedMaximum = speed;
+        this._speedMinimum = speed;
     }
 }
