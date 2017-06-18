@@ -3,7 +3,10 @@ import ava from 'ava';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
-import { DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK } from './_mocks/aircraftMocks';
+import {
+    ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
+} from './_mocks/aircraftMocks';
 
 window.airportController = airportControllerFixture;
 
@@ -40,4 +43,13 @@ ava('.matchCallsign() returns true when passed a mixed case callsign that matche
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     t.true(model.matchCallsign('aAl432'));
+});
+
+ava('.getViewModel() includes an altitude that has not been rounded to the nearest foot', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    model.mcp.altitude = 7777.1234567;
+
+    const { assignedAltitude: result } = model.getViewModel();
+
+    t.true(result === 7777.1234567);
 });
