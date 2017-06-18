@@ -224,7 +224,7 @@ export const extrapolate_range_clamp = (range1_min, target_val, range1_max, rang
  * Generate a random number with each digit between 0-7
  *
  * @function generateRandomOctalWithLength
- * @return {number}                         number with digits between 0-7
+ * @return {string}                         number with digits between 0-7
  */
 export const generateRandomOctalWithLength = (length = 1) => {
     const value = [];
