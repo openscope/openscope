@@ -1480,17 +1480,26 @@ export default class AircraftModel {
             //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
-                const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+                const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
 
-                if (_isNil(waypointModel)) {
+                if (_isNil(hardRestrictedWaypointModel)) {
                     return;
                 }
 
-                const waypointAltitude = waypointModel.altitudeMaximum;
+                let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
 
                 if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
+                    const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+                    const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.maximumAltitude !== -1;
+
+                    // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
+                    if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+                        waypointAltitude = softOrHardRestrictedWaypoint.maximumAltitude;
+                    }
+
                     // TODO: Become sensitive to both restrictions, not just one of them
-                    return Math.min(waypointMaxAltitude, this.mcp.altitude);
+                    return Math.min(waypointAltitude, this.mcp.altitude);
                 } else if (this.flightPhase === FLIGHT_PHASE.CRUISE) {
                     if (!this.isBeyondTopOfDescentForCurrentWaypoint()) {
                         return;
@@ -1498,6 +1507,15 @@ export default class AircraftModel {
 
                     return waypointAltitude;
                 } else if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
+                    const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+                    const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.minimumAltitude !== -1;
+
+                    // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+                    if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+                        waypointAltitude = softOrHardRestrictedWaypoint.minimumAltitude;
+                    }
+
                     // TODO: This could be improved by making the descent at the exact rate needed to reach
                     // the altitude at the same time as reaching the fix. At this point, the problem is that
                     // while we DO know the descent rate and descent angle to shoot for, we don't know the
