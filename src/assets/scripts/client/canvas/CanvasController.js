@@ -22,9 +22,10 @@ import {
     vectorize_2d,
     vscale
 } from '../math/vector';
-import { time } from '../utilities/timeHelpers';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
+import { leftPad } from '../utilities/generalUtilities';
+import { time } from '../utilities/timeHelpers';
 import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
@@ -1246,7 +1247,9 @@ k
             const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
             const lineheight = 4.5; // height of text row (used for spacing basis)
             const row1text = cs;
-            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.groundSpeed * 0.1), 2)}`;
+            const aircraftAltitude = round(aircraft.altitude * 0.01);
+            const aircraftSpeed = round(aircraft.groundSpeed * 0.1);
+            const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {

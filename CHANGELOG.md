@@ -25,6 +25,7 @@
 - Updates Dublin (EIDW) - Improved procedures, added terrain and video map, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
 - Updates logic to display historical aircraft position for aircraft outside controlled airspace [#508](https://github.com/openscope/openscope/issues/508)
 - Adds tests and verifies functionality of non-procedural departures and arrivals (support for direct route strings) [#434](https://github.com/openscope/openscope/issues/434)
+- Adds unique transponder and CID generation methods [#483](https://github.com/openscope/openscope/issues/483)
 
 
 

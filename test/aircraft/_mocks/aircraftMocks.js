@@ -80,6 +80,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 ];
 
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
+    transponderCode: 3377,
     callsign: '432',
     destination: 'KLAS',
     fleet: 'default',
@@ -89,6 +90,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     speed: 320,
     category: 'departure',
     icao: 'b737',
+    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
     model: AIRCRAFT_DEFINITION_MOCK,
     route: 'KLAS.COWBY6.GUP',
     waypoints: []
@@ -103,6 +105,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = Objec
 );
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
+    transponderCode: 3377,
     callsign: '432',
     destination: 'KLAS',
     fleet: 'default',
@@ -112,6 +115,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     speed: 320,
     category: 'arrival',
     icao: 'b737',
+    // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
     model: AIRCRAFT_DEFINITION_MOCK,
     route: 'DAG.KEPEC3.KLAS',
     waypoints: []
