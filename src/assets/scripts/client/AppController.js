@@ -32,6 +32,12 @@ import { SELECTORS } from './constants/selectors';
  * @class AppController
  */
 export default class AppController {
+    /**
+     * @constructor
+     * @param element {jQuery|HTML Element}
+     * @param airportLoadList {array<object>}
+     * @param initialAirportToLoad {string}
+     */
     constructor(element, airportLoadList, initialAirportToLoad) {
         /**
          * Root DOM element.
@@ -56,20 +62,42 @@ export default class AppController {
             .enable();
     }
 
+    /**
+     *
+     * @for AppController
+     * @method _init
+     * @chainable
+     * @private
+     */
     _init() {
         return this;
     }
 
+    /**
+     * @for AppController
+     * @method enable
+     * @chainable
+     */
     enable() {
         this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
 
         return this;
     }
 
+    /**
+     * @for AppController
+     * @method destroy
+     * @chainable
+     */
     disable() {
         return this;
     }
 
+    /**
+     * @for AppController
+     * @method destroy
+     * @chainable
+     */
     destroy() {
         this.$element = null;
         this.eventBus = null;
@@ -86,6 +114,16 @@ export default class AppController {
         return this;
     }
 
+    /**
+     *
+     *
+     * @for AppController
+     * @method setupChildren
+     * @param airportLoadList {array<object>}
+     * @param initialAirportData {object}
+     * @param airlineList {array<object>}
+     * @param aircraftTypeDefinitionList {array<object>}
+     */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
@@ -128,18 +166,22 @@ export default class AppController {
         this.updateViewControls();
     }
 
-
+    /**
+     * @for AppController
+     * @method init_pre
+     */
     init_pre(getDeltaTime) {
         GameController.init_pre(getDeltaTime);
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
         this.canvasController.canvas_init_pre();
         this.uiController.ui_init_pre();
-
-        return this;
     }
 
-
+    /**
+     * @for AppController
+     * @method init
+     */
     init() {
         speech_init();
 
@@ -147,15 +189,24 @@ export default class AppController {
         this.uiController.ui_init();
     }
 
-
+    /**
+     * @for AppController
+     * @method done
+     */
     done() {}
 
-
+    /**
+     * @for AppController
+     * @method resize
+     */
     resize = () => {
         this.canvasController.canvas_resize();
     };
 
-
+    /**
+     * @for AppController
+     * @method complete
+     */
     complete() {
         this.loadingView.complete();
         GameController.complete();
@@ -163,24 +214,30 @@ export default class AppController {
         this.uiController.ui_complete();
     }
 
-
+    /**
+     * @for AppController
+     * @method updatePre
+     */
     updatePre() {
         this.gameClockView.update();
         GameController.update_pre();
         this.aircraftController.aircraft_update();
     }
 
-
+    /**
+     * @for AppController
+     * @method updatePost
+     */
     updatePost() {
         this.canvasController.canvas_update_post();
         this.aircraftController.updateAircraftStrips();
     }
 
-
-    update() {
-
-    }
-
+    /**
+     * @for AppController
+     * @method update
+     */
+    update() {}
 
     /**
      * onChange callback fired from within the `AirportModel` when an airport is changed.
