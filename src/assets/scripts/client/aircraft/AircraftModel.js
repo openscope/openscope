@@ -451,6 +451,15 @@ export default class AircraftModel {
     }
 
     /**
+     * @for AircraftModel
+     * @property callsign
+     * @return {string}
+     */
+    get callsign() {
+        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
+    }
+
+    /**
      * Current flight phase
      *
      * @for AircraftModel
@@ -462,12 +471,27 @@ export default class AircraftModel {
     }
 
     /**
-     * @for AircraftModel
-     * @property callsign
-     * @return {string}
+     * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
+     *
+     * @for Fms
+     * @property isBeyondTopOfDescentForCurrentWaypoint
+     * @type {boolean}
      */
-    get callsign() {
-        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
+    get isBeyondTopOfDescentForCurrentWaypoint() {
+        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointAltitude = waypointModel.altitudeMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const altitudeChange = waypointAltitude - this.altitude;
+        const descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentTime = altitudeChange / descentRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
+
+        return descentTime > timeUntilWaypoint;
     }
 
     /**
@@ -1456,23 +1480,30 @@ export default class AircraftModel {
             //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
-                const waypointMaxAltitude = this.fms.currentWaypoint.altitudeMaximum;
-                const waypointMinAltitude = this.fms.currentWaypoint.altitudeMinimum;
-                const waypointHasAltitude = waypointMaxAltitude !== -1 || waypointMinAltitude !== -1;
-                // TODO: Become sensitive to both restrictions, not 'either'
+                const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
 
-                if (!waypointHasAltitude) {
-                    return this.mcp.altitude;
+                if (_isNil(waypointModel)) {
+                    return;
                 }
+
+                const waypointAltitude = waypointModel.altitudeMaximum;
 
                 if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
                     // TODO: Become sensitive to both restrictions, not just one of them
                     return Math.min(waypointMaxAltitude, this.mcp.altitude);
-                }
+                } else if (this.flightPhase === FLIGHT_PHASE.CRUISE) {
+                    if (!this.isBeyondTopOfDescentForCurrentWaypoint()) {
+                        return;
+                    }
 
-                if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
-                    // TODO: Become sensitive to both restrictions, not just one of them
-                    return Math.max(waypointMinAltitude, this.mcp.altitude);
+                    return waypointAltitude;
+                } else if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
+                    // TODO: This could be improved by making the descent at the exact rate needed to reach
+                    // the altitude at the same time as reaching the fix. At this point, the problem is that
+                    // while we DO know the descent rate and descent angle to shoot for, we don't know the
+                    // length of time before the next update, so we can't accurately estimate the altitude to
+                    // target in the current iteration.
+                    return Math.max(waypointAltitude, this.mcp.altitude);
                 }
 
                 break;
