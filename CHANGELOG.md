@@ -25,6 +25,8 @@
 - Updates Dublin (EIDW) - Improved procedures, added terrain and video map, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
 - Updates logic to display historical aircraft position for aircraft outside controlled airspace [#508](https://github.com/openscope/openscope/issues/508)
 - Updates development-workflow-procedures, adds Quick Start guide to README and consolidates all documentation in the `documentation` directory [#418](https://github.com/openscope/openscope/issues/418)
+- Adds tests and verifies functionality of non-procedural departures and arrivals (support for direct route strings) [#434](https://github.com/openscope/openscope/issues/434)
+- Adds unique transponder and CID generation methods [#483](https://github.com/openscope/openscope/issues/483)
 
 
 
@@ -42,6 +44,7 @@
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 - Prevent attempts to access positions of vector waypoints [#467](https://github.com/openscope/openscope/issues/467)
+- Adjusts fix validation for hold/vector/flyover fix names [#451](https://github.com/openscope/openscope/issues/451)
 
 
 

@@ -15,6 +15,11 @@ cache:
   - assets/images
 notifications:
   slack:
-    secure: Xti6UQw2kAqVJ6STI1I1VFadPv6Z+7KRHk+7UF9eVtiXks2fkKtl07svpMh81wTkRRMcbpCUb7i8AujcuFOBBMmv4A0HnMM8oOOH0hTsxacs5waYlfvDfXhliJKYjuTIHg55li5VqJYoZsQqJ9gSuegE5f9oQ3fmUAgfDXkwChNoinSEs4IIhMkGYV77PniYRdL4Sj92yQhlhu4YTz4EbOoAggdLAp11m8ALpnxShDAJUsPJQum0ZtYBr+yTacdQIAjncZknuhNkeJvblZkUDDun57uL/Wv6uJlfEBxclD+FD4YOKSoiXla5N5IMhzwJIO8umd2CGy109frZO04Fcwq/fEXcj0N38mOkCluP8IXx3b7G8DdMD9MMkv2Mac/EC9gTIB7zcMmugBigGB7kFhttdmDGvTsjAKVugfWjSu+AUXRHxmR4uohGKaUi1G6gKdOZDITh1gRi5j0S+yypE15uRypMgjex4ZqfcydPrc3pAmAS3j2YTVbIfbBP4jUMj3Av2bNdEh3moFcGh+2O/FGsOmzHYBw1YNhu5b+FesFShtxoKKSJi/DaLd9nODrbPU0gbJ+xBuDDMPUMwNwqEk2aMd7hUbLqST8ss237u816aG4KiK9Ipgp+hqcKHYne20dQYt7SX0KV8suoxcYqgcs6/igl8cPtgUrgzOE21i4=
+    rooms:
+      - secure: "Xti6UQw2kAqVJ6STI1I1VFadPv6Z+7KRHk+7UF9eVtiXks2fkKtl07svpMh81wTkRRMcbpCUb7i8AujcuFOBBMmv4A0HnMM8oOOH0hTsxacs5waYlfvDfXhliJKYjuTIHg55li5VqJYoZsQqJ9gSuegE5f9oQ3fmUAgfDXkwChNoinSEs4IIhMkGYV77PniYRdL4Sj92yQhlhu4YTz4EbOoAggdLAp11m8ALpnxShDAJUsPJQum0ZtYBr+yTacdQIAjncZknuhNkeJvblZkUDDun57uL/Wv6uJlfEBxclD+FD4YOKSoiXla5N5IMhzwJIO8umd2CGy109frZO04Fcwq/fEXcj0N38mOkCluP8IXx3b7G8DdMD9MMkv2Mac/EC9gTIB7zcMmugBigGB7kFhttdmDGvTsjAKVugfWjSu+AUXRHxmR4uohGKaUi1G6gKdOZDITh1gRi5j0S+yypE15uRypMgjex4ZqfcydPrc3pAmAS3j2YTVbIfbBP4jUMj3Av2bNdEh3moFcGh+2O/FGsOmzHYBw1YNhu5b+FesFShtxoKKSJi/DaLd9nODrbPU0gbJ+xBuDDMPUMwNwqEk2aMd7hUbLqST8ss237u816aG4KiK9Ipgp+hqcKHYne20dQYt7SX0KV8suoxcYqgcs6/igl8cPtgUrgzOE21i4="
+    template:
+      - Build %{result} - %{author} on <https://www.github.com/openscope/openscope/%{branch}|%{branch}>
+      - <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) %{result} in %{duration}
+      - "%{commit_subject}"
 after_success:
   - npm run coveralls

@@ -22,8 +22,9 @@ export const STRIP_VIEW_TEMPLATE = '' +
 '               <td class="stripView-table-td js-stripView-arrivalAirportId" title="Arrival Airport Identifier"></td>' +
 '           </tr>' +
 '           <tr class="stripView-table-tr">' +
-'               <td class="stripView-table-td js-stripView-aircraftId" title="Aircraft ID">' +
-'                   793 <span class="js-stripView-flightRules" title="IFR (I) or VFR (V)">I</span>' +
+'               <td class="stripView-table-td">' +
+'                   <div class="u-float-left js-stripView-cid" title="Computer Identification number"></div>' +
+'                   <div class="u-float-right js-stripView-flightRules" title="IFR (I) or VFR (V)">I</div>' +
 '               </td>' +
 '               <td class="stripView-table-td mix-stripView-table_borderTop js-stripView-flightPlanAltitude" title="Flight Plan Altitude"></td>' +
 '               <td class="stripView-table-td js-stripView-alternateAirportId" title="Alternate Airport Identifier"></td>' +
