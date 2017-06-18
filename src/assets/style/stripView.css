@@ -94,6 +94,10 @@
     background-color: #000000;
 }
 
+.mix-stripView_isHidden .stripView-trigger:after {
+    transform: rotateY(-180deg);
+}
+
 .stripView-trigger:after {
     position: absolute;
     top: 40%;
@@ -102,9 +106,8 @@
     background: #000000;
     color: #ffffff;
     font-weight: 700;
-    content: '|<';
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    content: '>|';
+    border-radius: 8px;
 }
 
 .stripView-trigger:hover:after,

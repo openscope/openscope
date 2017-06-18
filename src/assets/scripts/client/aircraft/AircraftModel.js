@@ -4,7 +4,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _random from 'lodash/random';
+import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
@@ -79,26 +79,163 @@ export default class AircraftModel {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(options = {}, navigationLibrary) {
-        /* eslint-disable no-multi-spaces*/
+        /**
+         * Unique id
+         *
+         * Useful for debugging
+         *
+         * @property id
+         * @type {string}
+         */
         this.id = _uniqueId('aircraft-');
+
+        /**
+         * Reference to the `NavigationLibrary`
+         *
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
-        this.positionModel = null;       // Aircraft Position
-        this.model        = null;       // Aircraft type
-        this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
+
+        /**
+         * Aircraft Position
+         *
+         * @property positionModel
+         * @type {DynamicPositionModel|null}
+         */
+        this.positionModel = null;
+
+        /**
+         * @property model
+         * @type {AircraftTypeDefinitionModel|null}
+         * @default null
+         */
+        this.model = null;
+
+        /**
+         * Airline Identifier (eg. 'AAL')
+         *
+         * @property airlineId
+         * @type {string}
+         * @default ''
+         */
+        this.airlineId = '';
+
+        /**
+         * @property airlineCallsign
+         * @type {string}
+         * @default ''
+         */
         this.airlineCallsign = '';
-        this.flightNumber = '';         // Flight Number ONLY (eg. '551')
-        // FIXME: temporary inclusion, should be removed before merging to develop
-        this.transponderCode = _random(1201, 5999);
-        this.heading      = 0;          // Magnetic Heading
-        this.altitude     = 0;          // Altitude, ft MSL
-        this.speed        = 0;          // Indicated Airspeed (IAS), knots
-        this.groundSpeed  = 0;          // Groundspeed (GS), knots
-        this.groundTrack  = 0;          //
-        this.takeoffTime  = 0;          //
-        this.approachOffset = 0;        // Distance laterally from the approach path
-        this.approachDistance = 0;      // Distance longitudinally from the threshold
-        this.radial       = 0;          // Angle from airport center to aircraft
-        this.distance     = 0;          //
+
+        /**
+         * Flight Number ONLY (eg. '551')
+         *
+         * @property flightNumber
+         * @type {string}
+         * @default ''
+         */
+        this.flightNumber = '';
+
+        /**
+         * Trasponder code
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @property transponderCode
+         * @type {number}
+         * @default 1200
+         */
+        this.transponderCode = 1200;
+
+        /**
+         * Magnetic Heading
+         *
+         * @property heading
+         * @type {number}
+         * @default 0
+         */
+        this.heading = 0;
+
+        /**
+         * Altitude, ft MSL
+         *
+         * @property altitude
+         * @type {number}
+         * @default 0
+         */
+        this.altitude = 0;
+
+        /**
+         * Indicated Airspeed (IAS), knots
+         *
+         * @property speed
+         * @type {number}
+         * @default 0
+         */
+        this.speed = 0;
+
+        /**
+         * Groundspeed (GS), knots
+         *
+         * @property groundSpeed
+         * @type {number}
+         * @default 0
+         */
+        this.groundSpeed = 0;
+
+        /**
+         * @property groundTrack
+         * @type {number}
+         * @default 0
+         */
+        this.groundTrack = 0;
+
+        /**
+         * Game time takeoff occurred
+         *
+         * @property takeoffTime
+         * @type {number}
+         * @default 0
+         */
+        this.takeoffTime = 0;
+
+        /**
+         * Distance laterally from the approach path
+         *
+         * @property approachOffset
+         * @type {number}
+         * @default 0
+         */
+        this.approachOffset = 0;
+
+        /**
+         * Distance longitudinally from the threshold
+         *
+         * @property approachDistance
+         * @type {number}
+         * @default 0
+         */
+        this.approachDistance = 0;
+
+        /**
+         * Angle from airport center to aircraft
+         *
+         * @property radial
+         * @type {number}
+         * @default 0
+         */
+        this.radial = 0;
+
+        /**
+         * Distance from the airport
+         *
+         * @property distance
+         * @type {number}
+         * @default 0
+         */
+        this.distance = 0;
 
         /**
          * The origin ariport for an aircraft
@@ -122,18 +259,115 @@ export default class AircraftModel {
          */
         this.destination = '';
 
-        this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
-        this.history      = [];         // Array of previous positions
-        this.restricted   = { list: [] };
-        this.notice       = false;      // Whether aircraft
-        this.warning      = false;      //
-        this.hit          = false;      // Whether aircraft has crashed
-        this.taxi_start   = 0;          //
-        this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
-        this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
-        this.inside_ctr   = false;      // Inside ATC Airspace
-        this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
-        this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
+        /**
+         * Indicator of descent/level/climb (-1, 0, or 1)
+         *
+         * @property trend
+         * @type {number}
+         * @default 0
+         */
+        this.trend = 0;
+
+        /**
+         * Array of previous positions
+         *
+         * @property history
+         * @type <array<array<number>>>
+         * @default []
+         */
+        this.history = [];
+
+        /**
+         * @property restricted
+         * @type {object}
+         * @default { list: [] }
+         */
+        this.restricted = { list: [] };
+
+        /**
+         * @property notice
+         * @type {boolean}
+         * @default false
+         */
+        this.notice = false;
+
+        /**
+         * @property warning
+         * @type {boolean}
+         * @default false
+         */
+        this.warning = false;
+
+
+        /**
+         * Whether aircraft has crashed
+         *
+         * @property hit
+         * @type {boolean}
+         * @default false
+         */
+        this.hit = false;
+
+        /**
+         * Game time an aircraft starts the taxi
+         *
+         * @property taxi_start
+         * @type {number}
+         * @default 0
+         */
+        this.taxi_start = 0;
+
+        /**
+         * Time spent taxiing to the runway. *NOTE* this should be INCREASED
+         * to around 60 once the taxi vs LUAW issue is resolved (#406)
+         *
+         * @property taxi_time
+         * @type {number}
+         * @default 3
+         */
+        this.taxi_time = 3;
+
+        /**
+         * Either IFR or VFR (Instrument/Visual Flight Rules)
+         *
+         * @property rules
+         * @type {FLIGHT_RULES}
+         * @default FLIGHT_RULES.IFR
+         */
+        this.rules = FLIGHT_RULES.IFR;
+
+        /**
+         * Inside ATC Airspace
+         *
+         * @property inside_ctr
+         * @type {boolean}
+         * @default false
+         */
+        this.inside_ctr = false;
+
+        /**
+         * Direction the data block points (-1 means to ignore)
+         *
+         * @property datablockDir
+         * @type {number}
+         * @default -1
+         */
+        this.datablockDir = -1;
+
+        /**
+         * List of aircraft that MAY be in conflict (bounding box)
+         *
+         * @property conflicts
+         * @type {object}
+         * @default {}
+         */
+        this.conflicts = {};
+
+        /**
+         * @property terrain_ranges
+         * @type {boolean}
+         * @default false
+         */
         this.terrain_ranges = false;
 
         /**
@@ -162,8 +396,6 @@ export default class AircraftModel {
          * @default false
          */
         this.isRemovable = false;
-
-        /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
         // Should be checked before updating global state such as score
@@ -293,20 +525,20 @@ export default class AircraftModel {
     }
 
     parse(data) {
-        // TODO: the `_get()` below are doing the same thing as a `_defaultTo()` would do
-        this.positionModel = _get(data, 'positionModel', this.positionModel);
-        this.model = _get(data, 'model', this.model);
-        this.airlineId = _get(data, 'airline', this.airlineId);
-        this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
-        this.flightNumber = _get(data, 'callsign', this.flightNumber);
-        this.category = _get(data, 'category', this.category);
-        this.heading = _get(data, 'heading', this.heading);
-        this.altitude = _get(data, 'altitude', this.altitude);
-        this.speed = _get(data, 'speed', this.speed);
+        this.positionModel = data.positionModel;
+        this.transponderCode = data.transponderCode;
+        this.model = data.model;
+        this.airlineId = data.airline;
+        this.airlineCallsign = data.airlineCallsign;
+        this.flightNumber = data.callsign;
+        this.category = data.category;
+        this.heading = data.heading;
+        this.altitude = data.altitude;
+        this.speed = data.speed;
         this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
 
-        // TODO: this assumes and arrival spawns outside the airspace
+        // this assumes arrivals always spawn outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 

@@ -10,7 +10,7 @@ Lets look at some examples before we continue:
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
      "altitude": "",
-     "speed": ""
+     "speed": "",
      "method": "random",
      "rate": 5,
      "airlines": [

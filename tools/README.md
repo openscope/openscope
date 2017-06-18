@@ -1,7 +1,9 @@
 # Tools
 
-#### Node
-You will need to have [NodeJS](https://nodejs.org/) installed to run this project locally.
+## Local Dependencies
+_If you haven't done so already, please install the following:_
+- [Node](https://nodejs.org/)
+- [Gulp CLI](https://www.npmjs.com/package/gulp-cli) via `npm` with `npm install -g gulp-cli`
 
 _If you are a Windows user and are having issues running `gulp` commands, please see here: [http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp](http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp)_
 

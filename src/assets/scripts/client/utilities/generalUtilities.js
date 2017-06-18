@@ -57,3 +57,21 @@ export const choose_weight = (l) => {
 
     return null;
 };
+
+/**
+ * Prepends zeros to front of str/num to make it the desired length
+ *
+ * @function leftPad
+ * @param value {number|string}  original value
+ * @param length {number}        total character length of return string
+ * @return {string}              a string of the desired length prepended with zeros when `value` is < `length`
+ */
+export const leftPad = (value, length) => {
+    if (value.toString().length >= length) {
+        return value.toString();
+    }
+
+    const x = `0000000000000${value}`;
+
+    return x.substr(x.length - length, length);
+}

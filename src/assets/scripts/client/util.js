@@ -112,27 +112,6 @@ radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// TODO: rename leftPad
-/**
- * Prepends zeros to front of str/num to make it the desired width
- */
-function lpad(n, width) {
-    if (n.toString().length >= width) {
-        return n.toString();
-    }
-
-    const x = `0000000000000${n}`;
-
-    return x.substr(x.length - width, width);
-}
-
-// TODO: unused
-// function endsWith(str, suffix) {
-//     return str.indexOf(suffix, str.length - suffix.length) !== -1;
-// }
-// window.endsWith = endsWith;
-
-
 // TODO: lodash _compact() might be useful here
 /**
  * Splices all empty elements out of an array
@@ -163,7 +142,5 @@ function array_sum(array) {
 }
 
 window.clone = clone;
-// window.distEuclid = distEuclid;
-window.lpad = lpad;
 window.array_clean = array_clean;
 window.array_sum = array_sum;

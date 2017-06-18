@@ -1,7 +1,18 @@
 import $ from 'jquery';
+import _random from 'lodash/random';
+import _without from 'lodash/without';
 import StripViewCollection from './StripViewCollection';
 import StripViewModel from './StripViewModel';
 import { SELECTORS } from '../../constants/selectors';
+
+/**
+ * The highest number allowed for a cid value
+ *
+ * @property CID_UPPER_BOUND
+ * @type {number}
+ * @final
+ */
+const CID_UPPER_BOUND = 999;
 
 /**
  * Controll modifications of the `$stripViewList` and coordinate
@@ -46,6 +57,13 @@ export default class StripViewController {
          * @type {JQuery|HTMLElement}
          */
         this.$stripListTrigger = $(SELECTORS.DOM_SELECTORS.STRIP_VIEW_TRIGGER);
+
+        /**
+         * @property _cidNumbersInUse
+         * @type {array<number>}
+         * @private
+         */
+        this._cidNumbersInUse = [];
 
         return this._init()
             .enable();
@@ -133,7 +151,8 @@ export default class StripViewController {
      * @param aircraftModel {AircraftModel}
      */
     createStripView(aircraftModel) {
-        const stripViewModel = new StripViewModel(aircraftModel);
+        const stripViewCid = this._generateCidNumber();
+        const stripViewModel = new StripViewModel(aircraftModel, stripViewCid);
 
         this._collection.addItem(stripViewModel);
         this._addViewToStripList(stripViewModel);
@@ -209,8 +228,9 @@ export default class StripViewController {
             throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
         }
 
-        stripViewModel.destroy();
+        this._removeCidFromUse(stripViewModel.cid);
         this._collection.removeItem(stripViewModel);
+        stripViewModel.destroy();
     }
 
     /**
@@ -257,7 +277,47 @@ export default class StripViewController {
      * @private
      */
     // eslint-disable-next-line no-unused-vars
-    _onStripListClickOutsideStripViewModel = (event) => {
-        this.findAndDeselectActiveStripView();
-    };
+    _onStripListClickOutsideStripViewModel = (event) => this.findAndDeselectActiveStripView();
+
+    /**
+     * Generate a unique number to represent a `CID`
+     *
+     * Should be displayed with leading zeros, so a `CID` value of `1` should be displayed as `001`
+     *
+     * @for StripViewController
+     * @method _generateCidNumber
+     * @return nextCid {number}
+     * @private
+     */
+    _generateCidNumber() {
+        const nextCid = _random(1, CID_UPPER_BOUND);
+
+        if (this._cidNumbersInUse.indexOf(nextCid) !== -1) {
+            this._generateCidNumber();
+        }
+
+        this._cidNumbersInUse.push(nextCid);
+
+        return nextCid;
+    }
+
+     /**
+      * Remove a given `#cid` from use
+      *
+      * Used when an aircraft has landed or departed controlled airspace
+      *
+      * @for StripViewController
+      * @method _removeCidFromUse
+      * @param cid {number}
+      * @private
+      */
+    _removeCidFromUse(cid) {
+        const cidIndex = this._cidNumbersInUse.indexOf(cid);
+
+        if (cidIndex === -1) {
+            return;
+        }
+
+        this._cidNumbersInUse = _without(this._cidNumbersInUse, cid);
+    }
 }
