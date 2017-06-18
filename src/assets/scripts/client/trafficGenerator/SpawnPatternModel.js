@@ -3,7 +3,6 @@ import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
@@ -11,13 +10,13 @@ import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import { tau } from '../math/circle';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
-import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: this may need to live somewhere else
 /**
@@ -35,8 +34,50 @@ const SPAWN_METHOD = {
 /**
  * Defines a spawn pattern for a specific route within the area
  *
- * This can be for departures or arrivals. Provides a starting point and definition
- * for all spawning aircraft
+ * This same structure is used to define departures and arrivals
+ * and is used by the `SpawnScheduler` to instantiate new `AircraftModel`
+ * objects.
+ *
+ * This class will expect data in the following shape:
+ * ```javascript
+ * // Departures
+ * {
+ *    "origin": "KLAS",
+ *    "destination": "",
+ *    "category": "departure",
+ *    "route": "KLAS.BOACH6.HEC",
+ *    "altitude": "",
+ *    "speed": "",
+ *    "method": "random",
+ *    "rate": 5,
+ *    "airlines": [
+ *        ["aal", 10],
+ *        ["ual", 10],
+ *        ["ual/long", 3]
+ *    ]
+ * }
+ *
+ * // Arrivals
+ * {
+ *   "origin": "",
+ *   "destination": "KLAS",
+ *   "category": "arrival",
+ *   "route": "BETHL.GRNPA1.KLAS",
+ *   "altitude": [30000, 40000],
+ *   "speed": 320,
+ *   "method": "cyclic",
+ *   "rate": 17.5,
+ *   "period": 75,
+ *   "offset": 25,
+ *   "airlines": [
+ *       ["aal", 10],
+ *       ["ual", 10],
+ *       ["ual/long", 3]
+ *   ]
+ * }
+ * ```
+ * additional information on `spawnPatterns` can be found in the
+ * [spawnPatternReadme](https://github.com/openscope/openscope/tree/develop/documentation/spawnPatternReadme.md)
  *
  * @class SpawnPatternModel
  * @extends BaseModel
@@ -51,7 +92,7 @@ export default class SpawnPatternModel extends BaseModel {
      */
     // istanbul ignore next
     constructor(spawnPatternJson, navigationLibrary, airportController) {
-        super();
+        super('spawnPatternModel');
 
         /**
          * Schedule reference id
@@ -428,7 +469,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
-        // We return early here if the object is empty because we pre-hydrate objects to improve load speeds of the app.
+        // We return early here if the object is empty because we pre-hydrate objects in the `ModelSourcePool`
         if (_isEmpty(spawnPatternJson)) {
             return;
         }
@@ -593,10 +634,11 @@ export default class SpawnPatternModel extends BaseModel {
         this._aircraftPerHourUp = this.speed / this.entrail[0];
         this._aircraftPerHourDown = this.speed / this.entrail[1];  // to help the uptime calculation
 
+        // TODO: move this calculation out to a helper function or class method
         this.uptime = (this.period * this.rate - this.period * this._aircraftPerHourDown) / (this._aircraftPerHourUp - this._aircraftPerHourDown);
         this.uptime -= this.uptime % (TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp);
 
-        // TODO: abstract to helpe
+        // TODO: abstract to helper
         // adjust to maintain correct acph rate
         const averageSpawnRate = this.rate * this.period * TIME.ONE_SECOND_IN_HOURS;
         const elevatedSpawnRate = this._aircraftPerHourUp * this.uptime * TIME.ONE_SECOND_IN_HOURS;
@@ -607,7 +649,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._aircraftPerHourDown = reducedSpawnRate;
 
 
-        // TODO: abstract this if/else block
+        // TODO: abstract this if/else block to helper method
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.rate > this._aircraftPerHourUp) {
             console.warn('TOO MANY ARRIVALS IN SURGE! Requested: ' +
