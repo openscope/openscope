@@ -33,10 +33,10 @@ ava('sets only `name` when provided a string', t => {
 
     t.true(typeof model._id === 'string');
     t.true(model.name === NAME_MOCK);
-    t.true(model._altitudeMaximum === -1);
-    t.true(model._altitudeMinimum === -1);
-    t.true(model._speedMaximum === -1);
-    t.true(model._speedMinimum === -1);
+    t.true(model.altitudeMaximum === -1);
+    t.true(model.altitudeMinimum === -1);
+    t.true(model.speedMaximum === -1);
+    t.true(model.speedMinimum === -1);
 });
 
 ava('.clonePositionFromFix() does not throw when no fix exists', t => {
@@ -81,14 +81,14 @@ ava('._applyRestrictions() extracts all restrictions when ranged restrictions ar
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
 
-    t.true(modelWithAltitude._altitudeMinimum === 10000);
-    t.true(modelWithAltitude._altitudeMaximum === 14000);
-    t.true(modelWithSpeed._speedMinimum === 210);
-    t.true(modelWithSpeed._speedMaximum === 250);
-    t.true(modelWithAltitudeAndSpeed._altitudeMinimum === 10000);
-    t.true(modelWithAltitudeAndSpeed._altitudeMaximum === 14000);
-    t.true(modelWithAltitudeAndSpeed._speedMinimum === 210);
-    t.true(modelWithAltitudeAndSpeed._speedMaximum === 250);
+    t.true(modelWithAltitude.altitudeMinimum === 10000);
+    t.true(modelWithAltitude.altitudeMaximum === 14000);
+    t.true(modelWithSpeed.speedMinimum === 210);
+    t.true(modelWithSpeed.speedMaximum === 250);
+    t.true(modelWithAltitudeAndSpeed.altitudeMinimum === 10000);
+    t.true(modelWithAltitudeAndSpeed.altitudeMaximum === 14000);
+    t.true(modelWithAltitudeAndSpeed.speedMinimum === 210);
+    t.true(modelWithAltitudeAndSpeed.speedMaximum === 250);
 });
 
 ava('._applyRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
@@ -96,14 +96,14 @@ ava('._applyRestrictions() extracts all restrictions when non-ranged "AT" restri
     const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
     const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
 
-    t.true(modelWithAltitudeRange._altitudeMinimum === 10000);
-    t.true(modelWithAltitudeRange._altitudeMaximum === 10000);
-    t.true(modelWithSpeedRange._speedMinimum === 210);
-    t.true(modelWithSpeedRange._speedMaximum === 210);
-    t.true(modelWithAltitudeRangeAndSpeedRange._altitudeMinimum === 10000);
-    t.true(modelWithAltitudeRangeAndSpeedRange._altitudeMaximum === 10000);
-    t.true(modelWithAltitudeRangeAndSpeedRange._speedMinimum === 210);
-    t.true(modelWithAltitudeRangeAndSpeedRange._speedMaximum === 210);
+    t.true(modelWithAltitudeRange.altitudeMinimum === 10000);
+    t.true(modelWithAltitudeRange.altitudeMaximum === 10000);
+    t.true(modelWithSpeedRange.speedMinimum === 210);
+    t.true(modelWithSpeedRange.speedMaximum === 210);
+    t.true(modelWithAltitudeRangeAndSpeedRange.altitudeMinimum === 10000);
+    t.true(modelWithAltitudeRangeAndSpeedRange.altitudeMaximum === 10000);
+    t.true(modelWithAltitudeRangeAndSpeedRange.speedMinimum === 210);
+    t.true(modelWithAltitudeRangeAndSpeedRange.speedMaximum === 210);
 });
 
 ava('._applyRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
@@ -111,14 +111,14 @@ ava('._applyRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" 
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
 
-    t.true(modelWithAltitude._altitudeMinimum === 10000);
-    t.true(modelWithAltitude._altitudeMaximum === -1);
-    t.true(modelWithSpeed._speedMinimum === -1);
-    t.true(modelWithSpeed._speedMaximum === 210);
-    t.true(modelWithAltitudeAndSpeed._altitudeMinimum === -1);
-    t.true(modelWithAltitudeAndSpeed._altitudeMaximum === 10000);
-    t.true(modelWithAltitudeAndSpeed._speedMinimum === 210);
-    t.true(modelWithAltitudeAndSpeed._speedMaximum === -1);
+    t.true(modelWithAltitude.altitudeMinimum === 10000);
+    t.true(modelWithAltitude.altitudeMaximum === -1);
+    t.true(modelWithSpeed.speedMinimum === -1);
+    t.true(modelWithSpeed.speedMaximum === 210);
+    t.true(modelWithAltitudeAndSpeed.altitudeMinimum === -1);
+    t.true(modelWithAltitudeAndSpeed.altitudeMaximum === 10000);
+    t.true(modelWithAltitudeAndSpeed.speedMinimum === 210);
+    t.true(modelWithAltitudeAndSpeed.speedMaximum === -1);
 });
 
 ava('._applyRestrictions() returns early if no paramater is received', t => {
@@ -126,9 +126,9 @@ ava('._applyRestrictions() returns early if no paramater is received', t => {
 
     model._applyRestrictions();
 
-    t.true(model._altitudeMaximum === -1);
-    t.true(model._speedMaximum === -1);
-    t.true(model._speedMinimum === -1);
+    t.true(model.altitudeMaximum === -1);
+    t.true(model.speedMaximum === -1);
+    t.true(model.speedMinimum === -1);
 });
 
 ava('#_isFlyOverWaypoint is true for fix prepended by fly-over character', (t) => {

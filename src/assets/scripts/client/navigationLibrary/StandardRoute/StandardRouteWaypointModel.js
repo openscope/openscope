@@ -47,6 +47,24 @@ export default class StandardRouteWaypointModel extends BaseModel {
         }
 
         /**
+         * Maximum altitude at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property altitudeMaximum
+         * @type {number}
+         */
+        this.altitudeMaximum = -1;
+
+        /**
+         * Minimum altitude at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property altitudeMinimum
+         * @type {number}
+         */
+        this.altitudeMinimum = -1;
+
+        /**
          * Distance in nm from the previous waypoint.
          *
          * This property is set exterally by the `StandardRouteModel` and used only when called via
@@ -85,22 +103,22 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this.previousStandardWaypointName = '';
 
         /**
-         * Maximum altitude at which to cross this waypoint
+         * Maximum speed at which to cross this waypoint
          *
          * @for StandardRouteWaypointModel
-         * @property _altitudeMaximum
+         * @property speedMaximum
          * @type {number}
          */
-        this._altitudeMaximum = -1;
+        this.speedMaximum = -1;
 
         /**
-         * Minimum altitude at which to cross this waypoint
+         * Minimum speed at which to cross this waypoint
          *
          * @for StandardRouteWaypointModel
-         * @property _altitudeMinimum
+         * @property speedMinimum
          * @type {number}
          */
-        this._altitudeMinimum = -1;
+        this.speedMinimum = -1;
 
         /**
          * Flag used to determine if the waypoint must be flown over before the
@@ -144,24 +162,6 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @private
          */
         this._restrictions = null;
-
-        /**
-         * Maximum speed at which to cross this waypoint
-         *
-         * @for StandardRouteWaypointModel
-         * @property _speedMaximum
-         * @type {number}
-         */
-        this._speedMaximum = -1;
-
-        /**
-         * Minimum speed at which to cross this waypoint
-         *
-         * @for StandardRouteWaypointModel
-         * @property _speedMinimum
-         * @type {number}
-         */
-        this._speedMinimum = -1;
 
         return this._init(routeWaypoint)
                    .clonePositionFromFix();
@@ -345,14 +345,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     toWaypointModel() {
         const waypointProps = {
-            altitudeMaximum: this._altitudeMaximum,
-            altitudeMinimum: this._altitudeMinimum,
+            altitudeMaximum: this.altitudeMaximum,
+            altitudeMinimum: this.altitudeMinimum,
             isFlyOverWaypoint: this._isFlyOverWaypoint,
             isVector: this._isVector,
             name: this.name,
             positionModel: this.positionModel,
-            speedMaximum: this._speedMaximum,
-            speedMinimum: this._speedMinimum
+            speedMaximum: this.speedMaximum,
+            speedMinimum: this.speedMinimum
         };
 
         return new WaypointModel(waypointProps);
@@ -406,17 +406,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
         const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
 
         if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
-            this._altitudeMinimum = altitude;
+            this.altitudeMinimum = altitude;
 
             return;
         } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== -1) {
-            this._altitudeMaximum = altitude;
+            this.altitudeMaximum = altitude;
 
             return;
         }
 
-        this._altitudeMaximum = altitude;
-        this._altitudeMinimum = altitude;
+        this.altitudeMaximum = altitude;
+        this.altitudeMinimum = altitude;
     }
 
     /**
@@ -429,16 +429,16 @@ export default class StandardRouteWaypointModel extends BaseModel {
         const speed = parseInt(speedRestriction, DECIMAL_RADIX);
 
         if (speedRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
-            this._speedMinimum = speed;
+            this.speedMinimum = speed;
 
             return;
         } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== -1) {
-            this._speedMaximum = speed;
+            this.speedMaximum = speed;
 
             return;
         }
 
-        this._speedMaximum = speed;
-        this._speedMinimum = speed;
+        this.speedMaximum = speed;
+        this.speedMinimum = speed;
     }
 }
