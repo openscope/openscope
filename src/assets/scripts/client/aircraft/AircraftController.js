@@ -23,6 +23,7 @@ import { km } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
+import { REGEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
@@ -524,19 +525,19 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method onRequestToChangeTransponderCode
+     * @param transponderCode {string}
+     * @param aircraftModel {aircraftModel}
      * @return {boolean}
      */
-    onRequestToChangeTransponderCode = (transponderStr, aircraftModel) => {
-        const nextTransponderCode = parseInt(transponderStr, 10);
-
-        if (!this._isValidTransponderCode(nextTransponderCode)) {
+    onRequestToChangeTransponderCode = (transponderCode, aircraftModel) => {
+        if (!this._isValidTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
             return false;
         }
 
         this._removeTransponderCodeFromUse(aircraftModel.transponderCode);
-        this._addTransponderCodeToInUse(nextTransponderCode);
+        this._addTransponderCodeToInUse(transponderCode);
 
-        aircraftModel.transponderCode = nextTransponderCode;
+        aircraftModel.transponderCode = transponderCode;
 
         return true;
     };
@@ -657,7 +658,7 @@ export default class AircraftController {
     _generateUniqueTransponderCode() {
         const transponderCode = generateRandomOctalWithLength(4);
 
-        if (!this._isDiscreteTransponderCode(transponderCode)) {
+        if (!this._isDiscreteTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
             // the value generated is already in use, recurse back through this method and try again
             this._generateUniqueTransponderCode();
         }
@@ -704,7 +705,7 @@ export default class AircraftController {
 
     /**
      * Boolean helper used to determine if a given `transponderCode` is both
-     * not in use and not an invalid transponderCode.
+     * the correct length and an octal number.
      *
      * @for AircraftController
      * @method _isValidTransponderCode
@@ -712,7 +713,7 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isValidTransponderCode(transponderCode) {
-        return RESERVED_SQUAWK_CODES.indexOf(transponderCode) === -1;
+        return REGEX.FOUR_DIGIT_OCTAL.test(transponderCode);
     }
 
     /**
@@ -725,7 +726,7 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isDiscreteTransponderCode(transponderCode) {
-        return !this._isTransponderCodeInUse(transponderCode) && this._isValidTransponderCode(transponderCode);
+        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === -1;
     }
 
     /**
