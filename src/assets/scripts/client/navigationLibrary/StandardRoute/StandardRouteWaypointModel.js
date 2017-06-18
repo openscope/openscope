@@ -130,6 +130,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * Any restrictions for a given fix
          *
          * ex:
+         * - "A100+|A150-|S210+|S250-"
          * - "A80+|S210"
          * - "A80-"
          * - "S230"
@@ -260,7 +261,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
-        this._setRestrictions(routeWaypoint[RESTRICTION_INDEX]);
+        this._applyRestrictions(routeWaypoint[RESTRICTION_INDEX]);
 
         return this;
     }
@@ -372,11 +373,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * - "S210"
      *
      * @for StandardRouteWaypointModel
-     * @method _setRestrictions
+     * @method _applyRestrictions
      * @param waypointRestrictions {string}
      * @private
      */
-    _setRestrictions(waypointRestrictions) {
+    _applyRestrictions(waypointRestrictions) {
         if (_isNil(waypointRestrictions)) {
             return;
         }

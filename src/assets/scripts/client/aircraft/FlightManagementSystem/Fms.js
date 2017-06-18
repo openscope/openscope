@@ -262,9 +262,8 @@ export default class Fms {
      * @type {WaypointModel}
      */
     get nextHardAltitudeRestrictedWaypoint() {
-        const waypoints = this.getAltitudeRestrictedWaypoints().filter((waypoint) => {
-            return waypoint.altitudeMaximum === waypoint.altitudeMinimum;
-        });
+        const waypoints = this.getAltitudeRestrictedWaypoints()
+            .filter((waypoint) => waypoint.altitudeMaximum === waypoint.altitudeMinimum);
 
         return waypoints[0];
     }
@@ -277,9 +276,8 @@ export default class Fms {
      * @type {WaypointModel}
      */
     get nextHardSpeedRestrictedWaypoint() {
-        const waypoints = this.getSpeedRestrictedWaypoints().filter((waypoint) => {
-            return waypoint.speedMaximum === waypoint.speedMinimum;
-        });
+        const waypoints = this.getSpeedRestrictedWaypoints()
+            .filter((waypoint) => waypoint.speedMaximum === waypoint.speedMinimum);
 
         return waypoints[0];
     }
@@ -364,7 +362,7 @@ export default class Fms {
     }
 
     /**
-     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     * Return an array of waypoints in the flight plan that have altitude restrictions
      *
      * @for Fms
      * @method getAltitudeRestrictedWaypoints
@@ -489,7 +487,7 @@ export default class Fms {
     }
 
     /**
-     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     * Return an array of waypoints in the flight plan that have speed restrictions
      *
      * @for Fms
      * @method getSpeedRestrictedWaypoints

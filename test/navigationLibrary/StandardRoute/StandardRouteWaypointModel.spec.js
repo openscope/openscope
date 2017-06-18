@@ -45,18 +45,18 @@ ava('.clonePositionFromFix() does not throw when no fix exists', t => {
     t.notThrows(() => model.clonePositionFromFix());
 });
 
-ava('does not call ._setRestrictions() when provided a string', t => {
+ava('does not call ._applyRestrictions() when provided a string', t => {
     const model = new StandardRouteWaypointModel(NAME_MOCK);
-    const spy = sinon.spy(model, '_setRestrictions');
+    const spy = sinon.spy(model, '_applyRestrictions');
 
     model._init(NAME_MOCK);
 
     t.true(spy.callCount === 0);
 });
 
-ava('calls ._setRestrictions() when provided and array', t => {
+ava('calls ._applyRestrictions() when provided and array', t => {
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const spy = sinon.spy(model, '_setRestrictions');
+    const spy = sinon.spy(model, '_applyRestrictions');
 
     model._init(ROUTE_WAYPOINT_MOCK);
 
@@ -76,7 +76,7 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     t.true(result.speedMinimum === 250);
 });
 
-ava('._setRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
+ava('._applyRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-']);
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
@@ -91,7 +91,7 @@ ava('._setRestrictions() extracts all restrictions when ranged restrictions are 
     t.true(modelWithAltitudeAndSpeed._speedMaximum === 250);
 });
 
-ava('._setRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
+ava('._applyRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
     const modelWithAltitudeRange = new StandardRouteWaypointModel(['BAKRR', 'A100']);
     const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
     const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
@@ -106,7 +106,7 @@ ava('._setRestrictions() extracts all restrictions when non-ranged "AT" restrict
     t.true(modelWithAltitudeRangeAndSpeedRange._speedMaximum === 210);
 });
 
-ava('._setRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
+ava('._applyRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+']);
     const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
     const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
@@ -121,10 +121,10 @@ ava('._setRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or
     t.true(modelWithAltitudeAndSpeed._speedMaximum === -1);
 });
 
-ava('._setRestrictions() returns early if no paramater is received', t => {
+ava('._applyRestrictions() returns early if no paramater is received', t => {
     const model = new StandardRouteWaypointModel(['BAKRR']);
 
-    model._setRestrictions();
+    model._applyRestrictions();
 
     t.true(model._altitudeMaximum === -1);
     t.true(model._speedMaximum === -1);

@@ -804,7 +804,7 @@ export default class Pilot {
      * @method sayTargetedSpeed
      */
     sayTargetedSpeed() {
-        // TODO: how do we handle the cases where there isn't a speed restriction for a waypoint?
+        // TODO: How do we handle the cases where aircraft are using VNAV speed?
         return [true, this._mcp.speed];
     }
 

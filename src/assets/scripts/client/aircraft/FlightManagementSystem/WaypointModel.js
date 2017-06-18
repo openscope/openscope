@@ -86,11 +86,12 @@ export default class WaypointModel {
 
         /**
         * Heading to fly during the inbound leg of a holding pattern at this fix
+        *
         * @for WaypointModel
         * @member _holdingPatternInboundHeading
-        * @type number
+        * @type {number}
         */
-        this._holdingPatternInboundHeading = null;
+        this._holdingPatternInboundHeading = -1;
 
         /**
          * Flag used to determine if the waypoint must be flown over before the
