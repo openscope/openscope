@@ -392,6 +392,7 @@ export default class Pilot {
         this._mcp.setAltitudeFieldValue(initialMissedApproachAltitude);
         this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
+        this.hasApproachClearance = false;
 
         const readback = {};
         readback.log = `cancel approach clearance, fly present heading, maintain ${initialMissedApproachAltitude}`;
