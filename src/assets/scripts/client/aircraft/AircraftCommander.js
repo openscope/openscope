@@ -1,5 +1,6 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import UiController from '../UiController';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
 import { speech_say } from '../speech';
@@ -57,10 +58,9 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, navigationLibrary, uiController, onChangeTransponderCode) {
+    constructor(airportController, navigationLibrary, onChangeTransponderCode) {
         this._airportController = airportController;
         this._navigationLibrary = navigationLibrary;
-        this._uiController = uiController;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -156,7 +156,7 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            this._uiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
+            UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
             speech_say([
                 { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
@@ -692,7 +692,7 @@ export default class AircraftCommander {
     runFix() {
         const isWarning = true;
 
-        this._uiController.ui_log(
+        UiController.ui_log(
             'The fix command has been deprecated. Please use rr, pd or fh instead of fix',
             isWarning
         );

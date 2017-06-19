@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _isString from 'lodash/isString';
 import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
+import UiController from '../UiController';
 import { round } from '../math/core';
 import {
     FLIGHT_CATEGORY,
@@ -453,8 +454,8 @@ export default class AircraftStripView {
     onDoubleClickHandler = (event) => {
         const { positionModel } = event.data;
 
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(positionModel.relativePosition[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(positionModel.relativePosition[1]));
+        prop.canvas.panX = 0 - round(UiController.km_to_px(positionModel.relativePosition[0]));
+        prop.canvas.panY = round(UiController.km_to_px(positionModel.relativePosition[1]));
         prop.canvas.dirty = true;
     };
 }

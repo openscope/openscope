@@ -2,8 +2,8 @@
 import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
-import _random from 'lodash/random';
 import _without from 'lodash/without';
+import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
@@ -356,7 +356,7 @@ export default class AircraftController {
                 // TODO: move this out of the aircraft model
                 aircraft.scoreWind('landed');
 
-                window.uiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
+                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', switching to ground, good day' }
@@ -370,7 +370,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                window.uiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
                 aircraft.setIsRemovable();
 
                 speech_say([

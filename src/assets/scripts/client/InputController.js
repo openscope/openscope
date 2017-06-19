@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import UiController from './UiController';
 import CommandParser from './commandParser/CommandParser';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
@@ -92,7 +93,7 @@ export default class InputController {
      * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
      *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander, uiController, aircraftController) {
+    constructor($element, aircraftCommander, aircraftController) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
@@ -100,7 +101,6 @@ export default class InputController {
         this.$sidebar = null;
 
         this._aircraftCommander = aircraftCommander;
-        this._uiController = uiController;
         this._aircraftController = aircraftController;
 
         this._eventBus = EventBus;
@@ -241,9 +241,9 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            this._uiController.ui_zoom_in();
+            UiController.ui_zoom_in();
         } else {
-            this._uiController.ui_zoom_out();
+            UiController.ui_zoom_out();
         }
     }
 
@@ -285,7 +285,7 @@ export default class InputController {
 
         // TODO: this should use early returns instead of the else if
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
-            this._uiController.ui_zoom_reset();
+            UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning
             this.input.mouseDown = [
@@ -300,12 +300,12 @@ export default class InputController {
             position[1] += prop.canvas.size.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                this._uiController.px_to_km(position[0] - prop.canvas.panX),
-                this._uiController.px_to_km(position[1] + prop.canvas.panY)
+                UiController.px_to_km(position[0] - prop.canvas.panX),
+                UiController.px_to_km(position[1] + prop.canvas.panY)
             ]);
 
             if (aircraftModel) {
-                if (distanceFromPosition < this._uiController.px_to_km(80)) {
+                if (distanceFromPosition < UiController.px_to_km(80)) {
                     this.input.callsign = aircraftModel.callsign.toUpperCase();
 
                     this.input_select(this.input.callsign);
@@ -317,8 +317,8 @@ export default class InputController {
             }
 
             position = [
-                this._uiController.px_to_km(position[0]),
-                this._uiController.px_to_km(position[1])
+                UiController.px_to_km(position[0]),
+                UiController.px_to_km(position[1])
             ];
 
             position[0] = parseFloat(position[0].toFixed(2));
@@ -347,19 +347,19 @@ export default class InputController {
             if (prop.tutorial.open) {
                 window.tutorialView.tutorial_close();
             } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-                this._uiController.ui_airport_close();
+                UiController.ui_airport_close();
             }
         }
 
         if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
             // Minus key to zoom out, plus to zoom in
-            this._uiController.ui_zoom_out();
+            UiController.ui_zoom_out();
             return false;
         } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
             if (event.shiftKey) {
-                this._uiController.ui_zoom_in();
+                UiController.ui_zoom_in();
             } else {
-                this._uiController.ui_zoom_reset();
+                UiController.ui_zoom_reset();
             }
 
             return false;
@@ -748,7 +748,7 @@ export default class InputController {
         try {
             result = new CommandParser(userCommand);
         } catch (error) {
-            this._uiController.ui_log('Command not understood');
+            UiController.ui_log('Command not understood');
 
             throw error;
         }
@@ -779,7 +779,7 @@ export default class InputController {
     processSystemCommand(commandParser) {
         switch (commandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
-                this._uiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
+                UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
 
                 return true;
 
@@ -793,9 +793,9 @@ export default class InputController {
                 // aircraft_toggle_auto();
                 //
                 // if (this._aircraftController.aircraft.auto.enabled) {
-                //     this._uiController.ui_log('automatic controller ENGAGED');
+                //     UiController.ui_log('automatic controller ENGAGED');
                 // } else {
-                //     this._uiController.ui_log('automatic controller OFF');
+                //     UiController.ui_log('automatic controller OFF');
                 // }
 
                 return true;
@@ -862,13 +862,13 @@ export default class InputController {
         }
 
         if (matches > 1) {
-            this._uiController.ui_log('multiple aircraft match the callsign, say again');
+            UiController.ui_log('multiple aircraft match the callsign, say again');
 
             return true;
         }
 
         if (match === -1) {
-            this._uiController.ui_log('no such aircraft, say again');
+            UiController.ui_log('no such aircraft, say again');
 
             return true;
         }

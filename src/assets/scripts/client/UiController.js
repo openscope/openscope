@@ -39,16 +39,13 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 /**
  * @class UiController
  */
-export default class UiController {
+class UiController {
     /**
      * @constructor
-     * @param $element
-     * @param
      */
-    constructor($element, airportController) {
-        this.$element = $element;
-        this._airportController = airportController;
-
+    constructor() {
+        this.$element = null;
+        this._airportController = null;
         this.$airportList = null;
         this.$airportListNotes = null;
         this.$toggleTutorial = null;
@@ -71,18 +68,18 @@ export default class UiController {
         this.ui.scale = this.ui.scale_default;
         // TODO: This belongs in the CanvasController, not UiController
         this.ui.terrain = THEME.DEFAULT.TERRAIN;
-
-
-        return this._init()
-            .setupHandlers()
-            .enable();
     }
 
     /**
+     *
+     *
      * @for UiController
-     * @method _init
+     * @method init
      */
-    _init() {
+    init($element, airportController) {
+        this.$element = $element;
+        this._airportController = airportController;
+
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
         this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -98,7 +95,8 @@ export default class UiController {
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
 
-        return this;
+        return this.setupHandlers()
+            .enable();
     }
 
     /**
@@ -664,3 +662,5 @@ export default class UiController {
         this.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }
+
+export default new UiController();

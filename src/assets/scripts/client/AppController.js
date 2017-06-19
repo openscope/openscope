@@ -55,7 +55,6 @@ export default class AppController {
         this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
-        this.uiController = null;
         this.canvasController = null;
 
         return this._init()
@@ -99,6 +98,8 @@ export default class AppController {
      * @chainable
      */
     destroy() {
+        // TODO: add static class.destroy() here
+
         this.$element = null;
         this.eventBus = null;
         this.loadingView = null;
@@ -108,7 +109,6 @@ export default class AppController {
         this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
-        this.uiController = null;
         this.canvasController = null;
 
         return this;
@@ -146,13 +146,14 @@ export default class AppController {
         // TODO: Temporary
         window.aircraftController = this.aircraftController;
 
+        UiController.init(this.$element, this.airportController);
+
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.uiController = new UiController(this.$element, this.airportController);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.uiController, this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.uiController, this.aircraftController);
+        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
 
         // TEMPORARY!
@@ -161,7 +162,6 @@ export default class AppController {
         // explicit instance parameters easier.
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
-        window.uiController = this.uiController;
 
         this.updateViewControls();
     }
@@ -175,7 +175,7 @@ export default class AppController {
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
         this.canvasController.canvas_init_pre();
-        this.uiController.ui_init_pre();
+        UiController.ui_init_pre();
     }
 
     /**
@@ -186,7 +186,7 @@ export default class AppController {
         speech_init();
 
         this.canvasController.canvas_init();
-        this.uiController.ui_init();
+        UiController.ui_init();
     }
 
     /**
@@ -211,7 +211,7 @@ export default class AppController {
         this.loadingView.complete();
         GameController.complete();
         this.canvasController.canvas_complete();
-        this.uiController.ui_complete();
+        UiController.ui_complete();
     }
 
     /**

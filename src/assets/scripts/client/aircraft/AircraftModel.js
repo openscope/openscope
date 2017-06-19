@@ -4,12 +4,12 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
+import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
-import GameController, { GAME_EVENTS } from '../game/GameController';
 import { speech_say } from '../speech';
 import { radians_normalize, angle_offset } from '../math/circle';
 import {
@@ -1014,9 +1014,9 @@ export default class AircraftModel {
 
         if (alert) {
             const isWarning = true;
-            window.uiController.ui_log(logMessage(callsign_L), isWarning);
+            UiController.ui_log(logMessage(callsign_L), isWarning);
         } else {
-            window.uiController.ui_log(logMessage(callsign_L));
+            UiController.ui_log(logMessage(callsign_L));
         }
 
         speech_say([{
@@ -1050,7 +1050,7 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
             speech_say([
                 { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
                 { type: 'callsign', content: this },
@@ -1059,7 +1059,7 @@ export default class AircraftModel {
         }
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
+            UiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
                 { type: 'text', content: window.airportController.airport_get().radio.twr },
                 { type: 'callsign', content: this },
@@ -1082,18 +1082,18 @@ export default class AircraftModel {
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
         } else if (components.cross >= 10) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
         }
 
         if (components.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
         } else if (components.head <= -1) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
         }
 
         return score;
@@ -1579,7 +1579,7 @@ export default class AircraftModel {
             const isWarning = true;
             // TODO: Should be moved to where the output is handled
             GameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
 
             speech_say([
                 { type: 'callsign', content: this },
@@ -1596,7 +1596,7 @@ export default class AircraftModel {
     warnInterceptAngle() {
         const isWarning = true;
 
-        window.uiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
+        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
         GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
@@ -2151,7 +2151,7 @@ export default class AircraftModel {
 
                             console.log('hit terrain');
                             const isWarning = true;
-                            window.uiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
+                            UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
                                 { type: 'callsign', content: this },
                                 { type: 'text', content: ', we\'re going down!' }

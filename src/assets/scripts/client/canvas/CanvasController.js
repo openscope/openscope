@@ -3,8 +3,9 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
-import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import UiController from '../UiController';
+import EventBus from '../lib/EventBus';
 import {
     degreesToRadians,
     km,
@@ -405,12 +406,12 @@ export default class ConvasController {
      * @param mode
      */
     canvas_draw_runway(cc, runway, mode) {
-        const length2 = round(window.uiController.km_to_px(runway.length / 2));
+        const length2 = round(UiController.km_to_px(runway.length / 2));
         const angle = runway.angle;
 
         cc.translate(
-            round(window.uiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
-            -round(window.uiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
+            round(UiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
+            -round(UiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
         );
         cc.rotate(angle);
 
@@ -434,7 +435,7 @@ export default class ConvasController {
 
             cc.beginPath();
             cc.moveTo(0, 0);
-            cc.lineTo(0, window.uiController.km_to_px(runway.ils.loc_maxDist));
+            cc.lineTo(0, UiController.km_to_px(runway.ils.loc_maxDist));
             cc.stroke();
         }
     }
@@ -446,13 +447,13 @@ export default class ConvasController {
      * @param runway
      */
     canvas_draw_runway_label(cc, runway) {
-        const length2 = round(window.uiController.km_to_px(runway.length / 2)) + 0.5;
+        const length2 = round(UiController.km_to_px(runway.length / 2)) + 0.5;
         const angle = runway.angle;
         const text_height = 14;
 
         cc.translate(
-            round(window.uiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
-            -round(window.uiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
+            round(UiController.km_to_px(runway.relativePosition[0])) + this.canvas.panX,
+            -round(UiController.km_to_px(runway.relativePosition[1])) + this.canvas.panY
         );
         cc.rotate(angle);
 
@@ -466,8 +467,8 @@ export default class ConvasController {
         );
         cc.rotate(-angle);
         cc.translate(
-            round(window.uiController.km_to_px(runway.labelPos[0])),
-            -round(window.uiController.km_to_px(runway.labelPos[1]))
+            round(UiController.km_to_px(runway.labelPos[0])),
+            -round(UiController.km_to_px(runway.labelPos[1]))
         );
         cc.fillText(runway.name, 0, 0);
         cc.restore();
@@ -543,7 +544,7 @@ export default class ConvasController {
         const offset = 10;
         const height = 5;
         const length = round(1 / prop.ui.scale * 50);
-        const px_length = round(window.uiController.km_to_px(length));
+        const px_length = round(UiController.km_to_px(length));
 
         cc.translate(0.5, 0.5);
 
@@ -600,8 +601,8 @@ export default class ConvasController {
         _forEach(this._navigationLibrary.realFixes, (fix, i) => {
             cc.save();
             cc.translate(
-                round(window.uiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
+                round(UiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX,
+                -round(UiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
             cc.fillStyle = this.theme.FIX_FILL;
@@ -660,8 +661,8 @@ export default class ConvasController {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
                     }
 
-                    fixX = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
-                    fixY = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
+                    fixX = UiController.km_to_px(fix[0]) + this.canvas.panX;
+                    fixY = -UiController.km_to_px(fix[1]) + this.canvas.panY;
 
                     if (j === 0) {
                         cc.beginPath();
@@ -713,13 +714,13 @@ export default class ConvasController {
         cc.strokeStyle = this.theme.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
         cc.translate(
-            window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
+            UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
+            -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
         cc.rotate(oppositeOfRunwayHeading);
         cc.beginPath();
-        cc.moveTo(-5, -window.uiController.km_to_px(5.556));  // 5.556km = 3.0nm
-        cc.lineTo(+5, -window.uiController.km_to_px(5.556));  // 5.556km = 3.0nm
+        cc.moveTo(-5, -UiController.km_to_px(5.556));  // 5.556km = 3.0nm
+        cc.lineTo(+5, -UiController.km_to_px(5.556));  // 5.556km = 3.0nm
         cc.stroke();
     }
 
@@ -747,7 +748,7 @@ export default class ConvasController {
         }
 
         cc.beginPath();
-        cc.arc(0, 0, window.uiController.km_to_px(km(3)), 0, tau());  // 3nm RADIUS
+        cc.arc(0, 0, UiController.km_to_px(km(3)), 0, tau());  // 3nm RADIUS
         cc.stroke();
         cc.restore();
     }
@@ -768,7 +769,7 @@ export default class ConvasController {
         cc.arc(
             this.canvas.panX,
             this.canvas.panY,
-            window.uiController.km_to_px(window.airportController.airport_get().ctr_radius),
+            UiController.km_to_px(window.airportController.airport_get().ctr_radius),
             angle - 0.08726,
             angle + 0.08726);
         cc.stroke();
@@ -833,8 +834,8 @@ export default class ConvasController {
 
             cc.globalAlpha = alpha;
             cc.fillRect(
-                window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
-                -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
+                UiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
+                -UiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
                 2,
                 2
             );
@@ -881,8 +882,8 @@ export default class ConvasController {
             const h = this.canvas.size.height / 2;
 
             cc.translate(
-                clamp(-w, window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX, w),
-                clamp(-h, -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY, h)
+                clamp(-w, UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX, w),
+                clamp(-h, -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY, h)
             );
 
             cc.beginPath();
@@ -893,8 +894,8 @@ export default class ConvasController {
         }
 
         cc.translate(
-            window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
+            UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
+            -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
 
         this.canvas_draw_aircraft_vector_lines(cc, aircraft);
@@ -963,8 +964,8 @@ export default class ConvasController {
         }
 k
         const start = future_track.length - 1;
-        const x = window.uiController.km_to_px(future_track[start][0]) + this.canvas.panX;
-        const y = -window.uiController.km_to_px(future_track[start][1]) + this.canvas.panY;
+        const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
+        const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
 
         cc.beginPath();
         cc.moveTo(x, y);
@@ -972,8 +973,8 @@ k
 
         for (let i = 0; i < waypointList.length; i++) {
             const [x, y] = waypointList[i].relativePosition;
-            const fx = window.uiController.km_to_px(x) + this.canvas.panX;
-            const fy = -window.uiController.km_to_px(y) + this.canvas.panY;
+            const fx = UiController.km_to_px(x) + this.canvas.panX;
+            const fy = -UiController.km_to_px(y) + this.canvas.panY;
 
             cc.lineTo(fx, fy);
         }
@@ -1033,8 +1034,8 @@ k
             const track = future_track[i];
             ils_locked = track[2];
 
-            const x = window.uiController.km_to_px(track[0]) + this.canvas.panX;
-            const y = -window.uiController.km_to_px(track[1]) + this.canvas.panY;
+            const x = UiController.km_to_px(track[0]) + this.canvas.panX;
+            const y = -UiController.km_to_px(track[1]) + this.canvas.panY;
 
             if (ils_locked && !was_locked) {
                 cc.lineTo(x, y);
@@ -1152,13 +1153,13 @@ k
 
             // Move to center of where the data block is to be drawn
             const ac_pos = [
-                round(window.uiController.km_to_px(aircraft.relativePosition[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
+                round(UiController.km_to_px(aircraft.relativePosition[0])) + this.canvas.panX,
+                -round(UiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
             ];
 
             // game will move FDB to the appropriate position
             if (aircraft.datablockDir === -1) {
-                if (-window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
+                if (-UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
                     cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
                 } else {
                     cc.translate(ac_pos[0], ac_pos[1] - height2 - 12);
@@ -1449,8 +1450,8 @@ k
         const extend_ring = degreesToRadians(10);
         const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
         const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
-        const x = round(window.uiController.km_to_px(origin[0])) + this.canvas.panX;
-        const y = -round(window.uiController.km_to_px(origin[1])) + this.canvas.panY;
+        const x = round(UiController.km_to_px(origin[0])) + this.canvas.panX;
+        const y = -round(UiController.km_to_px(origin[1])) + this.canvas.panY;
         // 5NM = 9.27km
         const radius = 9.27;
 
@@ -1459,7 +1460,7 @@ k
             cc.arc(
                 x,
                 y,
-                window.uiController.km_to_px(minDist - (i * radius)),
+                UiController.km_to_px(minDist - (i * radius)),
                 start_angle, end_angle
             );
 
@@ -1515,8 +1516,8 @@ k
 
         _forEach(poly, (singlePoly, v) => {
             cc.lineTo(
-                window.uiController.km_to_px(singlePoly[0]),
-                -window.uiController.km_to_px(singlePoly[1])
+                UiController.km_to_px(singlePoly[0]),
+                -UiController.km_to_px(singlePoly[1])
             );
         });
 
@@ -1563,14 +1564,14 @@ k
                         // Loose equals is important here.
                         if (index === 0) {
                             cc.moveTo(
-                                window.uiController.km_to_px(terrainItem[index][0]),
-                                -window.uiController.km_to_px(terrainItem[index][1])
+                                UiController.km_to_px(terrainItem[index][0]),
+                                -UiController.km_to_px(terrainItem[index][1])
                             );
                         }
 
                         cc.lineTo(
-                            window.uiController.km_to_px(terrainItem[index][0]),
-                            -window.uiController.km_to_px(terrainItem[index][1])
+                            UiController.km_to_px(terrainItem[index][0]),
+                            -UiController.km_to_px(terrainItem[index][1])
                         );
                     });
 
@@ -1669,15 +1670,15 @@ k
 
                 cc.fillText(
                     area.name,
-                    round(window.uiController.km_to_px(area.center[0])),
-                    -round(window.uiController.km_to_px(area.center[1]))
+                    round(UiController.km_to_px(area.center[0])),
+                    -round(UiController.km_to_px(area.center[1]))
                 );
             }
 
             cc.fillText(
                 height,
-                round(window.uiController.km_to_px(area.center[0])),
-                height_shift - round(window.uiController.km_to_px(area.center[1]))
+                round(UiController.km_to_px(area.center[0])),
+                height_shift - round(UiController.km_to_px(area.center[1]))
             );
         });
 
@@ -1706,9 +1707,9 @@ k
         cc.translate(this.canvas.panX, this.canvas.panY);
 
         _forEach(map, (mapItem, i) => {
-            cc.moveTo(window.uiController.km_to_px(mapItem[0]), -window.uiController.km_to_px(mapItem[1]));
+            cc.moveTo(UiController.km_to_px(mapItem[0]), -UiController.km_to_px(mapItem[1]));
             // cc.beginPath();
-            cc.lineTo(window.uiController.km_to_px(mapItem[2]), -window.uiController.km_to_px(mapItem[3]));
+            cc.lineTo(UiController.km_to_px(mapItem[2]), -UiController.km_to_px(mapItem[3]));
         });
 
         cc.stroke();
@@ -1849,8 +1850,8 @@ k
      * @param y {number}    relativePosition.y
      */
     _onCenterPointInView = ({ x, y }) => {
-        this.canvas.panX = 0 - round(window.uiController.km_to_px(x));
-        this.canvas.panY = round(window.uiController.km_to_px(y));
+        this.canvas.panX = 0 - round(UiController.km_to_px(x));
+        this.canvas.panY = round(UiController.km_to_px(y));
         this.dirty = true;
     };
 }

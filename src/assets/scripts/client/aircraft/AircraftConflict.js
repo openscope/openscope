@@ -2,6 +2,7 @@
 import _includes from 'lodash/includes';
 import _filter from 'lodash/filter';
 import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
@@ -146,7 +147,7 @@ export default class AircraftConflict {
             this.collided = true;
             const isWarning = true;
 
-            window.uiController.ui_log(
+            UiController.ui_log(
                 `${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`,
                 isWarning
             );
@@ -180,7 +181,7 @@ export default class AircraftConflict {
                 const isWarning = true;
                 this.conflicts.runwayCollision = true;
 
-                window.uiController.ui_log(
+                UiController.ui_log(
                     `${this.aircraft[0].callsign} appears on a collision course with` +
                     ` ${this.aircraft[1].callsign} on the same runway"`,
                     isWarning
