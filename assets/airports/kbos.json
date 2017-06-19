@@ -646,14 +646,14 @@
             },
             "body": ["JFUND"],
             "rwy": {
-                "4R": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
-                "4L": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "4R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "4L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "15R": [["BADCA", "A90+|S250"], ["WACHU", "A70|S210"], "SSAAM", "AADMS"],
-                "22R": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
-                "22L": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
-                "27": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["SPYSD", "A70|S220"], "REVER", ["SEHAG", "A60|S210"]],
-                "33L": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
-                "32": [["AUTUM", "A120-|A110+|S270"], ["WINTA", "A100-|A80+|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
+                "22R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
+                "22L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
+                "27": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "REVER", ["SEHAG", "A60|S210"]],
+                "33L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
+                "32": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
             },
             "draw": [
                 ["PONCT", "STOLI", "MNSTA", "SEETS", "DUBLE", "BASEZ", "JFUND", "AUTUM", "WINTA", "HRRIS", "SPYSD", "REVER", "SEHAG"],
@@ -700,7 +700,7 @@
                 "PROVI": ["PROVI", "IYANA", "KLEBB", ["SOBAH", "A150+"], ["LONEY", "A110+"], "RODEE"],
                 "RIFLE": ["RIFLE", "KYSKY", "CUTOX", "CUJKE", "FERNZ", ["LONEY", "A110+"], "RODEE"]
             },
-            "body": [["EURRO", "A100+|S270"], ["OOSHN", "A140-|A90+|S250"]],
+            "body": [["EURRO", "A100+|S270"], ["OOSHN", "A90+|A140-|S250"]],
             "rwy": {
                 "4R": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "4L": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
@@ -732,16 +732,16 @@
                 "JFK": ["JFK", "NEWES", ["FEXXX", "A230"]],
                 "MERIT": ["MERIT"]
             },
-            "body": [["RUIZE", "A230-|A210+"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A190-|A120+|S260"], ["PROVI", "A110+"], "JOODY"],
+            "body": [["RUIZE", "A230-|A210+"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
             "rwy": {
-                "4R": [["SOFEE", "A100-|A90+|S220"], ["ERNEI", "A80-|A70+"], ["NUNZO", "A60|S210"]],
-                "4L": [["SOFEE", "A100-|A90+|S220"], ["ERNEI", "A80-|A70+"], ["GOSHI", "A60|S210"]], 
+                "4R": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["NUNZO", "A60|S210"]],
+                "4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]], 
                 "15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
-                "22R": [["KRANN", "A120-|A110+|S250"], ["CRADL", "A100-|A80+"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
-                "22L": [["KRANN", "A120-|A110+|S250"], ["CRADL", "A100-|A80+"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
-                "27": [["KRANN", "A120-|A110+|S250"], ["CRADL", "A100-|A80+"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
-                "33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A70-|A60+|S220"], ["BBOGG", "A60|S210"]],
-                "32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A70-|A60+|S220"], ["BBOGG", "A60|S210"]]
+                "22R": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
+                "22L": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
+                "27": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
+                "33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]],
+                "32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]]
             },
             "draw": [
                 ["MERIT", "RUIZE", "AWLIN", "BANKI", "ROBUC", "PROVI", "JOODY", "KRANN", "CRADL", "KLEBB", "HOKDU"],
