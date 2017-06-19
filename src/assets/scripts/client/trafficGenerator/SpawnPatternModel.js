@@ -998,7 +998,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.heading = heading;
     }
 
-    // TODO: add support for `FIXXA..FIXXB.PRCDR1.FIXXC` route strings
     /**
      * Given a `routeString`, find the `FixModel`s or `WaypointModel`s associated with that route.
      *

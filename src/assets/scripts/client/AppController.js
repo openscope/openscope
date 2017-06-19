@@ -38,7 +38,7 @@ export default class AppController {
      * @param airportLoadList {array<object>}
      * @param initialAirportToLoad {string}
      */
-    constructor(element, airportLoadList, initialAirportToLoad) {
+    constructor(element) {
         /**
          * Root DOM element.
          *
@@ -157,7 +157,6 @@ export default class AppController {
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
         window.tutorialView = this.tutorialView;
-        window.inputController = this.inputController;
 
         this.updateViewControls();
     }
