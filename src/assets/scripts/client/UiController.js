@@ -12,9 +12,6 @@ import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/colors/themes';
 
-// Temporary const declaration here to attach to the window AND use as internal property
-const ui = {};
-
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
@@ -60,18 +57,18 @@ class UiController {
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
 
-        prop.ui = ui;
-        this.ui = ui;
-        this.ui.scale_default = 8; // pixels per km
-        this.ui.scale_max = 80; // max scale
-        this.ui.scale_min = 1; // min scale
-        this.ui.scale = this.ui.scale_default;
+        this.scale_default = 8; // pixels per km
+        this.scale_max = 80; // max scale
+        this.scale_min = 1; // min scale
+        this.scale = this.scale_default;
         // TODO: This belongs in the CanvasController, not UiController
-        this.ui.terrain = THEME.DEFAULT.TERRAIN;
+        this.terrain = THEME.DEFAULT.TERRAIN;
     }
 
     /**
+     * Initialization method
      *
+     * Called from the `AppController` after instantiation of the `AircraftController`
      *
      * @for UiController
      * @method init
@@ -179,11 +176,11 @@ class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = -1;
-        this.ui.scale_max = -1;
-        this.ui.scale_min = -1;
-        this.ui.scale = -1;
-        this.ui.terrain = {};
+        this.scale_default = -1;
+        this.scale_max = -1;
+        this.scale_min = -1;
+        this.scale = -1;
+        this.terrain = {};
 
 
         return this;
@@ -194,12 +191,11 @@ class UiController {
      * @method ui_init_pre
      */
     ui_init_pre() {
-        this.ui = ui;
-        this.ui.scale_default = 8; // pixels per km
-        this.ui.scale_max = 80; // max scale
-        this.ui.scale_min = 1; // min scale
-        this.ui.scale = this.ui.scale_default;
-        this.ui.terrain = THEME.DEFAULT.TERRAIN;
+        this.scale_default = 8; // pixels per km
+        this.scale_max = 80; // max scale
+        this.scale_min = 1; // min scale
+        this.scale = this.scale_default;
+        this.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
@@ -450,7 +446,7 @@ class UiController {
      * @return {number}
      */
     px_to_km(pixels) {
-        return pixels / this.ui.scale;
+        return pixels / this.scale;
     }
 
     // TODO: this function should live in a helper file somewhere
@@ -461,7 +457,7 @@ class UiController {
      * @return {number}
      */
     km_to_px(kilometers) {
-        return kilometers * this.ui.scale;
+        return kilometers * this.scale;
     }
 
     /**
@@ -469,7 +465,7 @@ class UiController {
      * @method ui_after_zoom
      */
     ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = this.ui.scale;
+        localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
         prop.canvas.dirty = true;
     }
 
@@ -483,10 +479,10 @@ class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.ui.scale *= 0.9;
+        this.scale *= 0.9;
 
-        if (this.ui.scale < this.ui.scale_min) {
-            this.ui.scale = this.ui.scale_min;
+        if (this.scale < this.scale_min) {
+            this.scale = this.scale_min;
         }
 
         this.ui_after_zoom();
@@ -505,9 +501,9 @@ class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.ui.scale /= 0.9;
-        if (this.ui.scale > this.ui.scale_max) {
-            this.ui.scale = this.ui.scale_max;
+        this.scale /= 0.9;
+        if (this.scale > this.scale_max) {
+            this.scale = this.scale_max;
         }
 
         this.ui_after_zoom();
@@ -521,7 +517,7 @@ class UiController {
      * @method ui_zoom_reset
      */
     ui_zoom_reset() {
-        this.ui.scale = this.ui.scale_default;
+        this.scale = this.scale_default;
 
         this.ui_after_zoom();
     }
@@ -659,7 +655,7 @@ class UiController {
             return;
         }
 
-        this.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+        this.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }
 

@@ -543,7 +543,7 @@ export default class ConvasController {
 
         const offset = 10;
         const height = 5;
-        const length = round(1 / prop.ui.scale * 50);
+        const length = round(1 / UiController.scale * 50);
         const px_length = round(UiController.km_to_px(length));
 
         cc.translate(0.5, 0.5);
@@ -933,8 +933,8 @@ export default class ConvasController {
         const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
         const groundTrackVector = vectorize_2d(aircraft.groundTrack);
         const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
-        const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], prop.ui.scale);
-        const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], prop.ui.scale);
+        const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], UiController.scale);
+        const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], UiController.scale);
 
         cc.beginPath();
         cc.moveTo(0, 0);
@@ -1399,7 +1399,7 @@ k
         cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.AIRSPACE_FILL;
         cc.beginPath();
-        cc.arc(0, 0, window.airportController.airport_get().ctr_radius * prop.ui.scale, 0, tau());
+        cc.arc(0, 0, window.airportController.airport_get().ctr_radius * UiController.scale, 0, tau());
         cc.fill();
         cc.stroke();
     }
@@ -1499,7 +1499,7 @@ k
         for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
             cc.beginPath();
             cc.linewidth = 1;
-            cc.arc(0, 0, rangeRingRadius * prop.ui.scale * i, 0, tau());
+            cc.arc(0, 0, rangeRingRadius * UiController.scale * i, 0, tau());
             cc.strokeStyle = this.theme.RANGE_RING_COLOR;
             cc.stroke();
         }
@@ -1539,7 +1539,7 @@ k
         // FIXME: Does this even end up getting used? Convert to use of `this.theme`
         cc.strokeStyle = COLOR.WHITE_04;
         cc.fillStyle = COLOR.WHITE_02;
-        cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
+        cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
         cc.lineJoin = 'round';
 
         const airport = window.airportController.airport_get();
@@ -1550,10 +1550,10 @@ k
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${prop.ui.terrain.COLOR[elevation]}, `;
+            const color = `rgba(${UiController.terrain.COLOR[elevation]}, `;
 
-            cc.strokeStyle = `${color} ${prop.ui.terrain.BORDER_OPACITY})`;
-            cc.fillStyle = `${color} ${prop.ui.terrain.FILL_OPACITY})`;
+            cc.strokeStyle = `${color} ${UiController.terrain.BORDER_OPACITY})`;
+            cc.fillStyle = `${color} ${UiController.terrain.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1614,11 +1614,11 @@ k
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${prop.ui.terrain.COLOR[j]}, ${prop.ui.terrain.FILL_OPACITY})`;
+                cc.fillStyle = `rgba(${UiController.terrain.COLOR[j]}, ${UiController.terrain.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${prop.ui.terrain.COLOR[i]}, ${prop.ui.terrain.BORDER_OPACITY})`;
+            cc.strokeStyle = `rgba(${UiController.terrain.COLOR[i]}, ${UiController.terrain.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
@@ -1644,7 +1644,7 @@ k
         }
 
         cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE;
-        cc.lineWidth = Math.max(prop.ui.scale / 3, 2);
+        cc.lineWidth = Math.max(UiController.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
@@ -1696,7 +1696,7 @@ k
         }
 
         cc.strokeStyle = this.theme.VIDEO_MAP;
-        cc.lineWidth = prop.ui.scale / 15;
+        cc.lineWidth = UiController.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
