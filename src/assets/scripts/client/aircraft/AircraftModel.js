@@ -587,7 +587,11 @@ export default class AircraftModel {
         this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
 
-        // this assumes arrivals always spawn outside the airspace
+        this.target.altitude = this.altitude;
+        this.target.heading = this.heading;
+        this.target.speed = this.speed;
+
+        // This assumes and arrival spawns outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
