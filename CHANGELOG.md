@@ -28,7 +28,8 @@
 - Adds tests and verifies functionality of non-procedural departures and arrivals (support for direct route strings) [#434](https://github.com/openscope/openscope/issues/434)
 - Adds unique transponder and CID generation methods [#483](https://github.com/openscope/openscope/issues/483)
 - Abstracts non game loop logic into new class `AppController`, which provides facade methods for `App` to call during game loop [#137](https://github.com/openscope/openscope/issues/137)
-
+- Add support for ranged altitude and speed restrictions in procedures [#32](https://github.com/openscope/openscope/issues/32)
+- Improve VNAV climbs and descents to better comply with restrictions [#32](https://github.com/openscope/openscope/issues/32)
 
 
 
