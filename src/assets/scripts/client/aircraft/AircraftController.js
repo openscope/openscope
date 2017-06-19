@@ -3,6 +3,7 @@ import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
+import AirportController from '../airport/AirportController';
 import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
@@ -275,7 +276,7 @@ export default class AircraftController {
      * @param factor {number}
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -296,7 +297,7 @@ export default class AircraftController {
      * @param aircraftModel {AircraftModel}
      */
     aircraft_remove(aircraftModel) {
-        window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
+        AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);

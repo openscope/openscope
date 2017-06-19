@@ -1,19 +1,26 @@
 import ava from 'ava';
-
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
-import { airportControllerFixture } from '../fixtures/airportFixtures';
+import {
+    airportControllerFixture,
+    resetAirportControllerFixture
+} from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
 } from './_mocks/aircraftMocks';
 
-window.airportController = airportControllerFixture;
+ava.beforeEach(() => {
+    airportControllerFixture();
+});
+
+ava.afterEach(() => {
+    resetAirportControllerFixture();
+});
 
 ava('does not throw with valid parameters', (t) => {
     t.notThrows(() => new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture));
 });
-
 
 ava('.matchCallsign() returns true when passed `*`', (t) => {
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);

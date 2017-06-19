@@ -5,6 +5,7 @@ import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
 import GameController from './game/GameController';
+import AirportController from './airport/AirportController';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -42,7 +43,6 @@ class UiController {
      */
     constructor() {
         this.$element = null;
-        this._airportController = null;
         this.$airportList = null;
         this.$airportListNotes = null;
         this.$toggleTutorial = null;
@@ -72,10 +72,10 @@ class UiController {
      *
      * @for UiController
      * @method init
+     * @param $element {jQuery Element}
      */
-    init($element, airportController) {
+    init($element) {
         this.$element = $element;
-        this._airportController = airportController;
 
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
@@ -294,8 +294,8 @@ class UiController {
      * @paam event {jquery event}
      */
     onClickAirportListItemHandler(event) {
-        if (event.data !== this._airportController.airport_get().icao) {
-            this._airportController.airport_set(event.data);
+        if (event.data !== AirportController.airport_get().icao) {
+            AirportController.airport_set(event.data);
             this.ui_airport_close();
         }
     }
@@ -340,12 +340,12 @@ class UiController {
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportList.empty();
 
-        const airports = _keys(this._airportController.airport.airports).sort();
+        const airports = _keys(AirportController.airports).sort();
         const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
 
         for (let i = 0; i < airports.length; i++) {
-            const { name, icao, level, wip } = this._airportController.airport.airports[airports[i]];
+            const { name, icao, level, wip } = AirportController.airports[airports[i]];
 
             if (!shouldShowWipAirports && wip) {
                 continue;
@@ -359,8 +359,8 @@ class UiController {
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
-                if (event.data !== this._airportController.airport_get().icao) {
-                    this._airportController.airport_set(event.data);
+                if (event.data !== AirportController.airport_get().icao) {
+                    AirportController.airport_set(event.data);
                     this.ui_airport_close();
                 }
             });
@@ -560,7 +560,7 @@ class UiController {
             $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
 
-        const icao = this._airportController.airport_get().icao.toLowerCase();
+        const icao = AirportController.airport_get().icao.toLowerCase();
         $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);

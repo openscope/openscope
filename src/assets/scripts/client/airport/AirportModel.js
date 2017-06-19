@@ -5,6 +5,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
+import AirportController from './AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import AirspaceModel from './AirspaceModel';
@@ -755,7 +756,7 @@ export default class AirportModel {
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
 
             this.loading = false;
-            this.airport.current.set();
+            AirportController.current.set();
         });
     }
 
@@ -813,7 +814,7 @@ export default class AirportModel {
         console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
 
         this.loading = false;
-        this.airport.current.set();
+        AirportController.current.set();
     }
 
     /**

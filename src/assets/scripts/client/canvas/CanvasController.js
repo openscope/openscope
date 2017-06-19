@@ -3,6 +3,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
+import AirportController from '../airport/AirportController';
 import GameController from '../game/GameController';
 import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
@@ -227,7 +228,7 @@ export default class ConvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = GameController.game_time() - window.airportController.airport_get().start;
+        const elapsed = GameController.game_time() - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
 
@@ -276,7 +277,7 @@ export default class ConvasController {
             );
             // TODO: this is incorrect usage of a ternary. ternaries should be used for a ssignment not function calls.
             // draw airspace border
-            window.airportController.airport_get().airspace
+            AirportController.airport_get().airspace
                 ? this.canvas_draw_airspace_border(cc)
                 : this.canvas_draw_ctr(cc);
 
@@ -284,7 +285,7 @@ export default class ConvasController {
             cc.restore();
 
             // Special markings for ENGM point merge
-            if (window.airportController.airport_get().icao === 'ENGM') {
+            if (AirportController.airport_get().icao === 'ENGM') {
                 cc.save();
                 cc.translate(
                     calculateMiddle(this.canvas.size.width),
@@ -488,7 +489,7 @@ export default class ConvasController {
         cc.fillStyle = this.theme.RUNWAY;
         cc.lineWidth = 4;
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
 
         // Extended Centerlines
         for (let i = 0; i < airport.runways.length; i++) {
@@ -521,7 +522,7 @@ export default class ConvasController {
 
         cc.fillStyle = this.theme.RUNWAY_LABELS;
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         for (let i = 0; i < airport.runways.length; i++) {
             cc.save();
             this.canvas_draw_runway_label(cc, airport.runways[i][0]);
@@ -769,7 +770,7 @@ export default class ConvasController {
         cc.arc(
             this.canvas.panX,
             this.canvas.panY,
-            UiController.km_to_px(window.airportController.airport_get().ctr_radius),
+            UiController.km_to_px(AirportController.airport_get().ctr_radius),
             angle - 0.08726,
             angle + 0.08726);
         cc.stroke();
@@ -1304,7 +1305,7 @@ k
             calculateMiddle(this.canvas.size.height)
         );
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const size = 80;
         const size2 = size / 2;
         const padding = 16;
@@ -1399,7 +1400,7 @@ k
         cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.AIRSPACE_FILL;
         cc.beginPath();
-        cc.arc(0, 0, window.airportController.airport_get().ctr_radius * UiController.scale, 0, tau());
+        cc.arc(0, 0, AirportController.airport_get().ctr_radius * UiController.scale, 0, tau());
         cc.fill();
         cc.stroke();
     }
@@ -1412,7 +1413,7 @@ k
      * @param cc
      */
     canvas_draw_airspace_border(cc) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         if (!airport.airspace) {
             this.canvas_draw_ctr(cc);
         }
@@ -1441,7 +1442,7 @@ k
      * @param fix2
      */
     canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const origin = airport.getFixPosition(fix_origin);
         const f1 = airport.getFixPosition(fix1);
         const f2 = airport.getFixPosition(fix2);
@@ -1491,7 +1492,7 @@ k
      * @param cc
      */
     canvas_draw_range_rings(cc) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         // convert input param from nm to km
         const rangeRingRadius = km(airport.rr_radius_nm);
 
@@ -1542,7 +1543,7 @@ k
         cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
         cc.lineJoin = 'round';
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         let max_elevation = 0;
 
         cc.save();
@@ -1648,7 +1649,7 @@ k
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
 
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
@@ -1691,7 +1692,7 @@ k
      * @param cc
      */
     canvas_draw_videoMap(cc) {
-        if (!_has(window.airportController.airport_get(), 'maps')) {
+        if (!_has(AirportController.airport_get(), 'maps')) {
             return;
         }
 
@@ -1700,7 +1701,7 @@ k
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const map = airport.maps.base;
 
         cc.save();

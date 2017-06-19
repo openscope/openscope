@@ -5,6 +5,7 @@ import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _uniqueId from 'lodash/uniqueId';
+import AirportController from '../airport/AirportController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
@@ -513,7 +514,7 @@ export default class AircraftModel {
      * @method buildRestrictedAreaLinks
      */
     buildRestrictedAreaLinks() {
-        const restrictedAreas = prop.airport.current.restricted_areas;
+        const restrictedAreas = AirportController.current.restricted_areas;
 
         _forEach(restrictedAreas, (area) => {
             this.restricted.list.push({
@@ -543,7 +544,7 @@ export default class AircraftModel {
     }
 
     initFms(data) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const initialRunway = airport.getActiveRunwayForCategory(this.category);
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
@@ -868,7 +869,7 @@ export default class AircraftModel {
      */
     isOnGround() {
         const errorAllowanceInFeet = 5;
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
@@ -961,7 +962,7 @@ export default class AircraftModel {
             head: 0
         };
 
-        const { wind } = window.airportController.airport_get();
+        const { wind } = AirportController.airport_get();
         // const wind = airport.wind;
         const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
@@ -1004,13 +1005,13 @@ export default class AircraftModel {
         const callsign_S = this.getRadioCallsign();
 
         if (sectorType) {
-            call += window.airportController.airport_get().radio[sectorType];
+            call += AirportController.airport_get().radio[sectorType];
         }
 
         // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
-        const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+        const logMessage = (callsign) => `${AirportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
 
         if (alert) {
             const isWarning = true;
@@ -1050,18 +1051,18 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            UiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
             speech_say([
-                { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
+                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
                 { type: 'callsign', content: this },
                 { type: 'text', content: `with you ${alt_say}` }
             ]);
         }
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            UiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
+            UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
-                { type: 'text', content: window.airportController.airport_get().radio.twr },
+                { type: 'text', content: AirportController.airport_get().radio.twr },
                 { type: 'callsign', content: this },
                 { type: 'text', content: ', ready to taxi' }
             ]);
@@ -1816,7 +1817,7 @@ export default class AircraftModel {
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
 
         // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
 
         if (isInsideAirspace !== this.inside_ctr) {
             this.crossBoundary(isInsideAirspace);
@@ -1982,7 +1983,7 @@ export default class AircraftModel {
 
         // Calculate wind vector
         const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
-        const wind = window.airportController.airport_get().wind;
+        const wind = AirportController.airport_get().wind;
         const windTravelDirection = wind.angle + Math.PI;
         const windTravelSpeedAtSurface = wind.speed;
         const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
@@ -2122,7 +2123,7 @@ export default class AircraftModel {
         }
 
         if (this.terrain_ranges && !this.isOnGround()) {
-            const terrain = prop.airport.current.terrain;
+            const terrain = AirportController.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
             let curr_ranges = this.terrain_ranges[ele];

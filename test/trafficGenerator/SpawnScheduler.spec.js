@@ -1,42 +1,37 @@
 import ava from 'ava';
 import sinon from 'sinon';
-
 import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/SpawnScheduler';
-import { spawnPatternCollectionFixture } from '../fixtures/trafficGeneratorFixtures';
+import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
+import {
+    airportControllerFixture,
+    resetAirportControllerFixture
+} from '../fixtures/airportFixtures';
+import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { AIRPORT_JSON_FOR_SPAWN_MOCK } from '../trafficGenerator/_mocks/spawnPatternMocks';
 
 let aircraftControllerStub;
-ava.before(() => {
+let spawnPatternCollectionFixture;
+
+ava.beforeEach(() => {
+    airportControllerFixture();
+    spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture);
     aircraftControllerStub = {
         createAircraftWithSpawnPatternModel: sinon.stub(),
         createPreSpawnAircraftWithSpawnPatternModel: sinon.stub()
     };
 });
 
-ava.after(() => {
+ava.afterEach(() => {
+    resetAirportControllerFixture();
+    spawnPatternCollectionFixture = null;
     aircraftControllerStub = null;
 });
 
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => new SpawnScheduler());
-    t.throws(() => new SpawnScheduler({}));
-    t.throws(() => new SpawnScheduler([]));
-    t.throws(() => new SpawnScheduler(42));
-    t.throws(() => new SpawnScheduler('threeve'));
-    t.throws(() => new SpawnScheduler(false));
-
     t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture));
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture, {}));
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture, []));
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture, 42));
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture, 'threeve'));
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture, false));
-
     t.throws(() => new SpawnScheduler(aircraftControllerStub));
     t.throws(() => new SpawnScheduler({}, aircraftControllerStub));
-    t.throws(() => new SpawnScheduler([], aircraftControllerStub));
-    t.throws(() => new SpawnScheduler(42, aircraftControllerStub));
-    t.throws(() => new SpawnScheduler('threeve', aircraftControllerStub));
-    t.throws(() => new SpawnScheduler(false, aircraftControllerStub));
 });
 
 ava('does not throw when passed valid parameters', (t) => {

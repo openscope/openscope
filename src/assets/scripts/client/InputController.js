@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import AirportController from './airport/AirportController';
 import UiController from './UiController';
 import CommandParser from './commandParser/CommandParser';
 import EventBus from './lib/EventBus';
@@ -823,8 +824,8 @@ export default class InputController {
                 // TODO: it may be better to do this in the parser
                 const airportIcao = commandParser.args[0];
 
-                if (_has(prop.airport.airports, airportIcao)) {
-                    window.airportController.airport_set(airportIcao);
+                if (_has(AirportController.airports, airportIcao)) {
+                    AirportController.airport_set(airportIcao);
                 }
 
                 return true;

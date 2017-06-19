@@ -51,7 +51,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.airportController = null;
         this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
@@ -105,7 +104,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.airportController = null;
         this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
@@ -136,9 +134,7 @@ export default class AppController {
         // The order in which the following classes are instantiated is extremely important. Changing
         // this order could break a lot of things. This interdependency is something we should
         // work on reducing in the future.
-        this.airportController = new AirportController(initialAirportData, airportLoadList);
-        // TODO: Temporary
-        window.airportController = this.airportController;
+        AirportController.init(initialAirportData, airportLoadList);
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
@@ -146,13 +142,13 @@ export default class AppController {
         // TODO: Temporary
         window.aircraftController = this.aircraftController;
 
-        UiController.init(this.$element, this.airportController);
+        UiController.init(this.$element);
 
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
+        this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController);
         this.gameClockView = new GameClockView(this.$element);
 
@@ -253,7 +249,7 @@ export default class AppController {
      * @param nextAirportJson {object}  response or cached object from airport json
      */
     onAirportChange = (nextAirportJson) => {
-        if (!this.airportController.airport.current) {
+        if (!AirportController.current) {
             // if `current` is null, then this is the initial load and we dont need to reset andything
             return;
         }
@@ -266,7 +262,7 @@ export default class AppController {
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);
-        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary, this.airportController);
+        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(
             this.spawnPatternCollection,
             this.aircraftController
@@ -287,7 +283,7 @@ export default class AppController {
      * @method updateViewControls
      */
     updateViewControls() {
-        const { current: airport } = this.airportController;
+        const { current: airport } = AirportController;
 
         this.canvasController.canvas.draw_labels = true;
         this.canvasController.canvas.dirty = true;
