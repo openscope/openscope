@@ -485,10 +485,9 @@ export default class AircraftModel {
         }
 
         const waypointSpeed = waypointModel.speedMaximum;
-        const waypointDistance = this.positionModel.distancetopos(waypointmodel.positionModel);
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
         const speedChange = waypointSpeed - this.speed;
-        // FIXME: Should this be 'x2' or '/2'?
-        const decelerationRate = this.model.rate.decelerate * 2;
+        const decelerationRate = -this.model.rate.decelerate / 2;   // units of rate.decel are 'knots per 2 seconds'
         const decelerationTime = speedChange / decelerationRate;
         const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_SECONDS;
 
@@ -512,7 +511,7 @@ export default class AircraftModel {
         const waypointAltitude = waypointModel.altitudeMaximum;
         const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
         const altitudeChange = waypointAltitude - this.altitude;
-        const descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
         const descentTime = altitudeChange / descentRate;
         const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
 
@@ -1459,29 +1458,29 @@ export default class AircraftModel {
                 if (waypointSpeed > this.speed) {
                     const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
                     const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.maximumSpeed !== -1;
+                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== -1;
 
                     // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
                     if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-                        waypointSpeed = softOrHardRestrictedWaypoint.maximumSpeed;
+                        waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
                     }
 
                     return Math.min(waypointSpeed, this.mcp.speed);
-                } else if (waypointSpeed > this.speed) {
+                } else if (waypointSpeed < this.speed) {
                     if (!this.isBeyondDecelerationPoint) {
                         return;
                     }
 
                     const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
                     const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.minimumSpeed !== -1;
+                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== -1;
 
                     // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
                     if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-                        waypointSpeed = softOrHardRestrictedWaypoint.minimumSpeed;
+                        waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
                     }
 
-                    return Math.max(waypointSpeed, this.mcp.speed);
+                    return Math.min(waypointSpeed, this.mcp.speed);
                 }
 
                 break;
@@ -1557,16 +1556,16 @@ export default class AircraftModel {
                 if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
                     const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
                     const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.maximumAltitude !== -1;
+                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== -1;
 
                     // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
                     if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-                        waypointAltitude = softOrHardRestrictedWaypoint.maximumAltitude;
+                        waypointAltitude = softOrHardRestrictedWaypoint.altitudeMaximum;
                     }
 
                     return Math.min(waypointAltitude, this.mcp.altitude);
                 } else if (this.flightPhase === FLIGHT_PHASE.CRUISE) {
-                    if (!this.isBeyondTopOfDescent()) {
+                    if (!this.isBeyondTopOfDescent) {
                         return;
                     }
 
@@ -1576,11 +1575,11 @@ export default class AircraftModel {
                 } else if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
                     const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
                     const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.minimumAltitude !== -1;
+                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== -1;
 
                     // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
                     if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-                        waypointAltitude = softOrHardRestrictedWaypoint.minimumAltitude;
+                        waypointAltitude = softOrHardRestrictedWaypoint.altitudeMinimum;
                     }
 
                     // TODO: This could be improved by making the descent at the exact rate needed to reach
