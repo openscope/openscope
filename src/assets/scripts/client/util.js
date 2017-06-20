@@ -19,21 +19,6 @@ import { LOG } from './constants/logLevel';
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 /*eslint-disable*/
-// TODO: this should be replaced with lodash _clone()
-function clone(obj) {
-    if (null == obj || 'object' != typeof obj) {
-        return obj;
-    }
-
-    let copy = obj.constructor();
-    for (var attr in obj) {
-        if (_has(obj, attr)) {
-            copy[attr] = obj[attr];
-        }
-    }
-
-    return copy;
-};
 
 // String repetition copied from http://stackoverflow.com/a/5450113
 if (!String.prototype.hasOwnProperty('repeat')) {
@@ -112,36 +97,51 @@ radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// TODO: lodash _compact() might be useful here
-/**
- * Splices all empty elements out of an array
- */
-function array_clean(array, deleteValue) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] === deleteValue) {
-            array.splice(i, 1);
-            i--;
-        }
-    }
-
-    return array;
-}
-
-// TODO: this can be done with .reduce()
-/**
- * Returns the sum of all numerical values in the array
- */
-function array_sum(array) {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-        total += parseFloat(array[i]);
-    }
-
-    return total;
-}
-
 // FIXME: these functions do not appear to be in use
-window.clone = clone;
-window.array_clean = array_clean;
-window.array_sum = array_sum;
+// // TODO: this should be replaced with lodash _clone()
+// function clone(obj) {
+//     if (null == obj || 'object' != typeof obj) {
+//         return obj;
+//     }
+//
+//     let copy = obj.constructor();
+//     for (var attr in obj) {
+//         if (_has(obj, attr)) {
+//             copy[attr] = obj[attr];
+//         }
+//     }
+//
+//     return copy;
+// };
+// // TODO: lodash _compact() might be useful here
+// /**
+//  * Splices all empty elements out of an array
+//  */
+// function array_clean(array, deleteValue) {
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] === deleteValue) {
+//             array.splice(i, 1);
+//             i--;
+//         }
+//     }
+//
+//     return array;
+// }
+//
+// // TODO: this can be done with .reduce()
+// /**
+//  * Returns the sum of all numerical values in the array
+//  */
+// function array_sum(array) {
+//     let total = 0;
+//
+//     for (let i = 0; i < array.length; i++) {
+//         total += parseFloat(array[i]);
+//     }
+//
+//     return total;
+// }
+//
+// window.clone = clone;
+// window.array_clean = array_clean;
+// window.array_sum = array_sum;

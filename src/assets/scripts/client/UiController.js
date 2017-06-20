@@ -118,7 +118,6 @@ class UiController {
      * @method enable
      */
     enable() {
-        // FIXME: these 4 handlers can utilize the `EventBus` with listeners in the `GameController` and `tutorialView`
         this.$toggleTutorial.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));

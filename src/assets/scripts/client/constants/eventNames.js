@@ -29,6 +29,15 @@ export const EVENT = {
     DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
 
     /**
+     * Pause/unpause the app
+     *
+     * @memberof EVENT
+     * @property PAUSE_TOGGLE
+     * @type {string}
+     */
+    PAUSE_TOGGLE: 'pause-toggle',
+
+    /**
      * An aircraft data block was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
@@ -98,11 +107,30 @@ export const EVENT = {
     SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
 
     /**
+     * Step through pre-defined timewarp speeds
      *
+     * @memberof EVENT
+     * @property TIMEWARP_TOGGLE
+     * @type {string}
+     */
+    TIMEWARP_TOGGLE: 'timewarp-toggle',
+
+    /**
+     * Open/close the tutorial modal
      *
      * @memberof EVENT
      * @property TOGGLE_TUTORIAL
      * @type {string}
      */
-    TOGGLE_TUTORIAL: 'toggle-tutorial'
+    TOGGLE_TUTORIAL: 'toggle-tutorial',
+
+    /**
+     * A click has been registered in the unpause button shown within the
+     * screen overlay whil the app is paused
+     *
+     * @memberof EVENT
+     * @property UNPAUSE
+     * @type {string}
+     */
+    UNPAUSE: 'unpause'
 };
