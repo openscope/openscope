@@ -166,6 +166,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
     }
@@ -180,6 +181,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
     }
@@ -483,16 +485,18 @@ export default class AircraftController {
     /**
      * Remove an `AircraftConflict` instance from the list of existing conflicts
      *
+     * May be called via an `EventBus.trigger()`
+     *
      * @for AircraftController
      * @method removeConflict
      * @param  conflict {AircraftConflict} the conflict instance to remove
      */
-    removeConflict(conflict) {
+    removeConflict = (conflict) => {
         conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
         conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
 
         this.conflicts = _without(this.conflicts, conflict);
-    }
+    };
 
     /**
      * Remove any conflicts that involve the specified aircraft

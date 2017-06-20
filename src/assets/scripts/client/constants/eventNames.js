@@ -68,6 +68,15 @@ export const EVENT = {
     REMOVE_AIRCRAFT: 'remove-aircraft',
 
     /**
+     * Remove an `AircraftConflict` for an aircraft
+     *
+     * @memberof EVENT
+     * @property REMOVE_AIRCRAFT_CONFLICT
+     * @type {string}
+     */
+    REMOVE_AIRCRAFT_CONFLICT: 'remove-aircraft-conflict',
+
+    /**
      * An aircraft has been located and needs to be centered in the view
      *
      * @memberof EVENT

@@ -1,7 +1,7 @@
-/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-param-reassign */
 import _includes from 'lodash/includes';
 import _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import UiController from '../UiController';
 import { abs } from '../math/core';
@@ -9,6 +9,7 @@ import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
 import { degreesToRadians } from '../utilities/unitConverters';
 import { SEPARATION } from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
 
 /**
  * Details about aircraft in close proximity in relation to 'the rules'
@@ -17,6 +18,8 @@ import { SEPARATION } from '../constants/aircraftConstants';
  */
 export default class AircraftConflict {
     constructor(first, second) {
+        this._eventBus = EventBus;
+
         this.aircraft = [first, second];
         this.distance = vlen(vsub(first.relativePosition, second.relativePosition));
         this.distance_delta = 0;
@@ -41,8 +44,7 @@ export default class AircraftConflict {
      * @method destroy
      */
     destroy() {
-        // FIXME: this should be moved to an EventBus trigger
-        window.aircraftController.removeConflict(this);
+        this._eventBus.trigger(EVENT.REMOVE_AIRCRAFT_CONFLICT, this);
     }
 
     /**
