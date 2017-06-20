@@ -27,9 +27,12 @@
 - Updates development-workflow-procedures, adds Quick Start guide to README and consolidates all documentation in the `documentation` directory [#418](https://github.com/openscope/openscope/issues/418)
 - Adds tests and verifies functionality of non-procedural departures and arrivals (support for direct route strings) [#434](https://github.com/openscope/openscope/issues/434)
 - Adds unique transponder and CID generation methods [#483](https://github.com/openscope/openscope/issues/483)
+- Abstracts non game loop logic into new class `AppController`, which provides facade methods for `App` to call during game loop [#137](https://github.com/openscope/openscope/issues/137)
 - Converts `AirportController`, `GameController` and `UiController` to static classes [#72](https://github.com/openscope/openscope/issues/72)
     - updates `window` references to these classes
     - updates `prop` references to these classes
+
+
 
 
 
