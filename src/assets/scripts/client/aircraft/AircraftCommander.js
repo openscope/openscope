@@ -677,7 +677,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runDelete(aircraft) {
-        // TODO: this should be moved to an EventBus trigger
+        // FIXME: this should be moved to an EventBus trigger
         window.aircraftController.aircraft_remove(aircraft);
     }
 
