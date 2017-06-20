@@ -1,6 +1,7 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
 import UiController from '../UiController';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
@@ -16,6 +17,7 @@ import {
     FLIGHT_CATEGORY,
     PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
 
 /**
  * Enum of commands and thier corresponding function.
@@ -677,8 +679,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runDelete(aircraft) {
-        // FIXME: this should be moved to an EventBus trigger
-        window.aircraftController.aircraft_remove(aircraft);
+        this._eventBus.trigger(EVENT.REMOVE_AIRCRAFT, aircraft);
     }
 
     /**

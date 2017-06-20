@@ -57,6 +57,17 @@ export const EVENT = {
     STRIP_DOUBLE_CLICK: 'strip-double-click',
 
     /**
+     * Remove an aircraft from the sim
+     *
+     * Usually as a result of the `del` user command
+     *
+     * @memberof EVENT
+     * @property REMOVE_AIRCRAFT
+     * @type {string}
+     */
+    REMOVE_AIRCRAFT: 'remove-aircraft',
+
+    /**
      * An aircraft has been located and needs to be centered in the view
      *
      * @memberof EVENT

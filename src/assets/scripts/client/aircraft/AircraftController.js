@@ -165,6 +165,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
 
         return this;
     }
@@ -178,6 +179,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
 
         return this;
     }
