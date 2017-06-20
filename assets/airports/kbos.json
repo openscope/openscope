@@ -700,7 +700,7 @@
                 "PROVI": ["PROVI", "IYANA", "KLEBB", ["SOBAH", "A150+"], ["LONEY", "A110+"], "RODEE"],
                 "RIFLE": ["RIFLE", "KYSKY", "CUTOX", "CUJKE", "FERNZ", ["LONEY", "A110+"], "RODEE"]
             },
-            "body": [["EURRO", "A100+|S270"], ["OOSHN", "A90+|A140-|S250"]],
+            "body": [["EURRO", "A100+"], ["OOSHN", "A90+|A140-|S250"]],
             "rwy": {
                 "4R": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
                 "4L": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
@@ -732,7 +732,7 @@
                 "JFK": ["JFK", "NEWES", ["FEXXX", "A230"]],
                 "MERIT": ["MERIT"]
             },
-            "body": [["RUIZE", "A230-|A210+"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
+            "body": [["RUIZE", "A210+|A230-"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
             "rwy": {
                 "4R": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["NUNZO", "A60|S210"]],
                 "4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]], 
