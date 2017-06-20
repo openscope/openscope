@@ -643,7 +643,7 @@
             "entryPoints": {
                 "TXSAS": ["TXSAS", "TELRE", "DLINE"]
             },
-            "body": [["UUTEP", "A140-"], "MYNRS", ["BEAHR", "A80|S210"]],
+            "body": [["UUTEP", "A120+|A140-"], "MYNRS", ["BEAHR", "A80|S210"]],
             "rwy": {
                 "4": [],
                 "8R": [],
@@ -670,7 +670,7 @@
                 "GREBE": ["GREBE", ["JEVOS", "A330+"], ["CIRKA", "A240+"]],
                 "TEEES": [["TEEES", "A330+"], ["JOMUB", "A240+"]]
             },
-            "body": [["WANAB", "A170-"], "WOBEN", ["MOLLY", "A130-"]],
+            "body": [["WANAB", "A140+|A170-"], "WOBEN", ["MOLLY", "A110+|A130-"]],
             "rwy": {
                 "4": [["KOACH", "A80|S210"]],
                 "8R": [["KOACH", "A80|S210"]],
@@ -683,10 +683,10 @@
             "icao": "SAMMR3",
             "name": "Sammer Three",
             "entryPoints": {
-                "CME": ["CME", "RIICK", "ZIPPI", "BGBND", ["BLYSS", "A140-"]],
-                "LIFFT": ["LIFFT", "CABOL", ["ZATSA", "A200+"], ["SKIIR", "A200-"]]
+                "CME": ["CME", "RIICK", "ZIPPI", "BGBND", ["BLYSS", "A130+|A140-"]],
+                "LIFFT": ["LIFFT", "CABOL", ["ZATSA", "A200+"], ["SKIIR", "A150+|A200-"]]
             },
-            "body": [["SAMMR", "A100-"], ["SARRT", "A80|S210"]],
+            "body": [["SAMMR", "A90+|A100-"], ["SARRT", "A80|S210"]],
             "rwy": {
                 "4": [],
                 "8R": [],
@@ -701,7 +701,7 @@
             "entryPoints": {
                 "SLNNK": ["SLNNK", "BOATY", ["SEKBE", "A190+|S280"]]
             },
-            "body": [["WAZKO", "A130-"]],
+            "body": [["WAZKO", "A110+|A130-"]],
             "rwy": {
                 "4": [["KOACH", "A80|S210"]],
                 "8R": [["KOACH", "A80|S210"]],
