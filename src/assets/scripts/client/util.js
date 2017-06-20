@@ -141,6 +141,7 @@ function array_sum(array) {
     return total;
 }
 
+// FIXME: these functions do not appear to be in use
 window.clone = clone;
 window.array_clean = array_clean;
 window.array_sum = array_sum;
