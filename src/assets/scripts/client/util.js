@@ -92,10 +92,10 @@ window.log = log;
 /*eslint-enable*/
 
 // TODO: is this being used? and why are we cloning radio_names here?
-const radio_runway_names = clone(radio_names);
-radio_runway_names.l = 'left';
-radio_runway_names.c = 'center';
-radio_runway_names.r = 'right';
+// const radio_runway_names = clone(radio_names);
+// radio_runway_names.l = 'left';
+// radio_runway_names.c = 'center';
+// radio_runway_names.r = 'right';
 
 // FIXME: these functions do not appear to be in use
 // // TODO: this should be replaced with lodash _clone()

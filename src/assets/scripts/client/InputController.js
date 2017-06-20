@@ -94,17 +94,18 @@ export default class InputController {
      * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
      *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander, aircraftController) {
+    constructor($element, aircraftCommander, aircraftController, tutorialView) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
         this.$sidebar = null;
 
+        this._eventBus = EventBus;
         this._aircraftCommander = aircraftCommander;
         this._aircraftController = aircraftController;
+        this._tutorialView = tutorialView;
 
-        this._eventBus = EventBus;
 
         prop.input = input;
         this.input = input;
@@ -346,7 +347,7 @@ export default class InputController {
 
         if (event.which === KEY_CODES.ESCAPE) {
             if (prop.tutorial.open) {
-                window.tutorialView.tutorial_close();
+                this._tutorialView.tutorial_close();
             } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
                 UiController.ui_airport_close();
             }
@@ -371,10 +372,10 @@ export default class InputController {
         }
 
         if (event.which === KEY_CODES.PAGE_UP) {
-            window.tutorialView.tutorial_prev();
+            this._tutorialView.tutorial_prev();
             event.preventDefault();
         } else if (event.which === KEY_CODES.PAGE_DOWN) {
-            window.tutorialView.tutorial_next();
+            this._tutorialView.tutorial_next();
             event.preventDefault();
         }
     }
@@ -785,7 +786,7 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.TUTORIAL:
-                window.tutorialView.tutorial_toggle();
+                this._tutorialView.tutorial_toggle();
 
                 return true;
 

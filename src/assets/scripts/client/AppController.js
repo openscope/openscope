@@ -139,7 +139,10 @@ export default class AppController {
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
-        // TODO: Temporary
+        // TEMPORARY!
+        // some instances are attached to the window here as an intermediate step away from global functions.
+        // this allows for any module file to call window.{module}.{method} and will make the transition to
+        // explicit instance parameters easier.
         window.aircraftController = this.aircraftController;
 
         UiController.init(this.$element);
@@ -149,14 +152,8 @@ export default class AppController {
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.tutorialView);
         this.gameClockView = new GameClockView(this.$element);
-
-        // TEMPORARY!
-        // these instances are attached to the window here as an intermediate step away from global functions.
-        // this allows for any module file to call window.{module}.{method} and will make the transition to
-        // explicit instance parameters easier.
-        window.tutorialView = this.tutorialView;
 
         this.updateViewControls();
     }
