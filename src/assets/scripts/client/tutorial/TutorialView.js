@@ -1,6 +1,7 @@
 /* eslint-disable max-len, no-undef, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
+import AirportController from '../airport/AirportController';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
 import { time } from '../utilities/timeHelpers';
@@ -310,7 +311,7 @@ export default class TutorialView {
                 }
 
                 return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign)
-                        .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
+                        .replace('{INIT_ALT}', AirportController.airport_get().initial_alt)
                         .replace('{SID_NAME}', prop.aircraft.list[0].destination);
             },
             side: 'left',

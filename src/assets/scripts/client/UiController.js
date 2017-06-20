@@ -4,16 +4,14 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
-import _startCase from 'lodash/startCase';
+import GameController from './game/GameController';
+import AirportController from './airport/AirportController';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/colors/themes';
-
-// Temporary const declaration here to attach to the window AND use as internal property
-const ui = {};
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -39,17 +37,12 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 /**
  * @class UiController
  */
-export default class UiController {
+class UiController {
     /**
      * @constructor
-     * @param $element
-     * @param
      */
-    constructor($element, gameController, airportController) {
-        this.$element = $element;
-        this._gameController = gameController;
-        this._airportController = airportController;
-
+    constructor() {
+        this.$element = null;
         this.$airportList = null;
         this.$airportListNotes = null;
         this.$toggleTutorial = null;
@@ -64,26 +57,26 @@ export default class UiController {
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
 
-        prop.ui = ui;
-        this.ui = ui;
-        this.ui.scale_default = 8; // pixels per km
-        this.ui.scale_max = 80; // max scale
-        this.ui.scale_min = 1; // min scale
-        this.ui.scale = this.ui.scale_default;
+        this.scale_default = 8; // pixels per km
+        this.scale_max = 80; // max scale
+        this.scale_min = 1; // min scale
+        this.scale = this.scale_default;
         // TODO: This belongs in the CanvasController, not UiController
-        this.ui.terrain = THEME.DEFAULT.TERRAIN;
-
-
-        return this._init()
-            .setupHandlers()
-            .enable();
+        this.terrain = THEME.DEFAULT.TERRAIN;
     }
 
     /**
+     * Initialization method
+     *
+     * Called from the `AppController` after instantiation of the `AircraftController`
+     *
      * @for UiController
-     * @method _init
+     * @method init
+     * @param $element {jQuery Element}
      */
-    _init() {
+    init($element) {
+        this.$element = $element;
+
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
         this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -99,7 +92,8 @@ export default class UiController {
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
 
-        return this;
+        return this.setupHandlers()
+            .enable();
     }
 
     /**
@@ -121,9 +115,9 @@ export default class UiController {
      */
     enable() {
         this.$toggleTutorial.on('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.on('click', (event) => this._gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.on('click', (event) => this._gameController.game_pause_toggle(event));
-        this.$pausedImg.on('click', (event) => this._gameController.game_unpause(event));
+        this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
+        this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
@@ -144,9 +138,9 @@ export default class UiController {
      */
     disable() {
         this.$toggleTutorial.off('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.off('click', (event) => this._gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.off('click', (event) => this._gameController.game_pause_toggle(event));
-        this.$pausedImg.off('click', (event) => this._gameController.game_unpause(event));
+        this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
+        this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
@@ -182,11 +176,11 @@ export default class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = -1;
-        this.ui.scale_max = -1;
-        this.ui.scale_min = -1;
-        this.ui.scale = -1;
-        this.ui.terrain = {};
+        this.scale_default = -1;
+        this.scale_max = -1;
+        this.scale_min = -1;
+        this.scale = -1;
+        this.terrain = {};
 
 
         return this;
@@ -197,12 +191,11 @@ export default class UiController {
      * @method ui_init_pre
      */
     ui_init_pre() {
-        this.ui = ui;
-        this.ui.scale_default = 8; // pixels per km
-        this.ui.scale_max = 80; // max scale
-        this.ui.scale_min = 1; // min scale
-        this.ui.scale = this.ui.scale_default;
-        this.ui.terrain = THEME.DEFAULT.TERRAIN;
+        this.scale_default = 8; // pixels per km
+        this.scale_max = 80; // max scale
+        this.scale_min = 1; // min scale
+        this.scale = this.scale_default;
+        this.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
@@ -215,7 +208,7 @@ export default class UiController {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
         const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
-        const descriptions = this._gameController.game.option.getDescriptions();
+        const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
             if (opt.type !== 'select') {
@@ -244,7 +237,7 @@ export default class UiController {
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
-        const selectedOption = this._gameController.game.option.get(option.name);
+        const selectedOption = GameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -257,7 +250,7 @@ export default class UiController {
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            this._gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            GameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
 
             if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
                 this._buildAirportList();
@@ -301,8 +294,8 @@ export default class UiController {
      * @paam event {jquery event}
      */
     onClickAirportListItemHandler(event) {
-        if (event.data !== this._airportController.airport_get().icao) {
-            this._airportController.airport_set(event.data);
+        if (event.data !== AirportController.airport_get().icao) {
+            AirportController.airport_set(event.data);
             this.ui_airport_close();
         }
     }
@@ -347,12 +340,12 @@ export default class UiController {
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportList.empty();
 
-        const airports = _keys(this._airportController.airport.airports).sort();
-        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+        const airports = _keys(AirportController.airports).sort();
+        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
 
         for (let i = 0; i < airports.length; i++) {
-            const { name, icao, level, wip } = this._airportController.airport.airports[airports[i]];
+            const { name, icao, level, wip } = AirportController.airports[airports[i]];
 
             if (!shouldShowWipAirports && wip) {
                 continue;
@@ -366,8 +359,8 @@ export default class UiController {
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
-                if (event.data !== this._airportController.airport_get().icao) {
-                    this._airportController.airport_set(event.data);
+                if (event.data !== AirportController.airport_get().icao) {
+                    AirportController.airport_set(event.data);
                     this.ui_airport_close();
                 }
             });
@@ -429,7 +422,7 @@ export default class UiController {
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportListNotes.empty();
 
-        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
 
         if (!shouldShowWipAirports) {
             const notes = $('<span class="words">Additional work-in-progress airports can be activated in the settings menu</span>');
@@ -453,7 +446,7 @@ export default class UiController {
      * @return {number}
      */
     px_to_km(pixels) {
-        return pixels / this.ui.scale;
+        return pixels / this.scale;
     }
 
     // TODO: this function should live in a helper file somewhere
@@ -464,7 +457,7 @@ export default class UiController {
      * @return {number}
      */
     km_to_px(kilometers) {
-        return kilometers * this.ui.scale;
+        return kilometers * this.scale;
     }
 
     /**
@@ -472,7 +465,7 @@ export default class UiController {
      * @method ui_after_zoom
      */
     ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = this.ui.scale;
+        localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
         prop.canvas.dirty = true;
     }
 
@@ -486,10 +479,10 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.ui.scale *= 0.9;
+        this.scale *= 0.9;
 
-        if (this.ui.scale < this.ui.scale_min) {
-            this.ui.scale = this.ui.scale_min;
+        if (this.scale < this.scale_min) {
+            this.scale = this.scale_min;
         }
 
         this.ui_after_zoom();
@@ -508,9 +501,9 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.ui.scale /= 0.9;
-        if (this.ui.scale > this.ui.scale_max) {
-            this.ui.scale = this.ui.scale_max;
+        this.scale /= 0.9;
+        if (this.scale > this.scale_max) {
+            this.scale = this.scale_max;
         }
 
         this.ui_after_zoom();
@@ -524,7 +517,7 @@ export default class UiController {
      * @method ui_zoom_reset
      */
     ui_zoom_reset() {
-        this.ui.scale = this.ui.scale_default;
+        this.scale = this.scale_default;
 
         this.ui_after_zoom();
     }
@@ -544,7 +537,7 @@ export default class UiController {
         $log.append(html);
         $log.scrollTop($log.get(0).scrollHeight);
 
-        this._gameController.game_timeout((uiLogView) => {
+        GameController.game_timeout((uiLogView) => {
             uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
             setTimeout(() => {
@@ -567,7 +560,7 @@ export default class UiController {
             $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
 
-        const icao = this._airportController.airport_get().icao.toLowerCase();
+        const icao = AirportController.airport_get().icao.toLowerCase();
         $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -662,6 +655,8 @@ export default class UiController {
             return;
         }
 
-        this.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+        this.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }
+
+export default new UiController();

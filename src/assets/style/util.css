@@ -11,3 +11,11 @@
             user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
+
+.u-float-left {
+    float: left;
+}
+
+.u-float-right {
+    float: right;
+}

@@ -271,22 +271,6 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 };
 
 /**
- * Determines if and where two runways will intersect.
- * Note: Please pass ONLY the runway identifier (eg '28r')
- */
-// const runwaysIntersect = (rwy1_name, rwy2_name) => {
-//     const airport = window.airportController.airport_get();
-//
-//     return raysIntersect(
-//         airport.getRunway(rwy1_name).relativePosition,
-//         airport.getRunway(rwy1_name).angle,
-//         airport.getRunway(rwy2_name).relativePosition,
-//         airport.getRunway(rwy2_name).angle,
-//         9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
-//     );
-// };
-
-/**
  * 'Flips' vector's Y component in direction
  * Helper function for culebron's poly edge vector functions
  */

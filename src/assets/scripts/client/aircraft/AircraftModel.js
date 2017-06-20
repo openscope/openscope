@@ -4,8 +4,10 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _random from 'lodash/random';
 import _uniqueId from 'lodash/uniqueId';
+import AirportController from '../airport/AirportController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
@@ -52,7 +54,6 @@ import {
     AIRPORT_CONSTANTS,
     AIRPORT_CONTROL_POSITION_NAME
 } from '../constants/airportConstants';
-import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import { TIME } from '../constants/globalConstants';
 
@@ -79,26 +80,163 @@ export default class AircraftModel {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(options = {}, navigationLibrary) {
-        /* eslint-disable no-multi-spaces*/
+        /**
+         * Unique id
+         *
+         * Useful for debugging
+         *
+         * @property id
+         * @type {string}
+         */
         this.id = _uniqueId('aircraft-');
+
+        /**
+         * Reference to the `NavigationLibrary`
+         *
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
-        this.positionModel = null;       // Aircraft Position
-        this.model        = null;       // Aircraft type
-        this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
+
+        /**
+         * Aircraft Position
+         *
+         * @property positionModel
+         * @type {DynamicPositionModel|null}
+         */
+        this.positionModel = null;
+
+        /**
+         * @property model
+         * @type {AircraftTypeDefinitionModel|null}
+         * @default null
+         */
+        this.model = null;
+
+        /**
+         * Airline Identifier (eg. 'AAL')
+         *
+         * @property airlineId
+         * @type {string}
+         * @default ''
+         */
+        this.airlineId = '';
+
+        /**
+         * @property airlineCallsign
+         * @type {string}
+         * @default ''
+         */
         this.airlineCallsign = '';
-        this.flightNumber = '';         // Flight Number ONLY (eg. '551')
-        // FIXME: temporary inclusion, should be removed before merging to develop
-        this.transponderCode = _random(1201, 5999);
-        this.heading      = 0;          // Magnetic Heading
-        this.altitude     = 0;          // Altitude, ft MSL
-        this.speed        = 0;          // Indicated Airspeed (IAS), knots
-        this.groundSpeed  = 0;          // Groundspeed (GS), knots
-        this.groundTrack  = 0;          //
-        this.takeoffTime  = 0;          //
-        this.approachOffset = 0;        // Distance laterally from the approach path
-        this.approachDistance = 0;      // Distance longitudinally from the threshold
-        this.radial       = 0;          // Angle from airport center to aircraft
-        this.distance     = 0;          //
+
+        /**
+         * Flight Number ONLY (eg. '551')
+         *
+         * @property flightNumber
+         * @type {string}
+         * @default ''
+         */
+        this.flightNumber = '';
+
+        /**
+         * Trasponder code
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @property transponderCode
+         * @type {number}
+         * @default 1200
+         */
+        this.transponderCode = 1200;
+
+        /**
+         * Magnetic Heading
+         *
+         * @property heading
+         * @type {number}
+         * @default 0
+         */
+        this.heading = 0;
+
+        /**
+         * Altitude, ft MSL
+         *
+         * @property altitude
+         * @type {number}
+         * @default 0
+         */
+        this.altitude = 0;
+
+        /**
+         * Indicated Airspeed (IAS), knots
+         *
+         * @property speed
+         * @type {number}
+         * @default 0
+         */
+        this.speed = 0;
+
+        /**
+         * Groundspeed (GS), knots
+         *
+         * @property groundSpeed
+         * @type {number}
+         * @default 0
+         */
+        this.groundSpeed = 0;
+
+        /**
+         * @property groundTrack
+         * @type {number}
+         * @default 0
+         */
+        this.groundTrack = 0;
+
+        /**
+         * Game time takeoff occurred
+         *
+         * @property takeoffTime
+         * @type {number}
+         * @default 0
+         */
+        this.takeoffTime = 0;
+
+        /**
+         * Distance laterally from the approach path
+         *
+         * @property approachOffset
+         * @type {number}
+         * @default 0
+         */
+        this.approachOffset = 0;
+
+        /**
+         * Distance longitudinally from the threshold
+         *
+         * @property approachDistance
+         * @type {number}
+         * @default 0
+         */
+        this.approachDistance = 0;
+
+        /**
+         * Angle from airport center to aircraft
+         *
+         * @property radial
+         * @type {number}
+         * @default 0
+         */
+        this.radial = 0;
+
+        /**
+         * Distance from the airport
+         *
+         * @property distance
+         * @type {number}
+         * @default 0
+         */
+        this.distance = 0;
 
         /**
          * The origin ariport for an aircraft
@@ -122,18 +260,115 @@ export default class AircraftModel {
          */
         this.destination = '';
 
-        this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
-        this.history      = [];         // Array of previous positions
-        this.restricted   = { list: [] };
-        this.notice       = false;      // Whether aircraft
-        this.warning      = false;      //
-        this.hit          = false;      // Whether aircraft has crashed
-        this.taxi_start   = 0;          //
-        this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
-        this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
-        this.inside_ctr   = false;      // Inside ATC Airspace
-        this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
-        this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
+        /**
+         * Indicator of descent/level/climb (-1, 0, or 1)
+         *
+         * @property trend
+         * @type {number}
+         * @default 0
+         */
+        this.trend = 0;
+
+        /**
+         * Array of previous positions
+         *
+         * @property history
+         * @type <array<array<number>>>
+         * @default []
+         */
+        this.history = [];
+
+        /**
+         * @property restricted
+         * @type {object}
+         * @default { list: [] }
+         */
+        this.restricted = { list: [] };
+
+        /**
+         * @property notice
+         * @type {boolean}
+         * @default false
+         */
+        this.notice = false;
+
+        /**
+         * @property warning
+         * @type {boolean}
+         * @default false
+         */
+        this.warning = false;
+
+
+        /**
+         * Whether aircraft has crashed
+         *
+         * @property hit
+         * @type {boolean}
+         * @default false
+         */
+        this.hit = false;
+
+        /**
+         * Game time an aircraft starts the taxi
+         *
+         * @property taxi_start
+         * @type {number}
+         * @default 0
+         */
+        this.taxi_start = 0;
+
+        /**
+         * Time spent taxiing to the runway. *NOTE* this should be INCREASED
+         * to around 60 once the taxi vs LUAW issue is resolved (#406)
+         *
+         * @property taxi_time
+         * @type {number}
+         * @default 3
+         */
+        this.taxi_time = 3;
+
+        /**
+         * Either IFR or VFR (Instrument/Visual Flight Rules)
+         *
+         * @property rules
+         * @type {FLIGHT_RULES}
+         * @default FLIGHT_RULES.IFR
+         */
+        this.rules = FLIGHT_RULES.IFR;
+
+        /**
+         * Inside ATC Airspace
+         *
+         * @property inside_ctr
+         * @type {boolean}
+         * @default false
+         */
+        this.inside_ctr = false;
+
+        /**
+         * Direction the data block points (-1 means to ignore)
+         *
+         * @property datablockDir
+         * @type {number}
+         * @default -1
+         */
+        this.datablockDir = -1;
+
+        /**
+         * List of aircraft that MAY be in conflict (bounding box)
+         *
+         * @property conflicts
+         * @type {object}
+         * @default {}
+         */
+        this.conflicts = {};
+
+        /**
+         * @property terrain_ranges
+         * @type {boolean}
+         * @default false
+         */
         this.terrain_ranges = false;
 
         /**
@@ -162,8 +397,6 @@ export default class AircraftModel {
          * @default false
          */
         this.isRemovable = false;
-
-        /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
         // Should be checked before updating global state such as score
@@ -195,7 +428,7 @@ export default class AircraftModel {
         };
 
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
-            ? window.gameController.game_time()
+            ? GameController.game_time()
             : null;
 
         this.buildCurrentTerrainRanges();
@@ -281,7 +514,7 @@ export default class AircraftModel {
      * @method buildRestrictedAreaLinks
      */
     buildRestrictedAreaLinks() {
-        const restrictedAreas = prop.airport.current.restricted_areas;
+        const restrictedAreas = AirportController.current.restricted_areas;
 
         _forEach(restrictedAreas, (area) => {
             this.restricted.list.push({
@@ -293,25 +526,25 @@ export default class AircraftModel {
     }
 
     parse(data) {
-        // TODO: the `_get()` below are doing the same thing as a `_defaultTo()` would do
-        this.positionModel = _get(data, 'positionModel', this.positionModel);
-        this.model = _get(data, 'model', this.model);
-        this.airlineId = _get(data, 'airline', this.airlineId);
-        this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
-        this.flightNumber = _get(data, 'callsign', this.flightNumber);
-        this.category = _get(data, 'category', this.category);
-        this.heading = _get(data, 'heading', this.heading);
-        this.altitude = _get(data, 'altitude', this.altitude);
-        this.speed = _get(data, 'speed', this.speed);
+        this.positionModel = data.positionModel;
+        this.transponderCode = data.transponderCode;
+        this.model = data.model;
+        this.airlineId = data.airline;
+        this.airlineCallsign = data.airlineCallsign;
+        this.flightNumber = data.callsign;
+        this.category = data.category;
+        this.heading = data.heading;
+        this.altitude = data.altitude;
+        this.speed = data.speed;
         this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
 
-        // TODO: this assumes and arrival spawns outside the airspace
+        // this assumes arrivals always spawn outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const initialRunway = airport.getActiveRunwayForCategory(this.category);
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
@@ -411,13 +644,13 @@ export default class AircraftModel {
                 AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
                 true
             );
-            window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
 
             return;
         }
 
         this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
     }
 
     /**
@@ -429,7 +662,7 @@ export default class AircraftModel {
     arrivalExit() {
         this.setIsRemovable();
         this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
     }
 
     /**
@@ -636,7 +869,7 @@ export default class AircraftModel {
      */
     isOnGround() {
         const errorAllowanceInFeet = 5;
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
@@ -729,7 +962,7 @@ export default class AircraftModel {
             head: 0
         };
 
-        const { wind } = window.airportController.airport_get();
+        const { wind } = AirportController.airport_get();
         // const wind = airport.wind;
         const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
@@ -772,19 +1005,19 @@ export default class AircraftModel {
         const callsign_S = this.getRadioCallsign();
 
         if (sectorType) {
-            call += window.airportController.airport_get().radio[sectorType];
+            call += AirportController.airport_get().radio[sectorType];
         }
 
         // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
-        const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+        const logMessage = (callsign) => `${AirportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
 
         if (alert) {
             const isWarning = true;
-            window.uiController.ui_log(logMessage(callsign_L), isWarning);
+            UiController.ui_log(logMessage(callsign_L), isWarning);
         } else {
-            window.uiController.ui_log(logMessage(callsign_L));
+            UiController.ui_log(logMessage(callsign_L));
         }
 
         speech_say([{
@@ -818,18 +1051,18 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
             speech_say([
-                { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
+                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
                 { type: 'callsign', content: this },
                 { type: 'text', content: `with you ${alt_say}` }
             ]);
         }
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
+            UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
-                { type: 'text', content: window.airportController.airport_get().radio.twr },
+                { type: 'text', content: AirportController.airport_get().radio.twr },
                 { type: 'callsign', content: this },
                 { type: 'text', content: ', ready to taxi' }
             ]);
@@ -849,19 +1082,19 @@ export default class AircraftModel {
 
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
-            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
         } else if (components.cross >= 10) {
-            window.gameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
         }
 
         if (components.head <= -10) {
-            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
         } else if (components.head <= -1) {
-            window.gameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
         }
 
         return score;
@@ -1018,7 +1251,7 @@ export default class AircraftModel {
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
-                const elapsed = window.gameController.game_time() - this.taxi_start;
+                const elapsed = GameController.game_time() - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
                     this.setFlightPhase(FLIGHT_PHASE.WAITING);
@@ -1346,8 +1579,8 @@ export default class AircraftModel {
 
             const isWarning = true;
             // TODO: Should be moved to where the output is handled
-            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.GO_AROUND);
+            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
 
             speech_say([
                 { type: 'callsign', content: this },
@@ -1364,8 +1597,8 @@ export default class AircraftModel {
     warnInterceptAngle() {
         const isWarning = true;
 
-        window.uiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
-        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
+        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     /**
@@ -1423,7 +1656,7 @@ export default class AircraftModel {
         const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
-        const gameTime = window.gameController.game.time;
+        const gameTime = GameController.game.time;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = hold.timer !== invalidTimerValue;
         const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
@@ -1549,7 +1782,7 @@ export default class AircraftModel {
 
         if (this.hit) {
             // 90fps fall rate?...
-            this.altitude -= 90 * window.gameController.game_delta();
+            this.altitude -= 90 * GameController.game_delta();
             this.speed *= 0.99;
 
             return;
@@ -1571,11 +1804,11 @@ export default class AircraftModel {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
-                window.gameController.game_time() / window.gameController.game_speedup()
+                GameController.game_time() / GameController.game_speedup()
             ]);
             // TODO: this can be abstracted
-        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / window.gameController.game_speedup()) {
-            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
+        } else if (abs((GameController.game_time() / GameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
+            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], GameController.game_time() / GameController.game_speedup()]);
         }
 
         this.updateGroundSpeedPhysics();
@@ -1584,7 +1817,7 @@ export default class AircraftModel {
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
 
         // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
 
         if (isInsideAirspace !== this.inside_ctr) {
             this.crossBoundary(isInsideAirspace);
@@ -1604,7 +1837,7 @@ export default class AircraftModel {
             return;
         }
 
-        const secondsElapsed = window.gameController.game_delta();
+        const secondsElapsed = GameController.game_delta();
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
@@ -1662,7 +1895,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetDescended = feetPerSecond * window.gameController.game_delta();
+        const feetDescended = feetPerSecond * GameController.game_delta();
 
         if (abs(altitude_diff) < feetDescended) {
             this.altitude = this.target.altitude;
@@ -1688,7 +1921,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetClimbed = feetPerSecond * window.gameController.game_delta();
+        const feetClimbed = feetPerSecond * GameController.game_delta();
 
 
         if (abs(altitude_diff) < abs(feetClimbed)) {
@@ -1715,13 +1948,13 @@ export default class AircraftModel {
         }
 
         if (this.speed > this.target.speed) {
-            speedChange = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
+            speedChange = -this.model.rate.decelerate * GameController.game_delta() / 2;
 
             if (this.isOnGround()) {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
+            speedChange  = this.model.rate.accelerate * GameController.game_delta() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
@@ -1750,7 +1983,7 @@ export default class AircraftModel {
 
         // Calculate wind vector
         const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
-        const wind = window.airportController.airport_get().wind;
+        const wind = AirportController.airport_get().wind;
         const windTravelDirection = wind.angle + Math.PI;
         const windTravelSpeedAtSurface = wind.speed;
         const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
@@ -1762,7 +1995,7 @@ export default class AircraftModel {
         const groundSpeed = vlen(flightPathVector);
 
         // Calculate new position
-        const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
         const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
@@ -1787,7 +2020,7 @@ export default class AircraftModel {
         //     // TODO: this should be abstracted to a helper function
         //     vector = vadd(vscale(
         //         vturn(wind.angle + Math.PI),
-        //         wind.speed * 0.000514444 * window.gameController.game_delta()),
+        //         wind.speed * 0.000514444 * GameController.game_delta()),
         //         vscale(vturn(angle + crab_angle), trueAirSpeed)
         //     );
         // }
@@ -1803,7 +2036,7 @@ export default class AircraftModel {
      * @deprecated
      */
     updateSimpleGroundSpeedPhysics() {
-        // const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        // const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
         // const distanceTraveled_nm = this.speed * hoursElapsed;
         //
         // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
@@ -1867,7 +2100,7 @@ export default class AircraftModel {
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
-                        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+                        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
                         area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
                         // speed is kts, range is km.
                         // if a plane got into restricted area, don't check it too often
@@ -1890,7 +2123,7 @@ export default class AircraftModel {
         }
 
         if (this.terrain_ranges && !this.isOnGround()) {
-            const terrain = prop.airport.current.terrain;
+            const terrain = AirportController.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
             let curr_ranges = this.terrain_ranges[ele];
@@ -1919,13 +2152,13 @@ export default class AircraftModel {
 
                             console.log('hit terrain');
                             const isWarning = true;
-                            window.uiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
+                            UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
                                 { type: 'callsign', content: this },
                                 { type: 'text', content: ', we\'re going down!' }
                             ]);
 
-                            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
+                            GameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);

@@ -52,12 +52,11 @@ export const GAME_EVENTS = {
 /**
  * @class GameController
  */
-export default class GameController {
+class GameController {
     /**
      * @constructor
      */
-    constructor(getDeltaTime) {
-        this.getDeltaTime = getDeltaTime;
+    constructor() {
         this.game = game;
         this.game.paused = true;
         this.game.focused = true;
@@ -77,7 +76,8 @@ export default class GameController {
      * @for GameController
      * @method init_pre
      */
-    init_pre() {
+    init_pre(getDeltaTime) {
+        this.getDeltaTime = getDeltaTime;
         this.setupHandlers();
         this.initializeEventCount();
     }
@@ -420,3 +420,5 @@ export default class GameController {
         return parseFloat(currentPtlVal);
     }
 }
+
+export default new GameController();
