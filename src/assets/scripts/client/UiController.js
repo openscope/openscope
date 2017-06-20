@@ -4,10 +4,12 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
+import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import AirportController from './airport/AirportController';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
+import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
@@ -42,6 +44,8 @@ class UiController {
      * @constructor
      */
     constructor() {
+        this._eventBus = EventBus;
+
         this.$element = null;
         this.$airportList = null;
         this.$airportListNotes = null;
@@ -115,7 +119,7 @@ class UiController {
      */
     enable() {
         // FIXME: these 4 handlers can utilize the `EventBus` with listeners in the `GameController` and `tutorialView`
-        this.$toggleTutorial.on('click', (event) => window.tutorialView.tutorial_toggle(event));
+        this.$toggleTutorial.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -138,7 +142,7 @@ class UiController {
      * @method disable
      */
     disable() {
-        this.$toggleTutorial.off('click', (event) => window.tutorialView.tutorial_toggle(event));
+        this.$toggleTutorial.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));

@@ -95,5 +95,14 @@ export const EVENT = {
      * @property SHOULD_PAUSE_UPDATE_LOOP
      * @type {string}
      */
-    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop'
+    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
+
+    /**
+     *
+     *
+     * @memberof EVENT
+     * @property TOGGLE_TUTORIAL
+     * @type {string}
+     */
+    TOGGLE_TUTORIAL: 'toggle-tutorial'
 };
