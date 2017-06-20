@@ -1,26 +1,60 @@
 /* eslint-disable no-continue */
 import _find from 'lodash/find';
 import _get from 'lodash/get';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
+import _random from 'lodash/random';
 import _without from 'lodash/without';
+import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
-import AircraftInstanceModel from './AircraftInstanceModel';
+import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
+import StripViewController from './StripView/StripViewController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
-import { abs } from '../math/core';
+import {
+    abs,
+    generateRandomOctalWithLength
+} from '../math/core';
 import { distance2d } from '../math/distance';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
+import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
+import { REGEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
+
+/**
+ * List of transponder codes that are invalid for random assignment
+ *
+ * This enum should be used only during the generation of
+ * `AircraftModel` objects.
+ *
+ * The codes listed should still be assignable at the
+ * controler's discretion
+ *
+ * @property RESERVED_SQUAWK_CODES
+ * @type {array<number>}
+ * @final
+ */
+const RESERVED_SQUAWK_CODES = [
+    // VFR
+    1200,
+    // gliders
+    1202,
+    // hijack
+    7500,
+    // communication failure
+    7600,
+    // emergency
+    7700,
+    // military
+    7777
+];
 
 /**
  *
@@ -36,7 +70,7 @@ export default class AircraftController {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
                 `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
@@ -68,6 +102,16 @@ export default class AircraftController {
         this._navigationLibrary = navigationLibrary;
 
         /**
+         * Local reference to static `EventBus` class
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         * @default EventBus
+         * @private
+         */
+        this._eventBus = EventBus;
+
+        /**
          * Reference to an `AircraftTypeDefinitionCollection` instance
          *
          * Provides definitions for all available aircraft types
@@ -77,24 +121,72 @@ export default class AircraftController {
          */
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
+        /**
+         * List of `transponderCode` values in use
+         *
+         * Each `transponderCode` should be unique, thus we maintain this list
+         * so we can know which codes are active.
+         *
+         * @property _transponderCodesInUse
+         * @type {array<number>}
+         * @private
+         */
+        this._transponderCodesInUse = [];
+
+        prop.aircraft = aircraft;
         this.aircraft = aircraft;
 
         // TODO: this should its own collection class
         this.aircraft.list = [];
-
         this.aircraft.auto = { enabled: false };
-
         this.conflicts = [];
+        this._stripViewController = new StripViewController();
 
-        prop.aircraft = aircraft;
+        return this.init()
+            .enable();
     }
 
     /**
-     * Adds an `AircraftInstanceModel` to the collection
+     * @for AircraftController
+     * @method init
+     * @chainable
+     */
+    init() {
+        return this;
+    }
+
+    /**
+     * @for AircraftController
+     * @method enable
+     * @chainable
+     */
+    enable() {
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
+        this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+
+        return this;
+    }
+
+    /**
+     * @for AircraftController
+     * @method disable
+     * @chainable
+     */
+    disable() {
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
+        this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+
+        return this;
+    }
+
+    /**
+     * Adds an `AircraftModel` to the collection
      *
      * @for AircraftController
      * @method addItem
-     * @param item {AircraftInstanceModel}
+     * @param item {AircraftModel}
      */
     addItem(item) {
         this.aircraft.list.push(item);
@@ -147,26 +239,6 @@ export default class AircraftController {
     };
 
     /**
-     * Accept a pre-built object that can be used to create an `AircraftInstanceModel`
-     * and then add it to the collection.
-     *
-     * This could be a spawning aircraft or one that already exists along a route.
-     *
-     * This method is the *_single place_* to create a new `AircraftInstanceModel`.
-     * Any method that needs to create a new aircraft should be routed through here.
-     *
-     * @for AircraftController
-     * @method _createAircraftWithInitializationProps
-     * @param initializationProps {object}
-     * @private
-     */
-    _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
-
-        this.addItem(aircraftModel);
-    }
-
-    /**
      * @for AircraftController
      * @method aircraft_auto_toggle
      */
@@ -177,7 +249,7 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_get_nearest
-     * @param position
+     * @param position {StaticPositionModel}
      */
     aircraft_get_nearest(position) {
         let nearest = null;
@@ -199,8 +271,8 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_visible
-     * @param aircraft
-     * @param factor
+     * @param aircraft {AircraftModel}
+     * @param factor {number}
      */
     aircraft_visible(aircraft, factor = 1) {
         return vlen(aircraft.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
@@ -212,7 +284,7 @@ export default class AircraftController {
      */
     aircraft_remove_all() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.aircraft.list[i].cleanup();
+            this.removeStripView(this.aircraft.list[i]);
         }
 
         this.aircraft.list = [];
@@ -221,18 +293,24 @@ export default class AircraftController {
     /**
      * @for AircraftController
      * @method aircraft_remove
+     * @param aircraftModel {AircraftModel}
      */
-    aircraft_remove(aircraft) {
-        window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+    aircraft_remove(aircraftModel) {
+        window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
-        this.removeFlightNumberFromList(aircraft);
-        this.removeAircraftInstanceModelFromList(aircraft);
-        this.removeAllAircraftConflictsForAircraft(aircraft);
-
-        aircraft.cleanup();
+        this.removeFlightNumberFromList(aircraftModel);
+        this.removeAircraftModelFromList(aircraftModel);
+        this._removeTransponderCodeFromUse(aircraftModel);
+        this.removeAllAircraftConflictsForAircraft(aircraftModel);
+        this.removeStripView(aircraftModel);
     }
 
     /**
+     * This method is part of the game loop.
+     *
+     * Every effort should be made to optimize this method and
+     * any other methods called from within
+     *
      * @for AircraftController
      * @method aircraft_update
      */
@@ -310,37 +388,48 @@ export default class AircraftController {
     }
 
     /**
+     * Create a new `StripViewModel` for a new `AircraftModel` instance
+     *
+     * This method should only be run during instantiation of a new `AircraftModel`
+     *
+     * @for AircraftController
+     * @method initAircraftStripView
+     * @param  aircraftModel {AircraftModel}
+     */
+    initAircraftStripView(aircraftModel) {
+        this._stripViewController.createStripView(aircraftModel);
+    }
+
+    /**
+     * Update all the `StripViewModel` objects with up-to-date aircraft data
+     *
+     * This is a **HOT** method and will run within the game loop
+     *
+     * @for AircraftController
+     * @method updateAircraftStrips
+     */
+    updateAircraftStrips() {
+        this._stripViewController.update(this.aircraft.list);
+    }
+
+    /**
+     * Public facade for `._onSelectAircraftStrip`
+     *
+     * @for AircraftController
+     * @method onSelectAircraftStrip
+     * @param aircaftModel {AircraftModel}
+     */
+    onSelectAircraftStrip = (aircraftModel) => {
+        this._onSelectAircraftStrip(aircraftModel);
+    }
+
+    /**
      * @method debug
      * @param  {string} [callsign='']
-     * @return {AircraftInstanceModel|null}
+     * @return {AircraftModel|null}
      */
     debug(callsign = '') {
         return this._findAircraftByCallsign(callsign);
-    }
-
-    /**
-     * @method _findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftInstanceModel|null}
-     * @private
-     */
-    _findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
-    }
-
-    /**
-     * Remove the specified aircraft from `AircraftController.aircraft`
-     *
-     * @for AircraftController
-     * @method removeAircraftInstanceModelFromList
-     * @param  {Aircraft} aircraft the aircraft to remove
-     */
-    removeAircraftInstanceModelFromList(aircraft) {
-        this.aircraft.list = _without(this.aircraft.list, aircraft);
     }
 
     /**
@@ -348,8 +437,8 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method addConflict
-     * @param  {Aircraft} aircraft      aircraft 1
-     * @param  {Aircraft} otherAircraft aircraft 2
+     * @param aircraft {AircraftModel}       aircraft 1
+     * @param otherAircraft {AircraftModel}  aircraft 2
      */
     addConflict(aircraft, otherAircraft) {
         const conflict = new AircraftConflict(aircraft, otherAircraft);
@@ -362,6 +451,30 @@ export default class AircraftController {
         this.conflicts.push(conflict);
         aircraft.addConflict(conflict, otherAircraft);
         otherAircraft.addConflict(conflict, aircraft);
+    }
+
+    /**
+     * Pass the call onto the `airlineController` to remove flightNumber
+     * from the list of active flightNumbers
+     *
+     * @for AircraftController
+     * @method removeFlightNumberFromList
+     * @param airlineId {string}
+     * @param callsign {string}
+     */
+    removeFlightNumberFromList({ airlineId, callsign }) {
+        this._airlineController.removeFlightNumberFromList(airlineId, callsign);
+    }
+
+    /**
+     * Remove the specified aircraft from `AircraftController.aircraft.list`
+     *
+     * @for AircraftController
+     * @method removeAircraftModelFromList
+     * @param  {AircraftModel} aircraft the aircraft to remove
+     */
+    removeAircraftModelFromList(aircraft) {
+        this.aircraft.list = _without(this.aircraft.list, aircraft);
     }
 
     /**
@@ -383,7 +496,7 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method removeAllAircraftConflictsForAircraft
-     * @param  {Aircraft} aircraft - the aircraft to remove
+     * @param aircraft {AircraftModel}  the aircraft to remove
      */
     removeAllAircraftConflictsForAircraft(aircraft) {
         for (const otherAircraftCallsign in aircraft.conflicts) {
@@ -392,20 +505,66 @@ export default class AircraftController {
     }
 
     /**
-     * Pass the call onto the `airlineController` to remove flightNumber
-     * from the list of active flightNumbers
+     * Remove a `StripViewModel` associated with the `aircraftModel`
+     *
+     * This will remove it from the DOM and properly destroy the model.
      *
      * @for AircraftController
-     * @method removeFlightNumberFromList
-     * @param airlineId {string}
-     * @param callsign {string}
+     * @method removeStripView
+     * @param aircraftModel {AircraftModel}
      */
-    removeFlightNumberFromList({ airlineId, callsign }) {
-        this._airlineController.removeFlightNumberFromList(airlineId, callsign);
+    removeStripView(aircraftModel) {
+        this._stripViewController.removeStripView(aircraftModel);
     }
 
     /**
-     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     * Called from within the `AircraftCommander` this method is used:
+     * - to verify that the `nextTransponderCode` is valid
+     * - remove the previous `transponderCode` from `#_transponderCodesInUse`
+     * - add `nextTransponderCode` to `#_transponderCodesInUse`
+     *
+     * @for AircraftController
+     * @method onRequestToChangeTransponderCode
+     * @param transponderCode {string}
+     * @param aircraftModel {aircraftModel}
+     * @return {boolean}
+     */
+    onRequestToChangeTransponderCode = (transponderCode, aircraftModel) => {
+        if (!this._isValidTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
+            return false;
+        }
+
+        this._removeTransponderCodeFromUse(aircraftModel.transponderCode);
+        this._addTransponderCodeToInUse(transponderCode);
+
+        aircraftModel.transponderCode = transponderCode;
+
+        return true;
+    };
+
+    /**
+     * Accept a pre-built object that can be used to create an `AircraftModel`
+     * and then add it to the collection.
+     *
+     * This could be a spawning aircraft or one that already exists along a route.
+     *
+     * This method is the *_single place_* to create a new `AircraftModel`.
+     * Any method that needs to create a new aircraft should be routed through here.
+     *
+     * @for AircraftController
+     * @method _createAircraftWithInitializationProps
+     * @param initializationProps {object}
+     * @private
+     */
+    _createAircraftWithInitializationProps(initializationProps) {
+        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
+
+        this.addItem(aircraftModel);
+        this.initAircraftStripView(aircraftModel);
+    }
+
+    /**
+     * Used to build up the appropriate data needed to instantiate an `AircraftModel`
      *
      * @for AircraftController
      * @method _buildAircraftProps
@@ -420,11 +579,10 @@ export default class AircraftController {
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this._airlineController.findAirlineById(name);
         // TODO: impove the `airlineModel` logic here
-        // this seems inefficient to find the model here and then passit back to the controller but
+        // this seems inefficient to find the model here and then pass it back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
-        const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
@@ -432,11 +590,14 @@ export default class AircraftController {
             ? 18000
             : spawnPatternModel.altitude;
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
+        const transponderCode = this._generateUniqueTransponderCode();
 
         return {
-            destination,
             fleet,
             altitude,
+            transponderCode,
+            origin: spawnPatternModel.origin,
+            destination: spawnPatternModel.destination,
             callsign: flightNumber,
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
@@ -453,7 +614,24 @@ export default class AircraftController {
     }
 
     /**
+     * @method _findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftModel|null}
+     * @private
+     */
+    _findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+    }
+
+    /**
      * Given an `airlineId`, find a random aircraft type from the airline.
+     *
+     * This is useful for when we need to create an aircraft to spawn and
+     * only know the airline that it belongs to.
      *
      * @for AircraftController
      * @method _getRandomAircraftTypeDefinitionForAirlineId
@@ -467,27 +645,137 @@ export default class AircraftController {
     }
 
     /**
-     * Determines if `destination` is defined and returns route procedure name if it is not
+     * Generate a unique `transponderCode`
      *
-     * The reason we set destination to a procedure names is because the `AircraftStripView`
-     * uses this destination property for display. So for departures, who have no true
-     * destination, the procedure name is used instead
+     * This method should only be run while building props for a
+     * soon-to-be-instantiated `AircraftModel`
      *
      * @for AircraftController
-     * @method _setDestinationFromRouteOrProcedure
-     * @param destination {string}
-     * @param route {string}
-     * @return {string}
+     * @method _generateUniqueTransponderCode
+     * @return {number}
      * @private
      */
-    _setDestinationFromRouteOrProcedure({ destination, routeString }) {
-        let destinationOrProcedure = destination;
+    _generateUniqueTransponderCode() {
+        const transponderCode = generateRandomOctalWithLength(4);
 
-        if (!destination) {
-            const routeModel = new RouteModel(routeString);
-            destinationOrProcedure = routeModel.procedure;
+        if (!this._isDiscreteTransponderCode(transponderCode) || this._isTransponderCodeInUse(transponderCode)) {
+            // the value generated is already in use, recurse back through this method and try again
+            this._generateUniqueTransponderCode();
         }
 
-        return destinationOrProcedure;
+        this._addTransponderCodeToInUse(transponderCode);
+
+        return transponderCode;
     }
+
+    /**
+     * Add a given `transponderCode` to the `#_transponderCodesInUse` list
+     *
+     * @for AircraftController
+     * @method _addTransponderCodeToInUse
+     * @param transponderCode {number}
+     */
+    _addTransponderCodeToInUse(transponderCode) {
+        this._transponderCodesInUse.push(transponderCode);
+    }
+
+    /**
+     * Remove the `transponderCode` from the list of `#_transponderCodesInUse`
+     *
+     * @for AircraftController
+     * @method _removeTransponderCodeFromUse
+     * @param transponderCode {number}
+     */
+    _removeTransponderCodeFromUse({ transponderCode }) {
+        this._transponderCodesInUse = _without(this._transponderCodesInUse, transponderCode);
+    }
+
+    /**
+     * Boolean helper used to determine if a given `transponderCode` is already
+     * present within the `#_transponderCodesInUse` list.
+     *
+     * @for AircraftController
+     * @method _isTransponderCodeInUse
+     * @param transponderCode {number}
+     * @return {booelean}
+     */
+    _isTransponderCodeInUse(transponderCode) {
+        return this._transponderCodesInUse.indexOf(transponderCode) !== -1;
+    }
+
+    /**
+     * Boolean helper used to determine if a given `transponderCode` is both
+     * the correct length and an octal number.
+     *
+     * @for AircraftController
+     * @method _isValidTransponderCode
+     * @param transponderCode {number}
+     * @return {boolean}
+     */
+    _isValidTransponderCode(transponderCode) {
+        return REGEX.FOUR_DIGIT_OCTAL.test(transponderCode);
+    }
+
+    /**
+     * Helper used to determine if a given `transponderCode` is both
+     * valid and not in use.
+     *
+     * @for AircraftController
+     * @method _isDiscreteTransponderCode
+     * @param transponderCode {number}
+     * @return {boolean}
+     */
+    _isDiscreteTransponderCode(transponderCode) {
+        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === -1;
+    }
+
+    /**
+     * Show a `StripViewModel` as selected
+     *
+     * @for AircraftController
+     * @method _onSelectAircraftStrip
+     * @param  aircraftModel {AircraftModel}
+     * @private
+     */
+    _onSelectAircraftStrip = (aircraftModel) => {
+        if (!aircraftModel.inside_ctr) {
+            return;
+        }
+
+        this._stripViewController.selectStripView(aircraftModel);
+    };
+
+    /**
+     * Remove the css classname used to show a `StripViewModel` as selected.
+     *
+     * This method is usually called when it is not known what, or if,
+     * a `StripViewModel` is active.
+     *
+     * This method is called as the result of an event
+     *
+     * @for AircraftController
+     * @method _onDeselectActiveStripView
+     * @private
+     */
+    _onDeselectActiveStripView = () => {
+        this._stripViewController.findAndDeselectActiveStripView();
+    };
+
+    /**
+     * Triggered `EventBus` callback
+     *
+     * This method allows us to find an `AircraftModel` from a callsign,
+     * then trigger another event for the `CanvasController`.
+     *
+     * @for AircraftController
+     * @method _onStripDoubleClickhandler
+     * @param callsign {string}
+     * @private
+     */
+    _onStripDoubleClickhandler = (callsign) => {
+        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const [x, y] = relativePosition;
+
+        this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
+    };
 }

@@ -18,6 +18,8 @@
         "angle": 310,
         "speed": 5
     },
+    "arrivalRunway": "28L",
+    "departureRunway": "28R",
     "fixes": {
         "_FAITH085033": ["N37d19.07m0", "W121d10.80m0"],
         "_MOVDD038018": ["N37d50.88m0", "W121d09.11m0"],

@@ -18,6 +18,8 @@
         "angle": 240,
         "speed": 8
     },
+    "arrivalRunway": "23",
+    "departureRunway": "23",
     "fixes": {
 
         "DKI": ["S5d57.7m0", "E107d2.1m0"],

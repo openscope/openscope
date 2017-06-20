@@ -1,4 +1,5 @@
 import _uniqueId from 'lodash/uniqueId';
+import _isString from 'lodash/isString';
 
 /**
  * Base class for all Model objects to inherit from.
@@ -8,7 +9,9 @@ import _uniqueId from 'lodash/uniqueId';
  * @class BaseModel
  */
 export default class BaseModel {
-    constructor() {
+    constructor(modelName = 'BaseModel') {
+        const optionalIdPrefix = this._buildIdPrefix(modelName);
+
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -16,7 +19,7 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        this._id = _uniqueId();
+        this._id = _uniqueId(optionalIdPrefix);
     }
 
     /**
@@ -44,5 +47,22 @@ export default class BaseModel {
      */
     reset() {
         throw new TypeError('BaseModel#reset method must be implemented by the class extending BaseModel');
+    }
+
+    /**
+     * This will verify if the given argument is a string otherwise it will return 'Base Model'
+     *
+     * @for BaseModel
+     * @method veriftyModelName
+     * @param {string}
+     * @private
+     */
+    _buildIdPrefix(modelName) {
+        if (!_isString(modelName)) {
+            throw new TypeError('BaseModel#constructor expects a string for its first parameter but a string was not given');
+        }
+
+        // Default option since it is an optional parameter
+        return `${modelName}-`;
     }
 }

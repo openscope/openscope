@@ -426,24 +426,26 @@ export const radio_altitude = (altitude) => {
 };
 
 /**
+ * Return a portion of a control instruction (as a string) indicating the correct
+ * direction of a change in assigned altitude or speed.
  *
  * @function radio_trend
- * @param category
- * @param measured
- * @param target
+ * @param category {string} either 'altitude' or 'speed'
+ * @param currentValue {number} current altitude/speed of the aircraft
+ * @param nextValue {number} the altitude/speed being assigned to the aircraft
  * @return {string}
  */
-export const radio_trend = (category, measured, target) => {
+export const radio_trend = (category, currentValue, nextValue) => {
     const CATEGORIES = {
         altitude: ['descend and maintain', 'climb and maintain', 'maintain'],
         speed: ['reduce speed to', 'increase speed to', 'maintain present speed of']
     };
 
-    if (measured > target) {
+    if (currentValue > nextValue) {
         return CATEGORIES[category][0];
     }
 
-    if (measured < target) {
+    if (currentValue < nextValue) {
         return CATEGORIES[category][1];
     }
 

@@ -1,20 +1,27 @@
 /* eslint-disable max-len, no-undef */
-import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
+import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
-import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
-import { tau, radians_normalize, angle_offset } from '../math/circle';
-import { abs, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
-import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
+import { radians_normalize, angle_offset } from '../math/circle';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance
+} from '../math/flightMath';
+import {
+    abs,
+    cos,
+    extrapolate_range_clamp,
+    sin,
+    spread
+} from '../math/core';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -34,19 +41,17 @@ import {
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
-    heading_to_string,
-    km,
-    nm,
-    UNIT_CONVERSION_CONSTANTS
+    nm
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
-    PERFORMANCE,
-    WAYPOINT_NAV_MODE
+    PERFORMANCE
 } from '../constants/aircraftConstants';
-import { AIRPORT_CONSTANTS, AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
-import { SELECTORS } from '../constants/selectors';
+import {
+    AIRPORT_CONSTANTS,
+    AIRPORT_CONTROL_POSITION_NAME
+} from '../constants/airportConstants';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import { TIME } from '../constants/globalConstants';
@@ -64,48 +69,305 @@ const FLIGHT_RULES = {
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *
- * @class AircraftInstanceModel
+ * @class AircraftModel
  */
-export default class AircraftInstanceModel {
+export default class AircraftModel {
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @constructor
      * @param options {object}
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(options = {}, navigationLibrary) {
-        /* eslint-disable no-multi-spaces*/
-        this._id = _uniqueId('aircraft-');
+        /**
+         * Unique id
+         *
+         * Useful for debugging
+         *
+         * @property id
+         * @type {string}
+         */
+        this.id = _uniqueId('aircraft-');
+
+        /**
+         * Reference to the `NavigationLibrary`
+         *
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
-        this.positionModel = null;       // Aircraft Position
-        this.model        = null;       // Aircraft type
-        this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
+
+        /**
+         * Aircraft Position
+         *
+         * @property positionModel
+         * @type {DynamicPositionModel|null}
+         */
+        this.positionModel = null;
+
+        /**
+         * @property model
+         * @type {AircraftTypeDefinitionModel|null}
+         * @default null
+         */
+        this.model = null;
+
+        /**
+         * Airline Identifier (eg. 'AAL')
+         *
+         * @property airlineId
+         * @type {string}
+         * @default ''
+         */
+        this.airlineId = '';
+
+        /**
+         * @property airlineCallsign
+         * @type {string}
+         * @default ''
+         */
         this.airlineCallsign = '';
-        this.flightNumber = '';         // Flight Number ONLY (eg. '551')
-        this.heading      = 0;          // Magnetic Heading
-        this.altitude     = 0;          // Altitude, ft MSL
-        this.speed        = 0;          // Indicated Airspeed (IAS), knots
-        this.groundSpeed  = 0;          // Groundspeed (GS), knots
-        this.groundTrack  = 0;          //
-        this.takeoffTime  = 0;          //
-        this.approachOffset = 0;        // Distance laterally from the approach path
-        this.approachDistance = 0;      // Distance longitudinally from the threshold
-        this.radial       = 0;          // Angle from airport center to aircraft
-        this.distance     = 0;          //
-        this.destination  = null;       // Destination they're flying to
-        this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
-        this.history      = [];         // Array of previous positions
-        this.restricted   = { list: [] };
-        this.notice       = false;      // Whether aircraft
-        this.warning      = false;      //
-        this.hit          = false;      // Whether aircraft has crashed
-        this.taxi_next    = false;      //
-        this.taxi_start   = 0;          //
-        this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
-        this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
-        this.inside_ctr   = false;      // Inside ATC Airspace
-        this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
-        this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
+
+        /**
+         * Flight Number ONLY (eg. '551')
+         *
+         * @property flightNumber
+         * @type {string}
+         * @default ''
+         */
+        this.flightNumber = '';
+
+        /**
+         * Trasponder code
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @property transponderCode
+         * @type {number}
+         * @default 1200
+         */
+        this.transponderCode = 1200;
+
+        /**
+         * Magnetic Heading
+         *
+         * @property heading
+         * @type {number}
+         * @default 0
+         */
+        this.heading = 0;
+
+        /**
+         * Altitude, ft MSL
+         *
+         * @property altitude
+         * @type {number}
+         * @default 0
+         */
+        this.altitude = 0;
+
+        /**
+         * Indicated Airspeed (IAS), knots
+         *
+         * @property speed
+         * @type {number}
+         * @default 0
+         */
+        this.speed = 0;
+
+        /**
+         * Groundspeed (GS), knots
+         *
+         * @property groundSpeed
+         * @type {number}
+         * @default 0
+         */
+        this.groundSpeed = 0;
+
+        /**
+         * @property groundTrack
+         * @type {number}
+         * @default 0
+         */
+        this.groundTrack = 0;
+
+        /**
+         * Game time takeoff occurred
+         *
+         * @property takeoffTime
+         * @type {number}
+         * @default 0
+         */
+        this.takeoffTime = 0;
+
+        /**
+         * Distance laterally from the approach path
+         *
+         * @property approachOffset
+         * @type {number}
+         * @default 0
+         */
+        this.approachOffset = 0;
+
+        /**
+         * Distance longitudinally from the threshold
+         *
+         * @property approachDistance
+         * @type {number}
+         * @default 0
+         */
+        this.approachDistance = 0;
+
+        /**
+         * Angle from airport center to aircraft
+         *
+         * @property radial
+         * @type {number}
+         * @default 0
+         */
+        this.radial = 0;
+
+        /**
+         * Distance from the airport
+         *
+         * @property distance
+         * @type {number}
+         * @default 0
+         */
+        this.distance = 0;
+
+        /**
+         * The origin ariport for an aircraft
+         *
+         * This will only be populated for dpearture aircraft
+         *
+         * @property origin
+         * @type {string}
+         * @default ''
+         */
+        this.origin = '';
+
+        /**
+         * The destination airpot of an aircraft
+         *
+         * This will only be populated for arrivals
+         *
+         * @property destination
+         * @type {string}
+         * @default ''
+         */
+        this.destination = '';
+
+        /**
+         * Indicator of descent/level/climb (-1, 0, or 1)
+         *
+         * @property trend
+         * @type {number}
+         * @default 0
+         */
+        this.trend = 0;
+
+        /**
+         * Array of previous positions
+         *
+         * @property history
+         * @type <array<array<number>>>
+         * @default []
+         */
+        this.history = [];
+
+        /**
+         * @property restricted
+         * @type {object}
+         * @default { list: [] }
+         */
+        this.restricted = { list: [] };
+
+        /**
+         * @property notice
+         * @type {boolean}
+         * @default false
+         */
+        this.notice = false;
+
+        /**
+         * @property warning
+         * @type {boolean}
+         * @default false
+         */
+        this.warning = false;
+
+
+        /**
+         * Whether aircraft has crashed
+         *
+         * @property hit
+         * @type {boolean}
+         * @default false
+         */
+        this.hit = false;
+
+        /**
+         * Game time an aircraft starts the taxi
+         *
+         * @property taxi_start
+         * @type {number}
+         * @default 0
+         */
+        this.taxi_start = 0;
+
+        /**
+         * Time spent taxiing to the runway. *NOTE* this should be INCREASED
+         * to around 60 once the taxi vs LUAW issue is resolved (#406)
+         *
+         * @property taxi_time
+         * @type {number}
+         * @default 3
+         */
+        this.taxi_time = 3;
+
+        /**
+         * Either IFR or VFR (Instrument/Visual Flight Rules)
+         *
+         * @property rules
+         * @type {FLIGHT_RULES}
+         * @default FLIGHT_RULES.IFR
+         */
+        this.rules = FLIGHT_RULES.IFR;
+
+        /**
+         * Inside ATC Airspace
+         *
+         * @property inside_ctr
+         * @type {boolean}
+         * @default false
+         */
+        this.inside_ctr = false;
+
+        /**
+         * Direction the data block points (-1 means to ignore)
+         *
+         * @property datablockDir
+         * @type {number}
+         * @default -1
+         */
+        this.datablockDir = -1;
+
+        /**
+         * List of aircraft that MAY be in conflict (bounding box)
+         *
+         * @property conflicts
+         * @type {object}
+         * @default {}
+         */
+        this.conflicts = {};
+
+        /**
+         * @property terrain_ranges
+         * @type {boolean}
+         * @default false
+         */
         this.terrain_ranges = false;
 
         /**
@@ -134,12 +396,6 @@ export default class AircraftInstanceModel {
          * @default false
          */
         this.isRemovable = false;
-
-        // TODO: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
-        this.aircraftStripView = null;
-        this.$html = null;
-        this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
-        /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
         // Should be checked before updating global state such as score
@@ -174,7 +430,6 @@ export default class AircraftInstanceModel {
             ? window.gameController.game_time()
             : null;
 
-
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
         this.parse(options);
@@ -185,19 +440,20 @@ export default class AircraftInstanceModel {
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const bottomAltitude = this.fms.getBottomAltitude();
+            let bottomAltitude = this.fms.getBottomAltitude();
+
+            if (bottomAltitude === Infinity) {
+                bottomAltitude = this.altitude;
+            }
 
             this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
         }
-
-        this.createStrip();
-        this.updateStrip();
     }
 
     /**
      * Current flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property flightPhase
      * @type {string}
      */
@@ -206,7 +462,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property callsign
      * @return {string}
      */
@@ -217,7 +473,7 @@ export default class AircraftInstanceModel {
     /**
      * Fascade to access relative position
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @property relativePosition
      * @type {array<number>} [kilometersNorth, kilometersEast]
      */
@@ -228,7 +484,7 @@ export default class AircraftInstanceModel {
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
     // method that will check collisions
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method buildCurrentTerrainRanges
      */
     buildCurrentTerrainRanges() {
@@ -253,7 +509,7 @@ export default class AircraftInstanceModel {
     /**
      * Set up links to restricted areas
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method buildRestrictedAreaLinks
      */
     buildRestrictedAreaLinks() {
@@ -269,35 +525,36 @@ export default class AircraftInstanceModel {
     }
 
     parse(data) {
-        // TODO: these _gets can likely be removed
-        this.positionModel = _get(data, 'positionModel', this.positionModel);
-        this.model = _get(data, 'model', this.model);
-        this.airlineId = _get(data, 'airline', this.airlineId);
-        this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
-        this.flightNumber = _get(data, 'callsign', this.flightNumber);
-        this.category = _get(data, 'category', this.category);
-        this.heading = _get(data, 'heading', this.heading);
-        this.altitude = _get(data, 'altitude', this.altitude);
-        this.speed = _get(data, 'speed', this.speed);
+        this.positionModel = data.positionModel;
+        this.transponderCode = data.transponderCode;
+        this.model = data.model;
+        this.airlineId = data.airline;
+        this.airlineCallsign = data.airlineCallsign;
+        this.flightNumber = data.callsign;
+        this.category = data.category;
+        this.heading = data.heading;
+        this.altitude = data.altitude;
+        this.speed = data.speed;
+        this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
+
+        // this assumes arrivals always spawn outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
         const airport = window.airportController.airport_get();
-        const initialRunway = airport.getRunway(airport.runway);
-
+        const initialRunway = airport.getActiveRunwayForCategory(this.category);
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-
             this.setFlightPhase(FLIGHT_PHASE.APRON);
             this.altitude = airport.positionModel.elevation;
             this.speed = 0;
 
             return;
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
-            throw new Error('Invalid #category found in AircraftInstanceModel');
+            throw new Error('Invalid #category found in AircraftModel');
         }
 
         if (data.nextFix) {
@@ -306,9 +563,48 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Build an object that contains all the correct data, in the correct shape,
+     * so it can be injected into the view.
+     *
+     * This method should only be used by the `StripView` classes when instantiating
+     * or updating the aircraft progress strips.
+     *
+     * The data here should be considered read-only.
+     *
+     * @for AircraftModel
+     * @method getViewModel
+     * @return {object<string, string>}
+     */
+    getViewModel() {
+        let assignedAltitude = this.mcp.altitude;
+        let flightPlanAltitude = this.fms.flightPlanAltitude;
+
+        if (assignedAltitude === -1) {
+            assignedAltitude = '-';
+        }
+
+        if (flightPlanAltitude === -1) {
+            flightPlanAltitude = '-';
+        }
+
+        return {
+            id: this.id,
+            insideCenter: this.inside_ctr,
+            callsign: this.callsign,
+            transponderCode: this.transponderCode,
+            icaoWithWeightClass: this.model.icaoWithWeightClass,
+            assignedAltitude,
+            flightPlanAltitude,
+            arrivalAirportId: this.destination.toUpperCase(),
+            departureAirportId: this.origin.toUpperCase(),
+            flightPlan: this.fms.getFlightPlanRouteForStripView()
+        };
+    }
+
+    /**
      * Called when the aircraft crosses the airspace boundary (ie, leaving our airspace)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method crossBoundary
      * @param inbound {}
      */
@@ -321,7 +617,6 @@ export default class AircraftInstanceModel {
 
         // Crossing into the center
         if (this.inside_ctr) {
-            this.showStrip();
             this.callUp();
 
             return;
@@ -332,7 +627,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method onAirspaceExit
      */
     onAirspaceExit() {
@@ -340,13 +635,11 @@ export default class AircraftInstanceModel {
             return this.arrivalExit();
         }
 
-        this.hideStrip();
         this.setIsRemovable();
 
-        // TODO: this seems redundant. if its already in the leg its in the fms.
-        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
+        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
             this.radioCall(
-                `leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
+                'leaving radar coverage without proper clearance',
                 AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
                 true
             );
@@ -362,7 +655,7 @@ export default class AircraftInstanceModel {
     /**
      * An arriving aircraft is exiting the airpsace
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method arrivalExit
      */
     arrivalExit() {
@@ -372,20 +665,37 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
-     * @method matchCallsign
-     * @param callsign {string}
+     * Returns a true value if there is a match from the callsignToMatch
+     *
+     * @for AircraftModel
+    * @method matchCallsign
+    * @param callsign {string}
      */
     matchCallsign(callsignToMatch) {
-        if (callsignToMatch === '*') {
+        const shouldMatchAnyCallsign = callsignToMatch === '*';
+         // checks to see if the given call sign matches the airline Id + callsign format
+        if (shouldMatchAnyCallsign || (this.airlineId.toUpperCase() + callsignToMatch.toUpperCase() === this.callsign)) {
             return true;
         }
 
+        // Checks to see if the given callsign matches only the callsign since callsign numbers should be unique
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
+     /**
+     * verifies if there is a matched callsign and if the  aircraft is visable.
+     * @for AircraftModel
+     * @method getCallsign
+     * @return {string}
+     */
+    getCallsign() {
+        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
+        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
+    }
+
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getRadioCallsign
      * @return cs {string}
      */
@@ -413,7 +723,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getClimbRate
      * @return {number}
      */
@@ -449,7 +759,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method cancelFix
      */
     cancelFix() {
@@ -457,7 +767,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method cancelLanding
      */
     cancelLanding() {
@@ -469,7 +779,7 @@ export default class AircraftInstanceModel {
 
     // TODO: is this method still in use?
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method pushHistory
      */
     pushHistory() {
@@ -484,7 +794,7 @@ export default class AircraftInstanceModel {
     /**
      * Return whether the aircraft is off the ground
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isAirborne
      * @return {boolean}
      */
@@ -492,29 +802,33 @@ export default class AircraftInstanceModel {
         return !this.isOnGround();
     }
 
+    isDeparture() {
+        return this.fms.isDeparture();
+    }
+
+    isArrival() {
+        return this.fms.isArrival();
+    }
+
     /**
      * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isEstablishedOnCourse
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = this.fms.arrivalRunway;
+        const runwayModel = this.fms.arrivalRunwayModel;
 
-        if (!runway) {
+        if (!runwayModel) {
             return false;
         }
 
-        const runwayHeading = runway.angle;
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
-        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        // TODO: the `this` here is ugly, but will be needed until `getOffset`
+        // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
+        return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
 
-        return onApproachCourse && onCorrectHeading;
-
+        // TODO: Use this instead
         // const courseDatum = this.mcp.nav1Datum;
         // const course = this.mcp.course;
         // const courseOffset = getOffset(this, courseDatum.relativePosition, course);
@@ -529,7 +843,7 @@ export default class AircraftInstanceModel {
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isInsideAirspace
      * @param  {airport} airport the airport whose airspace we are checking
      * @return {Boolean}
@@ -549,21 +863,20 @@ export default class AircraftInstanceModel {
     /**
      * Aircraft has "weight-on-wheels" (on the ground)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isOnGround
      */
     isOnGround() {
         const errorAllowanceInFeet = 5;
         const airport = window.airportController.airport_get();
-        const runway = this.fms.currentRunway;
-        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
+        const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isStopped
      */
     isStopped() {
@@ -574,7 +887,7 @@ export default class AircraftInstanceModel {
     /**
      * Return whether the aircraft is in flight AND below its stall speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isStalling
      * @return {boolean}
      */
@@ -585,7 +898,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isTaxiing
      */
     isTaxiing() {
@@ -597,31 +910,27 @@ export default class AircraftInstanceModel {
     /**
      * Returns whether the aircraft is currently taking off
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isTakeoff
      */
     isTakeoff() {
         return this.isTaxiing() || this.flightPhase === FLIGHT_PHASE.TAKEOFF;
     }
 
-    // TODO: the logic in this method can be cleaned up and simplified
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method isVisible
+     * @return {boolean}
      */
     isVisible() {
-        // TODO: this if/else if would be cleaner with just if (this.flightPhase === FLIGHT_PHASE.WAITING) {}
-        // hide aircraft on twys
+        // hide aircraft on taxiways
         if (this.flightPhase === FLIGHT_PHASE.APRON || this.flightPhase === FLIGHT_PHASE.TAXI) {
             return false;
         }
 
-        if (this.isTaxiing()) {
+        if (this.flightPhase === FLIGHT_PHASE.WAITING) {
             // show only the first aircraft in the takeoff queue
-            const runway = this.fms.departureRunway;
-            const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
-
-            return this.flightPhase === FLIGHT_PHASE.WAITING && nextInRunwayQueue;
+            return this.fms.departureRunwayModel.isAircraftNextInQueue(this.id);
         }
 
         return true;
@@ -630,9 +939,11 @@ export default class AircraftInstanceModel {
     /**
      * Sets `#isRemovable` to true
      *
-     * Provides a single source to change the value of `#isRemovable`.
+     * Provides a single source to change the value of `#isRemovable`
+     * This is evaluated by the `AircraftController` when determining
+     * if an aircraft should be removed or not
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method setIsRemovable
      */
     setIsRemovable() {
@@ -641,7 +952,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this should be a method in the `AirportModel`
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method getWind
      */
     getWind() {
@@ -650,10 +961,9 @@ export default class AircraftInstanceModel {
             head: 0
         };
 
-        const airport = window.airportController.airport_get();
-        const wind = airport.wind;
-        const runway = this.fms.currentRunway;
-        const angle =  abs(angle_offset(runway.angle, wind.angle));
+        const { wind } = window.airportController.airport_get();
+        // const wind = airport.wind;
+        const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
         // TODO: these two bits of math should be abstracted to helper functions
         windForRunway.cross = sin(angle) * wind.speed;
@@ -665,18 +975,19 @@ export default class AircraftInstanceModel {
     /**
      * Reposition the aircraft to the location of the specified runway
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method moveToRunway
      * @param runwayModel {RunwayModel}
      */
     moveToRunway(runwayModel) {
-        this.positionModel.setCoordinates(runwayModel.positionModel.gps);
+        this.positionModel.setCoordinates(runwayModel.gps);
+
         this.heading = runwayModel.angle;
         this.altitude = runwayModel.elevation;
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method radioCall
      * @param msg {string}
      * @param sectorType {string}
@@ -715,7 +1026,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method callUp
      */
     callUp() {
@@ -723,16 +1034,16 @@ export default class AircraftInstanceModel {
         let alt_say;
 
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const altdiff = this.altitude - this.pilot.sayTargetedAltitude();
+            const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
             if (Math.abs(altdiff) > 200) {
                 if (altdiff > 0) {
-                    alt_log = `descending through ${alt} for ${this.target.altitude}`;
-                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `descending through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.mcp.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.mcp.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;
@@ -759,7 +1070,7 @@ export default class AircraftInstanceModel {
 
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method scoreWind
      * @param action
      */
@@ -792,7 +1103,7 @@ export default class AircraftInstanceModel {
     /**
      * Update the aircraft's targeted telemetry (altitude, heading, and speed)
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateTarget
      */
     updateTarget() {
@@ -806,7 +1117,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method overrideTarget
      */
     overrideTarget() {
@@ -897,12 +1208,24 @@ export default class AircraftInstanceModel {
         if (this.altitude < 10000) {
             this.target.speed = Math.min(this.target.speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
         }
+
+        if (this.target.altitude > this.model.ceiling) {
+            this.target.altitude = this.model.ceiling;
+        }
+
+        if (this.target.speed > this.model.speed.max) {
+            this.target.speed = this.model.speed.max;
+        }
+
+        if (this.target.speed < this.model.speed.min && this.isAirborne()) {
+            this.target.speed = this.model.speed.min;
+        }
     }
 
     /**
      * Fascade to set the fms's flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method setFlightPhase
      * @param phase {string}
      */
@@ -913,12 +1236,11 @@ export default class AircraftInstanceModel {
     /**
      * Update the FMS's flight phase
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateFlightPhase
      */
     updateFlightPhase() {
-        const airportModel = window.airportController.airport_get();
-        const runwayModel = this.fms.departureRunway;
+        const runwayModel = this.fms.departureRunwayModel;
 
         if (this._shouldEnterHoldingPattern()) {
             this.setFlightPhase(FLIGHT_PHASE.HOLD);
@@ -993,7 +1315,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted heading
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeading
      * @private
      */
@@ -1037,7 +1359,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedSpeed
      * @private
      */
@@ -1087,7 +1409,7 @@ export default class AircraftInstanceModel {
      * This method limits the aircraft's speed to a maximum of a specific speed
      * while below 10,000 feet MSL, to comply with regulations.
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateLegalSpeed
      * @param speed {number} desired speed
      * @return {number}      permitted speed
@@ -1103,7 +1425,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the aircraft's targeted altitude
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitude
      * @private
      */
@@ -1163,7 +1485,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the altitude to target while intercepting a vertically aligned course
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitudeToInterceptGlidepath
      * @private
      */
@@ -1177,10 +1499,10 @@ export default class AircraftInstanceModel {
         // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
 
         // ILS SPECIFIC CODE
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
-        const distanceOnFinal_km = offset[1];
-        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceOnFinal_km);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const distanceOnFinalKm = offset[1];
+        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
         const altitudeToTarget = Math.min(this.mcp.altitude, glideslopeAltitude);
 
         return altitudeToTarget;
@@ -1189,7 +1511,7 @@ export default class AircraftInstanceModel {
     /**
      * Calculate the heading to target while intercepting a horizontally aligned course
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingToInterceptCourse
      * @private
      */
@@ -1198,18 +1520,20 @@ export default class AircraftInstanceModel {
         const datum = this.mcp.nav1Datum;
         const course = this.mcp.course;
         const courseOffset = getOffset(this, datum.relativePosition, course);
-        const lateralDistanceFromCourse_nm = nm(courseOffset[0]);
+        const lateralDistanceFromCourseNm = nm(courseOffset[0]);
         const headingDifference = angle_offset(course, this.heading);
         const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(datum);
         const angleAwayFromLocalizer = course - bearingFromAircaftToRunway;
         const turnTimeInSeconds = abs(headingDifference) / PERFORMANCE.TURN_RATE;    // time to turn headingDifference degrees
+        // TODO: this should be moved to a class method `.getTurningRadius()`
         const turningRadius = this.speed * (turnTimeInSeconds * TIME.ONE_SECOND_IN_HOURS);  // dist covered in the turn, nm
         const distanceCoveredDuringTurn = turningRadius * abs(headingDifference);
-        const distanceToLocalizer = lateralDistanceFromCourse_nm / sin(headingDifference); // dist from the localizer intercept point, nm
+        const distanceToLocalizer = lateralDistanceFromCourseNm / sin(headingDifference); // dist from the localizer intercept point, nm
         const distanceEarly = 0.5;    // start turn early, to avoid overshoots from tailwind
         const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
         const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
+        // TODO: this logic is confusing, simplify
         if (!(shouldAttemptIntercept || inTheWindow)) {
             return this.mcp.heading;
         }
@@ -1217,7 +1541,7 @@ export default class AircraftInstanceModel {
         const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
-        const isAlignedWithCourse = abs(lateralDistanceFromCourse_nm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
         if (isAlignedWithCourse) {
@@ -1244,13 +1568,12 @@ export default class AircraftInstanceModel {
     /**
      * Cancels the landing and disaply message
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateLandingFailedLanding
      */
     updateLandingFailedLanding() {
         // Failed Approach
         if ((this.approachDistance > 0.100) && (!this.projected)) {
-            this.updateStrip();
             this.cancelLanding();
 
             const isWarning = true;
@@ -1267,7 +1590,7 @@ export default class AircraftInstanceModel {
 
     /**
      * This will display a waring and record an illegal approach event
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method warnInterceptAngle
      */
     warnInterceptAngle() {
@@ -1280,12 +1603,16 @@ export default class AircraftInstanceModel {
     /**
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingLnav
      */
     _calculateTargetedHeadingLnav() {
         if (!this.fms.currentWaypoint) {
             return new Error('Unable to utilize LNAV, because there are no waypoints in the FMS');
+        }
+
+        if (this.fms.currentWaypoint.isVector) {
+            return this.fms.currentWaypoint.vector;
         }
 
         const waypointPosition = this.fms.currentWaypoint.positionModel;
@@ -1294,8 +1621,12 @@ export default class AircraftInstanceModel {
         const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
-        // TODO: abstract this logic to helper method
-        const shouldMoveToNextFix = closeToBeingOverFix || (closeEnoughToFlyByFix && isTimeToStartTurning);
+        const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
+        let shouldMoveToNextFix = closeToBeingOverFix;
+
+        if (!this.fms.currentWaypoint.isFlyOverWaypoint) {
+            shouldMoveToNextFix = closeToBeingOverFix || shouldFlyByFix;
+        }
 
         if (shouldMoveToNextFix) {
             if (!this.fms.hasNextWaypoint()) {
@@ -1314,7 +1645,7 @@ export default class AircraftInstanceModel {
     /**
      * This will sets up and prepares the aircraft to hold
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateTargetHeadingForHold
      */
     updateTargetHeadingForHold() {
@@ -1368,54 +1699,54 @@ export default class AircraftInstanceModel {
     /**
      * Calculates the altitude for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedAltitudeDuringLanding
      * @return {number}
      */
     _calculateTargetedAltitudeDuringLanding() {
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_km = offset[1];
 
         if (distanceOnFinal_km > 0) {
             return this._calculateTargetedAltitudeToInterceptGlidepath();
         }
 
-        return runway.elevation;
+        return runwayModel.elevation;
     }
 
     /**
      * Calculates the heading for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedHeadingDuringLanding
      * @return {number}
      */
     _calculateTargetedHeadingDuringLanding() {
-        const runway = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm > 0) {
-            const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
+            const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runwayModel.positionModel);
 
             return bearingFromAircaftToRunway;
         }
 
-        return runway.angle;
+        return runwayModel.angle;
     }
 
     /**
      * Calculates the speed for a landing aircraft
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method _calculateTargetedSpeedDuringLanding
      * @return {number}
      */
     _calculateTargetedSpeedDuringLanding() {
         let startSpeed = this.speed;
-        const runway  = this.fms.arrivalRunway;
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
         if (distanceOnFinal_nm <= 0 && this.isOnGround())  {
@@ -1440,7 +1771,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updatePhysics
      */
     updatePhysics() {
@@ -1495,7 +1826,7 @@ export default class AircraftInstanceModel {
     /**
      * This turns the aircraft if it is not on the ground and has not arived at its destenation
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAircraftTurnPhysics
      */
     updateAircraftTurnPhysics() {
@@ -1528,7 +1859,7 @@ export default class AircraftInstanceModel {
     /**
      * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAltitudePhysics
      */
     updateAltitudePhysics() {
@@ -1550,7 +1881,7 @@ export default class AircraftInstanceModel {
     /**
     * Decreases the aircrafts altitude
     *
-    * @for AircraftInstanceModel
+    * @for AircraftModel
     * @method decreaseAircraftAltitude
     */
     decreaseAircraftAltitude() {
@@ -1577,7 +1908,7 @@ export default class AircraftInstanceModel {
     /**
     * Increases the aircrafts altitude
     *
-    * @for AircraftInstanceModel
+    * @for AircraftModel
     * @method increaseAircraftAltitude
     */
     increaseAircraftAltitude() {
@@ -1604,7 +1935,7 @@ export default class AircraftInstanceModel {
     /**
      * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateWarning
      */
     updateSpeedPhysics() {
@@ -1636,7 +1967,7 @@ export default class AircraftInstanceModel {
     /**
      * This calculates the ground speed
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateVectorPhysics
      * @param scaleSpeed
      */
@@ -1698,7 +2029,7 @@ export default class AircraftInstanceModel {
     /**
      * This uses the current speed information to update the ground speed and position
      *
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
      * @deprecated
@@ -1716,7 +2047,7 @@ export default class AircraftInstanceModel {
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateWarning
      */
     updateWarning() {
@@ -1783,8 +2114,9 @@ export default class AircraftInstanceModel {
                 }
             }
 
+            // this was a $.each() and may need to verified that its working with _forEach()
             // raise warning if in at least one restricted area
-            $.each(this.restricted.list, (k, v) => {
+            _forEach(this.restricted.list, (k, v) => {
                 warning = warning || v.inside;
             });
         }
@@ -1859,13 +2191,13 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateAuto
      */
     updateAuto() {}
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method update
      */
     update() {
@@ -1876,11 +2208,10 @@ export default class AircraftInstanceModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
-        this.updateStrip();
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method addConflict
      * @param {AircraftConflict} conflict
      * @param {Aircraft} conflictingAircraft
@@ -1890,7 +2221,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method checkConflict
      * @param {Aircraft} conflictingAircraft
      */
@@ -1905,7 +2236,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method hasAlerts
      */
     hasAlerts() {
@@ -1922,7 +2253,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method removeConflict
      * @param {Aircraft} conflictingAircraft
      */
@@ -1953,7 +2284,7 @@ export default class AircraftInstanceModel {
 
     // TODO: move these view methods to `AircraftStripView` or a different file
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method updateStrip
      */
     updateStrip() {
@@ -2005,7 +2336,14 @@ export default class AircraftInstanceModel {
                     altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
                     speed: this.fms.currentWaypoint.speedRestriction !== -1
                 };
-                destinationDisplay = this.fms.getProcedureAndExitName();
+
+                // TODO: this will need to be addressed when the AircraftStripView is refactored
+                // this block is a bandaid to prevent `destinationDisplay` from being undefined
+                destinationDisplay = this.fms.currentWaypoint.name;
+
+                if (isFollowingStar || isFollowingSid) {
+                    destinationDisplay = this.fms.getProcedureAndExitName();
+                }
 
                 if (this.fms.currentWaypoint.isHold) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
@@ -2043,7 +2381,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method showStrip
      */
     showStrip() {
@@ -2059,7 +2397,7 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftModel
      * @method hideStrip
      */
     hideStrip() {

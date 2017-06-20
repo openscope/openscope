@@ -735,7 +735,7 @@
             "body": [["RUIZE", "A210+|A230-"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
             "rwy": {
                 "4R": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["NUNZO", "A60|S210"]],
-                "4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]], 
+                "4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]],
                 "15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
                 "22R": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
                 "22L": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],

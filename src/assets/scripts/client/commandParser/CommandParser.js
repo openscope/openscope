@@ -54,7 +54,7 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * All available commands are defined in the `commandMap`. Two terms of note are alias and root command.
  * We would call the `takeoff` command a root command and `to` and `cto` alises. The root command is the
  * one that shares the same key as the command definition which gives us the correct validator and parser.
- * The root command is also what the `AircraftInstanceModel` is expecting when it receives commands
+ * The root command is also what the `AircraftModel` is expecting when it receives commands
  * from the `InputController`.
  *
  * @class CommandParser
@@ -166,8 +166,14 @@ export default class CommandParser {
         const commandIndex = 0;
         const argIndex = 1;
         const commandName = commandArgSegments[commandIndex];
+        const commandArgs = commandArgSegments[argIndex];
         const commandModel = new CommandModel(commandName);
-        commandModel.args.push(commandArgSegments[argIndex]);
+
+        // undefined will happen with zeroArgument system commands, so we check for that here
+        // and add only when args are defined
+        if (typeof commandArgs !== 'undefined') {
+            commandModel.args.push(commandArgs);
+        }
 
         this.command = commandName;
         this.commandList.push(commandModel);

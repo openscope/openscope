@@ -18,6 +18,8 @@
         "angle": 220,
         "speed": 4
     },
+    "arrivalRunway": "27R",
+    "departureRunway": "27R",
     "airspace": [
         {
             "floor": 0,
@@ -1232,9 +1234,9 @@
             },
             {
                 "origin": "EGLL",
-                "destination": "EGLL.BPK.BPK",
+                "destination": "",
                 "category": "departure",
-                "route": "",
+                "route": "EGLL.BPK.BPK",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1300,9 +1302,9 @@
             },
             {
                 "origin": "EGLL",
-                "destination": "EGLL.WOBUN.WOBUN",
+                "destination": "",
                 "category": "departure",
-                "route": "",
+                "route": "EGLL.WOBUN.WOBUN",
                 "altitude": null,
                 "speed": null,
                 "method": "random",

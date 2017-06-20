@@ -29,6 +29,7 @@ export const CLASSNAMES = {
     NEXT: 'next',
     NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
+    OPTIONS_DIALOG: 'option-dialog',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
     PREV: 'prev',
@@ -39,6 +40,10 @@ export const CLASSNAMES = {
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     STRIP: 'strip',
+    STRIP_VIEW: 'js-stripView',
+    STRIP_VIEW_IS_HIDDEN: 'mix-stripView_isHidden',
+    STRIP_VIEW_LIST: 'js-stripView-list',
+    STRIP_VIEW_TRIGGER: 'js-stripView-trigger',
     SWITCH_AIRPORT: 'switch-airport',
     TOGGLE_LABELS: 'toggle-labels',
     TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',
@@ -67,13 +72,11 @@ export const IDS = {
     LOADING_INDICATOR: 'loadingIndicator',
     LOG: 'log',
     NAVAIDS_CANVAS: 'navaids-canvas',
-    OPTIONS_DIALOG: 'options-dialog',
     PAUSED: 'paused',
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
     SCORE: 'score',
-    SIDEBAR: 'sidebar',
-    STRIPS: 'strips'
+    SIDEBAR: 'sidebar'
 };
 
 /**

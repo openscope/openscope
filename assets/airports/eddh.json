@@ -17,6 +17,8 @@
         "angle": 210,
         "speed": 6
     },
+    "arrivalRunway": "23",
+    "departureRunway": "23",
     "airspace": [
         {
             "floor": 0,

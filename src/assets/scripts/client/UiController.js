@@ -1,38 +1,26 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef,
-no-param-reassign, class-methods-use-this */
+/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
 import _startCase from 'lodash/startCase';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
+import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
+import { THEME } from './constants/colors/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const ui = {};
 
 /**
- * @property TERRAIN_COLORS
- * @type {Object}
- * @final
- */
-const TERRAIN_COLORS = {
-    1000: '26, 150, 65',
-    2000: '119, 194, 92',
-    3000: '255, 255, 192',
-    4000: '253, 201, 128',
-    5000: '240, 124, 74',
-    6000: '156, 81, 31'
-};
-
-/**
- * @property UI_OPTIONS_TEMPLATE
+ * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTIONS_TEMPLATE = '<div id="options-dialog" class="dialog"></div>';
+const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
@@ -46,7 +34,7 @@ const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
  * @type {string}
  * @final
  */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-select"></span>';
+const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 
 /**
  * @class UiController
@@ -54,9 +42,14 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-se
 export default class UiController {
     /**
      * @constructor
+     * @param $element
+     * @param
      */
-    constructor($element) {
+    constructor($element, gameController, airportController) {
         this.$element = $element;
+        this._gameController = gameController;
+        this._airportController = airportController;
+
         this.$airportList = null;
         this.$airportListNotes = null;
         this.$toggleTutorial = null;
@@ -71,20 +64,19 @@ export default class UiController {
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
 
+        prop.ui = ui;
         this.ui = ui;
         this.ui.scale_default = 8; // pixels per km
         this.ui.scale_max = 80; // max scale
         this.ui.scale_min = 1; // min scale
         this.ui.scale = this.ui.scale_default;
-        this.ui.terrain = {
-            colors: TERRAIN_COLORS,
-            border_opacity: 1,
-            fill_opacity: 0.1
-        };
+        // TODO: This belongs in the CanvasController, not UiController
+        this.ui.terrain = THEME.DEFAULT.TERRAIN;
 
 
         return this._init()
-                    .enable();
+            .setupHandlers()
+            .enable();
     }
 
     /**
@@ -112,13 +104,27 @@ export default class UiController {
 
     /**
      * @for UiController
+     * @method setupHandlers
+     * @chainable
+     */
+    setupHandlers() {
+        return this;
+    }
+
+    /**
+     * Enable event handlers
+     *
+     * should be run only once on instantiation
+     *
+     * @for UiController
      * @method enable
      */
     enable() {
         this.$toggleTutorial.on('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.on('click', (event) => window.gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.on('click', (event) => window.gameController.game_pause_toggle(event));
-        this.$pausedImg.on('click', (event) => window.gameController.game_unpause(event));
+        this.$fastForwards.on('click', (event) => this._gameController.game_timewarp_toggle(event));
+        this.$pauseToggle.on('click', (event) => this._gameController.game_pause_toggle(event));
+        this.$pausedImg.on('click', (event) => this._gameController.game_unpause(event));
+
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
         this.$toggleLabels.on('click', (event) => this.canvas_labels_toggle(event));
@@ -131,14 +137,17 @@ export default class UiController {
     }
 
     /**
+     * Disable event handlers
+     *
      * @for UiController
      * @method disable
      */
-    diable() {
+    disable() {
         this.$toggleTutorial.off('click', (event) => window.tutorialView.tutorial_toggle(event));
-        this.$fastForwards.off('click', (event) => window.gameController.game_timewarp_toggle(event));
-        this.$pauseToggle.off('click', (event) => window.gameController.game_pause_toggle(event));
-        this.$pausedImg.off('click', (event) => window.gameController.game_unpause(event));
+        this.$fastForwards.off('click', (event) => this._gameController.game_timewarp_toggle(event));
+        this.$pauseToggle.off('click', (event) => this._gameController.game_pause_toggle(event));
+        this.$pausedImg.off('click', (event) => this._gameController.game_unpause(event));
+
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
         this.$toggleLabels.off('click', (event) => this.canvas_labels_toggle(event));
@@ -151,6 +160,8 @@ export default class UiController {
     }
 
     /**
+     * Tear down the instance
+     *
      * @for UiController
      * @method destroy
      */
@@ -186,23 +197,12 @@ export default class UiController {
      * @method ui_init_pre
      */
     ui_init_pre() {
-        prop.ui = ui;
-        prop.ui.scale_default = 8; // pixels per km
-        prop.ui.scale_max = 80; // max scale
-        prop.ui.scale_min = 1; // min scale
-        prop.ui.scale = prop.ui.scale_default;
-        prop.ui.terrain = {
-            colors: {
-                1000: '26, 150, 65',
-                2000: '119, 194, 92',
-                3000: '255, 255, 192',
-                4000: '253, 201, 128',
-                5000: '240, 124, 74',
-                6000: '156, 81, 31'
-            },
-            border_opacity: 1,
-            fill_opacity: 0.1
-        };
+        this.ui = ui;
+        this.ui.scale_default = 8; // pixels per km
+        this.ui.scale_max = 80; // max scale
+        this.ui.scale_min = 1; // min scale
+        this.ui.scale = this.ui.scale_default;
+        this.ui.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
@@ -214,8 +214,8 @@ export default class UiController {
     ui_init() {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
-        const $options = $(UI_OPTIONS_TEMPLATE);
-        const descriptions = window.gameController.game.option.getDescriptions();
+        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
+        const descriptions = this._gameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
             if (opt.type !== 'select') {
@@ -243,21 +243,25 @@ export default class UiController {
         $container.append(`<span class="option-description">${option.description}</span>`);
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
-        const $selector = $(`<select id="opt-${option.name}" name="${option.name}"></select>`);
-        const selectedOption = window.gameController.game.option.get(option.name);
+        const $selector = $(`<select name="${option.name}"></select>`);
+        const selectedOption = this._gameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
-        for (let i = 0; i < option.data.length; i++) {
-            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.data[i][1], selectedOption);
+        for (let i = 0; i < option.optionList.length; i++) {
+            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.optionList[i], selectedOption);
 
             $selector.append($optionSelectTempalate);
         }
 
-        // TODO: this should be moved to a `setupHandlers()` or a click handler
+        // TODO: this should be moved to proper event handler method and only assigned here.
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            window.gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            this._gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+
+            if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
+                this._buildAirportList();
+            }
         });
 
         $optionSelector.append($selector);
@@ -271,16 +275,21 @@ export default class UiController {
      *
      * @for UiController
      * @method _buildOptionTemplate
-     * @param optionData
+     * @param optionData {array<string>}
      * @param selectedOption {string}
-     * @return optionSelectTempalate {string}
+     * @return optionSelectTempalate {HTML Element}
      * @private
      */
     _buildOptionSelectTemplate(optionData, selectedOption) {
-        let optionSelectTempalate = `<option value="${optionData}">${_startCase(optionData)}</option>`;
+        // the `selectedOption` coming in to this method will always be a string (due to existing api) but
+        // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
+        const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
+            ? parseFloat(selectedOption)
+            : selectedOption
+        let optionSelectTempalate = `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
 
-        if (optionData === selectedOption) {
-            optionSelectTempalate = `<option value="${optionData}" selected="selected">${_startCase(optionData)}</option>`;
+        if (optionData.value === parsedSelectedOption) {
+            optionSelectTempalate = `<option value="${optionData.value}" selected>${optionData.displayLabel}</option>`;
         }
 
         return optionSelectTempalate;
@@ -292,8 +301,8 @@ export default class UiController {
      * @paam event {jquery event}
      */
     onClickAirportListItemHandler(event) {
-        if (event.data !== window.airportController.airport_get().icao) {
-            window.airportController.airport_set(event.data);
+        if (event.data !== this._airportController.airport_get().icao) {
+            this._airportController.airport_set(event.data);
             this.ui_airport_close();
         }
     }
@@ -320,44 +329,45 @@ export default class UiController {
      * @method ui_complete
      */
     ui_complete() {
-        const airports = _keys(prop.airport.airports).sort();
-        const icon = '&#9992;';
+        this._buildAirportList();
+    }
+
+    /**
+     * Loop through each airport defined in the `AirportController` and build
+     * a list item that can be appended to the #airport-list element.
+     *
+     * Includes a switch to conditionally include WIP airports based on a user setting
+     *
+     * @for UiController
+     * @method _buildAirportList
+     * @private
+     */
+    _buildAirportList() {
+        // clear out the contents of this element
+        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
+        this.$airportList.empty();
+
+        const airports = _keys(this._airportController.airport.airports).sort();
+        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
-        let airport;
 
         for (let i = 0; i < airports.length; i++) {
-            airport = prop.airport.airports[airports[i]];
+            const { name, icao, level, wip } = this._airportController.airport.airports[airports[i]];
 
-            switch (airport.level) {
-                case 'beginner':
-                    difficulty = icon;
-                    break;
-                case 'easy':
-                    difficulty = icon.repeat(2);
-                    break;
-                case 'medium':
-                    difficulty = icon.repeat(3);
-                    break;
-                case 'hard':
-                    difficulty = icon.repeat(4);
-                    break;
-                case 'expert':
-                    difficulty = icon.repeat(5);
-                    break;
-                default:
-                    difficulty = '?';
-                    break;
+            if (!shouldShowWipAirports && wip) {
+                continue;
             }
 
-            // TODO: move to a template const
-            const { name, icao, wip } = airport;
-            const flagIcon = (wip === true) ? ' &#9983' : '';
+            difficulty = this._buildAirportListIconForDifficultyLevel(level);
+            const flagIcon = wip
+                ? ' &#9983'
+                : '';
             const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
 
             // TODO: replace with an onClick() handler
-            $airportListItem.click(airport.icao.toLowerCase(), (event) => {
-                if (event.data !== window.airportController.airport_get().icao) {
-                    window.airportController.airport_set(event.data);
+            $airportListItem.click(icao.toLowerCase(), (event) => {
+                if (event.data !== this._airportController.airport_get().icao) {
+                    this._airportController.airport_set(event.data);
                     this.ui_airport_close();
                 }
             });
@@ -365,22 +375,77 @@ export default class UiController {
             this.$airportList.append($airportListItem);
         }
 
-        this.drawAirportListFooter();
+        this._buildAirportListFooter();
     }
 
     /**
+     * Given a `difficultyLevel`, create a string with the correct icon char code
+     * that can be used in the airport list
+     *
      * @for UiController
-     * @method drawAirportListFooter
+     * @method _buildAirportListIconForDifficultyLevel
+     * @param difficultyLevel {string}
+     * @return difficulty {string}
+     * @private
      */
-    drawAirportListFooter() {
-        const symbol = $('<span class="symbol">&#9983</span>');
-        this.$airportListNotes.append(symbol);
+    _buildAirportListIconForDifficultyLevel(difficultyLevel) {
+        let difficulty;
+        const icon = '&#9992;';
 
+        switch (difficultyLevel) {
+            case 'beginner':
+                difficulty = icon;
+                break;
+            case 'easy':
+                difficulty = icon.repeat(2);
+                break;
+            case 'medium':
+                difficulty = icon.repeat(3);
+                break;
+            case 'hard':
+                difficulty = icon.repeat(4);
+                break;
+            case 'expert':
+                difficulty = icon.repeat(5);
+                break;
+            default:
+                difficulty = '?';
+                break;
+        }
+
+        return difficulty;
+    }
+
+    /**
+     * Build the markup for the airport list footer
+     *
+     * This is changed based on a user setting
+     *
+     * @for UiController
+     * @method _buildAirportListFooter
+     */
+    _buildAirportListFooter() {
+        // clear out the contents of this element
+        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
+        this.$airportListNotes.empty();
+
+        const shouldShowWipAirports = this._gameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
+
+        if (!shouldShowWipAirports) {
+            const notes = $('<span class="words">Additional work-in-progress airports can be activated in the settings menu</span>');
+            this.$airportListNotes.append(notes);
+
+            return;
+        }
+
+        const symbol = $('<span class="symbol">&#9983</span>');
         const notes = $('<span class="words">indicates airport is a work in progress</span>');
+
+        this.$airportListNotes.append(symbol);
         this.$airportListNotes.append(notes);
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method px_to_km
@@ -388,10 +453,10 @@ export default class UiController {
      * @return {number}
      */
     px_to_km(pixels) {
-        return pixels / prop.ui.scale;
+        return pixels / this.ui.scale;
     }
 
-    //TODO: this function should live in a helper file somewhere
+    // TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method km_to_px
@@ -399,7 +464,7 @@ export default class UiController {
      * @return {number}
      */
     km_to_px(kilometers) {
-        return kilometers * prop.ui.scale;
+        return kilometers * this.ui.scale;
     }
 
     /**
@@ -407,8 +472,7 @@ export default class UiController {
      * @method ui_after_zoom
      */
     ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = prop.ui.scale;
-
+        localStorage[STORAGE_KEY.ATC_SCALE] = this.ui.scale;
         prop.canvas.dirty = true;
     }
 
@@ -422,10 +486,10 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        prop.ui.scale *= 0.9;
+        this.ui.scale *= 0.9;
 
-        if (prop.ui.scale < prop.ui.scale_min) {
-            prop.ui.scale = prop.ui.scale_min;
+        if (this.ui.scale < this.ui.scale_min) {
+            this.ui.scale = this.ui.scale_min;
         }
 
         this.ui_after_zoom();
@@ -444,9 +508,9 @@ export default class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        prop.ui.scale /= 0.9;
-        if (prop.ui.scale > prop.ui.scale_max) {
-            prop.ui.scale = prop.ui.scale_max;
+        this.ui.scale /= 0.9;
+        if (this.ui.scale > this.ui.scale_max) {
+            this.ui.scale = this.ui.scale_max;
         }
 
         this.ui_after_zoom();
@@ -460,7 +524,7 @@ export default class UiController {
      * @method ui_zoom_reset
      */
     ui_zoom_reset() {
-        prop.ui.scale = prop.ui.scale_default;
+        this.ui.scale = this.ui.scale_default;
 
         this.ui_after_zoom();
     }
@@ -480,7 +544,7 @@ export default class UiController {
         $log.append(html);
         $log.scrollTop($log.get(0).scrollHeight);
 
-        window.gameController.game_timeout((uiLogView) => {
+        this._gameController.game_timeout((uiLogView) => {
             uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
             setTimeout(() => {
@@ -503,7 +567,7 @@ export default class UiController {
             $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
 
-        const icao = window.airportController.airport_get().icao.toLowerCase();
+        const icao = this._airportController.airport_get().icao.toLowerCase();
         $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -598,6 +662,6 @@ export default class UiController {
             return;
         }
 
-        prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+        this.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }

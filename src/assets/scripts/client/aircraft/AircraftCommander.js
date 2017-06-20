@@ -1,5 +1,6 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -9,7 +10,8 @@ import {
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_PHASE,
-    FLIGHT_CATEGORY
+    FLIGHT_CATEGORY,
+    PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
 
 /**
@@ -42,6 +44,7 @@ const COMMANDS = {
     sayRoute: 'runSayRoute',
     sid: 'runSID',
     speed: 'runSpeed',
+    squawk: 'runSquawk',
     star: 'runSTAR',
     takeoff: 'runTakeoff',
     taxi: 'runTaxi'
@@ -53,17 +56,18 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, navigationLibrary, gameController, uiController) {
+    constructor(airportController, navigationLibrary, gameController, uiController, onChangeTransponderCode) {
         this._airportController = airportController;
         this._navigationLibrary = navigationLibrary;
         this._gameController = gameController;
         this._uiController = uiController;
+        this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
     /**
      * @for AircraftCommander
      * @method runCommands
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param commands {CommandParser}
      */
     runCommands(aircraft, commands) {
@@ -159,15 +163,13 @@ export default class AircraftCommander {
             ]);
         }
 
-        aircraft.updateStrip();
-
         return true;
     }
 
     /**
      * @for AircraftCommander
      * @method run
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param command {string}
      * @param data {array}
      * @return {function}
@@ -191,7 +193,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runAltitude
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array}  [success of operation, readback]
      */
@@ -202,7 +204,7 @@ export default class AircraftCommander {
         const airport = this._airportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
-            aircraft.currentAltitude,
+            aircraft.altitude,
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
@@ -215,7 +217,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runHeading
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -237,7 +239,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runClearedAsFiled
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
@@ -247,7 +249,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runClimbViaSID
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
     runClimbViaSID(aircraft) {
@@ -257,7 +259,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runDescendViaStar
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -271,7 +273,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSpeed
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      */
     runSpeed(aircraft, data) {
@@ -290,7 +292,7 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runHold
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array} [success of operation, readback]
      */
@@ -327,7 +329,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runFlyPresentHeading
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runFlyPresentHeading(aircraft) {
         return aircraft.pilot.maintainPresentHeading(aircraft.heading);
@@ -336,7 +338,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSayRoute
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array}   [success of operation, readback]
      */
     runSayRoute(aircraft) {
@@ -346,15 +348,20 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSID
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      * @return {array}   [success of operation, readback]
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const departureRunway = aircraft.fms.departureRunway;
-        const { icao: airportIcao } = this._airportController.airport_get();
-        const response = aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
+        const runwayModel = aircraft.fms.departureRunwayModel;
+        const airportModel = this._airportController.airport_get();
+
+        if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
+            return this._runSIDforSuffix(aircraft, airportModel, sidId);
+        }
+
+        const response = aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
 
         if (!response[0]) {
             return response;
@@ -368,16 +375,67 @@ export default class AircraftCommander {
     }
 
     /**
+     * Used only for suffix routes.
+     *
+     * Suffix routes apply to a specific runway.
+     * This method will find and pass on the correct `RunwayModel`
+     * to the `Pilot`.
+     *
+     * @for AircraftCommander
+     * @method _runSIDforSuffix
+     * @param  aircraft {AircraftModel}
+     * @param airportModel {AirportModel}
+     * @param sidId {strig}
+     * @return {array}  [success of operation, readback]
+     */
+    _runSIDforSuffix(aircraft, airportModel, sidId) {
+        const routeModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
+        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
+        const runwayModel = airportModel.getRunway(runwayName);
+
+        return aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
+    }
+
+    /**
      * @for AircraftCommander
      * @method runSTAR
      * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
+     * @return {array}   [success of operation, readback]
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
-        const arrivalRunway = aircraft.fms.arrivalRunway;
-        const { name: airportName } = this._airportController.airport_get();
+        // TODO: why are we passing this if we already have it?
+        const runwayModel = aircraft.fms.arrivalRunwayModel;
+        const airportModel = this._airportController.airport_get();
 
-        return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
+        if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {
+            return this._runSTARforSuffix(aircraft, airportModel, routeString);
+        }
+
+        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
+    }
+
+    /**
+     * Used only for suffix routes.
+     *
+     * Suffix routes apply to a specific runway.
+     * This method will find and pass on the correct `RunwayModel`
+     * to the `Pilot`.
+     *
+     * @for AircraftCommander
+     * @method _runSTARforSuffix
+     * @param aircraft {AircraftModel}
+     * @param airportModel {AirportModel}
+     * @param routeString {string}
+     * @return {array}  [success of operation, readback]
+     */
+    _runSTARforSuffix(aircraft, airportModel, routeString) {
+        const routeStringModel = new RouteModel(routeString);
+        const routeModel = this._navigationLibrary.starCollection.findRouteByIcao(routeStringModel.procedure);
+        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
+        const runwayModel = airportModel.getRunway(runwayName);
+
+        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
     }
 
     /**
@@ -447,7 +505,8 @@ export default class AircraftCommander {
 
         // Set the runway to taxi to
         if (!taxiDestination) {
-            taxiDestination = this._airportController.airport_get().runway;
+            const airport = this._airportController.airport_get();
+            taxiDestination = airport.departureRunwayModel.name;
         }
 
         const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
@@ -459,17 +518,17 @@ export default class AircraftCommander {
         const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.fms.departureRunway = runway;
+        aircraft.fms.departureRunwayModel = runway;
         aircraft.taxi_start = this._gameController.game_time();
 
-        runway.addAircraftToQueue(aircraft);
+        runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         this._gameController.game_timeout(
             this._changeFromTaxiToWaiting,
             aircraft.taxi_time,
             null,
-            [aircraft, this._uiController]
+            [aircraft]
         );
 
         return readback;
@@ -482,27 +541,21 @@ export default class AircraftCommander {
      */
     _changeFromTaxiToWaiting(args) {
         const aircraft = args[0];
-        const uiController = args[1];
 
         aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
-
-        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.fms.departureRunway.name}`);
-        speech_say([
-            { type: 'callsign', content: aircraft },
-            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.fms.departureRunway.name)}` }
-        ]);
     }
 
     /**
      * @for AircraftCommander
      * @method runTakeoff
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
+        // FIXME: update some of this queue logic to live in the RunwayModel
         const airport = this._airportController.airport_get();
-        const runway = aircraft.fms.departureRunway;
-        const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
+        const runway = aircraft.fms.departureRunwayModel;
+        const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
         const wind = airport.getWind();
@@ -544,7 +597,7 @@ export default class AircraftCommander {
             return [false, 'unable to take off, we never received an IFR clearance'];
         }
 
-        runway.removeAircraftFromQueue(aircraft);
+        runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
         aircraft.takeoffTime = this._gameController.game_time();
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
@@ -561,7 +614,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runLanding
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      * @param data {array}
      */
     runLanding(aircraft, data) {
@@ -580,7 +633,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runAbort
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runAbort(aircraft) {
         const airport = this._airportController.airport_get();
@@ -601,10 +654,30 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
+     * @method runSquawk
+     * @param aircraft {AircraftModel}
+     * @param data {array<string>}
+     * @return {array}   [success of operation, readback]
+     */
+    runSquawk(aircraft, data) {
+        const squawk = data[0];
+        const result = this._onChangeTransponderCode(squawk, aircraft);
+        let message = `squawking ${squawk}`;
+
+        if (!result) {
+            message = `unable to squawk ${squawk}`;
+        }
+
+        return [result, message];
+    }
+
+    /**
+     * @for AircraftCommander
      * @method runDelete
-     * @param aircraft {AircraftInstanceModel}
+     * @param aircraft {AircraftModel}
      */
     runDelete(aircraft) {
+        // TODO: this should be moved to an EventBus trigger
         window.aircraftController.aircraft_remove(aircraft);
     }
 

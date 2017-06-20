@@ -2,68 +2,47 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
-import { km, degreesToRadians } from '../utilities/unitConverters';
-import { time } from '../utilities/timeHelpers';
-import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
+import _filter from 'lodash/filter';
+import EventBus from '../lib/EventBus';
+import {
+    degreesToRadians,
+    km,
+    km_to_px
+} from '../utilities/unitConverters';
+import {
+    sin,
+    cos,
+    round,
+    calculateMiddle,
+    extrapolate_range_clamp,
+    clamp
+} from '../math/core';
+import {
+    positive_intersection_with_rect,
+    vectorize_2d,
+    vscale
+} from '../math/vector';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
-import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
+import { leftPad } from '../utilities/generalUtilities';
+import { time } from '../utilities/timeHelpers';
+import {
+    FLIGHT_PHASE,
+    FLIGHT_CATEGORY
+} from '../constants/aircraftConstants';
+import {
+    BASE_CANVAS_FONT,
+    DEFAULT_CANVAS_SIZE
+} from '../constants/canvasConstants';
+import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_PHASE, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { TIME } from '../constants/globalConstants';
+import { COLOR } from '../constants/colors/colors';
+import { THEME } from '../constants/colors/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
-
-/**
- * @property BASE_CANVAS_FONT
- * @type {string}
- * @final
- */
-const BASE_CANVAS_FONT = '10px monoOne, monospace';
-
-/**
- * @property DEFAULT_CANVAS_SIZE
- * @type {Object}
- * @final
- */
-const DEFAULT_CANVAS_SIZE = {
-    HEIGHT: 480,
-    WIDTH: 640
-};
-
-/**
- * @property COLORS
- * @type {Object}
- * @final
- */
-const COLORS = {
-    WHITE_00: 'rgba(255, 255, 255, 0)',
-    WHITE_02: 'rgba(255, 255, 255, 0.2)',
-    WHITE_03: 'rgba(255, 255, 255, 0.2)',
-    WHITE_04: 'rgba(255, 255, 255, 0.4)',
-    WHITE_05: 'rgba(255, 255, 255, 0.5)',
-    WHITE_07: 'rgba(255, 255, 255, 0.7)',
-    WHITE_08: 'rgba(255, 255, 255, 0.8)',
-    WHITE: 'rgba(255, 255, 255, 1.0)',
-    LIGHT_SILVER_03: 'rgba(224, 224, 224, 0.3)',
-    LIGHT_SILVER: 'rgba(224, 224, 224, 1.0)',
-    RED_06: 'rgba(224, 128, 128, 0.6)',
-    RED_08: 'rgba(224, 128, 128, 0.8)',
-    RED: 'rgba(224, 128, 128, 1.0)',
-    CORAL_RED: 'rgba(255, 64, 64, 1.0)',
-    BRIGHT_RED: 'rgba(255, 0, 0, 0.7)',
-    GRAIN_BROWN: 'rgba(224, 210, 180, 1.0)',
-    DEPARTURE_COLOR: 'rgba(128, 255, 255, 0.6)',
-    VIDEO_MAP_STROKE: 'rgba(193, 218, 205, 1)',
-    DEPARTURE_STROKE: 'rgba(128, 255, 255, 0.9)',
-    AIRSPACE_RADIUS_FILL: 'rgba(200, 255, 200, 0.02)',
-    AIRSPACE_RADIUS_STROKE: 'rgba(200, 255, 200, 0.25)',
-    AIRSPACE_RANGE_RING_COLOR: 'rgba(200, 255, 200, 0.1)',
-    CROSSHAIR_STROKE: 'rgba(136, 153, 153, 1)',
-    RESTRICTED_AIRSPACE_STROKE: 'rgba(150, 200, 255, 0.3)',
-    RESTRICTED_AIRSPACE_FILL: 'rgba(150, 200, 255, 0.4)'
-};
 
 /**
  * @class CanvasController
@@ -71,11 +50,20 @@ const COLORS = {
 export default class ConvasController {
     /**
      * @constructor
+     * @param $element {JQuery|HTML Element|undefined}
+     * @param navigationLibrary {NavigationLibrary}
+     * @param gameController {GameController}
      */
-    constructor($element, navigationLibrary) {
+    constructor($element, navigationLibrary, gameController) {
         this.$window = $(window);
         this.$element = $element;
+
         this._navigationLibrary = navigationLibrary;
+        this._eventBus = EventBus;
+
+        this._gameController = gameController;
+
+        prop.canvas = canvas;
         this.canvas = canvas;
         this.canvas.contexts = {};
         this.canvas.panY = 0;
@@ -94,8 +82,10 @@ export default class ConvasController {
         this.canvas.draw_sids = true;
         this.canvas.draw_terrain = true;
 
+        this.theme = THEME.DEFAULT;
+
         return this._init()
-                    .enable();
+            .enable();
     }
 
     /**
@@ -111,6 +101,8 @@ export default class ConvasController {
      * @method enable
      */
     enable() {
+        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+
         return this;
     }
 
@@ -155,7 +147,7 @@ export default class ConvasController {
      * @method canvas_init_pre
      */
     canvas_init_pre() {
-        prop.canvas = canvas;
+        return this;
     }
 
     /**
@@ -219,7 +211,7 @@ export default class ConvasController {
             this.canvas.size.height = this.$window.height();
         }
 
-        this.canvas.size.width -= 250;
+        // this.canvas.size.width -= 400;
         this.canvas.size.height -= 36;
 
         _forEach(this.canvas.contexts, (context) => {
@@ -439,7 +431,7 @@ export default class ConvasController {
                 return;
             }
 
-            cc.strokeStyle = '#465';
+            cc.strokeStyle = this.theme.RUNWAY_EXTENDED_CENTERLINE;
             cc.lineWidth = 1;
 
             cc.beginPath();
@@ -493,8 +485,8 @@ export default class ConvasController {
             return;
         }
 
-        cc.strokeStyle = COLORS.WHITE_04;
-        cc.fillStyle = COLORS.WHITE_04;
+        cc.strokeStyle = this.theme.RUNWAY;
+        cc.fillStyle = this.theme.RUNWAY;
         cc.lineWidth = 4;
 
         const airport = window.airportController.airport_get();
@@ -528,7 +520,7 @@ export default class ConvasController {
             return;
         }
 
-        cc.fillStyle = COLORS.WHITE_08;
+        cc.fillStyle = this.theme.RUNWAY_LABELS;
 
         const airport = window.airportController.airport_get();
         for (let i = 0; i < airport.runways.length; i++) {
@@ -547,8 +539,8 @@ export default class ConvasController {
      * @param cc
      */
     canvas_draw_scale(cc) {
-        cc.fillStyle = COLORS.WHITE_08;
-        cc.strokeStyle = COLORS.WHITE_08;
+        cc.fillStyle = this.theme.TOP_ROW_TEXT;
+        cc.strokeStyle = this.theme.TOP_ROW_TEXT;
 
         const offset = 10;
         const height = 5;
@@ -587,11 +579,10 @@ export default class ConvasController {
         cc.lineTo(-4, 3);
         cc.closePath();
         cc.fill();
-        cc.stroke();
+        // cc.stroke();
 
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
-        cc.strokeText(name, 0, 6);
         cc.fillText(name, 0, 6);
     }
 
@@ -615,16 +606,7 @@ export default class ConvasController {
                 -round(window.uiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
-            // draw outline (draw with eraser)
-            cc.strokeStyle = 'rgba(0, 0, 0, 0.67)';
-            cc.fillStyle = 'rgba(0, 0, 0, 0.67)';
-            cc.globalCompositeOperation = 'destination-out';
-            cc.lineWidth = 4;
-
-            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
-
-            cc.strokeStyle = COLORS.WHITE_00;
-            cc.fillStyle = COLORS.WHITE_05;
+            cc.fillStyle = this.theme.FIX_FILL;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
@@ -648,8 +630,8 @@ export default class ConvasController {
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
 
-        cc.strokeStyle = COLORS.DEPARTURE_COLOR;
-        cc.fillStyle = COLORS.DEPARTURE_COLOR;
+        cc.strokeStyle = this.theme.SID;
+        cc.fillStyle = this.theme.SID;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -730,7 +712,7 @@ export default class ConvasController {
         const runway = aircraft.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.angle + Math.PI;
 
-        cc.strokeStyle = COLORS.RED_08;
+        cc.strokeStyle = this.theme.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
         cc.translate(
             window.uiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
@@ -757,10 +739,10 @@ export default class ConvasController {
         if (aircraftAlerts[0]) {
             if (aircraftAlerts[1]) {
                 // red violation circle
-                cc.strokeStyle = COLORS.RED;
+                cc.strokeStyle = this.theme.RING_VIOLATION;
             } else {
                 // white warning circle
-                cc.strokeStyle = COLORS.WHITE_02;
+                cc.strokeStyle = this.theme.RING_CONFLICT;
             }
         } else {
             cc.strokeStyle = cc.fillStyle;
@@ -772,6 +754,7 @@ export default class ConvasController {
         cc.restore();
     }
 
+    // TODO: This likely has no purpose, and should be removed.
     /**
      * @for CanvasController
      * @method canvas_draw_aircraft_departure_window
@@ -782,7 +765,7 @@ export default class ConvasController {
         const angle = aircraft.destination - Math.PI / 2;
 
         cc.save();
-        cc.strokeStyle = COLORS.DEPARTURE_STROKE;
+        cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_DEPARTURE;
         cc.beginPath();
         cc.arc(
             this.canvas.panX,
@@ -801,15 +784,17 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_aircraft(cc, aircraft) {
-        let almost_match = false;
         let match = false;
 
-        if (
-            prop.input.callsign.length > 1 &&
-            aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
-        ) {
-            almost_match = true;
-        }
+        // TODO: this does not appear to be in use, verify and remove
+        // let almost_match = false;
+        //
+        // if (
+        //     prop.input.callsign.length > 1 &&
+        //     aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
+        // ) {
+        //     almost_match = true;
+        // }
 
         if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
             match = true;
@@ -835,24 +820,26 @@ export default class ConvasController {
         cc.save();
 
         if (!aircraft.inside_ctr) {
-            cc.fillStyle = COLORS.LIGHT_SILVER;
+            cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
         } else {
-            cc.fillStyle = COLORS.WHITE;
+            cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
         }
 
         const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
+            let alpha = 1 / (length - i);
+
             if (!aircraft.inside_ctr) {
-                cc.globalAlpha = 0.3 / (length - i);
-            } else {
-                cc.globalAlpha = 1 / (length - i);
-                cc.fillRect(
-                    window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
-                    -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
-                    2,
-                    2
-                );
+                alpha = 0.3 / (length - i);
             }
+
+            cc.globalAlpha = alpha;
+            cc.fillRect(
+                window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
+                -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
+                2,
+                2
+            );
         }
 
         cc.restore();
@@ -881,29 +868,15 @@ export default class ConvasController {
 
         const alerts = aircraft.hasAlerts();
 
-        if (!aircraft.inside_ctr) {
-            cc.fillStyle = COLORS.LIGHT_SILVER_03;
-        } else if (almost_match) {
-            cc.fillStyle = COLORS.GRAIN_BROWN;
-        } else if (match) {
-            cc.fillStyle = COLORS.WHITE;
-        } else if (aircraft.warning || alerts[1]) {
-            cc.fillStyle = COLORS.RED;
-        } else if (aircraft.hit) {
-            cc.fillStyle = COLORS.CORAL_RED;
-        } else {
-            cc.fillStyle = COLORS.WHITE;
-        }
-
         cc.strokeStyle = cc.fillStyle;
 
         if (match) {
             cc.save();
 
             if (!aircraft.inside_ctr) {
-                cc.fillStyle = COLORS.WHITE_03;
+                cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
             } else {
-                cc.fillStyle = COLORS.WHITE;
+                cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
             }
 
             const w = this.canvas.size.width / 2;
@@ -926,24 +899,7 @@ export default class ConvasController {
             -window.uiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
 
-        if (!aircraft.hit) {
-            cc.save();
-
-            let tail_length = aircraft.groundSpeed / 15;
-
-            if (match) {
-                tail_length = 15;
-            }
-
-            const angle = aircraft.groundTrack;
-            const end = vscale(vturn(angle), tail_length);
-
-            cc.beginPath();
-            cc.moveTo(0, 0);
-            cc.lineTo(end[0], -end[1]);
-            cc.stroke();
-            cc.restore();
-        }
+        this.canvas_draw_aircraft_vector_lines(cc, aircraft);
 
         if (aircraft.notice || alerts[0]) {
             this.canvas_draw_aircraft_rings(cc, aircraft);
@@ -952,6 +908,40 @@ export default class ConvasController {
         cc.beginPath();
         cc.arc(0, 0, size, 0, tau());
         cc.fill();
+    }
+
+    /**
+     * Draw aircraft vector lines (projected track lines or PTL)
+     *
+     * Note: These extend in front of aircraft a definable number of minutes
+     *
+     * @for CanvasController
+     * @method canvas_draw_aircraft_vector_lines
+     * @param cc {canvas}
+     * @param aircraft {AircraftModel}
+     */
+    canvas_draw_aircraft_vector_lines(cc, aircraft) {
+        if (aircraft.hit) {
+            return;
+        }
+        cc.save();
+
+        cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
+        cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
+
+        const ptlLengthMultiplier = this._gameController.getPtlLength();
+        const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
+        const lineLength_km = km(aircraft.groundSpeed * lineLengthInHours);
+        const groundTrackVector = vectorize_2d(aircraft.groundTrack);
+        const scaledGroundTrackVector = vscale(groundTrackVector, lineLength_km);
+        const screenPositionOffsetX = km_to_px(scaledGroundTrackVector[0], prop.ui.scale);
+        const screenPositionOffsetY = km_to_px(scaledGroundTrackVector[1], prop.ui.scale);
+
+        cc.beginPath();
+        cc.moveTo(0, 0);
+        cc.lineTo(screenPositionOffsetX, -screenPositionOffsetY);
+        cc.stroke();
+        cc.restore();
     }
 
     /**
@@ -1029,11 +1019,12 @@ k
         window.gameController.game.delta = save_delta;
         cc.save();
 
+        // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = COLORS.DEPARTURE_COLOR;
+            cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_DEPARTURE;
         } else {
-            cc.strokeStyle = COLORS.RED_06;
-            lockedStroke = COLORS.RED;
+            cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_ARRIVAL;
+            lockedStroke = this.theme.RADAR_TARGET_ESTABLISHED_ON_APPROACH;
         }
 
         cc.globalCompositeOperation = 'screen';
@@ -1079,8 +1070,9 @@ k
      * @param cc
      */
     canvas_draw_all_aircraft(cc) {
-        cc.fillStyle = COLORS.LIGHT_SILVER;
-        cc.strokeStyle = COLORS.LIGHT_SILVER;
+        // FIXME: How is this different from at line 793?
+        cc.fillStyle = COLOR.LIGHT_SILVER;
+        cc.strokeStyle = COLOR.LIGHT_SILVER;
         cc.lineWidth = 2;
 
         // console.time('canvas_draw_all_aircraft')
@@ -1146,18 +1138,18 @@ k
             }
 
             // set color, intensity, and style elements
-            let alpha = 0.2;
-            if (match) {
-                alpha = 0.9;
-            } else if (aircraft.inside_ctr) {
-                // else if (almost_match) var alpha = 0.75;
-                alpha = 0.5;
+            let red = this.theme.DATA_BLOCK.OUT_OF_RANGE.ARRIVAL_BAR;
+            let green = this.theme.DATA_BLOCK.OUT_OF_RANGE.BACKGROUND;
+            let blue = this.theme.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
+            let white = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
+
+            if (aircraft.inside_ctr) {
+                red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
+                green = this.theme.DATA_BLOCK.SELECTED.BACKGROUND;
+                blue = this.theme.DATA_BLOCK.SELECTED.DEPARTURE_BAR;
+                white = this.theme.DATA_BLOCK.SELECTED.TEXT;
             }
 
-            const red = `rgba(224, 128, 128, ${alpha})`;
-            const green = `rgba( 76, 118, 97, ${alpha})`;
-            const blue = `rgba(128, 255, 255, ${alpha})`;
-            const white = `rgba(255, 255, 255, ${alpha})`;
             cc.textBaseline = 'middle';
 
             // Move to center of where the data block is to be drawn
@@ -1255,13 +1247,15 @@ k
             const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
             const lineheight = 4.5; // height of text row (used for spacing basis)
             const row1text = cs;
-            const row2text = `${lpad(round(aircraft.altitude * 0.01), 3)} ${lpad(round(aircraft.speed * 0.1), 2)}`;
+            const aircraftAltitude = round(aircraft.altitude * 0.01);
+            const aircraftSpeed = round(aircraft.groundSpeed * 0.1);
+            const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {
-                cc.fillStyle = COLORS.WHITE_08;
+                cc.fillStyle = this.theme.DATA_BLOCK.IN_RANGE.TEXT;
             } else {
-                cc.fillStyle = COLORS.WHITE_02;
+                cc.fillStyle = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
             }
 
             if (aircraft.trend === 0) {
@@ -1324,7 +1318,7 @@ k
         cc.lineWidth = 4;
 
         // Outer circle
-        cc.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
         cc.beginPath();
         cc.arc(0, 0, size2, 0, tau());
         cc.fill();
@@ -1333,11 +1327,11 @@ k
         cc.lineWidth = 1;
         cc.beginPath();
         cc.arc(0, 0, dot / 2, 0, tau());
-        cc.strokeStyle = COLORS.WHITE_07;
+        cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
         cc.stroke();
 
         // Wind Value
-        cc.fillStyle = COLORS.WHITE_07;
+        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'center';
         cc.font = '9px monoOne, monospace';
@@ -1366,15 +1360,15 @@ k
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
         // Color wind line red for high-wind
         if (highwind) {
-            cc.strokeStyle = COLORS.BRIGHT_RED;
+            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
         } else {
-            cc.strokeStyle = COLORS.WHITE_07;
+            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
         }
 
         cc.lineWidth = 2;
         cc.stroke();
         cc.restore();
-        cc.fillStyle = COLORS.WHITE_07;
+        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
 
@@ -1403,8 +1397,8 @@ k
      */
     canvas_draw_ctr(cc) {
         // Draw a gentle fill color with border within the bounds of the airport's ctr_radius
-        cc.strokeStyle = COLORS.AIRSPACE_RADIUS_STROKE;
-        cc.fillStyle = COLORS.AIRSPACE_RADIUS_FILL;
+        cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.theme.AIRSPACE_FILL;
         cc.beginPath();
         cc.arc(0, 0, window.airportController.airport_get().ctr_radius * prop.ui.scale, 0, tau());
         cc.fill();
@@ -1425,8 +1419,8 @@ k
         }
 
         // style
-        cc.strokeStyle = COLORS.AIRSPACE_RADIUS_STROKE;
-        cc.fillStyle = COLORS.AIRSPACE_RADIUS_FILL;
+        cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.theme.AIRSPACE_FILL;
 
         // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
@@ -1483,7 +1477,7 @@ k
      */
     // Draw range rings for ENGM airport to assist in point merge
     canvas_draw_engm_range_rings(cc) {
-        cc.strokeStyle = 'rgba(200, 255, 200, 0.3)';
+        cc.strokeStyle = this.theme.RANGE_RING_COLOR;
         cc.setLineDash([3, 6]);
 
         this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
@@ -1507,7 +1501,7 @@ k
             cc.beginPath();
             cc.linewidth = 1;
             cc.arc(0, 0, rangeRingRadius * prop.ui.scale * i, 0, tau());
-            cc.strokeStyle = COLORS.AIRSPACE_RANGE_RING_COLOR;
+            cc.strokeStyle = this.theme.RANGE_RING_COLOR;
             cc.stroke();
         }
     }
@@ -1543,8 +1537,9 @@ k
             return;
         }
 
-        cc.strokeStyle = COLORS.WHITE_04;
-        cc.fillStyle = COLORS.WHITE_02;
+        // FIXME: Does this even end up getting used? Convert to use of `this.theme`
+        cc.strokeStyle = COLOR.WHITE_04;
+        cc.fillStyle = COLOR.WHITE_02;
         cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
         cc.lineJoin = 'round';
 
@@ -1556,10 +1551,10 @@ k
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${prop.ui.terrain.colors[elevation]}, `;
+            const color = `rgba(${prop.ui.terrain.COLOR[elevation]}, `;
 
-            cc.strokeStyle = `${color} ${prop.ui.terrain.border_opacity})`;
-            cc.fillStyle = `${color} ${prop.ui.terrain.fill_opacity})`;
+            cc.strokeStyle = `${color} ${prop.ui.terrain.BORDER_OPACITY})`;
+            cc.fillStyle = `${color} ${prop.ui.terrain.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1620,16 +1615,16 @@ k
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${prop.ui.terrain.colors[j]}, ${prop.ui.terrain.fill_opacity})`;
+                cc.fillStyle = `rgba(${prop.ui.terrain.COLOR[j]}, ${prop.ui.terrain.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${prop.ui.terrain.colors[i]}, ${prop.ui.terrain.border_opacity})`;
+            cc.strokeStyle = `rgba(${prop.ui.terrain.COLOR[i]}, ${prop.ui.terrain.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
             if (i === max_elevation || i === 1000) {
-                cc.fillStyle = COLORS.WHITE;
+                cc.fillStyle = this.theme.COMPASS_TEXT;
                 cc.textAlign = 'center';
                 cc.textBaseline = 'top';
                 cc.fillText(`${i}'`, box_width / 2 + 0.5, offset + 2);
@@ -1649,7 +1644,7 @@ k
             return;
         }
 
-        cc.strokeStyle = COLORS.RESTRICTED_AIRSPACE_STROKE;
+        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE;
         cc.lineWidth = Math.max(prop.ui.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1663,7 +1658,8 @@ k
             cc.fillStyle = 'transparent';
             this.canvas_draw_poly(cc, area.coordinates);
 
-            cc.fillStyle = COLORS.RESTRICTED_AIRSPACE_FILL;
+            // FIXME: Is the restricted airspace EVER filled???
+            cc.fillStyle = this.theme.RESTRICTED_AIRSPACE;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
@@ -1700,7 +1696,7 @@ k
             return;
         }
 
-        cc.strokeStyle = COLORS.VIDEO_MAP_STROKE;
+        cc.strokeStyle = this.theme.VIDEO_MAP;
         cc.lineWidth = prop.ui.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1730,7 +1726,7 @@ k
      */
     canvas_draw_crosshairs(cc) {
         cc.save();
-        cc.strokeStyle = COLORS.CROSSHAIR_STROKE;
+        cc.strokeStyle = this.theme.CROSSHAIR_STROKE;
         cc.lineWidth = 3;
         cc.beginPath();
         cc.moveTo(-10, 0);
@@ -1744,6 +1740,8 @@ k
     }
 
     /**
+     * Draw the compass around the scope edge
+     *
      * @for CanvasController
      * @method canvas_draw_directions
      * @param cc
@@ -1759,8 +1757,8 @@ k
         }
 
         // Get the selected aircraft.
-        const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.callsign.toUpperCase() === callsign;
+        const aircraft = _filter(prop.aircraft.list, (p) => {
+            return p.matchCallsign(callsign) && p.isVisible();
         })[0];
 
         if (!aircraft) {
@@ -1772,8 +1770,8 @@ k
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
         cc.save();
-        cc.strokeStyle = COLORS.LIGHT_SILVER;
-        cc.fillStyle = COLORS.WHITE;
+        cc.strokeStyle = this.theme.COMPASS_HASH;
+        cc.fillStyle = this.theme.COMPASS_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
@@ -1840,4 +1838,21 @@ k
             this.canvas.size.height / 2 + this.canvas.panY - km(pos[1])
         ];
     }
+
+    /**
+     * Center a point in the view
+     *
+     * Used only for centering aircraft, this accepts
+     * the x,y of an aircrafts relativePosition
+     *
+     * @for CanvasController
+     * @method _onCenterPointInView
+     * @param x {number}    relativePosition.x
+     * @param y {number}    relativePosition.y
+     */
+    _onCenterPointInView = ({ x, y }) => {
+        this.canvas.panX = 0 - round(window.uiController.km_to_px(x));
+        this.canvas.panY = round(window.uiController.km_to_px(y));
+        this.dirty = true;
+    };
 }

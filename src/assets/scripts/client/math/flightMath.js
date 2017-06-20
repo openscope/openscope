@@ -1,5 +1,13 @@
-import { sin, cos, tan, abs } from './core';
-import { tau } from './circle';
+import {
+    abs,
+    sin,
+    cos,
+    tan
+} from './core';
+import {
+    tau,
+    angle_offset
+} from './circle';
 import { distance2d } from './distance';
 import {
     vradial,
@@ -9,12 +17,12 @@ import {
     distance_to_poly,
     area_to_poly
 } from './vector';
-import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import {
     kn_ms,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
+import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 
 /**
  * @function calcTurnRadius
@@ -53,7 +61,7 @@ export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPo
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
  *
- * @param aircraft {AircraftInstanceModel}      the aircraft in question
+ * @param aircraft {AircraftModel}      the aircraft in question
  * @param target {array}                        positional array of the targeted position [x,y]
  * @param headingThruTarget {number} (optional) The heading the aircraft should
  *                                              be established on when passing the target.
@@ -187,7 +195,7 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
  * - The Avionics Handbook, ch 15
  *
  * @function aircraft_turn_initiation_distance
- * @param aircraft {AircraftInstanceModel}
+ * @param aircraft {AircraftModel}
  * @param fix
  */
 export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition) => {
@@ -195,8 +203,9 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     const nominalBankAngleDegrees = 25;
     const speed = kn_ms(aircraft.speed);
     const bankAngle = degreesToRadians(nominalBankAngleDegrees);
+    const nextWaypointModel = aircraft.fms.getNextWaypointModel();
 
-    if (!aircraft.fms.hasNextWaypoint()) {
+    if (!aircraft.fms.hasNextWaypoint() || nextWaypointModel.isVector) {
         return 0;
     }
 
@@ -205,7 +214,7 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     }
 
     const nominalNewCourse = _calculateNominalNewCourse(
-        aircraft.fms.getNextWaypointPositionModel(),
+        nextWaypointModel.positionModel,
         currentWaypointPosition
     );
     const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);
@@ -215,3 +224,11 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     // convert m to km
     return turnInitiationDistance / 1000;
 };
+
+/**
+ * @function calculateCrosswindAngle
+ * @param runwayAngle {number}
+ * @param windAngle {number}
+ * @return {number}
+ */
+export const calculateCrosswindAngle = (runwayAngle, windAngle) => abs(angle_offset(runwayAngle, windAngle));

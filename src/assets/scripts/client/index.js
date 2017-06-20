@@ -28,6 +28,5 @@ export default (() => {
     const airportLoadList = window.AIRPORT_LOAD_LIST;
     const initialAirportToLoad = getInitialAirport();
     const $body = $('body');
-
     const app = new App($body, airportLoadList, initialAirportToLoad);
 })();

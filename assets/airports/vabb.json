@@ -19,6 +19,8 @@
         "angle": 250,
         "speed": 0
     },
+    "arrivalRunway": "14",
+    "departureRunway": "14",
     "fixes": {
         "AAU":      ["N19d51m67.00",  "E075d24m32.00"],
         "ALBAP":    ["N19d21m96.00",  "E073d01m60.00"],

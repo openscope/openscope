@@ -1,20 +1,11 @@
 import _get from 'lodash/get';
-
-/**
- * Symbol used to denote an RNAV waypoint
- *
- * @property RNAV_WAYPOINT_SYMBOL
- * @type {string}
- * @final
- */
-const RNAV_WAYPOINT_SYMBOL = '_';
-
-/**
- * @property RNAV_WAYPOINT
- * @type {string}
- * @final
- */
-const RNAV_WAYPOINT = 'RNAV';
+import {
+    RNAV_WAYPOINT_DISPLAY_NAME,
+    RNAV_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/navigation/routeConstants';
+import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { degreesToRadians } from '../../utilities/unitConverters';
 
 /**
  * A representation of navigation point within a flight plan.
@@ -121,6 +112,17 @@ export default class WaypointModel {
         this.timer = -999;
 
         /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for WaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
+
+        /**
          * Flag used to determine if a waypoint is for a holding pattern
          *
          * Typically used from the fms as `fms#currentWaypoint`
@@ -130,6 +132,16 @@ export default class WaypointModel {
          * @default false
          */
         this.isHold = false;
+
+        /**
+         * Flag used to determine if a waypoint is for a vector
+         *
+         * @for WaypointModel
+         * @property _isVector
+         * @type {boolean}
+         * @default false
+         */
+        this._isVector = false;
 
         this.init(waypointProps);
     }
@@ -146,8 +158,8 @@ export default class WaypointModel {
      * @return {string}
      */
     get name() {
-        if (this._name.indexOf(RNAV_WAYPOINT_SYMBOL) !== -1) {
-            return RNAV_WAYPOINT;
+        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== -1) {
+            return RNAV_WAYPOINT_DISPLAY_NAME;
         }
 
         return this._name;
@@ -167,7 +179,8 @@ export default class WaypointModel {
      *
      * This is used to match an existing API
      *
-     * @propert hold
+     * @for WaypointModel
+     * @property hold
      * @return {object}
      */
     get hold() {
@@ -196,10 +209,50 @@ export default class WaypointModel {
      * Fascade to access relative position
      *
      * @for WaypointModel
+     * @property relativePosition
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
         return this._positionModel.relativePosition;
+    }
+
+    /**
+     * Returns whether `this` is a fly-over waypoint
+     * @for WaypointModel
+     * @property isFlyOverWaypoint
+     * @return {boolean}
+     */
+    get isFlyOverWaypoint() {
+        return this._isFlyOverWaypoint;
+    }
+
+    /**
+     * Returns whether `this` is a vector waypoint
+     *
+     * @for WaypointModel
+     * @property isVector
+     * @return {boolean}
+     */
+    get isVector() {
+        return this._isVector;
+    }
+
+    /**
+     * When `#_isVector` is true, this gets the heading that should be flown
+     *
+     * @for WaypointModel
+     * @property vector
+     * @type {number}
+     */
+    get vector() {
+        if (!this.isVector) {
+            return;
+        }
+
+        const headingInDegrees = parseInt(extractHeadingFromVectorSegment(this._name), 10);
+        const headingInRadians = degreesToRadians(headingInDegrees);
+
+        return headingInRadians;
     }
 
     /**
@@ -216,6 +269,8 @@ export default class WaypointModel {
         this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
+        this._isFlyOverWaypoint = waypointProps.isFlyOverWaypoint;
+        this._isVector = waypointProps.isVector;
 
         // these properties will only be available for holding pattern waypoints
         this.isHold = _get(waypointProps, 'isHold', this.isHold);
