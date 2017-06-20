@@ -172,16 +172,19 @@
         "BIBOK": ["N18.75635659366249", "W69.29138945844211"],
         "BOKLO": ["N18.52284590368628", "W69.54757689742311"],
         "BORAS": ["N19.41082044403037", "W70.16720581448901"],
+        "BQN"  : ["N18.49801644005262", "W67.10833740085452"],
         "CDO"  : ["N18.43290880730685", "W69.66732787399317"],
         "DARSI": ["N18.17751673436852", "W68.55862427157659"],
         "DATRU": ["N18.53814548747753", "W69.70928191452317"],
         "DCR"  : ["N17.93170238342801", "W71.64843749857454"],
         "DELPO": ["N17.60665508195677", "W69.80417632370886"],
+        "DULSI": ["N17.01056530147315", "W69.50994872901326"],
         "EMULU": ["N18.62353753804021", "W69.66650389938376"],
         "ETBOD": ["N18.51659548205915", "W71.88336182028831"],
         "GABOK": ["N18.79035763762282", "W69.25177002350544"],
         "GABRA": ["N17.85416155726015", "W70.29940796292190"],
         "GOSUL": ["N18.46137336588308", "W68.79109954141835"],
+        "IMEDO": ["N17.29994699368553", "W69.15087890478947"],
         "KANAM": ["N18.12973435752527", "W70.48361205373220"],
         "KARIB": ["N17.66639920531775", "W69.31693267133436"],
         "KARUM": ["N16.00005551828339", "W69.39990234229296"],
@@ -194,6 +197,7 @@
         "KODIX": ["N19.13667042244633", "W70.14248656542941"],
         "LECKY": ["N18.22498164051401", "W69.89529418260132"],
         "LETIR": ["N18.46065692458292", "W69.60607909469245"],
+        "MAREV": ["N16.64443742719902", "W69.96166992042585"],
         "MELLA": ["N18.19995709905639", "W67.99996948643990"],
         "MIROX": ["N18.23750343890483", "W68.81554412149801"],
         "OKOSO": ["N18.32304490138826", "W70.54747008596280"],
@@ -203,6 +207,7 @@
         "PELSO": ["N19.79995715780646", "W69.97137451566775"],
         "PETRI": ["N19.26862821581652", "W69.70834350981758"],
         "PISOS": ["N20.08723244589593", "W70.16363525784851"],
+        "PITEX": ["N18.40352740535064", "W71.10754394387945"],
         "PITOX": ["N18.58696477925445", "W69.73612975388033"],
         "PIVAR": ["N18.44463391074962", "W69.26234435345981"],
         "PIXAR": ["N19.14170860481877", "W68.84033203523860"],
@@ -1114,9 +1119,9 @@
                 "17": ["SD130", ["SD134", "A40-"]],
                 "35": ["^SD140", "SD144", "SD145", ["SD146", "A30"], ["SD147", "A40+"]]
             },
-            "body": ["AVRES"],
+            "body": [],
             "exitPoints": {
-                "KARUM": ["KARUM"]
+                "AVRES": ["AVRES"]
             },
             "draw": [
                 ["SD130", "SD134", "AVRES"],
@@ -1129,9 +1134,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "AVRES"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "KARUM": ["KARUM"]
+                "AVRES": ["AVRES"]
             },
             "draw": [
                 ["CDO", "AVRES"]
@@ -1143,9 +1148,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO185015", "AVRES"],
+            "body": [["^PODIS", "A30-"], "_CDO185015"],
             "exitPoints": {
-                "KARUM": ["KARUM"]
+                "AVRES": ["AVRES"]
             },
             "draw": []
         },
@@ -1155,9 +1160,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "_CDO059015", "BIBOK"],
+            "body": [["^PITOX", "A30-"], "_CDO059015"],
             "exitPoints": {
-                "BETIR": ["GABOK", "BETUM", "PIXAR", "BETIR"]
+                "BIBOK": ["BIBOK"]
             },
             "draw": [
                 ["CDO", "BIBOK"]
@@ -1169,9 +1174,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "CDO", "BIBOK"],
+            "body": [["^PODIS", "A30-"], "CDO"],
             "exitPoints": {
-                "BETIR": ["GABOK", "BETUM", "PIXAR", "BETIR"]
+                "BIBOK": ["BIBOK"]
             },
             "draw": []
         },
@@ -1181,9 +1186,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "DELPO"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "BEROX": ["BEROX"]
+                "DELPO": ["DELPO"]
             },
             "draw": [
                 ["CDO", "DELPO"]
@@ -1195,9 +1200,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO200015", "DELPO"],
+            "body": [["^PODIS", "A30-"], "_CDO200015"],
             "exitPoints": {
-                "BEROX": ["BEROX"]
+                "DELPO": ["DELPO"]
             },
             "draw": []
         },
@@ -1209,9 +1214,9 @@
                 "17": ["SD130", "SD131", ["SD135", "A40-"]],
                 "35": ["^SD140", "SD142", "SD143"]
             },
-            "body": ["KANAM"],
+            "body": [],
             "exitPoints": {
-                "DCR": ["DCR"]
+                "KANAM": ["KANAM"]
             },
             "draw": [
                 ["SD130", "SD131", "SD135", "KANAM"],
@@ -1224,9 +1229,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "KARIB"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "POKAK": ["POKAK"]
+                "KARIB": ["KARIB"]
             },
             "draw": [
                 ["CDO", "KARIB"]
@@ -1238,9 +1243,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO167015", "KARIB"],
+            "body": [["^PODIS", "A30-"], "_CDO167015"],
             "exitPoints": {
-                "BEROX": ["BEROX"]
+                "KARIB": ["KARIB"]
             },
             "draw": []
         },
@@ -1252,11 +1257,9 @@
                 "17": ["SD130", "SD131", ["SD132", "A40-"], ["SD133", "A60+"]],
                 "35": ["^SD140", ["SD141", "A35-"]]
             },
-            "body": ["KERSO"],
+            "body": [],
             "exitPoints": {
-                "PTA":   ["RIBES", "BORAS", "PTA"],
-                "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
-                "ASIVO": ["PETRI", "KOBET", "ASIVO"]
+                "KERSO": ["KERSO"]
             },
             "draw": [
                 ["SD131", "SD132", "SD133", "KERSO"],
@@ -1269,11 +1272,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "_CDO008015", "KERSO"],
+            "body": [["^PITOX", "A30-"], "_CDO008015"],
             "exitPoints": {
-                "PTA":   ["RIBES", "BORAS", "PTA"],
-                "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
-                "ASIVO": ["PETRI", "KOBET", "ASIVO"]
+                "KERSO": ["KERSO"]
             },
             "draw": [
                 ["CDO", "KERSO"]
@@ -1285,11 +1286,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "CDO", "KERSO"],
+            "body": [["^PODIS", "A30-"], "CDO"],
             "exitPoints": {
-                "PTA":   ["RIBES", "BORAS", "PTA"],
-                "BESAS": ["PETRI", "KOBET", "PELSO", "PISOS", "BESAS"],
-                "ASIVO": ["PETRI", "KOBET", "ASIVO"]
+                "KERSO": ["KERSO"]
             },
             "draw": []
         },
@@ -1299,9 +1298,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "_CDO338015", "KODIX"],
+            "body": [["^PITOX", "A30-"], "_CDO338015"],
             "exitPoints": {
-                "ONPAD": ["BIBAS", "POBIN", "ONPAD"]
+                "KODIX": ["KODIX"]
             },
             "draw": [
                 ["CDO", "PITOX", "KODIX"]
@@ -1313,9 +1312,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "CDO", "PITOX", "KODIX"],
+            "body": [["^PODIS", "A30-"], "CDO", "PITOX"],
             "exitPoints": {
-                "ONPAD": ["BIBAS", "POBIN", "ONPAD"]
+                "KODIX": ["KODIX"]
             },
             "draw": []
         },
@@ -1327,9 +1326,9 @@
                 "17": ["SD130", "SD131"],
                 "35": ["^SD140", "SD142", "SD143"]
             },
-            "body": ["LECKY"],
+            "body": [],
             "exitPoints": {
-                "PALAS": ["POLUX", "GABRA", "RAGUS", "KASOS", "KATIN", "PALAS"]
+                "LECKY": ["LECKY"]
             },
             "draw": [
                 ["SD131", "LECKY"],
@@ -1342,9 +1341,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "LECKY"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "PALAS": ["POLUX", "GABRA", "RAGUS", "KASOS", "KATIN", "PALAS"]
+                "LECKY": ["LECKY"]
             },
             "draw": [
                 ["CDO", "LECKY"]
@@ -1356,9 +1355,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO237015", "LECKY"],
+            "body": [["^PODIS", "A30-"], "_CDO237015"],
             "exitPoints": {
-                "PALAS": ["POLUX", "GABRA", "RAGUS", "KASOS", "KATIN", "PALAS"]
+                "LECKY": ["LECKY"]
             },
             "draw": []
         },
@@ -1370,9 +1369,9 @@
                 "17": ["SD130", "SD131", ["SD132", "A40-"]],
                 "35": ["^SD140", "SD144", "SD145", ["SD146", "A30"], ["SD148", "A60+"]]
             },
-            "body": ["MIROX"],
+            "body": [],
             "exitPoints": {
-                "MELLA": ["DARSI", "POBEP", "MELLA"]
+                "MIROX": ["MIROX"]
 
             },
             "draw": [
@@ -1386,9 +1385,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "PIVAR"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "ANTEX": ["GOSUL", "ANTEX"]
+                "PIVAR": ["PIVAR"]
             },
             "draw": [
                 ["CDO", "PIVAR"]
@@ -1400,9 +1399,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO099015", "PIVAR"],
+            "body": [["^PODIS", "A30-"], "_CDO099015"],
             "exitPoints": {
-                "ANTEX": ["GOSUL", "ANTEX"]
+                "PIVAR": ["PIVAR"]
             },
             "draw": []
         },
@@ -1412,9 +1411,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "CDO", "POBEX"],
+            "body": [["^PITOX", "A30-"], "CDO"],
             "exitPoints": {
-                "MELLA": ["MIROX", "DARSI", "POBEP", "MELLA"]
+                "POBEX": ["POBEX"]
             },
             "draw": [
                 ["CDO", "POBEX"]
@@ -1426,9 +1425,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "_CDO114015", "POBEX"],
+            "body": [["^PODIS", "A30-"], "_CDO114015"],
             "exitPoints": {
-                "MELLA": ["MIROX", "DARSI", "POBEP", "MELLA"]
+                "POBEX": ["POBEX"]
             },
             "draw": []
         },
@@ -1438,9 +1437,9 @@
             "rwy": {
                 "35": []
             },
-            "body": [["^PITOX", "A30-"], "_CDO353015", "RIBES"],
+            "body": [["^PITOX", "A30-"], "_CDO353015"],
             "exitPoints": {
-                "PTA": ["BORAS", "PTA"]
+                "RIBES": ["RIBES"]
             },
             "draw": [
                 ["CDO", "RIBES"]
@@ -1452,9 +1451,9 @@
             "rwy": {
                 "17": []
             },
-            "body": [["^PODIS", "A30-"], "CDO", "RIBES"],
+            "body": [["^PODIS", "A30-"], "CDO"],
             "exitPoints": {
-                "PTA": ["BORAS", "PTA"]
+                "RIBES": ["RIBES"]
             },
             "draw": []
         }
@@ -1602,7 +1601,7 @@
             "origin": "MDSD",
             "destination": "",
             "category": "departure",
-            "route": "MDSD.AVRES.KARUM",
+            "route": "MDSD.AVRES.AVRES",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1620,7 +1619,7 @@
             "origin": "MDSD",
             "destination": "",
             "category": "departure",
-            "route": "MDSD.KANAM.DCR",
+            "route": "MDSD.KANAM.KANAM",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1639,7 +1638,7 @@
             "origin": "MDSD",
             "destination": "",
             "category": "departure",
-            "route": "MDSD.KERSO.ASIVO",
+            "route": "MDSD.KERSO.KERSO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1666,7 +1665,7 @@
             "origin": "MDSD",
             "destination": "",
             "category": "departure",
-            "route": "MDSD.LECKY.PALAS",
+            "route": "MDSD.LECKY.LECKY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1685,7 +1684,7 @@
             "origin": "MDSD",
             "destination": "",
             "category": "departure",
-            "route": "MDSD.MIROX.MELLA",
+            "route": "MDSD.MIROX.MIROX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1723,7 +1722,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "BEROX..DELPO.DELPO.MDSD",
+            "route": "BEROX..MAREV..DELPO.DELPO.MDSD",
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
@@ -1741,7 +1740,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "PALAS..KATIN..KASOS..RAGUS..GABRA..GABRA.MDSD",
+            "route": "PALAS..KATIN..KASOS..RAGUS..GABRA.GABRA.MDSD",
             "altitude": [31000, 41000],
             "speed": 320,
             "method": "random",
@@ -1760,7 +1759,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "POKAK..KARIB.KARIB.MDSD",
+            "route": "POKAK..IMEDO..KARIB.KARIB.MDSD",
             "altitude": [30000, 42000],
             "speed": 320,
             "method": "random",
@@ -1778,7 +1777,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ANTEX..GOSUL.GOSUL.MDSD",
+            "route": "BQN..ANTEX..GOSUL.GOSUL.MDSD",
             "altitude": [24000, 32000],
             "speed": 320,
             "method": "random",
@@ -1797,7 +1796,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ONPAD..POBIN..BIBAS..KODIX..KODIX.MDSD",
+            "route": "ONPAD..POBIN..BIBAS..KODIX.KODIX.MDSD",
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
@@ -1819,7 +1818,7 @@
             "origin": "",
             "destination": "MDSD",
             "category": "arrival",
-            "route": "ETBOD..OKOSO.OKOSO.MDSD",
+            "route": "ETBOD..PITEX..OKOSO.OKOSO.MDSD",
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
