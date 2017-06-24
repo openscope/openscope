@@ -65,6 +65,20 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     ));
 });
 
+ava('.conductInstrumentApproach() calls ._interceptGlidepath() with altitude rounded down to nearest 100ft', (t) => {
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const _interceptGlidepathSpy = sinon.spy(pilot, '_interceptGlidepath');
+
+    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, 6099, headingMock);
+
+    t.true(_interceptGlidepathSpy.calledWithExactly(
+        runwayModelMock.positionModel,
+        runwayModelMock.angle,
+        runwayModelMock.ils.glideslopeGradient,
+        6000
+    ));
+});
+
 ava('.conductInstrumentApproach() returns to the correct flightPhase after a hold', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     pilot._fms.setFlightPhase('HOLD');
