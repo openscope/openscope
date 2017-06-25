@@ -1439,49 +1439,9 @@ export default class AircraftModel {
                 return this._calculateLegalSpeed(this.model.speed.max);
 
             case MCP_MODE.SPEED.VNAV: {
-                // const mcpSpeed = this.mcp.speed;
-                // const waypointMaxSpeed = this.fms.currentWaypoint.speedMaximum;
-                //
-                // if (waypointMaxSpeed !== -1) {
-                //     return this._calculateLegalSpeed(waypointMaxSpeed);
-                // }
-                //
-                // return this._calculateLegalSpeed(mcpSpeed);
-                const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+                const vnavSpeed = this._calculateTargetedSpeedVnav();
 
-                if (_isNil(hardRestrictedWaypointModel)) {
-                    return;
-                }
-
-                let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
-
-                if (waypointSpeed > this.speed) {
-                    const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-                    const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== -1;
-
-                    // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
-                    if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-                        waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
-                    }
-
-                    return Math.min(waypointSpeed, this.mcp.speed);
-                } else if (waypointSpeed < this.speed) {
-                    if (!this.isBeyondDecelerationPoint()) {
-                        return;
-                    }
-
-                    const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-                    const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-                    const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== -1;
-
-                    // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
-                    if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-                        waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
-                    }
-
-                    return Math.min(waypointSpeed, this.mcp.speed);
-                }
+                return this._calculateLegalSpeed(vnavSpeed);
 
                 break;
             }
@@ -1884,6 +1844,50 @@ export default class AircraftModel {
         );
 
         return nextSpeed;
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV climb or descent
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnav
+     * @return {number} speed, in knots
+     */
+    _calculateTargetedSpeedVnav() {
+        const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(hardRestrictedWaypointModel)) {
+            return;
+        }
+
+        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+
+        if (waypointSpeed > this.speed) {
+            const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+            const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+            const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== -1;
+
+            // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
+            if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+                waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
+            }
+
+            return Math.min(waypointSpeed, this.mcp.speed);
+        } else if (waypointSpeed < this.speed) {
+            if (!this.isBeyondDecelerationPoint()) {
+                return;
+            }
+
+            const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+            const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+            const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== -1;
+
+            // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+            if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+                waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
+            }
+
+            return Math.min(waypointSpeed, this.mcp.speed);
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
