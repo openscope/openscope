@@ -76,6 +76,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * This value is mutable and is not intended to be re-used after its initial use.
          *
+         * @for StandardRouteWaypointModel
          * @property distanceFromPreviousWaypoint
          * @type {number}
          * @default INVALID_NUMBER
@@ -85,10 +86,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
         /**
          * Name of the fix
          *
+         * @for StandardRouteWaypointModel
          * @property name
          * @type {string}
          * @default ''
-         * @private
          */
         this.name = '';
 
@@ -100,6 +101,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * This value is mutable and is not intended to be re-used after its initial use.
          *
+         * @for StandardRouteWaypointModel
          * @property previousStandardWaypointName
          * @type {string}
          * @default ''
@@ -143,6 +145,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * Specific bits of this property are exposed via public getters.
          * This property should never be modified by an exteral method.
          *
+         * @for StandardRouteWaypointModel
          * @property _positionModel
          * @type {StaticPositionModel}
          * @default null
@@ -162,6 +165,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * using null here to match current api, if restrictions dont exist for a given waypoint
          * the consumers are expecting this to be null.
          *
+         * @for StandardRouteWaypointModel
          * @property _restrictions
          * @type {string|null}
          * @default null
@@ -368,13 +372,16 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Parse any waypoint restrictions
      *
      * Parse a single string into:
-     * - `this._altitude`            = expressed in feet
-     * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speed`               = expressed in kts
+     * - `this._altitudeMinimum`, in feet
+     * - `this._altitudeMaximum`, in feet
+     * - `this._speedMinimum`, in knots
+     * - `this._speedMaximum`, in knots
      *
      * Exapmles:
      * - "A80+|S210"
      * - "A80-|S210"
+     * - "A80+|A100-"
+     * - "A80+|A100-|S210+|S250-"
      * - "A80"
      * - "S210"
      *
