@@ -235,7 +235,7 @@ export default class AircraftCommander {
             aircraft.target.turn = direction;
         }
 
-        if (!aircraft.hasApproachClearance) {
+        if (aircraft.hasApproachClearance) {
             aircraft.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
         }
 
