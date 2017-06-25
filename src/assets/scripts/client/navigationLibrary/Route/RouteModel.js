@@ -1,4 +1,5 @@
 import BaseModel from '../../base/BaseModel';
+import { INVALID_INDEX } from '../../constants/globalConstants';
 import {
     FLY_OVER_WAYPOINT_PREFIX,
     HOLD_WAYPOINT_PREFIX,
@@ -150,7 +151,7 @@ export default class RouteModel extends BaseModel {
  * @static
  */
 RouteModel.isProcedureRouteString = (routeString) => {
-    if (routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== -1) {
+    if (routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== INVALID_INDEX) {
         return false;
     }
 
@@ -173,7 +174,7 @@ RouteModel.isProcedureRouteString = (routeString) => {
  * @return {boolean}
  * @static
  */
-RouteModel.isFlyOverRouteString = (routeString) => routeString.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+RouteModel.isFlyOverRouteString = (routeString) => routeString.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== INVALID_INDEX;
 
 /**
  * Used to determine if a string is in the shape of a `holdRouteString`
@@ -187,7 +188,7 @@ RouteModel.isFlyOverRouteString = (routeString) => routeString.indexOf(FLY_OVER_
  * @return {boolean}
  * @static
  */
-RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== -1;
+RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_WAYPOINT_PREFIX) !== INVALID_INDEX;
 
 /**
  * Used to determine if a string is in the shape of a `vectorRouteString`
@@ -201,4 +202,4 @@ RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_WAYPOIN
  * @return {boolean}
  * @static
  */
-RouteModel.isVectorRouteString = (routeString) => routeString.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
+RouteModel.isVectorRouteString = (routeString) => routeString.indexOf(VECTOR_WAYPOINT_PREFIX) !== INVALID_INDEX;

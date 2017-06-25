@@ -14,6 +14,7 @@ import {
     AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 const directRouteString = 'COWBY';
 const invalidDirectRouteStringMock = 'COWBY.BIKKR';
@@ -780,7 +781,7 @@ ava('._findLegIndexForProcedureType() returns -1 when a procedure type cannot be
     const fms = buildFmsMock(isComplexRoute);
     const result = fms._findLegIndexForProcedureType('SID');
 
-    t.true(result === -1);
+    t.true(result === INVALID_NUMBER);
 });
 
 ava('._findLegIndexForProcedureType() returns an array index for a specific procedure type', (t) => {

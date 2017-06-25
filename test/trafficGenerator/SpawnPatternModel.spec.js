@@ -3,8 +3,6 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
-import { airportControllerFixture } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
@@ -14,6 +12,9 @@ import {
     ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
     ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK
 } from './_mocks/spawnPatternMocks';
+import { airportControllerFixture } from '../fixtures/airportFixtures';
+import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
 ava('does not throw when called without parameters', (t) => {
@@ -77,7 +78,7 @@ ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
     const cycleStartTimeMock = 42;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     model.offset = 0;
-    model.cycleStartTime = -1;
+    model.cycleStartTime = INVALID_NUMBER;
 
     model.cycleStart(cycleStartTimeMock);
 

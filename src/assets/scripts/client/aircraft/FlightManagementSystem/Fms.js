@@ -12,24 +12,19 @@ import _without from 'lodash/without';
 import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
-    routeStringFormatHelper,
-    extractFixnameFromHoldSegment,
-    extractHeadingFromVectorSegment
-} from '../../navigationLibrary/Route/routeStringFormatHelper';
-import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
-
-/**
- * Enumeration of an invalid number value
- *
- * @proeprty INVALID_VALUE
- * @type {number}
- * @final
- */
-const INVALID_VALUE = -1;
+import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
+    routeStringFormatHelper,
+    extractFixnameFromHoldSegment,
+    extractHeadingFromVectorSegment
+} from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
  * Symbol used to separate `directRouteSegments`
@@ -156,9 +151,9 @@ export default class Fms {
          *
          * @property flightPlanAltitude
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.flightPlanAltitude = -1;
+        this.flightPlanAltitude = INVALID_NUMBER;
 
         /**
          * Collection of `LegModel` objects
@@ -357,7 +352,7 @@ export default class Fms {
         this.currentPhase = '';
         this.departureRunwayModel = null;
         this.arrivalRunwayModel = null;
-        this.flightPlanAltitude = -1;
+        this.flightPlanAltitude = INVALID_NUMBER;
         this.legCollection = [];
     }
 
@@ -395,7 +390,7 @@ export default class Fms {
      * @return {number}
      */
     getBottomAltitude() {
-        const valueToExclude = -1;
+        const valueToExclude = INVALID_NUMBER;
         const minAltitudeFromLegs = _without(
             _map(this.legCollection, (leg) => leg.getProcedureBottomAltitude()),
             valueToExclude
@@ -425,7 +420,7 @@ export default class Fms {
         for (let i = 0; i < previousAndCurrentRouteSegments.length; i++) {
             const segment = previousAndCurrentRouteSegments[i];
 
-            if (segment.indexOf('.') === -1) {
+            if (segment.indexOf('.') === INVALID_INDEX) {
                 transformedRouteSegments.push(segment);
 
                 continue;
@@ -599,10 +594,10 @@ export default class Fms {
             inboundHeading,
             name: holdRouteSegment,
             positionModel: holdPosition,
-            altitudeMaximum: INVALID_VALUE,
-            altitudeMinimum: INVALID_VALUE,
-            speedMaximum: INVALID_VALUE,
-            speedMinimum: INVALID_VALUE
+            altitudeMaximum: INVALID_NUMBER,
+            altitudeMinimum: INVALID_NUMBER,
+            speedMaximum: INVALID_NUMBER,
+            speedMinimum: INVALID_NUMBER
         };
 
         if (isPositionHold) {
@@ -616,7 +611,7 @@ export default class Fms {
         const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
         const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
 
-        if (waypointIndex !== INVALID_VALUE) {
+        if (waypointIndex !== INVALID_NUMBER) {
             this.skipToWaypoint(waypointNameToFind);
             this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
 
@@ -711,7 +706,7 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_VALUE) {
+        if (procedureLegIndex === INVALID_NUMBER) {
             const legModel = this._buildLegModelFromRouteSegment(routeString);
 
             this.prependLeg(legModel);
@@ -749,7 +744,7 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_VALUE) {
+        if (procedureLegIndex === INVALID_NUMBER) {
             const legModel = this._buildLegModelFromRouteSegment(routeString);
 
             this.appendLeg(legModel);
@@ -792,7 +787,7 @@ export default class Fms {
      * @param routeString {routeString}
      */
     replaceRouteUpToSharedRouteSegment(routeString) {
-        let legIndex = INVALID_VALUE;
+        let legIndex = INVALID_NUMBER;
         let amendmentRouteString = '';
         const routeSegments = routeStringFormatHelper(routeString.toLowerCase());
 
@@ -1235,14 +1230,14 @@ export default class Fms {
      */
     _findLegAndWaypointIndexForWaypointName(waypointName) {
         let legIndex;
-        let waypointIndex = INVALID_VALUE;
+        let waypointIndex = INVALID_NUMBER;
 
         for (legIndex = 0; legIndex < this.legCollection.length; legIndex++) {
             const legModel = this.legCollection[legIndex];
             // TODO: this should be made into a class method for the WaypointModel
             waypointIndex = _findIndex(legModel.waypointCollection, { name: waypointName.toLowerCase() });
 
-            if (waypointIndex !== INVALID_VALUE) {
+            if (waypointIndex !== INVALID_NUMBER) {
                 break;
             }
         }
@@ -1482,7 +1477,7 @@ export default class Fms {
      * @param routeString {string}             a valid routeString
      */
     _updatePreviousRouteSegments(routeString) {
-        if (this._previousRouteSegments.indexOf(routeString) !== -1) {
+        if (this._previousRouteSegments.indexOf(routeString) !== INVALID_INDEX) {
             return;
         }
 

@@ -3,10 +3,12 @@ import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import RouteModel from '../Route/RouteModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
-import { REGEX } from '../../constants/globalConstants';
+import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
 import {
     FLY_OVER_WAYPOINT_PREFIX,
-    HOLD_WAYPOINT_PREFIX,
     VECTOR_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import {
@@ -52,8 +54,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @for StandardRouteWaypointModel
          * @property altitudeMaximum
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.altitudeMaximum = -1;
+        this.altitudeMaximum = INVALID_NUMBER;
 
         /**
          * Minimum altitude at which to cross this waypoint
@@ -61,8 +64,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @for StandardRouteWaypointModel
          * @property altitudeMinimum
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.altitudeMinimum = -1;
+        this.altitudeMinimum = INVALID_NUMBER;
 
         /**
          * Distance in nm from the previous waypoint.
@@ -74,9 +78,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * @property distanceFromPreviousWaypoint
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.distanceFromPreviousWaypoint = -1;
+        this.distanceFromPreviousWaypoint = INVALID_NUMBER;
 
         /**
          * Name of the fix
@@ -108,8 +112,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @for StandardRouteWaypointModel
          * @property speedMaximum
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.speedMaximum = -1;
+        this.speedMaximum = INVALID_NUMBER;
 
         /**
          * Minimum speed at which to cross this waypoint
@@ -117,8 +122,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @for StandardRouteWaypointModel
          * @property speedMinimum
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.speedMinimum = -1;
+        this.speedMinimum = INVALID_NUMBER;
 
         /**
          * Flag used to determine if the waypoint must be flown over before the
@@ -248,15 +254,15 @@ export default class StandardRouteWaypointModel extends BaseModel {
         // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
             this.name = routeWaypoint.replace(FLY_OVER_WAYPOINT_PREFIX, '');
-            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
-            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== INVALID_INDEX;
+            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== INVALID_INDEX;
 
             return this;
         }
 
         this.name = routeWaypoint[NAME_INDEX].replace(FLY_OVER_WAYPOINT_PREFIX, '');
-        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== -1;
-        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== -1;
+        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== INVALID_INDEX;
+        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== INVALID_INDEX;
 
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
@@ -275,9 +281,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
     reset() {
         this.name = '';
         this._restrictions = null;
-        this._altitude = -1;
+        this._altitude = INVALID_NUMBER;
         this._altitudeConstraint = '';
-        this._speed = -1;
+        this._speed = INVALID_NUMBER;
         this._speedConstraint = '';
 
         return this;
@@ -405,11 +411,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _setAltitudeRestriction(altitudeRestriction) {
         const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
 
-        if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
+        if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             this.altitudeMinimum = altitude;
 
             return;
-        } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== -1) {
+        } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
             this.altitudeMaximum = altitude;
 
             return;
@@ -428,11 +434,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _setSpeedRestriction(speedRestriction) {
         const speed = parseInt(speedRestriction, DECIMAL_RADIX);
 
-        if (speedRestriction.indexOf(ABOVE_SYMBOL) !== -1) {
+        if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             this.speedMinimum = speed;
 
             return;
-        } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== -1) {
+        } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
             this.speedMaximum = speed;
 
             return;

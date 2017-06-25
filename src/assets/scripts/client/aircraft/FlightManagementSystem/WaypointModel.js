@@ -1,8 +1,11 @@
 import _get from 'lodash/get';
 import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
     RNAV_WAYPOINT_DISPLAY_NAME,
-    RNAV_WAYPOINT_PREFIX,
-    VECTOR_WAYPOINT_PREFIX
+    RNAV_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { degreesToRadians } from '../../utilities/unitConverters';
@@ -33,7 +36,7 @@ export default class WaypointModel {
         * @type {number}
         * @default -1
         */
-        this.altitudeMaximum = -1;
+        this.altitudeMaximum = INVALID_NUMBER;
 
         /**
         * Minimum altitude at which to cross this waypoint
@@ -41,9 +44,9 @@ export default class WaypointModel {
         * @for WaypointModel
         * @property altitudeMinimum
         * @type {number}
-        * @default -1
+        * @default INVALID_NUMBER
         */
-        this.altitudeMinimum = -1;
+        this.altitudeMinimum = INVALID_NUMBER;
 
         /**
         * Flag used to determine if a waypoint is for a holding pattern
@@ -63,9 +66,9 @@ export default class WaypointModel {
          * @for WaypointModel
          * @property speedMaximum
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.speedMaximum = -1;
+        this.speedMaximum = INVALID_NUMBER;
 
         /**
          * Minimum speed at which to cross this waypoint
@@ -73,10 +76,11 @@ export default class WaypointModel {
          * @for WaypointModel
          * @property speedMinimum
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.speedMinimum = -1;
+        this.speedMinimum = INVALID_NUMBER;
 
+        // TODO: Should this just be `INVALID_NUMBER`?
         /**
          * Timer id for holding pattern
          *
@@ -96,10 +100,10 @@ export default class WaypointModel {
         * @for WaypointModel
         * @property _holdingPatternInboundHeading
         * @type {number}
-        * @default -1
+        * @default INVALID_NUMBER
         * @private
         */
-        this._holdingPatternInboundHeading = -1;
+        this._holdingPatternInboundHeading = INVALID_NUMBER;
 
         /**
          * Flag used to determine if the waypoint must be flown over before the
@@ -190,7 +194,7 @@ export default class WaypointModel {
      * @return {string}
      */
     get name() {
-        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== -1) {
+        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== INVALID_INDEX) {
             return RNAV_WAYPOINT_DISPLAY_NAME;
         }
 
@@ -211,7 +215,7 @@ export default class WaypointModel {
      * @type {boolean}
      */
     get hasAltitudeRestriction() {
-        return this.altitudeMaximum !== -1 || this.altitudeMinimum !== -1;
+        return this.altitudeMaximum !== INVALID_NUMBER || this.altitudeMinimum !== INVALID_NUMBER;
     }
 
     /**
@@ -229,7 +233,7 @@ export default class WaypointModel {
      * @type {boolean}
      */
     get hasSpeedRestriction() {
-        return this.speedMaximum !== -1 || this.speedMinimum !== -1;
+        return this.speedMaximum !== INVALID_NUMBER || this.speedMinimum !== INVALID_NUMBER;
     }
 
     /**
@@ -356,10 +360,10 @@ export default class WaypointModel {
         this._positionModel = null;
 
         this.isHold = false;
-        this.speedMaximum = -1;
-        this.speedMinimum = -1;
-        this.altitudeMaximum = -1;
-        this.altitudeMinimum = -1;
+        this.speedMaximum = INVALID_NUMBER;
+        this.speedMinimum = INVALID_NUMBER;
+        this.altitudeMaximum = INVALID_NUMBER;
+        this.altitudeMinimum = INVALID_NUMBER;
         this.timer = -999;
     }
 

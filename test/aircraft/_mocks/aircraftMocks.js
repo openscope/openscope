@@ -1,4 +1,5 @@
 import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 export const AIRCRAFT_DEFINITION_MOCK = {
     name: 'Boeing 737-700',
@@ -141,10 +142,10 @@ export const HOLD_WAYPOINT_MOCK = {
     legLength: '3min',
     name: '@COWBY',
     positionModel: STATIC_POSITION_MODEL_MOCK,
-    altitudeMaximum: -1,
-    altitudeMinimum: -1,
-    speedMaximum: -1,
-    speedMinimum: -1
+    altitudeMaximum: INVALID_NUMBER,
+    altitudeMinimum: INVALID_NUMBER,
+    speedMaximum: INVALID_NUMBER,
+    speedMinimum: INVALID_NUMBER
 };
 
 export const HOLD_AT_PRESENT_LOCATION_MOCK = {
@@ -153,8 +154,8 @@ export const HOLD_AT_PRESENT_LOCATION_MOCK = {
     legLength: '3min',
     name: 'GPS',
     positionModel: STATIC_POSITION_MODEL_MOCK,
-    altitudeMaximum: -1,
-    altitudeMinimum: -1,
-    speedMaximum: -1,
-    speedMinimum: -1
+    altitudeMaximum: INVALID_NUMBER,
+    altitudeMinimum: INVALID_NUMBER,
+    speedMaximum: INVALID_NUMBER,
+    speedMinimum: INVALID_NUMBER
 };

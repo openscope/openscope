@@ -4,6 +4,13 @@ import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import { MCP_MODE } from '../ModeControl/modeControlConstants';
+import {
+    FLIGHT_CATEGORY,
+    FLIGHT_PHASE
+} from '../../constants/aircraftConstants';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
+import { radians_normalize } from '../../math/circle';
 import { clamp } from '../../math/core';
 import {
     groupNumbers,
@@ -18,12 +25,6 @@ import {
     degreesToRadians,
     heading_to_string
 } from '../../utilities/unitConverters';
-import { radians_normalize } from '../../math/circle';
-import {
-    FLIGHT_CATEGORY,
-    FLIGHT_PHASE
-} from '../../constants/aircraftConstants';
-import { MCP_MODE } from '../ModeControl/modeControlConstants';
 
 /**
  * Executes control actions upon the aircraft by manipulating the MCP and FMS, and provides
@@ -426,7 +427,7 @@ export default class Pilot {
      * @return {array}           [success of operation, readback]
      */
     climbViaSid() {
-        if (this._fms.flightPlanAltitude === -1) {
+        if (this._fms.flightPlanAltitude === INVALID_NUMBER) {
             const readback = {};
             readback.log = 'unable to climb via SID, no altitude assigned';
             readback.say = 'unable to climb via SID, no altitude assigned';
@@ -649,7 +650,7 @@ export default class Pilot {
      * @param cruiseSpeed {number} the cruise speed of the aircraft, in knots
      */
     configureForTakeoff(initialAltitude, runway, cruiseSpeed) {
-        if (this._mcp.altitude === -1) {
+        if (this._mcp.altitude === INVALID_NUMBER) {
             this._mcp.setAltitudeFieldValue(initialAltitude);
         }
 
@@ -657,7 +658,7 @@ export default class Pilot {
             this._mcp.setAltitudeHold();
         }
 
-        if (this._mcp.heading === -1) {
+        if (this._mcp.heading === INVALID_NUMBER) {
             this._mcp.setHeadingFieldValue(runway.angle);
         }
 
@@ -665,7 +666,7 @@ export default class Pilot {
             this._mcp.setHeadingLnav();
         }
 
-        if (this._mcp.speed === -1) {
+        if (this._mcp.speed === INVALID_NUMBER) {
             this._mcp.setSpeedFieldValue(cruiseSpeed);
         }
 

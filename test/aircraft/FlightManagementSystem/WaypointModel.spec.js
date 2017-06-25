@@ -1,19 +1,19 @@
 import ava from 'ava';
-
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 const fixnameMock = 'COWBY';
 const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
 const waypointMock = {
-    altitudeMaximum: -1,
-    altitudeMinimum: -1,
+    altitudeMaximum: INVALID_NUMBER,
+    altitudeMinimum: INVALID_NUMBER,
     isFlyOverWaypoint: false,
     isVector: false,
     legLength: '',
     name: fixnameMock,
     positionModel: holdFixLocationMock,
-    speedMaximum: -1,
-    speedMinimum: -1,
+    speedMaximum: INVALID_NUMBER,
+    speedMinimum: INVALID_NUMBER,
     turnDirection: ''
 };
 

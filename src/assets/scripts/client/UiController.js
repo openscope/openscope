@@ -4,13 +4,13 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
-import _startCase from 'lodash/startCase';
-import { speech_toggle } from './speech';
-import { round } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
+import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/colors/themes';
+import { round } from './math/core';
+import { speech_toggle } from './speech';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const ui = {};
@@ -182,10 +182,10 @@ export default class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = -1;
-        this.ui.scale_max = -1;
-        this.ui.scale_min = -1;
-        this.ui.scale = -1;
+        this.ui.scale_default = INVALID_NUMBER;
+        this.ui.scale_max = INVALID_NUMBER;
+        this.ui.scale_min = INVALID_NUMBER;
+        this.ui.scale = INVALID_NUMBER;
         this.ui.terrain = {};
 
 

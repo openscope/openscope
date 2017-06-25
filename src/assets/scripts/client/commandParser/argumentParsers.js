@@ -1,5 +1,6 @@
 import _defaultTo from 'lodash/defaultTo';
 import { isValidDirectionString } from './argumentValidators';
+import { INVALID_INDEX } from '../constants/globalConstants';
 import {
     convertToThousands,
     convertStringToNumber
@@ -100,7 +101,7 @@ export const headingParser = (args) => {
  * @param arg {string}
  * @return {boolean}
  */
-const isLegLengthArg = (arg) => arg.indexOf('min') !== -1 || arg.indexOf('nm') !== -1;
+const isLegLengthArg = (arg) => arg.indexOf('min') !== INVALID_INDEX || arg.indexOf('nm') !== INVALID_INDEX;
 
 /**
  * Given a type and an argument list, find the first occurance of `type` from within the argument list.

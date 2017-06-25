@@ -73,3 +73,23 @@ export const PHYSICS_CONSTANTS = {
      */
     GRAVITATIONAL_MAGNITUDE: 9.81
 };
+
+/**
+ * Value used to indicate an invalid or otherwise unset Value
+ * Examples include invalid array index, and numeric properties that have
+ * no real value set other than the value (this value) set at initilization.
+ *
+ * @enum INVALID_NUMBER
+ * @type {number}
+ * @final
+ */
+export const INVALID_NUMBER = -1;
+
+/**
+ * Enumeration for an invalid index number.
+ *
+ * @enum INVALID_INDEX
+ * @type {number}
+ * @final
+ */
+export const INVALID_INDEX = -1;

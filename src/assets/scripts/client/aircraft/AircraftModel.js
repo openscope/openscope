@@ -4,17 +4,26 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
-import { speech_say } from '../speech';
-import { radians_normalize, angle_offset } from '../math/circle';
+import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import {
-    getOffset,
-    calculateTurnInitiaionDistance
-} from '../math/flightMath';
+    FLIGHT_CATEGORY,
+    FLIGHT_PHASE,
+    PERFORMANCE
+} from '../constants/aircraftConstants';
+import {
+    AIRPORT_CONSTANTS,
+    AIRPORT_CONTROL_POSITION_NAME
+} from '../constants/airportConstants';
+import {
+    INVALID_NUMBER,
+    TIME
+} from '../constants/globalConstants';
+import { GAME_EVENTS } from '../game/GameController';
+import { radians_normalize, angle_offset } from '../math/circle';
 import {
     abs,
     cos,
@@ -22,6 +31,10 @@ import {
     sin,
     spread
 } from '../math/core';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance
+} from '../math/flightMath';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -34,6 +47,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
+import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -43,18 +57,6 @@ import {
     degreesToRadians,
     nm
 } from '../utilities/unitConverters';
-import {
-    FLIGHT_CATEGORY,
-    FLIGHT_PHASE,
-    PERFORMANCE
-} from '../constants/aircraftConstants';
-import {
-    AIRPORT_CONSTANTS,
-    AIRPORT_CONTROL_POSITION_NAME
-} from '../constants/airportConstants';
-import { GAME_EVENTS } from '../game/GameController';
-import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
-import { TIME } from '../constants/globalConstants';
 
 /**
  * @property FLIGHT_RULES
@@ -350,9 +352,9 @@ export default class AircraftModel {
          *
          * @property datablockDir
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.datablockDir = -1;
+        this.datablockDir = INVALID_NUMBER;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -583,11 +585,11 @@ export default class AircraftModel {
         let assignedAltitude = this.mcp.altitude;
         let flightPlanAltitude = this.fms.flightPlanAltitude;
 
-        if (assignedAltitude === -1) {
+        if (assignedAltitude === INVALID_NUMBER) {
             assignedAltitude = '-';
         }
 
-        if (flightPlanAltitude === -1) {
+        if (flightPlanAltitude === INVALID_NUMBER) {
             flightPlanAltitude = '-';
         }
 
@@ -1212,8 +1214,7 @@ export default class AircraftModel {
                 this.target.heading = this.heading;
                 this.target.speed = this.model.speed.min;
 
-                // TODO: Enumerate the '-999' invalid value
-                if (this.mcp.heading === -1) {
+                if (this.mcp.heading === INVALID_NUMBER) {
                     console.warn(`${this.callsign} took off with no directional instructions!`);
                 }
 
@@ -1799,7 +1800,7 @@ export default class AircraftModel {
         let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
         const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
         const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== -1;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== INVALID_NUMBER;
 
         // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
         if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
@@ -1821,7 +1822,7 @@ export default class AircraftModel {
         let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
         const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
         const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== -1;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER;
 
         // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
         if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
@@ -1922,7 +1923,7 @@ export default class AircraftModel {
         let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
         const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
         const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== -1;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== INVALID_NUMBER;
 
         // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
         if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
@@ -1949,7 +1950,7 @@ export default class AircraftModel {
 
         const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
         const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== -1;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== INVALID_NUMBER;
 
         // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
         if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
@@ -2491,7 +2492,7 @@ export default class AircraftModel {
         const altitudeText = this.taxi_next
             ? 'ready'
             : null;
-        const hasAltitude = this.mcp.altitude !== -1;
+        const hasAltitude = this.mcp.altitude !== INVALID_NUMBER;
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 

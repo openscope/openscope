@@ -1,3 +1,5 @@
+import { INVALID_INDEX } from '../constants/globalConstants';
+
 /**
  * Defines an event and an event's observers
  *
@@ -90,6 +92,6 @@ export default class EventModel {
      * @return {boolean}
      */
     hasObserver(observer) {
-        return this.observers.indexOf(observer) !== -1;
+        return this.observers.indexOf(observer) !== INVALID_INDEX;
     }
 }
