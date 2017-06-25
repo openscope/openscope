@@ -471,54 +471,6 @@ export default class AircraftModel {
     }
 
     /**
-     * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
-     *
-     * @for AircraftModel
-     * @property isBeyondDecelerationPoint
-     * @type {boolean}
-     */
-    get isBeyondDecelerationPoint() {
-        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
-
-        if (_isNil(waypointModel)) {
-            return;
-        }
-
-        const waypointSpeed = waypointModel.speedMaximum;
-        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
-        const speedChange = waypointSpeed - this.speed;
-        const decelerationRate = -this.model.rate.decelerate / 2;   // units of rate.decel are 'knots per 2 seconds'
-        const decelerationTime = speedChange / decelerationRate;
-        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_SECONDS;
-
-        return decelerationTime > timeUntilWaypoint;
-    }
-
-    /**
-     * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
-     *
-     * @for AircraftModel
-     * @property isBeyondTopOfDescent
-     * @type {boolean}
-     */
-    get isBeyondTopOfDescent() {
-        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
-
-        if (_isNil(waypointModel)) {
-            return;
-        }
-
-        const waypointAltitude = waypointModel.altitudeMaximum;
-        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
-        const altitudeChange = waypointAltitude - this.altitude;
-        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
-        const descentTime = altitudeChange / descentRate;
-        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
-
-        return descentTime > timeUntilWaypoint;
-    }
-
-    /**
      * Fascade to access relative position
      *
      * @for AircraftModel
@@ -852,6 +804,54 @@ export default class AircraftModel {
      */
     isAirborne() {
         return !this.isOnGround();
+    }
+
+    /**
+     * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondDecelerationPoint
+     * @return {boolean}
+     */
+    isBeyondDecelerationPoint() {
+        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointSpeed = waypointModel.speedMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const speedChange = waypointSpeed - this.speed;
+        const decelerationRate = -this.model.rate.decelerate / 2;   // units of rate.decel are 'knots per 2 seconds'
+        const decelerationTime = speedChange / decelerationRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_SECONDS;
+
+        return decelerationTime > timeUntilWaypoint;
+    }
+
+    /**
+     * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondTopOfDescent
+     * @return {boolean}
+     */
+    isBeyondTopOfDescent() {
+        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointAltitude = waypointModel.altitudeMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const altitudeChange = waypointAltitude - this.altitude;
+        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentTime = altitudeChange / descentRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
+
+        return descentTime > timeUntilWaypoint;
     }
 
     isDeparture() {
@@ -1467,7 +1467,7 @@ export default class AircraftModel {
 
                     return Math.min(waypointSpeed, this.mcp.speed);
                 } else if (waypointSpeed < this.speed) {
-                    if (!this.isBeyondDecelerationPoint) {
+                    if (!this.isBeyondDecelerationPoint()) {
                         return;
                     }
 
@@ -1565,7 +1565,7 @@ export default class AircraftModel {
 
                     return Math.min(waypointAltitude, this.mcp.altitude);
                 } else if (this.flightPhase === FLIGHT_PHASE.CRUISE) {
-                    if (!this.isBeyondTopOfDescent) {
+                    if (!this.isBeyondTopOfDescent()) {
                         return;
                     }
 
