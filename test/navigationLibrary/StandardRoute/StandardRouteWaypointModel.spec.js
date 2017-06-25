@@ -72,45 +72,69 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     t.true(result.speedMinimum === 250);
 });
 
-ava('._applyRestrictions() extracts all restrictions when ranged restrictions are used', (t) => {
+ava('._applyRestrictions() applies ranged altitude restrictions correctly', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-']);
-    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
-    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
 
     t.true(modelWithAltitude.altitudeMinimum === 10000);
     t.true(modelWithAltitude.altitudeMaximum === 14000);
+});
+
+ava('._applyRestrictions() applies ranged speed restrictions correctly', (t) => {
+    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210+|S250-']);
+
     t.true(modelWithSpeed.speedMinimum === 210);
     t.true(modelWithSpeed.speedMaximum === 250);
+});
+
+ava('._applyRestrictions() applies ranged altitude and ranged speed restrictions correctly for a single fix', (t) => {
+    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100+|A140-|S210+|S250-']);
+
     t.true(modelWithAltitudeAndSpeed.altitudeMinimum === 10000);
     t.true(modelWithAltitudeAndSpeed.altitudeMaximum === 14000);
     t.true(modelWithAltitudeAndSpeed.speedMinimum === 210);
     t.true(modelWithAltitudeAndSpeed.speedMaximum === 250);
 });
 
-ava('._applyRestrictions() extracts all restrictions when non-ranged "AT" restrictions are used', (t) => {
+ava('._applyRestrictions() applies non-ranged "AT" altitude restrictions correctly', (t) => {
     const modelWithAltitudeRange = new StandardRouteWaypointModel(['BAKRR', 'A100']);
-    const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
-    const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
 
     t.true(modelWithAltitudeRange.altitudeMinimum === 10000);
     t.true(modelWithAltitudeRange.altitudeMaximum === 10000);
+});
+
+ava('._applyRestrictions() applies non-ranged "AT" speed restrictions correctly', (t) => {
+    const modelWithSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'S210']);
+
     t.true(modelWithSpeedRange.speedMinimum === 210);
     t.true(modelWithSpeedRange.speedMaximum === 210);
+});
+
+ava('._applyRestrictions() applies non-ranged "AT" altitude and non-ranged "AT" speed restrictions correctly for a single fix', (t) => {
+    const modelWithAltitudeRangeAndSpeedRange = new StandardRouteWaypointModel(['BAKRR', 'A100|S210']);
+
     t.true(modelWithAltitudeRangeAndSpeedRange.altitudeMinimum === 10000);
     t.true(modelWithAltitudeRangeAndSpeedRange.altitudeMaximum === 10000);
     t.true(modelWithAltitudeRangeAndSpeedRange.speedMinimum === 210);
     t.true(modelWithAltitudeRangeAndSpeedRange.speedMaximum === 210);
 });
 
-ava('._applyRestrictions() extracts all restrictions when non-ranged "AT/ABOVE" or "AT/BELOW" restrictions are used', (t) => {
+ava('._applyRestrictions() applies non-ranged "AT/ABOVE" or "AT/BELOW" altitude restrictions correctly', (t) => {
     const modelWithAltitude = new StandardRouteWaypointModel(['BAKRR', 'A100+']);
-    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
-    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
 
     t.true(modelWithAltitude.altitudeMinimum === 10000);
     t.true(modelWithAltitude.altitudeMaximum === INVALID_NUMBER);
+});
+
+ava('._applyRestrictions() applies non-ranged "AT/ABOVE" or "AT/BELOW" speed restrictions correctly', (t) => {
+    const modelWithSpeed = new StandardRouteWaypointModel(['BAKRR', 'S210-']);
+
     t.true(modelWithSpeed.speedMinimum === INVALID_NUMBER);
     t.true(modelWithSpeed.speedMaximum === 210);
+});
+
+ava('._applyRestrictions() applies non-ranged "AT/ABOVE" or "AT/BELOW" altitude and non-ranged "AT/ABOVE" or "AT/BELOW" restrictions correctly for a single fix', (t) => {
+    const modelWithAltitudeAndSpeed = new StandardRouteWaypointModel(['BAKRR', 'A100-|S210+']);
+
     t.true(modelWithAltitudeAndSpeed.altitudeMinimum === INVALID_NUMBER);
     t.true(modelWithAltitudeAndSpeed.altitudeMaximum === 10000);
     t.true(modelWithAltitudeAndSpeed.speedMinimum === 210);
