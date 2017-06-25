@@ -28,18 +28,20 @@ export default class WaypointModel {
         /**
         * Maximum altitude at which to cross this waypoint
         *
-        * @for StandardRouteWaypointModel
+        * @for WaypointModel
         * @property altitudeMaximum
         * @type {number}
+        * @default -1
         */
         this.altitudeMaximum = -1;
 
         /**
         * Minimum altitude at which to cross this waypoint
         *
-        * @for StandardRouteWaypointModel
+        * @for WaypointModel
         * @property altitudeMinimum
         * @type {number}
+        * @default -1
         */
         this.altitudeMinimum = -1;
 
@@ -48,7 +50,8 @@ export default class WaypointModel {
         *
         * Typically used from the fms as `fms#currentWaypoint`
         *
-        * @property
+        * @for WaypointModel
+        * @property isHold
         * @type {boolean}
         * @default false
         */
@@ -57,18 +60,20 @@ export default class WaypointModel {
         /**
          * Maximum speed at which to cross this waypoint
          *
-         * @for StandardRouteWaypointModel
+         * @for WaypointModel
          * @property speedMaximum
          * @type {number}
+         * @default -1
          */
         this.speedMaximum = -1;
 
         /**
          * Minimum speed at which to cross this waypoint
          *
-         * @for StandardRouteWaypointModel
+         * @for WaypointModel
          * @property speedMinimum
          * @type {number}
+         * @default -1
          */
         this.speedMinimum = -1;
 
@@ -77,6 +82,7 @@ export default class WaypointModel {
          *
          * Used only when waypoint is a holding pattern
          *
+         * @for WaypointModel
          * @property timer
          * @type {number}
          * @default -999
@@ -88,8 +94,10 @@ export default class WaypointModel {
         * Heading to fly during the inbound leg of a holding pattern at this fix
         *
         * @for WaypointModel
-        * @member _holdingPatternInboundHeading
+        * @property _holdingPatternInboundHeading
         * @type {number}
+        * @default -1
+        * @private
         */
         this._holdingPatternInboundHeading = -1;
 
@@ -101,6 +109,7 @@ export default class WaypointModel {
          * @property _isFlyOverWaypoint
          * @type {boolean}
          * @default false
+         * @private
          */
         this._isFlyOverWaypoint = false;
 
@@ -111,6 +120,7 @@ export default class WaypointModel {
          * @property _isVector
          * @type {boolean}
          * @default false
+         * @private
          */
         this._isVector = false;
 
@@ -120,8 +130,10 @@ export default class WaypointModel {
          * Measured in either minutes or nautical miles
          * Used only when waypoint is a holding pattern
          *
+         * @for WaypointModel
          * @property _legLength
          * @type {string}
+         * @default ''
          * @private
          */
         this._legLength = '';
@@ -131,15 +143,18 @@ export default class WaypointModel {
         *
         * Should be an ICAO identifier
         *
+        * @for WaypointModel
         * @property name
         * @type {string}
         * @default ''
+        * @private
         */
         this._name = '';
 
         /**
         * `StaticPositionModel` of the waypoint.
         *
+        * @for WaypointModel
         * @property _positionModel
         * @type {StaticPositionModel}
         * @default null
@@ -152,8 +167,10 @@ export default class WaypointModel {
          *
          * Used only when waypoint is a holding pattern
          *
+         * @for WaypointModel
          * @property _turnDirection
          * @type {string}
+         * @default ''
          * @private
          */
         this._turnDirection = '';
