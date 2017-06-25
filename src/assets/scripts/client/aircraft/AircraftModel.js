@@ -1764,18 +1764,26 @@ export default class AircraftModel {
             return;
         }
 
-        if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
-            return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
-        } else if (this.flightPhase === FLIGHT_PHASE.CRUISE) {
-            if (!this.isBeyondTopOfDescent()) {
-                return;
+        switch (this.flightPhase) {
+            case FLIGHT_PHASE.TAKEOFF:
+            case FLIGHT_PHASE.CLIMB:
+                return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
+
+            case FLIGHT_PHASE.CRUISE: {
+                if (!this.isBeyondTopOfDescent()) {
+                    return;
+                }
+
+                // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
+                // will enter the below block because the flight phase will have become 'DESCENT'.
+                return hardRestrictedWaypointModel.altitudeMaximum;
             }
 
-            // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
-            // will enter the below block because the flight phase will have become 'DESCENT'.
-            return hardRestrictedWaypointModel.altitudeMaximum;
-        } else if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
-            return this._calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel);
+            case FLIGHT_PHASE.DESCENT:
+                return this._calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel);
+
+            default:
+                return;
         }
     }
 
