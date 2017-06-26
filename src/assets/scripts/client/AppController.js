@@ -35,8 +35,6 @@ export default class AppController {
     /**
      * @constructor
      * @param element {jQuery|HTML Element}
-     * @param airportLoadList {array<object>}
-     * @param initialAirportToLoad {string}
      */
     constructor(element) {
         /**
