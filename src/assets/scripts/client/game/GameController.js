@@ -87,6 +87,7 @@ class GameController {
 
     /**
     * Initialize blur functions used during game pausing
+    *
     * @for GameController
     * @method setupHandlers
     * @return
