@@ -473,8 +473,10 @@ export default class AirportModel {
             }
 
             obj.height = parseElevation(area.height);
-            obj.coordinates = _map(area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth));
+            obj.coordinates = _map(
+                area.coordinates,
+                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+            );
 
             let coords_max = obj.coordinates[0];
             let coords_min = obj.coordinates[0];
