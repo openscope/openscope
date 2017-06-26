@@ -622,12 +622,7 @@ export default class AircraftCommander {
         const runwayName = data[1].toUpperCase();
         const runway = this._airportController.airport_get().getRunway(runwayName);
 
-        return aircraft.pilot.conductInstrumentApproach(
-            approachType,
-            runway,
-            aircraft.altitude,
-            aircraft.heading
-        );
+        return aircraft.pilot.conductInstrumentApproach(approachType, runway);
     }
 
     /**

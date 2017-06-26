@@ -523,12 +523,10 @@ export default class Pilot {
      * @param datum {StaticPositionModel}  the position the glidepath is projected from
      * @param course {number}              the heading inbound to the datum
      * @param descentAngle {number}        the angle of descent along the glidepath
-     * @param interceptAltitude {number}   the altitude to which the aircraft can descend without yet
-     *                                     being established on the glidepath
      * @return {array}                     [success of operation, readback]
      * @private
      */
-    _interceptGlidepath(datum, course, descentAngle, interceptAltitude) {
+    _interceptGlidepath(datum, course, descentAngle) {
         // TODO: I feel like our description of lateral/vertical guidance should be done with its
         // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
         if (this._mcp.nav1Datum !== datum) {
@@ -544,7 +542,10 @@ export default class Pilot {
 
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
         this._mcp.setDescentAngle(descentAngle);
-        this._mcp.setAltitudeFieldValue(interceptAltitude);
+
+        // TODO: Though not realistic, to emulate the refusal to descend below MCP altitude
+        // until established on the localizer, we should not be setting the altitude mode to
+        // 'APP' until established on the localizer. This will prevent improper descent behaviors.
         this._mcp.setAltitudeApproach();
 
         const readback = {};
@@ -563,17 +564,11 @@ export default class Pilot {
      * @method conductInstrumentApproach
      * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
      * @param runwayModel {RunwayModel}   the runway the approach ends at
-     * @param interceptAltitude {number}  the altitude to maintain until established on the localizer
-     * @param heading {number}            current aircraft heading (in radians)
      * @return {array}                    [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runwayModel, interceptAltitude, heading) {
+    conductInstrumentApproach(approachType, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
-        }
-
-        if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            this.maintainPresentHeading(heading);
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
@@ -581,13 +576,12 @@ export default class Pilot {
         const course = runwayModel.angle;
         const descentAngle = runwayModel.ils.glideslopeGradient;
         const lateralGuidance = this._interceptCourse(datum, course);
-        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle, interceptAltitude);
+        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle);
 
-        // TODO: this may need to be implemented in the future. as written, `._interceptCourse()` will always
-        // return true
-        // if (!lateralGuidance[0]) {
-        //     return lateralGuidance;
-        // }
+        // TODO: As written, `._interceptCourse()` will always return true.
+        if (!lateralGuidance[0]) {
+            return lateralGuidance;
+        }
 
         if (!verticalGuidance[0]) {
             return verticalGuidance;

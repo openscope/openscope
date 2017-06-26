@@ -47,6 +47,8 @@
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 - Prevent attempts to access positions of vector waypoints [#467](https://github.com/openscope/openscope/issues/467)
 - Adjusts fix validation for hold/vector/flyover fix names [#451](https://github.com/openscope/openscope/issues/451)
+- Prevents simulator from wrongfully overriding assigned alt/hdg during approach clearances [#521](https://github.com/openscope/openscope/issues/521)
+
 
 
 
