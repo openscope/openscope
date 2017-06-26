@@ -117,7 +117,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'eidw',
             level: 'easy',
             name: 'Dublin Airport',
-            wip: true
+            wip: false
         },
         // {
         //     icao: 'einn',
