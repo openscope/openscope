@@ -1,4 +1,3 @@
-/* eslint-disable max-len, no-undef */
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
