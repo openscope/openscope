@@ -1,11 +1,11 @@
 import ava from 'ava';
 import sinon from 'sinon';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
     fmsDepartureFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // let pilot = null;
 // ava.beforeEach(() => {
@@ -26,7 +26,7 @@ ava('.climbViaSID() returns error response if #flightPlanAltitude has not been s
     ];
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
     const previousFlightPlanAltitude = pilot._fms.flightPlanAltitude;
-    pilot._fms.flightPlanAltitude = -1;
+    pilot._fms.flightPlanAltitude = INVALID_NUMBER;
 
     const result = pilot.climbViaSid();
 

@@ -53,9 +53,9 @@ export default class StandardRouteCollection extends BaseCollection {
          *
          * @property length
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        // this.length = -1;
+        // this.length = INVALID_NUMBER;
 
         /**
          *

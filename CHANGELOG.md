@@ -28,8 +28,13 @@
 - Adds tests and verifies functionality of non-procedural departures and arrivals (support for direct route strings) [#434](https://github.com/openscope/openscope/issues/434)
 - Adds unique transponder and CID generation methods [#483](https://github.com/openscope/openscope/issues/483)
 - Abstracts non game loop logic into new class `AppController`, which provides facade methods for `App` to call during game loop [#137](https://github.com/openscope/openscope/issues/137)
-
+- Converts `AirportController`, `GameController` and `UiController` to static classes [#72](https://github.com/openscope/openscope/issues/72)
+    - updates `window` references to these classes
+    - updates `prop` references to these classes
+- Add support for ranged altitude and speed restrictions in procedures [#32](https://github.com/openscope/openscope/issues/32)
+- Improve VNAV climbs and descents to better comply with restrictions [#32](https://github.com/openscope/openscope/issues/32)
 - Updates Boston Logan Intl. (KBOS) - Updated procedures, added video map and terrain, modified airspace, realistic traffic [#228](https://github.com/openscope/openscope/issues/228)
+
 
 
 
@@ -47,6 +52,9 @@
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 - Prevent attempts to access positions of vector waypoints [#467](https://github.com/openscope/openscope/issues/467)
 - Adjusts fix validation for hold/vector/flyover fix names [#451](https://github.com/openscope/openscope/issues/451)
+- Prevents simulator from wrongfully overriding assigned alt/hdg during approach clearances [#521](https://github.com/openscope/openscope/issues/521)
+- Updates `AirportModel.buildRestrictedAreas()` to build the coordinate array with the correct shape [#522](https://github.com/openscope/openscope/issues/522)
+
 
 
 

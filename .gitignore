@@ -10,3 +10,4 @@ npm-debug.log
 public/
 assets/style/
 assets/scripts/
+yarn.lock

@@ -1,15 +1,14 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
-
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
-
-import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
 } from './_mocks/fixMocks';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 ava('does not throw when instantiated with invalid parameters', t => {
     t.notThrows(() => new FixModel());
@@ -74,8 +73,10 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     t.true(result instanceof WaypointModel);
     t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeRestriction === -1);
-    t.true(result.speedRestriction === -1);
+    t.true(result.altitudeMaximum === INVALID_NUMBER);
+    t.true(result.altitudeMinimum === INVALID_NUMBER);
+    t.true(result.speedMaximum === INVALID_NUMBER);
+    t.true(result.speedMinimum === INVALID_NUMBER);
 });
 
 ava('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
@@ -85,8 +86,10 @@ ava('.toWaypointModel() returns a new WaypointModel instance with hold propertie
     t.true(result instanceof WaypointModel);
     t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeRestriction === -1);
-    t.true(result.speedRestriction === -1);
+    t.true(result.altitudeMaximum === INVALID_NUMBER);
+    t.true(result.altitudeMinimum === INVALID_NUMBER);
+    t.true(result.speedMaximum === INVALID_NUMBER);
+    t.true(result.speedMinimum === INVALID_NUMBER);
     t.true(result._turnDirection === 'right');
     t.true(result._legLength === '1min');
     t.true(result.timer === -999);
@@ -104,8 +107,10 @@ ava('.toWaypointModel() returns a new WaypointModel instance with specific hold 
     t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(result.isHold);
     t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeRestriction === -1);
-    t.true(result.speedRestriction === -1);
+    t.true(result.altitudeMaximum === INVALID_NUMBER);
+    t.true(result.altitudeMinimum === INVALID_NUMBER);
+    t.true(result.speedMaximum === INVALID_NUMBER);
+    t.true(result.speedMinimum === INVALID_NUMBER);
     t.true(result._turnDirection === holdPropsMock.turnDirection);
     t.true(result._legLength === holdPropsMock.legLength);
     t.true(result.timer === -999);

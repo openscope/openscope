@@ -1,9 +1,10 @@
-import { radiansToDegrees } from '../../utilities/unitConverters';
 import {
     MCP_MODE,
     MCP_MODE_NAME,
     MCP_FIELD_NAME
 } from './modeControlConstants';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
+import { radiansToDegrees } from '../../utilities/unitConverters';
 
 /**
  * Part of the autopilot system that determines the source from which to derive the aircraft's targeted telemetry
@@ -79,18 +80,18 @@ export default class ModeController {
          *
          * @property altitude
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.altitude = -1;
+        this.altitude = INVALID_NUMBER;
 
         /**
          *
          *
          * @property course
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.course = -1;
+        this.course = INVALID_NUMBER;
 
         /**
          * Heading value in radians
@@ -102,9 +103,9 @@ export default class ModeController {
          *
          * @property heading
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.heading = -1;
+        this.heading = INVALID_NUMBER;
 
         /**
          * Speed value in knots
@@ -113,9 +114,9 @@ export default class ModeController {
          *
          * @property speed
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.speed = -1;
+        this.speed = INVALID_NUMBER;
 
         // Other
 

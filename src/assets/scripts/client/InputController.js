@@ -2,11 +2,15 @@
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
-import CommandParser from './commandParser/CommandParser';
+import AirportController from './airport/AirportController';
 import EventBus from './lib/EventBus';
+import GameController from './game/GameController';
+import UiController from './UiController';
+import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
+import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
@@ -91,18 +95,18 @@ export default class InputController {
      * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
      *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander, uiController, aircraftController) {
+    constructor($element, aircraftCommander, aircraftController, tutorialView) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
         this.$sidebar = null;
 
-        this._aircraftCommander = aircraftCommander;
-        this._uiController = uiController;
-        this._aircraftController = aircraftController;
-
         this._eventBus = EventBus;
+        this._aircraftCommander = aircraftCommander;
+        this._aircraftController = aircraftController;
+        this._tutorialView = tutorialView;
+
 
         prop.input = input;
         this.input = input;
@@ -240,9 +244,9 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            this._uiController.ui_zoom_in();
+            UiController.ui_zoom_in();
         } else {
-            this._uiController.ui_zoom_out();
+            UiController.ui_zoom_out();
         }
     }
 
@@ -284,7 +288,7 @@ export default class InputController {
 
         // TODO: this should use early returns instead of the else if
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
-            this._uiController.ui_zoom_reset();
+            UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning
             this.input.mouseDown = [
@@ -299,12 +303,12 @@ export default class InputController {
             position[1] += prop.canvas.size.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                this._uiController.px_to_km(position[0] - prop.canvas.panX),
-                this._uiController.px_to_km(position[1] + prop.canvas.panY)
+                UiController.px_to_km(position[0] - prop.canvas.panX),
+                UiController.px_to_km(position[1] + prop.canvas.panY)
             ]);
 
             if (aircraftModel) {
-                if (distanceFromPosition < this._uiController.px_to_km(80)) {
+                if (distanceFromPosition < UiController.px_to_km(80)) {
                     this.input.callsign = aircraftModel.callsign.toUpperCase();
 
                     this.input_select(this.input.callsign);
@@ -316,8 +320,8 @@ export default class InputController {
             }
 
             position = [
-                this._uiController.px_to_km(position[0]),
-                this._uiController.px_to_km(position[1])
+                UiController.px_to_km(position[0]),
+                UiController.px_to_km(position[1])
             ];
 
             position[0] = parseFloat(position[0].toFixed(2));
@@ -338,27 +342,27 @@ export default class InputController {
         // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
         const is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-        if (!window.gameController.game_paused()) {
+        if (!GameController.game_paused()) {
             this.$commandInput.focus();
         }
 
         if (event.which === KEY_CODES.ESCAPE) {
             if (prop.tutorial.open) {
-                window.tutorialView.tutorial_close();
+                this._tutorialView.tutorial_close();
             } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-                this._uiController.ui_airport_close();
+                UiController.ui_airport_close();
             }
         }
 
         if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
             // Minus key to zoom out, plus to zoom in
-            this._uiController.ui_zoom_out();
+            UiController.ui_zoom_out();
             return false;
         } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
             if (event.shiftKey) {
-                this._uiController.ui_zoom_in();
+                UiController.ui_zoom_in();
             } else {
-                this._uiController.ui_zoom_reset();
+                UiController.ui_zoom_reset();
             }
 
             return false;
@@ -369,10 +373,10 @@ export default class InputController {
         }
 
         if (event.which === KEY_CODES.PAGE_UP) {
-            window.tutorialView.tutorial_prev();
+            this._tutorialView.tutorial_prev();
             event.preventDefault();
         } else if (event.which === KEY_CODES.PAGE_DOWN) {
-            window.tutorialView.tutorial_next();
+            this._tutorialView.tutorial_next();
             event.preventDefault();
         }
     }
@@ -648,7 +652,7 @@ export default class InputController {
         this.tab_completion_reset();
 
         this.input.tab_compl.matches = matches;
-        this.input.tab_compl.cycle_item = -1;
+        this.input.tab_compl.cycle_item = INVALID_NUMBER;
     }
 
     /**
@@ -728,7 +732,7 @@ export default class InputController {
      * @return {boolean}
      */
     _isArrowControlMethod() {
-        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+        return GameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
     }
 
     /**
@@ -747,7 +751,7 @@ export default class InputController {
         try {
             result = new CommandParser(userCommand);
         } catch (error) {
-            this._uiController.ui_log('Command not understood');
+            UiController.ui_log('Command not understood');
 
             throw error;
         }
@@ -778,12 +782,12 @@ export default class InputController {
     processSystemCommand(commandParser) {
         switch (commandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
-                this._uiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
+                UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
 
                 return true;
 
             case PARSED_COMMAND_NAME.TUTORIAL:
-                window.tutorialView.tutorial_toggle();
+                this._tutorialView.tutorial_toggle();
 
                 return true;
 
@@ -792,23 +796,23 @@ export default class InputController {
                 // aircraft_toggle_auto();
                 //
                 // if (this._aircraftController.aircraft.auto.enabled) {
-                //     this._uiController.ui_log('automatic controller ENGAGED');
+                //     UiController.ui_log('automatic controller ENGAGED');
                 // } else {
-                //     this._uiController.ui_log('automatic controller OFF');
+                //     UiController.ui_log('automatic controller OFF');
                 // }
 
                 return true;
 
             case PARSED_COMMAND_NAME.PAUSE:
-                window.gameController.game_pause_toggle();
+                GameController.game_pause_toggle();
 
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
                 if (commandParser.args) {
-                    window.gameController.game.speedup = commandParser.args;
+                    GameController.game.speedup = commandParser.args;
                 } else {
-                    window.gameController.game_timewarp_toggle();
+                    GameController.game_timewarp_toggle();
                 }
 
                 return true;
@@ -822,8 +826,8 @@ export default class InputController {
                 // TODO: it may be better to do this in the parser
                 const airportIcao = commandParser.args[0];
 
-                if (_has(prop.airport.airports, airportIcao)) {
-                    window.airportController.airport_set(airportIcao);
+                if (_has(AirportController.airports, airportIcao)) {
+                    AirportController.airport_set(airportIcao);
                 }
 
                 return true;
@@ -831,7 +835,7 @@ export default class InputController {
             case PARSED_COMMAND_NAME.RATE:
                 // TODO: is this if even needed?
                 if (commandParser.args) {
-                    window.gameController.game.frequency = commandParser.args;
+                    GameController.game.frequency = commandParser.args;
                 }
 
                 return true;
@@ -849,7 +853,7 @@ export default class InputController {
     processTransmitCommand(commandParser) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
-        let match = -1;
+        let match = INVALID_NUMBER;
 
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
@@ -861,13 +865,13 @@ export default class InputController {
         }
 
         if (matches > 1) {
-            this._uiController.ui_log('multiple aircraft match the callsign, say again');
+            UiController.ui_log('multiple aircraft match the callsign, say again');
 
             return true;
         }
 
-        if (match === -1) {
-            this._uiController.ui_log('no such aircraft, say again');
+        if (match === INVALID_NUMBER) {
+            UiController.ui_log('no such aircraft, say again');
 
             return true;
         }
