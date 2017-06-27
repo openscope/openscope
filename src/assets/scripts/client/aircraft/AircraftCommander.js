@@ -62,6 +62,7 @@ const COMMANDS = {
  */
 export default class AircraftCommander {
     constructor(navigationLibrary, onChangeTransponderCode) {
+        this._eventBus = EventBus;
         this._navigationLibrary = navigationLibrary;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }

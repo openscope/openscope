@@ -54,6 +54,7 @@
 - Adjusts fix validation for hold/vector/flyover fix names [#451](https://github.com/openscope/openscope/issues/451)
 - Prevents simulator from wrongfully overriding assigned alt/hdg during approach clearances [#521](https://github.com/openscope/openscope/issues/521)
 - Updates `AirportModel.buildRestrictedAreas()` to build the coordinate array with the correct shape [#522](https://github.com/openscope/openscope/issues/522)
+- Adds local reference to `EventBus` inside `AircraftCommander` [#539](https://github.com/openscope/openscope/issues/539)
 
 
 
