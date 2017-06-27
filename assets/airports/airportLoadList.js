@@ -153,7 +153,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kbos',
             level: 'medium',
             name: 'Boston Logan International Airport',
-            wip: true
+            wip: false
         },
         {
             icao: 'kdca',

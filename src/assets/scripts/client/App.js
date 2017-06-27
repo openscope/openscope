@@ -130,8 +130,7 @@ export default class App {
             airportLoadList,
             initialAirportData,
             airlineList,
-            aircraftTypeDefinitionList,
-            this.getDeltaTime
+            aircraftTypeDefinitionList
         );
 
         this.enable();
@@ -200,7 +199,7 @@ export default class App {
      * @method init_pre
      */
     init_pre() {
-        this._appController.init_pre();
+        this._appController.init_pre(this.getDeltaTime);
 
         return this;
     }

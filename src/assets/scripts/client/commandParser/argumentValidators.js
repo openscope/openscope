@@ -4,7 +4,10 @@ import _forEach from 'lodash/forEach';
 import { convertStringToNumber } from '../utilities/unitConverters';
 import { EXPEDITE } from './commandMap';
 import { ERROR_MESSAGE } from './commandParserMessages';
-import { REGEX } from '../constants/globalConstants';
+import {
+    INVALID_INDEX,
+    REGEX
+} from '../constants/globalConstants';
 
 /**
  * Check that `args` has exactly zero values
@@ -111,7 +114,7 @@ export const altitudeValidator = (args = []) => {
         return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
     }
 
-    if (args.length === 2 && EXPEDITE.indexOf(args[1]) === -1) {
+    if (args.length === 2 && EXPEDITE.indexOf(args[1]) === INVALID_INDEX) {
         return ERROR_MESSAGE.ALTITUDE_EXPEDITE_ARG;
     }
 };

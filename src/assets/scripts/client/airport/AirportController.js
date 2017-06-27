@@ -1,48 +1,60 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
-import Airport from './AirportModel';
+import AirportModel from './AirportModel';
 import EventBus from '../lib/EventBus';
 import { DEFAULT_AIRPORT_ICAO } from '../constants/airportConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
-// Temporary const declaration here to attach to the window AND use as internal property
-const airport = {};
-
 /**
+ * Responsible for maintaining references to all the available airports
+ *
  * @class AirportController
  */
-export default class AirportController {
+class AirportController {
     /**
      * @constructor
-     * @param initialAirportData {object}
-     * @param airportLoadList {array<object>}  List of airports to load
      */
-    constructor(initialAirportData, airportLoadList) {
-        this.eventBus = EventBus;
+    constructor() {
+        /**
+         * @property _eventBus
+         * @type {EventBus}
+         */
+        this._eventBus = EventBus;
 
-        this.airport = airport;
-        this.airport.airports = {};
-        this.airport.current = null;
-        this._airportListToLoad = airportLoadList;
-        // eslint-disable-next-line no-undef
-        prop.airport = airport;
+        /**
+         * Local reference to `window.AIRPORT_LOAD_LIST`
+         *
+         * This is defined in `assets/airports/airportLoadList.js`
+         * This property is the only way the possible list of airports
+         * makes its way into the app.
+         *
+         * @property _airportListToLoad
+         * @type {Array<object>}
+         * @default []
+         */
+        this._airportListToLoad = [];
 
-        return this.init()
-                   .ready(initialAirportData);
-    }
+        /**
+         * Dictionary of available airports
+         *
+         * @property airports
+         * @type {Object<string, AirportModel>}
+         * @default {}
+         */
+        this.airports = {};
 
-    /**
-     * Provides access to the current airport, if set.
-     *
-     * This should only ever return null on initial load,
-     * before the current airport has been set.
-     *
-     * @property current
-     * @return {AirportModel|null}
-     */
-    get current() {
-        return this.airport.current;
+        /**
+         * The current airport
+         *
+         * This is a mutable property that will change based on
+         * the currently selected airport
+         *
+         * @property current
+         * @type {AirportModel}
+         * @default null
+         */
+        this.current = null;
     }
 
     /**
@@ -52,16 +64,62 @@ export default class AirportController {
      *
      * @for AirportController
      * @method init
-     * @chainable
+     * @param initialAirportData {object}
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    init() {
+    init(initialAirportData, airportLoadList) {
+        this._airportListToLoad = airportLoadList;
+
         for (let i = 0; i < this._airportListToLoad.length; i++) {
             const airport = this._airportListToLoad[i];
 
             this.airport_load(airport);
         }
 
-        return this;
+        this.ready(initialAirportData);
+    }
+
+    /**
+     * Create a new `AirportModel` flyweight
+     *
+     * This will create a minimal `AirportModel` with just enough data to
+     * create a valid instance. When switching airports, this model will
+     * be filled in with the rest of the airport data if it does
+     * not exist already
+     *
+     * @for AirportController
+     * @method airport_load
+     * @param icao {string}
+     * @param level {string}
+     * @param name {string}
+     * @param wip {boolean}
+     * @return airportModel {AirtportInstance}
+     */
+    airport_load({ icao, level, name, wip }) {
+        icao = icao.toLowerCase();
+
+        if (this.hasAirport(icao)) {
+            console.log(`${icao}: already loaded`);
+
+            return null;
+        }
+
+        const airportModel = new AirportModel({ icao, level, name, wip });
+
+        this.airport_add(airportModel);
+
+        return airportModel;
+    }
+
+    /**
+     * Add an airport config to the `#airports` dictionary
+     *
+     * @for AirportController
+     * @method airport_add
+     * @param airport {object}
+     */
+    airport_add(airport) {
+        this.airports[airport.icao] = airport;
     }
 
     /**
@@ -69,14 +127,14 @@ export default class AirportController {
      *
      * @for AirportController
      * @method ready
-     * @chainable
+     * @param initialAirportData {object}
      */
     ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
         if (
             _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
+            _has(this.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
@@ -86,45 +144,27 @@ export default class AirportController {
         }
 
         this.airport_set(airportName, initialAirportData);
-
-        return this;
     }
 
     /**
-     * @function airport_load
-     * @param icao {string}
-     * @param level {string}
-     * @param name {string}
-     * @param wip {boolean}
-     * @return airport {AirtportInstance}
+     * Reset the instance
+     *
+     * Placeholder method, currently not in use
+     *
+     * @for AircraftController
+     * @method reset
      */
-    airport_load({ icao, level, name, wip }) {
-        icao = icao.toLowerCase();
-
-        if (this.hasAirport()) {
-            console.log(`${icao}: already loaded`);
-
-            return null;
-        }
-
-        const airport = new Airport({ icao, level, name, wip });
-
-        this.airport_add(airport);
-
-        return airport;
+    reset() {
+        return;
     }
 
     /**
-     * @function airport_add
-     * @param airport
-     */
-    airport_add(airport) {
-        this.airport.airports[airport.icao] = airport;
-    }
-
-    /**
+     * Set a given `icao` as the `#current` airport
+     *
      * @for AirportController
      * @method airport_set
+     * @param icao {string}
+     * @param airportJson {object} [default=null]
      */
     airport_set(icao, airportJson = null) {
         if (this.hasStoredIcao(icao)) {
@@ -133,34 +173,37 @@ export default class AirportController {
 
         icao = icao.toLowerCase();
 
-        if (!this.airport.airports[icao]) {
+        if (!this.airports[icao]) {
             console.log(`${icao}: no such airport`);
 
             return;
         }
 
-        const nextAirportModel = this.airport.airports[icao];
-        this.airport.current = nextAirportModel;
+        const nextAirportModel = this.airports[icao];
+        this.current = nextAirportModel;
 
         // if loaded is true, we wont need to load any data thus the call to `onAirportChange` within the
         // success callback will never fire so we do that here.
         if (nextAirportModel.loaded) {
-            this.eventBus.trigger(EVENT.AIRPORT_CHANGE, nextAirportModel.data);
+            this._eventBus.trigger(EVENT.AIRPORT_CHANGE, nextAirportModel.data);
         }
 
         nextAirportModel.set(airportJson);
     }
     /**
-     * @function airport_get
+     * Retrieve a specific `AirportModel` instance
+     *
+     * @for AirportController
+     * @method airport_get
      * @param icao {string}
-     * @return
+     * @return {AirportModel}
      */
     airport_get(icao) {
         if (!icao) {
-            return this.airport.current;
+            return this.current;
         }
 
-        return this.airport.airports[icao.toLowerCase()];
+        return this.airports[icao.toLowerCase()];
     }
 
     /**
@@ -178,11 +221,15 @@ export default class AirportController {
      * @return {string}
      */
     getInitialArrivalRunwayName() {
-        return this.airport.current.arrivalRunwayModel.name;
+        return this.current.arrivalRunwayModel.name;
     }
 
     /**
+     * Boolean helper used to determine if a given `icao` exists within `localStorage`
+     *
+     * @for AirportController
      * @method hasStoredIcao
+     * @param icao {string}
      * @return {boolean}
      */
     hasStoredIcao(icao) {
@@ -190,11 +237,15 @@ export default class AirportController {
     }
 
     /**
+     * Boolean helper used to determine if a given `icao` exists within `#airports`
+     *
+     * @for AirportController
      * @method hasAirport
+     * @param icao {string}
      * @return {boolean}
      */
     hasAirport(icao) {
-        return _has(this.airport.airports, icao);
+        return _has(this.airports, icao);
     }
 
     /**
@@ -205,6 +256,8 @@ export default class AirportController {
      * @param  aircraft {AircraftModel}
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
-        this.airport.current.removeAircraftFromAllRunwayQueues(aircraft.id);
+        this.current.removeAircraftFromAllRunwayQueues(aircraft.id);
     }
 }
+
+export default new AirportController();

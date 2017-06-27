@@ -1,6 +1,9 @@
 import _isNil from 'lodash/isNil';
+import {
+    INVALID_INDEX,
+    REGEX
+} from '../constants/globalConstants';
 import { distanceToPoint } from '../math/circle';
-import { REGEX } from '../constants/globalConstants';
 
 /**
  * @function hasCardinalDirectionInCoordinate
@@ -102,8 +105,8 @@ export const isValidGpsCoordinatePair = (gpsCoordinates) => {
     if (typeof latitude === 'number') {
         return true;
     } else if (typeof latitude === 'string') {
-        const latFirstCharIsNorthOrSouth = ['N', 'S'].indexOf(latitude[0].toUpperCase()) !== -1;
-        const lonFirstCharIsEastOrWest = ['E', 'W'].indexOf(longitude[0].toUpperCase()) !== -1;
+        const latFirstCharIsNorthOrSouth = ['N', 'S'].indexOf(latitude[0].toUpperCase()) !== INVALID_INDEX;
+        const lonFirstCharIsEastOrWest = ['E', 'W'].indexOf(longitude[0].toUpperCase()) !== INVALID_INDEX;
 
         return latFirstCharIsNorthOrSouth && lonFirstCharIsEastOrWest;
     }

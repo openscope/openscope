@@ -29,6 +29,15 @@ export const EVENT = {
     DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
 
     /**
+     * Pause/unpause the app
+     *
+     * @memberof EVENT
+     * @property PAUSE_TOGGLE
+     * @type {string}
+     */
+    PAUSE_TOGGLE: 'pause-toggle',
+
+    /**
      * An aircraft data block was clicked and the corresponding
      * `StripViewModel` must also be selected
      *
@@ -57,6 +66,26 @@ export const EVENT = {
     STRIP_DOUBLE_CLICK: 'strip-double-click',
 
     /**
+     * Remove an aircraft from the sim
+     *
+     * Usually as a result of the `del` user command
+     *
+     * @memberof EVENT
+     * @property REMOVE_AIRCRAFT
+     * @type {string}
+     */
+    REMOVE_AIRCRAFT: 'remove-aircraft',
+
+    /**
+     * Remove an `AircraftConflict` for an aircraft
+     *
+     * @memberof EVENT
+     * @property REMOVE_AIRCRAFT_CONFLICT
+     * @type {string}
+     */
+    REMOVE_AIRCRAFT_CONFLICT: 'remove-aircraft-conflict',
+
+    /**
      * An aircraft has been located and needs to be centered in the view
      *
      * @memberof EVENT
@@ -75,5 +104,33 @@ export const EVENT = {
      * @property SHOULD_PAUSE_UPDATE_LOOP
      * @type {string}
      */
-    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop'
+    SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
+
+    /**
+     * Step through pre-defined timewarp speeds
+     *
+     * @memberof EVENT
+     * @property TIMEWARP_TOGGLE
+     * @type {string}
+     */
+    TIMEWARP_TOGGLE: 'timewarp-toggle',
+
+    /**
+     * Open/close the tutorial modal
+     *
+     * @memberof EVENT
+     * @property TOGGLE_TUTORIAL
+     * @type {string}
+     */
+    TOGGLE_TUTORIAL: 'toggle-tutorial',
+
+    /**
+     * A click has been registered in the unpause button shown within the
+     * screen overlay whil the app is paused
+     *
+     * @memberof EVENT
+     * @property UNPAUSE
+     * @type {string}
+     */
+    UNPAUSE: 'unpause'
 };

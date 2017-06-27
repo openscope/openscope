@@ -293,7 +293,7 @@ export default class LegModel {
     }
 
     /**
-     * Collects the `#altitudeRestriction` value from each waypoint
+     * Collects the `#altitudeMaximum` value from each waypoint
      * in the `#waypointCollection`, then finds the highest value
      *
      * @for LegModel
@@ -311,7 +311,7 @@ export default class LegModel {
     }
 
     /**
-     * Collects the `#altitudeRestriction` value from each waypoint
+     * Collects the `#altitudeMinimum` value from each waypoint
      * in the `#waypointCollection`, then finds the lowest value
      *
      * @for LegModel
@@ -514,7 +514,7 @@ export default class LegModel {
     }
 
     /**
-     * Finds the minimum or maximum value for `#altitudeRestriction` in the `#waypointCollection`
+     * Finds the minimum or maximum altitude restriction in the `#waypointCollection`
      *
      * @for LegModel
      * @method _findMinOrMaxAltitudeInProcedure
@@ -523,14 +523,15 @@ export default class LegModel {
      * @private
      */
     _findMinOrMaxAltitudeInProcedure(isMaximum = false) {
-        const altitudeRestrictionList = _map(this.waypointCollection, (waypoint) => waypoint.altitudeRestriction);
-
         if (isMaximum) {
-            return Math.max(...altitudeRestrictionList);
+            const maximumAltitudes = _map(this.waypointCollection, (waypoint) => waypoint.altitudeMaximum);
+
+            return Math.max(...maximumAltitudes);
         }
 
+        const minimumAltitudes = _map(this.waypointCollection, (waypoint) => waypoint.altitudeMinimum);
         // setting this value here so we run `_without`, which might not be performant, only when we need it
-        const positiveValueRestrictionList = _without(altitudeRestrictionList, -1);
+        const positiveValueRestrictionList = _without(minimumAltitudes, -1);
 
         return Math.min(...positiveValueRestrictionList);
     }

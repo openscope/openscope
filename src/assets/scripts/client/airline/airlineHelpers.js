@@ -14,13 +14,6 @@ import { choose_weight } from '../utilities/generalUtilities';
 const NAME_FLEET_SEPERATOR = '/';
 
 /**
- * @property INVALID_INDEX
- * @type {number}
- * @final
- */
-const INVALID_INDEX = -1;
-
-/**
  * Enemeration of an index value of `0`
  *
  * @property FIRST_INDEX
@@ -51,7 +44,7 @@ const SECOND_INDEX = 1;
 const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndFleet) => {
     airlineNameAndFleet.name = _lowerCase(selectedAirline);
 
-    if (selectedAirline.indexOf(NAME_FLEET_SEPERATOR) > INVALID_INDEX) {
+    if (selectedAirline.indexOf(NAME_FLEET_SEPERATOR) > -1) {
         const nameAndFleet = selectedAirline.split(NAME_FLEET_SEPERATOR);
 
         airlineNameAndFleet.name = _lowerCase(nameAndFleet[FIRST_INDEX]);

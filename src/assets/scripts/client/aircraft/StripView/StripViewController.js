@@ -3,6 +3,7 @@ import _random from 'lodash/random';
 import _without from 'lodash/without';
 import StripViewCollection from './StripViewCollection';
 import StripViewModel from './StripViewModel';
+import { INVALID_INDEX } from '../../constants/globalConstants';
 import { SELECTORS } from '../../constants/selectors';
 
 /**
@@ -292,7 +293,7 @@ export default class StripViewController {
     _generateCidNumber() {
         const nextCid = _random(1, CID_UPPER_BOUND);
 
-        if (this._cidNumbersInUse.indexOf(nextCid) !== -1) {
+        if (this._cidNumbersInUse.indexOf(nextCid) !== INVALID_INDEX) {
             this._generateCidNumber();
         }
 
@@ -314,7 +315,7 @@ export default class StripViewController {
     _removeCidFromUse(cid) {
         const cidIndex = this._cidNumbersInUse.indexOf(cid);
 
-        if (cidIndex === -1) {
+        if (cidIndex === INVALID_INDEX) {
             return;
         }
 

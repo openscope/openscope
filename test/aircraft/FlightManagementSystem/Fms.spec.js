@@ -14,6 +14,7 @@ import {
     AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 const directRouteString = 'COWBY';
 const invalidDirectRouteStringMock = 'COWBY.BIKKR';
@@ -729,7 +730,7 @@ ava('.hasLegWithRouteString() returns true if a LegModel can be found that match
     t.true(fms.hasLegWithRouteString('coWbY'));
 });
 
-ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoints', (t) => {
+ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 24000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getTopAltitude();
@@ -737,7 +738,7 @@ ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoint
     t.true(result === expectedResult);
 });
 
-ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the waypoints', (t) => {
+ava('.getBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 8000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getBottomAltitude();
@@ -780,7 +781,7 @@ ava('._findLegIndexForProcedureType() returns -1 when a procedure type cannot be
     const fms = buildFmsMock(isComplexRoute);
     const result = fms._findLegIndexForProcedureType('SID');
 
-    t.true(result === -1);
+    t.true(result === INVALID_NUMBER);
 });
 
 ava('._findLegIndexForProcedureType() returns an array index for a specific procedure type', (t) => {

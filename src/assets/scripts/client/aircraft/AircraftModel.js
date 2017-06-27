@@ -1,20 +1,19 @@
-/* eslint-disable max-len, no-undef */
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
+import AirportController from '../airport/AirportController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
-import { speech_say } from '../speech';
-import { radians_normalize, angle_offset } from '../math/circle';
 import {
-    getOffset,
-    calculateTurnInitiaionDistance
-} from '../math/flightMath';
+    radians_normalize,
+    angle_offset
+} from '../math/circle';
 import {
     abs,
     cos,
@@ -22,6 +21,10 @@ import {
     sin,
     spread
 } from '../math/core';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance
+} from '../math/flightMath';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -34,6 +37,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
+import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -44,6 +48,10 @@ import {
     nm
 } from '../utilities/unitConverters';
 import {
+    MCP_MODE,
+    MCP_MODE_NAME
+} from './ModeControl/modeControlConstants';
+import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
     PERFORMANCE
@@ -52,9 +60,10 @@ import {
     AIRPORT_CONSTANTS,
     AIRPORT_CONTROL_POSITION_NAME
 } from '../constants/airportConstants';
-import { GAME_EVENTS } from '../game/GameController';
-import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
-import { TIME } from '../constants/globalConstants';
+import {
+    INVALID_NUMBER,
+    TIME
+} from '../constants/globalConstants';
 
 /**
  * @property FLIGHT_RULES
@@ -350,9 +359,9 @@ export default class AircraftModel {
          *
          * @property datablockDir
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.datablockDir = -1;
+        this.datablockDir = INVALID_NUMBER;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -427,7 +436,7 @@ export default class AircraftModel {
         };
 
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
-            ? window.gameController.game_time()
+            ? GameController.game_time()
             : null;
 
         this.buildCurrentTerrainRanges();
@@ -451,6 +460,15 @@ export default class AircraftModel {
     }
 
     /**
+     * @for AircraftModel
+     * @property callsign
+     * @return {string}
+     */
+    get callsign() {
+        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
+    }
+
+    /**
      * Current flight phase
      *
      * @for AircraftModel
@@ -459,15 +477,6 @@ export default class AircraftModel {
      */
     get flightPhase() {
         return this.fms.currentPhase;
-    }
-
-    /**
-     * @for AircraftModel
-     * @property callsign
-     * @return {string}
-     */
-    get callsign() {
-        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
     }
 
     /**
@@ -513,7 +522,7 @@ export default class AircraftModel {
      * @method buildRestrictedAreaLinks
      */
     buildRestrictedAreaLinks() {
-        const restrictedAreas = prop.airport.current.restricted_areas;
+        const restrictedAreas = AirportController.current.restricted_areas;
 
         _forEach(restrictedAreas, (area) => {
             this.restricted.list.push({
@@ -538,12 +547,16 @@ export default class AircraftModel {
         this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
 
-        // this assumes arrivals always spawn outside the airspace
+        this.target.altitude = this.altitude;
+        this.target.heading = this.heading;
+        this.target.speed = this.speed;
+
+        // This assumes and arrival spawns outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const initialRunway = airport.getActiveRunwayForCategory(this.category);
         this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
 
@@ -579,11 +592,11 @@ export default class AircraftModel {
         let assignedAltitude = this.mcp.altitude;
         let flightPlanAltitude = this.fms.flightPlanAltitude;
 
-        if (assignedAltitude === -1) {
+        if (assignedAltitude === INVALID_NUMBER) {
             assignedAltitude = '-';
         }
 
-        if (flightPlanAltitude === -1) {
+        if (flightPlanAltitude === INVALID_NUMBER) {
             flightPlanAltitude = '-';
         }
 
@@ -643,13 +656,13 @@ export default class AircraftModel {
                 AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
                 true
             );
-            window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
 
             return;
         }
 
         this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
     }
 
     /**
@@ -661,7 +674,7 @@ export default class AircraftModel {
     arrivalExit() {
         this.setIsRemovable();
         this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
     }
 
     /**
@@ -802,6 +815,54 @@ export default class AircraftModel {
         return !this.isOnGround();
     }
 
+    /**
+     * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondDecelerationPoint
+     * @return {boolean}
+     */
+    isBeyondDecelerationPoint() {
+        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointSpeed = waypointModel.speedMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const speedChange = waypointSpeed - this.speed;
+        const decelerationRate = -this.model.rate.decelerate / 2;   // units of rate.decel are 'knots per 2 seconds'
+        const decelerationTime = speedChange / decelerationRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_SECONDS;
+
+        return decelerationTime > timeUntilWaypoint;
+    }
+
+    /**
+     * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondTopOfDescent
+     * @return {boolean}
+     */
+    isBeyondTopOfDescent() {
+        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointAltitude = waypointModel.altitudeMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const altitudeChange = waypointAltitude - this.altitude;
+        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentTime = altitudeChange / descentRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
+
+        return descentTime > timeUntilWaypoint;
+    }
+
     isDeparture() {
         return this.fms.isDeparture();
     }
@@ -868,7 +929,7 @@ export default class AircraftModel {
      */
     isOnGround() {
         const errorAllowanceInFeet = 5;
-        const airport = window.airportController.airport_get();
+        const airport = AirportController.airport_get();
         const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
@@ -961,7 +1022,7 @@ export default class AircraftModel {
             head: 0
         };
 
-        const { wind } = window.airportController.airport_get();
+        const { wind } = AirportController.airport_get();
         // const wind = airport.wind;
         const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
@@ -1004,19 +1065,19 @@ export default class AircraftModel {
         const callsign_S = this.getRadioCallsign();
 
         if (sectorType) {
-            call += window.airportController.airport_get().radio[sectorType];
+            call += AirportController.airport_get().radio[sectorType];
         }
 
         // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
-        const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+        const logMessage = (callsign) => `${AirportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
 
         if (alert) {
             const isWarning = true;
-            window.uiController.ui_log(logMessage(callsign_L), isWarning);
+            UiController.ui_log(logMessage(callsign_L), isWarning);
         } else {
-            window.uiController.ui_log(logMessage(callsign_L));
+            UiController.ui_log(logMessage(callsign_L));
         }
 
         speech_say([{
@@ -1050,18 +1111,18 @@ export default class AircraftModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
+            UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
             speech_say([
-                { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
+                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
                 { type: 'callsign', content: this },
                 { type: 'text', content: `with you ${alt_say}` }
             ]);
         }
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
+            UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
-                { type: 'text', content: window.airportController.airport_get().radio.twr },
+                { type: 'text', content: AirportController.airport_get().radio.twr },
                 { type: 'callsign', content: this },
                 { type: 'text', content: ', ready to taxi' }
             ]);
@@ -1081,19 +1142,19 @@ export default class AircraftModel {
 
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
-            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
         } else if (components.cross >= 10) {
-            window.gameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
         }
 
         if (components.head <= -10) {
-            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
         } else if (components.head <= -1) {
-            window.gameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
+            UiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
         }
 
         return score;
@@ -1160,8 +1221,7 @@ export default class AircraftModel {
                 this.target.heading = this.heading;
                 this.target.speed = this.model.speed.min;
 
-                // TODO: Enumerate the '-999' invalid value
-                if (this.mcp.heading === -1) {
+                if (this.mcp.heading === INVALID_NUMBER) {
                     console.warn(`${this.callsign} took off with no directional instructions!`);
                 }
 
@@ -1250,7 +1310,7 @@ export default class AircraftModel {
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
-                const elapsed = window.gameController.game_time() - this.taxi_start;
+                const elapsed = GameController.game_time() - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
                     this.setFlightPhase(FLIGHT_PHASE.WAITING);
@@ -1387,15 +1447,11 @@ export default class AircraftModel {
                 return this._calculateLegalSpeed(this.model.speed.max);
 
             case MCP_MODE.SPEED.VNAV: {
-                const maxSpeed = this.mcp.speed;
-                const waypointSpeed = this.fms.currentWaypoint.speedRestriction;
-                const waypointHasSpeed = waypointSpeed !== -1;
+                const vnavSpeed = this._calculateTargetedSpeedVnav();
 
-                if (waypointHasSpeed) {
-                    return this._calculateLegalSpeed(waypointSpeed);
-                }
+                return this._calculateLegalSpeed(vnavSpeed);
 
-                return this._calculateLegalSpeed(maxSpeed);
+                break;
             }
 
             default:
@@ -1457,20 +1513,7 @@ export default class AircraftModel {
             //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
-                const waypointAltitude = this.fms.currentWaypoint.altitudeRestriction;
-                const waypointHasAltitude = waypointAltitude !== -1;
-
-                if (!waypointHasAltitude) {
-                    return this.mcp.altitude;
-                }
-
-                if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
-                    return Math.min(waypointAltitude, this.mcp.altitude);
-                }
-
-                if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
-                    return Math.max(waypointAltitude, this.mcp.altitude);
-                }
+                return this._calculateTargetedAltitudeVnav();
 
                 break;
             }
@@ -1578,8 +1621,8 @@ export default class AircraftModel {
 
             const isWarning = true;
             // TODO: Should be moved to where the output is handled
-            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.GO_AROUND);
+            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
 
             speech_say([
                 { type: 'callsign', content: this },
@@ -1596,8 +1639,8 @@ export default class AircraftModel {
     warnInterceptAngle() {
         const isWarning = true;
 
-        window.uiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
-        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
+        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     /**
@@ -1655,7 +1698,7 @@ export default class AircraftModel {
         const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
-        const gameTime = window.gameController.game.time;
+        const gameTime = GameController.game.time;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = hold.timer !== invalidTimerValue;
         const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
@@ -1716,6 +1759,92 @@ export default class AircraftModel {
     }
 
     /**
+     * Calculates the altitude for an aircraft in a VNAV-guided altitude change
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnav
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnav() {
+        const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(hardRestrictedWaypointModel)) {
+            return;
+        }
+
+        switch (this.flightPhase) {
+            case FLIGHT_PHASE.TAKEOFF:
+            case FLIGHT_PHASE.CLIMB:
+                return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
+
+            case FLIGHT_PHASE.CRUISE: {
+                if (!this.isBeyondTopOfDescent()) {
+                    return;
+                }
+
+                // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
+                // will enter the below block because the flight phase will have become 'DESCENT'.
+                return hardRestrictedWaypointModel.altitudeMaximum;
+            }
+
+            case FLIGHT_PHASE.DESCENT:
+                return this._calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel);
+
+            default:
+                return;
+        }
+    }
+
+    /**
+     * Calculates the altitude for an aircraft in a VNAV-guided climb
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnavClimb
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel) {
+        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMaximum;
+        }
+
+        return Math.min(waypointAltitude, this.mcp.altitude);
+    }
+
+    /**
+     * Calculates the altitude for an aircraft in a VNAV-guided descent
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnavDescent
+     * @param  hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel) {
+        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMinimum;
+        }
+
+        // TODO: This could be improved by making the descent at the exact rate needed to reach
+        // the altitude at the same time as reaching the fix. At this point, the problem is that
+        // while we DO know the descent rate and descent angle to shoot for, we don't know the
+        // length of time before the next update, so we can't accurately estimate the altitude to
+        // target in the current iteration.
+        return Math.max(waypointAltitude, this.mcp.altitude);
+    }
+
+    /**
      * Calculates the heading for a landing aircraft
      *
      * @for AircraftModel
@@ -1749,7 +1878,7 @@ export default class AircraftModel {
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
-        if (distanceOnFinal_nm <= 0 && this.isOnGround())  {
+        if (distanceOnFinal_nm <= 0 && this.isOnGround()) {
             return 0;
         }
 
@@ -1767,6 +1896,76 @@ export default class AircraftModel {
 
         return nextSpeed;
     }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided speed change
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnav
+     * @return {number} speed, in knots
+     */
+    _calculateTargetedSpeedVnav() {
+        const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(hardRestrictedWaypointModel)) {
+            return;
+        }
+
+        if (waypointSpeed > this.speed) {
+            return this._calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel);
+        } else if (waypointSpeed < this.speed) {
+            return this._calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel);
+        }
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided acceleration
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnavAcceleration
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel) {
+        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== INVALID_NUMBER;
+
+        // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+            waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
+        }
+
+        return Math.min(waypointSpeed, this.mcp.speed);
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided deceleration
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnavDeceleration
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel) {
+        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+
+        if (!this.isBeyondDecelerationPoint()) {
+            return;
+        }
+
+        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+            waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
+        }
+
+        return Math.min(waypointSpeed, this.mcp.speed);
+    }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
@@ -1781,7 +1980,7 @@ export default class AircraftModel {
 
         if (this.hit) {
             // 90fps fall rate?...
-            this.altitude -= 90 * window.gameController.game_delta();
+            this.altitude -= 90 * GameController.game_delta();
             this.speed *= 0.99;
 
             return;
@@ -1803,11 +2002,11 @@ export default class AircraftModel {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
-                window.gameController.game_time() / window.gameController.game_speedup()
+                GameController.game_time() / GameController.game_speedup()
             ]);
             // TODO: this can be abstracted
-        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / window.gameController.game_speedup()) {
-            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
+        } else if (abs((GameController.game_time() / GameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
+            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], GameController.game_time() / GameController.game_speedup()]);
         }
 
         this.updateGroundSpeedPhysics();
@@ -1816,7 +2015,7 @@ export default class AircraftModel {
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
 
         // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
 
         if (isInsideAirspace !== this.inside_ctr) {
             this.crossBoundary(isInsideAirspace);
@@ -1836,7 +2035,7 @@ export default class AircraftModel {
             return;
         }
 
-        const secondsElapsed = window.gameController.game_delta();
+        const secondsElapsed = GameController.game_delta();
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
@@ -1894,7 +2093,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetDescended = feetPerSecond * window.gameController.game_delta();
+        const feetDescended = feetPerSecond * GameController.game_delta();
 
         if (abs(altitude_diff) < feetDescended) {
             this.altitude = this.target.altitude;
@@ -1920,7 +2119,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetClimbed = feetPerSecond * window.gameController.game_delta();
+        const feetClimbed = feetPerSecond * GameController.game_delta();
 
 
         if (abs(altitude_diff) < abs(feetClimbed)) {
@@ -1947,13 +2146,13 @@ export default class AircraftModel {
         }
 
         if (this.speed > this.target.speed) {
-            speedChange = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
+            speedChange = -this.model.rate.decelerate * GameController.game_delta() / 2;
 
             if (this.isOnGround()) {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
+            speedChange  = this.model.rate.accelerate * GameController.game_delta() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
@@ -1982,7 +2181,7 @@ export default class AircraftModel {
 
         // Calculate wind vector
         const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
-        const wind = window.airportController.airport_get().wind;
+        const wind = AirportController.airport_get().wind;
         const windTravelDirection = wind.angle + Math.PI;
         const windTravelSpeedAtSurface = wind.speed;
         const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
@@ -1994,7 +2193,7 @@ export default class AircraftModel {
         const groundSpeed = vlen(flightPathVector);
 
         // Calculate new position
-        const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
         const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
@@ -2019,7 +2218,7 @@ export default class AircraftModel {
         //     // TODO: this should be abstracted to a helper function
         //     vector = vadd(vscale(
         //         vturn(wind.angle + Math.PI),
-        //         wind.speed * 0.000514444 * window.gameController.game_delta()),
+        //         wind.speed * 0.000514444 * GameController.game_delta()),
         //         vscale(vturn(angle + crab_angle), trueAirSpeed)
         //     );
         // }
@@ -2035,7 +2234,7 @@ export default class AircraftModel {
      * @deprecated
      */
     updateSimpleGroundSpeedPhysics() {
-        // const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        // const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
         // const distanceTraveled_nm = this.speed * hoursElapsed;
         //
         // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
@@ -2099,7 +2298,7 @@ export default class AircraftModel {
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
-                        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+                        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
                         area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
                         // speed is kts, range is km.
                         // if a plane got into restricted area, don't check it too often
@@ -2122,7 +2321,7 @@ export default class AircraftModel {
         }
 
         if (this.terrain_ranges && !this.isOnGround()) {
-            const terrain = prop.airport.current.terrain;
+            const terrain = AirportController.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
             let curr_ranges = this.terrain_ranges[ele];
@@ -2151,13 +2350,13 @@ export default class AircraftModel {
 
                             console.log('hit terrain');
                             const isWarning = true;
-                            window.uiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
+                            UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
                                 { type: 'callsign', content: this },
                                 { type: 'text', content: ', we\'re going down!' }
                             ]);
 
-                            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
+                            GameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);
@@ -2259,152 +2458,5 @@ export default class AircraftModel {
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
-    }
-
-    // TODO: aircraft strip methods below will be abstracted and de-coupled from this model
-
-    /**
-     * Create the aircraft's flight strip and add to strip bay
-     */
-    createStrip() {
-        this.aircraftStripView = new AircraftStripView(this);
-
-        this.$html = this.aircraftStripView.$element;
-        // Add the strip to the html
-        const scrollPos = this.$strips.scrollTop();
-        this.$strips.prepend(this.aircraftStripView.$element);
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
-
-        // Determine whether or not to show the strip in our bay
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.aircraftStripView.hide();
-        }
-    }
-
-    // TODO: move these view methods to `AircraftStripView` or a different file
-    /**
-     * @for AircraftModel
-     * @method updateStrip
-     */
-    updateStrip() {
-        if (this.projected || !this.inside_ctr) {
-            return;
-        }
-
-        const heading = heading_to_string(this.mcp.heading);
-        const altitude = this.mcp.altitude;
-        const speed = this.mcp.speed;
-        let destinationDisplay = this.fms.getProcedureAndExitName();
-        const altitudeText = this.taxi_next
-            ? 'ready'
-            : null;
-        const hasAltitude = this.mcp.altitude !== -1;
-
-        this.aircraftStripView.update(heading, altitude, this.destination, speed);
-
-        switch (this.flightPhase) {
-            case FLIGHT_PHASE.APRON:
-                this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
-
-                break;
-            case FLIGHT_PHASE.TAXI:
-                this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
-
-                break;
-            case FLIGHT_PHASE.WAITING:
-                this.aircraftStripView.updateViewForWaiting(
-                    destinationDisplay,
-                    this.pilot.hasDepartureClearance,
-                    hasAltitude
-                );
-
-                break;
-            case FLIGHT_PHASE.TAKEOFF:
-                this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
-
-                break;
-            case FLIGHT_PHASE.CLIMB:
-            case FLIGHT_PHASE.HOLD:
-            case FLIGHT_PHASE.DESCENT:
-            case FLIGHT_PHASE.CRUISE:
-                let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
-                let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
-                const isFollowingSid = this.fms.isFollowingSid();
-                const isFollowingStar = this.fms.isFollowingStar();
-                const fixRestrictions = {
-                    altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
-                    speed: this.fms.currentWaypoint.speedRestriction !== -1
-                };
-
-                // TODO: this will need to be addressed when the AircraftStripView is refactored
-                // this block is a bandaid to prevent `destinationDisplay` from being undefined
-                destinationDisplay = this.fms.currentWaypoint.name;
-
-                if (isFollowingStar || isFollowingSid) {
-                    destinationDisplay = this.fms.getProcedureAndExitName();
-                }
-
-                if (this.fms.currentWaypoint.isHold) {
-                    cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
-                    headingDisplay = 'holding';
-                    destinationDisplay = this.fms.getDestinationName();
-                } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
-                    headingDisplay = this.mcp.headingInDegrees;
-                    destinationDisplay = this.fms.getDestinationName();
-                } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
-                    cruiseNavMode = WAYPOINT_NAV_MODE.RWY;
-                    headingDisplay = 'intercept';
-                    destinationDisplay = this.fms.getDestinationAndRunwayName();
-                }
-
-                this.aircraftStripView.updateViewForCruise(
-                    cruiseNavMode,
-                    headingDisplay,
-                    destinationDisplay,
-                    isFollowingSid,
-                    isFollowingStar,
-                    fixRestrictions
-                );
-
-                break;
-            case FLIGHT_PHASE.APPROACH:
-            case FLIGHT_PHASE.LANDING:
-                destinationDisplay = this.fms.getDestinationAndRunwayName();
-
-                this.aircraftStripView.updateViewForLanding(destinationDisplay);
-
-                break;
-            default:
-                throw new TypeError(`Invalid FLIGHT_MODE ${this.flightPhase} passed to .updateStrip()`);
-        }
-    }
-
-    /**
-     * @for AircraftModel
-     * @method showStrip
-     */
-    showStrip() {
-        this.$html.detach();
-
-        const scrollPos = this.$strips.scrollTop();
-
-        this.$strips.prepend(this.$html);
-        this.$html.show();
-        // TODO enumerate the magic number
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + 45);
-    }
-
-    /**
-     * @for AircraftModel
-     * @method hideStrip
-     */
-    hideStrip() {
-        this.$html.hide(600);
-    }
-
-    cleanup() {
-        this.$html.remove();
     }
 }

@@ -5,6 +5,7 @@ import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
+import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
  * Houses an `AirlineModel` for each possible airline in the app.
@@ -96,7 +97,7 @@ export default class AirlineCollection extends BaseCollection {
         const airlineNameAndFleetSeparator = '/';
         let airlineId = id.toLowerCase();
 
-        if (airlineId.indexOf(airlineNameAndFleetSeparator) !== -1) {
+        if (airlineId.indexOf(airlineNameAndFleetSeparator) !== INVALID_INDEX) {
             // this should not get hit in most circumstances. The puropse of this method is to find
             // and `AirlineModel` object and not a list of aircraft from a fleet
             console.warn(
