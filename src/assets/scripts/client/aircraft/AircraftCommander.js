@@ -1,6 +1,10 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
+import UiController from '../UiController';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
+import GameController from '../game/GameController';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -13,6 +17,7 @@ import {
     FLIGHT_CATEGORY,
     PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
 
 /**
  * Enum of commands and thier corresponding function.
@@ -56,11 +61,8 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, navigationLibrary, gameController, uiController, onChangeTransponderCode) {
-        this._airportController = airportController;
+    constructor(navigationLibrary, onChangeTransponderCode) {
         this._navigationLibrary = navigationLibrary;
-        this._gameController = gameController;
-        this._uiController = uiController;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -156,7 +158,7 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            this._uiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
+            UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
             speech_say([
                 { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
@@ -200,8 +202,8 @@ export default class AircraftCommander {
     runAltitude(aircraft, data) {
         const altitudeRequested = data[0];
         const expediteRequested = data[1];
-        const shouldUseSoftCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
-        const airport = this._airportController.airport_get();
+        const shouldUseSoftCeiling = GameController.game.option.get('softCeiling') === 'yes';
+        const airport = AirportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
             aircraft.altitude,
@@ -355,7 +357,7 @@ export default class AircraftCommander {
     runSID(aircraft, data) {
         const sidId = data[0];
         const runwayModel = aircraft.fms.departureRunwayModel;
-        const airportModel = this._airportController.airport_get();
+        const airportModel = AirportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
             return this._runSIDforSuffix(aircraft, airportModel, sidId);
@@ -406,7 +408,7 @@ export default class AircraftCommander {
         const routeString = data[0];
         // TODO: why are we passing this if we already have it?
         const runwayModel = aircraft.fms.arrivalRunwayModel;
-        const airportModel = this._airportController.airport_get();
+        const airportModel = AirportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {
             return this._runSTARforSuffix(aircraft, airportModel, routeString);
@@ -505,11 +507,11 @@ export default class AircraftCommander {
 
         // Set the runway to taxi to
         if (!taxiDestination) {
-            const airport = this._airportController.airport_get();
+            const airport = AirportController.airport_get();
             taxiDestination = airport.departureRunwayModel.name;
         }
 
-        const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
+        const runway = AirportController.airport_get().getRunway(taxiDestination.toUpperCase());
 
         if (!runway) {
             return [false, `no runway ${taxiDestination.toUpperCase()}`];
@@ -519,12 +521,12 @@ export default class AircraftCommander {
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunwayModel = runway;
-        aircraft.taxi_start = this._gameController.game_time();
+        aircraft.taxi_start = GameController.game_time();
 
         runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
-        this._gameController.game_timeout(
+        GameController.game_timeout(
             this._changeFromTaxiToWaiting,
             aircraft.taxi_time,
             null,
@@ -553,7 +555,7 @@ export default class AircraftCommander {
      */
     runTakeoff(aircraft) {
         // FIXME: update some of this queue logic to live in the RunwayModel
-        const airport = this._airportController.airport_get();
+        const airport = AirportController.airport_get();
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
@@ -599,7 +601,7 @@ export default class AircraftCommander {
 
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = this._gameController.game_time();
+        aircraft.takeoffTime = GameController.game_time();
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
@@ -620,7 +622,7 @@ export default class AircraftCommander {
     runLanding(aircraft, data) {
         const approachType = 'ils';
         const runwayName = data[1].toUpperCase();
-        const runway = this._airportController.airport_get().getRunway(runwayName);
+        const runway = AirportController.airport_get().getRunway(runwayName);
 
         return aircraft.pilot.conductInstrumentApproach(approachType, runway);
     }
@@ -631,7 +633,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runAbort(aircraft) {
-        const airport = this._airportController.airport_get();
+        const airport = AirportController.airport_get();
 
         switch (aircraft.flightPhase) {
             case FLIGHT_PHASE.TAXI:
@@ -672,8 +674,7 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      */
     runDelete(aircraft) {
-        // TODO: this should be moved to an EventBus trigger
-        window.aircraftController.aircraft_remove(aircraft);
+        this._eventBus.trigger(EVENT.REMOVE_AIRCRAFT, aircraft);
     }
 
     /**
@@ -687,7 +688,7 @@ export default class AircraftCommander {
     runFix() {
         const isWarning = true;
 
-        this._uiController.ui_log(
+        UiController.ui_log(
             'The fix command has been deprecated. Please use rr, pd or fh instead of fix',
             isWarning
         );

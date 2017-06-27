@@ -2,13 +2,15 @@
 import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
-import _random from 'lodash/random';
 import _without from 'lodash/without';
+import AirportController from '../airport/AirportController';
+import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
@@ -22,7 +24,6 @@ import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { GAME_EVENTS } from '../game/GameController';
 import { REGEX } from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -164,6 +165,8 @@ export default class AircraftController {
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
     }
@@ -177,6 +180,8 @@ export default class AircraftController {
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
     }
@@ -275,7 +280,7 @@ export default class AircraftController {
      * @param factor {number}
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -296,7 +301,7 @@ export default class AircraftController {
      * @param aircraftModel {AircraftModel}
      */
     aircraft_remove(aircraftModel) {
-        window.airportController.removeAircraftFromAllRunwayQueues(aircraftModel);
+        AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
@@ -356,13 +361,13 @@ export default class AircraftController {
                 // TODO: move this out of the aircraft model
                 aircraft.scoreWind('landed');
 
-                window.uiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
+                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+                GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
                 aircraft.setIsRemovable();
                 this.aircraft_remove(aircraft);
 
@@ -370,7 +375,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                window.uiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
                 aircraft.setIsRemovable();
 
                 speech_say([
@@ -480,16 +485,18 @@ export default class AircraftController {
     /**
      * Remove an `AircraftConflict` instance from the list of existing conflicts
      *
+     * May be called via an `EventBus.trigger()`
+     *
      * @for AircraftController
      * @method removeConflict
      * @param  conflict {AircraftConflict} the conflict instance to remove
      */
-    removeConflict(conflict) {
+    removeConflict = (conflict) => {
         conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
         conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
 
         this.conflicts = _without(this.conflicts, conflict);
-    }
+    };
 
     /**
      * Remove any conflicts that involve the specified aircraft

@@ -52,12 +52,11 @@ export const GAME_EVENTS = {
 /**
  * @class GameController
  */
-export default class GameController {
+class GameController {
     /**
      * @constructor
      */
-    constructor(getDeltaTime) {
-        this.getDeltaTime = getDeltaTime;
+    constructor() {
         this.game = game;
         this.game.paused = true;
         this.game.focused = true;
@@ -77,9 +76,48 @@ export default class GameController {
      * @for GameController
      * @method init_pre
      */
-    init_pre() {
+    init_pre(getDeltaTime) {
+        this.getDeltaTime = getDeltaTime;
+
+        // TODO: move calling of these methods to the proper lifecycle positions
         this.setupHandlers();
+        this.enable();
         this.initializeEventCount();
+    }
+
+    /**
+    * Initialize blur functions used during game pausing
+    *
+    * @for GameController
+    * @method setupHandlers
+    * @return
+    */
+    setupHandlers() {
+        // Set blurring function
+        $(window).blur(() => {
+            this.game.focused = false;
+        });
+
+        // Set un-blurring function
+        $(window).focus(() => {
+            this.game.focused = true;
+        });
+    }
+
+    /**
+     * @for GameController
+     * @method enable
+     */
+    enable() {
+        return this;
+    }
+
+    /**
+     * @for GameController
+     * @method disable
+     */
+    disable() {
+        return this;
     }
 
     /**
@@ -109,23 +147,6 @@ export default class GameController {
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
     }
 
-    /**
-    * Initialize blur functions used during game pausing
-    * @for GameController
-    * @method setupHandlers
-    * @return
-    */
-    setupHandlers() {
-        // Set blurring function
-        $(window).blur(() => {
-            this.game.focused = false;
-        });
-
-        // Set un-blurring function
-        $(window).focus(() => {
-            this.game.focused = true;
-        });
-    }
 
     /**
      * @for GameController
@@ -176,7 +197,7 @@ export default class GameController {
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Reset time warp');
         }
-    }
+    };
 
     /**
      * @for GameController
@@ -209,12 +230,13 @@ export default class GameController {
      * @method game_pause_toggle
      */
     game_pause_toggle() {
-        // TODO: simplify if/else logic. should only need an if with an early exit
         if (this.game.paused) {
             this.game_unpause();
-        } else {
-            this.game_pause();
+
+            return;
         }
+
+        this.game_pause();
     }
 
     /**
@@ -420,3 +442,5 @@ export default class GameController {
         return parseFloat(currentPtlVal);
     }
 }
+
+export default new GameController();
