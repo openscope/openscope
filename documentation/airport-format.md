@@ -376,8 +376,11 @@ Fixes within the segments can be defined in several different ways:
 // fix name with speed restriction
 "07L": ["WASTE", ["BAKRR", "S200"], "COMPS"]
 
-// fix name with altitude and speed restriction with min or max
+// fix name with at/below and at/above altitude and speed restrictions
 "07L": ["WASTE", ["BAKRR", "A70+|S250-"], "COMPS"]
+
+// fix name with ranged altitude and speed restrictions
+"07L": ["WASTE", ["BAKRR", "A70+|A100-|S210+|S250-"], "COMPS"]
 ```
 These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
 

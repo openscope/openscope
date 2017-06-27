@@ -31,8 +31,8 @@
 - Converts `AirportController`, `GameController` and `UiController` to static classes [#72](https://github.com/openscope/openscope/issues/72)
     - updates `window` references to these classes
     - updates `prop` references to these classes
-
-
+- Add support for ranged altitude and speed restrictions in procedures [#32](https://github.com/openscope/openscope/issues/32)
+- Improve VNAV climbs and descents to better comply with restrictions [#32](https://github.com/openscope/openscope/issues/32)
 
 
 

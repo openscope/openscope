@@ -7,10 +7,11 @@ import _keys from 'lodash/keys';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import AirportController from './airport/AirportController';
-import { speech_toggle } from './speech';
 import { round } from './math/core';
+import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
+import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/colors/themes';
@@ -180,11 +181,11 @@ class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.scale_default = -1;
-        this.scale_max = -1;
-        this.scale_min = -1;
-        this.scale = -1;
-        this.terrain = {};
+        this.ui.scale_default = INVALID_NUMBER;
+        this.ui.scale_max = INVALID_NUMBER;
+        this.ui.scale_min = INVALID_NUMBER;
+        this.ui.scale = INVALID_NUMBER;
+        this.ui.terrain = {};
 
 
         return this;

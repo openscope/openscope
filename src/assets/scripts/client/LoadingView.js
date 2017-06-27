@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import $ from 'jquery';
-import { time } from './utilities/timeHelpers';
+import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
+import { time } from './utilities/timeHelpers';
 
 /**
  * @property MIN_DISPLAY_SECONDS
@@ -66,7 +67,7 @@ export default class LoadingView {
              * @property startTime
              * @type {number}
              */
-            startTime: -1
+            startTime: INVALID_NUMBER
         };
 
         this._setupChildren();
@@ -95,7 +96,7 @@ export default class LoadingView {
     _disable() {
         this.loadingState.callback = () => {};
         this.loadingState.loading = false;
-        this.loadingState.startTime = -1;
+        this.loadingState.startTime = INVALID_NUMBER;
 
         return this;
     }

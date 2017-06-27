@@ -17,6 +17,7 @@ import {
     ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
     ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK
 } from './_mocks/spawnPatternMocks';
+import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
 ava.beforeEach(() => {
@@ -77,7 +78,7 @@ ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
     const cycleStartTimeMock = 42;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
     model.offset = 0;
-    model.cycleStartTime = -1;
+    model.cycleStartTime = INVALID_NUMBER;
 
     model.cycleStart(cycleStartTimeMock);
 

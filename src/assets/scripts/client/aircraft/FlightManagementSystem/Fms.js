@@ -12,24 +12,19 @@ import _without from 'lodash/without';
 import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
-    routeStringFormatHelper,
-    extractFixnameFromHoldSegment,
-    extractHeadingFromVectorSegment
-} from '../../navigationLibrary/Route/routeStringFormatHelper';
-import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
-
-/**
- * Enumeration of an invalid number value
- *
- * @proeprty INVALID_VALUE
- * @type {number}
- * @final
- */
-const INVALID_VALUE = -1;
+import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
+    routeStringFormatHelper,
+    extractFixnameFromHoldSegment,
+    extractHeadingFromVectorSegment
+} from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
  * Symbol used to separate `directRouteSegments`
@@ -156,9 +151,9 @@ export default class Fms {
          *
          * @property flightPlanAltitude
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.flightPlanAltitude = -1;
+        this.flightPlanAltitude = INVALID_NUMBER;
 
         /**
          * Collection of `LegModel` objects
@@ -241,6 +236,73 @@ export default class Fms {
         return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
     }
 
+    /**
+     * Return the next waypoint which has an altitude restriction
+     *
+     * @for Fms
+     * @property nextAltitudeRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextAltitudeRestrictedWaypoint() {
+        const waypoints = this.getAltitudeRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an "AT" altitude restriction
+     *
+     * @for Fms
+     * @property nextHardAltitudeRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextHardAltitudeRestrictedWaypoint() {
+        const waypoints = this.getAltitudeRestrictedWaypoints()
+            .filter((waypoint) => waypoint.altitudeMaximum === waypoint.altitudeMinimum);
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an "AT" speed restriction
+     *
+     * @for Fms
+     * @property nextHardSpeedRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextHardSpeedRestrictedWaypoint() {
+        const waypoints = this.getSpeedRestrictedWaypoints()
+            .filter((waypoint) => waypoint.speedMaximum === waypoint.speedMinimum);
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has an altitude or speed restriction
+     *
+     * @for Fms
+     * @property nextRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextRestrictedWaypoint() {
+        const waypoints = this.getRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
+    /**
+     * Return the next waypoint which has a speed restriction
+     *
+     * @for Fms
+     * @property nextSpeedRestrictedWaypoint
+     * @type {WaypointModel}
+     */
+    get nextSpeedRestrictedWaypoint() {
+        const waypoints = this.getSpeedRestrictedWaypoints();
+
+        return waypoints[0];
+    }
+
     // TODO: this should move to a class method
     /**
      * Returns a flattened array of each `WaypointModel` in the flightPlan
@@ -270,11 +332,11 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ category, model, route }, initialRunwayAssignment) {
+    init({ altitude, category, route }, initialRunwayAssignment) {
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
 
-        this.flightPlanAltitude = model.ceiling;
+        this.flightPlanAltitude = altitude;
         this.legCollection = this._buildLegCollection(route);
     }
 
@@ -290,8 +352,19 @@ export default class Fms {
         this.currentPhase = '';
         this.departureRunwayModel = null;
         this.arrivalRunwayModel = null;
-        this.flightPlanAltitude = -1;
+        this.flightPlanAltitude = INVALID_NUMBER;
         this.legCollection = [];
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have altitude restrictions
+     *
+     * @for Fms
+     * @method getAltitudeRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getAltitudeRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasAltitudeRestriction);
     }
 
     /**
@@ -317,7 +390,7 @@ export default class Fms {
      * @return {number}
      */
     getBottomAltitude() {
-        const valueToExclude = -1;
+        const valueToExclude = INVALID_NUMBER;
         const minAltitudeFromLegs = _without(
             _map(this.legCollection, (leg) => leg.getProcedureBottomAltitude()),
             valueToExclude
@@ -347,7 +420,7 @@ export default class Fms {
         for (let i = 0; i < previousAndCurrentRouteSegments.length; i++) {
             const segment = previousAndCurrentRouteSegments[i];
 
-            if (segment.indexOf('.') === -1) {
+            if (segment.indexOf('.') === INVALID_INDEX) {
                 transformedRouteSegments.push(segment);
 
                 continue;
@@ -395,6 +468,28 @@ export default class Fms {
         const waypointModel = this.getNextWaypointModel();
 
         return waypointModel.positionModel;
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+     *
+     * @for Fms
+     * @method getRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasRestriction);
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have speed restrictions
+     *
+     * @for Fms
+     * @method getSpeedRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getSpeedRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasSpeedRestriction);
     }
 
     /**
@@ -499,8 +594,10 @@ export default class Fms {
             inboundHeading,
             name: holdRouteSegment,
             positionModel: holdPosition,
-            altitudeRestriction: INVALID_VALUE,
-            speedRestriction: INVALID_VALUE
+            altitudeMaximum: INVALID_NUMBER,
+            altitudeMinimum: INVALID_NUMBER,
+            speedMaximum: INVALID_NUMBER,
+            speedMinimum: INVALID_NUMBER
         };
 
         if (isPositionHold) {
@@ -514,7 +611,7 @@ export default class Fms {
         const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
         const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
 
-        if (waypointIndex !== INVALID_VALUE) {
+        if (waypointIndex !== INVALID_NUMBER) {
             this.skipToWaypoint(waypointNameToFind);
             this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
 
@@ -609,7 +706,7 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_VALUE) {
+        if (procedureLegIndex === INVALID_NUMBER) {
             const legModel = this._buildLegModelFromRouteSegment(routeString);
 
             this.prependLeg(legModel);
@@ -647,7 +744,7 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_VALUE) {
+        if (procedureLegIndex === INVALID_NUMBER) {
             const legModel = this._buildLegModelFromRouteSegment(routeString);
 
             this.appendLeg(legModel);
@@ -690,7 +787,7 @@ export default class Fms {
      * @param routeString {routeString}
      */
     replaceRouteUpToSharedRouteSegment(routeString) {
-        let legIndex = INVALID_VALUE;
+        let legIndex = INVALID_NUMBER;
         let amendmentRouteString = '';
         const routeSegments = routeStringFormatHelper(routeString.toLowerCase());
 
@@ -1133,14 +1230,14 @@ export default class Fms {
      */
     _findLegAndWaypointIndexForWaypointName(waypointName) {
         let legIndex;
-        let waypointIndex = INVALID_VALUE;
+        let waypointIndex = INVALID_NUMBER;
 
         for (legIndex = 0; legIndex < this.legCollection.length; legIndex++) {
             const legModel = this.legCollection[legIndex];
             // TODO: this should be made into a class method for the WaypointModel
             waypointIndex = _findIndex(legModel.waypointCollection, { name: waypointName.toLowerCase() });
 
-            if (waypointIndex !== INVALID_VALUE) {
+            if (waypointIndex !== INVALID_NUMBER) {
                 break;
             }
         }
@@ -1380,7 +1477,7 @@ export default class Fms {
      * @param routeString {string}             a valid routeString
      */
     _updatePreviousRouteSegments(routeString) {
-        if (this._previousRouteSegments.indexOf(routeString) !== -1) {
+        if (this._previousRouteSegments.indexOf(routeString) !== INVALID_INDEX) {
             return;
         }
 

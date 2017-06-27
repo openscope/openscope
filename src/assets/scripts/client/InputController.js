@@ -3,13 +3,14 @@ import $ from 'jquery';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import AirportController from './airport/AirportController';
-import UiController from './UiController';
-import CommandParser from './commandParser/CommandParser';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
+import UiController from './UiController';
+import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
+import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
@@ -651,7 +652,7 @@ export default class InputController {
         this.tab_completion_reset();
 
         this.input.tab_compl.matches = matches;
-        this.input.tab_compl.cycle_item = -1;
+        this.input.tab_compl.cycle_item = INVALID_NUMBER;
     }
 
     /**
@@ -852,7 +853,7 @@ export default class InputController {
     processTransmitCommand(commandParser) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
-        let match = -1;
+        let match = INVALID_NUMBER;
 
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
@@ -869,7 +870,7 @@ export default class InputController {
             return true;
         }
 
-        if (match === -1) {
+        if (match === INVALID_NUMBER) {
             UiController.ui_log('no such aircraft, say again');
 
             return true;

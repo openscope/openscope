@@ -1,6 +1,5 @@
-import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
 import BaseModel from '../base/BaseModel';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
@@ -82,9 +81,9 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
          *
          * @property ceiling
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.ceiling = -1;
+        this.ceiling = INVALID_NUMBER;
 
         /**
          * Decsribes rate of:
@@ -172,7 +171,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.engines = null;
         this.weightclass = '';
         this.category = null;
-        this.ceiling = -1;
+        this.ceiling = INVALID_NUMBER;
         this.rate = null;
         this.runway = null;
         this.speed = null;

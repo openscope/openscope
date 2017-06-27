@@ -1,10 +1,11 @@
 import $ from 'jquery';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
-import { leftPad } from '../../utilities/generalUtilities';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
-import { SELECTORS } from '../../constants/selectors';
 import { EVENT } from '../../constants/eventNames';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
+import { SELECTORS } from '../../constants/selectors';
+import { leftPad } from '../../utilities/generalUtilities';
 
 /**
  * @property STRIP_VIEW_SELECTORS
@@ -184,10 +185,10 @@ export default class StripViewModel extends BaseModel {
          *
          * @property _transponder
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          * @private
          */
-        this._transponder = -1;
+        this._transponder = INVALID_NUMBER;
 
         /**
          * HTML Element that holds the `#_transponderCode` value
@@ -203,10 +204,10 @@ export default class StripViewModel extends BaseModel {
          *
          * @property _assingedAltitude
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          * @private
          */
-        this._assignedAltitude = -1;
+        this._assignedAltitude = INVALID_NUMBER;
 
         /**
          * HTML Element that holds the `#_assignedAltitude` value
@@ -222,10 +223,10 @@ export default class StripViewModel extends BaseModel {
          *
          * @property _flightPlanAltitude
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          * @private
          */
-        this._flightPlanAltitude = -1;
+        this._flightPlanAltitude = INVALID_NUMBER;
 
         /**
          * HTML Element that holds the `#_flightPlanAltitude` value
@@ -492,13 +493,13 @@ export default class StripViewModel extends BaseModel {
         this.$callsignView = null;
         this._aircraftType = '';
         this.$aircraftTypeView = null;
-        this.cid = -1;
+        this.cid = INVALID_NUMBER;
         this.$cidView = null;
         this._transponder = 1200;
         this.$transponderView = null;
-        this._assignedAltitude = -1;
+        this._assignedAltitude = INVALID_NUMBER;
         this.$assignedAltitudeView = null;
-        this._flightPlanAltitude = -1;
+        this._flightPlanAltitude = INVALID_NUMBER;
         this.$flightPlanAltitudeView = null;
         this._arrivalAirport = '';
         this.$arrivalAirportView = null;

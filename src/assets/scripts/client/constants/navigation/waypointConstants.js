@@ -44,15 +44,6 @@ export const DECIMAL_RADIX = 10;
 export const FL_TO_THOUSANDS_MULTIPLIER = 100;
 
 /**
- * Enumeration for an invalid index number.
- *
- * @enum INVALID_INDEX
- * @type {number}
- * @final
- */
-export const INVALID_INDEX = -1;
-
-/**
 * Index where the name is located within `["WAMMY", "A20+|S220"]`
 *
 * @enum NAME_INDEX

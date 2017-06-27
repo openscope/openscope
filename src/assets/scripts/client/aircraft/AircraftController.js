@@ -13,18 +13,21 @@ import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
-import { speech_say } from '../speech';
 import {
     abs,
     generateRandomOctalWithLength
 } from '../math/core';
 import { distance2d } from '../math/distance';
-import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { vlen } from '../math/vector';
+import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
-import { EVENT } from '../constants/eventNames';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { REGEX } from '../constants/globalConstants';
+import { EVENT } from '../constants/eventNames';
+import {
+    INVALID_INDEX,
+    REGEX
+} from '../constants/globalConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
@@ -707,7 +710,7 @@ export default class AircraftController {
      * @return {booelean}
      */
     _isTransponderCodeInUse(transponderCode) {
-        return this._transponderCodesInUse.indexOf(transponderCode) !== -1;
+        return this._transponderCodesInUse.indexOf(transponderCode) !== INVALID_INDEX;
     }
 
     /**
@@ -733,7 +736,7 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isDiscreteTransponderCode(transponderCode) {
-        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === -1;
+        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === INVALID_INDEX;
     }
 
     /**

@@ -11,12 +11,10 @@ import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
-import { speech_say } from '../speech';
-import { radians_normalize, angle_offset } from '../math/circle';
 import {
-    getOffset,
-    calculateTurnInitiaionDistance
-} from '../math/flightMath';
+    radians_normalize,
+    angle_offset
+} from '../math/circle';
 import {
     abs,
     cos,
@@ -24,6 +22,10 @@ import {
     sin,
     spread
 } from '../math/core';
+import {
+    getOffset,
+    calculateTurnInitiaionDistance
+} from '../math/flightMath';
 import {
     distance_to_poly,
     point_to_mpoly,
@@ -36,6 +38,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
+import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -46,6 +49,10 @@ import {
     nm
 } from '../utilities/unitConverters';
 import {
+    MCP_MODE,
+    MCP_MODE_NAME
+} from './ModeControl/modeControlConstants';
+import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE,
     PERFORMANCE
@@ -54,8 +61,10 @@ import {
     AIRPORT_CONSTANTS,
     AIRPORT_CONTROL_POSITION_NAME
 } from '../constants/airportConstants';
-import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
-import { TIME } from '../constants/globalConstants';
+import {
+    INVALID_NUMBER,
+    TIME
+} from '../constants/globalConstants';
 
 /**
  * @property FLIGHT_RULES
@@ -351,9 +360,9 @@ export default class AircraftModel {
          *
          * @property datablockDir
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.datablockDir = -1;
+        this.datablockDir = INVALID_NUMBER;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -452,6 +461,15 @@ export default class AircraftModel {
     }
 
     /**
+     * @for AircraftModel
+     * @property callsign
+     * @return {string}
+     */
+    get callsign() {
+        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
+    }
+
+    /**
      * Current flight phase
      *
      * @for AircraftModel
@@ -460,15 +478,6 @@ export default class AircraftModel {
      */
     get flightPhase() {
         return this.fms.currentPhase;
-    }
-
-    /**
-     * @for AircraftModel
-     * @property callsign
-     * @return {string}
-     */
-    get callsign() {
-        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
     }
 
     /**
@@ -539,7 +548,11 @@ export default class AircraftModel {
         this.origin = _get(data, 'origin', this.origin);
         this.destination = _get(data, 'destination', this.destination);
 
-        // this assumes arrivals always spawn outside the airspace
+        this.target.altitude = this.altitude;
+        this.target.heading = this.heading;
+        this.target.speed = this.speed;
+
+        // This assumes and arrival spawns outside the airspace
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
@@ -580,11 +593,11 @@ export default class AircraftModel {
         let assignedAltitude = this.mcp.altitude;
         let flightPlanAltitude = this.fms.flightPlanAltitude;
 
-        if (assignedAltitude === -1) {
+        if (assignedAltitude === INVALID_NUMBER) {
             assignedAltitude = '-';
         }
 
-        if (flightPlanAltitude === -1) {
+        if (flightPlanAltitude === INVALID_NUMBER) {
             flightPlanAltitude = '-';
         }
 
@@ -801,6 +814,54 @@ export default class AircraftModel {
      */
     isAirborne() {
         return !this.isOnGround();
+    }
+
+    /**
+     * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondDecelerationPoint
+     * @return {boolean}
+     */
+    isBeyondDecelerationPoint() {
+        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointSpeed = waypointModel.speedMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const speedChange = waypointSpeed - this.speed;
+        const decelerationRate = -this.model.rate.decelerate / 2;   // units of rate.decel are 'knots per 2 seconds'
+        const decelerationTime = speedChange / decelerationRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_SECONDS;
+
+        return decelerationTime > timeUntilWaypoint;
+    }
+
+    /**
+     * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
+     *
+     * @for AircraftModel
+     * @method isBeyondTopOfDescent
+     * @return {boolean}
+     */
+    isBeyondTopOfDescent() {
+        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(waypointModel)) {
+            return;
+        }
+
+        const waypointAltitude = waypointModel.altitudeMaximum;
+        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
+        const altitudeChange = waypointAltitude - this.altitude;
+        const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
+        const descentTime = altitudeChange / descentRate;
+        const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
+
+        return descentTime > timeUntilWaypoint;
     }
 
     isDeparture() {
@@ -1161,8 +1222,7 @@ export default class AircraftModel {
                 this.target.heading = this.heading;
                 this.target.speed = this.model.speed.min;
 
-                // TODO: Enumerate the '-999' invalid value
-                if (this.mcp.heading === -1) {
+                if (this.mcp.heading === INVALID_NUMBER) {
                     console.warn(`${this.callsign} took off with no directional instructions!`);
                 }
 
@@ -1388,15 +1448,11 @@ export default class AircraftModel {
                 return this._calculateLegalSpeed(this.model.speed.max);
 
             case MCP_MODE.SPEED.VNAV: {
-                const maxSpeed = this.mcp.speed;
-                const waypointSpeed = this.fms.currentWaypoint.speedRestriction;
-                const waypointHasSpeed = waypointSpeed !== -1;
+                const vnavSpeed = this._calculateTargetedSpeedVnav();
 
-                if (waypointHasSpeed) {
-                    return this._calculateLegalSpeed(waypointSpeed);
-                }
+                return this._calculateLegalSpeed(vnavSpeed);
 
-                return this._calculateLegalSpeed(maxSpeed);
+                break;
             }
 
             default:
@@ -1458,20 +1514,7 @@ export default class AircraftModel {
             //     return;
 
             case MCP_MODE.ALTITUDE.VNAV: {
-                const waypointAltitude = this.fms.currentWaypoint.altitudeRestriction;
-                const waypointHasAltitude = waypointAltitude !== -1;
-
-                if (!waypointHasAltitude) {
-                    return this.mcp.altitude;
-                }
-
-                if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
-                    return Math.min(waypointAltitude, this.mcp.altitude);
-                }
-
-                if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
-                    return Math.max(waypointAltitude, this.mcp.altitude);
-                }
+                return this._calculateTargetedAltitudeVnav();
 
                 break;
             }
@@ -1717,6 +1760,92 @@ export default class AircraftModel {
     }
 
     /**
+     * Calculates the altitude for an aircraft in a VNAV-guided altitude change
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnav
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnav() {
+        const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+
+        if (_isNil(hardRestrictedWaypointModel)) {
+            return;
+        }
+
+        switch (this.flightPhase) {
+            case FLIGHT_PHASE.TAKEOFF:
+            case FLIGHT_PHASE.CLIMB:
+                return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
+
+            case FLIGHT_PHASE.CRUISE: {
+                if (!this.isBeyondTopOfDescent()) {
+                    return;
+                }
+
+                // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
+                // will enter the below block because the flight phase will have become 'DESCENT'.
+                return hardRestrictedWaypointModel.altitudeMaximum;
+            }
+
+            case FLIGHT_PHASE.DESCENT:
+                return this._calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel);
+
+            default:
+                return;
+        }
+    }
+
+    /**
+     * Calculates the altitude for an aircraft in a VNAV-guided climb
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnavClimb
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel) {
+        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMaximum;
+        }
+
+        return Math.min(waypointAltitude, this.mcp.altitude);
+    }
+
+    /**
+     * Calculates the altitude for an aircraft in a VNAV-guided descent
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedAltitudeVnavDescent
+     * @param  hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel) {
+        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMinimum;
+        }
+
+        // TODO: This could be improved by making the descent at the exact rate needed to reach
+        // the altitude at the same time as reaching the fix. At this point, the problem is that
+        // while we DO know the descent rate and descent angle to shoot for, we don't know the
+        // length of time before the next update, so we can't accurately estimate the altitude to
+        // target in the current iteration.
+        return Math.max(waypointAltitude, this.mcp.altitude);
+    }
+
+    /**
      * Calculates the heading for a landing aircraft
      *
      * @for AircraftModel
@@ -1750,7 +1879,7 @@ export default class AircraftModel {
         const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
         const distanceOnFinal_nm = nm(offset[1]);
 
-        if (distanceOnFinal_nm <= 0 && this.isOnGround())  {
+        if (distanceOnFinal_nm <= 0 && this.isOnGround()) {
             return 0;
         }
 
@@ -1767,6 +1896,76 @@ export default class AircraftModel {
         );
 
         return nextSpeed;
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided speed change
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnav
+     * @return {number} speed, in knots
+     */
+    _calculateTargetedSpeedVnav() {
+        const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+
+        if (_isNil(hardRestrictedWaypointModel)) {
+            return;
+        }
+
+        if (waypointSpeed > this.speed) {
+            return this._calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel);
+        } else if (waypointSpeed < this.speed) {
+            return this._calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel);
+        }
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided acceleration
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnavAcceleration
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel) {
+        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== INVALID_NUMBER;
+
+        // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
+            waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
+        }
+
+        return Math.min(waypointSpeed, this.mcp.speed);
+    }
+
+    /**
+     * Calculates the speed for an aircraft in a VNAV-guided deceleration
+     *
+     * @for AircraftModel
+     * @method _calculateTargetedSpeedVnavDeceleration
+     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @return {number}
+     */
+    _calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel) {
+        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+
+        if (!this.isBeyondDecelerationPoint()) {
+            return;
+        }
+
+        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
+        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
+        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== INVALID_NUMBER;
+
+        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
+        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
+            waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
+        }
+
+        return Math.min(waypointSpeed, this.mcp.speed);
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
@@ -2300,7 +2499,7 @@ export default class AircraftModel {
         const altitudeText = this.taxi_next
             ? 'ready'
             : null;
-        const hasAltitude = this.mcp.altitude !== -1;
+        const hasAltitude = this.mcp.altitude !== INVALID_NUMBER;
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 
@@ -2333,10 +2532,6 @@ export default class AircraftModel {
                 let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
                 const isFollowingSid = this.fms.isFollowingSid();
                 const isFollowingStar = this.fms.isFollowingStar();
-                const fixRestrictions = {
-                    altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
-                    speed: this.fms.currentWaypoint.speedRestriction !== -1
-                };
 
                 // TODO: this will need to be addressed when the AircraftStripView is refactored
                 // this block is a bandaid to prevent `destinationDisplay` from being undefined
@@ -2364,8 +2559,7 @@ export default class AircraftModel {
                     headingDisplay,
                     destinationDisplay,
                     isFollowingSid,
-                    isFollowingStar,
-                    fixRestrictions
+                    isFollowingStar
                 );
 
                 break;

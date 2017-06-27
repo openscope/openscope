@@ -1,11 +1,13 @@
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
+import { PERFORMANCE } from '../../constants/aircraftConstants';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
+import { angle_offset } from '../../math/circle';
 import {
     abs,
     tan
 } from '../../math/core';
-import { angle_offset } from '../../math/circle';
 import {
     calculateCrosswindAngle,
     getOffset
@@ -16,7 +18,6 @@ import {
     nm,
     degreesToRadians
 } from '../../utilities/unitConverters';
-import { PERFORMANCE } from '../../constants/aircraftConstants';
 
 /**
  * Describes a single runway at an airport
@@ -277,7 +278,7 @@ export default class RunwayModel extends BaseModel {
      * @return {boolean}
      */
     isAircraftInQueue(aircraftId) {
-        return this.getAircraftQueuePosition(aircraftId) !== -1;
+        return this.getAircraftQueuePosition(aircraftId) !== INVALID_NUMBER;
     }
 
     /**

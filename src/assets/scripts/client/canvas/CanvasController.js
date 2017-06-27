@@ -7,11 +7,8 @@ import AirportController from '../airport/AirportController';
 import GameController from '../game/GameController';
 import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
-import {
-    degreesToRadians,
-    km,
-    km_to_px
-} from '../utilities/unitConverters';
+import { tau } from '../math/circle';
+import { distance2d } from '../math/distance';
 import {
     sin,
     cos,
@@ -25,10 +22,13 @@ import {
     vectorize_2d,
     vscale
 } from '../math/vector';
-import { tau } from '../math/circle';
-import { distance2d } from '../math/distance';
 import { leftPad } from '../utilities/generalUtilities';
 import { time } from '../utilities/timeHelpers';
+import {
+    degreesToRadians,
+    km,
+    km_to_px
+} from '../utilities/unitConverters';
 import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
@@ -37,12 +37,16 @@ import {
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
-import { EVENT } from '../constants/eventNames';
-import { SELECTORS } from '../constants/selectors';
-import { LOG } from '../constants/logLevel';
-import { TIME } from '../constants/globalConstants';
 import { COLOR } from '../constants/colors/colors';
 import { THEME } from '../constants/colors/themes';
+import { EVENT } from '../constants/eventNames';
+import {
+    INVALID_INDEX,
+    INVALID_NUMBER,
+    TIME
+} from '../constants/globalConstants';
+import { SELECTORS } from '../constants/selectors';
+import { LOG } from '../constants/logLevel';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -649,7 +653,7 @@ export default class ConvasController {
 
                 for (let j = 0; j < fixList.length; j++) {
                     // write exitPoint name
-                    if (fixList[j].indexOf('*') !== -1) {
+                    if (fixList[j].indexOf('*') !== INVALID_INDEX) {
                         exit_name = fixList[j].replace('*', '');
                         write_sid_name = false;
                     }
@@ -1159,7 +1163,7 @@ k
             ];
 
             // game will move FDB to the appropriate position
-            if (aircraft.datablockDir === -1) {
+            if (aircraft.datablockDir === INVALID_NUMBER) {
                 if (-UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
                     cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
                 } else {

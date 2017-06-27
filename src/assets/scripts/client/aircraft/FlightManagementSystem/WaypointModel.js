@@ -1,8 +1,11 @@
 import _get from 'lodash/get';
 import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
     RNAV_WAYPOINT_DISPLAY_NAME,
-    RNAV_WAYPOINT_PREFIX,
-    VECTOR_WAYPOINT_PREFIX
+    RNAV_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
 import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { degreesToRadians } from '../../utilities/unitConverters';
@@ -26,90 +29,81 @@ export default class WaypointModel {
      */
     constructor(waypointProps) {
         /**
-         * Name of the waypoint
-         *
-         * Should be an ICAO identifier
-         *
-         * @property name
-         * @type {string}
-         * @default ''
-         */
-        this._name = '';
+        * Maximum altitude at which to cross this waypoint
+        *
+        * @for WaypointModel
+        * @property altitudeMaximum
+        * @type {number}
+        * @default -1
+        */
+        this.altitudeMaximum = INVALID_NUMBER;
 
         /**
-         * `StaticPositionModel` of the waypoint.
-         *
-         * @property _positionModel
-         * @type {StaticPositionModel}
-         * @default null
-         * @private
-         */
-        this._positionModel = null;
+        * Minimum altitude at which to cross this waypoint
+        *
+        * @for WaypointModel
+        * @property altitudeMinimum
+        * @type {number}
+        * @default INVALID_NUMBER
+        */
+        this.altitudeMinimum = INVALID_NUMBER;
 
         /**
-         * Speed restriction for the waypoint.
-         *
-         * This speed cannot be exceeded.
-         *
-         * @property speedRestriction
-         * @type {number}
-         * @default -1
-         */
-        this.speedRestriction = -1;
+        * Flag used to determine if a waypoint is for a holding pattern
+        *
+        * Typically used from the fms as `fms#currentWaypoint`
+        *
+        * @for WaypointModel
+        * @property isHold
+        * @type {boolean}
+        * @default false
+        */
+        this.isHold = false;
 
         /**
-         * Altitude restriction for the waypoint.
+         * Maximum speed at which to cross this waypoint
          *
-         * This altitude cannot be exceeded.
-         *
-         * @property altitudeRestriction
-         * @type {number}
-         * @default -1
-         */
-        this.altitudeRestriction = -1;
-
-        /**
-         * Heading to fly during the inbound leg of a holding pattern at this fix
          * @for WaypointModel
-         * @member _holdingPatternInboundHeading
-         * @type number
+         * @property speedMaximum
+         * @type {number}
+         * @default INVALID_NUMBER
          */
-        this._holdingPatternInboundHeading = null;
+        this.speedMaximum = INVALID_NUMBER;
 
         /**
-         * Direction to turn for a holding pattern
+         * Minimum speed at which to cross this waypoint
          *
-         * Used only when waypoint is a holding pattern
-         *
-         * @property _turnDirection
-         * @type {string}
-         * @private
+         * @for WaypointModel
+         * @property speedMinimum
+         * @type {number}
+         * @default INVALID_NUMBER
          */
-        this._turnDirection = '';
+        this.speedMinimum = INVALID_NUMBER;
 
-        /**
-         * Length of each leg in holding pattern.
-         *
-         * Measured in either minutes or nautical miles
-         * Used only when waypoint is a holding pattern
-         *
-         * @property _legLength
-         * @type {string}
-         * @private
-         */
-        this._legLength = '';
-
+        // TODO: Should this just be `INVALID_NUMBER`?
         /**
          * Timer id for holding pattern
          *
          * Used only when waypoint is a holding pattern
          *
+         * @for WaypointModel
          * @property timer
          * @type {number}
          * @default -999
          * @private
          */
         this.timer = -999;
+
+        /**
+        * Heading to fly during the inbound leg of a holding pattern at this fix
+        *
+        * @for WaypointModel
+        * @property _holdingPatternInboundHeading
+        * @type {number}
+        * @default INVALID_NUMBER
+        * @private
+        */
+        this._holdingPatternInboundHeading = INVALID_NUMBER;
 
         /**
          * Flag used to determine if the waypoint must be flown over before the
@@ -119,19 +113,9 @@ export default class WaypointModel {
          * @property _isFlyOverWaypoint
          * @type {boolean}
          * @default false
+         * @private
          */
         this._isFlyOverWaypoint = false;
-
-        /**
-         * Flag used to determine if a waypoint is for a holding pattern
-         *
-         * Typically used from the fms as `fms#currentWaypoint`
-         *
-         * @property
-         * @type {boolean}
-         * @default false
-         */
-        this.isHold = false;
 
         /**
          * Flag used to determine if a waypoint is for a vector
@@ -140,8 +124,60 @@ export default class WaypointModel {
          * @property _isVector
          * @type {boolean}
          * @default false
+         * @private
          */
         this._isVector = false;
+
+        /**
+         * Length of each leg in holding pattern.
+         *
+         * Measured in either minutes or nautical miles
+         * Used only when waypoint is a holding pattern
+         *
+         * @for WaypointModel
+         * @property _legLength
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._legLength = '';
+
+        /**
+        * Name of the waypoint
+        *
+        * Should be an ICAO identifier
+        *
+        * @for WaypointModel
+        * @property name
+        * @type {string}
+        * @default ''
+        * @private
+        */
+        this._name = '';
+
+        /**
+        * `StaticPositionModel` of the waypoint.
+        *
+        * @for WaypointModel
+        * @property _positionModel
+        * @type {StaticPositionModel}
+        * @default null
+        * @private
+        */
+        this._positionModel = null;
+
+        /**
+         * Direction to turn for a holding pattern
+         *
+         * Used only when waypoint is a holding pattern
+         *
+         * @for WaypointModel
+         * @property _turnDirection
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._turnDirection = '';
 
         this.init(waypointProps);
     }
@@ -158,7 +194,7 @@ export default class WaypointModel {
      * @return {string}
      */
     get name() {
-        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== -1) {
+        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== INVALID_INDEX) {
             return RNAV_WAYPOINT_DISPLAY_NAME;
         }
 
@@ -171,6 +207,33 @@ export default class WaypointModel {
      */
     set name(nameUpdate) {
         this._name = name;
+    }
+
+    /**
+     * @for WaypointModel
+     * @property hasAltitudeRestriction
+     * @type {boolean}
+     */
+    get hasAltitudeRestriction() {
+        return this.altitudeMaximum !== INVALID_NUMBER || this.altitudeMinimum !== INVALID_NUMBER;
+    }
+
+    /**
+     * @for WaypointModel
+     * @property hasRestriction
+     * @type {boolean}
+     */
+    get hasRestriction() {
+        return this.hasAltitudeRestriction || this.hasSpeedRestriction;
+    }
+
+    /**
+     * @for WaypointModel
+     * @property hasSpeedRestriction
+     * @type {boolean}
+     */
+    get hasSpeedRestriction() {
+        return this.speedMaximum !== INVALID_NUMBER || this.speedMinimum !== INVALID_NUMBER;
     }
 
     /**
@@ -267,8 +330,10 @@ export default class WaypointModel {
     init(waypointProps) {
         this._name = waypointProps.name.toLowerCase();
         this._positionModel = waypointProps.positionModel;
-        this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
-        this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
+        this.speedMaximum = parseInt(waypointProps.speedMaximum, 10);
+        this.speedMinimum = parseInt(waypointProps.speedMinimum, 10);
+        this.altitudeMaximum = parseInt(waypointProps.altitudeMaximum, 10);
+        this.altitudeMinimum = parseInt(waypointProps.altitudeMinimum, 10);
         this._isFlyOverWaypoint = waypointProps.isFlyOverWaypoint;
         this._isVector = waypointProps.isVector;
 
@@ -295,8 +360,10 @@ export default class WaypointModel {
         this._positionModel = null;
 
         this.isHold = false;
-        this.speedRestriction = -1;
-        this.altitudeRestriction = -1;
+        this.speedMaximum = INVALID_NUMBER;
+        this.speedMinimum = INVALID_NUMBER;
+        this.altitudeMaximum = INVALID_NUMBER;
+        this.altitudeMinimum = INVALID_NUMBER;
         this.timer = -999;
     }
 
