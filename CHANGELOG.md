@@ -34,7 +34,7 @@
 - Add support for ranged altitude and speed restrictions in procedures [#32](https://github.com/openscope/openscope/issues/32)
 - Improve VNAV climbs and descents to better comply with restrictions [#32](https://github.com/openscope/openscope/issues/32)
 - Updates Boston Logan Intl. (KBOS) - Updated procedures, added video map and terrain, modified airspace, realistic traffic [#228](https://github.com/openscope/openscope/issues/228)
-
+- Removes left over references to `AircraftStripView` in `AircraftModel` [#535](https://github.com/openscope/openscope/issues/535)
 
 
 
