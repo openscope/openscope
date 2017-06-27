@@ -7,6 +7,10 @@ import { AIRPORT_LOAD_LIST_MOCK } from '../airport/_mocks/airportLoadListMocks';
 export const airportControllerFixture = () => AirportController.init(AIRPORT_JSON_KLAS_MOCK, AIRPORT_LOAD_LIST_MOCK);
 export const resetAirportControllerFixture = () => AirportController.reset();
 
+export const airportControllerKlasFixture = AirportController;
+airportControllerKlasFixture.init(AIRPORT_JSON_KLAS_MOCK, AIRPORT_LOAD_LIST_MOCK);
+airportControllerKlasFixture.airport_set('klas', AIRPORT_JSON_KLAS_MOCK);
+
 export const airportModelFixture = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
 
 // airport position for KSFO

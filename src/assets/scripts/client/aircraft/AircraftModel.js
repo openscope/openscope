@@ -1911,9 +1911,9 @@ export default class AircraftModel {
             return;
         }
 
-        if (waypointSpeed > this.speed) {
+        if (hardRestrictedWaypointModel.speedMaximum > this.speed) {
             return this._calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel);
-        } else if (waypointSpeed < this.speed) {
+        } else if (hardRestrictedWaypointModel.speedMaximum < this.speed) {
             return this._calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel);
         }
     }
