@@ -5,21 +5,22 @@ import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
+import AirportController from '../airport/AirportController';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
+import { tau } from '../math/circle';
+import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
+import { convertMinutesToSeconds } from '../utilities/unitConverters';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
-import { tau } from '../math/circle';
-import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
-import { convertMinutesToSeconds } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: this may need to live somewhere else
 /**
@@ -91,10 +92,9 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
-     * @param airportController {AirportController}
      */
     // istanbul ignore next
-    constructor(spawnPatternJson, navigationLibrary, airportController) {
+    constructor(spawnPatternJson, navigationLibrary) {
         super('spawnPatternModel');
 
         /**
@@ -110,19 +110,9 @@ export default class SpawnPatternModel extends BaseModel {
          * @property scheduleId
          * @type {number}
          * @default INVALID_NUMBER
-         * @property _airportController
-         * @type {AirportController}
          * @private
          */
         this.scheduleId = INVALID_NUMBER;
-
-        /**
-         *
-         * @property _airportController
-         * @type {AirportController}
-         * @private
-         */
-        this._airportController = null;
 
         /**
          * One of `FLIGHT_CATEGORY`
@@ -408,7 +398,7 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this._uptime = INVALID_NUMBER;
 
-        this.init(spawnPatternJson, navigationLibrary, airportController);
+        this.init(spawnPatternJson, navigationLibrary);
     }
 
     /**
@@ -469,9 +459,8 @@ export default class SpawnPatternModel extends BaseModel {
      * @method init
      * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
-     * @param airportController {AirportController}
      */
-    init(spawnPatternJson, navigationLibrary, airportController) {
+    init(spawnPatternJson, navigationLibrary) {
         // We return early here if the object is empty because we pre-hydrate objects in the `ModelSourcePool`
         if (_isEmpty(spawnPatternJson)) {
             return;
@@ -481,16 +470,11 @@ export default class SpawnPatternModel extends BaseModel {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
-        if (isEmptyObject(airportController)) {
-            throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
-        }
-
         // TODO: this is a temporary development check. this should be removed before merging in to develop
         if (!spawnPatternModelJsonValidator(spawnPatternJson)) {
             console.error('### Invalid spawnPatternJson received', spawnPatternJson);
         }
 
-        this._airportController = airportController;
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
@@ -505,7 +489,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
-        this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController);
+        this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary);
 
         this._calculateSurgePatternInitialDelayValues(spawnPatternJson);
         this._setCyclePeriodAndOffset(spawnPatternJson);
@@ -971,9 +955,8 @@ export default class SpawnPatternModel extends BaseModel {
      * @method _buildPreSpawnAircraft
      * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
-     * @param airportController {AirportController}
      */
-    _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController) {
+    _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary) {
         if (this._isDeparture()) {
             // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
@@ -986,7 +969,7 @@ export default class SpawnPatternModel extends BaseModel {
         const preSpawnArrivalAircraftList = buildPreSpawnAircraft(
             spawnPatternJson,
             navigationLibrary,
-            airportController.airport.current
+            AirportController.current
         );
 
         return preSpawnArrivalAircraftList;
@@ -1018,7 +1001,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.heading = heading;
     }
 
-    // TODO: add support for `FIXXA..FIXXB.PRCDR1.FIXXC` route strings
     /**
      * Given a `routeString`, find the `FixModel`s or `WaypointModel`s associated with that route.
      *
@@ -1046,7 +1028,7 @@ export default class SpawnPatternModel extends BaseModel {
         const waypointModelList = navigationLibrary.starCollection.findRouteWaypointsForRouteByEntryAndExit(
             routeModel.procedure,
             routeModel.entry,
-            this._airportController.getInitialArrivalRunwayName(),
+            AirportController.getInitialArrivalRunwayName(),
             isPreSpawn
         );
 
@@ -1060,7 +1042,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {StaticPositionModel}
      */
     _generateSelfReferencedAirportPositionModel() {
-        const airportPosition = this._airportController.airport_get().positionModel;
+        const airportPosition = AirportController.airport_get().positionModel;
         const selfReferencingPosition = new StaticPositionModel(
             airportPosition.gps,
             airportPosition,

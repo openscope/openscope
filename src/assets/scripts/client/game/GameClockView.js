@@ -1,3 +1,4 @@
+import GameController from '../game/GameController';
 import { digits_integer } from '../utilities/radioUtilities';
 import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
@@ -62,7 +63,7 @@ export default class GameClockView {
     * @return clockTime {string} current game time formatted like '03:44:17'
     */
     generateCurrentTimeString() {
-        const gameTime = window.gameController.game.time;
+        const gameTime = GameController.game.time;
         const clockDate = new Date(this.startTime + (gameTime * TIME.ONE_SECOND_IN_MILLISECONDS));
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
@@ -112,7 +113,7 @@ export default class GameClockView {
     * @private
     */
     _tick() {
-        const elapsedTime = window.gameController.game.time * TIME.ONE_SECOND_IN_MILLISECONDS;
+        const elapsedTime = GameController.game.time * TIME.ONE_SECOND_IN_MILLISECONDS;
         this.time = this.startTime + elapsedTime;
     }
 }

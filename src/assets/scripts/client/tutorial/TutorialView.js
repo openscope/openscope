@@ -1,10 +1,13 @@
 /* eslint-disable max-len, no-undef, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
+import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
 import { time } from '../utilities/timeHelpers';
 import { heading_to_string } from '../utilities/unitConverters';
+import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
 
@@ -26,6 +29,14 @@ export default class TutorialView {
      * @constructor
      */
     constructor($element = null) {
+        /**
+         * @property EventBus
+         * @type {EventBus}
+         * @default EventBus
+         * @private
+         */
+        this._eventBus = EventBus;
+
         /**
          * Root DOM element
          *
@@ -126,6 +137,8 @@ export default class TutorialView {
      * @chainable
      */
     enable() {
+        this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+
         this.$tutorialPrevious.on('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.on('click', (event) => this.tutorial_next(event));
 
@@ -140,6 +153,8 @@ export default class TutorialView {
      * @chainable
      */
     disable() {
+        this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+
         this.$tutorialPrevious.off('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.off('click', (event) => this.tutorial_next(event));
 
@@ -310,7 +325,7 @@ export default class TutorialView {
                 }
 
                 return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign)
-                        .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
+                        .replace('{INIT_ALT}', AirportController.airport_get().initial_alt)
                         .replace('{SID_NAME}', prop.aircraft.list[0].destination);
             },
             side: 'left',
@@ -544,17 +559,22 @@ export default class TutorialView {
     }
 
     /**
+     * Open/close the tutorial modal
+     *
+     * This method may be triggered via `EventBus.trigger()`
+     *
      * @for TutorialView
      * @method tutorial_toggle
      */
-    tutorial_toggle() {
+    tutorial_toggle = () => {
         if (prop.tutorial.open) {
             this.tutorial_close();
-        } else {
-            this.tutorial_open();
-        }
-    }
 
+            return;
+        }
+
+        this.tutorial_open();
+    };
 
     /**
      * @method tutorial_get
