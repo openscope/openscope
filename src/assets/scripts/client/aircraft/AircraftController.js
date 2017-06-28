@@ -303,7 +303,7 @@ export default class AircraftController {
      * @method aircraft_remove
      * @param aircraftModel {AircraftModel}
      */
-    aircraft_remove(aircraftModel) {
+    aircraft_remove = (aircraftModel) => {
         AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
 
         this.removeFlightNumberFromList(aircraftModel);
@@ -311,7 +311,7 @@ export default class AircraftController {
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
-    }
+    };
 
     /**
      * This method is part of the game loop.
