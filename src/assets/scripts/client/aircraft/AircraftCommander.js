@@ -229,14 +229,14 @@ export default class AircraftCommander {
         const heading = data[1];
         const incremental = data[2];
         const readback = aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
-        const airport = this._airportController.airport_get();
+        const airport = AirportController.airport_get();
 
         if (readback[0] && direction) {
             aircraft.target.turn = direction;
         }
 
         if (aircraft.hasApproachClearance) {
-            aircraft.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
+            aircraft.cancelApproachClearance(aircraft.altitude, aircraft.heading);
         }
 
         return readback;
@@ -649,7 +649,7 @@ export default class AircraftCommander {
             case FLIGHT_PHASE.LANDING:
                 return aircraft.pilot.goAround(aircraft.heading, aircraft.speed, airport.elevation);
             case FLIGHT_PHASE.APPROACH:
-                return aircraft.pilot.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
+                return aircraft.pilot.cancelApproachClearance(aircraft.altitude, aircraft.heading);
             default:
                 return [false, 'we aren\'t doing anything that can be aborted'];
         }
