@@ -108,3 +108,30 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     t.true(result[1].log === 'climb and maintain 19000 and expedite');
     t.true(result[1].say === 'climb and maintain flight level one niner zero and expedite');
 });
+
+ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
+    const approachTypeMock = 'ils';
+    const runwayModelMock = airportModelFixture.getRunway('19L');
+    const altitudeMock = 7000;
+    const headingMock = 3.839724354387525; // 220 in degrees
+    const currentAltitudeMock = 5000;
+    const nextAltitudeMock = 13000;
+    const shouldExpediteMock = false;
+    const shouldUseSoftCeilingMock = false;
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const cancelApproachClearanceSpy = sinon.spy(pilot, 'cancelApproachClearance');
+
+    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
+
+    t.true(pilot.hasApproachClearance);
+
+    pilot.maintainAltitude(
+        currentAltitudeMock,
+        nextAltitudeMock,
+        shouldExpediteMock,
+        shouldUseSoftCeilingMock,
+        airportModelFixture
+    );
+
+    t.true(cancelApproachClearanceSpy.called);
+});
