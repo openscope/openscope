@@ -332,11 +332,16 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ altitude, category, route }, initialRunwayAssignment) {
+    init({ altitude, category, model, route }, initialRunwayAssignment) {
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
 
         this.flightPlanAltitude = altitude;
+
+        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.flightPlanAltitude = model.ceiling;
+        }
+
         this.legCollection = this._buildLegCollection(route);
     }
 

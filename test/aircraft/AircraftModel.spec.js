@@ -58,5 +58,5 @@ ava('.getViewModel() includes an altitude that has not been rounded to the neare
 
     const { assignedAltitude: result } = model.getViewModel();
 
-    t.true(result === 7777.1234567);
+    t.true(result === 77.77123456700001);
 });
