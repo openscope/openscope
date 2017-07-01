@@ -56,7 +56,7 @@
 - Updates `AirportModel.buildRestrictedAreas()` to build the coordinate array with the correct shape [#522](https://github.com/openscope/openscope/issues/522)
 - Adds local reference to `EventBus` inside `AircraftCommander` [#539](https://github.com/openscope/openscope/issues/539)
 - Cancel approach clearances whenever an altitude or heading instruction is given [#344](https://github.com/openscope/openscope/issues/344)
-
+- Make flight strips show appropriate altitude values [#546](https://github.com/openscope/openscope/issues/546)
 
 
 
