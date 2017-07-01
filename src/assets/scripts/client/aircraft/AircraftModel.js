@@ -45,7 +45,8 @@ import {
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
-    nm
+    nm,
+    UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
     MCP_MODE,
@@ -589,15 +590,15 @@ export default class AircraftModel {
      * @return {object<string, string>}
      */
     getViewModel() {
-        let assignedAltitude = this.mcp.altitude;
-        let flightPlanAltitude = this.fms.flightPlanAltitude;
+        let assignedAltitude = '-';
+        let flightPlanAltitude = '-';
 
-        if (assignedAltitude === INVALID_NUMBER) {
-            assignedAltitude = '-';
+        if (this.mcp.altitude !== INVALID_NUMBER) {
+            assignedAltitude = this.mcp.altitude * UNIT_CONVERSION_CONSTANTS.FT_FL;
         }
 
-        if (flightPlanAltitude === INVALID_NUMBER) {
-            flightPlanAltitude = '-';
+        if (this.fms.flightPlanAltitude !== INVALID_NUMBER) {
+            flightPlanAltitude = this.fms.flightPlanAltitude * UNIT_CONVERSION_CONSTANTS.FT_FL;
         }
 
         return {
