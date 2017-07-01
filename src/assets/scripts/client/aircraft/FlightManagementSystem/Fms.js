@@ -512,6 +512,8 @@ export default class Fms {
         }
 
         this.departureRunwayModel = runwayModel;
+
+        this._regenerateSidLeg();
     }
 
     /**
@@ -529,6 +531,8 @@ export default class Fms {
         }
 
         this.arrivalRunwayModel = runwayModel;
+
+        this._regenerateStarLeg();
     }
 
     /**
@@ -699,11 +703,6 @@ export default class Fms {
      * @param runwayModel {RunwayModel}
      */
     replaceDepartureProcedure(routeString, runwayModel) {
-        // this is the same procedure that is already set, no need to continue
-        if (this.hasLegWithRouteString(routeString)) {
-            return;
-        }
-
         if (this.departureRunwayModel.name !== runwayModel.name) {
             this.setDepartureRunway(runwayModel);
         }
@@ -737,11 +736,6 @@ export default class Fms {
      * @param runwayModel {RunwayModel}
      */
     replaceArrivalProcedure(routeString, runwayModel) {
-        // this is the same procedure that is already set, no need to continue
-        if (this.hasLegWithRouteString(routeString)) {
-            return;
-        }
-
         if (this.arrivalRunwayModel.name !== runwayModel.name) {
             this.setArrivalRunway(runwayModel);
         }
@@ -1354,6 +1348,42 @@ export default class Fms {
 
         legModel.destroy();
         legModel.init(routeString, this.currentRunwayName, this.currentPhase);
+    }
+
+    /**
+     * Regenerate SID leg based on current runway assignment
+     *
+     * @for Fms
+     * @method _regenerateSidLeg
+     */
+    _regenerateSidLeg() {
+        const sidLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
+
+        if (sidLegIndex === INVALID_INDEX) {
+            return;
+        }
+
+        const sidLeg = this.legCollection[sidLegIndex];
+
+        this.replaceDepartureProcedure(sidLeg.routeString, this.departureRunwayModel);
+    }
+
+    /**
+     * Regenerate STAR leg based on current runway assignment
+     *
+     * @for Fms
+     * @method _regenerateStarLeg
+     */
+    _regenerateStarLeg() {
+        const starLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
+
+        if (starLegIndex === INVALID_INDEX) {
+            return;
+        }
+
+        const starLeg = this.legCollection[starLegIndex];
+
+        this.replaceArrivalProcedure(starLeg.routeString, this.arrivalRunwayModel);
     }
 
     /**
