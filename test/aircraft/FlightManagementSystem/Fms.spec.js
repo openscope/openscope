@@ -99,7 +99,7 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.waypoints;
 
-    t.true(result.length === 14);
+    t.true(result.length === 15);
 });
 
 ava('.getFlightPlanRouteForStripView() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
@@ -225,7 +225,7 @@ ava('.hasNextWaypoint() returns true when the nextWaypoint is part of the nextLe
 
 ava('.hasNextWaypoint() returns false when no nextWaypoint exists', (t) => {
     const fms = buildFmsMock();
-    fms.skipToWaypoint('prino');
+    fms.skipToWaypoint('lefft');
 
     t.false(fms.hasNextWaypoint());
 });
@@ -374,7 +374,7 @@ ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and ad
 
     t.true(fms.currentLeg.isProcedure);
     t.true(fms.legCollection.length === 1);
-    t.true(fms.legCollection[0].waypointCollection.length === 12);
+    t.true(fms.legCollection[0].waypointCollection.length === 13);
 });
 
 ava('.skipToWaypoint() calls ._collectRouteStringsForLegsToBeDropped()', (t) => {
@@ -423,7 +423,7 @@ ava('.getNextWaypointModel() returns the `WaypointModel` for the next Waypoint i
 ava('.getNextWaypointModel() returns null when fewer than two WaypointModels remaining in collection', (t) => {
     const fms = buildFmsMock();
 
-    fms.skipToWaypoint('prino');
+    fms.skipToWaypoint('lefft');
 
     const result = fms.getNextWaypointModel();
     const expectedResult = null;
