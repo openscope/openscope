@@ -14,6 +14,12 @@
 
 
 
+## 5.2.1 (July 1, 2017)
+---
+### Hotfix
+- Ensure previously specified directions of turn are not preserved when a new heading instruction is given [#549](https://github.com/openscope/openscope/issues/549)
+
+
 ## 5.2.0 (July 1, 2017)
 ---
 ### Features
