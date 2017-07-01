@@ -225,10 +225,14 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHeading(aircraft, data) {
-        const direction = data[0];
+        let direction = data[0];
         const heading = data[1];
         const incremental = data[2];
         const readback = aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
+
+        if (direction === null) {
+            direction = '';
+        }
 
         aircraft.target.turn = direction;
 
