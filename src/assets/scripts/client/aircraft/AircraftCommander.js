@@ -229,11 +229,8 @@ export default class AircraftCommander {
         const heading = data[1];
         const incremental = data[2];
         const readback = aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
-        const airport = AirportController.airport_get();
 
-        if (readback[0] && direction) {
-            aircraft.target.turn = direction;
-        }
+        aircraft.target.turn = direction;
 
         if (aircraft.hasApproachClearance) {
             aircraft.cancelApproachClearance(aircraft.altitude, aircraft.heading);
@@ -330,6 +327,8 @@ export default class AircraftCommander {
     runDirect(aircraft, data) {
         // TODO: maybe handle with parser?
         const fixName = data[0].toUpperCase();
+
+        aircraft.target.turn = null;
 
         return aircraft.pilot.proceedDirect(fixName);
     }
