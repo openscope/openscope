@@ -10,6 +10,7 @@ import {
     bearingToPoint
 } from '../math/flightMath';
 import { nm } from '../utilities/unitConverters';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * Loop through `waypointModelList` and determine where along the route an
@@ -91,25 +92,30 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
     let distanceFromClosestFixToAirspaceBoundary = 0;
     let totalDistance = 0;
 
-    for (let i = 0; i < waypointModelList.length; i++) {
+    // Iteration started at index 1 to ensure two elements are available. It is
+    // already an expectation that aircraft must have two waypoints, so this
+    // should not be a problem here.
+    for (let i = 1; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.relativePosition;
-        let previousWaypoint = waypoint;
-        let previousPosition = waypoint.relativePosition;
+        const previousWaypoint = waypointModelList[i - 1];
 
-        if (i > 0) {
-            previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.relativePosition;
-        }
-
-        if (isWithinAirspace(airport, waypointPosition) && i > 0) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
-
+        if (waypoint.isVector || previousWaypoint.isVector) {
             continue;
         }
 
-        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
-        // `FixModels`, in which case this line will return `NaN`
+        const waypointPosition = waypoint.relativePosition;
+        const previousPosition = waypoint.relativePosition;
+
+        if (isWithinAirspace(airport, waypointPosition)) {
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+            totalDistance += distanceFromClosestFixToAirspaceBoundary;
+
+            break;
+        }
+
+        // this will only work for `StandardRouteWaypointModel` objects.
+        // #_buildWaypointModelListFromRoute may also return `FixModels`, in
+        // which case this line will return `NaN`.
         totalDistance += waypoint.distanceFromPreviousWaypoint;
     }
 
@@ -141,7 +147,7 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
     const waypointModelList = navigationLibrary.findWaypointModelsForStar(
         activeRouteModel.procedure,
         activeRouteModel.entry,
-        airport.arrivalRunway.name,
+        airport.arrivalRunwayModel.name,
         isPreSpawn
     );
 
@@ -150,7 +156,7 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
 
 /**
  * Calculate heading, nextFix and position data to be used when creating an
- * `AircraftInstanceModel` along a route.
+ * `AircraftModel` along a route.
  *
  * @function _preSpawn
  * @param spawnPatternJson
@@ -165,7 +171,7 @@ const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
-    // calculate heading, nextFix and position data to be used when creating an `AircraftInstanceModel` along a route
+    // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
     const spawnPositions = _calculateSpawnPositions(waypointModelList, spawnOffsets, airport);
 
     return spawnPositions;
@@ -189,7 +195,7 @@ const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
  * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, navigationLibrary, currentAirport) => {
-    if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
+    if (isEmptyObject(spawnPatternJson)) {
         // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
     }

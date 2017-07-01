@@ -95,3 +95,12 @@ export const AIRPORT_CONTROL_POSITION_NAME = {
     */
     TOWER: 'twr'
 };
+
+/**
+ * ICAO identifier of the airport to show after initial load
+ *
+ * @enum DEFAULT_AIRPORT_ICAO
+ * @type {string}
+ * @final
+ */
+export const DEFAULT_AIRPORT_ICAO = 'ksea';

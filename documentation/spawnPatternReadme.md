@@ -10,7 +10,7 @@ Lets look at some examples before we continue:
      "category": "departure",
      "route": "KLAS.BOACH6.HEC",
      "altitude": "",
-     "speed": ""
+     "speed": "",
      "method": "random",
      "rate": 5,
      "airlines": [
@@ -63,6 +63,8 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
 * Should be in the shape of a routeString.
   - For direct routes: `FIXXA..FIXXB..FIXXC..FIXXD`
   - For complex routes: `FIXXA..FIXXB..ENTRY.PROCEDURE_ID.EXIT`
+  - Prepend a fix name with `@` to _hold_ at that fix `FIXXA..@FIXXB..FIXXC`
+  - Prepend a three digit heading with `#` to _fly that heading until given further instructions_
 
 #### altitude (* _for arrivals_)
 Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft

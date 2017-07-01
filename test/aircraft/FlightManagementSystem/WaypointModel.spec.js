@@ -1,16 +1,26 @@
 import ava from 'ava';
-
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 const fixnameMock = 'COWBY';
 const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
 const waypointMock = {
-    turnDirection: '',
+    altitudeMaximum: INVALID_NUMBER,
+    altitudeMinimum: INVALID_NUMBER,
+    isFlyOverWaypoint: false,
+    isVector: false,
     legLength: '',
     name: fixnameMock,
     positionModel: holdFixLocationMock,
-    altitudeRestriction: -1,
-    speedRestriction: -1
+    speedMaximum: INVALID_NUMBER,
+    speedMinimum: INVALID_NUMBER,
+    turnDirection: ''
+};
+
+const vectorWaypointPropsMock = {
+    isFlyOverWaypoint: false,
+    isVector: true,
+    name: '#260'
 };
 
 ava('throws when instantiated without parameters', (t) => {
@@ -24,6 +34,34 @@ ava('#hold returns properties for a holding pattern', (t) => {
     t.true(model.hold.dirTurns === 'right');
     t.true(model.hold.legLength === 3);
     t.true(model.hold.timer === -999);
+});
+
+ava('#isVector returns true when name starts with `#`', (t) => {
+    const model = new WaypointModel(vectorWaypointPropsMock);
+
+    t.true(model.isVector);
+});
+
+ava('#isVector returns false when name does not contain `#`', (t) => {
+    const props = Object.assign({}, waypointMock, { legLength: '3min', turnDirection: 'right' });
+    const model = new WaypointModel(props);
+
+    t.false(model.isVector);
+});
+
+ava('#vector returns undefined when #isVector is false', (t) => {
+    const props = Object.assign({}, waypointMock, { legLength: '3min', turnDirection: 'right' });
+    const model = new WaypointModel(props);
+
+    t.true(model.vector === undefined);
+});
+
+ava('#vector returns heading when #isVector is true', (t) => {
+    const model = new WaypointModel(vectorWaypointPropsMock);
+    const heading = model.vector;
+    const expectedHeading = 4.537856055185257;
+
+    t.true(heading === expectedHeading);
 });
 
 ava('returns waypoint name when requesting the name of a waypoint that does not begin with an underscore', (t) => {

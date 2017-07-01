@@ -7,12 +7,13 @@
     "icao": "KSEA",
     "iata": "SEA",
     "magnetic_north": 16,
+    "ctr_radius": 110,
     "ctr_ceiling": 15000,
-    "initial_alt": 5000,
+    "initial_alt": 15000,
     "position": ["N47d26.99m0", "W122d18.71m0"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N47d26.99m0", "W122d18.71m0"],
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 150,
         "speed": 9
@@ -23,7 +24,7 @@
         {
             "floor": 0,
             "ceiling": 150,
-            "airspace_class": "E",
+            "airspace_class": "B",
             "poly": [
                 ["N47.83333330", "W121.69999940"],
                 ["N47.95335007", "W121.97603665"],
@@ -48,193 +49,591 @@
     ],
     "fixes": {
         "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
-        "_OLM161026"  : ["N46d32.31m0", "W122d54.11m0"],
+        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
+        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
+        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+        "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
+        "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
+        "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
+        "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
+        "ALDER": ["N46d49.29m0", "W122d24.85m0"],
         "ALKIA": ["N47d37.26m0", "W122d28.45m0"],
+        "ALPSE": ["N48d10.00m0", "W122d05.00m0"],
         "ARRIE": ["N47d52.79m0", "W123d28.55m0"],
         "ARVAD": ["N47d13.36m0", "W122d34.86m0"],
+        "AST"  : ["N46d09.70m0", "W123d52.82m0"],
         "ATOME": ["N47d36.45m0", "W122d21.79m0"],
         "AUBRN": ["N47d21.71m0", "W122d08.76m0"],
+        "BANDR": ["N47d15.50m0", "W121d29.54m0"],
         "BANGR": ["N47d38.63m0", "W122d54.89m0"],
-        "BKE"  : ["N44d50.44m0", "W117d48.47m0"],
+        "BEARB": ["N47d50.67m0", "W122d22.71m0"],
         "BKE"  : ["N44d50.44m0", "W117d48.47m0"],
         "BLUIT": ["N47d24.36m0", "W120d25.09m0"],
         "BOANE": ["N47d59.10m0", "W122d43.52m0"],
         "BREMM": ["N47d37.20m0", "W122d28.10m0"],
         "BREVE": ["N47d11.40m0", "W122d28.81m0"],
+        "BRUKK": ["N46d11.48m0", "W119d46.80m0"],
+        "BTG"  : ["N45d44.87m0", "W122d35.49m0"],
+        "BUHNR": ["N48d10.30m0", "W122d53.45m0"],
+        "BUWZO": ["N46d57.14m0", "W122d18.58m0"],
         "CAVOB": ["N47d23.77m0", "W122d18.50m0"],
         "CENEX": ["N47d38.42m0", "W122d27.46m0"],
         "CHINS": ["N46d48.69m0", "W120d57.13m0"],
         "COFAY": ["N47d04.73m0", "W122d30.03m0"],
+        "COUGA": ["N46d05.52m0", "W122d40.64m0"],
         "CUSBU": ["N47d29.91m0", "W122d19.05m0"],
         "CVO"  : ["N44d29.97m0", "W123d17.62m0"],
         "DIGGN": ["N47d56.83m0", "W122d46.00m0"],
         "DODVE": ["N47d29.93m0", "W122d18.45m0"],
+        "DRUMR": ["N47d30.53m0", "W122d38.27m0"],
         "ELMAA": ["N47d08.88m0", "W123d24.57m0"],
+        "ELN"  : ["N47d01.46m0", "W120d27.50m0"],
+        "EMMSS": ["N47d17.99m0", "W122d27.97m0"],
         "EMRLD": ["N47d18.95m0", "W122d46.18m0"],
+        "EPH"  : ["N47d22.68m0", "W119d25.44m0"],
         "ERAVE": ["N46d54.58m0", "W123d24.10m0"],
+        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
         "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
+        "FOOTT": ["N46d54.82m0", "W122d34.37m0"],
         "FOURT": ["N47d17.87m0", "W122d29.05m0"],
+        "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
+        "GIGHR": ["N47d21.66m0", "W122d34.95m0"],
+        "GIRTE": ["N47d17.06m0", "W122d33.10m0"],
         "GLASR": ["N47d51.26m0", "W121d11.57m0"],
+        "GOALZ": ["N46d58.95m0", "W122d28.11m0"],
+        "GOOBI": ["N47d46.82m0", "W122d26.21m0"],
         "GRIFY": ["N47d46.15m0", "W122d24.12m0"],
         "HAROB": ["N47d14.60m0", "W123d02.45m0"],
         "HAWKZ": ["N46d47.08m0", "W122d44.34m0"],
         "HETHR": ["N47d33.54m0", "W122d08.70m0"],
         "HISKU": ["N44d30.00m0", "W122d56.65m0"],
         "HQM"  : ["N46d56.82m0", "W124d08.96m0"],
-        "HQM"  : ["N46d56.82m0", "W124d08.96m0"],
+        "HUH"  : ["N48d56.72m0", "W122d34.76m0"],
         "HUMPP": ["N47d12.56m0", "W121d48.61m0"],
         "HUVUS": ["N47d49.86m0", "W121d46.74m0"],
+        "IMB"  : ["N44d38.90m0", "W119d42.70m0"],
         "JAKSN": ["N47d53.19m0", "W121d42.22m0"],
         "JAWBN": ["N48d01.90m0", "W122d50.59m0"],
+        "JESSP": ["N47d44.21m0", "W122d04.58m0"],
+        "JIGEB": ["N48d13.90m0", "W123d01.53m0"],
+        "KIMSH": ["N47d38.08m0", "W122d44.41m0"],
         "KMORE": ["N47d48.65m0", "W122d20.82m0"],
         "KRIEG": ["N46d19.21m0", "W122d43.33m0"],
+        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
         "KTSAP": ["N47d45.51m0", "W122d27.92m0"],
         "KWEST": ["N47d25.24m0", "W122d27.32m0"],
         "LACEE": ["N47d02.82m0", "W122d48.35m0"],
+        "LATAY": ["N46d24.47m0", "W125d04.31m0"],
         "LIINE": ["N46d50.65m0", "W122d40.11m0"],
-        "LKV"  : ["N42d29.57m0", "W120d30.42m0"],
         "LKV"  : ["N42d29.57m0", "W120d30.43m0"],
+        "LMT"  : ["N42d09.19m0", "W121d43.65m0"],
+        "LOOOO": ["N48d07.23m0", "W123d22.98m0"],
+        "LOSTT": ["N48d11.69m0", "W120d14.91m0"],
         "MARNR": ["N48d02.33m0", "W122d50.99m0"],
+        "MLP"  : ["N47d27.41m0", "W115d38.76m0"],
+        "MWH"  : ["N47d12.65m0", "W119d19.01m0"],
         "NEHOS": ["N47d55.43m0", "W122d28.24m0"],
         "NESOE": ["N47d29.93m0", "W122d18.64m0"],
         "NETTZ": ["N47d21.15m0", "W122d27.32m0"],
         "NEVJO": ["N47d15.13m0", "W122d18.58m0"],
         "NEZUG": ["N47d34.12m0", "W122d18.58m0"],
         "NICHY": ["N47d21.13m0", "W122d18.58m0"],
+        "NORMY": ["N47d25.77m0", "W121d43.27m0"],
+        "ODAHL": ["N47d49.67m0", "W120d47.91m0"],
+        "ODESS": ["N47d08.21m0", "W117d58.45m0"],
         "OLM"  : ["N46d58.30m0", "W122d54.11m0"],
+        "ONSET": ["N48d57.48m0", "W118d00.00m0"],
+        "ORCHO": ["N47d34.00m0", "W122d32.96m0"],
         "ORCUS": ["N48d20.66m0", "W123d07.74m0"],
         "OTLIE": ["N47d23.87m0", "W122d18.69m0"],
+        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
         "PANGL": ["N48d09.02m0", "W123d40.21m0"],
+        "PDT"  : ["N45d41.91m0", "W118d56.32m0"],
         "PIKEZ": ["N46d56.27m0", "W122d33.72m0"],
+        "PNELA": ["N47d55.50m0", "W122d44.81m0"],
+        "PSC"  : ["N46d16.22m0", "W119d07.04m0"],
+        "PTERA": ["N46d05.66m0", "W122d40.65m0"],
         "RADDY": ["N47d04.47m0", "W121d30.97m0"],
+        "RAYNG": ["N47d48.85m0", "W122d13.60m0"],
         "RAYUU": ["N47d33.79m0", "W122d27.30m0"],
         "RENBE": ["N47d19.22m0", "W122d18.69m0"],
         "RICHR": ["N47d18.40m0", "W122d26.25m0"],
+        "ROESH": ["N48d37.87m0", "W123d01.14m0"],
+        "SHIPZ": ["N47d21.48m0", "W122d27.94m0"],
         "SKYKO": ["N47d46.03m0", "W121d25.73m0"],
+        "SONDR": ["N47d07.43m0", "W122d20.94m0"],
         "SUMMA": ["N46d37.07m0", "W121d59.30m0"],
+        "SUNED": ["N46d17.69m0", "W119d57.60m0"],
+        "TEMPL": ["N47d43.79m0", "W119d29.06m0"],
         "TOMRE": ["N47d20.13m0", "W122d31.01m0"],
         "TOU"  : ["N48d17.99m0", "W124d37.62m0"],
+        "UBG"  : ["N45d21.19m0", "W122d58.69m0"],
+        "UNITT": ["N47d34.50m0", "W122d27.82m0"],
         "VASHN": ["N47d30.69m0", "W122d27.32m0"],
+        "VEGGN": ["N47d43.30m0", "W122d33.86m0"],
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
+        "WITRO": ["N47d46.83m0", "W120d08.20m0"],
         "WOODI": ["N47d46.12m0", "W121d51.80m0"],
+        "WUBET": ["N47d28.13m0", "W122d27.88m0"],
         "WUREL": ["N47d33.33m0", "W122d18.61m0"],
+        "YDC"  : ["N49d22.89m0", "W120d22.42m0"],
+        "YKM"  : ["N46d34.21m0", "W120d26.68m0"],
+        "YVR"  : ["N49d04.64m0", "W123d08.94m0"],
+        "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
+        "YYJ"  : ["N48d43.62m0", "W123d29.06m0"],
+        "ZADON": ["N47d33.73m0", "W121d44.32m0"],
+        "ZUMBI": ["N47d37.68m0", "W122d37.04m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
     },
     "runways":[
         {
             "name": ["16L", "34R"],
-            "end":  [["N47d27.83m0", "W122d18.47m0", "432.5ft"], ["N47d25.87m0", "W122d18.48m0", "346.8ft"]],
-            "ils":  [true, true],
+            "end": [
+                [47.463767, -122.307749, "432.5ft"],
+                [47.431201, -122.308035, "346.8ft"]
+            ],
+            "ils": [true, true],
             "glideslope": [3.00, 2.75]
         },
         {
             "name": ["16C", "34C"],
-            "end":  [["N47d27.83m0", "W122d18.66m0", "429.6ft"], ["N47d26.28m0", "W122d18.67m0", "363.0ft"]],
-            "ils":  [true, true],
+            "end": [
+                [47.463780, -122.310986, "429.6ft"],
+                [47.437999, -122.311211, "363.0ft"]
+            ],
+            "ils": [true, true],
             "glideslope": [3.00, 3.00]
         },
         {
             "name": ["16R", "34L"],
-            "end":  [["N47d27.83m0", "W122d19.07m0", "415.0ft"], ["N47d26.43m0", "W122d19.08m0", "356.3ft"]],
-            "ils":  [true, true],
+            "end": [
+                [47.463806, -122.317884, "415.0ft"],
+                [47.440562, -122.318092, "356.3ft"]
+            ],
+            "ils": [true, true],
             "glideslope": [3.00, 3.00]
         }
     ],
     "sids": {
-        "SUMMA8": {
-            "icao": "SUMMA8",
-            "name": "Summa Eight",
+        "ATOME1": {
+            "icao": "ATOME1",
+            "name": "Atom One",
             "rwy": {
-                "16L": ["NEVJO", "SUMMA"],
-                "16C": ["NEVJO", "SUMMA"],
-                "16R": ["NEVJO", "SUMMA"],
-                "34L": ["NEZUG", "_NEZUG070010", "SUMMA"],
-                "34C": ["NEZUG", "_NEZUG070010", "SUMMA"],
-                "34R": ["NEZUG", "_NEZUG070010", "SUMMA"]
+                "34L": ["CUSBU"],
+                "34C": ["NESOE"],
+                "34R": ["DODVE"]
             },
+            "body": [["WUREL", "A31+"], ["ATOME", "A50+"]],
             "exitPoints": {
-                "LKV": ["LKV"],
-                "BKE": ["BKE"]
+                "ALDER": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "ALDER"],
+                "ALPSE": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], "ALPSE"],
+                "ARRIE": ["BREMM", ["ZUMBI", "A90-"], ["KIMSH", "A100+"], "BANGR", "ARRIE"],
+                "BANDR": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "BANDR"],
+                "BUWZO": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "BUWZO"],
+                "ERAVE": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "FEPOT", "ERAVE"],
+                "FEPOT": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "FEPOT"],
+                "HQM": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "HQM"],
+                "NORMY": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "NORMY"],
+                "PAE": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], "PAE"],
+                "SUMMA": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "SUMMA"],
+                "ZADON": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "ZADON"]
             },
-            "draw": [["NEVJO", "SUMMA"], ["NEZUG", "_NEZUG070010", "SUMMA"], ["SUMMA", "LKV*"], ["SUMMA", "BKE*"]]
+            "draw": [
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME"],
+                ["ATOME", "BREMM"],
+                ["BREMM", "ZUMBI", "KIMSH", "BANGR", "ARRIE*"],
+                ["BREMM", "ORCHO", "DRUMR"],
+                ["DRUMR", "HAROB"],
+                ["HAROB", "HQM*"],
+                ["HAROB", "FEPOT*", "ERAVE*"],
+                ["DRUMR", "GIGHR", "GIRTE"],
+                ["GIRTE", "ALDER*"],
+                ["GIRTE", "BUWZO*"],
+                ["GIRTE", "SUMMA*"],
+                ["ATOME", "CENEX", "KTSAP", "GOOBI", "BEARB"],
+                ["BEARB", "ALPSE*"],
+                ["BEARB", "PAE*"],
+                ["BEARB", "RAYNG", "JESSP"],
+                ["JESSP", "ZADON*"],
+                ["JESSP", "BANDR*"],
+                ["JESSP", "NORMY*"]
+            ]
         },
         "BANGR8": {
             "icao": "BANGR8",
             "name": "Bangor Eight",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE", ["BANGR", "A100+"]],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]]
+                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
+            "body": [["BANGR", "A100+"]],
             "exitPoints": {
-                "PANGL": ["PANGL"],
-                "ARRIE": ["ARRIE"]
+                "ARRIE": ["ARRIE"],
+                "BANGR": ["BANGR"],
+                "PANGL": ["PANGL"]
             },
-            "draw": [["CAVOB", "RENBE"], ["OTLIE", "RENBE"], ["WESET", "RENBE"], ["RENBE", "RICHR", "TOMRE", "BANGR"], ["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "BREMM", "BANGR"], ["BANGR", "PANGL*"], ["BANGR", "ARRIE*"]]
+            "draw": [
+                ["CAVOB", "RENBE"],
+                ["OTLIE", "RENBE"],
+                ["WESET", "RENBE"],
+                ["RENBE", "RICHR", "TOMRE", "BANGR"],
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "BREMM", "BANGR*"],
+                ["BANGR", "PANGL*"],
+                ["BANGR", "ARRIE*"]
+            ]
         },
         "ELMAA2": {
             "icao": "ELMAA2",
             "name": "Elma Two",
             "rwy": {
-                "16L": [["NICHY", "A30+"], "ELMAA"],
-                "16C": [["NICHY", "A30+"], "ELMAA"],
-                "16R": [["NICHY", "A30+"], "ELMAA"]
+                "16L": [],
+                "16C": [],
+                "16R": []
             },
+            "body": [["NICHY", "A30+"], "_NICHY250SEA230", "ELMAA"],
             "exitPoints": {
-                "HQM": ["HQM"],
-                "CVO": ["CVO"]
+                "CVO": ["CVO"],
+                "ELMAA": [],
+                "HQM": ["HQM"]
             },
-            "draw": [["NICHY", "ELMAA"], ["ELMAA", "HQM*"],["ELMAA", "CVO*"]]
+            "draw": [
+                ["NICHY", "_NICHY250SEA230", "ELMAA*"],
+                ["ELMAA", "HQM*"],
+                ["ELMAA", "CVO*"]
+            ]
         },
         "HAROB5": {
             "icao": "HAROB5",
             "name": "Harob Five",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD", ["HAROB", "A100+"]],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]]
+                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
+            "body": [["HAROB", "A100+"]],
             "exitPoints": {
-                "HQM": ["HQM"],
                 "ERAVE": ["ERAVE"],
-                "HISKU": ["FEPOT", "HISKU"]
+                "FEPOT": ["FEPOT"],
+                "HAROB": [],
+                "HISKU": ["FEPOT", "HISKU"],
+                "HQM": ["HQM"]
             },
-            "draw": [["CAVOB", "RENBE"], ["OTLIE", "RENBE"], ["WESET", "RENBE"], ["RENBE", "RICHR", "EMRLD", "HAROB"], ["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "BREMM", "HAROB"], ["HAROB", "HQM*"], ["HAROB", "ERAVE*"], ["HAROB", "FEPOT", "HISKU*"]]
+            "draw": [
+                ["CAVOB", "RENBE"],
+                ["OTLIE", "RENBE"],
+                ["WESET", "RENBE"],
+                ["RENBE", "RICHR", "EMRLD", "HAROB"],
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "BREMM", "HAROB"],
+                ["HAROB", "HQM*"],
+                ["HAROB", "ERAVE*"],
+                ["HAROB*", "FEPOT*", "HISKU*"]
+            ]
         },
-        "KMORE4": {
-            "icao": "KMORE4",
-            "name": "Kenmore Four",
+        "MOUNT8": {
+            "icao": "MOUNT8",
+            "name": "Mountain Eight",
             "rwy": {
-                "34L": ["CUSBU"],
-                "34C": ["NESOE"],
-                "34R": ["DODVE"]
+                "16L": [["NICHY", "A30+"]],
+                "16C": [["NICHY", "A30+"]],
+                "16R": [["NICHY", "A30+"]],
+                "34L": [["NEZUG", "A40+"]],
+                "34C": [["NEZUG", "A40+"]],
+                "34R": [["NEZUG", "A40+"]]
             },
-            "body": [["WUREL", "A31+|S250-"], ["ATOME", "S250-"], ["CENEX", "S250-"], ["KTSAP", "S250-"], ["ZUVEN", "A100+|S250-"], ["KMORE", "S250-"]],
+            "body": ["#070"],
             "exitPoints": {
-                "BLUIT": ["BLUIT"]
+                "ELN": ["ELN"],
+                "EPH": ["EPH"],
+                "GEG": ["GEG"],
+                "HUH": ["HUH"],
+                "MLP": ["MLP"],
+                "MWH": ["MWH"],
+                "PAE": ["PAE"],
+                "PSC": ["PSC"],
+                "YDC": ["YDC"],
+                "YKM": ["YKM"],
+                "YVR": ["YVR"]
             },
-            "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "ZUVEN", "KMORE", "BLUIT*"]]
+            "draw": [
+                ["ELN*"],
+                ["EPH*"],
+                ["GEG*"],
+                ["HUH*"],
+                ["MLP*"],
+                ["MWH*"],
+                ["PAE*"],
+                ["PSC*"],
+                ["YDC*"],
+                ["YKM*"],
+                ["YVR*"]
+            ]
         },
-        "KTSAP5": {
-            "icao": "KTSAP5",
-            "name": "Kitsap Five",
+        "SEATL5": {
+            "icao": "SEATL5",
+            "name": "Seattle Five",
             "rwy": {
-                "34L": ["CUSBU"],
-                "34C": ["NESOE"],
-                "34R": ["DODVE"]
+                "16L": ["_SEA161002", "#161"],
+                "16C": ["_SEA161002", "#161"],
+                "16R": ["_SEA161002", "#161"],
+                "34L": ["_SEA341004", "#341"],
+                "34C": ["_SEA341004", "#341"],
+                "34R": ["_SEA341004", "#341"]
             },
-            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP"],
+            "body": [],
             "exitPoints": {
+                "AST": ["AST"],
+                "BTG": ["BTG"],
+                "ELN": ["ELN"],
+                "EPH": ["EPH"],
+                "EUG": ["EUG"],
+                "HQM": ["HQM"],
+                "HUH": ["HUH"],
+                "OLM": ["OLM"],
+                "PAE": ["PAE"],
                 "TOU": ["TOU"],
-                "BKE": ["BKE"]
+                "UBG": ["UBG"],
+                "YDC": ["YDC"],
+                "YKM": ["YKM"],
+                "YVR": ["YVR"],
+                "YYJ": ["YYJ"]
             },
-            "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "TOU*"]]
+            "draw": [
+                ["AST*"],
+                ["BTG*"],
+                ["ELN*"],
+                ["EPH*"],
+                ["EUG*"],
+                ["HQM*"],
+                ["HUH*"],
+                ["OLM*"],
+                ["PAE*"],
+                ["TOU*"],
+                ["UBG*"],
+                ["YDC*"],
+                ["YKM*"],
+                ["YVR*"],
+                ["YYJ*"]
+            ]
+        },
+        "SUMMA9": {
+            "icao": "SUMMA9",
+            "name": "Summa Nine",
+            "rwy": {
+                "16L": ["NEVJO"],
+                "16C": ["NEVJO"],
+                "16R": ["NEVJO"],
+                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "34C": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+            },
+            "exitPoints": {
+                "BKE": ["SUMMA", "BKE"],
+                "LKV": ["SUMMA", "LKV"],
+                "SUMMA": ["SUMMA"]
+            },
+            "draw": [
+                ["NEVJO", "SUMMA"],
+                ["NEZUG", "_NEZUG070PAE139", "_SUMMA326017", "SUMMA"],
+                ["SUMMA", "LKV*"],
+                ["SUMMA*", "BKE*"]
+            ]
+        }
+    },
+    "stars": {
+        "CHINS2": {
+            "icao": "CHINS2",
+            "name": "Chins Two",
+            "entryPoints": {
+                "CHINS": [],
+                "IMB": ["IMB", "SUNED", "YKM"],
+                "PDT": ["PDT", "BRUKK", "SUNED", "YKM"],
+                "SUNED": ["SUNED", "YKM"]
+            },
+            "body": ["CHINS"],
+            "rwy": {
+                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "16C": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "34C": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+            },
+            "draw": [
+                ["IMB*", "SUNED*", "YKM"],
+                ["PDT*", "BRUKK", "SUNED", "YKM"],
+                ["YKM", "CHINS*", "RADDY", "HUMPP", "AUBRN"]
+            ]
+        },
+        "EPH8": {
+            "icao": "EPH8",
+            "name": "Ephrata Eight",
+            "entryPoints": {
+                "EPH": [],
+                "ODESS": ["ODESS"]
+            },
+            "body": ["EPH", "SKYKO", "HUVUS", "HETHR"],
+            "rwy": {
+                "16L": ["#250"],
+                "16C": ["#250"],
+                "16R": ["#250"],
+                "34L": ["#163"],
+                "34C": ["#163"],
+                "34R": ["#163"]
+            },
+            "draw": [
+                ["ODESS*", "EPH*", "SKYKO", "HUVUS", "HETHR"]
+            ]
+        },
+        "GLASR1": {
+            "icao": "GLASR1",
+            "name": "Glasser One",
+            "entryPoints": {
+                "GEG": ["GEG", "TEMPL", "WITRO", "ODAHL"],
+                "GLASR": [],
+                "LOSTT": ["LOSTT", "KRUZR"],
+                "MLP": ["MLP", "GEG", "TEMPL", "WITRO", "ODAHL"],
+                "TEMPL": ["TEMPL", "WITRO", "ODAHL"],
+                "YXC": ["YXC", "ONSET", "LOSTT", "KRUZR"]
+            },
+            "body": ["GLASR"],
+            "rwy": {
+                "16L": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "16C": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "16R": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "34L": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "34C": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "34R": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"]
+            },
+            "draw": [
+                ["MLP*", "GEG*", "TEMPL*", "WITRO", "ODAHL", "GLASR*"],
+                ["YXC*", "ONSET", "LOSTT*", "KRUZR", "GLASR"],
+                ["GLASR", "JAKSN", "WOODI", "HETHR"]
+            ]
+        },
+        "HAWKZ5": {
+            "icao": "HAWKZ5",
+            "name": "Hawks Five",
+            "entryPoints": {
+                "BTG": [["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
+                "HAWKZ": [],
+                "KRIEG": ["KRIEG"],
+                "LATAY": ["LATAY", "AAYRR"],
+                "LKV": ["LKV", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
+                "LMT": ["LMT", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"]
+            },
+            "body": [["HAWKZ", "A120+|S270"], "LIINE"],
+            "rwy": {
+                "16L": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "16C": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "16R": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "34L": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "34C": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "34R": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
+            },
+            "draw": [
+                ["LKV*", "BTG*", "HAWKZ*"],
+                ["LMT*", "BTG", "HAWKZ"],
+                ["BTG", "PTERA", "KRIEG*", "HAWKZ"],
+                ["LATAY*", "AAYRR", "HAWKZ"],
+                ["HAWKZ", "LIINE"],
+                ["LIINE", "PIKEZ", "COFAY", "BREVE", "NETTZ", "KWEST", "VASHN"],
+                ["LIINE", "FOOTT", "GOALZ", "SONDR"]
+            ]
+        },
+        "JAWBN5": {
+            "icao": "JAWBN5",
+            "name": "Jawbone Five",
+            "entryPoints": {
+                "JAWBN": [],
+                "TOU": ["TOU"],
+                "YVR": ["YVR"],
+                "YYJ": ["YYJ", ["ORCUS", "A170+"]]
+            },
+            "body": [],
+            "rwy": {
+                "16L": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "16C": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "16R": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "34L": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "34C": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "34R": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"]
+            },
+            "draw": [
+                ["TOU*", "JAWBN*"],
+                ["YVR*", "JAWBN"],
+                ["YYJ*", "ORCUS", "JAWBN"],
+                ["JAWBN", "DIGGN", "ALKIA"]
+            ]
+        },
+        "MARNR6": {
+            "icao": "MARNR6",
+            "name": "Mariner Six",
+            "entryPoints": {
+                "BUHNR": [["BUHNR", "A120+"]],
+                "JIGEB": [["JIGEB", "A120+"]],
+                "MARNR": [],
+                "ROESH": ["ROESH"],
+                "TOU": [["TOU", "A200+"], ["LOOOO", "A170+|S280"]],
+                "YVR": [["YVR", "A200+"], "ROESH"],
+                "YYJ": [["YYJ", "A200+"], ["ORCUS", "A170+|S280"]]
+            },
+            "body": [["MARNR", "A120+|S270"]],
+            "rwy": {
+                "16L": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "16C": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "16R": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
+                "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
+                "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"]
+            },
+            "draw": [
+                ["BUHNR*", "MARNR*"],
+                ["JIGEB*", "MARNR"],
+                ["YVR*", "ROESH*", "MARNR"],
+                ["TOU*", "LOOOO", "MARNR"],
+                ["YYJ*", "ORCUS", "MARNR"],
+                ["MARNR", "BOANE", "NEHOS", "GRIFY"],
+                ["MARNR", "PNELA", "VEGGN", "UNITT", "WUBET", "SHIPZ", "EMMSS"]
+            ]
+        },
+        "OLM2": {
+            "icao": "OLM2",
+            "name": "Olympia Two",
+            "entryPoints": {
+                "BTG": ["BTG", "COUGA"],
+                "OLM": [],
+                "UBG": ["UBG"]
+            },
+            "body": [],
+            "rwy": {
+                "16L": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "16C": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "16R": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "34L": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "34C": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "34R": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"]
+            },
+            "draw": [
+                ["BTG*", "COUGA", "OLM*"],
+                ["UBG*", "OLM"],
+                ["OLM", "LACEE", "ARVAD", "FOURT"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -246,14 +645,24 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 17.5,
+            "rate": 4,
             "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
                 ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
                 ["kal/long", 0.28],
                 ["nks", 0.03],
+                ["qxe", 21.17],
                 ["skw", 10.24],
                 ["swa", 5.93],
                 ["uae", 0.41],
@@ -265,35 +674,12 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.KMORE4.BLUIT",
+            "route": "KSEA.BANGR8.PANGL",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 17.5,
+            "rate": 4,
             "airlines": [
-                ["cfs", 0.57],
-                ["cpz", 5.05],
-                ["dal", 9.80],
-                ["dlh/long", 0.17],
-                ["eva", 0.21],
-                ["fdx", 1.18],
-                ["fft", 0.39],
-                ["hal", 0.43],
-                ["jbu", 0.96],
-                ["qxe", 21.17]
-            ]
-        },
-        {
-            "_name": "OLM1",
-            "origin": "",
-            "destination": "ksea",
-            "category": "arrival",
-            "route": "_OLM161026..OLM..LACEE..ARVAD..FOURT",
-            "altitude": 13000,
-            "speed": 250,
-            "method": "random",
-            "rate": 7,
-            "airlines":  [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -318,16 +704,15 @@
             ]
         },
         {
-            "_name": "CHINS1",
-            "origin": "",
-            "destination": "ksea",
-            "category": "arrival",
-            "route": "CHINS..RADDY..HUMPP..AUBRN",
-            "altitude": 12000,
-            "speed": 250,
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.HAROB5.ERAVE",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 7,
-            "airlines":  [
+            "rate": 1.75,
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -352,16 +737,15 @@
             ]
         },
         {
-            "_name": "HAWKZ4 - LDG SOUTH",
-            "origin": "",
-            "destination": "ksea",
-            "category": "arrival",
-            "route": "KRIEG..HAWKZ..LIINE..PIKEZ..COFAY..BREVE..NETTZ..KWEST..VASHN..RAYUU",
-            "altitude": 13000,
-            "speed": 250,
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.HAROB5.FEPOT",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 7,
-            "airlines":  [
+            "rate": 1.75,
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -386,16 +770,15 @@
             ]
         },
         {
-            "_name": "MARNR5 - LDG SOUTH",
-            "origin": "",
-            "destination": "ksea",
-            "category": "arrival",
-            "route": "ORCUS..MARNR..BOANE..NEHOS..GRIFY",
-            "altitude": 12000,
-            "speed": 250,
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.HAROB5.HISKU",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 7,
-            "airlines":  [
+            "rate": 1.75,
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],
@@ -420,16 +803,213 @@
             ]
         },
         {
-            "_name": "GLASR9",
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.HAROB5.HQM",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.75,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.SUMMA9.BKE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 9,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
+            "origin": "ksea",
+            "destination": "",
+            "category": "departure",
+            "route": "KSEA.SUMMA9.LKV",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 9,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "GLASR..JAKSN..WOODI..HETHR",
-            "altitude": 10000,
-            "speed": 250,
+            "route": "PDT.CHINS2.KSEA",
+            "altitude": [18000, 36000],
+            "speed": 320,
             "method": "random",
-            "rate": 7,
-            "airlines":  [
+            "rate": 15,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "ksea",
+            "category": "arrival",
+            "route": "MLP.GLASR1.KSEA",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "ksea",
+            "category": "arrival",
+            "route": "LMT.HAWKZ5.KSEA",
+            "altitude": [24000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["aal", 4.05],
+                ["aca", 0.95],
+                ["asa", 30.86],
+                ["baw/long", 0.28],
+                ["cfs", 0.57],
+                ["cpz", 5.05],
+                ["dal", 9.80],
+                ["dlh/long", 0.17],
+                ["eva", 0.21],
+                ["fdx", 1.18],
+                ["fft", 0.39],
+                ["hal", 0.43],
+                ["jbu", 0.96],
+                ["kal/long", 0.28],
+                ["nks", 0.03],
+                ["qxe", 21.17],
+                ["skw", 10.24],
+                ["swa", 5.93],
+                ["uae", 0.41],
+                ["ual", 4.34],
+                ["vrd", 1.23]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "ksea",
+            "category": "arrival",
+            "route": "YVR.MARNR6.KSEA",
+            "altitude": [18000, 34000],
+            "speed": 320,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
                 ["aal", 4.05],
                 ["aca", 0.95],
                 ["asa", 30.86],

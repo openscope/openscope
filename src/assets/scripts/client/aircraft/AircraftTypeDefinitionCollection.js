@@ -5,11 +5,12 @@ import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
- * Collection of `AircraftInstanceModel` objects
+ * Collection of `AircraftModel` objects
  *
- * Responsible for creating new `AircraftInstanceModel` objects when a spawnInterval
+ * Responsible for creating new `AircraftModel` objects when a spawnInterval
  * fires its `createAircraftWithSpawnPatternModel` callback.
  *
  * This collection also keeps a list of `AircraftTypeDefinitionModel` objects, which define each
@@ -28,7 +29,7 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
     constructor(aircraftTypeDefinitionList) {
         super();
 
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
                 `received ${typeof aircraftTypeDefinitionList}`);

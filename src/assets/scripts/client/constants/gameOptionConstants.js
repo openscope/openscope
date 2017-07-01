@@ -8,8 +8,10 @@
  */
 export const GAME_OPTION_NAMES = {
     CONTROL_METHOD: 'controlMethod',
+    PTL_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
-    SOFT_CEILING: 'softCeiling'
+    SOFT_CEILING: 'softCeiling',
+    INCLUDE_WIP_AIRPORTS: 'includeWipAirports'
 };
 
 /**
@@ -27,9 +29,39 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'classic',
         description: 'Control Method',
         type: 'select',
-        data: [
-            ['Classic', 'classic'],
-            ['Arrow Keys', 'arrows']
+        optionList: [
+            {
+                displayLabel: 'Classic',
+                value: 'classic'
+            },
+            {
+                displayLabel: 'Arrow Keys',
+                value: 'arrows'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.PTL_LENGTH,
+        defaultValue: '1',
+        description: 'Projected Track Line (PTL)',
+        type: 'select',
+        optionList: [
+            {
+                displayLabel: 'Off',
+                value: 0
+            },
+            {
+                displayLabel: '30sec',
+                value: 0.5
+            },
+            {
+                displayLabel: '1min',
+                value: 1
+            },
+            {
+                displayLabel: '2min',
+                value: 2
+            }
         ]
     },
     {
@@ -37,10 +69,19 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'selected',
         description: 'Draw aircraft projected path',
         type: 'select',
-        data: [
-            ['Always', 'always'],
-            ['Selected', 'selected'],
-            ['Never', 'never']
+        optionList: [
+            {
+                displayLabel: 'Always',
+                value: 'always'
+            },
+            {
+                displayLabel: 'Selected',
+                value: 'selected'
+            },
+            {
+                displayLabel: 'Never',
+                value: 'never'
+            }
         ]
     },
     {
@@ -49,9 +90,32 @@ export const GAME_OPTION_VALUES = [
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
         type: 'select',
-        data: [
-            ['Yes', 'yes'],
-            ['No', 'no']
+        optionList: [
+            {
+                displayLabel: 'Yes',
+                value: 'yes'
+            },
+            {
+                displayLabel: 'No',
+                value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS,
+        defaultValue: 'no',
+        description: 'Include WIP Airports',
+        help: 'Will include all available airports including those marked as Work In Progress.',
+        type: 'select',
+        optionList: [
+            {
+                displayLabel: 'Yes',
+                value: 'yes'
+            },
+            {
+                displayLabel: 'No',
+                value: 'no'
+            }
         ]
     }
 ];

@@ -3,6 +3,7 @@ import _get from 'lodash/get';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
 
 /**
  * Defines a navigational `FixModel`
@@ -140,8 +141,10 @@ export default class FixModel extends BaseModel {
         const waypointProps = {
             name: this.name,
             positionModel: this.clonePosition(),
-            altitudeRestriction: -1,
-            speedRestriction: -1
+            altitudeMaximum: INVALID_NUMBER,
+            altitudeMinimum: INVALID_NUMBER,
+            speedMaximum: INVALID_NUMBER,
+            speedMinimum: INVALID_NUMBER
         };
 
         // TODO: Move these default behaviors to a constants file

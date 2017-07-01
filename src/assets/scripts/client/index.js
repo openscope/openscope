@@ -5,9 +5,8 @@ import $ from 'jquery';
 import App from './App';
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
+import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { STORAGE_KEY } from './constants/storageKeys';
-
-const DEFAULT_AIRPORT_ICAO = 'ksfo';
 
 const getInitialAirport = () => {
     let airportName = DEFAULT_AIRPORT_ICAO;
@@ -28,6 +27,5 @@ export default (() => {
     const airportLoadList = window.AIRPORT_LOAD_LIST;
     const initialAirportToLoad = getInitialAirport();
     const $body = $('body');
-
     const app = new App($body, airportLoadList, initialAirportToLoad);
 })();

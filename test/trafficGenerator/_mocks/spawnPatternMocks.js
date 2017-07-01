@@ -32,6 +32,40 @@ export const DEPARTURE_PATTERN_MOCK = {
     ]
 };
 
+export const DEPARTURE_PATTERN_ROUTE_STRING_MOCK = {
+    origin: 'KLAS',
+    destination: '',
+    category: 'departure',
+    route: 'BESSI..BOACH..HEC',
+    altitude: null,
+    speed: null,
+    method: 'random',
+    rate: 5,
+    airlines: [
+        ['amx', 2],
+        ['aca/long', 4],
+        ['asa', 3],
+        ['aay', 15],
+        ['aal', 10],
+        ['baw/long', 5],
+        ['cfg/long', 2],
+        ['dal', 10],
+        ['fft', 10],
+        ['hal', 2],
+        ['jbu', 10],
+        ['kal/long', 2],
+        ['nax/long', 5],
+        ['swa', 15],
+        ['nks', 12],
+        ['scx', 5],
+        ['tcx/long', 3],
+        ['ual', 10],
+        ['vrd', 7],
+        ['vir', 4],
+        ['wja', 7]
+    ]
+};
+
 export const ARRIVAL_PATTERN_MOCK = {
     origin: '',
     destination: 'KLAS',
@@ -83,6 +117,14 @@ export const ARRIVAL_PATTERN_WAVE_MOCK = Object.assign(
     ARRIVAL_PATTERN_MOCK,
     {
         method: 'wave'
+    }
+);
+
+export const ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK = Object.assign(
+    {},
+    ARRIVAL_PATTERN_MOCK,
+    {
+        route: 'MLF.GRNPA9.KLAS'
     }
 );
 
