@@ -139,12 +139,12 @@ ava('.init() calls ._buildLegCollection()', (t) => {
 });
 
 ava('.setDepartureRunway() changes #departureRunway to the ', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
 
-    fms.setDepartureRunway(nextRunwayMock);
+    fms.setDepartureRunway(nextRunwayFixture);
 
-    t.true(_isEqual(fms.departureRunwayModel, nextRunwayMock));
+    t.true(_isEqual(fms.departureRunwayModel, nextRunwayFixture));
 });
 
 ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -155,22 +155,22 @@ ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel'
 });
 
 ava('.setDepartureRunway() regenerates SID legs for new runway', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
     const regenerateSidLegSpy = sinon.spy(fms, '_regenerateSidLeg');
 
-    fms.setDepartureRunway(nextRunwayMock);
+    fms.setDepartureRunway(nextRunwayFixture);
 
     t.true(regenerateSidLegSpy.calledWithExactly());
 });
 
 ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
 
-    fms.setArrivalRunway(nextRunwayMock);
+    fms.setArrivalRunway(nextRunwayFixture);
 
-    t.true(_isEqual(fms.arrivalRunwayModel, nextRunwayMock));
+    t.true(_isEqual(fms.arrivalRunwayModel, nextRunwayFixture));
 });
 
 ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -181,13 +181,13 @@ ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', 
 });
 
 ava('.setArrivalRunway() regenerates STAR legs for new runway', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
     const regenerateStarLegSpy = sinon.spy(fms, '_regenerateStarLeg');
 
     t.true(fms.arrivalRunwayModel.name === '19L');
 
-    fms.setArrivalRunway(nextRunwayMock);
+    fms.setArrivalRunway(nextRunwayFixture);
 
     t.true(regenerateStarLegSpy.calledWithExactly());
 });
@@ -821,21 +821,21 @@ ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each routeStr
 });
 
 ava('._regenerateSidLeg() creates a new SID leg of identical route string for the currently assigned departure runway', (t) => {
-    const initialRunwayMock = airportModelFixture.getRunway('19L');
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const initialRunwayFixture = airportModelFixture.getRunway('19L');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
     const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
     const sidLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
     const sidLeg = fms.legCollection[sidLegIndex];
     const oldWaypoints = sidLeg.waypointCollection;
 
-    t.true(_isEqual(fms.departureRunwayModel, initialRunwayMock));
+    t.true(_isEqual(fms.departureRunwayModel, initialRunwayFixture));
     t.true(oldWaypoints[0].name === 'fixix');
     t.true(oldWaypoints[1].name === 'roppr');
     t.true(oldWaypoints[1].altitudeMaximum === 7000);
     t.true(oldWaypoints.length === 7);
 
-    fms.departureRunwayModel = nextRunwayMock;
+    fms.departureRunwayModel = nextRunwayFixture;
     fms._regenerateSidLeg();
 
     const newWaypoints = fms.legCollection[sidLegIndex].waypointCollection;
@@ -844,7 +844,7 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
     t.true(newWaypoints[1].name === 'roppr');
     t.true(newWaypoints[1].altitudeMaximum === 7000);
     t.true(newWaypoints.length === 7);
-    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayMock));
+    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayFixture));
 });
 
 ava('._regenerateSidLeg() returns early when there is no SID leg in the flightplan', (t) => {
@@ -858,26 +858,26 @@ ava('._regenerateSidLeg() returns early when there is no SID leg in the flightpl
 });
 
 ava('._regenerateStarLeg() creates a new STAR leg of identical route string for the currently assigned arrival runway', (t) => {
-    const initialRunwayMock = airportModelFixture.getRunway('19L');
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    const initialRunwayFixture = airportModelFixture.getRunway('19L');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
     const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
     const starLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
     const starLeg = fms.legCollection[starLegIndex];
     const oldWaypoints = starLeg.waypointCollection;
 
-    t.true(_isEqual(fms.arrivalRunwayModel, initialRunwayMock));
+    t.true(_isEqual(fms.arrivalRunwayModel, initialRunwayFixture));
     t.true(oldWaypoints[12].name === 'lefft');
     t.true(oldWaypoints.length === 13);
 
-    fms.arrivalRunwayModel = nextRunwayMock;
+    fms.arrivalRunwayModel = nextRunwayFixture;
     fms._regenerateStarLeg();
 
     const newWaypoints = fms.legCollection[starLegIndex].waypointCollection;
 
     t.true(newWaypoints[12].name === 'right');
     t.true(newWaypoints.length === 13);
-    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.routeString, nextRunwayMock));
+    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.routeString, nextRunwayFixture));
 });
 
 ava('._regenerateStarLeg() returns early when there is no STAR leg in the flightplan', (t) => {
