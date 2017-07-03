@@ -851,8 +851,6 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
 
     t.true(_isEqual(fms.departureRunwayModel, initialRunwayFixture));
     t.true(oldWaypoints[0].name === 'fixix');
-    t.true(oldWaypoints[1].name === 'roppr');
-    t.true(oldWaypoints[1].altitudeMaximum === 7000);
     t.true(oldWaypoints.length === 7);
 
     fms.departureRunwayModel = nextRunwayFixture;
@@ -861,8 +859,6 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
     const newWaypoints = fms.legCollection[sidLegIndex].waypointCollection;
 
     t.true(newWaypoints[0].name === 'jaker');
-    t.true(newWaypoints[1].name === 'roppr');
-    t.true(newWaypoints[1].altitudeMaximum === 7000);
     t.true(newWaypoints.length === 7);
     t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayFixture));
 });
