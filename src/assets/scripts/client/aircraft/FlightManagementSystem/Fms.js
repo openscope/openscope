@@ -704,6 +704,13 @@ export default class Fms {
      */
     replaceDepartureProcedure(routeString, runwayModel) {
         if (this.departureRunwayModel.name !== runwayModel.name) {
+            // This does result in needless recursion (since `setDepartureRunway()`
+            // calls `replaceDepartureProcedure()`, but it is necessary because we
+            // need to be able to both:
+            //   - assign a new runway and have the SID leg regenerated
+            //   - assign a new SID and have some way to prevent aircraft from
+            //     attempting to use it from their current expected runway when it's
+            //     invalid for that procedure
             this.setDepartureRunway(runwayModel);
         }
 
@@ -737,6 +744,13 @@ export default class Fms {
      */
     replaceArrivalProcedure(routeString, runwayModel) {
         if (this.arrivalRunwayModel.name !== runwayModel.name) {
+            // This does result in needless recursion (since `setArrivalRunway()`
+            // calls `replaceArrivalProcedure()`, but it is necessary because we
+            // need to be able to both:
+            //   - assign a new runway and have the STAR leg regenerated
+            //   - assign a new STAR and have some way to prevent aircraft from
+            //     attempting to use it from their current expected runway when it's
+            //     invalid for that procedure
             this.setArrivalRunway(runwayModel);
         }
 
