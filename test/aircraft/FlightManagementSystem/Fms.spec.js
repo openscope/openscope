@@ -138,13 +138,23 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
-ava('.setDepartureRunway() changes #departureRunway to the ', (t) => {
+ava('.setDepartureRunway() sets #departureRunwayModel to the specified runway model', (t) => {
     const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
 
     fms.setDepartureRunway(nextRunwayFixture);
 
     t.true(_isEqual(fms.departureRunwayModel, nextRunwayFixture));
+});
+
+ava('.setDepartureRunway() returns early when the specified runway model is equal to #departureRunwayModel', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19L');
+    const fms = buildFmsMockForDeparture();
+    const regenerateSidLegSpy = sinon.spy(fms, '_regenerateSidLeg');
+
+    fms.setDepartureRunway(nextRunwayFixture);
+
+    t.true(regenerateSidLegSpy.notCalled);
 });
 
 ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -164,13 +174,23 @@ ava('.setDepartureRunway() regenerates SID legs for new runway', (t) => {
     t.true(regenerateSidLegSpy.calledWithExactly());
 });
 
-ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
+ava('.setArrivalRunway() sets a #arrivalRunwayModel to the specified runway model', (t) => {
     const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
 
     fms.setArrivalRunway(nextRunwayFixture);
 
     t.true(_isEqual(fms.arrivalRunwayModel, nextRunwayFixture));
+});
+
+ava('.setArrivalRunway() returns early when the specified runway model is equal to #arrivalRunwayModel', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19L');
+    const fms = buildFmsMock();
+    const regenerateStarLegSpy = sinon.spy(fms, '_regenerateStarLeg');
+
+    fms.setArrivalRunway(nextRunwayFixture);
+
+    t.true(regenerateStarLegSpy.notCalled);
 });
 
 ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {

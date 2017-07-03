@@ -511,6 +511,10 @@ export default class Fms {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
 
+        if (this.departureRunwayModel && this.departureRunwayModel.name === runwayModel.name) {
+            return;
+        }
+
         this.departureRunwayModel = runwayModel;
 
         this._regenerateSidLeg();
@@ -528,6 +532,10 @@ export default class Fms {
         // https://github.com/openscope/openscope/issues/93
         if (!_isObject(runwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+        }
+
+        if (this.arrivalRunwayModel && this.arrivalRunwayModel.name === runwayModel.name) {
+            return;
         }
 
         this.arrivalRunwayModel = runwayModel;
