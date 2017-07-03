@@ -161,7 +161,7 @@ ava('.setDepartureRunway() regenerates SID legs for new runway', (t) => {
 
     fms.setDepartureRunway(nextRunwayMock);
 
-    t.true(regenerateSidLegSpy.called);
+    t.true(regenerateSidLegSpy.calledWithExactly());
 });
 
 ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
@@ -189,7 +189,7 @@ ava('.setArrivalRunway() regenerates STAR legs for new runway', (t) => {
 
     fms.setArrivalRunway(nextRunwayMock);
 
-    t.true(regenerateStarLegSpy.called);
+    t.true(regenerateStarLegSpy.calledWithExactly());
 });
 
 // TODO: these next two skipped tests need a LegModelFixturewhich does not yet exist
@@ -826,7 +826,8 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
     const fms = buildFmsMockForDeparture();
     const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
     const sidLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
-    const oldWaypoints = fms.legCollection[sidLegIndex].waypointCollection;
+    const sidLeg = fms.legCollection[sidLegIndex];
+    const oldWaypoints = sidLeg.waypointCollection;
 
     t.true(_isEqual(fms.departureRunwayModel, initialRunwayMock));
     t.true(oldWaypoints[0].name === 'fixix');
@@ -843,7 +844,7 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
     t.true(newWaypoints[1].name === 'roppr');
     t.true(newWaypoints[1].altitudeMaximum === 7000);
     t.true(newWaypoints.length === 7);
-    t.true(replaceDepartureProcedureSpy.called);
+    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayMock));
 });
 
 ava('._regenerateSidLeg() returns early when there is no SID leg in the flightplan', (t) => {
@@ -862,7 +863,8 @@ ava('._regenerateStarLeg() creates a new STAR leg of identical route string for 
     const fms = buildFmsMock();
     const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
     const starLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
-    const oldWaypoints = fms.legCollection[starLegIndex].waypointCollection;
+    const starLeg = fms.legCollection[starLegIndex];
+    const oldWaypoints = starLeg.waypointCollection;
 
     t.true(_isEqual(fms.arrivalRunwayModel, initialRunwayMock));
     t.true(oldWaypoints[12].name === 'lefft');
@@ -875,7 +877,7 @@ ava('._regenerateStarLeg() creates a new STAR leg of identical route string for 
 
     t.true(newWaypoints[12].name === 'right');
     t.true(newWaypoints.length === 13);
-    t.true(replaceArrivalProcedureSpy.called);
+    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.routeString, nextRunwayMock));
 });
 
 ava('._regenerateStarLeg() returns early when there is no STAR leg in the flightplan', (t) => {
