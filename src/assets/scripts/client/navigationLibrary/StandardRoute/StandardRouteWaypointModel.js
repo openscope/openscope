@@ -324,10 +324,6 @@ export default class StandardRouteWaypointModel extends BaseModel {
         const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
-            // TODO: This console warn should be done elsewehere, so a single console
-            // message can inform the airport designer of all missing fixes at once.
-            console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
-
             return this;
         }
 

@@ -291,6 +291,24 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Returns an array of fix names used by any portion of the procedure
+     *
+     * @for StandardRouteModel
+     * @method getAllFixNames
+     * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
+     */
+    getAllFixNames() {
+        const entryFixes = this._entryCollection.getAllFixNames();
+        const bodyFixes = this._bodySegmentModel.getAllFixNames();
+        const exitFixes = this._exitCollection.getAllFixNames();
+        const drawFixes = this.draw.reduce((list, fix) => list.concat(fix))
+            .map((fixName) => fixName.replace('*', ''));
+        const allFixNames = entryFixes.concat(bodyFixes).concat(exitFixes).concat(drawFixes);
+
+        return allFixNames;
+    }
+
+    /**
      * Given a procedureId that is known to be for a suffix route, this method will
      * return the segment name associated with that suffix.
      *

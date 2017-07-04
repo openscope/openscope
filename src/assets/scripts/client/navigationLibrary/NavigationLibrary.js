@@ -1,4 +1,5 @@
 import _isNil from 'lodash/isNil';
+import _uniq from 'lodash/uniq';
 import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
@@ -8,6 +9,8 @@ import {
     FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
+import { VECTOR_WAYPOINT_PREFIX } from '../constants/navigation/routeConstants';
+import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
  *
@@ -106,8 +109,11 @@ export default class NavigationLibrary {
         );
 
         FixCollection.addItems(fixes, this._referencePosition);
+
         this._sidCollection = new StandardRouteCollection(sids, PROCEDURE_TYPE.SID);
         this._starCollection = new StandardRouteCollection(stars, PROCEDURE_TYPE.STAR);
+
+        this.showConsoleWarningForUndefinedFixes();
     }
 
     /**
@@ -316,4 +322,41 @@ export default class NavigationLibrary {
             flightPhase === FLIGHT_PHASE.TAXI ||
             flightPhase === FLIGHT_PHASE.WAITING;
     }
+
+    /**
+     * Check all fixes used in procedures, and gather a list of any fixes that are
+     * not defined in the `fixes` section of the airport file, then sort and print
+     * that list to the console.
+     *
+     * @for NavigationLibrary
+     * @method showConsoleWarningForUndefinedFixes
+     */
+    showConsoleWarningForUndefinedFixes() {
+        const allFixNames = this._getAllFixNames();
+        const missingFixes = allFixNames.filter((fix) => !FixCollection.findFixByName(fix));
+
+        if (missingFixes.length < 1) {
+            return;
+        }
+
+        console.warn(`The following fixes have yet to be defined in the "fixes" section: ${missingFixes}`);
+    }
+
+    /**
+     * Gathers a unique, sorted list of all fixes used in all known procedures
+     *
+     * @for NavigationLibrary
+     * @method _getAllFixNames
+     * @return {array<string>} ['fixxa', 'fixxb', 'fixxc', ...]
+     * @private
+     */
+    _getAllFixNames() {
+        const sidFixes = this.sidCollection.getAllFixNames();
+        const starFixes = this.starCollection.getAllFixNames();
+        const allFixNames = _uniq(sidFixes.concat(starFixes)).sort();
+        const allNonVectorFixes = allFixNames.filter((fix) => fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX);
+
+        return allNonVectorFixes;
+    }
+
 }

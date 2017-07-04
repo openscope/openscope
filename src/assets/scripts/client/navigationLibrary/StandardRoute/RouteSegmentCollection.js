@@ -123,6 +123,7 @@ export default class RouteSegmentCollection extends BaseCollection {
         return segment.findWaypointsForSegment();
     }
 
+    // TODO: This gathers names of exit points, not names of fixes. Should be renamed!
     /**
      * Return a list of fixNames for all of the `RouteSegmentModel`s in the collection
      *
@@ -134,6 +135,23 @@ export default class RouteSegmentCollection extends BaseCollection {
      */
     gatherFixNamesForCollection() {
         return _map(this._items, (item) => item.name);
+    }
+
+    /**
+     * Returns an array of fix names used by any segment in the collection
+     *
+     * @for RouteSegmentCollection
+     * @method getAllFixNames
+     * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
+     */
+    getAllFixNames() {
+        let fixNames = [];
+
+        this._items.forEach((routeSegmentModel) => {
+            fixNames = fixNames.concat(routeSegmentModel.getAllFixNames());
+        });
+
+        return fixNames;
     }
 
     /**
