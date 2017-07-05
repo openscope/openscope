@@ -208,6 +208,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     wip: true
         // },
         {
+            icao: 'kdtw',
+            level: 'hard',
+            name: 'Detroit Metropolitan Wayne County Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kelp',
             level: 'beginner',
             name: 'El Paso International Airport',
