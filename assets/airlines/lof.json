@@ -1,0 +1,13 @@
+{
+    "icao": "lof",
+    "name": "Trans States Airlines",
+    "callsign": {
+        "name": "Waterski",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["E145", 56]
+        ]
+    }
+}
