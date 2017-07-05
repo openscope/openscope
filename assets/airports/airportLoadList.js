@@ -277,6 +277,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: true
         },
+        {
+            icao: 'ksdf',
+            level: 'medium',
+            name: 'Louisville International Airport',
+            wip: false
+        },
         // {
         //     icao: 'ksan',
         //     level: 'easy',
