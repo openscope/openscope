@@ -413,7 +413,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Aeropuerto Internacional Ministro Pistarini',
             premium: false,
-            wip: true
+            wip: false
         },
         // {
         //     icao: 'same',
