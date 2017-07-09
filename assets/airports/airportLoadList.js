@@ -153,7 +153,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kabq',
             level: 'easy',
             name: 'Albuquerque International Sunport',
-            wip: true
+            wip: false
         },
         {
             icao: 'kbos',
