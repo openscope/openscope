@@ -159,7 +159,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'katl',
             level: 'hard',
             name: 'Hartsfield–Jackson Atlanta Int\'l',
-            wip: true
+            wip: false
         },
         {
             icao: 'kbos',
