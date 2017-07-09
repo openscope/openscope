@@ -315,7 +315,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kstl',
             level: 'medium',
             name: 'Lambert–St. Louis International Airport',
-            wip: true
+            wip: false
         },
         // {
         //     icao: 'lkpr',
