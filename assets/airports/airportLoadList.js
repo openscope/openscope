@@ -142,7 +142,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'beginner',
             name: 'Shannon Airport',
             premium: false,
-            wip: true
+            wip: false
         },
         {
             icao: 'ekch',
