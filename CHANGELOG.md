@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
@@ -97,6 +98,22 @@
 - Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
 - Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
 - Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
+=======
+## 5.3.0 (August 1, 2017)
+---
+### Features
+- Add Ottawa Macdonald International Airport [#108](https://github.com/openscope/openscope/issues/104)
+
+
+
+
+
+### Bugfixes
+-Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
+
+
+
+>>>>>>> feature/108 - Make the file look like the airport will work
 
 
 ## 5.2.1 (July 1, 2017)

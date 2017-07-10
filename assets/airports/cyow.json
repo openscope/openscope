@@ -18,6 +18,8 @@
         "angle": 204,
         "speed": 9
     },
+    "arrivalRunway": "14",
+    "departureRunway": "25",
     "airspace": [
         {
             "floor": 0,
@@ -139,79 +141,72 @@
         }
     ],
     "fixes": {
-        "ADVOS":    ["N45d20m19.00", "W075d23m90.00"],
-        "ALIDO":    ["N45d44m43.00", "W075d40m77.00"],
-        "ALSET":    ["N45d36m62.00", "W074d30m00.00"],
-        "AMAGI":    ["N45d14m20.00", "W075d37m27.00"],
-        "APLOV":    ["N44d55m70.00", "W076d08m50.00"],
-        "APMUP":    ["N45d23m71.00", "W075d36m94.00"],
-        "ART":      ["N43d57m13.00", "W076d03m88.00"],
-        "AVVON":    ["N45d10m13.00", "W075d02m27.00"],
-        "BEMOG":    ["N46d09m04.00", "W075d34m35.00"],
-        "BOREG":    ["N45d14m57.00", "W075d36m43.00"],
-        "BUGSY":    ["N44d43m36.00", "W074d08m48.00"],
-        "CATOG":    ["N45d55m03.00", "W072d53m03.00"],
-        "CAVUR":    ["N45d11m12.00", "W075d29m27.00"],
-        "CYRIL":    ["N44d57m17.00", "W075d24m15.00"],
-        "DEMKO":    ["N45d10m45.00", "W075d39m97.00"],
-        "DUKTI":    ["N45d07m32.00", "W075d29m48.00"],
-        "DUNUM":    ["N45d34m25.00", "W075d49m08.00"],
-        "EBNAP":    ["N45d07m91.00", "W075d50m77.00"],
-        "ELSUB":    ["N44d27m70.00", "W077d11m18.00"],
-        "GABEV":    ["N45d28m80.00", "W075d52m80.00"],
-        "IGTAD":    ["N45d29m73.00", "W075d29m12.00"],
-        "IKLAX":    ["N44d59m60.00", "W075d44m80.00"],
-        "ILOGI":    ["N45d29m63.00", "W075d48m39.00"],
-        "ILUBO":    ["N45d23m09.00", "W075d35m90.00"],
-        "KANIK":    ["N44d39m00.00", "W076d57m38.00"],
-        "KAREB":    ["N45d20m99.00", "W075d20m84.00"],
-        "KEMLU":    ["N45d24m21.00", "W075d50m96.00"],
-        "KODEX":    ["N45d03m98.00", "W075d12m57.00"],
-        "LANRK":    ["N44d56m58.00", "W076d23m28.00"],
-        "LETAK":    ["N45d24m13.00", "W076d14m76.00"],
-        "LITRI":    ["N45d21m83.00", "W075d33m88.00"],
-        "MEGNO":    ["N45d21m51.00", "W075d56m83.00"],
-        "MERKO":    ["N45d27m07.00", "W075d43m58.00"],
-        "MIVOK":    ["N44d21m60.00", "W077d35m34.00"],
-        "MODON":    ["N45d17m57.00", "W075d56m19.00"],
-        "NOVUX":    ["N45d12m57.00", "W075d40m88.00"],
-        "OBTAX":    ["N45d41m68.00", "W073d16m10.00"],
-        "OLIGO":    ["N45d29m39.00", "W076d15m00.00"],
-        "OMTUN":    ["N45d22m69.00", "W075d59m11.00"],
-        "ONBAB":    ["N45d28m92.00", "W075d36m08.00"],
-        "ONDOB":    ["N45d41m62.00", "W076d26m25.00"],
-        "PETLU":    ["N45d30m81.00", "W075d50m69.00"],
-        "RADEN":    ["N45d55m92.00", "W076d01m58.00"],
-        "RAFNO":    ["N45d25m55.00", "W075d52m64.00"],
-        "REVAL":    ["N45d27m69.00", "W075d39m57.00"],
-        "SAVAL":    ["N44d54m25.00", "W074d42m02.00"],
-        "SEBEG":    ["N45d16m37.00", "W075d54m01.00"],
-        "SENNZ":    ["N45d20m57.00", "W075d49m50.00"],
-        "SMARE":    ["N46d19m56.00", "W078d09m82.00"],
-        "TAPVO":    ["N44d52m55.00", "W074d58m23.00"],
-        "TEFLY":    ["N45d24m43.00", "W075d27m71.00"],
-        "TEXEN":    ["N45d12m53.00", "W075d27m56.00"],
-        "THURO":    ["N45d33m42.00", "W074d54m47.00"],
-        "TIDUL":    ["N45d15m41.00", "W075d21m02.00"],
-        "TILOG":    ["N45d09m12.00", "W075d48m52.00"],
-        "TOXIP":    ["N45d55m76.00", "W077d04m07.00"],
-        "TUKIR":    ["N45d15m12.00", "W076d14m34.00"],
-        "ULAGU":    ["N45d11m31.00", "W075d43m66.00"],
-        "URLAG":    ["N45d21m55.00", "W075d20m89.00"],
-        "VILRO":    ["N45d36m95.00", "W072d42m93.00"],
-        "VINRA":    ["N45d16m49.00", "W075d58m57.00"],
-        "VISOL":    ["N45d13m34.00", "W075d52m35.00"],
-        "VOLAG":    ["N45d08m51.00", "W075d31m75.00"],
-        "WATTO":    ["N45d15m97.00", "W075d22m22.00"],
-        "XOLTI":    ["N45d28m65.00", "W075d31m52.00"],
-        "YUL":      ["N45d36m94.00", "W073d58m26.00"],
-        "_CYOW":    ["N45d19m35.00", "W075d40m04.00"],
-        "_RWY04":   ["N45d19m36.00", "W075d41m20.50"],
-        "_RWY07":   ["N45d18m47.80", "W075d40m16.80"],
-        "_RWY14":   ["N45d19m37.30", "W075d41m10.40"],
-        "_RWY22":   ["N45d20m03.10", "W075d41m02.30"],
-        "_RWY25":   ["N45d19m30.20", "W075d38m42.40"],
-        "_RWY32":   ["N45d18m38.80", "W075d39m17.70"]
+        "ADVOS": ["N45d20m19.00", "W075d23m90.00"],
+        "ALIDO": ["N45d44m43.00", "W075d40m77.00"],
+        "ALSET": ["N45d36m62.00", "W074d30m00.00"],
+        "AMAGI": ["N45d14m20.00", "W075d37m27.00"],
+        "APLOV": ["N44d55m70.00", "W076d08m50.00"],
+        "APMUP": ["N45d23m71.00", "W075d36m94.00"],
+        "ART"  : ["N43d57m13.00", "W076d03m88.00"],
+        "AVVON": ["N45d10m13.00", "W075d02m27.00"],
+        "BEMOG": ["N46d09m04.00", "W075d34m35.00"],
+        "BOREG": ["N45d14m57.00", "W075d36m43.00"],
+        "BUGSY": ["N44d43m36.00", "W074d08m48.00"],
+        "CATOG": ["N45d55m03.00", "W072d53m03.00"],
+        "CAVUR": ["N45d11m12.00", "W075d29m27.00"],
+        "CYRIL": ["N44d57m17.00", "W075d24m15.00"],
+        "DEMKO": ["N45d10m45.00", "W075d39m97.00"],
+        "DUKTI": ["N45d07m32.00", "W075d29m48.00"],
+        "DUNUM": ["N45d34m25.00", "W075d49m08.00"],
+        "EBNAP": ["N45d07m91.00", "W075d50m77.00"],
+        "ELSUB": ["N44d27m70.00", "W077d11m18.00"],
+        "GABEV": ["N45d28m80.00", "W075d52m80.00"],
+        "IGTAD": ["N45d29m73.00", "W075d29m12.00"],
+        "IKLAX": ["N44d59m60.00", "W075d44m80.00"],
+        "ILOGI": ["N45d29m63.00", "W075d48m39.00"],
+        "ILUBO": ["N45d23m09.00", "W075d35m90.00"],
+        "KANIK": ["N44d39m00.00", "W076d57m38.00"],
+        "KAREB": ["N45d20m99.00", "W075d20m84.00"],
+        "KEMLU": ["N45d24m21.00", "W075d50m96.00"],
+        "KODEX": ["N45d03m98.00", "W075d12m57.00"],
+        "LANRK": ["N44d56m58.00", "W076d23m28.00"],
+        "LETAK": ["N45d24m13.00", "W076d14m76.00"],
+        "LITRI": ["N45d21m83.00", "W075d33m88.00"],
+        "MEGNO": ["N45d21m51.00", "W075d56m83.00"],
+        "MERKO": ["N45d27m07.00", "W075d43m58.00"],
+        "MIVOK": ["N44d21m60.00", "W077d35m34.00"],
+        "MODON": ["N45d17m57.00", "W075d56m19.00"],
+        "NOVUX": ["N45d12m57.00", "W075d40m88.00"],
+        "OBTAX": ["N45d41m68.00", "W073d16m10.00"],
+        "OLIGO": ["N45d29m39.00", "W076d15m00.00"],
+        "OMTUN": ["N45d22m69.00", "W075d59m11.00"],
+        "ONBAB": ["N45d28m92.00", "W075d36m08.00"],
+        "ONDOB": ["N45d41m62.00", "W076d26m25.00"],
+        "PETLU": ["N45d30m81.00", "W075d50m69.00"],
+        "RADEN": ["N45d55m92.00", "W076d01m58.00"],
+        "RAFNO": ["N45d25m55.00", "W075d52m64.00"],
+        "REVAL": ["N45d27m69.00", "W075d39m57.00"],
+        "SAVAL": ["N44d54m25.00", "W074d42m02.00"],
+        "SEBEG": ["N45d16m37.00", "W075d54m01.00"],
+        "SENNZ": ["N45d20m57.00", "W075d49m50.00"],
+        "SMARE": ["N46d19m56.00", "W078d09m82.00"],
+        "TAPVO": ["N44d52m55.00", "W074d58m23.00"],
+        "TEFLY": ["N45d24m43.00", "W075d27m71.00"],
+        "TEXEN": ["N45d12m53.00", "W075d27m56.00"],
+        "THURO": ["N45d33m42.00", "W074d54m47.00"],
+        "TIDUL": ["N45d15m41.00", "W075d21m02.00"],
+        "TILOG": ["N45d09m12.00", "W075d48m52.00"],
+        "TOXIP": ["N45d55m76.00", "W077d04m07.00"],
+        "TUKIR": ["N45d15m12.00", "W076d14m34.00"],
+        "ULAGU": ["N45d11m31.00", "W075d43m66.00"],
+        "URLAG": ["N45d21m55.00", "W075d20m89.00"],
+        "VILRO": ["N45d36m95.00", "W072d42m93.00"],
+        "VINRA": ["N45d16m49.00", "W075d58m57.00"],
+        "VISOL": ["N45d13m34.00", "W075d52m35.00"],
+        "VOLAG": ["N45d08m51.00", "W075d31m75.00"],
+        "WATTO": ["N45d15m97.00", "W075d22m22.00"],
+        "XOLTI": ["N45d28m65.00", "W075d31m52.00"],
+        "YUL"  : ["N45d36m94.00", "W073d58m26.00"]
     },
     "runways": [{
         "name": ["14", "32"],
@@ -236,16 +231,16 @@
         "ils": [true, true]
     }],
     "sids": {
-        "YOW4": {
-            "icao": "YOW4",
+        "CYOW4": {
+            "icao": "CYOW4",
             "name": "Ottawa Four",
             "rwy": {
-                "04": ["_RWY22"],
-                "07": ["_RWY25"],
-                "14": ["_RWY32"],
-                "22": ["_RWY04"],
-                "25": ["_RWY07"],
-                "32": ["_RWY14"]
+                "04": ["#039"],
+                "07": ["#071"],
+                "14": ["#140"],
+                "22": ["#219"],
+                "25": ["#251"],
+                "32": ["#320"]
             },
             "exitPoints": {
                 "APLOV": ["APLOV"],
@@ -258,54 +253,14 @@
                 "TUKIR": ["TUKIR"]
             },
             "draw": [
-                ["_CYOW", "_RWY07", "APLOV"],
-                ["_RWY07", "AVVON"],
-                ["_RWY07", "IKLAX"],
-                ["_RWY07", "KODEX"],
-                ["_RWY07", "LETAK"],
-                ["_RWY07", "OLIGO"],
-                ["_RWY07", "RADEN"],
-                ["_RWY07", "TUKIR"],
-                ["_CYOW", "_RWY04", "APLOV"],
-                ["_RWY04", "AVVON"],
-                ["_RWY04", "IKLAX"],
-                ["_RWY04", "KODEX"],
-                ["_RWY04", "LETAK"],
-                ["_RWY04", "OLIGO"],
-                ["_RWY04", "RADEN"],
-                ["_RWY04", "TUKIR"],
-                ["_CYOW", "_RWY14", "APLOV"],
-                ["_RWY14", "AVVON"],
-                ["_RWY14", "IKLAX"],
-                ["_RWY14", "KODEX"],
-                ["_RWY14", "LETAK"],
-                ["_RWY14", "OLIGO"],
-                ["_RWY14", "RADEN"],
-                ["_RWY14", "TUKIR"],
-                ["_CYOW", "_RWY22", "APLOV"],
-                ["_RWY22", "AVVON"],
-                ["_RWY22", "IKLAX"],
-                ["_RWY22", "KODEX"],
-                ["_RWY22", "LETAK"],
-                ["_RWY22", "OLIGO"],
-                ["_RWY22", "RADEN"],
-                ["_RWY22", "TUKIR"],
-                ["_CYOW", "_RWY25", "APLOV"],
-                ["_RWY25", "AVVON"],
-                ["_RWY25", "IKLAX"],
-                ["_RWY25", "KODEX"],
-                ["_RWY25", "LETAK"],
-                ["_RWY25", "OLIGO"],
-                ["_RWY25", "RADEN"],
-                ["_RWY25", "TUKIR"],
-                ["_CYOW", "_RWY32", "APLOV*"],
-                ["_RWY32", "AVVON*"],
-                ["_RWY32", "IKLAX*"],
-                ["_RWY32", "KODEX*"],
-                ["_RWY32", "LETAK*"],
-                ["_RWY32", "OLIGO*"],
-                ["_RWY32", "RADEN*"],
-                ["_RWY32", "TUKIR*"]
+                ["APLOV*"],
+                ["AVVON*"],
+                ["IKLAX*"],
+                ["KODEX*"],
+                ["LETAK*"],
+                ["OLIGO*"],
+                ["RADEN*"],
+                ["TUKIR*"]
             ]
         }
     },
@@ -314,19 +269,15 @@
             "icao": "CAPTL4",
             "name": "Capital Four",
             "entryPoints": {
-                "MIVOK": [
-                    "MIVOK"
-                ],
-                "ELSUB": [
-                    "ELSUB"
-                ]
+                "MIVOK": ["MIVOK"],
+                "ELSUB": ["ELSUB"]
             },
             "body": [["KANIK", "A230"]],
             "rwy": {
-                "07": [["LANRK", "A100"], ["VISOL", "A30"]],
-                "14": [["LANRK", "A160"], ["VISOL", "A50"], ["SEBEG", "A50"], ["MEGNO", "A35"], "OMTUN"],
-                "25": [["LANRK", "A160"], ["VISOL", "A50"], "ULAGU", ["BOREG", "A50|S230"], ["ADVOS", "A30"], "KAREB"],
-                "32": [["LANRK", "A160"], ["VISOL", "A50"], "ULAGU", ["DEMKO", "A50|S210"], ["VOLAG", "A30"], "DUKTI"],
+                "07": [["LANRK", "A100-"], ["VISOL", "A30"], "#071"],
+                "14": [["LANRK", "A160-"], ["VISOL", "A50"], ["SEBEG", "A50"], ["MEGNO", "A35"], "OMTUN", "#320"],
+                "25": [["LANRK", "A160-"], ["VISOL", "A50"], "ULAGU", ["BOREG", "A50|S230"], ["ADVOS", "A30|S210"], "KAREB", "#084"],
+                "32": [["LANRK", "A160-"], ["VISOL", "A50"], "ULAGU", ["DEMKO", "A50|S210"], ["VOLAG", "A30"], "DUKTI", "#140"],
                 "22": []
             },
             "draw": [
@@ -341,19 +292,15 @@
             "icao": "DEANS8",
             "name": "Deans Eight",
             "entryPoints": {
-                "ART": [
-                    "ART"
-                ],
-                "BUGSY": [
-                    "BUGSY", "SAVAL", ["TAPVO", "A160"]
-                ]
+                "ART": ["ART"],
+                "BUGSY": ["BUGSY", ["SAVAL", "A50+"], ["TAPVO", "A180-|A40+"]]
             },
-            "body": [["CYRIL", "A100"]],
+            "body": [],
             "rwy": {
-                "07": [["CAVUR", "A75|S230"], ["AMAGI", "A50|S210"], ["NOVUX", "A50"], ["TILOG", "A30"], "EBNAP"],
-                "14": ["CAVUR", "LITRI", ["APMUP", "A50|S210"], "MERKO", ["ILOGI", "A35"], "PETLU"],
-                "25": [["TEXEN", "A50|S230"], "ADVOS", "KAREB"],
-                "32": [["TEXEN", "A30"]],
+                "07": [["CYRIL", "A120"], ["CAVUR", "A75|S230-"], ["AMAGI", "A50|S210-"], ["NOVUX", "A50"], ["TILOG", "A30"], "EBNAP", "#247"],
+                "14": [["CYRIL", "A120"], "CAVUR", "LITRI", ["APMUP", "A50|S210-"], "MERKO", ["ILOGI", "A35"], "PETLU", "#320"],
+                "25": [["CYRIL", "A120"], ["TEXEN", "A50|S230-"], "ADVOS", "KAREB", "#084"],
+                "32": [["CYRIL", "A80-"], ["TEXEN", "A30"], "#320"],
                 "22": []
             },
             "draw": [
@@ -368,16 +315,14 @@
             "icao": "LEAMY3",
             "name": "Leamy Three",
             "entryPoints": {
-                "BEMOG": [
-                    ["BEMOG", "A210"]
-                ]
+                "BEMOG": [["BEMOG", "A210-"]]
             },
-            "body": [["ALIDO", "A100"]],
+            "body": [],
             "rwy": {
-                "07": [["DUNUM", "A130"], "GABEV", ["KEMLU", "A50"], "SENNZ", ["MODON", "A30"], "VINRA"],
-                "14": ["DUNUM", ["RAFNO", "A30"]],
-                "25": [["DUNUM", "A130"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD"],
-                "32": [["DUNUM", "A130"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL"],
+                "07": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30"], "VINRA", "#251"],
+                "14": [["ALIDO", "A100-"], "DUNUM", ["RAFNO", "A30"]],
+                "25": [["DUNUM", "A160-"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD", "#072"],
+                "32": [["DUNUM", "A160-"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL", "#141"],
                 "22": []
             },
             "draw": [
@@ -391,40 +336,36 @@
             "icao": "MEECH1",
             "name": "Meech One",
             "entryPoints": {
-                "SMARE": [
-                    "SMARE", ["TOXIP", "A210"]
-                ]
+                "SMARE": ["SMARE", ["TOXIP", "A210"]]
             },
+            "body": [],
             "rwy": {
-                "07": [["ONDOB", "A200"], "GABEV", "KEMLU", "SENNZ", "MODON", "VINRA"],
-                "14": [["ONDOB", "A100"], ["RAFNO", "A30"]],
-                "25": [["ONDOB", "A200"], ["GABEV", "A130"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD"],
-                "32": [["ONDOB", "A200"], ["GABEV", "A130"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL"],
+                "07": [["ONDOB", "A200-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30"], "VINRA", "#251"],
+                "14": [["ONDOB", "A100-"], ["RAFNO", "A30"]],
+                "25": [["ONDOB", "A200-"], ["GABEV", "A130"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD", "#072"],
+                "32": [["ONDOB", "A200-"], ["GABEV", "A130"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL", "#141"],
                 "22": []
             },
             "draw": [
                 ["SMARE", "TOXIP", "ONDOB", "RAFNO"],
-                ["ONDOB", "GABEV"],
-                ["GABEV", "MERKO"]
+                ["ONDOB", "GABEV", "KEMLU", "SENNZ", "MODON", "VINRA"],
+                ["GABEV", "MERKO", "REVAL", "XOLTI", "IGTAD"],
+                ["MERKO", "ILUBO", "WATTO", "TIDUL"]
             ]
         },
-        "RIVER1": {
-            "icao": "RIVER1",
-            "name": "River One",
+        "RIVER2": {
+            "icao": "RIVER2",
+            "name": "River Two",
             "entryPoints": {
-                "VILRO": [
-                    "VILRO"
-                ],
-                "CATOG": [
-                    "CATOG", "OBTAX"
-                ]
+                "VILRO": ["VILRO"],
+                "CATOG": ["CATOG", "OBTAX"]
             },
-            "body": [["YUL", "A280"], "ALSET"],
+            "body": [["YUL", "A280-"], "ALSET"],
             "rwy": {
-                "07": [["THURO", "A160"], "URLAG", ["ADVOS", "A130"], ["WATTO", "A30|S210"], "TIDUL"],
-                "14": [["THURO", "A160"], ["XOLTI", "A50|S230"], ["ONBAB", "A50"], ["ILOGI", "A35"], "PETLU"],
-                "25": [["THURO", "A100"], ["TEFLY", "A30"]],
-                "32": [["THURO", "A120"], ["URLAG", "A50|S230"], "ADVOS", "AMAGI", ["NOVUX", "A50|S210"], ["TILOG", "A30"], "EBNAP"],
+                "07": [["THURO", "A160-"], "URLAG", ["ADVOS", "A130-"], "AMAGI", ["NOVUX", "A50|S210-"], ["TILOG", "A30"], "EBNAP", "#247"],
+                "14": [["THURO", "A160-"], ["XOLTI", "A50|S230-"], ["ONBAB", "A50"], ["ILOGI", "A35|S210-"], "PETLU", "#320"],
+                "25": [["THURO", "A100-"], ["TEFLY", "A30"]],
+                "32": [["THURO", "A120-"], ["URLAG", "A50|S230"], "ADVOS", ["WATTO", "A30|S210-"], "TIDUL", "#141"],
                 "22": []
             },
             "draw": [
@@ -442,11 +383,11 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.YOW4.RWY22",
-            "altitude": null,
-            "speed": null,
+            "route": "CYOW.CYOW4.APLOV",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 2,
             "airlines": [
                 ["aca", 7],
                 ["aca/long", 12],
@@ -461,11 +402,11 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.YOW4.RWY25",
-            "altitude": null,
-            "speed": null,
+            "route": "CYOW.CYOW4.AVVON",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 2,
             "airlines": [
                 ["aca", 7],
                 ["aca/long", 12],
@@ -480,11 +421,11 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.YOW4.RWY14",
-            "altitude": null,
-            "speed": null,
+            "route": "CYOW.CYOW4.IKLAX",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 2,
             "airlines": [
                 ["aca", 7],
                 ["aca/long", 12],
@@ -495,7 +436,101 @@
                 ["wja", 5]
             ]
         },
-
+        {
+            "origin": "CYOW",
+            "destination": "",
+            "category": "departure",
+            "route": "CYOW.CYOW4.KODEX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 7],
+                ["aca/long", 12],
+                ["aal", 1],
+                ["dal", 2],
+                ["poe", 5],
+                ["ual", 3],
+                ["wja", 5]
+            ]
+        },
+        {
+            "origin": "CYOW",
+            "destination": "",
+            "category": "departure",
+            "route": "CYOW.CYOW4.LETAX",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 7],
+                ["aca/long", 12],
+                ["aal", 1],
+                ["dal", 2],
+                ["poe", 5],
+                ["ual", 3],
+                ["wja", 5]
+            ]
+        },
+        {
+            "origin": "CYOW",
+            "destination": "",
+            "category": "departure",
+            "route": "CYOW.CYOW4.OLIGO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 7],
+                ["aca/long", 12],
+                ["aal", 1],
+                ["dal", 2],
+                ["poe", 5],
+                ["ual", 3],
+                ["wja", 5]
+            ]
+        },
+        {
+            "origin": "CYOW",
+            "destination": "",
+            "category": "departure",
+            "route": "CYOW.CYOW4.RADEN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 7],
+                ["aca/long", 12],
+                ["aal", 1],
+                ["dal", 2],
+                ["poe", 5],
+                ["ual", 3],
+                ["wja", 5]
+            ]
+        },
+        {
+            "origin": "CYOW",
+            "destination": "",
+            "category": "departure",
+            "route": "CYOW.CYOW4.TUKIR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 7],
+                ["aca/long", 12],
+                ["aal", 1],
+                ["dal", 2],
+                ["poe", 5],
+                ["ual", 3],
+                ["wja", 5]
+            ]
+        },
         {
             "origin": "",
             "destination": "CYOW",
