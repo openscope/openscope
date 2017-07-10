@@ -1,7 +1,7 @@
 {
     "radio": {
         "twr": "Halifax Tower",
-        "app": "Halifax Arrival",
+        "app": "Halifax Terminal Control",
         "dep": "Halifax Departure"
     },
     "icao": "CYHZ",
@@ -23,7 +23,7 @@
     "airspace": [
         {
             "floor": 0,
-            "ceiling": 12000,
+            "ceiling": 120,
             "airspace_class": "E",
             "poly": [
                 ["N45d07m51.00", "W063d30m31.00"],
@@ -389,8 +389,8 @@
             "destination": "",
             "category": "departure",
             "route": "CYHZ.CYHZ4.CAAPE",
-            "altitude": null,
-            "speed": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -408,9 +408,8 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -418,8 +417,8 @@
             "destination": "",
             "category": "departure",
             "route": "CYHZ.CYHZ4.VQI",
-            "altitude": null,
-            "speed": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -437,9 +436,8 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -447,8 +445,8 @@
             "destination": "",
             "category": "departure",
             "route": "CYHZ.CYHZ4.NOTOP",
-            "altitude": null,
-            "speed": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -466,9 +464,8 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -476,8 +473,8 @@
             "destination": "",
             "category": "departure",
             "route": "CYHZ.CYHZ4.NUTBY",
-            "altitude": null,
-            "speed": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -495,9 +492,8 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -505,8 +501,8 @@
             "destination": "",
             "category": "departure",
             "route": "CYHZ.CYHZ4.YZX",
-            "altitude": null,
-            "speed": null,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 0.792,
             "airlines": [
@@ -524,9 +520,8 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -535,7 +530,7 @@
             "category": "arrival",
             "route": "CAYLY.CABOT1.CYHZ",
             "altitude": 12000,
-            "speed": 280,
+            "speed": 250,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -549,9 +544,8 @@
                 ["wja", 15],
                 ["wen", 5],
                 ["fdx", 1],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -560,7 +554,7 @@
             "category": "arrival",
             "route": "EBONY.FUNDY1.CYHZ",
             "altitude": [27000, 24000],
-            "speed": 320,
+            "speed": 250,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -574,9 +568,8 @@
                 ["wja", 15],
                 ["wen", 5],
                 ["fdx", 1],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -585,7 +578,7 @@
             "category": "arrival",
             "route": "ALLEX.FUNDY1.CYHZ",
             "altitude": [27000, 24000],
-            "speed": 320,
+            "speed": 250,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -599,9 +592,8 @@
                 ["wja", 15],
                 ["wen", 5],
                 ["fdx", 1],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         },
         {
@@ -629,7 +621,7 @@
             "category": "arrival",
             "route": "TUSKY.PEGGY1.CYHZ",
             "altitude": [24000, 21000],
-            "speed": 320,
+            "speed": 250,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -643,9 +635,8 @@
                 ["wja", 15],
                 ["wen", 5],
                 ["fdx", 1],
-                ["airtaxi", 7],
-                ["cessna", 8],
-                ["embraer", 3]
+                ["n/cessna", 8],
+                ["emb", 3]
             ]
         }
     ]
