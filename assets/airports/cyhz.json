@@ -656,18 +656,18 @@
         }
     },
     "stars": {
-        "CABOT1": {
-            "icao": "CABOT1",
-            "name": "Cabot One",
+        "CABOT2": {
+            "icao": "CABOT2",
+            "name": "Cabot Two",
             "entryPoints": {
                 "CAYLY": ["CAYLY"]
             },
             "body": ["BOSUB"],
             "rwy": {
-                "05": ["OVTUV", ["PEPTA", "A50|S210-"], ["OBNOM", "A40+"]],
-                "14": ["KEBOT", ["VIMLA", "A50|S210-"], ["IGVOP", "A40+"]],
-                "23": [["LEROS", "A30+|S200-"]],
-                "32": [["MENVO", "A50|S230-"], ["GABAP", "A40+|S210-"], "KIXIT"]
+                "05": ["OVTUV", ["PEPTA", "A50|S210-"], ["OBNOM", "A40|S210-"], "#233"],
+                "14": ["KEBOT", ["VIMLA", "A50|S210-"], ["IGVOP", "A40|S210-"], "#323"],
+                "23": [["LEROS", "A30|S200-"], "#233"],
+                "32": [["MENVO", "A50|S230-"], ["GABAP", "A40|S210-"], "KIXIT", "#143"]
             },
             "draw": [
                 ["CAYLY*", "BOSUB", "KEBOT", "VIMLA", "IGVOP"],
@@ -676,19 +676,19 @@
                 ["BOSUB", "LEROS"]
             ]
         },
-        "FUNDY1": {
-            "icao": "FUNDY1",
-            "name": "Fundy One",
+        "FUNDY2": {
+            "icao": "FUNDY2",
+            "name": "Fundy Two",
             "entryPoints": {
                 "EBONY": ["EBONY", "EBKID"],
                 "ALLEX": ["ALLEX", "BAFDY"]
             },
             "body": ["MUVOX"],
             "rwy": {
-                "05": [["ODKAS", "A30+|S200-"]],
-                "14": [["TETAR", "A30+|S200-"]],
-                "23": [["LOGPO", "A50|S210-"], ["DUTIR", "A40+"]],
-                "32": [["EBLUV", "A50|S210-"], ["EMBAX", "A40+"]]
+                "05": [["ODKAS", "A30|S200-"], "#053"],
+                "14": [["TETAR", "A30|S200-"], "#143"],
+                "23": [["LOGPO", "A50|S210-"], ["DUTIR", "A40|S210-"], "#053"],
+                "32": [["EBLUV", "A50|S210-"], ["EMBAX", "A40|S210-"], "#143"]
             },
             "draw": [
                 ["EBONY*", "EBKID", "MUVOX", "TETAR"],
@@ -697,18 +697,18 @@
                 ["MUVOX", "LOGPO", "DUTIR", "LEROS"]
             ]
         },
-        "LIRLA1": {
-            "icao": "LIRLA1",
-            "name": "Lirla One",
+        "LIRLA2": {
+            "icao": "LIRLA2",
+            "name": "Lirla Two",
             "entryPoints": {
                 "AGMIR": ["AGMIR"]
             },
             "body": ["LIRLA"],
             "rwy": {
-                "05": [["PEPTA", "A50|S210-"], ["OBNOM", "A40+"]],
-                "14": [["VIMLA", "A50|S210-"], ["IGVOP", "A40+"]],
-                "23": [["LEROS", "A30+|S200-"]],
-                "32": [["VOKIL", "A30+|S200-"]]
+                "05": [["PEPTA", "A50|S210-"], ["OBNOM", "A40|S210-"], "#233"],
+                "14": [["VIMLA", "A50|S210-"], ["IGVOP", "A40|S210-"], "#323"],
+                "23": [["LEROS", "A30|S200-"], "#233"],
+                "32": [["VOKIL", "A30|S200-"], "#323"]
             },
             "draw": [
                 ["AGMIR", "LIRLA", "VIMLA", "IGVOP"],
@@ -717,19 +717,19 @@
                 ["LIRLA", "LEROS"]
             ]
         },
-        "PEGGY1": {
-            "icao": "PEGGY1",
-            "name": "Peggy One",
+        "PEGGY2": {
+            "icao": "PEGGY2",
+            "name": "Peggy Two",
             "entryPoints": {
                 "TUSKY": ["TUSKY"],
                 "ELERI": ["ELERI"]
             },
             "body": ["ETGAR"],
             "rwy": {
-                "05": [["ODKAS", "A30+|S200-"]],
-                "14": [["ILOTA", "A50|S210-"], ["MODIR", "A40+"], "DUNUB"],
-                "23": ["OBNOM", ["RUDBU", "A50|S210-"], ["OVTUV", "A40+"]],
-                "32": [["NOTUB", "A50|S230-"], ["EMBAX", "A40+|S210-"], "EBLIT"]
+                "05": [["ODKAS", "A30|S200-"], "#053"],
+                "14": [["ILOTA", "A50|S210-"], ["MODIR", "A40|S210-"], "DUNUB", "#323"],
+                "23": ["OBNOM", ["RUDBU", "A50|S210-"], ["OVTUV", "A40|S210-"], "#053"],
+                "32": [["NOTUB", "A50|S230-"], ["EMBAX", "A40|S210-"], "EBLIT", "#143"]
             },
             "draw": [
                 ["TUSKY", "ETGAR", "ILOTA", "MODIR", "DUNUB"],
@@ -884,7 +884,7 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "CAYLY.CABOT1.CYHZ",
+            "route": "CAYLY.CABOT2.CYHZ",
             "altitude": 12000,
             "speed": 250,
             "method": "random",
@@ -908,8 +908,8 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "EBONY.FUNDY1.CYHZ",
-            "altitude": [27000, 24000],
+            "route": "EBONY.FUNDY2.CYHZ",
+            "altitude": [24000, 18000],
             "speed": 250,
             "method": "random",
             "rate": 1,
@@ -932,8 +932,8 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "ALLEX.FUNDY1.CYHZ",
-            "altitude": [27000, 24000],
+            "route": "ALLEX.FUNDY2.CYHZ",
+            "altitude": [24000, 18000],
             "speed": 250,
             "method": "random",
             "rate": 1,
@@ -956,7 +956,7 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "AGMIR.LIRLA1.CYHZ",
+            "route": "AGMIR.LIRLA2.CYHZ",
             "altitude": 12000,
             "speed": 280,
             "method": "random",
@@ -975,7 +975,7 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "TUSKY.PEGGY1.CYHZ",
+            "route": "TUSKY.PEGGY2.CYHZ",
             "altitude": [24000, 21000],
             "speed": 250,
             "method": "random",
