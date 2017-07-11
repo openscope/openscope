@@ -263,6 +263,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Atatürk International Airport',
         //     wip: true
         // },
+        {
+            icao: 'mdsd',
+            level: 'easy',
+            name: 'Aeropuerto Internacional Las Américas',
+            wip: false
+        },
         // {
         //     icao: 'omaa',
         //     level: 'medium',
