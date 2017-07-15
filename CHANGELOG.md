@@ -4,6 +4,7 @@
 - New airport: MDSD (Las Américas International Airport, Dominican Republic) [#288](https://github.com/openscope/openscope/issues/288)
     - Includes Terrain and Video map
     - Adds Copa Airlines (CMP) and PAWA Dominicana (PWD)
+- Add new openScope emblem vector graphic [#572](https://github.com/openscope/openscope/issues/572)
 
 
 
