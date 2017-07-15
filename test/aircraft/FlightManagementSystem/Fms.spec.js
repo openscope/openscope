@@ -151,10 +151,12 @@ ava('.setDepartureRunway() returns early when the specified runway model is equa
     const nextRunwayFixture = airportModelFixture.getRunway('19L');
     const fms = buildFmsMockForDeparture();
     const regenerateSidLegSpy = sinon.spy(fms, '_regenerateSidLeg');
+    const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
 
     fms.setDepartureRunway(nextRunwayFixture);
 
     t.true(regenerateSidLegSpy.notCalled);
+    t.true(replaceDepartureProcedureSpy.notCalled);
 });
 
 ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -187,10 +189,12 @@ ava('.setArrivalRunway() returns early when the specified runway model is equal 
     const nextRunwayFixture = airportModelFixture.getRunway('19L');
     const fms = buildFmsMock();
     const regenerateStarLegSpy = sinon.spy(fms, '_regenerateStarLeg');
+    const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
 
     fms.setArrivalRunway(nextRunwayFixture);
 
     t.true(regenerateStarLegSpy.notCalled);
+    t.true(replaceArrivalProcedureSpy.notCalled);
 });
 
 ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {
