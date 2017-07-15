@@ -1,6 +1,7 @@
 /* eslint-disable arrow-parens, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
+import _uniq from 'lodash/uniq';
 
 import RouteSegmentCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentCollection';
 import RouteSegmentModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentModel';
@@ -53,11 +54,19 @@ ava('.findWaypointsForSegmentName() returns an array of fixes for a given segmen
     t.true(_isEqual(result[0], ['PIRMD', null]), 'Expected to receive and array that is [`{string}`, `{string|null}`]');
 });
 
-ava('.gatherFixNamesForCollection() returns a list of names for each RouteSegmentModel in the collection', t => {
+ava('.gatherFixNamesForCollection() returns a list of entryPoint/exitPoint names for each RouteSegmentModel in the collection', t => {
     const collection = new RouteSegmentCollection(ROUTE_SEGMENTS_MOCK);
     const result = collection.gatherFixNamesForCollection();
 
     t.true(result.length === 8);
+});
+
+ava('.getAllFixNames() returns an array of fix names used by any segment in the collection', (t) => {
+    const collection = new RouteSegmentCollection(ROUTE_SEGMENTS_MOCK);
+    const result = _uniq(collection.getAllFixNames().sort());
+    const expectedResult = ['BAKRR', 'BESSY', 'FIXIX', 'HITME', 'JAKER', 'JESJI', 'MDDOG', 'MINEY', 'PIRMD', 'RBELL', 'ROPPR', 'TARRK', 'WASTE'];
+
+    t.true(_isEqual(result, expectedResult));
 });
 
 ava('._addSegmentToCollection() throws if not passed a RouteSegmentModel', t => {

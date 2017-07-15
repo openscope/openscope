@@ -72,3 +72,10 @@ ava('.isGroundedFlightPhase() returns true when passed `WAITING`', (t) => {
 
     t.true(navigationLibrary.isGroundedFlightPhase('WAITING'));
 });
+
+ava('.getAllFixNames() returns list of all fixnames used in all procedures', (t) => {
+    const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    const fixNameList = navigationLibrary._getAllFixNames();
+
+    t.true(fixNameList.length === 83);
+});

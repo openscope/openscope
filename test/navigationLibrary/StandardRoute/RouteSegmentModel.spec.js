@@ -1,6 +1,8 @@
 /* eslint-disable arrow-parens, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
+import _isEqual from 'lodash/isEqual';
+import _uniq from 'lodash/uniq';
 
 import RouteSegmentModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
@@ -32,6 +34,14 @@ ava('accepts name as a single parameter', t => {
     t.true(result.name === NAME_MOCK);
     t.true(result._items.length === 0);
     t.true(result.length === 0);
+});
+
+ava('.getAllFixNames() returns an array of fix names used by this segment', (t) => {
+    const routeSegmentModel = new RouteSegmentModel(NAME_MOCK, SEGMENT_WAYPOINTS_MOCK);
+    const result = _uniq(routeSegmentModel.getAllFixNames().sort());
+    const expectedResult = ['MDDOG', 'RBELL', 'ROPPR', 'TARRK'];
+
+    t.true(_isEqual(result, expectedResult));
 });
 
 ava('._init() does not call ._createWaypointModelsFromList() when it receives only a `name`', t => {

@@ -21,7 +21,8 @@ export const STAR_LIST_MOCK = {
             '19R': [],
             '25L': [],
             '25R': []
-        }
+        },
+        "draw": [[]]
     },
     'KEPEC3': {
         'icao': 'KEPEC3',
@@ -40,7 +41,8 @@ export const STAR_LIST_MOCK = {
             '19R': [],
             '25L': [],
             '25R': []
-        }
+        },
+        "draw": [[]]
     },
     'SUNST3': {
         'icao': 'SUNST3',
@@ -59,7 +61,8 @@ export const STAR_LIST_MOCK = {
             '19R': [],
             '25L': [],
             '25R': []
-        }
+        },
+        "draw": [[]]
     },
     'TYSSN4': {
         'icao': 'TYSSN4',
@@ -80,7 +83,8 @@ export const STAR_LIST_MOCK = {
             '19R': [],
             '25L': [],
             '25R': []
-        }
+        },
+        "draw": [[]]
     }
 };
 
@@ -93,7 +97,8 @@ export const STAR_WITHOUT_RWY = {
         'DVC':   ['DVC', 'BETHL', ['HOLDM', 'A270']],
         'MLF':   ['MLF']
     },
-    'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ']
+    'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ'],
+    'draw': [[]]
 };
 
 export const STAR_WITH_SUFFIX = {
@@ -116,7 +121,8 @@ export const STAR_WITH_SUFFIX = {
         '19R': [],
         '25L': [],
         '25R': []
-    }
+    },
+    'draw': [[]]
 };
 
 export const STAR_WITH_ONLY_VECTORS = {
@@ -128,7 +134,8 @@ export const STAR_WITH_ONLY_VECTORS = {
         'DVC':   ['DVC'],
         'MLF':   ['MLF']
     },
-    'body': ['#130']
+    'body': ['#130'],
+    'draw': [[]]
 };
 
 export const SID_LIST_MOCK = {

@@ -108,6 +108,13 @@ ava('.findRouteByIcaoWithSuffix() returns a route model when a route and suffix 
     t.true(result.icao === 'GRNPA11A');
 });
 
+ava('.getAllFixNames() returns an array of fix names used by any portion of any procedure in the collection', (t) => {
+    const standardRouteCollection = new StandardRouteCollection(STAR_LIST_MOCK, PROCEDURE_TYPE.STAR);
+    const fixNameList = standardRouteCollection.getAllFixNames();
+
+    t.true(fixNameList.length === 171);
+});
+
 ava('.hasRoute() returns a boolean if a route exists within the collection', (t) => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK, PROCEDURE_TYPE.STAR);
 

@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 import _keys from 'lodash/keys';
 import _map from 'lodash/map';
+import _uniq from 'lodash/uniq';
 
 import StandardRouteModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteModel';
 import RouteSegmentCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentCollection';
@@ -128,6 +129,14 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     const expectedResult = ['KENNO', 'OAL'];
     const model = new StandardRouteModel(SID_MOCK);
     const result = model.gatherExitPointNames();
+
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.getAllFixNames() returns an array of fix names used by any portion of the procedure', (t) => {
+    const standardRouteModel = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+    const result = _uniq(standardRouteModel.getAllFixNames().sort());
+    const expectedResult = ['BCE', 'BETHL', 'DUBLX', 'DVC', 'FRAWG', 'GRNPA', 'HOLDM', 'KSINO', 'LEMNZ', 'LUXOR', 'MLF', 'THREEVE', 'TRROP'];
 
     t.true(_isEqual(result, expectedResult));
 });
