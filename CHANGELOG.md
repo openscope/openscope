@@ -26,6 +26,7 @@
 - Adds LESS preprocessor and adds CSS folder structure [#481](https://github.com/openscope/openscope/issues/481)
 - Deprecated `abort` command [#639](https://github.com/openscope/openscope/issues/639)
 - Renamed `index.md` to `commands.md` and added system commands and a TOC [#365](https://github.com/openscope/openscope/issues/365)
+- Consolidate console warnings for missing fixes to single message [#480](https://github.com/openscope/openscope/issues/480)
 
 
 
