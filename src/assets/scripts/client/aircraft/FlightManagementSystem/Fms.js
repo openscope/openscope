@@ -1382,6 +1382,8 @@ export default class Fms {
         const sidLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
 
         if (sidLegIndex === INVALID_INDEX) {
+            // would be throwing here, except that causes the initial setting of the
+            // departure runway to throw. So instead will just return early.
             return;
         }
 
@@ -1400,6 +1402,8 @@ export default class Fms {
         const starLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         if (starLegIndex === INVALID_INDEX) {
+            // would be throwing here, except that causes the initial setting of the
+            // arrival runway to throw. So instead will just return early.
             return;
         }
 
