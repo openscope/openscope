@@ -496,8 +496,15 @@ export default class AircraftCommander {
     runReroute(aircraft, data) {
         // TODO: is this .toUpperCase() necessary??
         const routeString = data[0].toUpperCase();
+        const readback = aircraft.pilot.applyNewRoute(routeString, aircraft.initialRunwayAssignment);
 
-        return aircraft.pilot.applyNewRoute(routeString, aircraft.initialRunwayAssignment);
+        // Only change to LNAV mode if the route was applied successfully, else
+        // continue with the previous instructions (whether a heading, etc)
+        if (readback[0]) {
+            aircraft.mcp.setHeadingLnav();
+        }
+
+        return readback;
     }
 
     /**
