@@ -248,6 +248,8 @@ export default class CanvasController {
 
                 this.canvas_clear(cc);
 
+                this.canvas_fill_background(cc);
+
                 cc.translate(
                     calculateMiddle(this.canvas.size.width),
                     calculateMiddle(this.canvas.size.height)
@@ -369,7 +371,6 @@ export default class CanvasController {
         this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
 
-
     /**
      * @for CanvasController
      * @method canvas_get
@@ -401,6 +402,11 @@ export default class CanvasController {
         }
 
         return false;
+    }
+
+    canvas_fill_background(cc) {
+        cc.fillStyle = '#354';
+        cc.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
     /**
