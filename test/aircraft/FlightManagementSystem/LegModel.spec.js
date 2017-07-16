@@ -52,12 +52,12 @@ ava('.destroy() calls ._destroyWaypointCollection()', (t) => {
     t.true(_destroyWaypointCollectionSpy.calledOnce);
 });
 
-ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
+ava('.skipToWaypointAtIndex() drops n number of WaypointModels from the left of #waypointCollection', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 
     model.skipToWaypointAtIndex(3);
 
-    t.true(model.waypointCollection.length === 9);
+    t.true(model.waypointCollection.length === 10);
     t.true(model.currentWaypoint.name === 'skebr');
 });
 
