@@ -1160,32 +1160,28 @@ k
                 -round(UiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
             ];
 
-            // game will move FDB to the appropriate position
-            if (aircraft.datablockDir === INVALID_NUMBER) {
-                if (-UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
-                    cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
-                } else {
-                    cc.translate(ac_pos[0], ac_pos[1] - height2 - 12);
-                }
-            } else {
-                // user wants to specify FDB position
-                const displacements = {
-                    ctr: [0, 0],
-                    360: [0, -height2 - 12],
-                    45: [width2 + 8.5, -height2 - 8.5],
-                    90: [width2 + bar_width2 + 12, 0],
-                    135: [width2 + 8.5, height2 + 8.5],
-                    180: [0, height2 + 12],
-                    225: [-width2 - 8.5, height2 + 8.5],
-                    270: [-width2 - bar_width2 - 12, 0],
-                    315: [-width2 - 8.5, -height2 - 8.5]
-                };
+            let datablockDir = aircraft.datablockDir;
 
-                cc.translate(
-                    ac_pos[0] + displacements[aircraft.datablockDir][0],
-                    ac_pos[1] + displacements[aircraft.datablockDir][1]
-                );
+            if (datablockDir === INVALID_NUMBER) {
+                datablockDir = DATA_BLOCK_THEME.FDB_LEADER_DIRECTION;
             }
+
+            const displacements = {
+                ctr: [0, 0],
+                360: [0, -height2 - 12],
+                45: [width2 + 8.5, -height2 - 8.5],
+                90: [width2 + bar_width2 + 12, 0],
+                135: [width2 + 8.5, height2 + 8.5],
+                180: [0, height2 + 12],
+                225: [-width2 - 8.5, height2 + 8.5],
+                270: [-width2 - bar_width2 - 12, 0],
+                315: [-width2 - 8.5, -height2 - 8.5]
+            };
+
+            cc.translate(
+                ac_pos[0] + displacements[datablockDir][0],
+                ac_pos[1] + displacements[datablockDir][1]
+            );
 
             // Draw datablock shapes
             if (!ILS_enabled && DATA_BLOCK_THEME.HAS_FDB_BOX_OUTLINE) {

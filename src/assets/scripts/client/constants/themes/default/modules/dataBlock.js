@@ -14,8 +14,7 @@ export const DATA_BLOCK_THEME = {
     DEPARTURE_BAR_IN_RANGE: COLOR.BLUE_05,
     DEPARTURE_BAR_OUT_OF_RANGE: COLOR.BLUE_02,
     DEPARTURE_BAR_SELECTED: COLOR.BLUE_09,
-    // FIXME: This not yet in use!
-    FDB_LEADER_DIRECTION: 8,
+    FDB_LEADER_DIRECTION: 360,
     // FIXME: This not yet in use!
     FDB_LEADER_LENGTH: 1,
     FDB_TEXT_FONT: '10px monoOne, monospace',
