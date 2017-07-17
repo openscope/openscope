@@ -404,7 +404,9 @@ export default class CanvasController {
     }
 
     canvas_fill_background(cc) {
-        cc.fillStyle = '#354';
+        const SCOPE_THEME = this.theme.SCOPE;
+
+        cc.fillStyle = SCOPE_THEME.BACKGROUND;
         cc.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
@@ -586,17 +588,22 @@ export default class CanvasController {
      * @method canvas_draw_fix
      * @param cc
      * @param name
-     * @param fix
      */
-    canvas_draw_fix(cc, name, fix) {
+    canvas_draw_fix(cc, name) {
+        const SCOPE_THEME = this.theme.SCOPE;
+
+        cc.fillStyle = SCOPE_THEME.FIX_FILL;
+        cc.globalCompositeOperation = 'source-over';
+        cc.lineWidth = 1;
+
         cc.beginPath();
         cc.moveTo(0, -5);
         cc.lineTo(4, 3);
         cc.lineTo(-4, 3);
         cc.closePath();
         cc.fill();
-        // cc.stroke();
 
+        cc.fillStyle = SCOPE_THEME.FIX_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
         cc.fillText(name, 0, 6);
@@ -612,8 +619,6 @@ export default class CanvasController {
             return;
         }
 
-        const SCOPE_THEME = this.theme.SCOPE;
-
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
@@ -624,11 +629,7 @@ export default class CanvasController {
                 -round(UiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
 
-            cc.fillStyle = SCOPE_THEME.FIX_FILL;
-            cc.globalCompositeOperation = 'source-over';
-            cc.lineWidth = 1;
-
-            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
+            this.canvas_draw_fix(cc, fix.name);
 
             cc.restore();
         });
@@ -988,8 +989,6 @@ k
      */
     canvas_draw_future_track(cc, aircraft) {
         const RADAR_TARGET_THEME = this.theme.RADAR_TARGET;
-        let ils_locked;
-        let lockedStroke;
         let was_locked = false;
         const future_track = [];
         const save_delta = GameController.game.delta;
@@ -1003,7 +1002,7 @@ k
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
+            const ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
             future_track.push([...twin.relativePosition, ils_locked]);
 
@@ -1020,7 +1019,6 @@ k
             cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_DEPARTURE;
         } else {
             cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_ARRIVAL;
-            lockedStroke = RADAR_TARGET_THEME.RADAR_TARGET_ESTABLISHED_ON_APPROACH;
         }
 
         cc.globalCompositeOperation = 'screen';
@@ -1029,7 +1027,7 @@ k
 
         for (let i = 0; i < future_track.length; i++) {
             const track = future_track[i];
-            ils_locked = track[2];
+            const ils_locked = track[2];
 
             const x = UiController.km_to_px(track[0]) + this.canvas.panX;
             const y = -UiController.km_to_px(track[1]) + this.canvas.panY;
@@ -1038,7 +1036,7 @@ k
                 cc.lineTo(x, y);
                 // end the current path, start a new path with lockedStroke
                 cc.stroke();
-                cc.strokeStyle = lockedStroke;
+                cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_ESTABLISHED_ON_APPROACH;
                 cc.lineWidth = 3;
                 cc.beginPath();
                 cc.moveTo(x, y);
@@ -1141,10 +1139,17 @@ k
             let white = DATA_BLOCK_THEME.TEXT_OUT_OF_RANGE;
 
             if (aircraft.inside_ctr) {
-                red = DATA_BLOCK_THEME.ARRIVAL_BAR_SELECTED;
-                green = DATA_BLOCK_THEME.BACKGROUND_SELECTED;
-                blue = DATA_BLOCK_THEME.DEPARTURE_BAR_SELECTED;
-                white = DATA_BLOCK_THEME.TEXT_SELECTED;
+                red = DATA_BLOCK_THEME.ARRIVAL_BAR_IN_RANGE;
+                green = DATA_BLOCK_THEME.BACKGROUND_IN_RANGE;
+                blue = DATA_BLOCK_THEME.DEPARTURE_BAR_IN_RANGE;
+                white = DATA_BLOCK_THEME.TEXT_IN_RANGE;
+
+                if (match) {
+                    red = DATA_BLOCK_THEME.ARRIVAL_BAR_SELECTED;
+                    green = DATA_BLOCK_THEME.BACKGROUND_SELECTED;
+                    blue = DATA_BLOCK_THEME.DEPARTURE_BAR_SELECTED;
+                    white = DATA_BLOCK_THEME.TEXT_SELECTED;
+                }
             }
 
             cc.textBaseline = 'middle';
@@ -1183,15 +1188,15 @@ k
             }
 
             // Draw datablock shapes
-            if (!ILS_enabled) {
-                // Standard Box
+            if (!ILS_enabled && DATA_BLOCK_THEME.HAS_FDB_BOX_OUTLINE) {
+                // data block box background fill
                 cc.fillStyle = green;
-                // Draw box
                 cc.fillRect(-width2, -height2, width, height);
-                cc.fillStyle = (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) ? blue : red;
+
                 // Draw colored bar
+                cc.fillStyle = (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) ? blue : red;
                 cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
-            } else {
+            } else if (DATA_BLOCK_THEME.HAS_FDB_BOX_OUTLINE) {
                 // Box with ILS Lock Indicator
                 cc.save();
 
@@ -1265,6 +1270,7 @@ k
             }
 
             // Draw full datablock text
+            cc.font = DATA_BLOCK_THEME.FDB_TEXT_FONT;
             cc.textAlign = 'left';
             cc.fillText(row1text, -width2 + paddingLR, -gap / 2 - lineheight);
             cc.fillText(row2text, -width2 + paddingLR, gap / 2 + lineheight);
