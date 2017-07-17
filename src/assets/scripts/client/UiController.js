@@ -14,7 +14,7 @@ import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
-import { THEME } from './constants/colors/themes';
+import { THEME } from './constants/themes';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE

@@ -37,8 +37,8 @@ import {
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
-import { COLOR } from '../constants/colors/colors';
-import { THEME } from '../constants/colors/themes';
+import { COLOR } from '../constants/themes/default/colors';
+import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
     INVALID_INDEX,
@@ -803,9 +803,9 @@ export default class CanvasController {
         cc.save();
 
         if (!aircraft.inside_ctr) {
-            cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
+            cc.fillStyle = this.theme.HISTORY_DOT_OUTSIDE_RANGE;
         } else {
-            cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
+            cc.fillStyle = this.theme.HISTORY_DOT_INSIDE_RANGE;
         }
 
         const length = aircraft.relativePositionHistory.length;
@@ -853,14 +853,11 @@ export default class CanvasController {
 
         cc.strokeStyle = cc.fillStyle;
 
+        // Draw bigger circle around radar target when the aircraft is selected
         if (match) {
             cc.save();
 
-            if (!aircraft.inside_ctr) {
-                cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
-            } else {
-                cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
-            }
+            cc.fillStyle = this.theme.RADAR_TARGET;
 
             const w = this.canvas.size.width / 2;
             const h = this.canvas.size.height / 2;
@@ -1053,18 +1050,15 @@ k
      * @param cc
      */
     canvas_draw_all_aircraft(cc) {
-        // FIXME: How is this different from at line 793?
-        cc.fillStyle = COLOR.LIGHT_SILVER;
-        cc.strokeStyle = COLOR.LIGHT_SILVER;
-        cc.lineWidth = 2;
-
-        // console.time('canvas_draw_all_aircraft')
         for (let i = 0; i < prop.aircraft.list.length; i++) {
+            // color of position dot
+            cc.fillStyle = this.theme.RADAR_TARGET;
+            cc.lineWidth = 2;
+
             cc.save();
             this.canvas_draw_aircraft(cc, prop.aircraft.list[i]);
             cc.restore();
         }
-        // console.timeEnd('canvas_draw_all_aircraft')
     }
 
     /**
@@ -1520,9 +1514,12 @@ k
             return;
         }
 
-        // FIXME: Does this even end up getting used? Convert to use of `this.theme`
-        cc.strokeStyle = COLOR.WHITE_04;
-        cc.fillStyle = COLOR.WHITE_02;
+        // Terrain key rectangles' outline stroke color
+        // Also determines color of terrain outline drawn at '0ft'
+        cc.strokeStyle = this.theme.FIX_FILL;
+        // Somehow used to tint the terrain key rectangles' fill color
+        // Also determines color of terrain fill at '0ft'
+        cc.fillStyle = this.theme.FIX_FILL;
         cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
         cc.lineJoin = 'round';
 
