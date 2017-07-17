@@ -3,7 +3,15 @@ import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
+import AirportController from '../../airport/AirportController';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import { MCP_MODE } from '../ModeControl/modeControlConstants';
+import {
+    FLIGHT_CATEGORY,
+    FLIGHT_PHASE
+} from '../../constants/aircraftConstants';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
+import { radians_normalize } from '../../math/circle';
 import { clamp } from '../../math/core';
 import {
     groupNumbers,
@@ -18,12 +26,6 @@ import {
     degreesToRadians,
     heading_to_string
 } from '../../utilities/unitConverters';
-import { radians_normalize } from '../../math/circle';
-import {
-    FLIGHT_CATEGORY,
-    FLIGHT_PHASE
-} from '../../constants/aircraftConstants';
-import { MCP_MODE } from '../ModeControl/modeControlConstants';
 
 /**
  * Executes control actions upon the aircraft by manipulating the MCP and FMS, and provides
@@ -105,8 +107,11 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
+     * @param currentAltitude {number}
      * @param altitude {number}   the altitude to maintain, in feet
      * @param expedite {boolean}  whether to use maximum possible climb/descent rate
+     * @param shouldUseSoftCeiling {boolean}
+     * @param airportModel {AirportModel}
      * @return {array}            [success of operation, readback]
      */
     maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
@@ -118,6 +123,7 @@ export default class Pilot {
             clampedAltitude += 1;
         }
 
+        this.cancelApproachClearance();
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
@@ -148,14 +154,14 @@ export default class Pilot {
      * @for Pilot
      * @method maintainHeading
      * @param currentHeading {number}
-     * @param heading        {number}                   the heading to maintain, in radians_normalize
+     * @param headingInDegrees {number}                 the heading to maintain, in degrees
      * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
      * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a
      *                                                  number of degrees to turn
      * @return {array}                                  [success of operation, readback]
      */
-    maintainHeading(currentHeading, headingOrDegrees, direction, incremental) {
-        const nextHeadingInRadians = degreesToRadians(headingOrDegrees);
+    maintainHeading(currentHeading, headingInDegrees, direction, incremental) {
+        const nextHeadingInRadians = degreesToRadians(headingInDegrees);
         let correctedHeading = nextHeadingInRadians;
 
         if (incremental) {
@@ -167,6 +173,7 @@ export default class Pilot {
             }
         }
 
+        this.cancelApproachClearance();
         this._fms.exitHoldIfHolding();
         this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
@@ -177,8 +184,8 @@ export default class Pilot {
         readback.say = `fly heading ${radio_heading(headingStr)}`;
 
         if (incremental) {
-            readback.log = `turn ${headingOrDegrees} degrees ${direction}`;
-            readback.say = `turn ${groupNumbers(headingOrDegrees)} degrees ${direction}`;
+            readback.log = `turn ${headingInDegrees} degrees ${direction}`;
+            readback.say = `turn ${groupNumbers(headingInDegrees)} degrees ${direction}`;
         } else if (direction) {
             readback.log = `turn ${direction} heading ${headingStr}`;
             readback.say = `turn ${direction} heading ${radio_heading(headingStr)}`;
@@ -196,6 +203,7 @@ export default class Pilot {
      * @return {array}          [success of operation, readback]
      */
     maintainPresentHeading(heading) {
+        this.cancelApproachClearance();
         this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(heading);
 
@@ -234,11 +242,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyArrivalProcedure
-     * @param routeString {String}  route string in the form of `entry.procedure.airport`
-     * @return {Array}              [success of operation, readback]
+     * @param routeString {string}       route string in the form of `entry.procedure.airport`
+     * @param runwayModel {RunwayModel}
+     * @param airportName {string}
+     * @return {array}                   [success of operation, readback]
      */
-    applyArrivalProcedure(routeString, arrivalRunway, airportName) {
-        if (!this._fms.isValidProcedureRoute(routeString, arrivalRunway, FLIGHT_CATEGORY.ARRIVAL)) {
+    applyArrivalProcedure(routeString, runwayModel, airportName) {
+        if (!this._fms.isValidProcedureRoute(routeString, runwayModel, FLIGHT_CATEGORY.ARRIVAL)) {
             // TODO: may need a better message here
             return [false, 'STAR name not understood'];
         }
@@ -247,11 +257,11 @@ export default class Pilot {
         const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
 
         // TODO: set mcp modes here
-        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
+        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, runwayModel);
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure} arrival`;
+        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure.toUpperCase()} arrival`;
         readback.say = `cleared to ${airportName} via the ${starModel.name.toUpperCase()} arrival`;
 
         return [true, readback];
@@ -263,39 +273,39 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}      the identifier for the procedure
-     * @param departureRunway {String}  the identifier for the runway to use for departure
-     * @param airportIcao {string}      airport icao identifier
-     * @return {array}                  [success of operation, readback]
+     * @param procedureId {String}          the identifier for the procedure
+     * @param runwayModel {RunwayModel}     RunwayModel used for departure
+     * @param airportIcao {string}          airport icao identifier
+     * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, departureRunway, airportIcao) {
-        this.hasDepartureClearance = true;
-
+    applyDepartureProcedure(procedureId, runwayModel, airportIcao) {
         const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
 
         if (_isNil(standardRouteModel)) {
             return [false, 'SID name not understood'];
         }
 
-        // TODO: this should no be randomized
-        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
-        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
-
-        if (!departureRunway) {
+        if (!runwayModel) {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
 
-        if (!standardRouteModel.hasFixName(departureRunway)) {
+        // TODO: this should not be randomized
+        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
+        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
+
+        if (!standardRouteModel.hasFixName(runwayModel.name)) {
             return [
                 false,
                 `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${departureRunway.toUpperCase()}`
+                `from Runway ${runwayModel.name.toUpperCase()}`
             ];
         }
 
+        this.hasDepartureClearance = true;
+
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeStr, departureRunway);
+        this._fms.replaceDepartureProcedure(routeStr, runwayModel);
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
@@ -354,7 +364,8 @@ export default class Pilot {
         if (!this._fms.isValidRouteAmendment(routeString)) {
             return [
                 false,
-                `requested route of "${routeString.toUpperCase()}" is invalid, it must contain a Waypoint in the current route`
+                `requested route of "${routeString.toUpperCase()}" is invalid, it ` +
+                    'must contain a Waypoint in the current route'
             ];
         }
 
@@ -370,29 +381,38 @@ export default class Pilot {
     }
 
     /**
-     * Stop conducting the instrument approach; maintain present speed/heading, and climb
-     * to a reasonable altitude
+     * Stop conducting the instrument approach, and maintain:
+     * - current or last assigned altitude (whichever is lower)
+     * - current heading
+     * - last assigned speed
      *
      * @for Pilot
      * @method cancelApproachClearance
-     * @param heading {number}           the aircraft's current heading
-     * @param speed {number}             the aircraft's current speed
-     * @param airportElevation {number}  the elevation of the airport, in feet MSL
-     * @return {array}                   [success of operation, readback]
+     * @param currentHeading {number}   the aircraft's current heading, in radians
+     * @param currentSpeed {number}     the aircraft's current speed, in knots
+     * @return {array}                  [success of operation, readback]
      */
-    cancelApproachClearance(heading, speed, airportElevation) {
-        const initialMissedApproachAltitude = _ceil(airportElevation, -2) + 1000;
+    cancelApproachClearance(currentAltitude, currentHeading) {
+        if (!this.hasApproachClearance) {
+            return [false, 'we have no approach clearance to cancel!'];
+        }
 
-        this._mcp.setHeadingHold();
-        this._mcp.setHeadingFieldValue(heading);
+        const airport = AirportController.airport_get();
+        const altitudeToMaintain = Math.max(
+            Math.min(currentAltitude, this._mcp.altitude),
+            airport.minAssignableAltitude
+        );
+
+        this._mcp.setAltitudeFieldValue(altitudeToMaintain);
         this._mcp.setAltitudeHold();
-        this._mcp.setAltitudeFieldValue(initialMissedApproachAltitude);
+        this._mcp.setHeadingFieldValue(currentHeading);
+        this._mcp.setHeadingHold();
         this._mcp.setSpeedHold();
-        this._mcp.setSpeedFieldValue(speed);
 
-        const readback = {};
-        readback.log = `cancel approach clearance, fly present heading, maintain ${initialMissedApproachAltitude}`;
-        readback.say = `cancel approach clearance, fly present heading, maintain ${radio_altitude(initialMissedApproachAltitude)}`;
+        this.hasApproachClearance = false;
+
+        const readback = 'cancel approach clearance, fly present heading, ' +
+            'maintain last assigned altitude and speed';
 
         return [true, readback];
     }
@@ -424,7 +444,7 @@ export default class Pilot {
      * @return {array}           [success of operation, readback]
      */
     climbViaSid() {
-        if (this._fms.flightPlanAltitude === -1) {
+        if (this._fms.flightPlanAltitude === INVALID_NUMBER) {
             const readback = {};
             readback.log = 'unable to climb via SID, no altitude assigned';
             readback.say = 'unable to climb via SID, no altitude assigned';
@@ -521,12 +541,10 @@ export default class Pilot {
      * @param datum {StaticPositionModel}  the position the glidepath is projected from
      * @param course {number}              the heading inbound to the datum
      * @param descentAngle {number}        the angle of descent along the glidepath
-     * @param interceptAltitude {number}   the altitude to which the aircraft can descend without yet
-     *                                     being established on the glidepath
      * @return {array}                     [success of operation, readback]
      * @private
      */
-    _interceptGlidepath(datum, course, descentAngle, interceptAltitude) {
+    _interceptGlidepath(datum, course, descentAngle) {
         // TODO: I feel like our description of lateral/vertical guidance should be done with its
         // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
         if (this._mcp.nav1Datum !== datum) {
@@ -542,7 +560,10 @@ export default class Pilot {
 
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
         this._mcp.setDescentAngle(descentAngle);
-        this._mcp.setAltitudeFieldValue(interceptAltitude);
+
+        // TODO: Though not realistic, to emulate the refusal to descend below MCP altitude
+        // until established on the localizer, we should not be setting the altitude mode to
+        // 'APP' until established on the localizer. This will prevent improper descent behaviors.
         this._mcp.setAltitudeApproach();
 
         const readback = {};
@@ -561,31 +582,24 @@ export default class Pilot {
      * @method conductInstrumentApproach
      * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
      * @param runwayModel {RunwayModel}   the runway the approach ends at
-     * @param interceptAltitude {number}  the altitude to maintain until established on the localizer
-     * @param heading {number}            current aircraft heading (in radians)
      * @return {array}                    [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runwayModel, interceptAltitude, heading) {
+    conductInstrumentApproach(approachType, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
-        }
-
-        if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            this.maintainPresentHeading(heading);
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
         const datum = runwayModel.positionModel;
         const course = runwayModel.angle;
-        const descentAngle = runwayModel.ils.gs_gradient;
+        const descentAngle = runwayModel.ils.glideslopeGradient;
         const lateralGuidance = this._interceptCourse(datum, course);
-        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle, interceptAltitude);
+        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle);
 
-        // TODO: this may need to be implemented in the future. as written, `._interceptCourse()` will always
-        // return true
-        // if (!lateralGuidance[0]) {
-        //     return lateralGuidance;
-        // }
+        // TODO: As written, `._interceptCourse()` will always return true.
+        if (!lateralGuidance[0]) {
+            return lateralGuidance;
+        }
 
         if (!verticalGuidance[0]) {
             return verticalGuidance;
@@ -653,7 +667,7 @@ export default class Pilot {
      * @param cruiseSpeed {number} the cruise speed of the aircraft, in knots
      */
     configureForTakeoff(initialAltitude, runway, cruiseSpeed) {
-        if (this._mcp.altitude === -1) {
+        if (this._mcp.altitude === INVALID_NUMBER) {
             this._mcp.setAltitudeFieldValue(initialAltitude);
         }
 
@@ -661,7 +675,7 @@ export default class Pilot {
             this._mcp.setAltitudeHold();
         }
 
-        if (this._mcp.heading === -1) {
+        if (this._mcp.heading === INVALID_NUMBER) {
             this._mcp.setHeadingFieldValue(runway.angle);
         }
 
@@ -669,7 +683,7 @@ export default class Pilot {
             this._mcp.setHeadingLnav();
         }
 
-        if (this._mcp.speed === -1) {
+        if (this._mcp.speed === INVALID_NUMBER) {
             this._mcp.setSpeedFieldValue(cruiseSpeed);
         }
 
@@ -808,11 +822,7 @@ export default class Pilot {
      * @method sayTargetedSpeed
      */
     sayTargetedSpeed() {
-        if (this._mcp.speed === MCP_MODE.SPEED.VNAV) {
-            // TODO: how do we handle the cases where there isn't a speedRestriction for a waypoint?
-            return [true, this._fms.currentWaypoint.speed];
-        }
-
+        // TODO: How do we handle the cases where aircraft are using VNAV speed?
         return [true, this._mcp.speed];
     }
 

@@ -59,13 +59,21 @@ export const UNIT_CONVERSION_CONSTANTS = {
      */
     KN_MS: 0.51444444,
     /**
-     * Number used to obtain feet from a flight level number
+     * Number used to obtain altitude in feet from flight level
      *
-     * @property FL_TO_FT_MULTIPLIER
+     * @property FL_FT
      * @type {number}
      * @final
      */
-    FL_TO_FT_MULTIPLIER: 100
+    FL_FT: 100,
+    /**
+     * Number used to obtain flight level from altitude in feet
+     *
+     * @property FT_FL
+     * @type {number}
+     * @final
+     */
+    FT_FL: 0.01
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -214,7 +222,7 @@ export const convertMinutesToSeconds = (minutes) => minutes * 60;
  * @param  {number} value
  * @return {number}
  */
-export const convertToThousands = (value) => parseInt(value, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_TO_FT_MULTIPLIER;
+export const convertToThousands = (value) => parseInt(value, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_FT;
 
 /**
  * Attempt to convert a string to a number

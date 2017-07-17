@@ -8,16 +8,23 @@ import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
     AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 
 const directRouteString = 'COWBY';
+const invalidDirectRouteStringMock = 'COWBY.BIKKR';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
+const complexRouteStringWithVector = 'COWBY..#180..BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
+const invalidProcedureRouteStringMock = 'MLF..GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = airportModelFixture.getRunway('19L');
 const isComplexRoute = true;
@@ -38,8 +45,14 @@ function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
     return fms;
 }
 
-function buildFmsMockForDeparture() {
-    const fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+function buildFmsMockForDeparture(customAircraftProps = null) {
+    let fms;
+
+    if (customAircraftProps !== null) {
+        fms = new Fms(customAircraftProps, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    } else {
+        fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    }
 
     return fms;
 }
@@ -51,6 +64,9 @@ ava('throws when called without parameters', (t) => {
 ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => buildFmsMock());
     t.notThrows(() => buildFmsMock(isComplexRoute));
+    t.notThrows(() => buildFmsMock(false, 'COWBY..BIKKR..DAG'));
+    t.notThrows(() => buildFmsMockForDeparture());
+    t.notThrows(() => buildFmsMockForDeparture(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK));
 });
 
 ava('#currentWaypoint returns the first waypoint of the first leg in the #legCollection', (t) => {
@@ -79,48 +95,38 @@ ava('#currentRoute returns a routeString for a complex route', (t) => {
     t.true(_isEqual(fms.currentRoute, expectedResult));
 });
 
-ava('#flightPlan returns an empty string when no #_previousRouteSegments exist', (t) => {
-    const expectedResult = {
-        altitude: 41000,
-        route: 'cowby..bikkr..dag.kepec3.klas'
-    };
-    const fms = buildFmsMock(isComplexRoute);
-
-    t.true(_isEqual(fms.flightPlan, expectedResult));
-});
-
 ava('#waypoints returns a single array of all the WaypointModels in the flightPlan', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.waypoints;
 
-    t.true(result.length === 14);
+    t.true(result.length === 15);
 });
 
-ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
-    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+ava('.getFlightPlanRouteForStripView() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResult = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.nextWaypoint();
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 });
 
-ava('#flightPlanRoute returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
-    const expectedResultBeforeReplacement = 'cowby..bikkr..dag.kepec3.klas';
-    const expectedResult = 'cowby..bikkr..mlf.grnpa1.klas';
+ava('.getFlightPlanRouteForStripView() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+    const expectedResultBeforeReplacement = 'COWBY BIKKR DAG KEPEC3 KLAS';
+    const expectedResult = 'COWBY BIKKR MLF GRNPA1 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.flightPlanRoute === expectedResultBeforeReplacement);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResultBeforeReplacement);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.flightPlanRoute === expectedResult);
+    t.true(fms.getFlightPlanRouteForStripView() === expectedResult);
 });
 
 ava('.init() calls ._buildLegCollection()', (t) => {
@@ -132,13 +138,25 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
-ava('.setDepartureRunway() changes #departureRunway to the ', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+ava('.setDepartureRunway() sets #departureRunwayModel to the specified runway model', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMockForDeparture();
 
-    fms.setDepartureRunway(nextRunwayMock);
+    fms.setDepartureRunway(nextRunwayFixture);
 
-    t.true(_isEqual(fms.departureRunway, nextRunwayMock));
+    t.true(_isEqual(fms.departureRunwayModel, nextRunwayFixture));
+});
+
+ava('.setDepartureRunway() returns early when the specified runway model is equal to #departureRunwayModel', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19L');
+    const fms = buildFmsMockForDeparture();
+    const regenerateSidLegSpy = sinon.spy(fms, '_regenerateSidLeg');
+    const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
+
+    fms.setDepartureRunway(nextRunwayFixture);
+
+    t.true(regenerateSidLegSpy.notCalled);
+    t.true(replaceDepartureProcedureSpy.notCalled);
 });
 
 ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -148,15 +166,35 @@ ava('.setDepartureRunway() throws when passed a string instead of a RunwayModel'
     t.throws(() => fms.setDepartureRunway(nextRunwayName));
 });
 
-ava.todo('.setDepartureRunway() validates route with changed runway');
+ava('.setDepartureRunway() regenerates SID legs for new runway', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
+    const fms = buildFmsMockForDeparture();
+    const regenerateSidLegSpy = sinon.spy(fms, '_regenerateSidLeg');
 
-ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
-    const nextRunwayMock = airportModelFixture.getRunway('19R');
+    fms.setDepartureRunway(nextRunwayFixture);
+
+    t.true(regenerateSidLegSpy.calledWithExactly());
+});
+
+ava('.setArrivalRunway() sets a #arrivalRunwayModel to the specified runway model', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
     const fms = buildFmsMock();
 
-    fms.setArrivalRunway(nextRunwayMock);
+    fms.setArrivalRunway(nextRunwayFixture);
 
-    t.true(_isEqual(fms.arrivalRunway, nextRunwayMock));
+    t.true(_isEqual(fms.arrivalRunwayModel, nextRunwayFixture));
+});
+
+ava('.setArrivalRunway() returns early when the specified runway model is equal to #arrivalRunwayModel', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19L');
+    const fms = buildFmsMock();
+    const regenerateStarLegSpy = sinon.spy(fms, '_regenerateStarLeg');
+    const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
+
+    fms.setArrivalRunway(nextRunwayFixture);
+
+    t.true(regenerateStarLegSpy.notCalled);
+    t.true(replaceArrivalProcedureSpy.notCalled);
 });
 
 ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', (t) => {
@@ -166,7 +204,17 @@ ava('.setArrivalRunway() throws when passed a string instead of a RunwayModel', 
     t.throws(() => fms.setArrivalRunway(nextRunwayName));
 });
 
-ava.todo('.setArrivalRunway() validates route with changed runway');
+ava('.setArrivalRunway() regenerates STAR legs for new runway', (t) => {
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
+    const fms = buildFmsMock();
+    const regenerateStarLegSpy = sinon.spy(fms, '_regenerateStarLeg');
+
+    t.true(fms.arrivalRunwayModel.name === '19L');
+
+    fms.setArrivalRunway(nextRunwayFixture);
+
+    t.true(regenerateStarLegSpy.calledWithExactly());
+});
 
 // TODO: these next two skipped tests need a LegModelFixturewhich does not yet exist
 ava.skip('.prependLeg() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
@@ -201,7 +249,7 @@ ava('.hasNextWaypoint() returns true when the nextWaypoint is part of the nextLe
 
 ava('.hasNextWaypoint() returns false when no nextWaypoint exists', (t) => {
     const fms = buildFmsMock();
-    fms.skipToWaypoint('prino');
+    fms.skipToWaypoint('lefft');
 
     t.false(fms.hasNextWaypoint());
 });
@@ -350,7 +398,7 @@ ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and ad
 
     t.true(fms.currentLeg.isProcedure);
     t.true(fms.legCollection.length === 1);
-    t.true(fms.legCollection[0].waypointCollection.length === 12);
+    t.true(fms.legCollection[0].waypointCollection.length === 13);
 });
 
 ava('.skipToWaypoint() calls ._collectRouteStringsForLegsToBeDropped()', (t) => {
@@ -388,6 +436,37 @@ ava('.skipToWaypoint() skips to a waypoint in a different leg', (t) => {
     t.true(fms.currentWaypoint.name === waypointNameMock);
 });
 
+ava('.getNextWaypointModel() returns the `WaypointModel` for the next Waypoint in the collection', (t) => {
+    const fms = buildFmsMock();
+    const waypointModel = fms.getNextWaypointModel();
+    const expectedResult = 'misen';
+
+    t.true(waypointModel._name === expectedResult);
+});
+
+ava('.getNextWaypointModel() returns null when fewer than two WaypointModels remaining in collection', (t) => {
+    const fms = buildFmsMock();
+
+    fms.skipToWaypoint('lefft');
+
+    const result = fms.getNextWaypointModel();
+    const expectedResult = null;
+
+    t.true(result === expectedResult);
+});
+
+ava('.getNextWaypointModel() returns the first `WaypointModel` of the next leg when at the end of the current leg', (t) => {
+    const shouldUseComplexRoute = true;
+    const fms = buildFmsMock(shouldUseComplexRoute);
+
+    fms.skipToWaypoint('bikkr');
+
+    const waypointModel = fms.getNextWaypointModel();
+    const expectedResult = 'dag';
+
+    t.true(waypointModel._name === expectedResult);
+});
+
 ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
     const expectedResult = [-87.64380662924125, -129.57471627889475];
     const fms = buildFmsMock();
@@ -398,15 +477,7 @@ ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the n
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
-    const routeStringMock = DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK.route;
-    const fms = buildFmsMockForDeparture();
-    const _findLegIndexForProcedureTypeSpy = sinon.spy(fms, '_findLegIndexForProcedureType');
-
-    fms.replaceDepartureProcedure(routeStringMock, runwayAssignmentMock);
-
-    t.false(_findLegIndexForProcedureTypeSpy.called);
-});
+ava.todo('.replaceDepartureProcedure() updates the current runway assignment');
 
 ava('.replaceDepartureProcedure() calls .prependLeg() when no departure procedure exists', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
@@ -439,24 +510,7 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     t.true(fms.legCollection.length === 1);
 });
 
-ava('.replaceDepartureProcedure() updates the #flightPlanRoute property', (t) => {
-    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMockForDeparture();
-
-    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
-
-    t.true(fms.flightPlanRoute === nextRouteStringMock.toLowerCase());
-});
-
-ava('.replaceArrivalProcedure() returns early if the nextRouteString matches the current route', (t) => {
-    const routeStringMock = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
-    const fms = buildFmsMock();
-    const _findLegIndexForProcedureTypeSpy = sinon.spy(fms, '_findLegIndexForProcedureType');
-
-    fms.replaceArrivalProcedure(routeStringMock, runwayAssignmentMock);
-
-    t.false(_findLegIndexForProcedureTypeSpy.called);
-});
+ava.todo('.replaceArrivalProcedure() updates the current runway assignment');
 
 ava('.replaceArrivalProcedure() calls .appendLeg() when no departure procedure exists', (t) => {
     const fms = buildFmsMock();
@@ -570,6 +624,12 @@ ava('.isValidRoute() returns true when passed a valid complexRouteString that in
     t.true(fms.isValidRoute(complexRouteStringWithHold, runwayAssignmentMock));
 });
 
+ava('.isValidRoute() returns true when passed a valid complexRouteString that includes a vector', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(complexRouteStringWithVector, runwayAssignmentMock));
+});
+
 ava('.isValidRoute() returns true when passed a valid arrival procedureRouteString', (t) => {
     const fms = buildFmsMock();
 
@@ -580,6 +640,24 @@ ava('.isValidRoute() returns true when passed a valid departure procedureRouteSt
     const fms = buildFmsMock();
 
     t.true(fms.isValidRoute(departureProcedureRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an invalid use of a directRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute(invalidDirectRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an invalid use of a procedureRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute(invalidProcedureRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns false when passed an empty string', (t) => {
+    const fms = buildFmsMock();
+
+    t.false(fms.isValidRoute('', runwayAssignmentMock));
 });
 
 ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
@@ -677,7 +755,7 @@ ava('.hasLegWithRouteString() returns true if a LegModel can be found that match
     t.true(fms.hasLegWithRouteString('coWbY'));
 });
 
-ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoints', (t) => {
+ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 24000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getTopAltitude();
@@ -685,7 +763,7 @@ ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoint
     t.true(result === expectedResult);
 });
 
-ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the waypoints', (t) => {
+ava('.getBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 8000;
     const fms = buildFmsMock(isComplexRoute);
     const result = fms.getBottomAltitude();
@@ -705,63 +783,6 @@ ava('.isFollowingSid() retruns true when the current Leg is a SID', (t) => {
 
     t.true(fms.isFollowingStar());
     t.false(fms.isFollowingSid());
-});
-
-ava('.getProcedureName() returns null when not on a procedureLeg', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getProcedureName();
-
-    t.true(result === null);
-});
-
-ava('.getProcedureName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getProcedureName();
-
-    t.true(result === 'KEPEC3');
-});
-
-ava('.getProcedureName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getProcedureName();
-
-    t.true(result === 'COWBY6');
-});
-
-ava('.getProcedureAndExitName() returns null when not on a procedureLeg', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === null);
-});
-
-ava('.getProcedureAndExitName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === 'KEPEC3.KLAS');
-});
-
-ava('.getProcedureAndExitName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getProcedureAndExitName();
-
-    t.true(result === 'COWBY6.GUP');
-});
-
-ava('.getDestinationAndRunwayName() returns null when not on a procedureLeg', (t) => {
-    const expectedResult = '19L';
-    const fms = buildFmsMock(isComplexRoute);
-    const result = fms.getDestinationAndRunwayName();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getDestinationAndRunwayName() returns the name of the current arrival icao and runway when on a procedureLeg', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.getDestinationAndRunwayName();
-
-    t.true(result === 'KLAS 19L');
 });
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
@@ -785,9 +806,8 @@ ava('._findLegIndexForProcedureType() returns -1 when a procedure type cannot be
     const fms = buildFmsMock(isComplexRoute);
     const result = fms._findLegIndexForProcedureType('SID');
 
-    t.true(result === -1);
+    t.true(result === INVALID_NUMBER);
 });
-
 
 ava('._findLegIndexForProcedureType() returns an array index for a specific procedure type', (t) => {
     const fms = buildFmsMock(isComplexRoute);
@@ -822,6 +842,72 @@ ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each routeStr
 
     t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
     t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
+});
+
+ava('._regenerateSidLeg() creates a new SID leg of identical route string for the currently assigned departure runway', (t) => {
+    const initialRunwayFixture = airportModelFixture.getRunway('19L');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
+    const fms = buildFmsMockForDeparture();
+    const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
+    const sidLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
+    const sidLeg = fms.legCollection[sidLegIndex];
+    const oldWaypoints = sidLeg.waypointCollection;
+
+    t.true(_isEqual(fms.departureRunwayModel, initialRunwayFixture));
+    t.true(oldWaypoints[0].name === 'fixix');
+    t.true(oldWaypoints.length === 7);
+
+    fms.departureRunwayModel = nextRunwayFixture;
+    fms._regenerateSidLeg();
+
+    const newWaypoints = fms.legCollection[sidLegIndex].waypointCollection;
+
+    t.true(newWaypoints[0].name === 'jaker');
+    t.true(newWaypoints.length === 7);
+    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayFixture));
+});
+
+ava('._regenerateSidLeg() returns early when there is no SID leg in the flightplan', (t) => {
+    const fms = buildFmsMock();
+    const replaceDepartureProcedureSpy = sinon.spy(fms, 'replaceDepartureProcedure');
+
+    fms.departureRunwayModel = airportModelFixture.getRunway('19R');
+    fms._regenerateSidLeg();
+
+    t.true(replaceDepartureProcedureSpy.notCalled);
+});
+
+ava('._regenerateStarLeg() creates a new STAR leg of identical route string for the currently assigned arrival runway', (t) => {
+    const initialRunwayFixture = airportModelFixture.getRunway('19L');
+    const nextRunwayFixture = airportModelFixture.getRunway('19R');
+    const fms = buildFmsMock();
+    const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
+    const starLegIndex = fms._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
+    const starLeg = fms.legCollection[starLegIndex];
+    const oldWaypoints = starLeg.waypointCollection;
+
+    t.true(_isEqual(fms.arrivalRunwayModel, initialRunwayFixture));
+    t.true(oldWaypoints[12].name === 'lefft');
+    t.true(oldWaypoints.length === 13);
+
+    fms.arrivalRunwayModel = nextRunwayFixture;
+    fms._regenerateStarLeg();
+
+    const newWaypoints = fms.legCollection[starLegIndex].waypointCollection;
+
+    t.true(newWaypoints[12].name === 'right');
+    t.true(newWaypoints.length === 13);
+    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.routeString, nextRunwayFixture));
+});
+
+ava('._regenerateStarLeg() returns early when there is no STAR leg in the flightplan', (t) => {
+    const fms = buildFmsMockForDeparture();
+    const replaceArrivalProcedureSpy = sinon.spy(fms, 'replaceArrivalProcedure');
+
+    fms.arrivalRunwayModel = airportModelFixture.getRunway('19R');
+    fms._regenerateStarLeg();
+
+    t.true(replaceArrivalProcedureSpy.notCalled);
 });
 
 ava('._updatePreviousRouteSegments() does not add a routeString to #_previousRouteSegments when it already exists in the list', (t) => {

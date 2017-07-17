@@ -18,6 +18,8 @@
         "angle": 110,
         "speed": 0
     },
+    "arrivalRunway": "02L",
+    "departureRunway": "02L",
     "airspace": [
         {
             "floor":             0,
@@ -76,7 +78,7 @@
         "LAVAX":     ["N01d09m50.00",    "E104d27m14.00"],
         "LELIB":     ["N01d27m29.00",    "E103d24m50.00"],
         "MABAL":     ["N03d28m26.00",    "E105d12m36.00"],
-        "MASBO":  ["E02d02m48.00",  "E102d52m51.00"],
+        "MASBO":  ["N02d02m48.00",  "E102d52m51.00"],
         "NITAD":     ["N01d32m57.00",    "E104d01m54.00"],
         "NYLON":     ["N01d36m57.00",    "E104d06m24.00"],
         "OBDOS":  ["N00d25m03.00",  "E106d55m51.00"],

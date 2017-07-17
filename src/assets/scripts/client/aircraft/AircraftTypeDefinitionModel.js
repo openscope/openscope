@@ -1,11 +1,11 @@
-import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
 import BaseModel from '../base/BaseModel';
+import { INVALID_NUMBER } from '../constants/globalConstants';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 /**
  * Provides a definition for a specific type of aircraft.
  *
- * Encapsulates an aircraft json file into a JS class that can be used to create an `AircraftInstanceModel`.
+ * Encapsulates an aircraft json file into a JS class that can be used to create an `AircraftModel`.
  *
  * It is important to note that this is not a `type` in the programming sense, this is in reference to
  * a specific aircraft type.
@@ -21,8 +21,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     constructor(aircraftTypeDefinition) {
         super();
-
-        if (!_isObject(aircraftTypeDefinition) || _isEmpty(aircraftTypeDefinition)) {
+        if (isEmptyObject(aircraftTypeDefinition)) {
             throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be an object');
         }
 
@@ -43,6 +42,16 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
          * @default ''
          */
         this.icao = '';
+
+        /**
+         * Icao identifier that includes a weightclass
+         * designation when `Heavy` or `Super`
+         *
+         * @property icaoWithWeightClass
+         * @type {string}
+         * @default ''
+         */
+        this.icaoWithWeightClass = '';
 
         /**
          * Describes the number and type of engines
@@ -72,9 +81,9 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
          *
          * @property ceiling
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.ceiling = -1;
+        this.ceiling = INVALID_NUMBER;
 
         /**
          * Decsribes rate of:
@@ -145,6 +154,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.runway = aircraftTypeDefinition.runway;
         this.speed = aircraftTypeDefinition.speed;
         this.capability = aircraftTypeDefinition.capability;
+
+        this.icaoWithWeightClass = this._buildTypeForStripView();
     }
 
     /**
@@ -156,13 +167,40 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     destroy() {
         this.name = '';
         this.icao = '';
+        this.icaoWithWeightClass = '';
         this.engines = null;
         this.weightclass = '';
         this.category = null;
-        this.ceiling = -1;
+        this.ceiling = INVALID_NUMBER;
         this.rate = null;
         this.runway = null;
         this.speed = null;
         this.capability = null;
+    }
+
+    /**
+     * Build the string used for `#icaoWithWeightClass`
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method _buildTypeForStripView
+     * @return {string}
+     * @private
+     */
+    _buildTypeForStripView() {
+        const HEAVY_LETTER = 'H';
+        const SUPER_LETTER = 'U';
+        let aircraftIcao = `${this.icao}/L`;
+
+        switch (this.weightclass) {
+            case SUPER_LETTER:
+            case HEAVY_LETTER:
+                aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
+
+                break;
+            default:
+                break;
+        }
+
+        return aircraftIcao.toUpperCase();
     }
 }

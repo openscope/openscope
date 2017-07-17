@@ -5,6 +5,12 @@ export const AIRPORT_LOAD_LIST_MOCK = [
         name: 'McCarran International Airport'
     },
     {
+        icao: 'ksea',
+        level: 'medium',
+        name: 'Seattle-Tacoma International Airport',
+        wip: false
+    },
+    {
         icao: 'ksfo',
         level: 'medium',
         name: 'San Francisco International Airport &#9983'

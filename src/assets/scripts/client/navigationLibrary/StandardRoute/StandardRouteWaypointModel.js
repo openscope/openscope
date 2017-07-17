@@ -1,88 +1,27 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
+import RouteModel from '../Route/RouteModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
-import { REGEX } from '../../constants/globalConstants';
-
-/**
- * @property NAME_INDEX
- * @type {number}
- * @final
- */
-const NAME_INDEX = 0;
-
-/**
- * @property RESTRICTION_INDEX
- * @type {number}
- * @final
- */
-const RESTRICTION_INDEX = 1;
-
-/**
- * @property RESTRICTION_SEPARATOR
- * @type {string}
- * @final
- */
-const RESTRICTION_SEPARATOR = '|';
-
-/**
- * @property ALTITUDE_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const ALTITUDE_RESTRICTION_PREFIX = 'A';
-
-/**
- * @property SPEED_RESTRICTION_PREFIX
- * @type {string}
- * @final
- */
-const SPEED_RESTRICTION_PREFIX = 'S';
-
-/**
- * Symbol denoting a greater than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const ABOVE_SYMBOL = '+';
-
-/**
- * Symbol denoting a less than restriction
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const BELOW_SYMBOL = '-';
-
-/**
- * Number to used to convert a FL altitude to an altitude in thousands
- *
- * @property ABOVE_SYMBOL
- * @type {string}
- * @final
- */
-const FL_TO_THOUSANDS_MULTIPLIER = 100;
-
-/**
- * Enumeration for an invalid index number.
- *
- * @property INVALID_INDEX
- * @type {number}
- * @final
- */
-const INVALID_INDEX = -1;
-
-/**
- * Enumeration for the radix value of `parseInt`
- *
- * @proeprty DECIMAL_RADIX
- * @type {number}
- * @final
- */
-const DECIMAL_RADIX = 10;
+import {
+    INVALID_INDEX,
+    INVALID_NUMBER
+} from '../../constants/globalConstants';
+import {
+    FLY_OVER_WAYPOINT_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/navigation/routeConstants';
+import {
+    ABOVE_SYMBOL,
+    ALTITUDE_RESTRICTION_PREFIX,
+    BELOW_SYMBOL,
+    DECIMAL_RADIX,
+    FL_TO_THOUSANDS_MULTIPLIER,
+    NAME_INDEX,
+    RESTRICTION_INDEX,
+    RESTRICTION_SEPARATOR,
+    SPEED_RESTRICTION_PREFIX
+} from '../../constants/navigation/waypointConstants';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -103,97 +42,31 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param routeWaypoint {array|string}
      */
     constructor(routeWaypoint) {
-        super(routeWaypoint);
+        super();
 
         if (typeof routeWaypoint === 'undefined') {
             return this;
         }
 
         /**
-         * Name of the fix
+         * Maximum altitude at which to cross this waypoint
          *
-         * @property name
-         * @type {string}
-         * @default ''
-         * @private
-         */
-        this.name = '';
-
-        /**
-         * Any restrictions for a given fix
-         *
-         * ex:
-         * - "A80+|S210"
-         * - "A80-"
-         * - "S230"
-         *
-         * using null here to match current api, if restrictions dont exist for a given waypoint
-         * the consumers are expecting this to be null.
-         *
-         * @property _restrictions
-         * @type {string|null}
-         * @default null
-         * @private
-         */
-        this._restrictions = null;
-
-        /**
-         * Required altitude for a waypoint
-         *
-         * @property _altitude (optional)
+         * @for StandardRouteWaypointModel
+         * @property altitudeMaximum
          * @type {number}
-         * @default null
-         * @private
+         * @default INVALID_NUMBER
          */
-        this._altitude = -1;
+        this.altitudeMaximum = INVALID_NUMBER;
 
         /**
-         * Required speed for a waypoint
+         * Minimum altitude at which to cross this waypoint
          *
-         * @property _speed (optional)
-         * @type {string}
-         * @default null
-         * @private
+         * @for StandardRouteWaypointModel
+         * @property altitudeMinimum
+         * @type {number}
+         * @default INVALID_NUMBER
          */
-        this._speed = -1;
-
-        // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
-        /**
-         * NOT IN USE
-         *
-         * Altitude constraint, if any, for a waypoint.
-         *
-         * @property _altitudeConstraint (options)
-         * @type {string}
-         * @default ''
-         * @private
-         */
-        this._altitudeConstraint = '';
-
-        /**
-         * NOT IN USE
-         *
-         * Speed constraint, if any, for a waypoint.
-         *
-         * @property _speedConstraint (optional)
-         * @type {string}
-         * @default null
-         * @private
-         */
-        this._speedConstraint = '';
-
-        /**
-         * Positon information for the current waypoint
-         *
-         * Specific bits of this property are exposed via public getters.
-         * This property should never be modified by an exteral method.
-         *
-         * @property _positionModel
-         * @type {StaticPositionModel}
-         * @default null
-         * @private
-         */
-        this._positionModel = null;
+        this.altitudeMinimum = INVALID_NUMBER;
 
         /**
          * Distance in nm from the previous waypoint.
@@ -203,11 +76,22 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * This value is mutable and is not intended to be re-used after its initial use.
          *
+         * @for StandardRouteWaypointModel
          * @property distanceFromPreviousWaypoint
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          */
-        this.distanceFromPreviousWaypoint = -1;
+        this.distanceFromPreviousWaypoint = INVALID_NUMBER;
+
+        /**
+         * Name of the fix
+         *
+         * @for StandardRouteWaypointModel
+         * @property name
+         * @type {string}
+         * @default ''
+         */
+        this.name = '';
 
         /**
          * Name of the previous `StandardWaypointModel` object in a route
@@ -217,14 +101,80 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * This value is mutable and is not intended to be re-used after its initial use.
          *
+         * @for StandardRouteWaypointModel
          * @property previousStandardWaypointName
          * @type {string}
          * @default ''
          */
         this.previousStandardWaypointName = '';
 
+        /**
+         * Maximum speed at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property speedMaximum
+         * @type {number}
+         * @default INVALID_NUMBER
+         */
+        this.speedMaximum = INVALID_NUMBER;
+
+        /**
+         * Minimum speed at which to cross this waypoint
+         *
+         * @for StandardRouteWaypointModel
+         * @property speedMinimum
+         * @type {number}
+         * @default INVALID_NUMBER
+         */
+        this.speedMinimum = INVALID_NUMBER;
+
+        /**
+         * Flag used to determine if the waypoint must be flown over before the
+         * aircraft may proceed to the next fix on their route.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _isFlyOverWaypoint
+         * @type {boolean}
+         * @default false
+         */
+        this._isFlyOverWaypoint = false;
+
+        /**
+         * Positon information for the current waypoint
+         *
+         * Specific bits of this property are exposed via public getters.
+         * This property should never be modified by an exteral method.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _positionModel
+         * @type {StaticPositionModel}
+         * @default null
+         * @private
+         */
+        this._positionModel = null;
+
+        /**
+         * Any restrictions for a given fix
+         *
+         * ex:
+         * - "A100+|A150-|S210+|S250-"
+         * - "A80+|S210"
+         * - "A80-"
+         * - "S230"
+         *
+         * using null here to match current api, if restrictions dont exist for a given waypoint
+         * the consumers are expecting this to be null.
+         *
+         * @for StandardRouteWaypointModel
+         * @property _restrictions
+         * @type {string|null}
+         * @default null
+         * @private
+         */
+        this._restrictions = null;
+
         return this._init(routeWaypoint)
-                   .clonePoisitonFromFix();
+                   .clonePositionFromFix();
     }
 
     /**
@@ -263,6 +213,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
+     * Return whether this is a vector waypoint
+     *
+     * @for StandardRouteWaypointModel
+     * @property isVector
+     * @type {boolean}
+     */
+    get isVector() {
+        return this._isVector;
+    }
+
+    /**
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
@@ -296,16 +257,21 @@ export default class StandardRouteWaypointModel extends BaseModel {
     _init(routeWaypoint) {
         // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
-            this.name = routeWaypoint;
+            this.name = routeWaypoint.replace(FLY_OVER_WAYPOINT_PREFIX, '');
+            this._isVector = routeWaypoint.indexOf(VECTOR_WAYPOINT_PREFIX) !== INVALID_INDEX;
+            this._isFlyOverWaypoint = routeWaypoint.indexOf(FLY_OVER_WAYPOINT_PREFIX) !== INVALID_INDEX;
 
             return this;
         }
 
-        this.name = routeWaypoint[NAME_INDEX];
+        this.name = routeWaypoint[NAME_INDEX].replace(FLY_OVER_WAYPOINT_PREFIX, '');
+        this._isVector = routeWaypoint[NAME_INDEX].indexOf(VECTOR_WAYPOINT_PREFIX) !== INVALID_INDEX;
+        this._isFlyOverWaypoint = routeWaypoint[NAME_INDEX].indexOf(FLY_OVER_WAYPOINT_PREFIX) !== INVALID_INDEX;
+
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
-        this._parseWaypointRestrictions(routeWaypoint[RESTRICTION_INDEX]);
+        this._applyRestrictions(routeWaypoint[RESTRICTION_INDEX]);
 
         return this;
     }
@@ -319,26 +285,47 @@ export default class StandardRouteWaypointModel extends BaseModel {
     reset() {
         this.name = '';
         this._restrictions = null;
-        this._altitude = -1;
+        this._altitude = INVALID_NUMBER;
         this._altitudeConstraint = '';
-        this._speed = -1;
+        this._speed = INVALID_NUMBER;
         this._speedConstraint = '';
 
         return this;
     }
 
+    // TODO: why do we need to clone?
+    // TODO ClonePoisitonFromFix -> clonePositionFromFix
     /**
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
-     * @method _clonePoisitonFromFix
+     * @method clonePositionFromFix
      * @param fixCollection {FixCollection}
+     * @return {StandardRouteWaypointModel}
      * @private
+     * @chainable
      */
-    clonePoisitonFromFix() {
-        const fixModel = FixCollection.findFixByName(this.name);
+    clonePositionFromFix() {
+        const isFlyOverWaypoint = RouteModel.isFlyOverRouteString(this.name);
+        const isHoldWaypoint = RouteModel.isHoldRouteString(this.name);
+        const isVectorWaypoint = RouteModel.isVectorRouteString(this.name);
+
+        if (isVectorWaypoint) {
+            return;
+        }
+
+        let name = this.name;
+
+        if (isFlyOverWaypoint || isHoldWaypoint) {
+            // remove prefixing character (`@BIKKR` --> `BIKKR`)
+            name = this.name.substr(1);
+        }
+
+        const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
+            // TODO: This console warn should be done elsewehere, so a single console
+            // message can inform the airport designer of all missing fixes at once.
             console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
 
             return this;
@@ -368,10 +355,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     toWaypointModel() {
         const waypointProps = {
+            altitudeMaximum: this.altitudeMaximum,
+            altitudeMinimum: this.altitudeMinimum,
+            isFlyOverWaypoint: this._isFlyOverWaypoint,
+            isVector: this._isVector,
             name: this.name,
             positionModel: this.positionModel,
-            altitudeRestriction: this._altitude,
-            speedRestriction: this._speed
+            speedMaximum: this.speedMaximum,
+            speedMinimum: this.speedMinimum
         };
 
         return new WaypointModel(waypointProps);
@@ -381,36 +372,39 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Parse any waypoint restrictions
      *
      * Parse a single string into:
-     * - `this._altitude`            = expressed in feet
-     * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speed`               = expressed in kts
+     * - `this._altitudeMinimum`, in feet
+     * - `this._altitudeMaximum`, in feet
+     * - `this._speedMinimum`, in knots
+     * - `this._speedMaximum`, in knots
      *
      * Exapmles:
      * - "A80+|S210"
      * - "A80-|S210"
+     * - "A80+|A100-"
+     * - "A80+|A100-|S210+|S250-"
      * - "A80"
      * - "S210"
      *
      * @for StandardRouteWaypointModel
-     * @method _parseWaypointRestrictions
+     * @method _applyRestrictions
      * @param waypointRestrictions {string}
      * @private
      */
-    _parseWaypointRestrictions(waypointRestrictions) {
+    _applyRestrictions(waypointRestrictions) {
         if (_isNil(waypointRestrictions)) {
             return;
         }
 
-        const restrictionPieces = this._extractRestrictionPieces(waypointRestrictions);
+        const restrictionPieces = waypointRestrictions.split(RESTRICTION_SEPARATOR);
 
         for (let i = 0; i < restrictionPieces.length; i++) {
             const restriction = restrictionPieces[i];
 
             // looking at the first letter of a restrictionPiece here.
             if (restriction[0] === ALTITUDE_RESTRICTION_PREFIX) {
-                this._setAltitudeRestriction(restriction);
+                this._setAltitudeRestriction(restriction.substr(1));
             } else if (restriction[0] === SPEED_RESTRICTION_PREFIX) {
-                this._setSpeedRestriction(restriction);
+                this._setSpeedRestriction(restriction.substr(1));
             }
         }
     }
@@ -421,10 +415,21 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param altitudeRestriction {string}
      * @private
      */
-    _setAltitudeRestriction(rawAltitudeStr) {
-        const altitudeRestriction = rawAltitudeStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+    _setAltitudeRestriction(altitudeRestriction) {
+        const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
 
-        this._altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+        if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+            this.altitudeMinimum = altitude;
+
+            return;
+        } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+            this.altitudeMaximum = altitude;
+
+            return;
+        }
+
+        this.altitudeMaximum = altitude;
+        this.altitudeMinimum = altitude;
     }
 
     /**
@@ -433,20 +438,20 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param speedRestriction {string}
      * @private
      */
-    _setSpeedRestriction(rawSpeedRestrictionStr) {
-        const speedRestriction = rawSpeedRestrictionStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+    _setSpeedRestriction(speedRestriction) {
+        const speed = parseInt(speedRestriction, DECIMAL_RADIX);
 
-        this._speed = parseInt(speedRestriction, DECIMAL_RADIX);
-    }
+        if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+            this.speedMinimum = speed;
 
-    /**
-     * @for StandardRouteWaypointModel
-     * @method _extractRestrictionPieces
-     * @param waypointRestrictions {array<string>}
-     * @@return {string}
-     * @private
-     */
-    _extractRestrictionPieces(waypointRestrictions) {
-        return waypointRestrictions.split(RESTRICTION_SEPARATOR);
+            return;
+        } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+            this.speedMaximum = speed;
+
+            return;
+        }
+
+        this.speedMaximum = speed;
+        this.speedMinimum = speed;
     }
 }

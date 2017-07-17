@@ -1,13 +1,13 @@
 import _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
+import GameController from '../game/GameController';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * Used to create a game_timer for a `SpawnPatternModel` and provide
  * methods for re-creating a new timer on timer expiration.
  *
- * This is designed to be a stateless class. We store a referernce to the
- * `gameController` only so we have easy access to the timer functions.
+ * This is designed to be a stateless class.
  *
  * @class SpawnScheduler
  */
@@ -17,9 +17,8 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftController {AircraftController}
-     * @param gameController {GameController}
      */
-    constructor(spawnPatternCollection, aircraftController, gameController) {
+    constructor(spawnPatternCollection, aircraftController) {
         if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
             throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
         }
@@ -27,20 +26,6 @@ export default class SpawnScheduler {
         if (typeof aircraftController === 'undefined') {
             throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
-
-        if (typeof gameController === 'undefined') {
-            throw new TypeError('Invalid parameter. SpawnScheduler requires gameController to be defined.');
-        }
-
-        /**
-         * Reference to `GameController`
-         *
-         * @property _gameController
-         * @type {GameController}
-         * @default gameController
-         * @private
-         */
-        this._gameController = gameController;
 
         // TODO: rename to createSchedulesWithTimer
         this.createSchedulesFromList(spawnPatternCollection, aircraftController);
@@ -60,7 +45,7 @@ export default class SpawnScheduler {
     createSchedulesFromList(spawnPatternCollection, aircraftController) {
         _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
-            spawnPatternModel.cycleStart(this._gameController.game.time);
+            spawnPatternModel.cycleStart(GameController.game.time);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
 
             // TODO: abstract this to a class method on the `SpawnPatternModel`
@@ -98,7 +83,7 @@ export default class SpawnScheduler {
     }
 
     /**
-     * Registers a new timeout, its callback and callback arguments with the `_gameController`
+     * Registers a new timeout, its callback and callback arguments with the `GameController`
      *
      * @for SpawnScheduler
      * @method createNextSchedule
@@ -107,9 +92,9 @@ export default class SpawnScheduler {
      * @return {function}
      */
     createNextSchedule(spawnPatternModel, aircraftController) {
-        const delay = spawnPatternModel.getNextDelayValue(this._gameController.game.time);
+        const delay = spawnPatternModel.getNextDelayValue(GameController.game.time);
 
-        return this._gameController.game_timeout(
+        return GameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,
             // lifespan of timeout
             delay,

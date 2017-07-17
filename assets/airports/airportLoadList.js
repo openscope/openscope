@@ -71,12 +71,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Berlin Tegel Airport',
             wip: true
         },
-        {
-            icao: 'egcc',
-            level: 'hard',
-            name: 'Manchester Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'egcc',
+        //     level: 'hard',
+        //     name: 'Manchester Airport',
+        //     wip: true
+        // },
         // {
         //     icao: 'eggw',
         //     level: 'medium',
@@ -117,14 +117,14 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'eidw',
             level: 'easy',
             name: 'Dublin Airport',
-            wip: true
+            wip: false
         },
-        {
-            icao: 'einn',
-            level: 'easy',
-            name: 'Shannon Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'einn',
+        //     level: 'easy',
+        //     name: 'Shannon Airport',
+        //     wip: true
+        // },
         {
             icao: 'ekch',
             level: 'medium',
@@ -137,12 +137,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Oslo Gardermoen International Airport',
             wip: true
         },
-        {
-            icao: 'espa',
-            level: 'easy',
-            name: 'Luleå Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'espa',
+        //     level: 'easy',
+        //     name: 'Luleå Airport',
+        //     wip: true
+        // },
         {
             icao: 'gcrr',
             level: 'easy',
@@ -153,7 +153,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kbos',
             level: 'medium',
             name: 'Boston Logan International Airport',
-            wip: true
+            wip: false
         },
         {
             icao: 'kdca',
@@ -237,7 +237,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'ksea',
             level: 'medium',
             name: 'Seattle-Tacoma International Airport',
-            wip: true
+            wip: false
         },
         {
             icao: 'ksfo',
@@ -263,6 +263,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Atatürk International Airport',
         //     wip: true
         // },
+        {
+            icao: 'mdsd',
+            level: 'easy',
+            name: 'Aeropuerto Internacional Las Américas',
+            wip: false
+        },
         // {
         //     icao: 'omaa',
         //     level: 'medium',
@@ -275,24 +281,24 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Dubai International Airport',
             wip: true
         },
-        {
-            icao: 'osdi',
-            level: 'easy',
-            name: 'Damascus International Airport',
-            wip: true
-        },
-        {
-            icao: 'othh',
-            level: 'hard',
-            name: 'Doha Hamad International Airport',
-            wip: true
-        },
-        {
-            icao: 'rjbb',
-            level: 'hard',
-            name: 'Osaka Kansai International Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'osdi',
+        //     level: 'easy',
+        //     name: 'Damascus International Airport',
+        //     wip: true
+        // },
+        // {
+        //     icao: 'othh',
+        //     level: 'hard',
+        //     name: 'Doha Hamad International Airport',
+        //     wip: true
+        // },
+        // {
+        //     icao: 'rjbb',
+        //     level: 'hard',
+        //     name: 'Osaka Kansai International Airport',
+        //     wip: true
+        // },
         {
             icao: 'rjaa',
             level: 'hard',
@@ -305,12 +311,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Tokyo Haneda International Airport',
             wip: true
         },
-        {
-            icao: 'rksi',
-            level: 'hard',
-            name: 'Incheon International Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'rksi',
+        //     level: 'hard',
+        //     name: 'Incheon International Airport',
+        //     wip: true
+        // },
         {
             icao: 'saez',
             level: 'medium',
@@ -359,12 +365,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Moscow Domodedovo Airport',
             wip: true
         },
-        {
-            icao: 'vabb',
-            level: 'hard',
-            name: 'Chhatrapati Shivaji International Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'vabb',
+        //     level: 'hard',
+        //     name: 'Chhatrapati Shivaji International Airport',
+        //     wip: true
+        // },
         {
             icao: 'vecc',
             level: 'medium',

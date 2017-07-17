@@ -19,6 +19,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "angle": 220,
         "speed": 6
     },
+    "arrivalRunway": "25L",
+    "departureRunway": "25R",
     "airspace": [
         {
             "floor": 0,
@@ -98,6 +100,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "KIMME": ["N35.99529958099861", "W114.83056270090610"],
         "KSINO": ["N36.57553879560182", "W114.08459329705524"],
         "LARRE": ["N36.07354200634845", "W114.83600093344620"],
+        "LEFFT": [36.123456, -114.123456],
         "LEMNZ": ["N36.13731215730534", "W115.13253566889603"],
         "LRAIN": ["N36.51785283367872", "W110.58670198243438"],
         "LUXOR": ["N36.39497532579257", "W114.48037577634227"],
@@ -123,6 +126,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "RANVE": ["N36.18786427568968", "W115.07890865357014"],
         "RBELL": ["N36.07622810916586", "W115.25240337780050"],
         "RELIN": ["N36.07366410392136", "W115.01659557238162"],
+        "RIGHT": [36.123456, -114.123456],
         "RIOOS": ["N36.18908346565179", "W114.66212855417835"],
         "RODDD": ["N35.85737732038140", "W115.31514446803150"],
         "ROPPR": ["N35.97115763108181", "W115.30164959469130"],
@@ -207,6 +211,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "COWBY6": {
             "icao": "COWBY6",
             "name": "Cowboy Six",
+            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "rwy": {
                 "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
                 "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
@@ -285,6 +290,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "GRNPA1": {
             "icao": "GRNPA1",
             "name": "Grandpa One",
+            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "entryPoints": {
                 "BETHL": ["BETHL", ["HOLDM", "A270"]],
                 "BCE":   ["BCE"],
@@ -303,6 +309,25 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "25R": []
             }
         },
+        // not a real route. used here to test `SpawnPatternModel._generateWaypointListForRoute()`
+        "GRNPA9": {
+            "icao": "GRNPA9",
+            "name": "Grandpa One",
+            "entryPoints": {
+                "MLF":   ["MLF"]
+            },
+            "body": [],
+            "rwy": {
+                "01L": [],
+                "01R": [],
+                "07L": [],
+                "07R": [],
+                "19L": [],
+                "19R": [],
+                "25L": ["LEMNZ"],
+                "25R": []
+            }
+        },
         "KEPEC3": {
             "icao": "KEPEC3",
             "name": "Kepec Three",
@@ -316,8 +341,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "01R": [],
                 "07L": [],
                 "07R": [],
-                "19L": [],
-                "19R": [],
+                "19L": ['LEFFT'],
+                "19R": ['RIGHT'],
                 "25L": [],
                 "25R": []
             }

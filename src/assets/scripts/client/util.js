@@ -19,21 +19,6 @@ import { LOG } from './constants/logLevel';
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 /*eslint-disable*/
-// TODO: this should be replaced with lodash _clone()
-function clone(obj) {
-    if (null == obj || 'object' != typeof obj) {
-        return obj;
-    }
-
-    let copy = obj.constructor();
-    for (var attr in obj) {
-        if (_has(obj, attr)) {
-            copy[attr] = obj[attr];
-        }
-    }
-
-    return copy;
-};
 
 // String repetition copied from http://stackoverflow.com/a/5450113
 if (!String.prototype.hasOwnProperty('repeat')) {
@@ -103,67 +88,3 @@ const log = (message, level = LOG.INFO) => {
     }
 };
 window.log = log;
-
-/*eslint-enable*/
-
-// TODO: is this being used? and why are we cloning radio_names here?
-const radio_runway_names = clone(radio_names);
-radio_runway_names.l = 'left';
-radio_runway_names.c = 'center';
-radio_runway_names.r = 'right';
-
-// TODO: rename leftPad
-/**
- * Prepends zeros to front of str/num to make it the desired width
- */
-function lpad(n, width) {
-    if (n.toString().length >= width) {
-        return n.toString();
-    }
-
-    const x = `0000000000000${n}`;
-
-    return x.substr(x.length - width, width);
-}
-
-// TODO: unused
-// function endsWith(str, suffix) {
-//     return str.indexOf(suffix, str.length - suffix.length) !== -1;
-// }
-// window.endsWith = endsWith;
-
-
-// TODO: lodash _compact() might be useful here
-/**
- * Splices all empty elements out of an array
- */
-function array_clean(array, deleteValue) {
-    for (let i = 0; i < array.length; i++) {
-        if (array[i] === deleteValue) {
-            array.splice(i, 1);
-            i--;
-        }
-    }
-
-    return array;
-}
-
-// TODO: this can be done with .reduce()
-/**
- * Returns the sum of all numerical values in the array
- */
-function array_sum(array) {
-    let total = 0;
-
-    for (let i = 0; i < array.length; i++) {
-        total += parseFloat(array[i]);
-    }
-
-    return total;
-}
-
-window.clone = clone;
-// window.distEuclid = distEuclid;
-window.lpad = lpad;
-window.array_clean = array_clean;
-window.array_sum = array_sum;

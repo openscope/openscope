@@ -2,12 +2,11 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
-
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-
 import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
+import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 const holdRouteSegmentMock = '@COWBY';
 const directRouteSegmentMock = 'COWBY';
@@ -53,12 +52,12 @@ ava('.destroy() calls ._destroyWaypointCollection()', (t) => {
     t.true(_destroyWaypointCollectionSpy.calledOnce);
 });
 
-ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
+ava('.skipToWaypointAtIndex() drops n number of WaypointModels from the left of #waypointCollection', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 
     model.skipToWaypointAtIndex(3);
 
-    t.true(model.waypointCollection.length === 9);
+    t.true(model.waypointCollection.length === 10);
     t.true(model.currentWaypoint.name === 'skebr');
 });
 
@@ -66,7 +65,7 @@ ava('.getProcedureTopAltitude() returns -1 if a leg when #isProcedure is false',
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
-    t.true(result === -1);
+    t.true(result === INVALID_NUMBER);
 });
 
 ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
@@ -78,7 +77,7 @@ ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
 });
 
-ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
+ava('.getProcedureTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
@@ -89,7 +88,7 @@ ava('.getProcedureBottomAltitude() returns -1 if a leg when #isProcedure is fals
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureBottomAltitude();
 
-    t.true(result === -1);
+    t.true(result === INVALID_NUMBER);
 });
 
 ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
@@ -101,7 +100,7 @@ ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`',
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
 });
 
-ava('.getProcedureBottomAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
+ava('.getProcedureBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureBottomAltitude();
 
@@ -137,8 +136,10 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].isHold);
     t.true(result[0].name === 'cowby');
-    t.true(result[0].altitudeRestriction === -1);
-    t.true(result[0].speedRestriction === -1);
+    t.true(result[0].altitudeMaximum === INVALID_NUMBER);
+    t.true(result[0].altitudeMinimum === INVALID_NUMBER);
+    t.true(result[0].speedMaximum === INVALID_NUMBER);
+    t.true(result[0].speedMinimum === INVALID_NUMBER);
     t.true(result[0]._turnDirection === 'right');
     t.true(result[0]._legLength === '1min');
     t.true(result[0].timer === -999);
@@ -152,8 +153,10 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].isHold);
     t.true(result[0].name === 'gps');
-    t.true(result[0].altitudeRestriction === -1);
-    t.true(result[0].speedRestriction === -1);
+    t.true(result[0].altitudeMaximum === INVALID_NUMBER);
+    t.true(result[0].altitudeMinimum === INVALID_NUMBER);
+    t.true(result[0].speedMaximum === INVALID_NUMBER);
+    t.true(result[0].speedMinimum === INVALID_NUMBER);
     t.true(result[0]._turnDirection === 'left');
     t.true(result[0]._legLength === '3min');
     t.true(result[0].timer === -999);

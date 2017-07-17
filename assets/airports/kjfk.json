@@ -18,6 +18,8 @@
         "angle": 360,
         "speed": 6
     },
+    "arrivalRunway": "31R",
+    "departureRunway": "31L",
     "fixes": {
         "JFK"  : ["N40.6328889", "W73.7713889"],
         "_RWY13RDEP": ["N40.56", "W73.660167"],

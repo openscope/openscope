@@ -3,6 +3,7 @@ import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 import { convertToThousands } from '../utilities/unitConverters';
 
 /**
@@ -31,32 +32,40 @@ export default class AirspaceModel extends BaseModel {
          *
          * DO NOT repeat the origin to 'close' the shape, this happens programatically
          *
+         * @for AirspaceModel
          * @property poly
          * @type {array}
+         * @default []
          */
         this.poly = [];
 
         /**
          * Altitude at bottom of area, in hundreds of feet
          *
+         * @for AirspaceModel
          * @property floor
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.floor = -1;
+        this.floor = INVALID_NUMBER;
 
         /**
          * Altitude of top of area, in hundreds of feet
          *
+         * @for AirspaceModel
          * @property ceiling
          * @type {number}
+         * @default INVALID_NUMBER
          */
-        this.ceiling = -1;
+        this.ceiling = INVALID_NUMBER;
 
         /**
          * FAA airspace classification (A,B,C,D,E,G)
          *
+         * @for AirspaceModel
          * @property airspace_class
          * @type {string}
+         * @default ''
          */
         this.airspace_class = '';
 
@@ -88,8 +97,8 @@ export default class AirspaceModel extends BaseModel {
      */
     reset() {
         this.poly = [];
-        this.floor = -1;
-        this.ceiling = -1;
+        this.floor = INVALID_NUMBER;
+        this.ceiling = INVALID_NUMBER;
         this.airspace_class = '';
     }
 
