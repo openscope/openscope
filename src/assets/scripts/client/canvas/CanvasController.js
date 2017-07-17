@@ -1166,16 +1166,23 @@ k
                 datablockDir = DATA_BLOCK_THEME.FDB_LEADER_DIRECTION;
             }
 
+            const leaderLength = DATA_BLOCK_THEME.FDB_LEADER_LENGTH *
+                DATA_BLOCK_THEME.FDB_LEADER_LENGTH_INCREMENT_PIXELS +
+                DATA_BLOCK_THEME.LEADER_LENGTH_ADJUSTMENT_PIXELS;
+            const centerToVerticalEdge = width2;
+            const centerToHorizontalEdge = height2;
+            const leaderLengthX = leaderLength * Math.cos(degreesToRadians(45));
+            const leaderLengthY = leaderLength * Math.sin(degreesToRadians(45));
             const displacements = {
                 ctr: [0, 0],
-                360: [0, -height2 - 12],
-                45: [width2 + 8.5, -height2 - 8.5],
-                90: [width2 + bar_width2 + 12, 0],
-                135: [width2 + 8.5, height2 + 8.5],
-                180: [0, height2 + 12],
-                225: [-width2 - 8.5, height2 + 8.5],
-                270: [-width2 - bar_width2 - 12, 0],
-                315: [-width2 - 8.5, -height2 - 8.5]
+                360: [0, -(centerToHorizontalEdge + leaderLength)],
+                45: [leaderLengthX + centerToVerticalEdge, -(leaderLengthY + centerToHorizontalEdge)],
+                90: [centerToVerticalEdge + leaderLength, 0],
+                135: [leaderLengthX + centerToVerticalEdge, leaderLengthY + centerToHorizontalEdge],
+                180: [0, centerToHorizontalEdge + leaderLength],
+                225: [-(leaderLengthX + centerToVerticalEdge), leaderLengthY + centerToHorizontalEdge],
+                270: [-(centerToVerticalEdge + leaderLength), 0],
+                315: [-(leaderLengthX + centerToVerticalEdge), -(leaderLengthY + centerToHorizontalEdge)]
             };
 
             cc.translate(
