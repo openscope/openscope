@@ -19,7 +19,7 @@ export const DATA_BLOCK_THEME = {
     // FIXME: This not yet in use!
     FDB_LEADER_LENGTH: 1,
     FDB_TEXT_FONT: '10px monoOne, monospace',
-    HAS_FDB_BOX_OUTLINE: false,
+    HAS_FDB_BOX_OUTLINE: true,
     TEXT_IN_RANGE: COLOR.WHITE_05,
     TEXT_OUT_OF_RANGE: COLOR.WHITE_02,
     TEXT_SELECTED: COLOR.WHITE_09
