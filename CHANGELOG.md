@@ -12,9 +12,10 @@
 
 
 ### Bugfixes
--Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
+- Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
 - Make aircraft proceed direct new fix after full reroute [#570](https://github.com/openscope/openscope/issues/570)
 - Recalculate SID/STAR legs when changing assigned runway [#383](https://github.com/openscope/openscope/issues/383)
+- Remove +/-/= as hotkeys for zoom as it conflicts with speed [#510](https://github.com/openscope/openscope/issues/510)
 
 
 
