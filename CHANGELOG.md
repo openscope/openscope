@@ -1,6 +1,10 @@
 ## 5.3.0 (August 1, 2017)
 ---
 ### Features
+- New airport: MDSD (Las Américas International Airport, Dominican Republic) [#288](https://github.com/openscope/openscope/issues/288)
+    - Includes Terrain and Video map
+    - Adds Copa Airlines (CMP) and PAWA Dominicana (PWD)
+- Add new openScope emblem vector graphic [#572](https://github.com/openscope/openscope/issues/572)
 
 
 
@@ -8,7 +12,9 @@
 
 
 ### Bugfixes
-
+-Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
+- Make aircraft proceed direct new fix after full reroute [#570](https://github.com/openscope/openscope/issues/570)
+- Recalculate SID/STAR legs when changing assigned runway [#383](https://github.com/openscope/openscope/issues/383)
 
 
 

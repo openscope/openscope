@@ -1,0 +1,15 @@
+{
+    "icao": "cmp",
+    "name": "Copa Airlines",
+    "callsign": {
+        "name": "Copa",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737", 11],
+            ["B738", 66],
+            ["E190", 12]
+        ]
+    }
+}
