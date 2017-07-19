@@ -353,21 +353,7 @@ export default class InputController {
                 UiController.ui_airport_close();
             }
         }
-
-        if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
-            // Minus key to zoom out, plus to zoom in
-            UiController.ui_zoom_out();
-            return false;
-        } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
-            if (event.shiftKey) {
-                UiController.ui_zoom_in();
-            } else {
-                UiController.ui_zoom_reset();
-            }
-
-            return false;
-        }
-
+        
         if (!prop.tutorial.open) {
             return;
         }
