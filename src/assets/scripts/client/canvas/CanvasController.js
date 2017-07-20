@@ -712,6 +712,9 @@ export default class CanvasController {
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }
+        if (GameController.game.option.get('drawIlsDistanceSeparator') === 'no') {
+            return;
+        }
 
         const runway = aircraft.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.angle + Math.PI;
