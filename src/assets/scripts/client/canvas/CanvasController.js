@@ -712,6 +712,7 @@ export default class CanvasController {
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }
+        
         if (GameController.game.option.get(GAME_OPTION_NAME.DRAW_ILS_DISTANCE_SEPARATOR) === 'no') {
             return;
         }
