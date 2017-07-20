@@ -787,16 +787,6 @@ export default class CanvasController {
         const RADAR_TARGET_THEME = this.theme.RADAR_TARGET;
         let match = false;
 
-        // TODO: this does not appear to be in use, verify and remove
-        // let almost_match = false;
-        //
-        // if (
-        //     prop.input.callsign.length > 1 &&
-        //     aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
-        // ) {
-        //     almost_match = true;
-        // }
-
         if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
             match = true;
         }
@@ -805,7 +795,6 @@ export default class CanvasController {
             return;
         }
 
-        const size = 3;
         // Trailling
         let trailling_length = RADAR_TARGET_THEME.HISTORY_LENGTH;
         const dpr = window.devicePixelRatio || 1;
@@ -821,22 +810,18 @@ export default class CanvasController {
         } else {
             cc.fillStyle = RADAR_TARGET_THEME.HISTORY_DOT_INSIDE_RANGE;
         }
-
         const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
-            let alpha = 1 / (length - i);
-
-            if (!aircraft.inside_ctr) {
-                alpha = 0.3 / (length - i);
-            }
-
-            cc.globalAlpha = alpha;
-            cc.fillRect(
-                UiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
-                -UiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
-                2,
-                2
+            cc.beginPath();
+            cc.arc(
+                UiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX,
+                UiController.km_to_px(-aircraft.relativePositionHistory[i][1]) + this.canvas.panY,
+                UiController.km_to_px(RADAR_TARGET_THEME.HISTORY_DOT_RADIUS_KM),
+                0,
+                tau()
             );
+            cc.closePath();
+            cc.fill();
         }
 
         cc.restore();
@@ -867,27 +852,6 @@ export default class CanvasController {
 
         cc.strokeStyle = cc.fillStyle;
 
-        // Draw bigger circle around radar target when the aircraft is selected
-        if (match) {
-            cc.save();
-
-            cc.fillStyle = RADAR_TARGET_THEME.RADAR_TARGET;
-
-            const w = this.canvas.size.width / 2;
-            const h = this.canvas.size.height / 2;
-
-            cc.translate(
-                clamp(-w, UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX, w),
-                clamp(-h, -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY, h)
-            );
-
-            cc.beginPath();
-            cc.arc(0, 0, round(size * 1.5), 0, tau());
-            cc.fill();
-
-            cc.restore();
-        }
-
         cc.translate(
             UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
             -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
@@ -899,8 +863,16 @@ export default class CanvasController {
             this.canvas_draw_aircraft_rings(cc, aircraft);
         }
 
+        let radarTargetRadiusKm = RADAR_TARGET_THEME.RADAR_TARGET_RADIUS_KM;
+
+        // Draw bigger circle around radar target when the aircraft is selected
+        if (match) {
+            radarTargetRadiusKm = RADAR_TARGET_THEME.RADAR_TARGET_RADIUS_SELECTED_KM;
+        }
+
+        // Draw the radar target (aka aircraft position dot)
         cc.beginPath();
-        cc.arc(0, 0, size, 0, tau());
+        cc.arc(0, 0, UiController.km_to_px(radarTargetRadiusKm), 0, tau());
         cc.fill();
     }
 
