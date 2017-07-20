@@ -11,7 +11,7 @@ import { EVENT } from './eventNames';
 export const GAME_OPTION_NAMES = {
     THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PTL_LENGTH: 'ptlLength',
+    PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
@@ -59,7 +59,7 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.PTL_LENGTH,
+        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
         defaultValue: 'from-theme',
         description: 'Projected Track Line (PTL)',
         type: 'select',

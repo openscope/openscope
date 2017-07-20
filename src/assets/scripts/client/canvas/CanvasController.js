@@ -867,11 +867,11 @@ export default class CanvasController {
             this.canvas_draw_aircraft_rings(cc, aircraft);
         }
 
-        let radarTargetRadiusKm = RADAR_TARGET_THEME.RADAR_TARGET_RADIUS_KM;
+        let radarTargetRadiusKm = RADAR_TARGET_THEME.RADIUS_KM;
 
         // Draw bigger circle around radar target when the aircraft is selected
         if (match) {
-            radarTargetRadiusKm = RADAR_TARGET_THEME.RADAR_TARGET_RADIUS_SELECTED_KM;
+            radarTargetRadiusKm = RADAR_TARGET_THEME.RADIUS_SELECTED_KM;
         }
 
         // Draw the radar target (aka aircraft position dot)
@@ -993,9 +993,9 @@ k
 
         // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_DEPARTURE;
+            cc.strokeStyle = RADAR_TARGET_THEME.PROJECTION_DEPARTURE;
         } else {
-            cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_ARRIVAL;
+            cc.strokeStyle = RADAR_TARGET_THEME.PROJECTION_ARRIVAL;
         }
 
         cc.globalCompositeOperation = 'screen';
@@ -1013,7 +1013,7 @@ k
                 cc.lineTo(x, y);
                 // end the current path, start a new path with lockedStroke
                 cc.stroke();
-                cc.strokeStyle = RADAR_TARGET_THEME.RADAR_TARGET_PROJECTION_ESTABLISHED_ON_APPROACH;
+                cc.strokeStyle = RADAR_TARGET_THEME.PROJECTION_ESTABLISHED_ON_APPROACH;
                 cc.lineWidth = 3;
                 cc.beginPath();
                 cc.moveTo(x, y);
@@ -1140,11 +1140,11 @@ k
             let datablockDir = aircraft.datablockDir;
 
             if (datablockDir === INVALID_NUMBER) {
-                datablockDir = DATA_BLOCK_THEME.FDB_LEADER_DIRECTION;
+                datablockDir = DATA_BLOCK_THEME.LEADER_DIRECTION;
             }
 
-            const leaderLength = DATA_BLOCK_THEME.FDB_LEADER_LENGTH *
-                DATA_BLOCK_THEME.FDB_LEADER_LENGTH_INCREMENT_PIXELS +
+            const leaderLength = DATA_BLOCK_THEME.LEADER_LENGTH *
+                DATA_BLOCK_THEME.LEADER_LENGTH_INCREMENT_PIXELS +
                 DATA_BLOCK_THEME.LEADER_LENGTH_ADJUSTMENT_PIXELS;
             const centerToVerticalEdge = width2;
             const centerToHorizontalEdge = height2;
@@ -1168,7 +1168,7 @@ k
             );
 
             // Draw datablock shapes
-            if (!ILS_enabled && DATA_BLOCK_THEME.HAS_FDB_BOX_OUTLINE) {
+            if (!ILS_enabled && DATA_BLOCK_THEME.HAS_FILL) {
                 // data block box background fill
                 cc.fillStyle = green;
                 cc.fillRect(-width2, -height2, width, height);
@@ -1176,7 +1176,7 @@ k
                 // Draw colored bar
                 cc.fillStyle = (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) ? blue : red;
                 cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
-            } else if (DATA_BLOCK_THEME.HAS_FDB_BOX_OUTLINE) {
+            } else if (DATA_BLOCK_THEME.HAS_FILL) {
                 // Box with ILS Lock Indicator
                 cc.save();
 
@@ -1250,7 +1250,7 @@ k
             }
 
             // Draw full datablock text
-            cc.font = DATA_BLOCK_THEME.FDB_TEXT_FONT;
+            cc.font = DATA_BLOCK_THEME.TEXT_FONT;
             cc.textAlign = 'left';
             cc.fillText(row1text, -width2 + paddingLR, -gap / 2 - lineheight);
             cc.fillText(row2text, -width2 + paddingLR, gap / 2 + lineheight);
