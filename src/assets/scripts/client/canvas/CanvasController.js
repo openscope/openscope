@@ -807,7 +807,7 @@ export default class CanvasController {
 
         const size = 3;
         // Trailling
-        let trailling_length = 12;
+        let trailling_length = RADAR_TARGET_THEME.HISTORY_LENGTH;
         const dpr = window.devicePixelRatio || 1;
 
         if (dpr > 1) {
