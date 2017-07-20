@@ -734,6 +734,10 @@ export default class CanvasController {
         const runway = aircraft.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.angle + Math.PI;
 
+        if (!RADAR_TARGET_THEME.TRAILING_SEPARATION_INDICATOR_ENABLED) {
+            return;
+        }
+
         cc.strokeStyle = RADAR_TARGET_THEME.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
         cc.translate(
