@@ -1,4 +1,5 @@
 import _has from 'lodash/has';
+import EventBus from '../lib/EventBus';
 import { GAME_OPTION_VALUES } from '../constants/gameOptionConstants';
 
 /**
@@ -12,6 +13,7 @@ export default class GameOptions {
      * @constructor
      */
     constructor() {
+        this._eventBus = EventBus;
         this._options = {};
 
         this.addGameOptions();
@@ -54,6 +56,8 @@ export default class GameOptions {
     }
 
     /**
+     * Gets the value of a given game options
+     *
      * @for GameOptions
      * @method get
      * @param name {string}
@@ -63,14 +67,20 @@ export default class GameOptions {
     }
 
     /**
+     * Sets a game option to a given value
+     *
      * @for GameOptions
      * @method set
-     * @param name {string}
-     * @param value
+     * @param name {string} name of the option to change
+     * @param value {string} value to set the option to
      */
     set(name, value) {
         localStorage[`zlsa.atc.option.${name}`] = value;
         this[name] = value;
+
+        if (this._options[name].onChangeEvent) {
+            this._eventBus.trigger(this._options[name].onChangeEvent, value);
+        }
 
         return value;
     }

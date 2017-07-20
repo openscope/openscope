@@ -105,6 +105,7 @@ export default class CanvasController {
      */
     enable() {
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         return this;
     }
@@ -1880,5 +1881,26 @@ k
         this.canvas.panX = 0 - round(UiController.km_to_px(x));
         this.canvas.panY = round(UiController.km_to_px(y));
         this.dirty = true;
+    };
+
+    /**
+     * Change theme to the specified name
+     *
+     * This should ONLY be called through the EventBus during a `SET_THEME` event,
+     * thus ensuring that the same theme is always in use by all app components.
+     *
+     * This method must remain an arrow function in order to preserve the scope
+     * of `this`, since it is being invoked by an EventBus callback.
+     *
+     * @for CanvasController
+     * @method _setTheme
+     * @param themeName {string}
+     */
+    _setTheme = (themeName) => {
+        if (!_has(THEME, themeName)) {
+            return;
+        }
+
+        this.theme = THEME[themeName];
     };
 }

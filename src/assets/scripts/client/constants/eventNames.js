@@ -107,6 +107,15 @@ export const EVENT = {
     SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
 
     /**
+     * Change the active theme to the specified theme name
+     *
+     * @memberof EVENT
+     * @property SET_THEME
+     * @type {string}
+     */
+    SET_THEME: 'set-theme',
+
+    /**
      * Step through pre-defined timewarp speeds
      *
      * @memberof EVENT

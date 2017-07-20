@@ -1,3 +1,5 @@
+import { EVENT } from './eventNames';
+
 /* eslint-disable max-len, import/prefer-default-export */
 /**
  * Name enumeration of available game options
@@ -7,6 +9,7 @@
  * @final
  */
 export const GAME_OPTION_NAMES = {
+    THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
     PTL_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
@@ -26,10 +29,24 @@ export const GAME_OPTION_NAMES = {
  */
 export const GAME_OPTION_VALUES = [
     {
+        name: GAME_OPTION_NAMES.THEME,
+        defaultValue: 'default',
+        description: 'Scope Theme',
+        type: 'select',
+        onChangeEvent: EVENT.SET_THEME,
+        optionList: [
+            {
+                displayLabel: 'Default',
+                value: 'DEFAULT'
+            }
+        ]
+    },
+    {
         name: GAME_OPTION_NAMES.CONTROL_METHOD,
         defaultValue: 'classic',
         description: 'Control Method',
         type: 'select',
+        onChangeEvent: null,
         optionList: [
             {
                 displayLabel: 'Classic',
@@ -46,6 +63,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: '1',
         description: 'Projected Track Line (PTL)',
         type: 'select',
+        onChangeEvent: null,
         optionList: [
             {
                 displayLabel: 'Off',
@@ -70,6 +88,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'selected',
         description: 'Draw aircraft projected path',
         type: 'select',
+        onChangeEvent: null,
         optionList: [
             {
                 displayLabel: 'Always',
@@ -91,6 +110,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
         type: 'select',
+        onChangeEvent: null,
         optionList: [
             {
                 displayLabel: 'Yes',
@@ -108,6 +128,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Include WIP Airports',
         help: 'Will include all available airports including those marked as Work In Progress.',
         type: 'select',
+        onChangeEvent: null,
         optionList: [
             {
                 displayLabel: 'Yes',
