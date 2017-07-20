@@ -1,11 +1,14 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import EventBus from '../lib/EventBus';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';
+import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
-import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
+import { SELECTORS } from '../constants/selectors';
+import { THEME } from '../constants/themes';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const game = {};
@@ -70,6 +73,9 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
+        this.theme = THEME.DEFAULT;
+
+        this._eventBus = EventBus;
     }
 
     /**
@@ -109,6 +115,8 @@ class GameController {
      * @method enable
      */
     enable() {
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
         return this;
     }
 
@@ -426,8 +434,9 @@ class GameController {
         return this.game.option.get(optionName);
     }
 
+    // TODO: This probably does not belong in the GameController.
     /**
-     * Get the curretn `PTL_LENGTH` value and return a number.
+     * Get the current `PTL_LENGTH` value and return a number.
      *
      * Used by the `CanvasController` to get a number value (this will be stored as a string
      * due to existing api) that can be used when drawing the PTL for each aircraft.
@@ -437,9 +446,13 @@ class GameController {
      * @return {number}
      */
     getPtlLength() {
-        const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
+        let userSettingsPtlLength = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
 
-        return parseFloat(currentPtlVal);
+        if (userSettingsPtlLength === 'from-theme') {
+            userSettingsPtlLength = this.theme.RADAR_TARGET.PTL_LENGTH;
+        }
+
+        return parseFloat(userSettingsPtlLength);
     }
 
     /**
@@ -456,6 +469,28 @@ class GameController {
     shouldUseTrailingSeparator(aircraft) {
         return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
     }
+
+    // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
+    /**
+     * Change theme to the specified name
+     *
+     * This should ONLY be called through the EventBus during a `SET_THEME` event,
+     * thus ensuring that the same theme is always in use by all app components.
+     *
+     * This method must remain an arrow function in order to preserve the scope
+     * of `this`, since it is being invoked by an EventBus callback.
+     *
+     * @for GameController
+     * @method _setTheme
+     * @param themeName {string}
+     */
+    _setTheme = (themeName) => {
+        if (!_has(THEME, themeName)) {
+            return;
+        }
+
+        this.theme = THEME[themeName];
+    };
 }
 
 export default new GameController();

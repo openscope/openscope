@@ -60,11 +60,15 @@ export const GAME_OPTION_VALUES = [
     },
     {
         name: GAME_OPTION_NAMES.PTL_LENGTH,
-        defaultValue: '1',
+        defaultValue: 'from-theme',
         description: 'Projected Track Line (PTL)',
         type: 'select',
         onChangeEvent: null,
         optionList: [
+            {
+                displayLabel: 'From Theme',
+                value: 'from-theme'
+            },
             {
                 displayLabel: 'Off',
                 value: 0
