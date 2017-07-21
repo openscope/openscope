@@ -1,3 +1,4 @@
+import _filter from 'lodash/filter';
 import _isNil from 'lodash/isNil';
 import _uniq from 'lodash/uniq';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -351,12 +352,16 @@ export default class NavigationLibrary {
      * @private
      */
     _getAllFixNamesInUse() {
-        const sidFixes = this.sidCollection.getAllFixNamesInUse();
-        const starFixes = this.starCollection.getAllFixNamesInUse();
-        const allFixNames = _uniq(sidFixes.concat(starFixes)).sort();
-        const allNonVectorFixes = allFixNames.filter((fix) => fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX);
+        const allFixNames = [
+            ...this.sidCollection.getAllFixNamesInUse(),
+            ...this.starCollection.getAllFixNamesInUse()
+        ];
+        const uniqueFixNames = _uniq(allFixNames);
+        const allNonVectorFixes = _filter(uniqueFixNames, (fix) => {
+            return fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX;
+        });
 
-        return allNonVectorFixes;
+        return allNonVectorFixes.sort();
     }
 
 }
