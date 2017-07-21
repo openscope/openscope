@@ -27,6 +27,7 @@
 
 ### Refactors
 - Fix spelling error of `CanvasController` as `ConvasController` [#586](https://github.com/openscope/openscope/issues/586)
+- Remove deprecated fixRadialDist() [#290](https://github.com/openscope/openscope/issues/290)
 
 
 
