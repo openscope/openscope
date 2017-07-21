@@ -924,6 +924,7 @@ export default class CanvasController {
         cc.restore();
     }
 
+    // TODO: This is currently not working correctly and not in use
     /**
      * Draw dashed line from last coordinate of future track through
      * any later requested fixes.
@@ -935,31 +936,28 @@ export default class CanvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
-        // this is currently not working correctly and not in use
-        return;
-
-        const waypointList = aircraft.fms.waypoints;
-
-        if (waypointList.length <= 1) {
-            return;
-        }
-        const start = future_track.length - 1;
-        const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
-        const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
-
-        cc.beginPath();
-        cc.moveTo(x, y);
-        cc.setLineDash([3, 10]);
-
-        for (let i = 0; i < waypointList.length; i++) {
-            const [x, y] = waypointList[i].relativePosition;
-            const fx = UiController.km_to_px(x) + this.canvas.panX;
-            const fy = -UiController.km_to_px(y) + this.canvas.panY;
-
-            cc.lineTo(fx, fy);
-        }
-
-        cc.stroke();
+        // const waypointList = aircraft.fms.waypoints;
+        //
+        // if (waypointList.length <= 1) {
+        //     return;
+        // }
+        // const start = future_track.length - 1;
+        // const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
+        // const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
+        //
+        // cc.beginPath();
+        // cc.moveTo(x, y);
+        // cc.setLineDash([3, 10]);
+        //
+        // for (let i = 0; i < waypointList.length; i++) {
+        //     const [x, y] = waypointList[i].relativePosition;
+        //     const fx = UiController.km_to_px(x) + this.canvas.panX;
+        //     const fy = -UiController.km_to_px(y) + this.canvas.panY;
+        //
+        //     cc.lineTo(fx, fy);
+        // }
+        //
+        // cc.stroke();
     }
 
     /**
