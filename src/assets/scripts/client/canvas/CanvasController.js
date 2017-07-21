@@ -404,6 +404,13 @@ export default class CanvasController {
         return false;
     }
 
+    /**
+     * Fill entire scope with the background color specified in the current theme
+     *
+     * @for CanvasController
+     * @method canvas_fill_background
+     * @param cc {Object} HTML5 canvas context
+     */
     canvas_fill_background(cc) {
         const SCOPE_THEME = this.theme.SCOPE;
 
@@ -936,7 +943,6 @@ export default class CanvasController {
         if (waypointList.length <= 1) {
             return;
         }
-k
         const start = future_track.length - 1;
         const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
         const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
@@ -1455,7 +1461,6 @@ k
             cc.stroke();
         }
     }
-
 
     /**
      * @for CanvasController
