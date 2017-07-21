@@ -54,7 +54,7 @@ const canvas = {};
 /**
  * @class CanvasController
  */
-export default class ConvasController {
+export default class CanvasController {
     /**
      * @constructor
      * @param $element {JQuery|HTML Element|undefined}
