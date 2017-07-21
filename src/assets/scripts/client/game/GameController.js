@@ -462,6 +462,7 @@ class GameController {
             return false;
         }
         //TODO: I'm not sure what other checks should be run, I assume it's related to #15.
+    }
 }
 
 export default new GameController();
