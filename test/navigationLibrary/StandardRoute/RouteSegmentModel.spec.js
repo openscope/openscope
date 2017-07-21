@@ -36,9 +36,9 @@ ava('accepts name as a single parameter', t => {
     t.true(result.length === 0);
 });
 
-ava('.getAllFixNames() returns an array of fix names used by this segment', (t) => {
+ava('.getAllFixNamesInUse() returns an array of fix names used by this segment', (t) => {
     const routeSegmentModel = new RouteSegmentModel(NAME_MOCK, SEGMENT_WAYPOINTS_MOCK);
-    const result = _uniq(routeSegmentModel.getAllFixNames().sort());
+    const result = _uniq(routeSegmentModel.getAllFixNamesInUse().sort());
     const expectedResult = ['MDDOG', 'RBELL', 'ROPPR', 'TARRK'];
 
     t.true(_isEqual(result, expectedResult));

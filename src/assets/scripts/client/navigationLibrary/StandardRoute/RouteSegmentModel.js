@@ -118,10 +118,10 @@ export default class RouteSegmentModel extends BaseModel {
      * Returns an array of fix names used by this route segment
      *
      * @for RouteSegmentModel
-     * @method getAllFixNames
+     * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
-    getAllFixNames() {
+    getAllFixNamesInUse() {
         return this._items.map((waypoint) => waypoint.name);
     }
 

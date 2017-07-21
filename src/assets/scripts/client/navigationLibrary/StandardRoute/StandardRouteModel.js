@@ -294,13 +294,13 @@ export default class StandardRouteModel extends BaseModel {
      * Returns an array of fix names used by any portion of the procedure
      *
      * @for StandardRouteModel
-     * @method getAllFixNames
+     * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
-    getAllFixNames() {
-        const entryFixes = this._entryCollection.getAllFixNames();
-        const bodyFixes = this._bodySegmentModel.getAllFixNames();
-        const exitFixes = this._exitCollection.getAllFixNames();
+    getAllFixNamesInUse() {
+        const entryFixes = this._entryCollection.getAllFixNamesInUse();
+        const bodyFixes = this._bodySegmentModel.getAllFixNamesInUse();
+        const exitFixes = this._exitCollection.getAllFixNamesInUse();
         const drawFixes = this.draw.reduce((list, fix) => list.concat(fix))
             .map((fixName) => fixName.replace('*', ''));
         const allFixNames = entryFixes.concat(bodyFixes).concat(exitFixes).concat(drawFixes);

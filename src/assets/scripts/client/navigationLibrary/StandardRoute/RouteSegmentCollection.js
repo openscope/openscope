@@ -141,14 +141,14 @@ export default class RouteSegmentCollection extends BaseCollection {
      * Returns an array of fix names used by any segment in the collection
      *
      * @for RouteSegmentCollection
-     * @method getAllFixNames
+     * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
-    getAllFixNames() {
+    getAllFixNamesInUse() {
         let fixNames = [];
 
         this._items.forEach((routeSegmentModel) => {
-            fixNames = fixNames.concat(routeSegmentModel.getAllFixNames());
+            fixNames = fixNames.concat(routeSegmentModel.getAllFixNamesInUse());
         });
 
         return fixNames;

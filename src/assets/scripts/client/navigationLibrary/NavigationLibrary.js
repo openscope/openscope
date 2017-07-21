@@ -332,7 +332,7 @@ export default class NavigationLibrary {
      * @method showConsoleWarningForUndefinedFixes
      */
     showConsoleWarningForUndefinedFixes() {
-        const allFixNames = this._getAllFixNames();
+        const allFixNames = this._getAllFixNamesInUse();
         const missingFixes = allFixNames.filter((fix) => !FixCollection.findFixByName(fix));
 
         if (missingFixes.length < 1) {
@@ -346,13 +346,13 @@ export default class NavigationLibrary {
      * Gathers a unique, sorted list of all fixes used in all known procedures
      *
      * @for NavigationLibrary
-     * @method _getAllFixNames
+     * @method _getAllFixNamesInUse
      * @return {array<string>} ['fixxa', 'fixxb', 'fixxc', ...]
      * @private
      */
-    _getAllFixNames() {
-        const sidFixes = this.sidCollection.getAllFixNames();
-        const starFixes = this.starCollection.getAllFixNames();
+    _getAllFixNamesInUse() {
+        const sidFixes = this.sidCollection.getAllFixNamesInUse();
+        const starFixes = this.starCollection.getAllFixNamesInUse();
         const allFixNames = _uniq(sidFixes.concat(starFixes)).sort();
         const allNonVectorFixes = allFixNames.filter((fix) => fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX);
 

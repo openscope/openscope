@@ -133,9 +133,9 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.getAllFixNames() returns an array of fix names used by any portion of the procedure', (t) => {
+ava('.getAllFixNamesInUse() returns an array of fix names used by any portion of the procedure', (t) => {
     const standardRouteModel = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
-    const result = _uniq(standardRouteModel.getAllFixNames().sort());
+    const result = _uniq(standardRouteModel.getAllFixNamesInUse().sort());
     const expectedResult = ['BCE', 'BETHL', 'DUBLX', 'DVC', 'FRAWG', 'GRNPA', 'HOLDM', 'KSINO', 'LEMNZ', 'LUXOR', 'MLF', 'THREEVE', 'TRROP'];
 
     t.true(_isEqual(result, expectedResult));

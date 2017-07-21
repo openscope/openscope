@@ -215,14 +215,14 @@ export default class StandardRouteCollection extends BaseCollection {
      * Returns an array of fix names used by any portion of any procedure in the collection
      *
      * @for StandardRouteCollection
-     * @method getAllFixNames
+     * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
-    getAllFixNames() {
+    getAllFixNamesInUse() {
         let fixNames = [];
 
         this._items.forEach((standardRouteModel) => {
-            fixNames = fixNames.concat(standardRouteModel.getAllFixNames());
+            fixNames = fixNames.concat(standardRouteModel.getAllFixNamesInUse());
         });
 
         return fixNames;
