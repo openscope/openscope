@@ -1,6 +1,26 @@
 export const TERRAIN_THEME = {
+    /**
+     * Opacity of the lines on outer edges of terrain-elevated areas
+     *
+     * @memberof TERRAIN_THEME
+     * @property
+     */
     BORDER_OPACITY: 1,
+
+    /**
+     * Opaxity of the fill color within terrain-elevated areas
+     *
+     * @memberof TERRAIN_THEME
+     * @property
+     */
     FILL_OPACITY: 0.1,
+
+    /**
+     * Colors for each elevation level (in feet), in RGB
+     *
+     * @memberof TERRAIN_THEME
+     * @property
+     */
     COLOR: {
         1000: '26, 150, 65',
         2000: '119, 194, 92',
