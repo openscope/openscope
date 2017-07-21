@@ -8,6 +8,7 @@
 - Adds additional meta tags to index.html head [#484](https://github.com/openscope/openscope/issues/572)
 - Adds a link to the full command reference at the end of the tutorial [#581](https://github.com/openscope/openscope/issues/581)
 - The distance separator behind aircraft on ILS is now toggleable [#536](https://github.com/openscope/openscope/issues/536)
+- Removes the blue line "departure window" [#411](https://github.com/openscope/openscope/issues/411)
 
 
 
