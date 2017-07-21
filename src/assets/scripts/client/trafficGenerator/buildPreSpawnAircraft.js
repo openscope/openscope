@@ -4,7 +4,6 @@ import _isObject from 'lodash/isObject';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
-    fixRadialDist,
     isWithinAirspace,
     calculateDistanceToBoundary,
     bearingToPoint
