@@ -34,7 +34,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_LENGTH
      */
-    HISTORY_LENGTH: 15,
+    HISTORY_LENGTH: 10,
 
     /**
      * Initial length of PTLs, in minutes
