@@ -758,29 +758,6 @@ export default class CanvasController {
         cc.restore();
     }
 
-    // TODO: This likely has no purpose, and should be removed.
-    /**
-     * @for CanvasController
-     * @method canvas_draw_aircraft_departure_window
-     * @param cc
-     * @param aircraft
-     */
-    canvas_draw_aircraft_departure_window(cc, aircraft) {
-        const angle = aircraft.destination - Math.PI / 2;
-
-        cc.save();
-        cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_DEPARTURE;
-        cc.beginPath();
-        cc.arc(
-            this.canvas.panX,
-            this.canvas.panY,
-            UiController.km_to_px(AirportController.airport_get().ctr_radius),
-            angle - 0.08726,
-            angle + 0.08726);
-        cc.stroke();
-        cc.restore();
-    }
-
     /**
      * @for CanvasController
      * @method canvas_draw_aircraft
