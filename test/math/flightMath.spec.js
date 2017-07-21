@@ -37,17 +37,6 @@ ava('bearingToPoint() returns the bearing from one point to another', t => {
     t.true(result === expectedResult);
 });
 
-ava('fixRadialDist() returns a point defined by a direction and distance away from another point', t => {
-    const positionStart = [36.455167, -121.879667];
-    const radial = 6.02139;
-    const distance_nm = 8.5;
-    const expectedResult = [36.59190833043389, -121.92530325256963];
-    const result = fixRadialDist(positionStart, radial, distance_nm);
-
-    t.true(result[0] === expectedResult[0]);
-    t.true(result[1] === expectedResult[1]);
-});
-
 ava('.calculateCrosswindAngle() returns a number that represents the crosswind angle', (t) => {
     const expectedResult = 0.4720489082412385;
     const runwayAngleMock = 3.3676754461462877;
