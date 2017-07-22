@@ -709,7 +709,7 @@ export default class CanvasController {
      * @param aircraft
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE || !GameController.shouldUseTrailingSeparator(aircraft)) {
+        if (!GameController.shouldUseTrailingSeparator(aircraft)) {
             return;
         }
 

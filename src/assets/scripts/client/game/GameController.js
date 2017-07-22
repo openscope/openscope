@@ -454,7 +454,7 @@ class GameController {
      * @return {boolean}
      */
     shouldUseTrailingSeparator(aircraft) {
-        return this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
+        return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
     }
 }
 
