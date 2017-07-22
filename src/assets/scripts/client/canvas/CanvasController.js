@@ -781,10 +781,6 @@ export default class CanvasController {
             match = true;
         }
 
-        if (match && (aircraft.destination != null)) {
-            this.canvas_draw_aircraft_departure_window(cc, aircraft);
-        }
-
         if (!aircraft.isVisible()) {
             return;
         }
