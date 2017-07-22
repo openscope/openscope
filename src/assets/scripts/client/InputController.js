@@ -46,7 +46,7 @@ const PARSED_COMMAND_NAME = {
  */
 const MOUSE_EVENT_CODE = {
     LEFT_PRESS: 1,
-    MIDDLE_PESS: 2,
+    MIDDLE_PRESS: 2,
     RIGHT_PRESS: 3
 };
 
