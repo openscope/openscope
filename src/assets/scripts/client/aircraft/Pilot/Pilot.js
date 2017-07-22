@@ -82,6 +82,15 @@ export default class Pilot {
          * @default false
          */
         this.hasDepartureClearance = false;
+        
+        /**
+         * Whether the aircraft has been assigned an altitude above their height restriction.
+         *
+         * @property assignedUnattainableAltitude
+         * @type {boolean}
+         * @default false
+         */
+        this.assignedUnattainableAltitude = false;
     }
 
     /**
@@ -117,6 +126,10 @@ export default class Pilot {
     maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+        
+        if (altitude > maxAssignableAltitude) {
+            this.assignedUnattainableAltitude = false;
+        }
 
         if (shouldUseSoftCeiling && clampedAltitude === maxAssignableAltitude) {
             // causes aircraft to 'leave' airspace, and continue climb through ceiling
@@ -129,10 +142,11 @@ export default class Pilot {
 
         // TODO: this could be split to another method
         // Build readback
-        const readbackAltitude = _floor(clampedAltitude, -2);
+        const readbackAltitude = _floor(clampedAltitude, -2)
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
+        let altitudeUnattainable = '';
 
         if (expedite) {
             // including space here so when expedite is false there isnt an extra space after altitude
@@ -140,10 +154,13 @@ export default class Pilot {
 
             this.shouldExpediteAltitudeChange();
         }
+        
+        if (this.assignedUnattainableAltitude) {
+            altitudeUnattainable = 'requested altitude unattainable, ';
 
         const readback = {};
-        readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
-        readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+        readback.log = `${altitudeUnattainable}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
+        readback.say = `${altitudeUnattainable}${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
         return [true, readback];
     }
