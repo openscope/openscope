@@ -15,7 +15,8 @@ export const GAME_OPTION_NAMES = {
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
-    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator'
+    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
+    MOUSE_CLICK_DRAG: 'mouseClickDrag'
 };
 
 /**
@@ -167,6 +168,23 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'No',
                 value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
+        defaultValue: 'right',
+        description: 'Mouse button to move screen',
+        help: 'Which mouse button should be used to move the radar screen?',
+        type: 'select',
+        optionList: [
+            {
+                displayLabel: 'Right',
+                value: 'right'
+            },
+            {
+                displayLabel: 'Left',
+                value: 'left'
             }
         ]
     }
