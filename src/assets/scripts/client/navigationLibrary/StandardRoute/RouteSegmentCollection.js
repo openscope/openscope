@@ -1,8 +1,8 @@
 import _find from 'lodash/find';
+import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
+import _uniq from 'lodash/uniq';
 import BaseCollection from '../../base/BaseCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 import { isEmptyObject } from '../../utilities/validatorUtilities';
@@ -138,18 +138,15 @@ export default class RouteSegmentCollection extends BaseCollection {
     }
 
     /**
-     * Returns an array of fix names used by any segment in the collection
+     * Returns an array of unique fix names used by any segment in the collection
      *
      * @for RouteSegmentCollection
      * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
     getAllFixNamesInUse() {
-        let fixNames = [];
-
-        this._items.forEach((routeSegmentModel) => {
-            fixNames = fixNames.concat(routeSegmentModel.getAllFixNamesInUse());
-        });
+        const fixGroups = this._items.map((routeSegmentModel) => routeSegmentModel.getAllFixNamesInUse());
+        const fixNames = _uniq(_flatten(fixGroups));
 
         return fixNames;
     }

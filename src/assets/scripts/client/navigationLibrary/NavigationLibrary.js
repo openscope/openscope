@@ -296,12 +296,15 @@ export default class NavigationLibrary {
                 route = this._sidCollection.findRouteByIcao(routeString);
 
                 break;
-            case PROCEDURE_TYPE.STAR:
+
+            case PROCEDURE_TYPE.STAR: {
                 const { procedure } = new RouteModel(routeString);
 
                 route = this._starCollection.findRouteByIcao(procedure);
 
                 break;
+            }
+
             default:
                 return false;
         }
@@ -357,9 +360,8 @@ export default class NavigationLibrary {
             ...this.starCollection.getAllFixNamesInUse()
         ];
         const uniqueFixNames = _uniq(allFixNames);
-        const allNonVectorFixes = _filter(uniqueFixNames, (fix) => {
-            return fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX;
-        });
+        const allNonVectorFixes = _filter(uniqueFixNames, (fix) =>
+            fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX);
 
         return allNonVectorFixes.sort();
     }

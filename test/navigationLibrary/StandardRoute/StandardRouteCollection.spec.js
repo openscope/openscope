@@ -112,7 +112,7 @@ ava('.getAllFixNamesInUse() returns an array of fix names used by any portion of
     const standardRouteCollection = new StandardRouteCollection(STAR_LIST_MOCK, PROCEDURE_TYPE.STAR);
     const fixNameList = standardRouteCollection.getAllFixNamesInUse();
 
-    t.true(fixNameList.length === 171);
+    t.true(fixNameList.length === 45);
 });
 
 ava('.hasRoute() returns a boolean if a route exists within the collection', (t) => {

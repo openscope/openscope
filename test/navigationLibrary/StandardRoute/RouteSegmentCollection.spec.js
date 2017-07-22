@@ -63,7 +63,7 @@ ava('.gatherFixNamesForCollection() returns a list of entryPoint/exitPoint names
 
 ava('.getAllFixNamesInUse() returns an array of fix names used by any segment in the collection', (t) => {
     const collection = new RouteSegmentCollection(ROUTE_SEGMENTS_MOCK);
-    const result = _uniq(collection.getAllFixNamesInUse().sort());
+    const result = collection.getAllFixNamesInUse().sort();
     const expectedResult = ['BAKRR', 'BESSY', 'FIXIX', 'HITME', 'JAKER', 'JESJI', 'MDDOG', 'MINEY', 'PIRMD', 'RBELL', 'ROPPR', 'TARRK', 'WASTE'];
 
     t.true(_isEqual(result, expectedResult));

@@ -1,10 +1,12 @@
 import _find from 'lodash/find';
+import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
+import _uniq from 'lodash/uniq';
 import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
 import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
@@ -212,18 +214,15 @@ export default class StandardRouteCollection extends BaseCollection {
     }
 
     /**
-     * Returns an array of fix names used by any portion of any procedure in the collection
+     * Returns an array of unique fix names used by any portion of any procedure in the collection
      *
      * @for StandardRouteCollection
      * @method getAllFixNamesInUse
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
     getAllFixNamesInUse() {
-        let fixNames = [];
-
-        this._items.forEach((standardRouteModel) => {
-            fixNames = fixNames.concat(standardRouteModel.getAllFixNamesInUse());
-        });
+        const fixGroups = this._items.map((standardRouteModel) => standardRouteModel.getAllFixNamesInUse());
+        const fixNames = _uniq(_flatten(fixGroups));
 
         return fixNames;
     }
