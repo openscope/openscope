@@ -170,22 +170,5 @@ export const GAME_OPTION_VALUES = [
                 value: 'no'
             }
         ]
-    },
-    {
-        name: GAME_OPTION_NAMES.MOUSE_CLICK_DRAG,
-        defaultValue: 'right',
-        description: 'Mouse button to move screen',
-        help: 'Which mouse button should be used to move the radar screen?',
-        type: 'select',
-        optionList: [
-            {
-                displayLabel: 'Right',
-                value: 'right'
-            },
-            {
-                displayLabel: 'Left',
-                value: 'left'
-            }
-        ]
     }
 ];
