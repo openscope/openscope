@@ -142,7 +142,7 @@ export default class Pilot {
 
         // TODO: this could be split to another method
         // Build readback
-        const readbackAltitude = _floor(clampedAltitude, -2)
+        const readbackAltitude = _floor(clampedAltitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
