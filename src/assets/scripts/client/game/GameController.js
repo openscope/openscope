@@ -441,6 +441,21 @@ class GameController {
 
         return parseFloat(currentPtlVal);
     }
+    
+    /**
+     * Check whether or not the trailing distance separator should be drawn.
+     *
+     * Used by the `CanvasController` to determine whether or not to proceed with 
+     * `canvas_draw_separation_indicator`.
+     *
+     * @for GameController
+     * @method shouldUseTrailingSeparator
+     * @param aircraft
+     * @return {boolean}
+     */
+    shouldUseTrailingSeparator(aircraft) {
+        return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
+    }
 }
 
 export default new GameController();
