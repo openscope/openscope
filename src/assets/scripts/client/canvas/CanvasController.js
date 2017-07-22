@@ -547,7 +547,7 @@ export default class CanvasController {
         cc.strokeStyle = this.theme.TOP_ROW_TEXT;
 
         const offset = 20;
-        const height = 10;
+        const height = 5;
         const length = round(1 / UiController.scale * 50);
         const px_length = round(UiController.km_to_px(length));
 
