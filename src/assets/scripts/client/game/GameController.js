@@ -454,14 +454,7 @@ class GameController {
      * @return {boolean}
      */
     shouldUseTrailingSeparator(aircraft) {
-        if (this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes') {
-            return true;
-        }
-        
-        if (this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'no') {
-            return false;
-        }
-        //TODO: I'm not sure what other checks should be run, I assume it's related to #15.
+        return this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
     }
 }
 
