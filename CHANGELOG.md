@@ -21,6 +21,8 @@
 - Recalculate SID/STAR legs when changing assigned runway [#383](https://github.com/openscope/openscope/issues/383)
 - Remove +/-/= zoom hotkey, conflicts with speed [#510](https://github.com/openscope/openscope/issues/510)
 - Correct EGKK's departure fix [#577](https://github.com/openscope/openscope/issues/577)
+- Middle mouse button now resets zoom as intended [#593](https://github.com/openscope/openscope/issues/593)
+
 
 
 
