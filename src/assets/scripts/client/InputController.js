@@ -245,7 +245,7 @@ export default class InputController {
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
             UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
-	    event.preventDefault();
+		event.preventDefault();
             // Record mouse down position for panning
             this.input.mouseDown = [
                 event.pageX - prop.canvas.panX,
