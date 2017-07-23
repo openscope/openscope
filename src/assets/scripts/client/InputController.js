@@ -1,7 +1,6 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
 import $ from 'jquery';
 import _has from 'lodash/has';
-import _map from 'lodash/map';
 import AirportController from './airport/AirportController';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
@@ -11,77 +10,15 @@ import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
+import {
+    KEY_CODES,
+    MOUSE_EVENT_CODE,
+    PARSED_COMMAND_NAME
+} from './constants/inputConstants';
 import { SELECTORS } from './constants/selectors';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
-
-/**
- * Name of a command returned from the Parser
- *
- * @property PARSED_COMMAND_NAME
- * @type {Object}
- * @final
- */
-const PARSED_COMMAND_NAME = {
-    VERSION: 'version',
-    TUTORIAL: 'tutorial',
-    AUTO: 'auto',
-    PAUSE: 'pause',
-    TIMEWARP: 'timewarp',
-    CLEAR: 'clear',
-    AIRPORT: 'airport',
-    RATE: 'rate',
-    TRANSMIT: 'transmit'
-};
-
-/**
- * Enumeration of mouse events returned from $event.which
- *
- * These codes can only be used with jQuery event object.
- *
- * @property MOUSE_EVENT_CODE
- * @type {Object}
- * @final
- */
-const MOUSE_EVENT_CODE = {
-    LEFT_PRESS: 1,
-    MIDDLE_PRESS: 2,
-    RIGHT_PRESS: 3
-};
-
-/**
- * Enumeration of key codes used for inputs.
- *
- * @property KEY_CODES
- * @type {Object}
- * @final
- */
-const KEY_CODES = {
-    // +
-    ADD: 107,
-    // -
-    DASH: 189,
-    DASH_FIREFOX: 173,
-    DIVIDE: 111,
-    DOWN_ARROW: 40,
-    ENTER: 13,
-    // =
-    EQUALS: 187,
-    EQUALS_FIREFOX: 61,
-    // esc
-    ESCAPE: 27,
-    LEFT_ARROW: 37,
-    MULTIPLY: 106,
-    PAGE_UP: 33,
-    PAGE_DOWN: 34,
-    RIGHT_ARROW: 39,
-    SUBTRACT: 109,
-    TAB: 9,
-    UP_ARROW: 38,
-    // `
-    BAT_TICK: 192
-};
 
 /**
  * @class InputController
