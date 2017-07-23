@@ -1,3 +1,3 @@
 Resolves #
 
-Issue description:
+The purpose of this pull request is to
