@@ -59,6 +59,28 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
+        name: GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR,
+        defaultValue: 'from-theme',
+        description: 'Show trailing separation indicator on ILS',
+        help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
+        type: 'select',
+        onChangeEvent: null,
+        optionList: [
+            {
+                displayLabel: 'From Theme',
+                value: 'from-theme'
+            },
+            {
+                displayLabel: 'Yes',
+                value: 'yes'
+            },
+            {
+                displayLabel: 'No',
+                value: 'no'
+            }
+        ]
+    },
+    {
         name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
         defaultValue: 'from-theme',
         description: 'Projected Track Line (PTL)',
@@ -133,23 +155,6 @@ export const GAME_OPTION_VALUES = [
         help: 'Will include all available airports including those marked as Work In Progress.',
         type: 'select',
         onChangeEvent: null,
-        optionList: [
-            {
-                displayLabel: 'Yes',
-                value: 'yes'
-            },
-            {
-                displayLabel: 'No',
-                value: 'no'
-            }
-        ]
-    },
-    {
-        name: GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR,
-        defaultValue: 'yes',
-        description: 'Draw distance separator on ILS',
-        help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
-        type: 'select',
         optionList: [
             {
                 displayLabel: 'Yes',

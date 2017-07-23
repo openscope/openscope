@@ -462,12 +462,20 @@ class GameController {
      * `canvas_draw_separation_indicator`.
      *
      * @for GameController
-     * @method shouldUseTrailingSeparator
-     * @param aircraft
+     * @method shouldUseTrailingSeparationIndicator
+     * @param aircraft {AircraftModel}
      * @return {boolean}
      */
-    shouldUseTrailingSeparator(aircraft) {
-        return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
+    shouldUseTrailingSeparationIndicator(aircraft) {
+        const isArrival = aircraft.isArrival();
+        const userSettingsValue = this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR);
+        let isIndicatorEnabled = userSettingsValue === 'yes';
+
+        if (userSettingsValue === 'from-theme') {
+            isIndicatorEnabled = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED;
+        }
+
+        return isArrival && isIndicatorEnabled;
     }
 
     // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
