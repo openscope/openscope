@@ -56,7 +56,7 @@ export default class GameOptions {
     }
 
     /**
-     * Gets the value of a given game options
+     * Gets the value of a given game option
      *
      * @for GameOptions
      * @method get
