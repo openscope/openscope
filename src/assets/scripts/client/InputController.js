@@ -11,6 +11,7 @@ import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import {
+    COMMAND_CONTEXT,
     KEY_CODES,
     MOUSE_EVENT_CODE,
     PARSED_COMMAND_NAME
@@ -58,6 +59,7 @@ export default class InputController {
         this.input.mouseDelta = [0, 0];
         this.input.mouseDown = [0, 0];
         this.input.isMouseDown = false;
+        this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
         this._init()
             .setupHandlers()
@@ -489,12 +491,9 @@ export default class InputController {
 
                 break;
             case KEY_CODES.TAB:
-                if (!this.input.tab_compl.matches) {
-                    this.tab_completion_match();
-                }
-
-                this.tab_completion_cycle({ backwards: e.shiftKey });
+                this.$commandInput.val('');
                 e.preventDefault();
+                this._toggleCommandBarContext();
 
                 break;
             case KEY_CODES.ESCAPE:
@@ -513,69 +512,6 @@ export default class InputController {
             default:
                 break;
         }
-    }
-
-    /**
-     * @for InputController
-     * @method tab_completion_cycle
-     * @param opt
-     */
-    tab_completion_cycle(opt) {
-        const matches = this.input.tab_compl.matches;
-
-        if (!matches || matches.length === 0) {
-            return;
-        }
-
-        // TODO: this block needs some work. this initial assignment looks to be overwritten every time.
-        let i = this.input.tab_compl.cycle_item;
-        if (opt.backwards) {
-            i = (i <= 0) ? matches.length - 1 : i - 1;
-        } else {
-            i = (i >= matches.length - 1) ? 0 : i + 1;
-        }
-
-        this.$commandInput.val(`${matches[i]} `);
-
-        this.input.command = matches[i];
-        this.input.tab_compl.cycle_item = i;
-
-        this.input_parse();
-    }
-
-    /**
-     * @for InputController
-     * @method tab_completion_match
-     */
-    tab_completion_match() {
-        let matches;
-        const val = this.$commandInput.val();
-        let aircrafts = this._aircraftController.aircraft.list;
-
-        if (this.input.callsign) {
-            aircrafts = aircrafts.filter((a) => {
-                return a.matchCallsign(this.input.callsign);
-            });
-        }
-
-        matches = _map(aircrafts, (aircraft) => {
-            return aircraft.callsign;
-        });
-
-        if (aircrafts.length === 1 && (this.input.data || val[val.length - 1] === ' ')) {
-            // TODO: update inline functions
-            matches = aircrafts[0].COMMANDS.filter((c) => {
-                return c.toLowerCase().indexOf(this.input.data.toLowerCase()) === 0;
-            })
-            .map((c) => {
-                return val.substring(0, this.input.callsign.length + 1) + c;
-            });
-        }
-
-        this.tab_completion_reset();
-
-        this.input.tab_compl.matches = matches;
-        this.input.tab_compl.cycle_item = INVALID_NUMBER;
     }
 
     /**
@@ -680,6 +616,35 @@ export default class InputController {
         }
 
         return result;
+    }
+
+    /**
+     * Toggle command bar between aircraft commands and scope commands
+     *
+     * @for InputController
+     * @method _toggleCommandBarContext
+     */
+    _toggleCommandBarContext() {
+        switch (this.commandBarContext) {
+            case COMMAND_CONTEXT.AIRCRAFT:
+                this.commandBarContext = COMMAND_CONTEXT.SCOPE;
+                this.$commandInput.attr('placeholder', 'enter scope command');
+                // this.$commandInput.css({'background-color': '#444'});
+                this.$commandInput.css({ color: 'red' });
+
+                return;
+
+            case COMMAND_CONTEXT.SCOPE:
+                this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
+                this.$commandInput.attr('placeholder', 'enter aircraft command');
+                // this.$commandInput.css({ 'background-color': '#999' });
+                this.$commandInput.css({ color: 'white' });
+
+                return;
+
+            default:
+                return;
+        }
     }
 
     /**

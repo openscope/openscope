@@ -1,4 +1,15 @@
 /**
+ * Context of commands entered into command bar
+ *
+ * @enum COMMAND_CONTEXT
+ * @type {object}
+ */
+export const COMMAND_CONTEXT = {
+    AIRCRAFT: 'aircraft',
+    SCOPE: 'scope'
+};
+
+/**
  * Enumeration of key codes used for inputs.
  *
  * @property KEY_CODES
