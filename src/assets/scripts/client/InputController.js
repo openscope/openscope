@@ -1,6 +1,7 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
 import $ from 'jquery';
 import _has from 'lodash/has';
+import _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
@@ -499,16 +500,22 @@ export default class InputController {
             case KEY_CODES.ESCAPE:
                 const currentCommandValue = this.$commandInput.val();
 
-                // if the current commandInput value contains a callsign and commands, only clear the commands
-                if (currentCommandValue.trim() !== this.input.callsign) {
-                    this.$commandInput.val(`${this.input.callsign} `);
+                if (!_includes(currentCommandValue, this.input.callsign)) {
+                    this.$commandInput.val('');
 
                     return;
                 }
 
-                this.$commandInput.val('');
+                if (currentCommandValue.trim() === this.input.callsign) {
+                    this.$commandInput.val('');
 
-                break;
+                    return;
+                }
+
+                this.$commandInput.val(`${this.input.callsign} `);
+
+                return;
+
             default:
                 break;
         }
