@@ -36,6 +36,10 @@ export const GAME_OPTION_VALUES = [
         onChangeEvent: EVENT.SET_THEME,
         optionList: [
             {
+                displayLabel: 'Classic',
+                value: 'CLASSIC'
+            },
+            {
                 displayLabel: 'Default',
                 value: 'DEFAULT'
             }
