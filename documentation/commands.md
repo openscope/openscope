@@ -239,6 +239,19 @@ any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
 
+### Squawk
+_Aliases -_ `sq`
+
+_Information -_ This command tells an aircraft to set its transponder code, or "squawk" a four-digit number, from `0000` to `7777`. These codes uniquely identify each plane to the air traffic controller. Certain codes have special significance, such as `0033: Paradrop in progress` or `7000: VFR`. Currently the squawk is purely cosmetic; including it in game mechanics is planned.
+
+_Parameters -_ A four digit number. Each number must be between `0` and `7`, inclusive. For example, `0736` is a valid squawk, `9416` is not.
+
+_Syntax -_ `AAL123 squawk ####`
+
+## System Commands
+
+openScope has a number of commands that do not change game mechanics, known as _system commands_. While most are able to be executed via various menus, they can be entered in the command bar if one so desires.
+
 ### Move Data Block
 _Aliases -_ `` ` (backtick) ``
 
@@ -254,3 +267,47 @@ be used to "shortstem" the aircraft, which puts the data block right on top of
 the aircraft's position symbol.
 
 _Syntax -_ ``AAL123 `2``
+
+### Version
+
+_Information -_ Displays the version of the game running.
+
+Example: `Air Traffic Control simulator version 5.3.0`
+
+_Syntax -_ `version`
+
+### Pause
+
+_Information -_ Pauses the game. Click anywhere to resume.
+
+_Syntax -_ `pause`
+
+### Tutorial
+
+_Information -_ Opens the tutorial.
+
+_Syntax -_ `tutorial`
+
+### Timewarp
+
+_Information -_ Sets the rate at which time passes, normal is `1`. While the time warp button can only set the rate to `1`, `2`, or `5`, the command accepts any number.
+
+_Parameters -_ A number to multiply the rate at which time passes. `1` resets to normal time.
+
+_Syntax -_ `timewarp [rate]`
+
+### Rate
+
+_Information -_ Sets the rate at which aircraft spawn.
+
+_Parameters -_ The rate at which aircraft spawn.
+
+_Syntax -_ `rate [rate]`
+
+### Airport
+
+_Information -_ Changes the current airport to the one specified.
+
+_Parameters -_ The ICAO (four-letter) code of the desired airport.
+
+_Syntax -_ `airport [ICAO]`
