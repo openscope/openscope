@@ -254,7 +254,6 @@ export default class InputController {
             ];
             this.input.isMouseDown = true;
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
-            this.input.isMouseDown = true;
             // Aircraft label selection
             let position = [event.pageX, -event.pageY];
             position[0] -= prop.canvas.size.width / 2;
