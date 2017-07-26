@@ -4,7 +4,7 @@ Although the tutorial gives a large amount of information, if you find
 remembering the commands too complicated, here's a reference. Remember
 that you can type out multiple commands in one go; for example:
 `BAW231 fh 090 d 30 sp 180` will work as well as all three commands run
-separately. Some commands have "alises" that are shorter to type. An
+separately. Some commands have "aliases" that are shorter to type. An
 example of that would be the `takeoff` command which has an alias `to`.
 
 ### Taxi
