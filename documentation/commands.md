@@ -296,14 +296,6 @@ _Parameters -_ A number to multiply the rate at which time passes. `1` resets to
 
 _Syntax -_ `timewarp [rate]`
 
-### Rate
-
-_Information -_ Sets the rate at which aircraft spawn.
-
-_Parameters -_ The rate at which aircraft spawn.
-
-_Syntax -_ `rate [rate]`
-
 ### Airport
 
 _Information -_ Changes the current airport to the one specified.
