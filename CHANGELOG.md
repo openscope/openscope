@@ -31,6 +31,7 @@
 - Fix spelling error of `CanvasController` as `ConvasController` [#586](https://github.com/openscope/openscope/issues/586)
 - Remove deprecated fixRadialDist() [#290](https://github.com/openscope/openscope/issues/290)
 - Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
+- Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
 
 
 
