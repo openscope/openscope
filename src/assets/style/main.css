@@ -2,6 +2,7 @@
 @import "util.css";
 @import "canvas.css";
 @import "font.css";
+@import "hdg.css";
 @import "controls.css";
 @import "pause.css";
 @import "command.css";
@@ -9,7 +10,8 @@
 @import "media.css";
 @import "stripView.css";
 @import "sidebar.css";
-@import "loading.css";
+@import "loadingView.css";
+@import "loadingIndicator.css";
 @import "tutorial.css";
 @import "airport.css";
 @import "score.css";

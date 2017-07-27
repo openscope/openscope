@@ -11,10 +11,6 @@
     overflow: hidden;
 }
 
-.media-hd {
-    padding: 5px;
+.media-content > * + * {
+    margin-top: 10px;
 }
-
-.media-bd {}
-
-.media-ft {}

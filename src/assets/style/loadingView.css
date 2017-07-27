@@ -1,0 +1,68 @@
+/*#a3e3e8*/
+/*#4a858b*/
+/*#274f55*/
+/*#0d1b1e*/
+
+.loadingView {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0d1b1e;
+    color: #dddddd;
+    z-index: 1500;
+}
+
+.loadingViewMedia {
+    width: 500px;
+    overflow: hidden;
+}
+
+.loadingViewMedia-figure {
+    float: left;
+    margin-right: 50px;
+}
+
+.loadingViewMedia-content {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.loadingViewMedia-content > * + * {
+    margin-top: 5px;
+}
+
+.loadingViewMedia-bd {
+    color: #a3e3e8;
+    font-size: 80%;
+}
+
+.loadingViewMedia-ft {
+    color: #888888;
+    font-size: 70%;
+}
+
+.loadingView-dot {
+    opacity: 0;
+    animation: showHideDot 3.5s ease-in-out infinite;
+}
+
+.loadingView-dot_one { animation-delay: 0.1s; }
+
+.loadingView-dot_two {
+    margin-left: -2px;
+    animation-delay: 0.2s;
+}
+
+.loadingView-dot_three {
+    margin-left: -2px;
+    animation-delay: 0.3s;
+}
+
+@keyframes showHideDot {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; }
+}
