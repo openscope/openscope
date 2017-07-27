@@ -132,6 +132,24 @@ export const DATA_BLOCK_THEME = {
     LEADER_LENGTH: 1,
 
     /**
+     * Distance from data block after which the leader line is drawn
+     * Higher values mean a shorter leader line
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @type {number}
+     */
+    LEADER_PADDING_FROM_BLOCK_PX: -2,
+
+    /**
+     * Distance from radar target after which the leader line is drawn
+     * Higher values mean a shorter leader line
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @type {number}
+     */
+    LEADER_PADDING_FROM_TARGET_PX: 0,
+
+    /**
      * Font and size of text used in the data block
      *
      * @memberof DATA_BLOCK_THEME
