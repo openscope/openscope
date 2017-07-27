@@ -1,20 +1,22 @@
+/*#a3e3e8*/
+/*#4a858b*/
+/*#274f55*/
+/*#0d1b1e*/
+
 
 #loading {
-  background-color: #354;
-
-  color: #ddd;
-  text-align: center;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  z-index: 1500;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0d1b1e;
+    color: #ddd;
+    text-align: center;
+    z-index: 1500;
 }
 
-#loading h1 {
+/*#loading h1 {
   font-size: 200%;
   margin-top: 10%;
 }
@@ -29,7 +31,7 @@
   right: 0;
   width: auto;
   padding: 10px;
-}
+}*/
 
 #loadingIndicator {
   position: absolute;

@@ -198,10 +198,10 @@ export default class AppController {
      * @method complete
      */
     complete() {
-        this.loadingView.complete();
-        GameController.complete();
-        this.canvasController.canvas_complete();
-        UiController.ui_complete();
+        // this.loadingView.complete();
+        // GameController.complete();
+        // this.canvasController.canvas_complete();
+        // UiController.ui_complete();
     }
 
     /**
