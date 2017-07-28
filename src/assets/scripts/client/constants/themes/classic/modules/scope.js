@@ -1,4 +1,4 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
 export const SCOPE_THEME = {
     AIRSPACE_FILL: COLOR.GREEN_LIGHT_PALE_002,

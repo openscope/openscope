@@ -242,7 +242,7 @@ class UiController {
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
-        const selectedOption = GameController.game.option.get(option.name);
+        const selectedOption = GameController.game.option.getOptionByName(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -255,7 +255,7 @@ class UiController {
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            GameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
 
             if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
                 this._buildAirportList();

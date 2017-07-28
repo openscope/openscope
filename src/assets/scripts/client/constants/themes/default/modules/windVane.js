@@ -1,5 +1,11 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
+/**
+ * Colors and options for wind vane
+ *
+ * @enum WIND_VANE_THEME
+ * @type {object}
+ */
 export const WIND_VANE_THEME = {
 
     /**
@@ -11,7 +17,7 @@ export const WIND_VANE_THEME = {
     DIRECTION_LINE_GUSTY: COLOR.WHITE,
 
     /**
-     * Color of the line indivating the wind direction
+     * Color of the line indicating the wind direction
      *
      * @memberof WIND_VANE_THEME
      * @property DIRECTION_LINE

@@ -203,7 +203,7 @@ export default class AircraftCommander {
     runAltitude(aircraft, data) {
         const altitudeRequested = data[0];
         const expediteRequested = data[1];
-        const shouldUseSoftCeiling = GameController.game.option.get('softCeiling') === 'yes';
+        const shouldUseSoftCeiling = GameController.game.option.getOptionByName('softCeiling') === 'yes';
         const airport = AirportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(

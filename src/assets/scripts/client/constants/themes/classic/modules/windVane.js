@@ -1,4 +1,4 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
 export const WIND_VANE_THEME = {
     DIRECTION_LINE_GUSTY: COLOR.RED_BRIGHT_07,

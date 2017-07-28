@@ -33,7 +33,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'default',
         description: 'Scope Theme',
         type: 'select',
-        onChangeEvent: EVENT.SET_THEME,
+        onChangeEventHandler: EVENT.SET_THEME,
         optionList: [
             {
                 displayLabel: 'Classic',
@@ -50,7 +50,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'classic',
         description: 'Control Method',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Classic',
@@ -68,7 +68,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Show trailing separation indicator on ILS',
         help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'From Theme',
@@ -89,7 +89,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'from-theme',
         description: 'Projected Track Line (PTL)',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'From Theme',
@@ -118,7 +118,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'selected',
         description: 'Draw aircraft projected path',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Always',
@@ -140,7 +140,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Yes',
@@ -158,7 +158,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Include WIP Airports',
         help: 'Will include all available airports including those marked as Work In Progress.',
         type: 'select',
-        onChangeEvent: null,
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Yes',

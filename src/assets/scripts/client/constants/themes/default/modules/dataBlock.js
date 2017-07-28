@@ -1,9 +1,15 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
 // TODO: Instead of individual colors, can we somehow specify an alpha value
 // for 'IN_RANGE', 'OUT_OF_RANGE' and 'SELECTED', to be applied to the entire
 // data block? Possibly `cc.globalAlpha`, to be only effective while drawing
 // the data block, then `cc.restore()` to return to normal opacity?
+/**
+ * Colors and options for data blocks
+ *
+ * @enum DATA_BLOCK_THEME
+ * @type {object}
+ */
 export const DATA_BLOCK_THEME = {
     /**
      * Color of the bar on the left side of the data block

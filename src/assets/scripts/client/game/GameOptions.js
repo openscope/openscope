@@ -59,10 +59,10 @@ export default class GameOptions {
      * Gets the value of a given game option
      *
      * @for GameOptions
-     * @method get
+     * @method getOptionByName
      * @param name {string}
      */
-    get(name) {
+    getOptionByName(name) {
         return this[name];
     }
 
@@ -70,16 +70,16 @@ export default class GameOptions {
      * Sets a game option to a given value
      *
      * @for GameOptions
-     * @method set
+     * @method setOptionByName
      * @param name {string} name of the option to change
      * @param value {string} value to set the option to
      */
-    set(name, value) {
+    setOptionByName(name, value) {
         localStorage[`zlsa.atc.option.${name}`] = value;
         this[name] = value;
 
-        if (this._options[name].onChangeEvent) {
-            this._eventBus.trigger(this._options[name].onChangeEvent, value);
+        if (this._options[name].onChangeEventHandler) {
+            this._eventBus.trigger(this._options[name].onChangeEventHandler, value);
         }
 
         return value;

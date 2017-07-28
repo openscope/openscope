@@ -1,5 +1,11 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
+/**
+ * Colors and options for radar targets
+ *
+ * @enum RADAR_TARGET_THEME
+ * @type {object}
+ */
 export const RADAR_TARGET_THEME = {
 
     /**

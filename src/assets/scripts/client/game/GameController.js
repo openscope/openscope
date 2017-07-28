@@ -10,9 +10,6 @@ import { TIME } from '../constants/globalConstants';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
 
-// Temporary const declaration here to attach to the window AND use as internal property
-const game = {};
-
 // TODO: Remember to move me to wherever the constants end up being moved to
 /**
  * Definitions of point values for given game events
@@ -60,7 +57,7 @@ class GameController {
      * @constructor
      */
     constructor() {
-        this.game = game;
+        this.game = {};
         this.game.paused = true;
         this.game.focused = true;
         this.game.speedup = 1;
@@ -125,6 +122,8 @@ class GameController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
         return this;
     }
 
@@ -431,7 +430,7 @@ class GameController {
      * @return {string}
      */
     getGameOption(optionName) {
-        return this.game.option.get(optionName);
+        return this.game.option.getOptionByName(optionName);
     }
 
     // TODO: This probably does not belong in the GameController.
@@ -467,7 +466,6 @@ class GameController {
      * @return {boolean}
      */
     shouldUseTrailingSeparationIndicator(aircraft) {
-        const isArrival = aircraft.isArrival();
         const userSettingsValue = this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR);
         let isIndicatorEnabled = userSettingsValue === 'yes';
 
@@ -475,7 +473,7 @@ class GameController {
             isIndicatorEnabled = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED;
         }
 
-        return isArrival && isIndicatorEnabled;
+        return isIndicatorEnabled && aircraft.isArrival();
     }
 
     // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
@@ -494,6 +492,8 @@ class GameController {
      */
     _setTheme = (themeName) => {
         if (!_has(THEME, themeName)) {
+            console.error(`Expected valid theme to change to, but received '${themeName}'`);
+
             return;
         }
 

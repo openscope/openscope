@@ -1,4 +1,4 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
 export const DATA_BLOCK_THEME = {
     ARRIVAL_BAR_IN_RANGE: COLOR.RED_05,

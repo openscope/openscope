@@ -1,3 +1,9 @@
+/**
+ * Colors and options for terrain contours
+ *
+ * @enum TERRAIN_THEME
+ * @type {object}
+ */
 export const TERRAIN_THEME = {
     /**
      * Opacity of the lines on outer edges of terrain-elevated areas
@@ -8,7 +14,7 @@ export const TERRAIN_THEME = {
     BORDER_OPACITY: 1,
 
     /**
-     * Opaxity of the fill color within terrain-elevated areas
+     * Opacity of the fill color within terrain-elevated areas
      *
      * @memberof TERRAIN_THEME
      * @property FILL_OPACITY

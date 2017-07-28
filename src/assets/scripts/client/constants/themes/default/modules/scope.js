@@ -1,5 +1,11 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
+/**
+ * Colors and options for scope
+ *
+ * @enum SCOPE_THEME
+ * @type {object}
+ */
 export const SCOPE_THEME = {
 
     /**
@@ -111,7 +117,7 @@ export const SCOPE_THEME = {
     RUNWAY: COLOR.WHITE,
 
     /**
-     * Color of the lines showing where SIDs go
+     * Color of the lines drawn between fixes on SIDs
      *
      * @memberof SCOPE_THEME
      * @property SID
@@ -119,7 +125,7 @@ export const SCOPE_THEME = {
     SID: COLOR.BLUE_VERY_LIGHT,
 
     /**
-     * Color of the lines showing where STARs go
+     * Color of the lines drawn between fixes on STARs
      *
      * @memberof SCOPE_THEME
      * @property TOP_ROW_TEXT

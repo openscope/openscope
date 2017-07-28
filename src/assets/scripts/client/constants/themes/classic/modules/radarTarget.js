@@ -1,4 +1,4 @@
-import { COLOR } from '../colors';
+import { COLOR } from '../color';
 
 export const RADAR_TARGET_THEME = {
     HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE,
