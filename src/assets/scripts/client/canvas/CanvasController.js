@@ -1549,7 +1549,15 @@ export default class CanvasController {
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
+        // TODO: Remove the jQuery in favor of _each()!
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
+            if (elevation < 1000) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+                    ' below sea level, which is not supported!');
+                // within `$.each()`, this return acts like `continue;`
+                return;
+            }
+
             max_elevation = Math.max(max_elevation, elevation);
             const color = `hsla(${UiController.terrain.COLOR[elevation]}`;
 
