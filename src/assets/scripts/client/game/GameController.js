@@ -279,7 +279,7 @@ class GameController {
      * @for GameController
      * @method game_timeout
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return gameTimeout
@@ -297,7 +297,7 @@ class GameController {
      * @for GameController
      * @method game_interval
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return to
