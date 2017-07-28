@@ -8,7 +8,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property AIRSPACE_FILL
      */
-    AIRSPACE_FILL: COLOR.GREEN_LIGHT_PALE_002,
+    AIRSPACE_FILL: COLOR.BLUE_MEDIUM_DARK_01,
 
     /**
      * Color to draw the solid line along the airspace perimeter
@@ -16,7 +16,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property AIRSPACE_PERIMETER
      */
-    AIRSPACE_PERIMETER: COLOR.GREEN_LIGHT_PALE_025,
+    AIRSPACE_PERIMETER: COLOR.BLUE_DARK,
 
     /**
      * Color of the overall background of the scope
@@ -24,7 +24,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property BACKGROUND
      */
-    BACKGROUND: COLOR.GREEN_DARK,
+    BACKGROUND: COLOR.BLUE_VERY_DARK,
 
     /**
      * Color of the minor and major hash marks of the relative compass headings
@@ -33,7 +33,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property COMPASS_HASH
      */
-    COMPASS_HASH: COLOR.GRAY_LIGHT,
+    COMPASS_HASH: COLOR.BLUE_MEDIUM_DARK,
 
     /**
      * Color of the heading text by the major hash marks of the relative compass
@@ -42,7 +42,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property COMPASS_TEXT
      */
-    COMPASS_TEXT: COLOR.WHITE,
+    COMPASS_TEXT: COLOR.BLUE_MEDIUM_DARK,
 
     /**
      * Color of the crosshair symbol drawn by `CanvasController.canvas_draw_crosshairs()`
@@ -52,7 +52,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property CROSSHAIR_STROKE
      */
-    CROSSHAIR_STROKE: COLOR.GRAY,
+    CROSSHAIR_STROKE: COLOR.RED,
 
     /**
      * Color to fill the fix triangles with
@@ -60,7 +60,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property FIX_FILL
      */
-    FIX_FILL: COLOR.WHITE_05,
+    FIX_FILL: COLOR.BLUE_MEDIUM,
 
     /**
      * Color to use for the labels on each of the fixes
@@ -68,7 +68,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property FIX_TEXT
      */
-    FIX_TEXT: COLOR.WHITE_05,
+    FIX_TEXT: COLOR.BLUE_MEDIUM,
 
     /**
      * Color of the range rings shown on the scope around the airport
@@ -76,7 +76,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RANGE_RING_COLOR
      */
-    RANGE_RING_COLOR: COLOR.GREEN_LIGHT_PALE_01,
+    RANGE_RING_COLOR: COLOR.BLUE_DARK,
 
     /**
      * Color used to depict the restricted airspace areas
@@ -84,7 +84,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RESTRICTED_AIRSPACE
      */
-    RESTRICTED_AIRSPACE: COLOR.BLUE_LIGHT_SOFT_03,
+    RESTRICTED_AIRSPACE: COLOR.BLUE_MEDIUM_LIGHT,
 
     /**
      * Color of the lines extending out from the runway thresholds
@@ -92,7 +92,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RUNWAY_EXTENDED_CENTERLINE
      */
-    RUNWAY_EXTENDED_CENTERLINE: COLOR.GREEN_MEDIUM,
+    RUNWAY_EXTENDED_CENTERLINE: COLOR.BLUE_MEDIUM_DARK,
 
     /**
      * Color of the runway label text
@@ -100,7 +100,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RUNWAY_LABELS
      */
-    RUNWAY_LABELS: COLOR.WHITE_08,
+    RUNWAY_LABELS: COLOR.BLUE_LIGHT,
 
     /**
      * Color of the runways themselves
@@ -108,7 +108,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property RUNWAY
      */
-    RUNWAY: COLOR.WHITE_04,
+    RUNWAY: COLOR.WHITE,
 
     /**
      * Color of the lines showing where SIDs go
@@ -116,7 +116,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property SID
      */
-    SID: COLOR.BLUE_06,
+    SID: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the lines showing where STARs go
@@ -124,7 +124,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property TOP_ROW_TEXT
      */
-    TOP_ROW_TEXT: COLOR.WHITE_08,
+    TOP_ROW_TEXT: COLOR.WHITE,
 
     /**
      * Color of the video map lines (defined in the `maps`
@@ -133,5 +133,5 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property VIDEO_MAP
      */
-    VIDEO_MAP: COLOR.GREEN_LIGHT
+    VIDEO_MAP: COLOR.BLUE_MEDIUM
 };

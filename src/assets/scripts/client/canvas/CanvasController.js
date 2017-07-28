@@ -1551,10 +1551,10 @@ export default class CanvasController {
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${UiController.terrain.COLOR[elevation]}, `;
+            const color = `hsla(${UiController.terrain.COLOR[elevation]}`;
 
-            cc.strokeStyle = `${color} ${UiController.terrain.BORDER_OPACITY})`;
-            cc.fillStyle = `${color} ${UiController.terrain.FILL_OPACITY})`;
+            cc.strokeStyle = `${color}, ${UiController.terrain.BORDER_OPACITY})`;
+            cc.fillStyle = `${color}, ${UiController.terrain.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();

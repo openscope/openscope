@@ -12,7 +12,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property ARRIVAL_BAR_IN_RANGE
      */
-    ARRIVAL_BAR_IN_RANGE: COLOR.RED_05,
+    ARRIVAL_BAR_IN_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the bar on the left side of the data block
@@ -21,7 +21,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property ARRIVAL_BAR_OUT_OF_RANGE
      */
-    ARRIVAL_BAR_OUT_OF_RANGE: COLOR.RED_02,
+    ARRIVAL_BAR_OUT_OF_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the bar on the left side of the data block
@@ -30,7 +30,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property ARRIVAL_BAR_SELECTED
      */
-    ARRIVAL_BAR_SELECTED: COLOR.RED_09,
+    ARRIVAL_BAR_SELECTED: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the data block fill (if it is enabled)
@@ -39,7 +39,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property BACKGROUND_IN_RANGE
      */
-    BACKGROUND_IN_RANGE: COLOR.GREEN_05,
+    BACKGROUND_IN_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the data block fill (if it is enabled)
@@ -48,7 +48,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property BACKGROUND_OUT_OF_RANGE
      */
-    BACKGROUND_OUT_OF_RANGE: COLOR.GREEN_02,
+    BACKGROUND_OUT_OF_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the data block fill (if it is enabled)
@@ -57,7 +57,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property BACKGROUND_SELECTED
      */
-    BACKGROUND_SELECTED: COLOR.GREEN_09,
+    BACKGROUND_SELECTED: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the bar on the left side of the data block
@@ -66,7 +66,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property DEPARTURE_BAR_IN_RANGE
      */
-    DEPARTURE_BAR_IN_RANGE: COLOR.BLUE_05,
+    DEPARTURE_BAR_IN_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the bar on the left side of the data block
@@ -75,7 +75,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property DEPARTURE_BAR_OUT_OF_RANGE
      */
-    DEPARTURE_BAR_OUT_OF_RANGE: COLOR.BLUE_02,
+    DEPARTURE_BAR_OUT_OF_RANGE: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Color of the bar on the left side of the data block
@@ -84,15 +84,16 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property DEPARTURE_BAR_SELECTED
      */
-    DEPARTURE_BAR_SELECTED: COLOR.BLUE_09,
+    DEPARTURE_BAR_SELECTED: COLOR.BLUE_VERY_LIGHT,
 
     /**
      * Whether or not to fill the data block with a background color
+     * This z
      *
      * @memberof DATA_BLOCK_THEME
      * @property HAS_FILL
      */
-    HAS_FILL: true,
+    HAS_FILL: false,
 
     /**
      * Direction to extend the data block away from the target
@@ -164,7 +165,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_IN_RANGE
      */
-    TEXT_IN_RANGE: COLOR.WHITE_05,
+    TEXT_IN_RANGE: COLOR.WHITE,
 
     /**
      * Color of text used in the data block
@@ -173,7 +174,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_OUT_OF_RANGE
      */
-    TEXT_OUT_OF_RANGE: COLOR.WHITE_02,
+    TEXT_OUT_OF_RANGE: COLOR.WHITE,
 
     /**
      * Color of text used in the data block
@@ -182,5 +183,5 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_SELECTED
      */
-    TEXT_SELECTED: COLOR.WHITE_09
+    TEXT_SELECTED: COLOR.WHITE
 };

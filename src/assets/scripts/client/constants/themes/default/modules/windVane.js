@@ -8,7 +8,7 @@ export const WIND_VANE_THEME = {
      * @memberof WIND_VANE_THEME
      * @property DIRECTION_LINE_GUSTY
      */
-    DIRECTION_LINE_GUSTY: COLOR.RED_BRIGHT_07,
+    DIRECTION_LINE_GUSTY: COLOR.WHITE,
 
     /**
      * Color of the line indivating the wind direction
@@ -16,7 +16,7 @@ export const WIND_VANE_THEME = {
      * @memberof WIND_VANE_THEME
      * @property DIRECTION_LINE
      */
-    DIRECTION_LINE: COLOR.WHITE_07,
+    DIRECTION_LINE: COLOR.WHITE,
 
     /**
      * Color of the ring around the wind speed
@@ -24,7 +24,7 @@ export const WIND_VANE_THEME = {
      * @memberof WIND_VANE_THEME
      * @property INNER_RING_STROKE
      */
-    INNER_RING_STROKE: COLOR.WHITE_07,
+    INNER_RING_STROKE: COLOR.WHITE,
 
     /**
      * Color to fill the whole wind vane
@@ -32,7 +32,7 @@ export const WIND_VANE_THEME = {
      * @memberof WIND_VANE_THEME
      * @property OUTER_RING_FILL
      */
-    OUTER_RING_FILL: COLOR.BLACK_07,
+    OUTER_RING_FILL: COLOR.GRAY_VERY_VERY_DARK,
 
     /**
      * Color of the wind speed text
@@ -40,5 +40,5 @@ export const WIND_VANE_THEME = {
      * @memberof WIND_VANE_THEME
      * @property WIND_SPEED_TEXT
      */
-    WIND_SPEED_TEXT: COLOR.WHITE_07
+    WIND_SPEED_TEXT: COLOR.WHITE
 };
