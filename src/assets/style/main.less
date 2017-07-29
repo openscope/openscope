@@ -1,18 +1,35 @@
 @import "base/reset";
-// @import "util.less";
-// @import "canvas.less";
-// @import "font.less";
-// @import "hdg.less";
-// @import "controls.less";
-// @import "pause.less";
-// @import "command.less";
-// @import "log.less";
-// @import "media.less";
-// @import "stripView.less";
-// @import "sidebar.less";
-// @import "loadingView.less";
-// @import "loadingIndicator.less";
-// @import "tutorial.less";
-// @import "airport.less";
-// @import "score.less";
-// @import "option_dialog.less";
+@import "base/elements";
+
+@import "helpers/_util.less";
+@import "helpers/_vars.less";
+
+@import "canvas.less";
+@import "font.less";
+@import "hdg.less";
+@import "controls.less";
+@import "pause.less";
+@import "command.less";
+@import "log.less";
+@import "media.less";
+@import "stripView.less";
+@import "sidebar.less";
+@import "loadingView.less";
+@import "loadingIndicator.less";
+@import "tutorial.less";
+@import "airport.less";
+@import "score.less";
+@import "option_dialog.less";
+
+
+
+#clock {
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 8px;
+    font-size: 12px;
+    color: #ddd;
+    z-index: 1000;
+}
