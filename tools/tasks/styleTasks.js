@@ -37,7 +37,7 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     gulp.task('build:styles', () => buildStyles());
 
-    gulp.task('watch:styles', function() {
-        gulp.watch(OPTIONS.GLOB.CSS, ['build:styles',]);
+    gulp.task('watch:styles', () => {
+        gulp.watch(OPTIONS.GLOB.LESS, ['build:styles',]);
     });
 };

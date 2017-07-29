@@ -1,35 +1,24 @@
 @import "base/reset";
 @import "base/elements";
+@import "base/font";
 
-@import "helpers/_util.less";
-@import "helpers/_vars.less";
+@import "helpers/_mixins";
+@import "helpers/_util";
+@import "helpers/_vars";
 
-@import "canvas.less";
-@import "font.less";
-@import "hdg.less";
-@import "controls.less";
-@import "pause.less";
-@import "command.less";
-@import "log.less";
-@import "media.less";
-@import "stripView.less";
-@import "sidebar.less";
-@import "loadingView.less";
-@import "loadingIndicator.less";
-@import "tutorial.less";
-@import "airport.less";
-@import "score.less";
-@import "option_dialog.less";
+@import "landmark/_stripView";
+@import "landmark/_sidebar";
+@import "landmark/_tutorial";
 
-
-
-#clock {
-    width: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 8px;
-    font-size: 12px;
-    color: #ddd;
-    z-index: 1000;
-}
+@import "module/airport/_airport";
+@import "module/canvas/_canvas";
+@import "module/command/_command";
+@import "module/controls/_controls";
+@import "module/hdg/_hdg";
+@import "module/loadingIndicator/_loadingIndicator";
+@import "module/loadingView/_loadingView";
+@import "module/log/_log";
+@import "module/media/_media";
+@import "module/optionDialog/_optionDialog";
+@import "module/pause/_pause";
+@import "module/score/_score";

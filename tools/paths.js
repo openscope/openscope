@@ -71,7 +71,7 @@ options.GLOB = {
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),
-    CSS: path.join(options.DIR.SRC_STYLE, '**/*.css'),
+    LESS: path.join(options.DIR.SRC_STYLE, '**/*.less'),
     MARKUP: path.join(options.DIR.SRC_MARKUP, '**/*.hbs')
 };
 
