@@ -1,31 +1,31 @@
 #airport-switch {
+    height: auto;
+    max-height: calc(85% - 2.3em - 20px);
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 0px 10px 0px 10px;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0;
-    pointer-events: none;
-    background-color: rgba(15, 25, 20, 1);
-    border: 6px solid rgba(31, 65, 48, 1.0);
-    box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
-    border-radius: 8px;
+    background-color: @dark-green;
     color: #ddd;
     font-size: 12px;
-    padding: 0px 10px 0px 10px;
-    margin: auto;
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    max-height: calc(85% - 2.3em - 20px);
     overflow-y: auto;
+    border: 6px solid rgba(31, 65, 48, 1.0);
+    border-radius: 8px;
+    box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
+    opacity: 0;
     transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 
 #airport-switch .title {
-    font-size: 170%;
-    padding: 10px 0 7px 0;
     min-height: 1.5em;
+    padding: 10px 0 7px 0;
+    font-size: 170%;
     text-align: center;
 }
 
@@ -35,45 +35,39 @@
 }
 
 #airport-list {
-    background-color: rgba(15, 25, 20, 1);
-    /*border: 2px solid rgba(31, 65, 48, 1.0);*/
-    border: 2px solid rgba(31, 65, 48, 1.0);
-    /*box-shadow: 0 0 50px -10px rgba(0,0,0,.3);*/
-    border-radius: 10px;
-    color: #ddd;
-    font-size: 100%;
-    padding: 5px 5px;
-    /*margin: 0 0 3px 0;*/
-    margin: 0 auto;
     width: 100%;
     max-width: 500px;
     height: auto;
     max-height: calc(100% - 2.3em - 32px);
+    margin: 0 auto;
+    padding: 5px 5px;
+    background-color: @dark-green;
+    color: #ddd;
+    font-size: 100%;
+    border: 2px solid rgba(31, 65, 48, 1.0);
+    border-radius: 10px;
     overflow-y: auto;
 }
 
 #airport-switch li {
-    list-style-type: none;
-    padding: 8px 10px;
-    /*padding: 5px 10px;*/
-    /*padding: 0;*/
     margin-bottom: 2px;
+    padding: 8px 10px;
+    list-style-type: none;
 }
 
 #airport-switch li .difficulty {
-    display: inline-block;
     width: 5em;
-    font-weight: bold;
-    font-size: 120%;
     margin-right: 0.25em;
+    display: inline-block;
+    font-size: 120%;
+    font-weight: bold;
     text-align: right;
     white-space: nowrap;
 }
 
 #airport-switch li .icao {
-    display: inline-block;
     width: 4em;
-    /*margin-right: */
+    display: inline-block;
     text-align: center;
     font-weight: bold;
 }
@@ -84,7 +78,7 @@
 }
 
 #airport-switch li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: @white_01;
     cursor: pointer;
 }
 
@@ -98,10 +92,10 @@
 }
 
 #airport-list-notes {
+    min-height: 0.8em;
+    padding: 2px 0px 3px 0px;
     font-size: 70%;
     font-weight: normal;
-    padding: 2px 0px 3px 0px;
-    min-height: 0.8em;
     text-align: center;
 }
 
