@@ -9,7 +9,7 @@ import {
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
-const currentSpeedMock = 250;
+const currentSpeedMock = 320;
 const cruiseSpeedMock = 460;
 const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
