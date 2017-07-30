@@ -252,7 +252,7 @@ export default class Pilot {
         readback.log = `${speedUnattainable}${instruction} ${speed}`;
         readback.say = `${speedUnattainable}${instruction} ${radio_spellOut(speed)}`;
         
-        if (speed > aircraftModel.model.speed.max || speed < aircraftModel.model.speed.max) {
+        if (speed > aircraftModel.model.speed.max || speed < aircraftModel.model.speed.min) {
             speedUnattainable = 'requested speed unattainable, ';
             return [false, readback]
         }
