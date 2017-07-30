@@ -288,7 +288,7 @@ export default class AircraftCommander {
     runSpeed(aircraft, data) {
         const speed = data[0];
 
-        return aircraft.pilot.maintainSpeed(aircraft.speed, speed);
+        return aircraft.pilot.maintainSpeed(aircraft.speed, speed, aircraft);
     }
 
     /**
