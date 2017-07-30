@@ -9,7 +9,6 @@
 - Adds a link to the full command reference at the end of the tutorial [#581](https://github.com/openscope/openscope/issues/581)
 - The distance separator behind aircraft on ILS is now toggleable [#536](https://github.com/openscope/openscope/issues/536)
 - Removes the blue line "departure window" [#411](https://github.com/openscope/openscope/issues/411)
-- Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
 
 
 
@@ -32,6 +31,8 @@
 - Fix spelling error of `CanvasController` as `ConvasController` [#586](https://github.com/openscope/openscope/issues/586)
 - Remove deprecated fixRadialDist() [#290](https://github.com/openscope/openscope/issues/290)
 - Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
+- Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
+- Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
 
 
 
