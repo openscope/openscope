@@ -1,11 +1,14 @@
-import ava from 'ava';
+﻿import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
+import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
+import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks.js';
+import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
 const airportElevationMock = 11;
 const altitudeMock = 3468.134982;
@@ -33,6 +36,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     const shouldExpediteDescentMock = false;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
@@ -42,7 +46,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
         airportModelFixture
     );
     pilot.maintainHeading(headingBeforeLocalizerInterceptionMock, nextHeadingDegreesMock, null, false);
-    pilot.maintainSpeed(currentSpeedMock, nextSpeedMock);
+    pilot.maintainSpeed(currentSpeedMock, nextSpeedMock, model);
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
     pilot.cancelApproachClearance(currentAltitudeMock, headingAfterLocalizerInterceptionMock);
 

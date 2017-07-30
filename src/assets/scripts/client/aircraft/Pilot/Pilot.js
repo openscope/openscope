@@ -1,4 +1,4 @@
-import _ceil from 'lodash/ceil';
+﻿import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
@@ -157,6 +157,7 @@ export default class Pilot {
         
         if (this.assignedUnattainableAltitude) {
             altitudeUnattainable = 'requested altitude unattainable, ';
+        }
 
         const readback = {};
         readback.log = `${altitudeUnattainable}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
@@ -237,18 +238,25 @@ export default class Pilot {
      * @for Pilot
      * @method maintainSpeed
      * @param {Number} speed - the speed to maintain, in knots
+     * @param {AircraftModel} aircraftModel
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(currentSpeed, speed) {
+    maintainSpeed(currentSpeed, speed, aircraftModel) {
         const instruction = radio_trend('speed', currentSpeed, speed);
+        let speedUnattainable = '';
 
         this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
 
         // Build the readback
         const readback = {};
-        readback.log = `${instruction} ${speed}`;
-        readback.say = `${instruction} ${radio_spellOut(speed)}`;
+        readback.log = `${speedUnattainable}${instruction} ${speed}`;
+        readback.say = `${speedUnattainable}${instruction} ${radio_spellOut(speed)}`;
+
+        if (speed > aircraftModel.model.speed.max || speed < aircraftModel.model.speed.min) {
+            speedUnattainable = 'requested speed unattainable, ';
+            return [false, readback];
+        }
 
         return [true, readback];
     }
