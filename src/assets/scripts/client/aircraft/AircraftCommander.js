@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+﻿import _has from 'lodash/has';
 import _map from 'lodash/map';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
@@ -288,7 +288,7 @@ export default class AircraftCommander {
     runSpeed(aircraft, data) {
         const speed = data[0];
 
-        return aircraft.pilot.maintainSpeed(aircraft.speed, speed);
+        return aircraft.pilot.maintainSpeed(aircraft.speed, speed, aircraft);
     }
 
     /**
