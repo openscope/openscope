@@ -91,15 +91,6 @@ export default class Pilot {
          * @default false
          */
         this.assignedUnattainableAltitude = false;
-
-        /**
-         * Whether the aircraft has been assigned a speed too slow or fast for the AircraftModel.
-         *
-         * @property assignedUnattainableSpeed
-         * @type {boolean}
-         * @default false
-         */
-         this.assignedUnattainableSpeed = false;
     }
 
     /**
@@ -166,7 +157,6 @@ export default class Pilot {
         
         if (this.assignedUnattainableAltitude) {
             altitudeUnattainable = 'requested altitude unattainable, ';
-        }
 
         const readback = {};
         readback.log = `${altitudeUnattainable}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
@@ -249,26 +239,16 @@ export default class Pilot {
      * @param {Number} speed - the speed to maintain, in knots
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(currentSpeed, speed, aircraftModel) {
+    maintainSpeed(currentSpeed, speed) {
         const instruction = radio_trend('speed', currentSpeed, speed);
-        let speedUnattainable = '';
 
         this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
 
-        if (speed < aircraftModel.model.speed.min || speed > aircraftModel.model.speed.max) {
-            speedUnattainable = 'requested speed unattainable, '
-            this.speedUnattainable = true;
-        }
-
         // Build the readback
         const readback = {};
-        readback.log = `${speedUnattainable}${instruction} ${speed}`;
-        readback.say = `${speedUnattainable}${instruction} ${radio_spellOut(speed)}`;
-
-        if (this.speedUnattainable) {
-            return [false, readback];
-        }
+        readback.log = `${instruction} ${speed}`;
+        readback.say = `${instruction} ${radio_spellOut(speed)}`;
 
         return [true, readback];
     }
