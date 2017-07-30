@@ -1,4 +1,4 @@
-﻿## 5.3.0 (August 1, 2017)
+## 5.3.0 (August 1, 2017)
 ---
 ### Features
 - New airport: MDSD (Las Américas International Airport, Dominican Republic) [#288](https://github.com/openscope/openscope/issues/288)
@@ -7,6 +7,8 @@
 - Add new openScope emblem vector graphic [#572](https://github.com/openscope/openscope/issues/572)
 - Adds additional meta tags to index.html head [#484](https://github.com/openscope/openscope/issues/572)
 - Adds a link to the full command reference at the end of the tutorial [#581](https://github.com/openscope/openscope/issues/581)
+- The distance separator behind aircraft on ILS is now toggleable [#536](https://github.com/openscope/openscope/issues/536)
+- Removes the blue line "departure window" [#411](https://github.com/openscope/openscope/issues/411)
 - Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
 
 
@@ -29,6 +31,9 @@
 ### Refactors
 - Fix spelling error of `CanvasController` as `ConvasController` [#586](https://github.com/openscope/openscope/issues/586)
 - Remove deprecated fixRadialDist() [#290](https://github.com/openscope/openscope/issues/290)
+- Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
+- Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
+- Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
 
 
 

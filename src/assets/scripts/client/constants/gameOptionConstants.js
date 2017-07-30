@@ -11,7 +11,8 @@ export const GAME_OPTION_NAMES = {
     PTL_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
-    INCLUDE_WIP_AIRPORTS: 'includeWipAirports'
+    INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
+    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator'
 };
 
 /**
@@ -106,6 +107,23 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'no',
         description: 'Include WIP Airports',
         help: 'Will include all available airports including those marked as Work In Progress.',
+        type: 'select',
+        optionList: [
+            {
+                displayLabel: 'Yes',
+                value: 'yes'
+            },
+            {
+                displayLabel: 'No',
+                value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR,
+        defaultValue: 'yes',
+        description: 'Draw distance separator on ILS',
+        help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
         type: 'select',
         optionList: [
             {
