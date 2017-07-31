@@ -154,7 +154,7 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
 
 ava('.maintainAltitude() returns a warning when assigning aircraft altitude above its ceiling', (t) => {
     const currentAltitudeMock = 5000;
-    const assignedAltitudeMock = 100000;
+    const invalidAltitudeMock = 100000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const expectedResult = [
@@ -168,7 +168,7 @@ ava('.maintainAltitude() returns a warning when assigning aircraft altitude abov
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
-        assignedAltitudeMock,
+        invalidAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
         airportModelFixture,

@@ -133,8 +133,6 @@ export default class Pilot {
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
-        let altitudeUnattainableReadback = '';
-
         if (expedite) {
             // including space here so when expedite is false there isnt an extra space after altitude
             expediteReadback = ' and expedite';
@@ -142,13 +140,20 @@ export default class Pilot {
             this.shouldExpediteAltitudeChange();
         }
         
-        if (!aircraftModel.isValidAltitude(altitude)) {
-            altitudeUnattainableReadback = 'requested altitude unattainable, ';
-        }
+        
 
         const readback = {};
-        readback.log = `${altitudeUnattainableReadback}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
-        readback.say = `${altitudeUnattainableReadback}${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+        readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
+        readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+
+        if (!aircraftModel.isValidAltitude(altitude)) {
+            let altitudeUnattainableReadback = 'requested altitude unattainable, ';
+
+            readback.log = `${altitudeUnattainableReadback}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
+            readback.say = `${altitudeUnattainableReadback}${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+
+            return [false, readback]
+        }
 
         return [true, readback];
     }
