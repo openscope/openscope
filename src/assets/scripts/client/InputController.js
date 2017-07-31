@@ -46,7 +46,7 @@ const PARSED_COMMAND_NAME = {
  */
 const MOUSE_EVENT_CODE = {
     LEFT_PRESS: 1,
-    MIDDLE_PESS: 2,
+    MIDDLE_PRESS: 2,
     RIGHT_PRESS: 3
 };
 
@@ -287,7 +287,7 @@ export default class InputController {
         event.preventDefault();
 
         // TODO: this should use early returns instead of the else if
-        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
+        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
             UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning

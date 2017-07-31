@@ -8,20 +8,6 @@ module.exports = (gulp, config) => {
     const OPTIONS = config;
 
     ////////////////////////////////////////////////////////////////////
-    // SPAWN A CONNECT SERVER
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('server', () => {
-        const connect = require('gulp-connect');
-        const path = require('path');
-
-        connect.server({
-            root: OPTIONS.DIR.DIST,
-            port: 3003,
-            fallback: path.join(OPTIONS.DIR.DIST, 'index.html')
-        });
-    });
-
-    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
     gulp.task('clean', (cb) => {
