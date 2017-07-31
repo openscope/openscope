@@ -11,6 +11,7 @@ import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
 const currentSpeedMock = 320;
 const cruiseSpeedMock = 460;
+const invalidSpeedMock = 520;
 const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
@@ -31,6 +32,20 @@ ava('.maintainSpeed() returns a success message when finished', (t) => {
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.maintainSpeed(currentSpeedMock, cruiseSpeedMock, model);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.maintainSpeed() returns a warning when assigned an unreachable speed', (t) => {
+    const expectedResult = [
+        false,
+        {
+            log: 'requested speed unattainable, increase speed to 520',
+            say: 'requested speed unattainable, increase speed to five two zero'
+        }
+    ];
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const result = pilot.maintainSpeed(currentSpeedMock, invalidSpeedMock, model);
 
     t.deepEqual(result, expectedResult);
 });

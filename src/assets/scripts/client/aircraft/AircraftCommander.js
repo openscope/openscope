@@ -211,7 +211,8 @@ export default class AircraftCommander {
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
-            airport
+            airport,
+            aircraft
         );
     }
 

@@ -43,7 +43,8 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
         nextAltitudeMock,
         shouldExpediteDescentMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
     pilot.maintainHeading(headingBeforeLocalizerInterceptionMock, nextHeadingDegreesMock, null, false);
     pilot.maintainSpeed(currentSpeedMock, nextSpeedMock, model);

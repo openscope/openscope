@@ -1,15 +1,19 @@
-/* eslint-disable max-len */
+﻿/* eslint-disable max-len */
 import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isObject from 'lodash/isObject';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
+import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
+
 
 ava('.maintainAltitude() should set mcp.altitude to the correct value when greater than maxAssignableAltitude', (t) => {
     const currentAltitudeMock = 5000;
@@ -17,13 +21,15 @@ ava('.maintainAltitude() should set mcp.altitude to the correct value when great
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = true;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(pilot._mcp.altitudeMode === 'HOLD');
@@ -36,13 +42,15 @@ ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altit
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(pilot._mcp.altitudeMode === 'HOLD');
@@ -56,13 +64,15 @@ ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedi
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const shouldExpediteAltitudeChangeSpy = sinon.spy(pilot, 'shouldExpediteAltitudeChange');
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(shouldExpediteAltitudeChangeSpy.calledOnce);
@@ -74,13 +84,15 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(_isArray(result));
@@ -96,13 +108,15 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(result[1].log === 'climb and maintain 19000 and expedite');
@@ -120,6 +134,7 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const cancelApproachClearanceSpy = sinon.spy(pilot, 'cancelApproachClearance');
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
 
@@ -130,8 +145,35 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
         nextAltitudeMock,
         shouldExpediteMock,
         shouldUseSoftCeilingMock,
-        airportModelFixture
+        airportModelFixture,
+        model
     );
 
     t.true(cancelApproachClearanceSpy.called);
 });
+
+ava('.maintainAltitude() returns a warning when assigning aircraft altitude above its ceiling', (t) => {
+    const currentAltitudeMock = 5000;
+    const assignedAltitudeMock = 100000;
+    const shouldExpediteMock = false;
+    const shouldUseSoftCeilingMock = false;
+    const expectedResult = [
+        false,
+        {
+            log: 'requested altitude unattainable, climb and maintain 100000',
+            say: 'requested altitude unattainable, climb and maintain flight level one zero zero zero'
+        }
+    ];
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const result = pilot.maintainAltitude(
+        currentAltitudeMock,
+        assignedAltitudeMock,
+        shouldExpediteMock,
+        shouldUseSoftCeilingMock,
+        airportModelFixture,
+        model
+    );
+
+    t.deepEqual(result, expectedResult);
+}

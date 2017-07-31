@@ -82,15 +82,6 @@ export default class Pilot {
          * @default false
          */
         this.hasDepartureClearance = false;
-        
-        /**
-         * Whether the aircraft has been assigned an altitude above their height restriction.
-         *
-         * @property assignedUnattainableAltitude
-         * @type {boolean}
-         * @default false
-         */
-        this.assignedUnattainableAltitude = false;
     }
 
     /**
@@ -123,13 +114,9 @@ export default class Pilot {
      * @param airportModel {AirportModel}
      * @return {array}            [success of operation, readback]
      */
-    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
+    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
-        
-        if (altitude > maxAssignableAltitude) {
-            this.assignedUnattainableAltitude = false;
-        }
 
         if (shouldUseSoftCeiling && clampedAltitude === maxAssignableAltitude) {
             // causes aircraft to 'leave' airspace, and continue climb through ceiling
@@ -146,7 +133,7 @@ export default class Pilot {
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
-        let altitudeUnattainable = '';
+        let altitudeUnattainableReadback = '';
 
         if (expedite) {
             // including space here so when expedite is false there isnt an extra space after altitude
@@ -155,8 +142,8 @@ export default class Pilot {
             this.shouldExpediteAltitudeChange();
         }
         
-        if (this.assignedUnattainableAltitude) {
-            altitudeUnattainable = 'requested altitude unattainable, ';
+        if (!aircraftModel.isValidAltitude(altitude)) {
+            altitudeUnattainableReadback = 'requested altitude unattainable, ';
         }
 
         const readback = {};
@@ -242,18 +229,20 @@ export default class Pilot {
      */
     maintainSpeed(currentSpeed, speed, aircraftModel) {
         const instruction = radio_trend('speed', currentSpeed, speed);
-        let speedUnattainable = '';
 
         this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
 
         // Build the readback
         const readback = {};
-        readback.log = `${speedUnattainable}${instruction} ${speed}`;
-        readback.say = `${speedUnattainable}${instruction} ${radio_spellOut(speed)}`;
+        readback.log = `${instruction} ${speed}`;
+        readback.say = `${instruction} ${radio_spellOut(speed)}`;
         
-        if (speed > aircraftModel.model.speed.max || speed < aircraftModel.model.speed.min) {
-            speedUnattainable = 'requested speed unattainable, ';
+        if (!aircraft.isValidSpeed(speed)) {
+            let speedUnattainableReadback = 'requested speed unattainable, ';
+            readback.log = `${speedUnattainableReadback}${instruction} ${speed}`;
+            readback.say = `${speedUnattainableReadback}${instruction} ${radio_spellOut(speed)}`;
+
             return [false, readback]
         }
 
