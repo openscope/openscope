@@ -2390,6 +2390,7 @@ export default class AircraftModel {
         return shouldEnterHold;
     }
 
+    //TODO: can this be removed? It doesn't do anything.
     /**
      * @for AircraftModel
      * @method updateAuto
@@ -2467,7 +2468,7 @@ export default class AircraftModel {
      * @type {boolean}
      */
      isValidSpeed(nextSpeed) {
-         return nextSpeed > this.model.speed.min || nextSpeed < this.model.speed.max;
+         return nextSpeed > this.model.speed.min && nextSpeed < this.model.speed.max;
      }
 
      /**
