@@ -176,4 +176,4 @@ ava('.maintainAltitude() returns a warning when assigning aircraft altitude abov
     );
 
     t.deepEqual(result, expectedResult);
-}
+});
