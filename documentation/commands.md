@@ -1,4 +1,4 @@
-## Command Reference
+# Command Reference
 
 Although the tutorial gives a large amount of information, if you find
 remembering the commands too complicated, here's a reference. Remember
@@ -6,6 +6,9 @@ that you can type out multiple commands in one go; for example:
 `BAW231 fh 090 d 30 sp 180` will work as well as all three commands run
 separately. Some commands have "aliases" that are shorter to type. An
 example of that would be the `takeoff` command which has an alias `to`.
+
+## Departure commands
+These commands are only used by aircraft that are departing from the selected airport.
 
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
@@ -15,28 +18,6 @@ runway; if a runway is not included they will continue to the runway
 with the largest headwind.
 
 _Syntax -_ `AAL123 taxi [Runway]`
-
-### SID
-_Aliases -_ `sid`
-
-_Information -_ This command tells the specified plane a standard
-instrument departure route (SID) it should follow. Each SID is a list of
-fixes to be flown in sequence. Having a standardized route often helps
-organize departing traffic, and maintain separation from arriving aircraft.
-
-_Syntax -_ `AAL123 sid [SID name]`
-
-
-### STAR
-_Aliases -_ `star`
-
-_Information -_ This command tells the plane to add or change their filed
-Standard Terminal Arrival Route to match the route you specify. This must be
-entered in dotted format, and include the point where the STAR is joined, as
-well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
-on rerouting for further detail.
-
-_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
 
 ### Cleared As Filed
 _Aliases -_ `caf`
@@ -48,42 +29,6 @@ there is no need to use the `sid` command. Just clear him "as filed" with the
 `caf` command, and the airplane will take care of the rest.
 
 _Syntax -_ `AAL123 caf`
-
-### Climb Via SID
-_Aliases -_ `cvs`
-
-_Information -_ Authorizes the aircraft to climb in accordance with the
-SID that is currently in their flightplan. They will climb to their filed
-cruise altitude, whilst complying with all altitude and speed restrictions
-posted in the procedure.
-
-_Syntax -_ `AAL123 cvs`
-
-### Descend via STAR
-_Aliases -_ `dvs`
-
-_Information -_ Authorizes the aircraft to descend in accordance with the
-SID that is currently in their flightplan. They will descend to the lowest
-altitude required by the STAR, and after no further altitude and/or speed
-restrictions are listed, will maintain their altitude and speed until
-receiving further instructions from ATC.
-
-_Syntax -_ `AAL123 dvs`
-
-### Altitude
-_Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
-
-_Hotkey -_ `up arrow` / `down arrow` (if "Control Method" setting = "Arrow Keys")
-
-_Information -_ This command tells the specified plane the altitude, in
-hundreds of feet (flight levels), it should travel to. This means that when
-writing altitudes you would drop the last two zeros. For example, 3,000ft =
-"30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
-Airplanes will not descend below 1000 feet (unless locked on ILS).
-
-Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
-
-_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -97,31 +42,50 @@ for an altitude assignment before they agree to take off.
 
 _Syntax -_ `AAL123 cto`
 
-### Heading
-_Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
+### SID
+_Aliases -_ `sid`
 
-_Shortkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
+_Information -_ This command tells the specified plane a standard
+instrument departure route (SID) it should follow. Each SID is a list of
+fixes to be flown in sequence. Having a standardized route often helps
+organize departing traffic, and maintain separation from arriving aircraft.
 
-_Information -_ This command sets the target heading; up (north) is 360,
-right (east) is 090, down (south) is 180, and left (west) is 270. Of course
-you can use any angle in between these as well. If the heading is set
-before takeoff, the aircraft will turn to that heading after takeoff. You
-can force the aircraft to reach the heading by turning left or right by
-inserting `l` or `r` before the new heading, as demonstrated below.
+_Syntax -_ `AAL123 sid [SID name]`
 
-_Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
+### Climb Via SID
+_Aliases -_ `cvs`
 
-### Speed
-_Aliases -_ `speed` / `slow` / `sp`
+_Information -_ Authorizes the aircraft to climb in accordance with the
+SID that is currently in their flightplan. They will climb to their filed
+cruise altitude, whilst complying with all altitude and speed restrictions
+posted in the procedure.
 
-_ShortKey -_ `numpad +` / `numpad -`
+_Syntax -_ `AAL123 cvs`
 
-_Information -_ This command sets the target speed; aircraft will stay within
-their safe speeds if you tell them to fly faster or slower than they are able
-to. It takes some time to increase and reduce speed. Remember that speed is
-always expressed in knots.
+## Arrival commands
+These commands are only used by aircraft arriving at a selected airport.
 
-_Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+### STAR
+_Aliases -_ `star`
+
+_Information -_ This command tells the plane to add or change their filed
+Standard Terminal Arrival Route to match the route you specify. This must be
+entered in dotted format, and include the point where the STAR is joined, as
+well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
+on rerouting for further detail.
+
+_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
+
+### Descend via STAR
+_Aliases -_ `dvs`
+
+_Information -_ Authorizes the aircraft to descend in accordance with the
+SID that is currently in their flightplan. They will descend to the lowest
+altitude required by the STAR, and after no further altitude and/or speed
+restrictions are listed, will maintain their altitude and speed until
+receiving further instructions from ATC.
+
+_Syntax -_ `AAL123 dvs`
 
 ### Land
 _Aliases -_ `ils` / `i` / `land` / `l`
@@ -136,23 +100,8 @@ and land.
 
 _Syntax -_ `AAL123 i [rwy]`
 
-### Reroute
-_Aliases -_ `reroute`, `rr`
-
-_Information -_ This command allows you to wipe out the aircraft's current
-route, and assign a new route of your choosing. This is similar to the `route`
-command, but this command will allow you to *change the entire route*, while the
-other is meant for specifying a route to follow to join a later point in the
-aircraft's flight plan. Note that the route uses dot format:
-
->Note: Input data needs to be provided with single dots connecting all procedurally-
-linked points (eg KSFO.OFFSH9.SXC or SGD.V87.MOVER), and all other points that will
-be simply a fix direct to another fix need to be connected with double-dots
-(eg HLI..SQS..BERRA..JAN..KJAN).
-
-Full Route Example: `KSEA.HAROB5.ERAVE.Q1.ETCHY..MLBEC.BDEGA2.KSFO`
-
-_Syntax -_ `AAL123 rr [route]`
+## Routing commands
+Instructions on the syntax for editing the aircraft's route are described in the `route` and `reroute` commands.
 
 ### Route
 _Aliases -_ `route`
@@ -186,6 +135,24 @@ Partial Route Example: `WHITE.J209.ORF` or `FESKO..RUFUS..CHOIR` or `KSEA.MTN7.E
 
 _Syntax -_ `AAL123 route [route]`
 
+### Reroute
+_Aliases -_ `reroute`, `rr`
+
+_Information -_ This command allows you to wipe out the aircraft's current
+route, and assign a new route of your choosing. This is similar to the `route`
+command, but this command will allow you to *change the entire route*, while the
+other is meant for specifying a route to follow to join a later point in the
+aircraft's flight plan. Note that the route uses dot format:
+
+>Note: Input data needs to be provided with single dots connecting all procedurally-
+linked points (eg KSFO.OFFSH9.SXC or SGD.V87.MOVER), and all other points that will
+be simply a fix direct to another fix need to be connected with double-dots
+(eg HLI..SQS..BERRA..JAN..KJAN).
+
+Full Route Example: `KSEA.HAROB5.ERAVE.Q1.ETCHY..MLBEC.BDEGA2.KSFO`
+
+_Syntax -_ `AAL123 rr [route]`
+
 ### Say Route
 _Aliases -_ `sr`
 
@@ -214,14 +181,6 @@ continue flying straight.
 
 _Syntax -_ `AAL123 pd [fixname]`
 
-### Abort
-_Aliases -_ `abort`
-
-_Information -_ Instructs the aircraft to abort the current operation.
-Currently, only landings, taxiing, and fix navigation can be aborted.
-
-_Syntax -_ `AAL123 abort`
-
 ### Hold
 _Aliases -_ `hold`
 
@@ -238,6 +197,58 @@ with simply `[fixname]`. Any combination of these arguments provided in
 any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+
+## Aircraft Control commands
+These commands modify the aircraft but are not limited to departures or arrivals.
+
+### Altitude
+_Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
+
+_Hotkey -_ `up arrow` / `down arrow` (if "Control Method" setting = "Arrow Keys")
+
+_Information -_ This command tells the specified plane the altitude, in
+hundreds of feet (flight levels), it should travel to. This means that when
+writing altitudes you would drop the last two zeros. For example, 3,000ft =
+"30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
+Airplanes will not descend below 1000 feet (unless locked on ILS).
+
+Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
+
+_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
+
+### Heading
+_Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
+
+_Shortkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
+
+_Information -_ This command sets the target heading; up (north) is 360,
+right (east) is 090, down (south) is 180, and left (west) is 270. Of course
+you can use any angle in between these as well. If the heading is set
+before takeoff, the aircraft will turn to that heading after takeoff. You
+can force the aircraft to reach the heading by turning left or right by
+inserting `l` or `r` before the new heading, as demonstrated below.
+
+_Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
+
+### Speed
+_Aliases -_ `speed` / `slow` / `sp`
+
+_ShortKey -_ `numpad +` / `numpad -`
+
+_Information -_ This command sets the target speed; aircraft will stay within
+their safe speeds if you tell them to fly faster or slower than they are able
+to. It takes some time to increase and reduce speed. Remember that speed is
+always expressed in knots.
+
+_Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+
+### Abort
+_Aliases -_ `abort`
+
+_Information -_ Instructs the aircraft to abort the current operation.
+Currently, only landings, taxiing, and fix navigation can be aborted.
+
+_Syntax -_ `AAL123 abort`
 
 ### Squawk
 _Aliases -_ `sq`
