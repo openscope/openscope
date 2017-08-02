@@ -279,7 +279,7 @@ class GameController {
      * @for GameController
      * @method game_timeout
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return gameTimeout
@@ -297,7 +297,7 @@ class GameController {
      * @for GameController
      * @method game_interval
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return to
@@ -440,6 +440,21 @@ class GameController {
         const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
 
         return parseFloat(currentPtlVal);
+    }
+    
+    /**
+     * Check whether or not the trailing distance separator should be drawn.
+     *
+     * Used by the `CanvasController` to determine whether or not to proceed with 
+     * `canvas_draw_separation_indicator`.
+     *
+     * @for GameController
+     * @method shouldUseTrailingSeparator
+     * @param aircraft
+     * @return {boolean}
+     */
+    shouldUseTrailingSeparator(aircraft) {
+        return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
     }
 }
 

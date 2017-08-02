@@ -46,7 +46,7 @@ const PARSED_COMMAND_NAME = {
  */
 const MOUSE_EVENT_CODE = {
     LEFT_PRESS: 1,
-    MIDDLE_PESS: 2,
+    MIDDLE_PRESS: 2,
     RIGHT_PRESS: 3
 };
 
@@ -287,7 +287,7 @@ export default class InputController {
         event.preventDefault();
 
         // TODO: this should use early returns instead of the else if
-        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
+        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
             UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning
@@ -353,21 +353,7 @@ export default class InputController {
                 UiController.ui_airport_close();
             }
         }
-
-        if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
-            // Minus key to zoom out, plus to zoom in
-            UiController.ui_zoom_out();
-            return false;
-        } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
-            if (event.shiftKey) {
-                UiController.ui_zoom_in();
-            } else {
-                UiController.ui_zoom_reset();
-            }
-
-            return false;
-        }
-
+        
         if (!prop.tutorial.open) {
             return;
         }

@@ -550,7 +550,8 @@ export default class TutorialView {
             title: 'Good job!',
             text: ['If you&rsquo;ve gone through this entire tutorial, you should do pretty well with the pressure.',
                    'In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,',
-                   'keep them moving, and you\'ll be a controller in no time!'
+                   'keep them moving, and you\'ll be a controller in no time!',
+                   'A full list of commands can be found <a title="Command Reference | Openscope Wiki" href="https://github.com/openscope/openscope/wiki/Command-Reference">here</a>.'
                ].join(' '),
             parse: (v) => v,
             side: 'left',

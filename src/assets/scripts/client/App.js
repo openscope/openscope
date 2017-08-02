@@ -16,7 +16,7 @@ const prop = {};
 require('./util');
 
 // Used to display the version number in the console
-const VERSION = '5.2.1';
+const VERSION = '5.3.0';
 
 // are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;

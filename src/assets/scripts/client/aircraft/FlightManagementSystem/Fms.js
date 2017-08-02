@@ -511,7 +511,13 @@ export default class Fms {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
 
+        if (this.departureRunwayModel && this.departureRunwayModel.name === runwayModel.name) {
+            return;
+        }
+
         this.departureRunwayModel = runwayModel;
+
+        this._regenerateSidLeg();
     }
 
     /**
@@ -528,7 +534,13 @@ export default class Fms {
             throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
         }
 
+        if (this.arrivalRunwayModel && this.arrivalRunwayModel.name === runwayModel.name) {
+            return;
+        }
+
         this.arrivalRunwayModel = runwayModel;
+
+        this._regenerateStarLeg();
     }
 
     /**
@@ -699,12 +711,14 @@ export default class Fms {
      * @param runwayModel {RunwayModel}
      */
     replaceDepartureProcedure(routeString, runwayModel) {
-        // this is the same procedure that is already set, no need to continue
-        if (this.hasLegWithRouteString(routeString)) {
-            return;
-        }
-
         if (this.departureRunwayModel.name !== runwayModel.name) {
+            // This does result in needless recursion (since `setDepartureRunway()`
+            // calls `replaceDepartureProcedure()`, but it is necessary because we
+            // need to be able to both:
+            //   - assign a new runway and have the SID leg regenerated
+            //   - assign a new SID and have some way to prevent aircraft from
+            //     attempting to use it from their current expected runway when it's
+            //     invalid for that procedure
             this.setDepartureRunway(runwayModel);
         }
 
@@ -737,12 +751,14 @@ export default class Fms {
      * @param runwayModel {RunwayModel}
      */
     replaceArrivalProcedure(routeString, runwayModel) {
-        // this is the same procedure that is already set, no need to continue
-        if (this.hasLegWithRouteString(routeString)) {
-            return;
-        }
-
         if (this.arrivalRunwayModel.name !== runwayModel.name) {
+            // This does result in needless recursion (since `setArrivalRunway()`
+            // calls `replaceArrivalProcedure()`, but it is necessary because we
+            // need to be able to both:
+            //   - assign a new runway and have the STAR leg regenerated
+            //   - assign a new STAR and have some way to prevent aircraft from
+            //     attempting to use it from their current expected runway when it's
+            //     invalid for that procedure
             this.setArrivalRunway(runwayModel);
         }
 
@@ -1354,6 +1370,46 @@ export default class Fms {
 
         legModel.destroy();
         legModel.init(routeString, this.currentRunwayName, this.currentPhase);
+    }
+
+    /**
+     * Regenerate SID leg based on current runway assignment
+     *
+     * @for Fms
+     * @method _regenerateSidLeg
+     */
+    _regenerateSidLeg() {
+        const sidLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
+
+        if (sidLegIndex === INVALID_INDEX) {
+            // would be throwing here, except that causes the initial setting of the
+            // departure runway to throw. So instead will just return early.
+            return;
+        }
+
+        const sidLeg = this.legCollection[sidLegIndex];
+
+        this.replaceDepartureProcedure(sidLeg.routeString, this.departureRunwayModel);
+    }
+
+    /**
+     * Regenerate STAR leg based on current runway assignment
+     *
+     * @for Fms
+     * @method _regenerateStarLeg
+     */
+    _regenerateStarLeg() {
+        const starLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
+
+        if (starLegIndex === INVALID_INDEX) {
+            // would be throwing here, except that causes the initial setting of the
+            // arrival runway to throw. So instead will just return early.
+            return;
+        }
+
+        const starLeg = this.legCollection[starLegIndex];
+
+        this.replaceArrivalProcedure(starLeg.routeString, this.arrivalRunwayModel);
     }
 
     /**

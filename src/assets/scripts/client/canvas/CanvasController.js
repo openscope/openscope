@@ -54,7 +54,7 @@ const canvas = {};
 /**
  * @class CanvasController
  */
-export default class ConvasController {
+export default class CanvasController {
     /**
      * @constructor
      * @param $element {JQuery|HTML Element|undefined}
@@ -709,7 +709,7 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (!GameController.shouldUseTrailingSeparator(aircraft)) {
             return;
         }
 
@@ -758,29 +758,6 @@ export default class ConvasController {
         cc.restore();
     }
 
-    // TODO: This likely has no purpose, and should be removed.
-    /**
-     * @for CanvasController
-     * @method canvas_draw_aircraft_departure_window
-     * @param cc
-     * @param aircraft
-     */
-    canvas_draw_aircraft_departure_window(cc, aircraft) {
-        const angle = aircraft.destination - Math.PI / 2;
-
-        cc.save();
-        cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_DEPARTURE;
-        cc.beginPath();
-        cc.arc(
-            this.canvas.panX,
-            this.canvas.panY,
-            UiController.km_to_px(AirportController.airport_get().ctr_radius),
-            angle - 0.08726,
-            angle + 0.08726);
-        cc.stroke();
-        cc.restore();
-    }
-
     /**
      * @for CanvasController
      * @method canvas_draw_aircraft
@@ -802,10 +779,6 @@ export default class ConvasController {
 
         if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
             match = true;
-        }
-
-        if (match && (aircraft.destination != null)) {
-            this.canvas_draw_aircraft_departure_window(cc, aircraft);
         }
 
         if (!aircraft.isVisible()) {
