@@ -1031,12 +1031,12 @@
             },
             "body": [],
             "rwy": {
-                "11": ["AER52", "ARSOT"],
-                "35": ["AER60", "EZE66", "GESTA"]
+                "11": ["AER52", "ARSOT", "EZE"],
+                "35": ["AER60", "EZE66", "GESTA", "EZE"]
             },
             "draw": [
-                ["ASADA", "AER52", "ARSOT"],
-                ["ASADA", "AER60", "EZE66", "GESTA"]
+                ["ASADA", "AER52", "ARSOT", "EZE"],
+                ["ASADA", "AER60", "EZE66", "GESTA", "EZE"]
             ]
         },
         "GBE": {
@@ -1048,8 +1048,8 @@
             },
             "body": [],
             "rwy": {
-                "11": ["EZE50", "AER52", "ARSOT"],
-                "35": ["EZE66", "GESTA"]
+                "11": ["EZE50", "AER52", "ARSOT", "EZE"],
+                "35": ["EZE66", "GESTA", "EZE"]
             },
             "draw": [
                 ["GBE", "EZE50", "AER52"],
@@ -1066,11 +1066,11 @@
             "body": ["PTA"],
             "rwy": {
                 "11": ["EZE"],
-                "35": ["GESTA"]
+                "35": ["GESTA", "EZE"]
             },
             "draw": [
                 ["KOVUK", "PTA", "EZE"],
-                ["PTA", "GESTA"]
+                ["PTA", "GESTA", "EZE"]
             ]
         },
         "KUKEN": {
@@ -1098,7 +1098,7 @@
             },
             "body": ["VANAR"],
             "rwy": {
-                "11": ["ENO", "ARSOT"],
+                "11": ["ENO", "ARSOT", "EZE"],
                 "35": ["EZE"]
             },
             "draw": [
@@ -1132,7 +1132,7 @@
             "body": ["ESLAN", "PTA"],
             "rwy": {
                 "11": ["EZE"],
-                "35": ["GESTA"]
+                "35": ["GESTA", "EZE"]
             },
             "draw": [
                 ["SARGO", "ESLAN", "PTA"]
@@ -1147,8 +1147,8 @@
             },
             "body": [],
             "rwy": {
-                "11": ["ARSOT"],
-                "35": ["VANAR" ,"EZE"]
+                "11": ["ARSOT", "EZE"],
+                "35": ["VANAR", "EZE"]
             },
             "draw": [
                 ["SNT", "ARSOT"],
@@ -1165,7 +1165,7 @@
             "body": ["PTA"],
             "rwy": {
                 "11": ["EZE"],
-                "35": ["GESTA"]
+                "35": ["GESTA", "EZE"]
             },
             "draw": [
                 ["TENIL", "PTA"]
@@ -1180,8 +1180,8 @@
             },
             "body": [],
             "rwy": {
-                "11": ["GEBEM", "EZE50", "AER52", "ARSOT"],
-                "35": ["AER61", "AER60", "EZE66", "GESTA"]
+                "11": ["GEBEM", "EZE50", "AER52", "ARSOT", "EZE"],
+                "35": ["AER61", "AER60", "EZE66", "GESTA", "EZE"]
             },
             "draw": [
                 ["VALOS", "GEBEM", "EZE50"],
