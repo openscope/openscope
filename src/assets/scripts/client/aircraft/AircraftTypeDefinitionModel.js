@@ -203,4 +203,25 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
 
         return aircraftIcao.toUpperCase();
     }
+    /**
+     * Checks if the given speed is valid.
+     *
+     * @for AircraftTypeDefinitionModel
+     * @param nextSpeed
+     * @return {Boolean}
+     */
+     isValidSpeed(nextSpeed) {
+       return nextSpeed > this.speed.min && nextSpeed < this.speed.max;
+     }
+     
+     /**
+      * Checks if a given altitude is valid.
+      *
+      * @for AircraftTypeDefinitionModel
+      * @param nextAltitude
+      * @return {Boolean}
+      */
+      isValidAltitude(nextAltitude) {
+        return nextAltitude < this.ceiling;
+      }
 }

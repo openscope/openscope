@@ -1,4 +1,4 @@
-﻿import _defaultTo from 'lodash/defaultTo';
+import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
@@ -2461,22 +2461,4 @@ export default class AircraftModel {
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
     }
-
-    /**
-     * @for AircraftModel
-     * @method isValidSpeed
-     * @type {boolean}
-     */
-     isValidSpeed(nextSpeed) {
-         return nextSpeed > this.model.speed.min && nextSpeed < this.model.speed.max;
-     }
-
-     /**
-      * @for AircraftModel
-      * @method isValidAltitude
-      * @type {boolean}
-      */
-      isValidAltitude(nextAltitude) {
-          return nextAltitude < this.model.ceiling;
-      }
 }

@@ -1,4 +1,4 @@
-﻿import _ceil from 'lodash/ceil';
+import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
@@ -112,6 +112,7 @@ export default class Pilot {
      * @param expedite {boolean}  whether to use maximum possible climb/descent rate
      * @param shouldUseSoftCeiling {boolean}
      * @param airportModel {AirportModel}
+     * @param aircraftModel {AircraftModel}
      * @return {array}            [success of operation, readback]
      */
     maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
@@ -133,6 +134,7 @@ export default class Pilot {
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
+        
         if (expedite) {
             // including space here so when expedite is false there isnt an extra space after altitude
             expediteReadback = ' and expedite';
@@ -140,8 +142,6 @@ export default class Pilot {
             this.shouldExpediteAltitudeChange();
         }
         
-        
-
         const readback = {};
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
@@ -230,6 +230,7 @@ export default class Pilot {
      * @for Pilot
      * @method maintainSpeed
      * @param {Number} speed - the speed to maintain, in knots
+     * @param {AircraftModel} aircraftModel
      * @return {Array} [success of operation, readback]
      */
     maintainSpeed(currentSpeed, speed, aircraftModel) {
