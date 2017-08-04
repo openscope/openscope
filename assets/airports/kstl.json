@@ -528,10 +528,10 @@
             "body": ["CSX", "TWILA"],
             "exitPoints": {
                 "BIB": ["JIGSY", "BIB"],
-                "VHP": ["JIGSY", "BIB", "WORKE", "KELLY", "VHP"],
                 "CREEP": ["JIGSY", "BIB", "WORKE", "KELLY", "SHB", "CREEP"],
                 "JIGSY": ["JIGSY"],
-                "ROD": ["JIGSY", "BIB", "WORKE", "KELLY", "SHB", "ROD"]
+                "ROD": ["JIGSY", "BIB", "WORKE", "KELLY", "SHB", "ROD"],
+                "VHP": ["JIGSY", "BIB", "WORKE", "KELLY", "VHP"]
             },
             "draw": [
                 ["CSX", "TWILA"],
@@ -636,12 +636,12 @@
             },
             "body": ["STL"],
             "exitPoints": {
+                "ARG": ["SAJOY", "MYERZ", "ARG"],
                 "LIT": ["SAGZA", "TWRAY", "LIT"],
-                "MAW": ["SAJOY", "MYERZ", "MAW"],
                 "MAP": ["SAGME", "WESCO", "MAP"],
+                "MAW": ["SAJOY", "MYERZ", "MAW"],
                 "MYERZ": ["SAJOY", "MYERZ"],
-                "VIH": ["KLAIR", "VIH"],
-                "ARG": ["SAJOY", "MYERZ", "ARG"]
+                "VIH": ["KLAIR", "VIH"]
             },
             "draw": [
                 ["STL", "KLAIR"],
@@ -719,8 +719,8 @@
             },
             "body": ["STL", "PLESS"],
             "exitPoints": {
-                "DENNI": ["DENNI"],
-                "BNA": ["DENNI", "BNA"]
+                "BNA": ["DENNI", "BNA"],
+                "DENNI": ["DENNI"]
             },
             "draw": [
                 ["STL", "DRUSE"],
@@ -841,12 +841,12 @@
             },
             "body": [["AARCH", "A110+|S280"], "PETTI"],
             "rwy": {
-                "11": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
-                "12L": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
-                "12R": [["KRIYA", "A150-|S280"], ["JAAKK", "A110-"], ["CHOTO", "A100-"], ["GETEE", "A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
-                "29": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]],
-                "30L": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]],
-                "30R": [["SSKOT", "A100-"], ["EADDS", "A90-"], ["OSHIE", "A80-|S250"], ["FDRKO", "A70-"]]
+                "11": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "12L": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "12R": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"]],
+                "29": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"]],
+                "30L": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"]],
+                "30R": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"]]
             },
             "draw": [
                 ["VHP", "AKBAR", "PRUET", "UKAAY", "AARCH", "PETTI", "KRIYA", "JAAKK", "CHOTO", "GETEE", "HRBEE", "BUELL"],
@@ -866,12 +866,12 @@
             },
             "body": [["BOOSH", "A140+|S280"], "QBALL"],
             "rwy": {
-                "11": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
-                "12L": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
-                "12R": [["OOJAY", "A150-|S280"], ["PTEES", "A110"], ["CHIKN", "A90-"], ["LETRR", "A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"]],
-                "29": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]],
-                "30L": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]],
-                "30R": [["DENAA", "A110-"], ["HRTSO", "A100-|S250"], ["TEEBE", "A90-"]]
+                "11": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#301"],
+                "12L": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#301"],
+                "12R": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#301"],
+                "29": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#355"],
+                "30L": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#355"],
+                "30R": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#355"]
             },
             "draw": [
                 ["BNA", "CGI", "DLITE", "FATSS", "BOOSH", "QBALL", "DENAA", "HRTSO", "TEEBE"],
@@ -892,12 +892,12 @@
             },
             "body": [["KAYLA", "A110+"], "BGMAC"],
             "rwy": {
-                "11": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
-                "12L": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
-                "12R": [["DNISE", "A100-"], ["ELBRT", "A90-|S240+"], ["STAAN", "A70|S240+"]],
-                "29": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]],
-                "30L": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]],
-                "30R": [["GIBEE", "A150-|S280"], ["OZZEE", "A110-"], ["SNYDR", "A90-"], ["HOOOT", "A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"]]
+                "11": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#060"],
+                "12L": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#060"],
+                "12R": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#060"],
+                "29": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#123"],
+                "30L": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#123"],
+                "30R": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#123"]
             },
             "draw": [
                 ["ANX", "HEBNA", "TRAKE", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
@@ -916,12 +916,12 @@
             },
             "body": [["RIVRS", "A120+|S280"], "LORLE"],
             "rwy": {
-                "11": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
-                "12L": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
-                "12R": [["HMFRZ", "A100-"], ["VEEGE", "A90-|S250"]],
-                "29": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]],
-                "30L": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]],
-                "30R": [["GETUP", "A150-|S280"], ["TATRR", "A110"], "MELVY", ["BRDWL", "A90-"], ["ENNEE", "A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"]]
+                "11": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
+                "12L": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
+                "12R": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
+                "29": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
+                "30L": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
+                "30R": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"]
             },
             "draw": [
                 ["GUZIK", "SEIZE", "SKOVE", "RIVRS", "LORLE", "GETUP", "TATRR", "MELVY", "BRDWL", "ENNEE", "JYAAR", "DOBLZ"],
@@ -959,9 +959,9 @@
             "icao": "RIVRS4",
             "name": "Rivers Four",
             "entryPoints": {
-                "SPI": ["SPI"],
                 "CNOTA": ["CNOTA", "UIN"],
-                "IRK": ["IRK"]
+                "IRK": ["IRK"],
+                "SPI": ["SPI"]
             },
             "body": ["RIVRS", "LORLE", "MELVY"],
             "rwy": {
@@ -984,8 +984,8 @@
             "icao": "TRAKE9",
             "name": "Trake Nine",
             "entryPoints": {
-                "BUM": ["BUM"],
                 "ANX": ["ANX", "PUTSY"],
+                "BUM": ["BUM"],
                 "SGF": ["SGF"]
             },
             "body": ["TRAKE", "KAYLA", "FTZ", "AUGST", "SNYDR"],
@@ -1009,9 +1009,9 @@
             "icao": "VLA8",
             "name": "Vandalia Eight",
             "entryPoints": {
-                "VHP": ["VHP", "AKBAR", "VLA", "PETTI"],
                 "RBS": ["RBS", "JARKE", "WLDBL", "VLA", "PETTI"],
-                "SPI": ["SPI", "LITCH"]
+                "SPI": ["SPI", "LITCH"],
+                "VHP": ["VHP", "AKBAR", "VLA", "PETTI"]
             },
             "body": ["MUZUL"],
             "rwy": {
