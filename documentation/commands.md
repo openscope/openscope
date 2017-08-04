@@ -10,15 +10,6 @@ example of that would be the `takeoff` command which has an alias `to`.
 ## Departure commands
 These commands are only used by aircraft that are departing from the selected airport.
 
-### Taxi
-_Aliases -_ `taxi` / `wait` / `w`
-
-_Information -_ This command tells the specified plane to taxi to a
-runway; if a runway is not included they will continue to the runway
-with the largest headwind.
-
-_Syntax -_ `AAL123 taxi [Runway]`
-
 ### Cleared As Filed
 _Aliases -_ `caf`
 
@@ -29,6 +20,26 @@ there is no need to use the `sid` command. Just clear him "as filed" with the
 `caf` command, and the airplane will take care of the rest.
 
 _Syntax -_ `AAL123 caf`
+
+### Climb Via SID
+_Aliases -_ `cvs`
+
+_Information -_ Authorizes the aircraft to climb in accordance with the
+SID that is currently in their flightplan. They will climb to their filed
+cruise altitude, whilst complying with all altitude and speed restrictions
+posted in the procedure.
+
+_Syntax -_ `AAL123 cvs`
+
+### SID
+_Aliases -_ `sid`
+
+_Information -_ This command tells the specified plane a standard
+instrument departure route (SID) it should follow. Each SID is a list of
+fixes to be flown in sequence. Having a standardized route often helps
+organize departing traffic, and maintain separation from arriving aircraft.
+
+_Syntax -_ `AAL123 sid [SID name]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -42,39 +53,17 @@ for an altitude assignment before they agree to take off.
 
 _Syntax -_ `AAL123 cto`
 
-### SID
-_Aliases -_ `sid`
+### Taxi
+_Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane a standard
-instrument departure route (SID) it should follow. Each SID is a list of
-fixes to be flown in sequence. Having a standardized route often helps
-organize departing traffic, and maintain separation from arriving aircraft.
+_Information -_ This command tells the specified plane to taxi to a
+runway; if a runway is not included they will continue to the runway
+with the largest headwind.
 
-_Syntax -_ `AAL123 sid [SID name]`
-
-### Climb Via SID
-_Aliases -_ `cvs`
-
-_Information -_ Authorizes the aircraft to climb in accordance with the
-SID that is currently in their flightplan. They will climb to their filed
-cruise altitude, whilst complying with all altitude and speed restrictions
-posted in the procedure.
-
-_Syntax -_ `AAL123 cvs`
+_Syntax -_ `AAL123 taxi [Runway]`
 
 ## Arrival commands
 These commands are only used by aircraft arriving at a selected airport.
-
-### STAR
-_Aliases -_ `star`
-
-_Information -_ This command tells the plane to add or change their filed
-Standard Terminal Arrival Route to match the route you specify. This must be
-entered in dotted format, and include the point where the STAR is joined, as
-well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
-on rerouting for further detail.
-
-_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -100,8 +89,53 @@ and land.
 
 _Syntax -_ `AAL123 i [rwy]`
 
+### STAR
+_Aliases -_ `star`
+
+_Information -_ This command tells the plane to add or change their filed
+Standard Terminal Arrival Route to match the route you specify. This must be
+entered in dotted format, and include the point where the STAR is joined, as
+well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
+on rerouting for further detail.
+
+_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
+
 ## Routing commands
 Instructions on the syntax for editing the aircraft's route are described in the `route` and `reroute` commands.
+
+### ~~Fix~~
+~~_Aliases -_ `f` / `fix` / `track`~~
+
+~~_Syntax -_ `AAL123 f [fixname]`~~
+*_This command has been deprecated_*
+
+### Hold
+_Aliases -_ `hold`
+
+_Information -_ This command instructs the aircraft to enter a holding
+pattern until further notice. The direction (left/right) may be specified,
+as well as the leg length (in minutes), as well as the fix to hold over.
+But you may also omit those specifications, in which case, the aircraft
+will enter a standard holding pattern over their present position (right
+turns, 1 minute legs). To escape a hold, just set a new heading.
+
+_Parameters -_ Specify the direction of turns during the hold with `right`
+or `left`, the leg length, with `[time]min`, and the fix to hold over
+with simply `[fixname]`. Any combination of these arguments provided in
+any order is acceptable, as long as the command `hold` comes first.
+
+_Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+
+### Proceed Direct
+_Aliases -_ `direct` / `pd` / `dct`
+
+_Information -_ This command instructs the aircraft to go direct to a
+navigational fix, taking a shortcut. For example, if an aircraft is flying
+to fixes [A, B, C], issuing the command "pd B" will cause the aircraft
+to go to B, then C. After flying past the last fix, the aircraft will
+continue flying straight.
+
+_Syntax -_ `AAL123 pd [fixname]`
 
 ### Route
 _Aliases -_ `route`
@@ -164,42 +198,16 @@ print out above the command bar.
 
 _Syntax -_ `AAL123 sr`
 
-### ~~Fix~~
-~~_Aliases -_ `f` / `fix` / `track`~~
-
-~~_Syntax -_ `AAL123 f [fixname]`~~
-*_This command has been deprecated_*
-
-### Proceed Direct
-_Aliases -_ `direct` / `pd` / `dct`
-
-_Information -_ This command instructs the aircraft to go direct to a
-navigational fix, taking a shortcut. For example, if an aircraft is flying
-to fixes [A, B, C], issuing the command "pd B" will cause the aircraft
-to go to B, then C. After flying past the last fix, the aircraft will
-continue flying straight.
-
-_Syntax -_ `AAL123 pd [fixname]`
-
-### Hold
-_Aliases -_ `hold`
-
-_Information -_ This command instructs the aircraft to enter a holding
-pattern until further notice. The direction (left/right) may be specified,
-as well as the leg length (in minutes), as well as the fix to hold over.
-But you may also omit those specifications, in which case, the aircraft
-will enter a standard holding pattern over their present position (right
-turns, 1 minute legs). To escape a hold, just set a new heading.
-
-_Parameters -_ Specify the direction of turns during the hold with `right`
-or `left`, the leg length, with `[time]min`, and the fix to hold over
-with simply `[fixname]`. Any combination of these arguments provided in
-any order is acceptable, as long as the command `hold` comes first.
-
-_Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
-
 ## Aircraft Control commands
 These commands modify the aircraft but are not limited to departures or arrivals.
+
+### Abort
+_Aliases -_ `abort`
+
+_Information -_ Instructs the aircraft to abort the current operation.
+Currently, only landings, taxiing, and fix navigation can be aborted.
+
+_Syntax -_ `AAL123 abort`
 
 ### Altitude
 _Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
@@ -242,14 +250,6 @@ always expressed in knots.
 
 _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
 
-### Abort
-_Aliases -_ `abort`
-
-_Information -_ Instructs the aircraft to abort the current operation.
-Currently, only landings, taxiing, and fix navigation can be aborted.
-
-_Syntax -_ `AAL123 abort`
-
 ### Squawk
 _Aliases -_ `sq`
 
@@ -262,6 +262,14 @@ _Syntax -_ `AAL123 squawk ####`
 ## System Commands
 
 openScope has a number of commands that do not change game mechanics, known as _system commands_. While most are able to be executed via various menus, they can be entered in the command bar if one so desires.
+
+### Airport
+
+_Information -_ Changes the current airport to the one specified.
+
+_Parameters -_ The ICAO (four-letter) code of the desired airport.
+
+_Syntax -_ `airport [ICAO]`
 
 ### Move Data Block
 _Aliases -_ `` ` (backtick) ``
@@ -279,25 +287,11 @@ the aircraft's position symbol.
 
 _Syntax -_ ``AAL123 `2``
 
-### Version
-
-_Information -_ Displays the version of the game running.
-
-Example: `Air Traffic Control simulator version 5.3.0`
-
-_Syntax -_ `version`
-
 ### Pause
 
 _Information -_ Pauses the game. Click anywhere to resume.
 
 _Syntax -_ `pause`
-
-### Tutorial
-
-_Information -_ Opens the tutorial.
-
-_Syntax -_ `tutorial`
 
 ### Timewarp
 
@@ -307,10 +301,17 @@ _Parameters -_ A number to multiply the rate at which time passes. `1` resets to
 
 _Syntax -_ `timewarp [rate]`
 
-### Airport
+### Tutorial
 
-_Information -_ Changes the current airport to the one specified.
+_Information -_ Opens the tutorial.
 
-_Parameters -_ The ICAO (four-letter) code of the desired airport.
+_Syntax -_ `tutorial`
 
-_Syntax -_ `airport [ICAO]`
+### Version
+
+_Information -_ Displays the version of the game running.
+
+Example: `Air Traffic Control simulator version 5.3.0`
+
+_Syntax -_ `version`
+
