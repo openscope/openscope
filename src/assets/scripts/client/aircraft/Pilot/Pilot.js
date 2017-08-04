@@ -146,7 +146,7 @@ export default class Pilot {
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
-        if (!aircraftModel.isValidAltitude(altitude)) {
+        if (!aircraftModel.model.isValidAltitude(altitude)) {
             let altitudeUnattainableReadback = 'requested altitude unattainable, ';
 
             readback.log = `${altitudeUnattainableReadback}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
@@ -244,7 +244,7 @@ export default class Pilot {
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
         
-        if (!aircraftModel.isValidSpeed(speed)) {
+        if (!aircraftModel.model.isValidSpeed(speed)) {
             let speedUnattainableReadback = 'requested speed unattainable, ';
             readback.log = `${speedUnattainableReadback}${instruction} ${speed}`;
             readback.say = `${speedUnattainableReadback}${instruction} ${radio_spellOut(speed)}`;
