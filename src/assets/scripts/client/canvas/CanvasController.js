@@ -81,9 +81,9 @@ export default class CanvasController {
         };
         this.canvas.last = time();
         this.canvas.dirty = true;
-        this.canvas.draw_labels = true;
-        this.canvas.draw_restricted = true;
-        this.canvas.draw_sids = true;
+        this.canvas.draw_labels = false;
+        this.canvas.draw_restricted = false;
+        this.canvas.draw_sids = false;
         this.canvas.draw_terrain = true;
 
         this.theme = THEME.DEFAULT;
@@ -139,9 +139,9 @@ export default class CanvasController {
         };
         this.canvas.last = time();
         this.canvas.dirty = true;
-        this.canvas.draw_labels = true;
-        this.canvas.draw_restricted = true;
-        this.canvas.draw_sids = true;
+        this.canvas.draw_labels = false;
+        this.canvas.draw_restricted = false;
+        this.canvas.draw_sids = false;
         this.canvas.draw_terrain = true;
 
         return this;

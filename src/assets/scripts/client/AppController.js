@@ -279,7 +279,6 @@ export default class AppController {
     updateViewControls() {
         const { current: airport } = AirportController;
 
-        this.canvasController.canvas.draw_labels = true;
         this.canvasController.canvas.dirty = true;
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(airport.maps));
