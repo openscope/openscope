@@ -1245,24 +1245,11 @@ export default class CanvasController {
             cc.fillStyle = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
         }
 
-        if (aircraft.trend === 0) {
-            // small dash (symbola font)
-            alt_trend_char = String.fromCodePoint(0x2011);
-        } else if (aircraft.trend > 0) {
-            alt_trend_char = String.fromCodePoint(0x1F851); // up arrow (symbola font)
-        } else if (aircraft.trend < 0) {
-            alt_trend_char = String.fromCodePoint(0x1F853); // down arrow (symbola font)
-        }
-
         // Draw full datablock text
         cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
         cc.textAlign = 'left';
         cc.fillText(row1text, -halfWidth + paddingLR, -gap / 2 - lineheight);
         cc.fillText(row2text, -halfWidth + paddingLR, gap / 2 + lineheight);
-        // Draw climb/level/descend symbol
-        cc.font = '10px symbola'; // change font to the one with extended unicode characters
-        cc.textAlign = 'center';
-        cc.fillText(alt_trend_char, -halfWidth + paddingLR + 20.2, gap / 2 + lineheight - 0.25);
         cc.font = BASE_CANVAS_FONT;  // change back to normal font
 
         cc.restore();
