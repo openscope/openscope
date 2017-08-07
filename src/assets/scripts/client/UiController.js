@@ -66,8 +66,6 @@ class UiController {
         this.scale_max = 80; // max scale
         this.scale_min = 1; // min scale
         this.scale = this.scale_default;
-        // TODO: This belongs in the CanvasController, not UiController
-        this.terrain = THEME.DEFAULT.TERRAIN;
     }
 
     /**
@@ -185,8 +183,6 @@ class UiController {
         this.ui.scale_max = INVALID_NUMBER;
         this.ui.scale_min = INVALID_NUMBER;
         this.ui.scale = INVALID_NUMBER;
-        this.ui.terrain = {};
-
 
         return this;
     }
@@ -200,7 +196,6 @@ class UiController {
         this.scale_max = 80; // max scale
         this.scale_min = 1; // min scale
         this.scale = this.scale_default;
-        this.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }

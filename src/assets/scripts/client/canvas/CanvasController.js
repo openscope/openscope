@@ -1537,10 +1537,10 @@ export default class CanvasController {
             }
 
             max_elevation = Math.max(max_elevation, elevation);
-            const color = `hsla(${UiController.terrain.COLOR[elevation]}`;
+            const color = `hsla(${this.theme.TERRAIN.COLOR[elevation]}`;
 
-            cc.strokeStyle = `${color}, ${UiController.terrain.BORDER_OPACITY})`;
-            cc.fillStyle = `${color}, ${UiController.terrain.FILL_OPACITY})`;
+            cc.strokeStyle = `${color}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
+            cc.fillStyle = `${color}, ${this.theme.TERRAIN.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1601,11 +1601,11 @@ export default class CanvasController {
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${UiController.terrain.COLOR[j]}, ${UiController.terrain.FILL_OPACITY})`;
+                cc.fillStyle = `rgba(${this.theme.TERRAIN.COLOR[j]}, ${this.theme.TERRAIN.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${UiController.terrain.COLOR[i]}, ${UiController.terrain.BORDER_OPACITY})`;
+            cc.strokeStyle = `rgba(${this.theme.TERRAIN.COLOR[i]}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
