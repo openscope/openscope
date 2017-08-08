@@ -919,9 +919,9 @@
                 "11": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
                 "12L": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
                 "12R": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#165"],
-                "29": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
-                "30L": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
-                "30R": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"]
+                "29": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
+                "30L": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"],
+                "30R": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#123"]
             },
             "draw": [
                 ["GUZIK", "SEIZE", "SKOVE", "RIVRS", "LORLE", "GETUP", "TATRR", "MELVY", "BRDWL", "ENNEE", "JYAAR", "DOBLZ"],
