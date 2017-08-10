@@ -25,12 +25,16 @@
 }
 
 .loadingViewMedia-content {
-    margin-top: 20px;
+    margin-top: 10px;
     overflow: hidden;
 }
 
 .loadingViewMedia-content > * + * {
     margin-top: 5px;
+}
+
+.loadingViewMedia-hd {
+    padding-bottom: 5px;
 }
 
 .loadingViewMedia-bd {
@@ -39,13 +43,14 @@
 }
 
 .loadingViewMedia-ft {
+    padding-top: 10px;
     color: #888888;
     font-size: 70%;
 }
 
 .loadingView-dot {
     opacity: 0;
-    animation: showHideDot 3.5s ease-in-out infinite;
+    animation: showHideDot 1s ease-in-out infinite;
 }
 
 .loadingView-dot_one { animation-delay: 0.1s; }
