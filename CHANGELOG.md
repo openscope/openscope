@@ -9,7 +9,7 @@
 
 
 ### Enhancements & Refactors
-
+Removed index.html as it is generated from templates when run [#619](https://github.com/openscope/openscope/issues/619)
 
 
 ## 5.3.0 (August 1, 2017)
