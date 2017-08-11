@@ -1,36 +1,3 @@
-
-#loading {
-  background-color: #354;
-
-  color: #ddd;
-  text-align: center;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  z-index: 1500;
-}
-
-#loading h1 {
-  font-size: 200%;
-  margin-top: 10%;
-}
-
-#loading h2 {
-  font-style: italic;
-}
-
-#loading .version {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: auto;
-  padding: 10px;
-}
-
 #loadingIndicator {
   position: absolute;
   bottom: 0;

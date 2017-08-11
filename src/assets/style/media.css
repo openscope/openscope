@@ -1,0 +1,16 @@
+.media {
+    overflow: hidden;
+}
+
+.media-figure {
+    float: left;
+    margin-right: 20px;
+}
+
+.media-content {
+    overflow: hidden;
+}
+
+.media-content > * + * {
+    margin-top: 10px;
+}

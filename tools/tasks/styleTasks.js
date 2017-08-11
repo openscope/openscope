@@ -39,6 +39,6 @@ module.exports = function(gulp, config) {
     gulp.task('build:styles', ['minify-css']);
 
     gulp.task('watch:styles', function() {
-        gulp.watch(OPTIONS.GLOB.CSS, ['minify-css',]);
+        gulp.watch(OPTIONS.GLOB.CSS, ['build:styles',]);
     });
 };
