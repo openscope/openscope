@@ -142,8 +142,8 @@ export default class App {
      */
     enable() {
         return this.init_pre()
-                   .init()
-                   .done();
+            .init()
+            .done();
     }
 
     /**
@@ -284,14 +284,14 @@ export default class App {
         if (!this.prop.complete) {
             this.complete();
 
-            // this.prop.complete = true;
+            this.prop.complete = true;
         }
 
         if (!UPDATE) {
             return this;
         }
 
-        // requestAnimationFrame(() => this.update());
+        requestAnimationFrame(() => this.update());
 
         this.updatePre();
         this.updatePost();

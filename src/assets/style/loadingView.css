@@ -1,9 +1,5 @@
-/*#a3e3e8*/
-/*#4a858b*/
-/*#274f55*/
-/*#0d1b1e*/
-
 .loadingView {
+    /* using absolute and 0s to force full screen cover when loading screen is active */
     position: absolute;
     top: 0;
     right: 0;
