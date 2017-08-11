@@ -1,41 +1,35 @@
-
 #log {
-  pointer-events: none;
-
-  font-size: 80%;
-
-  position: absolute;
-  left: 0;
-  bottom: 36px;
-  width: calc(100% - 250px);
+    width: calc(100% - 250px);
+    position: absolute;
+    left: 0;
+    bottom: 36px;
+    font-size: 80%;
+    pointer-events: none;
 }
 
 #log .item {
-  opacity: 0.8;
-
-  transition: opacity 10s ease;
-
-  color: #ddd;
-
-  display: block;
-  padding: 3px 5px;
+    padding: 3px 5px;
+    display: block;
+    color: #ddd;
+    opacity: 0.8;
+    transition: opacity 10s ease;
 }
 
 #log .item.warn {
-  color: #f64;
-  opacity: 1;
+    color: #f64;
+    opacity: 1;
 }
 
 #log .item.hidden {
-  opacity: 0;
+    opacity: 0;
 }
 
 #log .from {
-  display: inline-block;
+    display: inline-block;
 }
 
 #log .from:after {
-  content: ":";
-  display: inline-block;
-  margin-right: 0.4em;
+    margin-right: 0.4em;
+    display: inline-block;
+    content: ":";
 }
