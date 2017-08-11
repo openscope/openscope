@@ -197,7 +197,7 @@ class GameController {
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Reset time warp');
         }
-    };
+    }
 
     /**
      * @for GameController
@@ -279,7 +279,7 @@ class GameController {
      * @for GameController
      * @method game_timeout
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return gameTimeout
@@ -297,7 +297,7 @@ class GameController {
      * @for GameController
      * @method game_interval
      * @param func {function}
-     * @pram delay {number}
+     * @param delay {number}
      * @param that
      * @param data
      * @return to
@@ -441,11 +441,11 @@ class GameController {
 
         return parseFloat(currentPtlVal);
     }
-    
+
     /**
      * Check whether or not the trailing distance separator should be drawn.
      *
-     * Used by the `CanvasController` to determine whether or not to proceed with 
+     * Used by the `CanvasController` to determine whether or not to proceed with
      * `canvas_draw_separation_indicator`.
      *
      * @for GameController
