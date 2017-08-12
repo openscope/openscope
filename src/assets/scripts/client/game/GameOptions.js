@@ -75,7 +75,6 @@ export default class GameOptions {
      * @param value {string} value to set the option to
      */
     setOptionByName(name, value) {
-        localStorage[`zlsa.atc.option.${name}`] = value;
         this[name] = value;
 
         if (this._options[name].onChangeEventHandler) {
