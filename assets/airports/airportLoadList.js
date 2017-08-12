@@ -214,6 +214,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+        {
+            icao: 'kjax',
+            level: 'easy',
+            name: 'Jacksonville International Airport',
+            wip: false
+        },
         // {
         //     icao: 'kiad',
         //     level: 'hard',
