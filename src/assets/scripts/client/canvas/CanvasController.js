@@ -248,15 +248,13 @@ export default class CanvasController {
                 cc.save();
 
                 this.canvas_clear(cc);
-
                 this.canvas_fill_background(cc);
-
                 cc.translate(
                     calculateMiddle(this.canvas.size.width),
                     calculateMiddle(this.canvas.size.height)
                 );
-
                 cc.save();
+
                 cc.globalAlpha = alpha;
 
                 this.canvas_draw_videoMap(cc);
@@ -266,12 +264,12 @@ export default class CanvasController {
                 cc.restore();
 
                 cc.save();
+
                 cc.globalAlpha = alpha;
+
                 this.canvas_draw_fixes(cc);
                 this.canvas_draw_sids(cc);
                 cc.restore();
-
-
                 cc.restore();
             }
 
@@ -622,9 +620,8 @@ export default class CanvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const fixes = this._navigationLibrary.realFixes;
-        for (let i = 0; i < fixes.length; i++) {
-            const fix = fixes[i];
+        for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
+            const fix = this._navigationLibrary.realFixes[i];
 
             cc.save();
             cc.translate(
@@ -1537,6 +1534,9 @@ export default class CanvasController {
             }
 
             max_elevation = Math.max(max_elevation, elevation);
+            // Here we use HSL colors instead of RGB to enable easier bulk adjustments
+            // to saturation/lightness of multiple elevation levels without the need
+            // to use web-based color tools
             const color = `hsla(${this.theme.TERRAIN.COLOR[elevation]}`;
 
             cc.strokeStyle = `${color}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
