@@ -278,7 +278,7 @@
                 "21": [],
                 "26": []
             },
-            "body": [["FOXRR", "A80+"], ["TYWEB", "A100+|S250-"], ["TKILA", "A115+|S250-"], "FIREY"],
+            "body": [["FOXRR", "A80+"], ["TYWEB", "A100+"], ["TKILA", "A115+|S250-"], "FIREY"],
             "exitPoints": {
                 "ATOMK": ["ATOMK"]
             },
@@ -331,7 +331,7 @@
                 "21": [["^_RWY0301.27DME", "A62+"]],
                 "26": [["^_RWY0803.22DME", "A75+"]]
             },
-            "body": [["BLUUN", "A110+|S250-"], ["BURQI", "A120+|S250-"], ["FYSTA", "A140+"]],
+            "body": [["BLUUN", "A110+"], ["BURQI", "A120+|S250-"], ["FYSTA", "A140+"]],
             "exitPoints": {
                 "FTI": ["MACHO", "FTI"],
                 "JLPNO": ["POYOH", "JLPNO"]
@@ -382,7 +382,7 @@
             "rwy": {
                 "3": []
             },
-            "body": [["^_RWY2101.50DME", "A64+|S210-"], ["DSPOT", "A90-|S210-"], ["JETOK", "A100+"]],
+            "body": [["^_RWY2101.50DME", "A64+"], ["DSPOT", "A90+|S210-"], ["JETOK", "A100+"]],
             "exitPoints": {
                 "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
                 "ONM": ["DUMMM", "ONM"],
@@ -427,7 +427,7 @@
                 "3": [["^_RWY2101DME", "A60+|S220-"]],
                 "8": []
             },
-            "body": ["DLSOL", ["YUGLU", "A90-"], ["CIANE", "S250-"], ["MNZNO", "A115+|S250-"]],
+            "body": ["DLSOL", ["YUGLU", "A90-"], "CIANE", ["MNZNO", "A115+|S250-"]],
             "exitPoints": {
                 "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
                 "LAMSE": [["PEPTE", "A150+"], ["WUTUP", "A160+"], "LAMSE"],
