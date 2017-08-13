@@ -9,7 +9,7 @@
     "magnetic_north": 8.8,
     "ctr_radius": 80,
     "ctr_ceiling": 20000,
-    "initial_alt": 10000,
+    "initial_alt": 20000,
     "position": ["N35.03891707960476", "W106.60830688023069", "5355ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N35.03891707960476", "W106.60830688023069"],
@@ -234,11 +234,14 @@
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "body": [],
             "exitPoints": {
+                "ABQ": ["ABQ"],
                 "ALS": ["ALS"],
                 "CNX": ["CNX"],
                 "DRO": ["DRO"],
@@ -253,6 +256,7 @@
                 "ZUN": ["ZUN"]
             },
             "draw": [
+                ["ABQ*"],
                 ["ALS*"],
                 ["CNX*"],
                 ["DRO*"],
@@ -380,9 +384,9 @@
             },
             "body": [["^_RWY2101.50DME", "A64+|S210-"], ["DSPOT", "A90-|S210-"], ["JETOK", "A100+"]],
             "exitPoints": {
+                "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
                 "ONM": ["DUMMM", "ONM"],
                 "SJN": ["WUTUP", "LAMSE", "SJN"],
-                "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
                 "TXO": ["FATTT", "MOLVE", "TXO"]
             },
             "draw": [
@@ -399,8 +403,10 @@
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "body": [],
             "exitPoints": {
@@ -423,11 +429,11 @@
             },
             "body": ["DLSOL", ["YUGLU", "A90-"], ["CIANE", "S250-"], ["MNZNO", "A115+|S250-"]],
             "exitPoints": {
+                "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
+                "LAMSE": [["PEPTE", "A150+"], ["WUTUP", "A160+"], "LAMSE"],
+                "MOLVE": ["FATTT", "MOLVE"],
                 "ONM": [["HRDRK", "A160+"], "DUMMM", "ONM"],
                 "SJN": [["PEPTE", "A150+"], ["WUTUP", "A160+"], "LAMSE", "SJN"],
-                "LAMSE": [["PEPTE", "A150+"], ["WUTUP", "A160+"], "LAMSE"],
-                "CME": ["DADDY", "LARLE", "TACOZ", "CME"],
-                "MOLVE": ["FATTT", "MOLVE"],
                 "TXO": ["FATTT", "MOLVE", "TXO"]
             },
             "draw": [
@@ -492,12 +498,14 @@
                 "GUP": ["GUP"],
                 "TANER": ["TANER"]
             },
-            "body": [["CURLY", "S300-"], "ABQ"],
+            "body": ["CURLY", "ABQ"],
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "draw": [
                 ["GUP", "CURLY", "ABQ"],
@@ -508,15 +516,17 @@
             "icao": "FRIHO4",
             "name": "Freeoh Four",
             "entryPoints": {
-                "ESPAN": ["ESPAN", "FLYBY"],
-                "FTI": ["FTI", "FLYBY"]
+                "ESPAN": ["ESPAN"],
+                "FTI": ["FTI"]
             },
-            "body": [["FRIHO", "S300-"], "ABQ"],
+            "body": ["FLYBY", "FRIHO", "ABQ"],
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "draw": [
                 ["FTI", "FLYBY", "FRIHO", "ABQ"],
@@ -549,15 +559,17 @@
             "icao": "LAVAN3",
             "name": "Lahvan Three",
             "entryPoints": {
-                "SJN": ["SJN", "IRULY"],
-                "ZUN": ["ZUN", "IRULY"]
+                "SJN": ["SJN"],
+                "ZUN": ["ZUN"]
             },
-            "body": [["LAVAN", "S300-"], "ABQ"],
+            "body": ["IRULY", "LAVAN", "ABQ"],
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "draw": [
                 ["SJN", "IRULY", "LAVAN", "ABQ"],
@@ -594,7 +606,7 @@
             },
             "body": [["LZZRD", "A140+|A180-|S250"], ["MKYON", "A130+|A150-"]],
             "rwy": {
-            	"3": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
+                "3": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
                 "8": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
                 "21": ["SOPPA", ["PILLA", "A100|S210"]],
                 "26": ["SOPPA", ["PILLA", "A100|S210"]]
@@ -612,12 +624,14 @@
                 "TXO": ["TXO"],
                 "TCC": ["TCC", "ACH"]
             },
-            "body": [["MIERA", "S300-"], "ABQ"],
+            "body": ["MIERA", "ABQ"],
             "rwy": {
                 "3": [],
                 "8": [],
+                "12": [],
                 "21": [],
-                "26": []
+                "26": [],
+                "30": []
             },
             "draw": [
                 ["TXO", "MIERA", "ABQ"],
