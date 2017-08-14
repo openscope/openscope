@@ -650,7 +650,10 @@
                 "22": [],
                 "26L": [],
                 "26R": []
-            }
+            },
+            "draw": [
+                ["TXSAS", "TELRE", "DLINE", "UUTEP", "MYNRS", "BEAHR"]
+            ]
         },
         "HSKNS1": {
             "icao": "HSKNS1",
@@ -661,7 +664,10 @@
             "body": [["HSKNS", "A130+"], ["FINAG", "A110+"], ["BECON", "A90|S210"]],
             "rwy": {
                 "4": []
-            }
+            },
+            "draw": [
+                ["DOHHN", "HSKNS", "FINAG", "BECON"]
+            ]
         },
         "MOLLY4": {
             "icao": "MOLLY4",
@@ -677,7 +683,12 @@
                 "22": [["WIKKR", "A90|S210"]],
                 "26L": [["WIKKR", "A90|S210"]],
                 "26R": [["WIKKR", "A90|S210"]]
-            }
+            },
+            "draw": [
+                ["TEEES", "JOMUB", "WANAB", "WOBEN", "MOLLY", "WIKKR"],
+                ["GREBE", "JEVOS", "CIRKA", "WANAB"],
+                ["MOLLY", "KOACH"]
+            ]
         },
         "SAMMR3": {
             "icao": "SAMMR3",
@@ -693,7 +704,11 @@
                 "22": [],
                 "26L": [],
                 "26R": []
-            }
+            },
+            "draw": [
+                ["LIFFT", "CABOL", "ZATSA", "SKIIR", "SAMMR", "SARRT"],
+                ["CME", "RIICK", "ZIPPI", "BGBND", "BLYSS", "SAMMR"]
+            ]
         },
         "WAZKO1": {
             "icao": "WAZKO1",
@@ -708,7 +723,11 @@
                 "22": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
                 "26L": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]],
                 "26R": [["JEBSU", "A100+"], ["WIKKR", "A90|S210"]]
-            }
+            },
+            "draw": [
+                ["SLNNK", "BOATY", "SEKBE", "WAZKO", "KOACH"],
+                ["WAZKO", "JEBSU", "WIKKR"]
+            ]
         }
     },
     "spawnPatterns": [
