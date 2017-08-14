@@ -13,6 +13,7 @@
 - Removed index.html as it is generated from templates when run [#619](https://github.com/openscope/openscope/issues/619)
 - Implements new loading screen with new color scheme and animated radar sweep [#619](https://github.com/openscope/openscope/issues/619)
 - Extends departing spawnPatterns outside the airspace at EIDW to prevent point deduction [#566](https://github.com/openscope/openscope/issues/566)
+- Extends departing spawnPatterns outside the airspace at MDSD to prevent point deduction [#615](https://github.com/openscope/openscope/issues/615)
 
 
 
