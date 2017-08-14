@@ -52,7 +52,7 @@
         "_RWY10275WLSON249": ["N33.62033", "W84.46990"],
         "_RWY26L095HRSHL072": ["N33.64680", "W84.38172"],
         "_RWY26L095RONII082": ["N33.64692", "W84.37733"],
-        "_RWY26L095TUANN083": ["N33.64694", "W84.39637"],
+        "_RWY26L095TUANN082": ["N33.64694", "W84.39637"],
         "_RWY26R095HRSHL075": ["N33.64996", "W84.38824"],
         "_RWY26R095RONII083": ["N33.64955", "W84.37944"],
         "_RWY26R095TUANN083": ["N33.64987", "W84.37988"],
@@ -639,11 +639,11 @@
                 "27R": ["SLAWW", "WESEK"],
                 "28": ["_RWY10275WLSON249", "WLSON", "SOTRE"]
             },
-            "body": ["NASSA"],
+            "body": ["NASSA", "ENGNR"],
             "exitPoints": {
-                "CHOOK": ["ENGNR", "CHOOK"],
-                "YAALL": ["ENGNR", "YAALL"],
-                "VUZ": ["ENGNR", "VUZ"]
+                "CHOOK": ["CHOOK"],
+                "YAALL": ["YAALL"],
+                "VUZ": ["VUZ"]
             },
             "draw": [
                 ["NASSA", "ENGNR", "CHOOK*"],
@@ -696,10 +696,10 @@
                 "27R": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"],
                 "28": ["CPARK", "MPASS", ["ZELAN", "S250"], "WURLD"]
             },
-            "body": ["PENCL"],
+            "body": ["PENCL", "LEDRR"],
             "exitPoints": {
-                "EMAHH": ["LEDRR", "EMAHH"],
-                "JAACE": ["LEDRR", "JAACE"]
+                "EMAHH": ["EMAHH"],
+                "JAACE": ["JAACE"]
             },
             "draw": [
                 ["HOYYT", "PENCL", "LEDRR", "EMAHH*"],
@@ -724,7 +724,7 @@
             },
             "body": ["PHIIL"],
             "exitPoints": {
-                "GRD": ["GRD"]
+                "GRD": ["LAGGR", "MULSN", "GRD"]
             },
             "draw": [
                 ["SMOGG", "PHIIL", "LAGGR", "MULSN", "GRD*"],
@@ -743,8 +743,8 @@
                 "9L": ["LIDAS", "ERWIN"],
                 "9R": ["LIDAS", "ERWIN"],
                 "10": ["_RWY28095GRITZ105", "GRITZ", "DDUBB"],
-                "26L": ["_RWY8R275MPASS300", "MPASS", ["ZELAN", "S250"]],
-                "26R": ["_RWY8L275MPASS299", "MPASS", ["ZELAN", "S250"]],
+                "26L": ["_RWY8R275MPASS300", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
+                "26R": ["_RWY8L275MPASS299", "MPASS", ["ZELAN", "S250"], "SMOGG", "DLLNN"],
                 "27L": ["_RWY9R275FUTBL251", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
                 "27R": ["_RWY9L275FUTBL249", "FUTBL", ["ZALLE", "S250"], "GGOLF"],
                 "28": ["_RWY10275WLSON249", "WLSON", ["ZALLE", "S250"], "GGOLF"]
@@ -754,7 +754,7 @@
                 "SPA": ["TENSE", "NWANT", "SPA"]
             },
             "draw": [
-                ["ZELAN", "PLMMR", "TENSE", "NWANT", "SPA*"],
+                ["ZELAN", "SMOGG", "DLLNN", "PLMMR", "TENSE", "NWANT", "SPA*"],
                 ["GGOLF", "PLMMR"],
                 ["IGEBE", "PLMMR"],
                 ["ERWIN", "PLMMR"],
@@ -891,7 +891,7 @@
             "name": "Wiggle Two",
             "rwy": {
                 "8L": ["_RWY26R095TUANN083", "TUANN"],
-                "8R": ["_RWY26L095TUANN083", "TUANN"],
+                "8R": ["_RWY26L095TUANN082", "TUANN"],
                 "9L": ["LIDAS"],
                 "9R": ["LIDAS"]
             },
@@ -900,7 +900,7 @@
                 "LUCKK": [["RINZY", "S250"], "BANNG", "LUCKK"],
                 "MCN": [["CHPER", "S250"], "VRSTY", "MCN"],
                 "SARGE": [["RINZY", "S250"], "HAALO", "SARGE"],
-                "WALET": [["CHPER", "S250"], "SMLTZ", "LUCKK"]
+                "WALET": [["CHPER", "S250"], "SMLTZ", "WALET"]
             },
             "draw": [
                 ["TUANN", "BEECE", "WIGLE", "RINZY", "BANNG"],
