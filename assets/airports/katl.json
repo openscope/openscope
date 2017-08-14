@@ -1036,7 +1036,7 @@
         },
         "PECHY1": {
             "icao": "PECHY1",
-            "name": "Pechy One",
+            "name": "Peachy One",
             "entryPoints": {
                 "HIGGI": ["HIGGI", ["ZPPLN", "A230-"]],
                 "HLRRY": ["HLRRY", "ADEIN", "PUPDG", "ALADY", "WEALL", ["KNOWW", "A200+|A290-|S280"]],
@@ -1053,8 +1053,8 @@
                 "10": [["SLOPY", "A130|S250"], "FRYES", "SHURT", "STUUF", "SHELE", "SUMNR"],
                 "26L": [["BBOBB", "A90|S250"]],
                 "26R": [["BBOBB", "A90|S250"]],
-                "27L": [["ANVAL", "A90|S250"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
-                "27R": [["ANVAL", "A90|S250"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "27L": [["ANVAL", "A90|S250"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "27R": [["ANVAL", "A90|S250"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
                 "28": [["KIZIC", "A90|S250"]]
             },
             "draw": [
@@ -1107,9 +1107,9 @@
             "icao": "RMG5",
             "name": "Rome Five",
             "entryPoints": {
+                "BNA": ["BNA", "DRAKK", "NEUTO"],
                 "BWG": ["BWG", "DRAKK", "NEUTO"],
-                "MEM": ["MEM", "DEVAC", "CALCO"],
-                "BNA": ["BNA", "DRAKK", "NEUTO"]
+                "MEM": ["MEM", "DEVAC", "CALCO"]
             },
             "body": ["RMG", "ERLIN", "DALAS", "ATL"],
             "rwy": {
@@ -1136,10 +1136,10 @@
             "name": "Sinca Six",
             "entryPoints": {
                 "AMG": ["AMG", "DBN", "RIPPI"],
-                "VQQ": ["VQQ", "CHESN", "BAXLY", "DBN", "RIPPI"],
-                "IRQ": ["IRQ", "BEYLO"],
                 "CRG": ["CRG", "RDNEK", "CHESN", "BAXLY", "DBN", "RIPPI"],
-                "DBN": ["DBN", "RIPPI"]
+                "DBN": ["DBN", "RIPPI"],
+                "IRQ": ["IRQ", "BEYLO"],
+                "VQQ": ["VQQ", "CHESN", "BAXLY", "DBN", "RIPPI"]
             },
             "body": ["SINCA", "CANUK", "HUSKY", "ATL"],
             "rwy": {
@@ -1250,7 +1250,7 @@
         },
         "WHINZ4": {
             "icao": "WHINZ4",
-            "name": "Whinz Four",
+            "name": "Whines Four",
             "entryPoints": {
                 "MOL": ["MOL", "FLASK", "AVERY", "BEBAD"],
                 "SOT": ["SOT"],
@@ -1294,8 +1294,8 @@
                 "10": [["MGNMN", "A120|S280"], "KILRR", "FRYES", "SHURT", "STUUF", "SHELE", "SUMNR"],
                 "26L": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["JIRRI", "A50+"], ["BOYKN", "A50+"]],
                 "26R": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["ZELOW", "A50+"], ["HAINZ", "A50+"]],
-                "27L": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
-                "27R": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "27L": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "27R": [["CALLA", "A100|S250"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
                 "28": [["CALLA", "A100|S250"], "DOODS"]
             },
             "draw": [
