@@ -1256,7 +1256,7 @@
                 "SOT": ["SOT"],
                 "SPA": ["SPA"]
             },
-            "body": ["ODF", "RUBIE", "WHINZ", "VICTU"],
+            "body": ["ODF", "RUBIE", "WHINZ", ["VICTU", "A40+"]],
             "rwy": {
                 "8L": [],
                 "8R": [],
