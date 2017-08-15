@@ -156,6 +156,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'katl',
+            level: 'hard',
+            name: 'Hartsfield–Jackson Atlanta Int\'l',
+            wip: false
+        },
+        {
             icao: 'kbos',
             level: 'medium',
             name: 'Boston Logan International Airport',
