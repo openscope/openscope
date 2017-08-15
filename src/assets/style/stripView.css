@@ -8,7 +8,7 @@
     font-family: Monospace, serif;
     font-size: 12px;
     max-width: 500px;
-    background-color: #000000;
+    background-color: #141414;
     transition: ease-in-out all 0.3s;
 }
 
@@ -91,7 +91,6 @@
     width: 10px;
     float: left;
     cursor: pointer;
-    background-color: #000000;
 }
 
 .mix-stripView_isHidden .stripView-trigger:after {
@@ -103,7 +102,7 @@
     top: 40%;
     left: -25px;
     padding: 20px 10px 20px 10px;
-    background: #000000;
+    background: #141414;
     color: #ffffff;
     font-weight: 700;
     content: '>|';

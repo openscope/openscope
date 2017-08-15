@@ -3,7 +3,10 @@ import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
 import { PERFORMANCE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
-import { angle_offset } from '../../math/circle';
+import {
+    angle_offset,
+    radians_normalize
+} from '../../math/circle';
 import {
     abs,
     tan
@@ -150,7 +153,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @property gps
-     * @return {array<number>} gps coordinates of the runway
+     * @type {array<number>} gps coordinates of the runway
      */
     get gps() {
         return this._positionModel.gps;
@@ -158,11 +161,22 @@ export default class RunwayModel extends BaseModel {
 
     /**
      * @for RunwayModel
-     * @method elevation
-     * @return {number}
+     * @property elevation
+     * @type {number}
      */
     get elevation() {
         return this._positionModel.elevation || this.airportPositionModel.elevation;
+    }
+
+    /**
+     * Opposite of runway's heading, in radians
+     *
+     * @for RunwayModel
+     * @property oppositeAngle
+     * @type {number}
+     */
+    get oppositeAngle() {
+        return radians_normalize(this.angle + Math.PI);
     }
 
     /**
