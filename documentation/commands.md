@@ -7,6 +7,38 @@ that you can type out multiple commands in one go; for example:
 separately. Some commands have "aliases" that are shorter to type. An
 example of that would be the `takeoff` command which has an alias `to`.
 
+##### Table of Contents
+
+[Departure commands](#Departure commands)
+- [Cleared as Filed](#Cleared as Filed)
+- [Climb via SID](#Climb via SID)
+- [SID](#SID)
+- [Takeoff](#Takeoff)
+- [Taxi](#Taxi)
+[Arrival commands](#Arrival commands)
+- [Descend via STAR](#Descend via STAR)
+- [Land](#Land)
+- [STAR](#STAR)
+[Routing commands](#Routing commands)
+- [~~Fix~~](#~~Fix~~)
+- [Hold](#Hold)
+- [Proceed Direct](#Proceed Direct)
+- [Route](#Route)
+- [Reroute](#Reroute)
+- [Say Route](#Say Route)
+[Aircraft Control commands](#Aircraft Control commands)
+- [Abort](#Abort)
+- [Altitude](#Altitude)
+- [Heading](#Heading)
+- [Speed](#Speed)
+- [Squawk](#Squawk)
+[System commands](#System commands)
+- [Move Data Block](#Move Data Block)
+- [Pause](#Pause)
+- [Timewarp](#Timewarp)
+- [Tutorial](#Tutorial)
+- [Version](#Version)
+
 ## Departure commands
 These commands are only used by aircraft that are departing from the selected airport.
 
@@ -253,7 +285,7 @@ _Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
 ### Squawk
 _Aliases -_ `sq`
 
-_Information -_ This command tells an aircraft to set its transponder code, or "squawk" a four-digit number, from `0000` to `7777`. These codes uniquely identify each plane to the air traffic controller. Certain codes have special significance, such as `0033: Paradrop in progress` or `7000: VFR`. Currently the squawk is purely cosmetic; including it in game mechanics is planned.
+_Information -_ This command tells an aircraft to set its transponder code, or "squawk" a four-digit number, from `0000` to `7777`. These codes uniquely identify each plane to the air traffic controller. Certain codes have special significance, such as `0033: Paradrop in progress` or `1200: VFR`. Currently the squawk is purely cosmetic; including it in game mechanics is planned.
 
 _Parameters -_ A four digit number. Each number must be between `0` and `7`, inclusive. For example, `0736` is a valid squawk, `9416` is not.
 
