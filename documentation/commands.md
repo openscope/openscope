@@ -7,17 +7,17 @@ that you can type out multiple commands in one go; for example:
 separately. Some commands have "aliases" that are shorter to type. An
 example of that would be the `takeoff` command which has an alias `to`.
 
-##### Table of Contents
+### Table of Contents
 
 [Departure commands](#Departure-commands)
 - [Cleared as Filed](#Cleared-As-Filed)
-- [Climb via SID](#Climb Via SID)
+- [Climb via SID](#Climb-Via-SID)
 - [SID](#SID)
 - [Takeoff](#Takeoff)
 - [Taxi](#Taxi)
 
-[Arrival commands](#Arrival commands)
-- [Descend via STAR](#Descend via STAR)
+[Arrival commands](#Arrival-commands)
+- [Descend via STAR](#Descend-via-STAR)
 - [Land](#Land)
 - [STAR](#STAR)
 
