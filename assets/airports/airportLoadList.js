@@ -26,15 +26,20 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      * {
      *   icao: {AIRPORT_ICAO},
      *   level: {AIRPORT_DIFFICULTY},
-     *   name: {AIRPORT_NAME}
+     *   name: {AIRPORT_NAME},
+     *   premium: {MEETS_PREMIUM_STANDARDS},
+     *   wip: {IS_WORK_IN_PROGRESS}
      * }
      * ```
      * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
      * - `AIRPORT_DIFFICULTY` is the difficulty level (one of: easy, beginner, medium, hard)
      * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
-     *   If the airport is a work in progress, please include the icon character `&#9983` after the `name`
-     *   (see ebbr, kmsp or ksea):
-     *   `name: 'Brussels-National &#9983'`
+     * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
+     * - `IS_WORK_IN_PROGRESS` is either `true` or `false`, based on whether the airport is old
+     *   and needs to be updated in order to reach full compliance with the airport standards
+     *   specifications. Note that all new airports must meet these specifications before being
+     *   merged, so you may feel free to start out with `wip: false`, since that will be true by
+     *   the time the airport is added to the game.
      *
      * @property AIRPORT_LOAD_LIST
      * @type {Array}
