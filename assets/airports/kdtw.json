@@ -543,11 +543,11 @@
             "icao": "GEMNI4",
             "name": "Gemini Four",
             "entryPoints": {
-                "BKW": ["BKW", "TARCI", "VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT"],
-                "MOL": ["MOL", "BIGAL", "TARCI", "VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT"],
-                "SINDE": ["SINDE", "GEFFS", "VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT"]
+                "BKW": ["BKW", "TARCI"],
+                "MOL": ["MOL", "BIGAL", "TARCI"],
+                "SINDE": ["SINDE", "GEFFS"]
             },
-            "body": ["DJB", "YYOUR", "GEMNI", "MUSCA", "GLOZE"],
+            "body": ["DJB", "YYOUR", "GEMNI", "MUSCA", "GLOZE", "VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -572,11 +572,11 @@
             "icao": "MIZAR4",
             "name": "Mizar Four",
             "entryPoints": {
-                "DQN": ["DQN", "TORRR", "ROTER", "NAKES", "RANDL"],
-                "FWA": ["FWA", "NAKES", "RANDL"],
-                "LFD": ["LFD", "RANDL"]
+                "DQN": ["DQN", "TORRR", "ROTER", "NAKES"],
+                "FWA": ["FWA", "NAKES"],
+                "LFD": ["LFD"]
             },
-            "body": ["MIZAR", "RAZIM"],
+            "body": ["MIZAR", "RAZIM", "RANDL"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -601,13 +601,13 @@
             "icao": "POLAR5",
             "name": "Polar Five",
             "entryPoints": {
-                "BAE": ["BAE", "ZIPPE", "PURNY", "MUNKY", "BUTRR", "AAMMO"],
-                "GRB": ["GRB", "KKAYY", "NOBAC", "PURNY", "MUNKY", "BUTRR", "AAMMO"],
-                "MKG": ["MKG", "MUNKY", "BUTRR", "AAMMO"],
-                "MBS": ["MBS", "AAMMO"],
-                "VIO": ["VIO", "BUTRR", "AAMMO"]
+                "BAE": ["BAE", "ZIPPE", "PURNY", "MUNKY", "BUTRR"],
+                "GRB": ["GRB", "KKAYY", "NOBAC", "PURNY", "MUNKY", "BUTRR"],
+                "MKG": ["MKG", "MUNKY", "BUTRR"],
+                "MBS": ["MBS"],
+                "VIO": ["VIO", "BUTRR"]
             },
-            "body": ["POLAR", "SCUBI", "TRAML"],
+            "body": ["POLAR", "SCUBI", "TRAML", "AAMMO"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -634,11 +634,11 @@
             "icao": "SPICA2",
             "name": "Speeka Two",
             "entryPoints": {
-                "BUF": ["BUF", "MOAWK", "YQO", "WOLIS"],
-                "ERI": ["ERI", "WOLIS"],
-                "YQO": ["YQO", "WOLIS"]
+                "BUF": ["BUF", "MOAWK", "YQO"],
+                "ERI": ["ERI"],
+                "YQO": ["YQO"]
             },
-            "body": ["SPICA", "RIKKE", "VERNR", "WITKR"],
+            "body": ["SPICA", "RIKKE", "VERNR", "WITKR", "WOLIS"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -662,10 +662,10 @@
             "icao": "WEEDA2",
             "name": "Weeda Two",
             "entryPoints": {
-                "HNN": ["HNN", "RONCO", "SUBWY", "MILNR", "COLTZ", "CASIO", "AQQUA"],
-                "COLTZ": ["COLTZ", "CASIO", "AQQUA"]
+                "HNN": ["HNN", "RONCO", "SUBWY", "MILNR"],
+                "COLTZ": []
             },
-            "body": ["WEEDA", "SVM"],
+            "body": ["WEEDA", "SVM", "COLTZ", "CASIO", "AQQUA"],
             "rwy": {
                 "3L": [],
                 "3R": [],
