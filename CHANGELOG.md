@@ -15,6 +15,7 @@
 - Implements new loading screen with new color scheme and animated radar sweep [#619](https://github.com/openscope/openscope/issues/619)
 - Extends departing spawnPatterns outside the airspace at EIDW to prevent point deduction [#566](https://github.com/openscope/openscope/issues/566)
 - Extends departing spawnPatterns outside the airspace at MDSD to prevent point deduction [#615](https://github.com/openscope/openscope/issues/615)
+- Extends departing spawnPatterns outside the airspace at KBOS to prevent point deduction [#635](https://github.com/openscope/openscope/issues/635)
 - Implement scope themes, and changed default theme to blue-based [#15](https://github.com/openscope/openscope/issues/15)
 
 
