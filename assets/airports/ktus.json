@@ -122,8 +122,7 @@
                 ["N32d07m24.13", "W110d56m52.48", "2578ft"],
                 ["N32d06m07.17", "W110d55m22.15", "2643ft"]
             ],
-            "ils": [true, true],
-            "glideslope": [3.00, 3.47]
+            "ils": [true, false],
         },
         {
             "name": ["11R", "29L"],
@@ -213,11 +212,11 @@
             "icao": "DINGO5",
             "name": "Dingo Five",
             "entryPoints": {
-                "GBN": ["GBN", "BASER"],
-                "PXR": ["PXR", "TFD", "BASER"],
-                "TFD": ["TFD", "BASER"]
+                "GBN": ["GBN"],
+                "PXR": ["PXR", "TFD"],
+                "TFD": ["TFD"]
             },
-            "body": ["DINGO", "MAVVA"],
+            "body": ["DINGO", "MAVVA", "BASER"],
             "rwy": {
                 "11L": ["#075"],
                 "29R": []
