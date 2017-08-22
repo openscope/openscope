@@ -30,6 +30,7 @@ import { EVENT } from '../constants/eventNames';
  * @final
  */
 const COMMANDS = {
+    abort: 'runAbort',
     altitude: 'runAltitude',
     clearedAsFiled: 'runClearedAsFiled',
     climbViaSID: 'runClimbViaSID',
@@ -213,6 +214,18 @@ export default class AircraftCommander {
             airport
         );
     }
+
+    /**
+     * Aborts an action. Deprecated.
+     *
+     * @for AircraftCommander
+     * @method runAbort
+     * @param {AircraftModel} aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runAbort(aircraft) {
+        return [false, 'this command has been deprecated, clear an aircraft to another fix or heading instead'];
+    } 
 
     /**
      * Direct an aircraft to fly and maintain a specific heading
