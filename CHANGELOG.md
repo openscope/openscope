@@ -21,6 +21,7 @@
 - Deactivate unused WIP airports from the load list, and add premium flag [#431](https://github.com/openscope/openscope/issues/431)
 - Document airport terrain generation process [#7](https://github.com/openscope/openscope/issues/7)
 - Remove index.html from document root in tools/README.md [#653](https://github.com/openscope/openscope/issues/653)
+- Deprecate the `say route` command [#640](https://github.com/openscope/openscope/issues/640)
 
 
 

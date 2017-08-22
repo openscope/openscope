@@ -101,7 +101,6 @@ export const COMMAND_MAP = {
     reroute: 'reroute',
     rr: 'reroute',
     route: 'route',
-    sr: 'sayRoute',
     f: 'fix',
     fix: 'fix',
     track: 'fix',
