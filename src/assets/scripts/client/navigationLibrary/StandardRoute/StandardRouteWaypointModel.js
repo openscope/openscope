@@ -294,16 +294,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     // TODO: why do we need to clone?
-    // TODO ClonePoisitonFromFix -> clonePositionFromFix
+    // TODO: Shouldn't this just be called `clonePosition`?
     /**
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
      * @method clonePositionFromFix
-     * @param fixCollection {FixCollection}
-     * @return {StandardRouteWaypointModel}
-     * @private
-     * @chainable
      */
     clonePositionFromFix() {
         const isFlyOverWaypoint = RouteModel.isFlyOverRouteString(this.name);
@@ -324,12 +320,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
         const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
-            return this;
+            return;
         }
 
         this._positionModel = fixModel.clonePosition();
 
-        return this;
+        return;
     }
 
     /**
