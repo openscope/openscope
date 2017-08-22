@@ -310,6 +310,29 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "draw": [[]]
         },
+        // Not a real route, used to test soft altitude restrictions
+        "GRNPA2": {
+            "icao": "GRNPA2",
+            "name": "Grandpa Two",
+            'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
+            "entryPoints": {
+                "BETHL": ["BETHL", ["HOLDM", "A270+"]],
+                "BCE":   ["BCE"],
+                "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
+                "MLF":   ["MLF"]
+            },
+            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A80+|S210"], "TRROP", "LEMNZ"],
+            "rwy": {
+                "01L": [],
+                "01R": [],
+                "07L": [],
+                "07R": [],
+                "19L": [],
+                "19R": [],
+                "25L": [],
+                "25R": []
+            }
+        },
         // not a real route. used here to test `SpawnPatternModel._generateWaypointListForRoute()`
         "GRNPA9": {
             "icao": "GRNPA9",
