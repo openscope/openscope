@@ -306,14 +306,15 @@ class UiController {
      * @param icao {string}
      * @param difficulty {string}
      * @param name {string}
+     * @param reliabilityFlag {string}
      * @return {DOM element|string}
      */
-    buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
+    buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
         return `<li class="airport icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
+                    `<span class="symbol">${reliabilityFlag}</span>` +
                     `<span class="name">${name}</span>` +
-                    `<span class="symbol">${flagIcon}</span>` +
                 '</li>';
     }
 
@@ -343,6 +344,7 @@ class UiController {
         const airports = _keys(AirportController.airports).sort();
         const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
+        const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
             const { name, icao, level, wip } = AirportController.airports[airports[i]];
@@ -352,10 +354,10 @@ class UiController {
             }
 
             difficulty = this._buildAirportListIconForDifficultyLevel(level);
-            const flagIcon = wip
-                ? ' &#9983'
-                : '';
-            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
+            const reliabilityFlag = wip
+                ? ''
+                : flagIcon;
+            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
@@ -368,7 +370,7 @@ class UiController {
             this.$airportList.append($airportListItem);
         }
 
-        this._buildAirportListFooter();
+        this._buildAirportListFooter(flagIcon);
     }
 
     /**
@@ -416,8 +418,9 @@ class UiController {
      *
      * @for UiController
      * @method _buildAirportListFooter
+     * @param flagIcon {string}
      */
-    _buildAirportListFooter() {
+    _buildAirportListFooter(flagIcon) {
         // clear out the contents of this element
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportListNotes.empty();
@@ -431,10 +434,8 @@ class UiController {
             return;
         }
 
-        const symbol = $('<span class="symbol">&#9983</span>');
-        const notes = $('<span class="words">indicates airport is a work in progress</span>');
+        const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
 
-        this.$airportListNotes.append(symbol);
         this.$airportListNotes.append(notes);
     }
 

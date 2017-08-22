@@ -65,15 +65,22 @@
   width: 5em;
   font-weight: bold;
   font-size: 120%;
-  margin-right: 0.25em;
   text-align: right;
   white-space: nowrap;
 }
 
 #airport-switch li .icao {
   display: inline-block;
-  width: 4em;
-  /*margin-right: */
+  width: 2.5em;
+  margin-left: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
+#airport-switch li .symbol {
+  display: inline-block;
+  width: 0.7em;
+  margin-left: 1em;
   text-align: center;
   font-weight: bold;
 }
@@ -81,6 +88,7 @@
 #airport-switch li .name {
   display: inline-block;
   font-weight: bold;
+  margin-left: 1em;
 }
 
 #airport-switch li:hover {
