@@ -1,10 +1,10 @@
 import _defaultTo from 'lodash/defaultTo';
 import { isValidDirectionString } from './argumentValidators';
-import { INVALID_INDEX } from '../constants/globalConstants';
+import { INVALID_INDEX } from '../../constants/globalConstants';
 import {
     convertToThousands,
     convertStringToNumber
-} from '../utilities/unitConverters';
+} from '../../utilities/unitConverters';
 
 /**
  * Enumeration of possible the hold command argument names.

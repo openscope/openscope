@@ -6,7 +6,7 @@ import AirportController from './airport/AirportController';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './UiController';
-import CommandParser from './commandParser/CommandParser';
+import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -85,7 +85,6 @@ export default class InputController {
      * @method setupHandlers
      */
     setupHandlers() {
-
         return this;
     }
 
@@ -604,18 +603,18 @@ export default class InputController {
     /**
      * @for InputController
      * @method _parseUserCommand
-     * @return result {CommandParser}
+     * @return result {AircraftCommandParser}
      */
     _parseUserCommand() {
         let result;
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
 
-        // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
+        // Using try/catch here very much on purpose. the `AircraftCommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
         // and then throw them all at once
         try {
-            result = new CommandParser(userCommand);
+            result = new AircraftCommandParser(userCommand);
         } catch (error) {
             UiController.ui_log('Command not understood');
 
@@ -659,23 +658,23 @@ export default class InputController {
      * @method input_run
      */
     input_run() {
-        const commandParser = this._parseUserCommand();
+        const aircraftCommandParser = this._parseUserCommand();
 
-        if (commandParser.command !== 'transmit') {
-            return this.processSystemCommand(commandParser);
+        if (aircraftCommandParser.command !== 'transmit') {
+            return this.processSystemCommand(aircraftCommandParser);
         }
 
-        return this.processTransmitCommand(commandParser);
+        return this.processTransmitCommand(aircraftCommandParser);
     }
 
     /**
      * @for InputController
      * @method processSystemCommand
-     * @param commandParser {CommandParser}
+     * @param AircraftCommandParser {AircraftCommandParser}
      * @return {boolean}
      */
-    processSystemCommand(commandParser) {
-        switch (commandParser.command) {
+    processSystemCommand(AircraftCommandParser) {
+        switch (AircraftCommandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
                 UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
 
@@ -704,8 +703,8 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
-                if (commandParser.args) {
-                    GameController.game.speedup = commandParser.args;
+                if (AircraftCommandParser.args) {
+                    GameController.game.speedup = AircraftCommandParser.args;
                 } else {
                     GameController.game_timewarp_toggle();
                 }
@@ -719,7 +718,7 @@ export default class InputController {
                 break;
             case PARSED_COMMAND_NAME.AIRPORT:
                 // TODO: it may be better to do this in the parser
-                const airportIcao = commandParser.args[0];
+                const airportIcao = AircraftCommandParser.args[0];
 
                 if (_has(AirportController.airports, airportIcao)) {
                     AirportController.airport_set(airportIcao);
@@ -729,8 +728,8 @@ export default class InputController {
 
             case PARSED_COMMAND_NAME.RATE:
                 // TODO: is this if even needed?
-                if (commandParser.args) {
-                    GameController.game.frequency = commandParser.args;
+                if (AircraftCommandParser.args) {
+                    GameController.game.frequency = AircraftCommandParser.args;
                 }
 
                 return true;
@@ -742,10 +741,10 @@ export default class InputController {
     /**
      * @for InputController
      * @method processTransmitCommand
-     * @param commandParser {CommandParser}
+     * @param AircraftCommandParser {AircraftCommandParser}
      * @return {boolean}
      */
-    processTransmitCommand(commandParser) {
+    processTransmitCommand(AircraftCommandParser) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
         let match = INVALID_NUMBER;
@@ -753,7 +752,7 @@ export default class InputController {
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
 
-            if (aircraft.matchCallsign(commandParser.callsign)) {
+            if (aircraft.matchCallsign(AircraftCommandParser.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -773,6 +772,6 @@ export default class InputController {
 
         const aircraft = this._aircraftController.aircraft.list[match];
 
-        return this._aircraftCommander.runCommands(aircraft, commandParser.args);
+        return this._aircraftCommander.runCommands(aircraft, AircraftCommandParser.args);
     }
 }

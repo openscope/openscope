@@ -1745,7 +1745,7 @@ export default class AircraftModel {
             }
         }
 
-        // turn direction is defaulted to `right` by the commandParser
+        // turn direction is defaulted to `right` by the AircraftCommandParser
         this.target.turn = hold.dirTurns;
         this.target.heading = nextTargetHeading;
 

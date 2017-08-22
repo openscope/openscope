@@ -81,7 +81,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runCommands
      * @param aircraft {AircraftModel}
-     * @param commands {CommandParser}
+     * @param commands {AircraftCommandParser}
      */
     runCommands(aircraft, commands) {
         if (!aircraft.inside_ctr) {
