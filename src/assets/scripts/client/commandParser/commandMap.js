@@ -107,7 +107,6 @@ export const COMMAND_MAP = {
     direct: 'direct',
     pd: 'direct',
     dct: 'direct',
-    abort: 'abort',
     hold: 'hold',
     squawk: 'squawk',
     sq: 'squawk',

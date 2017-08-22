@@ -214,13 +214,15 @@ continue flying straight.
 
 _Syntax -_ `AAL123 pd [fixname]`
 
-### Abort
-_Aliases -_ `abort`
+### ~~Abort~~
+~~_Aliases -_ `abort`~~
 
-_Information -_ Instructs the aircraft to abort the current operation.
-Currently, only landings, taxiing, and fix navigation can be aborted.
+~~_Information -_ Instructs the aircraft to abort the current operation.~~
+~~Currently, only landings, taxiing, and fix navigation can be aborted.~~
 
-_Syntax -_ `AAL123 abort`
+~~_Syntax -_ `AAL123 abort`~~
+
+*_This command has been deprecated._*
 
 ### Hold
 _Aliases -_ `hold`
