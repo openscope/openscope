@@ -141,6 +141,39 @@ ava('.getAllFixNamesInUse() returns an array of fix names used by any portion of
     t.true(_isEqual(result, expectedResult));
 });
 
+ava('.getAllFixNamesInUse() returns correct list of fix names when entry collection is empty', (t) => {
+    const standardRouteModel = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+
+    standardRouteModel._entryCollection._items = [];
+
+    const result = standardRouteModel.getAllFixNamesInUse().sort();
+    const expectedResult = ['DUBLX', 'FRAWG', 'GRNPA', 'KSINO', 'LEMNZ', 'LUXOR', 'THREEVE', 'TRROP'];
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.getAllFixNamesInUse() returns correct list of fix names when body is empty', (t) => {
+    const standardRouteModel = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+
+    standardRouteModel._bodySegmentModel._items = [];
+
+    const result = standardRouteModel.getAllFixNamesInUse().sort();
+    const expectedResult = ['BCE', 'BETHL', 'DVC', 'HOLDM', 'MLF', 'THREEVE'];
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.getAllFixNamesInUse() returns correct list of fix names when exit collection is empty', (t) => {
+    const standardRouteModel = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+
+    standardRouteModel._exitCollection._items = [];
+
+    const result = standardRouteModel.getAllFixNamesInUse().sort();
+    const expectedResult = ['BCE', 'BETHL', 'DUBLX', 'DVC', 'FRAWG', 'GRNPA', 'HOLDM', 'KSINO', 'LEMNZ', 'LUXOR', 'MLF', 'TRROP'];
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('.getSuffixSegmentName() returns the name of the segment a suffix is applied to', (t) => {
     let model = new StandardRouteModel(STAR_WITH_SUFFIX, SUFFIX_MOCK);
     let result = model.getSuffixSegmentName('STAR');
