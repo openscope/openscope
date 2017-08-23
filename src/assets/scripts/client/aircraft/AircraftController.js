@@ -396,6 +396,19 @@ export default class AircraftController {
     }
 
     /**
+     * @method findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftModel|null}
+     */
+    findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+    }
+
+    /**
      * Create a new `StripViewModel` for a new `AircraftModel` instance
      *
      * This method should only be run during instantiation of a new `AircraftModel`
@@ -437,7 +450,7 @@ export default class AircraftController {
      * @return {AircraftModel|null}
      */
     debug(callsign = '') {
-        return this._findAircraftByCallsign(callsign);
+        return this.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -624,20 +637,6 @@ export default class AircraftController {
     }
 
     /**
-     * @method _findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
-     * @private
-     */
-    _findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
-    }
-
-    /**
      * Given an `airlineId`, find a random aircraft type from the airline.
      *
      * This is useful for when we need to create an aircraft to spawn and
@@ -783,7 +782,7 @@ export default class AircraftController {
      * @private
      */
     _onStripDoubleClickhandler = (callsign) => {
-        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
