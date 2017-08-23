@@ -109,7 +109,13 @@ export const COMMAND_MAP = {
     sq: 'squawk',
     delete: 'delete',
     del: 'delete',
-    kill: 'delete'
+    kill: 'delete',
+    sa: 'sayAltitude',
+    saa: 'sayAssignedAltitude',
+    sh: 'sayHeading',
+    sah: 'sayAssignedHeading',
+    ss: 'saySpeed',
+    sas: 'sayAssignedSpeed'
 };
 
 /**

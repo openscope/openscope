@@ -46,6 +46,12 @@ const COMMANDS = {
     moveDataBlock: 'runMoveDataBlock',
     route: 'runRoute',
     reroute: 'runReroute',
+    sayAltitude: 'runSayAltitude',
+    sayAssignedAltitude: 'runSayAssignedAltitude',
+    sayHeading: 'sayHeading',
+    sayAssignedHeading: 'runSayAssignedHeading',
+    saySpeed: 'runSaySpeed',
+    sayAssignedSpeed: 'runSayAssignedSpeed',
     sayRoute: 'runSayRoute',
     sid: 'runSID',
     speed: 'runSpeed',
@@ -517,6 +523,78 @@ export default class AircraftCommander {
         }
 
         return readback;
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAltitude
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAltitude(aircraft) {
+        const altitude = aircraft.altitude;
+
+        return [true, `our altitude is ${altitude}`];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedAltitude
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAssignedAltitude(aircraft) {
+        const altitude = aircraft.target.altitude;
+
+        return [true, `assigned altitude ${altitude}`];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayHeading
+     * @param aircraft
+     * @return {array}	[success of operation, readback]
+     */
+    runSayHeading(aircraft) {
+        const heading = aircraft.heading;
+
+        return [true, `our heading is ${heading}`];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedHeading
+     * @param aircraft
+     * @return {array}	[success of operation, readback]
+     */
+    runSayAssignedHeading(aircraft) {
+        const heading = aircraft.target.heading;
+
+        return [true, `assigned heading ${heading}`];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSaySpeed
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSaySpeed(aircraft) {
+        const speed = aircraft.speed;
+
+        return [true, `our speed is ${speed}`];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedSpeed
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAssignedSpeed(aircraft) {
+        const speed = aircraft.target.speed;
+
+        return [true, `assigned speed ${speed}`];
     }
 
     /**
