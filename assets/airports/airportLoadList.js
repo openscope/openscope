@@ -326,6 +326,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'ktpa',
+            level: 'easy',
+            name: 'Tampa International Airport',
+            wip: false
+        },
+        {
             icao: 'ktus',
             level: 'easy',
             name: 'Tucson International Airport',
