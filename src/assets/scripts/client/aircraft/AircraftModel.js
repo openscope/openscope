@@ -1,8 +1,10 @@
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
+import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
 import AirportController from '../airport/AirportController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
@@ -848,15 +850,26 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isBeyondTopOfDescent() {
-        const waypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
-
-        if (_isNil(waypointModel)) {
+        if (_isEmpty(this.fms.waypoints)) {
             return;
         }
 
-        const waypointAltitude = waypointModel.altitudeMaximum;
-        const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
-        const altitudeChange = waypointAltitude - this.altitude;
+        const currentAltitude = this.altitude;
+        const waypoints = this.fms.getAltitudeRestrictedWaypoints();
+        const waypointsWithRelevantCeiling = waypoints.filter((wp) => {
+            return (wp.altitudeMaximum !== INVALID_NUMBER) &&
+                (wp.altitudeMaximum < this.altitude)
+        }, this);
+
+        const targetAltitude = _isEmpty(waypointsWithRelevantCeiling) ?
+              this.fms.getBottomAltitude() :
+              waypointsWithRelevantCeiling[0].altitudeMaximum;
+        const targetPosition = _isEmpty(waypointsWithRelevantCeiling) ?
+              _last(this.fms.waypoints).positionModel :
+              waypointsWithRelevantCeiling[0].positionModel;
+
+        const waypointDistance = this.positionModel.distanceToPosition(targetPosition);
+        const altitudeChange = targetAltitude - this.altitude;
         const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
         const descentTime = altitudeChange / descentRate;
         const timeUntilWaypoint = waypointDistance / this.groundSpeed * TIME.ONE_HOUR_IN_MINUTES;
@@ -1769,13 +1782,13 @@ export default class AircraftModel {
     _calculateTargetedAltitudeVnav() {
         const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
 
-        if (_isNil(hardRestrictedWaypointModel)) {
-            return;
-        }
-
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAKEOFF:
             case FLIGHT_PHASE.CLIMB:
+                if (_isNil(hardRestrictedWaypointModel)) {
+                    return;
+                }
+
                 return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
 
             case FLIGHT_PHASE.CRUISE: {
@@ -1785,7 +1798,12 @@ export default class AircraftModel {
 
                 // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
                 // will enter the below block because the flight phase will have become 'DESCENT'.
-                return hardRestrictedWaypointModel.altitudeMaximum;
+                if (_isNil(hardRestrictedWaypointModel)) {
+                    return this.fms.getBottomAltitude();
+                }
+                else {
+                    return hardRestrictedWaypointModel.altitudeMaximum;
+                }
             }
 
             case FLIGHT_PHASE.DESCENT:
@@ -1827,22 +1845,23 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel) {
-        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
-        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER;
-
-        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMinimum;
-        }
-
         // TODO: This could be improved by making the descent at the exact rate needed to reach
         // the altitude at the same time as reaching the fix. At this point, the problem is that
         // while we DO know the descent rate and descent angle to shoot for, we don't know the
         // length of time before the next update, so we can't accurately estimate the altitude to
         // target in the current iteration.
-        return Math.max(waypointAltitude, this.mcp.altitude);
+
+        const nextRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+        if (_isNil(nextRestrictedWaypoint)) {
+            return this.fms.getBottomAltitude();
+        }
+
+        if (nextRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER) {
+            return nextRestrictedWaypoint.altitudeMinimum;
+        }
+        else {
+            return nextRestrictedWaypoint.altitudeMaximum;
+        }
     }
 
     /**
