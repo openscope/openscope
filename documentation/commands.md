@@ -52,7 +52,8 @@ example of that would be the `takeoff` command which has an alias `to`.
 - [Version](#version)
 
 ## Departure commands
-These commands are used by departing aircraft
+These commands are used by departing aircraft.
+
 ### Cleared As Filed
 _Aliases -_ `caf`
 
@@ -96,7 +97,7 @@ with the largest headwind.
 _Syntax -_ `AAL123 taxi [Runway]`
 
 ## Arrival commands
-These commands are only used by aircraft arriving at a selected airport.
+These commands are only used by arriving aircraft.
 
 ### Descend via STAR
 _Aliases -_ `dvs`
