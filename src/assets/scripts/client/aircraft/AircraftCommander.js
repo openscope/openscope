@@ -48,7 +48,7 @@ const COMMANDS = {
     reroute: 'runReroute',
     sayAltitude: 'runSayAltitude',
     sayAssignedAltitude: 'runSayAssignedAltitude',
-    sayHeading: 'sayHeading',
+    sayHeading: 'runSayHeading',
     sayAssignedHeading: 'runSayAssignedHeading',
     saySpeed: 'runSaySpeed',
     sayAssignedSpeed: 'runSayAssignedSpeed',
