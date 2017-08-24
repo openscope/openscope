@@ -12,14 +12,12 @@ example of that would be the `takeoff` command which has an alias `to`.
 [Departure commands](#departure-commands)
 - [Cleared as Filed](#cleared-as-filed)
 - [Climb via SID](#climb-via-sid)
-- [SID](#sid)
 - [Takeoff](#takeoff)
 - [Taxi](#taxi)
 
 [Arrival commands](#arrival-commands)
 - [Descend via STAR](#descend-via-star)
 - [Land](#land)
-- [STAR](#star)
 
 [Routing commands](#routing-commands)
 - [~~Fix~~](#fix)
@@ -28,10 +26,21 @@ example of that would be the `takeoff` command which has an alias `to`.
 - [Route](#route)
 - [Reroute](#reroute)
 - [Say Route](#say-route)
-[Aircraft Control commands](#aircraft-control-commands)
-- [Abort](#abort)
+- [SID](#sid)
+- [STAR](#star)
+
+[Basic Control commands](#basic-control-commands)
+- [~~Abort~~](#abort)
 - [Altitude](#altitude)
 - [Heading](#heading)
+
+[Miscellaneous commands](#miscellaneous-commands)
+- [Say Altitude](#say-altitude)
+- [Say Assigned Altitude](#say-assigned-altitude)
+- [Say Assigned Heading](#say-assigned-heading)
+- [Say Assigned Speed](#say-assigned-speed)
+- [Say Heading](#say-heading)
+- [Say Speed](#say-speed)
 - [Speed](#speed)
 - [Squawk](#squawk)
 
@@ -43,8 +52,7 @@ example of that would be the `takeoff` command which has an alias `to`.
 - [Version](#version)
 
 ## Departure commands
-These commands are only used by aircraft that are departing from the selected airport.
-
+These commands are used by departing aircraft
 ### Cleared As Filed
 _Aliases -_ `caf`
 
@@ -65,16 +73,6 @@ cruise altitude, whilst complying with all altitude and speed restrictions
 posted in the procedure.
 
 _Syntax -_ `AAL123 cvs`
-
-### SID
-_Aliases -_ `sid`
-
-_Information -_ This command tells the specified plane a standard
-instrument departure route (SID) it should follow. Each SID is a list of
-fixes to be flown in sequence. Having a standardized route often helps
-organize departing traffic, and maintain separation from arriving aircraft.
-
-_Syntax -_ `AAL123 sid [SID name]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -124,19 +122,8 @@ and land.
 
 _Syntax -_ `AAL123 i [rwy]`
 
-### STAR
-_Aliases -_ `star`
-
-_Information -_ This command tells the plane to add or change their filed
-Standard Terminal Arrival Route to match the route you specify. This must be
-entered in dotted format, and include the point where the STAR is joined, as
-well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
-on rerouting for further detail.
-
-_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
-
 ## Routing commands
-Instructions on the syntax for editing the aircraft's route are described in the `route` and `reroute` commands.
+These commands modify the aircraft's flight management system (FMS).
 
 ### ~~Fix~~
 ~~_Aliases -_ `f` / `fix` / `track`~~
@@ -152,7 +139,8 @@ pattern until further notice. The direction (left/right) may be specified,
 as well as the leg length (in minutes), as well as the fix to hold over.
 But you may also omit those specifications, in which case, the aircraft
 will enter a standard holding pattern over their present position (right
-turns, 1 minute legs). To escape a hold, just set a new heading.
+turns, 1 minute legs). To clear the aircraft out of the hold, either
+clear it direct to a fix or assign it a new heading.
 
 _Parameters -_ Specify the direction of turns during the hold with `right`
 or `left`, the leg length, with `[time]min`, and the fix to hold over
@@ -166,9 +154,9 @@ _Aliases -_ `direct` / `pd` / `dct`
 
 _Information -_ This command instructs the aircraft to go direct to a
 navigational fix, taking a shortcut. For example, if an aircraft is flying
-to fixes [A, B, C], issuing the command "pd B" will cause the aircraft
-to go to B, then C. After flying past the last fix, the aircraft will
-continue flying straight.
+to fixes [A, B, C, D, E, F], issuing the command "pd D" will cause the aircraft
+to go to D, then E. After flying past the last fix, the aircraft will
+switch to heading mode and fly the present heading.
 
 _Syntax -_ `AAL123 pd [fixname]`
 
@@ -222,28 +210,39 @@ Full Route Example: `KSEA.HAROB5.ERAVE.Q1.ETCHY..MLBEC.BDEGA2.KSFO`
 
 _Syntax -_ `AAL123 rr [route]`
 
-### Say Route
-_Aliases -_ `sr`
+### SID
+_Aliases -_ `sid`
 
-_Information -_ With the capability to edit the route, you obviously will
-need a way to know what their current route is. Typically, this is displayed
-in the flight progress strip. However, to preserve screen space, you will
-instead have to check the route by running this command, and the route will
-print out above the command bar.
+_Information -_ This command tells the specified plane a standard
+instrument departure route (SID) it should follow. Each SID is a list of
+fixes to be flown in sequence. Having a standardized route often helps
+organize departing traffic, and maintain separation from arriving aircraft.
 
-_Syntax -_ `AAL123 sr`
+_Syntax -_ `AAL123 sid [SID name]`
 
-## Aircraft Control commands
+### STAR
+_Aliases -_ `star`
+
+_Information -_ This command tells the plane to add or change their filed
+Standard Terminal Arrival Route to match the route you specify. This must be
+entered in dotted format, and include the point where the STAR is joined, as
+well as the destination airport, for example: `MLP.GLASR9.KSEA`. See the section
+on rerouting for further detail.
+
+_Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
+
+## Basic Control commands
 These commands modify the aircraft but are not limited to departures or arrivals.
 
-### Abort
-_Aliases -_ `abort`
+### ~~Abort~~
+~~_Aliases -_ `abort`~~
 
-_Information -_ Instructs the aircraft to abort the current operation.
-Currently, only landings, taxiing, and fix navigation can be aborted.
+~~_Information -_ Instructs the aircraft to abort the current operation.~~
+~~Currently, only landings, taxiing, and fix navigation can be aborted.~~
 
-_Syntax -_ `AAL123 abort`
+~~_Syntax -_ `AAL123 abort`~~
 
+*_This command has been deprecated_*
 ### Altitude
 _Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
 
@@ -273,6 +272,49 @@ inserting `l` or `r` before the new heading, as demonstrated below.
 
 _Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
 
+## Miscellaneous commands
+
+### Say Altitude
+_Aliases -_ `sa`
+
+_Information -_ This command reads back the aircraft's current altitude.
+
+_Syntax -_ `AAL123 sa`
+
+### Say Assigned Altitude
+_Aliases -_ `saa`
+
+_Information -_ This command reads back the aircraft's assigned altitude.
+
+_Syntax -_ `AAL123 saa`
+
+### Say Assigned Heading
+_Aliases -_ `sah`
+
+_Information -_ This command reads back the aircraft's assigned heading, in degrees.
+
+_Syntax -_ `AAL123 sah`
+
+### Say Assigned Speed
+_Aliases -_ `sas`
+
+_Information -_ This aircraft reads back the aircraft's assigned speed, in knots.
+
+_Syntax -_ `AAL123 sas`
+
+### Say Heading
+_Aliases -_ `sh`
+
+_Information -_ This command reads back the aircraft's current heading, in degrees.
+
+_Syntax -_ `AAL123 sh`
+
+### Say Speed
+_Aliases -_ `ss`
+
+_Information -_ This command reads back the aircraft's indicated airspeed (IAS), in knots.
+
+
 ### Speed
 _Aliases -_ `speed` / `slow` / `sp`
 
@@ -294,7 +336,7 @@ _Parameters -_ A four digit number. Each number must be between `0` and `7`, inc
 
 _Syntax -_ `AAL123 squawk ####`
 
-## System Commands
+## System commands
 
 openScope has a number of commands that do not change game mechanics, known as _system commands_. While most are able to be executed via various menus, they can be entered in the command bar if one so desires.
 
