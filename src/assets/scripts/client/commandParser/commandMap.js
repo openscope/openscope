@@ -62,6 +62,7 @@ export const COMMAND_MAP = {
     ...SYSTEM_COMMANDS,
     ...UNICODE_COMMANDS,
 
+    abort: abort,
     taxi: 'taxi',
     wait: 'taxi',
     w: 'taxi',
