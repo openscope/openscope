@@ -1800,9 +1800,8 @@ export default class AircraftModel {
                 if (_isNil(hardRestrictedWaypointModel)) {
                     return this.fms.getBottomAltitude();
                 }
-                else {
-                    return hardRestrictedWaypointModel.altitudeMaximum;
-                }
+
+                return hardRestrictedWaypointModel.altitudeMaximum;
             }
 
             case FLIGHT_PHASE.DESCENT:
@@ -1855,12 +1854,11 @@ export default class AircraftModel {
             return this.fms.getBottomAltitude();
         }
 
-        if (nextRestrictedWaypoint.altitudeMinimum !== INVALID_NUMBER) {
-            return nextRestrictedWaypoint.altitudeMinimum;
-        }
-        else {
+        if (nextRestrictedWaypoint.altitudeMinimum === INVALID_NUMBER) {
             return nextRestrictedWaypoint.altitudeMaximum;
         }
+
+        return nextRestrictedWaypoint.altitudeMinimum;
     }
 
     /**
