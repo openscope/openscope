@@ -9,6 +9,7 @@
 
 
 ### Bugfixes
+- Fix aircraft not descending at MDSD [#618](https://github.com/openscope/openscope/issues/618)
 
 
 
