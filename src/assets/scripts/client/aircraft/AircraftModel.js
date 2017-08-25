@@ -2,6 +2,7 @@ import _defaultTo from 'lodash/defaultTo';
 import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _head from 'lodash/head';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
@@ -861,10 +862,10 @@ export default class AircraftModel {
 
         const targetAltitude = _isEmpty(waypointsWithRelevantCeiling) ?
               this.fms.getBottomAltitude() :
-              waypointsWithRelevantCeiling[0].altitudeMaximum;
+              _head(waypointsWithRelevantCeiling).altitudeMaximum;
         const targetPosition = _isEmpty(waypointsWithRelevantCeiling) ?
               _last(this.fms.waypoints).positionModel :
-              waypointsWithRelevantCeiling[0].positionModel;
+              _head(waypointsWithRelevantCeiling).positionModel;
 
         const waypointDistance = this.positionModel.distanceToPosition(targetPosition);
         const altitudeChange = targetAltitude - this.altitude;
