@@ -14,7 +14,7 @@ import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
-import { THEME } from './constants/colors/themes';
+import { THEME } from './constants/themes';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -66,8 +66,6 @@ class UiController {
         this.scale_max = 80; // max scale
         this.scale_min = 1; // min scale
         this.scale = this.scale_default;
-        // TODO: This belongs in the CanvasController, not UiController
-        this.terrain = THEME.DEFAULT.TERRAIN;
     }
 
     /**
@@ -185,8 +183,6 @@ class UiController {
         this.ui.scale_max = INVALID_NUMBER;
         this.ui.scale_min = INVALID_NUMBER;
         this.ui.scale = INVALID_NUMBER;
-        this.ui.terrain = {};
-
 
         return this;
     }
@@ -200,7 +196,6 @@ class UiController {
         this.scale_max = 80; // max scale
         this.scale_min = 1; // min scale
         this.scale = this.scale_default;
-        this.terrain = THEME.DEFAULT.TERRAIN;
 
         this.ui_set_scale_from_storage();
     }
@@ -242,7 +237,7 @@ class UiController {
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
-        const selectedOption = GameController.game.option.get(option.name);
+        const selectedOption = GameController.game.option.getOptionByName(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -255,7 +250,7 @@ class UiController {
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            GameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
 
             if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
                 this._buildAirportList();
@@ -311,14 +306,15 @@ class UiController {
      * @param icao {string}
      * @param difficulty {string}
      * @param name {string}
+     * @param reliabilityFlag {string}
      * @return {DOM element|string}
      */
-    buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
+    buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
         return `<li class="airport icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
+                    `<span class="symbol">${reliabilityFlag}</span>` +
                     `<span class="name">${name}</span>` +
-                    `<span class="symbol">${flagIcon}</span>` +
                 '</li>';
     }
 
@@ -348,6 +344,7 @@ class UiController {
         const airports = _keys(AirportController.airports).sort();
         const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
+        const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
             const { name, icao, level, wip } = AirportController.airports[airports[i]];
@@ -357,10 +354,10 @@ class UiController {
             }
 
             difficulty = this._buildAirportListIconForDifficultyLevel(level);
-            const flagIcon = wip
-                ? ' &#9983'
-                : '';
-            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
+            const reliabilityFlag = wip
+                ? ''
+                : flagIcon;
+            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
@@ -373,7 +370,7 @@ class UiController {
             this.$airportList.append($airportListItem);
         }
 
-        this._buildAirportListFooter();
+        this._buildAirportListFooter(flagIcon);
     }
 
     /**
@@ -421,8 +418,9 @@ class UiController {
      *
      * @for UiController
      * @method _buildAirportListFooter
+     * @param flagIcon {string}
      */
-    _buildAirportListFooter() {
+    _buildAirportListFooter(flagIcon) {
         // clear out the contents of this element
         // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportListNotes.empty();
@@ -436,10 +434,8 @@ class UiController {
             return;
         }
 
-        const symbol = $('<span class="symbol">&#9983</span>');
-        const notes = $('<span class="words">indicates airport is a work in progress</span>');
+        const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
 
-        this.$airportListNotes.append(symbol);
         this.$airportListNotes.append(notes);
     }
 

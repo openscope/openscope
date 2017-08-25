@@ -99,10 +99,6 @@ const ZERO_ARG_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    sayRoute: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
     takeoff: {
         validate: zeroArgumentsValidator,
         parse: noop

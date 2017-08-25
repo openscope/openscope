@@ -7,6 +7,8 @@ import { LOG } from './constants/logLevel';
 
 window.zlsa = {};
 window.zlsa.atc = {};
+
+// TODO: KILL THE PROP!
 const prop = {};
 
 // IIEFs are pulled in here to add functions to the global space.

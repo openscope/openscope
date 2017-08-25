@@ -1,14 +1,14 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import EventBus from '../lib/EventBus';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';
+import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
-import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
-
-// Temporary const declaration here to attach to the window AND use as internal property
-const game = {};
+import { SELECTORS } from '../constants/selectors';
+import { THEME } from '../constants/themes';
 
 // TODO: Remember to move me to wherever the constants end up being moved to
 /**
@@ -57,7 +57,7 @@ class GameController {
      * @constructor
      */
     constructor() {
-        this.game = game;
+        this.game = {};
         this.game.paused = true;
         this.game.focused = true;
         this.game.speedup = 1;
@@ -70,6 +70,9 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
+        this.theme = THEME.DEFAULT;
+
+        this._eventBus = EventBus;
     }
 
     /**
@@ -109,6 +112,8 @@ class GameController {
      * @method enable
      */
     enable() {
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
         return this;
     }
 
@@ -117,6 +122,8 @@ class GameController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
         return this;
     }
 
@@ -423,11 +430,12 @@ class GameController {
      * @return {string}
      */
     getGameOption(optionName) {
-        return this.game.option.get(optionName);
+        return this.game.option.getOptionByName(optionName);
     }
 
+    // TODO: This probably does not belong in the GameController.
     /**
-     * Get the curretn `PTL_LENGTH` value and return a number.
+     * Get the current `PROJECTED_TRACK_LINE_LENGTH` value and return a number.
      *
      * Used by the `CanvasController` to get a number value (this will be stored as a string
      * due to existing api) that can be used when drawing the PTL for each aircraft.
@@ -437,9 +445,13 @@ class GameController {
      * @return {number}
      */
     getPtlLength() {
-        const currentPtlVal = this.getGameOption(GAME_OPTION_NAMES.PTL_LENGTH);
+        let userSettingsPtlLength = this.getGameOption(GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH);
 
-        return parseFloat(currentPtlVal);
+        if (userSettingsPtlLength === 'from-theme') {
+            userSettingsPtlLength = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINE_LENGTH;
+        }
+
+        return parseFloat(userSettingsPtlLength);
     }
 
     /**
@@ -449,13 +461,44 @@ class GameController {
      * `canvas_draw_separation_indicator`.
      *
      * @for GameController
-     * @method shouldUseTrailingSeparator
-     * @param aircraft
+     * @method shouldUseTrailingSeparationIndicator
+     * @param aircraft {AircraftModel}
      * @return {boolean}
      */
-    shouldUseTrailingSeparator(aircraft) {
-        return aircraft.isDeparture() && this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR) === 'yes';
+    shouldUseTrailingSeparationIndicator(aircraft) {
+        const userSettingsValue = this.getGameOption(GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR);
+        let isIndicatorEnabled = userSettingsValue === 'yes';
+
+        if (userSettingsValue === 'from-theme') {
+            isIndicatorEnabled = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED;
+        }
+
+        return isIndicatorEnabled && aircraft.isArrival();
     }
+
+    // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
+    /**
+     * Change theme to the specified name
+     *
+     * This should ONLY be called through the EventBus during a `SET_THEME` event,
+     * thus ensuring that the same theme is always in use by all app components.
+     *
+     * This method must remain an arrow function in order to preserve the scope
+     * of `this`, since it is being invoked by an EventBus callback.
+     *
+     * @for GameController
+     * @method _setTheme
+     * @param themeName {string}
+     */
+    _setTheme = (themeName) => {
+        if (!_has(THEME, themeName)) {
+            console.error(`Expected valid theme to change to, but received '${themeName}'`);
+
+            return;
+        }
+
+        this.theme = THEME[themeName];
+    };
 }
 
 export default new GameController();
