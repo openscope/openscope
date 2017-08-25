@@ -739,21 +739,6 @@ export default class Pilot {
     }
 
     /**
-     * Return the route of the aircraft
-     *
-     * @for AircraftCommander
-     * @method sayRoute
-     * @return {Array} [success of operation, readback]
-     */
-    sayRoute() {
-        const readback = {};
-        readback.log = `route: ${this._fms.currentRoute}`;
-        readback.say = 'here\'s our route';
-
-        return [true, readback];
-    }
-
-    /**
      * Return the altitude the aircraft is currently assigned. May be moving toward this altitude,
      * or already established at that altitude.
      *
