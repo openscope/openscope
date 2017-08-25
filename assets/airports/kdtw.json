@@ -547,7 +547,7 @@
                 "MOL": ["MOL", "BIGAL", "TARCI"],
                 "SINDE": ["SINDE", "GEFFS"]
             },
-            "body": ["DJB", "YYOUR", "GEMNI", "MUSCA", "GLOZE", "VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT"],
+            "body": ["VLADY", "JAMOX", "OTMAN", "BLISS", "BOBCT", "DJB", "YYOUR", "GEMNI", "MUSCA", "GLOZE"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -576,7 +576,7 @@
                 "FWA": ["FWA", "NAKES"],
                 "LFD": ["LFD"]
             },
-            "body": ["MIZAR", "RAZIM", "RANDL"],
+            "body": ["RANDL", "MIZAR", "RAZIM"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -607,7 +607,7 @@
                 "MBS": ["MBS"],
                 "VIO": ["VIO", "BUTRR"]
             },
-            "body": ["POLAR", "SCUBI", "TRAML", "AAMMO"],
+            "body": ["AAMMO", "POLAR", "SCUBI", "TRAML"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -638,7 +638,7 @@
                 "ERI": ["ERI"],
                 "YQO": ["YQO"]
             },
-            "body": ["SPICA", "RIKKE", "VERNR", "WITKR", "WOLIS"],
+            "body": ["WOLIS", "SPICA", "RIKKE", "VERNR", "WITKR"],
             "rwy": {
                 "3L": [],
                 "3R": [],
@@ -665,7 +665,7 @@
                 "HNN": ["HNN", "RONCO", "SUBWY", "MILNR"],
                 "COLTZ": []
             },
-            "body": ["WEEDA", "SVM", "COLTZ", "CASIO", "AQQUA"],
+            "body": ["COLTZ", "CASIO", "AQQUA", "WEEDA", "SVM"],
             "rwy": {
                 "3L": [],
                 "3R": [],
