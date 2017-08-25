@@ -72,6 +72,10 @@ const ZERO_ARG_COMMANDS = {
 
     // Aircraft commands
     
+    abort: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
     clearedAsFiled: {
         validate: zeroArgumentsValidator,
         parse: noop
