@@ -1,4 +1,5 @@
 import _defaultTo from 'lodash/defaultTo';
+import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
@@ -856,10 +857,7 @@ export default class AircraftModel {
 
         const currentAltitude = this.altitude;
         const waypoints = this.fms.getAltitudeRestrictedWaypoints();
-        const waypointsWithRelevantCeiling = waypoints.filter((wp) => {
-            return (wp.altitudeMaximum !== INVALID_NUMBER) &&
-                (wp.altitudeMaximum < this.altitude)
-        }, this);
+        const waypointsWithRelevantCeiling = _filter(waypoints, (waypoint) => waypoint.hasMaximumAltitudeBelow(this.altitude));
 
         const targetAltitude = _isEmpty(waypointsWithRelevantCeiling) ?
               this.fms.getBottomAltitude() :
