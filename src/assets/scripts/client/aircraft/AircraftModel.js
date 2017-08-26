@@ -844,7 +844,7 @@ export default class AircraftModel {
         return decelerationTime > timeUntilWaypoint;
     }
 
-    /* TODO: Refactor all this logic into the Fms - #656
+    // TODO: Refactor all this logic into the Fms - #656
     /**
      * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
      *
