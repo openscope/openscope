@@ -859,7 +859,8 @@ export default class AircraftModel {
 
         const currentAltitude = this.altitude;
         const waypoints = this.fms.getAltitudeRestrictedWaypoints();
-        const waypointsWithRelevantCeiling = _filter(waypoints, (waypoint) => waypoint.hasMaximumAltitudeBelow(this.altitude));
+        const waypointsWithRelevantCeiling = _filter(waypoints,
+                                                     (waypoint) => waypoint.hasMaximumAltitudeBelow(currentAltitude));
 
         const targetAltitude = _isEmpty(waypointsWithRelevantCeiling) ?
               this.fms.getBottomAltitude() :
