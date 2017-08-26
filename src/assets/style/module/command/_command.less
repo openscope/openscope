@@ -1,13 +1,12 @@
 #command {
-    height: 36px;
-    padding: 0 18px;
-    padding-right: 464px;
+    height: @command-bar-height;
+    width: 100%;
+    /* TODO: the right padding here needs to be removed and done in a different way */
+    padding: 0 464px 0 18px;
     position: absolute;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #ddd;
-    -webkit-user-select: text;
-    -moz-select: text;
+    background-color: @black-07;
+    color: @light-gray;
     user-select: text;
 }

@@ -1,8 +1,8 @@
 #log {
-    width: calc(100% - 250px);
     position: absolute;
+    right: @strip-view-open-width;
     left: 0;
-    bottom: 36px;
+    bottom: @command-bar-height;
     font-size: 80%;
     pointer-events: none;
 }
@@ -10,13 +10,13 @@
 #log .item {
     padding: 3px 5px;
     display: block;
-    color: #ddd;
+    color: @light-gray;
     opacity: 0.8;
     transition: opacity 10s ease;
 }
 
 #log .item.warn {
-    color: #f64;
+    color: @red;
     opacity: 1;
 }
 

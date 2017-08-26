@@ -2,7 +2,8 @@
 /* TODO: this rule should be broken up into several other rules */
 #airport-switch {
     height: auto;
-    max-height: calc(85% - 2.3em - 20px);
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    max-height: ~"calc(85% - 2.3em - 20px)";
     width: 100%;
     max-width: 500px;
     margin: auto;
@@ -40,7 +41,8 @@
     width: 100%;
     max-width: 500px;
     height: auto;
-    max-height: calc(100% - 2.3em - 32px);
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    max-height: ~"calc(100% - 2.3em - 32px)";
     margin: 0 auto;
     padding: @spacing-1x @spacing-1x;
     background-color: @dark-green;

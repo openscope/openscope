@@ -1,14 +1,14 @@
 .stripView {
-    height: calc(100% - 36px);
-    width: 400px;
+    width: @strip-view-open-width;
     position: absolute;
     top: 0;
     right: 0;
+    bottom: @command-bar-height;
     margin: 0 auto;
     font-family: Monospace, serif;
     font-size: 12px;
     max-width: 500px;
-    background-color: #141414;
+    background-color: @background-dark;
     transition: ease-in-out all 0.3s;
 }
 
@@ -18,11 +18,12 @@
 
 .stripView-list {
     max-height: 100%;
-    width: calc(100% - 10px);
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    width: ~"calc(100% - " @spacing-2x ~")";
     position: absolute;
-    top: 10px;
-    bottom: 10px;
-    left: 10px;
+    top: @spacing-2x;
+    bottom: @spacing-2x;
+    left: @spacing-2x;
     overflow-y: scroll;
     list-style-type: none;
     transform: scaleY(-1);
@@ -36,7 +37,7 @@
 
 .active,
 .stripViewItem:hover {
-    margin-left: 5px;
+    margin-left: @spacing-1x;
     cursor: pointer;
 }
 
@@ -47,13 +48,13 @@
 
 .stripViewItem-table {
     width: 100%;
-    background-color: #ffffff;
+    background-color: @white;
     border-collapse: collapse;
     box-sizing: border-box;
 }
 
 .stripView-table-td {
-    padding: 3px 5px;
+    padding: 3px @spacing-1x;
     text-align: center;
     overflow: hidden;
     vertical-align: top;
@@ -102,8 +103,8 @@
     top: 40%;
     left: -25px;
     padding: 20px 10px 20px 10px;
-    background: #141414;
-    color: #ffffff;
+    background: @background-dark;
+    color: @white;
     font-weight: 700;
     content: '>|';
     border-radius: 8px;
@@ -111,14 +112,14 @@
 
 .stripView-trigger:hover:after,
 .stripView-trigger:hover {
-    background-color: #333333;
+    background-color: @dark-gray;
 }
 
 
 .departure {
-    border-left: 5px solid rgba(128, 255, 255, 0.8);
+    border-left: 5px solid @departure-accent;
 }
 
 .arrival {
-    border-left: 5px solid rgba(224, 128, 128, 0.8);
+    border-left: 5px solid @arrival-accent;
 }
