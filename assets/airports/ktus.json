@@ -170,9 +170,9 @@
                 "BAYBI": ["BAYBI"],
                 "BBALL": ["BBALL"],
                 "GBN": ["ROSKR", "GBN"],
-                "MESCA": ["MESCA", "SSO"],
+                "MESCA": ["MESCA"],
                 "PXR": ["BBALL", "PXR"],
-                "REDDY": ["REDDY", "SSO"]
+                "REDDY": ["REDDY"]
             },
             "draw": [
                 ["TUS", "BAYBI*"],
@@ -336,7 +336,7 @@
             "origin": "KTUS",
             "destination": "",
             "category": "departure",
-            "route": "KTUS.TUS8.REDDY",
+            "route": "KTUS.TUS8.REDDY..SSO",
             "altitude": "",
             "speed": "",
             "method": "random",
