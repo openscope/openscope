@@ -115,6 +115,7 @@
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.0.3",
     "gulp-jsonmin": "^1.1.0",
+    "gulp-less": "^3.3.2",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",

@@ -22,6 +22,8 @@
 - Document airport terrain generation process [#7](https://github.com/openscope/openscope/issues/7)
 - Remove index.html from document root in tools/README.md [#653](https://github.com/openscope/openscope/issues/653)
 - Deprecate the `say route` command [#640](https://github.com/openscope/openscope/issues/640)
+- Adds LESS preprocessor and adds CSS folder structure [#481](https://github.com/openscope/openscope/issues/481)
+
 
 
 
