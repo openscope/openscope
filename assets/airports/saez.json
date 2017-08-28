@@ -1340,7 +1340,7 @@
             "speed": 250,
             "method": "random",
             "rate": 2,
-            "airlines":  [
+            "airlines": [
                 ["aca/long", 2],
                 ["arg", 40],
                 ["aut", 29],
@@ -1359,7 +1359,7 @@
             "speed": 250,
             "method": "random",
             "rate": 1,
-            "airlines":  [
+            "airlines": [
                 ["anz/long", 2],
                 ["arg", 40],
                 ["aut", 29],
@@ -1375,7 +1375,7 @@
             "speed": 250,
             "method": "random",
             "rate": 1,
-            "airlines":  [
+            "airlines": [
                 ["aea/long", 3],
                 ["afr/long", 4],
                 ["arg", 40],
@@ -1403,7 +1403,7 @@
             "speed": 250,
             "method": "random",
             "rate": 2,
-            "airlines":  [
+            "airlines": [
                 ["aal/long", 12],
                 ["aca/long", 2],
                 ["amx/long", 3],
@@ -1429,7 +1429,7 @@
             "speed": 250,
             "method": "random",
             "rate": 2,
-            "airlines":  [
+            "airlines": [
                 ["aea/long", 3],
                 ["afr/long", 4],
                 ["arg", 40],
@@ -1457,7 +1457,7 @@
             "speed": 250,
             "method": "random",
             "rate": 2,
-            "airlines":  [
+            "airlines": [
                 ["aal/long", 12],
                 ["aca/long", 2],
                 ["amx/long", 3],
@@ -1483,7 +1483,7 @@
             "speed": 250,
             "method": "random",
             "rate": 1,
-            "airlines":  [
+            "airlines": [
                 ["arg", 40],
                 ["aut", 29],
                 ["dsm", 7]
