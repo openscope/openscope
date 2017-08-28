@@ -538,7 +538,7 @@
             "icao": "ATKNN5",
             "name": "Atkin Five",
             "rwy": {
-                "8R": [["^_RWY26L04.08DME", "A60+|S220-"], ["JAPOD", "S220-"]],
+                "8R": [["^_RWY26L04.08DME", "A60+"], ["JAPOD", "S220-"]],
                 "22": ["BIVKE"],
                 "26L": ["BIVKE"]
             },
