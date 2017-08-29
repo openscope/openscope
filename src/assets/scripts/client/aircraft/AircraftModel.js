@@ -853,18 +853,17 @@ export default class AircraftModel {
      * @return {boolean}
      */
     shouldStartDescent() {
-        if (_isEmpty(this.fms.waypoints)) {
+        const currentAltitude = this.altitude;
+        const altitudeRestrictedWaypoints = this.fms.getAltitudeRestrictedWaypoints();
+        const waypointsWithRelevantCeiling = _filter(altitudeRestrictedWaypoints,
+            (waypoint) => waypoint.hasMaximumAltitudeBelow(currentAltitude));
+
+        if (_isEmpty(altitudeRestrictedWaypoints)) {
             return;
         }
 
-        const currentAltitude = this.altitude;
-        const waypoints = this.fms.getAltitudeRestrictedWaypoints();
-        const waypointsWithRelevantCeiling = _filter(waypoints,
-                                                     (waypoint) => waypoint.hasMaximumAltitudeBelow(currentAltitude));
-
-
-        let targetAltitude = this.fms.getBottomAltitude();
-        let targetPosition = _last(this.fms.waypoints).positionModel;
+        let targetAltitude = this.mcp.altitude;
+        let targetPosition = _last(altitudeRestrictedWaypoints).positionModel;
 
         if (!_isEmpty(waypointsWithRelevantCeiling)) {
             targetAltitude = _head(waypointsWithRelevantCeiling).altitudeMaximum;
@@ -1849,8 +1848,9 @@ export default class AircraftModel {
         // target in the current iteration.
 
         const nextRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
+
         if (_isNil(nextRestrictedWaypoint)) {
-            return this.fms.getBottomAltitude();
+            return this.mcp.altitude;
         }
 
         if (nextRestrictedWaypoint.altitudeMinimum === INVALID_NUMBER) {
