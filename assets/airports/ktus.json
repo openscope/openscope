@@ -216,7 +216,7 @@
                 "PXR": ["PXR", "TFD"],
                 "TFD": ["TFD"]
             },
-            "body": ["DINGO", "MAVVA", "BASER"],
+            "body": ["BASER", "DINGO", "MAVVA"],
             "rwy": {
                 "11L": ["#075"],
                 "29R": []
