@@ -207,13 +207,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'kiad',
-        //     level: 'hard',
-        //     name: 'Washington-Dulles International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
         {
             icao: 'kelp',
             level: 'beginner',
@@ -225,6 +218,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     icao: 'kiad',
         //     level: 'hard',
         //     name: 'Washington-Dulles International Airport',
+        //     premium: false,
         //     wip: true
         // },
         // {
