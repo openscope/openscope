@@ -288,6 +288,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'ksdf',
             level: 'medium',
             name: 'Louisville International Airport',
+            premium: false,
             wip: false
         },
         // {
@@ -315,6 +316,14 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kstl',
             level: 'medium',
             name: 'St. Louis Lambert International Airport',
+            premium: false,
+            wip: false
+        },
+        {
+            icao: 'ktus',
+            level: 'easy',
+            name: 'Tucson International Airport',
+            premium: false,
             wip: false
         },
         // {
