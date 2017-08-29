@@ -850,18 +850,18 @@
                 ["LUNNI", "WADIG", "DEDDA"]
             ]
         },
-        "MARQO1": {
-            "icao": "MARQO1",
-            "name": "Marco One",
+        "MARQO2": {
+            "icao": "MARQO2",
+            "name": "Marco Two",
             "entryPoints": {
-                "CAPPS": ["CAPPS", ["ZOOSS", "A250+|A310-"], ["WALOP", "A190+|A240-|A280"], ["CAMJO", "A130+|A160-"]]
+                "CAPPS": ["CAPPS", ["ZOOSS", "A240+|A260-"], ["WALOP", "A190+|A230-|A280"], ["CAMJO", "A130+|A160-"]]
             },
             "body": ["MARQO", ["COROE", "A90+|A120-|S250"]],
             "rwy": {
                 "8": [["NATII", "A50+|A60-|S230"], ["GUTTY", "A30|S210"]],
                 "14": [["TASCH", "A50+|A60-"], ["DIPDE", "A30|S210"]],
-                "26": [["GWIIZ", "A50+|A60-"], ["EGAGE", "A40|S210"], "NOMTE", "OLEKE"],
-                "32": [["GWIIZ", "A50+|A60-"], "HITTS", ["ACENE", "A40|S210"], "CALIM", "PEPIE"]
+                "26": [["GWIIZ", "A50+|A60-"], ["EGAGE", "A40|S210"], "NOMTE", "OLEKE", "#077"],
+                "32": [["GWIIZ", "A50+|A60-"], "HITTS", ["ACENE", "A40|S210"], "CALIM", "PEPIE", "#137"]
             },
             "draw": [
                 ["CAPPS", "ZOOSS", "WALOP", "CAMJO", "MARQO", "COROE"],
@@ -875,10 +875,10 @@
             "icao": "OHDEA1",
             "name": "Ohdea One",
             "entryPoints": {
-                "DUCHY": [["DUCHY", "A250+|A280-"], ["ILTAC", "A190+|A240-|S280"]],
-                "FINNE": ["FINNE", ["ILTAC", "A190+|A240-|S280"]]
+                "DUCHY": [["DUCHY", "A250+|A280-"]],
+                "FINNE": ["FINNE"]
             },
-            "body": [["FORMB", "A100+|A130-"], "OHDEA", ["KIPLE", "A70+|A110-|S250"]],
+            "body": [["ILTAC", "A190+|A240-|S280"], ["FORMB", "A100+|A130-"], "OHDEA", ["KIPLE", "A70+|A110-|S250"]],
             "rwy": {
                 "8": [["KITZO", "A50+|A60-|S230"], ["CEDOT", "A30|S210"]],
                 "14": [["MAHKA", "A50+|A60-|S230"], ["ORTAR", "A30|S210"]],
@@ -1116,8 +1116,8 @@
             "origin": "",
             "destination": "kjax",
             "category": "arrival",
-            "route": "CAPPS.MARQO1.KJAX",
-            "altitude": [31000, 37000],
+            "route": "CAPPS.MARQO2.KJAX",
+            "altitude": [25000, 31000],
             "speed": 320,
             "method": "random",
             "rate": 2,
