@@ -62,6 +62,7 @@ export const COMMAND_MAP = {
     ...SYSTEM_COMMANDS,
     ...UNICODE_COMMANDS,
 
+    abort: 'abort',
     taxi: 'taxi',
     wait: 'taxi',
     w: 'taxi',
@@ -107,7 +108,6 @@ export const COMMAND_MAP = {
     direct: 'direct',
     pd: 'direct',
     dct: 'direct',
-    abort: 'abort',
     hold: 'hold',
     squawk: 'squawk',
     sq: 'squawk',

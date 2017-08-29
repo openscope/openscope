@@ -192,6 +192,18 @@ export default class AircraftCommander {
     }
 
     /**
+     * Aborts an action. Deprecated.
+     *
+     * @for AircraftCommander
+     * @method runAbort
+     * @param {AircraftModel} aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runAbort(aircraft) {
+        return [false, "the 'abort' command has been deprecated, please see documentation for help"];
+    }
+
+    /**
      * Set the aircraft to maintain an assigned altitude, and provide a readback
      *
      * @for AircraftCommander
@@ -641,28 +653,6 @@ export default class AircraftCommander {
         const runway = AirportController.airport_get().getRunway(runwayName);
 
         return aircraft.pilot.conductInstrumentApproach(approachType, runway);
-    }
-
-    /**
-     * @for AircraftCommander
-     * @method runAbort
-     * @param aircraft {AircraftModel}
-     */
-    runAbort(aircraft) {
-        const airport = AirportController.airport_get();
-
-        switch (aircraft.flightPhase) {
-            case FLIGHT_PHASE.TAXI:
-                return aircraft.pilot.stopOutboundTaxiAndReturnToGate();
-            case FLIGHT_PHASE.WAITING:
-                return aircraft.pilot.stopWaitingInRunwayQueueAndReturnToGate();
-            case FLIGHT_PHASE.LANDING:
-                return aircraft.pilot.goAround(aircraft.heading, aircraft.speed, airport.elevation);
-            case FLIGHT_PHASE.APPROACH:
-                return aircraft.pilot.cancelApproachClearance(aircraft.altitude, aircraft.heading);
-            default:
-                return [false, 'we aren\'t doing anything that can be aborted'];
-        }
     }
 
     /**
