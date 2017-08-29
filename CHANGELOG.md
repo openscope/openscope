@@ -31,6 +31,7 @@
 - Renamed `index.md` to `commands.md` and added system commands and a TOC [#365](https://github.com/openscope/openscope/issues/365)
 - Consolidate console warnings for missing fixes to single message [#480](https://github.com/openscope/openscope/issues/480)
 - Update Ezeiza (SAEZ) - Updated all procedures, added video map, updated traffic, added new airlines [#516](https://github.com/openscope/openscope/issues/516)
+- Lower spawn altitude for arrivals into MDSD so they can descend in time [#660](https://github.com/openscope/openscope/issues/660)
 
 
 
