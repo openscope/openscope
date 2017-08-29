@@ -1152,7 +1152,7 @@
             "exitPoints": {
                 "AVRES": ["AVRES"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "BIBOK1": {
             "icao": "BIBOK1",
@@ -1178,7 +1178,7 @@
             "exitPoints": {
                 "BIBOK": ["BIBOK"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "DELPO1": {
             "icao": "DELPO1",
@@ -1204,7 +1204,7 @@
             "exitPoints": {
                 "DELPO": ["DELPO"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "KANAM": {
             "icao": "KANAM",
@@ -1247,7 +1247,7 @@
             "exitPoints": {
                 "KARIB": ["KARIB"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "KERSO": {
             "icao": "KERSO",
@@ -1290,7 +1290,7 @@
             "exitPoints": {
                 "KERSO": ["KERSO"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "KODIX1": {
             "icao": "KODIX1",
@@ -1316,7 +1316,7 @@
             "exitPoints": {
                 "KODIX": ["KODIX"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "LECKY": {
             "icao": "LECKY",
@@ -1359,7 +1359,7 @@
             "exitPoints": {
                 "LECKY": ["LECKY"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "MIROX": {
             "icao": "MIROX",
@@ -1403,7 +1403,7 @@
             "exitPoints": {
                 "PIVAR": ["PIVAR"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "POBEX1": {
             "icao": "POBEX1",
@@ -1429,7 +1429,7 @@
             "exitPoints": {
                 "POBEX": ["POBEX"]
             },
-            "draw": []
+            "draw": [[]]
         },
         "RIBES1": {
             "icao": "RIBES1",
@@ -1455,7 +1455,7 @@
             "exitPoints": {
                 "RIBES": ["RIBES"]
             },
-            "draw": []
+            "draw": [[]]
         }
     },
     "stars": {
