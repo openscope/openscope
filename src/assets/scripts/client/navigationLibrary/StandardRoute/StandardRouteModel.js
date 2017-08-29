@@ -1,10 +1,10 @@
 import _compact from 'lodash/compact';
-import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _pick from 'lodash/pick';
+import _uniq from 'lodash/uniq';
 import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
@@ -288,6 +288,28 @@ export default class StandardRouteModel extends BaseModel {
         }
 
         return this._exitCollection.gatherFixNamesForCollection();
+    }
+
+    /**
+     * Returns an array of unique fix names used by any portion of the procedure
+     *
+     * @for StandardRouteModel
+     * @method getAllFixNamesInUse
+     * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
+     */
+    getAllFixNamesInUse() {
+        const drawFixNames = this.draw.reduce((list, fix) => list.concat(fix))
+            .map((fixName) => fixName.replace('*', ''));
+
+        const allFixNames = [
+            ...this._entryCollection.getAllFixNamesInUse(),
+            ...this._bodySegmentModel.getAllFixNamesInUse(),
+            ...this._exitCollection.getAllFixNamesInUse(),
+            ...drawFixNames
+        ];
+        const uniqueFixNames = _uniq(allFixNames);
+
+        return uniqueFixNames;
     }
 
     /**

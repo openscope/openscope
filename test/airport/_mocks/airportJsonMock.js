@@ -307,7 +307,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": [],
                 "25L": [],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         },
         // not a real route. used here to test `SpawnPatternModel._generateWaypointListForRoute()`
         "GRNPA9": {
@@ -326,7 +327,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": [],
                 "25L": ["LEMNZ"],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         },
         "KEPEC3": {
             "icao": "KEPEC3",
@@ -345,7 +347,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": ['RIGHT'],
                 "25L": [],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         },
         "SUNST3": {
             "icao": "SUNST3",
@@ -364,7 +367,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": [],
                 "25L": [],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         },
         "TYSSN4": {
             "icao": "TYSSN4",
@@ -385,7 +389,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": [],
                 "25L": [],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns": [
