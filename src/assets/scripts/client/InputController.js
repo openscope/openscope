@@ -63,6 +63,7 @@ export default class InputController {
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
+        // TODO: Do we want setupHandlers to be `enableHandlers`, and called from `.enable()`?
         this._init()
             .setupHandlers()
             .enable();
@@ -73,21 +74,36 @@ export default class InputController {
      * @method _init
      */
     _init() {
+        this.$body = $('body')[0];
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
         this.$sidebar = this.$element.find(SELECTORS.DOM_SELECTORS.SIDEBAR);
 
-        this._disableRightClickMenu();
+        return this;
+    }
+
+    /**
+     * Enable handlers
+     *
+     * @for InputController
+     * @method setupHandlers
+     */
+    setupHandlers() {
+        this.$body.addEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
 
         return this;
     }
 
     /**
+     * Disable handlers
+     *
      * @for InputController
      * @method setupHandlers
      */
-    setupHandlers() {
+    disableHandlers() {
+        this.$body.removeEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
+
         return this;
     }
 
@@ -128,6 +144,8 @@ export default class InputController {
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
+        this.disableHandlers();
+
         return this.destroy();
     }
 
@@ -137,6 +155,7 @@ export default class InputController {
      */
     destroy() {
         this.$element = null;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -537,9 +556,10 @@ export default class InputController {
      *
      * @for InputController
      * @method _disableRightClickMenu
+     * @param event {jQuery event}
      */
-    _disableRightClickMenu() {
-        document.querySelector('body').addEventListener('contextmenu', (e) => e.preventDefault());
+    _disableRightClickMenu(event) {
+        event.preventDefault();
     }
 
     /**
