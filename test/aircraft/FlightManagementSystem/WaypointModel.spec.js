@@ -86,3 +86,45 @@ ava('.updateWaypointWithHoldProps() sets parameters as hold-specific properties'
     t.true(model._turnDirection === 'left');
     t.true(model._legLength === '2min');
 });
+
+ava('.hasMaximumAltitudeBelow returns true when current altitude is above', (t) => {
+    const waypointWithMaximumAltitude = Object.assign({}, waypointMock, {altitudeMaximum: 5000});
+    const model = new WaypointModel(waypointWithMaximumAltitude);
+
+    t.true(model.hasMaximumAltitudeBelow(6000) === true);
+});
+
+ava('.hasMaximumAltitudeBelow returns false when current altitude is below', (t) => {
+    const waypointWithMaximumAltitude = Object.assign({}, waypointMock, {altitudeMaximum: 5000});
+    const model = new WaypointModel(waypointWithMaximumAltitude);
+
+    t.true(model.hasMaximumAltitudeBelow(4000) === false);
+});
+
+ava('.hasMaximumAltitudeBelow returns false when no maximum is specified', (t) => {
+    const waypointWithoutMaximumAltitude = Object.assign({}, waypointMock, {altitudeMaximum: INVALID_NUMBER});
+    const model = new WaypointModel(waypointWithoutMaximumAltitude);
+
+    t.true(model.hasMaximumAltitudeBelow(6000) === false);
+});
+
+ava('.hasMinimumAltitudeAbove returns false when current altitude is above', (t) => {
+    const waypointWithMinimumAltitude = Object.assign({}, waypointMock, {altitudeMinimum: 5000});
+    const model = new WaypointModel(waypointWithMinimumAltitude);
+
+    t.true(model.hasMinimumAltitudeAbove(6000) === false);
+});
+
+ava('.hasMinimumAltitudeAbove returns true when current altitude is below', (t) => {
+    const waypointWithMinimumAltitude = Object.assign({}, waypointMock, {altitudeMinimum: 5000});
+    const model = new WaypointModel(waypointWithMinimumAltitude);
+
+    t.true(model.hasMinimumAltitudeAbove(4000) === true);
+});
+
+ava('.hasMinimumAltitudeAbove returns false when no minimum is specified', (t) => {
+    const waypointWithoutMinimumAltitude = Object.assign({}, waypointMock, {altitudeMinimum: INVALID_NUMBER});
+    const model = new WaypointModel(waypointWithoutMinimumAltitude);
+
+    t.true(model.hasMinimumAltitudeAbove(6000) === false);
+});
