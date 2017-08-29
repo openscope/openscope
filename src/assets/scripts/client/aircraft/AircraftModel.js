@@ -849,10 +849,10 @@ export default class AircraftModel {
      * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
      *
      * @for AircraftModel
-     * @method isBeyondTopOfDescent
+     * @method shouldStartDescent
      * @return {boolean}
      */
-    isBeyondTopOfDescent() {
+    shouldStartDescent() {
         if (_isEmpty(this.fms.waypoints)) {
             return;
         }
@@ -1793,7 +1793,7 @@ export default class AircraftModel {
                 return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
 
             case FLIGHT_PHASE.CRUISE: {
-                if (!this.isBeyondTopOfDescent()) {
+                if (!this.shouldStartDescent()) {
                     return;
                 }
 
