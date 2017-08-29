@@ -331,7 +331,8 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "19R": [],
                 "25L": [],
                 "25R": []
-            }
+            },
+            "draw": [[]]
         },
         // not a real route. used here to test `SpawnPatternModel._generateWaypointListForRoute()`
         "GRNPA9": {
