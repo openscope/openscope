@@ -1809,7 +1809,7 @@ export default class AircraftModel {
             }
 
             case FLIGHT_PHASE.DESCENT:
-                return this._calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel);
+                return this._calculateTargetedAltitudeVnavDescent();
 
             default:
                 return;
@@ -1843,10 +1843,9 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavDescent
-     * @param  hardRestrictedWaypointModel {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavDescent(hardRestrictedWaypointModel) {
+    _calculateTargetedAltitudeVnavDescent() {
         // TODO: This could be improved by making the descent at the exact rate needed to reach
         // the altitude at the same time as reaching the fix. At this point, the problem is that
         // while we DO know the descent rate and descent angle to shoot for, we don't know the
