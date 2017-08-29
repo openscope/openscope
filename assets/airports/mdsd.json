@@ -1819,7 +1819,7 @@
             "destination": "MDSD",
             "category": "arrival",
             "route": "ETBOD..PITEX..OKOSO.OKOSO.MDSD",
-            "altitude": [31000, 39000],
+            "altitude": [27000, 33000],
             "speed": 320,
             "method": "random",
             "rate": 0.5,
