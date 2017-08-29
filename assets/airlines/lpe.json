@@ -1,0 +1,18 @@
+{
+    "icao": "lpe",
+    "name": "LATAM Airlines Perú",
+    "callsign": {
+        "name": "LAN Peru",
+        "length": 4
+    },
+    "fleets": {
+        "long": [
+            ["B789", 3]
+        ],
+        "default": [
+            ["A319", 8],
+            ["A320", 14],
+            ["B789", 3]
+        ]
+    }
+}

@@ -1,16 +1,16 @@
 {
-    "icao": "dsm",
-    "name": "LATAM Airlines Argentina",
+    "icao": "lne",
+    "name": "LATAM Airlines Ecuador",
     "callsign": {
-        "name": "Lanar",
-        "length": 3
+        "name": "LAN Ecuador",
+        "length": 4
     },
     "fleets": {
         "long": [
             ["B763", 3]
         ],
         "default": [
-            ["A320", 14],
+            ["A319", 6],
             ["B763", 3]
         ]
     }
