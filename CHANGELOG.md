@@ -7,7 +7,7 @@
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)
 - New Airport: KSTL (St. Louis Lambert International Airport, MO) [#349](https://github.com/openscope/openscope/issues/349)
 - New Airport: KTUS (Tuscon International Airport, AZ) [#555](https://github.com/openscope/openscope/issues/555)
-
+- New Airport: KJAX (Jacksonville International Airport, FL) [#624](https://github.com/openscope/openscope/issues/624)
 
 
 ### Bugfixes
