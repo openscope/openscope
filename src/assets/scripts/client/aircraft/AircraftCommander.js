@@ -192,6 +192,18 @@ export default class AircraftCommander {
     }
 
     /**
+     * Aborts an action. Deprecated.
+     *
+     * @for AircraftCommander
+     * @method runAbort
+     * @param {AircraftModel} aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runAbort(aircraft) {
+        return [false, "the 'abort' command has been deprecated, please see documentation for help"];
+    }
+
+    /**
      * Set the aircraft to maintain an assigned altitude, and provide a readback
      *
      * @for AircraftCommander
@@ -213,18 +225,6 @@ export default class AircraftCommander {
             shouldUseSoftCeiling,
             airport
         );
-    }
-
-    /**
-     * Aborts an action. Deprecated.
-     *
-     * @for AircraftCommander
-     * @method runAbort
-     * @param {AircraftModel} aircraft
-     * @return {array} [success of operation, readback]
-     */
-    runAbort(aircraft) {
-        return [false, "the 'abort' command has been deprecated, please see documentation for help"];
     }
 
     /**
