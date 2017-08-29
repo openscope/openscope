@@ -1,0 +1,17 @@
+{
+    "icao": "jaf",
+    "name": "TUIfly Belgium",
+    "callsign": {
+        "name": "Beauty",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737", 5],
+            ["B738", 14],
+            ["B763", 1],
+            ["B788", 1],
+            ["E190", 3]
+        ]
+    }
+}

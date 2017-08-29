@@ -1,0 +1,13 @@
+{
+    "icao": "tcw",
+    "name": "Thomas Cook Belgium",
+    "callsign": {
+        "name": "Thomas Cook",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 5]
+        ]
+    }
+}
