@@ -1801,11 +1801,7 @@ export default class AircraftModel {
 
                 // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
                 // will enter the below block because the flight phase will have become 'DESCENT'.
-                if (_isNil(hardRestrictedWaypointModel)) {
-                    return this.fms.getBottomAltitude();
-                }
-
-                return hardRestrictedWaypointModel.altitudeMaximum;
+                return this._calculateTargetedAltitudeVnavDescent();
             }
 
             case FLIGHT_PHASE.DESCENT:

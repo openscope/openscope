@@ -69,7 +69,7 @@ ava('.updateTarget() causes arrivals to descend when the STAR includes only AT o
     model.groundSpeed = 320;
     model.updateTarget();
 
-    t.true(model.target.altitude === 8000);
+    t.true(model.target.altitude === 17000);
 });
 
 ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
