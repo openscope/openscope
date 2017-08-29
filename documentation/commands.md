@@ -7,52 +7,54 @@ that you can type out multiple commands in one go; for example:
 separately. Some commands have "aliases" that are shorter to type. An
 example of that would be the `takeoff` command which has an alias `to`.
 
-### Table of Contents
+## Table of Contents
 
-[Departure commands](#departure-commands)
+[Departure Commands](#departure-commands)
 - [Cleared as Filed](#cleared-as-filed)
 - [Climb via SID](#climb-via-sid)
 - [Takeoff](#takeoff)
 - [Taxi](#taxi)
 
-[Arrival commands](#arrival-commands)
+[Arrival Commands](#arrival-commands)
 - [Descend via STAR](#descend-via-star)
 - [Land](#land)
 
-[Routing commands](#routing-commands)
+[Routing Commands](#routing-commands)
 - [~~Fix~~](#fix)
 - [Hold](#hold)
 - [Proceed Direct](#proceed-direct)
 - [Route](#route)
 - [Reroute](#reroute)
-- [Say Route](#say-route)
 - [SID](#sid)
 - [STAR](#star)
 
-[Basic Control commands](#basic-control-commands)
-- [~~Abort~~](#abort)
+['Basic Control Instruction' Commands](#'basic-control-instruction'-commands)
 - [Altitude](#altitude)
 - [Heading](#heading)
+- [Speed](#speed)
 
-[Miscellaneous commands](#miscellaneous-commands)
+[Aircraft Query Commands](#aircraft-query-commands)
 - [Say Altitude](#say-altitude)
 - [Say Assigned Altitude](#say-assigned-altitude)
-- [Say Assigned Heading](#say-assigned-heading)
-- [Say Assigned Speed](#say-assigned-speed)
 - [Say Heading](#say-heading)
-- [Say Speed](#say-speed)
-- [Speed](#speed)
+- [Say Assigned Heading](#say-assigned-heading)
+- [Say Speed](#say-indicated-airspeed)
+- [Say Assigned Speed](#say-assigned-speed)
+
+[Miscellaneous Commands](#miscellaneous-commands)
+- [~~Abort~~](#abort)
 - [Squawk](#squawk)
 
-[System commands](#system-commands)
+[System Commands](#system-commands)
+- [Airport](#airport)
 - [Move Data Block](#move-data-block)
 - [Pause](#pause)
 - [Timewarp](#timewarp)
 - [Tutorial](#tutorial)
 - [Version](#version)
 
-## Departure commands
-These commands are used by departing aircraft.
+# Departure Commands
+These commands are used by departure aircraft.
 
 ### Cleared As Filed
 _Aliases -_ `caf`
@@ -96,8 +98,8 @@ with the largest headwind.
 
 _Syntax -_ `AAL123 taxi [Runway]`
 
-## Arrival commands
-These commands are only used by arriving aircraft.
+# Arrival Commands
+These commands are only used by arrival aircraft.
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -123,8 +125,8 @@ and land.
 
 _Syntax -_ `AAL123 i [rwy]`
 
-## Routing commands
-These commands modify the aircraft's flight management system (FMS).
+# Routing Commands
+These commands allow you to manipulate the route in the aircraft's FMS.
 
 ### ~~Fix~~
 ~~_Aliases -_ `f` / `fix` / `track`~~
@@ -157,7 +159,7 @@ _Information -_ This command instructs the aircraft to go direct to a
 navigational fix, taking a shortcut. For example, if an aircraft is flying
 to fixes [A, B, C, D, E, F], issuing the command "pd D" will cause the aircraft
 to go to D, then E. After flying past the last fix, the aircraft will
-switch to heading mode and fly the present heading.
+switch to heading mode and fly their present heading.
 
 _Syntax -_ `AAL123 pd [fixname]`
 
@@ -232,18 +234,9 @@ on rerouting for further detail.
 
 _Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
 
-## Basic Control commands
-These commands modify the aircraft but are not limited to departures or arrivals.
+# 'Basic Control Instruction' Commands
+These commands control the three most basic ways we can control aircraft, collectively called the "basic control instructions" of air traffic control.
 
-### ~~Abort~~
-~~_Aliases -_ `abort`~~
-
-~~_Information -_ Instructs the aircraft to abort the current operation.~~
-~~Currently, only landings, taxiing, and fix navigation can be aborted.~~
-
-~~_Syntax -_ `AAL123 abort`~~
-
-*_This command has been deprecated_*
 ### Altitude
 _Aliases -_ `climb` / `c` / `descend` / `d` / `altitude` / `a`
 
@@ -273,7 +266,20 @@ inserting `l` or `r` before the new heading, as demonstrated below.
 
 _Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
 
-## Miscellaneous commands
+### Speed
+_Aliases -_ `speed` / `slow` / `sp`
+
+_ShortKey -_ `numpad +` / `numpad -`
+
+_Information -_ This command sets the target speed; aircraft will stay within
+their safe speeds if you tell them to fly faster or slower than they are able
+to. It takes some time to increase and reduce speed. Remember that speed is
+always expressed in knots.
+
+_Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+
+# Aircraft Query Commands
+These commands are used to ask the aircraft some basic questions.
 
 ### Say Altitude
 _Aliases -_ `sa`
@@ -289,20 +295,6 @@ _Information -_ This command reads back the aircraft's assigned altitude.
 
 _Syntax -_ `AAL123 saa`
 
-### Say Assigned Heading
-_Aliases -_ `sah`
-
-_Information -_ This command reads back the aircraft's assigned heading, in degrees.
-
-_Syntax -_ `AAL123 sah`
-
-### Say Assigned Speed
-_Aliases -_ `sas`
-
-_Information -_ This aircraft reads back the aircraft's assigned speed, in knots.
-
-_Syntax -_ `AAL123 sas`
-
 ### Say Heading
 _Aliases -_ `sh`
 
@@ -310,23 +302,39 @@ _Information -_ This command reads back the aircraft's current heading, in degre
 
 _Syntax -_ `AAL123 sh`
 
-### Say Speed
-_Aliases -_ `ss`
+### Say Assigned Heading
+_Aliases -_ `sah`
+
+_Information -_ This command reads back the aircraft's assigned heading, in degrees.
+
+_Syntax -_ `AAL123 sah`
+
+### Say Indicated Airspeed
+_Aliases -_ `si`
 
 _Information -_ This command reads back the aircraft's indicated airspeed (IAS), in knots.
 
+_Syntax -_ `AAL123 si`
 
-### Speed
-_Aliases -_ `speed` / `slow` / `sp`
+### Say Assigned Speed
+_Aliases -_ `sas`
 
-_ShortKey -_ `numpad +` / `numpad -`
+_Information -_ This aircraft reads back the aircraft's assigned speed, in knots (IAS).
 
-_Information -_ This command sets the target speed; aircraft will stay within
-their safe speeds if you tell them to fly faster or slower than they are able
-to. It takes some time to increase and reduce speed. Remember that speed is
-always expressed in knots.
+_Syntax -_ `AAL123 sas`
 
-_Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
+# Miscellaneous Commands
+All other commands are listed below.
+
+### ~~Abort~~
+~~_Aliases -_ `abort`~~
+
+~~_Information -_ Instructs the aircraft to abort the current operation.~~
+~~Currently, only landings, taxiing, and fix navigation can be aborted.~~
+
+~~_Syntax -_ `AAL123 abort`~~
+
+*_This command has been deprecated_*
 
 ### Squawk
 _Aliases -_ `sq`
@@ -335,14 +343,12 @@ _Information -_ This command tells an aircraft to set its transponder code, or "
 
 _Parameters -_ A four digit number. Each number must be between `0` and `7`, inclusive. For example, `0736` is a valid squawk, `9416` is not.
 
-_Syntax -_ `AAL123 squawk ####`
+_Syntax -_ `AAL123 squawk ###`
 
-## System commands
-
+# System Commands
 openScope has a number of commands that do not change game mechanics, known as _system commands_. While most are able to be executed via various menus, they can be entered in the command bar if one so desires.
 
 ### Airport
-
 _Information -_ Changes the current airport to the one specified.
 
 _Parameters -_ The ICAO (four-letter) code of the desired airport.
@@ -392,4 +398,3 @@ _Information -_ Displays the version of the game running.
 Example: `Air Traffic Control simulator version 5.3.0`
 
 _Syntax -_ `version`
-
