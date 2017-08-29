@@ -224,8 +224,8 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runAbort(aircraft) {
-        return [false, 'this command has been deprecated, clear an aircraft to another fix or heading instead'];
-    } 
+        return [false, "the 'abort' command has been deprecated, please see documentation for help"];
+    }
 
     /**
      * Direct an aircraft to fly and maintain a specific heading
