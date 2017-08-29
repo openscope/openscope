@@ -294,7 +294,6 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     // TODO: why do we need to clone?
-    // TODO: Shouldn't this just be called `clonePosition`?
     /**
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
@@ -317,6 +316,8 @@ export default class StandardRouteWaypointModel extends BaseModel {
             name = this.name.substr(1);
         }
 
+        // TODO: This could be more cleanly achieved with a new
+        // method `FixCollection.getPositionModelForFixName()`
         const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {

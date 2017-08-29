@@ -298,11 +298,14 @@ export default class StandardRouteModel extends BaseModel {
      * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
      */
     getAllFixNamesInUse() {
+        const drawFixNames = this.draw.reduce((list, fix) => list.concat(fix))
+            .map((fixName) => fixName.replace('*', ''));
+
         const allFixNames = [
             ...this._entryCollection.getAllFixNamesInUse(),
             ...this._bodySegmentModel.getAllFixNamesInUse(),
             ...this._exitCollection.getAllFixNamesInUse(),
-            ...this.draw.reduce((list, fix) => list.concat(fix)).map((fixName) => fixName.replace('*', ''))
+            ...drawFixNames
         ];
         const uniqueFixNames = _uniq(allFixNames);
 

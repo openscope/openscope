@@ -10,8 +10,6 @@ import {
     FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../constants/aircraftConstants';
-import { VECTOR_WAYPOINT_PREFIX } from '../constants/navigation/routeConstants';
-import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
  *
@@ -296,7 +294,6 @@ export default class NavigationLibrary {
                 route = this._sidCollection.findRouteByIcao(routeString);
 
                 break;
-
             case PROCEDURE_TYPE.STAR: {
                 const { procedure } = new RouteModel(routeString);
 
@@ -304,7 +301,6 @@ export default class NavigationLibrary {
 
                 break;
             }
-
             default:
                 return false;
         }
@@ -360,8 +356,8 @@ export default class NavigationLibrary {
             ...this.starCollection.getAllFixNamesInUse()
         ];
         const uniqueFixNames = _uniq(allFixNames);
-        const allNonVectorFixes = _filter(uniqueFixNames, (fix) =>
-            fix.indexOf(VECTOR_WAYPOINT_PREFIX) === INVALID_INDEX);
+        const allNonVectorFixes = _filter(uniqueFixNames, (fixName) =>
+            !RouteModel.isVectorRouteString(fixName));
 
         return allNonVectorFixes.sort();
     }

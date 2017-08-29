@@ -66,7 +66,7 @@ ava('.getAllFixNamesInUse() returns an array of fix names used by any segment in
     const result = collection.getAllFixNamesInUse().sort();
     const expectedResult = ['BAKRR', 'BESSY', 'FIXIX', 'HITME', 'JAKER', 'JESJI', 'MDDOG', 'MINEY', 'PIRMD', 'RBELL', 'ROPPR', 'TARRK', 'WASTE'];
 
-    t.true(_isEqual(result, expectedResult));
+    t.deepEqual(result, expectedResult);
 });
 
 ava('._addSegmentToCollection() throws if not passed a RouteSegmentModel', t => {
