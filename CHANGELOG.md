@@ -12,6 +12,7 @@
 
 ### Bugfixes
 - Fix VNAV descents on STARs with only "at/above" and "at/below" restrictions [#618](https://github.com/openscope/openscope/issues/618)
+- Fix misalignment in airport selection dialog [#739](https://github.com/openscope/openscope/issues/739)
 
 
 
