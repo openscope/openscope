@@ -57,28 +57,35 @@
     margin-bottom: 2px;
     padding: 8px @spacing-1x;
     list-style-type: none;
+    font-weight: bold;
 }
 
 #airport-switch li .difficulty {
     width: 5em;
-    margin-right: 0.25em;
     display: inline-block;
     font-size: 120%;
-    font-weight: bold;
     text-align: right;
     white-space: nowrap;
 }
 
 #airport-switch li .icao {
-    width: 4em;
+    width: 2.5em;
+    margin-left: 1em;
     display: inline-block;
     text-align: center;
-    font-weight: bold;
+}
+
+#airport-switch li .symbol {
+    width: 0.7em;
+    margin-left: 1em;
+    display: inline-block;
+    text-align: center;
 }
 
 #airport-switch li .name {
+    margin-left: 1em;
     display: inline-block;
-    font-weight: bold;
+    text-align: center;
 }
 
 #airport-switch li:hover {
@@ -87,6 +94,8 @@
 }
 
 #airport-switch li.active {
+    // override margin-left from base 'active' class used in strips
+    margin-left: 0;
     background-color: #354;
     cursor: pointer;
 }
