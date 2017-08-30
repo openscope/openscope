@@ -12,6 +12,8 @@
 
 ### Bugfixes
 - Fix VNAV descents on STARs with only "at/above" and "at/below" restrictions [#618](https://github.com/openscope/openscope/issues/618)
+- Updates order of elements in the StripViewTemplate so the FlightRules element is properly floated to the right [#664](https://github.com/openscope/openscope/issues/664)
+
 
 
 
