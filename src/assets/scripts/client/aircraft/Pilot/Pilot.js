@@ -243,8 +243,8 @@ export default class Pilot {
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
         
         if (!aircraftModel.model.isAttainableSpeed(speed)) {
-            readback.log = `${speed} unattainable due to performance limits`;
-            readback.say = `${radio_spellOut(speed)} unattainable due to performance limits`;
+            readback.log = `unable to maintain ${speed} due to performance limits`;
+            readback.say = `unable to maintain ${radio_spellOut(speed)} due to performance limits`;
 
             return [false, readback]
         }
