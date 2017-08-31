@@ -146,11 +146,9 @@ export default class Pilot {
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
-        if (!aircraftModel.model.isValidAltitude(altitude)) {
-            let altitudeUnattainableReadback = 'requested altitude unattainable, ';
-
-            readback.log = `${altitudeUnattainableReadback}${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
-            readback.say = `${altitudeUnattainableReadback}${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+        if (!aircraftModel.model.isAttainableAltitude(altitude)) {
+            readback.log = `unable to maintain ${readbackAltitude} due to performance limits`;
+            readback.say = `unable to maintain ${altitudeVerbal} due to performance limits`;
 
             return [false, readback]
         }
