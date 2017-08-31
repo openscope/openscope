@@ -160,8 +160,8 @@ ava('.maintainAltitude() returns a warning when assigning aircraft altitude abov
     const expectedResult = [
         false,
         {
-            log: 'requested altitude unattainable, climb and maintain 100000',
-            say: 'requested altitude unattainable, climb and maintain flight level one zero zero zero'
+            log: 'unable to maintain 100000 due to performance limits',
+            say: 'unable to maintain flight level one zero zero zero due to performance limits'
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);

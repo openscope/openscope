@@ -40,8 +40,8 @@ ava('.maintainSpeed() returns a warning when assigned an unreachable speed', (t)
     const expectedResult = [
         false,
         {
-            log: 'requested speed unattainable, increase speed to 520',
-            say: 'requested speed unattainable, increase speed to five two zero'
+            log: 'unable to maintain 520 due to performance limits',
+            say: 'unable to maintain five two zero due to performance limits'
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
