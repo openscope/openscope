@@ -532,9 +532,21 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayAltitude(aircraft) {
-        const altitude = aircraft.altitude;
+        const altitude = _round(aircraft.altitude, -2);
+        const isClimbingOrDescending = aircraft.trend !== 0;
+        const readback = {};
+        let altitudeChangeString = '';
 
-        return [true, `our altitude is ${altitude}`];
+        if (isClimbingOrDescending) {
+            altitudeChangeString = 'leaving ';
+        } else {
+            altitudeChangeString = 'at ';
+        }
+
+        readback.log = `${altitudeChangeString}${altitude}`;
+        readback.say = `${altitudeChangeString}${radio_altitude(altitude)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -544,9 +556,13 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayAssignedAltitude(aircraft) {
-        const altitude = aircraft.target.altitude;
+        const altitude = _round(aircraft.mcp.altitude, -2);
+        const readback = {};
 
-        return [true, `assigned altitude ${altitude}`];
+        readback.log = `assigned ${altitude}`;
+        readback.say = `assigned ${radio_altitude(altitude)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -556,9 +572,13 @@ export default class AircraftCommander {
      * @return {array}	[success of operation, readback]
      */
     runSayHeading(aircraft) {
-        const heading = aircraft.heading;
+        const heading = _round(radiansToDegrees(aircraft.heading));
+        const readback = {};
 
-        return [true, `our heading is ${heading}`];
+        readback.log = `heading ${heading}`;
+        readback.say = `heading ${radio_heading(heading)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -568,9 +588,16 @@ export default class AircraftCommander {
      * @return {array}	[success of operation, readback]
      */
     runSayAssignedHeading(aircraft) {
-        const heading = aircraft.target.heading;
+        if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
+            return [false, 'we haven't been assigned a heading'];
+        }
+        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const readback = {};
 
-        return [true, `assigned heading ${heading}`];
+        readback.log = `assigned heading ${heading}`;
+        readback.say = `assigned heading ${radio_heading(heading)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -580,9 +607,13 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSaySpeed(aircraft) {
-        const speed = aircraft.speed;
+        const speed = _round(aircraft.speed);
+        const readback = {};
 
-        return [true, `our speed is ${speed}`];
+        readback.log = `indicating ${speed} knots`;
+        readback.say = `indicating ${radio_spellOut(speed)} knots`;
+
+        return [true, readback];
     }
 
     /**
@@ -592,7 +623,15 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayAssignedSpeed(aircraft) {
-        const speed = aircraft.target.speed;
+        if(this.speedMode !== MCP_MODE.SPEED.HOLD) {
+            return [false, `we haven't been assigned a speed`];
+        }
+
+        const speed = _round(aircraft.mcp.speed);
+        const readback = {};
+
+        readback.log = `assigned ${speed} knots`;
+        readback.say = `assigned ${radio_spellOut(speed)} knots}`;
 
         return [true, `assigned speed ${speed}`];
     }
