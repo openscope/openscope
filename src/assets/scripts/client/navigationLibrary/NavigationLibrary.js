@@ -1,4 +1,6 @@
+import _filter from 'lodash/filter';
 import _isNil from 'lodash/isNil';
+import _uniq from 'lodash/uniq';
 import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
@@ -106,8 +108,11 @@ export default class NavigationLibrary {
         );
 
         FixCollection.addItems(fixes, this._referencePosition);
+
         this._sidCollection = new StandardRouteCollection(sids, PROCEDURE_TYPE.SID);
         this._starCollection = new StandardRouteCollection(stars, PROCEDURE_TYPE.STAR);
+
+        this.showConsoleWarningForUndefinedFixes();
     }
 
     /**
@@ -289,12 +294,13 @@ export default class NavigationLibrary {
                 route = this._sidCollection.findRouteByIcao(routeString);
 
                 break;
-            case PROCEDURE_TYPE.STAR:
+            case PROCEDURE_TYPE.STAR: {
                 const { procedure } = new RouteModel(routeString);
 
                 route = this._starCollection.findRouteByIcao(procedure);
 
                 break;
+            }
             default:
                 return false;
         }
@@ -316,4 +322,44 @@ export default class NavigationLibrary {
             flightPhase === FLIGHT_PHASE.TAXI ||
             flightPhase === FLIGHT_PHASE.WAITING;
     }
+
+    /**
+     * Check all fixes used in procedures, and gather a list of any fixes that are
+     * not defined in the `fixes` section of the airport file, then sort and print
+     * that list to the console.
+     *
+     * @for NavigationLibrary
+     * @method showConsoleWarningForUndefinedFixes
+     */
+    showConsoleWarningForUndefinedFixes() {
+        const allFixNames = this._getAllFixNamesInUse();
+        const missingFixes = allFixNames.filter((fix) => !FixCollection.findFixByName(fix));
+
+        if (missingFixes.length < 1) {
+            return;
+        }
+
+        console.warn(`The following fixes have yet to be defined in the "fixes" section: ${missingFixes}`);
+    }
+
+    /**
+     * Gathers a unique, sorted list of all fixes used in all known procedures
+     *
+     * @for NavigationLibrary
+     * @method _getAllFixNamesInUse
+     * @return {array<string>} ['fixxa', 'fixxb', 'fixxc', ...]
+     * @private
+     */
+    _getAllFixNamesInUse() {
+        const allFixNames = [
+            ...this.sidCollection.getAllFixNamesInUse(),
+            ...this.starCollection.getAllFixNamesInUse()
+        ];
+        const uniqueFixNames = _uniq(allFixNames);
+        const allNonVectorFixes = _filter(uniqueFixNames, (fixName) =>
+            !RouteModel.isVectorRouteString(fixName));
+
+        return allNonVectorFixes.sort();
+    }
+
 }

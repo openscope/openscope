@@ -1,0 +1,17 @@
+{
+    "icao": "lne",
+    "name": "LATAM Airlines Ecuador",
+    "callsign": {
+        "name": "LAN Ecuador",
+        "length": 4
+    },
+    "fleets": {
+        "long": [
+            ["B763", 3]
+        ],
+        "default": [
+            ["A319", 6],
+            ["B763", 3]
+        ]
+    }
+}

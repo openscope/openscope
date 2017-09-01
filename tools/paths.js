@@ -56,7 +56,7 @@ options.DIR = {
 options.FILE = {
     JS_ENTRY_CLIENT: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.js'),
     JS_ENTRY_SERVER: path.join(options.DIR.SRC_SCRIPTS_SERVER, 'index.js'),
-    CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.css'),
+    CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.less'),
     PKG_JSON: path.join(options.ROOT, 'package.json'),
     AIRCRAFT_JSON: path.join(options.DIR.ASSETS_AIRCRAFT, 'aircraft.json'),
     AIRLINES_JSON: path.join(options.DIR.ASSETS_AIRLINES, 'airlines.json')
@@ -71,7 +71,7 @@ options.GLOB = {
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),
-    CSS: path.join(options.DIR.SRC_STYLE, '**/*.css'),
+    LESS: path.join(options.DIR.SRC_STYLE, '**/*.less'),
     MARKUP: path.join(options.DIR.SRC_MARKUP, '**/*.hbs')
 };
 

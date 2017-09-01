@@ -294,16 +294,11 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     // TODO: why do we need to clone?
-    // TODO ClonePoisitonFromFix -> clonePositionFromFix
     /**
      * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
      * @method clonePositionFromFix
-     * @param fixCollection {FixCollection}
-     * @return {StandardRouteWaypointModel}
-     * @private
-     * @chainable
      */
     clonePositionFromFix() {
         const isFlyOverWaypoint = RouteModel.isFlyOverRouteString(this.name);
@@ -321,19 +316,17 @@ export default class StandardRouteWaypointModel extends BaseModel {
             name = this.name.substr(1);
         }
 
+        // TODO: This could be more cleanly achieved with a new
+        // method `FixCollection.getPositionModelForFixName()`
         const fixModel = FixCollection.findFixByName(name);
 
         if (!fixModel) {
-            // TODO: This console warn should be done elsewehere, so a single console
-            // message can inform the airport designer of all missing fixes at once.
-            console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
-
-            return this;
+            return;
         }
 
         this._positionModel = fixModel.clonePosition();
 
-        return this;
+        return;
     }
 
     /**

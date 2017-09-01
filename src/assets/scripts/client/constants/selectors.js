@@ -23,6 +23,7 @@ export const CLASSNAMES = {
     HIDDEN: 'hidden',
     HOLD: 'hold',
     LEFT: 'left',
+    LOADING_VIEW: 'js-loadingView',
     LOOKING_GOOD: 'lookingGood',
     MESSAGE: 'message',
     NEGATIVE: 'negative',

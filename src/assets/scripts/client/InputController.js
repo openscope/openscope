@@ -353,7 +353,7 @@ export default class InputController {
                 UiController.ui_airport_close();
             }
         }
-        
+
         if (!prop.tutorial.open) {
             return;
         }
@@ -718,7 +718,7 @@ export default class InputController {
      * @return {boolean}
      */
     _isArrowControlMethod() {
-        return GameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+        return GameController.game.option.getOptionByName(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
     }
 
     /**

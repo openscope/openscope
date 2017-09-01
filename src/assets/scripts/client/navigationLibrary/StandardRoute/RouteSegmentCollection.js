@@ -1,8 +1,8 @@
 import _find from 'lodash/find';
+import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
+import _uniq from 'lodash/uniq';
 import BaseCollection from '../../base/BaseCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 import { isEmptyObject } from '../../utilities/validatorUtilities';
@@ -123,6 +123,7 @@ export default class RouteSegmentCollection extends BaseCollection {
         return segment.findWaypointsForSegment();
     }
 
+    // TODO: This gathers names of exit points, not names of fixes. Should be renamed!
     /**
      * Return a list of fixNames for all of the `RouteSegmentModel`s in the collection
      *
@@ -134,6 +135,20 @@ export default class RouteSegmentCollection extends BaseCollection {
      */
     gatherFixNamesForCollection() {
         return _map(this._items, (item) => item.name);
+    }
+
+    /**
+     * Returns an array of unique fix names used by any segment in the collection
+     *
+     * @for RouteSegmentCollection
+     * @method getAllFixNamesInUse
+     * @return {array<string>} ['fixname', 'fixname', 'fixname', ...]
+     */
+    getAllFixNamesInUse() {
+        const fixGroups = this._items.map((routeSegmentModel) => routeSegmentModel.getAllFixNamesInUse());
+        const fixNames = _uniq(_flatten(fixGroups));
+
+        return fixNames;
     }
 
     /**

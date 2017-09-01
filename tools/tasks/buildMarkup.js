@@ -16,9 +16,9 @@ function buildMarkup() {
         `!${paths.DIR.SRC}/templates/**`
     ];
 
-    const versionStr = cli.argv.isProd
-        ? pkg.version
-        : new Date().getTime();
+    // const versionStr = cli.argv.isProd
+    //     ? pkg.version
+    //     : new Date().getTime();
 
     return gulp.src(src)
         .pipe(hb()
@@ -26,7 +26,7 @@ function buildMarkup() {
             .helpers(handlebarsHelpers)
             .helpers(handlebarsLayouts)
             .data({
-                version: versionStr,
+                version: pkg.version,
                 date: new Date().toISOString()
             })
         )
