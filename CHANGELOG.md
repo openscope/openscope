@@ -9,14 +9,10 @@
 - New Airport: KTUS (Tuscon International Airport, AZ) [#555](https://github.com/openscope/openscope/issues/555)
 - New Airport: KJAX (Jacksonville International Airport, FL) [#624](https://github.com/openscope/openscope/issues/624)
 
-
 ### Bugfixes
 - Fix VNAV descents on STARs with only "at/above" and "at/below" restrictions [#618](https://github.com/openscope/openscope/issues/618)
 - Updates order of elements in the StripViewTemplate so the FlightRules element is properly floated to the right [#664](https://github.com/openscope/openscope/issues/664)
 - Fix misalignment in airport selection dialog [#659](https://github.com/openscope/openscope/issues/659)
-
-
-
 
 ### Enhancements & Refactors
 - Removed index.html as it is generated from templates when run [#619](https://github.com/openscope/openscope/issues/619)
@@ -35,8 +31,6 @@
 - Consolidate console warnings for missing fixes to single message [#480](https://github.com/openscope/openscope/issues/480)
 - Update Ezeiza (SAEZ) - Updated all procedures, added video map, updated traffic, added new airlines [#516](https://github.com/openscope/openscope/issues/516)
 - Lower spawn altitude for arrivals into MDSD so they can descend in time [#660](https://github.com/openscope/openscope/issues/660)
-
-
 
 
 ## 5.3.0 (August 1, 2017)
