@@ -589,7 +589,7 @@ export default class AircraftCommander {
      */
     runSayAssignedHeading(aircraft) {
         if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            return [false, 'we haven't been assigned a heading'];
+            return [false, `we haven't been assigned a heading`];
         }
         const heading = _round(radiansToDegrees(aircraft.mcp.heading));
         const readback = {};
