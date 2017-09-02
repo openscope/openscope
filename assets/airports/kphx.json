@@ -461,7 +461,8 @@
                 "25L": [["ANNTI", "A120"], ["ZILUB", "A90|S250"], ["BRIEZ", "A80|S230"], ["KUCOO", "A70|S210"], "JURAZ"],
                 "25R": [["ANNTI", "A120"], ["ZILUB", "A90|S250"], ["BRIEZ", "A80|S230"], ["KUCOO", "A70|S210"], "JURAZ"],
                 "26":  [["ANNTI", "A120"], ["ZILUB", "A90|S250"], ["BRIEZ", "A80|S230"], ["KUCOO", "A70|S210"], "JURAZ"]
-            }
+            },
+            "draw": [[]]
         },
         "EAGUL6": {
             "icao": "EAGUL6",
@@ -479,7 +480,8 @@
                 "25L": [["VNNOM", "A130"], ["ESDEE", "A90|S210"], ["BASSL", "A70"], ["DERVL", "A50|S210"], ["JAGAL", "A40"]],
                 "25R": [["VNNOM", "A130"], ["ESDEE", "A90|S210"], ["BASSL", "A70"], ["DERVL", "A50|S210"], ["JAGAL", "A40"]],
                 "26":  [["VNNOM", "A130"], ["ESDEE", "A90|S210"], ["BASSL", "A70"], ["DERVL", "A50|S210"], ["JAGAL", "A40"]]
-            }
+            },
+            "draw": [[]]
         },
         "HYDRR1": {
             "icao": "HYDRR1",
@@ -497,7 +499,8 @@
                 "25L": [["AGGLA", "A130|S250"], ["CHAVO", "A90|S210"], ["LEMOE", "A70|S210"]],
                 "25R": [["AGGLA", "A130|S250"], ["CHAVO", "A90|S210"], ["LEMOE", "A70|S210"]],
                 "26":  [["AGGLA", "A130|S250"], ["CHAVO", "A90|S210"], ["LEMOE", "A70|S210"]]
-            }
+            },
+            "draw": [[]]
         },
         "PINNG1": {
             "icao": "PINNG1",
@@ -514,7 +517,8 @@
                 "25L": [["PAAAR", "A120|S230"], ["PUKRE", "A90|S210"], ["FINAP", "A50"], ["GIPSE", "A40"]],
                 "25R": [["PAAAR", "A120|S230"], ["PUKRE", "A90|S210"], ["FINAP", "A50"], ["GIPSE", "A40"]],
                 "26":  [["PAAAR", "A120|S230"], ["PUKRE", "A90|S210"], ["FINAP", "A50"], ["GIPSE", "A40"]]
-            }
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns": [
