@@ -149,8 +149,12 @@
             "name": "Samar",
             "suffix": {"21":"5N", "03":"6M"},
             "rwy": {
-                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"], "PEPES", "SAMAR"],
-                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["PEPES", "A100+"], "SAMAR"]
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"], "PEPES"],
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["PEPES", "A100+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "SAMAR": ["SAMAR"]
             },
             "draw": [["RODIM", "MAPOV", "PERER", "ARVEM", "PEPES", "SAMAR"], ["RIPIX", "RR450", "PEPES", "SAMAR"]]
         },
@@ -159,8 +163,12 @@
             "name": "Vasto",
             "suffix": {"21":"5N", "03":"6M"},
             "rwy": {
-                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"], ["GILDI", "A120+"], "VASTO"],
-                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["GILDI", "A120+"], "VASTO"]
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"]],
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"]]
+            },
+            "body": [["GILDI", "A120+"]],
+            "exitPoints": {
+                "VASTO": ["VASTO"]
             },
             "draw": [["RODIM", "MAPOV", "PERER", "ARVEM", "GILDI", "VASTO"], ["RIPIX", "RR450", "GILDI", "VASTO"]]
         },
@@ -169,8 +177,12 @@
             "name": "Koral",
             "suffix": {"21":"5N", "03":"6M"},
             "rwy": {
-                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["AMAPI", "A70+"], "KORAL"],
-                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "DIBIB", "POKAB", ["GAMVA", "A120+"], "KORAL"]
+                "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["AMAPI", "A70+"]],
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "DIBIB", "POKAB", ["GAMVA", "A120+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "KORAL": ["KORAL"]
             },
             "draw": [["RODIM", "MAPOV", "AMAPI", "KORAL"], ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"]]
         },
@@ -179,8 +191,12 @@
             "name": "Sotad",
             "suffix": {"21":"1N", "03":"2M"},
             "rwy": {
-                "21": [["RODIM", "A13+"], "TENDA", "TOSPU", ["NIDOM", "A60+"], ["FV621", "A70+"], ["FV622", "A80+"], ["FV623", "A80+"], ["SOTAD", "A100+"]],
-                "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "TENDA", "TOSPU", ["NIDOM", "A60+"], ["FV621", "A70+"], ["FV622", "A80+"], ["FV623", "A80+"], ["SOTAD", "A100+"]]
+                "21": [["RODIM", "A13+"]],
+                "03": [["RIPIX", "A16+"], ["RR450", "A32+"]]
+            },
+            "body": ["TENDA", "TOSPU", ["NIDOM", "A60+"], ["FV621", "A70+"], ["FV622", "A80+"], ["FV623", "A80+"]],
+            "exitPoints": {
+                "SOTAD": [["SOTAD", "A100"]]
             },
             "draw": [["RODIM", "TENDA", "TOSPU", "NIDOM", "FV621", "FV622", "FV623", "SOTAD"], ["RIPIX", "RR450", "TENDA", "TOSPU", "NIDOM", "FV621", "FV622", "FV623", "SOTAD"]]
         },
@@ -189,8 +205,12 @@
             "name": "Lorpo",
             "suffix": {"21":"1N", "03":"1M"},
             "rwy": {
-                "21": [["LTE53", "A13+"], "250LT", ["GOMSU", "A80+"], ["KOSIB", "A80+"], ["LORPO", "A90+"]],
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "KOSIB", ["LORPO", "A90+"]]
+                "21": [["LTE53", "A13+"], "250LT", ["GOMSU", "A80+"], ["KOSIB", "A80+"]],
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "KOSIB"]
+            },
+            "body": [],
+            "exitPoints": {
+                "LORPO": [["LORPO", "A90+"]]
             },
             "draw": [["LTE53", "52LTE", "GOMSU", "KOSIB", "LORPO"], ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "KOSIB", "LORPO"]]
         },
@@ -199,8 +219,12 @@
             "name": "Larys",
             "suffix": {"21":"1N", "03":"1M"},
             "rwy": {
-                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"], ["LARYS", "A120+"]],
-                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", ["LARYS", "A90+"]]
+                "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"]],
+                "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR"]
+            },
+            "body": [],
+            "exitPoints": {
+                "LARYS": [["LARYS", "A90+"]]
             },
             "draw": [["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"], ["LTE04", "LTE12", "LZR", "LARYS"]]
         }
@@ -213,6 +237,10 @@
                 "DEVLA": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"]]
             },
             "body": [["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+            "rwy": {
+                "03": [],
+                "21": []
+            },
             "draw": [["DEVLA", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
         },
         "TERT6P": {
@@ -222,6 +250,10 @@
                 "TERTO": [["TERTO", "A150"], "PEPOM"]
             },
             "body": ["GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+            "rwy": {
+                "03": [],
+                "21": []
+            },
             "draw": [["TERTO", "PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
         },
         "LARY2P": {
@@ -231,6 +263,10 @@
                 "LARYS": ["LARYS",["LTE41", "S220"]]
             },
             "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
+            "rwy": {
+                "03": [],
+                "21": []
+            },
             "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
         },
         "RASE2P": {
@@ -240,6 +276,10 @@
                 "RASEP": ["RASEP", ["GDV71", "S220"]]
             },
             "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
+            "rwy": {
+                "03": [],
+                "21": []
+            },
             "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
         }
     },

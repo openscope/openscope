@@ -1,3 +1,9 @@
+## 5.4.1 (September 2, 2017)
+---
+### Hotfix
+- Fix WIP airports which fail to load due to improper procedure formatting [#327](https://github.com/openscope/openscope/issues/327)
+
+
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
