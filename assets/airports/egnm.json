@@ -71,7 +71,11 @@
             "name": "Pole Hill Two Xray",
             "suffix": {"14":"2X"},
             "rwy": {
-                "14": [["D082N", "A30"], ["D082J", "A35"], ["POL", "A70"]]
+                "14": [["D082N", "A30"], ["D082J", "A35"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "POL": [["POL", "A70"]]
             },
             "draw": [
                 ["D082N", "D082J", "POL"]
@@ -82,7 +86,11 @@
             "name": "Nelsa Three Whiskey",
             "suffix": {"32":"3W"},
             "rwy": {
-                "32": ["05DME", "21DME", "35DME", ["D052L", "A30"], ["D052K", "A35"], ["D272J", "A35"], ["NELSA", "A70"]]
+                "32": ["05DME", "21DME", "35DME", ["D052L", "A30"], ["D052K", "A35"], ["D272J", "A35"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "NELSA": [["NELSA", "A70"]]
             },
             "draw": [
                 ["05DME", "21DME", "35DME", "D052L", "D052K", "D272J", "NELSA"]
@@ -93,8 +101,12 @@
             "name": "Dopek",
             "suffix": {"32":"2W", "14":"2X"},
             "rwy": {
-                "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15", "DOPEK"],
-                "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14", "DOPEK"]
+                "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15"],
+                "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14"]
+            },
+            "body": [],
+            "exitPoints": {
+                "DOPEK": ["DOPEK"]
             },
             "draw": [
                 ["35DME", "R255", "GAM38", "GAM35", "GAM31", "GAM19", "GAM18", "GAM15", "DOPEK"],
@@ -106,8 +118,12 @@
             "name": "Lamix",
             "suffix": {"32":"2W", "14":"2X"},
             "rwy": {
-                "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15", "DOPEK", "LAMIX"],
-                "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14", "DOPEK", "LAMIX"]
+                "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15", "DOPEK"],
+                "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14", "DOPEK"]
+            },
+            "body": [],
+            "exitPoints": {
+                "LAMIX": ["LAMIX"]
             },
             "draw": [
                 ["DOPEK", "LAMIX"]

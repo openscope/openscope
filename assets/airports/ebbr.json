@@ -78,55 +78,80 @@
             "icao": "NORTH",
             "name": "NORTH",
             "rwy": {
-                "19" : ["NORTH"],
-                "01" : ["NORTH"],
-                "25L": ["NORTH"],
-                "25R": ["NORTH"],
-                "07L": ["NORTH"],
-                "07R": ["NORTH"]
+                "01": [],
+                "07L": [],
+                "07R": [],
+                "19": [],
+                "25L": [],
+                "25R": []
             },
-            "draw": [["EBBR","NORTH"]]
+            "body": [],
+            "exitPoints": {
+                "NORTH": ["NORTH"]
+            },
+            "draw": [
+                ["NORTH"]
+            ]
         },
         "EAST": {
             "icao" : "EAST",
             "name" : "EAST",
             "rwy": {
-                "19" : ["EAST"],
-                "01" : ["EAST"],
-                "25L": ["EAST"],
-                "25R": ["EAST"],
-                "07L": ["EAST"],
-                "07R": ["EAST"]
+                "01": [],
+                "07L": [],
+                "07R": [],
+                "19": [],
+                "25L": [],
+                "25R": []
             },
-            "draw": [["EBBR","EAST"]]
+            "body": [],
+            "exitPoints": {
+                "EAST": ["EAST"]
+            },
+            "draw": [
+                ["EAST"]
+            ]
         },
         "SOUTH": {
             "icao": "SOUTH",
             "name": "SOUTH",
             "rwy": {
-                "19" : ["SOUTH"],
-                "01" : ["SOUTH"],
-                "25L": ["SOUTH"],
-                "25R": ["SOUTH"],
-                "07L": ["SOUTH"],
-                "07R": ["SOUTH"]
+                "01": [],
+                "07L": [],
+                "07R": [],
+                "19": [],
+                "25L": [],
+                "25R": []
             },
-            "draw": [["EBBR","SOUTH"]]
+            "body": [],
+            "exitPoints": {
+                "SOUTH": ["SOUTH"]
+            },
+            "draw": [
+                ["SOUTH"]
+            ]
         },
         "WEST": {
             "icao": "WEST",
             "name": "WEST",
             "rwy": {
-                "19" : ["WEST"],
-                "01" : ["WEST"],
-                "25L": ["WEST"],
-                "25R": ["WEST"],
-                "07L": ["WEST"],
-                "07R": ["WEST"]
+                "01": [],
+                "07L": [],
+                "07R": [],
+                "19": [],
+                "25L": [],
+                "25R": []
             },
-            "draw": [["EBBR","WEST"]]
+            "body": [],
+            "exitPoints": {
+                "WEST": ["WEST"]
+            },
+            "draw": [
+                ["WEST"]
+            ]
         }
     },
+    "stars": {},
     "spawnPatterns": [
         {
             "origin": "EBBR",

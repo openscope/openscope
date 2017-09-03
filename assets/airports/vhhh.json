@@ -29,7 +29,6 @@
         "BETTY": ["N21d29m10.82", "E114d33m31.92"],
         "BISON": ["N22d29m07.41", "E114d12m28.76"],
         "BREAM": ["N21d46m46.00", "E114d03m28.00"],
-        "CANTO": ["N21d39.05m0", "E113d42.41m0"],
         "CANTO": ["N21d39m02.63", "E113d42m25.09"],
         "CEDAR": ["N22d16m12.55", "E113d46m18.12"],
         "COLEY": ["N22d06m41.03", "E114d18m37.63"],
@@ -315,10 +314,14 @@
             "name": "Bekol",
             "suffix": {"07L":"3C", "07R":"3A", "25L":"2B", "25R":"2D"},
             "rwy": {
-                "07L": [["ROVER", "A50-|S180+"], "TD", "ATENA", ["BEKOL", "A158+"]],
-                "07R": [["PORPA", "A50-|S180+"], "TD", "ATENA", ["BEKOL", "A158+"]],
-                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON", ["BEKOL","A158+"]],
-                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON", ["BEKOL","A158+"]]
+                "07L": [["ROVER", "A50-|S180+"], "TD", "ATENA"],
+                "07R": [["PORPA", "A50-|S180+"], "TD", "ATENA"],
+                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON"],
+                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BEKOL": [["BEKOL", "A158+"]]
             },
             "draw": [["ROVER","TD"], ["PORPA","TD","ATENA","BEKOL"], ["PRAWN","RUMSY","TUNNA","SAMON","BEKOL"]]
         },
@@ -327,10 +330,14 @@
             "name": "Lakes",
             "suffix": {"07L":"3C", "07R":"3A", "25L":"2B", "25R":"2D"},
             "rwy": {
-                "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"], "SHELY", "LAKES"],
-                "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"], "SHELY", "LAKES"],
-                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "LAKES"],
-                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "LAKES"]
+                "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"], "SHELY"],
+                "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"], "SHELY"],
+                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"]],
+                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "LAKES": ["LAKES"]
             },
             "draw": [["ROVER","TD","SHELY","LAKES"], ["PRAWN", "RUMSY", "TUNNA", "TROUT", "LAKES"]]
         },
@@ -339,10 +346,14 @@
             "name": "Ocean",
             "suffix": {"07L":"2C", "07R":"2A", "25L":"2B", "25R":"2D"},
             "rwy": {
-                "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"], "OCEAN"],
-                "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"], "OCEAN"],
-                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "OCEAN"],
-                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "OCEAN"]
+                "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"]],
+                "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"]],
+                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"]],
+                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "OCEAN": ["OCEAN"]
             },
             "draw": [["ROVER","TD"], ["PORPA","TD","OCEAN"], ["PRAWN","RUMSY","TUNNA","TROUT","OCEAN"]]
         },
@@ -351,14 +362,19 @@
             "name": "Pecan",
             "suffix": {"07L":"1C", "07R":"1A", "25L":"1B", "25R":"1D"},
             "rwy": {
-                "07L": [["ROVER", "A50-|S180+"], ["RAMEN", "S220"], "BREAM", "TITAN", "PECAN"],
-                "07R": [["PORPA", "A50-|S180+"], ["RAMEN", "S220"], "BREAM", "TITAN", "PECAN"],
-                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "TITAN", "PECAN"],
-                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "TITAN", "PECAN"]
+                "07L": [["ROVER", "A50-|S180+"], ["RAMEN", "S220"], "BREAM"],
+                "07R": [["PORPA", "A50-|S180+"], ["RAMEN", "S220"], "BREAM"],
+                "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA"],
+                "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA"]
+            },
+            "body": ["TITAN"],
+            "exitPoints": {
+                "PCEAN": ["PCEAN"]
             },
             "draw": [["ROVER","RAMEN"], ["PORPA","RAMEN","BREAM","TITAN"], ["PRAWN","RUMSY","TUNNA","TITAN","PECAN"]]
         }
     },
+    "stars": {},
     "spawnPatterns": [
         {
             "origin": "vhhh",

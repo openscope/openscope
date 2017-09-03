@@ -914,7 +914,10 @@
                 "27L": ["_LONR257D7"],
                 "27R": ["_LONR257D7"]
             },
-            "body": [["WOD", "A40+"], "CPT", "KENET", "MIMBI"],
+            "body": [["WOD", "A40+"]],
+            "exitPoints": {
+                "CPT": ["CPT"]
+            },
             "draw": [["_LONR257D7", "WOD", "CPT"]]
         },
         "BPK": {
@@ -927,7 +930,10 @@
                 "27L": ["BUR", "CHT"],
                 "27R": ["BUR", "CHT"]
             },
-            "body": ["BPK", "TOTRI", "BRAIN", "CLN", "ARTOV", "REDFA"],
+            "body": [],
+            "exitPoints": {
+                "BPK": ["BPK"]
+            },
             "draw": [["BUR", "CHT", "BPK"], ["_LONR072D10", "BAPAG", "BPK"]]
         },
         "WOBUN": {
@@ -938,7 +944,10 @@
                 "27L": [],
                 "27R": []
             },
-            "body": ["BUR", "WOBUN", "DTY", "HON"],
+            "body": ["BUR"],
+            "exitPoints": {
+                "WOBUN": ["WOBUN"]
+            },
             "draw": [["BUR", "WOBUN"]]
         },
         "BUZAD": {
@@ -949,7 +958,10 @@
                 "09L": [],
                 "09R": []
             },
-            "body": [["_LONR072D10", "A30+"], "BUZAD", "WOBUN", "DTY", "HON"],
+            "body": [["_LONR072D10", "A30+"]],
+            "exitPoints": {
+                "BUZAD": ["BUZAD"]
+            },
             "draw": [["_LONR072D10", "BUZAD"]]
         },
         "DET": {
@@ -962,7 +974,10 @@
                 "27L": [["EPM", "A40+"]],
                 "27R": [["EPM", "A40+"]]
             },
-            "body": ["DET", "DVR", "KONAN"],
+            "body": [],
+            "exitPoints": {
+                "DET": ["DET"]
+            },
             "draw": [["_DETR284D34", "DET"], ["EPM", "DET"]]
         },
         "GOGSI": {
@@ -973,7 +988,10 @@
                 "27L": [],
                 "27R": []
             },
-            "body": ["_LONR257D7", ["WOD", "A40+"], "GOGSI", "SAM"],
+            "body": ["_LONR257D7", ["WOD", "A40+"]],
+            "exitPoints": {
+                "GOGSI": ["GOGSI"]
+            },
             "draw": [["_LONR257D7", "WOD", "GOGSI"]]
         },
         "GASGU": {
@@ -984,7 +1002,10 @@
                 "09L": [],
                 "09R": []
             },
-            "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU", "SAM"],
+            "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU"],
+            "exitPoints": {
+                "GASGU": ["GASGU"]
+            },
             "draw": [["_LONR126D5", "OCK", "GASGU"]]
         },
         "MAY": {
@@ -997,7 +1018,10 @@
                 "27L": [],
                 "27R": []
             },
-            "body": [["EPM", "A50"], "MAY", "SFD", "BENBO"],
+            "body": [["EPM", "A50"], "MAY"],
+            "exitPoints": {
+                "MAY": ["MAY"]
+            },
             "draw": [["_LONR126D5", "EPM"], ["EPM", "MAY"]]
         },
         "MID": {
@@ -1010,7 +1034,10 @@
                 "27L": ["_LONR241D5", "_MIDR012D15"],
                 "27R": ["_LONR257D5", "_MIDR012D15"]
             },
-            "body": ["MID", "BOGNA", "BENBO"],
+            "body": [],
+            "exitPoints": {
+                "MID": ["MID"]
+            },
             "draw": [["_LONR126D5", "MID"], ["_LONR241D5", "_MIDR012D15"], ["_LONR257D5", "_MIDR012D15", "MID"]]
         }
     },
@@ -1028,6 +1055,12 @@
                 "BIG4B": ["ALESO", "ROTNO", ["ETVAX", "A180"], "TIGER"]
             },
             "body": ["BIG"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
+            },
             "draw": [
                 ["LOGAN", "KOPUL", "TANET", "DET", "BIG"],
                 ["SANDY", "BIG"],
@@ -1049,126 +1082,163 @@
                 "WEALD4B": ["ALESO", "ROTNO", ["ETVAX", "A180"], "TIGER"]
             },
             "body": ["WEALD"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
+            },
             "draw": [
                 ["LOGAN", "KOPUL", "TANET", "DET", "WEALD"],
                 ["SANDY", "WEALD"],
                 ["OCK", "DORKI", "HILLY", "WEALD"],
                 ["DVR", "SANDY", "LYD", "TIGER", "WEALD"],
                 ["LAM", "HILLY"],
-                ["ALESO", "ROTNO", "ETVAX", "TIGER", "WEALD"]]
+                ["ALESO", "ROTNO", "ETVAX", "TIGER", "WEALD"]
+            ]
+        },
+        "BNN": {
+            "icao": "BNN",
+            "name": "Bovingdon",
+            "entryPoints": {
+                "BNN1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
+                "BNN1C": ["DTY", ["WCO", "A160"]],
+                "BNN1D": ["KENET"],
+                "BNN1E": ["LAM", "DONNA"],
+                "BNN4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
             },
-            "BNN": {
-                "icao": "BNN",
-                "name": "Bovingdon",
-                "entryPoints": {
-                    "BNN1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
-                    "BNN1C": ["DTY", ["WCO", "A160"]],
-                    "BNN1D": ["KENET"],
-                    "BNN1E": ["LAM", "DONNA"],
-                    "BNN4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
-                },
-                "body": ["BNN"],
-                "draw": [
-                    ["NUGRA", "TOBID", "SOPIT", "WCO", "BNN"],
-                    ["DTY", "WCO"],
-                    ["KENET", "BNN"],
-                    ["LAM", "DONNA", "BNN"],
-                    ["HON", "TOBID"]
-                ]
+            "body": ["BNN"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
             },
-            "BOVVA": {
-                "_comment_": "In case the BNN VOR is out of service",
-                "icao": "BOVVA",
-                "name": "Bovva",
-                "entryPoints": {
-                    "BOVVA1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
-                    "BOVVA1C": ["DTY", ["WCO", "A160"]],
-                    "BOVVA1D": ["KENET"],
-                    "BOVVA1E": ["LAM", "DONNA"],
-                    "BOVVA4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
-                },
-                "body": ["BOVVA"],
-                "draw": [
-                    ["NUGRA", "TOBID", "SOPIT", "WCO", "BOVVA"],
-                    ["DTY", "WCO"],
-                    ["KENET", "BOVVA"],
-                    ["LAM", "DONNA", "BOVVA"],
-                    ["HON", "TOBID"]
-                ]
+            "draw": [
+                ["NUGRA", "TOBID", "SOPIT", "WCO", "BNN"],
+                ["DTY", "WCO"],
+                ["KENET", "BNN"],
+                ["LAM", "DONNA", "BNN"],
+                ["HON", "TOBID"]
+            ]
+        },
+        "BOVVA": {
+            "_comment_": "In case the BNN VOR is out of service",
+            "icao": "BOVVA",
+            "name": "Bovva",
+            "entryPoints": {
+                "BOVVA1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
+                "BOVVA1C": ["DTY", ["WCO", "A160"]],
+                "BOVVA1D": ["KENET"],
+                "BOVVA1E": ["LAM", "DONNA"],
+                "BOVVA4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
             },
-            "LAM": {
-                "icao": "LAM",
-                "name": "Lambourne Three Alpha",
-                "entryPoints": {
-                    "LAM3A": ["XAMAN", ["LOGAN", "A250"]]
-                },
-                "body": ["TRIPO", ["SABER", "A160"], "BRASO", "LAM"],
-                "draw": [
-                    ["LOGAN", "TRIPO", "SABER", "BRASO", "LAM"]
-                ]
+            "body": ["BOVVA"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
             },
-            "OCK": {
-                "icao": "OCK",
-                "name": "Ockham",
-                "entryPoints": {
-                    "OCK1A": [["KENET", "A140"]],
-                    "OCK1D": ["HON", "WOD"],
-                    "OCK1G": ["LAM", "DORKI"],
-                    "OCK1H": ["BIG", "DORKI"],
-                    "OCK2C": ["SAM", ["HAZEL", "A130"]],
-                    "OCK2F": [["BEDEK", "A140"], "NIGIT"],
-                    "OCK3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
-                    "OCK3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
-                    "OCK4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
-                },
-                "body": ["OCK"],
-                "draw": [
-                    ["KENET", "OCK"],
-                    ["HON", "WOD", "OCK"],
-                    ["BEDEK", "NIGIT", "OCK"],
-                    ["SAM", "HAZEL", "OCK"],
-                    ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
-                    ["BEWLI", "BEGTO"],
-                    ["DOMUT", "KATHY", "HAZEL"],
-                    ["BIG", "DORKI", "OCK"],
-                    ["LAM", "DORKI"]
-                ]
+            "draw": [
+                ["NUGRA", "TOBID", "SOPIT", "WCO", "BOVVA"],
+                ["DTY", "WCO"],
+                ["KENET", "BOVVA"],
+                ["LAM", "DONNA", "BOVVA"],
+                ["HON", "TOBID"]
+            ]
+        },
+        "LAM": {
+            "icao": "LAM",
+            "name": "Lambourne Three Alpha",
+            "entryPoints": {
+                "LAM3A": ["XAMAN", ["LOGAN", "A250"]]
             },
-            "TOMMO": {
-                "_comment__": "In case the OCK VOR is out of service",
-                "icao": "TOMMO",
-                "name": "Tommo",
-                "entryPoints": {
-                    "TOMMO1A": [["KENET", "A140"]],
-                    "TOMMO1D": ["HON", "WOD"],
-                    "TOMMO1G": ["LAM", "HOGBA"],
-                    "TOMMO1H": ["BIG", "HOGBA"],
-                    "TOMMO2C": ["SAM", ["HAZEL", "A130"]],
-                    "TOMMO2F": [["BEDEK", "A140"], "NIGIT"],
-                    "TOMMO3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
-                    "TOMMO3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
-                    "TOMMO4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
-                },
-                "body": ["TOMMO"],
-                "draw": [
-                    ["KENET", "TOMMO"],
-                    ["HON", "WOD", "TOMMO"],
-                    ["BEDEK", "NIGIT", "TOMMO"],
-                    ["SAM", "HAZEL", "TOMMO"],
-                    ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
-                    ["BEWLI", "BEGTO"],
-                    ["DOMUT", "KATHY", "HAZEL"],
-                    ["BIG", "HOGBA", "TOMMO"],
-                    ["LAM", "HOGBA"]
-                ]
-            }
+            "body": ["TRIPO", ["SABER", "A160"], "BRASO", "LAM"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
+            },
+            "draw": [
+                ["LOGAN", "TRIPO", "SABER", "BRASO", "LAM"]
+            ]
+        },
+        "OCK": {
+            "icao": "OCK",
+            "name": "Ockham",
+            "entryPoints": {
+                "OCK1A": [["KENET", "A140"]],
+                "OCK1D": ["HON", "WOD"],
+                "OCK1G": ["LAM", "DORKI"],
+                "OCK1H": ["BIG", "DORKI"],
+                "OCK2C": ["SAM", ["HAZEL", "A130"]],
+                "OCK2F": [["BEDEK", "A140"], "NIGIT"],
+                "OCK3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
+                "OCK3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
+                "OCK4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
+            },
+            "body": ["OCK"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
+            },
+            "draw": [
+                ["KENET", "OCK"],
+                ["HON", "WOD", "OCK"],
+                ["BEDEK", "NIGIT", "OCK"],
+                ["SAM", "HAZEL", "OCK"],
+                ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
+                ["BEWLI", "BEGTO"],
+                ["DOMUT", "KATHY", "HAZEL"],
+                ["BIG", "DORKI", "OCK"],
+                ["LAM", "DORKI"]
+            ]
+        },
+        "TOMMO": {
+            "_comment__": "In case the OCK VOR is out of service",
+            "icao": "TOMMO",
+            "name": "Tommo",
+            "entryPoints": {
+                "TOMMO1A": [["KENET", "A140"]],
+                "TOMMO1D": ["HON", "WOD"],
+                "TOMMO1G": ["LAM", "HOGBA"],
+                "TOMMO1H": ["BIG", "HOGBA"],
+                "TOMMO2C": ["SAM", ["HAZEL", "A130"]],
+                "TOMMO2F": [["BEDEK", "A140"], "NIGIT"],
+                "TOMMO3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
+                "TOMMO3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
+                "TOMMO4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
+            },
+            "body": ["TOMMO"],
+            "rwy": {
+                "09L": [],
+                "09R": [],
+                "27L": [],
+                "27R": []
+            },
+            "draw": [
+                ["KENET", "TOMMO"],
+                ["HON", "WOD", "TOMMO"],
+                ["BEDEK", "NIGIT", "TOMMO"],
+                ["SAM", "HAZEL", "TOMMO"],
+                ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
+                ["BEWLI", "BEGTO"],
+                ["DOMUT", "KATHY", "HAZEL"],
+                ["BIG", "HOGBA", "TOMMO"],
+                ["LAM", "HOGBA"]
+            ]
+        }
         },
         "spawnPatterns": [
             {
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.CPT.CPT",
+                "route": "EGLL.CPT.CPT..KENET..MIMBI",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1236,7 +1306,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.BPK.BPK",
+                "route": "EGLL.BPK.BPK..TOTRI..BRAIN..CLN..ARTOV..REDFA",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1304,7 +1374,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.WOBUN.WOBUN",
+                "route": "EGLL.WOBUN.WOBUN..DTY..HON",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1372,7 +1442,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.DET.DET",
+                "route": "EGLL.DET.DET..DVR..KONAN",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1440,7 +1510,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.GOGSI.GOGSI",
+                "route": "EGLL.GOGSI.GOGSI..SAM",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1508,7 +1578,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.MAY.MAY",
+                "route": "EGLL.MAY.MAY..SFD..BENBO",
                 "altitude": null,
                 "speed": null,
                 "method": "random",
@@ -1576,7 +1646,7 @@
                 "origin": "EGLL",
                 "destination": "",
                 "category": "departure",
-                "route": "EGLL.MID.MID",
+                "route": "EGLL.MID.MID..BOGNA..BENBO",
                 "altitude": null,
                 "speed": null,
                 "method": "random",

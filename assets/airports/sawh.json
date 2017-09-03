@@ -113,7 +113,8 @@
             "body": [["DABLI", "A140|S290"], ["EDPAN", "A100|S250"], ["WH213", "A80|S230"], ["WH214", "A65|S210"], ["AMVUK", "A65|S180"]],
             "rwy": {
                 "25": []
-            }
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns":[
@@ -121,7 +122,7 @@
             "origin": "sawh",
             "destination": "",
             "category": "departure",
-            "route": "SAWH.USU2A.GRA",
+            "route": "SAWH.USU2B.GRA",
             "altitude": "",
             "speed": "",
             "method": "random",

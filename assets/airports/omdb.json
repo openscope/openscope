@@ -168,10 +168,14 @@
             "name": "ANVIX",
             "suffix": {"12L":"1G", "30R":"2F", "12R": "1G", "30L":"2F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB453", "LUBAP", "ANVIX"],
-                "12R": ["_30L", "ASTES", "DB453", "LUBAP", "ANVIX"],
-                "30R": ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"],
-                "30L": ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"]
+                "12L": ["_30R", "ASTES", "DB453", "LUBAP"],
+                "12R": ["_30L", "ASTES", "DB453", "LUBAP"],
+                "30R": ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO"],
+                "30L": ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ANVIX": ["ANVIX"]
             },
             "draw": [
                 ["_30L", "ASTES", "DB453", "LUBAP", "ANVIX"],
@@ -180,16 +184,19 @@
                 ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"]
             ]
         },
-
         "DAVMO": {
             "icao": "DAVMO",
             "name": "DAVMO",
             "suffix": {"12L":"1G", "30R":"1F", "12R":"1G", "30L":"1F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
-                "12R": ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
-                "30R": ["_12L","EMUNI", "DB555", "DB557", "DAVMO"],
-                "30L": ["_12R","EMUNI", "DB555", "DB557", "DAVMO"]
+                "12L": ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL"],
+                "12R": ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL"],
+                "30R": ["_12L","EMUNI", "DB555", "DB557"],
+                "30L": ["_12R","EMUNI", "DB555", "DB557"]
+            },
+            "body": [],
+            "exitPoints": {
+                "DAVMO": ["DAVMO"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
@@ -198,16 +205,19 @@
                 ["_12R", "EMUNI", "DB555", "DB557", "DAVMO"]
             ]
         },
-
         "MIADA": {
             "icao": "MIADA",
             "name": "MIADA",
             "suffix": {"12L":"5G", "30R":"6F", "12R":"5G", "30L":"6F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
-                "30R": ["_12L", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"],
-                "30L": ["_12R", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"]
+                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "30R": ["_12L", "EMUNI", "DEMTO"],
+                "30L": ["_12R", "EMUNI", "DEMTO"]
+            },
+            "body": ["GINLA", "LOTEN"],
+            "exitPoints": {
+                "MIADA": ["MIADA"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
@@ -216,16 +226,19 @@
                 ["_12R", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"]
             ]
         },
-
         "MUVLA": {
             "icao": "MUVLA",
             "name": "MUVLA",
             "suffix": {"12L":"2G", "30R":"2F", "12R":"2G", "30L":"2F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
-                "30R": ["_12L", "EMUNI", "DATAL", "EMOVA", "MUVLA"],
-                "30L": ["_12R", "EMUNI", "DATAL", "EMOVA", "MUVLA"]
+                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "30R": ["_12L", "EMUNI", "DATAL"],
+                "30L": ["_12R", "EMUNI", "DATAL"]
+            },
+            "body": ["EMOVA"],
+            "exitPoints": {
+                "MUVLA": ["MUVLA"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
@@ -234,16 +247,19 @@
                 ["_12R", "EMUNI", "DATAL", "EMOVA", "MUVLA"]
             ]
         },
-
         "NADIL": {
             "icao": "NADIL",
             "name": "NADIL",
             "suffix": {"12L":"1G", "30R":"2F", "12R":"1G", "30L":"2F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
-                "30R": ["_12L", "EMUNI", "DB550", "ALVAV", "NADIL"],
-                "30L": ["_12R", "EMUNI", "DB550", "ALVAV", "NADIL"]
+                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454"],
+                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454"],
+                "30R": ["_12L", "EMUNI", "DB550"],
+                "30L": ["_12R", "EMUNI", "DB550"]
+            },
+            "body": ["ALVAV"],
+            "exitPoints": {
+                "NADIL": ["NADIL"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
@@ -252,16 +268,19 @@
                 ["_12R", "EMUNI", "DB550", "ALVAV", "NADIL"]
             ]
         },
-
         "RIKET": {
             "icao": "RIKET",
             "name": "RIKET",
             "suffix": {"12L":"3G", "30R":"4F", "12R":"3G", "30L":"4F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB423", "ATBID", "RIKET"],
-                "12R": ["_30L", "ASTES", "DB423", "ATBID", "RIKET"],
-                "30R": ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"],
-                "30L": ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"]
+                "12L": ["_30R", "ASTES", "DB423", "ATBID"],
+                "12R": ["_30L", "ASTES", "DB423", "ATBID"],
+                "30R": ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU"],
+                "30L": ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU"]
+            },
+            "body": [],
+            "exitPoints": {
+                "RIKET": ["RIKET"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB423", "ATBID", "RIKET"],
@@ -270,16 +289,19 @@
                 ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"]
             ]
         },
-
         "SITAT": {
             "icao": "SITAT",
             "name": "SITAT",
             "suffix": {"12L":"2G", "30R":"3F", "12R":"2G", "30L":"3F"},
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
-                "30R": ["_12L", "EMUNI", "DEMTO", "GINLA", "SITAT"],
-                "30L": ["_12R", "EMUNI", "DEMTO", "GINLA", "SITAT"]
+                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
+                "30R": ["_12L", "EMUNI", "DEMTO"],
+                "30L": ["_12R", "EMUNI", "DEMTO"]
+            },
+            "body": ["GINLA"],
+            "exitPoints": {
+                "SITAT": ["SITAT"]
             },
             "draw": [
                 ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
@@ -289,6 +311,7 @@
             ]
         }
     },
+    "stars": {},
     "spawnPatterns": [
         {
             "origin": "omdb",

@@ -207,6 +207,7 @@
                 "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "CHISM"],
                 "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "CHISM"]
             },
+            "body": [],
             "exitPoints": {
                 "DSD": ["DSD"],
                 "JOGEN": ["JOGEN"],
@@ -226,10 +227,14 @@
             "icao": "HRMNS5",
             "name": "Hrmns Five",
             "rwy": {
-                "10R": ["RIVRR", "COSUG", "LEZLI", "HRMNS"],
-                "10L": ["RIVRR", "COSUG", "LEZLI", "HRMNS"],
-                "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "HRMNS"],
-                "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "HRMNS"]
+                "10R": ["RIVRR", "COSUG", "LEZLI"],
+                "10L": ["RIVRR", "COSUG", "LEZLI"],
+                "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"],
+                "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"]
+            },
+            "body": [],
+            "exitPoints": {
+                "HRMNS": ["HRMNS"]
             },
             "draw": [
                 ["COSUG", "LEZLI", "HRMNS"],
@@ -245,6 +250,7 @@
                 "28R": ["PEGTY", "KELYY", ["ARUPT", "S250"], "LAVAA"],
                 "28L": ["PEGTY", "KELYY", ["ARUPT", "S250"], "LAVAA"]
             },
+            "body": [],
             "exitPoints": {
                 "YKM": ["YKM"],
                 "PDT": ["PDT"]
@@ -265,6 +271,7 @@
                 "28R": ["PEGTY", "KELYY", "DUDRE", "MINNE"],
                 "28L": ["PEGTY", "KELYY", "DUDRE", "MINNE"]
             },
+            "body": [],
             "exitPoints": {
                 "EASON": ["EASON"],
                 "FAMUK": ["FAMUK"],
@@ -287,6 +294,7 @@
                 "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "WHAMY"],
                 "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "WHAMY"]
             },
+            "body": [],
             "exitPoints": {
                 "IMB": ["IMB"],
                 "RIELY": ["RIELY"],
@@ -311,6 +319,7 @@
                 "21":  ["_21"],
                 "03":  ["_03"]
             },
+            "body": [],
             "exitPoints": {
                 "SEA": ["SEA"],
                 "OLM": ["OLM"],
@@ -340,13 +349,15 @@
                 "RABBI": [["RABBI", "A150|S270"]],
                 "YENTL": [["YENTL", "A150|S270"]]
             },
+            "body": [],
             "rwy": {
                 "10R": [["HHOOD", "A150|S250"], ["BLRUN", "A130"], ["SSDEE", "A90"], ["THEID", "A80"], ["EMZEY", "A70|S230"], ["CIZZL", "A60|S210"], ["YORKY", "A50"], "NNUTT"],
                 "10L": [["HHOOD", "A150|S250"], ["BLRUN", "A130"], ["SSDEE", "A90"], ["THEID", "A80"], ["EMZEY", "A70|S230"], ["CIZZL", "A60|S210"], ["YORKY", "A50"], "NNUTT"],
                 "28R": [["HHOOD", "A110|S250"], ["BLRUN", "A80"], ["SHAFR", "A67|S210"]],
                 "28L": [["HHOOD", "A110|S250"], ["BLRUN", "A80"], ["SHAFR", "A67|S210"]],
                 "21":  [["HHOOD", "A140|S250"], ["BLRUN", "A110"], ["SOOZN", "A80|S210"]]
-            }
+            },
+            "draw": [[]]
         },
         "KRATR2": {
             "icao": "KRATR2",
@@ -362,7 +373,8 @@
                 "28R": [["LIQWD", "A60"], ["SSSUN", "S210"], "SHYNE"],
                 "28L": [["LIQWD", "A60"], ["SSSUN", "S210"], "SHYNE"],
                 "21":  [["BTG", "A70|S210"]]
-            }
+            },
+            "draw": [[]]
         },
         "TMBRS2": {
             "icao": "TMBRS2",
@@ -383,7 +395,8 @@
                 "28R": [["WIDMR", "A50|S210"], "ROAGE", "ICEAX"],
                 "28L": [["WIDMR", "A50|S210"], "ROAGE", "ICEAX"],
                 "21":  [["HHOPZ", "A70|S210"]]
-            }
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns": [
