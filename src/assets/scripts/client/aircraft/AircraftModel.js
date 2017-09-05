@@ -2461,4 +2461,24 @@ export default class AircraftModel {
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
     }
+
+    /**
+     * @for AircraftModel
+     * @method assignedAttainableAltitude
+     * @param nextAltitude
+     * @return {Boolean}
+     */
+    assignedAttainableAltitude(nextAltitude) {
+         return nextAltitude < this.model.ceiling;
+    }
+
+    /**
+     * @for AircraftModel
+     * @method assignedAttainableSpeed
+     * @param nextSpeed
+     * @return {Boolean}
+     */
+    assignedAttainableSpeed(nextSpeed) {
+         return nextSpeed > this.model.speed.min && nextSpeed < this.model.speed.max;
+    }
 }
