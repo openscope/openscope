@@ -8,8 +8,15 @@ import {
     COMMAND_FUNCTIONS
 } from './scopeCommandMap';
 
+// FIXME: Remove dummy sector codes
 const SECTOR_HANDOFF_CODES = ['18', '19', '10', '12'];
 
+/**
+ * A command to be interpreted by the scope itself
+ * Used for manipulation of the display and other ATC tasks
+ *
+ * @class ScopeCommand
+ */
 export default class ScopeCommand {
     constructor(command) {
         this.aircraftReference = '';
