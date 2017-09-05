@@ -237,7 +237,7 @@ export default class CanvasController {
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
 
-        if (this.canvas.dirty || (!GameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < GameController.getGameOption(GAME_OPTION_NAMES.RADAR_UPDATE_DELAY)) {
+        if (this.canvas.dirty || (!GameController.game_paused() && prop.time.frames % framestep === 0) || elapsed > GameController.getGameOption(GAME_OPTION_NAMES.RADAR_UPDATE_DELAY)) {
             const cc = this.canvas_get('navaids');
             const fading = elapsed < 1;
 
