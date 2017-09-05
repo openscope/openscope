@@ -35,7 +35,7 @@ export default class InputController {
      * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
      *                                               that can be used to select a specific `stripViewModel`.
      */
-    constructor($element, aircraftCommander, aircraftController, tutorialView) {
+    constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
@@ -45,6 +45,7 @@ export default class InputController {
         this._eventBus = EventBus;
         this._aircraftCommander = aircraftCommander;
         this._aircraftController = aircraftController;
+        this._scopeModel = scopeModel;
         this._tutorialView = tutorialView;
 
 
@@ -628,8 +629,9 @@ export default class InputController {
             throw error;
         }
 
-        // FIXME: REMOVE!
-        console.log(scopeCommandModel);
+        const [successful, response] = this._scopeModel.runScopeCommand(scopeCommandModel);
+
+        UiController.ui_log(response, !successful);
     }
 
     /**
