@@ -5,6 +5,7 @@
 
 
 ### Bugfixes
+- Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
 
 
 
@@ -17,6 +18,7 @@
 ---
 ### Hotfix
 - Fix WIP airports which fail to load due to improper procedure formatting [#327](https://github.com/openscope/openscope/issues/327)
+
 
 
 ## 5.4.0 (September 1, 2017)
