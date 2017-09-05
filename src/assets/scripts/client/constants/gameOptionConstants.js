@@ -15,7 +15,8 @@ export const GAME_OPTION_NAMES = {
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
-    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator'
+    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
+    RADAR_UPDATE_DELAY: 'radarUpdateDelay'
 };
 
 /**
@@ -167,6 +168,36 @@ export const GAME_OPTION_VALUES = [
             {
                 displayLabel: 'No',
                 value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.RADAR_UPDATE_DELAY,
+        defaultValue: '4.5',
+        description: 'Delay Radar Screen Updates',
+        help: 'Sets how long the radar screen should wait to refresh.',
+        type: 'select',
+        onChangeEventHandler: null,
+        optionList: [
+            {
+                label: '1sec',
+                value: '1'
+            },
+            {
+                label: '2sec',
+                value: '2'
+            },
+            {
+                label: '3sec',
+                value: '3'
+            },
+            {
+                label: '4.5sec',
+                value: '4.5'
+            },
+            {
+                label: '5sec',
+                value: 5
             }
         ]
     }
