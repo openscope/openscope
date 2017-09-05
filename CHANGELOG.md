@@ -1,6 +1,7 @@
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
+Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 
 
 
@@ -16,7 +17,6 @@
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
 - Stops `console.warn()` spam every frame if terrain is less than zero [#695](https://github.com/openscope/openscope/issues/695)
 - Adds `localStorage.setItem()` to `GameOptions.setOptionByName()` and adds test file for `GameOptions` [#670](https://github.com/openscope/openscope/issues/670)
-- Add `sh`, `sah`, `sa`, `saa`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 
 
 
