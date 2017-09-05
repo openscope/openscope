@@ -589,8 +589,9 @@ export default class AircraftCommander {
      */
     runSayAssignedHeading(aircraft) {
         if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            return [false, `we haven't been assigned a heading`];
+            return [false, 'we haven\'t been assigned a heading'];
         }
+
         const heading = _round(radiansToDegrees(aircraft.mcp.heading));
         const readback = {};
 
@@ -624,7 +625,7 @@ export default class AircraftCommander {
      */
     runSayAssignedSpeed(aircraft) {
         if(this.speedMode !== MCP_MODE.SPEED.HOLD) {
-            return [false, `we haven't been assigned a speed`];
+            return [false, 'we haven\'t been assigned a speed'];
         }
 
         const speed = _round(aircraft.mcp.speed);
@@ -633,7 +634,7 @@ export default class AircraftCommander {
         readback.log = `assigned ${speed} knots`;
         readback.say = `assigned ${radio_spellOut(speed)} knots}`;
 
-        return [true, `assigned speed ${speed}`];
+        return [true, readback];
     }
 
     /**
