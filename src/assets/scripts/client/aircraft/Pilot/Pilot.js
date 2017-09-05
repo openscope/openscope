@@ -134,19 +134,19 @@ export default class Pilot {
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
         const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
-        
+
         if (expedite) {
             // including space here so when expedite is false there isnt an extra space after altitude
             expediteReadback = ' and expedite';
 
             this.shouldExpediteAltitudeChange();
         }
-        
+
         const readback = {};
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
-        if (!aircraftModel.model.isAttainableAltitude(altitude)) {
+        if (!aircraftModel.isAttainableAltitude(altitude)) {
             readback.log = `unable to maintain ${readbackAltitude} due to performance limits`;
             readback.say = `unable to maintain ${altitudeVerbal} due to performance limits`;
 
@@ -242,7 +242,7 @@ export default class Pilot {
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
         
-        if (!aircraftModel.model.isAttainableSpeed(speed)) {
+        if (!aircraftModel.isAttainableSpeed(speed)) {
             readback.log = `unable to maintain ${speed} due to performance limits`;
             readback.say = `unable to maintain ${radio_spellOut(speed)} due to performance limits`;
 
