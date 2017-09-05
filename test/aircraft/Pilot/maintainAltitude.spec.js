@@ -1,4 +1,4 @@
-﻿/* eslint-disable max-len */
+/* eslint-disable max-len */
 import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
@@ -154,14 +154,14 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
 
 ava('.maintainAltitude() returns a warning when assigning aircraft altitude above its ceiling', (t) => {
     const currentAltitudeMock = 5000;
-    const invalidAltitudeMock = 100000;
+    const invalidAltitudeMock = 90000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const expectedResult = [
         false,
         {
-            log: 'unable to maintain 100000 due to performance limits',
-            say: 'unable to maintain flight level one zero zero zero due to performance limits'
+            log: 'unable to maintain 90000 due to performance limits',
+            say: 'unable to maintain flight level niner zero zero due to performance limits'
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
