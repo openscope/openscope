@@ -1,5 +1,6 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import UiController from '../UiController';
