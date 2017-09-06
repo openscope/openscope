@@ -104,7 +104,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is true', (t) => {
     const currentAltitudeMock = 5000;
-    const nextAltitudeMock = 41000;
+    const nextAltitudeMock = 19000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
