@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _round from 'lodash/round'
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
@@ -448,7 +449,7 @@ export default class StripViewModel extends BaseModel {
         this.$aircraftTypeView.text(this._aircraftType);
         this.$cidView.text(this.cid);
         this.$transponderView.text(this._transponder);
-        this.$assignedAltitudeView.text(this._assignedAltitude);
+        this.$assignedAltitudeView.text(_round(this._assignedAltitude));
         this.$flightPlanAltitudeView.text(this._flightPlanAltitude);
         this.$departureAirportView.text(this._departureAirport);
         this.$arrivalAirportView.text(this._arrivalAirport);
