@@ -6,6 +6,7 @@
 
 ### Bugfixes
 - Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
+- Fix the command bar displaying a '?' when the up or down arrow is pressed [#685](https://github.com/openscope/openscope/issues/685)
 
 
 
