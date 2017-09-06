@@ -11,7 +11,7 @@ import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
 const currentSpeedMock = 320;
 const cruiseSpeedMock = 460;
-const invalidSpeedMock = 520;
+const invalidSpeedMock = 530;
 const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
@@ -40,8 +40,8 @@ ava('.maintainSpeed() returns a warning when assigned an unreachable speed', (t)
     const expectedResult = [
         false,
         {
-            log: 'unable to maintain 520 due to performance limits',
-            say: 'unable to maintain five two zero due to performance limits'
+            log: 'unable to maintain 530 due to performance limits',
+            say: 'unable to maintain five three zero due to performance limits'
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
