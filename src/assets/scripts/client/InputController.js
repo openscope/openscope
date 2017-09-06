@@ -484,7 +484,7 @@ export default class InputController {
                 break;
             case KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B61 `);
+                    this.$commandInput.val(`${currentCommandInputValue} altitude `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -505,7 +505,7 @@ export default class InputController {
                 break;
             case KEY_CODES.DOWN_ARROW:
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B63 `);
+                    this.$commandInput.val(`${currentCommandInputValue} altitude `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
