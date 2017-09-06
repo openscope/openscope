@@ -536,12 +536,10 @@ export default class AircraftCommander {
         const altitude = _round(aircraft.altitude, -2);
         const isClimbingOrDescending = aircraft.trend !== 0;
         const readback = {};
-        let altitudeChangeString = '';
+        let altitudeChangeString = 'at ';
 
         if (isClimbingOrDescending) {
             altitudeChangeString = 'leaving ';
-        } else {
-            altitudeChangeString = 'at ';
         }
 
         readback.log = `${altitudeChangeString}${altitude}`;
@@ -625,7 +623,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayAssignedSpeed(aircraft) {
-        if(this.speedMode !== MCP_MODE.SPEED.HOLD) {
+        if (this.speedMode !== MCP_MODE.SPEED.HOLD) {
             return [false, 'we haven\'t been assigned a speed'];
         }
 
