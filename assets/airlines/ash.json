@@ -1,0 +1,16 @@
+{
+    "icao": "ash",
+    "name": "Mesa Airlines",
+    "callsign": {
+        "name": "Air Shuttle",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2",  1],
+            ["CRJ7", 20],
+            ["CRJ9", 64],
+            ["E170", 48]
+        ]
+    }
+}

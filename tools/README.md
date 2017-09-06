@@ -20,7 +20,6 @@ Folders are organized with the following main folders:
 - src
 - test
 - tools
-index.html
 Gulpfile.js
 ```
 

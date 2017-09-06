@@ -45,6 +45,14 @@ ava('#elevation returns #airportPositionModel.elevation if #_positionModel.eleva
     t.true(model.elevation === model.airportPositionModel.elevation);
 });
 
+ava('#oppositeAngle returns opposite of runway heading', (t) => {
+    const runwayModel = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const result = runwayModel.oppositeAngle;
+    const expectedResult = 3.9758603503842274;
+
+    t.true(result === expectedResult);
+});
+
 ava('.addAircraftToQueue() adds an aircraft#id to the queue', (t) => {
     const aircraftIdMock = 'aircraft-221';
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);

@@ -1,3 +1,5 @@
+import { EVENT } from './eventNames';
+
 /* eslint-disable max-len, import/prefer-default-export */
 /**
  * Name enumeration of available game options
@@ -7,8 +9,9 @@
  * @final
  */
 export const GAME_OPTION_NAMES = {
+    THEME: 'theme',
     CONTROL_METHOD: 'controlMethod',
-    PTL_LENGTH: 'ptlLength',
+    PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
@@ -26,10 +29,28 @@ export const GAME_OPTION_NAMES = {
  */
 export const GAME_OPTION_VALUES = [
     {
+        name: GAME_OPTION_NAMES.THEME,
+        defaultValue: 'DEFAULT',
+        description: 'Scope Theme',
+        type: 'select',
+        onChangeEventHandler: EVENT.SET_THEME,
+        optionList: [
+            {
+                displayLabel: 'Classic',
+                value: 'CLASSIC'
+            },
+            {
+                displayLabel: 'Default',
+                value: 'DEFAULT'
+            }
+        ]
+    },
+    {
         name: GAME_OPTION_NAMES.CONTROL_METHOD,
         defaultValue: 'classic',
         description: 'Control Method',
         type: 'select',
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Classic',
@@ -42,11 +63,38 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.PTL_LENGTH,
-        defaultValue: '1',
+        name: GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR,
+        defaultValue: 'from-theme',
+        description: 'Show trailing separation indicator on ILS',
+        help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
+        type: 'select',
+        onChangeEventHandler: null,
+        optionList: [
+            {
+                displayLabel: 'From Theme',
+                value: 'from-theme'
+            },
+            {
+                displayLabel: 'Yes',
+                value: 'yes'
+            },
+            {
+                displayLabel: 'No',
+                value: 'no'
+            }
+        ]
+    },
+    {
+        name: GAME_OPTION_NAMES.PROJECTED_TRACK_LINE_LENGTH,
+        defaultValue: 'from-theme',
         description: 'Projected Track Line (PTL)',
         type: 'select',
+        onChangeEventHandler: null,
         optionList: [
+            {
+                displayLabel: 'From Theme',
+                value: 'from-theme'
+            },
             {
                 displayLabel: 'Off',
                 value: 0
@@ -70,6 +118,7 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'selected',
         description: 'Draw aircraft projected path',
         type: 'select',
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Always',
@@ -91,6 +140,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
         type: 'select',
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Yes',
@@ -108,23 +158,7 @@ export const GAME_OPTION_VALUES = [
         description: 'Include WIP Airports',
         help: 'Will include all available airports including those marked as Work In Progress.',
         type: 'select',
-        optionList: [
-            {
-                displayLabel: 'Yes',
-                value: 'yes'
-            },
-            {
-                displayLabel: 'No',
-                value: 'no'
-            }
-        ]
-    },
-    {
-        name: GAME_OPTION_NAMES.DRAW_ILS_DISTANCE_SEPARATOR,
-        defaultValue: 'yes',
-        description: 'Draw distance separator on ILS',
-        help: 'Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing',
-        type: 'select',
+        onChangeEventHandler: null,
         optionList: [
             {
                 displayLabel: 'Yes',

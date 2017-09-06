@@ -11,6 +11,7 @@ module.exports = function(gulp, config) {
     // minified css file
     ////////////////////////////////////////////////////////////////////
     function buildStyles() {
+        const less = require('gulp-less');
         const sourcemaps = require('gulp-sourcemaps');
         const minifyCss = require('gulp-minify-css');
         const concat = require('gulp-concat');
@@ -18,27 +19,25 @@ module.exports = function(gulp, config) {
 
         return gulp.src(OPTIONS.FILE.CSS_MAIN)
             .pipe(sourcemaps.init())
-            .pipe(minifyCss())
+            .pipe(less())
             .pipe(autoprefixer(
                 'last 2 version',
                 'safari 5',
                 'ie 8',
                 'ie 9'
             ))
+            .pipe(minifyCss())
             .pipe(concat('main.min.css'))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
     }
 
-    gulp.task('minify-css', () => buildStyles());
-
-
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    gulp.task('build:styles', ['minify-css']);
+    gulp.task('build:styles', () => buildStyles());
 
-    gulp.task('watch:styles', function() {
-        gulp.watch(OPTIONS.GLOB.CSS, ['minify-css',]);
+    gulp.task('watch:styles', () => {
+        gulp.watch(OPTIONS.GLOB.LESS, ['build:styles',]);
     });
 };

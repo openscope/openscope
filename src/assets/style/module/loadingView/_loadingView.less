@@ -1,0 +1,71 @@
+.loadingView {
+    /* using absolute and 0s to force full screen cover when loading screen is active */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0d1b1e;
+    color: #dddddd;
+    z-index: 1500;
+}
+
+.loadingViewMedia {
+    width: 500px;
+    overflow: hidden;
+}
+
+.loadingViewMedia-figure {
+    float: left;
+    margin-right: 50px;
+}
+
+.loadingViewMedia-content {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.loadingViewMedia-content > * + * {
+    margin-top: 5px;
+}
+
+.loadingViewMedia-hd {
+    padding-bottom: 5px;
+}
+
+.loadingViewMedia-bd {
+    color: #a3e3e8;
+    font-size: 80%;
+}
+
+.loadingViewMedia-ft {
+    padding-top: 10px;
+    color: #888888;
+    font-size: 70%;
+}
+
+.loadingView-dot {
+    opacity: 0;
+    animation: showHideDot 1s ease-in-out infinite;
+}
+
+.loadingView-dot_one {
+    animation-delay: 0.1s;
+}
+
+.loadingView-dot_two {
+    margin-left: -2px;
+    animation-delay: 0.2s;
+}
+
+.loadingView-dot_three {
+    margin-left: -2px;
+    animation-delay: 0.3s;
+}
+
+@keyframes showHideDot {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  60% { opacity: 1; }
+  100% { opacity: 0; }
+}

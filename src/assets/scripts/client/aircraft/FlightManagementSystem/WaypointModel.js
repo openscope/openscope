@@ -368,6 +368,32 @@ export default class WaypointModel {
     }
 
     /**
+     * Check for a maximum altitude restriction below the given altitude
+     *
+     * @for WaypointModel
+     * @method hasMaximumAltitudeBelow
+     * @param altitude {number} in feet
+     * @return {boolean}
+     */
+    hasMaximumAltitudeBelow(altitude) {
+        return this.altitudeMaximum !== INVALID_NUMBER
+            && this.altitudeMaximum < altitude;
+    }
+
+    /**
+     * Check for a minimum altitude restriction above the given altitude
+     *
+     * @for WaypointModel
+     * @method hasMinimumAltitudeAbove
+     * @param altitude {number} in feet
+     * @return {boolean}
+     */
+    hasMinimumAltitudeAbove(altitude) {
+        return this.altitudeMinimum !== INVALID_NUMBER
+            && this.altitudeMinimum > altitude;
+    }
+
+    /**
      * Add hold-specific properties to an existing `WaypointModel` instance
      *
      * @for WaypointModel

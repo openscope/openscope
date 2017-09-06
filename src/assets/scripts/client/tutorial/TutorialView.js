@@ -511,17 +511,6 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Aborting landings',
-            text: ['If the aircraft is established on the ILS, it should be able to land on the runway. However, say there&rsquo;s another',
-                   'aircraft that&rsquo;s planning to take off from the same runway. To abort the landing, use the command &lsquo;abort&rsquo;.',
-                   '(If the aircraft is navigating to a fix, the &lsquo;abort&rsquo; command will clear the fix instead.)'
-               ].join(' '),
-            parse: (v) => v,
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
             title: 'Wind sock',
             text: ['In the lower right corner of the map is a small circle with a line. It\'s like a flag: the line trails in the direction',
                    'the wind is blowing toward. If it&rsquo;s pointing straight down, the wind is blowing from the North',

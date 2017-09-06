@@ -1,0 +1,35 @@
+#log {
+    position: absolute;
+    right: @strip-view-open-width;
+    left: 0;
+    bottom: @command-bar-height;
+    font-size: 80%;
+    pointer-events: none;
+}
+
+#log .item {
+    padding: 3px 5px;
+    display: block;
+    color: @light-gray;
+    opacity: 0.8;
+    transition: opacity 10s ease;
+}
+
+#log .item.warn {
+    color: @red;
+    opacity: 1;
+}
+
+#log .item.hidden {
+    opacity: 0;
+}
+
+#log .from {
+    display: inline-block;
+}
+
+#log .from:after {
+    margin-right: 0.4em;
+    display: inline-block;
+    content: ":";
+}
