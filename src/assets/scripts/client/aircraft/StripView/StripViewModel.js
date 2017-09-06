@@ -361,7 +361,7 @@ export default class StripViewModel extends BaseModel {
         this._callsign = callsign;
         this._transponder = transponderCode;
         this._aircraftType = icaoWithWeightClass;
-        this._assignedAltitude = assignedAltitude;
+        this._assignedAltitude = _round(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
@@ -432,7 +432,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Update teh view with new data
+     * Update the view with new data
      *
      * This method will be run on instantiation to initialize the view with data,
      * and will be run again any time updatable data has changed.
@@ -440,8 +440,10 @@ export default class StripViewModel extends BaseModel {
      * After instantiation, this method should only be run after `._shouldUpdate()`
      * has returned true.
      *
+     * Logic should not go here; instead, put it in the `_init()` and `updateStripView()`.
+     *
      * @for StripViewModel
-     * @method _render
+     * @method _redraw
      * @chainable
      */
     _redraw() {
@@ -449,7 +451,7 @@ export default class StripViewModel extends BaseModel {
         this.$aircraftTypeView.text(this._aircraftType);
         this.$cidView.text(this.cid);
         this.$transponderView.text(this._transponder);
-        this.$assignedAltitudeView.text(_round(this._assignedAltitude));
+        this.$assignedAltitudeView.text(this._assignedAltitude);
         this.$flightPlanAltitudeView.text(this._flightPlanAltitude);
         this.$departureAirportView.text(this._departureAirport);
         this.$arrivalAirportView.text(this._arrivalAirport);
@@ -682,7 +684,7 @@ export default class StripViewModel extends BaseModel {
 
         this.insideCenter = insideCenter;
         this._transponder = transponderCode;
-        this._assignedAltitude = assignedAltitude;
+        this._assignedAltitude = _round(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
