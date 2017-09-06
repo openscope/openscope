@@ -5,6 +5,7 @@
 
 
 ### Bugfixes
+- Fix the `StripView` being oddly specific [#623](https://github.com/openscope/openscope/issues/623)
 
 
 
