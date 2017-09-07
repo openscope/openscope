@@ -7,6 +7,8 @@ import { LOG } from './constants/logLevel';
 
 window.zlsa = {};
 window.zlsa.atc = {};
+
+// TODO: KILL THE PROP!
 const prop = {};
 
 // IIEFs are pulled in here to add functions to the global space.
@@ -14,9 +16,6 @@ const prop = {};
 // This will need to be re-worked, and current global functions should be exported and
 // imported as needed in each file.
 require('./util');
-
-// Used to display the version number in the console
-const VERSION = '5.3.0-BETA';
 
 // are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
@@ -47,7 +46,6 @@ export default class App {
 
         this.prop = prop;
         this.prop.complete = false;
-        this.prop.version = VERSION;
         this.prop.time = {};
         this.prop.time.start = time();
         this.prop.time.frames = 0;
@@ -145,11 +143,9 @@ export default class App {
      * @method enable
      */
     enable() {
-        console.info(`openScope Air Traffic Control Simulator, Version v${this.prop.version}`);
-
         return this.init_pre()
-                   .init()
-                   .done();
+            .init()
+            .done();
     }
 
     /**

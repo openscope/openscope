@@ -19,6 +19,7 @@ import {
 } from '../math/core';
 import {
     positive_intersection_with_rect,
+    vadd,
     vectorize_2d,
     vscale
 } from '../math/vector';
@@ -37,8 +38,7 @@ import {
     BASE_CANVAS_FONT,
     DEFAULT_CANVAS_SIZE
 } from '../constants/canvasConstants';
-import { COLOR } from '../constants/colors/colors';
-import { THEME } from '../constants/colors/themes';
+import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
     INVALID_INDEX,
@@ -81,9 +81,9 @@ export default class CanvasController {
         };
         this.canvas.last = time();
         this.canvas.dirty = true;
-        this.canvas.draw_labels = true;
-        this.canvas.draw_restricted = true;
-        this.canvas.draw_sids = true;
+        this.canvas.draw_labels = false;
+        this.canvas.draw_restricted = false;
+        this.canvas.draw_sids = false;
         this.canvas.draw_terrain = true;
 
         this.theme = THEME.DEFAULT;
@@ -106,6 +106,7 @@ export default class CanvasController {
      */
     enable() {
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         return this;
     }
@@ -138,9 +139,9 @@ export default class CanvasController {
         };
         this.canvas.last = time();
         this.canvas.dirty = true;
-        this.canvas.draw_labels = true;
-        this.canvas.draw_restricted = true;
-        this.canvas.draw_sids = true;
+        this.canvas.draw_labels = false;
+        this.canvas.draw_restricted = false;
+        this.canvas.draw_sids = false;
         this.canvas.draw_terrain = true;
 
         return this;
@@ -247,13 +248,13 @@ export default class CanvasController {
                 cc.save();
 
                 this.canvas_clear(cc);
-
+                this.canvas_fill_background(cc);
                 cc.translate(
                     calculateMiddle(this.canvas.size.width),
                     calculateMiddle(this.canvas.size.height)
                 );
-
                 cc.save();
+
                 cc.globalAlpha = alpha;
 
                 this.canvas_draw_videoMap(cc);
@@ -263,12 +264,12 @@ export default class CanvasController {
                 cc.restore();
 
                 cc.save();
+
                 cc.globalAlpha = alpha;
+
                 this.canvas_draw_fixes(cc);
                 this.canvas_draw_sids(cc);
                 cc.restore();
-
-
                 cc.restore();
             }
 
@@ -369,7 +370,6 @@ export default class CanvasController {
         this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
 
-
     /**
      * @for CanvasController
      * @method canvas_get
@@ -404,6 +404,19 @@ export default class CanvasController {
     }
 
     /**
+     * Fill entire scope with the background color specified in the current theme
+     *
+     * @for CanvasController
+     * @method canvas_fill_background
+     * @param cc {Object} HTML5 canvas context
+     */
+    canvas_fill_background(cc) {
+        cc.fillStyle = this.theme.SCOPE.BACKGROUND;
+
+        cc.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
+    }
+
+    /**
      * @for CanvasController
      * @method canvas_draw_runway
      * @param cc
@@ -435,7 +448,7 @@ export default class CanvasController {
                 return;
             }
 
-            cc.strokeStyle = this.theme.RUNWAY_EXTENDED_CENTERLINE;
+            cc.strokeStyle = this.theme.SCOPE.RUNWAY_EXTENDED_CENTERLINE;
             cc.lineWidth = 1;
 
             cc.beginPath();
@@ -489,8 +502,8 @@ export default class CanvasController {
             return;
         }
 
-        cc.strokeStyle = this.theme.RUNWAY;
-        cc.fillStyle = this.theme.RUNWAY;
+        cc.strokeStyle = this.theme.SCOPE.RUNWAY;
+        cc.fillStyle = this.theme.SCOPE.RUNWAY;
         cc.lineWidth = 4;
 
         const airport = AirportController.airport_get();
@@ -524,9 +537,10 @@ export default class CanvasController {
             return;
         }
 
-        cc.fillStyle = this.theme.RUNWAY_LABELS;
-
         const airport = AirportController.airport_get();
+
+        cc.fillStyle = this.theme.SCOPE.RUNWAY_LABELS;
+
         for (let i = 0; i < airport.runways.length; i++) {
             cc.save();
             this.canvas_draw_runway_label(cc, airport.runways[i][0]);
@@ -543,8 +557,8 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_scale(cc) {
-        cc.fillStyle = this.theme.TOP_ROW_TEXT;
-        cc.strokeStyle = this.theme.TOP_ROW_TEXT;
+        cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
+        cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
 
         const x_offset = 20;
         const y_offset = 10;
@@ -575,17 +589,20 @@ export default class CanvasController {
      * @method canvas_draw_fix
      * @param cc
      * @param name
-     * @param fix
      */
-    canvas_draw_fix(cc, name, fix) {
+    canvas_draw_fix(cc, name) {
+        cc.fillStyle = this.theme.SCOPE.FIX_FILL;
+        cc.globalCompositeOperation = 'source-over';
+        cc.lineWidth = 1;
+
         cc.beginPath();
         cc.moveTo(0, -5);
         cc.lineTo(4, 3);
         cc.lineTo(-4, 3);
         cc.closePath();
         cc.fill();
-        // cc.stroke();
 
+        cc.fillStyle = this.theme.SCOPE.FIX_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
         cc.fillText(name, 0, 6);
@@ -604,21 +621,17 @@ export default class CanvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        _forEach(this._navigationLibrary.realFixes, (fix, i) => {
+        for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
+            const fix = this._navigationLibrary.realFixes[i];
+
             cc.save();
             cc.translate(
                 round(UiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX,
                 -round(UiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
             );
-
-            cc.fillStyle = this.theme.FIX_FILL;
-            cc.globalCompositeOperation = 'source-over';
-            cc.lineWidth = 1;
-
-            this.canvas_draw_fix(cc, fix.name, fix.relativePosition);
-
+            this.canvas_draw_fix(cc, fix.name);
             cc.restore();
-        });
+        }
     }
 
     // TODO: break this method up into smaller chunks
@@ -635,8 +648,8 @@ export default class CanvasController {
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
 
-        cc.strokeStyle = this.theme.SID;
-        cc.fillStyle = this.theme.SID;
+        cc.strokeStyle = this.theme.SCOPE.SID;
+        cc.fillStyle = this.theme.SCOPE.SID;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -710,14 +723,18 @@ export default class CanvasController {
      * @param aircraft
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        if (!GameController.shouldUseTrailingSeparator(aircraft)) {
+        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft)) {
             return;
         }
 
         const runway = aircraft.fms.currentRunway;
-        const oppositeOfRunwayHeading = runway.angle + Math.PI;
+        const oppositeOfRunwayHeading = runway.oppositeAngle;
 
-        cc.strokeStyle = this.theme.TRAILING_SEPARATION_INDICATOR;
+        if (!this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED) {
+            return;
+        }
+
+        cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
         cc.translate(
             UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
@@ -744,10 +761,10 @@ export default class CanvasController {
         if (aircraftAlerts[0]) {
             if (aircraftAlerts[1]) {
                 // red violation circle
-                cc.strokeStyle = this.theme.RING_VIOLATION;
+                cc.strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
             } else {
                 // white warning circle
-                cc.strokeStyle = this.theme.RING_CONFLICT;
+                cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
             }
         } else {
             cc.strokeStyle = cc.fillStyle;
@@ -768,16 +785,6 @@ export default class CanvasController {
     canvas_draw_aircraft(cc, aircraft) {
         let match = false;
 
-        // TODO: this does not appear to be in use, verify and remove
-        // let almost_match = false;
-        //
-        // if (
-        //     prop.input.callsign.length > 1 &&
-        //     aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))
-        // ) {
-        //     almost_match = true;
-        // }
-
         if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
             match = true;
         }
@@ -786,9 +793,8 @@ export default class CanvasController {
             return;
         }
 
-        const size = 3;
         // Trailling
-        let trailling_length = 12;
+        let trailling_length = this.theme.RADAR_TARGET.HISTORY_LENGTH;
         const dpr = window.devicePixelRatio || 1;
 
         if (dpr > 1) {
@@ -798,33 +804,36 @@ export default class CanvasController {
         cc.save();
 
         if (!aircraft.inside_ctr) {
-            cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
+            cc.fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
         } else {
-            cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
+            cc.fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
         }
 
-        const length = aircraft.relativePositionHistory.length;
-        for (let i = 0; i < length; i++) {
-            let alpha = 1 / (length - i);
+        const positionHistory = aircraft.relativePositionHistory;
 
-            if (!aircraft.inside_ctr) {
-                alpha = 0.3 / (length - i);
-            }
+        for (let i = 0; i < positionHistory.length; i++) {
+            const position = aircraft.relativePositionHistory[i];
 
-            cc.globalAlpha = alpha;
-            cc.fillRect(
-                UiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
-                -UiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
-                2,
-                2
+            cc.beginPath();
+            cc.arc(
+                UiController.km_to_px(position[0]) + this.canvas.panX,
+                UiController.km_to_px(-position[1]) + this.canvas.panY,
+                UiController.km_to_px(this.theme.RADAR_TARGET.HISTORY_DOT_RADIUS_KM),
+                0,
+                tau()
             );
+            cc.closePath();
+            cc.fill();
         }
 
         cc.restore();
 
-        if (aircraft.relativePositionHistory.length > trailling_length) {
-            aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(
-                aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length
+        if (positionHistory.length > trailling_length) {
+            // TODO: This slice is being reassigned to the aircraft, which doesn't really
+            // make sense as a canvas controller job. This should be done elsewhere.
+            aircraft.relativePositionHistory = positionHistory.slice(
+                positionHistory.length - trailling_length,
+                positionHistory.length
             );
         }
 
@@ -837,40 +846,14 @@ export default class CanvasController {
         // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
         // Aircraft
         // Draw the future path
-        if ((GameController.game.option.get('drawProjectedPaths') === 'always') ||
-          ((GameController.game.option.get('drawProjectedPaths') === 'selected') &&
+        if ((GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') ||
+          ((GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected') &&
            ((aircraft.warning || match) && !aircraft.isTaxiing()))
         ) {
             this.canvas_draw_future_track(cc, aircraft);
         }
 
         const alerts = aircraft.hasAlerts();
-
-        cc.strokeStyle = cc.fillStyle;
-
-        if (match) {
-            cc.save();
-
-            if (!aircraft.inside_ctr) {
-                cc.fillStyle = this.theme.RADAR_TARGET_OUTSIDE_RANGE;
-            } else {
-                cc.fillStyle = this.theme.RADAR_TARGET_IN_RANGE;
-            }
-
-            const w = this.canvas.size.width / 2;
-            const h = this.canvas.size.height / 2;
-
-            cc.translate(
-                clamp(-w, UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX, w),
-                clamp(-h, -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY, h)
-            );
-
-            cc.beginPath();
-            cc.arc(0, 0, round(size * 1.5), 0, tau());
-            cc.fill();
-
-            cc.restore();
-        }
 
         cc.translate(
             UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
@@ -883,8 +866,17 @@ export default class CanvasController {
             this.canvas_draw_aircraft_rings(cc, aircraft);
         }
 
+        let radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_KM;
+
+        // Draw bigger circle around radar target when the aircraft is selected
+        if (match) {
+            radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_SELECTED_KM;
+        }
+
+        // Draw the radar target (aka aircraft position dot)
+        cc.fillStyle = this.theme.RADAR_TARGET.RADAR_TARGET;
         cc.beginPath();
-        cc.arc(0, 0, size, 0, tau());
+        cc.arc(0, 0, UiController.km_to_px(radarTargetRadiusKm), 0, tau());
         cc.fill();
     }
 
@@ -902,10 +894,11 @@ export default class CanvasController {
         if (aircraft.hit) {
             return;
         }
+
         cc.save();
 
-        cc.fillStyle = this.theme.PROJECTED_TRACK_LINES;
-        cc.strokeStyle = this.theme.PROJECTED_TRACK_LINES;
+        cc.fillStyle = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINES;
+        cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTED_TRACK_LINES;
 
         const ptlLengthMultiplier = GameController.getPtlLength();
         const lineLengthInHours = ptlLengthMultiplier * TIME.ONE_MINUTE_IN_HOURS;
@@ -922,6 +915,7 @@ export default class CanvasController {
         cc.restore();
     }
 
+    // TODO: This is currently not working correctly and not in use
     /**
      * Draw dashed line from last coordinate of future track through
      * any later requested fixes.
@@ -933,32 +927,28 @@ export default class CanvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
-        // this is currently not working correctly and not in use
-        return;
-
-        const waypointList = aircraft.fms.waypoints;
-
-        if (waypointList.length <= 1) {
-            return;
-        }
-k
-        const start = future_track.length - 1;
-        const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
-        const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
-
-        cc.beginPath();
-        cc.moveTo(x, y);
-        cc.setLineDash([3, 10]);
-
-        for (let i = 0; i < waypointList.length; i++) {
-            const [x, y] = waypointList[i].relativePosition;
-            const fx = UiController.km_to_px(x) + this.canvas.panX;
-            const fy = -UiController.km_to_px(y) + this.canvas.panY;
-
-            cc.lineTo(fx, fy);
-        }
-
-        cc.stroke();
+        // const waypointList = aircraft.fms.waypoints;
+        //
+        // if (waypointList.length <= 1) {
+        //     return;
+        // }
+        // const start = future_track.length - 1;
+        // const x = UiController.km_to_px(future_track[start][0]) + this.canvas.panX;
+        // const y = -UiController.km_to_px(future_track[start][1]) + this.canvas.panY;
+        //
+        // cc.beginPath();
+        // cc.moveTo(x, y);
+        // cc.setLineDash([3, 10]);
+        //
+        // for (let i = 0; i < waypointList.length; i++) {
+        //     const [x, y] = waypointList[i].relativePosition;
+        //     const fx = UiController.km_to_px(x) + this.canvas.panX;
+        //     const fy = -UiController.km_to_px(y) + this.canvas.panY;
+        //
+        //     cc.lineTo(fx, fy);
+        // }
+        //
+        // cc.stroke();
     }
 
     /**
@@ -970,8 +960,6 @@ k
      * @param aircraft
      */
     canvas_draw_future_track(cc, aircraft) {
-        let ils_locked;
-        let lockedStroke;
         let was_locked = false;
         const future_track = [];
         const save_delta = GameController.game.delta;
@@ -985,7 +973,7 @@ k
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
+            const ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
             future_track.push([...twin.relativePosition, ils_locked]);
 
@@ -999,10 +987,9 @@ k
 
         // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_DEPARTURE;
+            cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
         } else {
-            cc.strokeStyle = this.theme.RADAR_TARGET_PROJECTION_ARRIVAL;
-            lockedStroke = this.theme.RADAR_TARGET_ESTABLISHED_ON_APPROACH;
+            cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL;
         }
 
         cc.globalCompositeOperation = 'screen';
@@ -1011,7 +998,7 @@ k
 
         for (let i = 0; i < future_track.length; i++) {
             const track = future_track[i];
-            ils_locked = track[2];
+            const ils_locked = track[2];
 
             const x = UiController.km_to_px(track[0]) + this.canvas.panX;
             const y = -UiController.km_to_px(track[1]) + this.canvas.panY;
@@ -1020,7 +1007,7 @@ k
                 cc.lineTo(x, y);
                 // end the current path, start a new path with lockedStroke
                 cc.stroke();
-                cc.strokeStyle = lockedStroke;
+                cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ESTABLISHED_ON_APPROACH;
                 cc.lineWidth = 3;
                 cc.beginPath();
                 cc.moveTo(x, y);
@@ -1048,18 +1035,11 @@ k
      * @param cc
      */
     canvas_draw_all_aircraft(cc) {
-        // FIXME: How is this different from at line 793?
-        cc.fillStyle = COLOR.LIGHT_SILVER;
-        cc.strokeStyle = COLOR.LIGHT_SILVER;
-        cc.lineWidth = 2;
-
-        // console.time('canvas_draw_all_aircraft')
         for (let i = 0; i < prop.aircraft.list.length; i++) {
             cc.save();
             this.canvas_draw_aircraft(cc, prop.aircraft.list[i]);
             cc.restore();
         }
-        // console.timeEnd('canvas_draw_all_aircraft')
     }
 
     /**
@@ -1072,191 +1052,205 @@ k
      * @param aircraft
      */
     canvas_draw_info(cc, aircraft) {
-        if (!aircraft.isVisible()) {
+        if (!aircraft.isVisible() || aircraft.hit) {
             return;
         }
 
-        // TODO: flip the logic here and return early to make code more readable.
-        if (!aircraft.hit) {
-            // Initial Setup
+        // Initial Setup
+        cc.save();
+
+        const cs = aircraft.callsign;
+        const paddingLR = 5;
+        // width of datablock (scales to fit callsign)
+        const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
+        const halfWidth = width / 2;
+        // height of datablock
+        const height = 31;
+        const halfHeight = height / 2;
+        // width of colored bar
+        const barWidth = 3;
+        const barHalfWidth = barWidth / 2;
+        const ILS_enabled = aircraft.pilot.hasApproachClearance;
+        const lock_size = height / 3;
+        const lock_offset = lock_size / 8;
+        const pi = Math.PI;
+        const point1 = lock_size - barHalfWidth;
+        let alt_trend_char = '';
+        const a = point1 - lock_offset;
+        const b = barHalfWidth;
+        const clipping_mask_angle = Math.atan(b / a);
+        // describes how far around to arc the arms of the ils lock case
+        const pi_slice = pi / 24;
+        let match = false;
+
+        // Callsign Matching
+        if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
+            match = true;
+        }
+
+        // set color, intensity, and style elements
+        let red = this.theme.DATA_BLOCK.ARRIVAL_BAR_OUT_OF_RANGE;
+        let green = this.theme.DATA_BLOCK.BACKGROUND_OUT_OF_RANGE;
+        let blue = this.theme.DATA_BLOCK.DEPARTURE_BAR_OUT_OF_RANGE;
+        let white = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+
+        if (aircraft.inside_ctr) {
+            red = this.theme.DATA_BLOCK.ARRIVAL_BAR_IN_RANGE;
+            green = this.theme.DATA_BLOCK.BACKGROUND_IN_RANGE;
+            blue = this.theme.DATA_BLOCK.DEPARTURE_BAR_IN_RANGE;
+            white = this.theme.DATA_BLOCK.TEXT_IN_RANGE;
+
+            if (match) {
+                red = this.theme.DATA_BLOCK.ARRIVAL_BAR_SELECTED;
+                green = this.theme.DATA_BLOCK.BACKGROUND_SELECTED;
+                blue = this.theme.DATA_BLOCK.DEPARTURE_BAR_SELECTED;
+                white = this.theme.DATA_BLOCK.TEXT_SELECTED;
+            }
+        }
+
+        cc.textBaseline = 'middle';
+
+        // Move to center of where the data block is to be drawn
+        const ac_pos = [
+            round(UiController.km_to_px(aircraft.relativePosition[0])) + this.canvas.panX,
+            -round(UiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
+        ];
+
+        let datablockDir = aircraft.datablockDir;
+
+        if (datablockDir === INVALID_NUMBER) {
+            datablockDir = this.theme.DATA_BLOCK.LEADER_DIRECTION;
+        }
+
+        const leaderLength = this._calculateLeaderLength();
+
+        // Draw leader line
+        let offsetComponent = [
+            Math.sin(degreesToRadians(datablockDir)),
+            -Math.cos(degreesToRadians(datablockDir))
+        ];
+
+        // `degreesToRadians('ctr')` above will yield NaN, so we override that here
+        if (datablockDir === 'ctr') {
+            offsetComponent = [0, 0];
+        }
+
+        const blockPadding = this.theme.DATA_BLOCK.LEADER_PADDING_FROM_BLOCK_PX;
+        const targetPadding = this.theme.DATA_BLOCK.LEADER_PADDING_FROM_TARGET_PX;
+        const leaderStart = [
+            ac_pos[0] + (offsetComponent[0] * targetPadding),
+            ac_pos[1] + (offsetComponent[1] * targetPadding)
+        ];
+        const leaderEnd = [
+            ac_pos[0] + offsetComponent[0] * (leaderLength - blockPadding),
+            ac_pos[1] + offsetComponent[1] * (leaderLength - blockPadding)
+        ];
+        const leaderIntersectionWithBlock = [
+            ac_pos[0] + offsetComponent[0] * leaderLength,
+            ac_pos[1] + offsetComponent[1] * leaderLength
+        ];
+
+        cc.moveTo(...leaderStart);
+        cc.lineTo(...leaderEnd);
+        cc.stroke();
+
+        const blockCenterOffset = {
+            ctr: [0, 0],
+            360: [0, -halfHeight],
+            45: [halfWidth, -halfHeight],
+            90: [halfWidth, 0],
+            135: [halfWidth, halfHeight],
+            180: [0, halfHeight],
+            225: [-halfWidth, halfHeight],
+            270: [-halfWidth, 0],
+            315: [-halfWidth, -halfHeight]
+        };
+        const leaderEndToBlockCenter = blockCenterOffset[datablockDir];
+        const dataBlockCenter = vadd(leaderIntersectionWithBlock, leaderEndToBlockCenter);
+
+        cc.translate(...dataBlockCenter);
+
+        // Draw datablock shapes
+        if (!ILS_enabled && this.theme.DATA_BLOCK.HAS_FILL) {
+            // data block box background fill
+            cc.fillStyle = green;
+            cc.fillRect(-halfWidth, -halfHeight, width, height);
+
+            // Draw colored bar
+            cc.fillStyle = (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) ? blue : red;
+            cc.fillRect(-halfWidth - barWidth, -halfHeight, barWidth, height);
+        } else if (this.theme.DATA_BLOCK.HAS_FILL) {
+            // Box with ILS Lock Indicator
             cc.save();
 
-            const cs = aircraft.callsign;
-            const paddingLR = 5;
-            // width of datablock (scales to fit callsign)
-            const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
-            const width2 = width / 2;
-            // height of datablock
-            const height = 31;
-            const height2 = height / 2;
-            // width of colored bar
-            const bar_width = 3;
-            const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.pilot.hasApproachClearance;
-            const lock_size = height / 3;
-            const lock_offset = lock_size / 8;
-            const pi = Math.PI;
-            const point1 = lock_size - bar_width2;
-            let alt_trend_char = '';
-            const a = point1 - lock_offset;
-            const b = bar_width2;
-            const clipping_mask_angle = Math.atan(b / a);
-            // describes how far around to arc the arms of the ils lock case
-            const pi_slice = pi / 24;
-            let match = false;
-            let almost_match = false;
+            // Draw green part of box (excludes space where ILS Clearance Indicator juts in)
+            cc.fillStyle = green;
+            cc.beginPath();
+            cc.moveTo(-halfWidth, halfHeight);  // bottom-left corner
+            cc.lineTo(halfWidth, halfHeight);   // bottom-right corner
+            cc.lineTo(halfWidth, -halfHeight);  // top-right corner
+            cc.lineTo(-halfWidth, -halfHeight); // top-left corner
+            cc.lineTo(-halfWidth, -point1);  // begin side cutout
+            cc.arc(-halfWidth - barHalfWidth, -lock_offset, lock_size / 2 + barHalfWidth, clipping_mask_angle - pi / 2, 0);
+            cc.lineTo(-halfWidth + lock_size / 2, lock_offset);
+            cc.arc(-halfWidth - barHalfWidth, lock_offset, lock_size / 2 + barHalfWidth, 0, pi / 2 - clipping_mask_angle);
+            cc.closePath();
+            cc.fill();
 
-            // Callsign Matching
-            if (prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))) {
-                almost_match = true;
-            }
+            // Draw ILS Clearance Indicator
+            cc.translate(-halfWidth - barHalfWidth, 0);
+            cc.lineWidth = barWidth;
+            cc.strokeStyle = red;
+            cc.beginPath(); // top arc start
+            cc.arc(0, -lock_offset, lock_size / 2, -pi_slice, pi + pi_slice, true);
+            cc.moveTo(0, -lock_size / 2);
+            cc.lineTo(0, -halfHeight);
+            cc.stroke(); // top arc end
+            cc.beginPath(); // bottom arc start
+            cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
+            cc.moveTo(0, lock_size - barWidth);
+            cc.lineTo(0, halfHeight);
+            cc.stroke();  // bottom arc end
 
-            if (prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign)) {
-                match = true;
-            }
-
-            // set color, intensity, and style elements
-            let red = this.theme.DATA_BLOCK.OUT_OF_RANGE.ARRIVAL_BAR;
-            let green = this.theme.DATA_BLOCK.OUT_OF_RANGE.BACKGROUND;
-            let blue = this.theme.DATA_BLOCK.OUT_OF_RANGE.DEPARTURE_BAR;
-            let white = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
-
-            if (aircraft.inside_ctr) {
-                red = this.theme.DATA_BLOCK.SELECTED.ARRIVAL_BAR;
-                green = this.theme.DATA_BLOCK.SELECTED.BACKGROUND;
-                blue = this.theme.DATA_BLOCK.SELECTED.DEPARTURE_BAR;
-                white = this.theme.DATA_BLOCK.SELECTED.TEXT;
-            }
-
-            cc.textBaseline = 'middle';
-
-            // Move to center of where the data block is to be drawn
-            const ac_pos = [
-                round(UiController.km_to_px(aircraft.relativePosition[0])) + this.canvas.panX,
-                -round(UiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
-            ];
-
-            // game will move FDB to the appropriate position
-            if (aircraft.datablockDir === INVALID_NUMBER) {
-                if (-UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.size.height / 2 < height * 1.5) {
-                    cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
-                } else {
-                    cc.translate(ac_pos[0], ac_pos[1] - height2 - 12);
-                }
-            } else {
-                // user wants to specify FDB position
-                const displacements = {
-                    ctr: [0, 0],
-                    360: [0, -height2 - 12],
-                    45: [width2 + 8.5, -height2 - 8.5],
-                    90: [width2 + bar_width2 + 12, 0],
-                    135: [width2 + 8.5, height2 + 8.5],
-                    180: [0, height2 + 12],
-                    225: [-width2 - 8.5, height2 + 8.5],
-                    270: [-width2 - bar_width2 - 12, 0],
-                    315: [-width2 - 8.5, -height2 - 8.5]
-                };
-
-                cc.translate(
-                    ac_pos[0] + displacements[aircraft.datablockDir][0],
-                    ac_pos[1] + displacements[aircraft.datablockDir][1]
-                );
-            }
-
-            // Draw datablock shapes
-            if (!ILS_enabled) {
-                // Standard Box
-                cc.fillStyle = green;
-                // Draw box
-                cc.fillRect(-width2, -height2, width, height);
-                cc.fillStyle = (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) ? blue : red;
-                // Draw colored bar
-                cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
-            } else {
-                // Box with ILS Lock Indicator
-                cc.save();
-
-                // Draw green part of box (excludes space where ILS Clearance Indicator juts in)
-                cc.fillStyle = green;
+            if (aircraft.isEstablishedOnCourse()) {
+                // Localizer Capture Indicator
+                cc.fillStyle = white;
                 cc.beginPath();
-                cc.moveTo(-width2, height2);  // bottom-left corner
-                cc.lineTo(width2, height2);   // bottom-right corner
-                cc.lineTo(width2, -height2);  // top-right corner
-                cc.lineTo(-width2, -height2); // top-left corner
-                cc.lineTo(-width2, -point1);  // begin side cutout
-                cc.arc(-width2 - bar_width2, -lock_offset, lock_size / 2 + bar_width2, clipping_mask_angle - pi / 2, 0);
-                cc.lineTo(-width2 + lock_size / 2, lock_offset);
-                cc.arc(-width2 - bar_width2, lock_offset, lock_size / 2 + bar_width2, 0, pi / 2 - clipping_mask_angle);
-                cc.closePath();
-                cc.fill();
-
-                // Draw ILS Clearance Indicator
-                cc.translate(-width2 - bar_width2, 0);
-                cc.lineWidth = bar_width;
-                cc.strokeStyle = red;
-                cc.beginPath(); // top arc start
-                cc.arc(0, -lock_offset, lock_size / 2, -pi_slice, pi + pi_slice, true);
-                cc.moveTo(0, -lock_size / 2);
-                cc.lineTo(0, -height2);
-                cc.stroke(); // top arc end
-                cc.beginPath(); // bottom arc start
-                cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
-                cc.moveTo(0, lock_size - bar_width);
-                cc.lineTo(0, height2);
-                cc.stroke();  // bottom arc end
-
-                if (aircraft.isEstablishedOnCourse()) {
-                    // Localizer Capture Indicator
-                    cc.fillStyle = white;
-                    cc.beginPath();
-                    cc.arc(0, 0, lock_size / 5, 0, pi * 2);
-                    cc.fill(); // Draw Localizer Capture Dot
-                }
-
-                cc.translate(width2 + bar_width2, 0);
-                // unclear how this works...
-                cc.beginPath(); // if removed, white lines appear on top of bottom half of lock case
-                cc.stroke(); // if removed, white lines appear on top of bottom half of lock case
-
-                cc.restore();
+                cc.arc(0, 0, lock_size / 5, 0, pi * 2);
+                cc.fill(); // Draw Localizer Capture Dot
             }
 
-            // Text
-            const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
-            const lineheight = 4.5; // height of text row (used for spacing basis)
-            const row1text = cs;
-            const aircraftAltitude = round(aircraft.altitude * 0.01);
-            const aircraftSpeed = round(aircraft.groundSpeed * 0.1);
-            const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
-
-            // TODO: remove the if/else in favor of an initial assignment, and update with if condition
-            if (aircraft.inside_ctr) {
-                cc.fillStyle = this.theme.DATA_BLOCK.IN_RANGE.TEXT;
-            } else {
-                cc.fillStyle = this.theme.DATA_BLOCK.OUT_OF_RANGE.TEXT;
-            }
-
-            if (aircraft.trend === 0) {
-                // small dash (symbola font)
-                alt_trend_char = String.fromCodePoint(0x2011);
-            } else if (aircraft.trend > 0) {
-                alt_trend_char = String.fromCodePoint(0x1F851); // up arrow (symbola font)
-            } else if (aircraft.trend < 0) {
-                alt_trend_char = String.fromCodePoint(0x1F853); // down arrow (symbola font)
-            }
-
-            // Draw full datablock text
-            cc.textAlign = 'left';
-            cc.fillText(row1text, -width2 + paddingLR, -gap / 2 - lineheight);
-            cc.fillText(row2text, -width2 + paddingLR, gap / 2 + lineheight);
-            // Draw climb/level/descend symbol
-            cc.font = '10px symbola'; // change font to the one with extended unicode characters
-            cc.textAlign = 'center';
-            cc.fillText(alt_trend_char, -width2 + paddingLR + 20.2, gap / 2 + lineheight - 0.25);
-            cc.font = BASE_CANVAS_FONT;  // change back to normal font
+            cc.translate(halfWidth + barHalfWidth, 0);
+            // unclear how this works...
+            cc.beginPath(); // if removed, white lines appear on top of bottom half of lock case
+            cc.stroke(); // if removed, white lines appear on top of bottom half of lock case
 
             cc.restore();
         }
+
+        // Text
+        const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
+        const lineheight = 4.5; // height of text row (used for spacing basis)
+        const row1text = cs;
+        const aircraftAltitude = round(aircraft.altitude * 0.01);
+        const aircraftSpeed = round(aircraft.groundSpeed * 0.1);
+        const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+
+        // TODO: remove the if/else in favor of an initial assignment, and update with if condition
+        if (aircraft.inside_ctr) {
+            cc.fillStyle = this.theme.DATA_BLOCK.TEXT_IN_RANGE;
+        } else {
+            cc.fillStyle = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        }
+
+        // Draw full datablock text
+        cc.font = this.theme.DATA_BLOCK.TEXT_FONT;
+        cc.textAlign = 'left';
+        cc.fillText(row1text, -halfWidth + paddingLR, -gap / 2 - lineheight);
+        cc.fillText(row2text, -halfWidth + paddingLR, gap / 2 + lineheight);
+        cc.font = BASE_CANVAS_FONT;  // change back to normal font
+
+        cc.restore();
     }
 
     /**
@@ -1374,9 +1368,9 @@ k
      * @param cc
      */
     canvas_draw_ctr(cc) {
-        // Draw a gentle fill color with border within the bounds of the airport's ctr_radius
-        cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
-        cc.fillStyle = this.theme.AIRSPACE_FILL;
+        cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
+
         cc.beginPath();
         cc.arc(0, 0, AirportController.airport_get().ctr_radius * UiController.scale, 0, tau());
         cc.fill();
@@ -1392,13 +1386,14 @@ k
      */
     canvas_draw_airspace_border(cc) {
         const airport = AirportController.airport_get();
+
         if (!airport.airspace) {
             this.canvas_draw_ctr(cc);
         }
 
         // style
-        cc.strokeStyle = this.theme.AIRSPACE_PERIMETER;
-        cc.fillStyle = this.theme.AIRSPACE_FILL;
+        cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
+        cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
 
         // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
@@ -1447,7 +1442,6 @@ k
         }
     }
 
-
     /**
      * @for CanvasController
      * @method canvas_draw_engm_range_rings
@@ -1455,7 +1449,7 @@ k
      */
     // Draw range rings for ENGM airport to assist in point merge
     canvas_draw_engm_range_rings(cc) {
-        cc.strokeStyle = this.theme.RANGE_RING_COLOR;
+        cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
         cc.setLineDash([3, 6]);
 
         this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
@@ -1479,7 +1473,7 @@ k
             cc.beginPath();
             cc.linewidth = 1;
             cc.arc(0, 0, rangeRingRadius * UiController.scale * i, 0, tau());
-            cc.strokeStyle = this.theme.RANGE_RING_COLOR;
+            cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
             cc.stroke();
         }
     }
@@ -1515,9 +1509,12 @@ k
             return;
         }
 
-        // FIXME: Does this even end up getting used? Convert to use of `this.theme`
-        cc.strokeStyle = COLOR.WHITE_04;
-        cc.fillStyle = COLOR.WHITE_02;
+        // Terrain key rectangles' outline stroke color
+        // Also determines color of terrain outline drawn at '0ft'
+        cc.strokeStyle = this.theme.SCOPE.FIX_FILL;
+        // Somehow used to tint the terrain key rectangles' fill color
+        // Also determines color of terrain fill at '0ft'
+        cc.fillStyle = this.theme.SCOPE.FIX_FILL;
         cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
         cc.lineJoin = 'round';
 
@@ -1527,12 +1524,24 @@ k
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
+        // TODO: Remove the jQuery in favor of _each()!
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
-            max_elevation = Math.max(max_elevation, elevation);
-            const color = `rgba(${UiController.terrain.COLOR[elevation]}, `;
+            if (elevation < 1000) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+                    ' below sea level, which is not supported!');
 
-            cc.strokeStyle = `${color} ${UiController.terrain.BORDER_OPACITY})`;
-            cc.fillStyle = `${color} ${UiController.terrain.FILL_OPACITY})`;
+                // within `$.each()`, this return acts like `continue;`
+                return;
+            }
+
+            max_elevation = Math.max(max_elevation, elevation);
+            // Here we use HSL colors instead of RGB to enable easier bulk adjustments
+            // to saturation/lightness of multiple elevation levels without the need
+            // to use web-based color tools
+            const color = `hsla(${this.theme.TERRAIN.COLOR[elevation]}`;
+
+            cc.strokeStyle = `${color}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
+            cc.fillStyle = `${color}, ${this.theme.TERRAIN.FILL_OPACITY})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1593,16 +1602,16 @@ k
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = `rgba(${UiController.terrain.COLOR[j]}, ${UiController.terrain.FILL_OPACITY})`;
+                cc.fillStyle = `rgba(${this.theme.TERRAIN.COLOR[j]}, ${this.theme.TERRAIN.FILL_OPACITY})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = `rgba(${UiController.terrain.COLOR[i]}, ${UiController.terrain.BORDER_OPACITY})`;
+            cc.strokeStyle = `rgba(${this.theme.TERRAIN.COLOR[i]}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
             if (i === max_elevation || i === 1000) {
-                cc.fillStyle = this.theme.COMPASS_TEXT;
+                cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
                 cc.textAlign = 'center';
                 cc.textBaseline = 'top';
                 cc.fillText(`${i}'`, box_width / 2 + 0.5, offset + 2);
@@ -1622,7 +1631,7 @@ k
             return;
         }
 
-        cc.strokeStyle = this.theme.RESTRICTED_AIRSPACE;
+        cc.strokeStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
         cc.lineWidth = Math.max(UiController.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1637,7 +1646,7 @@ k
             this.canvas_draw_poly(cc, area.coordinates);
 
             // FIXME: Is the restricted airspace EVER filled???
-            cc.fillStyle = this.theme.RESTRICTED_AIRSPACE;
+            cc.fillStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
@@ -1674,7 +1683,7 @@ k
             return;
         }
 
-        cc.strokeStyle = this.theme.VIDEO_MAP;
+        cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
         cc.lineWidth = UiController.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
@@ -1704,7 +1713,7 @@ k
      */
     canvas_draw_crosshairs(cc) {
         cc.save();
-        cc.strokeStyle = this.theme.CROSSHAIR_STROKE;
+        cc.strokeStyle = this.theme.SCOPE.CROSSHAIR_STROKE;
         cc.lineWidth = 3;
         cc.beginPath();
         cc.moveTo(-10, 0);
@@ -1730,6 +1739,7 @@ k
         }
 
         const callsign = prop.input.callsign.toUpperCase();
+
         if (callsign.length === 0) {
             return;
         }
@@ -1748,8 +1758,8 @@ k
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
         cc.save();
-        cc.strokeStyle = this.theme.COMPASS_HASH;
-        cc.fillStyle = this.theme.COMPASS_TEXT;
+        cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
+        cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
 
@@ -1818,6 +1828,21 @@ k
     }
 
     /**
+     * Calculate the length of the leader line connecting the target to the data block
+     *
+     * @for CanvasController
+     * @method _calculateLeaderLength
+     * @return {number} length, in pixels
+     */
+    _calculateLeaderLength() {
+        return this.theme.DATA_BLOCK.LEADER_LENGTH *
+            this.theme.DATA_BLOCK.LEADER_LENGTH_INCREMENT_PIXELS +
+            this.theme.DATA_BLOCK.LEADER_LENGTH_ADJUSTMENT_PIXELS -
+            this.theme.DATA_BLOCK.LEADER_PADDING_FROM_BLOCK_PX -
+            this.theme.DATA_BLOCK.LEADER_PADDING_FROM_TARGET_PX;
+    }
+
+    /**
      * Center a point in the view
      *
      * Used only for centering aircraft, this accepts
@@ -1832,5 +1857,28 @@ k
         this.canvas.panX = 0 - round(UiController.km_to_px(x));
         this.canvas.panY = round(UiController.km_to_px(y));
         this.dirty = true;
+    };
+
+    /**
+     * Change theme to the specified name
+     *
+     * This should ONLY be called through the EventBus during a `SET_THEME` event,
+     * thus ensuring that the same theme is always in use by all app components.
+     *
+     * This method must remain an arrow function in order to preserve the scope
+     * of `this`, since it is being invoked by an EventBus callback.
+     *
+     * @for CanvasController
+     * @method _setTheme
+     * @param themeName {string}
+     */
+    _setTheme = (themeName) => {
+        if (!_has(THEME, themeName)) {
+            console.error(`Expected valid theme to change to, but received '${themeName}'`);
+
+            return;
+        }
+
+        this.theme = THEME[themeName];
     };
 }

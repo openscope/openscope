@@ -1,3 +1,59 @@
+## 5.5.0 (October 1, 2017)
+---
+### New Features
+
+
+
+### Bugfixes
+
+
+
+### Enhancements & Refactors
+- Increase the offset of the scale, as it was cut off by the aircraft bar [#545](https://github.com/openscope/openscope/issues/545)
+
+
+
+## 5.4.1 (September 2, 2017)
+---
+### Hotfix
+- Fix WIP airports which fail to load due to improper procedure formatting [#327](https://github.com/openscope/openscope/issues/327)
+
+
+## 5.4.0 (September 1, 2017)
+---
+### New Features
+- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
+- Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
+- Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
+- New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)
+- New Airport: KSTL (St. Louis Lambert International Airport, MO) [#349](https://github.com/openscope/openscope/issues/349)
+- New Airport: KTUS (Tuscon International Airport, AZ) [#555](https://github.com/openscope/openscope/issues/555)
+- New Airport: KJAX (Jacksonville International Airport, FL) [#624](https://github.com/openscope/openscope/issues/624)
+
+### Bugfixes
+- Fix VNAV descents on STARs with only "at/above" and "at/below" restrictions [#618](https://github.com/openscope/openscope/issues/618)
+- Updates order of elements in the StripViewTemplate so the FlightRules element is properly floated to the right [#664](https://github.com/openscope/openscope/issues/664)
+- Fix misalignment in airport selection dialog [#659](https://github.com/openscope/openscope/issues/659)
+
+### Enhancements & Refactors
+- Removed index.html as it is generated from templates when run [#619](https://github.com/openscope/openscope/issues/619)
+- Implements new loading screen with new color scheme and animated radar sweep [#619](https://github.com/openscope/openscope/issues/619)
+- Extends departing spawnPatterns outside the airspace at EIDW to prevent point deduction [#566](https://github.com/openscope/openscope/issues/566)
+- Extends departing spawnPatterns outside the airspace at MDSD to prevent point deduction [#615](https://github.com/openscope/openscope/issues/615)
+- Extends departing spawnPatterns outside the airspace at KBOS to prevent point deduction [#635](https://github.com/openscope/openscope/issues/635)
+- Implement scope themes, and changed default theme to blue-based [#15](https://github.com/openscope/openscope/issues/15)
+- Deactivate unused WIP airports from the load list, and add premium flag [#431](https://github.com/openscope/openscope/issues/431)
+- Document airport terrain generation process [#7](https://github.com/openscope/openscope/issues/7)
+- Remove index.html from document root in tools/README.md [#653](https://github.com/openscope/openscope/issues/653)
+- Deprecate the `say route` command [#640](https://github.com/openscope/openscope/issues/640)
+- Adds LESS preprocessor and adds CSS folder structure [#481](https://github.com/openscope/openscope/issues/481)
+- Deprecated `abort` command [#639](https://github.com/openscope/openscope/issues/639)
+- Renamed `index.md` to `commands.md` and added system commands and a TOC [#365](https://github.com/openscope/openscope/issues/365)
+- Consolidate console warnings for missing fixes to single message [#480](https://github.com/openscope/openscope/issues/480)
+- Update Ezeiza (SAEZ) - Updated all procedures, added video map, updated traffic, added new airlines [#516](https://github.com/openscope/openscope/issues/516)
+- Lower spawn altitude for arrivals into MDSD so they can descend in time [#660](https://github.com/openscope/openscope/issues/660)
+
+
 ## 5.3.0 (August 1, 2017)
 ---
 ### Features
@@ -10,11 +66,6 @@
 - The distance separator behind aircraft on ILS is now toggleable [#536](https://github.com/openscope/openscope/issues/536)
 - Removes the blue line "departure window" [#411](https://github.com/openscope/openscope/issues/411)
 
-
-
-
-
-
 ### Bugfixes
 - Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
 - Make aircraft proceed direct new fix after full reroute [#570](https://github.com/openscope/openscope/issues/570)
@@ -22,18 +73,12 @@
 - Remove +/-/= zoom hotkey, conflicts with speed [#510](https://github.com/openscope/openscope/issues/510)
 - Correct EGKK's departure fix [#577](https://github.com/openscope/openscope/issues/577)
 
-
-
-
-
-
 ### Refactors
 - Fix spelling error of `CanvasController` as `ConvasController` [#586](https://github.com/openscope/openscope/issues/586)
 - Remove deprecated fixRadialDist() [#290](https://github.com/openscope/openscope/issues/290)
-- Increase the offset of the scale, as it was cut off by the aircraft bar [#545](https://github.com/openscope/openscope/issues/545)
-
-
-
+- Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
+- Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
+- Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
 
 
 ## 5.2.1 (July 1, 2017)

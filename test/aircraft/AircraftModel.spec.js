@@ -7,6 +7,7 @@ import {
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
 } from './_mocks/aircraftMocks';
 
@@ -59,4 +60,24 @@ ava('.getViewModel() includes an altitude that has not been rounded to the neare
     const { assignedAltitude: result } = model.getViewModel();
 
     t.true(result === 77.77123456700001);
+});
+
+ava('.updateTarget() causes arrivals to descend when the STAR includes only AT or ABOVE altitude restrictions', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK, navigationLibraryFixture);
+    model.positionModel = navigationLibraryFixture.findFixByName('LEMNZ').positionModel;
+
+    model.groundSpeed = 320;
+    model.updateTarget();
+
+    t.true(model.target.altitude === 17000);
+});
+
+ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    model.positionModel = navigationLibraryFixture.findFixByName('MISEN').positionModel
+
+    model.groundSpeed = 320;
+    model.updateTarget();
+
+    t.true(model.target.altitude === 24000);
 });

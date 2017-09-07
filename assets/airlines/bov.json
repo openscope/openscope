@@ -1,0 +1,20 @@
+{
+    "icao": "bov",
+    "name": "Boliviana de Aviación",
+    "callsign": {
+        "name": "Boliviana",
+        "length": 3
+    },
+    "fleets": {
+        "long": [
+            ["B763", 3]
+        ],
+        "default": [
+            ["B733", 13],
+            ["B737", 4],
+            ["B738", 2],
+            ["B763", 3],
+            ["CRJ2", 2]
+        ]
+    }
+}

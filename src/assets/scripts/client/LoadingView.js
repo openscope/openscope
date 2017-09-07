@@ -80,7 +80,7 @@ export default class LoadingView {
      * @private
      */
     _setupChildren() {
-        this.$element = $(SELECTORS.DOM_SELECTORS.LOADING);
+        this.$element = $(SELECTORS.DOM_SELECTORS.LOADING_VIEW);
         this.$loadingIndicator = $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR);
         this.$loadingMessage = this.$element.find(SELECTORS.DOM_SELECTORS.MESSAGE);
 
@@ -129,7 +129,7 @@ export default class LoadingView {
     _didExceedMinimumWaitTime() {
         const timeNow = time();
 
-        return (timeNow - this.loadingState.startTime) > MIN_DISPLAY_SECONDS;
+        return timeNow - this.loadingState.startTime > MIN_DISPLAY_SECONDS;
     }
 
     /**
@@ -197,7 +197,10 @@ export default class LoadingView {
      */
     complete() {
         this.$loadingIndicator.hide();
-        this.$element.fadeOut(1000);
-        this.$element.css('pointerEvents', 'none');
+
+        global.setTimeout(() => {
+            this.$element.fadeOut(1000);
+            this.$element.css('pointerEvents', 'none');
+        }, 1500);
     }
 }

@@ -1,0 +1,21 @@
+{
+    "icao": "anz",
+    "name": "Air New Zealand",
+    "callsign": {
+        "name": "New Zealand",
+        "length": 2
+    },
+    "fleets": {
+        "long": [
+            ["B772", 8],
+            ["B773", 7],
+            ["B789", 9]
+        ],
+        "default": [
+            ["A320", 30],
+            ["B772", 8],
+            ["B773", 7],
+            ["B789", 9]
+        ]
+    }
+}

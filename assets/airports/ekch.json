@@ -60,7 +60,6 @@
         "DOBEL": ["N55d36m21.88", "E11d23m23.75"],
         "GAVBA": ["N55d19m4.09", "E13d00m55.00"],
         "GOLGA": ["N56d19m59.06", "E11d41m42.18"],
-        "KAS":   ["N55d35m25.87", "E12d36m48.97"],
         "KEMAX": ["N56d07m35.02", "E13d27m13.08"],
         "KOPEX": ["N54d58m13.37", "E11d28m03.68"],
         "LANGO": ["N54d56m44.27", "E10d51m22.71"],
@@ -177,12 +176,16 @@
             "name": "Astos",
             "suffix": {"4L":"1E", "4R":"3A", "22L":"1F", "22R":"3C", "12":"3B", "30":"3D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "ASTOS"],
-                "4R": ["CH360", "CH361", "ASTOS"],
-                "22L": ["LARSO", "CH377", "CH381", "CH361", "ASTOS"],
-                "22R": ["RUBAT", "CH377", "CH381", "CH361", "ASTOS"],
-                "12":  ["ODMEG", "CH363", "CH361", "ASTOS"],
-                "30":  ["INKIG", "CH398", "ASTOS"]
+                "4L": ["CH367", "CH361"],
+                "4R": ["CH360", "CH361"],
+                "22L": ["LARSO", "CH377", "CH381", "CH361"],
+                "22R": ["RUBAT", "CH377", "CH381", "CH361"],
+                "12":  ["ODMEG", "CH363", "CH361"],
+                "30":  ["INKIG", "CH398"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ASTOS": ["ASTOS"]
             },
             "draw": [
                 ["CH367", "CH361"],
@@ -198,12 +201,16 @@
             "name": "Kemax",
             "suffix": {"4L":"1E", "4R":"4A", "22L":"1F", "22R":"4C", "12":"4B", "30":"4D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "KEMAX"],
-                "4R": ["CH360", "CH361", "KEMAX"],
-                "22L": ["LARSO", "CH377", "CH381", "CH361", "KEMAX"],
-                "22R": ["RUBAT", "CH377", "CH381", "CH361", "KEMAX"],
-                "12":  ["ODMEG", "CH363", "CH361", "KEMAX"],
-                "30":  ["INKIG", "CH398", "CH370", "CH392", "KEMAX"]
+                "4L": ["CH367", "CH361"],
+                "4R": ["CH360", "CH361"],
+                "22L": ["LARSO", "CH377", "CH381", "CH361"],
+                "22R": ["RUBAT", "CH377", "CH381", "CH361"],
+                "12":  ["ODMEG", "CH363", "CH361"],
+                "30":  ["INKIG", "CH398", "CH370", "CH392"]
+            },
+            "body": [],
+            "exitPoints": {
+                "KEMAX": ["KEMAX"]
             },
             "draw": [
                 ["CH398", "CH370", "CH392"],
@@ -215,12 +222,16 @@
             "name": "Simeg",
             "suffix": {"4L":"1E", "4R":"7A", "22L":"1F", "22R":"8C", "12":"7B", "30":"7D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "DENEK", "SIMEG"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "DENEK", "SIMEG"],
-                "22L": ["LARSO", "CH377", "CH381", "CH382", "DENEK", "SIMEG"],
-                "22R": ["RUBAT", "CH377", "CH381", "CH382", "DENEK", "SIMEG"],
-                "12":  ["ODMEG", "DENEK", "SIMEG"],
-                "30":  ["INKIG", "CH399", "CH374", "CH364", "DENEK", "SIMEG"]
+                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364"],
+                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364"],
+                "22L": ["LARSO", "CH377", "CH381", "CH382"],
+                "22R": ["RUBAT", "CH377", "CH381", "CH382"],
+                "12":  ["ODMEG"],
+                "30":  ["INKIG", "CH399", "CH374", "CH364"]
+            },
+            "body": ["DENEK"],
+            "exitPoints": {
+                "SIMEG": ["SIMEG"]
             },
             "draw": [
                 ["CH361", "CH362", "CH363", "CH364"],
@@ -234,12 +245,16 @@
             "name": "Balox",
             "suffix": {"4L":"1E", "4R":"4A", "22L":"1F", "22R":"4C", "12":"4B", "30":"4D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "GAVBA", "BALOX"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "GAVBA", "BALOX"],
-                "22L": ["LARSO", "CH377", "CH381", "CH382", "GAVBA", "BALOX"],
-                "22R": ["RUBAT", "CH377", "CH381", "CH382", "GAVBA", "BALOX"],
-                "12":  ["ODMEG", "CH382", "GAVBA", "BALOX"],
-                "30":  ["INKIG", "CH399", "CH374", "CH365", "GAVBA", "BALOX"]
+                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365"],
+                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365"],
+                "22L": ["LARSO", "CH377", "CH381", "CH382"],
+                "22R": ["RUBAT", "CH377", "CH381", "CH382"],
+                "12":  ["ODMEG", "CH382"],
+                "30":  ["INKIG", "CH399", "CH374", "CH365"]
+            },
+            "body": ["GAVBA"],
+            "exitPoints": {
+                "BALOX": ["BALOX"]
             },
             "draw": [
                 ["CH364", "CH365"],
@@ -251,12 +266,16 @@
             "name": "Betud",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366", "BISTA", "BETUD"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366", "BISTA", "BETUD"],
-                "22L": ["LARSO", "CH377", "BISTA", "BETUD"],
-                "22R": ["RUBAT", "CH377", "BISTA", "BETUD"],
-                "12":  ["ODMEG", "CH396", "BISTA", "BETUD"],
-                "30":  ["INKIG", "CH399", "CH374", "BISTA", "BETUD"]
+                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366"],
+                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366"],
+                "22L": ["LARSO", "CH377"],
+                "22R": ["RUBAT", "CH377"],
+                "12":  ["ODMEG", "CH396"],
+                "30":  ["INKIG", "CH399", "CH374"]
+            },
+            "body": ["BISTA"],
+            "exitPoints": {
+                "BETUD": ["BETUD"]
             },
             "draw": [
                 ["CH365", "CH366", "BISTA"],
@@ -270,12 +289,16 @@
             "name": "Nexen",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366", "BISTA", "NEXEN"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366", "BISTA", "NEXEN"],
-                "22L": ["LARSO", "CH377", "BISTA", "NEXEN"],
-                "22R": ["RUBAT", "CH377", "BISTA", "NEXEN"],
-                "12":  ["ODMEG", "CH396", "BISTA", "NEXEN"],
-                "30":  ["INKIG", "CH399", "CH374", "BISTA", "NEXEN"]
+                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366"],
+                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "CH366"],
+                "22L": ["LARSO", "CH377"],
+                "22R": ["RUBAT", "CH377"],
+                "12":  ["ODMEG", "CH396"],
+                "30":  ["INKIG", "CH399", "CH374"]
+            },
+            "body": ["BISTA"],
+            "exitPoints": {
+                "NEXEN": ["NEXEN"]
             },
             "draw": [
                 ["BISTA", "NEXEN"]
@@ -286,12 +309,16 @@
             "name": "Kopex",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365", "MAXEL", "KOPEX"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365", "MAXEL", "KOPEX"],
-                "22L": ["LARSO", "MAXEL", "KOPEX"],
-                "22R": ["RUBAT", "MAXEL", "KOPEX"],
-                "12":  ["ODMEG", "CH395", "MAXEL", "KOPEX"],
-                "30":  ["INKIG", "CH399", "CH374", "MAXEL", "KOPEX"]
+                "4L": ["CH367", "CH361", "CH362", "CH363", "CH364", "CH365"],
+                "4R": ["CH360", "CH361", "CH362", "CH363", "CH364", "CH365"],
+                "22L": ["LARSO"],
+                "22R": ["RUBAT"],
+                "12":  ["ODMEG", "CH395"],
+                "30":  ["INKIG", "CH399", "CH374"]
+            },
+            "body": ["MAXEL"],
+            "exitPoints": {
+                "KOPEX": ["KOPEX"]
             },
             "draw": [
                 ["CH365", "MAXEL"],
@@ -306,12 +333,16 @@
             "name": "Lango",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH361", "CH362", "CH363", "TOBIS", "LANGO"],
-                "4R": ["CH360", "CH361", "CH362", "CH363", "TOBIS", "LANGO"],
-                "22L": ["LARSO", "TOBIS", "LANGO"],
-                "22R": ["RUBAT", "TOBIS", "LANGO"],
-                "12":  ["ODMEG", "CH365", "TOBIS", "LANGO"],
-                "30":  ["INKIG", "CH399", "TOBIS", "LANGO"]
+                "4L": ["CH367", "CH361", "CH362", "CH363"],
+                "4R": ["CH360", "CH361", "CH362", "CH363"],
+                "22L": ["LARSO"],
+                "22R": ["RUBAT"],
+                "12":  ["ODMEG", "CH365"],
+                "30":  ["INKIG", "CH399"]
+            },
+            "body": ["TOBIS"],
+            "exitPoints": {
+                "LANGO": ["LANGO"]
             },
             "draw": [
                 ["CH363", "TOBIS"],
@@ -326,12 +357,16 @@
             "name": "Odin",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH368", "CH371", "DOBEL", "ODN"],
-                "4R": ["CH360", "CH368", "CH371", "DOBEL", "ODN"],
-                "22L": ["LARSO", "DOBEL", "ODN"],
-                "22R": ["RUBAT", "DOBEL", "ODN"],
-                "12":  ["ODMEG", "CH363", "CH361", "CH378", "DOBEL", "ODN"],
-                "30":  ["INKIG", "CH399", "DOBEL", "ODN"]
+                "4L": ["CH367", "CH368", "CH371"],
+                "4R": ["CH360", "CH368", "CH371"],
+                "22L": ["LARSO"],
+                "22R": ["RUBAT"],
+                "12":  ["ODMEG", "CH363", "CH361", "CH378"],
+                "30":  ["INKIG", "CH399"]
+            },
+            "body": ["DOBEL"],
+            "exitPoints": {
+                "ODN": ["ODN"]
             },
             "draw": [
                 ["CH367", "CH368", "CH371", "DOBEL"],
@@ -346,12 +381,16 @@
             "name": "Miksi",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH369", "SORGA", "MIKSI"],
-                "4R": ["CH360", "CH369", "SORGA", "MIKSI"],
-                "22L": ["LARSO", "CH384", "SORGA", "MIKSI"],
-                "22R": ["RUBAT", "CH384", "SORGA", "MIKSI"],
-                "12":  ["ODMEG", "CH363", "CH361", "CH378", "SORGA", "MIKSI"],
-                "30":  ["INKIG", "CH398", "SORGA", "MIKSI"]
+                "4L": ["CH367", "CH369"],
+                "4R": ["CH360", "CH369"],
+                "22L": ["LARSO", "CH384"],
+                "22R": ["RUBAT", "CH384"],
+                "12":  ["ODMEG", "CH363", "CH361", "CH378"],
+                "30":  ["INKIG", "CH398"]
+            },
+            "body": ["SORGA"],
+            "exitPoints": {
+                "MIKSI": ["MIKSI"]
             },
             "draw": [
                 ["CH368", "CH369", "SORGA"],
@@ -365,12 +404,16 @@
             "name": "Golga",
             "suffix": {"4L":"1E", "4R":"1A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH370", "MIRGO", "TISKA", "GOLGA"],
-                "4R": ["CH360", "CH370", "MIRGO", "TISKA", "GOLGA"],
-                "22L": ["LARSO", "CH385", "MIRGO", "TISKA", "GOLGA"],
-                "22R": ["RUBAT", "CH385", "MIRGO", "TISKA", "GOLGA"],
-                "12":  ["ODMEG", "CH363", "CH389", "CH379", "MIRGO", "TISKA", "GOLGA"],
-                "30":  ["INKIG", "CH398", "MIRGO", "TISKA", "GOLGA"]
+                "4L": ["CH367", "CH370"],
+                "4R": ["CH360", "CH370"],
+                "22L": ["LARSO", "CH385"],
+                "22R": ["RUBAT", "CH385"],
+                "12":  ["ODMEG", "CH363", "CH389", "CH379"],
+                "30":  ["INKIG", "CH398"]
+            },
+            "body": ["MIRGO", "TISKA"],
+            "exitPoints": {
+                "GOLGA": ["GOLGA"]
             },
             "draw": [
                 ["CH369", "CH370", "MIRGO"],
@@ -384,12 +427,16 @@
             "name": "Vedar",
             "suffix": {"4L":"1E", "4R":"2A", "22L":"1F", "22R":"1C", "12":"1B", "30":"1D"},
             "rwy": {
-                "4L": ["CH367", "CH370", "NOVPO", "VEDAR"],
-                "4R": ["CH360", "CH370", "NOVPO", "VEDAR"],
-                "22L": ["LARSO", "CH386", "NOVPO", "VEDAR"],
-                "22R": ["RUBAT", "CH386", "NOVPO", "VEDAR"],
-                "12":  ["ODMEG", "CH363", "CH390", "NOVPO", "VEDAR"],
-                "30":  ["INKIG", "CH398", "NOVPO", "VEDAR"]
+                "4L": ["CH367", "CH370"],
+                "4R": ["CH360", "CH370"],
+                "22L": ["LARSO", "CH386"],
+                "22R": ["RUBAT", "CH386"],
+                "12":  ["ODMEG", "CH363", "CH390"],
+                "30":  ["INKIG", "CH398"]
+            },
+            "body": ["NOVPO"],
+            "exitPoints": {
+                "VEDAR": ["VEDAR"]
             },
             "draw": [
                 ["CH370", "NOVPO"],
@@ -415,7 +462,8 @@
                 "22R": [],
                 "12":  [],
                 "30":  []
-            }
+            },
+            "draw": [[]]
         },
         "MONAK": {
             "icao": "MONAK",
@@ -431,7 +479,8 @@
                 "22R": [["NEKSO", "A100|S250"]],
                 "12":  [["KUBIS", "A100|S250"]],
                 "30":  [["KUBIS", "A80|S250"]]
-            }
+            },
+            "draw": [[]]
         },
         "TUDLO": {
             "icao": "TUDLO",
@@ -447,7 +496,8 @@
                 "22R": ["_KOR034"],
                 "12":  ["_KOR059"],
                 "30":  ["_KOR114"]
-            }
+            },
+            "draw": [[]]
         }
     },
     "spawnPatterns": [

@@ -122,6 +122,14 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     waypoints: []
 };
 
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = Object.assign(
+    {},
+    ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    {
+        route: 'MLF.GRNPA2.KLAS',
+    }
+);
+
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = {
     callsign: '432',
     destination: 'KLAS',
