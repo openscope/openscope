@@ -561,6 +561,10 @@ export default class AircraftCommander {
         const altitude = _round(aircraft.mcp.altitude, -2);
         const readback = {};
 
+        if (altitude === 0) {
+            return [false, 'we haven\'t been assigned an altitude'];
+        }
+
         readback.log = `assigned ${altitude}`;
         readback.say = `assigned ${radio_altitude(altitude)}`;
 
