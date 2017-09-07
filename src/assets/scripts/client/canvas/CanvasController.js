@@ -569,10 +569,10 @@ export default class CanvasController {
         cc.translate(0.5, 0.5);
 
         cc.lineWidth = 1;
-        cc.moveTo(this.canvas.size.width - x_offset, x_offset);
-        cc.lineTo(this.canvas.size.width - x_offset, y_offset + height);
-        cc.lineTo(this.canvas.size.width - y_offset - px_length, y_offset + height);
-        cc.lineTo(this.canvas.size.width - y_offset - px_length, x_offset);
+        cc.moveTo(this.canvas.size.width - x_offset, y_offset);
+        cc.lineTo(this.canvas.size.width - x_offset, x_offset + height);
+        cc.lineTo(this.canvas.size.width - x_offset - px_length, x_offset + height);
+        cc.lineTo(this.canvas.size.width - x_offset - px_length, x_offset);
         cc.stroke();
 
         cc.translate(-0.5, -0.5);
