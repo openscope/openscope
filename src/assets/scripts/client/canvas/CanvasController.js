@@ -546,7 +546,8 @@ export default class CanvasController {
         cc.fillStyle = this.theme.TOP_ROW_TEXT;
         cc.strokeStyle = this.theme.TOP_ROW_TEXT;
 
-        const offset = 20;
+        const x_offset = 20;
+        const y_offset = 10;
         const height = 5;
         const length = round(1 / UiController.scale * 50);
         const px_length = round(UiController.km_to_px(length));
@@ -564,8 +565,8 @@ export default class CanvasController {
 
         cc.textAlign = 'center';
         cc.fillText(
-            `${length} km`, this.canvas.size.width - offset - px_length * 0.5,
-            offset + height + 17
+            `${length} km`, this.canvas.size.width - x_offset - px_length * 0.5,
+            y_offset + height + 17
         );
     }
 
