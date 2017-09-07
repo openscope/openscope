@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import _round from 'lodash/round';
-import _isNaN from 'lodash/isnan';
+import _isNaN from 'lodash/isNaN';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
