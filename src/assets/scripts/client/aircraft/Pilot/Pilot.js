@@ -146,7 +146,7 @@ export default class Pilot {
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
-        if (!aircraftModel.assignedAttainableAltitude(altitude)) {
+        if (!aircraftModel.model.assignedAttainableAltitude(altitude)) {
             const requestedAltitude = altitude;
             const verbalRequestedAltitude = radio_altitude(altitude);
 
@@ -245,7 +245,7 @@ export default class Pilot {
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
         
-        if (!aircraftModel.assignedAttainableSpeed(speed)) {
+        if (!aircraftModel.model.assignedAttainableSpeed(speed)) {
             readback.log = `unable to maintain ${speed} due to performance limits`;
             readback.say = `unable to maintain ${radio_spellOut(speed)} due to performance limits`;
 
