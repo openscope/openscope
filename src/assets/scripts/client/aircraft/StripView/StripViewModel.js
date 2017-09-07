@@ -361,7 +361,7 @@ export default class StripViewModel extends BaseModel {
         this._callsign = callsign;
         this._transponder = transponderCode;
         this._aircraftType = icaoWithWeightClass;
-        this._assignedAltitude = _round(assignedAltitude);
+        this._assignedAltitude = this._roundAltitude(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
@@ -684,12 +684,28 @@ export default class StripViewModel extends BaseModel {
 
         this.insideCenter = insideCenter;
         this._transponder = transponderCode;
-        this._assignedAltitude = _round(assignedAltitude);
+        this._assignedAltitude = this._roundAltitude(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
 
         return this._redraw();
+    }
+
+    /**
+     * @for StripViewModel
+     * @method roundAltitude
+     * @param altitude
+     * @return roundedAltitude
+     */
+    _roundAltitude(altitude) {
+        const roundedAltitude = _round(altitude);
+
+        if (roundedAltitude === 'NaN') {
+            return '-';
+        }
+
+        return roundedAltitude;
     }
 }
