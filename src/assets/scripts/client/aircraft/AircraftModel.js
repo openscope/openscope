@@ -720,8 +720,6 @@ export default class AircraftModel {
     getRadioCallsign() {
         let heavy = '';
         let radioCallsign = this.airlineCallsign;
-
-        // TODO: Move the weight qualifiers to a getter, and call it here to get the value of `heavy`
         if (this.model.weightclass === 'H') {
             heavy = ' heavy';
         }
@@ -2405,7 +2403,6 @@ export default class AircraftModel {
         return shouldEnterHold;
     }
 
-    //TODO: can this be removed? It doesn't do anything.
     /**
      * @for AircraftModel
      * @method updateAuto
