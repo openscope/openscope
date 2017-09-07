@@ -6,12 +6,15 @@ import EventBus from '../lib/EventBus';
 import UiController from '../UiController';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
+import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
 import {
     radio_runway,
-    radio_spellOut
+    radio_spellOut,
+    radio_heading,
+    radio_altitude
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_PHASE,
