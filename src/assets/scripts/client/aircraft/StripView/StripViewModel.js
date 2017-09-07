@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import _round from 'lodash/round'
+import _round from 'lodash/round';
+import _isNaN from 'lodash/isnan';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
@@ -702,7 +703,7 @@ export default class StripViewModel extends BaseModel {
     _roundAltitude(altitude) {
         const roundedAltitude = _round(altitude);
 
-        if (roundedAltitude === 'NaN') {
+        if (_isNaN(roundedAltitude)) {
             return '-';
         }
 
