@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import _round from 'lodash/round';
+import _isNaN from 'lodash/isNaN';
 import BaseModel from '../../base/BaseModel';
 import EventBus from '../../lib/EventBus';
 import { STRIP_VIEW_TEMPLATE } from './stripViewTemplate';
@@ -360,7 +362,7 @@ export default class StripViewModel extends BaseModel {
         this._callsign = callsign;
         this._transponder = transponderCode;
         this._aircraftType = icaoWithWeightClass;
-        this._assignedAltitude = assignedAltitude;
+        this._assignedAltitude = this._roundAltitude(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
@@ -431,7 +433,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Update teh view with new data
+     * Update the view with new data
      *
      * This method will be run on instantiation to initialize the view with data,
      * and will be run again any time updatable data has changed.
@@ -439,8 +441,10 @@ export default class StripViewModel extends BaseModel {
      * After instantiation, this method should only be run after `._shouldUpdate()`
      * has returned true.
      *
+     * Logic should not go here; instead, put it in the `_init()` and `updateStripView()`.
+     *
      * @for StripViewModel
-     * @method _render
+     * @method _redraw
      * @chainable
      */
     _redraw() {
@@ -681,12 +685,28 @@ export default class StripViewModel extends BaseModel {
 
         this.insideCenter = insideCenter;
         this._transponder = transponderCode;
-        this._assignedAltitude = assignedAltitude;
+        this._assignedAltitude = this._roundAltitude(assignedAltitude);
         this._flightPlanAltitude = flightPlanAltitude;
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
 
         return this._redraw();
+    }
+
+    /**
+     * @for StripViewModel
+     * @method roundAltitude
+     * @param altitude
+     * @return roundedAltitude
+     */
+    _roundAltitude(altitude) {
+        if (_isNaN(altitude)) {
+            return 0;
+        }
+
+        const roundedAltitude = _round(altitude);
+
+        return roundedAltitude;
     }
 }
