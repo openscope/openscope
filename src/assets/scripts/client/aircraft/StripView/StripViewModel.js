@@ -702,7 +702,7 @@ export default class StripViewModel extends BaseModel {
      */
     _roundAltitude(altitude) {
         if (_isNaN(altitude)) {
-            return '-';
+            return INVALID_NUMBER;
         }
 
         const roundedAltitude = _round(altitude);
