@@ -173,7 +173,7 @@ export const GAME_OPTION_VALUES = [
     },
     {
         name: GAME_OPTION_NAMES.RADAR_UPDATE_DELAY,
-        defaultValue: '4.5',
+        defaultValue: 4.5,
         description: 'Delay Radar Screen Updates',
         help: 'Sets how long the radar screen should wait to refresh.',
         type: 'select',
@@ -181,19 +181,19 @@ export const GAME_OPTION_VALUES = [
         optionList: [
             {
                 label: '1sec',
-                value: '1'
+                value: 1
             },
             {
                 label: '2sec',
-                value: '2'
+                value: 2
             },
             {
                 label: '3sec',
-                value: '3'
+                value: 3
             },
             {
                 label: '4.5sec',
-                value: '4.5'
+                value: 4.5
             },
             {
                 label: '5sec',
