@@ -236,7 +236,7 @@ export default class CanvasController {
         const elapsed = GameController.game_time() - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
-        const shouldUpdate = this.canvas.dirty || (!GameController.game_paused() && prop.time.frames % framestep === 0);
+        const shouldUpdate = this.canvas.dirty || !GameController.game_paused() && prop.time.frames % framestep === 0;
         const updateDelay = GameController.getGameOption(GAME_OPTION_NAMES.RADAR_UPDATE_DELAY);
 
         if (shouldUpdate || elapsed > updateDelay) {
