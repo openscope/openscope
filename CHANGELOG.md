@@ -1,6 +1,7 @@
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
+Adds a delay to updating the radar for realism [#125](https://github.com/openscope/openscope/issues/125)
 
 
 
