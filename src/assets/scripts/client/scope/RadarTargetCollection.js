@@ -121,6 +121,18 @@ export default class RadarTargetCollection extends BaseCollection {
     }
 
     /**
+     * Reset all radar target models to default state
+     *
+     * @for RadarTargetCollection
+     * @method resetAllRadarTargets
+     */
+    resetAllRadarTargets() {
+        const radarTargetModels = this._items;
+
+        _forEach(radarTargetModels, (radarTargetModel) => radarTargetModel.reset());
+    }
+
+    /**
      * Reset all properties to their default values
      *
      * @for RadarTargetCollection

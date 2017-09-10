@@ -252,6 +252,26 @@ export default class RadarTargetModel {
     }
 
     /**
+     * Reset all properties to their default state
+     *
+     * @for RadarTargetModel
+     * @method reset
+     */
+    reset() {
+        this._aircraftModel = null;
+        this._cruiseAltitude = INVALID_NUMBER;
+        this._dataBlockDirection = INVALID_NUMBER;
+        this._dataBlockLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
+        this._hasFullDataBlock = true;
+        this._hasHalo = false;
+        this._hasSuppressedDataBlock = false;
+        this._interimAltitude = INVALID_NUMBER;
+        this._isUnderOurControl = true;
+        this._routeString = '';
+        this._scratchPadText = '';
+    }
+
+    /**
      * Set the value of the scratchpad
      *
      * @for RadarTargetModel
