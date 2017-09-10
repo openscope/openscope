@@ -147,10 +147,18 @@ export default class RadarTargetModel {
         this._init(aircraftModel);
     }
 
+    /**
+     * @for RadarTargetModel
+     * @property dataBlockDirection
+     */
     get dataBlockDirection() {
         return this._dataBlockDirection;
     }
 
+    /**
+     * @for RadarTargetModel
+     * @property dataBlockLength
+     */
     get dataBlockLength() {
         return this._dataBlockLength;
     }
@@ -241,6 +249,36 @@ export default class RadarTargetModel {
         }
 
         return [true, 'ADJUST DATA BLOCK'];
+    }
+
+    /**
+     * Set the value of the scratchpad
+     *
+     * @for RadarTargetModel
+     * @method setScratchpad
+     * @return {array} [success of operation, system's response]
+     */
+    setScratchpad(commandArguments) {
+        if (commandArguments.length > 3) {
+            return [false, 'ERR: SCRATCHPAD MAX 3 CHAR'];
+        }
+
+        this._scratchPadText = commandArguments.toUpperCase();
+
+        return [true, 'SET SCRATCHPAD TEXT'];
+    }
+
+    /**
+     * Toggle halo (circle) on and off
+     *
+     * @for RadarTargetModel
+     * @method toggleHalo
+     * @return {array} [success of operation, system's response]
+     */
+    toggleHalo() {
+        this._hasHalo = !this._hasHalo;
+
+        return [true, 'TOGGLE HALO'];
     }
 
     /**

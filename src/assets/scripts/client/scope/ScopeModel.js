@@ -42,12 +42,12 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    acceptHandoff = (radarTargetModel, commandArguments) => {
+    acceptHandoff(radarTargetModel, commandArguments) {
         // TODO: Make this do stuff!
         UiController.ui_log('acceptHandoff command not yet available', true);
 
-        return [true, `user input received: '${data}'`];
-    };
+        return [true, `user input received: '${commandArguments}'`];
+    }
 
     /**
      * Amend the cruise altitude OR interim altitude for a given `RadarTargetModel`
@@ -58,12 +58,12 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    amendAltitude = (radarTargetModel, commandArguments) => {
+    amendAltitude(radarTargetModel, commandArguments) {
         // TODO: Make this do stuff!
         UiController.ui_log('amendAltitude command not yet available', true);
 
-        return [true, `user input received: '${data}'`];
-    };
+        return [true, `user input received: '${commandArguments}'`];
+    }
 
     /**
      * Enable handlers
@@ -94,12 +94,12 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    handoff = (radarTargetModel, commandArguments) => {
+    handoff(radarTargetModel, commandArguments) {
         // TODO: Make this do stuff!
         UiController.ui_log('handoff command not yet available', true);
 
-        return [true, `user input received: '${data}'`];
-    };
+        return [true, `user input received: '${commandArguments}'`];
+    }
 
     /**
      * Change direction and/or length of data block leader line
@@ -110,9 +110,9 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    moveDataBlock = (radarTargetModel, commandArguments) => {
+    moveDataBlock(radarTargetModel, commandArguments) {
         return radarTargetModel.moveDataBlock(commandArguments);
-    };
+    }
 
     /**
      * Toggle visibility of the data block of a given `RadarTargetModel`, on this
@@ -124,12 +124,12 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    propogateDataBlock = (radarTargetModel, commandArguments) => {
+    propogateDataBlock(radarTargetModel, commandArguments) {
         // TODO: Make this do stuff!
         UiController.ui_log('propogateDataBlock command not yet available', true);
 
-        return [true, `user input received: '${data}'`];
-    };
+        return [true, `user input received: '${commandArguments}'`];
+    }
 
     /**
      * Amend the route stored in the scope for a given `RadarTargetModel`
@@ -140,12 +140,12 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    route = (radarTargetModel, commandArguments) => {
+    route(radarTargetModel, commandArguments) {
         // TODO: Make this do stuff!
         UiController.ui_log('route command not yet available', true);
 
-        return [true, `user input received: '${data}'`];
-    };
+        return [true, `user input received: '${commandArguments}'`];
+    }
 
     /**
      * Execute a scope command from a `ScopeCommandModel`
@@ -155,7 +155,9 @@ export default class ScopeModel {
     runScopeCommand(scopeCommandModel) {
         const functionName = scopeCommandModel.commandFunction;
         const functionArguments = scopeCommandModel.commandArguments;
-        const radarTargetModel = this.radarTargetCollection.getRadarTargetModelFromAircraftReference(scopeCommandModel.aircraftReference);
+        const radarTargetModel = this.radarTargetCollection.getRadarTargetModelFromAircraftReference(
+            scopeCommandModel.aircraftReference
+        );
 
         if (!_has(this, functionName)) {
             return [false, 'ERR: BAD SYNTAX'];
@@ -177,12 +179,9 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    setScratchpad = (radarTargetModel, commandArguments) => {
-        // TODO: Make this do stuff!
-        UiController.ui_log('setScratchpad command not yet available', true);
-
-        return [true, `user input received: '${data}'`];
-    };
+    setScratchpad(radarTargetModel, commandArguments) {
+        return radarTargetModel.setScratchpad(commandArguments);
+    }
 
     /**
      * Toggle halo for a given `RadarTargetModel`
@@ -193,12 +192,9 @@ export default class ScopeModel {
      * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    toggleHalo = (radarTargetModel, commandArguments) => {
-        // TODO: Make this do stuff!
-        UiController.ui_log('toggleHalo command not yet available', true);
-
-        return [true, `user input received: '${data}'`];
-    };
+    toggleHalo(radarTargetModel, commandArguments) {
+        return radarTargetModel.toggleHalo(commandArguments);
+    }
 
     /**
      * Change theme to the specified name
@@ -221,5 +217,5 @@ export default class ScopeModel {
         }
 
         this._theme = THEME[themeName];
-    };
+    }
 }
