@@ -38,19 +38,19 @@ export default class RadarTargetModel {
          *
          *
          * @for RadarTargetModel
-         * @property _dataBlockDirection
+         * @property _dataBlockLeaderDirection
          * @type {number}
          */
-        this._dataBlockDirection = INVALID_NUMBER;
+        this._dataBlockLeaderDirection = INVALID_NUMBER;
 
         /**
          *
          *
          * @for RadarTargetModel
-         * @property _dataBlockLength
+         * @property _dataBlockLeaderLength
          * @type {number}
          */
-        this._dataBlockLength = theme.DATA_BLOCK.LEADER_LENGTH;
+        this._dataBlockLeaderLength = theme.DATA_BLOCK.LEADER_LENGTH;
 
         /**
          * Event Bus reference
@@ -149,18 +149,18 @@ export default class RadarTargetModel {
 
     /**
      * @for RadarTargetModel
-     * @property dataBlockDirection
+     * @property dataBlockLeaderDirection
      */
-    get dataBlockDirection() {
-        return this._dataBlockDirection;
+    get dataBlockLeaderDirection() {
+        return this._dataBlockLeaderDirection;
     }
 
     /**
      * @for RadarTargetModel
-     * @property dataBlockLength
+     * @property dataBlockLeaderLength
      */
-    get dataBlockLength() {
-        return this._dataBlockLength;
+    get dataBlockLeaderLength() {
+        return this._dataBlockLeaderLength;
     }
 
     /**
@@ -174,8 +174,8 @@ export default class RadarTargetModel {
     _init(aircraftModel) {
         this._aircraftModel = aircraftModel;
         this._cruiseAltitude = aircraftModel.fms.flightPlanAltitude;
-        this._dataBlockDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
-        this._dataBlockLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
+        this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
+        this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         // TODO: This getter doesn't give us what we want. Seems like one does
         // not exist actually. We want the full route string, including past legs.
         this._routeString = aircraftModel.fms.currentRoute;
@@ -241,11 +241,11 @@ export default class RadarTargetModel {
                 return [false, 'ERR: BAD SYNTAX'];
             }
 
-            this._dataBlockDirection = dataBlockPositionMap[desiredDirection];
+            this._dataBlockLeaderDirection = dataBlockPositionMap[desiredDirection];
         }
 
         if (desiredLength !== '' && !_isNaN(desiredLength)) {
-            this._dataBlockLength = desiredLength;
+            this._dataBlockLeaderLength = desiredLength;
         }
 
         return [true, 'ADJUST DATA BLOCK'];
@@ -260,8 +260,8 @@ export default class RadarTargetModel {
     reset() {
         this._aircraftModel = null;
         this._cruiseAltitude = INVALID_NUMBER;
-        this._dataBlockDirection = INVALID_NUMBER;
-        this._dataBlockLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
+        this._dataBlockLeaderDirection = INVALID_NUMBER;
+        this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._hasFullDataBlock = true;
         this._hasHalo = false;
         this._hasSuppressedDataBlock = false;

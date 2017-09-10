@@ -1122,7 +1122,7 @@ export default class CanvasController {
 
 
         const radarTargetModel = this._scopeModel.radarTargetCollection.getRadarTargetModelFromAircraftModel(aircraft);
-        let datablockDir = radarTargetModel.dataBlockDirection;
+        let datablockDir = radarTargetModel.dataBlockLeaderDirection;
 
         if (datablockDir === INVALID_NUMBER) {
             datablockDir = this.theme.DATA_BLOCK.LEADER_DIRECTION;
@@ -1844,7 +1844,7 @@ export default class CanvasController {
      * @return {number} length, in pixels
      */
     _calculateLeaderLength(radarTargetModel) {
-        return radarTargetModel.dataBlockLength *
+        return radarTargetModel.dataBlockLeaderLength *
             this.theme.DATA_BLOCK.LEADER_LENGTH_INCREMENT_PIXELS +
             this.theme.DATA_BLOCK.LEADER_LENGTH_ADJUSTMENT_PIXELS -
             this.theme.DATA_BLOCK.LEADER_PADDING_FROM_BLOCK_PX -
