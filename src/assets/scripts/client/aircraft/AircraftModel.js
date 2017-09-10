@@ -360,15 +360,6 @@ export default class AircraftModel {
         this.inside_ctr = false;
 
         /**
-         * Direction the data block points (-1 means to ignore)
-         *
-         * @property datablockDir
-         * @type {number}
-         * @default INVALID_NUMBER
-         */
-        this.datablockDir = INVALID_NUMBER;
-
-        /**
          * List of aircraft that MAY be in conflict (bounding box)
          *
          * @property conflicts

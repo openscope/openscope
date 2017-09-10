@@ -1122,22 +1122,22 @@ export default class CanvasController {
 
 
         const radarTargetModel = this._scopeModel.radarTargetCollection.getRadarTargetModelFromAircraftModel(aircraft);
-        let datablockDir = radarTargetModel.dataBlockLeaderDirection;
+        let dataBlockLeaderDirection = radarTargetModel.dataBlockLeaderDirection;
 
-        if (datablockDir === INVALID_NUMBER) {
-            datablockDir = this.theme.DATA_BLOCK.LEADER_DIRECTION;
+        if (dataBlockLeaderDirection === INVALID_NUMBER) {
+            dataBlockLeaderDirection = this.theme.DATA_BLOCK.LEADER_DIRECTION;
         }
 
         const leaderLength = this._calculateLeaderLength(radarTargetModel);
 
         // Draw leader line
         let offsetComponent = [
-            Math.sin(degreesToRadians(datablockDir)),
-            -Math.cos(degreesToRadians(datablockDir))
+            Math.sin(degreesToRadians(dataBlockLeaderDirection)),
+            -Math.cos(degreesToRadians(dataBlockLeaderDirection))
         ];
 
         // `degreesToRadians('ctr')` above will yield NaN, so we override that here
-        if (datablockDir === 'ctr') {
+        if (dataBlockLeaderDirection === 'ctr') {
             offsetComponent = [0, 0];
         }
 
@@ -1171,7 +1171,7 @@ export default class CanvasController {
             270: [-halfWidth, 0],
             315: [-halfWidth, -halfHeight]
         };
-        const leaderEndToBlockCenter = blockCenterOffset[datablockDir];
+        const leaderEndToBlockCenter = blockCenterOffset[dataBlockLeaderDirection];
         const dataBlockCenter = vadd(leaderIntersectionWithBlock, leaderEndToBlockCenter);
 
         cc.translate(...dataBlockCenter);
