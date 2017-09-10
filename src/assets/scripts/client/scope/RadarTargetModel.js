@@ -17,7 +17,7 @@ import { THEME } from '../constants/themes';
 export default class RadarTargetModel {
     constructor(theme, aircraftModel) {
         /**
-         *
+         * The full aircraft model object that this radar target corresponds to
          *
          * @for RadarTargetModel
          * @property _aircraftModel
@@ -26,7 +26,7 @@ export default class RadarTargetModel {
         this._aircraftModel = null;
 
         /**
-         *
+         * The cruise altitude (hard) assigned in the data block
          *
          * @for RadarTargetModel
          * @property _cruiseAltitude
@@ -35,7 +35,8 @@ export default class RadarTargetModel {
         this._cruiseAltitude = INVALID_NUMBER;
 
         /**
-         *
+         * Direction the data block is extended away from the radar target.
+         * A value of -1 means to leave at default position.
          *
          * @for RadarTargetModel
          * @property _dataBlockLeaderDirection
@@ -44,7 +45,8 @@ export default class RadarTargetModel {
         this._dataBlockLeaderDirection = INVALID_NUMBER;
 
         /**
-         *
+         * Length of the leader line extending away from the radar target and
+         * connecting to the data block.
          *
          * @for RadarTargetModel
          * @property _dataBlockLeaderLength
@@ -66,7 +68,8 @@ export default class RadarTargetModel {
         // of this would be VFR traffic with a partial or altitude-only data block.
         // For now, assuming all aircraft in existence have an editable data block.
         /**
-         *
+         * Boolean value representing whether the aircraft has a full data block.
+         * This is opposed to a partial (PDB), limited (LDB), or other non-full state.
          *
          * @for RadarTargetModel
          * @property _hasFullDataBlock
@@ -75,7 +78,8 @@ export default class RadarTargetModel {
         this._hasFullDataBlock = true;
 
         /**
-         *
+         * Boolean value representing whether the radar target should have a
+         * 'halo' (circle with a given radius) drawn around it.
          *
          * @for RadarTargetModel
          * @property _hasHalo
@@ -84,7 +88,8 @@ export default class RadarTargetModel {
         this._hasHalo = false;
 
         /**
-         *
+         * Boolean value representing whether the full data block is being suppressed
+         * on this particular scope.
          *
          * @for RadarTargetModel
          * @property _hasSuppressedDataBlock
@@ -93,7 +98,7 @@ export default class RadarTargetModel {
         this._hasSuppressedDataBlock = false;
 
         /**
-         *
+         * The altitude (soft) assigned in the data block
          *
          * @for RadarTargetModel
          * @property _interimAltitude
@@ -105,7 +110,8 @@ export default class RadarTargetModel {
         // when handoffs become possible. For now, just marking whether or not "we"
         // are the sector with control of the track.
         /**
-         *
+         * Boolean value representing whether the track of this target is under
+         * control of this particular scope.
          *
          * @for RadarTargetModel
          * @property _isUnderOurControl
@@ -118,7 +124,7 @@ export default class RadarTargetModel {
         // When the aircraft is told to fly a new route, this property should still show
         // the old route, until the controller updates it in the scope.
         /**
-         *
+         * The flight plan route for the aircraft associated with this radar target
          *
          * @for RadarTargetModel
          * @property _routeString
@@ -127,7 +133,8 @@ export default class RadarTargetModel {
         this._routeString = '';
 
         /**
-         *
+         * A 3 character (or less) alphanumeric string that is shown in the data block
+         * The scratchpad is used for controller shorthand notes and other purposes
          *
          * @for RadarTargetModel
          * @property _scratchPadText
