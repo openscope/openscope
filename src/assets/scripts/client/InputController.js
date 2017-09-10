@@ -32,8 +32,8 @@ export default class InputController {
      * @param $element {JQuery|HTML Element}
      * @param aircraftCommander {AircraftCommander}
      * @param uiController {UiController}
-     * @param onSelectAircraftStrip {function}       provides direct access to method in AircraftController that
-     *                                               that can be used to select a specific `stripViewModel`.
+     * @param scopeModel {ScopeModel}
+     * @param tutorialView {TutorialView}
      */
     constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
         this.$element = $element;
@@ -107,7 +107,7 @@ export default class InputController {
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
 
         // TODO: Fix this
-        // this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraft);
+        this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
         return this;
     }
@@ -126,7 +126,7 @@ export default class InputController {
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
 
-        this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraft);
+        this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
         return this.destroy();
     }
@@ -331,6 +331,19 @@ export default class InputController {
         this.$commandInput.val(`${aircraftModel.callsign} `);
         this._eventBus.trigger(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, aircraftModel);
     };
+
+    /**
+     * Select aircraft by callsign
+     *
+     * @for InputController
+     * @method selectAircraftByCallsign
+     * @param callsign {string}
+     */
+    selectAircraftByCallsign = (callsign) => {
+        const aircraftModel = this._aircraftController.findAircraftByCallsign(callsign);
+
+        this.selectAircraft(aircraftModel);
+    }
 
     /**
      * @for InputController
@@ -683,7 +696,7 @@ export default class InputController {
                 location.reload();
 
                 break;
-            case PARSED_COMMAND_NAME.AIRPORT:
+            case PARSED_COMMAND_NAME.AIRPORT: {
                 // TODO: it may be better to do this in the parser
                 const airportIcao = AircraftCommandParser.args[0];
 
@@ -692,7 +705,7 @@ export default class InputController {
                 }
 
                 return true;
-
+            }
             case PARSED_COMMAND_NAME.RATE:
                 // TODO: is this if even needed?
                 if (AircraftCommandParser.args) {
