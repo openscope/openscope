@@ -1,3 +1,4 @@
+import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 import _isObject from 'lodash/isObject';
 import RadarTargetModel from './RadarTargetModel';
@@ -69,6 +70,54 @@ export default class RadarTargetCollection extends BaseCollection {
         _forEach(aircraftCollection, (aircraftModel) => {
             this.addRadarTargetModelFromAircraftModel(theme, aircraftModel);
         });
+    }
+
+    /**
+     * Get the radar target model object for the specified aircraft
+     *
+     * @for RadarTargetCollection
+     * @method getRadarTargetModelFromAircraftModel
+     * @param aircraftModel {AircraftModel}
+     * @return radarTargetModel {RadarTargetModel}
+     */
+    getRadarTargetModelFromAircraftModel(aircraftModel) {
+        // Store variable because `this` within lodash `_filter` has different scope
+        const radarTargetModels = this._items;
+        const results = _filter(radarTargetModels, (radarTargetModel) => radarTargetModel._aircraftModel.id === aircraftModel.id);
+
+        if (results.length > 1) {
+            return;
+        }
+
+        const radarTargetModel = results[0];
+
+        return radarTargetModel;
+    }
+
+    // TODO: Allow us to choose an aircraft by its CID
+    /**
+     * Get the radar target model object for the specified aircraft
+     *
+     * @for RadarTargetCollection
+     * @method getRadarTargetModelFromAircraftReference
+     * @param aircraftReference {string} the CID, squawk code, or callsign assigned to an aircraft
+     * @return radarTargetModel {RadarTargetModel}
+     */
+    getRadarTargetModelFromAircraftReference(aircraftReference) {
+        // Store variable because `this` within lodash `_filter` has different scope
+        const radarTargetModels = this._items;
+        const results = _filter(radarTargetModels, (radarTargetModel) =>
+            radarTargetModel._aircraftModel.transponderCode === aircraftReference ||
+            radarTargetModel._aircraftModel.callsign === aircraftReference
+        );
+
+        if (results.length > 1) {
+            return;
+        }
+
+        const radarTargetModel = results[0];
+
+        return radarTargetModel;
     }
 
     /**

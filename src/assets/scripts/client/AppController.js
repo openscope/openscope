@@ -148,9 +148,7 @@ export default class AppController {
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
         this.scopeModel = new ScopeModel(this.aircraftController.aircraft.list);
-        // FIXME: Unattach from window!
-        window.scopeModel = this.scopeModel;
-        this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
+        this.canvasController = new CanvasController(this.$element, this.navigationLibrary, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);

@@ -59,11 +59,13 @@ export default class CanvasController {
      * @constructor
      * @param $element {JQuery|HTML Element|undefined}
      * @param navigationLibrary {NavigationLibrary}
+     * @param scopeModel {ScopeModel}
      */
-    constructor($element, navigationLibrary) {
+    constructor($element, navigationLibrary, scopeModel) {
         this.$window = $(window);
         this.$element = $element;
 
+        this._scopeModel = scopeModel;
         this._navigationLibrary = navigationLibrary;
         this._eventBus = EventBus;
 
@@ -1118,13 +1120,15 @@ export default class CanvasController {
             -round(UiController.km_to_px(aircraft.relativePosition[1])) + this.canvas.panY
         ];
 
-        let datablockDir = aircraft.datablockDir;
+
+        const radarTargetModel = this._scopeModel.radarTargetCollection.getRadarTargetModelFromAircraftModel(aircraft);
+        let datablockDir = radarTargetModel.dataBlockDirection;
 
         if (datablockDir === INVALID_NUMBER) {
             datablockDir = this.theme.DATA_BLOCK.LEADER_DIRECTION;
         }
 
-        const leaderLength = this._calculateLeaderLength();
+        const leaderLength = this._calculateLeaderLength(radarTargetModel);
 
         // Draw leader line
         let offsetComponent = [
@@ -1836,10 +1840,11 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _calculateLeaderLength
+     * @param radarTargetModel {RadarTargetModel}
      * @return {number} length, in pixels
      */
-    _calculateLeaderLength() {
-        return this.theme.DATA_BLOCK.LEADER_LENGTH *
+    _calculateLeaderLength(radarTargetModel) {
+        return radarTargetModel.dataBlockLength *
             this.theme.DATA_BLOCK.LEADER_LENGTH_INCREMENT_PIXELS +
             this.theme.DATA_BLOCK.LEADER_LENGTH_ADJUSTMENT_PIXELS -
             this.theme.DATA_BLOCK.LEADER_PADDING_FROM_BLOCK_PX -

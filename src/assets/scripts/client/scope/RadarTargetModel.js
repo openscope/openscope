@@ -1,8 +1,10 @@
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
+import _isNaN from 'lodash/isNaN';
 import INVALID_NUMBER from '../constants/globalConstants';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
+import { DECIMAL_RADIX } from '../constants/navigation/waypointConstants';
 import { THEME } from '../constants/themes';
 
 /**
@@ -145,6 +147,14 @@ export default class RadarTargetModel {
         this._init(aircraftModel);
     }
 
+    get dataBlockDirection() {
+        return this._dataBlockDirection;
+    }
+
+    get dataBlockLength() {
+        return this._dataBlockLength;
+    }
+
     /**
      * Complete initialization tasks
      *
@@ -168,7 +178,7 @@ export default class RadarTargetModel {
     /**
      * Enable handlers
      *
-     * @for ScopeModel
+     * @for RadarTargetModel
      * @method disable
      */
     disable() {
@@ -178,11 +188,59 @@ export default class RadarTargetModel {
     /**
      * Disable handlers
      *
-     * @for ScopeModel
+     * @for RadarTargetModel
      * @method enable
      */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+     * Change the direction and/or length of the data block leader line
+     *
+     * @for RadarTargetModel
+     * @method moveDataBlock
+     * @param commandArguments {string}
+     * @return {array} [success of operation, system's response]
+     */
+    moveDataBlock(commandArguments) {
+        if (_isEmpty(commandArguments)) {
+            return [false, 'ERR: BAD SYNTAX'];
+        }
+
+        let desiredDirection = commandArguments;
+        let desiredLength = '';
+
+        // FIXME: Extract this to a constants file!
+        if (commandArguments.indexOf('/') !== INVALID_NUMBER) {
+            const argumentPieces = commandArguments.split('/');
+            desiredDirection = parseInt(argumentPieces[0], DECIMAL_RADIX);
+            desiredLength = parseInt(argumentPieces[1], DECIMAL_RADIX);
+
+            if (_isEmpty(argumentPieces[0])) {
+                desiredDirection = '';
+            }
+        }
+
+        if (desiredLength > 6 || desiredLength < 0) {
+            return [false, 'ERR: LEADER LENGTH 0-6 ONLY'];
+        }
+
+        if (desiredDirection !== '' && !_isNaN(desiredDirection)) {
+            const dataBlockPositionMap = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
+
+            if (!_has(dataBlockPositionMap, desiredDirection)) {
+                return [false, 'ERR: BAD SYNTAX'];
+            }
+
+            this._dataBlockDirection = dataBlockPositionMap[desiredDirection];
+        }
+
+        if (desiredLength !== '' && !_isNaN(desiredLength)) {
+            this._dataBlockLength = desiredLength;
+        }
+
+        return [true, 'ADJUST DATA BLOCK'];
     }
 
     /**

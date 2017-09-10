@@ -1,4 +1,5 @@
 import _has from 'lodash/has';
+import _isNil from 'lodash/isNil';
 import EventBus from '../lib/EventBus';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import RadarTargetCollection from './RadarTargetCollection';
@@ -11,10 +12,11 @@ export default class ScopeModel {
         this._aircraftCollection = [];
         this._eventBus = EventBus;
         this._navigationLibrary = NavigationLibrary;
-        this._radarTargetCollection = [];
         // TODO: Use this!
         this._sectorCollection = [];
         this._theme = THEME.DEFAULT;
+
+        this.radarTargetCollection = [];
 
         this._init(aircraftCollection);
     }
@@ -28,7 +30,7 @@ export default class ScopeModel {
      */
     _init(aircraftCollection) {
         this._aircraftCollection = aircraftCollection;
-        this._radarTargetCollection = new RadarTargetCollection(this._theme, aircraftCollection);
+        this.radarTargetCollection = new RadarTargetCollection(this._theme, aircraftCollection);
     }
 
     /**
@@ -36,9 +38,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method acceptHandoff
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    acceptHandoff = (data) => {
+    acceptHandoff = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('acceptHandoff command not yet available', true);
 
@@ -50,9 +54,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method amendAltitude
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    amendAltitude = (data) => {
+    amendAltitude = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('amendAltitude command not yet available', true);
 
@@ -84,9 +90,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method handoff
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    handoff = (data) => {
+    handoff = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('handoff command not yet available', true);
 
@@ -98,13 +106,12 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method moveDataBlock
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    moveDataBlock = (data) => {
-        // TODO: Make this do stuff!
-        UiController.ui_log('moveDataBlock command not yet available', true);
-
-        return [true, `user input received: '${data}'`];
+    moveDataBlock = (radarTargetModel, commandArguments) => {
+        return radarTargetModel.moveDataBlock(commandArguments);
     };
 
     /**
@@ -113,9 +120,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method propogateDataBlock
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    propogateDataBlock = (data) => {
+    propogateDataBlock = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('propogateDataBlock command not yet available', true);
 
@@ -127,9 +136,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method route
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    route = (data) => {
+    route = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('route command not yet available', true);
 
@@ -144,12 +155,17 @@ export default class ScopeModel {
     runScopeCommand(scopeCommandModel) {
         const functionName = scopeCommandModel.commandFunction;
         const functionArguments = scopeCommandModel.commandArguments;
+        const radarTargetModel = this.radarTargetCollection.getRadarTargetModelFromAircraftReference(scopeCommandModel.aircraftReference);
 
         if (!_has(this, functionName)) {
-            throw new TypeError(`Expected known scope function name, but received '${functionName}'`);
+            return [false, 'ERR: BAD SYNTAX'];
         }
 
-        return this[functionName](...functionArguments);
+        if (_isNil(radarTargetModel)) {
+            return [false, 'ERR: UNKNOWN AIRCRAFT'];
+        }
+
+        return this[functionName](radarTargetModel, ...functionArguments);
     }
 
     /**
@@ -157,9 +173,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method setScratchpad
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    setScratchpad = (data) => {
+    setScratchpad = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('setScratchpad command not yet available', true);
 
@@ -171,9 +189,11 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method toggleHalo
-     * @param data
+     * @param radarTargetModel {RadarTargetModel}
+     * @param commandArguments {array}
+     * @return result {array} [success of operation, system's response]
      */
-    toggleHalo = (data) => {
+    toggleHalo = (radarTargetModel, commandArguments) => {
         // TODO: Make this do stuff!
         UiController.ui_log('toggleHalo command not yet available', true);
 
