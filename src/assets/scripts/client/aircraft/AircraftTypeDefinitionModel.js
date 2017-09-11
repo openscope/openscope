@@ -206,21 +206,21 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
 
     /**
      * @for AircraftTypeDefinitionModel
-     * @method assignedAttainableAltitude
+     * @method isAbleToMaintainAltitude
      * @param altitude
      * @return {Boolean}
      */
-    assignedAttainableAltitude(altitude) {
+    isAbleToMaintainAltitude(altitude) {
         return altitude < this.ceiling;
     }
 
     /**
      * @for AircraftTypeDefinitionModel
-     * @method assignedAttainableSpeed
+     * @method isAbleToMaintainSpeed
      * @param speed
      * @return {Boolean}
      */
-    assignedAttainableSpeed(speed) {
+    isAbleToMaintainSpeed(speed) {
         return speed > this.speed.min && speed < this.speed.max;
     }
 }
