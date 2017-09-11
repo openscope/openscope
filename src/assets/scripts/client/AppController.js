@@ -136,7 +136,8 @@ export default class AppController {
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
-        this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
+        this.scopeModel = new ScopeModel();
+        this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary, this.scopeModel);
         // TEMPORARY!
         // some instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
@@ -147,7 +148,6 @@ export default class AppController {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.scopeModel = new ScopeModel(this.aircraftController.aircraft.list);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);

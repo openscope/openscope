@@ -8,8 +8,7 @@ import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 
 export default class ScopeModel {
-    constructor(aircraftCollection) {
-        this._aircraftCollection = [];
+    constructor() {
         this._eventBus = EventBus;
         this._navigationLibrary = NavigationLibrary;
         // TODO: Use this!
@@ -18,7 +17,7 @@ export default class ScopeModel {
 
         this.radarTargetCollection = [];
 
-        this._init(aircraftCollection);
+        this._init();
     }
 
     /**
@@ -26,11 +25,9 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method _init
-     * @param aircraftCollection {array}
      */
-    _init(aircraftCollection) {
-        this._aircraftCollection = aircraftCollection;
-        this.radarTargetCollection = new RadarTargetCollection(this._theme, aircraftCollection);
+    _init() {
+        this.radarTargetCollection = new RadarTargetCollection(this._theme);
     }
 
     /**
