@@ -20,10 +20,10 @@ export default class RadarTargetModel {
          * The full aircraft model object that this radar target corresponds to
          *
          * @for RadarTargetModel
-         * @property _aircraftModel
+         * @property aircraftModel
          * @type {AircraftModel}
          */
-        this._aircraftModel = null;
+        this.aircraftModel = null;
 
         /**
          * The cruise altitude (hard) assigned in the data block
@@ -155,19 +155,47 @@ export default class RadarTargetModel {
     }
 
     /**
+     * Angle away from the radar target to draw the leader line and data block
+     *
      * @for RadarTargetModel
      * @property dataBlockLeaderDirection
+     * @type {number}
      */
     get dataBlockLeaderDirection() {
         return this._dataBlockLeaderDirection;
     }
 
     /**
+     * Length of leader line connecting radar target and data block
+     *
      * @for RadarTargetModel
      * @property dataBlockLeaderLength
+     * @type {number}
      */
     get dataBlockLeaderLength() {
         return this._dataBlockLeaderLength;
+    }
+
+    /**
+     * Get the `PositionModel` for the aircraft associated with the radar target
+     *
+     * @for RadarTargetModel
+     * @property positionModel
+     * @type {PositionModel}
+     */
+    get positionModel() {
+        return this.aircraftModel.positionModel;
+    }
+
+    /**
+     * Get the latest known altitude for the aircraft associated with the radar target
+     *
+     * @for RadarTargetModel
+     * @property positionModel
+     * @type {PositionModel}
+     */
+    get indicatedAltitude() {
+        return this.aircraftModel.altitude;
     }
 
     /**
@@ -179,7 +207,7 @@ export default class RadarTargetModel {
      * @param aircraftModel {AircraftModel}
      */
     _init(aircraftModel) {
-        this._aircraftModel = aircraftModel;
+        this.aircraftModel = aircraftModel;
         this._cruiseAltitude = aircraftModel.fms.flightPlanAltitude;
         this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
@@ -265,7 +293,7 @@ export default class RadarTargetModel {
      * @method reset
      */
     reset() {
-        this._aircraftModel = null;
+        this.aircraftModel = null;
         this._cruiseAltitude = INVALID_NUMBER;
         this._dataBlockLeaderDirection = INVALID_NUMBER;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;

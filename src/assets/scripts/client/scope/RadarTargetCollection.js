@@ -25,6 +25,17 @@ export default class RadarTargetCollection extends BaseCollection {
     }
 
     /**
+     * Return a read-only reference to the collection array
+     *
+     * @for RadarTargetCollection
+     * @property items
+     * @type {array}
+     */
+    get items() {
+        return this._items;
+    }
+
+    /**
      * Complete initialization tasks
      *
      * @for RadarTargetCollection
@@ -102,7 +113,7 @@ export default class RadarTargetCollection extends BaseCollection {
         // Store variable because `this` within lodash `_filter` has different scope
         const radarTargetModels = this._items;
         const results = _filter(radarTargetModels, (radarTargetModel) =>
-            radarTargetModel._aircraftModel.id === aircraftModel.id
+            radarTargetModel.aircraftModel.id === aircraftModel.id
         );
 
         if (results.length > 1) {
@@ -127,8 +138,8 @@ export default class RadarTargetCollection extends BaseCollection {
         // Store variable because `this` within lodash `_filter` has different scope
         const radarTargetModels = this._items;
         const results = _filter(radarTargetModels, (radarTargetModel) =>
-            radarTargetModel._aircraftModel.transponderCode === aircraftReference ||
-            radarTargetModel._aircraftModel.callsign === aircraftReference
+            radarTargetModel.aircraftModel.transponderCode === aircraftReference ||
+            radarTargetModel.aircraftModel.callsign === aircraftReference
         );
 
         if (results.length > 1) {
@@ -150,7 +161,7 @@ export default class RadarTargetCollection extends BaseCollection {
     removeRadarTargetModel = (aircraftModel) => {
         const idToRemove = aircraftModel.id;
         const collectionWithAircraftRemoved = _filter(this._items, (radarTargetModel) =>
-            radarTargetModel._aircraftModel.id !== idToRemove
+            radarTargetModel.aircraftModel.id !== idToRemove
         );
 
         this._items = collectionWithAircraftRemoved;
