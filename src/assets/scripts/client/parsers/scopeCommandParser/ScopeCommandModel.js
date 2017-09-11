@@ -1,6 +1,7 @@
 import _first from 'lodash/first';
 import _has from 'lodash/has';
 import _last from 'lodash/last';
+import _without from 'lodash/without';
 import _values from 'lodash/values';
 import {
     IMPLIED_COMMANDS,
@@ -36,7 +37,7 @@ export default class ScopeCommand {
 
     _extractCommandArguments(command) {
         if (_values(IMPLIED_COMMANDS).indexOf(this.commandFunction) !== -1) {
-            return [_first(command)];
+            return _without(command, this.aircraftReference);
         }
 
         return command.splice(1, command.length - 2);
