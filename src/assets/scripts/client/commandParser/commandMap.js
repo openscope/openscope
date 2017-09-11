@@ -33,8 +33,6 @@ export const SYSTEM_COMMANDS = {
  * @final
  */
 const UNICODE_COMMANDS = {
-    '\\u2B61': 'altitude',
-    '\\u2B63': 'altitude',
     '\\u2BA2': 'heading',
     '\\u2BA3': 'heading',
     '\\u2B50': 'land'
