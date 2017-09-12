@@ -16,7 +16,7 @@ const TO_MOCK = 'to';
 const FH_COMMAND_MOCK = 'fh 180';
 const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
-const UNICODE_HEADING_MOCK = '\u2BA2 180'
+const UNICODE_STAR_MOCK = '\u2B50 28R';
 
 const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
 
@@ -100,12 +100,12 @@ ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit
 });
 
 ava('._buildCommandList() finds correct command when it recieves a space before a unicode value', t => {
-    const commandListMock = buildCommandList('', UNICODE_HEADING_MOCK);
-    const model = new CommandParser(buildCommandString('', UNICODE_HEADING_MOCK));
+    const commandListMock = buildCommandList('', UNICODE_STAR_MOCK);
+    const model = new CommandParser(buildCommandString('', UNICODE_STAR_MOCK));
     const result = model._buildCommandList(_tail(commandListMock));
 
-    t.true(result[0].name === 'heading');
-    t.true(result[0].args[0] === '180');
+    t.true(result[0].name === 'land');
+    t.true(result[0].args[0] === '28R');
 });
 
 ava('._buildCommandList() does not throw when it trys to add args to an undefined commandModel and returns an empty array', t => {
