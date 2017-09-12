@@ -54,7 +54,7 @@ const COMMANDS = {
     sayAssignedAltitude: 'runSayAssignedAltitude',
     sayHeading: 'runSayHeading',
     sayAssignedHeading: 'runSayAssignedHeading',
-    saySpeed: 'runSaySpeed',
+    sayIndicatedAirspeed: 'runSayIndicatedAirspeed',
     sayAssignedSpeed: 'runSayAssignedSpeed',
     sayRoute: 'runSayRoute',
     sid: 'runSID',
@@ -613,7 +613,7 @@ export default class AircraftCommander {
      * @param aircraft
      * @return {array} [success of operation, readback]
      */
-    runSaySpeed(aircraft) {
+    runSayIndicatedAirspeed(aircraft) {
         const speed = _round(aircraft.speed);
         const readback = {};
 
@@ -630,7 +630,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runSayAssignedSpeed(aircraft) {
-        if (this.speedMode !== MCP_MODE.SPEED.HOLD) {
+        if (aircraft.mcp.speedMode !== MCP_MODE.SPEED.HOLD) {
             return [false, 'we haven\'t been assigned a speed'];
         }
 
