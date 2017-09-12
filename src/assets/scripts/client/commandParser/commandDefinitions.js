@@ -119,7 +119,7 @@ const ZERO_ARG_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    saySpeed: {
+    sayIndicatedAirspeed: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
