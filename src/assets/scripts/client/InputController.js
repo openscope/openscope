@@ -37,6 +37,7 @@ export default class InputController {
      */
     constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
         this.$element = $element;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -63,9 +64,7 @@ export default class InputController {
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
-        // TODO: Do we want setupHandlers to be `enableHandlers`, and called from `.enable()`?
         this._init()
-            .setupHandlers()
             .enable();
     }
 
@@ -74,7 +73,7 @@ export default class InputController {
      * @method _init
      */
     _init() {
-        this.$body = $('body')[0];
+        this.$body = this.$element[0];
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
@@ -84,30 +83,8 @@ export default class InputController {
     }
 
     /**
-     * Enable handlers
+     * Enable all event handlers
      *
-     * @for InputController
-     * @method setupHandlers
-     */
-    setupHandlers() {
-        this.$body.addEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
-
-        return this;
-    }
-
-    /**
-     * Disable handlers
-     *
-     * @for InputController
-     * @method setupHandlers
-     */
-    disableHandlers() {
-        this.$body.removeEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
-
-        return this;
-    }
-
-    /**
      * @for InputController
      * @method enable
      */
@@ -122,6 +99,7 @@ export default class InputController {
         this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.addEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
 
         // TODO: Fix this
         this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -130,6 +108,8 @@ export default class InputController {
     }
 
     /**
+     * Disable all event handlers and destroy the instance
+     *
      * @for InputController
      * @method disable
      */
@@ -141,10 +121,9 @@ export default class InputController {
         this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.removeEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
-
-        this.disableHandlers();
 
         return this.destroy();
     }
@@ -262,7 +241,7 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
-        // TODO: this should use early returns instead of the else if
+        // TODO: This should use a switch on `event.which` instead of `if/else if`
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
             UiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
