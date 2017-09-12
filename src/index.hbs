@@ -11,18 +11,96 @@
             spellcheck="false"
             autofocus />
 
-        {{> _stripView}}
+        {{!-- {{> _stripView}} --}}
+        <div id="sidebar" class="stripView js-stripView mix-stripView_isHidden">
+            <div class="stripView-trigger js-stripView-trigger"></div>
+            <ul id="strips" class='stripView-list nice-scrollbar js-stripView-list'></ul>
+        </div>
 
-        {{> _score}}
+        {{!-- {{> _score}} --}}
+        <div id="score" title="Score">-</div>
 
-        {{> _controls}}
+        {{!-- {{> _controls}} --}}
+        <div id="controls">
+            <span class="toggle-labels control" title="Toggle fix and runway labels">
+                <img src="assets/images/icons/labels.png" />
+            </span>
+            <span class="toggle-sids control" title="Toggle SID display">
+                <img src="assets/images/icons/sids.png" />
+            </span>
+            <span class="toggle-restricted-areas control" title="Toggle restricted areas">
+                <img src="assets/images/icons/restricted.png" />
+            </span>
+            <span class="toggle-terrain control active" title="Toggle terrain">
+                <img src="assets/images/icons/terrain.png" />
+            </span>
+            <span class="fast-forwards control" title="Set time warp to 2">
+                <img src="assets/images/icons/fast-forwards.png" />
+            </span>
+            <span class="pause-toggle control" title="Pause simulation">
+                <img src="assets/images/icons/pause.png" />
+            </span>
+            <span class="speech-toggle control" title="Enable speech synthesis (experimental)">
+                <img src="assets/images/icons/speech.png" />
+            </span>
+            <span class="switch-airport control" title="Switch airport">
+                <img src="assets/images/icons/airport.png" />
+            </span>
+            <span class="toggle-tutorial control" title="Open tutorial">
+                <img src="assets/images/icons/tutorial.png" />
+            </span>
+            <span id="toggle-options" class="control" title="Open options">
+                <img src="assets/images/icons/cog.png" />
+            </span>
+        </div>
 
-        {{> _airportSwitch}}
+        {{!-- {{> _airportSwitch}} --}}
+        <div id="airport-switch">
+            <p class="title">
+                Select Airport
+            </p>
+            <div id="airport-list" class="nice-scrollbar"></div>
+            <p id="airport-list-notes"></p>
+        </div>
 
-        {{> _paused}}
+        {{!-- {{> _paused}} --}}
+        <div id="paused">
+            <img src="assets/images/paused-overlay.png" title="Resume simulation" />
+        </div>
 
-        {{> _loadingView}}
+        {{!-- {{> _loadingView}} --}}
+        <div class="loadingView js-loadingView">
+            <div class="loadingViewMedia u-center-middle">
+                <div class="loadingViewMedia-figure">
+                    <img src="assets/images/openscope-radar-sweep.gif" height="150" width="150" />
+                </div>
+                <div class="loadingViewMedia-content">
+                    <div class="loadingViewMedia-hd">
+                        <h1 class="hdg hdg_1">OpenScope</h1>
+                    </div>
+                    <div class="loadingViewMedia-bd">
+                        Air Traffic Control Simulator
+                    </div>
+                    <div class="loadingViewMedia-bd">
+                        v{{version}}
+                    </div>
+                    <div class="loadingViewMedia-ft">
+                        Loading
+                        <span class="loadingView-dot loadingView-dot_one">.</span>
+                        <span class="loadingView-dot loadingView-dot_two">.</span>
+                        <span class="loadingView-dot loadingView-dot_three">.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        {{> _loadingIndicator}}
+        {{!-- {{> _loadingIndicator}} --}}
+        <div id="loadingIndicator">
+            <img src="assets/images/icons/spinner.gif" />
+            <span class="message">
+                loading...
+            </span>
+        </div>
+
     {{/content}}
 {{/extend}}
