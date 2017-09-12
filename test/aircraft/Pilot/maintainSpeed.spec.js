@@ -1,7 +1,8 @@
-﻿import ava from 'ava';
+import ava from 'ava';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
+import AircraftTypeDefinitionModel from '../../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';
 import {
     fmsArrivalFixture,
     modeControllerFixture
@@ -12,7 +13,7 @@ import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 const currentSpeedMock = 320;
 const cruiseSpeedMock = 460;
 const invalidSpeedMock = 530;
-const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
