@@ -6,6 +6,7 @@ import _isObject from 'lodash/isObject';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
+import AircraftTypeDefinitionModel from '../../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';
 import {
     fmsArrivalFixture,
     modeControllerFixture
@@ -21,7 +22,7 @@ ava('.maintainAltitude() should set mcp.altitude to the correct value when great
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = true;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
@@ -42,7 +43,7 @@ ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altit
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
@@ -64,7 +65,7 @@ ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedi
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const shouldExpediteAltitudeChangeSpy = sinon.spy(pilot, 'shouldExpediteAltitudeChange');
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     pilot.maintainAltitude(
         currentAltitudeMock,
@@ -84,7 +85,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
@@ -108,7 +109,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
@@ -134,7 +135,7 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const cancelApproachClearanceSpy = sinon.spy(pilot, 'cancelApproachClearance');
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
 
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
 
@@ -165,7 +166,7 @@ ava('.maintainAltitude() returns a warning when assigning aircraft altitude abov
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const model = new AircraftModel(new AircraftTypeDefinitionModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK), navigationLibraryFixture);
     const result = pilot.maintainAltitude(
         currentAltitudeMock,
         invalidAltitudeMock,
