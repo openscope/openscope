@@ -114,7 +114,7 @@ export const COMMAND_MAP = {
     saa: 'sayAssignedAltitude',
     sh: 'sayHeading',
     sah: 'sayAssignedHeading',
-    ss: 'saySpeed',
+    si: 'sayIndicatedAirspeed',
     sas: 'sayAssignedSpeed'
 };
 
