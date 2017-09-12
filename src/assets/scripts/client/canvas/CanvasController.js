@@ -86,6 +86,9 @@ export default class CanvasController {
         this.canvas.draw_sids = false;
         this.canvas.draw_terrain = true;
 
+        // has a console.warn been output for terrain?
+        this.has_terrain_warning = false;
+
         this.theme = THEME.DEFAULT;
 
         return this._init()
@@ -1525,9 +1528,11 @@ export default class CanvasController {
 
         // TODO: Remove the jQuery in favor of _each()!
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
-            if (elevation < 1000) {
+            if (elevation < 1000 && !this.has_terrain_warning) {
                 console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
                     ' below sea level, which is not supported!');
+
+                this.has_terrain_warning = true;
 
                 // within `$.each()`, this return acts like `continue;`
                 return;
