@@ -21,7 +21,7 @@ ava('sets correct property values for HANDOFF', (t) => {
 
     t.true(model.aircraftReference === '167');
     t.deepEqual(model.commandArguments, ['19']);
-    t.true(model.commandFunction === COMMAND_FUNCTIONS.HANDOFF);
+    t.true(model.commandFunction === COMMAND_FUNCTIONS.INITIATE_HANDOFF);
 });
 
 ava('sets correct property values for MOVE_DATA_BLOCK (direction only)', (t) => {

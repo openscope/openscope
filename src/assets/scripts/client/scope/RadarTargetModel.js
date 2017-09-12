@@ -219,6 +219,19 @@ export default class RadarTargetModel {
     }
 
     /**
+     * Assign a new "hard" altitude
+     *
+     * @for RadarTargetModel
+     * @param altitude {string}
+     * @return {array} [success of operation, system's response]
+     */
+    amendAltitude(altitude) {
+        this._cruiseAltitude = altitude;
+
+        return [true, 'AMEND ALTITUDE'];
+    }
+
+    /**
      * Enable handlers
      *
      * @for RadarTargetModel
@@ -236,6 +249,30 @@ export default class RadarTargetModel {
      */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+    * Mark this radar target as being controlled by "our" ScopeModel
+    * Note that this will eventually be reworked so we can specify which
+    * scope has control, not just whether or not "we" do.
+    *
+    * @for RadarTargetModel
+    * @method markAsNotOurControl
+    */
+    markAsNotOurControl() {
+        this._isUnderOurControl = false;
+    }
+
+    /**
+     * Mark this radar target as being controlled by "our" ScopeModel
+     * Note that this will eventually be reworked so we can specify which
+     * scope has control, not just whether or not "we" do.
+     *
+     * @for RadarTargetModel
+     * @method markAsOurControl
+     */
+    markAsOurControl() {
+        this._isUnderOurControl = true;
     }
 
     /**
@@ -311,14 +348,11 @@ export default class RadarTargetModel {
      *
      * @for RadarTargetModel
      * @method setScratchpad
+     * @param scratchPadText {string}
      * @return {array} [success of operation, system's response]
      */
-    setScratchpad(commandArguments) {
-        if (commandArguments.length > 3) {
-            return [false, 'ERR: SCRATCHPAD MAX 3 CHAR'];
-        }
-
-        this._scratchPadText = commandArguments.toUpperCase();
+    setScratchpad(scratchPadText) {
+        this._scratchPadText = scratchPadText;
 
         return [true, 'SET SCRATCHPAD TEXT'];
     }

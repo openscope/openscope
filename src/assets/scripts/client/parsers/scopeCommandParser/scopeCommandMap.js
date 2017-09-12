@@ -20,7 +20,7 @@ export const EXPLICIT_COMMANDS = {
  */
 export const IMPLIED_COMMANDS = {
     ACCEPT_HANDOFF: 'acceptHandoff',
-    HANDOFF: 'handoff',
+    INITIATE_HANDOFF: 'initiateHandoff',
     MOVE_DATA_BLOCK: 'moveDataBlock',
     SCRATCHPAD: 'setScratchpad'
 };

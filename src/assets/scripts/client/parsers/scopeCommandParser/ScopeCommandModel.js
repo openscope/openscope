@@ -50,7 +50,7 @@ export default class ScopeCommand {
         }
 
         if (SECTOR_HANDOFF_CODES.indexOf(firstElement) !== -1) {
-            return COMMAND_FUNCTIONS.HANDOFF;
+            return COMMAND_FUNCTIONS.INITIATE_HANDOFF;
         }
 
         if (firstElement.indexOf('/') !== -1 || firstElement.length < 2) {

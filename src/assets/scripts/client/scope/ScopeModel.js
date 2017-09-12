@@ -3,9 +3,9 @@ import _isNil from 'lodash/isNil';
 import EventBus from '../lib/EventBus';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import RadarTargetCollection from './RadarTargetCollection';
-import UiController from '../UiController';
-import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
+import { DECIMAL_RADIX } from '../constants/globalConstants';
+import { THEME } from '../constants/themes';
 
 export default class ScopeModel {
     constructor() {
@@ -36,14 +36,10 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method acceptHandoff
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    acceptHandoff(radarTargetModel, commandArguments) {
-        // TODO: Make this do stuff!
-        UiController.ui_log('acceptHandoff command not yet available', true);
-
-        return [true, `user input received: '${commandArguments}'`];
+    acceptHandoff(radarTargetModel) {
+        return [false, 'acceptHandoff command not yet available'];
     }
 
     /**
@@ -52,14 +48,13 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method amendAltitude
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param altitude {string}
      * @return result {array} [success of operation, system's response]
      */
-    amendAltitude(radarTargetModel, commandArguments) {
-        // TODO: Make this do stuff!
-        UiController.ui_log('amendAltitude command not yet available', true);
+    amendAltitude(radarTargetModel, altitude) {
+        altitude = parseInt(altitude, DECIMAL_RADIX);
 
-        return [true, `user input received: '${commandArguments}'`];
+        return radarTargetModel.amendAltitude(altitude);
     }
 
     /**
@@ -86,16 +81,13 @@ export default class ScopeModel {
      * Initiate a handoff to another sector
      *
      * @for ScopeModel
-     * @method handoff
+     * @method initiateHandoff
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param sectorCode {string} the handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    handoff(radarTargetModel, commandArguments) {
-        // TODO: Make this do stuff!
-        UiController.ui_log('handoff command not yet available', true);
-
-        return [true, `user input received: '${commandArguments}'`];
+    initiateHandoff(radarTargetModel, sectorCode) {
+        return [false, 'handoff command not yet available'];
     }
 
     /**
@@ -118,14 +110,11 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method propogateDataBlock
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param sectorCode {array} handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
-    propogateDataBlock(radarTargetModel, commandArguments) {
-        // TODO: Make this do stuff!
-        UiController.ui_log('propogateDataBlock command not yet available', true);
-
-        return [true, `user input received: '${commandArguments}'`];
+    propogateDataBlock(radarTargetModel, sectorCode) {
+        return [false, 'propogateDataBlock command not yet available'];
     }
 
     /**
@@ -134,20 +123,18 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method route
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param routeString {string}
      * @return result {array} [success of operation, system's response]
      */
-    route(radarTargetModel, commandArguments) {
-        // TODO: Make this do stuff!
-        UiController.ui_log('route command not yet available', true);
-
-        return [true, `user input received: '${commandArguments}'`];
+    route(radarTargetModel, routeString) {
+        return [false, 'route command not yet available'];
     }
 
     /**
      * Execute a scope command from a `ScopeCommandModel`
      * @method runScopeCommand
      * @param scopeCommandModel {ScopeCommandModel}
+     * @return result {array} [success of operation, system's response]
      */
     runScopeCommand(scopeCommandModel) {
         const functionName = scopeCommandModel.commandFunction;
@@ -156,7 +143,7 @@ export default class ScopeModel {
             scopeCommandModel.aircraftReference
         );
 
-        if (!_has(this, functionName)) {
+        if (!(functionName in this)) {
             return [false, 'ERR: BAD SYNTAX'];
         }
 
@@ -173,11 +160,15 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method setScratchpad
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param scratchPadText {array}
      * @return result {array} [success of operation, system's response]
      */
-    setScratchpad(radarTargetModel, commandArguments) {
-        return radarTargetModel.setScratchpad(commandArguments);
+    setScratchpad(radarTargetModel, scratchPadText) {
+        if (scratchPadText.length > 3) {
+            return [false, 'ERR: SCRATCHPAD MAX 3 CHAR'];
+        }
+
+        return radarTargetModel.setScratchpad(scratchPadText.toUpperCase());
     }
 
     /**
@@ -186,11 +177,10 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method toggleHalo
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
      * @return result {array} [success of operation, system's response]
      */
-    toggleHalo(radarTargetModel, commandArguments) {
-        return radarTargetModel.toggleHalo(commandArguments);
+    toggleHalo(radarTargetModel) {
+        return radarTargetModel.toggleHalo();
     }
 
     /**
