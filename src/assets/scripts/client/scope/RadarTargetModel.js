@@ -1,9 +1,9 @@
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNaN from 'lodash/isNaN';
-import INVALID_NUMBER from '../constants/globalConstants';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 import { DECIMAL_RADIX } from '../constants/navigation/waypointConstants';
 import { THEME } from '../constants/themes';
 
@@ -215,14 +215,14 @@ export default class RadarTargetModel {
         // not exist actually. We want the full route string, including past legs.
         this._routeString = aircraftModel.fms.currentRoute;
 
-        this._initializeScratchPad(aircraftModel);
+        this._initializeScratchPad();
     }
 
     /**
      * Assign a new "hard" altitude
      *
      * @for RadarTargetModel
-     * @param altitude {string}
+     * @param altitude {number}
      * @return {array} [success of operation, system's response]
      */
     amendAltitude(altitude) {
@@ -354,7 +354,7 @@ export default class RadarTargetModel {
     setScratchpad(scratchPadText) {
         this._scratchPadText = scratchPadText;
 
-        return [true, 'SET SCRATCHPAD TEXT'];
+        return [true, 'SET SCRATCHPAD'];
     }
 
     /**
@@ -375,16 +375,15 @@ export default class RadarTargetModel {
      *
      * @for RadarTargetModel
      * @method _initializeScratchPad
-     * @param  aircraftModel {AircraftModel}
      */
-    _initializeScratchPad(aircraftModel) {
-        let scratchPadText = aircraftModel.destination.substr(1);
+    _initializeScratchPad() {
+        if (!this.aircraftModel.destination) {
+            this._scratchPadText = 'XXX';
 
-        if (_isEmpty(scratchPadText)) {
-            scratchPadText = 'XXX';
+            return;
         }
 
-        this._scratchPadText = scratchPadText;
+        this._scratchPadText = this.aircraftModel.destination.substr(1);
     }
 
     /**
