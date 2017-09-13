@@ -84,10 +84,10 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
-    callsign: '432',
+    callsign: '1567',
     destination: 'KLAS',
     fleet: 'default',
-    airline: 'aal',
+    airline: 'ual',
     airlineCallsign: 'speedbird',
     altitude: 28000,
     speed: 320,

@@ -5,7 +5,7 @@ import _map from 'lodash/map';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetCollection from '../../src/assets/scripts/client/scope/RadarTargetCollection';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
-import { RADAR_TARGET_MOCK } from './_mocks/radarTargetMocks';
+import { RADAR_TARGET_ARRIVAL_MOCK } from './_mocks/radarTargetMocks';
 import {
     ARRIVAL_AIRCRAFT_MODEL_MOCK,
     DEPARTURE_AIRCRAFT_MODEL_MOCK
@@ -41,9 +41,9 @@ ava('.addRadarTargetModel() throws if argument is not a RadarTargetModel', (t) =
 ava('.addRadarTargetModel() adds the supplied radar target to the collection', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModel(RADAR_TARGET_MOCK);
+    collection.addRadarTargetModel(RADAR_TARGET_ARRIVAL_MOCK);
 
-    t.true(_includes(collection._items, RADAR_TARGET_MOCK));
+    t.true(_includes(collection._items, RADAR_TARGET_ARRIVAL_MOCK));
 });
 
 ava('.addRadarTargetModelFromAircraftModel() adds new radar target to collection for the provided aircraft model', (t) => {

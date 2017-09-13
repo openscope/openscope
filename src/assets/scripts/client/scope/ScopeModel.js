@@ -87,7 +87,7 @@ export default class ScopeModel {
      * @return result {array} [success of operation, system's response]
      */
     initiateHandoff(radarTargetModel, sectorCode) {
-        return [false, 'handoff command not yet available'];
+        return [false, 'initiateHandoff command not yet available'];
     }
 
     /**
