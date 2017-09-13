@@ -56,7 +56,7 @@ export default class RadarTargetCollection extends BaseCollection {
      * @param radarTargetModel {RadarTargetModel}
      */
     addRadarTargetModel(radarTargetModel) {
-        if (!_isObject(radarTargetModel)) {
+        if (!(radarTargetModel instanceof RadarTargetModel)) {
             throw new TypeError(`Expected instance of RadarTargetModel but received '${radarTargetModel}'`);
         }
 
@@ -68,8 +68,7 @@ export default class RadarTargetCollection extends BaseCollection {
      *
      * @for RadarTargetCollection
      * @method addRadarTargetModelFromAircraftModel
-     * @param theme {object}
-     * @param aircraftModel {array}
+     * @param aircraftModel {AircraftModel}
      */
     addRadarTargetModelFromAircraftModel = (aircraftModel) => {
         const radarTargetModel = new RadarTargetModel(this._theme, aircraftModel);
@@ -117,7 +116,7 @@ export default class RadarTargetCollection extends BaseCollection {
         );
 
         if (results.length > 1) {
-            return;
+            throw new Error(`Unable to get radar target because ${results.length} matching aircraft were found`);
         }
 
         const radarTargetModel = results[0];
@@ -168,6 +167,16 @@ export default class RadarTargetCollection extends BaseCollection {
     };
 
     /**
+    * Reset all properties to their default values
+    *
+    * @for RadarTargetCollection
+    * @method reset
+    */
+    reset() {
+        this._items = [];
+    }
+
+    /**
      * Reset all radar target models to default state
      *
      * @for RadarTargetCollection
@@ -177,16 +186,6 @@ export default class RadarTargetCollection extends BaseCollection {
         const radarTargetModels = this._items;
 
         _forEach(radarTargetModels, (radarTargetModel) => radarTargetModel.reset());
-    }
-
-    /**
-     * Reset all properties to their default values
-     *
-     * @for RadarTargetCollection
-     * @method destroy
-     */
-    destroy() {
-        this._items = [];
     }
 
     /**
