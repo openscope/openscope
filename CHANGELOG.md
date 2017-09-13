@@ -10,9 +10,11 @@
 - Extends departing spawnPatterns outside the airspace at KSDF to prevent point deduction [#699](https://github.com/openscope/openscope/issues/699)
 
 
+
 ### Enhancements & Refactors
 - Modifies `StripView` background-color to use rgba instead of hex to allow for a semi-transparent background [#679](https://github.com/openscope/openscope/issues/679)
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
+- Stops `console.warn()` spam every frame if terrain is less than zero [#695](https://github.com/openscope/openscope/issues/695)
 
 
 
@@ -20,7 +22,6 @@
 ---
 ### Hotfix
 - Fix WIP airports which fail to load due to improper procedure formatting [#327](https://github.com/openscope/openscope/issues/327)
-
 
 
 ## 5.4.0 (September 1, 2017)
