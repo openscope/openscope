@@ -8,7 +8,8 @@
 - Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
 - Fix the command bar displaying a '?' when the up or down arrow is pressed [#685](https://github.com/openscope/openscope/issues/685)
 - Extends departing spawnPatterns outside the airspace at KSDF to prevent point deduction [#699](https://github.com/openscope/openscope/issues/699)
-
+- Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
+    - updates styles to use flexbox with properly organized children
 
 
 ### Enhancements & Refactors
@@ -16,6 +17,7 @@
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
 - Stops `console.warn()` spam every frame if terrain is less than zero [#695](https://github.com/openscope/openscope/issues/695)
 - Adds `localStorage.setItem()` to `GameOptions.setOptionByName()` and adds test file for `GameOptions` [#670](https://github.com/openscope/openscope/issues/670)
+
 
 
 
