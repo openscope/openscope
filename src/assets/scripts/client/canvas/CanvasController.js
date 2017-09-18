@@ -151,14 +151,8 @@ export default class CanvasController {
     }
 
     /**
-     * @for CanvasController
-     * @method canvas_init_pre
-     */
-    canvas_init_pre() {
-        return this;
-    }
-
-    /**
+     * Called by `AppController.init()`
+     *
      * @for CanvasController
      * @method canvas_init
      */
@@ -172,8 +166,6 @@ export default class CanvasController {
      */
     canvas_adjust_hidpi() {
         const dpr = window.devicePixelRatio || 1;
-
-        log(`devicePixelRatio: ${dpr}`);
 
         // TODO: change to early return
         if (dpr <= 1) {
@@ -198,6 +190,8 @@ export default class CanvasController {
     }
 
     /**
+     * Called by `AppController.complete()`
+     *
      * @for CanvasController
      * @method
      */
@@ -210,6 +204,8 @@ export default class CanvasController {
     }
 
     /**
+     * Called by `AppController.resize()`
+     *
      * @for CanvasController
      * @method
      */
@@ -232,6 +228,8 @@ export default class CanvasController {
     }
 
     /**
+     * Called by `AppController.update_post()`
+     *
      * @for CanvasController
      * @method canvas_update_post
      */
@@ -358,6 +356,7 @@ export default class CanvasController {
      */
     canvas_add(name) {
         $(SELECTORS.DOM_SELECTORS.CANVASES).append(`<canvas id='${name}-canvas'></canvas>`);
+
         this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
 
@@ -625,6 +624,10 @@ export default class CanvasController {
         }
     }
 
+    // drawProcedureSegment(cc, segment) {
+
+    // }
+
     // TODO: break this method up into smaller chunks
     /**
      * @for CanvasController
@@ -638,13 +641,15 @@ export default class CanvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
+        const { sidLines } = this._navigationLibrary;
 
         cc.strokeStyle = this.theme.SCOPE.SID;
         cc.fillStyle = this.theme.SCOPE.SID;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        _forEach(this._navigationLibrary.sidLines, (sid) => {
+        for (let i = 0; i < sidLines.length; i++) {
+            const sid = sidLines[i];
             let write_sid_name = true;
             let fixX = null;
             let fixY = null;
@@ -653,28 +658,29 @@ export default class CanvasController {
                 return;
             }
 
-            _forEach(sid.draw, (fixList, i) => {
+            for (let j = 0; j < sid.draw.length; j++) {
+                const fixList = sid.draw[j];
                 let exit_name = null;
 
-                for (let j = 0; j < fixList.length; j++) {
+                for (let k = 0; k < fixList.length; k++) {
                     // write exitPoint name
-                    if (fixList[j].indexOf('*') !== INVALID_INDEX) {
-                        exit_name = fixList[j].replace('*', '');
+                    if (fixList[k].indexOf('*') !== INVALID_INDEX) {
+                        exit_name = fixList[k].replace('*', '');
                         write_sid_name = false;
                     }
 
                     // TODO: this is duplicated in the if block above. need to consolidate
-                    const fixName = fixList[j].replace('*', '');
-                    let fix = this._navigationLibrary.getFixRelativePosition(fixName);
+                    const fixName = fixList[k].replace('*', '');
+                    const fixPosition = this._navigationLibrary.getFixRelativePosition(fixName);
 
-                    if (!fix) {
-                        log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
+                    if (!fixPosition) {
+                        log(`Unable to draw line to '${fixList[k]}' because its position is not defined!`, LOG.WARNING);
                     }
 
-                    fixX = UiController.km_to_px(fix[0]) + this.canvas.panX;
-                    fixY = -UiController.km_to_px(fix[1]) + this.canvas.panY;
+                    fixX = UiController.km_to_px(fixPosition[0]) + this.canvas.panX;
+                    fixY = -UiController.km_to_px(fixPosition[1]) + this.canvas.panY;
 
-                    if (j === 0) {
+                    if (k === 0) {
                         cc.beginPath();
                         cc.moveTo(fixX, fixY);
                     } else {
@@ -697,12 +703,12 @@ export default class CanvasController {
 
                     text_at_point[exit_name] += 1;  // Increment the count for this transition
                 }
-            });
+            }
 
             if (write_sid_name) {
                 cc.fillText(sid.identifier, fixX + 10, fixY);
             }
-        });
+        }
     }
 
     /**
@@ -794,12 +800,12 @@ export default class CanvasController {
 
         cc.save();
 
+        let fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
         if (!aircraft.inside_ctr) {
-            cc.fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
-        } else {
-            cc.fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
+            fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
         }
 
+        cc.fillStyle = fillStyle;
         const positionHistory = aircraft.relativePositionHistory;
 
         for (let i = 0; i < positionHistory.length; i++) {
@@ -1263,92 +1269,92 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_compass(cc) {
-        cc.translate(
-            calculateMiddle(this.canvas.size.width),
-            calculateMiddle(this.canvas.size.height)
-        );
+        // cc.translate(
+        //     calculateMiddle(this.canvas.size.width),
+        //     calculateMiddle(this.canvas.size.height)
+        // );
 
-        const airport = AirportController.airport_get();
-        const size = 80;
-        const size2 = size / 2;
-        const padding = 16;
-        const dot = 16;
-        let windspeed_line;
-        let highwind;
+        // const airport = AirportController.airport_get();
+        // const size = 80;
+        // const size2 = size / 2;
+        // const padding = 16;
+        // const dot = 16;
+        // let windspeed_line;
+        // let highwind;
 
-        // Shift compass location
-        cc.translate(-size2 - padding, -size2 - padding);
-        cc.lineWidth = 4;
+        // // Shift compass location
+        // cc.translate(-size2 - padding, -size2 - padding);
+        // cc.lineWidth = 4;
 
-        // Outer circle
-        cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
-        cc.beginPath();
-        cc.arc(0, 0, size2, 0, tau());
-        cc.fill();
+        // // Outer circle
+        // cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
+        // cc.beginPath();
+        // cc.arc(0, 0, size2, 0, tau());
+        // cc.fill();
 
-        // Inner circle
-        cc.lineWidth = 1;
-        cc.beginPath();
-        cc.arc(0, 0, dot / 2, 0, tau());
-        cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
-        cc.stroke();
+        // // Inner circle
+        // cc.lineWidth = 1;
+        // cc.beginPath();
+        // cc.arc(0, 0, dot / 2, 0, tau());
+        // cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
+        // cc.stroke();
 
-        // Wind Value
-        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        cc.textAlign = 'center';
-        cc.textBaseline = 'center';
-        cc.font = '9px monoOne, monospace';
-        cc.fillText(airport.wind.speed, 0, 3.8);
-        cc.font = 'bold 10px monoOne, monospace';
+        // // Wind Value
+        // cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
+        // cc.textAlign = 'center';
+        // cc.textBaseline = 'center';
+        // cc.font = '9px monoOne, monospace';
+        // cc.fillText(airport.wind.speed, 0, 3.8);
+        // cc.font = 'bold 10px monoOne, monospace';
 
-        // Wind line
-        if (airport.wind.speed > 8) {
-            windspeed_line = airport.wind.speed / 2;
-            highwind = true;
-        } else {
-            windspeed_line = airport.wind.speed;
-            highwind = false;
-        }
+        // // Wind line
+        // if (airport.wind.speed > 8) {
+        //     windspeed_line = airport.wind.speed / 2;
+        //     highwind = true;
+        // } else {
+        //     windspeed_line = airport.wind.speed;
+        //     highwind = false;
+        // }
 
-        cc.save();
-        cc.translate(
-            -dot / 2 * sin(airport.wind.angle),
-            dot / 2 * cos(airport.wind.angle)
-        );
-        cc.beginPath();
-        cc.moveTo(0, 0);
-        cc.rotate(airport.wind.angle);
-        cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
+        // cc.save();
+        // cc.translate(
+        //     -dot / 2 * sin(airport.wind.angle),
+        //     dot / 2 * cos(airport.wind.angle)
+        // );
+        // cc.beginPath();
+        // cc.moveTo(0, 0);
+        // cc.rotate(airport.wind.angle);
+        // cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
-        // TODO: simplify. replace with initial assignment and re-assignment in if condition
-        // Color wind line red for high-wind
-        if (highwind) {
-            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
-        } else {
-            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
-        }
+        // // TODO: simplify. replace with initial assignment and re-assignment in if condition
+        // // Color wind line red for high-wind
+        // if (highwind) {
+        //     cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
+        // } else {
+        //     cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
+        // }
 
-        cc.lineWidth = 2;
-        cc.stroke();
-        cc.restore();
-        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        cc.textAlign = 'center';
-        cc.textBaseline = 'top';
+        // cc.lineWidth = 2;
+        // cc.stroke();
+        // cc.restore();
+        // cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
+        // cc.textAlign = 'center';
+        // cc.textBaseline = 'top';
 
-        for (let i = 90; i <= 360; i += 90) {
-            cc.rotate(degreesToRadians(90));
+        // for (let i = 90; i <= 360; i += 90) {
+        //     cc.rotate(degreesToRadians(90));
 
-            let angle;
-            if (i === 90) {
-                angle = `0${i}`;
-            } else {
-                angle = i;
-            }
+        //     let angle;
+        //     if (i === 90) {
+        //         angle = `0${i}`;
+        //     } else {
+        //         angle = i;
+        //     }
 
-            cc.save();
-            cc.fillText(angle, 0, -size2 + 4);
-            cc.restore();
-        }
+        //     cc.save();
+        //     cc.fillText(angle, 0, -size2 + 4);
+        //     cc.restore();
+        // }
     }
 
     /**
@@ -1372,7 +1378,7 @@ export default class CanvasController {
      * Draw polygonal airspace border
      *
      * @for CanvasController
-     * @method anvas_draw_airspace_border
+     * @method canvas_draw_airspace_border
      * @param cc
      */
     canvas_draw_airspace_border(cc) {
@@ -1490,94 +1496,51 @@ export default class CanvasController {
         cc.fill();
     }
 
-    /**
-     * @for CanvasController
-     * @method canvas_draw_terrain
-     * @param cc
-     */
-    canvas_draw_terrain(cc) {
-        if (!this.canvas.draw_terrain) {
-            return;
-        }
+    drawTerrainAtElevation(cc, terrainLevel, elevation) {
+        // Here we use HSL colors instead of RGB to enable easier bulk adjustments
+        // to saturation/lightness of multiple elevation levels without the need
+        // to use web-based color tools
+        const color = `hsla(${this.theme.TERRAIN.COLOR[elevation]}`;
 
-        // Terrain key rectangles' outline stroke color
-        // Also determines color of terrain outline drawn at '0ft'
-        cc.strokeStyle = this.theme.SCOPE.FIX_FILL;
-        // Somehow used to tint the terrain key rectangles' fill color
-        // Also determines color of terrain fill at '0ft'
-        cc.fillStyle = this.theme.SCOPE.FIX_FILL;
-        cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
-        cc.lineJoin = 'round';
+        cc.strokeStyle = `${color}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
+        cc.fillStyle = `${color}, ${this.theme.TERRAIN.FILL_OPACITY})`;
 
-        const airport = AirportController.airport_get();
-        let max_elevation = 0;
+        for (let i = 0; i < terrainLevel.length; i++) {
+            const terrainGroup = terrainLevel[i];
 
-        cc.save();
-        cc.translate(this.canvas.panX, this.canvas.panY);
+            cc.beginPath();
 
-        // TODO: Remove the jQuery in favor of _each()!
-        $.each(airport.terrain || [], (elevation, terrainLevel) => {
-            if (elevation < 1000 && !this.has_terrain_warning) {
-                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
-                    ' below sea level, which is not supported!');
+            for (let j = 0; j < terrainGroup.length; j++) {
+                const terrainItem = terrainGroup[j];
 
-                this.has_terrain_warning = true;
+                for (let k = 0; k < terrainItem.length; k++) {
+                    if (k === 0) {
+                        cc.moveTo(
+                            UiController.km_to_px(terrainItem[k][0]),
+                            -UiController.km_to_px(terrainItem[k][1])
+                        );
+                    }
 
-                // within `$.each()`, this return acts like `continue;`
-                return;
+                    cc.lineTo(
+                        UiController.km_to_px(terrainItem[k][0]),
+                        -UiController.km_to_px(terrainItem[k][1])
+                    );
+                }
+
+                cc.closePath();
             }
 
-            max_elevation = Math.max(max_elevation, elevation);
-            // Here we use HSL colors instead of RGB to enable easier bulk adjustments
-            // to saturation/lightness of multiple elevation levels without the need
-            // to use web-based color tools
-            const color = `hsla(${this.theme.TERRAIN.COLOR[elevation]}`;
-
-            cc.strokeStyle = `${color}, ${this.theme.TERRAIN.BORDER_OPACITY})`;
-            cc.fillStyle = `${color}, ${this.theme.TERRAIN.FILL_OPACITY})`;
-
-            _forEach(terrainLevel, (terrainGroup) => {
-                cc.beginPath();
-
-                _forEach(terrainGroup, (terrainItem) => {
-                    // TODO: should this be a for/in? is it an array?
-                    _forEach(terrainItem, (value, index) => {
-                        // Loose equals is important here.
-                        if (index === 0) {
-                            cc.moveTo(
-                                UiController.km_to_px(terrainItem[index][0]),
-                                -UiController.km_to_px(terrainItem[index][1])
-                            );
-                        }
-
-                        cc.lineTo(
-                            UiController.km_to_px(terrainItem[index][0]),
-                            -UiController.km_to_px(terrainItem[index][1])
-                        );
-                    });
-
-                    cc.closePath();
-                });
-
-                cc.fill();
-                cc.stroke();
-            });
-        });
-
-        cc.restore();
-
-        if (max_elevation === 0) {
-            return;
+            cc.fill();
+            cc.stroke();
         }
+    }
 
+    drawTerrainElevationLegend(cc, max_elevation) {
         const offset = 10;
         const width = this.canvas.size.width;
         const height = this.canvas.size.height;
         const box_width = 30;
         const box_height = 5;
-
-        cc.font = BASE_CANVAS_FONT;
-        cc.lineWidth = 1;
 
         for (let i = 1000; i <= max_elevation; i += 1000) {
             cc.save();
@@ -1616,6 +1579,66 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
+     * @method canvas_draw_terrain
+     * @param cc
+     */
+    canvas_draw_terrain(cc) {
+        const airport = AirportController.airport_get();
+        const airportTerrain = airport.terrain;
+        let max_elevation = 0;
+
+        if (!this.canvas.draw_terrain || Object.keys(airportTerrain).length === 0) {
+            return;
+        }
+
+        // Terrain key rectangles' outline stroke color
+        // Also determines color of terrain outline drawn at '0ft'
+        cc.strokeStyle = this.theme.SCOPE.FIX_FILL;
+        // Somehow used to tint the terrain key rectangles' fill color
+        // Also determines color of terrain fill at '0ft'
+        cc.fillStyle = this.theme.SCOPE.FIX_FILL;
+        cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
+        cc.lineJoin = 'round';
+
+        cc.save();
+        cc.translate(this.canvas.panX, this.canvas.panY);
+
+        for (const elevation in airportTerrain) {
+            // eslint-disable-next-line
+            if (!airportTerrain.hasOwnProperty(elevation)) {
+                continue;
+            }
+
+            const terrainLevel = airportTerrain[elevation];
+
+            if (elevation < 1000 && !this.has_terrain_warning) {
+                console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
+                    ' below sea level, which is not supported!');
+
+                this.has_terrain_warning = true;
+
+                continue;
+            }
+
+            max_elevation = Math.max(max_elevation, elevation);
+
+            this.drawTerrainAtElevation(cc, terrainLevel, elevation);
+        }
+
+        cc.restore();
+
+        if (max_elevation === 0) {
+            return;
+        }
+
+        cc.font = BASE_CANVAS_FONT;
+        cc.lineWidth = 1;
+
+        this.drawTerrainElevationLegend(cc, max_elevation);
+    }
+
+    /**
+     * @for CanvasController
      * @method canvas_draw_restricted
      * @param cc
      */
@@ -1634,8 +1657,10 @@ export default class CanvasController {
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
-        _forEach(airport.restricted_areas, (area) => {
+        for (let i = 0; i < airport.restricted_areas.length; i++) {
+            const area = airport.restricted_areas[i];
             cc.fillStyle = 'transparent';
+
             this.canvas_draw_poly(cc, area.coordinates);
 
             // FIXME: Is the restricted airspace EVER filled???
@@ -1643,7 +1668,9 @@ export default class CanvasController {
             cc.textAlign = 'center';
             cc.textBaseline = 'top';
 
-            const height = (area.height === Infinity ? 'UNL' : 'FL' + Math.ceil(area.height / 1000) * 10);
+            const height = area.height === Infinity
+                ? 'UNL'
+                : `FL ${Math.ceil(area.height / 1000) * 10}`;
             let height_shift = 0;
 
             if (area.name) {
@@ -1661,7 +1688,7 @@ export default class CanvasController {
                 round(UiController.km_to_px(area.center[0])),
                 height_shift - round(UiController.km_to_px(area.center[1]))
             );
-        });
+        }
 
         cc.restore();
     }
@@ -1682,16 +1709,16 @@ export default class CanvasController {
         cc.font = BASE_CANVAS_FONT;
 
         const airport = AirportController.airport_get();
-        const map = airport.maps.base;
 
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
-        _forEach(map, (mapItem, i) => {
+        for (let i = 0; i < airport.maps.base.length; i++) {
+            const mapItem = airport.maps.base[i];
             cc.moveTo(UiController.km_to_px(mapItem[0]), -UiController.km_to_px(mapItem[1]));
             // cc.beginPath();
             cc.lineTo(UiController.km_to_px(mapItem[2]), -UiController.km_to_px(mapItem[3]));
-        });
+        }
 
         cc.stroke();
         cc.restore();
@@ -1727,85 +1754,85 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_directions(cc) {
-        if (GameController.game_paused()) {
-            return;
-        }
+        // if (GameController.game_paused()) {
+        //     return;
+        // }
 
-        const callsign = prop.input.callsign.toUpperCase();
+        // const callsign = prop.input.callsign.toUpperCase();
 
-        if (callsign.length === 0) {
-            return;
-        }
+        // if (callsign.length === 0) {
+        //     return;
+        // }
 
-        // Get the selected aircraft.
-        const aircraft = _filter(prop.aircraft.list, (p) => {
-            return p.matchCallsign(callsign) && p.isVisible();
-        })[0];
+        // // Get the selected aircraft.
+        // const aircraft = _filter(prop.aircraft.list, (p) => {
+        //     return p.matchCallsign(callsign) && p.isVisible();
+        // })[0];
 
-        if (!aircraft) {
-            return;
-        }
+        // if (!aircraft) {
+        //     return;
+        // }
 
-        const pos = this.to_canvas_pos(aircraft.relativePosition);
-        const rectPos = [0, 0];
-        const rectSize = [this.canvas.size.width, this.canvas.size.height];
+        // const pos = this.to_canvas_pos(aircraft.relativePosition);
+        // const rectPos = [0, 0];
+        // const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
-        cc.save();
-        cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
-        cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
-        cc.textAlign = 'center';
-        cc.textBaseline = 'middle';
+        // cc.save();
+        // cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
+        // cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
+        // cc.textAlign = 'center';
+        // cc.textBaseline = 'middle';
 
-        for (let alpha = 0; alpha < 360; alpha++) {
-            const dir = [
-                sin(degreesToRadians(alpha)),
-                -cos(degreesToRadians(alpha))
-            ];
+        // for (let alpha = 0; alpha < 360; alpha++) {
+        //     const dir = [
+        //         sin(degreesToRadians(alpha)),
+        //         -cos(degreesToRadians(alpha))
+        //     ];
 
-            const p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+        //     const p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
 
-            if (p) {
-                const markLen = (alpha % 5 === 0 ?
-                    (alpha % 10 === 0
-                        ? 16
-                        : 12)
-                    : 8
-                );
-                const markWeight = (alpha % 30 === 0
-                    ? 2
-                    : 1
-                );
+        //     if (p) {
+        //         const markLen = (alpha % 5 === 0 ?
+        //             (alpha % 10 === 0
+        //                 ? 16
+        //                 : 12)
+        //             : 8
+        //         );
+        //         const markWeight = (alpha % 30 === 0
+        //             ? 2
+        //             : 1
+        //         );
 
-                const dx = -markLen * dir[0];
-                const dy = -markLen * dir[1];
+        //         const dx = -markLen * dir[0];
+        //         const dy = -markLen * dir[1];
 
-                cc.lineWidth = markWeight;
-                cc.beginPath();
-                cc.moveTo(p[0], p[1]);
+        //         cc.lineWidth = markWeight;
+        //         cc.beginPath();
+        //         cc.moveTo(p[0], p[1]);
 
-                const markX = p[0] + dx;
-                const markY = p[1] + dy;
+        //         const markX = p[0] + dx;
+        //         const markY = p[1] + dy;
 
-                cc.lineTo(markX, markY);
-                cc.stroke();
+        //         cc.lineTo(markX, markY);
+        //         cc.stroke();
 
-                if (alpha % 10 === 0) {
-                    cc.font = (alpha % 30 === 0
-                        ? 'bold 10px monoOne, monospace'
-                        : BASE_CANVAS_FONT);
+        //         if (alpha % 10 === 0) {
+        //             cc.font = (alpha % 30 === 0
+        //                 ? 'bold 10px monoOne, monospace'
+        //                 : BASE_CANVAS_FONT);
 
-                    const text = '' + alpha;
-                    const textWidth = cc.measureText(text).width;
+        //             const text = '' + alpha;
+        //             const textWidth = cc.measureText(text).width;
 
-                    cc.fillText(
-                        text,
-                        markX - dir[0] * (textWidth / 2 + 4),
-                        markY - dir[1] * 7);
-                }
-            }
-        }
+        //             cc.fillText(
+        //                 text,
+        //                 markX - dir[0] * (textWidth / 2 + 4),
+        //                 markY - dir[1] * 7);
+        //         }
+        //     }
+        // }
 
-        cc.restore();
+        // cc.restore();
     }
 
     /**

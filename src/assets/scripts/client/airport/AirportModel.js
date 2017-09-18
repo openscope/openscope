@@ -177,6 +177,12 @@ export default class AirportModel {
         this.airspace = null;
 
         /**
+         *
+         *
+         */
+        this.terrain = {};
+
+        /**
          * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
          *
          * @property perimeter
@@ -736,7 +742,6 @@ export default class AirportModel {
             return;
         }
 
-        // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
         // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,

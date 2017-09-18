@@ -164,7 +164,6 @@ export default class AppController {
         GameController.init_pre();
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
-        this.canvasController.canvas_init_pre();
         UiController.ui_init_pre();
     }
 
