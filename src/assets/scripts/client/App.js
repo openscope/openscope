@@ -186,7 +186,7 @@ export default class App {
      * @method init_pre
      */
     init_pre() {
-        this._appController.init_pre(this.getDeltaTime);
+        this._appController.init_pre();
 
         return this;
     }
@@ -292,16 +292,6 @@ export default class App {
 
         return this;
     }
-
-    /**
-     * @for App
-     * @method getDeltaTime
-     * @return {number}
-     */
-    getDeltaTime = () => {
-        // return this.prop.time.frame.delta;
-        return TimeKeeper.deltaTime;
-    };
 
     /**
      * @for App

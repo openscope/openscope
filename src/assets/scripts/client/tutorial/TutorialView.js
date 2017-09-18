@@ -3,9 +3,9 @@ import $ from 'jquery';
 import _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
+import TimeKeeper from '../engine/TimeKeeper';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
-import { time } from '../utilities/timeHelpers';
 import { heading_to_string } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
@@ -666,7 +666,7 @@ export default class TutorialView {
             this.tutorial_open();
         }
 
-        localStorage[STORAGE_KEY.FIRST_RUN_TIME] = time();
+        localStorage[STORAGE_KEY.FIRST_RUN_TIME] = TimeKeeper.gameTime;
     }
 
     /**
