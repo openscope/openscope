@@ -4,9 +4,10 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
-import GameController from '../game/GameController';
-import UiController from '../UiController';
 import EventBus from '../lib/EventBus';
+import GameController from '../game/GameController';
+import TimeKeeper from '../engine/TimeKeeper';
+import UiController from '../UiController';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import {
@@ -239,10 +240,13 @@ export default class CanvasController {
         const elapsed = GameController.game_time() - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
+        const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
 
-        if (this.canvas.dirty || (!GameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
+        if (this.canvas.dirty || shouldUpdate || elapsed < 1) {
             const cc = this.canvas_get('navaids');
             const fading = elapsed < 1;
+            const middleHeight = calculateMiddle(this.canvas.size.height);
+            const middleWidth = calculateMiddle(this.canvas.size.width);
 
             cc.font = '11px monoOne, monospace';
 
@@ -252,10 +256,8 @@ export default class CanvasController {
 
                 this.canvas_clear(cc);
                 this.canvas_fill_background(cc);
-                cc.translate(
-                    calculateMiddle(this.canvas.size.width),
-                    calculateMiddle(this.canvas.size.height)
-                );
+
+                cc.translate(middleWidth, middleHeight);
                 cc.save();
 
                 cc.globalAlpha = alpha;
@@ -264,14 +266,15 @@ export default class CanvasController {
                 this.canvas_draw_terrain(cc);
                 this.canvas_draw_restricted(cc);
                 this.canvas_draw_runways(cc);
-                cc.restore();
 
+                cc.restore();
                 cc.save();
 
                 cc.globalAlpha = alpha;
 
                 this.canvas_draw_fixes(cc);
                 this.canvas_draw_sids(cc);
+
                 cc.restore();
                 cc.restore();
             }
@@ -283,11 +286,12 @@ export default class CanvasController {
                 round(this.canvas.size.width / 2 + this.canvas.panX),
                 round(this.canvas.size.height / 2 + this.canvas.panY)
             );
-            // TODO: this is incorrect usage of a ternary. ternaries should be used for a ssignment not function calls.
-            // draw airspace border
-            AirportController.airport_get().airspace
-                ? this.canvas_draw_airspace_border(cc)
-                : this.canvas_draw_ctr(cc);
+
+            if (AirportController.airport_get().airspace) {
+                this.canvas_draw_airspace_border(cc);
+            } else {
+                this.canvas_draw_ctr(cc);
+            }
 
             this.canvas_draw_range_rings(cc);
             cc.restore();
@@ -295,10 +299,7 @@ export default class CanvasController {
             // Special markings for ENGM point merge
             if (AirportController.airport_get().icao === 'ENGM') {
                 cc.save();
-                cc.translate(
-                    calculateMiddle(this.canvas.size.width),
-                    calculateMiddle(this.canvas.size.height)
-                );
+                cc.translate(middleWidth, middleHeight);
                 this.canvas_draw_engm_range_rings(cc);
                 cc.restore();
             }
@@ -308,10 +309,7 @@ export default class CanvasController {
 
             if (this.canvas.dirty || fading || true) {
                 cc.save();
-                cc.translate(
-                    calculateMiddle(this.canvas.size.width),
-                    calculateMiddle(this.canvas.size.height)
-                );
+                cc.translate(middleWidth, middleHeight);
 
                 this.canvas_draw_compass(cc);
                 cc.restore();
@@ -322,29 +320,20 @@ export default class CanvasController {
             if (this.canvas.dirty || this.canvas_should_draw() || true) {
                 cc.save();
                 cc.globalAlpha = alpha;
-                cc.translate(
-                    calculateMiddle(this.canvas.size.width),
-                    calculateMiddle(this.canvas.size.height)
-                );
+                cc.translate(middleWidth, middleHeight);
                 this.canvas_draw_all_aircraft(cc);
                 cc.restore();
             }
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(
-                calculateMiddle(this.canvas.size.width),
-                calculateMiddle(this.canvas.size.height)
-            );
+            cc.translate(middleWidth, middleHeight);
             this.canvas_draw_all_info(cc);
             cc.restore();
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(
-                calculateMiddle(this.canvas.size.width),
-                calculateMiddle(this.canvas.size.height)
-            );
+            cc.translate(middleWidth, middleHeight);
 
             this.canvas_draw_runway_labels(cc);
             cc.restore();

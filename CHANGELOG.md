@@ -16,6 +16,7 @@
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
 - Stops `console.warn()` spam every frame if terrain is less than zero [#695](https://github.com/openscope/openscope/issues/695)
 - Adds `localStorage.setItem()` to `GameOptions.setOptionByName()` and adds test file for `GameOptions` [#670](https://github.com/openscope/openscope/issues/670)
+- Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
 
 
 

@@ -14,11 +14,11 @@ export const time = () => {
     return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
 
-/**
- * @function calculateDeltaTime
- * @param  {number} lastFrame
- * @return {number}
- */
-export const calculateDeltaTime = (lastFrame) => {
-    return time() - lastFrame;
-};
+// /**
+//  * @function calculateDeltaTime
+//  * @param  {number} lastFrame
+//  * @return {number}
+//  */
+// export const calculateDeltaTime = (lastFrame) => {
+//     return time() - lastFrame;
+// };

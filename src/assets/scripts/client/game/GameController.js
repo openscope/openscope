@@ -3,6 +3,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
 import GameOptions from './GameOptions';
+import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
@@ -79,9 +80,7 @@ class GameController {
      * @for GameController
      * @method init_pre
      */
-    init_pre(getDeltaTime) {
-        this.getDeltaTime = getDeltaTime;
-
+    init_pre() {
         // TODO: move calling of these methods to the proper lifecycle positions
         this.setupHandlers();
         this.enable();
@@ -362,11 +361,11 @@ class GameController {
      * @method update_pre
      */
     update_pre() {
+        this.game.delta = Math.min(TimeKeeper.deltaTime * this.game.speedup, 100);
+
         if (this.game.score !== this.game.last_score) {
             this.game_updateScore(this.game.score);
         }
-
-        this.game.delta = Math.min(this.getDeltaTime() * this.game.speedup, 100);
 
         if (this.game_paused()) {
             this.game.delta = 0;
