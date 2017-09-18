@@ -25,7 +25,6 @@ import {
     vscale
 } from '../math/vector';
 import { leftPad } from '../utilities/generalUtilities';
-import { time } from '../utilities/timeHelpers';
 import {
     degreesToRadians,
     km,
@@ -80,7 +79,7 @@ export default class CanvasController {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this.canvas.last = time();
+        this.canvas.last = TimeKeeper.gameTime;
         this.canvas.dirty = true;
         this.canvas.draw_labels = false;
         this.canvas.draw_restricted = false;
@@ -141,7 +140,7 @@ export default class CanvasController {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this.canvas.last = time();
+        this.canvas.last = TimeKeeper.gameTime;
         this.canvas.dirty = true;
         this.canvas.draw_labels = false;
         this.canvas.draw_restricted = false;
@@ -207,7 +206,7 @@ export default class CanvasController {
             this.canvas.dirty = true;
         }, 500);
 
-        this.canvas.last = time();
+        this.canvas.last = TimeKeeper.gameTime;
     }
 
     /**
@@ -385,10 +384,11 @@ export default class CanvasController {
      * @method canvas_should_draw
      */
     canvas_should_draw() {
-        const elapsed = time() - this.canvas.last;
+        const currentTime = TimeKeeper.gameTime;
+        const elapsed = currentTime - this.canvas.last;
 
         if (elapsed > (1 / GameController.game.speedup)) {
-            this.canvas.last = time();
+            this.canvas.last = currentTime;
             return true;
         }
 
