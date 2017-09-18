@@ -29,6 +29,18 @@ export const EVENT = {
     DESELECT_ACTIVE_STRIP_VIEW: 'deselect-active-strip-view',
 
     /**
+     * Event used to notify the `CanvasController` when a re-draw
+     * should happen outside of the usual game loop.
+     *
+     * This should only occur as a result of a user action
+     *
+     * @memberof EVENT
+     * @property MARK_CANVAS_DIRTY
+     * @type {string}
+     */
+    MARK_CANVAS_DIRTY: 'mark-dirty-canvas',
+
+    /**
      * Pause/unpause the app
      *
      * @memberof EVENT
@@ -36,6 +48,17 @@ export const EVENT = {
      * @type {string}
      */
     PAUSE_TOGGLE: 'pause-toggle',
+
+    /**
+     * A pan event has been detected necessitating an entire redraw of each canvas
+     *
+     * This may constitute a pan-in-progress and not the completion of a panning action
+     *
+     * @memberof EVENT
+     * @property PAN_VIEWPORT
+     * @type {string}
+     */
+    PAN_VIEWPORT: 'pan-viewport',
 
     /**
      * An aircraft data block was clicked and the corresponding
@@ -141,5 +164,14 @@ export const EVENT = {
      * @property UNPAUSE
      * @type {string}
      */
-    UNPAUSE: 'unpause'
+    UNPAUSE: 'unpause',
+
+    /**
+     * The zoom level has changed necessitating an entire redraw of each canvas
+     *
+     * @memberof EVENT
+     * @property ZOOM_VIEWPORT
+     * @type {string}
+     */
+    ZOOM_VIEWPORT: 'zoom-viewport'
 };

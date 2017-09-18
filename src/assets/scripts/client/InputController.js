@@ -145,7 +145,6 @@ export default class InputController {
      * @method setupHandlers
      */
     setupHandlers() {
-
         return this;
     }
 
@@ -264,9 +263,8 @@ export default class InputController {
             event.pageX - this.input.mouseDown[0],
             event.pageY - this.input.mouseDown[1]
         ];
-        prop.canvas.panX = this.input.mouseDelta[0];
-        prop.canvas.panY = this.input.mouseDelta[1];
-        prop.canvas.dirty = true;
+
+        this._eventBus.trigger(EVENT.PAN_VIEWPORT, event, this.input.mouseDelta);
     }
 
     /**
@@ -387,7 +385,7 @@ export default class InputController {
         }
 
         this.input.callsign = match[1];
-        prop.canvas.dirty = true;
+        this._eventBus.trigger(EVENT.MARK_CANVAS_DIRTY);
 
         // TODO: this looks like it should happen in the `AircraftController`
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {

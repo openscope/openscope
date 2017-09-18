@@ -109,6 +109,9 @@ export default class CanvasController {
      */
     enable() {
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+        this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
+        this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
+        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         return this;
@@ -119,6 +122,12 @@ export default class CanvasController {
      * @method disable
      */
     disable() {
+        this._eventBus.off(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
+        this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
+        this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
+        this._eventBus.off(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
         return this.destroy();
     }
 
@@ -1861,6 +1870,29 @@ export default class CanvasController {
             this.theme.DATA_BLOCK.LEADER_PADDING_FROM_BLOCK_PX -
             this.theme.DATA_BLOCK.LEADER_PADDING_FROM_TARGET_PX;
     }
+
+    /**
+     *
+     *
+     */
+    _onChangeViewportPan = (event, mouseDelta) => {
+        this.canvas.panX = mouseDelta[0];
+        this.canvas.panY = mouseDelta[1];
+
+        this._onMarkDirtyCanvas();
+    };
+
+    /**
+     *
+     *
+     */
+    _onChangeViewportZoom = () => {
+        this._onMarkDirtyCanvas();
+    };
+
+    _onMarkDirtyCanvas = () => {
+        this.canvas.dirty = true;
+    };
 
     /**
      * Center a point in the view

@@ -176,9 +176,13 @@ export default class AirportModel {
          */
         this.airspace = null;
 
+        // TODO: this should really be its own class possibly separate from the `AirportModel`
         /**
+         * Container for airport terrain definition
          *
-         *
+         * @property terrain
+         * @type {object}
+         * @default {}
          */
         this.terrain = {};
 

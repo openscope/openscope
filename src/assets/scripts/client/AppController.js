@@ -45,7 +45,7 @@ export default class AppController {
          * @default body
          */
         this.$element = $(element);
-        this.eventBus = EventBus;
+        this._eventBus = EventBus;
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
@@ -75,7 +75,7 @@ export default class AppController {
      * @chainable
      */
     enable() {
-        this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
 
         return this;
     }
@@ -86,6 +86,8 @@ export default class AppController {
      * @chainable
      */
     disable() {
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+
         return this;
     }
 
@@ -98,7 +100,7 @@ export default class AppController {
         // TODO: add static class.destroy() here
 
         this.$element = null;
-        this.eventBus = null;
+        this._eventBus = null;
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
@@ -278,7 +280,7 @@ export default class AppController {
     updateViewControls() {
         const { current: airport } = AirportController;
 
-        this.canvasController.canvas.dirty = true;
+        this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.navigationLibrary.sidCollection));

@@ -17,6 +17,15 @@ import { STORAGE_KEY } from './constants/storageKeys';
 import { THEME } from './constants/themes';
 
 /**
+ * Value by which the current zoom level is either increased/decreased
+ *
+ * @property ZOOM_INCREMENT
+ * @type {number}
+ * @final
+ */
+const ZOOM_INCREMENT = 0.9;
+
+/**
  * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
  * @final
@@ -463,11 +472,10 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_after_zoom
+     * @method storeZoomLevel
      */
-    ui_after_zoom() {
+    storeZoomLevel() {
         localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
-        prop.canvas.dirty = true;
     }
 
     /**
@@ -475,21 +483,14 @@ class UiController {
      * @method ui_zoom_out
      */
     ui_zoom_out() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
-
-        this.scale *= 0.9;
+        this.scale *= ZOOM_INCREMENT;
 
         if (this.scale < this.scale_min) {
             this.scale = this.scale_min;
         }
 
-        this.ui_after_zoom();
-
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**
@@ -497,20 +498,14 @@ class UiController {
      * @method ui_zoom_in
      */
     ui_zoom_in() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
+        this.scale /= ZOOM_INCREMENT;
 
-        this.scale /= 0.9;
         if (this.scale > this.scale_max) {
             this.scale = this.scale_max;
         }
 
-        this.ui_after_zoom();
-
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**
@@ -520,7 +515,8 @@ class UiController {
     ui_zoom_reset() {
         this.scale = this.scale_default;
 
-        this.ui_after_zoom();
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**
