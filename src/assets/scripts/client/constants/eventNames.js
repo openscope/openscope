@@ -130,6 +130,34 @@ export const EVENT = {
     SHOULD_PAUSE_UPDATE_LOOP: 'should-pause-update-loop',
 
     /**
+     * @memberof EVENT
+     * @property SHOULD_TOGGLE_LABELS
+     * @type {string}
+     */
+    SHOULD_TOGGLE_LABELS: 'should-toggle-labels',
+
+    /**
+     * @memberof EVENT
+     * @property SHOULD_TOGGLE_RESTRICTED_AREAS
+     * @type {string}
+     */
+    SHOULD_TOGGLE_RESTRICTED_AREAS: 'should-toggle-restricted-areas',
+
+    /**
+     * @memberof EVENT
+     * @property SHOULD_TOGGLE_SID_MAP
+     * @type {string}
+     */
+    SHOULD_TOGGLE_SID_MAP: 'should-toggle-sid-map',
+
+    /**
+     * @memberof EVENT
+     * @property SHOULD_TOGGLE_TERRAIN
+     * @type {string}
+     */
+    SHOULD_TOGGLE_TERRAIN: 'should-toggle-terrain',
+
+    /**
      * Change the active theme to the specified theme name
      *
      * @memberof EVENT

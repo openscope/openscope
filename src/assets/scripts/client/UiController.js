@@ -7,14 +7,12 @@ import _keys from 'lodash/keys';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import AirportController from './airport/AirportController';
-import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
-import { THEME } from './constants/themes';
 
 /**
  * Value by which the current zoom level is either increased/decreased
@@ -592,7 +590,7 @@ class UiController {
     canvas_labels_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_labels = !prop.canvas.draw_labels;
+        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_LABELS);
     }
 
     /**
@@ -603,7 +601,7 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
             .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
 
-        prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
+        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS);
     }
 
     /**
@@ -614,7 +612,7 @@ class UiController {
     canvas_sids_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_sids = !prop.canvas.draw_sids;
+        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_SID_MAP);
     }
 
     /**
@@ -624,7 +622,8 @@ class UiController {
      */
     canvas_terrain_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
+
+        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_TERRAIN);
     }
 
     /**

@@ -80,14 +80,62 @@ export default class CanvasController {
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
         this.canvas.last = TimeKeeper.gameTime;
-        this.canvas.dirty = true;
-        this.canvas.draw_labels = false;
-        this.canvas.draw_restricted = false;
-        this.canvas.draw_sids = false;
-        this.canvas.draw_terrain = true;
 
-        // has a console.warn been output for terrain?
-        this.has_terrain_warning = false;
+        /**
+         * flag used to determine if the Aircraft canvas should be updated
+         *
+         * @property _shouldShallowRender
+         * @type {boolean}
+         * @default true
+         */
+        this._shouldShallowRender = true;
+
+        /**
+         * flag used to determine if fix labels should be displayed
+         *
+         * @property _shouldDrawLabels
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawLabels = false;
+
+        /**
+         * flag used to determine if restricted areas should be displayed
+         *
+         * @property _shouldDrawRestrictedAreas
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawRestrictedAreas = false;
+
+        /**
+         * flag used to determine if the sid map should be displayed
+         *
+         * @property _shouldDrawSidMap
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawSidMap = false;
+
+        /**
+         * flag used to determine if terrain should be displayed
+         *
+         * @property _shouldDrawTerrain
+         * @type {boolean}
+         * @default true
+         */
+        this._shouldDrawTerrain = true;
+
+        /**
+         * has a console.warn been output for terrain?
+         *
+         * This is meant for airport contributors designing new airports
+         *
+         * @property _hasSeenTerrainWarning
+         * @type {boolean}
+         * @default false
+         */
+        this._hasSeenTerrainWarning = false;
 
         this.theme = THEME.DEFAULT;
 
@@ -112,6 +160,10 @@ export default class CanvasController {
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
+        this._eventBus.on(EVENT.SHOULD_TOGGLE_LABELS, this._onToggleLabels);
+        this._eventBus.on(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
+        this._eventBus.on(EVENT.SHOULD_TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.on(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         return this;
@@ -126,6 +178,10 @@ export default class CanvasController {
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.off(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
+        this._eventBus.off(EVENT.SHOULD_TOGGLE_LABELS, this._onToggleLabels);
+        this._eventBus.off(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
+        this._eventBus.off(EVENT.SHOULD_TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.off(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
 
         return this.destroy();
@@ -149,12 +205,12 @@ export default class CanvasController {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this.canvas.last = TimeKeeper.gameTime;
-        this.canvas.dirty = true;
-        this.canvas.draw_labels = false;
-        this.canvas.draw_restricted = false;
-        this.canvas.draw_sids = false;
-        this.canvas.draw_terrain = true;
+        this.canvas.last = -1;
+        this._shouldShallowRender = true;
+        this._shouldDrawLabels = false;
+        this._shouldDrawRestrictedAreas = false;
+        this._shouldDrawSidMap = false;
+        this._shouldDrawTerrain = true;
 
         return this;
     }
@@ -206,7 +262,7 @@ export default class CanvasController {
      */
     canvas_complete() {
         setTimeout(() => {
-            this.canvas.dirty = true;
+            this._shouldShallowRender = true;
         }, 500);
 
         this.canvas.last = TimeKeeper.gameTime;
@@ -232,7 +288,7 @@ export default class CanvasController {
             context.canvas.width = this.canvas.size.width;
         });
 
-        this.canvas.dirty = true;
+        this._shouldShallowRender = true;
         this.canvas_adjust_hidpi();
     }
 
@@ -248,7 +304,7 @@ export default class CanvasController {
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
 
-        if (this.canvas.dirty || shouldUpdate || elapsed < 1) {
+        if (this._shouldShallowRender || shouldUpdate || elapsed < 1) {
             const cc = this.canvas_get('navaids');
             const fading = elapsed < 1;
             const middleHeight = calculateMiddle(this.canvas.size.height);
@@ -257,7 +313,7 @@ export default class CanvasController {
             cc.font = '11px monoOne, monospace';
 
             // TODO: what is the rationale here? with two ors and a true, this block will always be exectuted.
-            if (this.canvas.dirty || fading || true) {
+            if (this._shouldShallowRender || fading || true) {
                 cc.save();
 
                 this.canvas_clear(cc);
@@ -313,7 +369,7 @@ export default class CanvasController {
             // Compass
             cc.font = 'bold 10px monoOne, monospace';
 
-            if (this.canvas.dirty || fading || true) {
+            if (this._shouldShallowRender || fading || true) {
                 cc.save();
                 cc.translate(middleWidth, middleHeight);
 
@@ -323,7 +379,7 @@ export default class CanvasController {
 
             cc.font = BASE_CANVAS_FONT;
 
-            if (this.canvas.dirty || this.canvas_should_draw() || true) {
+            if (this._shouldShallowRender || this.canvas_should_draw() || true) {
                 cc.save();
                 cc.globalAlpha = alpha;
                 cc.translate(middleWidth, middleHeight);
@@ -354,7 +410,7 @@ export default class CanvasController {
             this.canvas_draw_directions(cc);
             cc.restore();
 
-            this.canvas.dirty = false;
+            this._shouldShallowRender = false;
         }
     }
 
@@ -397,6 +453,7 @@ export default class CanvasController {
 
         if (elapsed > (1 / GameController.game.speedup)) {
             this.canvas.last = currentTime;
+
             return true;
         }
 
@@ -498,7 +555,7 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_runways(cc) {
-        if (!this.canvas.draw_labels) {
+        if (!this._shouldDrawLabels) {
             return;
         }
 
@@ -533,7 +590,7 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_runway_labels(cc) {
-        if (!this.canvas.draw_labels) {
+        if (!this._shouldDrawLabels) {
             return;
         }
 
@@ -613,7 +670,7 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_fixes(cc) {
-        if (!this.canvas.draw_labels) {
+        if (!this._shouldDrawLabels) {
             return;
         }
 
@@ -644,7 +701,7 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_sids(cc) {
-        if (!this.canvas.draw_sids) {
+        if (!this._shouldDrawSidMap) {
             return;
         }
 
@@ -1596,7 +1653,7 @@ export default class CanvasController {
         const airportTerrain = airport.terrain;
         let max_elevation = 0;
 
-        if (!this.canvas.draw_terrain || Object.keys(airportTerrain).length === 0) {
+        if (!this._shouldDrawTerrain || Object.keys(airportTerrain).length === 0) {
             return;
         }
 
@@ -1620,11 +1677,11 @@ export default class CanvasController {
 
             const terrainLevel = airportTerrain[elevation];
 
-            if (elevation < 1000 && !this.has_terrain_warning) {
+            if (elevation < 1000 && !this._hasSeenTerrainWarning) {
                 console.warn(`${airport.icao}.geojson contains 'terrain' at or` +
                     ' below sea level, which is not supported!');
 
-                this.has_terrain_warning = true;
+                this._hasSeenTerrainWarning = true;
 
                 continue;
             }
@@ -1652,7 +1709,7 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_restricted(cc) {
-        if (!this.canvas.draw_restricted) {
+        if (!this._shouldDrawRestrictedAreas) {
             return;
         }
 
@@ -1763,85 +1820,85 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_directions(cc) {
-        // if (GameController.game_paused()) {
-        //     return;
-        // }
+        if (GameController.game_paused()) {
+            return;
+        }
 
-        // const callsign = prop.input.callsign.toUpperCase();
+        const callsign = prop.input.callsign.toUpperCase();
 
-        // if (callsign.length === 0) {
-        //     return;
-        // }
+        if (callsign.length === 0) {
+            return;
+        }
 
-        // // Get the selected aircraft.
-        // const aircraft = _filter(prop.aircraft.list, (p) => {
-        //     return p.matchCallsign(callsign) && p.isVisible();
-        // })[0];
+        // Get the selected aircraft.
+        const aircraft = _filter(prop.aircraft.list, (p) => {
+            return p.matchCallsign(callsign) && p.isVisible();
+        })[0];
 
-        // if (!aircraft) {
-        //     return;
-        // }
+        if (!aircraft) {
+            return;
+        }
 
-        // const pos = this.to_canvas_pos(aircraft.relativePosition);
-        // const rectPos = [0, 0];
-        // const rectSize = [this.canvas.size.width, this.canvas.size.height];
+        const pos = this.to_canvas_pos(aircraft.relativePosition);
+        const rectPos = [0, 0];
+        const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
-        // cc.save();
-        // cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
-        // cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
-        // cc.textAlign = 'center';
-        // cc.textBaseline = 'middle';
+        cc.save();
+        cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
+        cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
+        cc.textAlign = 'center';
+        cc.textBaseline = 'middle';
 
-        // for (let alpha = 0; alpha < 360; alpha++) {
-        //     const dir = [
-        //         sin(degreesToRadians(alpha)),
-        //         -cos(degreesToRadians(alpha))
-        //     ];
+        for (let alpha = 0; alpha < 360; alpha++) {
+            const dir = [
+                sin(degreesToRadians(alpha)),
+                -cos(degreesToRadians(alpha))
+            ];
 
-        //     const p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+            const p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
 
-        //     if (p) {
-        //         const markLen = (alpha % 5 === 0 ?
-        //             (alpha % 10 === 0
-        //                 ? 16
-        //                 : 12)
-        //             : 8
-        //         );
-        //         const markWeight = (alpha % 30 === 0
-        //             ? 2
-        //             : 1
-        //         );
+            if (p) {
+                const markLen = (alpha % 5 === 0 ?
+                    (alpha % 10 === 0
+                        ? 16
+                        : 12)
+                    : 8
+                );
+                const markWeight = (alpha % 30 === 0
+                    ? 2
+                    : 1
+                );
 
-        //         const dx = -markLen * dir[0];
-        //         const dy = -markLen * dir[1];
+                const dx = -markLen * dir[0];
+                const dy = -markLen * dir[1];
 
-        //         cc.lineWidth = markWeight;
-        //         cc.beginPath();
-        //         cc.moveTo(p[0], p[1]);
+                cc.lineWidth = markWeight;
+                cc.beginPath();
+                cc.moveTo(p[0], p[1]);
 
-        //         const markX = p[0] + dx;
-        //         const markY = p[1] + dy;
+                const markX = p[0] + dx;
+                const markY = p[1] + dy;
 
-        //         cc.lineTo(markX, markY);
-        //         cc.stroke();
+                cc.lineTo(markX, markY);
+                cc.stroke();
 
-        //         if (alpha % 10 === 0) {
-        //             cc.font = (alpha % 30 === 0
-        //                 ? 'bold 10px monoOne, monospace'
-        //                 : BASE_CANVAS_FONT);
+                if (alpha % 10 === 0) {
+                    cc.font = alpha % 30 === 0
+                        ? 'bold 10px monoOne, monospace'
+                        : BASE_CANVAS_FONT;
 
-        //             const text = '' + alpha;
-        //             const textWidth = cc.measureText(text).width;
+                    const text = '' + alpha;
+                    const textWidth = cc.measureText(text).width;
 
-        //             cc.fillText(
-        //                 text,
-        //                 markX - dir[0] * (textWidth / 2 + 4),
-        //                 markY - dir[1] * 7);
-        //         }
-        //     }
-        // }
+                    cc.fillText(
+                        text,
+                        markX - dir[0] * (textWidth / 2 + 4),
+                        markY - dir[1] * 7);
+                }
+            }
+        }
 
-        // cc.restore();
+        cc.restore();
     }
 
     /**
@@ -1872,8 +1929,13 @@ export default class CanvasController {
     }
 
     /**
+     * Update local props as a result of the user panning the view
      *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
      *
+     * @for CanvasController
+     * @method _onChangeViewportPan
      */
     _onChangeViewportPan = (event, mouseDelta) => {
         this.canvas.panX = mouseDelta[0];
@@ -1883,15 +1945,76 @@ export default class CanvasController {
     };
 
     /**
+     * Update local props as a result of a change in the current zoom level
      *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
      *
+     * @for CanvasController
+     * @method _onChangeViewportZoom
      */
     _onChangeViewportZoom = () => {
         this._onMarkDirtyCanvas();
     };
 
+    /**
+     * Mark the canvas as dirty, forcing a redraw during the next frame
+     *
+     * @for CanvasController
+     * @method _onMarkDirtyCanvas
+     */
     _onMarkDirtyCanvas = () => {
-        this.canvas.dirty = true;
+        this._shouldShallowRender = true;
+    };
+
+    /**
+     * Toogle current value of `#draw_labels`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleLabels
+     */
+    _onToggleLabels = () => {
+        this._shouldDrawLabels = !this._shouldDrawLabels;
+    };
+
+    /**
+     * Toogle current value of `#draw_restricted`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleRestrictedAreas
+     */
+    _onToggleRestrictedAreas = () => {
+        this._shouldDrawRestrictedAreas = !this._shouldDrawRestrictedAreas;
+    };
+
+    /**
+     * Toogle current value of `#draw_sids`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     * @for CanvasController
+     * @method _onToggleSidMap
+     */
+    _onToggleSidMap = () => {
+        this._shouldDrawSidMap = !this._shouldDrawSidMap;
+    };
+
+    /**
+     * Toogle current value of `#draw_terrain`
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     * @for CanvasController
+     * @method _onToggleTerrain
+     */
+    _onToggleTerrain = () => {
+        this._shouldDrawTerrain = !this._shouldDrawTerrain;
     };
 
     /**
