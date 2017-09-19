@@ -95,7 +95,7 @@ export default class InputController {
      */
     enable() {
         this.$window.on('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.on('keydown', (event) => this.onCommandInputKeydownHandler(event));
+        this.$commandInput.on('keydown', (event) => this.onKeydownHandler(event));
         this.$commandInput.on('input', (event) => this.onCommandInputChangeHandler(event));
         // TODO: these are non-standard events and will be deprecated soon. this should be moved
         // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
@@ -118,7 +118,7 @@ export default class InputController {
      */
     disable() {
         this.$window.off('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.off('keydown', (event) => this.onCommandInputKeydownHandler(event));
+        this.$commandInput.off('keydown', (event) => this.onKeydownHandler(event));
         this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
         // uncomment only after `.on()` for this event has been implemented.
         // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
@@ -174,6 +174,21 @@ export default class InputController {
         this.input.mouseDelta = [0, 0];
         this.input.mouseDown = [0, 0];
         this.input.isMouseDown = false;
+    }
+
+    // TODO: The tutorial should be moved to the UiController, and then this can be removed
+    /**
+     * Close all open dialogs and return focus to the command bar
+     *
+     * @for InputController
+     * @method closeAllDialogs
+     */
+    closeAllDialogs() {
+        if (prop.tutorial.open) {
+            this._tutorialView.tutorial_close();
+        }
+
+        UiController.closeAllDialogs();
     }
 
     /**
@@ -268,32 +283,6 @@ export default class InputController {
         }
     }
 
-    // TODO: This does hardly anything of value. It should probably just be removed to simplify things.
-    /**
-     * @for InputController
-     * @method onKeydownHandler
-     * @param event {jQuery Event}
-     * @private
-     */
-    onKeydownHandler(event) {
-        // // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
-        // const is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-        //
-        // if (!GameController.game_paused()) {
-        //     this.$commandInput.focus();
-        // }
-        //
-        // if (event.which === KEY_CODES.ESCAPE) {
-        //     if (prop.tutorial.open) {
-        //         this._tutorialView.tutorial_close();
-        //     } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-        //         UiController.ui_airport_close();
-        //     }
-        //
-        //     this.selectAircraft();
-        // }
-    }
-
     // TODO: Is this really needed??
     /**
      * @for InputController
@@ -347,16 +336,16 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onCommandInputKeydownHandler
+     * @method onKeydownHandler
      */
-    onCommandInputKeydownHandler(e) {
+    onKeydownHandler(event) {
         const currentCommandInputValue = this.$commandInput.val();
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
-        switch (e.which) {
+        switch (event.which) {
             case KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
@@ -377,20 +366,20 @@ export default class InputController {
             case KEY_CODES.PAGE_UP:
                 // recall previous callsign
                 this.selectPreviousAircraft();
-                e.preventDefault();
+                event.preventDefault();
 
                 break;
             case KEY_CODES.PAGE_DOWN:
                 // recall subsequent callsign
                 this.selectNextAircraft();
-                e.preventDefault();
+                event.preventDefault();
 
                 break;
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
-                    e.preventDefault();
+                    event.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
 
@@ -398,12 +387,12 @@ export default class InputController {
             case KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} c `);
-                    e.preventDefault();
+                    event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
                     // recall previous callsign
                     this.selectPreviousAircraft();
-                    e.preventDefault();
+                    event.preventDefault();
                 }
 
                 break;
@@ -411,7 +400,7 @@ export default class InputController {
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t r `);
-                    e.preventDefault();
+                    event.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
 
@@ -419,58 +408,60 @@ export default class InputController {
             case KEY_CODES.DOWN_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} d `);
-                    e.preventDefault();
+                    event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
                     // recall previous callsign
                     this.selectPreviousAircraft();
-                    e.preventDefault();
+                    event.preventDefault();
                 }
 
                 break;
             case KEY_CODES.MULTIPLY:
                 this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.ADD:
                 this.$commandInput.val(`${currentCommandInputValue} + `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.EQUALS: // mac + (actually `=`)
                 this.$commandInput.val(`${currentCommandInputValue} + `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.SUBTRACT:
                 this.$commandInput.val(`${currentCommandInputValue} - `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.DASH: // mac -
                 this.$commandInput.val(`${currentCommandInputValue} - `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.DIVIDE:
                 this.$commandInput.val(`${currentCommandInputValue} takeoff `);
-                e.preventDefault();
+                event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
             case KEY_CODES.TAB:
                 this.$commandInput.val('');
-                e.preventDefault();
+                event.preventDefault();
                 this._toggleCommandBarContext();
 
                 break;
-            case KEY_CODES.ESCAPE:
+            case KEY_CODES.ESCAPE: {
+                this.closeAllDialogs();
+
                 if (!_includes(currentCommandInputValue, this.input.callsign) ||
                     currentCommandInputValue.trim() === this.input.callsign
                 ) {
@@ -482,7 +473,7 @@ export default class InputController {
                 this.$commandInput.val(`${this.input.callsign} `);
 
                 return;
-
+            }
             default:
                 break;
         }
