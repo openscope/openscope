@@ -259,8 +259,16 @@ export default class CanvasController {
      * @method canvas_init
      */
     canvas_init() {
+        this.canvas_add(CANVAS_NAME.AIRCRAFT);
+        this.canvas_add(CANVAS_NAME.AIRSPACE);
         this.canvas_add(CANVAS_NAME.BACKGROUND);
         this.canvas_add(CANVAS_NAME.NAVAIDS);
+        this.canvas_add(CANVAS_NAME.TERRAIN);
+        this.canvas_add(CANVAS_NAME.PROCEDURE_PATH);
+        this.canvas_add(CANVAS_NAME.RESRICTED_AIRSPACE);
+        this.canvas_add(CANVAS_NAME.RUNWAYS);
+        this.canvas_add(CANVAS_NAME.VIDEO_MAP);
+        this.canvas_add(CANVAS_NAME.WIND_VANE);
     }
 
     /**
@@ -350,6 +358,10 @@ export default class CanvasController {
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
         const fading = elapsed < 1;
+
+        if (this._shouldDeepRender) {
+            console.log('_shouldDeepRender');
+        }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.NAVAIDS);
@@ -1962,6 +1974,17 @@ export default class CanvasController {
     }
 
     /**
+     * Mark the canvas as dirty, forcing a redraw during the next frame
+     *
+     * @for CanvasController
+     * @method _onMarkDirtyCanvas
+     * @private
+     */
+    _onMarkDirtyCanvas = () => {
+        this._markShallowRender();
+    };
+
+    /**
      * Update local props as a result of the user panning the view
      *
      * This method will only be `trigger`ed by some other
@@ -1975,7 +1998,7 @@ export default class CanvasController {
         this.canvas.panX = mouseDelta[0];
         this.canvas.panY = mouseDelta[1];
 
-        this._markShallowRender();
+        this._markDeepRender();
     };
 
     /**
@@ -1993,18 +2016,7 @@ export default class CanvasController {
         this.canvas.panX = panPosition[0];
         this.canvas.panY = panPosition[1];
 
-        this._markShallowRender();
-    };
-
-    /**
-     * Mark the canvas as dirty, forcing a redraw during the next frame
-     *
-     * @for CanvasController
-     * @method _onMarkDirtyCanvas
-     * @private
-     */
-    _onMarkDirtyCanvas = () => {
-        this._markShallowRender();
+        this._markDeepRender();
     };
 
     /**
