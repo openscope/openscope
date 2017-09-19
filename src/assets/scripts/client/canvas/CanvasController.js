@@ -1961,8 +1961,12 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onChangeViewportZoom
+     * @param panPosition {array<number, number>}
      */
-    _onChangeViewportZoom = () => {
+    _onChangeViewportZoom = (panPosition) => {
+        this.canvas.panX = panPosition[0];
+        this.canvas.panY = panPosition[1];
+
         this._markShallowRender();
     };
 

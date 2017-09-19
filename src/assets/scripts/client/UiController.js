@@ -7,6 +7,7 @@ import _keys from 'lodash/keys';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import AirportController from './airport/AirportController';
+import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -481,14 +482,24 @@ class UiController {
      * @method ui_zoom_out
      */
     ui_zoom_out() {
+        const lastpos = [
+            round(this.px_to_km(prop.canvas.panX)),
+            round(this.px_to_km(prop.canvas.panY))
+        ];
+
         this.scale *= ZOOM_INCREMENT;
 
         if (this.scale < this.scale_min) {
             this.scale = this.scale_min;
         }
 
+        const nextPanPosition = [
+            round(this.km_to_px(lastpos[0])),
+            round(this.km_to_px(lastpos[1]))
+        ];
+
         this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
     }
 
     /**
@@ -496,14 +507,23 @@ class UiController {
      * @method ui_zoom_in
      */
     ui_zoom_in() {
+        const lastpos = [
+            round(this.px_to_km(prop.canvas.panX)),
+            round(this.px_to_km(prop.canvas.panY))
+        ];
         this.scale /= ZOOM_INCREMENT;
 
         if (this.scale > this.scale_max) {
             this.scale = this.scale_max;
         }
 
+        const nextPanPosition = [
+            round(this.km_to_px(lastpos[0])),
+            round(this.km_to_px(lastpos[1]))
+        ];
+
         this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
     }
 
     /**
