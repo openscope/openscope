@@ -95,7 +95,6 @@ export default class InputController {
      */
     enable() {
         this.$window.on('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.on('keydown', (event) => this.onKeydownHandler(event));
         this.$commandInput.on('input', (event) => this.onCommandInputChangeHandler(event));
         // TODO: these are non-standard events and will be deprecated soon. this should be moved
         // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
@@ -118,7 +117,6 @@ export default class InputController {
      */
     disable() {
         this.$window.off('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.off('keydown', (event) => this.onKeydownHandler(event));
         this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
         // uncomment only after `.on()` for this event has been implemented.
         // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
@@ -349,34 +347,22 @@ export default class InputController {
                 this.onCommandInputChangeHandler();
 
                 break;
-            case KEY_CODES.ENTER: {
-                if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
-                    this.processAircraftCommand();
-                    this.input.history.unshift(this.input.callsign);
-
-                    this.input.history_item = null;
-                } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
-                    this.processScopeCommand();
-                }
-
+            case KEY_CODES.ENTER:
+                this.processCommand();
                 this.selectAircraft();
 
                 break;
-            }
             case KEY_CODES.PAGE_UP:
-                // recall previous callsign
                 this.selectPreviousAircraft();
                 event.preventDefault();
 
                 break;
             case KEY_CODES.PAGE_DOWN:
-                // recall subsequent callsign
                 this.selectNextAircraft();
                 event.preventDefault();
 
                 break;
             case KEY_CODES.LEFT_ARROW:
-                // shortKeys in use
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
                     event.preventDefault();
@@ -390,14 +376,12 @@ export default class InputController {
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
-                    // recall previous callsign
                     this.selectPreviousAircraft();
                     event.preventDefault();
                 }
 
                 break;
             case KEY_CODES.RIGHT_ARROW:
-                // shortKeys in use
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t r `);
                     event.preventDefault();
@@ -411,7 +395,6 @@ export default class InputController {
                     event.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
-                    // recall previous callsign
                     this.selectPreviousAircraft();
                     event.preventDefault();
                 }
@@ -475,7 +458,7 @@ export default class InputController {
                 return;
             }
             default:
-                break;
+                this.$commandInput.focus();
         }
     }
 
@@ -583,6 +566,21 @@ export default class InputController {
     }
 
     /**
+     * Process the command currently in the command bar
+     *
+     * @for InputController
+     * @method processCommand
+     * @return {array} [success of operation, response]
+     */
+    processCommand() {
+        if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+            return this.processAircraftCommand();
+        }
+
+        return this.processScopeCommand();
+    }
+
+    /**
      * Process user command to be applied to an aircraft
      *
      * @for InputController
@@ -611,6 +609,9 @@ export default class InputController {
         if (aircraftCommandParser.command !== 'transmit') {
             return this.processSystemCommand(aircraftCommandParser);
         }
+
+        this.input.history.unshift(this.input.callsign);
+        this.input.history_item = null;
 
         return this.processTransmitCommand(aircraftCommandParser);
     }
