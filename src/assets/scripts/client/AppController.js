@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
-import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import EventBus from './lib/EventBus';
 import ContentQueue from './contentQueue/ContentQueue';
@@ -149,7 +148,7 @@ export default class AppController {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
+        this.canvasController = new CanvasController(this.$element, this.aircraftController, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.tutorialView);

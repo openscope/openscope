@@ -14,3 +14,17 @@ canvas {
     top: 0;
     left: 0;
 }
+
+// following properties are ordered top-down
+// z-index is very important here as we are layering canvases on top of each other
+#aircraft-canvas { z-index: 10 }
+#navaids-canvas { z-index: 9 }
+#procedure-path-canvas { z-index: 8 }
+#wind-vane-canvas { z-index: 7 }
+#resricted-airspace-canvas { z-index: 6 }
+#airspace-canvas { z-index: 5 }
+#runways-canvas { z-index: 4 }
+#terrain-canvas { z-index: 3 }
+#video-map-canvas { z-index: 2 }
+#background-canvas { z-index: 1 }
+

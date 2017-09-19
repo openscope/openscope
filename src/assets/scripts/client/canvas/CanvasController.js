@@ -52,24 +52,44 @@ import { LOG } from '../constants/logLevel';
 const canvas = {};
 
 /**
+ *
+ *
+ */
+const CANVAS_NAME = {
+    AIRCRAFT: 'aircraft',
+    AIRSPACE: 'airspace',
+    BACKGROUND: 'background',
+    NAVAIDS: 'navaids',
+    TERRAIN: 'terrain',
+    PROCEDURE_PATH: 'procedure-path',
+    RESRICTED_AIRSPACE: 'resricted-airspace',
+    RUNWAYS: 'runways',
+    VIDEO_MAP: 'video-map',
+    WIND_VANE: 'wind-vane'
+};
+
+/**
  * @class CanvasController
  */
 export default class CanvasController {
     /**
      * @constructor
      * @param $element {JQuery|HTML Element|undefined}
+     * @param aircraftController {AircraftController}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor($element, navigationLibrary) {
+    constructor($element, aircraftController, navigationLibrary) {
         this.$window = $(window);
         this.$element = $element;
-
+        this._aircraftController = aircraftController;
         this._navigationLibrary = navigationLibrary;
         this._eventBus = EventBus;
 
         prop.canvas = canvas;
         this.canvas = canvas;
-        this.canvas.contexts = {};
+        this.canvas.contexts = {
+            [CANVAS_NAME.BACKGROUND]: {}
+        };
         this.canvas.panY = 0;
         this.canvas.panX = 0;
         // resize canvas to fit window?
@@ -82,7 +102,7 @@ export default class CanvasController {
         this.canvas.last = TimeKeeper.gameTime;
 
         /**
-         * flag used to determine if the Aircraft canvas should be updated
+         * Flag used to determine if the Aircraft canvas should be updated
          *
          * @property _shouldShallowRender
          * @type {boolean}
@@ -91,13 +111,21 @@ export default class CanvasController {
         this._shouldShallowRender = true;
 
         /**
+         * Flag used to determine if _all_ canvases should be updated
          *
+         * When this is true, the non-updating canvases like terrain, fix labels,
+         * video map, etc will be recalculated and re-drawn.
          *
+         * This should only be true when the view changes via zoom/pan or airport change
+         *
+         * @property _shouldDeepRender
+         * @type {boolean}
+         * @default true
          */
         this._shouldDeepRender = true;
 
         /**
-         * flag used to determine if fix labels should be displayed
+         * Flag used to determine if fix labels should be displayed
          *
          * @property _shouldDrawLabels
          * @type {boolean}
@@ -106,7 +134,7 @@ export default class CanvasController {
         this._shouldDrawLabels = false;
 
         /**
-         * flag used to determine if restricted areas should be displayed
+         * Flag used to determine if restricted areas should be displayed
          *
          * @property _shouldDrawRestrictedAreas
          * @type {boolean}
@@ -115,7 +143,7 @@ export default class CanvasController {
         this._shouldDrawRestrictedAreas = false;
 
         /**
-         * flag used to determine if the sid map should be displayed
+         * Flag used to determine if the sid map should be displayed
          *
          * @property _shouldDrawSidMap
          * @type {boolean}
@@ -124,7 +152,7 @@ export default class CanvasController {
         this._shouldDrawSidMap = false;
 
         /**
-         * flag used to determine if terrain should be displayed
+         * Flag used to determine if terrain should be displayed
          *
          * @property _shouldDrawTerrain
          * @type {boolean}
@@ -225,40 +253,27 @@ export default class CanvasController {
     /**
      * Called by `AppController.init()`
      *
+     * Creates canvas elements and stores context
+     *
      * @for CanvasController
      * @method canvas_init
      */
     canvas_init() {
-        this.canvas_add('navaids');
+        this.canvas_add(CANVAS_NAME.BACKGROUND);
+        this.canvas_add(CANVAS_NAME.NAVAIDS);
     }
 
     /**
      * @for CanvasController
-     * @method canvas_adjust_hidpi
+     * @method canvas_add
+     * @param name {string}
      */
-    canvas_adjust_hidpi() {
-        const dpr = window.devicePixelRatio || 1;
+    canvas_add(name) {
+        const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
 
-        // TODO: change to early return
-        if (dpr <= 1) {
-            return;
-        }
+        $(SELECTORS.DOM_SELECTORS.CANVASES).append(canvasTemplate);
 
-        // TODO: cache this selector, $hidefCanvas
-        // TODO: replace selector with constant
-        const hidefCanvas = $(SELECTORS.DOM_SELECTORS.NAVAIDS_CANVAS).get(0);
-        const w = this.canvas.size.width;
-        const h = this.canvas.size.height;
-
-        $(hidefCanvas).attr('width', w * dpr);
-        $(hidefCanvas).attr('height', h * dpr);
-        $(hidefCanvas).css('width', w);
-        $(hidefCanvas).css('height', h);
-
-        const ctx = hidefCanvas.getContext('2d');
-
-        ctx.scale(dpr, dpr);
-        this.canvas.contexts.navaids = ctx;
+        this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
 
     /**
@@ -269,7 +284,7 @@ export default class CanvasController {
      */
     canvas_complete() {
         setTimeout(() => {
-            this._shouldShallowRender = true;
+            this._markDeepRender();
         }, 500);
 
         this.canvas.last = TimeKeeper.gameTime;
@@ -287,16 +302,40 @@ export default class CanvasController {
             this.canvas.size.height = this.$window.height();
         }
 
-        // this.canvas.size.width -= 400;
+        // offset for footer
         this.canvas.size.height -= 36;
 
-        _forEach(this.canvas.contexts, (context) => {
+        for (const canvasName in this.canvas.contexts) {
+            const context = this.canvas.contexts[canvasName];
             context.canvas.height = this.canvas.size.height;
             context.canvas.width = this.canvas.size.width;
-        });
 
-        this._markShallowRender();
-        this.canvas_adjust_hidpi();
+            this.canvas_adjust_hidpi(canvasName);
+        }
+
+        this._markDeepRender();
+    }
+
+    /**
+     * @for CanvasController
+     * @method canvas_adjust_hidpi
+     */
+    canvas_adjust_hidpi(canvasName) {
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        const canvasContext = this.canvas.contexts[canvasName];
+
+        if (devicePixelRatio <= 1) {
+            return;
+        }
+
+        const $canvasElement = $(`#${canvasContext.canvas.id}`).get(0);
+
+        $($canvasElement).attr('height', this.canvas.size.height * devicePixelRatio);
+        $($canvasElement).css('height', this.canvas.size.height);
+        $($canvasElement).attr('width', this.canvas.size.width * devicePixelRatio);
+        $($canvasElement).css('width', this.canvas.size.width);
+
+        canvasContext.scale(devicePixelRatio, devicePixelRatio);
     }
 
     /**
@@ -306,19 +345,14 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        // if (!this._shouldShallowRender && !this._shouldDeepRender) {
-        //     return;
-        // }
-
         const elapsed = GameController.game_time() - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
         const fading = elapsed < 1;
 
-
         if (this._shouldShallowRender || shouldUpdate || fading) {
-            const cc = this.canvas_get('navaids');
+            const cc = this.canvas_get(CANVAS_NAME.NAVAIDS);
             const middleHeight = calculateMiddle(this.canvas.size.height);
             const middleWidth = calculateMiddle(this.canvas.size.width);
 
@@ -425,17 +459,6 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method canvas_add
-     * @param name {string}
-     */
-    canvas_add(name) {
-        $(SELECTORS.DOM_SELECTORS.CANVASES).append(`<canvas id='${name}-canvas'></canvas>`);
-
-        this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
-    }
-
-    /**
-     * @for CanvasController
      * @method canvas_get
      * @param name {string}
      */
@@ -474,12 +497,11 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_fill_background
-     * @param cc {Object} HTML5 canvas context
      */
-    canvas_fill_background(cc) {
-        cc.fillStyle = this.theme.SCOPE.BACKGROUND;
-
-        cc.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
+    canvas_fill_background() {
+        const ctx = this.canvas.contexts[CANVAS_NAME.BACKGROUND];
+        ctx.fillStyle = this.theme.SCOPE.BACKGROUND;
+        ctx.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
     /**
@@ -1107,9 +1129,9 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_all_aircraft(cc) {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
+        for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             cc.save();
-            this.canvas_draw_aircraft(cc, prop.aircraft.list[i]);
+            this.canvas_draw_aircraft(cc, this._aircraftController.aircraft.list[i]);
             cc.restore();
         }
     }
@@ -1331,9 +1353,9 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_all_info(cc) {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
+        for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             cc.save();
-            this.canvas_draw_info(cc, prop.aircraft.list[i]);
+            this.canvas_draw_info(cc, this._aircraftController.aircraft.list[i]);
             cc.restore();
         }
     }
@@ -1839,8 +1861,9 @@ export default class CanvasController {
             return;
         }
 
+        // TODO: this should be a method on the `AircraftController` if one doesn't already exist.
         // Get the selected aircraft.
-        const aircraft = _filter(prop.aircraft.list, (p) => {
+        const aircraft = _filter(this._aircraftController.aircraft.list, (p) => {
             return p.matchCallsign(callsign) && p.isVisible();
         })[0];
 
@@ -1912,7 +1935,7 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method to_canvas_
+     * @method to_canvas_pos
      * @param pos {}
      */
     to_canvas_pos(pos) {
@@ -1928,6 +1951,7 @@ export default class CanvasController {
      * @for CanvasController
      * @method _calculateLeaderLength
      * @return {number} length, in pixels
+     * @private
      */
     _calculateLeaderLength() {
         return this.theme.DATA_BLOCK.LEADER_LENGTH *
@@ -1945,6 +1969,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onChangeViewportPan
+     * @private
      */
     _onChangeViewportPan = (event, mouseDelta) => {
         this.canvas.panX = mouseDelta[0];
@@ -1962,6 +1987,7 @@ export default class CanvasController {
      * @for CanvasController
      * @method _onChangeViewportZoom
      * @param panPosition {array<number, number>}
+     * @private
      */
     _onChangeViewportZoom = (panPosition) => {
         this.canvas.panX = panPosition[0];
@@ -1975,6 +2001,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onMarkDirtyCanvas
+     * @private
      */
     _onMarkDirtyCanvas = () => {
         this._markShallowRender();
@@ -1988,6 +2015,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onToggleLabels
+     * @private
      */
     _onToggleLabels = () => {
         this._shouldDrawLabels = !this._shouldDrawLabels;
@@ -2003,6 +2031,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onToggleRestrictedAreas
+     * @private
      */
     _onToggleRestrictedAreas = () => {
         this._shouldDrawRestrictedAreas = !this._shouldDrawRestrictedAreas;
@@ -2017,6 +2046,7 @@ export default class CanvasController {
      * class via the `EventBus`
      * @for CanvasController
      * @method _onToggleSidMap
+     * @private
      */
     _onToggleSidMap = () => {
         this._shouldDrawSidMap = !this._shouldDrawSidMap;
@@ -2031,6 +2061,7 @@ export default class CanvasController {
      * class via the `EventBus`
      * @for CanvasController
      * @method _onToggleTerrain
+     * @private
      */
     _onToggleTerrain = () => {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
@@ -2038,6 +2069,13 @@ export default class CanvasController {
         this._markDeepRender();
     };
 
+    /**
+     *
+     *
+     * @for CanvasController
+     * @method _markShallowRender
+     * @private
+     */
     _markShallowRender() {
         this._shouldShallowRender = true;
     }
@@ -2045,8 +2083,15 @@ export default class CanvasController {
     /**
      *
      *
+     * This will also change `#_shouldShallowRender` to `true`
+     *
+     * @for CanvasController
+     * @method _markDeepRender
+     * @private
      */
     _markDeepRender() {
+        this._markShallowRender();
+
         this._shouldDeepRender = true;
     }
 
