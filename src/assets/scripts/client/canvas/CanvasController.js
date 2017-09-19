@@ -91,6 +91,12 @@ export default class CanvasController {
         this._shouldShallowRender = true;
 
         /**
+         *
+         *
+         */
+        this._shouldDeepRender = true;
+
+        /**
          * flag used to determine if fix labels should be displayed
          *
          * @property _shouldDrawLabels
@@ -207,6 +213,7 @@ export default class CanvasController {
         };
         this.canvas.last = -1;
         this._shouldShallowRender = true;
+        this._shouldDeepRender = true;
         this._shouldDrawLabels = false;
         this._shouldDrawRestrictedAreas = false;
         this._shouldDrawSidMap = false;
@@ -288,7 +295,7 @@ export default class CanvasController {
             context.canvas.width = this.canvas.size.width;
         });
 
-        this._shouldShallowRender = true;
+        this._markShallowRender();
         this.canvas_adjust_hidpi();
     }
 
@@ -299,47 +306,50 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
+        // if (!this._shouldShallowRender && !this._shouldDeepRender) {
+        //     return;
+        // }
+
         const elapsed = GameController.game_time() - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
+        const fading = elapsed < 1;
 
-        if (this._shouldShallowRender || shouldUpdate || elapsed < 1) {
+
+        if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get('navaids');
-            const fading = elapsed < 1;
             const middleHeight = calculateMiddle(this.canvas.size.height);
             const middleWidth = calculateMiddle(this.canvas.size.width);
 
             cc.font = '11px monoOne, monospace';
 
             // TODO: what is the rationale here? with two ors and a true, this block will always be exectuted.
-            if (this._shouldShallowRender || fading || true) {
-                cc.save();
+            cc.save();
 
-                this.canvas_clear(cc);
-                this.canvas_fill_background(cc);
+            this.canvas_clear(cc);
+            this.canvas_fill_background(cc);
 
-                cc.translate(middleWidth, middleHeight);
-                cc.save();
+            cc.translate(middleWidth, middleHeight);
+            cc.save();
 
-                cc.globalAlpha = alpha;
+            cc.globalAlpha = alpha;
 
-                this.canvas_draw_videoMap(cc);
-                this.canvas_draw_terrain(cc);
-                this.canvas_draw_restricted(cc);
-                this.canvas_draw_runways(cc);
+            this.canvas_draw_videoMap(cc);
+            this.canvas_draw_terrain(cc);
+            this.canvas_draw_restricted(cc);
+            this.canvas_draw_runways(cc);
 
-                cc.restore();
-                cc.save();
+            cc.restore();
+            cc.save();
 
-                cc.globalAlpha = alpha;
+            cc.globalAlpha = alpha;
 
-                this.canvas_draw_fixes(cc);
-                this.canvas_draw_sids(cc);
+            this.canvas_draw_fixes(cc);
+            this.canvas_draw_sids(cc);
 
-                cc.restore();
-                cc.restore();
-            }
+            cc.restore();
+            cc.restore();
 
             // Controlled traffic region - (CTR)
             cc.save();
@@ -369,17 +379,15 @@ export default class CanvasController {
             // Compass
             cc.font = 'bold 10px monoOne, monospace';
 
-            if (this._shouldShallowRender || fading || true) {
-                cc.save();
-                cc.translate(middleWidth, middleHeight);
+            cc.save();
+            cc.translate(middleWidth, middleHeight);
 
-                this.canvas_draw_compass(cc);
-                cc.restore();
-            }
+            this.canvas_draw_compass(cc);
+            cc.restore();
 
             cc.font = BASE_CANVAS_FONT;
 
-            if (this._shouldShallowRender || this.canvas_should_draw() || true) {
+            if (this.canvas_should_draw() || true) {
                 cc.save();
                 cc.globalAlpha = alpha;
                 cc.translate(middleWidth, middleHeight);
@@ -411,6 +419,7 @@ export default class CanvasController {
             cc.restore();
 
             this._shouldShallowRender = false;
+            this._shouldDeepRender = false;
         }
     }
 
@@ -1941,7 +1950,7 @@ export default class CanvasController {
         this.canvas.panX = mouseDelta[0];
         this.canvas.panY = mouseDelta[1];
 
-        this._onMarkDirtyCanvas();
+        this._markShallowRender();
     };
 
     /**
@@ -1954,7 +1963,7 @@ export default class CanvasController {
      * @method _onChangeViewportZoom
      */
     _onChangeViewportZoom = () => {
-        this._onMarkDirtyCanvas();
+        this._markShallowRender();
     };
 
     /**
@@ -1964,7 +1973,7 @@ export default class CanvasController {
      * @method _onMarkDirtyCanvas
      */
     _onMarkDirtyCanvas = () => {
-        this._shouldShallowRender = true;
+        this._markShallowRender();
     };
 
     /**
@@ -1978,6 +1987,8 @@ export default class CanvasController {
      */
     _onToggleLabels = () => {
         this._shouldDrawLabels = !this._shouldDrawLabels;
+
+        this._markDeepRender();
     };
 
     /**
@@ -1991,6 +2002,8 @@ export default class CanvasController {
      */
     _onToggleRestrictedAreas = () => {
         this._shouldDrawRestrictedAreas = !this._shouldDrawRestrictedAreas;
+
+        this._markDeepRender();
     };
 
     /**
@@ -2003,6 +2016,8 @@ export default class CanvasController {
      */
     _onToggleSidMap = () => {
         this._shouldDrawSidMap = !this._shouldDrawSidMap;
+
+        this._markDeepRender();
     };
 
     /**
@@ -2015,7 +2030,21 @@ export default class CanvasController {
      */
     _onToggleTerrain = () => {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
+
+        this._markDeepRender();
     };
+
+    _markShallowRender() {
+        this._shouldShallowRender = true;
+    }
+
+    /**
+     *
+     *
+     */
+    _markDeepRender() {
+        this._shouldDeepRender = true;
+    }
 
     /**
      * Center a point in the view
@@ -2031,7 +2060,8 @@ export default class CanvasController {
     _onCenterPointInView = ({ x, y }) => {
         this.canvas.panX = 0 - round(UiController.km_to_px(x));
         this.canvas.panY = round(UiController.km_to_px(y));
-        this.dirty = true;
+
+        this._markShallowRender();
     };
 
     /**
