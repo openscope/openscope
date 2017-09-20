@@ -1,6 +1,7 @@
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
+Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 
 
 
