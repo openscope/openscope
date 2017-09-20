@@ -9,7 +9,7 @@
  *
  * @fileoverview
  */
-import { convertStringToNumber } from '../utilities/unitConverters';
+import { convertStringToNumber } from '../../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
@@ -43,11 +43,11 @@ const noop = (args) => args;
 /**
  * System and Aircraft command definitions that accept zero arguments
  *
- * @property ZERO_ARG_COMMANDS
+ * @property ZERO_ARG_AIRCRAFT_COMMANDS
  * @type {Object}
  * @final
  */
-const ZERO_ARG_COMMANDS = {
+const ZERO_ARG_AIRCRAFT_COMMANDS = {
     // system commands
     auto: {
         validate: zeroArgumentsValidator,
@@ -134,11 +134,11 @@ const ZERO_ARG_COMMANDS = {
  *
  * these commands accept a single argument and may require further parsing, eg: (string -> number)
  *
- * @property SINGLE_ARG_COMMANDS
+ * @property SINGLE_ARG_AIRCRAFT_COMMANDS
  * @type {Object}
  * @final
  */
-const SINGLE_ARG_COMMANDS = {
+const SINGLE_ARG_AIRCRAFT_COMMANDS = {
     '`': {
         validate: singleArgumentValidator,
         // calling method is expecting an array with values that will get spread later, thus we purposly
@@ -199,11 +199,11 @@ const SINGLE_ARG_COMMANDS = {
  * These definitions will likely reference functions for validate and parse that are specific only
  * to one command
  *
- * @property CUSTOM_ARG_COMMANDS
+ * @property CUSTOM_ARG_AIRCRAFT_COMMANDS
  * @type {Object}
  * @final
  */
-const CUSTOM_ARG_COMMANDS = {
+const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     taxi: {
         validate: zeroOrOneArgumentValidator,
         parse: noop
@@ -240,12 +240,12 @@ const CUSTOM_ARG_COMMANDS = {
 /**
  * Single exported constant that combines all the definitions above
  *
- * @property COMMAND_DEFINITION
+ * @property AIRCRAFT_COMMAND_DEFINITION
  * @type {Object}
  * @final
  */
-export const COMMAND_DEFINITION = {
-    ...ZERO_ARG_COMMANDS,
-    ...SINGLE_ARG_COMMANDS,
-    ...CUSTOM_ARG_COMMANDS
+export const AIRCRAFT_COMMAND_DEFINITION = {
+    ...ZERO_ARG_AIRCRAFT_COMMANDS,
+    ...SINGLE_ARG_AIRCRAFT_COMMANDS,
+    ...CUSTOM_ARG_AIRCRAFT_COMMANDS
 };

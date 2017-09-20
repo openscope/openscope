@@ -1,13 +1,13 @@
 import _isNaN from 'lodash/isNaN';
 import _isString from 'lodash/isString';
 import _forEach from 'lodash/forEach';
-import { convertStringToNumber } from '../utilities/unitConverters';
-import { EXPEDITE } from './commandMap';
-import { ERROR_MESSAGE } from './commandParserMessages';
+import { convertStringToNumber } from '../../utilities/unitConverters';
+import { EXPEDITE } from './aircraftCommandMap';
+import { ERROR_MESSAGE } from './aircraftCommandParserMessages';
 import {
     INVALID_INDEX,
     REGEX
-} from '../constants/globalConstants';
+} from '../../constants/globalConstants';
 
 /**
  * Check that `args` has exactly zero values

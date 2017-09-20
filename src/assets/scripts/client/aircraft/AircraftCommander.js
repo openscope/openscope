@@ -81,7 +81,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runCommands
      * @param aircraft {AircraftModel}
-     * @param commands {CommandParser}
+     * @param commands {array<AircraftCommandParser>}
      */
     runCommands(aircraft, commands) {
         if (!aircraft.inside_ctr) {
@@ -474,17 +474,10 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runMoveDataBlock
-     * @param data
+     * @deprecated
      */
-    runMoveDataBlock(aircraft, dir) {
-        // TODO: what do all these numbers mean?
-        const positions = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
-
-        if (!_has(positions, dir[0])) {
-            return;
-        }
-
-        aircraft.datablockDir = positions[dir[0]];
+    runMoveDataBlock() {
+        return [false, 'moving data blocks is now a scope command; see documentation for help'];
     }
 
     /**
@@ -706,7 +699,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
-        // FIXME: update some of this queue logic to live in the RunwayModel
+        // TODO: update some of this queue logic to live in the RunwayModel
         const airport = AirportController.airport_get();
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);

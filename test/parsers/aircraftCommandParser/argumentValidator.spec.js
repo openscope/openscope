@@ -13,7 +13,7 @@ import {
     headingValidator,
     holdValidator,
     squawkValidator
-} from '../../src/assets/scripts/client/commandParser/argumentValidators';
+} from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentValidators';
 
 // TODO: import ERROR_MESSAGE and use actual values to test against
 
