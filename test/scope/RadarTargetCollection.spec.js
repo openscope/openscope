@@ -46,89 +46,89 @@ ava('.addRadarTargetModel() adds the supplied radar target to the collection', (
     t.true(_includes(collection._items, RADAR_TARGET_ARRIVAL_MOCK));
 });
 
-ava('.addRadarTargetModelFromAircraftModel() adds new radar target to collection for the provided aircraft model', (t) => {
+ava('.addRadarTargetModelForAircraftModel() adds new radar target to collection for the provided aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.deepEqual(collection._items[0].aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
-ava('.getRadarTargetModelFromAircraftModel() returns undefined when aircraft has no corresponding radar target', (t) => {
+ava('.findRadarTargetModelForAircraftModel() returns undefined when aircraft has no corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
-    const result = collection.getRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const result = collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.true(result === undefined);
 });
 
-ava('.getRadarTargetModelFromAircraftModel() throws when multiple aircraft match', (t) => {
+ava('.findRadarTargetModelForAircraftModel() throws when multiple aircraft match', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    t.throws(() => collection.getRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK));
+    t.throws(() => collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK));
 });
 
-ava('.getRadarTargetModelFromAircraftModel() returns radar target for corresponding supplied aircraft model', (t) => {
+ava('.findRadarTargetModelForAircraftModel() returns radar target for corresponding supplied aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    const result = collection.getRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const result = collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
-ava('.getRadarTargetModelFromAircraftReference() returns undefined when aircraft has no corresponding radar target', (t) => {
+ava('.findRadarTargetModelForAircraftReference() returns undefined when aircraft has no corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
     const aircraftReference = 'AAL432';
-    const result = collection.getRadarTargetModelFromAircraftReference(aircraftReference);
+    const result = collection.findRadarTargetModelForAircraftReference(aircraftReference);
 
     t.true(result === undefined);
 });
 
-ava('.getRadarTargetModelFromAircraftReference() returns undefined when multiple aircraft match', (t) => {
+ava('.findRadarTargetModelForAircraftReference() returns undefined when multiple aircraft match', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
     const aircraftReference = 'AAL432';
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    const result = collection.getRadarTargetModelFromAircraftReference(aircraftReference);
+    const result = collection.findRadarTargetModelForAircraftReference(aircraftReference);
 
     t.true(result === undefined);
 });
 
-ava('.getRadarTargetModelFromAircraftReference() returns radar target for corresponding supplied aircraft reference', (t) => {
+ava('.findRadarTargetModelForAircraftReference() returns radar target for corresponding supplied aircraft reference', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
     const aircraftReference = 'AAL432';
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    const result = collection.getRadarTargetModelFromAircraftReference(aircraftReference);
+    const result = collection.findRadarTargetModelForAircraftReference(aircraftReference);
 
     t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
-ava('.removeRadarTargetModel() makes no changes when the specified aircraft does not have a corresponding radar target', (t) => {
+ava('.removeRadarTargetModelForAircraftModel() makes no changes when the specified aircraft does not have a corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const initialStateOfCollection = collection;
 
-    collection.removeRadarTargetModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    collection.removeRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
 
     t.deepEqual(collection, initialStateOfCollection);
 });
 
-ava('.removeRadarTargetModel() removes the corresponding radar target for the specified aircraft model', (t) => {
+ava('.removeRadarTargetModelForAircraftModel() removes the corresponding radar target for the specified aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    collection.addRadarTargetModelFromAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
-    collection.removeRadarTargetModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    collection.removeRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const aircraftInCollection = _map(collection._items, (radarTargetModel) => radarTargetModel.aircraftModel);
 
@@ -139,8 +139,8 @@ ava('.removeRadarTargetModel() removes the corresponding radar target for the sp
 ava('.resetAllRadarTargets() calls .reset() method of each radar target model in the collection', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    collection.addRadarTargetModelFromAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
 
     const arrivalAircraftResetSpy = sinon.spy(collection._items[0], 'reset');
     const departureAircraftResetSpy = sinon.spy(collection._items[1], 'reset');
@@ -154,8 +154,8 @@ ava('.resetAllRadarTargets() calls .reset() method of each radar target model in
 ava('.reset() clears all radar target models from the collection', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelFromAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    collection.addRadarTargetModelFromAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
     collection.reset();
 
     t.true(collection._items.length === 0);

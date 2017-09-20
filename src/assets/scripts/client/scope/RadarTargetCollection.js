@@ -1,7 +1,6 @@
 import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
-import _isObject from 'lodash/isObject';
 import RadarTargetModel from './RadarTargetModel';
 import BaseCollection from '../base/BaseCollection';
 import EventBus from '../lib/EventBus';
@@ -14,10 +13,30 @@ import { THEME } from '../constants/themes';
  * @class RadarTargetCollection
  */
 export default class RadarTargetCollection extends BaseCollection {
+    /**
+     * @for RadarTargetCollection
+     * @constructor
+     * @param theme {object}
+     */
     constructor(theme) {
         super();
 
+        /**
+         * Local reference to the event bus
+         *
+         * @for RadarTargetModel
+         * @property _eventBus
+         * @type {EventBus}
+         */
         this._eventBus = EventBus;
+
+        /**
+         * Current theme, updated via event bus events
+         *
+         * @for RadarTargetCollection
+         * @property _theme
+         * @type {object}
+         */
         this._theme = theme;
 
         this._init()
@@ -40,12 +59,35 @@ export default class RadarTargetCollection extends BaseCollection {
      *
      * @for RadarTargetCollection
      * @method _init
-     * @param theme {object}
      * @private
      * @chainable
      */
     _init() {
         return this;
+    }
+
+    /**
+    * Deactivate event handlers
+    *
+    * @for RadarTargetModel
+    * @method disable
+    */
+    enable() {
+        this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModelForAircraftModel);
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+    * Activate event handlers
+    *
+    * @for RadarTargetModel
+    * @method disable
+    */
+    disable() {
+        this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModelForAircraftModel);
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
 
     /**
@@ -67,52 +109,29 @@ export default class RadarTargetCollection extends BaseCollection {
      * Create `RadarTargetModel`s for the given `AircraftModel`
      *
      * @for RadarTargetCollection
-     * @method addRadarTargetModelFromAircraftModel
+     * @method addRadarTargetModelForAircraftModel
      * @param aircraftModel {AircraftModel}
      */
-    addRadarTargetModelFromAircraftModel = (aircraftModel) => {
+    addRadarTargetModelForAircraftModel = (aircraftModel) => {
         const radarTargetModel = new RadarTargetModel(this._theme, aircraftModel);
 
         this.addRadarTargetModel(radarTargetModel);
     };
 
     /**
-     * Activate event handlers
-     *
-     * @for RadarTargetModel
-     * @method disable
-     */
-    disable() {
-        this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelFromAircraftModel);
-        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModel);
-        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
-     * Deactivate event handlers
-     *
-     * @for RadarTargetModel
-     * @method disable
-     */
-    enable() {
-        this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelFromAircraftModel);
-        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModel);
-        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
      * Get the radar target model object for the specified aircraft
      *
      * @for RadarTargetCollection
-     * @method getRadarTargetModelFromAircraftModel
+     * @method findRadarTargetModelForAircraftModel
      * @param aircraftModel {AircraftModel}
      * @return radarTargetModel {RadarTargetModel}
      */
-    getRadarTargetModelFromAircraftModel(aircraftModel) {
+    findRadarTargetModelForAircraftModel(aircraftModel) {
         // Store variable because `this` within lodash `_filter` has different scope
         const radarTargetModels = this._items;
-        const results = _filter(radarTargetModels, (radarTargetModel) =>
-            radarTargetModel.aircraftModel.id === aircraftModel.id
+        const results = _filter(
+            radarTargetModels,
+            (radarTargetModel) => radarTargetModel.aircraftModel.id === aircraftModel.id
         );
 
         if (results.length > 1) {
@@ -129,16 +148,16 @@ export default class RadarTargetCollection extends BaseCollection {
      * Get the radar target model object for the specified aircraft
      *
      * @for RadarTargetCollection
-     * @method getRadarTargetModelFromAircraftReference
+     * @method findRadarTargetModelForAircraftReference
      * @param aircraftReference {string} the CID, squawk code, or callsign assigned to an aircraft
      * @return radarTargetModel {RadarTargetModel}
      */
-    getRadarTargetModelFromAircraftReference(aircraftReference) {
+    findRadarTargetModelForAircraftReference(aircraftReference) {
         // Store variable because `this` within lodash `_filter` has different scope
         const radarTargetModels = this._items;
-        const results = _filter(radarTargetModels, (radarTargetModel) =>
-            radarTargetModel.aircraftModel.transponderCode === aircraftReference ||
-            radarTargetModel.aircraftModel.callsign === aircraftReference
+        const results = _filter(radarTargetModels, ({ aircraftModel }) =>
+            aircraftModel.transponderCode === aircraftReference ||
+            aircraftModel.callsign === aircraftReference
         );
 
         if (results.length > 1) {
@@ -154,13 +173,12 @@ export default class RadarTargetCollection extends BaseCollection {
      * Remove from the collection the radar target model associated with the specified aircraft model
      *
      * @for RadarTargetCollection
-     * @method removeRadarTargetModel
+     * @method removeRadarTargetModelForAircraftModel
      * @param aircraftModel {AircraftModel}
      */
-    removeRadarTargetModel = (aircraftModel) => {
-        const idToRemove = aircraftModel.id;
+    removeRadarTargetModelForAircraftModel = (aircraftModel) => {
         const collectionWithAircraftRemoved = _filter(this._items, (radarTargetModel) =>
-            radarTargetModel.aircraftModel.id !== idToRemove
+            radarTargetModel.aircraftModel.id !== aircraftModel.id
         );
 
         this._items = collectionWithAircraftRemoved;
@@ -185,7 +203,9 @@ export default class RadarTargetCollection extends BaseCollection {
     resetAllRadarTargets() {
         const radarTargetModels = this._items;
 
-        _forEach(radarTargetModels, (radarTargetModel) => radarTargetModel.reset());
+        for (let i = 0; i < radarTargetModels.length; i++) {
+            radarTargetModels[i].reset();
+        }
     }
 
     /**

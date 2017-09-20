@@ -81,7 +81,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runCommands
      * @param aircraft {AircraftModel}
-     * @param commands {AircraftCommandParser}
+     * @param commands {array<AircraftCommandParser>}
      */
     runCommands(aircraft, commands) {
         if (!aircraft.inside_ctr) {
@@ -699,7 +699,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
-        // FIXME: update some of this queue logic to live in the RunwayModel
+        // TODO: update some of this queue logic to live in the RunwayModel
         const airport = AirportController.airport_get();
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);

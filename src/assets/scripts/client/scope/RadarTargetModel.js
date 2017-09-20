@@ -5,6 +5,10 @@ import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { DECIMAL_RADIX } from '../constants/navigation/waypointConstants';
+import {
+    DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR,
+    DATA_BLOCK_POSITION_MAP
+} from '../constants/scopeCommandConstants';
 import { THEME } from '../constants/themes';
 
 /**
@@ -15,6 +19,12 @@ import { THEME } from '../constants/themes';
  * @class RadarTargetModel
  */
 export default class RadarTargetModel {
+    /**
+     * @for RadarTargetModel
+     * @constructor
+     * @param theme {object}
+     * @param aircraftModel {AircraftModel}
+     */
     constructor(theme, aircraftModel) {
         /**
          * The full aircraft model object that this radar target corresponds to
@@ -151,7 +161,9 @@ export default class RadarTargetModel {
          */
         this._theme = theme;
 
-        this._init(aircraftModel);
+        this._init(aircraftModel)
+            ._initializeScratchPad()
+            .enable();
     }
 
     /**
@@ -205,17 +217,77 @@ export default class RadarTargetModel {
      * @method _init
      * @param theme {object}
      * @param aircraftModel {AircraftModel}
+     * @private
+     * @chainable
      */
     _init(aircraftModel) {
         this.aircraftModel = aircraftModel;
         this._cruiseAltitude = aircraftModel.fms.flightPlanAltitude;
         this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
-        // TODO: This getter doesn't give us what we want. Seems like one does
-        // not exist actually. We want the full route string, including past legs.
-        this._routeString = aircraftModel.fms.currentRoute;
+        this._routeString = aircraftModel.fms.getFlightPlanRouteStringWithDots();
 
-        this._initializeScratchPad();
+        return this;
+    }
+
+    /**
+     * Initialize the value of the scratchpad
+     *
+     * @for RadarTargetModel
+     * @method _initializeScratchPad
+     * @private
+     * @chainable
+     */
+    _initializeScratchPad() {
+        if (!this.aircraftModel.destination) {
+            this._scratchPadText = 'XXX';
+
+            return this;
+        }
+
+        this._scratchPadText = this.aircraftModel.destination.substr(1);
+
+        return this;
+    }
+
+    /**
+    * Disable handlers
+    *
+    * @for RadarTargetModel
+    * @method enable
+    */
+    enable() {
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+    * Enable handlers
+    *
+    * @for RadarTargetModel
+    * @method disable
+    */
+    disable() {
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+    * Reset all properties to their default state
+    *
+    * @for RadarTargetModel
+    * @method reset
+    */
+    reset() {
+        this.aircraftModel = null;
+        this._cruiseAltitude = INVALID_NUMBER;
+        this._dataBlockLeaderDirection = INVALID_NUMBER;
+        this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
+        this._hasFullDataBlock = true;
+        this._hasHalo = false;
+        this._hasSuppressedDataBlock = false;
+        this._interimAltitude = INVALID_NUMBER;
+        this._isUnderOurControl = true;
+        this._routeString = '';
+        this._scratchPadText = '';
     }
 
     /**
@@ -232,27 +304,7 @@ export default class RadarTargetModel {
     }
 
     /**
-     * Enable handlers
-     *
-     * @for RadarTargetModel
-     * @method disable
-     */
-    disable() {
-        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
-     * Disable handlers
-     *
-     * @for RadarTargetModel
-     * @method enable
-     */
-    enable() {
-        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
-    * Mark this radar target as being controlled by "our" ScopeModel
+    * Mark this radar target as NOT being controlled by "our" ScopeModel
     * Note that this will eventually be reworked so we can specify which
     * scope has control, not just whether or not "we" do.
     *
@@ -291,9 +343,8 @@ export default class RadarTargetModel {
         let desiredDirection = commandArguments;
         let desiredLength = '';
 
-        // FIXME: Extract this to a constants file!
-        if (commandArguments.indexOf('/') !== INVALID_NUMBER) {
-            const argumentPieces = commandArguments.split('/');
+        if (commandArguments.indexOf(DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR) !== INVALID_NUMBER) {
+            const argumentPieces = commandArguments.split(DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR);
             desiredDirection = parseInt(argumentPieces[0], DECIMAL_RADIX);
             desiredLength = parseInt(argumentPieces[1], DECIMAL_RADIX);
 
@@ -307,13 +358,11 @@ export default class RadarTargetModel {
         }
 
         if (desiredDirection !== '' && !_isNaN(desiredDirection)) {
-            const dataBlockPositionMap = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
-
-            if (!_has(dataBlockPositionMap, desiredDirection)) {
+            if (!_has(DATA_BLOCK_POSITION_MAP, desiredDirection)) {
                 return [false, 'ERR: BAD SYNTAX'];
             }
 
-            this._dataBlockLeaderDirection = dataBlockPositionMap[desiredDirection];
+            this._dataBlockLeaderDirection = DATA_BLOCK_POSITION_MAP[desiredDirection];
         }
 
         if (desiredLength !== '' && !_isNaN(desiredLength)) {
@@ -321,26 +370,6 @@ export default class RadarTargetModel {
         }
 
         return [true, 'ADJUST DATA BLOCK'];
-    }
-
-    /**
-     * Reset all properties to their default state
-     *
-     * @for RadarTargetModel
-     * @method reset
-     */
-    reset() {
-        this.aircraftModel = null;
-        this._cruiseAltitude = INVALID_NUMBER;
-        this._dataBlockLeaderDirection = INVALID_NUMBER;
-        this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
-        this._hasFullDataBlock = true;
-        this._hasHalo = false;
-        this._hasSuppressedDataBlock = false;
-        this._interimAltitude = INVALID_NUMBER;
-        this._isUnderOurControl = true;
-        this._routeString = '';
-        this._scratchPadText = '';
     }
 
     /**
@@ -368,22 +397,6 @@ export default class RadarTargetModel {
         this._hasHalo = !this._hasHalo;
 
         return [true, 'TOGGLE HALO'];
-    }
-
-    /**
-     * Initialize the value of the scratchpad
-     *
-     * @for RadarTargetModel
-     * @method _initializeScratchPad
-     */
-    _initializeScratchPad() {
-        if (!this.aircraftModel.destination) {
-            this._scratchPadText = 'XXX';
-
-            return;
-        }
-
-        this._scratchPadText = this.aircraftModel.destination.substr(1);
     }
 
     /**

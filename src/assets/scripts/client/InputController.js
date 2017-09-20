@@ -547,19 +547,15 @@ export default class InputController {
             case COMMAND_CONTEXT.AIRCRAFT:
                 this.commandBarContext = COMMAND_CONTEXT.SCOPE;
                 this.$commandInput.attr('placeholder', 'enter scope command');
-                // this.$commandInput.css({'background-color': '#444'});
                 this.$commandInput.css({ color: 'red' });
 
                 return;
-
             case COMMAND_CONTEXT.SCOPE:
                 this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
                 this.$commandInput.attr('placeholder', 'enter aircraft command');
-                // this.$commandInput.css({ 'background-color': '#999' });
                 this.$commandInput.css({ color: 'white' });
 
                 return;
-
             default:
                 return;
         }
@@ -635,18 +631,19 @@ export default class InputController {
         }
 
         const [successful, response] = this._scopeModel.runScopeCommand(scopeCommandModel);
+        const isWarning = !successful;
 
-        UiController.ui_log(response, !successful);
+        UiController.ui_log(response, isWarning);
     }
 
     /**
      * @for InputController
      * @method processSystemCommand
-     * @param AircraftCommandParser {AircraftCommandParser}
+     * @param aircraftCommandParser {AircraftCommandParser}
      * @return {boolean}
      */
-    processSystemCommand(AircraftCommandParser) {
-        switch (AircraftCommandParser.command) {
+    processSystemCommand(aircraftCommandParser) {
+        switch (aircraftCommandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
                 UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
 
@@ -675,8 +672,8 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
-                if (AircraftCommandParser.args) {
-                    GameController.game.speedup = AircraftCommandParser.args;
+                if (aircraftCommandParser.args) {
+                    GameController.game.speedup = aircraftCommandParser.args;
                 } else {
                     GameController.game_timewarp_toggle();
                 }
@@ -690,7 +687,7 @@ export default class InputController {
                 break;
             case PARSED_COMMAND_NAME.AIRPORT: {
                 // TODO: it may be better to do this in the parser
-                const airportIcao = AircraftCommandParser.args[0];
+                const airportIcao = aircraftCommandParser.args[0];
 
                 if (_has(AirportController.airports, airportIcao)) {
                     AirportController.airport_set(airportIcao);
@@ -700,8 +697,8 @@ export default class InputController {
             }
             case PARSED_COMMAND_NAME.RATE:
                 // TODO: is this if even needed?
-                if (AircraftCommandParser.args) {
-                    GameController.game.frequency = AircraftCommandParser.args;
+                if (aircraftCommandParser.args) {
+                    GameController.game.frequency = aircraftCommandParser.args;
                 }
 
                 return true;
@@ -713,10 +710,10 @@ export default class InputController {
     /**
      * @for InputController
      * @method processTransmitCommand
-     * @param AircraftCommandParser {AircraftCommandParser}
+     * @param aircraftCommandParser {AircraftCommandParser}
      * @return {boolean}
      */
-    processTransmitCommand(AircraftCommandParser) {
+    processTransmitCommand(aircraftCommandParser) {
         // TODO: abstract the aircraft callsign matching
         let matches = 0;
         let match = INVALID_NUMBER;
@@ -724,7 +721,7 @@ export default class InputController {
         for (let i = 0; i < this._aircraftController.aircraft.list.length; i++) {
             const aircraft = this._aircraftController.aircraft.list[i];
 
-            if (aircraft.matchCallsign(AircraftCommandParser.callsign)) {
+            if (aircraft.matchCallsign(aircraftCommandParser.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -744,6 +741,6 @@ export default class InputController {
 
         const aircraft = this._aircraftController.aircraft.list[match];
 
-        return this._aircraftCommander.runCommands(aircraft, AircraftCommandParser.args);
+        return this._aircraftCommander.runCommands(aircraft, aircraftCommandParser.args);
     }
 }

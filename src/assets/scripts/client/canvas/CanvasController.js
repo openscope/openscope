@@ -789,7 +789,7 @@ export default class CanvasController {
      * @param radarTargetModel {RadarTargetModel}
      */
     canvas_draw_radar_target(cc, radarTargetModel) {
-        const aircraftModel = radarTargetModel.aircraftModel;
+        const { aircraftModel } = radarTargetModel;
         let match = false;
 
         if (prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign)) {
@@ -1051,11 +1051,6 @@ export default class CanvasController {
             this.canvas_draw_radar_target(cc, radarTargetModels[i]);
             cc.restore();
         }
-        // for (let i = 0; i < prop.aircraft.list.length; i++) {
-        //     cc.save();
-        //     this.canvas_draw_radar_target(cc, prop.aircraft.list[i]);
-        //     cc.restore();
-        // }
     }
 
     /**
@@ -1068,7 +1063,7 @@ export default class CanvasController {
      * @param radarTargetModel {RadarTargetModel}
      */
     canvas_draw_data_block(cc, radarTargetModel) {
-        const aircraftModel = radarTargetModel.aircraftModel;
+        const { aircraftModel } = radarTargetModel;
 
         if (!aircraftModel.isVisible() || aircraftModel.hit) {
             return;
@@ -1077,10 +1072,10 @@ export default class CanvasController {
         // Initial Setup
         cc.save();
 
-        const cs = aircraftModel.callsign;
+        const { callsign } = aircraftModel;
         const paddingLR = 5;
         // width of datablock (scales to fit callsign)
-        const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
+        const width = clamp(1, 5.8 * callsign.length) + (paddingLR * 2);
         const halfWidth = width / 2;
         // height of datablock
         const height = 31;
@@ -1255,7 +1250,7 @@ export default class CanvasController {
         // Text
         const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
         const lineheight = 4.5; // height of text row (used for spacing basis)
-        const row1text = cs;
+        const row1text = callsign;
         const aircraftAltitude = round(aircraftModel.altitude * 0.01);
         const aircraftSpeed = round(aircraftModel.groundSpeed * 0.1);
         const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
@@ -1674,7 +1669,7 @@ export default class CanvasController {
             cc.fillStyle = 'transparent';
             this.canvas_draw_poly(cc, area.coordinates);
 
-            // FIXME: Is the restricted airspace EVER filled???
+            // TODO: Is the restricted airspace EVER filled???
             cc.fillStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
             cc.textAlign = 'center';
             cc.textBaseline = 'top';

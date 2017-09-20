@@ -7,17 +7,73 @@ import { EVENT } from '../constants/eventNames';
 import { DECIMAL_RADIX } from '../constants/globalConstants';
 import { THEME } from '../constants/themes';
 
+/**
+ * Scope belonging to a Player
+ *
+ * @class ScopeModel
+ */
 export default class ScopeModel {
+    /**
+     * @for ScopeModel
+     * @constructor
+     */
     constructor() {
+        /**
+         * Local reference to the event bus
+         *
+         * @for ScopeModel
+         * @property _eventBus
+         * @type {EventBus}
+         * @private
+         */
         this._eventBus = EventBus;
+
+        /**
+         * Local reference to the navigation library
+         *
+         * @for ScopeModel
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = NavigationLibrary;
+
         // TODO: Use this!
-        this._sectorCollection = [];
+        /**
+         * Collection of all sectors being controlled by this scope
+         *
+         * Currently set to null and not used. Is a placeholder for the
+         * forthcoming class `SectorCollection`.
+         *
+         * @for ScopeModel
+         * @property _sectorCollection
+         * @type {null}
+         * @private
+         */
+        this._sectorCollection = null;
+
+        /**
+         * Current theme
+         *
+         * @for ScopeModel
+         * @property _theme
+         * @type {object}
+         * @private
+         */
         this._theme = THEME.DEFAULT;
 
-        this.radarTargetCollection = [];
+        /**
+         * Collection of all radar targets observed by this scope
+         *
+         * @for ScopeModel
+         * @property radarTargetCollection
+         * @type {RadarTargetCollection}
+         * @private
+         */
+        this.radarTargetCollection = null;
 
-        this._init();
+        this._init()
+            .enable();
     }
 
     /**
@@ -25,9 +81,33 @@ export default class ScopeModel {
      *
      * @for ScopeModel
      * @method _init
+     * @private
+     * @chainable
      */
     _init() {
         this.radarTargetCollection = new RadarTargetCollection(this._theme);
+
+        return this;
+    }
+
+    /**
+    * Disable handlers
+    *
+    * @for ScopeModel
+    * @method enable
+    */
+    enable() {
+        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+    }
+
+    /**
+    * Enable handlers
+    *
+    * @for ScopeModel
+    * @method disable
+    */
+    disable() {
+        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
 
     /**
@@ -58,26 +138,6 @@ export default class ScopeModel {
     }
 
     /**
-     * Enable handlers
-     *
-     * @for ScopeModel
-     * @method disable
-     */
-    disable() {
-        this._eventBus.off(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
-     * Disable handlers
-     *
-     * @for ScopeModel
-     * @method enable
-     */
-    enable() {
-        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
-    }
-
-    /**
      * Initiate a handoff to another sector
      *
      * @for ScopeModel
@@ -96,7 +156,7 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method moveDataBlock
      * @param radarTargetModel {RadarTargetModel}
-     * @param commandArguments {array}
+     * @param commandArguments {string}
      * @return result {array} [success of operation, system's response]
      */
     moveDataBlock(radarTargetModel, commandArguments) {
@@ -110,7 +170,7 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method propogateDataBlock
      * @param radarTargetModel {RadarTargetModel}
-     * @param sectorCode {array} handoff code for the receiving sector
+     * @param sectorCode {string} handoff code for the receiving sector
      * @return result {array} [success of operation, system's response]
      */
     propogateDataBlock(radarTargetModel, sectorCode) {
@@ -139,7 +199,7 @@ export default class ScopeModel {
     runScopeCommand(scopeCommandModel) {
         const functionName = scopeCommandModel.commandFunction;
         const functionArguments = scopeCommandModel.commandArguments;
-        const radarTargetModel = this.radarTargetCollection.getRadarTargetModelFromAircraftReference(
+        const radarTargetModel = this.radarTargetCollection.findRadarTargetModelForAircraftReference(
             scopeCommandModel.aircraftReference
         );
 
@@ -151,6 +211,8 @@ export default class ScopeModel {
             return [false, 'ERR: UNKNOWN AIRCRAFT'];
         }
 
+        // call the appropriate function, and explode the array of arguments
+        // this allows any number of arguments to be accepted by the receiving method
         return this[functionName](radarTargetModel, ...functionArguments);
     }
 
@@ -160,7 +222,7 @@ export default class ScopeModel {
      * @for ScopeModel
      * @method setScratchpad
      * @param radarTargetModel {RadarTargetModel}
-     * @param scratchPadText {array}
+     * @param scratchPadText {string}
      * @return result {array} [success of operation, system's response]
      */
     setScratchpad(radarTargetModel, scratchPadText) {

@@ -591,6 +591,8 @@ export default class AircraftController {
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
 
+        // triggering event bus rather than calling locally because multiple classes
+        // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
         this.initAircraftStripView(aircraftModel);
     }
