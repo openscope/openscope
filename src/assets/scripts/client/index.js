@@ -14,6 +14,7 @@ const getInitialAirport = () => {
 
     if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
         airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+
         if (!AirportController.hasAirport(airportName)) {
             airportName = DEFAULT_AIRPORT_ICAO;
         }
