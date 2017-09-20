@@ -3,6 +3,7 @@ require('raf').polyfill();
 import 'babel-polyfill';
 import $ from 'jquery';
 import App from './App';
+import AirportController from './airport/AirportController';
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
@@ -13,6 +14,9 @@ const getInitialAirport = () => {
 
     if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
         airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+        if (!AirportController.hasAirport(airportName)) {
+            airportName = DEFAULT_AIRPORT_ICAO;
+        }
     }
 
     return airportName;
