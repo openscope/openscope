@@ -18,6 +18,8 @@ export const SYSTEM_COMMANDS = {
     // single arg commands
     '`': 'moveDataBlock',
     airport: 'airport',
+    help: 'help',
+    '?': 'help',
     rate: 'rate',
     timewarp: 'timewarp',
     transmit: 'transmit'

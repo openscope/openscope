@@ -73,5 +73,6 @@ export const PARSED_COMMAND_NAME = {
     CLEAR: 'clear',
     AIRPORT: 'airport',
     RATE: 'rate',
-    TRANSMIT: 'transmit'
+    TRANSMIT: 'transmit',
+    HELP: 'help'
 };

@@ -19,6 +19,8 @@ import {
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
 import { SELECTORS } from './constants/selectors';
+import { AIRCRAFT_COMMAND_REFERENCE } from './constants/commandReferenceConstants';
+import { AIRCRAFT_COMMAND_MAP } from './parsers/aircraftCommandParser/aircraftCommandMap';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -702,6 +704,21 @@ export default class InputController {
                 }
 
                 return true;
+            case PARSED_COMMAND_NAME.HELP: {
+                const helpCommand = aircraftCommandParser.args[0];
+                const isValidCommand = _has(AIRCRAFT_COMMAND_MAP, helpCommand);
+                let commandHelp = AIRCRAFT_COMMAND_REFERENCE[helpCommand];
+
+                if (!isValidCommand) {
+                  UiController.ui_log('couldn\'t find help for this command', true);
+
+                  return true;
+                }
+
+                UiController.ui_log(`${commandHelp}`);
+
+                return true;
+            }
             default:
                 return true;
         }
