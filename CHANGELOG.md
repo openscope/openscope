@@ -21,6 +21,7 @@
 - Adds `localStorage.setItem()` to `GameOptions.setOptionByName()` and adds test file for `GameOptions` [#670](https://github.com/openscope/openscope/issues/670)
 - Update airport format document with new properties and requirements [#452](https://github.com/openscope/openscope/issues/452)
 - Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
+- Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
 
 
 
