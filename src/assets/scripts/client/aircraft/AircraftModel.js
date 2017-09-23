@@ -8,12 +8,13 @@ import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
-import AirportController from '../airport/AirportController';
-import GameController, { GAME_EVENTS } from '../game/GameController';
-import UiController from '../UiController';
+import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
+import AirportController from '../airport/AirportController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import {
     radians_normalize,
     angle_offset
@@ -450,6 +451,7 @@ export default class AircraftModel {
         this.initFms(options);
 
         this.mcp = new ModeController();
+        this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.mcp, this.fms);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
@@ -541,7 +543,6 @@ export default class AircraftModel {
     parse(data) {
         this.positionModel = data.positionModel;
         this.transponderCode = data.transponderCode;
-        this.model = data.model;
         this.airlineId = data.airline;
         this.airlineCallsign = data.airlineCallsign;
         this.flightNumber = data.callsign;

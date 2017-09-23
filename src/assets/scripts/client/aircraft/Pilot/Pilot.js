@@ -150,10 +150,10 @@ export default class Pilot {
             const requestedAltitude = altitude;
             const verbalRequestedAltitude = radio_altitude(altitude);
 
-            readback.log = `unable to maintain ${requestedAltitude} due to performance limits`;
-            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance limits`;
+            readback.log = `unable to maintain ${requestedAltitude} due to performance`;
+            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
 
-            return [false, readback]
+            return [false, readback];
         }
 
         return [true, readback];
@@ -244,12 +244,12 @@ export default class Pilot {
         const readback = {};
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
-        
-        if (!aircraftModel.model.isAbleToMaintainSpeed(speed)) {
-            readback.log = `unable to maintain ${speed} knots due to performance limits`;
-            readback.say = `unable to maintain ${radio_spellOut(speed)} knots due to performance limits`;
 
-            return [false, readback]
+        if (!aircraftModel.model.isAbleToMaintainSpeed(speed)) {
+            readback.log = `unable to maintain ${speed} knots due to performance`;
+            readback.say = `unable to maintain ${radio_spellOut(speed)} knots due to performance`;
+
+            return [false, readback];
         }
 
         return [true, readback];
