@@ -25,6 +25,7 @@ export const ALTITUDE_RESTRICTION_PREFIX = 'A';
  */
 export const BELOW_SYMBOL = '-';
 
+// TODO: Move this to global constants or somewhere more relevant!
 /**
 * Enumeration for the radix value of `parseInt`
 *

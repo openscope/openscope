@@ -18,7 +18,8 @@ import {
 } from '../../constants/aircraftConstants';
 import {
     INVALID_INDEX,
-    INVALID_NUMBER
+    INVALID_NUMBER,
+    REGEX
 } from '../../constants/globalConstants';
 import {
     routeStringFormatHelper,
@@ -405,38 +406,30 @@ export default class Fms {
     }
 
     /**
-     * Route expected for this flight.
-     *
-     * This should be used only in the view, with the `StripViewModel`.
-     * This method will produce a non-standard `routeString` with spaces
-     * used as segment separators instead of the usual `..` or `.`
-     *
-     * Will change as ATC amends it.
+     * Get the flight plan route string in dot notation
      *
      * @for Fms
-     * @method getFlightPlanRouteForStripView
+     * @method getFlightPlanRouteStringWithDots
      * @return {string}
      */
-    getFlightPlanRouteForStripView() {
+    getFlightPlanRouteStringWithDots() {
         const currentRouteSegments = _map(this.legCollection, (legModel) => legModel.routeString);
         const previousAndCurrentRouteSegments = this._previousRouteSegments.concat(currentRouteSegments);
-        const transformedRouteSegments = [];
 
-        for (let i = 0; i < previousAndCurrentRouteSegments.length; i++) {
-            const segment = previousAndCurrentRouteSegments[i];
+        return previousAndCurrentRouteSegments.join('..').toUpperCase();
+    }
 
-            if (segment.indexOf('.') === INVALID_INDEX) {
-                transformedRouteSegments.push(segment);
-
-                continue;
-            }
-
-            // if we've made it here we assume a procedure segment
-            const procedureSegments = segment.split('.');
-            transformedRouteSegments.push(procedureSegments.join(' '));
-        }
-
-        return transformedRouteSegments.join(' ').toUpperCase();
+    /**
+     * Get the flight plan route string with legs separated by spaces
+     *
+     * This is primarily meant for use in the `StripViewModel`.
+     *
+     * @for Fms
+     * @method getFlightPlanRouteStringWithSpaces
+     * @return {string}
+     */
+    getFlightPlanRouteStringWithSpaces() {
+        return this.getFlightPlanRouteStringWithDots().replace(REGEX.DOUBLE_OR_SINGLE_DOT, ' ');
     }
 
     /**
