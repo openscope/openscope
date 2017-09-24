@@ -262,10 +262,16 @@ export default class InputController {
                 UiController.px_to_km(position[1] + prop.canvas.panY)
             ]);
 
-            if (aircraftModel && distanceFromPosition < UiController.px_to_km(80)) {
-                this.selectAircraft(aircraftModel);
-            } else {
+            if (distanceFromPosition > UiController.px_to_km(50)) {
                 this.selectAircraft();
+            } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+                const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
+                this.input.command = newCommandValue;
+
+                this.$commandInput.val(newCommandValue);
+                this.processCommand();
+            } else if (aircraftModel) {
+                this.selectAircraft(aircraftModel);
             }
 
             position = [
@@ -349,7 +355,6 @@ export default class InputController {
                 break;
             case KEY_CODES.ENTER:
                 this.processCommand();
-                this.selectAircraft();
 
                 break;
             case KEY_CODES.PAGE_UP:
@@ -569,11 +574,17 @@ export default class InputController {
      * @return {array} [success of operation, response]
      */
     processCommand() {
+        let response = [];
+
         if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
-            return this.processAircraftCommand();
+            response = this.processAircraftCommand();
+        } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+            response = this.processScopeCommand();
         }
 
-        return this.processScopeCommand();
+        this.selectAircraft();
+
+        return response;
     }
 
     /**
