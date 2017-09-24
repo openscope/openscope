@@ -95,15 +95,8 @@ class GameController {
     * @return
     */
     setupHandlers() {
-        // Set blurring function
-        $(window).blur(() => {
-            this.game.focused = false;
-        });
-
-        // Set un-blurring function
-        $(window).focus(() => {
-            this.game.focused = true;
-        });
+        this._onWindowBlurHandler = this._onWindowBlur.bind(this);
+        this._onWindowFocusHandler = this._onWindowFocus.bind(this);
     }
 
     /**
@@ -112,6 +105,17 @@ class GameController {
      */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
+        window.addEventListener('blur', this._onWindowBlurHandler);
+        window.addEventListener('focus', this._onWindowFocusHandler);
+        // for when the browser window receives or looses focus
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                return this._onWindowBlurHandler();
+            }
+
+            return this._onWindowFocusHandler();
+        });
 
         return this;
     }
@@ -343,17 +347,22 @@ class GameController {
      * @method game_updateScore
      * @param score {number}
      */
-    game_updateScore(score) {
-        const $score = $(SELECTORS.DOM_SELECTORS.SCORE);
-        $score.text(round(score));
+    game_updateScore() {
+        if (this.game.score !== this.game.last_score) {
+            return;
+        }
 
-        if (score < -0.51) {
+        const $score = $(SELECTORS.DOM_SELECTORS.SCORE);
+        $score.text(round(this.game.score));
+
+        // TODO: wait, what? Why not just < 0?
+        if (this.game.score < -0.51) {
             $score.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
         } else {
             $score.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
         }
 
-        this.game.last_score = score;
+        this.game.last_score = this.game.score;
     }
 
     /**
@@ -363,11 +372,9 @@ class GameController {
     update_pre() {
         this.game.delta = Math.min(TimeKeeper.deltaTime * this.game.speedup, 100);
 
-        if (this.game.score !== this.game.last_score) {
-            this.game_updateScore(this.game.score);
-        }
-
-        if (this.game_paused()) {
+        // if `#game.delta` is greater than 1, assume we have returned from a blur state
+        // and reset `#game.delta` to 0 to prevent animation jumps
+        if (this.game_paused() || this.game.delta >= 1) {
             this.game.delta = 0;
         } else {
             $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
@@ -375,6 +382,7 @@ class GameController {
 
         this.game.time += this.game.delta;
 
+        this.game_updateScore();
         this.updateTimers();
     }
 
@@ -474,6 +482,27 @@ class GameController {
 
         return isIndicatorEnabled && aircraft.isArrival();
     }
+
+    /**
+     * @for GameController
+     * @method _onWindowBlur
+     * @param event {UIEvent}
+     * @private
+     */
+    _onWindowBlur(event) {
+        this.game.focused = false;
+    }
+
+    /**
+     * @for GameController
+     * @method _onWindowFocus
+     * @param event {UIEvent}
+     * @private
+     */
+    _onWindowFocus(event) {
+        this.game.focused = true;
+    }
+
 
     // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
     /**
