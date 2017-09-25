@@ -207,7 +207,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     /**
      * @for AircraftTypeDefinitionModel
      * @method isAbleToMaintainAltitude
-     * @param altitude
+     * @param altitude {Number}
      * @return {Boolean}
      */
     isAbleToMaintainAltitude(altitude) {
@@ -217,7 +217,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     /**
      * @for AircraftTypeDefinitionModel
      * @method isAbleToMaintainSpeed
-     * @param speed
+     * @param speed {Number}
      * @return {Boolean}
      */
     isAbleToMaintainSpeed(speed) {
