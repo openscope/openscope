@@ -161,8 +161,8 @@ export default class AppController {
      * @for AppController
      * @method init_pre
      */
-    init_pre(getDeltaTime) {
-        GameController.init_pre(getDeltaTime);
+    init_pre() {
+        GameController.init_pre();
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
         this.canvasController.canvas_init_pre();

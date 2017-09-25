@@ -23,6 +23,7 @@
 - Update airport format document with new properties and requirements [#452](https://github.com/openscope/openscope/issues/452)
 - Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
+- Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
 
 
 
