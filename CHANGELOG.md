@@ -4,6 +4,7 @@
 - Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets. [#14](https://github.com/openscope/openscope/issues/14)
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
+- The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
 
 
 
@@ -23,6 +24,7 @@
 - Update airport format document with new properties and requirements [#452](https://github.com/openscope/openscope/issues/452)
 - Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
+- Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
 
 
 

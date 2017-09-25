@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
-import { time, calculateDeltaTime } from './utilities/timeHelpers';
+import TimeKeeper from './engine/TimeKeeper';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
@@ -46,15 +46,6 @@ export default class App {
 
         this.prop = prop;
         this.prop.complete = false;
-        this.prop.time = {};
-        this.prop.time.start = time();
-        this.prop.time.frames = 0;
-        this.prop.time.frame = {};
-        this.prop.time.frame.start = time();
-        this.prop.time.frame.count = 0;
-        this.prop.time.frame.last = time();
-        this.prop.time.frame.delta = 0;
-        this.prop.time.fps = 0;
         this.prop.log = LOG.DEBUG;
         this.prop.loaded = false;
 
@@ -195,7 +186,7 @@ export default class App {
      * @method init_pre
      */
     init_pre() {
-        this._appController.init_pre(this.getDeltaTime);
+        this._appController.init_pre();
 
         return this;
     }
@@ -297,42 +288,10 @@ export default class App {
 
         this.updatePre();
         this.updatePost();
-        this.incrementFrame();
+        TimeKeeper.incrementFrame();
 
         return this;
     }
-
-    /**
-     * @for App
-     * @method incrementFrame
-     */
-    incrementFrame() {
-        // the framerate is updated this often (seconds)
-        const frameDelay = 1;
-        const currentTime = time();
-        const elapsed = currentTime - this.prop.time.frame.start;
-
-        this.prop.time.frames += 1;
-        this.prop.time.frame.count += 1;
-
-        if (elapsed > frameDelay) {
-            this.prop.time.fps = this.prop.time.frame.count / elapsed;
-            this.prop.time.frame.count = 0;
-            this.prop.time.frame.start = currentTime;
-        }
-
-        this.prop.time.frame.delta = calculateDeltaTime(this.prop.time.frame.last);
-        this.prop.time.frame.last = currentTime;
-    }
-
-    /**
-     * @for App
-     * @method getDeltaTime
-     * @return {number}
-     */
-    getDeltaTime = () => {
-        return this.prop.time.frame.delta;
-    };
 
     /**
      * @for App
