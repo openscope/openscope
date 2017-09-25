@@ -211,7 +211,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @return {Boolean}
      */
     isAbleToMaintainAltitude(altitude) {
-        return altitude < this.ceiling;
+        return altitude <= this.ceiling;
     }
 
     /**
@@ -221,6 +221,6 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @return {Boolean}
      */
     isAbleToMaintainSpeed(speed) {
-        return speed > this.speed.min && speed < this.speed.max;
+        return speed >= this.speed.min && speed <= this.speed.max;
     }
 }

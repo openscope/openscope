@@ -219,7 +219,6 @@ export default class AircraftCommander {
         const airport = AirportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
-            aircraft.altitude,
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
@@ -301,7 +300,7 @@ export default class AircraftCommander {
     runSpeed(aircraft, data) {
         const nextSpeed = data[0];
 
-        return aircraft.pilot.maintainSpeed(aircraft.speed, nextSpeed, aircraft);
+        return aircraft.pilot.maintainSpeed(nextSpeed, aircraft);
     }
 
     /**

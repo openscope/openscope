@@ -107,7 +107,6 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
-     * @param currentAltitude {number}
      * @param altitude {number}   the altitude to maintain, in feet
      * @param expedite {boolean}  whether to use maximum possible climb/descent rate
      * @param shouldUseSoftCeiling {boolean}
@@ -115,7 +114,8 @@ export default class Pilot {
      * @param aircraftModel {AircraftModel}
      * @return {array}            [success of operation, readback]
      */
-    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
+    maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
+        const currentAltitude = aircraftModel.altitude;
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
 
@@ -147,10 +147,9 @@ export default class Pilot {
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
         if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
-            const requestedAltitude = altitude;
             const verbalRequestedAltitude = radio_altitude(altitude);
 
-            readback.log = `unable to maintain ${requestedAltitude} due to performance`;
+            readback.log = `unable to maintain ${altitude} due to performance`;
             readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
 
             return [false, readback];
@@ -230,11 +229,12 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
-     * @param {Number} speed - the speed to maintain, in knots
-     * @param {AircraftModel} aircraftModel
+     * @param aircraftModel {AircraftModel}
+     * @param speed {Number} - the speed to maintain, in knots
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(currentSpeed, speed, aircraftModel) {
+    maintainSpeed(speed, aircraftModel) {
+        const currentSpeed = aircraftModel.speed;
         const instruction = radio_trend('speed', currentSpeed, speed);
 
         this._mcp.setSpeedHold();

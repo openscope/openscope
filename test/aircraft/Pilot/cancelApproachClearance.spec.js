@@ -26,7 +26,6 @@ ava('.cancelApproachClearance() returns early if #hasApproachClearance is false'
 });
 
 ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (t) => {
-    const currentAltitudeMock = 7000;
     const nextAltitudeMock = 4000;
     const headingBeforeLocalizerInterceptionMock = 3.839724354387525; // 220 in degrees
     const headingAfterLocalizerInterceptionMock = 4.36332;  // appx 250 degrees
@@ -39,7 +38,6 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
     pilot.maintainAltitude(
-        currentAltitudeMock,
         nextAltitudeMock,
         shouldExpediteDescentMock,
         shouldUseSoftCeilingMock,
