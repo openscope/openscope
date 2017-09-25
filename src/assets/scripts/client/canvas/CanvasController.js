@@ -55,17 +55,8 @@ const canvas = {};
  *
  */
 const CANVAS_NAME = {
-    AIRCRAFT: 'aircraft',
-    AIRSPACE: 'airspace',
-    BACKGROUND: 'background',
-    COMPASS: 'compass',
-    NAVAIDS: 'navaids',
-    TERRAIN: 'terrain',
-    PROCEDURE_PATH: 'procedure-path',
-    RESRICTED_AIRSPACE: 'resricted-airspace',
-    RUNWAYS: 'runways',
-    VIDEO_MAP: 'video-map',
-    WIND_VANE: 'wind-vane'
+    STATIC: 'static',
+    DYNAMIC: 'dynamic'
 };
 
 /**
@@ -74,13 +65,20 @@ const CANVAS_NAME = {
 export default class CanvasController {
     /**
      * @constructor
-     * @param $element {JQuery|HTML Element|undefined}
+     * @param $element {JQuery|HTML Element}
      * @param aircraftController {AircraftController}
      * @param navigationLibrary {NavigationLibrary}
      * @param scopeModel {ScopeModel}
      */
     constructor($element, aircraftController, navigationLibrary, scopeModel) {
         this.$window = $(window);
+        /**
+         * Reference to the `body` tag
+         *
+         * @property $element
+         * @type $element {JQuery|HTML Element}
+         * @default $element
+         */
         this.$element = $element;
         this._aircraftController = aircraftController;
         this._navigationLibrary = navigationLibrary;
@@ -89,9 +87,7 @@ export default class CanvasController {
 
         prop.canvas = canvas;
         this.canvas = canvas;
-        this.canvas.contexts = {
-            [CANVAS_NAME.BACKGROUND]: {}
-        };
+        this.canvas.contexts = {};
         this.canvas.panY = 0;
         this.canvas.panX = 0;
         // resize canvas to fit window?
@@ -173,6 +169,12 @@ export default class CanvasController {
          */
         this._hasSeenTerrainWarning = false;
 
+        /**
+         *
+         *
+         * @property theme
+         * @type {object}
+         */
         this.theme = THEME.DEFAULT;
 
         return this._init()
@@ -201,6 +203,9 @@ export default class CanvasController {
         this._eventBus.on(EVENT.SHOULD_TOGGLE_SID_MAP, this._onToggleSidMap);
         this._eventBus.on(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+
+        // FIXME: abstract to method
+        this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES).addClass(this.theme.CLASSNAME);
 
         return this;
     }
@@ -261,17 +266,8 @@ export default class CanvasController {
      * @method canvas_init
      */
     canvas_init() {
-        this.canvas_add(CANVAS_NAME.AIRCRAFT);
-        this.canvas_add(CANVAS_NAME.AIRSPACE);
-        this.canvas_add(CANVAS_NAME.BACKGROUND);
-        this.canvas_add(CANVAS_NAME.COMPASS);
-        this.canvas_add(CANVAS_NAME.NAVAIDS);
-        this.canvas_add(CANVAS_NAME.TERRAIN);
-        this.canvas_add(CANVAS_NAME.PROCEDURE_PATH);
-        this.canvas_add(CANVAS_NAME.RESRICTED_AIRSPACE);
-        this.canvas_add(CANVAS_NAME.RUNWAYS);
-        this.canvas_add(CANVAS_NAME.VIDEO_MAP);
-        this.canvas_add(CANVAS_NAME.WIND_VANE);
+        this.canvas_add(CANVAS_NAME.STATIC);
+        this.canvas_add(CANVAS_NAME.DYNAMIC);
     }
 
     /**
@@ -367,7 +363,7 @@ export default class CanvasController {
         }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
-            const cc = this.canvas_get(CANVAS_NAME.NAVAIDS);
+            const cc = this.canvas_get(CANVAS_NAME.STATIC);
             const middleHeight = calculateMiddle(this.canvas.size.height);
             const middleWidth = calculateMiddle(this.canvas.size.width);
 
@@ -377,7 +373,6 @@ export default class CanvasController {
             cc.save();
 
             this.canvas_clear(cc);
-            this.canvas_fill_background(cc);
 
             cc.translate(middleWidth, middleHeight);
             cc.save();
@@ -406,12 +401,7 @@ export default class CanvasController {
                 round(this.canvas.size.height / 2 + this.canvas.panY)
             );
 
-            if (AirportController.airport_get().airspace) {
-                this.canvas_draw_airspace_border(cc);
-            } else {
-                this.canvas_draw_ctr(cc);
-            }
-
+            this.canvas_draw_airspace_border(cc);
             this.canvas_draw_range_rings(cc);
             cc.restore();
 
@@ -506,18 +496,6 @@ export default class CanvasController {
         }
 
         return false;
-    }
-
-    /**
-     * Fill entire scope with the background color specified in the current theme
-     *
-     * @for CanvasController
-     * @method canvas_fill_background
-     */
-    canvas_fill_background() {
-        const ctx = this.canvas.contexts[CANVAS_NAME.BACKGROUND];
-        ctx.fillStyle = this.theme.SCOPE.BACKGROUND;
-        ctx.fillRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
     /**
@@ -1475,36 +1453,18 @@ export default class CanvasController {
         cc.textBaseline = 'top';
 
         for (let i = 90; i <= 360; i += 90) {
+            let angle = i;;
+
             cc.rotate(degreesToRadians(90));
 
-            let angle;
             if (i === 90) {
                 angle = `0${i}`;
-            } else {
-                angle = i;
             }
 
             cc.save();
             cc.fillText(angle, 0, -size2 + 4);
             cc.restore();
         }
-    }
-
-    /**
-     * Draw circular airspace border
-     *
-     * @for CanvasController
-     * @method anvas_draw_ctr
-     * @param cc
-     */
-    canvas_draw_ctr(cc) {
-        cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
-        cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
-
-        cc.beginPath();
-        cc.arc(0, 0, AirportController.airport_get().ctr_radius * UiController.scale, 0, tau());
-        cc.fill();
-        cc.stroke();
     }
 
     /**
@@ -1517,11 +1477,6 @@ export default class CanvasController {
     canvas_draw_airspace_border(cc) {
         const airport = AirportController.airport_get();
 
-        if (!airport.airspace) {
-            this.canvas_draw_ctr(cc);
-        }
-
-        // style
         cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
 
@@ -2172,6 +2127,12 @@ export default class CanvasController {
             return;
         }
 
+        // FIXME: abstract to method
+        const $canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
+        $canvasesElement.removeClass(this.theme.CLASSNAME);
+
         this.theme = THEME[themeName];
+
+        $canvasesElement.addClass(this.theme.CLASSNAME);
     };
 }
