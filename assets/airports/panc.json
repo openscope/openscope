@@ -240,8 +240,8 @@
             "icao": "ANC8",
             "name": "Anchorage Eight",
             "rwy": {
-                "7L": ["_RWY25R072TED4DME", "#199"],
-                "7R": ["_RWY25L072TED4DME", "#199"],
+                "7L": ["_RWY25R04DME", "#199"],
+                "7R": ["_RWY25L04DME", "#199"],
                 "15": ["#199"],
                 "25L": ["#252"],
                 "25R": ["#252"],
@@ -290,8 +290,8 @@
             "icao": "KNIK2",
             "name": "Nick Two",
             "rwy": {
-                "7L": ["_RWY25R072TED4DME", "#329"],
-                "7R": ["_RWY25L072TED4DME", "#329"]
+                "7L": ["_RWY25R04DME", "#329"],
+                "7R": ["_RWY25L04DME", "#329"]
             },
             "body": [],
             "exitPoints": {
