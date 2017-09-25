@@ -37,6 +37,7 @@ export default class InputController {
      */
     constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
         this.$element = $element;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -64,7 +65,6 @@ export default class InputController {
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
         this._init()
-            .setupHandlers()
             .enable();
     }
 
@@ -73,6 +73,7 @@ export default class InputController {
      * @method _init
      */
     _init() {
+        this.$body = this.$element[0];
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
@@ -82,14 +83,8 @@ export default class InputController {
     }
 
     /**
-     * @for InputController
-     * @method setupHandlers
-     */
-    setupHandlers() {
-        return this;
-    }
-
-    /**
+     * Enable all event handlers
+     *
      * @for InputController
      * @method enable
      */
@@ -104,6 +99,7 @@ export default class InputController {
         this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
         this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -112,6 +108,8 @@ export default class InputController {
     }
 
     /**
+     * Disable all event handlers and destroy the instance
+     *
      * @for InputController
      * @method disable
      */
@@ -123,6 +121,7 @@ export default class InputController {
         this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
@@ -135,6 +134,7 @@ export default class InputController {
      */
     destroy() {
         this.$element = null;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -241,17 +241,17 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
-        // TODO: this should use early returns instead of the else if
+        // TODO: This should use a switch on `event.which` instead of `if/else if`
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
             UiController.ui_zoom_reset();
-        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
+        } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
             // Record mouse down position for panning
             this.input.mouseDown = [
                 event.pageX - prop.canvas.panX,
                 event.pageY - prop.canvas.panY
             ];
             this.input.isMouseDown = true;
-
+        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Aircraft label selection
             let position = [event.pageX, -event.pageY];
             position[0] -= prop.canvas.size.width / 2;
