@@ -2013,7 +2013,11 @@ export default class AircraftModel {
             ]);
             // TODO: this can be abstracted
         } else if (abs((GameController.game_time() / GameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
-            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], GameController.game_time() / GameController.game_speedup()]);
+            this.relativePositionHistory.push([
+                this.positionModel.relativePosition[0],
+                this.positionModel.relativePosition[1],
+                GameController.game_time() / GameController.game_speedup()
+            ]);
         }
 
         this.updateGroundSpeedPhysics();

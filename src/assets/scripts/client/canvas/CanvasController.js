@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
-import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
@@ -59,6 +58,7 @@ const CANVAS_NAME = {
     AIRCRAFT: 'aircraft',
     AIRSPACE: 'airspace',
     BACKGROUND: 'background',
+    COMPASS: 'compass',
     NAVAIDS: 'navaids',
     TERRAIN: 'terrain',
     PROCEDURE_PATH: 'procedure-path',
@@ -264,6 +264,7 @@ export default class CanvasController {
         this.canvas_add(CANVAS_NAME.AIRCRAFT);
         this.canvas_add(CANVAS_NAME.AIRSPACE);
         this.canvas_add(CANVAS_NAME.BACKGROUND);
+        this.canvas_add(CANVAS_NAME.COMPASS);
         this.canvas_add(CANVAS_NAME.NAVAIDS);
         this.canvas_add(CANVAS_NAME.TERRAIN);
         this.canvas_add(CANVAS_NAME.PROCEDURE_PATH);
@@ -735,10 +736,6 @@ export default class CanvasController {
             cc.restore();
         }
     }
-
-    // drawProcedureSegment(cc, segment) {
-
-    // }
 
     // TODO: break this method up into smaller chunks
     /**
@@ -1405,92 +1402,92 @@ export default class CanvasController {
      * @param cc
      */
     canvas_draw_compass(cc) {
-        // cc.translate(
-        //     calculateMiddle(this.canvas.size.width),
-        //     calculateMiddle(this.canvas.size.height)
-        // );
+        cc.translate(
+            calculateMiddle(this.canvas.size.width),
+            calculateMiddle(this.canvas.size.height)
+        );
 
-        // const airport = AirportController.airport_get();
-        // const size = 80;
-        // const size2 = size / 2;
-        // const padding = 16;
-        // const dot = 16;
-        // let windspeed_line;
-        // let highwind;
+        const airport = AirportController.airport_get();
+        const size = 80;
+        const size2 = size / 2;
+        const padding = 16;
+        const dot = 16;
+        let windspeed_line;
+        let highwind;
 
-        // // Shift compass location
-        // cc.translate(-size2 - padding, -size2 - padding);
-        // cc.lineWidth = 4;
+        // Shift compass location
+        cc.translate(-size2 - padding, -size2 - padding);
+        cc.lineWidth = 4;
 
-        // // Outer circle
-        // cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
-        // cc.beginPath();
-        // cc.arc(0, 0, size2, 0, tau());
-        // cc.fill();
+        // Outer circle
+        cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
+        cc.beginPath();
+        cc.arc(0, 0, size2, 0, tau());
+        cc.fill();
 
-        // // Inner circle
-        // cc.lineWidth = 1;
-        // cc.beginPath();
-        // cc.arc(0, 0, dot / 2, 0, tau());
-        // cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
-        // cc.stroke();
+        // Inner circle
+        cc.lineWidth = 1;
+        cc.beginPath();
+        cc.arc(0, 0, dot / 2, 0, tau());
+        cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
+        cc.stroke();
 
-        // // Wind Value
-        // cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        // cc.textAlign = 'center';
-        // cc.textBaseline = 'center';
-        // cc.font = '9px monoOne, monospace';
-        // cc.fillText(airport.wind.speed, 0, 3.8);
-        // cc.font = 'bold 10px monoOne, monospace';
+        // Wind Value
+        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
+        cc.textAlign = 'center';
+        cc.textBaseline = 'center';
+        cc.font = '9px monoOne, monospace';
+        cc.fillText(airport.wind.speed, 0, 3.8);
+        cc.font = 'bold 10px monoOne, monospace';
 
-        // // Wind line
-        // if (airport.wind.speed > 8) {
-        //     windspeed_line = airport.wind.speed / 2;
-        //     highwind = true;
-        // } else {
-        //     windspeed_line = airport.wind.speed;
-        //     highwind = false;
-        // }
+        // Wind line
+        if (airport.wind.speed > 8) {
+            windspeed_line = airport.wind.speed / 2;
+            highwind = true;
+        } else {
+            windspeed_line = airport.wind.speed;
+            highwind = false;
+        }
 
-        // cc.save();
-        // cc.translate(
-        //     -dot / 2 * sin(airport.wind.angle),
-        //     dot / 2 * cos(airport.wind.angle)
-        // );
-        // cc.beginPath();
-        // cc.moveTo(0, 0);
-        // cc.rotate(airport.wind.angle);
-        // cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
+        cc.save();
+        cc.translate(
+            -dot / 2 * sin(airport.wind.angle),
+            dot / 2 * cos(airport.wind.angle)
+        );
+        cc.beginPath();
+        cc.moveTo(0, 0);
+        cc.rotate(airport.wind.angle);
+        cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
-        // // TODO: simplify. replace with initial assignment and re-assignment in if condition
-        // // Color wind line red for high-wind
-        // if (highwind) {
-        //     cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
-        // } else {
-        //     cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
-        // }
+        // TODO: simplify. replace with initial assignment and re-assignment in if condition
+        // Color wind line red for high-wind
+        if (highwind) {
+            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
+        } else {
+            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
+        }
 
-        // cc.lineWidth = 2;
-        // cc.stroke();
-        // cc.restore();
-        // cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        // cc.textAlign = 'center';
-        // cc.textBaseline = 'top';
+        cc.lineWidth = 2;
+        cc.stroke();
+        cc.restore();
+        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
+        cc.textAlign = 'center';
+        cc.textBaseline = 'top';
 
-        // for (let i = 90; i <= 360; i += 90) {
-        //     cc.rotate(degreesToRadians(90));
+        for (let i = 90; i <= 360; i += 90) {
+            cc.rotate(degreesToRadians(90));
 
-        //     let angle;
-        //     if (i === 90) {
-        //         angle = `0${i}`;
-        //     } else {
-        //         angle = i;
-        //     }
+            let angle;
+            if (i === 90) {
+                angle = `0${i}`;
+            } else {
+                angle = i;
+            }
 
-        //     cc.save();
-        //     cc.fillText(angle, 0, -size2 + 4);
-        //     cc.restore();
-        // }
+            cc.save();
+            cc.fillText(angle, 0, -size2 + 4);
+            cc.restore();
+        }
     }
 
     /**
@@ -1615,17 +1612,19 @@ export default class CanvasController {
      * @for CanvasController
      * @method canvas_draw_poly
      * @param cc
-     * @param poly
+     * @param poly {array<array<number, number>>}
      */
     canvas_draw_poly(cc, poly) {
         cc.beginPath();
 
-        _forEach(poly, (singlePoly, v) => {
+        for (let i = 0; i < poly.length; i++) {
+            const singlePoly = poly[i];
+
             cc.lineTo(
                 UiController.km_to_px(singlePoly[0]),
                 -UiController.km_to_px(singlePoly[1])
             );
-        });
+        }
 
         cc.closePath();
         cc.stroke();

@@ -218,6 +218,12 @@ export default class AppController {
 
     /**
      * @for AppController
+     * @method update
+     */
+    update() {}
+
+    /**
+     * @for AppController
      * @method updatePost
      */
     updatePost() {
@@ -225,11 +231,6 @@ export default class AppController {
         this.aircraftController.updateAircraftStrips();
     }
 
-    /**
-     * @for AppController
-     * @method update
-     */
-    update() {}
 
     /**
      * onChange callback fired from within the `AirportModel` when an airport is changed.
