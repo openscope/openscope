@@ -99,7 +99,7 @@ export default class InputController {
         this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
-        this.$body.addEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
+        this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
         this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -121,7 +121,7 @@ export default class InputController {
         this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
-        this.$body.removeEventListener('contextmenu', (event) => this._disableRightClickMenu(event));
+        this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
@@ -528,17 +528,6 @@ export default class InputController {
 
         this.selectAircraft(aircraftModel);
         this.onCommandInputChangeHandler();
-    }
-
-    /**
-     * Disable default behavior of right-click menu appearing on right click
-     *
-     * @for InputController
-     * @method _disableRightClickMenu
-     * @param event {jQuery event}
-     */
-    _disableRightClickMenu(event) {
-        event.preventDefault();
     }
 
     /**
