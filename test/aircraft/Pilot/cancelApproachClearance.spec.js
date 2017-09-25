@@ -30,7 +30,6 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     const headingBeforeLocalizerInterceptionMock = 3.839724354387525; // 220 in degrees
     const headingAfterLocalizerInterceptionMock = 4.36332;  // appx 250 degrees
     const nextHeadingDegreesMock = 250;
-    const currentSpeedMock = 210;
     const nextSpeedMock = 180;
     const shouldExpediteDescentMock = false;
     const shouldUseSoftCeilingMock = false;
@@ -45,7 +44,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
         model
     );
     pilot.maintainHeading(headingBeforeLocalizerInterceptionMock, nextHeadingDegreesMock, null, false);
-    pilot.maintainSpeed(currentSpeedMock, nextSpeedMock, model);
+    pilot.maintainSpeed(nextSpeedMock, model);
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
     pilot.cancelApproachClearance(currentAltitudeMock, headingAfterLocalizerInterceptionMock);
 
