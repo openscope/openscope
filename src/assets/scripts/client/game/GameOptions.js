@@ -1,4 +1,3 @@
-import _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
 import { GAME_OPTION_VALUES } from '../constants/gameOptionConstants';
 

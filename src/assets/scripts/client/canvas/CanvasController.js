@@ -71,18 +71,50 @@ export default class CanvasController {
      * @param scopeModel {ScopeModel}
      */
     constructor($element, aircraftController, navigationLibrary, scopeModel) {
-        this.$window = $(window);
         /**
-         * Reference to the `body` tag
+         * Reference to the `window` object
+         *
+         * @property $window
+         * @type {JQuery|HTML Element}
+         */
+        this.$window = $(window);
+
+        /**
+         * Reference to the `#canvases` tag which acts as the container
+         * element for all the `<canvas />` elements
          *
          * @property $element
          * @type $element {JQuery|HTML Element}
          * @default $element
          */
         this.$element = $element;
+
+        /**
+         * @property _aircraftController
+         * @type {AircraftController}
+         * @private
+         */
         this._aircraftController = aircraftController;
+
+        /**
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
+
+        /**
+         * @property _scopeModel
+         * @type {ScopeModel}
+         * @private
+         */
         this._scopeModel = scopeModel;
+
+        /**
+         * @property _eventBus
+         * @type {EventBus}
+         * @private
+         */
         this._eventBus = EventBus;
 
         prop.canvas = canvas;
@@ -205,7 +237,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         // FIXME: abstract to method
-        this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES).addClass(this.theme.CLASSNAME);
+        this.$element.addClass(this.theme.CLASSNAME);
 
         return this;
     }
@@ -2128,11 +2160,10 @@ export default class CanvasController {
         }
 
         // FIXME: abstract to method
-        const $canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
-        $canvasesElement.removeClass(this.theme.CLASSNAME);
+        this.$element.removeClass(this.theme.CLASSNAME);
 
         this.theme = THEME[themeName];
 
-        $canvasesElement.addClass(this.theme.CLASSNAME);
+        this.$element.addClass(this.theme.CLASSNAME);
     };
 }

@@ -45,6 +45,8 @@ export default class AppController {
          * @default body
          */
         this.$element = $(element);
+
+        this.$canvasesElement = null;
         this._eventBus = EventBus;
         this.loadingView = null;
         this.contentQueue = null;
@@ -100,6 +102,7 @@ export default class AppController {
         // TODO: add static class.destroy() here
 
         this.$element = null;
+        this.$canvasesElement = null;
         this._eventBus = null;
         this.loadingView = null;
         this.contentQueue = null;
@@ -123,6 +126,8 @@ export default class AppController {
      * @param aircraftTypeDefinitionList {array<object>}
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+        this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
+
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
@@ -150,7 +155,7 @@ export default class AppController {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.canvasController = new CanvasController(this.$element, this.aircraftController, this.navigationLibrary, this.scopeModel);
+        this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.navigationLibrary, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
