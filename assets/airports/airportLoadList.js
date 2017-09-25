@@ -329,6 +329,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'ktpa',
             level: 'easy',
             name: 'Tampa International Airport',
+            premium: false,
             wip: false
         },
         {
