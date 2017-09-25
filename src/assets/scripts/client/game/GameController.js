@@ -372,9 +372,11 @@ class GameController {
     update_pre() {
         this.game.delta = Math.min(TimeKeeper.deltaTime * this.game.speedup, 100);
 
-        // if `#game.delta` is greater than 1, assume we have returned from a blur state
-        // and reset `#game.delta` to 0 to prevent animation jumps
-        if (this.game_paused() || this.game.delta >= 1) {
+        if (this.game_paused()) {
+            this.game.delta = 0;
+        } else if (this.game.delta >= 1 && this.game.speedup === 1) {
+            // here we assume we're retyrning from a blur state
+            // and reset `#game.delta` to 0 to prevent animation jumps
             this.game.delta = 0;
         } else {
             $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
@@ -491,6 +493,9 @@ class GameController {
      */
     _onWindowBlur(event) {
         this.game.focused = false;
+        // resetting back to 1 here so when focus returns, we can reliably reset
+        // `#game.delta` to 0 to prevent jumpiness
+        this.game.speedup = 1;
     }
 
     /**
