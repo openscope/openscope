@@ -58,7 +58,7 @@ class UiController {
         this.$element = null;
         this.$airportList = null;
         this.$airportListNotes = null;
-        this.$toggleTutorial = null;
+        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
@@ -90,9 +90,11 @@ class UiController {
 
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
-        this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
-        this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
+        this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
+        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+        // TODO: Make the options dialog findable by ID, not just by class
+        this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
@@ -125,7 +127,7 @@ class UiController {
      * @method enable
      */
     enable() {
-        this.$toggleTutorial.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
+        this.$tutorialDialog.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -148,7 +150,7 @@ class UiController {
      * @method disable
      */
     disable() {
-        this.$toggleTutorial.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
+        this.$tutorialDialog.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -174,7 +176,7 @@ class UiController {
         this.$element = null;
         this.$airportList = null;
         this.$airportListNotes = null;
-        this.$toggleTutorial = null;
+        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
@@ -228,6 +230,61 @@ class UiController {
         });
 
         $('body').append($options);
+    }
+
+    /**
+     * Close all open dialogs and return focus to the command bar
+     *
+     * @for UiController
+     * @method closeAllDialogs
+     */
+    closeAllDialogs() {
+        if (this.isTutorialDialogOpen()) {
+            // TODO: Close the tutorial, once it is moved from `InputController` to `UiController`
+        }
+
+        // TODO: Currently this will always be false because _init() is failing to find
+        // the options dialog by class name.
+        if (this.isOptionsDialogOpen()) {
+            this.ui_options_toggle();
+        }
+
+        if (this.isAirportSelectionDialogOpen()) {
+            this.ui_airport_toggle();
+        }
+    }
+
+    /**
+     * Returns whether the airport selection dialog is open
+     *
+     * @for UiController
+     * @method isAirportSelectionDialogOpen
+     * @return {boolean}
+     */
+    isAirportSelectionDialogOpen() {
+        return this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
+     * Returns whether the airport selection dialog is open
+     *
+     * @for UiController
+     * @method isOptionsDialogOpen
+     * @return {boolean}
+     */
+    isOptionsDialogOpen() {
+        return this.$optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
+     * Returns whether the airport selection dialog is open
+     *
+     * @for UiController
+     * @method isTutorialDialogOpen
+     * @return {boolean}
+     */
+    isTutorialDialogOpen() {
+        return this.$tutorialDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
     }
 
     /**
@@ -286,7 +343,7 @@ class UiController {
         // could contain valid numbers. here we test for valid number and build `parsedSelectedOption` accordingly.
         const parsedSelectedOption = !_isNaN(parseFloat(selectedOption))
             ? parseFloat(selectedOption)
-            : selectedOption
+            : selectedOption;
         let optionSelectTempalate = `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
 
         if (optionData.value === parsedSelectedOption) {
@@ -436,7 +493,8 @@ class UiController {
         const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
 
         if (!shouldShowWipAirports) {
-            const notes = $('<span class="words">Additional work-in-progress airports can be activated in the settings menu</span>');
+            const notes = $('<span class="words">Additional work-in-progress airports ' +
+                'can be activated in the settings menu</span>');
             this.$airportListNotes.append(notes);
 
             return;
@@ -566,7 +624,7 @@ class UiController {
      * @method ui_airport_open
      */
     ui_airport_open() {
-        this.$airportSwitch.addClass(SELECTORS.CLASSNAMES.OPEN);
+        this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
         const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.ACTIVE);
 
@@ -586,7 +644,7 @@ class UiController {
      * @method ui_airport_close
      */
     ui_airport_close() {
-        this.$airportSwitch.removeClass(SELECTORS.CLASSNAMES.OPEN);
+        this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
@@ -595,7 +653,7 @@ class UiController {
      * @method ui_airport_toggle
      */
     ui_airport_toggle() {
-        if (this.$airportSwitch.hasClass(SELECTORS.CLASSNAMES.OPEN)) {
+        if (this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN)) {
             this.ui_airport_close();
         } else {
             this.ui_airport_open();

@@ -11,6 +11,15 @@
  */
 export const EVENT = {
     /**
+     * Add an aircraft to the simulation
+     *
+     * @memberof EVENT
+     * @property ADD_AIRCRAFT
+     * @type {string}
+     */
+    ADD_AIRCRAFT: 'add-aircraft',
+
+    /**
      * @memberof EVENT
      * @property AIRPORT_CHANGE
      * @type {string}

@@ -1,3 +1,5 @@
+import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
+import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
@@ -82,10 +84,10 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
-    callsign: '432',
+    callsign: '1567',
     destination: 'KLAS',
     fleet: 'default',
-    airline: 'aal',
+    airline: 'ual',
     airlineCallsign: 'speedbird',
     altitude: 28000,
     speed: 320,
@@ -104,6 +106,8 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = Objec
         route: 'BESSY..BOACH..HEC'
     }
 );
+
+export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
@@ -126,7 +130,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = 
     {},
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     {
-        route: 'MLF.GRNPA2.KLAS',
+        route: 'MLF.GRNPA2.KLAS'
     }
 );
 
@@ -144,6 +148,8 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK = {
     route: 'COWBY..BIKKR..DAG',
     waypoints: []
 };
+
+export const ARRIVAL_AIRCRAFT_MODEL_MOCK = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 export const HOLD_WAYPOINT_MOCK = {
     turnDirection: 'left',
