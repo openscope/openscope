@@ -322,7 +322,7 @@
         "ZEPVI": ["N41d34m33.7300",  "W072d52m43.9100"],
         "ZOVOX": ["N41d42m13.0600",  "W072d36m52.9500"]
     },
-    "runways":[
+    "runways": [
         {
             "name": ["05", "23"],
             "end": [
@@ -340,6 +340,9 @@
             "ils": [false, true]
         }
     ],
+    "sids": {
+
+    },
     "stars": {
         "JORDN2": {
             "icao": "JORDN2",
@@ -347,7 +350,7 @@
             "entryPoints": {
                 "HTO": ["HTO"]
             },
-            "body": ["JORDN", "MINNK", "#015"],
+            "body": ["JORDN", "^MINNK", "#015"],
             "draw": [
                 ["HTO*", "JORDN", "MINNK"]
             ]
@@ -356,16 +359,16 @@
             "icao": "WIPOR3",
             "name": "Wipor Three",
             "entryPoints": {
-                "ALB": ["ALB", "SHIGY", "PONEE", "NELIE"],
-                "HNK": ["HNK", "HINGZ", "PONEE", "NELIE"],
-                "HINGZ": ["HINGZ", "PONEE", "NELIE"]
+                "ALB": ["ALB", "SHIGY"],
+                "HINGZ": ["HINGZ"],
+                "HNK": ["HNK", "HINGZ"]
             },
-            "body": ["WIPOR", "ORW", "SAUGY"],
+            "body": ["PONEE", "NELIE", "WIPOR", "ORW", "SAUGY"],
             "rwy": {
-                "05": ["LAFAY", "#029"],
-                "34": ["LAFAY", "#029"],
-                "16": ["WAWIK", "SEABE", "NOSUH", "#047"],
-                "23": ["WAWIK", "SEABE", "NOSUH", "#047"]
+                "05": ["^LAFAY", "#129"],
+                "16": ["WAWIK", "SEABE", "^NOSUH", "#047"],
+                "23": ["WAWIK", "SEABE", "^NOSUH", "#047"],
+                "34": ["^LAFAY", "#129"]
             },
             "draw": [
                 ["ALB*", "SHIGY", "PONEE"],
@@ -388,7 +391,6 @@
             "rate": 2,
             "airlines": [
                 ["aal",   7],
-                ["cfg",   1],
                 ["dal",   4],
                 ["jbu",   2],
                 ["swa",   8],
@@ -406,7 +408,6 @@
             "rate": 2,
             "airlines": [
                 ["aal",   7],
-                ["cfg",   1],
                 ["dal",   4],
                 ["jbu",   2],
                 ["swa",   8],
@@ -424,7 +425,6 @@
             "rate": 1.5,
             "airlines": [
                 ["aal",   7],
-                ["cfg",   1],
                 ["jbu",   2],
                 ["swa",   8]
             ]
