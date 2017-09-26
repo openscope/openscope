@@ -655,11 +655,6 @@ export default class InputController {
      */
     processSystemCommand(aircraftCommandParser) {
         switch (aircraftCommandParser.command) {
-            case PARSED_COMMAND_NAME.VERSION:
-                UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
-
-                return true;
-
             case PARSED_COMMAND_NAME.TUTORIAL:
                 this._tutorialView.tutorial_toggle();
 

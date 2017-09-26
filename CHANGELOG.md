@@ -16,6 +16,7 @@
     - updates styles to use flexbox with properly organized children
 
 
+
 ### Enhancements & Refactors
 - Modifies `StripView` background-color to use rgba instead of hex to allow for a semi-transparent background [#679](https://github.com/openscope/openscope/issues/679)
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
@@ -25,7 +26,7 @@
 - Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
 - Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
-
+- Removed the `version` command [#721](https://github.com/openscope/openscope/issues/721)
 
 
 

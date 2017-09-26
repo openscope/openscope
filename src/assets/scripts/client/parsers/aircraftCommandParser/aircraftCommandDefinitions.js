@@ -65,10 +65,6 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    version: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
 
     // Aircraft commands
     abort: {
