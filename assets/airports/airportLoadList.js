@@ -51,7 +51,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Ottawa Macdonald-Cartier International Airport',
             premium: false,
-            wip: true
+            wip: false
         },
         {
             icao: 'ebbr',
