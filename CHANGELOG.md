@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
@@ -6,6 +5,7 @@
 - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets. [#14](https://github.com/openscope/openscope/issues/14)
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
 - The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
+- Added Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
 
 
 
@@ -98,22 +98,6 @@
 - Renamed `MIDDLE_PESS` as `MIDDLE_PRESS` in `InputController` [#593](https://github.com/openscope/openscope/issues/593)
 - Fix instances of misspelling of @param in code docblocks [#602](https://github.com/openscope/openscope/issues/602)
 - Deprecates `gulp server` task and adds `nodemon` package [#599](https://github.com/openscope/openscope/issues/599)
-=======
-## 5.3.0 (August 1, 2017)
----
-### Features
-- Add Ottawa Macdonald International Airport [#108](https://github.com/openscope/openscope/issues/104)
-
-
-
-
-
-### Bugfixes
--Removes inactive danger areas at EIDW [#562](https://github.com/openscope/openscope/issues/562)
-
-
-
->>>>>>> feature/108 - Make the file look like the airport will work
 
 
 ## 5.2.1 (July 1, 2017)
