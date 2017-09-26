@@ -532,7 +532,7 @@ class UiController {
      * @method storeZoomLevel
      */
     storeZoomLevel() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
+        localStorage[STORAGE_KEY.ZOOM_LEVEL] = this.scale;
     }
 
     /**
@@ -668,7 +668,7 @@ class UiController {
     canvas_labels_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_LABELS);
+        this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
 
     /**
@@ -679,7 +679,7 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
             .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
 
-        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS);
+        this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
     }
 
     /**
@@ -690,7 +690,7 @@ class UiController {
     canvas_sids_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_SID_MAP);
+        this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
     /**
@@ -701,7 +701,7 @@ class UiController {
     canvas_terrain_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        this._eventBus.trigger(EVENT.SHOULD_TOGGLE_TERRAIN);
+        this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
     }
 
     /**

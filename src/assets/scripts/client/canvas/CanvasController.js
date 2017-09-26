@@ -283,10 +283,10 @@ export default class CanvasController {
         this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
-        this._eventBus.on(EVENT.SHOULD_TOGGLE_LABELS, this._onToggleLabels);
-        this._eventBus.on(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
-        this._eventBus.on(EVENT.SHOULD_TOGGLE_SID_MAP, this._onToggleSidMap);
-        this._eventBus.on(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
+        this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabels);
+        this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
+        this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
         // TODO: abstract to method
@@ -304,10 +304,10 @@ export default class CanvasController {
         this._eventBus.off(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
         this._eventBus.off(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
         this._eventBus.off(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
-        this._eventBus.off(EVENT.SHOULD_TOGGLE_LABELS, this._onToggleLabels);
-        this._eventBus.off(EVENT.SHOULD_TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
-        this._eventBus.off(EVENT.SHOULD_TOGGLE_SID_MAP, this._onToggleSidMap);
-        this._eventBus.off(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
+        this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
+        this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
+        this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
 
         return this.destroy();

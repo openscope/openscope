@@ -543,7 +543,7 @@ export default class AirportModel {
 
         this.start = GameController.game_time();
 
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, true);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
 
     /**
@@ -781,7 +781,7 @@ export default class AirportModel {
         }
 
         this.loading = true;
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, false);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, false);
 
         if (airportJson) {
             this.onLoadIntialAirportFromJson(airportJson);
