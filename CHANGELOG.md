@@ -12,6 +12,9 @@
 - Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
 - Fix the command bar displaying a '?' when the up or down arrow is pressed [#685](https://github.com/openscope/openscope/issues/685)
 - Extends departing spawnPatterns outside the airspace at KSDF to prevent point deduction [#699](https://github.com/openscope/openscope/issues/699)
+- Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
+    - updates styles to use flexbox with properly organized children
+- Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
 
 
 
@@ -24,6 +27,7 @@
 - Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
 - Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
+- Removed the `version` command [#721](https://github.com/openscope/openscope/issues/721)
 
 
 

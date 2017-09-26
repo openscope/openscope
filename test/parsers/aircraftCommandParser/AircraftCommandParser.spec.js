@@ -188,14 +188,6 @@ ava('when passed dct TOR it creates the correct command with the correct argumen
     t.true(model.args[0][1] === 'tor');
 });
 
-ava('does not throw when passed version command', t => {
-    t.notThrows(() => new AircraftCommandParser('version'));
-
-    const model = new AircraftCommandParser('version');
-
-    t.true(model.command === 'version');
-});
-
 ava('provides a default value for the timewarp command when no args are passed', (t) => {
     const model = new AircraftCommandParser('timewarp');
 

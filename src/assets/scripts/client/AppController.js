@@ -100,7 +100,6 @@ export default class AppController {
      */
     destroy() {
         // TODO: add static class.destroy() here
-
         this.$element = null;
         this.$canvasesElement = null;
         this._eventBus = null;
@@ -259,8 +258,10 @@ export default class AppController {
         this.navigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
+        this.scopeModel.radarTargetCollection.reset();
         this.spawnPatternCollection.reset();
         GameController.destroyTimers();
+
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);

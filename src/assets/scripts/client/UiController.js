@@ -366,24 +366,6 @@ class UiController {
     }
 
     /**
-     * @for uiController
-     * @method buildAirportListItemTemplate
-     * @param icao {string}
-     * @param difficulty {string}
-     * @param name {string}
-     * @param reliabilityFlag {string}
-     * @return {DOM element|string}
-     */
-    buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
-        return `<li class="airport icao-${icao.toLowerCase()}">` +
-                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
-                    `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="symbol">${reliabilityFlag}</span>` +
-                    `<span class="name">${name}</span>` +
-                '</li>';
-    }
-
-    /**
      * @for UiController
      * @method ui_complete
      */
@@ -422,12 +404,13 @@ class UiController {
             const reliabilityFlag = wip
                 ? ''
                 : flagIcon;
-            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
+            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
                 if (event.data !== AirportController.airport_get().icao) {
                     AirportController.airport_set(event.data);
+
                     this.ui_airport_close();
                 }
             });
@@ -474,6 +457,24 @@ class UiController {
         }
 
         return difficulty;
+    }
+
+    /**
+     * @for uiController
+     * @method _buildAirportListItemTemplate
+     * @param icao {string}
+     * @param difficulty {string}
+     * @param name {string}
+     * @param reliabilityFlag {string}
+     * @return {DOM element|string}
+     */
+    _buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
+        return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
+                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
+                    `<span class="icao">${icao.toUpperCase()}</span>` +
+                    `<span class="symbol">${reliabilityFlag}</span>` +
+                    `<span class="name">${name}</span>` +
+                '</li>';
     }
 
     /**
@@ -626,15 +627,15 @@ class UiController {
     ui_airport_open() {
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.ACTIVE);
+        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {
-            $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+            $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
         }
 
         const icao = AirportController.airport_get().icao.toLowerCase();
-        $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $(`.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
