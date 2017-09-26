@@ -90,8 +90,8 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     t.true(_isArray(result));
     t.true(result[0] === true);
     t.true(_isObject(result[1]));
-    t.true(result[1].log === 'climb and maintain 13000');
-    t.true(result[1].say === 'climb and maintain one three thousand');
+    t.true(result[1].log === 'descend and maintain 13000');
+    t.true(result[1].say === 'descend and maintain one three thousand');
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is true', (t) => {
@@ -109,8 +109,8 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
         model
     );
 
-    t.true(result[1].log === 'climb and maintain 19000 and expedite');
-    t.true(result[1].say === 'climb and maintain flight level one niner zero and expedite');
+    t.true(result[1].log === 'descend and maintain 19000 and expedite');
+    t.true(result[1].say === 'descend and maintain flight level one niner zero and expedite');
 });
 
 ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
