@@ -35,6 +35,7 @@
     - adds `TimeKeeper` singleton to make time tracking easier to manage
     - moves logic to update properties of the `CanvasController` to live within the `CanvasController` and happen via triggered events
     - sets the stage for next round of `CanvasController` updates by adding `CANVAS_NAME` enum to be used when creating canvas elements
+- Add airport guide files and start ksea as an example [#29](https://github.com/openscope/openscope/issues/29)
 
 
 
