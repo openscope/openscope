@@ -793,8 +793,8 @@
             ]
         }
     ],
-    "arrivalRunway": "32",
-    "departureRunway": "32",
+    "arrivalRunway": "25",
+    "departureRunway": "25",
     "fixes": {
         "ADVOS": ["N45d20.19", "W075d23.90"],
         "ALIDO": ["N45d44.43", "W075d40.77"],
