@@ -143,6 +143,8 @@ export default class CanvasController {
         // TODO: this property will be moving out of the `CanvasController` under issue:
         // [#726](https://github.com/openscope/openscope/issues/726)
         /**
+         * `x` axis pan value
+         *
          * @property panX
          * @type {number}
          * @default 0
@@ -919,7 +921,8 @@ export default class CanvasController {
      * @param aircraft {AircraftModel}
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft) || !this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED) {
+        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft) ||
+            !this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED) {
             return;
         }
 
@@ -1568,7 +1571,7 @@ export default class CanvasController {
         cc.textBaseline = 'top';
 
         for (let i = 90; i <= 360; i += 90) {
-            let angle = i;;
+            let angle = i;
 
             cc.rotate(degreesToRadians(90));
 
