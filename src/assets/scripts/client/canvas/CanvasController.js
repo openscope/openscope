@@ -51,8 +51,10 @@ import { LOG } from '../constants/logLevel';
 const canvas = {};
 
 /**
+ * Enumeration of canvas names
  *
- *
+ * @property CANVAS_NAME
+ * @final
  */
 const CANVAS_NAME = {
     STATIC: 'static',
@@ -119,17 +121,65 @@ export default class CanvasController {
 
         prop.canvas = canvas;
         this.canvas = canvas;
-        this.canvas.contexts = {};
+
+        /**
+         * @property _context
+         * @type {object<string, HTMLCanvasContext>}
+         * @private
+         */
+        this._context = {};
+
+        // TODO: this property will be moving out of the `CanvasController` under issue:
+        // [#726](https://github.com/openscope/openscope/issues/726)
+        /**
+         * `y` axis pan value
+         *
+         * @property panY
+         * @type {number}
+         * @default 0
+         */
         this.canvas.panY = 0;
+
+        // TODO: this property will be moving out of the `CanvasController` under issue:
+        // [#726](https://github.com/openscope/openscope/issues/726)
+        /**
+         * @property panX
+         * @type {number}
+         * @default 0
+         */
         this.canvas.panX = 0;
-        // resize canvas to fit window?
-        this.canvas.resize = true;
-        // all canvases are the same size
+
+        /**
+         * Flag used to determine if the canvas dimensions should be resized
+         *
+         * @property _shouldResize
+         * @type {boolean}
+         * @default true
+         * @private
+         */
+        this._shouldResize = true;
+
+        // TODO: this property will be moving out of the `CanvasController` under issue:
+        // [#726](https://github.com/openscope/openscope/issues/726)
+        /**
+         * Enum used for storing canvas size values
+         *
+         * @property size
+         * @type {object}
+         */
         this.canvas.size = {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this.canvas.last = TimeKeeper.gameTime;
+
+        /**
+         * timestamp of the previous frame
+         *
+         * @property _lastFrameTimestamp
+         * @type {number}
+         * @private
+         */
+        this._lastFrameTimestamp = TimeKeeper.gameTime;
 
         /**
          * Flag used to determine if the Aircraft canvas should be updated
@@ -157,11 +207,11 @@ export default class CanvasController {
         /**
          * Flag used to determine if fix labels should be displayed
          *
-         * @property _shouldDrawLabels
+         * @property _shouldDrawFixLabels
          * @type {boolean}
          * @default false
          */
-        this._shouldDrawLabels = false;
+        this._shouldDrawFixLabels = false;
 
         /**
          * Flag used to determine if restricted areas should be displayed
@@ -202,7 +252,7 @@ export default class CanvasController {
         this._hasSeenTerrainWarning = false;
 
         /**
-         *
+         * container property for the current canvas theme
          *
          * @property theme
          * @type {object}
@@ -216,6 +266,8 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method _init
+     * @private
+     * @chainable
      */
     _init() {
         return this;
@@ -224,6 +276,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method enable
+     * @chainable
      */
     enable() {
         this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
@@ -236,7 +289,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.SHOULD_TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
-        // FIXME: abstract to method
+        // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
 
         return this;
@@ -268,20 +321,20 @@ export default class CanvasController {
         this.$window = null;
         this.$element = null;
         this.canvas = {};
-        this.canvas.contexts = {};
+        this._context = {};
         this.canvas.panY = 0;
         this.canvas.panX = 0;
         // resize canvas to fit window?
-        this.canvas.resize = true;
+        this._shouldResize = true;
         // all canvases are the same size
         this.canvas.size = {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this.canvas.last = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTime;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
-        this._shouldDrawLabels = false;
+        this._shouldDrawFixLabels = false;
         this._shouldDrawRestrictedAreas = false;
         this._shouldDrawSidMap = false;
         this._shouldDrawTerrain = true;
@@ -303,16 +356,18 @@ export default class CanvasController {
     }
 
     /**
+     * Add a `canvas` element to the DOM
+     *
      * @for CanvasController
      * @method canvas_add
-     * @param name {string}
+     * @param name {CANVAS_NAME|string}
      */
     canvas_add(name) {
         const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
 
         $(SELECTORS.DOM_SELECTORS.CANVASES).append(canvasTemplate);
 
-        this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
+        this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
 
     /**
@@ -326,17 +381,21 @@ export default class CanvasController {
             this._markDeepRender();
         }, 500);
 
-        this.canvas.last = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTime;
     }
 
     /**
+     * A `resize` event was captured by the `AppController`.
+     *
+     * Here we re-calculate the canvas dimensions.
+     *
      * Called by `AppController.resize()`
      *
      * @for CanvasController
-     * @method
+     * @method canvas_resize
      */
     canvas_resize() {
-        if (this.canvas.resize) {
+        if (this._shouldResize) {
             this.canvas.size.width = this.$window.width();
             this.canvas.size.height = this.$window.height();
         }
@@ -344,8 +403,8 @@ export default class CanvasController {
         // offset for footer
         this.canvas.size.height -= 36;
 
-        for (const canvasName in this.canvas.contexts) {
-            const context = this.canvas.contexts[canvasName];
+        for (const canvasName in this._context) {
+            const context = this._context[canvasName];
             context.canvas.height = this.canvas.size.height;
             context.canvas.width = this.canvas.size.width;
 
@@ -361,7 +420,7 @@ export default class CanvasController {
      */
     canvas_adjust_hidpi(canvasName) {
         const devicePixelRatio = window.devicePixelRatio || 1;
-        const canvasContext = this.canvas.contexts[canvasName];
+        const canvasContext = this._context[canvasName];
 
         if (devicePixelRatio <= 1) {
             return;
@@ -378,7 +437,10 @@ export default class CanvasController {
     }
 
     /**
-     * Called by `AppController.update_post()`
+     * Main update method called by `AppController.update_post()` within the game loop
+     *
+     * It is important for code in this method, or called by this method, to be as
+     * performant as possible so as not to degrade the animation loop.
      *
      * @for CanvasController
      * @method canvas_update_post
@@ -496,33 +558,40 @@ export default class CanvasController {
     }
 
     /**
+     * Find a canvas context stored within `#_context`
+     *
      * @for CanvasController
      * @method canvas_get
      * @param name {string}
      */
     canvas_get(name) {
-        return this.canvas.contexts[name];
+        return this._context[name];
     }
 
     /**
+     * Clear the current canvas
+     *
      * @for CanvasController
      * @method canvas_clear
-     * @param cc {object}
+     * @param cc {HTMLCanvasContext}
      */
     canvas_clear(cc) {
         cc.clearRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
     /**
+     * Flag used to determine if we should draw a new frame.
+     *
      * @for CanvasController
      * @method canvas_should_draw
+     * @return {boolean}
      */
     canvas_should_draw() {
         const currentTime = TimeKeeper.gameTime;
-        const elapsed = currentTime - this.canvas.last;
+        const elapsed = currentTime - this._lastFrameTimestamp;
 
         if (elapsed > (1 / GameController.game.speedup)) {
-            this.canvas.last = currentTime;
+            this._lastFrameTimestamp = currentTime;
 
             return true;
         }
@@ -533,9 +602,9 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_runway
-     * @param cc
-     * @param runway
-     * @param mode
+     * @param cc {HTMLCanvasContext}
+     * @param runway {RunwayModel}
+     * @param mode {boolean}  flag to determine if the runway extended lines should be drawn
      */
     canvas_draw_runway(cc, runway, mode) {
         const length2 = round(UiController.km_to_px(runway.length / 2));
@@ -575,7 +644,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_runway_label
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param runway
      */
     canvas_draw_runway_label(cc, runway) {
@@ -607,12 +676,12 @@ export default class CanvasController {
     }
 
     /**
-     * @for CanvasController
+     * * @for CanvasController
      * @method canvas_draw_runways
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_runways(cc) {
-        if (!this._shouldDrawLabels) {
+        if (!this._shouldDrawFixLabels) {
             return;
         }
 
@@ -622,6 +691,7 @@ export default class CanvasController {
 
         const airport = AirportController.airport_get();
 
+        // TODO: we should try to consolidate this so we aren't looping over the runway collection multiple times
         // Extended Centerlines
         for (let i = 0; i < airport.runways.length; i++) {
             cc.save();
@@ -644,10 +714,10 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_runway_labels
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_runway_labels(cc) {
-        if (!this._shouldDrawLabels) {
+        if (!this._shouldDrawFixLabels) {
             return;
         }
 
@@ -657,42 +727,49 @@ export default class CanvasController {
 
         for (let i = 0; i < airport.runways.length; i++) {
             cc.save();
+
             this.canvas_draw_runway_label(cc, airport.runways[i][0]);
+
             cc.restore();
             cc.save();
+
             this.canvas_draw_runway_label(cc, airport.runways[i][1]);
+
             cc.restore();
         }
     }
 
     /**
+     * Draw scale in the top right corner of the scope
+     *
      * @for CanvasController
      * @method canvas_draw_scale
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_scale(cc) {
-        cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
-        cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
-
         const offset = 10;
         const height = 5;
         const length = round(1 / UiController.scale * 50);
         const px_length = round(UiController.km_to_px(length));
+        const widthLessOffset = this.canvas.size.width - offset;
+
+        cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
+        cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
 
         cc.translate(0.5, 0.5);
 
         cc.lineWidth = 1;
-        cc.moveTo(this.canvas.size.width - offset, offset);
-        cc.lineTo(this.canvas.size.width - offset, offset + height);
-        cc.lineTo(this.canvas.size.width - offset - px_length, offset + height);
-        cc.lineTo(this.canvas.size.width - offset - px_length, offset);
-        cc.stroke();
+        cc.textAlign = 'center';
 
+        cc.moveTo(widthLessOffset, offset);
+        cc.lineTo(widthLessOffset, offset + height);
+        cc.lineTo(widthLessOffset - px_length, offset + height);
+        cc.lineTo(widthLessOffset - px_length, offset);
+        cc.stroke();
         cc.translate(-0.5, -0.5);
 
-        cc.textAlign = 'center';
         cc.fillText(
-            `${length} km`, this.canvas.size.width - offset - px_length * 0.5,
+            `${length} km`, widthLessOffset - px_length * 0.5,
             offset + height + 17
         );
     }
@@ -700,8 +777,8 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_fix
-     * @param cc
-     * @param name
+     * @param cc {HTMLCanvasContext}
+     * @param name {string}     name of a fix
      */
     canvas_draw_fix(cc, name) {
         cc.fillStyle = this.theme.SCOPE.FIX_FILL;
@@ -718,16 +795,17 @@ export default class CanvasController {
         cc.fillStyle = this.theme.SCOPE.FIX_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
+
         cc.fillText(name, 0, 6);
     }
 
     /**
      * @for CanvasController
      * @method canvas_draw_fixes
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_fixes(cc) {
-        if (!this._shouldDrawLabels) {
+        if (!this._shouldDrawFixLabels) {
             return;
         }
 
@@ -736,13 +814,14 @@ export default class CanvasController {
 
         for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
             const fix = this._navigationLibrary.realFixes[i];
+            const fixPositionX = round(UiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX;
+            const fixPositionY = -round(UiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY;
 
             cc.save();
-            cc.translate(
-                round(UiController.km_to_px(fix.relativePosition[0])) + this.canvas.panX,
-                -round(UiController.km_to_px(fix.relativePosition[1])) + this.canvas.panY
-            );
+            cc.translate(fixPositionX, fixPositionY);
+
             this.canvas_draw_fix(cc, fix.name);
+
             cc.restore();
         }
     }
@@ -751,7 +830,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_sids
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_sids(cc) {
         if (!this._shouldDrawSidMap) {
@@ -759,7 +838,7 @@ export default class CanvasController {
         }
 
         // Store the count of sid text drawn for a specific transition
-        const text_at_point = [];
+        const textAtPoint = [];
         const { sidLines } = this._navigationLibrary;
 
         cc.strokeStyle = this.theme.SCOPE.SID;
@@ -769,7 +848,7 @@ export default class CanvasController {
 
         for (let i = 0; i < sidLines.length; i++) {
             const sid = sidLines[i];
-            let write_sid_name = true;
+            let shouldDrawProcedureName = true;
             let fixX = null;
             let fixY = null;
 
@@ -779,13 +858,13 @@ export default class CanvasController {
 
             for (let j = 0; j < sid.draw.length; j++) {
                 const fixList = sid.draw[j];
-                let exit_name = null;
+                let exitName = null;
 
                 for (let k = 0; k < fixList.length; k++) {
                     // write exitPoint name
                     if (fixList[k].indexOf('*') !== INVALID_INDEX) {
-                        exit_name = fixList[k].replace('*', '');
-                        write_sid_name = false;
+                        exitName = fixList[k].replace('*', '');
+                        shouldDrawProcedureName = false;
                     }
 
                     // TODO: this is duplicated in the if block above. need to consolidate
@@ -809,23 +888,24 @@ export default class CanvasController {
 
                 cc.stroke();
 
-                if (exit_name) {
+                if (exitName) {
                     // Initialize count for this transition
-                    if (isNaN(text_at_point[exit_name])) {
-                        text_at_point[exit_name] = 0;
+                    if (isNaN(textAtPoint[exitName])) {
+                        textAtPoint[exitName] = 0;
                     }
 
                     // Move the y point for drawing depending on how many sids we have drawn text for
                     // at this point already
-                    const y_point = fixY + (15 * text_at_point[exit_name]);
-                    cc.fillText(`${sid.identifier}.${exit_name}`, fixX + 10, y_point);
+                    const y_point = fixY + (15 * textAtPoint[exitName]);
+                    cc.fillText(`${sid.identifier}.${exitName}`, fixX + 10, y_point);
 
-                    text_at_point[exit_name] += 1;  // Increment the count for this transition
+                    textAtPoint[exitName] += 1;  // Increment the count for this transition
                 }
             }
 
-            if (write_sid_name) {
-                cc.fillText(sid.identifier, fixX + 10, fixY);
+            if (shouldDrawProcedureName) {
+                const labelOffsetX = fixX + 10;
+                cc.fillText(sid.identifier, labelOffsetX, fixY);
             }
         }
     }
@@ -835,29 +915,26 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_separation_indicator
-     * @param cc
-     * @param aircraft
+     * @param cc {HTMLCanvasContext}
+     * @param aircraft {AircraftModel}
      */
     canvas_draw_separation_indicator(cc, aircraft) {
-        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft)) {
+        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft) || !this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED) {
             return;
         }
 
         const runway = aircraft.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.oppositeAngle;
-
-        if (!this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR_ENABLED) {
-            return;
-        }
-
         cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
+
         cc.translate(
             UiController.km_to_px(aircraft.relativePosition[0]) + this.canvas.panX,
             -UiController.km_to_px(aircraft.relativePosition[1]) + this.canvas.panY
         );
         cc.rotate(oppositeOfRunwayHeading);
         cc.beginPath();
+        // TODO: this should use constants
         cc.moveTo(-5, -UiController.km_to_px(5.556));  // 5.556km = 3.0nm
         cc.lineTo(+5, -UiController.km_to_px(5.556));  // 5.556km = 3.0nm
         cc.stroke();
@@ -866,7 +943,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_aircraft_rings
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param aircraft
      */
     canvas_draw_aircraft_rings(cc, aircraft) {
@@ -897,7 +974,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_radar_target
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param radarTargetModel {RadarTargetModel}
      */
     canvas_draw_radar_target(cc, radarTargetModel) {
@@ -960,15 +1037,17 @@ export default class CanvasController {
 
         if (aircraftModel.isEstablishedOnCourse()) {
             cc.save();
+
             this.canvas_draw_separation_indicator(cc, aircraftModel);
+
             cc.restore();
         }
 
         // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
         // Aircraft
         // Draw the future path
-        if ((GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') ||
-          ((GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected') &&
+        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always' ||
+          (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' &&
            ((aircraftModel.warning || match) && !aircraftModel.isTaxiing()))
         ) {
             this.canvas_draw_future_track(cc, aircraftModel);
@@ -1008,7 +1087,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_aircraft_vector_lines
-     * @param cc {canvas}
+     * @param cc {HTMLCanvasContext}
      * @param aircraft {AircraftModel}
      */
     canvas_draw_aircraft_vector_lines(cc, aircraft) {
@@ -1043,8 +1122,8 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_future_track_fixes
-     * @param cc
-     * @param aircraft
+     * @param cc {HTMLCanvasContext}
+     * @param aircraft {AircraftModel}
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
@@ -1077,8 +1156,8 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_future_track
-     * @param cc
-     * @param aircraft
+     * @param cc {HTMLCanvasContext}
+     * @param aircraft {AircraftModel
      */
     canvas_draw_future_track(cc, aircraft) {
         let was_locked = false;
@@ -1104,15 +1183,17 @@ export default class CanvasController {
         }
 
         GameController.game.delta = save_delta;
+
         cc.save();
+
+        let strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL;
 
         // future track colors
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
-            cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
-        } else {
-            cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ARRIVAL;
+            strokeStyle = this.theme.RADAR_TARGET.PROJECTION_DEPARTURE;
         }
 
+        cc.strokeStyle = strokeStyle;
         cc.globalCompositeOperation = 'screen';
         cc.lineWidth = 2;
         cc.beginPath();
@@ -1146,7 +1227,9 @@ export default class CanvasController {
         }
 
         cc.stroke();
+
         this.canvas_draw_future_track_fixes(cc, twin, future_track);
+
         cc.restore();
     }
 
@@ -1155,7 +1238,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_radar_targets
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
 
     canvas_draw_radar_targets(cc) {
@@ -1175,7 +1258,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_data_block
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param radarTargetModel {RadarTargetModel}
      */
     canvas_draw_data_block(cc, radarTargetModel) {
@@ -1392,7 +1475,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_data_blocks
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_data_blocks(cc) {
         const radarTargetModels = this._scopeModel.radarTargetCollection.items;
@@ -1409,7 +1492,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_compass
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_compass(cc) {
         cc.translate(
@@ -1504,7 +1587,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_airspace_border
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_airspace_border(cc) {
         const airport = AirportController.airport_get();
@@ -1526,7 +1609,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_fancy_rings
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param fix_origin
      * @param fix1
      * @param fix2
@@ -1562,7 +1645,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_engm_range_rings
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     // Draw range rings for ENGM airport to assist in point merge
     canvas_draw_engm_range_rings(cc) {
@@ -1578,7 +1661,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_range_rings
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_range_rings(cc) {
         const airport = AirportController.airport_get();
@@ -1598,7 +1681,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_poly
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      * @param poly {array<array<number, number>>}
      */
     canvas_draw_poly(cc, poly) {
@@ -1702,7 +1785,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_terrain
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_terrain(cc) {
         const airport = AirportController.airport_get();
@@ -1762,7 +1845,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_restricted
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_restricted(cc) {
         if (!this._shouldDrawRestrictedAreas) {
@@ -1818,7 +1901,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_videoMap
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_videoMap(cc) {
         if (!_has(AirportController.airport_get(), 'maps')) {
@@ -1851,7 +1934,7 @@ export default class CanvasController {
     /**
      * @for CanvasController
      * @method canvas_draw_crosshairs
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_crosshairs(cc) {
         cc.save();
@@ -1873,7 +1956,7 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method canvas_draw_directions
-     * @param cc
+     * @param cc {HTMLCanvasContext}
      */
     canvas_draw_directions(cc) {
         if (GameController.game_paused()) {
@@ -2044,7 +2127,7 @@ export default class CanvasController {
      * @private
      */
     _onToggleLabels = () => {
-        this._shouldDrawLabels = !this._shouldDrawLabels;
+        this._shouldDrawFixLabels = !this._shouldDrawFixLabels;
 
         this._markDeepRender();
     };
@@ -2159,11 +2242,11 @@ export default class CanvasController {
             return;
         }
 
-        // FIXME: abstract to method
+        // TODO: abstract to method
         this.$element.removeClass(this.theme.CLASSNAME);
 
         this.theme = THEME[themeName];
-
+        // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
     };
 }
