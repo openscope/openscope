@@ -638,20 +638,22 @@
                 "23": ["#233"],
                 "32": ["#323"]
             },
-            "body": [],
+            "body": ["YHZ"],
             "exitPoints": {
-                "CAAPE": ["ARDEE", "CAAPE"],
-                "VQI": ["HIDIG", "YQI"],
-                "NOTOP": ["IGTAS", "NOTOP"],
-                "NUTBY": ["PAULO", "NUTBY"],
-                "YZX": ["YZX"]
+                "ALLEX": ["ALLEX"],
+                "ARDEE": ["ARDEE"], 
+                "CADIL": ["CADIL"],
+                "DUSEN": ["DUSEN"],
+                "KEBNI": ["KEBNI"],
+                "NOTOP": ["NOTOP"]
             },
             "draw": [
-                ["YHZ", "ARDEE", "CAAPE*"],
-                ["YHZ", "HIDIG", "YQI*"],
-                ["YHZ", "IGTAS", "NOTOP*"],
-                ["YHZ", "PAULO", "NUTBY*"],
-                ["YHZ", "YZX*"]
+                ["YHZ", "ALLEX*"],
+                ["YHZ", "ARDEE*"],
+                ["YHZ", "CADIL*"],
+                ["YHZ", "DUSEN*"],
+                ["YHZ", "KEBNI*"],
+                ["YHZ", "NOTOP*"]
             ]
         }
     },
@@ -764,7 +766,7 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["n/n/cessna", 8],
+                ["n/cessna", 8],
                 ["emb", 3]
             ]
         },
@@ -792,7 +794,7 @@
                 ["fdx", 1],
                 ["kal", 2],
                 ["qtr", 2],
-                ["n/n/cessna", 8],
+                ["n/cessna", 8],
                 ["emb", 3]
             ]
         },
