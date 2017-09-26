@@ -1,5 +1,4 @@
 import _filter from 'lodash/filter';
-import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import RadarTargetModel from './RadarTargetModel';
 import BaseCollection from '../base/BaseCollection';

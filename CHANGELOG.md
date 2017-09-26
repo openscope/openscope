@@ -14,6 +14,7 @@
 - Extends departing spawnPatterns outside the airspace at KSDF to prevent point deduction [#699](https://github.com/openscope/openscope/issues/699)
 - Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
     - updates styles to use flexbox with properly organized children
+- Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
 
 
 

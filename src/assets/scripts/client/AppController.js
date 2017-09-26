@@ -86,6 +86,8 @@ export default class AppController {
      * @chainable
      */
     disable() {
+        this.eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+
         return this;
     }
 
@@ -252,8 +254,10 @@ export default class AppController {
         this.navigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
+        this.scopeModel.radarTargetCollection.reset();
         this.spawnPatternCollection.reset();
         GameController.destroyTimers();
+
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);
