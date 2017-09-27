@@ -10,6 +10,8 @@
 
 ### Enhancements & Refactors
 - Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
+- Add git strategy flow chart to documentation [#80](https://github.com/openscope/openscope/issues/80)
+
 
 
 ## 5.5.1 (October 1, 2017)
