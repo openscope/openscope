@@ -583,6 +583,7 @@ export default class CanvasController {
         cc.clearRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
+    // TODO: logic should be updated here to exclusively use `TimeKeeper`
     /**
      * Flag used to determine if we should draw a new frame.
      *

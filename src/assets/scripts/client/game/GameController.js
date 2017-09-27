@@ -184,6 +184,23 @@ class GameController {
     }
 
     /**
+     *
+     * @for GameController
+     * @method updateTimewarp
+     * @param nextValue {number}
+     */
+    updateTimewarp(nextValue) {
+        if (nextValue === 0) {
+            this.game_timewarp_toggle();
+
+            return;
+        }
+
+        this.game.speedup = nextValue;
+        TimeKeeper.setTimewarp(nextValue);
+    }
+
+    /**
      * @for GameController
      * @method game_timewarp_toggle
      */
@@ -192,16 +209,19 @@ class GameController {
 
         if (this.game.speedup === 5) {
             this.game.speedup = 1;
+            TimeKeeper.setTimewarp(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (this.game.speedup === 1) {
             this.game.speedup = 2;
+            TimeKeeper.setTimewarp(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             this.game.speedup = 5;
+            TimeKeeper.setTimewarp(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);

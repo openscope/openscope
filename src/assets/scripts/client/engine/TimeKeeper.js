@@ -60,6 +60,9 @@ class TimeKeeper {
          * @private
          */
         this._frameDeltaTime = 0;
+
+
+        this._timewarp = 1;
     }
 
     /**
@@ -78,6 +81,19 @@ class TimeKeeper {
      */
     get deltaTime() {
         return this._frameDeltaTime;
+    }
+
+    // TODO: move this to a method abstracted from the current use of this property
+    get frames() {
+        return this._elapsedFrameCount;
+    }
+
+    /**
+     *
+     *
+     */
+    get timewarp() {
+        return this._timewarp;
     }
 
     /**
@@ -107,6 +123,14 @@ class TimeKeeper {
 
         this._incrementFrame();
         this._calculateNextDeltaTime(currentTime);
+    }
+
+    /**
+     *
+     *
+     */
+    setTimewarp(nextTimewarp) {
+        this._timewarp = nextTimewarp;
     }
 
     /**
