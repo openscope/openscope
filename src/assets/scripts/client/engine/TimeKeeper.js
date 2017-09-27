@@ -1,3 +1,5 @@
+import { extrapolate_range_clamp } from '../math/core';
+
 /**
  * @property TIME_SECONDS_OFFSET
  * @type {number}
@@ -80,7 +82,7 @@ class TimeKeeper {
      * @return {number} current delta time in milliseconds
      */
     get deltaTime() {
-        return this._frameDeltaTime;
+        return Math.min(this._frameDeltaTime * this._timewarp, 100);
     }
 
     // TODO: move this to a method abstracted from the current use of this property
@@ -115,6 +117,16 @@ class TimeKeeper {
     /**
      *
      *
+     */
+    setTimewarp(nextTimewarp) {
+        this._timewarp = nextTimewarp;
+    }
+
+    /**
+     *
+     * Should be called at the end of each update cycle by the `AppController`
+     * Calling this method signifies the end of a frame
+     *
      * @for TimeKeeper
      * @method update
      */
@@ -123,14 +135,7 @@ class TimeKeeper {
 
         this._incrementFrame();
         this._calculateNextDeltaTime(currentTime);
-    }
-
-    /**
-     *
-     *
-     */
-    setTimewarp(nextTimewarp) {
-        this._timewarp = nextTimewarp;
+        this._calculateFrameStep();
     }
 
     /**
@@ -167,6 +172,19 @@ class TimeKeeper {
 
         this._frameDeltaTime = currentTime - this._lastFrameTime;
         this._lastFrameTime = currentTime;
+    }
+
+    /**
+     *
+     *
+     * @for CanvasController
+     * @method _calculateFrameStep
+     * @private
+     */
+    _calculateFrameStep() {
+        // TODO: is this even correct? the order of range2 values looks backwards
+        // FIXME: what do the magic numbers mean?
+        this._frameStep = Math.round(extrapolate_range_clamp(1, this._timewarp, 10, 30, 1));
     }
 }
 

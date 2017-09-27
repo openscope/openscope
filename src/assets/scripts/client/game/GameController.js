@@ -390,7 +390,7 @@ class GameController {
      * @method update_pre
      */
     update_pre() {
-        this.game.delta = Math.min(TimeKeeper.deltaTime * this.game.speedup, 100);
+        this.game.delta = TimeKeeper.deltaTime;
 
         if (this.game_paused()) {
             this.game.delta = 0;
