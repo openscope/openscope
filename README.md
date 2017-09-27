@@ -8,6 +8,8 @@
 
 An ATC simulator in HTML5. Visit http://openscope.co to begin playing now!
 
+For more information on each airport, see the [airport guide](documentation/airport-guides/airport-guide-directory.md).
+
 
 ## Quick Start
 
