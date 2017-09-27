@@ -31,7 +31,7 @@ ava('.maintainAltitude() should set mcp.altitude to the correct value when great
     );
 
     t.true(pilot._mcp.altitudeMode === 'HOLD');
-    t.true(pilot._mcp.altitude === 19001);
+    t.true(pilot._mcp.altitude === model.altitude);
 });
 
 ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altitude to the correct value', (t) => {
