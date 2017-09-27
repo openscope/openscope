@@ -45,7 +45,9 @@ export default class AppController {
          * @default body
          */
         this.$element = $(element);
-        this.eventBus = EventBus;
+
+        this.$canvasesElement = null;
+        this._eventBus = EventBus;
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
@@ -75,7 +77,7 @@ export default class AppController {
      * @chainable
      */
     enable() {
-        this.eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
 
         return this;
     }
@@ -86,7 +88,7 @@ export default class AppController {
      * @chainable
      */
     disable() {
-        this.eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
 
         return this;
     }
@@ -98,9 +100,9 @@ export default class AppController {
      */
     destroy() {
         // TODO: add static class.destroy() here
-
         this.$element = null;
-        this.eventBus = null;
+        this.$canvasesElement = null;
+        this._eventBus = null;
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
@@ -123,6 +125,8 @@ export default class AppController {
      * @param aircraftTypeDefinitionList {array<object>}
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+        this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
+
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
@@ -150,7 +154,7 @@ export default class AppController {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.canvasController = new CanvasController(this.$element, this.navigationLibrary, this.scopeModel);
+        this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.navigationLibrary, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
@@ -167,7 +171,6 @@ export default class AppController {
         GameController.init_pre();
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
-        this.canvasController.canvas_init_pre();
         UiController.ui_init_pre();
     }
 
@@ -219,6 +222,12 @@ export default class AppController {
 
     /**
      * @for AppController
+     * @method update
+     */
+    update() {}
+
+    /**
+     * @for AppController
      * @method updatePost
      */
     updatePost() {
@@ -226,11 +235,6 @@ export default class AppController {
         this.aircraftController.updateAircraftStrips();
     }
 
-    /**
-     * @for AppController
-     * @method update
-     */
-    update() {}
 
     /**
      * onChange callback fired from within the `AirportModel` when an airport is changed.
@@ -284,7 +288,7 @@ export default class AppController {
     updateViewControls() {
         const { current: airport } = AirportController;
 
-        this.canvasController.canvas.dirty = true;
+        this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.navigationLibrary.sidCollection));

@@ -93,8 +93,11 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {array}
      */
     get draw() {
+        const routeLines = [];
+
         /* istanbul ignore next */
-        return _map(this._items, (item) => {
+        for (let i = 0; i < this.length; i++) {
+            const item = this._items[i];
             const sidForCanvas = {};
             sidForCanvas.identifier = item.icao;
 
@@ -102,8 +105,10 @@ export default class StandardRouteCollection extends BaseCollection {
                 sidForCanvas.draw = item.draw;
             }
 
-            return sidForCanvas;
-        });
+            routeLines.push(sidForCanvas);
+        }
+
+        return routeLines;
     }
 
     /**

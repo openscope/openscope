@@ -157,7 +157,7 @@ export default class AircraftController {
         this._stripViewController = new StripViewController();
 
         return this.init()
-            .setupHandlers()
+            ._setupHandlers()
             .enable();
     }
 
