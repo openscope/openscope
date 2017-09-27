@@ -388,6 +388,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'panc',
+            level: 'medium',
+            name: 'Ted Stevens Anchorage International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'rjbb',
         //     level: 'hard',
