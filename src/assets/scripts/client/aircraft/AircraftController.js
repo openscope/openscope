@@ -157,6 +157,7 @@ export default class AircraftController {
         this._stripViewController = new StripViewController();
 
         return this.init()
+            ._setupHandlers()
             .enable();
     }
 
@@ -170,6 +171,20 @@ export default class AircraftController {
     }
 
     /**
+     * Set up event handlers
+     *
+     * @for AircraftController
+     * @method _setupHandlers
+     * @private
+     * @chainable
+     */
+    _setupHandlers() {
+        this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
+
+        return this;
+    }
+
+    /**
      * @for AircraftController
      * @method enable
      * @chainable
@@ -179,7 +194,7 @@ export default class AircraftController {
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
-        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -195,7 +210,7 @@ export default class AircraftController {
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
-        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -313,14 +328,15 @@ export default class AircraftController {
      * @method aircraft_remove
      * @param aircraftModel {AircraftModel}
      */
-    aircraft_remove = (aircraftModel) => {
+    aircraft_remove(aircraftModel) {
         AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
-    };
+        this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraft);
+    }
 
     /**
      * This method is part of the game loop.
