@@ -944,6 +944,9 @@ export default class CanvasController {
     }
 
     /**
+     * Draws circle around aircraft that are approaching, or are in,
+     * conflict with another aircraft
+     *
      * @for CanvasController
      * @method canvas_draw_aircraft_rings
      * @param cc {HTMLCanvasContext}
@@ -962,6 +965,7 @@ export default class CanvasController {
                 // white warning circle
                 cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
             }
+        // TODO: what would the else be in this case?
         } else {
             cc.strokeStyle = cc.fillStyle;
         }
@@ -1493,6 +1497,8 @@ export default class CanvasController {
     }
 
     /**
+     * Draw wind vane in lower right section of the scope view
+     *
      * @for CanvasController
      * @method canvas_draw_compass
      * @param cc {HTMLCanvasContext}
@@ -1610,6 +1616,10 @@ export default class CanvasController {
     }
 
     /**
+     * Draw range rings for `ENGM`
+     *
+     * This method is used exclusively by `.canvas_draw_engm_range_rings()`
+     *
      * @for CanvasController
      * @method canvas_draw_fancy_rings
      * @param cc {HTMLCanvasContext}
@@ -1743,6 +1753,14 @@ export default class CanvasController {
         }
     }
 
+    /**
+     * Draw the terrain legend in the upper right hand corner of the scope view
+     *
+     * @for CanvasController
+     * @method drawTerrainElevationLegend
+     * @param  cc  {HTMLCanvasContext}
+     * @param max_elevation {number}
+     */
     drawTerrainElevationLegend(cc, max_elevation) {
         const offset = 10;
         const width = this.canvas.size.width;
@@ -1932,9 +1950,10 @@ export default class CanvasController {
         cc.restore();
     }
 
-    /** Draws crosshairs that point to the currently translated location
-
+    // TODO: is this even in use?
     /**
+     * Draws crosshairs that point to the currently translated location
+     *
      * @for CanvasController
      * @method canvas_draw_crosshairs
      * @param cc {HTMLCanvasContext}
@@ -1955,7 +1974,7 @@ export default class CanvasController {
     }
 
     /**
-     * Draw the compass around the scope edge
+     * Draw the compass around the edge of the scope view
      *
      * @for CanvasController
      * @method canvas_draw_directions
@@ -2045,9 +2064,11 @@ export default class CanvasController {
     }
 
     /**
+     * Calculate an aircraft's position within the canvas from
+     *
      * @for CanvasController
      * @method to_canvas_pos
-     * @param pos {}
+     * @param pos {DynamicPositionModel}
      */
     to_canvas_pos(pos) {
         return [
@@ -2075,6 +2096,9 @@ export default class CanvasController {
 
     /**
      * Mark the canvas as dirty, forcing a redraw during the next frame
+     *
+     * This method should only be called via the `EventBus`
+     * Facade method for `._markShallowRender()`
      *
      * @for CanvasController
      * @method _onMarkDirtyCanvas
@@ -2156,6 +2180,7 @@ export default class CanvasController {
      *
      * This method will only be `trigger`ed by some other
      * class via the `EventBus`
+     *
      * @for CanvasController
      * @method _onToggleSidMap
      * @private
@@ -2182,7 +2207,12 @@ export default class CanvasController {
     };
 
     /**
+     * Update the value of `#_shouldShallowRender` to true, forcing a redraw
+     * on the next frame.
      *
+     * This method should be used for forcing redraws on _dynamic_ elements
+     * only. In the future this will mean only items contained within the
+     * `CANVAS_NAME.DYNAMIC` will be redrawn.
      *
      * @for CanvasController
      * @method _markShallowRender
@@ -2193,9 +2223,12 @@ export default class CanvasController {
     }
 
     /**
+     * Update the value of `#_shouldShallowRender` and `#_shouldDeepRender` to true, thus
+     * forcing a redraw of both canvases on the next frame.
      *
-     *
-     * This will also change `#_shouldShallowRender` to `true`
+     * This method should be used for forcing redraws on dynamic _and_ static elements.
+     * In the future this will mean both `CANVAS_NAME.STATIC` and `CANVAS_NAME.DYNAMIC`
+     * will be redrawn on the next frame.
      *
      * @for CanvasController
      * @method _markDeepRender
