@@ -760,7 +760,7 @@
             "origin": "",
             "destination": "PANC",
             "category": "arrival",
-            "route": "TKA.TAGER6.PANC",
+            "route": "TKA.TAGER8.PANC",
             "altitude": [10000, 20000],
             "speed": 250,
             "method": "random",
