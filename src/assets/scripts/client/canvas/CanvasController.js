@@ -367,7 +367,7 @@ export default class CanvasController {
     canvas_add(name) {
         const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
 
-        $(SELECTORS.DOM_SELECTORS.CANVASES).append(canvasTemplate);
+        this.$element.append(canvasTemplate);
 
         this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
     }
@@ -454,9 +454,11 @@ export default class CanvasController {
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
         const fading = elapsed < 1;
 
-        if (this._shouldDeepRender) {
-            console.log('_shouldDeepRender');
-        }
+        // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
+        // if (this._shouldDeepRender) {
+        //     this is where we update static drawings like terrain, airspace, video map, etc
+        //     updates that happen here should be infrequent because they are considered expensive
+        // }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.STATIC);
