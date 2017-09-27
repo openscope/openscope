@@ -15,6 +15,7 @@
 - Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
     - updates styles to use flexbox with properly organized children
 - Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
+- Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
 
 
 
