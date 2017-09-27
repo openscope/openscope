@@ -2,7 +2,7 @@
  * List of System Commands
  *
  * When a command is parsed, the value here will be used for the `name` property
- * of the `CommandParser`
+ * of the `AircraftCommandParser`
  *
  * @property SYSTEM_COMMANDS
  * @type {Object}
@@ -13,7 +13,6 @@ export const SYSTEM_COMMANDS = {
     clear: 'clear',
     pause: 'pause',
     tutorial: 'tutorial',
-    version: 'version',
 
     // single arg commands
     '`': 'moveDataBlock',
@@ -33,10 +32,6 @@ export const SYSTEM_COMMANDS = {
  * @final
  */
 const UNICODE_COMMANDS = {
-    '\\u2B61': 'altitude',
-    '\\u2B63': 'altitude',
-    '\\u2BA2': 'heading',
-    '\\u2BA3': 'heading',
     '\\u2B50': 'land'
 };
 
@@ -47,18 +42,18 @@ const UNICODE_COMMANDS = {
  * commands.
  *
  * Aliased commands map to a single root command that is shared among all aliases. The values
- * here then map to a `COMMAND_DEFINITION` which contains `validate` and `parse` functions for
+ * here then map to a `AIRCRAFT_COMMAND_DEFINITION` which contains `validate` and `parse` functions for
  * each root command. Some commands have very unique demands for how arguments are formatted,
  * those functions let us do that on a case by case basis.
  *
  * Keys are lowercased here so they can be accessed programatically using input string segments
  * that are converted to lowercase for ease of comparison.
  *
- * @propery COMMAND_MAP
+ * @propery AIRCRAFT_COMMAND_MAP
  * @type {Object}
  * @final
  */
-export const COMMAND_MAP = {
+export const AIRCRAFT_COMMAND_MAP = {
     ...SYSTEM_COMMANDS,
     ...UNICODE_COMMANDS,
 
@@ -113,7 +108,13 @@ export const COMMAND_MAP = {
     sq: 'squawk',
     delete: 'delete',
     del: 'delete',
-    kill: 'delete'
+    kill: 'delete',
+    sa: 'sayAltitude',
+    saa: 'sayAssignedAltitude',
+    sh: 'sayHeading',
+    sah: 'sayAssignedHeading',
+    si: 'sayIndicatedAirspeed',
+    sas: 'sayAssignedSpeed'
 };
 
 /**

@@ -29,10 +29,11 @@ export const TIME = {
  */
 export const REGEX = {
     COMPASS_DIRECTION: /^[NESW]/,
-    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
+    DOUBLE_OR_SINGLE_DOT: /\.\.|\./g,
     FOUR_DIGIT_OCTAL: /[0-7]{4}/g,
-    TRANSPONDER_CODE: /^[0-7][0-7][0-7][0-7]$/,
+    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
     SW: /[SW]/,
+    TRANSPONDER_CODE: /^[0-7][0-7][0-7][0-7]$/,
     UNICODE: /[^\u0000-\u00ff]/,
     WHITESPACE: /\s/g
 };

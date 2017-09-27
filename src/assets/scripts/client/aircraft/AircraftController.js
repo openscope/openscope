@@ -73,7 +73,7 @@ export default class AircraftController {
      * @param airlineController {AirlineController}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
+    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
@@ -126,6 +126,16 @@ export default class AircraftController {
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
         /**
+         * Local reference to the scope model
+         *
+         * @for AircraftController
+         * @property _scopeModel
+         * @type {ScopeModel}
+         * @private
+         */
+        this._scopeModel = scopeModel;
+
+        /**
          * List of `transponderCode` values in use
          *
          * Each `transponderCode` should be unique, thus we maintain this list
@@ -165,6 +175,7 @@ export default class AircraftController {
      * @chainable
      */
     enable() {
+        this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
@@ -180,6 +191,7 @@ export default class AircraftController {
      * @chainable
      */
     disable() {
+        this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
@@ -196,9 +208,7 @@ export default class AircraftController {
      * @method addItem
      * @param item {AircraftModel}
      */
-    addItem(item) {
-        this.aircraft.list.push(item);
-    }
+    addItem = (item) => this.aircraft.list.push(item);
 
     /**
      * Callback method fired by an interval defined in the `SpawnScheduler`.
@@ -305,7 +315,6 @@ export default class AircraftController {
      */
     aircraft_remove = (aircraftModel) => {
         AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
-
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
@@ -396,6 +405,19 @@ export default class AircraftController {
     }
 
     /**
+     * @method findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftModel|null}
+     */
+    findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+    }
+
+    /**
      * Create a new `StripViewModel` for a new `AircraftModel` instance
      *
      * This method should only be run during instantiation of a new `AircraftModel`
@@ -437,7 +459,7 @@ export default class AircraftController {
      * @return {AircraftModel|null}
      */
     debug(callsign = '') {
-        return this._findAircraftByCallsign(callsign);
+        return this.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -569,7 +591,9 @@ export default class AircraftController {
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
 
-        this.addItem(aircraftModel);
+        // triggering event bus rather than calling locally because multiple classes
+        // are listening for the event and aircraft model
+        this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
         this.initAircraftStripView(aircraftModel);
     }
 
@@ -621,20 +645,6 @@ export default class AircraftController {
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
-    }
-
-    /**
-     * @method _findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
-     * @private
-     */
-    _findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
     /**
@@ -783,7 +793,7 @@ export default class AircraftController {
      * @private
      */
     _onStripDoubleClickhandler = (callsign) => {
-        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });

@@ -38,19 +38,19 @@ ava('.matchCallsign() returns false when passed a flightnumber that is not inclu
 ava('.matchCallsign() returns true when passed a flightnumber that is included in #callsign', (t) => {
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
-    t.true(model.matchCallsign('432'));
+    t.true(model.matchCallsign('1567'));
 });
 
 ava('.matchCallsign() returns true when passed a lowercase callsign that matches #callsign', (t) => {
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
-    t.true(model.matchCallsign('aal432'));
+    t.true(model.matchCallsign('ual1567'));
 });
 
 ava('.matchCallsign() returns true when passed a mixed case callsign that matches #callsign', (t) => {
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
-    t.true(model.matchCallsign('aAl432'));
+    t.true(model.matchCallsign('uAl1567'));
 });
 
 ava('.getViewModel() includes an altitude that has not been rounded to the nearest foot', (t) => {

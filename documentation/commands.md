@@ -51,7 +51,6 @@ example of that would be the `takeoff` command which has an alias `to`.
 - [Pause](#pause)
 - [Timewarp](#timewarp)
 - [Tutorial](#tutorial)
-- [Version](#version)
 
 # Departure Commands
 These commands are used by departure aircraft.
@@ -390,11 +389,3 @@ _Syntax -_ `timewarp [rate]`
 _Information -_ Opens the tutorial.
 
 _Syntax -_ `tutorial`
-
-### Version
-
-_Information -_ Displays the version of the game running.
-
-Example: `Air Traffic Control simulator version 5.3.0`
-
-_Syntax -_ `version`

@@ -1,26 +1,26 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
-import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
-import EventBus from './lib/EventBus';
-import ContentQueue from './contentQueue/ContentQueue';
-import LoadingView from './LoadingView';
-import AirportController from './airport/AirportController';
-import NavigationLibrary from './navigationLibrary/NavigationLibrary';
+import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
+import AirportController from './airport/AirportController';
+import CanvasController from './canvas/CanvasController';
+import ContentQueue from './contentQueue/ContentQueue';
+import GameClockView from './game/GameClockView';
+import GameController from './game/GameController';
+import InputController from './InputController';
+import EventBus from './lib/EventBus';
+import LoadingView from './LoadingView';
+import NavigationLibrary from './navigationLibrary/NavigationLibrary';
+import ScopeModel from './scope/ScopeModel';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
-import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
-import AircraftCommander from './aircraft/AircraftCommander';
-import InputController from './InputController';
 import UiController from './UiController';
-import CanvasController from './canvas/CanvasController';
-import GameClockView from './game/GameClockView';
-import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
+import { speech_init } from './speech';
 
 /**
  * Root controller class
@@ -86,6 +86,8 @@ export default class AppController {
      * @chainable
      */
     disable() {
+        this.eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+
         return this;
     }
 
@@ -136,7 +138,8 @@ export default class AppController {
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
-        this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
+        this.scopeModel = new ScopeModel();
+        this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary, this.scopeModel);
         // TEMPORARY!
         // some instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
@@ -147,10 +150,10 @@ export default class AppController {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
+        this.canvasController = new CanvasController(this.$element, this.navigationLibrary, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.tutorialView);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
@@ -160,8 +163,8 @@ export default class AppController {
      * @for AppController
      * @method init_pre
      */
-    init_pre(getDeltaTime) {
-        GameController.init_pre(getDeltaTime);
+    init_pre() {
+        GameController.init_pre();
         this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
         this.canvasController.canvas_init_pre();
@@ -251,8 +254,10 @@ export default class AppController {
         this.navigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
+        this.scopeModel.radarTargetCollection.reset();
         this.spawnPatternCollection.reset();
         GameController.destroyTimers();
+
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);
