@@ -17,6 +17,7 @@
     - updates styles to use flexbox with properly organized children
 - Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
 - Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
+- Ensure game options initialize to correct default values [#711](https://github.com/openscope/openscope/issues/711)
 
 
 
