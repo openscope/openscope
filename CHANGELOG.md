@@ -28,6 +28,7 @@
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
 - Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
 - Removed the `version` command [#721](https://github.com/openscope/openscope/issues/721)
+- Updates Shannon (EINN) - Updated all procedures, added video map and terrain, updated traffic [#527](https://github.com/openscope/openscope/issues/527)
 - Makes first pass at `CanvasController` refactor [#707](https://github.com/openscope/openscope/issues/707)
     - adds `TimeKeeper` singleton to make time tracking easier to manage
     - moves logic to update properties of the `CanvasController` to live within the `CanvasController` and happen via triggered events
