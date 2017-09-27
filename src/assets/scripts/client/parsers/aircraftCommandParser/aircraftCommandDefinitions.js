@@ -160,6 +160,10 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
+    help: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
     land: {
         validate: singleArgumentValidator,
         // TODO: split this out to custom parser once the null value is defined
