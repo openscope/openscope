@@ -35,7 +35,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     const shouldUseSoftCeilingMock = false;
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
-    const currentAltitudeMock = model.speed;
+    const currentAltitudeMock = 5700;
 
     pilot.maintainAltitude(
         nextAltitudeMock,
