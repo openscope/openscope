@@ -23,6 +23,27 @@ ava('#deltaTime returns a max value of 100', (t) => {
     t.true(TimeKeeper.deltaTime === 100);
 });
 
+ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (t) => {
+    const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(true);
+
+    t.true(result === 0);
+});
+
+ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp !== 1', (t) => {
+    TimeKeeper._frameDeltaTime = 2;
+    TimeKeeper._timewarp = 2;
+
+    const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
+
+    t.true(result === 0);
+});
+
+ava('.getDeltaTimeForGameStateAndTimewarp() returns #deltaTime when if conditions are not met', (t) => {
+    const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
+
+    t.true(result === TimeKeeper.deltaTime);
+});
+
 ava('.update() increments #_elapsedFrameCount by 1', (t) => {
     t.true(TimeKeeper._elapsedFrameCount === 0);
 

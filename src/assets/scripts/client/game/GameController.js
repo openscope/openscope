@@ -284,16 +284,20 @@ class GameController {
      * @return {number}
      */
     game_time() {
+        // console.warn('.game_time() is planned to be deprecated');
+
         return this.game.time;
     }
 
     /**
+     * @deprecated
+     *
      * @for GameController
      * @method game_delta
      * @return {number}
      */
     game_delta() {
-        return this.game.delta;
+        return TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
     }
 
     /**
@@ -302,6 +306,8 @@ class GameController {
      * @return
      */
     game_speedup() {
+        // console.warn('Th.game_speedup() is planned to be deprecated');
+
         return !this.game_paused() ? this.game.speedup : 0;
     }
 
@@ -390,15 +396,15 @@ class GameController {
      * @method update_pre
      */
     update_pre() {
-        this.game.delta = TimeKeeper.deltaTime;
+        this.game.delta = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
 
-        if (this.game_paused()) {
-            this.game.delta = 0;
-        } else if (this.game.delta >= 1 && this.game.speedup === 1) {
-            // here we assume we're retyrning from a blur state
-            // and reset `#game.delta` to 0 to prevent animation jumps
-            this.game.delta = 0;
-        } else {
+        if (!this.game_paused()) {
+        //     this.game.delta = 0;
+        // } else if (this.game.delta >= 1 && this.game.speedup === 1) {
+        //     // here we assume we're retyrning from a blur state
+        //     // and reset `#game.delta` to 0 to prevent animation jumps
+        //     this.game.delta = 0;
+        // } else {
             $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
 

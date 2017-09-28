@@ -1237,7 +1237,8 @@ export default class CanvasController {
 
         cc.stroke();
 
-        this.canvas_draw_future_track_fixes(cc, twin, future_track);
+        // TODO: following method not in use, leaving for posterity
+        // this.canvas_draw_future_track_fixes(cc, twin, future_track);
 
         cc.restore();
     }

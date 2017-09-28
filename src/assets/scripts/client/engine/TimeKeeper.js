@@ -63,18 +63,35 @@ class TimeKeeper {
          */
         this._frameDeltaTime = 0;
 
+        /**
+         *
+         *
+         */
+        this._accumulatedDeltaTime = 0;
 
+        /**
+         *
+         *
+         */
         this._timewarp = 1;
     }
 
     /**
-     * Current timestamp in milliseconds
+     * Current timestamp in seconds
      *
      * @property gameTime
      * @return {number} current time in milliseconds
      */
     get gameTime() {
         return (new Date()).getTime() * TIME_SECONDS_OFFSET;
+    }
+
+    /**
+     *
+     *
+     */
+    get gameTimeMilliseconds() {
+        return this.gameTime * 1000;
     }
 
     /**
@@ -112,6 +129,18 @@ class TimeKeeper {
         this._lastFrameTime = currentTime;
         this._elapsedFrameCount = 0;
         this._frameDeltaTime = 0;
+    }
+
+    /**
+     *
+     *
+     */
+    getDeltaTimeForGameStateAndTimewarp(isPaused) {
+        if (isPaused || this.deltaTime >= 1 && this._timewarp !== 1) {
+            return 0;
+        }
+
+        return this.deltaTime;
     }
 
     /**
@@ -172,6 +201,7 @@ class TimeKeeper {
 
         this._frameDeltaTime = currentTime - this._lastFrameTime;
         this._lastFrameTime = currentTime;
+        this._accumulatedDeltaTime += this._frameDeltaTime;
     }
 
     /**
