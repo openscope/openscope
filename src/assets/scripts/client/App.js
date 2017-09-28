@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import AppController from './AppController';
-import AirportController from './airport/AirportController';
 import EventBus from './lib/EventBus';
 import TimeKeeper from './engine/TimeKeeper';
 import { EVENT } from './constants/eventNames';
@@ -32,11 +31,6 @@ export default class App {
      * @param initialAirportToLoad {string}    ICAO id of the initial airport. may be the default or a stored airport
      */
     constructor(element, airportLoadList, initialAirportToLoad) {
-        // We need to put this in App, because it doesn't work in index.js
-        if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) && AirportController.hasAirport(STORAGE_KEY.ATC_LAST_AIRPORT)) {
-            initialAirportToLoad = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
-        }
-
         /**
          * Root DOM element.
          *
