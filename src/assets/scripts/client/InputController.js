@@ -746,7 +746,7 @@ export default class InputController {
         }
 
         if (match === INVALID_NUMBER) {
-            UiController.ui_log('no such aircraft, say again');
+            UiController.ui_log('no such aircraft, say again', true);
 
             return true;
         }
