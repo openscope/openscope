@@ -137,13 +137,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'einn',
-        //     level: 'easy',
-        //     name: 'Shannon Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'einn',
+            level: 'beginner',
+            name: 'Shannon Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'ekch',
             level: 'medium',
@@ -388,6 +388,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'panc',
+            level: 'medium',
+            name: 'Ted Stevens Anchorage International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'rjbb',
         //     level: 'hard',

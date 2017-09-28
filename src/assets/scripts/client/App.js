@@ -61,7 +61,7 @@ export default class App {
      * @chainable
      */
     createHandlers() {
-        this.eventBus.on(EVENT.SHOULD_PAUSE_UPDATE_LOOP, this.updateRun);
+        this.eventBus.on(EVENT.PAUSE_UPDATE_LOOP, this.updateRun);
 
         return this;
     }

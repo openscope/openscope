@@ -16,6 +16,15 @@ import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 
 /**
+ * Value by which the current zoom level is either increased/decreased
+ *
+ * @property ZOOM_INCREMENT
+ * @type {number}
+ * @final
+ */
+const ZOOM_INCREMENT = 0.9;
+
+/**
  * @property UI_SETTINGS_MODAL_TEMPLATE
  * @type {string}
  * @final
@@ -521,11 +530,10 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_after_zoom
+     * @method storeZoomLevel
      */
-    ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
-        prop.canvas.dirty = true;
+    storeZoomLevel() {
+        localStorage[STORAGE_KEY.ZOOM_LEVEL] = this.scale;
     }
 
     /**
@@ -538,16 +546,19 @@ class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.scale *= 0.9;
+        this.scale *= ZOOM_INCREMENT;
 
         if (this.scale < this.scale_min) {
             this.scale = this.scale_min;
         }
 
-        this.ui_after_zoom();
+        const nextPanPosition = [
+            round(this.km_to_px(lastpos[0])),
+            round(this.km_to_px(lastpos[1]))
+        ];
 
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
     }
 
     /**
@@ -559,16 +570,19 @@ class UiController {
             round(this.px_to_km(prop.canvas.panX)),
             round(this.px_to_km(prop.canvas.panY))
         ];
+        this.scale /= ZOOM_INCREMENT;
 
-        this.scale /= 0.9;
         if (this.scale > this.scale_max) {
             this.scale = this.scale_max;
         }
 
-        this.ui_after_zoom();
+        const nextPanPosition = [
+            round(this.km_to_px(lastpos[0])),
+            round(this.km_to_px(lastpos[1]))
+        ];
 
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
     }
 
     /**
@@ -578,7 +592,8 @@ class UiController {
     ui_zoom_reset() {
         this.scale = this.scale_default;
 
-        this.ui_after_zoom();
+        this.storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**
@@ -654,7 +669,7 @@ class UiController {
     canvas_labels_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_labels = !prop.canvas.draw_labels;
+        this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
 
     /**
@@ -665,7 +680,7 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
             .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
 
-        prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
+        this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
     }
 
     /**
@@ -676,7 +691,7 @@ class UiController {
     canvas_sids_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_sids = !prop.canvas.draw_sids;
+        this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
     /**
@@ -686,7 +701,8 @@ class UiController {
      */
     canvas_terrain_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
+
+        this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
     }
 
     /**

@@ -83,6 +83,14 @@ export default class InputController {
     }
 
     /**
+     * @for InputController
+     * @method setupHandlers
+     */
+    setupHandlers() {
+        return this;
+    }
+
+    /**
      * Enable all event handlers
      *
      * @for InputController
@@ -216,9 +224,8 @@ export default class InputController {
             event.pageX - this.input.mouseDown[0],
             event.pageY - this.input.mouseDown[1]
         ];
-        prop.canvas.panX = this.input.mouseDelta[0];
-        prop.canvas.panY = this.input.mouseDelta[1];
-        prop.canvas.dirty = true;
+
+        this._eventBus.trigger(EVENT.PAN_VIEWPORT, event, this.input.mouseDelta);
     }
 
     /**
@@ -287,7 +294,6 @@ export default class InputController {
         }
     }
 
-    // TODO: Is this really needed??
     /**
      * @for InputController
      * @method onCommandInputChangeHandler

@@ -5,6 +5,7 @@
 - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets. [#14](https://github.com/openscope/openscope/issues/14)
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
 - The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
+- Adds Ted Stevens Anchorage Intl. (PANC) [#637](https://github.com/openscope/openscope/issues/637)
 
 
 
@@ -15,6 +16,8 @@
 - Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
     - updates styles to use flexbox with properly organized children
 - Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
+- Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
+- Ensure game options initialize to correct default values [#711](https://github.com/openscope/openscope/issues/711)
 
 
 
@@ -28,6 +31,15 @@
 - Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
 - Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
 - Removed the `version` command [#721](https://github.com/openscope/openscope/issues/721)
+- Updates Shannon (EINN) - Updated all procedures, added video map and terrain, updated traffic [#527](https://github.com/openscope/openscope/issues/527)
+- Makes first pass at `CanvasController` refactor [#707](https://github.com/openscope/openscope/issues/707)
+    - adds `TimeKeeper` singleton to make time tracking easier to manage
+    - moves logic to update properties of the `CanvasController` to live within the `CanvasController` and happen via triggered events
+    - sets the stage for next round of `CanvasController` updates by adding `CANVAS_NAME` enum to be used when creating canvas elements
+- Add airport guide files and start ksea as an example [#29](https://github.com/openscope/openscope/issues/29)
+- Ensure tutorial selects departure aircraft [#354](https://github.com/openscope/openscope/issues/354)
+- Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
+- Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
 - Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
 
 
