@@ -10,18 +10,11 @@ import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtur
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
 const cruiseSpeedMock = 460;
-const invalidSpeedMock = 530;
+const unattainableSpeedMock = 530;
 const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    pilot.maintainSpeed(cruiseSpeedMock, model);
-
-    t.true(pilot._mcp.speedMode === 'HOLD');
-    t.true(pilot._mcp.speed === 460);
-});
-
-ava('.maintainSpeed() returns a success message when finished', (t) => {
     const expectedResult = [
         true,
         {
@@ -29,13 +22,15 @@ ava('.maintainSpeed() returns a success message when finished', (t) => {
             say: 'increase speed to four six zero'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.maintainSpeed(cruiseSpeedMock, model);
 
+    t.true(pilot._mcp.speedMode === 'HOLD');
+    t.true(pilot._mcp.speed === 460);
     t.deepEqual(result, expectedResult);
 });
 
-ava('.maintainSpeed() returns a warning when assigned an unreachable speed', (t) => {
+ava('.maintainSpeed() returns early with a warning when assigned an unreachable speed', (t) => {
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const expectedResult = [
         false,
         {
@@ -43,8 +38,7 @@ ava('.maintainSpeed() returns a warning when assigned an unreachable speed', (t)
             say: 'unable to maintain five three zero knots due to performance'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.maintainSpeed(invalidSpeedMock, model);
+    const result = pilot.maintainSpeed(unattainableSpeedMock, model);
 
     t.deepEqual(result, expectedResult);
 });

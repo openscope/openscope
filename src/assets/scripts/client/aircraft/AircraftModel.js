@@ -46,7 +46,8 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
-    radio_altitude
+    radio_altitude,
+    radio_spellOut
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
@@ -692,7 +693,7 @@ export default class AircraftModel {
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
-     /**
+    /**
      * verifies if there is a matched callsign and if the  aircraft is visable.
      * @for AircraftModel
      * @method getCallsign
@@ -710,23 +711,36 @@ export default class AircraftModel {
      * @return cs {string}
      */
     getRadioCallsign() {
-        let heavy = '';
-        let radioCallsign = this.airlineCallsign;
-        if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
-        }
+        let weight = this.getRadioWeightClass();
 
-        if (this.model.weightclass === 'U') {
-            heavy = ' super';
+        if (!_isEmpty(weight)) {
+            weight = ` ${weight}`;
         }
 
         if (this.airlineCallsign === 'November') {
-            radioCallsign += ` radio_spellOut(${this.flightNumber})${heavy}`;
-        } else {
-            radioCallsign += ` ${groupNumbers(this.flightNumber)}${heavy}`;
+            return `${this.airlineCallsign} ${radio_spellOut(this.flightNumber)}${weight}`;
         }
 
-        return radioCallsign;
+        return `${this.airlineCallsign} ${groupNumbers(this.flightNumber)}${weight}`;
+    }
+
+    /**
+     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
+     *
+     * @for AircraftModel
+     * @method getRadioWeightClass
+     * @return {string}
+     */
+    getRadioWeightClass() {
+        const weightClass = this.model.weightClass;
+
+        if (weightClass === 'H') {
+            return 'heavy';
+        } else if (weightClass === 'U') {
+            return 'super';
+        }
+
+        return '';
     }
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`

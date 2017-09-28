@@ -112,9 +112,20 @@ export default class Pilot {
      * @param shouldUseSoftCeiling {boolean}
      * @param airportModel {AirportModel}
      * @param aircraftModel {AircraftModel}
-     * @return {array}            [success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
+        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
+            const verbalRequestedAltitude = radio_altitude(altitude);
+            const readback = {};
+            readback.log = `unable to maintain ${altitude} due to performance`;
+            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
+
+            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
+
+            return [false, readback];
+        }
+
         const currentAltitude = aircraftModel.altitude;
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
@@ -125,9 +136,9 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance();
+        this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
-        // TODO: this could be split to another method
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
@@ -144,19 +155,6 @@ export default class Pilot {
         const readback = {};
         readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
-
-        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
-            const verbalRequestedAltitude = radio_altitude(altitude);
-
-            readback.log = `unable to maintain ${altitude} due to performance`;
-            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
-
-            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
-
-            return [false, readback];
-        }
-
-        this._mcp.setAltitudeFieldValue(clampedAltitude);
 
         return [true, readback];
     }
@@ -188,8 +186,8 @@ export default class Pilot {
 
         this.cancelApproachClearance();
         this._fms.exitHoldIfHolding();
-        this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
+        this._mcp.setHeadingHold();
 
         const headingStr = heading_to_string(correctedHeading);
         const readback = {};
@@ -232,28 +230,29 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
-     * @param aircraftModel {AircraftModel}
      * @param speed {Number} - the speed to maintain, in knots
+     * @param aircraftModel {AircraftModel}
      * @return {Array} [success of operation, readback]
      */
     maintainSpeed(speed, aircraftModel) {
-        const currentSpeed = aircraftModel.speed;
-        const instruction = radio_trend('speed', currentSpeed, speed);
-
-        this._mcp.setSpeedHold();
-        this._mcp.setSpeedFieldValue(speed);
-
-        // Build the readback
-        const readback = {};
-        readback.log = `${instruction} ${speed}`;
-        readback.say = `${instruction} ${radio_spellOut(speed)}`;
-
         if (!aircraftModel.model.isAbleToMaintainSpeed(speed)) {
+            const readback = {};
             readback.log = `unable to maintain ${speed} knots due to performance`;
             readback.say = `unable to maintain ${radio_spellOut(speed)} knots due to performance`;
 
             return [false, readback];
         }
+
+        const currentSpeed = aircraftModel.speed;
+        const instruction = radio_trend('speed', currentSpeed, speed);
+
+        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
+
+        // Build the readback
+        const readback = {};
+        readback.log = `${instruction} ${speed}`;
+        readback.say = `${instruction} ${radio_spellOut(speed)}`;
 
         return [true, readback];
     }
@@ -410,8 +409,8 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
+     * @param currentAltitude {number}  the aircraft's current altitude, in feet
      * @param currentHeading {number}   the aircraft's current heading, in radians
-     * @param currentSpeed {number}     the aircraft's current speed, in knots
      * @return {array}                  [success of operation, readback]
      */
     cancelApproachClearance(currentAltitude, currentHeading) {
