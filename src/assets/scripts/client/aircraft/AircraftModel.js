@@ -8,12 +8,13 @@ import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
-import AirportController from '../airport/AirportController';
-import GameController, { GAME_EVENTS } from '../game/GameController';
-import UiController from '../UiController';
+import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
+import AirportController from '../airport/AirportController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
+import UiController from '../UiController';
 import {
     radians_normalize,
     angle_offset
@@ -45,7 +46,8 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
-    radio_altitude
+    radio_altitude,
+    radio_spellOut
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
@@ -441,6 +443,7 @@ export default class AircraftModel {
         this.initFms(options);
 
         this.mcp = new ModeController();
+        this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.mcp, this.fms);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
@@ -532,7 +535,6 @@ export default class AircraftModel {
     parse(data) {
         this.positionModel = data.positionModel;
         this.transponderCode = data.transponderCode;
-        this.model = data.model;
         this.airlineId = data.airline;
         this.airlineCallsign = data.airlineCallsign;
         this.flightNumber = data.callsign;
@@ -691,7 +693,7 @@ export default class AircraftModel {
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
-     /**
+    /**
      * verifies if there is a matched callsign and if the  aircraft is visable.
      * @for AircraftModel
      * @method getCallsign
@@ -709,25 +711,36 @@ export default class AircraftModel {
      * @return cs {string}
      */
     getRadioCallsign() {
-        let heavy = '';
-        let radioCallsign = this.airlineCallsign;
+        let weight = this.getRadioWeightClass();
 
-        // TODO: Move the weight qualifiers to a getter, and call it here to get the value of `heavy`
-        if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
-        }
-
-        if (this.model.weightclass === 'U') {
-            heavy = ' super';
+        if (!_isEmpty(weight)) {
+            weight = ` ${weight}`;
         }
 
         if (this.airlineCallsign === 'November') {
-            radioCallsign += ` radio_spellOut(${this.flightNumber})${heavy}`;
-        } else {
-            radioCallsign += ` ${groupNumbers(this.flightNumber)}${heavy}`;
+            return `${this.airlineCallsign} ${radio_spellOut(this.flightNumber)}${weight}`;
         }
 
-        return radioCallsign;
+        return `${this.airlineCallsign} ${groupNumbers(this.flightNumber)}${weight}`;
+    }
+
+    /**
+     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
+     *
+     * @for AircraftModel
+     * @method getRadioWeightClass
+     * @return {string}
+     */
+    getRadioWeightClass() {
+        const weightClass = this.model.weightClass;
+
+        if (weightClass === 'H') {
+            return 'heavy';
+        } else if (weightClass === 'U') {
+            return 'super';
+        }
+
+        return '';
     }
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`

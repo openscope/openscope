@@ -40,6 +40,7 @@
 - Ensure tutorial selects departure aircraft [#354](https://github.com/openscope/openscope/issues/354)
 - Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
 - Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
+- Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
 
 
 
