@@ -516,6 +516,17 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
+            title: 'Scope Commands',
+            text: ['There are also various commands that can be entered into your "scope" which deal with moving ' +
+                'aircraft data blocks (labels), transferring control of aircraft, etc. To toggle between aircraft ' +
+                'commands and scope commands, press the tab key.'
+               ].join(' '),
+            parse: (v) => v,
+            side: 'left',
+            position: tutorial_position
+        });
+
+        this.tutorial_step({
             title: 'Score',
             text: ['The lower-right corner of the page has a small number in it; this is your score.',
                    'Whenever you successfully route an aircraft to the ground or out of the screen, you earn points. As you make mistakes,',
