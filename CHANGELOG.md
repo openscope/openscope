@@ -38,6 +38,7 @@
 - Add airport guide files and start ksea as an example [#29](https://github.com/openscope/openscope/issues/29)
 - Ensure tutorial selects departure aircraft [#354](https://github.com/openscope/openscope/issues/354)
 - Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
+- Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
 
 
 
