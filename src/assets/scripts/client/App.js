@@ -76,6 +76,22 @@ export default class App {
      * @param airportLoadList {array<object>}  List of airports to load
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
+        // Check if the json we try to load exists
+        // If it doesn't, return early. Otherwise the program hangs.
+        if ($.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`) == undefined) {
+            console.error(`couldn't find json for ${initialAirportToLoad} (cleared storage key)`);
+            localStorage.removeItem(STORAGE_KEY.ATC_LAST_AIRPORT);
+            return;
+        }
+        if ($.getJSON('assets/airlines/airlines.json') == undefined) {
+            console.error('couldn\'t find json for airlines, are all files present?');
+            return;
+        }
+        if ($.getJSON('assets/aircraft/aircraft.json') == undefined) {
+            console.error('couldn\'t find json for aircraft, are all files present?');
+            return;
+        }
+
         // This is provides a way to get async data from several sources in the app before anything else runs
         // TODO: this is wrong. move this and make it less bad!
         $.when(
