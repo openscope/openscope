@@ -8,6 +8,16 @@ import _lowerCase from 'lodash/lowerCase';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { STORAGE_KEY } from './constants/storageKeys';
 
+const getInitialAirport = () => {
+    let airportName = DEFAULT_AIRPORT_ICAO;
+
+    if (!_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+        airportName = _lowerCase(localStorage[ATC_LAST_AIRPORT]);
+    }
+
+    return airportName;
+}
+
 /**
  * Entry point for the application.
  *
@@ -15,7 +25,7 @@ import { STORAGE_KEY } from './constants/storageKeys';
  */
 export default (() => {
     const airportLoadList = window.AIRPORT_LOAD_LIST;
-    const initialAirportToLoad = DEFAULT_AIRPORT_ICAO;
+    const initialAirportToLoad = getInitialAirport();
     const $body = $('body');
     const app = new App($body, airportLoadList, initialAirportToLoad);
 })();
