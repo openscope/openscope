@@ -11,12 +11,12 @@ import { STORAGE_KEY } from './constants/storageKeys';
 const getInitialAirport = () => {
     let airportName = DEFAULT_AIRPORT_ICAO;
 
-    if (!_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
-        airportName = _lowerCase(localStorage[ATC_LAST_AIRPORT]);
+    if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+        airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
     }
 
     return airportName;
-}
+};
 
 /**
  * Entry point for the application.
