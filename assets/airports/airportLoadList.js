@@ -287,6 +287,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kpdx',
             level: 'beginner',
             name: 'Portland International Airport',
+            premium: false,
             wip: false
         },
         {
