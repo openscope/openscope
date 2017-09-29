@@ -84,7 +84,9 @@ export default class App {
             $.getJSON('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
-                const initialAirport = typeof airportResponse[0] !== 'undefined' ? airportResponse[0] : null;
+                const initialAirport = typeof airportResponse[0] !== 'undefined' 
+                ? airportResponse[0] 
+                : null;
 
                 this.setupChildren(
                     airportLoadList,
