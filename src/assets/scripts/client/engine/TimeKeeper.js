@@ -8,7 +8,7 @@ import { extrapolate_range_clamp } from '../math/core';
 const TIME_SECONDS_OFFSET = 0.001;
 
 /**
- * Singleton used to manage game time
+ * Singleton used to manage game time and the advancement of animation frames
  *
  * @class TimeKeeper
  */
@@ -80,15 +80,17 @@ class TimeKeeper {
      * Current timestamp in seconds
      *
      * @property gameTime
-     * @return {number} current time in milliseconds
+     * @return {number}
      */
     get gameTime() {
         return (new Date()).getTime() * TIME_SECONDS_OFFSET;
     }
 
     /**
+     * Current timestamp in milliseconds
      *
-     *
+     * @property gameTimeMilliseconds
+     * @return {number}
      */
     get gameTimeMilliseconds() {
         return this.gameTime * 1000;
@@ -110,6 +112,8 @@ class TimeKeeper {
     /**
      *
      *
+     * @property timewarp
+     * @type {number}
      */
     get timewarp() {
         return this._timewarp;
@@ -136,7 +140,7 @@ class TimeKeeper {
      *
      */
     getDeltaTimeForGameStateAndTimewarp(isPaused) {
-        if (isPaused || this.deltaTime >= 1 && this._timewarp !== 1) {
+        if (isPaused || this.deltaTime >= 1 && this._timewarp === 1) {
             return 0;
         }
 
@@ -145,13 +149,16 @@ class TimeKeeper {
 
     /**
      *
-     *
+     * @for TimeKeeper
+     * @method setTimewarp
+     * @param nextTimewarp {number}  the next value for #_timewarp
      */
     setTimewarp(nextTimewarp) {
         this._timewarp = nextTimewarp;
     }
 
     /**
+     *
      *
      * Should be called at the end of each update cycle by the `AppController`
      * Calling this method signifies the end of a frame
