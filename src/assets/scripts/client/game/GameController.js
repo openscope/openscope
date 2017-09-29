@@ -181,23 +181,25 @@ class GameController {
     }
 
     /**
-    * Initialize `GameController.events` to contain appropriate properties with values of 0
-    *
-    * @for GameController
-    * @method initializeEventCount
-    */
+     * Initialize `GameController.events` to contain appropriate properties with values of 0
+     *
+     * @for GameController
+     * @method initializeEventCount
+     */
     initializeEventCount() {
         _forEach(GAME_EVENTS, (gameEvent, key) => {
             this.game.events[key] = 0;
         });
     }
 
+    // TODO: usages of this method should move to use EventBus
     /**
-    * Record a game event to this.game.events, and update this.game.score
-    * @for GameController
-    * @method events_recordNew
-    * @param gameEvent {String} one of the events listed in GAME_EVENTS
-    */
+     * Record a game event to this.game.events, and update this.game.score
+     *
+     * @for GameController
+     * @method events_recordNew
+     * @param gameEvent {String} one of the events listed in GAME_EVENTS
+     */
     events_recordNew(gameEvent) {
         if (!_has(GAME_EVENTS, gameEvent)) {
             throw new TypeError(`Expected a game event listed in GAME_EVENTS, but instead received ${gameEvent}`);
@@ -205,6 +207,8 @@ class GameController {
 
         this.game.events[gameEvent] += 1;
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
+
+        this.game_updateScore();
     }
 
 
@@ -231,6 +235,8 @@ class GameController {
 
         // Reset score
         this.game.score = 0;
+
+        this.game_updateScore();
     }
 
     /**
@@ -452,7 +458,6 @@ class GameController {
 
         this.game.time += this.game.delta;
 
-        this.game_updateScore();
         this.updateTimers();
     }
 
