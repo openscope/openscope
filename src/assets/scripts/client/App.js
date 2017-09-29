@@ -85,8 +85,8 @@ export default class App {
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 const initialAirport = typeof airportResponse[0] !== 'undefined' 
-                ? airportResponse[0] 
-                : null;
+                    ? airportResponse[0] 
+                    : null;
 
                 this.setupChildren(
                     airportLoadList,
