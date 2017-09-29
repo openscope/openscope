@@ -77,6 +77,16 @@ class TimeKeeper {
     }
 
     /**
+     *
+     *
+     * @property accumulatedDeltaTime
+     * @type {number}
+     */
+    get accumulatedDeltaTime() {
+        return this._accumulatedDeltaTime;
+    }
+
+    /**
      * Current timestamp in seconds
      *
      * @property gameTime
