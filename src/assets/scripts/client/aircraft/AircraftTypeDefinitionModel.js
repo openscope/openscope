@@ -203,4 +203,24 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
 
         return aircraftIcao.toUpperCase();
     }
+
+    /**
+     * @for AircraftTypeDefinitionModel
+     * @method isAbleToMaintainAltitude
+     * @param altitude {Number}
+     * @return {Boolean}
+     */
+    isAbleToMaintainAltitude(altitude) {
+        return altitude <= this.ceiling;
+    }
+
+    /**
+     * @for AircraftTypeDefinitionModel
+     * @method isAbleToMaintainSpeed
+     * @param speed {Number}
+     * @return {Boolean}
+     */
+    isAbleToMaintainSpeed(speed) {
+        return speed >= this.speed.min && speed <= this.speed.max;
+    }
 }

@@ -107,14 +107,26 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
-     * @param currentAltitude {number}
      * @param altitude {number}   the altitude to maintain, in feet
      * @param expedite {boolean}  whether to use maximum possible climb/descent rate
      * @param shouldUseSoftCeiling {boolean}
      * @param airportModel {AirportModel}
-     * @return {array}            [success of operation, readback]
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, readback]
      */
-    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
+    maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
+        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
+            const verbalRequestedAltitude = radio_altitude(altitude);
+            const readback = {};
+            readback.log = `unable to maintain ${altitude} due to performance`;
+            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
+
+            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
+
+            return [false, readback];
+        }
+
+        const currentAltitude = aircraftModel.altitude;
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
 
@@ -127,7 +139,6 @@ export default class Pilot {
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
-        // TODO: this could be split to another method
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
@@ -175,8 +186,8 @@ export default class Pilot {
 
         this.cancelApproachClearance();
         this._fms.exitHoldIfHolding();
-        this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
+        this._mcp.setHeadingHold();
 
         const headingStr = heading_to_string(correctedHeading);
         const readback = {};
@@ -219,14 +230,24 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
-     * @param {Number} speed - the speed to maintain, in knots
+     * @param speed {Number} - the speed to maintain, in knots
+     * @param aircraftModel {AircraftModel}
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(currentSpeed, speed) {
+    maintainSpeed(speed, aircraftModel) {
+        if (!aircraftModel.model.isAbleToMaintainSpeed(speed)) {
+            const readback = {};
+            readback.log = `unable to maintain ${speed} knots due to performance`;
+            readback.say = `unable to maintain ${radio_spellOut(speed)} knots due to performance`;
+
+            return [false, readback];
+        }
+
+        const currentSpeed = aircraftModel.speed;
         const instruction = radio_trend('speed', currentSpeed, speed);
 
-        this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
 
         // Build the readback
         const readback = {};
@@ -388,8 +409,8 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
+     * @param currentAltitude {number}  the aircraft's current altitude, in feet
      * @param currentHeading {number}   the aircraft's current heading, in radians
-     * @param currentSpeed {number}     the aircraft's current speed, in knots
      * @return {array}                  [success of operation, readback]
      */
     cancelApproachClearance(currentAltitude, currentHeading) {

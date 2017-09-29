@@ -17,6 +17,7 @@
     - updates styles to use flexbox with properly organized children
 - Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
 - Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
+- Ensure game options initialize to correct default values [#711](https://github.com/openscope/openscope/issues/711)
 
 
 
@@ -36,6 +37,10 @@
     - moves logic to update properties of the `CanvasController` to live within the `CanvasController` and happen via triggered events
     - sets the stage for next round of `CanvasController` updates by adding `CANVAS_NAME` enum to be used when creating canvas elements
 - Add airport guide files and start ksea as an example [#29](https://github.com/openscope/openscope/issues/29)
+- Ensure tutorial selects departure aircraft [#354](https://github.com/openscope/openscope/issues/354)
+- Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
+- Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
+- Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
 
 
 
