@@ -614,7 +614,7 @@ export default class InputController {
         try {
             aircraftCommandParser = new AircraftCommandParser(userCommand);
         } catch (error) {
-            UiController.ui_log('Command not understood');
+            UiController.ui_log('Command not understood', true);
 
             throw error;
         }
@@ -642,7 +642,7 @@ export default class InputController {
         try {
             scopeCommandModel = new ScopeCommandModel(userCommand);
         } catch (error) {
-            UiController.ui_log('ERROR: BAD SYNTAX');
+            UiController.ui_log('ERROR: BAD SYNTAX', true);
 
             throw error;
         }
@@ -740,13 +740,13 @@ export default class InputController {
         }
 
         if (matches > 1) {
-            UiController.ui_log('multiple aircraft match the callsign, say again');
+            UiController.ui_log('multiple aircraft match the callsign, say again', true);
 
             return true;
         }
 
         if (match === INVALID_NUMBER) {
-            UiController.ui_log('no such aircraft, say again');
+            UiController.ui_log('no such aircraft, say again', true);
 
             return true;
         }

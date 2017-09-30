@@ -403,7 +403,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
                 aircraft.setIsRemovable();
 
                 speech_say([
