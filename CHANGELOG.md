@@ -21,7 +21,7 @@
 - Remove call to `AirportController.hasAirport()` in `index.js` [#741](https://github.com/openscope/openscope/issues/741)
 - Changes background-color of settings option selects to transparent [#740](https://github.com/openscope/openscope/issues/740)
 - Updates param passed to RadarTargetCollection from within AircraftController.aircraft_remove()[#743](https://github.com/openscope/openscope/issues/743)
-- `no such aircraft, say again` is now red [#742](https://github.com/openscope/openscope/issues/742)
+- Ensure failure message responses are shown in red [#742](https://github.com/openscope/openscope/issues/742)
 
 
 
