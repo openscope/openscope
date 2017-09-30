@@ -451,9 +451,7 @@ class GameController {
         this.game.delta = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
 
         if (!this.game_paused() && this._$htmlElement.hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
-            this._$pauseElement = null;
             this._$htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
-            this._$pauseElement = null;
         }
 
         this.game.time += this.game.delta;

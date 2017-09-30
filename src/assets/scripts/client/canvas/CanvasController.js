@@ -592,10 +592,11 @@ export default class CanvasController {
      * @return {boolean}
      */
     canvas_should_draw() {
-        const currentTime = TimeKeeper.gameTime;
+        // FIXME: move this to a simple method in TimeKeeper
+        const { currentTime, timewarp } = TimeKeeper;
         const elapsed = currentTime - this._lastFrameTimestamp;
 
-        if (elapsed > (1 / GameController.game.speedup)) {
+        if (elapsed > (1 / timewarp)) {
             this._lastFrameTimestamp = currentTime;
 
             return true;
