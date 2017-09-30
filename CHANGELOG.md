@@ -19,6 +19,7 @@
 - Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
 - Ensure game options initialize to correct default values [#711](https://github.com/openscope/openscope/issues/711)
 - Remove call to `AirportController.hasAirport()` in `index.js` [#741](https://github.com/openscope/openscope/issues/741)
+- Changes background-color of settings option selects to transparent [#740](https://github.com/openscope/openscope/issues/740)
 
 
 
