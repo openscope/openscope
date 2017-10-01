@@ -1,3 +1,17 @@
+## 5.6.0 (November 1, 2017)
+---
+### New Features
+
+
+
+### Bugfixes
+
+
+
+### Enhancements & Refactors
+
+
+
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
@@ -6,8 +20,6 @@
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
 - The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
 - Adds Ted Stevens Anchorage Intl. (PANC) [#637](https://github.com/openscope/openscope/issues/637)
-
-
 
 ### Bugfixes
 - Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
@@ -22,8 +34,6 @@
 - Changes background-color of settings option selects to transparent [#740](https://github.com/openscope/openscope/issues/740)
 - Updates param passed to RadarTargetCollection from within AircraftController.aircraft_remove()[#743](https://github.com/openscope/openscope/issues/743)
 - Ensure failure message responses are shown in red [#742](https://github.com/openscope/openscope/issues/742)
-
-
 
 ### Enhancements & Refactors
 - Modifies `StripView` background-color to use rgba instead of hex to allow for a semi-transparent background [#679](https://github.com/openscope/openscope/issues/679)
@@ -45,7 +55,6 @@
 - Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
 - Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
 - Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
-
 
 
 ## 5.4.1 (September 2, 2017)
