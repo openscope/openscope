@@ -15,7 +15,8 @@ export const GAME_OPTION_NAMES = {
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
     INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
-    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator'
+    DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
+    MOUSE_CLICK_DRAG: 'mouseClickDrag'
 };
 
 /**

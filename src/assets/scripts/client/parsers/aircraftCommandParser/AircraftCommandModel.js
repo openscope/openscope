@@ -1,21 +1,22 @@
-import { COMMAND_DEFINITION } from './commandDefinitions';
+import { AIRCRAFT_COMMAND_DEFINITION } from './aircraftCommandDefinitions';
 
 /**
  * A definition of a specific command and it's arguments.
  *
  * Conatins a command name, which maps 1:1 with a name defined in `commandMap.js` and `commandDefinitions.js`.
  * Commands may have an alias or many, we care only about the root command. The command map will map any
- * alias to a root command and this `CommandModel` is only concerned about those root commands. It has
+ * alias to a root command and this `AircraftCommandModel` is only concerned about those root commands. It has
  * no way of knowing what the original alias was, if one was used.
  *
- * Each `CommandModel` will be expected to have, at a minimum, a `name` and a matching `COMMAND_DEFINITION`.
+ * Each `AircraftCommandModel` will be expected to have, at a minimum, a `name` and a matching
+ * `AIRCRAFT_COMMAND_DEFINITION`.
  *
- * @class CommandModel
+ * @class AircraftCommandModel
  */
-export default class CommandModel {
+export default class AircraftCommandModel {
     /**
      * @constructor
-     * @for CommandModel
+     * @for AircraftCommandModel
      */
     constructor(name = '') {
         /**
@@ -27,7 +28,7 @@ export default class CommandModel {
         this.name = name;
 
         /**
-         * A reference to the COMMAND_DEFINITION for this particular command.
+         * A reference to the AIRCRAFT_COMMAND_DEFINITION for this particular command.
          * this gives us access to both the `validate` and `parse` methods
          * that belong to this command.
          *
@@ -39,7 +40,7 @@ export default class CommandModel {
          * @type {object}
          * @private
          */
-        this._commandDefinition = COMMAND_DEFINITION[name];
+        this._commandDefinition = AIRCRAFT_COMMAND_DEFINITION[name];
 
         /**
          * list of command arguments
@@ -77,7 +78,7 @@ export default class CommandModel {
     /**
      * Send the initial args off to the validator
      *
-     * @for CommandModel
+     * @for AircraftCommandModel
      * @method validateArgs
      * @return {string|undefined}
      */
@@ -86,10 +87,10 @@ export default class CommandModel {
     }
 
     /**
-     * Send the initial args, set from the `CommandParser` right after instantiation, off to
+     * Send the initial args, set from the `AircraftCommandParser` right after instantiation, off to
      * the parser for formatting.
      *
-     * @for CommandModel
+     * @for AircraftCommandModel
      * @method parseArgs
      */
     parseArgs() {

@@ -176,6 +176,16 @@ export default class AirportModel {
          */
         this.airspace = null;
 
+        // TODO: this should really be its own class possibly separate from the `AirportModel`
+        /**
+         * Container for airport terrain definition
+         *
+         * @property terrain
+         * @type {object}
+         * @default {}
+         */
+        this.terrain = {};
+
         /**
          * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
          *
@@ -533,7 +543,7 @@ export default class AirportModel {
 
         this.start = GameController.game_time();
 
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, true);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
 
     /**
@@ -736,7 +746,6 @@ export default class AirportModel {
             return;
         }
 
-        // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
         // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
@@ -772,9 +781,9 @@ export default class AirportModel {
         }
 
         this.loading = true;
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, false);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, false);
 
-        if (airportJson) {
+        if (airportJson && airportJson.icao.toLowerCase() === this.icao) {
             this.onLoadIntialAirportFromJson(airportJson);
 
             return;
