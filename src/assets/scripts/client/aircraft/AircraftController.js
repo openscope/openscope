@@ -335,7 +335,7 @@ export default class AircraftController {
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
-        this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraft);
+        this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
     /**
@@ -403,7 +403,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
                 aircraft.setIsRemovable();
 
                 speech_say([

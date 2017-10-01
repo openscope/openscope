@@ -783,7 +783,7 @@ export default class AirportModel {
         this.loading = true;
         this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, false);
 
-        if (airportJson) {
+        if (airportJson && airportJson.icao.toLowerCase() === this.icao) {
             this.onLoadIntialAirportFromJson(airportJson);
 
             return;
