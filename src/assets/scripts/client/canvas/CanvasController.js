@@ -583,6 +583,7 @@ export default class CanvasController {
         cc.clearRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
+    // TODO: logic should be updated here to exclusively use `TimeKeeper`
     /**
      * Flag used to determine if we should draw a new frame.
      *
@@ -591,10 +592,11 @@ export default class CanvasController {
      * @return {boolean}
      */
     canvas_should_draw() {
-        const currentTime = TimeKeeper.gameTime;
+        // FIXME: move this to a simple method in TimeKeeper
+        const { currentTime, timewarp } = TimeKeeper;
         const elapsed = currentTime - this._lastFrameTimestamp;
 
-        if (elapsed > (1 / GameController.game.speedup)) {
+        if (elapsed > (1 / timewarp)) {
             this._lastFrameTimestamp = currentTime;
 
             return true;
@@ -1236,7 +1238,8 @@ export default class CanvasController {
 
         cc.stroke();
 
-        this.canvas_draw_future_track_fixes(cc, twin, future_track);
+        // TODO: following method not in use, leaving for posterity
+        // this.canvas_draw_future_track_fixes(cc, twin, future_track);
 
         cc.restore();
     }

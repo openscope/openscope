@@ -684,11 +684,13 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
+                let nextTimewarpValue = 0;
+
                 if (aircraftCommandParser.args) {
-                    GameController.game.speedup = aircraftCommandParser.args[0];
-                } else {
-                    GameController.game_timewarp_toggle();
+                    nextTimewarpValue = aircraftCommandParser.args[0];
                 }
+
+                GameController.updateTimewarp(nextTimewarpValue);
 
                 return true;
 

@@ -288,7 +288,7 @@ export default class App {
 
         this.updatePre();
         this.updatePost();
-        TimeKeeper.incrementFrame();
+        TimeKeeper.update();
 
         return this;
     }
