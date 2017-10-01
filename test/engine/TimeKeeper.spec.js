@@ -29,9 +29,9 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (
     t.true(result === 0);
 });
 
-ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp !== 1', (t) => {
+ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp is 1', (t) => {
     TimeKeeper._frameDeltaTime = 2;
-    TimeKeeper._timewarp = 2;
+    TimeKeeper._timewarp = 1;
 
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
 

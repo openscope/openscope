@@ -58,10 +58,14 @@ class GameController {
      * @constructor
      */
     constructor() {
-        this._$htmlElement = $('html');
-        this._$pauseToggleElement = null;
-        this._$fastForwardElement = null;
-        this._$scoreElement = null;
+        // TODO: the below $elements _should_ be used instead of the inline vars currently in use but
+        // take caution when implmenting these because it will break tests currently in place. This is
+        // because of the use of $ within lifecycle methods and becuase this is a static class used
+        // by many of the files under test.
+        // this._$htmlElement = $('html');
+        // this._$pauseToggleElement = null;
+        // this._$fastForwardElement = null;
+        // this._$scoreElement = null;
         this.game = {};
         this.game.paused = true;
         this.game.focused = true;
@@ -110,9 +114,10 @@ class GameController {
      * @chainable
      */
     createChildren() {
-        this._$pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
-        this._$fastForwardElement = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
-        this._$scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+        // see comment in constructor. tl;dr these props should be used but are not because they break tests
+        // this._$pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+        // this._$fastForwardElement = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+        // this._$scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
 
         return this;
     }
@@ -158,10 +163,10 @@ class GameController {
      * @chainable
      */
     destroy() {
-        this._$htmlElement = $('html');
-        this._$pauseToggleElement = null;
-        this._$fastForwardElement = null;
-        this._$scoreElement = null;
+        // this._$htmlElement = $('html');
+        // this._$pauseToggleElement = null;
+        // this._$fastForwardElement = null;
+        // this._$scoreElement = null;
         this.game = {};
         this.game.paused = true;
         this.game.focused = true;
@@ -261,25 +266,27 @@ class GameController {
      * @method game_timewarp_toggle
      */
     game_timewarp_toggle() {
+        const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+
         if (this.game.speedup === 5) {
             this.game.speedup = 1;
             TimeKeeper.setTimewarp(1);
 
-            this._$fastForwardElement.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
-            this._$fastForwardElement.prop('title', 'Set time warp to 2');
+            $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
+            $fastForwards.prop('title', 'Set time warp to 2');
         } else if (this.game.speedup === 1) {
             this.game.speedup = 2;
             TimeKeeper.setTimewarp(2);
 
-            this._$fastForwardElement.addClass(SELECTORS.CLASSNAMES.SPEED_2);
-            this._$fastForwardElement.prop('title', 'Set time warp to 5');
+            $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
+            $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             this.game.speedup = 5;
             TimeKeeper.setTimewarp(5);
 
-            this._$fastForwardElement.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
-            this._$fastForwardElement.addClass(SELECTORS.CLASSNAMES.SPEED_5);
-            this._$fastForwardElement.prop('title', 'Reset time warp');
+            $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
+            $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
+            $fastForwards.prop('title', 'Reset time warp');
         }
     }
 
@@ -289,10 +296,11 @@ class GameController {
      */
     game_pause() {
         this.game.paused = true;
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
-        this._$pauseToggleElement.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this._$pauseToggleElement.attr('title', 'Resume simulation');
-        this._$htmlElement.addClass(SELECTORS.CLASSNAMES.PAUSED);
+        $pauseToggleElement.addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $pauseToggleElement.attr('title', 'Resume simulation');
+        $('html').addClass(SELECTORS.CLASSNAMES.PAUSED);
     }
 
     /**
@@ -301,11 +309,11 @@ class GameController {
      */
     game_unpause() {
         this.game.paused = false;
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
-        this._$pauseToggleElement.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this._$pauseToggleElement.attr('title', 'Pause simulation');
-        this._$htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
-        this._$pauseElement = null;
+        $pauseToggleElement.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $pauseToggleElement.attr('title', 'Pause simulation');
+        $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
     }
 
     /**
@@ -430,14 +438,14 @@ class GameController {
         if (this.game.score === this.game.last_score) {
             return;
         }
-
-        this._$scoreElement.text(round(this.game.score));
+        const $scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+        $scoreElement.text(round(this.game.score));
 
         // TODO: wait, what? Why not just < 0?
         if (this.game.score < -0.51) {
-            this._$scoreElement.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
+            $scoreElement.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
         } else {
-            this._$scoreElement.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
+            $scoreElement.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
         }
 
         this.game.last_score = this.game.score;
@@ -448,10 +456,11 @@ class GameController {
      * @method update_pre
      */
     update_pre() {
+        const $htmlElement = $('html');
         this.game.delta = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
 
-        if (!this.game_paused() && this._$htmlElement.hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
-            this._$htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
+        if (!this.game_paused() && $htmlElement.hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
+            $htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
 
         this.game.time += this.game.delta;
