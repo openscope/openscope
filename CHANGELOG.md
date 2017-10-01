@@ -9,6 +9,7 @@
 
 
 ### Enhancements & Refactors
+- Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 
 
 
@@ -17,7 +18,6 @@
 ### New Features
 - Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets. [#14](https://github.com/openscope/openscope/issues/14)
-- Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
 - The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
 - Adds Ted Stevens Anchorage Intl. (PANC) [#637](https://github.com/openscope/openscope/issues/637)
 

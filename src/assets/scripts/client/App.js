@@ -2,6 +2,7 @@ import $ from 'jquery';
 import AppController from './AppController';
 import EventBus from './lib/EventBus';
 import TimeKeeper from './engine/TimeKeeper';
+import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { EVENT } from './constants/eventNames';
 import { LOG } from './constants/logLevel';
 
@@ -62,6 +63,9 @@ export default class App {
      */
     createHandlers() {
         this.eventBus.on(EVENT.PAUSE_UPDATE_LOOP, this.updateRun);
+        this.onLoadStorageIcaoFailureHandler = this.onLoadStorageIcaoFailure.bind(this);
+        this.onLoadAirlinesAndAircraftHandler = this.onLoadAirlinesAndAircraft.bind(this);
+        this.setupChildrenHandler = this.setupChildren.bind(this);
 
         return this;
     }
@@ -76,23 +80,39 @@ export default class App {
      * @param airportLoadList {array<object>}  List of airports to load
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
+        const initialAirportIcao = initialAirportToLoad.toLowerCase();
+
+        $.getJSON(`assets/airports/${initialAirportIcao}.json`)
+            .then((response) => this.onLoadAirlinesAndAircraftHandler(airportLoadList, initialAirportIcao, response))
+            .catch((error) => this.onLoadStorageIcaoFailureHandler(airportLoadList));
+    }
+
+
+    onLoadStorageIcaoFailure(airportLoadList) {
+        $.getJSON(`assets/airports/${DEFAULT_AIRPORT_ICAO}.json`)
+            .then((defaultAirportResponse) => this.onLoadAirlinesAndAircraftHandler(airportLoadList, DEFAULT_AIRPORT_ICAO, defaultAirportResponse));
+    }
+
+
+    onLoadAirlinesAndAircraft(airportLoadList, initialAirportIcao, initialAirportResponse = null) {
+        const airlineListResponse = $.getJSON('assets/airlines/airlines.json');
+        const aircraftListResponse = $.getJSON('assets/aircraft/aircraft.json');
         // This is provides a way to get async data from several sources in the app before anything else runs
         // TODO: this is wrong. move this and make it less bad!
         $.when(
-            $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
-            $.getJSON('assets/airlines/airlines.json'),
-            $.getJSON('assets/aircraft/aircraft.json')
+            airlineListResponse,
+            aircraftListResponse
         )
-            .done((airportResponse, airlineResponse, aircraftResponse) => {
-                this.setupChildren(
+            .done((airlineResponse, aircraftResponse) => {
+                console.log('initialAirportResponse', initialAirportIcao, initialAirportResponse);
+
+                this.setupChildrenHandler(
                     airportLoadList,
-                    airportResponse[0],
+                    initialAirportIcao,
+                    initialAirportResponse,
                     airlineResponse[0].airlines,
                     aircraftResponse[0].aircraft
                 );
-            })
-            .fail((jqXHR, textStatus, errorThrown) => {
-                console.error(textStatus);
             });
 
         return this;
@@ -114,9 +134,10 @@ export default class App {
      * @param airlineList {array}             List of all Airline definitions
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         this._appController.setupChildren(
             airportLoadList,
+            initialAirportIcao,
             initialAirportData,
             airlineList,
             aircraftTypeDefinitionList

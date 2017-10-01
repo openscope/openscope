@@ -67,7 +67,7 @@ class AirportController {
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
      */
-    init(initialAirportData, airportLoadList) {
+    init(initialAirportIcao, initialAirportData, airportLoadList) {
         this._airportListToLoad = airportLoadList;
 
         for (let i = 0; i < this._airportListToLoad.length; i++) {
@@ -76,7 +76,7 @@ class AirportController {
             this.airport_load(airport);
         }
 
-        this.ready(initialAirportData);
+        this.ready(initialAirportIcao, initialAirportData);
     }
 
     /**
@@ -129,21 +129,21 @@ class AirportController {
      * @method ready
      * @param initialAirportData {object}
      */
-    ready(initialAirportData) {
-        let airportName = DEFAULT_AIRPORT_ICAO;
+    ready(initialAirportIcao, initialAirportData) {
+        // let airportName = DEFAULT_AIRPORT_ICAO;
 
-        if (
-            _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            _has(this.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
-        ) {
-            airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
-        }
+        // if (
+        //     _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
+        //     _has(this.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
+        // ) {
+        //     airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+        // }
 
-        if (airportName !== initialAirportData.icao.toLowerCase()) {
-            this.airport_set(airportName);
-        }
+        // if (airportName !== initialAirportData.icao.toLowerCase()) {
+        //     this.airport_set(airportName);
+        // }
 
-        this.airport_set(airportName, initialAirportData);
+        this.airport_set(initialAirportIcao, initialAirportData);
     }
 
     /**
