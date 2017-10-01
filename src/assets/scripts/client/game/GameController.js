@@ -73,7 +73,7 @@ class GameController {
         this.game.frequency = 1;
         this.game.time = 0;
         this.game.startTime = 0;
-        this.game.delta = 0;
+        // this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -174,7 +174,7 @@ class GameController {
         this.game.frequency = 1;
         this.game.time = 0;
         this.game.startTime = 0;
-        this.game.delta = 0;
+        // this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -457,13 +457,12 @@ class GameController {
      */
     update_pre() {
         const $htmlElement = $('html');
-        this.game.delta = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
 
         if (!this.game_paused() && $htmlElement.hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
             $htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
 
-        this.game.time += this.game.delta;
+        this.game.time = TimeKeeper.accumulatedDeltaTime;
 
         this.updateTimers();
     }
@@ -473,6 +472,8 @@ class GameController {
      * @method updateTimers
      */
     updateTimers() {
+        const currentGameTime = this.game_time();
+
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
             let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
@@ -482,7 +483,7 @@ class GameController {
             const delayInterval = timeout[3];
             const shouldRepeat = timeout[4];
 
-            if (this.game_time() > delayFireTime) {
+            if (currentGameTime > delayFireTime) {
                 callback.call(timeout[5], callbackArguments);
                 willRemoveTimerFromList = true;
 
@@ -576,6 +577,7 @@ class GameController {
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
         this.game.speedup = 1;
+        TimeKeeper.updateTimewarp(1);
     }
 
     /**

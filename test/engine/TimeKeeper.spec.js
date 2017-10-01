@@ -23,6 +23,46 @@ ava('#deltaTime returns a max value of 100', (t) => {
     t.true(TimeKeeper.deltaTime === 100);
 });
 
+ava('#accumulatedDeltaTime is the sum of each deltaTime value from instantiation to now', (t) => {
+    const deltaValues = [];
+
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    const sum = deltaValues.reduce((accumulator, item) => accumulator + item, 0);
+
+    t.true(sum === TimeKeeper.accumulatedDeltaTime);
+});
+
+ava.skip('#accumulatedDeltaTime is the sum of each deltaTime value from instantiation to now offset by timewarp', (t) => {
+    const deltaValues = [];
+
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    TimeKeeper._timewarp = 5;
+
+    TimeKeeper.update();
+    deltaValues.push(TimeKeeper.deltaTime);
+
+    const sum = deltaValues.reduce((accumulator, item) => accumulator + item, 0);
+
+    t.true(sum === TimeKeeper.accumulatedDeltaTime);
+});
+
 ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (t) => {
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(true);
 

@@ -218,7 +218,7 @@ class TimeKeeper {
 
         this._frameDeltaTime = currentTime - this._lastFrameTime;
         this._lastFrameTime = currentTime;
-        this._accumulatedDeltaTime += this._frameDeltaTime;
+        this._accumulatedDeltaTime += this.getDeltaTimeForGameStateAndTimewarp(false);
     }
 
     /**

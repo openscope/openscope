@@ -1718,6 +1718,7 @@ export default class AircraftModel {
         const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
+        // const gameTime = TimeKeeper.gameTimeMilliseconds;
         const gameTime = GameController.game.time;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = hold.timer !== invalidTimerValue;
