@@ -124,7 +124,7 @@ export default class AppController {
      * @param airlineList {array<object>}
      * @param aircraftTypeDefinitionList {array<object>}
      */
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
 
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
@@ -138,7 +138,7 @@ export default class AppController {
         // The order in which the following classes are instantiated is extremely important. Changing
         // this order could break a lot of things. This interdependency is something we should
         // work on reducing in the future.
-        AirportController.init(initialAirportData, airportLoadList);
+        AirportController.init(initialAirportIcao, initialAirportData, airportLoadList);
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
