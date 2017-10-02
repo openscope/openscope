@@ -291,6 +291,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'kpvd',
+            level: 'easy',
+            name: 'Theodore Francis Green Memorial State Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'ksdf',
             level: 'medium',
             name: 'Louisville International Airport',
