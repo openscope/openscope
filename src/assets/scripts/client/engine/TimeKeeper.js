@@ -10,6 +10,11 @@ const TIME_SECONDS_OFFSET = 0.001;
 /**
  * Singleton used to manage game time and the advancement of animation frames
  *
+ * You will notice a large number of the class properties are private with exposed getters.
+ * This is done to ensure that other classes are not able to modify the property values
+ * of this class. TimeKeeping is an integral part of the app and must be able to keep accurate,
+ * consistent time. Other classes can use these values but should never, directly, edit them.
+ *
  * @class TimeKeeper
  */
 class TimeKeeper {
@@ -74,6 +79,12 @@ class TimeKeeper {
          *
          */
         this._timewarp = 1;
+
+        /**
+         *
+         *
+         */
+        this._frameStep = 0;
     }
 
     /**
@@ -159,12 +170,23 @@ class TimeKeeper {
 
     /**
      *
+     *
      * @for TimeKeeper
      * @method setTimewarp
      * @param nextTimewarp {number}  the next value for #_timewarp
      */
     setTimewarp(nextTimewarp) {
         this._timewarp = nextTimewarp;
+    }
+
+    /**
+     *
+     *
+     * @for TimeKeeper
+     * @method shouldUpdate
+     */
+    shouldUpdate() {
+        return this._elapsedFrameCount % this._frameStep === 0;
     }
 
     /**

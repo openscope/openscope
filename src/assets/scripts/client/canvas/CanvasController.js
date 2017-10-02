@@ -450,8 +450,7 @@ export default class CanvasController {
     canvas_update_post() {
         const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
-        const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
+        const shouldUpdate = !GameController.game_paused() && TimeKeeper.shouldUpdate();
         const fading = elapsed < 1;
 
         // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
