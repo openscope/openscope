@@ -1,16 +1,3 @@
-## 5.6.0 (November 1, 2017)
----
-### New Features
-
-
-
-### Bugfixes
-
-
-
-### Enhancements & Refactors
-
-
 ## 5.5.1 (October 1, 2017)
 --
 ### Hotfix
