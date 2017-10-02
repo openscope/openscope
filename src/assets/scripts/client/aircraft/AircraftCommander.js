@@ -3,9 +3,10 @@ import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import UiController from '../UiController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
+import TimeKeeper from '../engine/TimeKeeper';
+import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
@@ -666,7 +667,7 @@ export default class AircraftCommander {
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunwayModel = runway;
-        aircraft.taxi_start = GameController.game_time();
+        aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
         runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
@@ -746,7 +747,7 @@ export default class AircraftCommander {
 
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = GameController.game_time();
+        aircraft.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 

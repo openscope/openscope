@@ -71,9 +71,7 @@ class GameController {
         this.game.focused = true;
         this.game.speedup = 1;
         this.game.frequency = 1;
-        // this.game.time = 0;
         this.game.startTime = 0;
-        // this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -172,9 +170,7 @@ class GameController {
         this.game.focused = true;
         this.game.speedup = 1;
         this.game.frequency = 1;
-        // this.game.time = 0;
         this.game.startTime = 0;
-        // this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -222,7 +218,7 @@ class GameController {
      * @method game_get_weighted_score
      */
     game_get_weighted_score() {
-        const hoursPlayed = this.game_time() / TIME.ONE_HOUR_IN_SECONDS;
+        const hoursPlayed = TimeKeeper.accumulatedDeltaTime / TIME.ONE_HOUR_IN_SECONDS;
         const scorePerHour = this.game.score / hoursPlayed;
 
         return scorePerHour;
@@ -340,17 +336,6 @@ class GameController {
     }
 
     /**
-     * @for GameController
-     * @method game_time
-     * @return {number}
-     */
-    game_time() {
-        // console.warn('.game_time() is planned to be deprecated');
-
-        return TimeKeeper.accumulatedDeltaTime;
-    }
-
-    /**
      * @deprecated
      *
      * @for GameController
@@ -382,7 +367,7 @@ class GameController {
      * @return gameTimeout
      */
     game_timeout(functionToCall, delay, that, data) {
-        const timerDelay = this.game_time() + delay;
+        const timerDelay = TimeKeeper.accumulatedDeltaTime + delay;
         const gameTimeout = [functionToCall, timerDelay, data, delay, false, that];
 
         this.game.timeouts.push(gameTimeout);
@@ -400,7 +385,7 @@ class GameController {
      * @return to
      */
     game_interval(func, delay, that, data) {
-        const to = [func, this.game_time() + delay, data, delay, true, that];
+        const to = [func, TimeKeeper.accumulatedDeltaTime + delay, data, delay, true, that];
 
         this.game.timeouts.push(to);
 
@@ -470,7 +455,7 @@ class GameController {
      * @method updateTimers
      */
     updateTimers() {
-        const currentGameTime = this.game_time();
+        const currentGameTime = TimeKeeper.accumulatedDeltaTime;
 
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
             let willRemoveTimerFromList = false;

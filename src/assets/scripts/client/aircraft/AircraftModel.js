@@ -435,7 +435,7 @@ export default class AircraftModel {
         };
 
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
-            ? GameController.game_time()
+            ? TimeKeeper.accumulatedDeltaTime
             : null;
 
         this.buildCurrentTerrainRanges();
@@ -1331,7 +1331,7 @@ export default class AircraftModel {
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
-                const elapsed = GameController.game_time() - this.taxi_start;
+                const elapsed = TimeKeeper.accumulatedDeltaTime - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
                     this.setFlightPhase(FLIGHT_PHASE.WAITING);
@@ -2017,20 +2017,28 @@ export default class AircraftModel {
         // SPEED
         this.updateSpeedPhysics();
 
+        const offsetGameTime = TimeKeeper.accumulatedDeltaTime / GameController.game_speedup();
+        // const nextHistoricalPosition = [
+        //     this.positionModel.relativePosition[0],
+        //     this.positionModel.relativePosition[1],
+        //     offsetGameTime
+        // ];
+
+        // FIXME: whats the difference here between the if and else blocks? why are we looking for a 0 length?
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.relativePositionHistory.length === 0) {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
-                GameController.game_time() / GameController.game_speedup()
+                offsetGameTime
             ]);
             // TODO: this can be abstracted
-        } else if (abs((GameController.game_time() / GameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
+        } else if (abs(offsetGameTime - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
-                GameController.game_time() / GameController.game_speedup()
+                offsetGameTime
             ]);
         }
 

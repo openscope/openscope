@@ -448,7 +448,7 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = GameController.game_time() - AirportController.airport_get().start;
+        const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
