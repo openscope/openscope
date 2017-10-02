@@ -9,11 +9,12 @@ import _isNil from 'lodash/isNil';
 import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
+import AirportController from '../airport/AirportController';
 import Fms from './FlightManagementSystem/Fms';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
-import AirportController from '../airport/AirportController';
-import GameController, { GAME_EVENTS } from '../game/GameController';
+import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import {
     radians_normalize,
@@ -1718,8 +1719,7 @@ export default class AircraftModel {
         const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
-        // const gameTime = TimeKeeper.gameTimeMilliseconds;
-        const gameTime = GameController.game.time;
+        const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = hold.timer !== invalidTimerValue;
         const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;

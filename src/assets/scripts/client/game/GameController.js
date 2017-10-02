@@ -71,7 +71,7 @@ class GameController {
         this.game.focused = true;
         this.game.speedup = 1;
         this.game.frequency = 1;
-        this.game.time = 0;
+        // this.game.time = 0;
         this.game.startTime = 0;
         // this.game.delta = 0;
         this.game.events = {};
@@ -172,7 +172,7 @@ class GameController {
         this.game.focused = true;
         this.game.speedup = 1;
         this.game.frequency = 1;
-        this.game.time = 0;
+        // this.game.time = 0;
         this.game.startTime = 0;
         // this.game.delta = 0;
         this.game.events = {};
@@ -347,7 +347,7 @@ class GameController {
     game_time() {
         // console.warn('.game_time() is planned to be deprecated');
 
-        return this.game.time;
+        return TimeKeeper.accumulatedDeltaTime;
     }
 
     /**
@@ -462,8 +462,6 @@ class GameController {
             $htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
 
-        this.game.time = TimeKeeper.accumulatedDeltaTime;
-
         this.updateTimers();
     }
 
@@ -577,7 +575,7 @@ class GameController {
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
         this.game.speedup = 1;
-        TimeKeeper.updateTimewarp(1);
+        TimeKeeper.setTimewarp(1);
     }
 
     /**
