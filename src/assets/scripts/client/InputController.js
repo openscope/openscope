@@ -710,6 +710,7 @@ export default class InputController {
                 return true;
             }
             case PARSED_COMMAND_NAME.RATE:
+                // FIXME: are we using this command? what is it supposed to do?
                 // TODO: is this if even needed?
                 if (aircraftCommandParser.args) {
                     GameController.game.frequency = aircraftCommandParser.args;

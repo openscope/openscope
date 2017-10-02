@@ -67,10 +67,8 @@ class GameController {
         // this._$fastForwardElement = null;
         // this._$scoreElement = null;
         this.game = {};
-        this.game.paused = true;
         this.game.focused = true;
         this.game.frequency = 1;
-        this.game.startTime = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -165,10 +163,9 @@ class GameController {
         // this._$fastForwardElement = null;
         // this._$scoreElement = null;
         this.game = {};
-        this.game.paused = true;
         this.game.focused = true;
+        // TODO: remove
         this.game.frequency = 1;
-        this.game.startTime = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -285,7 +282,8 @@ class GameController {
      * @method game_pause
      */
     game_pause() {
-        this.game.paused = true;
+        TimeKeeper.togglePause();
+
         const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
         $pauseToggleElement.addClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -298,7 +296,8 @@ class GameController {
      * @method game_unpause
      */
     game_unpause() {
-        this.game.paused = false;
+        TimeKeeper.togglePause();
+
         const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
         $pauseToggleElement.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -311,7 +310,7 @@ class GameController {
      * @method game_pause_toggle
      */
     game_pause_toggle() {
-        if (this.game.paused) {
+        if (TimeKeeper.isPaused) {
             this.game_unpause();
 
             return;
@@ -326,7 +325,7 @@ class GameController {
      * @return
      */
     game_paused() {
-        return !this.game.focused || this.game.paused;
+        return !this.game.focused || TimeKeeper.isPaused;
     }
 
     /**
@@ -337,7 +336,7 @@ class GameController {
      * @return {number}
      */
     game_delta() {
-        return TimeKeeper.getDeltaTimeForGameStateAndTimewarp(this.game_paused());
+        return TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
     }
 
     /**
@@ -480,7 +479,7 @@ class GameController {
      * @method complete
      */
     complete() {
-        this.game.paused = false;
+        TimeKeeper.togglePause();
     }
 
     /**

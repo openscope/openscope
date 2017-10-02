@@ -85,6 +85,12 @@ class TimeKeeper {
          *
          */
         this._frameStep = 0;
+
+        /**
+         *
+         *
+         */
+        this._isPaused = true;
     }
 
     /**
@@ -133,6 +139,14 @@ class TimeKeeper {
     /**
      *
      *
+     */
+    get isPaused() {
+        return this._isPaused;
+    }
+
+    /**
+     *
+     *
      * @property timewarp
      * @type {number}
      */
@@ -160,8 +174,8 @@ class TimeKeeper {
      *
      *
      */
-    getDeltaTimeForGameStateAndTimewarp(isPaused) {
-        if (isPaused || this.deltaTime >= 1 && this._timewarp === 1) {
+    getDeltaTimeForGameStateAndTimewarp() {
+        if (this.isPaused || this.deltaTime >= 1 && this._timewarp === 1) {
             return 0;
         }
 
@@ -187,6 +201,14 @@ class TimeKeeper {
      */
     shouldUpdate() {
         return this._elapsedFrameCount % this._frameStep === 0;
+    }
+
+    /**
+     *
+     *
+     */
+    togglePause() {
+        this._isPaused = !this._isPaused;
     }
 
     /**
@@ -240,7 +262,7 @@ class TimeKeeper {
 
         this._frameDeltaTime = currentTime - this._lastFrameTime;
         this._lastFrameTime = currentTime;
-        this._accumulatedDeltaTime += this.getDeltaTimeForGameStateAndTimewarp(false);
+        this._accumulatedDeltaTime += this.getDeltaTimeForGameStateAndTimewarp();
     }
 
     /**
