@@ -91,6 +91,12 @@ class TimeKeeper {
          *
          */
         this._isPaused = true;
+
+        /**
+         *
+         *
+         */
+        this._futureTrackDeltaTimeCache = -1;
     }
 
     /**
@@ -175,7 +181,8 @@ class TimeKeeper {
      *
      */
     getDeltaTimeForGameStateAndTimewarp() {
-        if (this.isPaused || this.deltaTime >= 1 && this._timewarp === 1) {
+        // FIXME: ick!
+        if (this.isPaused || this.deltaTime >= 1 && this._timewarp === 1 && this._futureTrackDeltaTimeCache === -1) {
             return 0;
         }
 
@@ -186,11 +193,29 @@ class TimeKeeper {
      *
      *
      * @for TimeKeeper
-     * @method setTimewarp
+     * @method updateTimewarp
      * @param nextTimewarp {number}  the next value for #_timewarp
      */
-    setTimewarp(nextTimewarp) {
+    updateTimewarp(nextTimewarp) {
         this._timewarp = nextTimewarp;
+    }
+
+    /**
+     *
+     *
+     */
+    setDeltaTimeBeforeFutureTrackCalculation() {
+        this._futureTrackDeltaTimeCache = this._frameDeltaTime;
+        this._frameDeltaTime = 5;
+    }
+
+    /**
+     *
+     *
+     */
+    setDeltaTimeAfterFutureTrackCalculation() {
+        this._frameDeltaTime = this._futureTrackDeltaTimeCache;
+        this._futureTrackDeltaTimeCache = -1;
     }
 
     /**
@@ -221,6 +246,10 @@ class TimeKeeper {
      * @method update
      */
     update() {
+        if (this._futureTrackDeltaTimeCache !== -1) {
+            return;
+        }
+
         const currentTime = this.gameTime;
 
         this._incrementFrame();

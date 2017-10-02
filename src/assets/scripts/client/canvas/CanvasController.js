@@ -1171,13 +1171,14 @@ export default class CanvasController {
     canvas_draw_future_track(cc, aircraft) {
         let was_locked = false;
         const future_track = [];
-        const save_delta = GameController.game.delta;
+        // const save_delta = GameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.projected = true;
-        GameController.game.delta = 5;
+        // GameController.game.delta = 5;
+        TimeKeeper.setDeltaTimeBeforeFutureTrackCalculation();
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1191,7 +1192,8 @@ export default class CanvasController {
             }
         }
 
-        GameController.game.delta = save_delta;
+        // GameController.game.delta = save_delta;
+        TimeKeeper.setDeltaTimeAfterFutureTrackCalculation();
 
         cc.save();
 

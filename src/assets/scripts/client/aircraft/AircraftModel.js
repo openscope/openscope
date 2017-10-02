@@ -2001,7 +2001,7 @@ export default class AircraftModel {
 
         if (this.hit) {
             // 90fps fall rate?...
-            this.altitude -= 90 * GameController.game_delta();
+            this.altitude -= 90 * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
             this.speed *= 0.99;
 
             return;
@@ -2068,7 +2068,7 @@ export default class AircraftModel {
             return;
         }
 
-        const secondsElapsed = GameController.game_delta();
+        const secondsElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
@@ -2126,7 +2126,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetDescended = feetPerSecond * GameController.game_delta();
+        const feetDescended = feetPerSecond * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
 
         if (abs(altitude_diff) < feetDescended) {
             this.altitude = this.target.altitude;
@@ -2152,8 +2152,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetClimbed = feetPerSecond * GameController.game_delta();
-
+        const feetClimbed = feetPerSecond * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
 
         if (abs(altitude_diff) < abs(feetClimbed)) {
             this.altitude = this.target.altitude;
@@ -2179,13 +2178,13 @@ export default class AircraftModel {
         }
 
         if (this.speed > this.target.speed) {
-            speedChange = -this.model.rate.decelerate * GameController.game_delta() / 2;
+            speedChange = -this.model.rate.decelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
 
             if (this.isOnGround()) {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * GameController.game_delta() / 2;
+            speedChange  = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
@@ -2226,7 +2225,7 @@ export default class AircraftModel {
         const groundSpeed = vlen(flightPathVector);
 
         // Calculate new position
-        const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
         const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
@@ -2251,7 +2250,7 @@ export default class AircraftModel {
         //     // TODO: this should be abstracted to a helper function
         //     vector = vadd(vscale(
         //         vturn(wind.angle + Math.PI),
-        //         wind.speed * 0.000514444 * GameController.game_delta()),
+        //         wind.speed * 0.000514444 * TimeKeeper.getDeltaTimeForGameStateAndTimewarp()),
         //         vscale(vturn(angle + crab_angle), trueAirSpeed)
         //     );
         // }
@@ -2267,7 +2266,7 @@ export default class AircraftModel {
      * @deprecated
      */
     updateSimpleGroundSpeedPhysics() {
-        // const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        // const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
         // const distanceTraveled_nm = this.speed * hoursElapsed;
         //
         // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);

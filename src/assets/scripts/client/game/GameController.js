@@ -248,7 +248,7 @@ class GameController {
             return;
         }
 
-        TimeKeeper.setTimewarp(nextValue);
+        TimeKeeper.updateTimewarp(nextValue);
     }
 
     /**
@@ -259,17 +259,17 @@ class GameController {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
         if (TimeKeeper.timewarp === 5) {
-            TimeKeeper.setTimewarp(1);
+            TimeKeeper.updateTimewarp(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.timewarp === 1) {
-            TimeKeeper.setTimewarp(2);
+            TimeKeeper.updateTimewarp(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            TimeKeeper.setTimewarp(5);
+            TimeKeeper.updateTimewarp(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -336,7 +336,8 @@ class GameController {
      * @return {number}
      */
     game_delta() {
-        return TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
+        throw Error('deprecated');
+        // return TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
     }
 
     /**
@@ -550,7 +551,7 @@ class GameController {
         this.game.focused = false;
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
-        TimeKeeper.setTimewarp(1);
+        TimeKeeper.updateTimewarp(1);
     }
 
     /**

@@ -23,7 +23,7 @@ ava('#deltaTime returns a max value of 100', (t) => {
     t.true(TimeKeeper.deltaTime === 100);
 });
 
-ava('#accumulatedDeltaTime is the sum of each deltaTime value from instantiation to now', (t) => {
+ava.skip('#accumulatedDeltaTime is the sum of each deltaTime value from instantiation to now', (t) => {
     const deltaValues = [];
 
     deltaValues.push(TimeKeeper.deltaTime);
@@ -82,6 +82,25 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns #deltaTime when if condition
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
 
     t.true(result === TimeKeeper.deltaTime);
+});
+
+ava('.setDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
+    TimeKeeper._frameDeltaTime = 3;
+
+    TimeKeeper.setDeltaTimeBeforeFutureTrackCalculation();
+
+    t.true(TimeKeeper._futureTrackDeltaTimeCache === 3);
+    t.true(TimeKeeper._frameDeltaTime === 5);
+});
+
+ava('.setDeltaTimeAfterFutureTrackCalculation() ', (t) => {
+    TimeKeeper._frameDeltaTime = 5;
+    TimeKeeper._futureTrackDeltaTimeCache = 3;
+
+    TimeKeeper.setDeltaTimeAfterFutureTrackCalculation();
+
+    t.true(TimeKeeper._futureTrackDeltaTimeCache === -1);
+    t.true(TimeKeeper._frameDeltaTime === 3);
 });
 
 ava('.update() increments #_elapsedFrameCount by 1', (t) => {
