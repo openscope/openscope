@@ -69,7 +69,6 @@ class GameController {
         this.game = {};
         this.game.paused = true;
         this.game.focused = true;
-        this.game.speedup = 1;
         this.game.frequency = 1;
         this.game.startTime = 0;
         this.game.events = {};
@@ -168,7 +167,6 @@ class GameController {
         this.game = {};
         this.game.paused = true;
         this.game.focused = true;
-        this.game.speedup = 1;
         this.game.frequency = 1;
         this.game.startTime = 0;
         this.game.events = {};
@@ -253,7 +251,6 @@ class GameController {
             return;
         }
 
-        this.game.speedup = nextValue;
         TimeKeeper.setTimewarp(nextValue);
     }
 
@@ -264,20 +261,17 @@ class GameController {
     game_timewarp_toggle() {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
-        if (this.game.speedup === 5) {
-            this.game.speedup = 1;
+        if (TimeKeeper.timewarp === 5) {
             TimeKeeper.setTimewarp(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
-        } else if (this.game.speedup === 1) {
-            this.game.speedup = 2;
+        } else if (TimeKeeper.timewarp === 1) {
             TimeKeeper.setTimewarp(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            this.game.speedup = 5;
             TimeKeeper.setTimewarp(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
@@ -352,9 +346,7 @@ class GameController {
      * @return
      */
     game_speedup() {
-        // console.warn('.game_speedup() is planned to be deprecated');
-
-        return !this.game_paused() ? this.game.speedup : 0;
+        return !this.game_paused() ? TimeKeeper.timewarp : 0;
     }
 
     /**
@@ -559,7 +551,6 @@ class GameController {
         this.game.focused = false;
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
-        this.game.speedup = 1;
         TimeKeeper.setTimewarp(1);
     }
 
