@@ -57,11 +57,11 @@ export default class AppController {
         this.canvasController = null;
 
         return this._init()
+            .setupHandlers()
             .enable();
     }
 
     /**
-     *
      * @for AppController
      * @method _init
      * @chainable
@@ -72,12 +72,25 @@ export default class AppController {
     }
 
     /**
+     * Create and bind handler methods
+     *
+     * @for AppController
+     * @method setupHandlers
+     * @chainable
+     */
+    setupHandlers() {
+        this.onAirportChangeHandler = this.onAirportChange.bind(this);
+
+        return this;
+    }
+
+    /**
      * @for AppController
      * @method enable
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
 
         return this;
     }
@@ -88,9 +101,9 @@ export default class AppController {
      * @chainable
      */
     disable() {
-        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChange);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
 
-        return this;
+        return this.destroy();
     }
 
     /**
@@ -115,16 +128,20 @@ export default class AppController {
     }
 
     /**
+     * Create child instances and initialize singletons.
      *
+     * Called from `App.setupChildren()` only after all the required data has been retrieved
+     * This method will be called
      *
      * @for AppController
      * @method setupChildren
      * @param airportLoadList {array<object>}
+     * @param initialAirportIcao {string}
      * @param initialAirportData {object}
      * @param airlineList {array<object>}
      * @param aircraftTypeDefinitionList {array<object>}
      */
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+    setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
 
         // TODO: this entire method needs to be re-written. this is a temporary implemenation used to
@@ -138,7 +155,7 @@ export default class AppController {
         // The order in which the following classes are instantiated is extremely important. Changing
         // this order could break a lot of things. This interdependency is something we should
         // work on reducing in the future.
-        AirportController.init(initialAirportData, airportLoadList);
+        AirportController.init(initialAirportIcao, initialAirportData, airportLoadList);
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
@@ -237,7 +254,7 @@ export default class AppController {
 
 
     /**
-     * onChange callback fired from within the `AirportModel` when an airport is changed.
+     * `onChange` callback fired from within the `AirportModel` when an airport is changed.
      *
      * When an airport changes various classes need to clear and reset internal properties for
      * the new airport. this callback provides a way to orchestrate all that and send the classes

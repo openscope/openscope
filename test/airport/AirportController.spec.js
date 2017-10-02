@@ -10,5 +10,5 @@ ava('throws when called to instantiate', (t) => {
 });
 
 ava('does not throw when .init() is called with initialization props', (t) => {
-    t.notThrows(() => AirportController.init(AIRPORT_JSON_KLAS_MOCK, AIRPORT_LOAD_LIST_MOCK));
+    t.notThrows(() => AirportController.init('klas', AIRPORT_JSON_KLAS_MOCK, AIRPORT_LOAD_LIST_MOCK));
 });
