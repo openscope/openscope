@@ -9,7 +9,7 @@
 
 
 ### Enhancements & Refactors
-
+- Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
 
 
 ## 5.5.1 (October 1, 2017)
