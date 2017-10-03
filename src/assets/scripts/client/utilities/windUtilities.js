@@ -1,6 +1,6 @@
 import { getNormalDistributedNumber } from '../math/core';
 
-export default getNewWind = (data) => {
+export const getNewWind = (data) => {
     const speed = getNormalDistributedNumber(data.speed);
     const initialAngle = getNormalDistributedNumber(data.angle);
     let newAngle = initialAngle;
