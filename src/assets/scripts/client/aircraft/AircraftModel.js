@@ -448,13 +448,17 @@ export default class AircraftModel {
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            let bottomAltitude = this.fms.getBottomAltitude();
+            const bottomAltitude = this.fms.getBottomAltitude();
+            const airportModel = AirportController.airport_get();
+            const airspaceCeiling = airportModel.maxAssignableAltitude;
 
-            if (bottomAltitude === Infinity) {
-                bottomAltitude = this.altitude;
-            }
-
-            this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
+            this.mcp.initializeForAirborneFlight(
+                bottomAltitude,
+                airspaceCeiling,
+                this.altitude,
+                this.heading,
+                this.speed
+            );
         }
     }
 
