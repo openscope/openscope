@@ -14,7 +14,7 @@ import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { getNewWind } from '../utilities/windUtilities';
+import { calculateNextWind } from '../utilities/windUtilities';
 import { round } from '../math/core';
 import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
@@ -521,10 +521,10 @@ export default class AirportModel {
             return;
         }
 
-        const newWind = getNewWind(currentWind);
+        const nextWind = calculateNextWind(currentWind);
 
-        this.wind.speed = newWind.speed;
-        this.wind.angle = degreesToRadians(newWind.angle);
+        this.wind.speed = nextWind.speed;
+        this.wind.angle = degreesToRadians(nextWind.angle);
     }
 
     /**
@@ -637,7 +637,8 @@ export default class AirportModel {
      * @method updateRunway
      */
     updateRunway() {
-        const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
+        const currentWind = this.wind;
+        const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(currentWind);
 
         this.setArrivalRunway(bestRunwayForWind);
         this.setDepartureRunway(bestRunwayForWind);

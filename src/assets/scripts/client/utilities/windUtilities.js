@@ -1,18 +1,18 @@
-import { getNormalDistributedNumber } from '../math/core';
+import { calculateNormalDistributedNumber } from '../math/core';
 
-export const getNewWind = (data) => {
+export const calculateNextWind = (data) => {
     const speed = getNormalDistributedNumber(data.speed);
     const initialAngle = getNormalDistributedNumber(data.angle);
-    let newAngle = initialAngle;
+    let nextAngle = initialAngle;
 
     if(initialAngle > 360) {
-        newAngle = initialAngle - 360;
+        nextAngle = initialAngle - 360;
     }
 
-    const newWind = {
+    const nextWind = {
         speed: speed,
-        angle: newAngle
+        angle: nextAngle
     };
     
-    return newWind;
+    return nextWind;
 };

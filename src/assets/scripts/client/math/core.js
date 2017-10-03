@@ -240,14 +240,20 @@ export const generateRandomOctalWithLength = (length = 1) => {
 
 /**
  * Generates a random number, on an (approximate) bell curve.
- * AKA - Normal Distribution, Gaussian Distribution
+ * AKA - Normal Distribution, Gaussian Distribution.
  * 
- * @function getNormalDistributedNumber
- * @param average
- * @return {number}
+ * Note the maximum number it can produce is 6 times the `average` parameter,
+ * and it cannot produce negative numbers. Use _clamp if 6 * average is too high.
+ * 
+ * @function calcutateNormalDistributedNumber
+ * @param average {Number}
+ * @return {Number}
  */
-export const getNormalDistributedNumber = (average) => {
+export function calculateNormalDistributedNumber(average) {
+    // This gets the average of six (psuedo)random numbers, which makes it a rough bell curve.
+    // This means that the average would be around 0.5, so we only divide by three instead of six (making the average about 1).
     const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) / 3);
 
+    // initialNumber averages 1, so we multiply by the desired average.
     return initialNumber * average;
 }
