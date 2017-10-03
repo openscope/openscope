@@ -247,7 +247,7 @@ export const generateRandomOctalWithLength = (length = 1) => {
  * @return {number}
  */
 export const getNormalDistributedNumber = (average) => {
-    const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) % 6);
+    const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) / 3);
 
-    return initialNumber * average * 2;
+    return initialNumber * average;
 }
