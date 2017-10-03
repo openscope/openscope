@@ -988,11 +988,7 @@ export default class CanvasController {
      */
     canvas_draw_radar_target(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
-        let match = false;
-
-        if (prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign)) {
-            match = true;
-        }
+        const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
 
         if (!aircraftModel.isVisible()) {
             return;
@@ -1052,13 +1048,11 @@ export default class CanvasController {
             cc.restore();
         }
 
-        // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
-        // Aircraft
         // Draw the future path
-        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always' ||
-          (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' &&
-           ((aircraftModel.warning || match) && !aircraftModel.isTaxiing()))
-        ) {
+        // breaking project convention here with an if/else simply for readability
+        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') {
+            this.canvas_draw_future_track(cc, aircraftModel);
+        } else if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' && aircraftModel.warning || match) {
             this.canvas_draw_future_track(cc, aircraftModel);
         }
 
@@ -1169,15 +1163,17 @@ export default class CanvasController {
      * @param aircraft {AircraftModel
      */
     canvas_draw_future_track(cc, aircraft) {
+        if (aircraft.isTaxiing() || TimeKeeper.timewarp !== 1) {
+            return;
+        }
+
         let was_locked = false;
         const future_track = [];
-        // const save_delta = GameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.projected = true;
-        // GameController.game.delta = 5;
         TimeKeeper.setDeltaTimeBeforeFutureTrackCalculation();
 
         for (let i = 0; i < 60; i++) {
@@ -1192,7 +1188,6 @@ export default class CanvasController {
             }
         }
 
-        // GameController.game.delta = save_delta;
         TimeKeeper.setDeltaTimeAfterFutureTrackCalculation();
 
         cc.save();
@@ -1258,6 +1253,7 @@ export default class CanvasController {
 
         for (let i = 0; i < radarTargetModels.length; i++) {
             cc.save();
+
             this.canvas_draw_radar_target(cc, radarTargetModels[i]);
 
             cc.restore();
