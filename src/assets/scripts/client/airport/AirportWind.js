@@ -4,7 +4,7 @@ import { calculateNextWind } from '../utilities/windUtilities';
 /**
  * Mutable array that holds the information on the airport's current wind.
  */
-export const airportWind = {
+export let airportWind = {
    speed: 10,
    angle: 0
 };
