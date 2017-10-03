@@ -707,11 +707,9 @@ export default class InputController {
 
                 return true;
             }
+            // TODO: this will be removed entirely, eventually.
             case PARSED_COMMAND_NAME.RATE:
-                // TODO: is this if even needed?
-                if (aircraftCommandParser.args) {
-                    GameController.game.frequency = aircraftCommandParser.args;
-                }
+                UiController.ui_log('this command has been deprecated', true);
 
                 return true;
             default:
