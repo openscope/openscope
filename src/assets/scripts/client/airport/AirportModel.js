@@ -8,13 +8,13 @@ import _map from 'lodash/map';
 import AirportController from './AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import WindController from '../weather/WindController';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
+import { getNewWind } from '../utilities/windUtilities';
 import { round } from '../math/core';
 import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
@@ -521,8 +521,10 @@ export default class AirportModel {
             return;
         }
 
-        this.wind.speed = WindController.updateWindSpeed(currentWind.speed);
-        this.wind.angle = degreesToRadians(WindController.updateWindAngle(currentWind.angle));
+        const newWind = getNewWind(currentWind);
+
+        this.wind.speed = newWind.speed;
+        this.wind.angle = degreesToRadians(newWind.angle);
     }
 
     /**
