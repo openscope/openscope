@@ -236,4 +236,18 @@ export const generateRandomOctalWithLength = (length = 1) => {
     }
 
     return leftPad(value.join(''), length);
+};
+
+/**
+ * Generates a random number, on an (approximate) bell curve.
+ * AKA - Normal Distribution, Gaussian Distribution
+ * 
+ * @function getNormalDistributedNumber
+ * @param average
+ * @return {number}
+ */
+export const getNormalDistributedNumber = (average) => {
+    const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) % 6);
+
+    return initialNumber * average * 2;
 }

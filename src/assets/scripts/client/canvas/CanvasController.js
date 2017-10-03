@@ -448,10 +448,12 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = GameController.game_time() - AirportController.airport_get().start;
+        const airport = AirportController.airport_get();
+        const elapsed = GameController.game_time() - airport.start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
+        const shouldUpdateWind = !GameController.game_paused() && TimeKeeper.frames % 50 === 1;
         const fading = elapsed < 1;
 
         // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
@@ -459,6 +461,11 @@ export default class CanvasController {
         //     this is where we update static drawings like terrain, airspace, video map, etc
         //     updates that happen here should be infrequent because they are considered expensive
         // }
+
+        // We want to update the wind before it's drawn.
+        if (shouldUpdateWind) {
+            airport.updateCurrentWind(airport.getWind());
+        }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.STATIC);

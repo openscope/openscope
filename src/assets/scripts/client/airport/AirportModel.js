@@ -8,6 +8,7 @@ import _map from 'lodash/map';
 import AirportController from './AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import WindController from '../weather/WindController';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayCollection from './runway/RunwayCollection';
@@ -520,8 +521,8 @@ export default class AirportModel {
             return;
         }
 
-        this.wind.speed = currentWind.speed;
-        this.wind.angle = degreesToRadians(currentWind.angle);
+        this.wind.speed = WindController.updateWindSpeed(currentWind.speed);
+        this.wind.angle = degreesToRadians(WindController.updateWindAngle(currentWind.angle));
     }
 
     /**
@@ -553,19 +554,6 @@ export default class AirportModel {
      */
     getWind = () => {
         return this.wind;
-
-        // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        // const wind = Object.assign({}, this.wind);
-        // let s = 1;
-        // const angle_factor = sin((s + GameController.game_time()) * 0.5) + sin((s + GameController.game_time()) * 2);
-        // // TODO: why is this var getting reassigned to a magic number?
-        // s = 100;
-        // const speed_factor = sin((s + GameController.game_time()) * 0.5) + sin((s + GameController.game_time()) * 2);
-        // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
-        //
-        // return wind;
     };
 
     /**
@@ -642,26 +630,16 @@ export default class AirportModel {
         return this._runwayCollection.getRunwayRelationshipForRunwayNames(primaryRunwayName, comparatorRunwayName);
     }
 
-    // TODO: Implement changing winds, then bring this method back to life
     /**
      * @for AirportModel
      * @method updateRunway
      */
     updateRunway() {
-        // const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
-        //
-        // this.setArrivalRunway(bestRunwayForWind);
-        // this.setDepartureRunway(bestRunwayForWind);
-    }
+        const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(this.getWind);
 
-    // TODO: leaving this here for when we implement variable winds
-    // /**
-    //  * @for AirportModel
-    //  * @method setRunwayTimeout
-    //  */
-    // setRunwayTimeout() {
-    //     this.timeout.runway = GameController.game_timeout(this.updateRunway, Math.random() * 30, this);
-    // }
+        this.setArrivalRunway(bestRunwayForWind);
+        this.setDepartureRunway(bestRunwayForWind);
+    }
 
     /**
      * Return a `RunwayModel` for the provided name
