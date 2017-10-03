@@ -6,6 +6,7 @@ import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
+import AirportWind from './AirportWind';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import AirspaceModel from './AirspaceModel';
@@ -14,7 +15,6 @@ import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { calculateNextWind } from '../utilities/windUtilities';
 import { round } from '../math/core';
 import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
@@ -377,7 +377,7 @@ export default class AirportModel {
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
-        this.updateCurrentWind(data.wind);
+        AirportWind.setStaticWind(data.wind);
     }
 
     /**
@@ -636,8 +636,8 @@ export default class AirportModel {
      * @for AirportModel
      * @method updateRunway
      */
-    updateRunway() {
-        const currentWind = this.wind;
+    updateRunway(nextWind) {
+        const currentWind = nextWind;
         const bestRunwayForWind = this._runwayCollection.findBestRunwayForWind(currentWind);
 
         this.setArrivalRunway(bestRunwayForWind);
