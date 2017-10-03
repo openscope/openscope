@@ -87,19 +87,15 @@
             "icao": "BOOCK2",
             "name": "Boock Two",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250"], "GUCER"],
-                "4":  ["MCNAB"],
-                "15": ["LEAVY", ["FIMBI", "S230"], "MCNAB"],
-                "19": [["FIMBI", "S230"], "MCNAB"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250"], "GUCER"]
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"],
+                "4":  ["#070", "MCNAB"],
+                "15": ["LEAVY", ["FIMBI", "S230-"], "MCNAB"],
+                "19": [["FIMBI", "S230-"], "MCNAB"],
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"]
             },
-            "body": [
-                ["BOOCK"]
-            ],
+            "body": ["BOOCK"],
             "exitPoints": {
-                "COLIN": [
-                    "COLIN"
-                ]
+                "COLIN": ["COLIN"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "GUCER", "BOOCK"],
@@ -108,23 +104,17 @@
         },
         "CLTCH1": {
             "icao": "CLTCH1",
-            "name": "Cltch One",
+            "name": "Clutch One",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"],
                 "15": ["CAPVC", "GAITE", "DMKRT"],
                 "19": ["CAPVC", "GAITE", "DMKRT"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"]
             },
-            "body": [
-                ["BUTRZ", "CLTCH"]
-            ],
+            "body": ["BUTRZ", "CLTCH"],
             "exitPoints": {
-                "MAULS": [
-                    "KERRK", "MAULS"
-                ],
-                "FLASK": [
-                    "KERRK", "TEEMS", "FLASK"
-                ]
+                "MAULS": ["KERRK", "MAULS"],
+                "FLASK": ["KERRK", "TEEMS", "FLASK"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL", "BUTRZ"],
@@ -136,22 +126,18 @@
             "icao": "DOCTR3",
             "name": "Doctor Three",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S220"], "RIISE"],
-                "4":  ["RIISE"],
-                "15": ["LEAVY", ["FIMBI", "S230"], "MOTBE", "GDYUP", "HMBGR"],
-                "19": [["FIMBI", "S230"], "MOTBE", "GDYUP", "HMBGR"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S220"], "RIISE"]
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"],
+                "4":  ["#070", "RIISE"],
+                "15": ["LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
+                "19": [["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"]
             },
             "body": [
                 ["DOCTR"]
             ],
             "exitPoints": {
-                "DQO": [
-                    "DQO"
-                ],
-                "AGARD": [
-                    "AGARD"
-                ]
+                "DQO": ["DQO"],
+                "AGARD": ["AGARD"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "RIISE", "DOCTR"],
@@ -163,21 +149,17 @@
             "icao": "HORTO2",
             "name": "Horto Two",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "MELOE"],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
                 "15": ["CAPVC", "GAITE", "LBOLT", "RLLLL"],
                 "19": ["CAPVC", "GAITE", "LBOLT", "RLLLL"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "MELOE"]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
             },
             "body": [
                 ["HORTO"]
             ],
             "exitPoints": {
-                "BUFFR": [
-                    "BUFFR"
-                ],
-                "JERES": [
-                    "JERES"
-                ]
+                "BUFFR": ["BUFFR"],
+                "JERES": ["JERES"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "HORTO"],
@@ -187,23 +169,19 @@
         },
         "JDUBB1": {
             "icao": "JDUBB1",
-            "name": "Jdubb One",
+            "name": "Jaydubb One",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250"]],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
                 "15": ["CAPVC", "GAITE", "DMKRT"],
                 "19": ["CAPVC", "GAITE", "DMKRT"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250"]]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]]
             },
             "body": [
                 ["HAFNR", "JDUBB"]
             ],
             "exitPoints": {
-                "GSO": [
-                    "TYPNZ", "SCORN", "RRSIN", "GSO"
-                ],
-                "SBV": [
-                    "CASLY", "MELTN", "SBV"
-                ]
+                "GSO": ["TYPNZ", "SCORN", "RRSIN", "GSO"],
+                "SBV": ["CASLY", "MELTN", "SBV"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "HAFNR"],
@@ -211,22 +189,93 @@
                 ["JDUBB", "CASLY", "MELTN", "SBV*"]
             ]
         },
+        "NATNL7": {
+            "icao": "NATNL7",
+            "name": "National Seven",
+            "rwy": {
+                "1": ["#328"],
+                "4": ["#070"],
+                "15": ["#185"],
+                "19": ["#185"],
+                "22": ["#185"],
+                "33": ["#328"]
+            },
+            "body": [],
+            "exitPoints": {
+                "AGARD": ["AGARD"],
+                "AML": ["AML"],
+                "BOOCK": ["BOOCK"],
+                "BUFFR": ["BUFFR"],
+                "CLTCH": ["CLTCH"],
+                "COLIN": ["COLIN"],
+                "CSN": ["CSN"],
+                "DAILY": ["DAILY"],
+                "DOCTR": ["DOCTR"],
+                "EMI": ["EMI"],
+                "FLUKY": ["FLUKY"],
+                "GINYA": ["GINYA"],
+                "GVE": ["GVE"],
+                "HAFNR": ["HAFNR"],
+                "HORTO": ["HORTO"],
+                "JDUBB": ["JDUBB"],
+                "JERES": ["JERES"],
+                "LDN": ["LDN"],
+                "MCRAY": ["MCRAY"],
+                "MOL": ["MOL"],
+                "OTTTO": ["OTTTO"],
+                "PALEO": ["PALEO"],
+                "PAUKI": ["PAUKI"],
+                "RAMAY": ["RAMAY"],
+                "SCRAM": ["SCRAM"],
+                "SOOKI": ["SOOKI"],
+                "SWANN": ["SWANN"],
+                "WOOLY": ["WOOLY"]
+            },
+            "draw": [
+                ["DCA", "AGARD*"],
+                ["DCA", "AML*"],
+                ["DCA", "BOOCK*"],
+                ["DCA", "BUFFR*"],
+                ["DCA", "CLTCH*"],
+                ["DCA", "COLIN*"],
+                ["DCA", "CSN*"],
+                ["DCA", "DAILY*"],
+                ["DCA", "DOCTR*"],
+                ["DCA", "EMI*"],
+                ["DCA", "FLUKY*"],
+                ["DCA", "GINYA*"],
+                ["DCA", "GVE*"],
+                ["DCA", "HAFNR*"],
+                ["DCA", "HORTO*"],
+                ["DCA", "JDUBB*"],
+                ["DCA", "JERES*"],
+                ["DCA", "LDN*"],
+                ["DCA", "MCRAY*"],
+                ["DCA", "MOL*"],
+                ["DCA", "OTTTO*"],
+                ["DCA", "PALEO*"],
+                ["DCA", "PAUKI*"],
+                ["DCA", "RAMAY*"],
+                ["DCA", "SCRAM*"],
+                ["DCA", "SOOKI*"],
+                ["DCA", "SWANN*"],
+                ["DCA", "WOOLY*"]
+            ]
+        },
         "REBLL3": {
             "icao": "REBLL3",
-            "name": "Rebll Three",
+            "name": "Rebel Three",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"],
                 "15": ["CAPVC", "GAITE", "LBOLT", "TEZER"],
                 "19": ["CAPVC", "GAITE", "LBOLT", "TEZER"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"]
             },
             "body": [
                 ["REBLL"]
             ],
             "exitPoints": {
-                "OTTTO": [
-                    "OTTTO"
-                ]
+                "OTTTO": ["OTTTO"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"],
@@ -237,18 +286,16 @@
             "icao": "SCRAM3",
             "name": "Scram Three",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI"],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"],
                 "15": ["CAPVC", "GAITE", "DMKRT"],
                 "19": ["CAPVC", "GAITE", "DMKRT"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "CUKLI"]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"]
             },
             "body": [
                 ["POOCH", "SCRAM"]
             ],
             "exitPoints": {
-                "LYH": [
-                    "DANOO", "WALCE", "GLANC", "LYH"
-                ]
+                "LYH": ["DANOO", "WALCE", "GLANC", "LYH"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "POOCH"],
@@ -259,19 +306,17 @@
             "icao": "SOOKI3",
             "name": "Sooki Three",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S220"], "PHERB"],
-                "4":  ["PHERB"],
-                "15": ["LEAVY", ["FIMBI", "S230"], "MOTBE", "GDYUP", "RIISE"],
-                "19": [["FIMBI", "S230"], "MOTBE", "GDYUP", "RIISE"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S220"], "PHERB"]
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"],
+                "4":  ["#070", "PHERB"],
+                "15": ["LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
+                "19": [["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"]
             },
             "body": [
                 ["SOOKI"]
             ],
             "exitPoints": {
-                "SWANN": [
-                    "SWANN"
-                ]
+                "SWANN": ["SWANN"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "PHERB", "SOOKI"],
@@ -280,20 +325,18 @@
         },
         "WYNGS3": {
             "icao": "WYNGS3",
-            "name": "Wyngs Three",
+            "name": "Wings Three",
             "rwy": {
-                "1":  [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "MELOE"],
+                "1":  [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
                 "15": ["CAPVC", "GAITE", "LBOLT", "GINYA"],
                 "19": ["CAPVC", "GAITE", "LBOLT", "GINYA"],
-                "33": [["ADAXE", "S220"], "BEBLE", "COVTO", "FERGI", "MELOE"]
+                "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
             },
             "body": [
                 ["WYNGS"]
             ],
             "exitPoints": {
-                "RAMAY": [
-                    "RAMAY"
-                ]
+                "RAMAY": ["RAMAY"]
             },
             "draw": [
                 ["ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "WYNGS"],
@@ -302,19 +345,72 @@
         }
     },
     "stars": {
-        "xx": {
-            "icao": "xx",
-            "name": "xx",
+        "CAPSS2": {
+            "icao": "CAPSS2",
+            "name": "Caps Two",
             "entryPoints": {
-                "xx": [
-                    "xx"
-                ]
+                "THHMP": ["THHMP"],
+                "WAVES": [["WAVES", "A220-|A210+|S280"], ["KSETT", "A170+"], ["ELAPP", "A200-|A140+|S280"]]
             },
-            "body": [
-
-            ],
+            "body": [["BULII", "A160-|A130+"], ["CAPSS", "A130-|A100+"]],
             "rwy": {
+                "01": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"],
+                "04": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"],
+                "15": [["FLIPZ", "A110-|S280"], ["MOEJO", "A100|S250"], "JILES", ["SMOOT", "A70+"], ["BAAAM", "A60"], "^PACKE", "#325"],
+                "19": [["FLIPZ", "A110-|S280"], ["MOEJO", "A100|S250"], "JILES", ["SMOOT", "A70+"], ["BAAAM", "A60"], "^PACKE", "#325"],
+                "22": [["FLIPZ", "A110-|S280"], ["MOEJO", "A100|S250"], "JILES", ["SMOOT", "A70+"], ["BAAAM", "A60"], "^PACKE", "#325"],
+                "33": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"]
+            },
+            "draw": [
 
+            ]
+        },
+        "CLIPR1": {
+            "icao": "CLIPR1",
+            "name": "Clipper One",
+            "entryPoints": {
+                "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", ["TRISH", "A120"]]
+            },
+            "body": ["CLIPR", ["BAL", "A100|S250"], "EYESS"],
+            "rwy": {
+                "01": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#185"],
+                "19": ["EDDWD", "MEGGS", "^NAYES", "#325"]
+            },
+            "draw": [
+
+            ]
+        },
+        "DEALE2": {
+            "icao": "DEALE2",
+            "name": "Deal Two",
+            "entryPoints": {
+                "LAFLN": ["LAFLN"],
+                "RIDGY": ["RIDGY"]
+            },
+            "body": [["BILIT", "A110"], ["DEALE", "A100|S280"]],
+            "rwy": {
+                "01": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"],
+                "04": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"],
+                "15": ["EDDGY", "THANE", "MEGGS"],
+                "19": ["EDDGY", "THANE", "MEGGS"],
+                "22": ["EDDGY", "THANE", "MEGGS"],
+                "33": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"]
+            },
+            "draw": [
+
+            ]
+        },
+        "FRDMM3": {
+            "icao": "FRDMM3",
+            "name": "Freedom Three",
+            "entryPoints": {
+                "BUCKO": [["BUCKO", "A310"], ["DRRON", "A310-|A270+"], ["HONNR", "A280-|A240+|S280"], ["BRVRY", "A260-|A220+"], ["COURG", "A230-|A200+|S280"], ["PLDGE", "A170-|A150+|S280"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], ["FORGT", "A110+|S250"], ["SEPII", "A100+|S250"]]
+            },
+            "body": [["ALWYZ", "A100-"]],
+            "rwy": {
+                "15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
+                "19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
+                "22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"]
             },
             "draw": [
 
