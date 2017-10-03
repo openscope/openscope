@@ -181,7 +181,7 @@ export default class CanvasController {
          * @type {number}
          * @private
          */
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
 
         /**
          * Flag used to determine if the Aircraft canvas should be updated
@@ -333,7 +333,7 @@ export default class CanvasController {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
         this._shouldDrawFixLabels = false;
@@ -383,7 +383,7 @@ export default class CanvasController {
             this._markDeepRender();
         }, 500);
 
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
     }
 
     /**
@@ -1163,7 +1163,7 @@ export default class CanvasController {
      * @param aircraft {AircraftModel
      */
     canvas_draw_future_track(cc, aircraft) {
-        if (aircraft.isTaxiing() || TimeKeeper.timewarp !== 1) {
+        if (aircraft.isTaxiing() || TimeKeeper.timescale !== 1) {
             return;
         }
 

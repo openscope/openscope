@@ -690,7 +690,7 @@ export default class InputController {
                     nextTimewarpValue = aircraftCommandParser.args[0];
                 }
 
-                GameController.updateTimewarp(nextTimewarpValue);
+                GameController.updateTimescale(nextTimewarpValue);
 
                 return true;
 

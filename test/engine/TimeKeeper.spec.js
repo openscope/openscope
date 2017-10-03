@@ -9,16 +9,16 @@ ava('throws when attempting to instantiate', (t) => {
     t.throws(() => new TimeKeeper());
 });
 
-ava('#deltaTime is the product of #_frameDeltaTime and #_timewarp', (t) => {
+ava('#deltaTime is the product of #_frameDeltaTime and #_timescale', (t) => {
     TimeKeeper._frameDeltaTime = 33;
-    TimeKeeper._timewarp = 1;
+    TimeKeeper._timescale = 1;
 
     t.true(TimeKeeper.deltaTime === 33);
 });
 
 ava('#deltaTime returns a max value of 100', (t) => {
     TimeKeeper._frameDeltaTime = 33;
-    TimeKeeper._timewarp = 10;
+    TimeKeeper._timescale = 10;
 
     t.true(TimeKeeper.deltaTime === 100);
 });
@@ -53,7 +53,7 @@ ava.skip('#accumulatedDeltaTime is the sum of each deltaTime value from instanti
     TimeKeeper.update();
     deltaValues.push(TimeKeeper.deltaTime);
 
-    TimeKeeper._timewarp = 5;
+    TimeKeeper._timescale = 5;
 
     TimeKeeper.update();
     deltaValues.push(TimeKeeper.deltaTime);
@@ -71,7 +71,7 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (
 
 ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp is 1', (t) => {
     TimeKeeper._frameDeltaTime = 2;
-    TimeKeeper._timewarp = 1;
+    TimeKeeper._timescale = 1;
 
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
 
@@ -111,36 +111,52 @@ ava('.update() increments #_elapsedFrameCount by 1', (t) => {
     t.true(TimeKeeper._elapsedFrameCount === 1);
 });
 
-ava('.update() resets #_frameStartTime to #currentTime when elapsed time is > frameDelay', (t) => {
-    TimeKeeper._frameStartTime = 10;
+ava('.update() resets #_frameStartTimestamp to #currentTime when elapsed time is > frameDelay', (t) => {
+    TimeKeeper._frameStartTimestamp = 10;
     TimeKeeper.update();
 
-    t.true(TimeKeeper._frameStartTime === TimeKeeper._lastFrameTime);
+    t.true(TimeKeeper._frameStartTimestamp === TimeKeeper._previousFrameTimestamp);
 });
 
-ava('.update() recalculates the #_frameStep value based on the current #_timewarp value', (t) => {
-    TimeKeeper._timewarp = 1;
+ava('.update() recalculates the #_frameStep value based on the current #_timescale value', (t) => {
+    TimeKeeper._timescale = 1;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 30);
 
-    TimeKeeper._timewarp = 2;
+    TimeKeeper._timescale = 2;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 27);
 
-    TimeKeeper._timewarp = 5;
+    TimeKeeper._timescale = 5;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 17);
 
-    TimeKeeper._timewarp = 25;
+    TimeKeeper._timescale = 25;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 1);
 
-    TimeKeeper._timewarp = 50;
+    TimeKeeper._timescale = 50;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 1);
+});
+
+ava('.updateTimescale() only accepts positive numbers', (t) => {
+    TimeKeeper._timescale = 1;
+
+    TimeKeeper.updateTimescale(-3);
+
+    t.true(TimeKeeper._timescale === 1);
+});
+
+ava('.updateTimescale() updates #timescale value', (t) => {
+    TimeKeeper._timescale = 1;
+
+    TimeKeeper.updateTimescale(3);
+
+    t.true(TimeKeeper._timescale === 3);
 });

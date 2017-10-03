@@ -14,7 +14,7 @@ export default class GameClockView {
      */
     constructor($element) {
         this.$element = $element;
-        this.startTime = TimeKeeper.gameTimeMilliseconds;
+        this.startTime = TimeKeeper.gameTimeInMilliseconds;
         this.time = 0;
 
         return this._init($element);
@@ -66,7 +66,8 @@ export default class GameClockView {
      * @return clockTime {string} current game time formatted like '03:44:17'
      */
     generateCurrentTimeString() {
-        const clockDate = new Date(TimeKeeper.gameTimeMilliseconds);
+        const currentTimestamp = TimeKeeper.gameTimeMilliseconds;
+        const clockDate = new Date(currentTimestamp);
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
         const seconds = digits_integer(clockDate.getSeconds(), 2);

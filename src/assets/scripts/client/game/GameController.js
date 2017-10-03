@@ -238,17 +238,17 @@ class GameController {
     /**
      *
      * @for GameController
-     * @method updateTimewarp
+     * @method updateTimescale
      * @param nextValue {number}
      */
-    updateTimewarp(nextValue) {
+    updateTimescale(nextValue) {
         if (nextValue === 0) {
             this.game_timewarp_toggle();
 
             return;
         }
 
-        TimeKeeper.updateTimewarp(nextValue);
+        TimeKeeper.updateTimescale(nextValue);
     }
 
     /**
@@ -258,18 +258,18 @@ class GameController {
     game_timewarp_toggle() {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
-        if (TimeKeeper.timewarp === 5) {
-            TimeKeeper.updateTimewarp(1);
+        if (TimeKeeper.timescale === 5) {
+            TimeKeeper.updateTimescale(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
-        } else if (TimeKeeper.timewarp === 1) {
-            TimeKeeper.updateTimewarp(2);
+        } else if (TimeKeeper.timescale === 1) {
+            TimeKeeper.updateTimescale(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            TimeKeeper.updateTimewarp(5);
+            TimeKeeper.updateTimescale(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -329,24 +329,12 @@ class GameController {
     }
 
     /**
-     * @deprecated
-     *
-     * @for GameController
-     * @method game_delta
-     * @return {number}
-     */
-    game_delta() {
-        throw Error('deprecated');
-        // return TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
-    }
-
-    /**
      * @for GameController
      * @method game_speedup
      * @return
      */
     game_speedup() {
-        return !this.game_paused() ? TimeKeeper.timewarp : 0;
+        return !this.game_paused() ? TimeKeeper.timescale : 0;
     }
 
     /**
@@ -551,7 +539,7 @@ class GameController {
         this.game.focused = false;
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
-        TimeKeeper.updateTimewarp(1);
+        TimeKeeper.updateTimescale(1);
     }
 
     /**
