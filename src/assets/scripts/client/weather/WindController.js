@@ -12,12 +12,13 @@ class WindController {
      * when an airport is changed.
      * 
      * @method constructor
+     * @param {AirportModel}
      */
-    constructor() {
+    constructor(airport) {
         /**
          * Our {AirportModel} to use.
          */
-        this.airport = AirportController.current;
+        this.airport = airport;
 
         /**
          * Initial wind speed.
@@ -60,4 +61,4 @@ class WindController {
     }
 }
 
-export default new WindController();
+export default new WindController(AirportController.current);
