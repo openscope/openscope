@@ -160,3 +160,35 @@ ava('.updateTimescale() updates #timescale value', (t) => {
 
     t.true(TimeKeeper._timescale === 3);
 });
+
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false when #_frameDeltaTime is > than 1 and #_timescale is 1', (t) => {
+    TimeKeeper._frameDeltaTime = 0.5;
+    TimeKeeper._timescale = 1;
+    TimeKeeper._futureTrackDeltaTimeCache = -1;
+
+    t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
+});
+
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_timescale is not === 1', (t) => {
+    TimeKeeper._frameDeltaTime = 0.5;
+    TimeKeeper._timescale = 2;
+    TimeKeeper._futureTrackDeltaTimeCache = -1;
+
+    t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
+});
+
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_futureTrackDeltaTimeCache is not === -1', (t) => {
+    TimeKeeper._frameDeltaTime = 0.5;
+    TimeKeeper._timescale = 1;
+    TimeKeeper._futureTrackDeltaTimeCache = 5;
+
+    t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
+});
+
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns true only when all three conditions are met', (t) => {
+    TimeKeeper._frameDeltaTime = 2;
+    TimeKeeper._timescale = 1;
+    TimeKeeper._futureTrackDeltaTimeCache = -1;
+
+    t.true(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
+});

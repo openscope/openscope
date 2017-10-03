@@ -252,13 +252,18 @@ class GameController {
     }
 
     /**
+     * Update the visual state of the timewarp control button and call
+     * `TimeKeeper.updateTimescalse` with the next timewarp value.
+     *
+     * This method is called as a result of a user interaction
+     *
      * @for GameController
      * @method game_timewarp_toggle
      */
     game_timewarp_toggle() {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
-        if (TimeKeeper.timescale === 5) {
+        if (TimeKeeper.timescale >= 5) {
             TimeKeeper.updateTimescale(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);

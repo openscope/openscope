@@ -2,11 +2,14 @@ import { extrapolate_range_clamp } from '../math/core';
 import { TIME } from '../constants/globalConstants';
 
 /**
- * @property TIME_SECONDS_OFFSET
+ * Value used as `#_frameDeltaTime` when performing future track
+ * calculations for aircraft.
+ *
+ * @property FUTURE_TRACK_TIMESCALE_OVERRIDE
  * @type {number}
  * @final
  */
-const TIME_SECONDS_OFFSET = 0.001;
+const FUTURE_TRACK_TIMESCALE_OVERRIDE = 5;
 
 /**
  * Singleton used to manage game time and the advancement of animation frames
@@ -34,33 +37,6 @@ class TimeKeeper {
          * @private
          */
         this._accumulatedDeltaTime = 0;
-
-        /**
-         * Timestamp for the start of rendering
-         *
-         * @property _startTimestamp
-         * @type {number}
-         * @private
-         */
-        this._startTimestamp = 0;
-
-        /**
-         * Timestamp for the current frame
-         *
-         * @property _frameStartTimestamp
-         * @type {number}
-         * @default -1
-         * @private
-         */
-        this._frameStartTimestamp = 0;
-
-        /**
-         * Timestamp of the previous frame
-         *
-         * @property _previousFrameTimestamp
-         * @type {number}
-         */
-        this._previousFrameTimestamp = 0;
 
         /**
          * Nubmer of frames rendered
@@ -97,25 +73,16 @@ class TimeKeeper {
         this._frameDeltaTime = 0;
 
         /**
-         * Previously known as `timewarp`, this value is used a time multiplier
+         * Timestamp for the current frame
          *
-         * This value is changed via methods exposed here used within the
-         * `GameController` and is used to effectively _speed up_ this sim
-         *
-         * This value is used as a multiplier when returning the current `#_frameDeltaTime`
-         * which causes moving objects appear to have moved a farther distance than they
-         * would have at normal speed
-         *
-         * It is possible to set any numeric value via system command, though the
-         * UI enforces values of: `1`, `2` and `5` via the timewarp toggle button
-         *
-         * @property _timescale
+         * @property _frameStartTimestamp
          * @type {number}
-         * @default 1
+         * @default -1
          * @private
          */
-        this._timescale = 1;
+        this._frameStartTimestamp = 0;
 
+        // FIXME: not entirely sure what this is for
         /**
          *
          *
@@ -125,20 +92,6 @@ class TimeKeeper {
          * @private
          */
         this._frameStep = 0;
-
-        /**
-         * Flag used to determine if the sim has been paused
-         *
-         * This defaults to `true` because the sim is effectively paused
-         * on initial load. This way the game loop doesn't run needlessly
-         * as the sim is loading.
-         *
-         * @property _isPaused
-         * @type {boolean}
-         * @default false
-         * @private
-         */
-        this._isPaused = true;
 
         /**
          * This property is used to hold the value of `#_frameDeltaTime` when
@@ -160,6 +113,59 @@ class TimeKeeper {
          * @private
          */
         this._futureTrackDeltaTimeCache = -1;
+
+        /**
+         * Flag used to determine if the sim has been paused
+         *
+         * This defaults to `true` because the sim is effectively paused
+         * on initial load. This way the game loop doesn't run needlessly
+         * as the sim is loading.
+         *
+         * @property _isPaused
+         * @type {boolean}
+         * @default false
+         * @private
+         */
+        this._isPaused = true;
+
+        /**
+         * Timestamp of the previous frame
+         *
+         * @property _previousFrameTimestamp
+         * @type {number}
+         */
+        this._previousFrameTimestamp = 0;
+
+        /**
+         * Timestamp for the start of rendering
+         *
+         * @property _startTimestamp
+         * @type {number}
+         * @private
+         */
+        this._startTimestamp = 0;
+
+        /**
+         * Previously known as `timewarp`, this value is used a time multiplier
+         *
+         * This value is changed via methods exposed here used within the
+         * `GameController` and is used to effectively _speed up_ this sim
+         *
+         * This value is used as a multiplier when returning the current `#_frameDeltaTime`
+         * which causes moving objects appear to have moved a farther distance than they
+         * would have at normal speed
+         *
+         * It is possible to set any numeric value via system command, though the
+         * UI enforces values of: `1`, `2` and `5` via the timewarp toggle button
+         *
+         * @property _timescale
+         * @type {number}
+         * @default 1
+         * @private
+         */
+        this._timescale = 1;
+
+        return this._init();
     }
 
     /**
@@ -168,16 +174,6 @@ class TimeKeeper {
      */
     get accumulatedDeltaTime() {
         return this._accumulatedDeltaTime;
-    }
-
-    /**
-     * Current timestamp in seconds
-     *
-     * @property gameTime
-     * @return {number}
-     */
-    get gameTime() {
-        return (new Date()).getTime() * TIME_SECONDS_OFFSET;
     }
 
     /**
@@ -213,7 +209,9 @@ class TimeKeeper {
      * @return {number} current delta time in milliseconds
      */
     get deltaTime() {
-        return Math.min(this._frameDeltaTime * this._timescale, 100);
+        const deltaTimeOffsetByTimescale = this._frameDeltaTime * this._timescale;
+
+        return Math.min(deltaTimeOffsetByTimescale, 100);
     }
 
     /**
@@ -225,13 +223,22 @@ class TimeKeeper {
     }
 
     /**
-     *
-     *
      * @property timescale
      * @type {number}
      */
     get timescale() {
         return this._timescale;
+    }
+
+    /**
+     * Lifecycle method
+     *
+     * @for TimeKeeper
+     * @method _init
+     * @chainable
+     */
+    _init() {
+        return this;
     }
 
     /**
@@ -241,22 +248,34 @@ class TimeKeeper {
      * @method reset
      */
     reset() {
-        const currentTime = this.gameTime;
-
-        this._startTimestamp = currentTime;
-        this._frameStartTimestamp = currentTime;
-        this._previousFrameTimestamp = currentTime;
+        this._accumulatedDeltaTime = 0;
         this._elapsedFrameCount = 0;
         this._frameDeltaTime = 0;
+        this._frameStartTimestamp = 0;
+        this._frameStep = 0;
+        this._futureTrackDeltaTimeCache = -1;
+        this._isPaused = true;
+        this._previousFrameTimestamp = 0;
+        this._startTimestamp = 0;
+        this._timescale = 1;
     }
 
     /**
+     * Wrapper used to get current `#_frameDeltaTime` value or zero under certain conditions
      *
+     * When the sim is 'paused' or un-focused, we do not want `#_frameDeltaTime` to be used
+     * in position calculations. This causes movement at a time when there shouldn't be any.
      *
+     * By supply `0` in those cases, there is effectively no 'time' difference and thus no
+     * change in position given a rate. This freezes objects at their current position until
+     * such time we begin returning `#_frameDeltaTime` again.
+     *
+     * @for TimeKeeper
+     * @method getDeltaTimeForGameStateAndTimewarp
+     * @return {number}
      */
     getDeltaTimeForGameStateAndTimewarp() {
-        // FIXME: ick!
-        if (this.isPaused || this.deltaTime >= 1 && this._timescale === 1 && this._futureTrackDeltaTimeCache === -1) {
+        if (this.isPaused || this._isReturningFromPauseAndNotFutureTrack()) {
             return 0;
         }
 
@@ -264,11 +283,96 @@ class TimeKeeper {
     }
 
     /**
+     * Used to store the current `#_frameDeltaTime` and override the current delta
+     * with a static value
      *
+     * This method should be called immediately before performing calculations
+     * for an aircraft's future path. Immediately after those calculations are
+     * performed, `.setDeltaTimeAfterFutureTrackCalculation()` should be called
+     * so position calculations can continue with the correct `#_frameDeltaTime`
+     *
+     * Modifying `#_frameDeltaTime` this way, though not ideal, is based on
+     * the original implmenetation. This gives us a way to _fudge_ the
+     * current deltTime and make it easy to draw out an aircraft's future path
+     *
+     * @for TimeKeeper
+     * @method setDeltaTimeBeforeFutureTrackCalculation
+     */
+    setDeltaTimeBeforeFutureTrackCalculation() {
+        this._futureTrackDeltaTimeCache = this._frameDeltaTime;
+        this._frameDeltaTime = FUTURE_TRACK_TIMESCALE_OVERRIDE;
+    }
+
+    /**
+     * Used to reset `#_futureTrackDeltaTimeCache` after future track
+     * calculations have finished
+     *
+     * This method should be called immediately after performing calculations
+     * for an aircraft's future path.
+     *
+     * @for TimeKeeper
+     * @method setDeltaTimeAfterFutureTrackCalculation
+     */
+    setDeltaTimeAfterFutureTrackCalculation() {
+        this._frameDeltaTime = this._futureTrackDeltaTimeCache;
+        this._futureTrackDeltaTimeCache = -1;
+    }
+
+    /**
+     * Helper method used to determine if
+     *
+     * @for TimeKeeper
+     * @method shouldUpdate
+     * @return {boolean}
+     */
+    shouldUpdate() {
+        return this._elapsedFrameCount % this._frameStep === 0;
+    }
+
+    /**
+     * Updates the value of `#_isPaused`
+     *
+     * Calls to this method will happen externally as a result of a user
+     * interaction with the controls bar
+     *
+     * @for TimeKeeper
+     * @method togglePause
+     */
+    togglePause() {
+        this._isPaused = !this._isPaused;
+    }
+
+    /**
+     * Update time and `#_frameDeltaTime` values
+     *
+     * Should be called at the end of each update cycle by the `AppController`
+     * Calling this method signifies the end of a frame and the beginning of
+     * the next frame
+     *
+     * @for TimeKeeper
+     * @method update
+     */
+    update() {
+        if (this._futureTrackDeltaTimeCache !== -1) {
+            return;
+        }
+
+        const currentTime = this.gameTimeSeconds;
+
+        this._incrementFrame();
+        this._calculateNextDeltaTime(currentTime);
+        this._calculateFrameStep();
+    }
+
+    /**
+     * Update the value of `#_timescale`
+     *
+     * Calls to this method will happen externally as a result of a user interaction
+     * with the controls bar or by issuing a system command.
      *
      * @for TimeKeeper
      * @method updateTimescale
-     * @param nextTimewarp {number}  the next value for #_timescale
+     * @param nextTimewarp {number}  the next value for `#_timescale`
      */
     updateTimescale(nextTimewarp) {
         if (nextTimewarp < 0) {
@@ -279,64 +383,12 @@ class TimeKeeper {
     }
 
     /**
+     * Increments the `#_elapsedFrameCount` value by `1`
      *
+     * Called every frame via `.update()`
      *
-     */
-    setDeltaTimeBeforeFutureTrackCalculation() {
-        this._futureTrackDeltaTimeCache = this._frameDeltaTime;
-        this._frameDeltaTime = 5;
-    }
-
-    /**
-     *
-     *
-     */
-    setDeltaTimeAfterFutureTrackCalculation() {
-        this._frameDeltaTime = this._futureTrackDeltaTimeCache;
-        this._futureTrackDeltaTimeCache = -1;
-    }
-
-    /**
-     *
-     *
-     * @for TimeKeeper
-     * @method shouldUpdate
-     */
-    shouldUpdate() {
-        return this._elapsedFrameCount % this._frameStep === 0;
-    }
-
-    /**
-     *
-     *
-     */
-    togglePause() {
-        this._isPaused = !this._isPaused;
-    }
-
-    /**
-     *
-     *
-     * Should be called at the end of each update cycle by the `AppController`
-     * Calling this method signifies the end of a frame
-     *
-     * @for TimeKeeper
-     * @method update
-     */
-    update() {
-        if (this._futureTrackDeltaTimeCache !== -1) {
-            return;
-        }
-
-        const currentTime = this.gameTime;
-
-        this._incrementFrame();
-        this._calculateNextDeltaTime(currentTime);
-        this._calculateFrameStep();
-    }
-
-    /**
-     * Move to the next frame
+     * This method is called from `.update()` and signifies the
+     * start of a new frame
      *
      * @for TimeKeeper
      * @method incrementFrame
@@ -348,11 +400,13 @@ class TimeKeeper {
 
     /**
      * Caclulate the difference (delta) between the `#currentTime`
-     * and `#_previousFrameTimestamp`.
+     * and `#_previousFrameTimestamp`
+     *
+     * Called every frame via `.update()`
      *
      * This value will be used throughout to app to determine how
      * much time has passed, thus allowing us to know how much to
-     * move elements.
+     * move elements
      *
      * @for TimeKeeper
      * @method _calculateNextDelatTime
@@ -373,16 +427,32 @@ class TimeKeeper {
     }
 
     /**
+     * Updates the `#_frameStep` value based on the current `#_timescale`
      *
+     * Called every frame via `.update()`
      *
      * @for CanvasController
      * @method _calculateFrameStep
      * @private
      */
     _calculateFrameStep() {
-        // TODO: is this even correct? the order of range2 values looks backwards
-        // FIXME: what do the magic numbers mean?
+        // TODO: what do the magic numbers mean?
         this._frameStep = Math.round(extrapolate_range_clamp(1, this._timescale, 10, 30, 1));
+    }
+
+
+    /**
+     * Boolean abstraction used to determine if this frame is being calculated after returning
+     * from pause, which is assumed when `#_frameDeltaTime` is greater than `1` and
+     * `#_timescale` is `1`. And this is not part of a future track calculation, when
+     * `#_futureTrackDeltaTimeCache` is `-1`.
+     *
+     * @for TimeKeeper
+     * @method _isReturningFromPauseAndNotFutureTrack
+     * @return {boolean}
+     */
+    _isReturningFromPauseAndNotFutureTrack() {
+        return this.deltaTime >= 1 && this._timescale === 1 && this._futureTrackDeltaTimeCache === -1;
     }
 }
 
