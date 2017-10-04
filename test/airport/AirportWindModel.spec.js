@@ -24,13 +24,19 @@ ava('._calculateNextWind does not give negative values for speed or angle', (t) 
     t.true(result.angle >= 0);
 });
 
-ava('.reset() sets the wind values to correct defaults', (t) => {
-    const expectedResult = {
-        speed: 10,
-        angle: 0
+ava('AircraftWindModel will set to default values if not given `speed` and `angle`', (t) => {
+    const noSpeedWind = {
+        angle: 200
     };
+    const noAngleWind = {
+        speed: 15
+    };
+    const noParamsWindModel = new AircraftWindModel();
+    const noSpeedWindModel = new AirportWindModel(noSpeedWind);
+    const noAngleWindModel = new AirportWindModel(noAngleWind);
 
-    const result = windModel.reset();
-
-    t.deepEqual(result, expectedResult);
+    t.true(noParamsWindModel.speed === 10);
+    t.true(noParamsWindModel.angle === 0);
+    t.true(noSpeedWindModel.speed === 10);
+    t.true(noAngleWindModel.angle === 0);
 });
