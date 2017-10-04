@@ -57,12 +57,8 @@ export default class AirportWindModel {
             nextAngle = initialAngle - (360 * factorsOfThreeSixty);
         }
     
-        const nextWind = {
-            speed: speed,
-            angle: nextAngle
-        };
-        
-        return nextWind;
+        this.speed = speed;
+        this.angle = nextAngle;
     }
 
     /**
@@ -73,24 +69,12 @@ export default class AirportWindModel {
      * @return {gameTimeout} an instance of the new game timeout.
      */
     _createWindUpdateTimer() {
-        return GameController.game_timeout(
-            _doUpdateTimer(),
+        return GameController.game_interval(
+            this._doUpdateTimer(),
             300,
             null,
             null
         );
-    }
-
-    /**
-     * Resets the wind, and the timer.
-     * 
-     * @method reset
-     */
-    reset() {
-        this.speed = 10;
-        this.angle = 0;
-
-        GameController.game_clear_timeout(this.currentSchedule);
     }
 
     /**
