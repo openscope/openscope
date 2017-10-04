@@ -375,7 +375,9 @@ export default class ModeController {
 
         // if unable to descend via STAR, force a descent to the top of our airspace
         if (bottomAltitude === Infinity) {
-            this.setAltitudeFieldValue(Math.min(currentAltitude, airspaceCeiling));
+            const descentAltitude = Math.min(currentAltitude, airspaceCeiling);
+
+            this.setAltitudeFieldValue(descentAltitude);
             this.setAltitudeHold();
         }
 
