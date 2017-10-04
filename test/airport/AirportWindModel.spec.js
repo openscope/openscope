@@ -31,7 +31,7 @@ ava('AircraftWindModel will set to default values if not given `speed` and `angl
     const noAngleWind = {
         speed: 15
     };
-    const noParamsWindModel = new AircraftWindModel();
+    const noParamsWindModel = new AirportWindModel();
     const noSpeedWindModel = new AirportWindModel(noSpeedWind);
     const noAngleWindModel = new AirportWindModel(noAngleWind);
 
