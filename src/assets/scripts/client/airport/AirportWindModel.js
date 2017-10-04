@@ -70,24 +70,10 @@ export default class AirportWindModel {
      */
     _createWindUpdateTimer() {
         return GameController.game_interval(
-            this._doUpdateTimer(),
+            this._calculateNextWind(),
             300,
             null,
             null
         );
-    }
-
-    /**
-     * Maintains the timer loop.
-     * DON'T CALL UNLESS YOU WANT TO MAKE A NEW INSTANCE OF THE TIMER.
-     * Which you don't.
-     * 
-     * @method _doUpdateTimer
-     * @private
-     */
-    _doUpdateTimer() {
-        this.currentSchedule = this._createWindUpdateTimer();
-
-        return this.currentSchedule;
     }
 }
