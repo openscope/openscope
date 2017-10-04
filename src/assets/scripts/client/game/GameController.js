@@ -287,7 +287,7 @@ class GameController {
      * @method game_pause
      */
     game_pause() {
-        TimeKeeper.togglePause();
+        TimeKeeper.setPause(true);
 
         const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
@@ -301,7 +301,7 @@ class GameController {
      * @method game_unpause
      */
     game_unpause() {
-        TimeKeeper.togglePause();
+        TimeKeeper.setPause(false);
 
         const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
 
@@ -473,7 +473,7 @@ class GameController {
      * @method complete
      */
     complete() {
-        TimeKeeper.togglePause();
+        TimeKeeper.setPause(false);
     }
 
     /**
@@ -545,6 +545,7 @@ class GameController {
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
         TimeKeeper.updateSimulationRate(1);
+        TimeKeeper.setPause(true);
     }
 
     /**
@@ -555,6 +556,8 @@ class GameController {
      */
     _onWindowFocus(event) {
         this.game.focused = true;
+
+        TimeKeeper.setPause(false);
     }
 
 

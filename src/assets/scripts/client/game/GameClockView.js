@@ -14,7 +14,7 @@ export default class GameClockView {
      */
     constructor($element) {
         this.$element = $element;
-        this.startTime = TimeKeeper.gameTimeInMilliseconds;
+        this.startTime = 0;
         this.time = 0;
 
         return this._init($element);
@@ -62,12 +62,12 @@ export default class GameClockView {
      * Generates a string of the current game time in a human-readable format
      *
      * @for GameClockView
-     * @property timeString
-     * @return clockTime {string} current game time formatted like '03:44:17'
+     * @method generateCurrentTimeValue
+     * @return clockTime {string}   current game time formatted like '03:44:17'
      */
-    generateCurrentTimeString() {
-        const currentTimestamp = TimeKeeper.gameTimeMilliseconds;
-        const clockDate = new Date(currentTimestamp);
+    generateCurrentTimeValue() {
+        const gameTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
+        const clockDate = new Date(this.startTime + gameTimeInMilliseconds);
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
         const seconds = digits_integer(clockDate.getSeconds(), 2);
@@ -77,12 +77,13 @@ export default class GameClockView {
     }
 
     /**
-     * Updates the displayed time
+     * Re-calculates elapsed time and re-renders the view
      *
      * @for GameClockView
      * @method update
      */
     update() {
+        this._recalculate();
         this._render();
     }
 
@@ -93,11 +94,20 @@ export default class GameClockView {
      */
     _init($element) {
         this.$element = $element.find(SELECTORS.DOM_SELECTORS.CLOCK);
-        // FIXME: this class can be applied in the hbs template
-        this.$element.addClass(SELECTORS.CLASSNAMES.NOT_SELECTABLE);
         this.startTime = this.realWorldCurrentZuluTime;
 
         return this;
+    }
+
+    /**
+     * Updates the time stored in the clock
+     * @for GameClockView
+     * @method _tick
+     * @private
+     */
+    _recalculate() {
+        const elapsedTime = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
+        this.time = this.startTime + elapsedTime;
     }
 
     /**
@@ -107,6 +117,8 @@ export default class GameClockView {
      * @private
      */
     _render() {
-        this.$element.text(this.generateCurrentTimeString());
+        const currentTimeValue = this.generateCurrentTimeValue();
+
+        this.$element.text(currentTimeValue);
     }
 }

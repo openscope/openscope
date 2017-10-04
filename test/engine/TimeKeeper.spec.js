@@ -103,6 +103,20 @@ ava('.restoreDeltaTimeAfterFutureTrackCalculation() ', (t) => {
     t.true(TimeKeeper._frameDeltaTime === 3);
 });
 
+ava.serial('.setPause() does not update #_isPaused when nextPause is the same value', (t) => {
+    TimeKeeper._isPaused = false;
+    TimeKeeper.setPause(false);
+
+    t.false(TimeKeeper._isPaused);
+});
+
+ava.serial('.setPause() updates #_isPaused when nextPause is a different value', (t) => {
+    TimeKeeper._isPaused = false;
+    TimeKeeper.setPause(true);
+
+    t.true(TimeKeeper._isPaused);
+});
+
 ava('.update() increments #_elapsedFrameCount by 1', (t) => {
     t.true(TimeKeeper._elapsedFrameCount === 0);
 

@@ -238,6 +238,14 @@ class TimeKeeper {
     }
 
     /**
+     *
+     *
+     */
+    get startTime() {
+        return this._startTimestamp;
+    }
+
+    /**
      * Lifecycle method
      *
      * @for TimeKeeper
@@ -326,6 +334,29 @@ class TimeKeeper {
     }
 
     /**
+     * Updates the value of `#_isPaused`
+     *
+     * Calls to this method will happen externally as a result of a user
+     * interaction with the controls bar
+     *
+     * This value is used in reference to `#_frameDeltaTime`. So `#_isPaused`
+     * will be true if the app is _either_ paused or blurred. When this
+     * value is true, `#_frameDeltaTime` value will be `0` so the position
+     * of moving objects will not changes while `#_isPaused` is `true`
+     *
+     * @for TimeKeeper
+     * @method setPause
+     * @param nextPaus {boolean}
+     */
+    setPause(nextPause) {
+        if (nextPause === this._isPaused) {
+            return;
+        }
+
+        this._isPaused = nextPause;
+    }
+
+    /**
      * Helper method used by the `CanvasController` to determine whether or not we
      * should re-calculate and re-draw
      *
@@ -337,19 +368,6 @@ class TimeKeeper {
      */
     shouldUpdate() {
         return this._elapsedFrameCount % this._frameStep === 0;
-    }
-
-    /**
-     * Updates the value of `#_isPaused`
-     *
-     * Calls to this method will happen externally as a result of a user
-     * interaction with the controls bar
-     *
-     * @for TimeKeeper
-     * @method togglePause
-     */
-    togglePause() {
-        this._isPaused = !this._isPaused;
     }
 
     /**
