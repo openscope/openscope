@@ -35,7 +35,7 @@ export default class AirportWindModel {
         this.speed = data.speed;
         this.angle = data.angle;
 
-        return this._doUpdateTimer();
+        return this._createWindUpdateTimer();
     }
 
     /**
