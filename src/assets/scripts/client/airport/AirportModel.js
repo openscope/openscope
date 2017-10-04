@@ -6,7 +6,7 @@ import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
-import AirportWind from './AirportWind';
+import AirportWindModel from './AirportWindModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import AirspaceModel from './AirspaceModel';
@@ -206,18 +206,6 @@ export default class AirportModel {
         };
 
         /**
-         * default wind settings for an airport
-         *
-         * @property wind
-         * @type {object}
-         */
-        this.wind = {
-            speed: 10,
-            angle: 0
-        };
-
-
-        /**
          * @property ctr_radius
          * @type {nunmber}
          * @default DEFAULT_CTR_RADIUS_NM
@@ -377,7 +365,7 @@ export default class AirportModel {
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
-        AirportWind.setStaticWind(data.wind);
+        this.wind = new AirportWindModel(data.wind);
     }
 
     /**
