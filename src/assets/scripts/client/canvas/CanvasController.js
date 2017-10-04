@@ -1163,7 +1163,7 @@ export default class CanvasController {
      * @param aircraft {AircraftModel
      */
     canvas_draw_future_track(cc, aircraft) {
-        if (aircraft.isTaxiing() || TimeKeeper.timescale !== 1) {
+        if (aircraft.isTaxiing() || TimeKeeper.simulationRate !== 1) {
             return;
         }
 
@@ -1174,7 +1174,7 @@ export default class CanvasController {
 
         twin.fms = fms_twin;
         twin.projected = true;
-        TimeKeeper.setDeltaTimeBeforeFutureTrackCalculation();
+        TimeKeeper.saveDeltaTimeBeforeFutureTrackCalculation();
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1188,7 +1188,7 @@ export default class CanvasController {
             }
         }
 
-        TimeKeeper.setDeltaTimeAfterFutureTrackCalculation();
+        TimeKeeper.restoreDeltaTimeAfterFutureTrackCalculation();
 
         cc.save();
 

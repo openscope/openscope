@@ -84,20 +84,20 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns #deltaTime when if condition
     t.true(result === TimeKeeper.deltaTime);
 });
 
-ava('.setDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
+ava('.saveDeltaTimeBeforeFutureTrackCalculation() ', (t) => {
     TimeKeeper._frameDeltaTime = 3;
 
-    TimeKeeper.setDeltaTimeBeforeFutureTrackCalculation();
+    TimeKeeper.saveDeltaTimeBeforeFutureTrackCalculation();
 
     t.true(TimeKeeper._futureTrackDeltaTimeCache === 3);
     t.true(TimeKeeper._frameDeltaTime === 5);
 });
 
-ava('.setDeltaTimeAfterFutureTrackCalculation() ', (t) => {
+ava('.restoreDeltaTimeAfterFutureTrackCalculation() ', (t) => {
     TimeKeeper._frameDeltaTime = 5;
     TimeKeeper._futureTrackDeltaTimeCache = 3;
 
-    TimeKeeper.setDeltaTimeAfterFutureTrackCalculation();
+    TimeKeeper.restoreDeltaTimeAfterFutureTrackCalculation();
 
     t.true(TimeKeeper._futureTrackDeltaTimeCache === -1);
     t.true(TimeKeeper._frameDeltaTime === 3);

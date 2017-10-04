@@ -98,7 +98,7 @@ class TimeKeeper {
          * performing future path calculations.
          *
          * This value should never be modified externally and only modified internally via the
-         * `.setDeltaTimeBeforeFutureTrackCalculation()' and `.setDeltaTimeAfterFutureTrackCalculation()`
+         * `.saveDeltaTimeBeforeFutureTrackCalculation()' and `.restoreDeltaTimeAfterFutureTrackCalculation()`
          * methods.
          *
          * We modify `#_frameDeltaTime` like this so we can _fake_ a timewarp of 5 during future
@@ -225,10 +225,15 @@ class TimeKeeper {
     }
 
     /**
-     * @property timescale
+     * Previously known as `timewarp`
+     *
+     * Acts as the fast-forward value used to speed
+     * up animated distances
+     *
+     * @property simulationRate
      * @type {number}
      */
-    get timescale() {
+    get simulationRate() {
         return this._simulationRate;
     }
 
@@ -290,7 +295,7 @@ class TimeKeeper {
      *
      * This method should be called immediately before performing calculations
      * for an aircraft's future path. Immediately after those calculations are
-     * performed, `.setDeltaTimeAfterFutureTrackCalculation()` should be called
+     * performed, `.restoreDeltaTimeAfterFutureTrackCalculation()` should be called
      * so position calculations can continue with the correct `#_frameDeltaTime`
      *
      * Modifying `#_frameDeltaTime` this way, though not ideal, is based on
@@ -298,9 +303,9 @@ class TimeKeeper {
      * current deltTime and make it easy to draw out an aircraft's future path
      *
      * @for TimeKeeper
-     * @method setDeltaTimeBeforeFutureTrackCalculation
+     * @method saveDeltaTimeBeforeFutureTrackCalculation
      */
-    setDeltaTimeBeforeFutureTrackCalculation() {
+    saveDeltaTimeBeforeFutureTrackCalculation() {
         this._futureTrackDeltaTimeCache = this._frameDeltaTime;
         this._frameDeltaTime = SIMULATION_RATE_FOR_TRACK_PROJECTIONS;
     }
@@ -313,9 +318,9 @@ class TimeKeeper {
      * for an aircraft's future path.
      *
      * @for TimeKeeper
-     * @method setDeltaTimeAfterFutureTrackCalculation
+     * @method restoreDeltaTimeAfterFutureTrackCalculation
      */
-    setDeltaTimeAfterFutureTrackCalculation() {
+    restoreDeltaTimeAfterFutureTrackCalculation() {
         this._frameDeltaTime = this._futureTrackDeltaTimeCache;
         this._futureTrackDeltaTimeCache = -1;
     }

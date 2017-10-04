@@ -263,12 +263,12 @@ class GameController {
     game_timewarp_toggle() {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
-        if (TimeKeeper.timescale >= 5) {
+        if (TimeKeeper.simulationRate >= 5) {
             TimeKeeper.updateSimulationRate(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
-        } else if (TimeKeeper.timescale === 1) {
+        } else if (TimeKeeper.simulationRate === 1) {
             TimeKeeper.updateSimulationRate(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
@@ -339,7 +339,7 @@ class GameController {
      * @return
      */
     game_speedup() {
-        return !this.game_paused() ? TimeKeeper.timescale : 0;
+        return !this.game_paused() ? TimeKeeper.simulationRate : 0;
     }
 
     /**
