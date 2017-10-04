@@ -9,16 +9,16 @@ ava('throws when attempting to instantiate', (t) => {
     t.throws(() => new TimeKeeper());
 });
 
-ava('#deltaTime is the product of #_frameDeltaTime and #_timescale', (t) => {
+ava('#deltaTime is the product of #_frameDeltaTime and #_simulationRate', (t) => {
     TimeKeeper._frameDeltaTime = 33;
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
 
     t.true(TimeKeeper.deltaTime === 33);
 });
 
 ava('#deltaTime returns a max value of 100', (t) => {
     TimeKeeper._frameDeltaTime = 33;
-    TimeKeeper._timescale = 10;
+    TimeKeeper._simulationRate = 10;
 
     t.true(TimeKeeper.deltaTime === 100);
 });
@@ -53,7 +53,7 @@ ava.skip('#accumulatedDeltaTime is the sum of each deltaTime value from instanti
     TimeKeeper.update();
     deltaValues.push(TimeKeeper.deltaTime);
 
-    TimeKeeper._timescale = 5;
+    TimeKeeper._simulationRate = 5;
 
     TimeKeeper.update();
     deltaValues.push(TimeKeeper.deltaTime);
@@ -71,7 +71,7 @@ ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #isPaused is true', (
 
 ava('.getDeltaTimeForGameStateAndTimewarp() returns 0 when #deltaTime > 1 and #timewarp is 1', (t) => {
     TimeKeeper._frameDeltaTime = 2;
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
 
     const result = TimeKeeper.getDeltaTimeForGameStateAndTimewarp(false);
 
@@ -118,60 +118,60 @@ ava('.update() resets #_frameStartTimestamp to #currentTime when elapsed time is
     t.true(TimeKeeper._frameStartTimestamp === TimeKeeper._previousFrameTimestamp);
 });
 
-ava('.update() recalculates the #_frameStep value based on the current #_timescale value', (t) => {
-    TimeKeeper._timescale = 1;
+ava('.update() recalculates the #_frameStep value based on the current #_simulationRate value', (t) => {
+    TimeKeeper._simulationRate = 1;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 30);
 
-    TimeKeeper._timescale = 2;
+    TimeKeeper._simulationRate = 2;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 27);
 
-    TimeKeeper._timescale = 5;
+    TimeKeeper._simulationRate = 5;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 17);
 
-    TimeKeeper._timescale = 25;
+    TimeKeeper._simulationRate = 25;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 1);
 
-    TimeKeeper._timescale = 50;
+    TimeKeeper._simulationRate = 50;
     TimeKeeper.update();
 
     t.true(TimeKeeper._frameStep === 1);
 });
 
 ava('.updateTimescale() only accepts positive numbers', (t) => {
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
 
-    TimeKeeper.updateTimescale(-3);
+    TimeKeeper.updateSimulationRate(-3);
 
-    t.true(TimeKeeper._timescale === 1);
+    t.true(TimeKeeper._simulationRate === 1);
 });
 
 ava('.updateTimescale() updates #timescale value', (t) => {
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
 
-    TimeKeeper.updateTimescale(3);
+    TimeKeeper.updateSimulationRate(3);
 
-    t.true(TimeKeeper._timescale === 3);
+    t.true(TimeKeeper._simulationRate === 3);
 });
 
-ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false when #_frameDeltaTime is > than 1 and #_timescale is 1', (t) => {
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false when #_frameDeltaTime is > than 1 and #_simulationRate is 1', (t) => {
     TimeKeeper._frameDeltaTime = 0.5;
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
     TimeKeeper._futureTrackDeltaTimeCache = -1;
 
     t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
 });
 
-ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_timescale is not === 1', (t) => {
+ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_simulationRate is not === 1', (t) => {
     TimeKeeper._frameDeltaTime = 0.5;
-    TimeKeeper._timescale = 2;
+    TimeKeeper._simulationRate = 2;
     TimeKeeper._futureTrackDeltaTimeCache = -1;
 
     t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
@@ -179,7 +179,7 @@ ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_timescale 
 
 ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_futureTrackDeltaTimeCache is not === -1', (t) => {
     TimeKeeper._frameDeltaTime = 0.5;
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
     TimeKeeper._futureTrackDeltaTimeCache = 5;
 
     t.false(TimeKeeper._isReturningFromPauseAndNotFutureTrack());
@@ -187,7 +187,7 @@ ava.serial('._isReturningFromPauseAndNotFutureTrack() returns false #_futureTrac
 
 ava.serial('._isReturningFromPauseAndNotFutureTrack() returns true only when all three conditions are met', (t) => {
     TimeKeeper._frameDeltaTime = 2;
-    TimeKeeper._timescale = 1;
+    TimeKeeper._simulationRate = 1;
     TimeKeeper._futureTrackDeltaTimeCache = -1;
 
     t.true(TimeKeeper._isReturningFromPauseAndNotFutureTrack());

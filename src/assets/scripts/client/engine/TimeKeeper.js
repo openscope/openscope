@@ -5,11 +5,11 @@ import { TIME } from '../constants/globalConstants';
  * Value used as `#_frameDeltaTime` when performing future track
  * calculations for aircraft.
  *
- * @property FUTURE_TRACK_TIMESCALE_OVERRIDE
+ * @property SIMULATION_RATE_FOR_TRACK_PROJECTIONS
  * @type {number}
  * @final
  */
-const FUTURE_TRACK_TIMESCALE_OVERRIDE = 5;
+const SIMULATION_RATE_FOR_TRACK_PROJECTIONS = 5;
 
 /**
  * Singleton used to manage game time and the advancement of animation frames
@@ -158,12 +158,12 @@ class TimeKeeper {
          * It is possible to set any numeric value via system command, though the
          * UI enforces values of: `1`, `2` and `5` via the timewarp toggle button
          *
-         * @property _timescale
+         * @property _simulationRate
          * @type {number}
          * @default 1
          * @private
          */
-        this._timescale = 1;
+        this._simulationRate = 1;
 
         return this._init();
     }
@@ -201,17 +201,19 @@ class TimeKeeper {
     }
 
     /**
-     * Current `#_frameDetaTime` multiplied by the current `#_timescale`.
+     * Current `#_frameDeltaTime` multiplied by the current `#_simulationRate`.
      *
      * This value is capped at `100`
+     *
+     * for more information on `deltaTime` see: https://en.wikipedia.org/wiki/Delta_timing
      *
      * @property deltaTime
      * @return {number} current delta time in milliseconds
      */
     get deltaTime() {
-        const deltaTimeOffsetByTimescale = this._frameDeltaTime * this._timescale;
+        const deltaTimeOffsetBySimulationRate = this._frameDeltaTime * this._simulationRate;
 
-        return Math.min(deltaTimeOffsetByTimescale, 100);
+        return Math.min(deltaTimeOffsetBySimulationRate, 100);
     }
 
     /**
@@ -227,7 +229,7 @@ class TimeKeeper {
      * @type {number}
      */
     get timescale() {
-        return this._timescale;
+        return this._simulationRate;
     }
 
     /**
@@ -257,7 +259,7 @@ class TimeKeeper {
         this._isPaused = true;
         this._previousFrameTimestamp = 0;
         this._startTimestamp = 0;
-        this._timescale = 1;
+        this._simulationRate = 1;
     }
 
     /**
@@ -300,7 +302,7 @@ class TimeKeeper {
      */
     setDeltaTimeBeforeFutureTrackCalculation() {
         this._futureTrackDeltaTimeCache = this._frameDeltaTime;
-        this._frameDeltaTime = FUTURE_TRACK_TIMESCALE_OVERRIDE;
+        this._frameDeltaTime = SIMULATION_RATE_FOR_TRACK_PROJECTIONS;
     }
 
     /**
@@ -319,7 +321,10 @@ class TimeKeeper {
     }
 
     /**
-     * Helper method used to determine if
+     * Helper method used by the `CanvasController` to determine whether or not we
+     * should re-calculate and re-draw
+     *
+     * This returns `true` once every `#_frameStep` based on total `#_elapsedFrameCount`
      *
      * @for TimeKeeper
      * @method shouldUpdate
@@ -365,21 +370,21 @@ class TimeKeeper {
     }
 
     /**
-     * Update the value of `#_timescale`
+     * Update the value of `#_simulationRate`
      *
      * Calls to this method will happen externally as a result of a user interaction
      * with the controls bar or by issuing a system command.
      *
      * @for TimeKeeper
-     * @method updateTimescale
-     * @param nextTimewarp {number}  the next value for `#_timescale`
+     * @method updateSimulationRate
+     * @param nextTimewarp {number}  the next value for `#_simulationRate`
      */
-    updateTimescale(nextTimewarp) {
+    updateSimulationRate(nextTimewarp) {
         if (nextTimewarp < 0) {
             return;
         }
 
-        this._timescale = nextTimewarp;
+        this._simulationRate = nextTimewarp;
     }
 
     /**
@@ -427,7 +432,7 @@ class TimeKeeper {
     }
 
     /**
-     * Updates the `#_frameStep` value based on the current `#_timescale`
+     * Updates the `#_frameStep` value based on the current `#_simulationRate`
      *
      * Called every frame via `.update()`
      *
@@ -437,14 +442,14 @@ class TimeKeeper {
      */
     _calculateFrameStep() {
         // TODO: what do the magic numbers mean?
-        this._frameStep = Math.round(extrapolate_range_clamp(1, this._timescale, 10, 30, 1));
+        this._frameStep = Math.round(extrapolate_range_clamp(1, this._simulationRate, 10, 30, 1));
     }
 
 
     /**
      * Boolean abstraction used to determine if this frame is being calculated after returning
      * from pause, which is assumed when `#_frameDeltaTime` is greater than `1` and
-     * `#_timescale` is `1`. And this is not part of a future track calculation, when
+     * `#_simulationRate` is `1`. And this is not part of a future track calculation, when
      * `#_futureTrackDeltaTimeCache` is `-1`.
      *
      * @for TimeKeeper
@@ -452,7 +457,7 @@ class TimeKeeper {
      * @return {boolean}
      */
     _isReturningFromPauseAndNotFutureTrack() {
-        return this.deltaTime >= 1 && this._timescale === 1 && this._futureTrackDeltaTimeCache === -1;
+        return this.deltaTime >= 1 && this._simulationRate === 1 && this._futureTrackDeltaTimeCache === -1;
     }
 }
 

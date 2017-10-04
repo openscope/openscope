@@ -248,7 +248,7 @@ class GameController {
             return;
         }
 
-        TimeKeeper.updateTimescale(nextValue);
+        TimeKeeper.updateSimulationRate(nextValue);
     }
 
     /**
@@ -264,17 +264,17 @@ class GameController {
         const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
         if (TimeKeeper.timescale >= 5) {
-            TimeKeeper.updateTimescale(1);
+            TimeKeeper.updateSimulationRate(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.timescale === 1) {
-            TimeKeeper.updateTimescale(2);
+            TimeKeeper.updateSimulationRate(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            TimeKeeper.updateTimescale(5);
+            TimeKeeper.updateSimulationRate(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -544,7 +544,7 @@ class GameController {
         this.game.focused = false;
         // resetting back to 1 here so when focus returns, we can reliably reset
         // `#game.delta` to 0 to prevent jumpiness
-        TimeKeeper.updateTimescale(1);
+        TimeKeeper.updateSimulationRate(1);
     }
 
     /**
