@@ -79,6 +79,7 @@ export default class AirportWindModel {
      * @chainable
      */
     enable() {
+        this._onCalculateNextWindHandler;
         this._createWindUpdateTimer();
 
         return this;
