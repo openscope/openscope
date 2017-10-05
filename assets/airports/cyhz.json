@@ -8,18 +8,18 @@
     "iata": "YHZ",
     "magnetic_north": -18,
     "ctr_radius": 80,
-    "ctr_ceiling": 12000,
+    "ctr_ceiling": 18000,
     "initial_alt": 5000,
     "position": ["N44d52m52.73", "W063d30m33.62", "477.0ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N44d52m47.00", "W063d30m37.00"],
     "has_terrain": true,
     "wind": {
-        "angle": 37,
-        "speed": 9
+        "angle": 202,
+        "speed": 10
     },
-    "arrivalRunway": "05",
-    "departureRunway": "05",
+    "arrivalRunway": "23",
+    "departureRunway": "23",
     "airspace": [
         {
             "floor": 125,
@@ -929,7 +929,7 @@
                 ["N44d53m18.04", "W063d30m19.91", "443ft"]
             ],
             "ils": [false, true]
-        }, 
+        },
         {
             "name": ["14", "32"],
             "end": [
@@ -952,7 +952,7 @@
             "body": ["YHZ"],
             "exitPoints": {
                 "ALLEX": ["ALLEX"],
-                "ARDEE": ["ARDEE"], 
+                "ARDEE": ["ARDEE"],
                 "CADIL": ["CADIL"],
                 "DUSEN": ["DUSEN"],
                 "KEBNI": ["KEBNI"],
@@ -1339,7 +1339,7 @@
     ],
     "maps": {
         "base": [
-            
+
         ]
     }
 }
