@@ -501,22 +501,6 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method updateCurrentWind
-     * @param currentWind
-     */
-    updateCurrentWind(currentWind) {
-        if (!currentWind) {
-            return;
-        }
-
-        const nextWind = calculateNextWind(currentWind);
-
-        this.wind.speed = nextWind.speed;
-        this.wind.angle = degreesToRadians(nextWind.angle);
-    }
-
-    /**
-     * @for AirportModel
      * @method set
      * @param airportJson {object}
      */
