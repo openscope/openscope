@@ -3,6 +3,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _has from 'lodash/has';
 import _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
+import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import TimeKeeper from '../engine/TimeKeeper';

@@ -1,12 +1,12 @@
-/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
+import AirportController from './airport/AirportController';
+import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import AirportController from './airport/AirportController';
 import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
@@ -69,11 +69,10 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
+    }
 
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
+    get scale() {
+        return CanvasStageModel._scale;
     }
 
     /**
@@ -189,9 +188,6 @@ class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = INVALID_NUMBER;
-        this.ui.scale_max = INVALID_NUMBER;
-        this.ui.scale_min = INVALID_NUMBER;
         this.ui.scale = INVALID_NUMBER;
 
         return this;
@@ -202,11 +198,6 @@ class UiController {
      * @method ui_init_pre
      */
     ui_init_pre() {
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
-
         this.ui_set_scale_from_storage();
     }
 
@@ -514,7 +505,7 @@ class UiController {
      * @return {number}
      */
     px_to_km(pixels) {
-        return pixels / this.scale;
+        return pixels / CanvasStageModel._scale;
     }
 
     // TODO: this function should live in a helper file somewhere
@@ -525,7 +516,7 @@ class UiController {
      * @return {number}
      */
     km_to_px(kilometers) {
-        return kilometers * this.scale;
+        return kilometers * CanvasStageModel._scale;
     }
 
     /**
@@ -533,7 +524,7 @@ class UiController {
      * @method storeZoomLevel
      */
     storeZoomLevel() {
-        localStorage[STORAGE_KEY.ZOOM_LEVEL] = this.scale;
+        localStorage[STORAGE_KEY.ZOOM_LEVEL] = CanvasStageModel._scale;
     }
 
     /**
@@ -546,10 +537,10 @@ class UiController {
             round(this.px_to_km(prop.canvas.panY))
         ];
 
-        this.scale *= ZOOM_INCREMENT;
+        CanvasStageModel._scale *= ZOOM_INCREMENT;
 
-        if (this.scale < this.scale_min) {
-            this.scale = this.scale_min;
+        if (CanvasStageModel._scale < CanvasStageModel._scaleMin) {
+            CanvasStageModel._scale = CanvasStageModel._scaleMin;
         }
 
         const nextPanPosition = [
@@ -570,10 +561,10 @@ class UiController {
             round(this.px_to_km(prop.canvas.panX)),
             round(this.px_to_km(prop.canvas.panY))
         ];
-        this.scale /= ZOOM_INCREMENT;
+        CanvasStageModel._scale /= ZOOM_INCREMENT;
 
-        if (this.scale > this.scale_max) {
-            this.scale = this.scale_max;
+        if (CanvasStageModel._scale > CanvasStageModel._scaleMax) {
+            CanvasStageModel._scale = CanvasStageModel._scaleMax;
         }
 
         const nextPanPosition = [
@@ -590,7 +581,7 @@ class UiController {
      * @method ui_zoom_reset
      */
     ui_zoom_reset() {
-        this.scale = this.scale_default;
+        CanvasStageModel._scale = CanvasStageModel._defaultScale;
 
         this.storeZoomLevel();
         this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
@@ -726,11 +717,11 @@ class UiController {
      * @method ui_set_scale_from_storage
      */
     ui_set_scale_from_storage() {
-        if (!_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
+        if (!_has(localStorage, STORAGE_KEY.ZOOM_LEVEL)) {
             return;
         }
 
-        this.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+        CanvasStageModel._scale = localStorage[STORAGE_KEY.ZOOM_LEVEL];
     }
 }
 
