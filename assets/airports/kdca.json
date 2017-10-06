@@ -362,7 +362,7 @@
                 "33": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"]
             },
             "draw": [
-            	["WAVES*", "KSETT", "ELAPP", "BULII"]
+            	["WAVES*", "KSETT", "ELAPP", "BULII"],
            		["THHMP*", "BULII", "CAPSS", "HOYAS", "HALLL", "KATRN"],
            		["CAPSS", "FLIPZ", "MOEJO", "JILES", "SMOOT", "BAAAM", "PACKE"]
             ]
@@ -419,7 +419,7 @@
                 "15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
                 "19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
                 "22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
-            	"33": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
+            	"33": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"]
             },
             "draw": [
             	["BUCKO*", "DRRON", "HONNR", "BRVRY", "COURG", "PLDGE", "WEWIL", "NEVVR", "FORGT", "SEPII", "ALWYZ", "LETZZ", "RLLLL", "VCTRY", "HEROO"],
@@ -439,7 +439,7 @@
                 "15": ["#320"],
                 "19": ["#320"],
                 "22": ["#320"],
-            	"33": [],
+            	"33": []
             },
             "draw": [
             	["RIC*", "EPICS", "PEGBY", "OJAAY", "IRONS"]
