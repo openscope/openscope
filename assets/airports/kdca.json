@@ -362,7 +362,9 @@
                 "33": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"]
             },
             "draw": [
-
+            	["WAVES*", "KSETT", "ELAPP", "BULII"]
+           		["THHMP*", "BULII", "CAPSS", "HOYAS", "HALLL", "KATRN"],
+           		["CAPSS", "FLIPZ", "MOEJO", "JILES", "SMOOT", "BAAAM", "PACKE"]
             ]
         },
         "CLIPR1": {
@@ -377,7 +379,8 @@
                 "19": ["EDDWD", "MEGGS", "^NAYES", "#325"]
             },
             "draw": [
-
+            	["MXE*", "NUGGY", "TROYZ", "BELAY", "TRISH", "CLIPR", "BAL", "EYESS", "EDDWD", "MEGGS", "NAYES"],
+            	["EYESS", "BRUNC", "FELTY", "HITEK", "CAVDI"]
             ]
         },
         "DEALE2": {
@@ -397,7 +400,10 @@
                 "33": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"]
             },
             "draw": [
-
+            	["LAFLN*", "BILIT", "DEALE"],
+            	["RIDGY*", "BILIT"],
+            	["DEALE", "YUCKK", "TIRZA", "HITEK", "MITEY"],
+            	["DEALE", "EDDGY", "THANE", "MEGGS"]
             ]
         },
         "FRDMM3": {
@@ -408,12 +414,114 @@
             },
             "body": [["ALWYZ", "A100-"]],
             "rwy": {
+            	"1": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
+            	"4": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
                 "15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
                 "19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
-                "22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"]
+                "22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
+            	"33": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
             },
             "draw": [
-
+            	["BUCKO*", "DRRON", "HONNR", "BRVRY", "COURG", "PLDGE", "WEWIL", "NEVVR", "FORGT", "SEPII", "ALWYZ", "LETZZ", "RLLLL", "VCTRY", "HEROO"],
+            	["ALWYZ", "FRDMM", "STAND", "TGTHR", "FERGI"]
+            ]
+        },
+        "IRONS7": {
+            "icao": "IRONS7",
+            "name": "Irons Seven",
+            "entryPoints": {
+                "RIC": ["RIC", "EPICS", "PEGBY", "OJAAY"]
+            },
+            "body": ["IRONS"],
+            "rwy": {
+            	"1": [],
+            	"4": [],
+                "15": ["#320"],
+                "19": ["#320"],
+                "22": ["#320"],
+            	"33": [],
+            },
+            "draw": [
+            	["RIC*", "EPICS", "PEGBY", "OJAAY", "IRONS"]
+            ]
+        },
+        "NUMMY2": {
+            "icao": "NUMMY2",
+            "name": "Nummy Two",
+            "entryPoints": {
+            	"BUCKO": [["BUCKO", "A310"], ["HONNR", "A260"], ["ESL", "A230"], ["DRUZZ", "A150"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], "FORGT", ["SEPII", "A110"], "ALWYZ"]
+            },
+            "body": [["AML", "A80"]],
+            "rwy": {
+            	"1": [["NUMMY", "A60"], "#187"],
+            	"4": [["NUMMY", "A60"], "#187"],
+                "15": ["#070"],
+                "19": ["#070"],
+                "22": ["#070"],
+            	"33": [["NUMMY", "A60"], "#187"]
+            },
+            "draw": [
+            	["BUCKO*", "HONNR", "ESL", "DRUZZ", "WEWIL", "NEVVR", "FORGT", "SEPII", "ALWYZ", "AML", "NUMMY"]
+            ]
+        },
+        "SKILS3": {
+            "icao": "SKILS3",
+            "name": "Skills Three",
+            "entryPoints": {
+            	"LRP": ["LRP", "ROAST", "VINNY"],
+            	"PSB": ["PSB"]
+            },
+            "body": ["SHILO", "SKILS", "BAL", "EYESS"],
+            "rwy": {
+            	"1": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#185"],
+                "19": ["EDDWD", "MEGGS", "^NAYES", "#325"]
+            },
+            "draw": [
+            	["LRP*", "ROAST", "VINNY", "SHILO"],
+            	["PSB*", "SHILO", "SKILS", "BAL", "EYESS", "BRUNC", "FELTY", "HITEK", "CAVDI"],
+            	["EYESS", "EDDWD", "MEGGS", "NAYES"]
+            ]
+        },
+        "TIKEE3": {
+            "icao": "TIKEE3",
+            "name": "Tikee Three",
+            "entryPoints": {
+            	"BBONE": ["BBONE", "LURAY"],
+            	"ESL": [["ESL", "A190"], "BBONE", "LURAY"],
+            	"SEALZ": ["SEALZ"]
+            },
+            "body": ["TIKEE", "GILFF", "^HIGPO", "#090"],
+            "rwy": {
+            	"1": [""],
+                "4": [""],
+                "33": [""]
+            },
+            "draw": [
+            	["BBONE*", "LURAY", "TIKEE"],
+            	["ESL*", "BBONE"],
+            	["SEALZ*", "TIKEE", "GILFF", "HIGPO"]
+            ]
+        },
+        "TRUPS3": {
+            "icao": "TRUPS3",
+            "name": "Troops Three",
+            "entryPoints": {
+            	"BKW": ["BKW", "POMYK", "DEBZZ"],
+            	"HVQ": ["HVQ", "FIMPA"]
+            },
+            "body": ["DILNN", "SEALZ", ["RANJR", "A280-|A240+|S280"], ["JAHRD", "A260-|A220+"], ["PJAAE", "A230-|A210+"], ["USAAY", "A210-|A170+|S280"], ["WEEDU", "A190-|A160+"], ["SUPRT", "A170-|A140+|S280"], ["OOURR", "A130-|S250"], ["TRUPS", "A110|S250"]],
+            "rwy": {
+            	"1": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
+            	"4": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
+            	"15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
+                "19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
+                "22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
+            	"33": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"]
+            },
+            "draw": [
+            	["BKW*", "POMYK", "DEBZZ", "DILNN"],
+            	["HVQ*", "FIMPA", "DILNN", "SEALZ", "RANJR", "JAHRD", "PJAAE", "USAAY", "WEEDU", "SUPRT", "OOURR", "TRUPS", "LETZZ", "RLLLL", "VCTRY", "HEROO"],
+            	["TRUPS", "FRDMM", "STAND", "TGTHR", "FERGI"]
             ]
         }
     },
