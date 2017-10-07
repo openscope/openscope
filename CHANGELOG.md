@@ -1,6 +1,9 @@
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
+- Add Tampa Intl. (KTPA) [#647](https://github.com/openscope/openscope/issues/647)
+- Add Theodore Francis Green Memorial State Airport (Providence, US) [#107](https://github.com/openscope/openscope/issues/107)
+- New Airport: KDTW (Detroit Metropolitan Wayne County Airport, MI) [#559](https://github.com/openscope/openscope/issues/559)
 
 
 
@@ -75,7 +78,7 @@
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
-- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
+- Add Albuquerque Sunport (KABQ) [#327](https://github.com/openscope/openscope/issues/327)
 - Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
 - Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)
