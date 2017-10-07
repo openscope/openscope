@@ -54,6 +54,7 @@ class TimeKeeper {
          * Time difference in milliseconds between the `#lastFrame` and `#_frameStartTimestamp`
          *
          * **This is the most important value of this class.**
+         *
          * From this value, we calculate how far everything has moved within the sim
          * as defined by (in the simplest terms):
          *
@@ -64,6 +65,14 @@ class TimeKeeper {
          *
          * d = r * t
          * ```
+         *
+         * This property should only be used and accessed internally
+         * All external methods should use public getter: `#deltaTime`
+         *
+         * This value is the single source of truth for true `deltaTime`, however,
+         * we will only ever use this value locally. Every other external method needs
+         * `deltaTime * simulationRate`, as provided by `#detlaTie`, to account for
+         * any timewarp adjustments by the user
          *
          * @property _frameDeltaTime
          * @type {number}
@@ -201,11 +210,14 @@ class TimeKeeper {
     }
 
     /**
-     * Current `#_frameDeltaTime` multiplied by the current `#_simulationRate`.
+     * Current `#_frameDeltaTime` multiplied by the current `#_simulationRate`
      *
-     * This value is capped at `100`
+     * This is value any external method needs when calculating movement with
+     * deltaTime. No external method should every access `#_frameDeltaTime`
+     * because that value will not account for `#_simulationRate`.
      *
-     * for more information on `deltaTime` see: https://en.wikipedia.org/wiki/Delta_timing
+     * For more information on the concept of `deltaTime` see:
+     * https://en.wikipedia.org/wiki/Delta_timing
      *
      * @property deltaTime
      * @return {number} current delta time in milliseconds
@@ -225,24 +237,15 @@ class TimeKeeper {
     }
 
     /**
-     * Previously known as `timewarp`
+     * The fast-forward value used to speed up animated distances
      *
-     * Acts as the fast-forward value used to speed
-     * up animated distances
+     * Previously known as `timewarp`
      *
      * @property simulationRate
      * @type {number}
      */
     get simulationRate() {
         return this._simulationRate;
-    }
-
-    /**
-     *
-     *
-     */
-    get startTime() {
-        return this._startTimestamp;
     }
 
     /**
@@ -281,7 +284,7 @@ class TimeKeeper {
      * When the sim is 'paused' or un-focused, we do not want `#_frameDeltaTime` to be used
      * in position calculations. This causes movement at a time when there shouldn't be any.
      *
-     * By supply `0` in those cases, there is effectively no 'time' difference and thus no
+     * By supplying `0` in those cases, there is effectively no 'time' difference and thus no
      * change in position given a rate. This freezes objects at their current position until
      * such time we begin returning `#_frameDeltaTime` again.
      *
@@ -375,7 +378,7 @@ class TimeKeeper {
      *
      * Should be called at the end of each update cycle by the `AppController`
      * Calling this method signifies the end of a frame and the beginning of
-     * the next frame
+     * a new frame
      *
      * @for TimeKeeper
      * @method update
@@ -415,8 +418,7 @@ class TimeKeeper {
      *
      * Called every frame via `.update()`
      *
-     * This method is called from `.update()` and signifies the
-     * start of a new frame
+     * Calls to this method signal the start of a new frame
      *
      * @for TimeKeeper
      * @method incrementFrame
@@ -431,10 +433,6 @@ class TimeKeeper {
      * and `#_previousFrameTimestamp`
      *
      * Called every frame via `.update()`
-     *
-     * This value will be used throughout to app to determine how
-     * much time has passed, thus allowing us to know how much to
-     * move elements
      *
      * @for TimeKeeper
      * @method _calculateNextDelatTime
