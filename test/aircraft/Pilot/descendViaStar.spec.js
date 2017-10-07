@@ -14,7 +14,7 @@ ava('.descendViaStar() sets the correct Mcp modes and values', (t) => {
 
     t.true(pilot._mcp.altitudeMode === 'VNAV');
     t.true(pilot._mcp.speedMode === 'VNAV');
-    t.true(pilot._mcp.altitude === 0);
+    t.true(pilot._mcp.altitude === 8000);
 });
 
 ava('.descendViaStar() sets the correct Mcp modes and values when called with an altitude parameter', (t) => {
