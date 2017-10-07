@@ -19,7 +19,7 @@
 
 
 ## 5.5.1 (October 1, 2017)
---
+---
 ### Hotfix
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 - Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
