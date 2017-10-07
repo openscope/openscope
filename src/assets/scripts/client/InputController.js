@@ -266,11 +266,11 @@ export default class InputController {
             position[1] += prop.canvas.size.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                UiController.px_to_km(position[0] - CanvasStageModel._panX),
-                UiController.px_to_km(position[1] + CanvasStageModel._panY)
+                CanvasStageModel.translatePixelsToKilometers(position[0] - CanvasStageModel._panX),
+                CanvasStageModel.translatePixelsToKilometers(position[1] + CanvasStageModel._panY)
             ]);
 
-            if (distanceFromPosition > UiController.px_to_km(50)) {
+            if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
                 this.selectAircraft();
             } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
                 const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
@@ -283,8 +283,8 @@ export default class InputController {
             }
 
             position = [
-                UiController.px_to_km(position[0]),
-                UiController.px_to_km(position[1])
+                CanvasStageModel.translatePixelsToKilometers(position[0]),
+                CanvasStageModel.translatePixelsToKilometers(position[1])
             ];
 
             position[0] = parseFloat(position[0].toFixed(2));

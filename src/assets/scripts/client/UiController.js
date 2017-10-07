@@ -533,8 +533,8 @@ class UiController {
      */
     ui_zoom_out() {
         const lastpos = [
-            round(this.px_to_km(CanvasStageModel._panX)),
-            round(this.px_to_km(CanvasStageModel._panY))
+            round(CanvasStageModel.px_to_km(CanvasStageModel._panX)),
+            round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
         ];
 
         CanvasStageModel._scale *= ZOOM_INCREMENT;
@@ -544,8 +544,8 @@ class UiController {
         }
 
         const nextPanPosition = [
-            round(this.km_to_px(lastpos[0])),
-            round(this.km_to_px(lastpos[1]))
+            round(CanvasStageModel.km_to_px(lastpos[0])),
+            round(CanvasStageModel.km_to_px(lastpos[1]))
         ];
 
         this.storeZoomLevel();
@@ -558,8 +558,8 @@ class UiController {
      */
     ui_zoom_in() {
         const lastpos = [
-            round(this.px_to_km(CanvasStageModel._panX)),
-            round(this.px_to_km(CanvasStageModel._panY))
+            round(CanvasStageModel.px_to_km(CanvasStageModel._panX)),
+            round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
         ];
         CanvasStageModel._scale /= ZOOM_INCREMENT;
 
@@ -568,8 +568,8 @@ class UiController {
         }
 
         const nextPanPosition = [
-            round(this.km_to_px(lastpos[0])),
-            round(this.km_to_px(lastpos[1]))
+            round(CanvasStageModel.km_to_px(lastpos[0])),
+            round(CanvasStageModel.km_to_px(lastpos[1]))
         ];
 
         this.storeZoomLevel();
