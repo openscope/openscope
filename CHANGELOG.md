@@ -16,11 +16,12 @@
 - Add git strategy flow chart to documentation [#80](https://github.com/openscope/openscope/issues/80)
 - Force arrivals with non-altitude-restricted STARs/routes descend at least to ceiling of controlled airspace [#662](https://github.com/openscope/openscope/issues/662)
 - Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
+- Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 
 
 
 ## 5.5.1 (October 1, 2017)
---
+---
 ### Hotfix
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 - Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
