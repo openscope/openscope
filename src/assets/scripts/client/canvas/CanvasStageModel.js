@@ -114,27 +114,13 @@ class CanvasStageModel {
         this._scale = -1;
     }
 
-    // // TODO: this function should live in a helper file somewhere
-    // /**
-    //  * @for UiController
-    //  * @method px_to_km
-    //  * @param pixels {number}
-    //  * @return {number}
-    //  */
-    // px_to_km(pixels) {
-    //     return pixels / this._scale;
-    // }
+    translatePixelsToKilometers(pixelValue) {
+        return pixelValue / this._scale;
+    }
 
-    // // TODO: this function should live in a helper file somewhere
-    // /**
-    //  * @for UiController
-    //  * @method km_to_px
-    //  * @param kilometers {number}
-    //  * @return {number}
-    //  */
-    // km_to_px(kilometers) {
-    //     return kilometers * this._scale;
-    // }
+    translateKilometersToPixels(kilometerValue) {
+        return kilometerValue * this._scale;
+    }
 
     // /**
     //  * @for UiController
