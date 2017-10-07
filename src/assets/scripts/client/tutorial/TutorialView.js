@@ -661,7 +661,7 @@ export default class TutorialView {
             this.tutorial_open();
         }
 
-        localStorage[STORAGE_KEY.FIRST_RUN_TIME] = TimeKeeper.gameTime;
+        localStorage[STORAGE_KEY.FIRST_RUN_TIME] = TimeKeeper.gameTimeInSeconds;
     }
 
     /**
