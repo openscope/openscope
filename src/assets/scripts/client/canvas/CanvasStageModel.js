@@ -150,8 +150,8 @@ class CanvasStageModel {
     //  */
     // ui_zoom_out() {
     //     const lastpos = [
-    //         round(this.px_to_km(prop.canvas.panX)),
-    //         round(this.px_to_km(prop.canvas.panY))
+    //         round(this.px_to_km(CanvasStageModel._panX)),
+    //         round(this.px_to_km(CanvasStageModel._panY))
     //     ];
 
     //     this._scale *= ZOOM_INCREMENT;
@@ -175,8 +175,8 @@ class CanvasStageModel {
     //  */
     // ui_zoom_in() {
     //     const lastpos = [
-    //         round(this.px_to_km(prop.canvas.panX)),
-    //         round(this.px_to_km(prop.canvas.panY))
+    //         round(this.px_to_km(CanvasStageModel._panX)),
+    //         round(this.px_to_km(CanvasStageModel._panY))
     //     ];
     //     this._scale /= ZOOM_INCREMENT;
 

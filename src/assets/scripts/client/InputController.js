@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
+import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './UiController';
@@ -254,8 +255,8 @@ export default class InputController {
         } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
             // Record mouse down position for panning
             this.input.mouseDown = [
-                event.pageX - prop.canvas.panX,
-                event.pageY - prop.canvas.panY
+                event.pageX - CanvasStageModel._panX,
+                event.pageY - CanvasStageModel._panY
             ];
             this.input.isMouseDown = true;
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
@@ -265,8 +266,8 @@ export default class InputController {
             position[1] += prop.canvas.size.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                UiController.px_to_km(position[0] - prop.canvas.panX),
-                UiController.px_to_km(position[1] + prop.canvas.panY)
+                UiController.px_to_km(position[0] - CanvasStageModel._panX),
+                UiController.px_to_km(position[1] + CanvasStageModel._panY)
             ]);
 
             if (distanceFromPosition > UiController.px_to_km(50)) {
