@@ -208,6 +208,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     wip: true
         // },
         {
+            icao: 'kdtw',
+            level: 'medium',
+            name: 'Detroit Metropolitan Wayne County Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kelp',
             level: 'beginner',
             name: 'El Paso International Airport',
@@ -291,6 +298,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'kpvd',
+            level: 'easy',
+            name: 'Theodore Francis Green Memorial State Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'ksdf',
             level: 'medium',
             name: 'Louisville International Airport',
@@ -322,6 +336,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kstl',
             level: 'medium',
             name: 'St. Louis Lambert International Airport',
+            premium: false,
+            wip: false
+        },
+        {
+            icao: 'ktpa',
+            level: 'easy',
+            name: 'Tampa International Airport',
             premium: false,
             wip: false
         },
