@@ -105,7 +105,7 @@ export default class InputController {
         // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
         // this.$commandInput.on('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
         this.$canvases.bind('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.on('mousemove', (event) => this.onMouseClickAndDragHandler(event));
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
         this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
@@ -127,7 +127,7 @@ export default class InputController {
         this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
         // uncomment only after `.on()` for this event has been implemented.
         // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.off('mousemove', (event) => this.onMouseClickAndDragHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
         this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
@@ -213,10 +213,10 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onMouseMoveHandler
+     * @method onMouseClickAndDragHandler
      * @param event {jquery Event}
      */
-    onMouseMoveHandler(event) {
+    onMouseClickAndDragHandler(event) {
         if (!this.input.isMouseDown) {
             return this;
         }

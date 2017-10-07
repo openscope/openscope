@@ -7,7 +7,6 @@ import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import {
@@ -731,7 +730,7 @@ export default class CanvasController {
     canvas_draw_scale(cc) {
         const offset = 10;
         const height = 5;
-        const length = round(1 / UiController.scale * 50);
+        const length = round(1 / CanvasStageModel._scale * 50);
         const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
         const widthLessOffset = this.canvas.size.width - offset;
 
@@ -1663,7 +1662,7 @@ export default class CanvasController {
         for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
             cc.beginPath();
             cc.linewidth = 1;
-            cc.arc(0, 0, rangeRingRadius * UiController.scale * i, 0, tau());
+            cc.arc(0, 0, rangeRingRadius * CanvasStageModel._scale * i, 0, tau());
             cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
             cc.stroke();
         }
@@ -1801,7 +1800,7 @@ export default class CanvasController {
         // Somehow used to tint the terrain key rectangles' fill color
         // Also determines color of terrain fill at '0ft'
         cc.fillStyle = this.theme.SCOPE.FIX_FILL;
-        cc.lineWidth = clamp(0.5, (UiController.scale / 10), 2);
+        cc.lineWidth = clamp(0.5, (CanvasStageModel._scale / 10), 2);
         cc.lineJoin = 'round';
 
         cc.save();
@@ -1852,7 +1851,7 @@ export default class CanvasController {
         }
 
         cc.strokeStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
-        cc.lineWidth = Math.max(UiController.scale / 3, 2);
+        cc.lineWidth = Math.max(CanvasStageModel._scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
@@ -1908,7 +1907,7 @@ export default class CanvasController {
         }
 
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = UiController.scale / 15;
+        cc.lineWidth = CanvasStageModel._scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
@@ -2114,12 +2113,7 @@ export default class CanvasController {
      * @param mouseDelta {array<number, number>}
      * @private
      */
-    _onChangeViewportZoom = () => {
-        // CanvasStageModel._panX = mouseDelta[0];
-        // CanvasStageModel._panY = mouseDelta[1];
-
-        this._markDeepRender();
-    };
+    _onChangeViewportZoom = () => this._markDeepRender();
 
     /**
      * Toogle current value of `#draw_labels`
@@ -2213,9 +2207,9 @@ export default class CanvasController {
      * @private
      */
     _markDeepRender() {
-        this._markShallowRender();
-
         this._shouldDeepRender = true;
+
+        this._markShallowRender();
     }
 
     /**
@@ -2230,9 +2224,6 @@ export default class CanvasController {
      * @param y {number}    relativePosition.y
      */
     _onCenterPointInView = ({ x, y }) => {
-        CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
-        CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
-
         CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
         CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
 

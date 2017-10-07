@@ -71,10 +71,6 @@ class UiController {
         this.$toggleOptions = null;
     }
 
-    get scale() {
-        return CanvasStageModel._scale;
-    }
-
     /**
      * Initialization method
      *
@@ -191,14 +187,6 @@ class UiController {
         this.ui.scale = INVALID_NUMBER;
 
         return this;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_init_pre
-     */
-    ui_init_pre() {
-        this.ui_set_scale_from_storage();
     }
 
     /**
@@ -499,17 +487,6 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_zoom_reset
-     */
-    ui_zoom_reset() {
-        CanvasStageModel._scale = CanvasStageModel._defaultScale;
-
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
-    }
-
-    /**
-     * @for UiController
      * @method ui_log
      */
     ui_log(message, warn = false) {
@@ -631,18 +608,6 @@ class UiController {
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
-    }
-
-    /**
-     * @for UiController
-     * @method ui_set_scale_from_storage
-     */
-    ui_set_scale_from_storage() {
-        if (!_has(localStorage, STORAGE_KEY.ZOOM_LEVEL)) {
-            return;
-        }
-
-        CanvasStageModel._scale = localStorage[STORAGE_KEY.ZOOM_LEVEL];
     }
 }
 
