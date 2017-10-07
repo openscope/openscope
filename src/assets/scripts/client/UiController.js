@@ -497,84 +497,62 @@ class UiController {
         this.$airportListNotes.append(notes);
     }
 
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method px_to_km
-     * @param pixels {number}
-     * @return {number}
-     */
-    px_to_km(pixels) {
-        return pixels / CanvasStageModel._scale;
-    }
+    // /**
+    //  * @for UiController
+    //  * @method storeZoomLevel
+    //  */
+    // storeZoomLevel() {
+    //     localStorage[STORAGE_KEY.ZOOM_LEVEL] = CanvasStageModel._scale;
+    // }
 
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method km_to_px
-     * @param kilometers {number}
-     * @return {number}
-     */
-    km_to_px(kilometers) {
-        return kilometers * CanvasStageModel._scale;
-    }
+    // /**
+    //  * @for UiController
+    //  * @method ui_zoom_out
+    //  */
+    // ui_zoom_out() {
+    //     const lastpos = [
+    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panX)),
+    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panY))
+    //     ];
 
-    /**
-     * @for UiController
-     * @method storeZoomLevel
-     */
-    storeZoomLevel() {
-        localStorage[STORAGE_KEY.ZOOM_LEVEL] = CanvasStageModel._scale;
-    }
+    //     CanvasStageModel._scale *= ZOOM_INCREMENT;
 
-    /**
-     * @for UiController
-     * @method ui_zoom_out
-     */
-    ui_zoom_out() {
-        const lastpos = [
-            round(CanvasStageModel.px_to_km(CanvasStageModel._panX)),
-            round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
-        ];
+    //     if (CanvasStageModel._scale < CanvasStageModel._scaleMin) {
+    //         CanvasStageModel._scale = CanvasStageModel._scaleMin;
+    //     }
 
-        CanvasStageModel._scale *= ZOOM_INCREMENT;
+    //     const nextPanPosition = [
+    //         round(CanvasStageModel.translateKilometersToPixels(lastpos[0])),
+    //         round(CanvasStageModel.translateKilometersToPixels(lastpos[1]))
+    //     ];
 
-        if (CanvasStageModel._scale < CanvasStageModel._scaleMin) {
-            CanvasStageModel._scale = CanvasStageModel._scaleMin;
-        }
+    //     this.storeZoomLevel();
+    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
+    // }
 
-        const nextPanPosition = [
-            round(CanvasStageModel.km_to_px(lastpos[0])),
-            round(CanvasStageModel.km_to_px(lastpos[1]))
-        ];
+    // /**
+    //  * @for UiController
+    //  * @method ui_zoom_in
+    //  */
+    // ui_zoom_in() {
+    //     const lastpos = [
+    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panX)),
+    //         round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
+    //     ];
+    //     CanvasStageModel._scale /= ZOOM_INCREMENT;
 
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    }
+    //     if (CanvasStageModel._scale > CanvasStageModel._scaleMax) {
+    //         CanvasStageModel._scale = CanvasStageModel._scaleMax;
+    //     }
 
-    /**
-     * @for UiController
-     * @method ui_zoom_in
-     */
-    ui_zoom_in() {
-        const lastpos = [
-            round(CanvasStageModel.px_to_km(CanvasStageModel._panX)),
-            round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
-        ];
-        CanvasStageModel._scale /= ZOOM_INCREMENT;
+    //     const nextPanPosition = [
+    //         round(CanvasStageModel.km_to_px(lastpos[0])),
+    //         round(CanvasStageModel.km_to_px(lastpos[1]))
+    //     ];
 
-        if (CanvasStageModel._scale > CanvasStageModel._scaleMax) {
-            CanvasStageModel._scale = CanvasStageModel._scaleMax;
-        }
-
-        const nextPanPosition = [
-            round(CanvasStageModel.km_to_px(lastpos[0])),
-            round(CanvasStageModel.km_to_px(lastpos[1]))
-        ];
-
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    }
+    //     this.storeZoomLevel();
+    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
+    // }
 
     /**
      * @for UiController

@@ -205,10 +205,14 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            UiController.ui_zoom_in();
+            // UiController.ui_zoom_in();
+            CanvasStageModel.zoomIn();
         } else {
-            UiController.ui_zoom_out();
+            // UiController.ui_zoom_out();
+            CanvasStageModel.zoomOut();
         }
+
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**

@@ -18,6 +18,8 @@ export const DEFAULT_CANVAS_SIZE = {
  * @final
  */
 export const SCALE = {
+    // FIXME: not a fan of this name
+    CHANGE_FACTOR: 0.9,
     DEFAULT: 8,
     MIN: 1,
     MAX: 80

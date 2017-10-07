@@ -1,13 +1,21 @@
-// import _has from 'lodash';
+import { round } from '../math/core';
 import {
     DEFAULT_CANVAS_SIZE,
     PAN,
     SCALE
 } from '../constants/canvasConstants';
 // import { EVENT } from '../constants/eventNames';
-// import { STORAGE_KEY } from '../constants/storageKeys';
+import { STORAGE_KEY } from '../constants/storageKeys';
 
+/**
+ *
+ *
+ */
 class CanvasStageModel {
+    /**
+     *
+     *
+     */
     constructor() {
         /**
          *
@@ -92,6 +100,10 @@ class CanvasStageModel {
         return this._init();
     }
 
+    /**
+     *
+     *
+     */
     _init() {
         this.height = DEFAULT_CANVAS_SIZE.HEIGHT;
         this.width = DEFAULT_CANVAS_SIZE.WIDTH;
@@ -103,6 +115,10 @@ class CanvasStageModel {
         this._scale = SCALE.DEFAULT;
     }
 
+    /**
+     *
+     *
+     */
     reset() {
         this.height = -1;
         this.width = -1;
@@ -114,46 +130,62 @@ class CanvasStageModel {
         this._scale = -1;
     }
 
+    /**
+     *
+     *
+     */
     translatePixelsToKilometers(pixelValue) {
         return pixelValue / this._scale;
     }
 
+    /**
+     *
+     *
+     */
     translateKilometersToPixels(kilometerValue) {
         return kilometerValue * this._scale;
     }
 
-    // /**
-    //  * @for UiController
-    //  * @method storeZoomLevel
-    //  */
-    // storeZoomLevel() {
-    //     localStorage[STORAGE_KEY.ZOOM_LEVEL] = this._scale;
-    // }
+    /**
+     *
+     *
+     */
+    storeZoomLevel() {
+        localStorage.setItem(STORAGE_KEY.ZOOM_LEVEL, this._scale);
+    }
 
-    // /**
-    //  * @for UiController
-    //  * @method ui_zoom_out
-    //  */
-    // ui_zoom_out() {
-    //     const lastpos = [
-    //         round(this.px_to_km(CanvasStageModel._panX)),
-    //         round(this.px_to_km(CanvasStageModel._panY))
-    //     ];
+    zoomOut() {
+        const previousX = round(this.translatePixelsToKilometers(this._panX));
+        const previousY = round(this.translatePixelsToKilometers(this._panY));
 
-    //     this._scale *= ZOOM_INCREMENT;
+        this._scale *= SCALE.CHANGE_FACTOR;
 
-    //     if (this._scale < this._scaleMin) {
-    //         this._scale = this._scaleMin;
-    //     }
+        if (this._scale < this._scaleMin) {
+            this._scale = this._scaleMin;
+        }
 
-    //     const nextPanPosition = [
-    //         round(this.km_to_px(lastpos[0])),
-    //         round(this.km_to_px(lastpos[1]))
-    //     ];
+        this._panX = round(this.translateKilometersToPixels(previousX));
+        this._panY = round(this.translateKilometersToPixels(previousY));
 
-    //     this.storeZoomLevel();
-    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    // }
+        this.storeZoomLevel();
+    }
+
+
+    zoomIn() {
+        const previousX = round(this.translatePixelsToKilometers(this._panX));
+        const previousY = round(this.translatePixelsToKilometers(this._panY));
+
+        this._scale /= SCALE.CHANGE_FACTOR;
+
+        if (this._scale > this._scaleMax) {
+            this._scale = this._scaleMax;
+        }
+
+        this._panX = round(this.translateKilometersToPixels(previousX));
+        this._panY = round(this.translateKilometersToPixels(previousY));
+
+        this.storeZoomLevel();
+    }
 
     // /**
     //  * @for UiController
