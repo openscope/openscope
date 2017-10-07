@@ -205,14 +205,10 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            // UiController.ui_zoom_in();
             CanvasStageModel.zoomIn();
         } else {
-            // UiController.ui_zoom_out();
             CanvasStageModel.zoomOut();
         }
-
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
     /**
@@ -255,7 +251,7 @@ export default class InputController {
 
         // TODO: This should use a switch on `event.which` instead of `if/else if`
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
-            UiController.ui_zoom_reset();
+            CanvasStageModel.zoomReset();
         } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
             // Record mouse down position for panning
             this.input.mouseDown = [

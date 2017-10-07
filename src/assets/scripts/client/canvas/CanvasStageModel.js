@@ -1,3 +1,5 @@
+import EventBus from '../lib/EventBus';
+import { EVENT } from '../constants/eventNames';
 import { round } from '../math/core';
 import {
     DEFAULT_CANVAS_SIZE,
@@ -17,6 +19,13 @@ class CanvasStageModel {
      *
      */
     constructor() {
+        /**
+         * @property _eventBus
+         * @type {EventBus}
+         * @private
+         */
+        this._eventBus = EventBus;
+
         /**
          *
          *
@@ -150,10 +159,6 @@ class CanvasStageModel {
      *
      *
      */
-    storeZoomLevel() {
-        localStorage.setItem(STORAGE_KEY.ZOOM_LEVEL, this._scale);
-    }
-
     zoomOut() {
         const previousX = round(this.translatePixelsToKilometers(this._panX));
         const previousY = round(this.translatePixelsToKilometers(this._panY));
@@ -167,10 +172,14 @@ class CanvasStageModel {
         this._panX = round(this.translateKilometersToPixels(previousX));
         this._panY = round(this.translateKilometersToPixels(previousY));
 
-        this.storeZoomLevel();
+        this._storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
-
+    /**
+     *
+     *
+     */
     zoomIn() {
         const previousX = round(this.translatePixelsToKilometers(this._panX));
         const previousY = round(this.translatePixelsToKilometers(this._panY));
@@ -184,43 +193,51 @@ class CanvasStageModel {
         this._panX = round(this.translateKilometersToPixels(previousX));
         this._panY = round(this.translateKilometersToPixels(previousY));
 
-        this.storeZoomLevel();
+        this._storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 
-    // /**
-    //  * @for UiController
-    //  * @method ui_zoom_in
-    //  */
-    // ui_zoom_in() {
-    //     const lastpos = [
-    //         round(this.px_to_km(CanvasStageModel._panX)),
-    //         round(this.px_to_km(CanvasStageModel._panY))
-    //     ];
-    //     this._scale /= ZOOM_INCREMENT;
+    // _zoom(isZoomIn) {
+    //     const previousX = round(this.translatePixelsToKilometers(this._panX));
+    //     const previousY = round(this.translatePixelsToKilometers(this._panY));
 
-    //     if (this._scale > this._scaleMax) {
-    //         this._scale = this._scaleMax;
-    //     }
+    //     this._updateScale(isZoomIn);
 
-    //     const nextPanPosition = [
-    //         round(this.km_to_px(lastpos[0])),
-    //         round(this.km_to_px(lastpos[1]))
-    //     ];
+    //     this._panX = round(this.translateKilometersToPixels(previousX));
+    //     this._panY = round(this.translateKilometersToPixels(previousY));
 
-    //     this.storeZoomLevel();
-    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    // }
-
-    // /**
-    //  * @for UiController
-    //  * @method ui_zoom_reset
-    //  */
-    // ui_zoom_reset() {
-    //     this._scale = this._defaultScale;
-
-    //     this.storeZoomLevel();
+    //     this._storeZoomLevel();
     //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     // }
+
+    // _updateScale(isZoomIn) {
+    //     if (isZoomIn) {
+    //         this._scale = Math.min(this._scale / SCALE.CHANGE_FACTOR, this._scaleMax);
+
+    //         return;
+    //     }
+
+    //     this._scale = Math.min(this._scale * SCALE.CHANGE_FACTOR, this._scaleMin);
+    // }
+
+    /**
+     * @for CanvasStageModel
+     * @method zoomReset
+     */
+    zoomReset() {
+        this._scale = this._defaultScale;
+
+        this._storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
+    }
+
+    /**
+     *
+     *
+     */
+    _storeZoomLevel() {
+        localStorage.setItem(STORAGE_KEY.ZOOM_LEVEL, this._scale);
+    }
 
     // /**
     //  * @for UiController

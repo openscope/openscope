@@ -497,63 +497,6 @@ class UiController {
         this.$airportListNotes.append(notes);
     }
 
-    // /**
-    //  * @for UiController
-    //  * @method storeZoomLevel
-    //  */
-    // storeZoomLevel() {
-    //     localStorage[STORAGE_KEY.ZOOM_LEVEL] = CanvasStageModel._scale;
-    // }
-
-    // /**
-    //  * @for UiController
-    //  * @method ui_zoom_out
-    //  */
-    // ui_zoom_out() {
-    //     const lastpos = [
-    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panX)),
-    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panY))
-    //     ];
-
-    //     CanvasStageModel._scale *= ZOOM_INCREMENT;
-
-    //     if (CanvasStageModel._scale < CanvasStageModel._scaleMin) {
-    //         CanvasStageModel._scale = CanvasStageModel._scaleMin;
-    //     }
-
-    //     const nextPanPosition = [
-    //         round(CanvasStageModel.translateKilometersToPixels(lastpos[0])),
-    //         round(CanvasStageModel.translateKilometersToPixels(lastpos[1]))
-    //     ];
-
-    //     this.storeZoomLevel();
-    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    // }
-
-    // /**
-    //  * @for UiController
-    //  * @method ui_zoom_in
-    //  */
-    // ui_zoom_in() {
-    //     const lastpos = [
-    //         round(CanvasStageModel.translatePixelsToKilometers(CanvasStageModel._panX)),
-    //         round(CanvasStageModel.px_to_km(CanvasStageModel._panY))
-    //     ];
-    //     CanvasStageModel._scale /= ZOOM_INCREMENT;
-
-    //     if (CanvasStageModel._scale > CanvasStageModel._scaleMax) {
-    //         CanvasStageModel._scale = CanvasStageModel._scaleMax;
-    //     }
-
-    //     const nextPanPosition = [
-    //         round(CanvasStageModel.km_to_px(lastpos[0])),
-    //         round(CanvasStageModel.km_to_px(lastpos[1]))
-    //     ];
-
-    //     this.storeZoomLevel();
-    //     this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    // }
-
     /**
      * @for UiController
      * @method ui_zoom_reset
