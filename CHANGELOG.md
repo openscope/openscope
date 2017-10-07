@@ -17,6 +17,7 @@
 - Force arrivals with non-altitude-restricted STARs/routes descend at least to ceiling of controlled airspace [#662](https://github.com/openscope/openscope/issues/662)
 - Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
+- Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
 
 
 
