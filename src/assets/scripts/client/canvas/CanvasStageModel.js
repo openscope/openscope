@@ -1,6 +1,7 @@
 // import _has from 'lodash';
 import {
     DEFAULT_CANVAS_SIZE,
+    PAN,
     SCALE
 } from '../constants/canvasConstants';
 // import { EVENT } from '../constants/eventNames';
@@ -94,6 +95,8 @@ class CanvasStageModel {
     _init() {
         this.height = DEFAULT_CANVAS_SIZE.HEIGHT;
         this.width = DEFAULT_CANVAS_SIZE.WIDTH;
+        this._panX = PAN.X;
+        this._panY = PAN.Y;
         this._defaultScale = SCALE.DEFAULT;
         this._scaleMin = SCALE.MIN;
         this._scaleMax = SCALE.MAX;
@@ -214,4 +217,4 @@ class CanvasStageModel {
     // }
 }
 
-export default CanvasStageModel;
+export default new CanvasStageModel();

@@ -22,3 +22,12 @@ export const SCALE = {
     MIN: 1,
     MAX: 80
 };
+
+/**
+ * @enum PAN
+ * @final
+ */
+export const PAN = {
+    X: 0,
+    Y: 0
+};

@@ -2124,6 +2124,9 @@ export default class CanvasController {
         this.canvas.panX = mouseDelta[0];
         this.canvas.panY = mouseDelta[1];
 
+        CanvasStageModel._panX = mouseDelta[0];
+        CanvasStageModel._panY = mouseDelta[1];
+
         this._markDeepRender();
     };
 
@@ -2135,12 +2138,15 @@ export default class CanvasController {
      *
      * @for CanvasController
      * @method _onChangeViewportZoom
-     * @param panPosition {array<number, number>}
+     * @param mouseDelta {array<number, number>}
      * @private
      */
-    _onChangeViewportZoom = (panPosition) => {
-        this.canvas.panX = panPosition[0];
-        this.canvas.panY = panPosition[1];
+    _onChangeViewportZoom = (mouseDelta) => {
+        this.canvas.panX = mouseDelta[0];
+        this.canvas.panY = mouseDelta[1];
+
+        CanvasStageModel._panX = mouseDelta[0];
+        CanvasStageModel._panY = mouseDelta[1];
 
         this._markDeepRender();
     };
@@ -2256,6 +2262,9 @@ export default class CanvasController {
     _onCenterPointInView = ({ x, y }) => {
         this.canvas.panX = 0 - round(UiController.km_to_px(x));
         this.canvas.panY = round(UiController.km_to_px(y));
+
+        CanvasStageModel._panX = 0 - round(UiController.km_to_px(x));
+        CanvasStageModel._panY = round(UiController.km_to_px(y));
 
         this._markShallowRender();
     };
