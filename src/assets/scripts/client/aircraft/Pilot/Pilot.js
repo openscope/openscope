@@ -358,6 +358,7 @@ export default class Pilot {
         }
 
         this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
+        this._mcp.setHeadingLnav();
 
         // Build readback
         const readback = {};

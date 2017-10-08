@@ -6,14 +6,15 @@ import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import { runwayModel07lFixture } from '../../fixtures/runwayFixtures';
 
 const invalidRouteString = 'A..B.C.D';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
-const amendRouteString = 'HITME..HOLDM..BIKKR';
+const directRouteString = 'HITME..HOLDM..BIKKR';
 
 function buildPilotWithComplexRoute() {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    pilot.applyNewRoute(complexRouteString);
+    pilot.applyNewRoute(complexRouteString, runwayModel07lFixture);
 
     return pilot;
 }
@@ -38,7 +39,7 @@ ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a ho
     const pilot = buildPilotWithComplexRoute();
     pilot._fms.setFlightPhase('HOLD');
 
-    pilot.applyPartialRouteAmendment(amendRouteString);
+    pilot.applyPartialRouteAmendment(directRouteString);
 
     t.true(pilot._fms.currentPhase === 'CRUISE');
 });
@@ -52,7 +53,7 @@ ava('.applyPartialRouteAmendment() returns a success message when complete', (t)
         }
     ];
     const pilot = buildPilotWithComplexRoute();
-    const result = pilot.applyPartialRouteAmendment(amendRouteString);
+    const result = pilot.applyPartialRouteAmendment(directRouteString);
 
     t.true(_isEqual(result, expectedResult));
 });
