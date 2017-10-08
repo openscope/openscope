@@ -265,7 +265,7 @@ export default class InputController {
             this.input.isMouseDown = true;
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Aircraft label selection
-            const currentMousePosition = [event.pageX, -event.pageY];
+            let currentMousePosition = [event.pageX, -event.pageY];
             currentMousePosition[0] -= CanvasStageModel.width / 2;
             currentMousePosition[1] += CanvasStageModel.height / 2;
 
@@ -286,7 +286,7 @@ export default class InputController {
                 this.selectAircraft(aircraftModel);
             }
 
-            position = [
+            currentMousePosition = [
                 CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0]),
                 CanvasStageModel.translatePixelsToKilometers(currentMousePosition[1])
             ];
@@ -294,7 +294,7 @@ export default class InputController {
             currentMousePosition[0] = parseFloat(currentMousePosition[0].toFixed(2));
             currentMousePosition[1] = parseFloat(currentMousePosition[1].toFixed(2));
             // FIXME: what the is this?!
-            this.input.positions += `[${position.join(',')}]`;
+            this.input.positions += `[${currentMousePosition.join(',')}]`;
 
             return false;
         }

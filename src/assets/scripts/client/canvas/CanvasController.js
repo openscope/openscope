@@ -359,11 +359,10 @@ export default class CanvasController {
      */
     canvas_resize() {
         if (this._shouldResize) {
-            // CanvasStageModel.height = this.$window.height();
-            // CanvasStageModel.width = this.$window.width();
-
-            CanvasStageModel.height = this.$window.height();
-            CanvasStageModel.width = this.$window.width();
+            CanvasStageModel.updateHeightAndWidth(
+                this.$window.height(),
+                this.$window.width()
+            );
         }
 
         // offset for footer
