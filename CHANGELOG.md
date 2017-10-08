@@ -8,6 +8,7 @@
 
 
 ### Bugfixes
+- Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
 
 
 
