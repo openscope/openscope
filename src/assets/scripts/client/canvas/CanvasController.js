@@ -137,19 +137,6 @@ export default class CanvasController {
          */
         this._shouldResize = true;
 
-        // TODO: this property will be moving out of the `CanvasController` under issue:
-        // [#726](https://github.com/openscope/openscope/issues/726)
-        /**
-         * Enum used for storing canvas size values
-         *
-         * @property size
-         * @type {object}
-         */
-        this.canvas.size = {
-            height: DEFAULT_CANVAS_SIZE.HEIGHT,
-            width: DEFAULT_CANVAS_SIZE.WIDTH
-        };
-
         /**
          * timestamp of the previous frame
          *
@@ -307,11 +294,6 @@ export default class CanvasController {
         this._context = {};
         // resize canvas to fit window?
         this._shouldResize = true;
-        // all canvases are the same size
-        this.canvas.size = {
-            height: DEFAULT_CANVAS_SIZE.HEIGHT,
-            width: DEFAULT_CANVAS_SIZE.WIDTH
-        };
         this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
@@ -377,17 +359,20 @@ export default class CanvasController {
      */
     canvas_resize() {
         if (this._shouldResize) {
-            this.canvas.size.width = this.$window.width();
-            this.canvas.size.height = this.$window.height();
+            // CanvasStageModel.height = this.$window.height();
+            // CanvasStageModel.width = this.$window.width();
+
+            CanvasStageModel.height = this.$window.height();
+            CanvasStageModel.width = this.$window.width();
         }
 
         // offset for footer
-        this.canvas.size.height -= 36;
+        CanvasStageModel.height -= 36;
 
         for (const canvasName in this._context) {
             const context = this._context[canvasName];
-            context.canvas.height = this.canvas.size.height;
-            context.canvas.width = this.canvas.size.width;
+            context.canvas.height = CanvasStageModel.height;
+            context.canvas.width = CanvasStageModel.width;
 
             this.canvas_adjust_hidpi(canvasName);
         }
@@ -409,10 +394,10 @@ export default class CanvasController {
 
         const $canvasElement = $(`#${canvasContext.canvas.id}`).get(0);
 
-        $($canvasElement).attr('height', this.canvas.size.height * devicePixelRatio);
-        $($canvasElement).css('height', this.canvas.size.height);
-        $($canvasElement).attr('width', this.canvas.size.width * devicePixelRatio);
-        $($canvasElement).css('width', this.canvas.size.width);
+        $($canvasElement).attr('height', CanvasStageModel.height * devicePixelRatio);
+        $($canvasElement).css('height', CanvasStageModel.height);
+        $($canvasElement).attr('width', CanvasStageModel.width * devicePixelRatio);
+        $($canvasElement).css('width', CanvasStageModel.width);
 
         canvasContext.scale(devicePixelRatio, devicePixelRatio);
     }
@@ -440,8 +425,8 @@ export default class CanvasController {
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.STATIC);
-            const middleHeight = calculateMiddle(this.canvas.size.height);
-            const middleWidth = calculateMiddle(this.canvas.size.width);
+            const middleHeight = calculateMiddle(CanvasStageModel.height);
+            const middleWidth = calculateMiddle(CanvasStageModel.width);
 
             cc.font = '11px monoOne, monospace';
 
@@ -472,9 +457,10 @@ export default class CanvasController {
             // Controlled traffic region - (CTR)
             cc.save();
             // translate to airport center
+            // FIXME: create method in CanvasStageModel to returns an array with these values
             cc.translate(
-                round(this.canvas.size.width / 2 + CanvasStageModel._panX),
-                round(this.canvas.size.height / 2 + CanvasStageModel._panY)
+                round(CanvasStageModel.width / 2 + CanvasStageModel._panX),
+                round(CanvasStageModel.height / 2 + CanvasStageModel._panY)
             );
 
             this.canvas_draw_airspace_border(cc);
@@ -558,7 +544,7 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      */
     canvas_clear(cc) {
-        cc.clearRect(0, 0, this.canvas.size.width, this.canvas.size.height);
+        cc.clearRect(0, 0, CanvasStageModel.width, CanvasStageModel.height);
     }
 
     // TODO: logic should be updated here to exclusively use `TimeKeeper`
@@ -735,7 +721,7 @@ export default class CanvasController {
         const height = 5;
         const length = round(1 / CanvasStageModel._scale * 50);
         const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
-        const widthLessOffset = this.canvas.size.width - offset;
+        const widthLessOffset = CanvasStageModel.width - offset;
 
         cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
         cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
@@ -1485,8 +1471,8 @@ export default class CanvasController {
      */
     canvas_draw_compass(cc) {
         cc.translate(
-            calculateMiddle(this.canvas.size.width),
-            calculateMiddle(this.canvas.size.height)
+            calculateMiddle(CanvasStageModel.width),
+            calculateMiddle(CanvasStageModel.height)
         );
 
         const airport = AirportController.airport_get();
@@ -1743,8 +1729,8 @@ export default class CanvasController {
      */
     drawTerrainElevationLegend(cc, max_elevation) {
         const offset = 10;
-        const width = this.canvas.size.width;
-        const height = this.canvas.size.height;
+        const width = CanvasStageModel.width;
+        const height = CanvasStageModel.height;
         const box_width = 30;
         const box_height = 5;
 
@@ -1983,7 +1969,7 @@ export default class CanvasController {
 
         const pos = this.to_canvas_pos(aircraft.relativePosition);
         const rectPos = [0, 0];
-        const rectSize = [this.canvas.size.width, this.canvas.size.height];
+        const rectSize = [CanvasStageModel.width, CanvasStageModel.height];
 
         cc.save();
         cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
@@ -2052,8 +2038,8 @@ export default class CanvasController {
      */
     to_canvas_pos(pos) {
         return [
-            this.canvas.size.width / 2 + CanvasStageModel._panX + km(pos[0]),
-            this.canvas.size.height / 2 + CanvasStageModel._panY - km(pos[1])
+            CanvasStageModel.width / 2 + CanvasStageModel._panX + km(pos[0]),
+            CanvasStageModel.height / 2 + CanvasStageModel._panY - km(pos[1])
         ];
     }
 

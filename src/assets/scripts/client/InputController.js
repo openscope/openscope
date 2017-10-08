@@ -266,8 +266,8 @@ export default class InputController {
         } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Aircraft label selection
             const currentMousePosition = [event.pageX, -event.pageY];
-            currentMousePosition[0] -= prop.canvas.size.width / 2;
-            currentMousePosition[1] += prop.canvas.size.height / 2;
+            currentMousePosition[0] -= CanvasStageModel.width / 2;
+            currentMousePosition[1] += CanvasStageModel.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
                 CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0] - CanvasStageModel._panX),

@@ -160,6 +160,15 @@ class CanvasStageModel {
      *
      *
      */
+    updateHeightAndWidth(nextHeight, nextWidth) {
+        this.height = nextHeight;
+        this.width = nextWidth;
+    }
+
+    /**
+     *
+     *
+     */
     updatePan(x, y) {
         this._panX = x;
         this._panY = y;
