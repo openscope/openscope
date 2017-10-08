@@ -569,7 +569,7 @@ export default class CanvasController {
     canvas_draw_runway(cc, runwayModel, mode) {
         const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2));
         const angle = runwayModel.angle;
-        const runwayPosition = CanvasStageModel.translatePostionModelToCanvasPosition(runwayModel.relativePosition);
+        const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
 
         cc.translate(runwayPosition.x, runwayPosition.y);
         cc.rotate(angle);
@@ -607,7 +607,7 @@ export default class CanvasController {
      */
     canvas_draw_runway_label(cc, runwayModel) {
         const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) + 0.5;
-        const runwayPosition = CanvasStageModel.translatePostionModelToCanvasPosition(runwayModel.relativePosition);
+        const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
         const { angle } = runwayModel;
         const text_height = 14;
 
@@ -768,7 +768,7 @@ export default class CanvasController {
 
         for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
             const fix = this._navigationLibrary.realFixes[i];
-            const fixPosition = CanvasStageModel.translatePostionModelToCanvasPosition(fix.relativePosition);
+            const fixPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fix.relativePosition);
 
             cc.save();
             cc.translate(fixPosition.x, fixPosition.y);
@@ -827,7 +827,7 @@ export default class CanvasController {
                         log(`Unable to draw line to '${fixList[k]}' because its position is not defined!`, LOG.WARNING);
                     }
 
-                    fixCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(fixPosition);
+                    fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
 
                     if (k === 0) {
                         cc.beginPath();
@@ -878,7 +878,7 @@ export default class CanvasController {
 
         const runway = aircraftModel.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.oppositeAngle;
-        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(aircraftModel.relativePosition);
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(aircraftModel.relativePosition);
         cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
 
@@ -962,7 +962,7 @@ export default class CanvasController {
 
         for (let i = 0; i < positionHistory.length; i++) {
             const position = aircraftModel.relativePositionHistory[i];
-            const canvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(position);
+            const canvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
 
             cc.beginPath();
             cc.arc(
@@ -1004,7 +1004,7 @@ export default class CanvasController {
         }
 
         const alerts = aircraftModel.hasAlerts();
-        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(aircraftModel.relativePosition);
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(aircraftModel.relativePosition);
 
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
@@ -1152,7 +1152,7 @@ export default class CanvasController {
         for (let i = 0; i < future_track.length; i++) {
             const track = future_track[i];
             const ils_locked = track[2];
-            const trackPosition = CanvasStageModel.translatePostionModelToCanvasPosition(track);
+            const trackPosition = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(track);
 
             if (ils_locked && !was_locked) {
                 cc.lineTo(trackPosition.x, trackPosition.y);

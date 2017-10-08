@@ -188,11 +188,21 @@ class CanvasStageModel {
         return kilometerValue * this._scale;
     }
 
+    translatePostionModelToPreciseCanvasPosition([x, y]) {
+        const canvasX = this.translateKilometersToPixels(x) + this._panX;
+        const canvasY = (this.translateKilometersToPixels(y) + this._panY) * -1;
+
+        return {
+            x: canvasX,
+            y: canvasY
+        };
+    }
+
     /**
      *
      *
      */
-    translatePostionModelToCanvasPosition([x, y]) {
+    translatePostionModelToRoundedCanvasPosition([x, y]) {
         const canvasX = round(this.translateKilometersToPixels(x)) + this._panX;
         const canvasY = -round(this.translateKilometersToPixels(y)) + this._panY;
 
