@@ -365,9 +365,6 @@ export default class CanvasController {
             );
         }
 
-        // offset for footer
-        CanvasStageModel.height -= 36;
-
         for (const canvasName in this._context) {
             const context = this._context[canvasName];
             context.canvas.height = CanvasStageModel.height;
@@ -424,8 +421,6 @@ export default class CanvasController {
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.STATIC);
-            const middleHeight = calculateMiddle(CanvasStageModel.height);
-            const middleWidth = calculateMiddle(CanvasStageModel.width);
 
             cc.font = '11px monoOne, monospace';
 
@@ -434,7 +429,7 @@ export default class CanvasController {
 
             this.canvas_clear(cc);
 
-            cc.translate(middleWidth, middleHeight);
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
             cc.save();
             cc.globalAlpha = alpha;
 
@@ -458,8 +453,8 @@ export default class CanvasController {
             // translate to airport center
             // FIXME: create method in CanvasStageModel to returns an array with these values
             cc.translate(
-                round(CanvasStageModel.width / 2 + CanvasStageModel._panX),
-                round(CanvasStageModel.height / 2 + CanvasStageModel._panY)
+                round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
+                round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
             );
 
             this.canvas_draw_airspace_border(cc);
@@ -469,7 +464,7 @@ export default class CanvasController {
             // Special markings for ENGM point merge
             if (AirportController.airport_get().icao === 'ENGM') {
                 cc.save();
-                cc.translate(middleWidth, middleHeight);
+                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
                 this.canvas_draw_engm_range_rings(cc);
                 cc.restore();
             }
@@ -477,7 +472,7 @@ export default class CanvasController {
             // Compass
             cc.font = 'bold 10px monoOne, monospace';
             cc.save();
-            cc.translate(middleWidth, middleHeight);
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
             this.canvas_draw_compass(cc);
             cc.restore();
@@ -487,7 +482,7 @@ export default class CanvasController {
             if (this.canvas_should_draw() || true) {
                 cc.save();
                 cc.globalAlpha = alpha;
-                cc.translate(middleWidth, middleHeight);
+                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
                 this.canvas_draw_radar_targets(cc);
 
@@ -496,7 +491,7 @@ export default class CanvasController {
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(middleWidth, middleHeight);
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
             this.canvas_draw_data_blocks(cc);
 
@@ -504,7 +499,7 @@ export default class CanvasController {
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(middleWidth, middleHeight);
+            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
             this.canvas_draw_runway_labels(cc);
             cc.restore();
@@ -1470,8 +1465,8 @@ export default class CanvasController {
      */
     canvas_draw_compass(cc) {
         cc.translate(
-            calculateMiddle(CanvasStageModel.width),
-            calculateMiddle(CanvasStageModel.height)
+            CanvasStageModel.halfWidth,
+            CanvasStageModel.halfHeight
         );
 
         const airport = AirportController.airport_get();
@@ -2037,8 +2032,8 @@ export default class CanvasController {
      */
     to_canvas_pos(pos) {
         return [
-            CanvasStageModel.width / 2 + CanvasStageModel._panX + km(pos[0]),
-            CanvasStageModel.height / 2 + CanvasStageModel._panY - km(pos[1])
+            CanvasStageModel.halfWidth + CanvasStageModel._panX + km(pos[0]),
+            CanvasStageModel.halfHeight + CanvasStageModel._panY - km(pos[1])
         ];
     }
 

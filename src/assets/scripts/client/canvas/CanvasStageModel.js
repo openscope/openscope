@@ -32,10 +32,10 @@ class CanvasStageModel {
          *
          * @property height
          * @type {number}
-         * @default -1
+         * @default INVALID_NUMBER
          * @private
          */
-        this.height = INVALID_NUMBER;
+        this._height = INVALID_NUMBER;
 
         /**
          *
@@ -45,7 +45,7 @@ class CanvasStageModel {
          * @default INVALID_NUMBER
          * @private
          */
-        this.width = INVALID_NUMBER;
+        this._width = INVALID_NUMBER;
 
         /**
          *
@@ -114,9 +114,41 @@ class CanvasStageModel {
      *
      *
      */
+    get height() {
+        return this._height;
+    }
+
+    /**
+     *
+     *
+     */
+    get halfHeight() {
+        return round(this._height / 2);
+    }
+
+    /**
+     *
+     *
+     */
+    get width() {
+        return this._width;
+    }
+
+    /**
+     *
+     *
+     */
+    get halfWidth() {
+        return round(this._width / 2);
+    }
+
+    /**
+     *
+     *
+     */
     _init() {
-        this.height = DEFAULT_CANVAS_SIZE.HEIGHT;
-        this.width = DEFAULT_CANVAS_SIZE.WIDTH;
+        this._height = DEFAULT_CANVAS_SIZE.HEIGHT;
+        this._width = DEFAULT_CANVAS_SIZE.WIDTH;
         this._panX = PAN.X;
         this._panY = PAN.Y;
         this._defaultScale = SCALE.DEFAULT;
@@ -130,8 +162,8 @@ class CanvasStageModel {
      *
      */
     reset() {
-        this.height = INVALID_NUMBER;
-        this.width = INVALID_NUMBER;
+        this._height = INVALID_NUMBER;
+        this._width = INVALID_NUMBER;
         this._panX = INVALID_NUMBER;
         this._panY = INVALID_NUMBER;
         this._defaultScale = INVALID_NUMBER;
@@ -161,8 +193,8 @@ class CanvasStageModel {
      *
      */
     updateHeightAndWidth(nextHeight, nextWidth) {
-        this.height = nextHeight;
-        this.width = nextWidth;
+        this._height = nextHeight - DEFAULT_CANVAS_SIZE.FOTTER_HEIGHT_OFFSET;
+        this._width = nextWidth;
     }
 
     /**

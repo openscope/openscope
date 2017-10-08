@@ -10,7 +10,8 @@ export const BASE_CANVAS_FONT = '10px monoOne, monospace';
  */
 export const DEFAULT_CANVAS_SIZE = {
     HEIGHT: 480,
-    WIDTH: 640
+    WIDTH: 640,
+    FOTTER_HEIGHT_OFFSET: 36
 };
 
 /**
