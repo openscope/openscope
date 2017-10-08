@@ -13,7 +13,6 @@ import {
     sin,
     cos,
     round,
-    calculateMiddle,
     extrapolate_range_clamp,
     clamp
 } from '../math/core';
@@ -32,10 +31,7 @@ import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
-import {
-    BASE_CANVAS_FONT,
-    DEFAULT_CANVAS_SIZE
-} from '../constants/canvasConstants';
+import { BASE_CANVAS_FONT } from '../constants/canvasConstants';
 import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
@@ -567,17 +563,15 @@ export default class CanvasController {
      * @for CanvasController
      * @method canvas_draw_runway
      * @param cc {HTMLCanvasContext}
-     * @param runway {RunwayModel}
+     * @param runwayModel {RunwayModel}
      * @param mode {boolean}  flag to determine if the runway extended lines should be drawn
      */
-    canvas_draw_runway(cc, runway, mode) {
-        const length2 = round(CanvasStageModel.translateKilometersToPixels(runway.length / 2));
-        const angle = runway.angle;
+    canvas_draw_runway(cc, runwayModel, mode) {
+        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2));
+        const angle = runwayModel.angle;
+        const runwayPosition = CanvasStageModel.translatePostionModelToCanvasPosition(runwayModel.relativePosition);
 
-        cc.translate(
-            round(CanvasStageModel.translateKilometersToPixels(runway.relativePosition[0])) + CanvasStageModel._panX,
-            -round(CanvasStageModel.translateKilometersToPixels(runway.relativePosition[1])) + CanvasStageModel._panY
-        );
+        cc.translate(runwayPosition.x, runwayPosition.y);
         cc.rotate(angle);
 
         // runway body
@@ -591,7 +585,7 @@ export default class CanvasController {
             cc.stroke();
         } else {
             // extended centerlines
-            if (!runway.ils.enabled) {
+            if (!runwayModel.ils.enabled) {
                 return;
             }
 
@@ -600,7 +594,7 @@ export default class CanvasController {
 
             cc.beginPath();
             cc.moveTo(0, 0);
-            cc.lineTo(0, CanvasStageModel.translateKilometersToPixels(runway.ils.loc_maxDist));
+            cc.lineTo(0, CanvasStageModel.translateKilometersToPixels(runwayModel.ils.loc_maxDist));
             cc.stroke();
         }
     }
@@ -609,17 +603,16 @@ export default class CanvasController {
      * @for CanvasController
      * @method canvas_draw_runway_label
      * @param cc {HTMLCanvasContext}
-     * @param runway
+     * @param runway {RunwayModel}
      */
-    canvas_draw_runway_label(cc, runway) {
-        const length2 = round(CanvasStageModel.translateKilometersToPixels(runway.length / 2)) + 0.5;
-        const angle = runway.angle;
+    canvas_draw_runway_label(cc, runwayModel) {
+        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) + 0.5;
+        const runwayPosition = CanvasStageModel.translatePostionModelToCanvasPosition(runwayModel.relativePosition);
+        const { angle } = runwayModel;
         const text_height = 14;
 
-        cc.translate(
-            round(CanvasStageModel.translateKilometersToPixels(runway.relativePosition[0])) + CanvasStageModel._panX,
-            -round(CanvasStageModel.translateKilometersToPixels(runway.relativePosition[1])) + CanvasStageModel._panY
-        );
+
+        cc.translate(runwayPosition.x, runwayPosition.y);
         cc.rotate(angle);
 
         cc.textAlign = 'center';
@@ -631,11 +624,7 @@ export default class CanvasController {
             length2 + text_height
         );
         cc.rotate(-angle);
-        cc.translate(
-            round(CanvasStageModel.translateKilometersToPixels(runway.labelPos[0])),
-            -round(CanvasStageModel.translateKilometersToPixels(runway.labelPos[1]))
-        );
-        cc.fillText(runway.name, 0, 0);
+        cc.fillText(runwayModel.name, 0, 0);
         cc.restore();
     }
 
@@ -733,7 +722,8 @@ export default class CanvasController {
         cc.translate(-0.5, -0.5);
 
         cc.fillText(
-            `${length} km`, widthLessOffset - px_length * 0.5,
+            `${length} km`,
+            widthLessOffset - px_length * 0.5,
             offset + height + 17
         );
     }
@@ -778,11 +768,10 @@ export default class CanvasController {
 
         for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
             const fix = this._navigationLibrary.realFixes[i];
-            const fixPositionX = round(CanvasStageModel.translateKilometersToPixels(fix.relativePosition[0])) + CanvasStageModel._panX;
-            const fixPositionY = -round(CanvasStageModel.translateKilometersToPixels(fix.relativePosition[1])) + CanvasStageModel._panY;
+            const fixPosition = CanvasStageModel.translatePostionModelToCanvasPosition(fix.relativePosition);
 
             cc.save();
-            cc.translate(fixPositionX, fixPositionY);
+            cc.translate(fixPosition.x, fixPosition.y);
 
             this.canvas_draw_fix(cc, fix.name);
 
@@ -813,8 +802,7 @@ export default class CanvasController {
         for (let i = 0; i < sidLines.length; i++) {
             const sid = sidLines[i];
             let shouldDrawProcedureName = true;
-            let fixX = null;
-            let fixY = null;
+            let fixCanvasPosition;
 
             if (!_has(sid, 'draw')) {
                 return;
@@ -839,14 +827,13 @@ export default class CanvasController {
                         log(`Unable to draw line to '${fixList[k]}' because its position is not defined!`, LOG.WARNING);
                     }
 
-                    fixX = CanvasStageModel.translateKilometersToPixels(fixPosition[0]) + CanvasStageModel._panX;
-                    fixY = -CanvasStageModel.translateKilometersToPixels(fixPosition[1]) + CanvasStageModel._panY;
+                    fixCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(fixPosition);
 
                     if (k === 0) {
                         cc.beginPath();
-                        cc.moveTo(fixX, fixY);
+                        cc.moveTo(fixCanvasPosition.x, fixCanvasPosition.y);
                     } else {
-                        cc.lineTo(fixX, fixY);
+                        cc.lineTo(fixCanvasPosition.x, fixCanvasPosition.y);
                     }
                 }
 
@@ -860,16 +847,18 @@ export default class CanvasController {
 
                     // Move the y point for drawing depending on how many sids we have drawn text for
                     // at this point already
-                    const y_point = fixY + (15 * textAtPoint[exitName]);
-                    cc.fillText(`${sid.identifier}.${exitName}`, fixX + 10, y_point);
+                    const y_point = fixCanvasPosition.y + (15 * textAtPoint[exitName]);
+                    cc.fillText(`${sid.identifier}.${exitName}`, fixCanvasPosition.x + 10, y_point);
 
-                    textAtPoint[exitName] += 1;  // Increment the count for this transition
+                    // Increment the count for this transition
+                    textAtPoint[exitName] += 1;
                 }
             }
 
             if (shouldDrawProcedureName) {
-                const labelOffsetX = fixX + 10;
-                cc.fillText(sid.identifier, labelOffsetX, fixY);
+                const labelOffsetX = fixCanvasPosition.x + 10;
+
+                cc.fillText(sid.identifier, labelOffsetX, fixCanvasPosition.y);
             }
         }
     }
@@ -882,20 +871,18 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      * @param aircraft {AircraftModel}
      */
-    canvas_draw_separation_indicator(cc, aircraft) {
-        if (!GameController.shouldUseTrailingSeparationIndicator(aircraft)) {
+    canvas_draw_separation_indicator(cc, aircraftModel) {
+        if (!GameController.shouldUseTrailingSeparationIndicator(aircraftModel)) {
             return;
         }
 
-        const runway = aircraft.fms.currentRunway;
+        const runway = aircraftModel.fms.currentRunway;
         const oppositeOfRunwayHeading = runway.oppositeAngle;
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(aircraftModel.relativePosition);
         cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
 
-        cc.translate(
-            CanvasStageModel.translateKilometersToPixels(aircraft.relativePosition[0]) + CanvasStageModel._panX,
-            -CanvasStageModel.translateKilometersToPixels(aircraft.relativePosition[1]) + CanvasStageModel._panY
-        );
+        cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
         cc.rotate(oppositeOfRunwayHeading);
         cc.beginPath();
         // TODO: this should use constants
@@ -975,11 +962,12 @@ export default class CanvasController {
 
         for (let i = 0; i < positionHistory.length; i++) {
             const position = aircraftModel.relativePositionHistory[i];
+            const canvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(position);
 
             cc.beginPath();
             cc.arc(
-                CanvasStageModel.translateKilometersToPixels(position[0]) + CanvasStageModel._panX,
-                CanvasStageModel.translateKilometersToPixels(-position[1]) + CanvasStageModel._panY,
+                canvasPosition.x,
+                canvasPosition.y,
                 CanvasStageModel.translateKilometersToPixels(this.theme.RADAR_TARGET.HISTORY_DOT_RADIUS_KM),
                 0,
                 tau()
@@ -1016,11 +1004,9 @@ export default class CanvasController {
         }
 
         const alerts = aircraftModel.hasAlerts();
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToCanvasPosition(aircraftModel.relativePosition);
 
-        cc.translate(
-            CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[0]) + CanvasStageModel._panX,
-            -CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[1]) + CanvasStageModel._panY
-        );
+        cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
         this.canvas_draw_aircraft_vector_lines(cc, aircraftModel);
 
@@ -1166,18 +1152,16 @@ export default class CanvasController {
         for (let i = 0; i < future_track.length; i++) {
             const track = future_track[i];
             const ils_locked = track[2];
-
-            const x = CanvasStageModel.translateKilometersToPixels(track[0]) + CanvasStageModel._panX;
-            const y = -CanvasStageModel.translateKilometersToPixels(track[1]) + CanvasStageModel._panY;
+            const trackPosition = CanvasStageModel.translatePostionModelToCanvasPosition(track);
 
             if (ils_locked && !was_locked) {
-                cc.lineTo(x, y);
+                cc.lineTo(trackPosition.x, trackPosition.y);
                 // end the current path, start a new path with lockedStroke
                 cc.stroke();
                 cc.strokeStyle = this.theme.RADAR_TARGET.PROJECTION_ESTABLISHED_ON_APPROACH;
                 cc.lineWidth = 3;
                 cc.beginPath();
-                cc.moveTo(x, y);
+                cc.moveTo(trackPosition.x, trackPosition.y);
 
                 was_locked = true;
 
@@ -1185,9 +1169,9 @@ export default class CanvasController {
             }
 
             if (i === 0) {
-                cc.moveTo(x, y);
+                cc.moveTo(trackPosition.x, trackPosition.y);
             } else {
-                cc.lineTo(x, y);
+                cc.lineTo(trackPosition.x, trackPosition.y);
             }
         }
 

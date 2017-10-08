@@ -192,6 +192,20 @@ class CanvasStageModel {
      *
      *
      */
+    translatePostionModelToCanvasPosition([x, y]) {
+        const canvasX = round(this.translateKilometersToPixels(x)) + this._panX;
+        const canvasY = -round(this.translateKilometersToPixels(y)) + this._panY;
+
+        return {
+            x: canvasX,
+            y: canvasY
+        };
+    }
+
+    /**
+     *
+     *
+     */
     updateHeightAndWidth(nextHeight, nextWidth) {
         this._height = nextHeight - DEFAULT_CANVAS_SIZE.FOTTER_HEIGHT_OFFSET;
         this._width = nextWidth;
