@@ -31,6 +31,14 @@ ava('.translateKilometersToPixels() multiplies kilometers by scale', (t) => {
     t.true(result === expectedResult);
 });
 
+ava('.updatePan() calls _eventBus.trigger()', (t) => {
+    const updatePanSpy = sinon.spy(CanvasStageModel, 'updatePan');
+
+    CanvasStageModel.updatePan(1, 1);
+
+    t.true(updatePanSpy.calledOnce);
+});
+
 ava('.zoomOut() increases #_scale by SCALE.CHANGE_FACTOR', (t) => {
     const previousScale = CanvasStageModel._scale;
 

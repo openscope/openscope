@@ -238,6 +238,7 @@ export default class CanvasController {
         this.theme = THEME.DEFAULT;
 
         return this._init()
+            ._setupHandlers()
             .enable();
     }
 
@@ -248,6 +249,10 @@ export default class CanvasController {
      * @chainable
      */
     _init() {
+        return this;
+    }
+
+    _setupHandlers() {
         return this;
     }
 
@@ -300,8 +305,6 @@ export default class CanvasController {
         this.$element = null;
         this.canvas = {};
         this._context = {};
-        CanvasStageModel._panY = 0;
-        CanvasStageModel._panX = 0;
         // resize canvas to fit window?
         this._shouldResize = true;
         // all canvases are the same size
@@ -2095,12 +2098,7 @@ export default class CanvasController {
      * @method _onChangeViewportPan
      * @private
      */
-    _onChangeViewportPan = (event, mouseDelta) => {
-        CanvasStageModel._panX = mouseDelta[0];
-        CanvasStageModel._panY = mouseDelta[1];
-
-        this._markDeepRender();
-    };
+    _onChangeViewportPan = () => this._markDeepRender();
 
     /**
      * Update local props as a result of a change in the current zoom level
