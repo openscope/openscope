@@ -12,12 +12,11 @@ import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
  *
- *
+ * @class CanvasStageModel
  */
 class CanvasStageModel {
     /**
-     *
-     *
+     * @constructor
      */
     constructor() {
         /**
@@ -112,7 +111,8 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @property height
+     * @type {number}
      */
     get height() {
         return this._height;
@@ -120,7 +120,8 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @property halfHeight
+     * @type {number}
      */
     get halfHeight() {
         return round(this._height / 2);
@@ -128,7 +129,8 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @property width
+     * @type {number}
      */
     get width() {
         return this._width;
@@ -136,7 +138,8 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @property halfWidth
+     * @type {number}
      */
     get halfWidth() {
         return round(this._width / 2);
@@ -145,6 +148,9 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method _init
+     * @private
      */
     _init() {
         this._height = DEFAULT_CANVAS_SIZE.HEIGHT;
@@ -160,6 +166,8 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method reset
      */
     reset() {
         this._height = INVALID_NUMBER;
@@ -175,6 +183,20 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method translateKilometersToPixels
+     * @return {number}
+     */
+    translateKilometersToPixels(kilometerValue) {
+        return kilometerValue * this._scale;
+    }
+
+    /**
+     *
+     *
+     * @for CanvasStageModel
+     * @method translatePixelsToKilometers
+     * @return {number}
      */
     translatePixelsToKilometers(pixelValue) {
         return pixelValue / this._scale;
@@ -183,11 +205,12 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method translatePostionModelToPreciseCanvasPosition
+     * @param x {number}
+     * @param y {number}
+     * @return {object<string, number>}
      */
-    translateKilometersToPixels(kilometerValue) {
-        return kilometerValue * this._scale;
-    }
-
     translatePostionModelToPreciseCanvasPosition([x, y]) {
         const canvasX = this.translateKilometersToPixels(x) + this._panX;
         const canvasY = (this.translateKilometersToPixels(y) + this._panY) * -1;
@@ -201,20 +224,26 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method translatePostionModelToRoundedCanvasPosition
+     * @return {object<string, number>}
      */
-    translatePostionModelToRoundedCanvasPosition([x, y]) {
-        const canvasX = round(this.translateKilometersToPixels(x)) + this._panX;
-        const canvasY = -round(this.translateKilometersToPixels(y)) + this._panY;
+    translatePostionModelToRoundedCanvasPosition(position) {
+        const { x, y } = this.translatePostionModelToPreciseCanvasPosition(position);
 
         return {
-            x: canvasX,
-            y: canvasY
+            x: round(x),
+            y: round(y)
         };
     }
 
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method updateHeightAndWidth
+     * @param nextHeight {number}
+     * @param nextWidth {number}
      */
     updateHeightAndWidth(nextHeight, nextWidth) {
         this._height = nextHeight - DEFAULT_CANVAS_SIZE.FOTTER_HEIGHT_OFFSET;
@@ -223,7 +252,10 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @for CanvasStageModel
+     * @method updatePan
+     * @param x {number}
+     * @param y {number}
      */
     updatePan(x, y) {
         this._panX = x;
@@ -234,20 +266,22 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @for CanvasStageModel
+     * @method zoomIn
      */
-    zoomOut() {
-        const isZoomOut = false;
+    zoomIn() {
+        const isZoomOut = true;
 
         this._updateZoom(isZoomOut);
     }
 
     /**
      *
-     *
+     * @for CanvasStageModel
+     * @method zoomOut
      */
-    zoomIn() {
-        const isZoomOut = true;
+    zoomOut() {
+        const isZoomOut = false;
 
         this._updateZoom(isZoomOut);
     }
@@ -265,24 +299,39 @@ class CanvasStageModel {
 
     /**
      *
-     *
+     * @for CanvasStageModel
+     * @method _retrieveZoomLevelFromStorage
+     * @return {number}
+     * @private
      */
-    _updateZoom(isZoomIn) {
-        const previousX = round(this.translatePixelsToKilometers(this._panX));
-        const previousY = round(this.translatePixelsToKilometers(this._panY));
+    _retrieveZoomLevelFromStorageOrDefault() {
+        if (!_has(localStorage, STORAGE_KEY.ZOOM_LEVEL)) {
+            return SCALE.DEFAULT;
+        }
 
-        this._updateScale(isZoomIn);
+        const storedScale = localStorage.getItem(STORAGE_KEY.ZOOM_LEVEL);
 
-        this._panX = round(this.translateKilometersToPixels(previousX));
-        this._panY = round(this.translateKilometersToPixels(previousY));
-
-        this._storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
+        return storedScale;
     }
 
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method _storeZoomLevel
+     * @private
+     */
+    _storeZoomLevel() {
+        localStorage.setItem(STORAGE_KEY.ZOOM_LEVEL, this._scale);
+    }
+
+    /**
+     *
+     *
+     * @for CanvasStageModel
+     * @method _updateScale
+     * @param isZoomIn {boolean}
+     * @private
      */
     _updateScale(isZoomIn) {
         if (isZoomIn) {
@@ -297,24 +346,22 @@ class CanvasStageModel {
     /**
      *
      *
+     * @for CanvasStageModel
+     * @method _updateZoom
+     * @param isZoomIn {boolean}
+     * @private
      */
-    _storeZoomLevel() {
-        localStorage.setItem(STORAGE_KEY.ZOOM_LEVEL, this._scale);
-    }
+    _updateZoom(isZoomIn) {
+        const previousX = round(this.translatePixelsToKilometers(this._panX));
+        const previousY = round(this.translatePixelsToKilometers(this._panY));
 
-    /**
-     *
-     *
-     * @method _retrieveZoomLevelFromStorage
-     */
-    _retrieveZoomLevelFromStorageOrDefault() {
-        if (!_has(localStorage, STORAGE_KEY.ZOOM_LEVEL)) {
-            return SCALE.DEFAULT;
-        }
+        this._updateScale(isZoomIn);
 
-        const storedScale = localStorage.getItem(STORAGE_KEY.ZOOM_LEVEL);
+        this._panX = round(this.translateKilometersToPixels(previousX));
+        this._panY = round(this.translateKilometersToPixels(previousY));
 
-        return storedScale;
+        this._storeZoomLevel();
+        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
     }
 }
 
