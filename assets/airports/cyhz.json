@@ -592,6 +592,7 @@
         "MIVON": ["N44d59.76", "W063d32.50"],
         "MIXIV": ["N45d02.10", "W063d35.80"],
         "MODIR": ["N44d55.53", "W063d47.22"],
+        "MOWND": ["N45d22.60", "W066d39.43"],
         "MUSVI": ["N44d58.52", "W063d25.12"],
         "MUVOX": ["N44d51.85", "W064d12.20"],
         "NOTOP": ["N45d27.16", "W062d00.71"],
@@ -620,6 +621,7 @@
         "VIMLA": ["N44d58.76", "W063d29.09"],
         "VITAV": ["N44d57.49", "W063d38.81"],
         "VOKIL": ["N44d47.15", "W063d18.13"],
+        "XIBUL": ["N45d17.70", "W066d39m43"],
         "XOMRO": ["N44d42.93", "W063d40.38"],
         "XOVMU": ["N44d55.98", "W063d35.76"],
         "XUBKO": ["N45d03.84", "W063d19.77"],
@@ -979,7 +981,7 @@
             "rwy": {
                 "05": ["OTVUV", ["PEPTA", "A50|S210-"], ["OBNOM", "A40+|S210-"], "#233"],
                 "14": ["KEBOT", ["VIMLA", "A50|S210-"], ["IGVOP", "A40+|S210-"], "#323"],
-                "23": [["LEROS", "A30+|S200-"], "#261"],
+                "23": [["LEROS", "A30+|S200-"]],
                 "32": [["MENVO", "A50|S230-"], ["GABAP", "A40+|S210-"], "KIXIT", "#143"]
             },
             "draw": [
@@ -993,13 +995,13 @@
             "icao": "FUNDY2",
             "name": "Fundy Two",
             "entryPoints": {
-                "EBONY": ["EBONY", "EBKID"],
-                "ALLEX": ["ALLEX", "BAFDY"]
+                "ALLEX": ["ALLEX", "BAFDY"],
+                "EBONY": ["EBONY", "EBKID"]
             },
             "body": ["MUVOX"],
             "rwy": {
-                "05": [["ODKAS", "A30+|S200-"], "#127"],
-                "14": [["TETAR", "A30+|S200-"], "#088"],
+                "05": [["ODKAS", "A30+|S200-"]],
+                "14": [["TETAR", "A30+|S200-"]],
                 "23": [["LOGPO", "A50|S210-"], ["DUTIR", "A40+|S210-"], "#053"],
                 "32": [["EBLUV", "A50|S210-"], ["EMBAX", "A40+|S210-"], "#143"]
             },
@@ -1034,8 +1036,8 @@
             "icao": "PEGGY2",
             "name": "Peggy Two",
             "entryPoints": {
-                "TUSKY": ["TUSKY"],
-                "ELERI": ["ELERI"]
+                "ELERI": ["ELERI"],
+                "TUSKY": ["TUSKY"]
             },
             "body": ["ETGAR"],
             "rwy": {
@@ -1141,7 +1143,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.CYHZ4.DUSEN",
+            "route": "CYHZ.CYHZ4.DUSEN..XIBUL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1169,7 +1171,7 @@
             "origin": "CYHZ",
             "destination": "",
             "category": "departure",
-            "route": "CYHZ.CYHZ4.KEBNI",
+            "route": "CYHZ.CYHZ4.KEBNI..MOWND",
             "altitude": "",
             "speed": "",
             "method": "random",
