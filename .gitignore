@@ -1,8 +1,9 @@
-*~
+﻿*~
 .DS_Store
 _atc-call-stack.js
 _site/
 coverage/
+.vs/
 .idea/
 .nyc_output/
 node_modules/

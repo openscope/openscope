@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import $ from 'jquery';
+import TimeKeeper from './engine/TimeKeeper';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
-import { time } from './utilities/timeHelpers';
 
 /**
  * @property MIN_DISPLAY_SECONDS
@@ -127,7 +127,7 @@ export default class LoadingView {
      * @private
      */
     _didExceedMinimumWaitTime() {
-        const timeNow = time();
+        const timeNow = TimeKeeper.gameTimeInSeconds;
 
         return timeNow - this.loadingState.startTime > MIN_DISPLAY_SECONDS;
     }
@@ -157,7 +157,7 @@ export default class LoadingView {
     startLoad(url) {
         if (!this.loading) {
             this.$loadingIndicator.show();
-            this.loadingState.startTime = time();
+            this.loadingState.startTime = TimeKeeper.gameTimeInSeconds;
         }
 
         const msg = this._formatLoadingMessage(url);
@@ -171,7 +171,7 @@ export default class LoadingView {
      * @method stopLoad
      */
     stopLoad() {
-        const timeNow = time();
+        const timeNow = TimeKeeper.gameTimeInSeconds;
 
         if (this._didExceedMinimumWaitTime()) {
             this.$loadingIndicator.hide();

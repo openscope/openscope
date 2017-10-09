@@ -1,48 +1,42 @@
-#controls {
-    height: 36px;
-    position: absolute;
-    right: 250px;
-    bottom: 0;
-    z-index: 100;
+#controls > * {
+    width: 36px;
+    display: inline-block;
 }
 
-#controls .control {
-    width: 36px;
+.control {
     margin: 0;
-    display: inline-block;
     transition: box-shadow 0.05s ease;
 }
 
-#controls .control img {
+.control img {
     opacity: 0.5;
     transition: opacity 0.1s ease;
 }
 
-#controls .control:hover img {
+.control:hover img {
     opacity: 0.9;
     cursor: pointer;
 }
 
-#controls .control:active img {
+.control:active img {
     opacity: 0.6;
 }
 
-#controls .control:hover {
-    box-shadow: 0 -4px 0 rgba(128, 255, 255, 0.3);
+.control:hover {
+    box-shadow: inset 0 4px 0 @dark-gray;
 }
 
-#controls .control.speed-2,
-#controls .active {
-    box-shadow: 0 -4px 0 #38f;
+.control.speed-2,
+.active {
+    box-shadow: inset 0 4px 0 @blue-light;
 }
 
-#controls .control.speed-5,
-#controls .warning-button {
-    box-shadow: 0 -4px 0 rgba(255, 119, 102, 1);
+.control.speed-5,
+.warning-button {
+    box-shadow: inset 0 4px 0 @red
 }
 
-#controls .control.speed-5:hover,
-#controls .warning-button:hover {
-    box-shadow: 0 -4px 0 rgba(255, 119, 102, .5);
+.control.speed-5:hover,
+.warning-button:hover {
+    box-shadow: inset 0 4px 0 rgba(255, 119, 102, .5);
 }
-

@@ -3,6 +3,7 @@ import _filter from 'lodash/filter';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from '../game/GameController';
+import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -102,6 +103,7 @@ export default class AircraftConflict {
     update() {
         if (this.shouldBeRemoved()) {
             this.destroy();
+
             return;
         }
 
@@ -116,6 +118,7 @@ export default class AircraftConflict {
 
         // Ignore aircraft below about 1000 feet
         const airportElevation = AirportController.airport_get().elevation;
+        const gameTime = TimeKeeper.accumulatedDeltaTime;
         if (((this.aircraft[0].altitude - airportElevation) < 990) ||
             ((this.aircraft[1].altitude - airportElevation) < 990)) {
             return;
@@ -123,8 +126,8 @@ export default class AircraftConflict {
 
         // TODO: replace magic numbers with enum
         // Ignore aircraft in the first minute of their flight
-        if ((GameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
-            (GameController.game_time() - this.aircraft[1].takeoffTime < 60)) {
+        if (gameTime - this.aircraft[0].takeoffTime < 60 ||
+            gameTime - this.aircraft[1].takeoffTime < 60) {
             return;
         }
 

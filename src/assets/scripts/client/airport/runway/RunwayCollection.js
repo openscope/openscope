@@ -4,8 +4,6 @@ import _isArray from 'lodash/isArray';
 import BaseCollection from '../../base/BaseCollection';
 import RunwayModel from './RunwayModel';
 import RunwayRelationshipModel from './RunwayRelationshipModel';
-import { extrapolate_range_clamp } from '../../math/core';
-import { degreesToRadians } from '../../utilities/unitConverters';
 
 /**
  * Collection of `RunwayModel`s

@@ -137,13 +137,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'einn',
-        //     level: 'easy',
-        //     name: 'Shannon Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'einn',
+            level: 'beginner',
+            name: 'Shannon Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'ekch',
             level: 'medium',
@@ -207,6 +207,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'kdtw',
+            level: 'medium',
+            name: 'Detroit Metropolitan Wayne County Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'kelp',
             level: 'beginner',
@@ -291,6 +298,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'kpvd',
+            level: 'easy',
+            name: 'Theodore Francis Green Memorial State Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'ksdf',
             level: 'medium',
             name: 'Louisville International Airport',
@@ -322,6 +336,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'kstl',
             level: 'medium',
             name: 'St. Louis Lambert International Airport',
+            premium: false,
+            wip: false
+        },
+        {
+            icao: 'ktpa',
+            level: 'easy',
+            name: 'Tampa International Airport',
             premium: false,
             wip: false
         },
@@ -388,6 +409,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'panc',
+            level: 'medium',
+            name: 'Ted Stevens Anchorage International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'rjbb',
         //     level: 'hard',

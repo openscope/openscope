@@ -8,12 +8,14 @@ import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
+import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import AirportController from '../airport/AirportController';
-import GameController, { GAME_EVENTS } from '../game/GameController';
-import UiController from '../UiController';
 import Fms from './FlightManagementSystem/Fms';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
+import TimeKeeper from '../engine/TimeKeeper';
+import UiController from '../UiController';
 import {
     radians_normalize,
     angle_offset
@@ -45,7 +47,8 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
-    radio_altitude
+    radio_altitude,
+    radio_spellOut
 } from '../utilities/radioUtilities';
 import {
     degreesToRadians,
@@ -360,15 +363,6 @@ export default class AircraftModel {
         this.inside_ctr = false;
 
         /**
-         * Direction the data block points (-1 means to ignore)
-         *
-         * @property datablockDir
-         * @type {number}
-         * @default INVALID_NUMBER
-         */
-        this.datablockDir = INVALID_NUMBER;
-
-        /**
          * List of aircraft that MAY be in conflict (bounding box)
          *
          * @property conflicts
@@ -441,7 +435,7 @@ export default class AircraftModel {
         };
 
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
-            ? GameController.game_time()
+            ? TimeKeeper.accumulatedDeltaTime
             : null;
 
         this.buildCurrentTerrainRanges();
@@ -450,17 +444,22 @@ export default class AircraftModel {
         this.initFms(options);
 
         this.mcp = new ModeController();
+        this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.mcp, this.fms);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            let bottomAltitude = this.fms.getBottomAltitude();
+            const bottomAltitude = this.fms.getBottomAltitude();
+            const airportModel = AirportController.airport_get();
+            const airspaceCeiling = airportModel.maxAssignableAltitude;
 
-            if (bottomAltitude === Infinity) {
-                bottomAltitude = this.altitude;
-            }
-
-            this.mcp.initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
+            this.mcp.initializeForAirborneFlight(
+                bottomAltitude,
+                airspaceCeiling,
+                this.altitude,
+                this.heading,
+                this.speed
+            );
         }
     }
 
@@ -541,7 +540,6 @@ export default class AircraftModel {
     parse(data) {
         this.positionModel = data.positionModel;
         this.transponderCode = data.transponderCode;
-        this.model = data.model;
         this.airlineId = data.airline;
         this.airlineCallsign = data.airlineCallsign;
         this.flightNumber = data.callsign;
@@ -615,7 +613,7 @@ export default class AircraftModel {
             flightPlanAltitude,
             arrivalAirportId: this.destination.toUpperCase(),
             departureAirportId: this.origin.toUpperCase(),
-            flightPlan: this.fms.getFlightPlanRouteForStripView()
+            flightPlan: this.fms.getFlightPlanRouteStringWithSpaces()
         };
     }
 
@@ -700,7 +698,7 @@ export default class AircraftModel {
         return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
-     /**
+    /**
      * verifies if there is a matched callsign and if the  aircraft is visable.
      * @for AircraftModel
      * @method getCallsign
@@ -718,25 +716,36 @@ export default class AircraftModel {
      * @return cs {string}
      */
     getRadioCallsign() {
-        let heavy = '';
-        let radioCallsign = this.airlineCallsign;
+        let weight = this.getRadioWeightClass();
 
-        // TODO: Move the weight qualifiers to a getter, and call it here to get the value of `heavy`
-        if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
-        }
-
-        if (this.model.weightclass === 'U') {
-            heavy = ' super';
+        if (!_isEmpty(weight)) {
+            weight = ` ${weight}`;
         }
 
         if (this.airlineCallsign === 'November') {
-            radioCallsign += ` radio_spellOut(${this.flightNumber})${heavy}`;
-        } else {
-            radioCallsign += ` ${groupNumbers(this.flightNumber)}${heavy}`;
+            return `${this.airlineCallsign} ${radio_spellOut(this.flightNumber)}${weight}`;
         }
 
-        return radioCallsign;
+        return `${this.airlineCallsign} ${groupNumbers(this.flightNumber)}${weight}`;
+    }
+
+    /**
+     * Get the weight classifier for an aircraft's callsign, as spoken over the radio
+     *
+     * @for AircraftModel
+     * @method getRadioWeightClass
+     * @return {string}
+     */
+    getRadioWeightClass() {
+        const weightClass = this.model.weightClass;
+
+        if (weightClass === 'H') {
+            return 'heavy';
+        } else if (weightClass === 'U') {
+            return 'super';
+        }
+
+        return '';
     }
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`
@@ -1326,7 +1335,7 @@ export default class AircraftModel {
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
-                const elapsed = GameController.game_time() - this.taxi_start;
+                const elapsed = TimeKeeper.accumulatedDeltaTime - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
                     this.setFlightPhase(FLIGHT_PHASE.WAITING);
@@ -1714,7 +1723,7 @@ export default class AircraftModel {
         const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
-        const gameTime = GameController.game.time;
+        const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = hold.timer !== invalidTimerValue;
         const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
@@ -1745,7 +1754,7 @@ export default class AircraftModel {
             }
         }
 
-        // turn direction is defaulted to `right` by the commandParser
+        // turn direction is defaulted to `right` by the AircraftCommandParser
         this.target.turn = hold.dirTurns;
         this.target.heading = nextTargetHeading;
 
@@ -1996,7 +2005,7 @@ export default class AircraftModel {
 
         if (this.hit) {
             // 90fps fall rate?...
-            this.altitude -= 90 * GameController.game_delta();
+            this.altitude -= 90 * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
             this.speed *= 0.99;
 
             return;
@@ -2012,17 +2021,29 @@ export default class AircraftModel {
         // SPEED
         this.updateSpeedPhysics();
 
+        const offsetGameTime = TimeKeeper.accumulatedDeltaTime / GameController.game_speedup();
+        // const nextHistoricalPosition = [
+        //     this.positionModel.relativePosition[0],
+        //     this.positionModel.relativePosition[1],
+        //     offsetGameTime
+        // ];
+
+        // FIXME: whats the difference here between the if and else blocks? why are we looking for a 0 length?
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.relativePositionHistory.length === 0) {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],
                 this.positionModel.relativePosition[1],
-                GameController.game_time() / GameController.game_speedup()
+                offsetGameTime
             ]);
             // TODO: this can be abstracted
-        } else if (abs((GameController.game_time() / GameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
-            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], GameController.game_time() / GameController.game_speedup()]);
+        } else if (abs(offsetGameTime - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / GameController.game_speedup()) {
+            this.relativePositionHistory.push([
+                this.positionModel.relativePosition[0],
+                this.positionModel.relativePosition[1],
+                offsetGameTime
+            ]);
         }
 
         this.updateGroundSpeedPhysics();
@@ -2051,7 +2072,7 @@ export default class AircraftModel {
             return;
         }
 
-        const secondsElapsed = GameController.game_delta();
+        const secondsElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
@@ -2109,7 +2130,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetDescended = feetPerSecond * GameController.game_delta();
+        const feetDescended = feetPerSecond * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
 
         if (abs(altitude_diff) < feetDescended) {
             this.altitude = this.target.altitude;
@@ -2135,8 +2156,7 @@ export default class AircraftModel {
         }
 
         const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
-        const feetClimbed = feetPerSecond * GameController.game_delta();
-
+        const feetClimbed = feetPerSecond * TimeKeeper.getDeltaTimeForGameStateAndTimewarp();
 
         if (abs(altitude_diff) < abs(feetClimbed)) {
             this.altitude = this.target.altitude;
@@ -2162,13 +2182,13 @@ export default class AircraftModel {
         }
 
         if (this.speed > this.target.speed) {
-            speedChange = -this.model.rate.decelerate * GameController.game_delta() / 2;
+            speedChange = -this.model.rate.decelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
 
             if (this.isOnGround()) {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * GameController.game_delta() / 2;
+            speedChange  = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
@@ -2209,7 +2229,7 @@ export default class AircraftModel {
         const groundSpeed = vlen(flightPathVector);
 
         // Calculate new position
-        const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
         const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
@@ -2234,7 +2254,7 @@ export default class AircraftModel {
         //     // TODO: this should be abstracted to a helper function
         //     vector = vadd(vscale(
         //         vturn(wind.angle + Math.PI),
-        //         wind.speed * 0.000514444 * GameController.game_delta()),
+        //         wind.speed * 0.000514444 * TimeKeeper.getDeltaTimeForGameStateAndTimewarp()),
         //         vscale(vturn(angle + crab_angle), trueAirSpeed)
         //     );
         // }
@@ -2250,7 +2270,7 @@ export default class AircraftModel {
      * @deprecated
      */
     updateSimpleGroundSpeedPhysics() {
-        // const hoursElapsed = GameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        // const hoursElapsed = TimeKeeper.getDeltaTimeForGameStateAndTimewarp() * TIME.ONE_SECOND_IN_HOURS;
         // const distanceTraveled_nm = this.speed * hoursElapsed;
         //
         // this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);

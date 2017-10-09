@@ -1,16 +1,21 @@
 import _has from 'lodash/has';
 import _map from 'lodash/map';
+import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import UiController from '../UiController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
+import TimeKeeper from '../engine/TimeKeeper';
+import UiController from '../UiController';
+import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
 import {
     radio_runway,
-    radio_spellOut
+    radio_spellOut,
+    radio_heading,
+    radio_altitude
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_PHASE,
@@ -46,6 +51,12 @@ const COMMANDS = {
     moveDataBlock: 'runMoveDataBlock',
     route: 'runRoute',
     reroute: 'runReroute',
+    sayAltitude: 'runSayAltitude',
+    sayAssignedAltitude: 'runSayAssignedAltitude',
+    sayHeading: 'runSayHeading',
+    sayAssignedHeading: 'runSayAssignedHeading',
+    sayIndicatedAirspeed: 'runSayIndicatedAirspeed',
+    sayAssignedSpeed: 'runSayAssignedSpeed',
     sayRoute: 'runSayRoute',
     sid: 'runSID',
     speed: 'runSpeed',
@@ -71,7 +82,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runCommands
      * @param aircraft {AircraftModel}
-     * @param commands {CommandParser}
+     * @param commands {array<AircraftCommandParser>}
      */
     runCommands(aircraft, commands) {
         if (!aircraft.inside_ctr) {
@@ -219,11 +230,11 @@ export default class AircraftCommander {
         const airport = AirportController.airport_get();
 
         return aircraft.pilot.maintainAltitude(
-            aircraft.altitude,
             altitudeRequested,
             expediteRequested,
             shouldUseSoftCeiling,
-            airport
+            airport,
+            aircraft
         );
     }
 
@@ -298,9 +309,9 @@ export default class AircraftCommander {
      * @param data {array}
      */
     runSpeed(aircraft, data) {
-        const speed = data[0];
+        const nextSpeed = data[0];
 
-        return aircraft.pilot.maintainSpeed(aircraft.speed, speed);
+        return aircraft.pilot.maintainSpeed(nextSpeed, aircraft);
     }
 
     /**
@@ -464,17 +475,10 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runMoveDataBlock
-     * @param data
+     * @deprecated
      */
-    runMoveDataBlock(aircraft, dir) {
-        // TODO: what do all these numbers mean?
-        const positions = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
-
-        if (!_has(positions, dir[0])) {
-            return;
-        }
-
-        aircraft.datablockDir = positions[dir[0]];
+    runMoveDataBlock() {
+        return [false, 'moving data blocks is now a scope command; see documentation for help'];
     }
 
     /**
@@ -521,6 +525,120 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
+     * @method runSayAltitude
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAltitude(aircraft) {
+        const altitude = _round(aircraft.altitude, -2);
+        const isClimbingOrDescending = aircraft.trend !== 0;
+        const readback = {};
+        let altitudeChangeString = 'at ';
+
+        if (isClimbingOrDescending) {
+            altitudeChangeString = 'leaving ';
+        }
+
+        readback.log = `${altitudeChangeString}${altitude}`;
+        readback.say = `${altitudeChangeString}${radio_altitude(altitude)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedAltitude
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAssignedAltitude(aircraft) {
+        const altitude = _round(aircraft.mcp.altitude, -2);
+        const readback = {};
+
+        if (altitude === 0) {
+            return [false, 'we haven\'t been assigned an altitude'];
+        }
+
+        readback.log = `assigned ${altitude}`;
+        readback.say = `assigned ${radio_altitude(altitude)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayHeading
+     * @param aircraft
+     * @return {array}	[success of operation, readback]
+     */
+    runSayHeading(aircraft) {
+        const heading = _round(radiansToDegrees(aircraft.heading));
+        const readback = {};
+
+        readback.log = `heading ${heading}`;
+        readback.say = `heading ${radio_heading(heading)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedHeading
+     * @param aircraft
+     * @return {array}	[success of operation, readback]
+     */
+    runSayAssignedHeading(aircraft) {
+        if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
+            return [false, 'we haven\'t been assigned a heading'];
+        }
+
+        const heading = _round(radiansToDegrees(aircraft.mcp.heading));
+        const readback = {};
+
+        readback.log = `assigned heading ${heading}`;
+        readback.say = `assigned heading ${radio_heading(heading)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSaySpeed
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayIndicatedAirspeed(aircraft) {
+        const speed = _round(aircraft.speed);
+        const readback = {};
+
+        readback.log = `indicating ${speed} knots`;
+        readback.say = `indicating ${radio_spellOut(speed)} knots`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runSayAssignedSpeed
+     * @param aircraft
+     * @return {array} [success of operation, readback]
+     */
+    runSayAssignedSpeed(aircraft) {
+        if (aircraft.mcp.speedMode !== MCP_MODE.SPEED.HOLD) {
+            return [false, 'we haven\'t been assigned a speed'];
+        }
+
+        const speed = _round(aircraft.mcp.speed);
+        const readback = {};
+
+        readback.log = `assigned ${speed} knots`;
+        readback.say = `assigned ${radio_spellOut(speed)} knots}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftCommander
      * @method runTaxi
      * @param data
      * @return {array}   [success of operation, readback]
@@ -549,7 +667,7 @@ export default class AircraftCommander {
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunwayModel = runway;
-        aircraft.taxi_start = GameController.game_time();
+        aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
         runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
@@ -582,7 +700,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
-        // FIXME: update some of this queue logic to live in the RunwayModel
+        // TODO: update some of this queue logic to live in the RunwayModel
         const airport = AirportController.airport_get();
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
@@ -629,7 +747,7 @@ export default class AircraftCommander {
 
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = GameController.game_time();
+        aircraft.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 

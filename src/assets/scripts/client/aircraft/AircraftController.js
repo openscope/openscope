@@ -73,7 +73,7 @@ export default class AircraftController {
      * @param airlineController {AirlineController}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
+    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
@@ -126,6 +126,16 @@ export default class AircraftController {
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
         /**
+         * Local reference to the scope model
+         *
+         * @for AircraftController
+         * @property _scopeModel
+         * @type {ScopeModel}
+         * @private
+         */
+        this._scopeModel = scopeModel;
+
+        /**
          * List of `transponderCode` values in use
          *
          * Each `transponderCode` should be unique, thus we maintain this list
@@ -147,6 +157,7 @@ export default class AircraftController {
         this._stripViewController = new StripViewController();
 
         return this.init()
+            ._setupHandlers()
             .enable();
     }
 
@@ -160,15 +171,30 @@ export default class AircraftController {
     }
 
     /**
+     * Set up event handlers
+     *
+     * @for AircraftController
+     * @method _setupHandlers
+     * @private
+     * @chainable
+     */
+    _setupHandlers() {
+        this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
+
+        return this;
+    }
+
+    /**
      * @for AircraftController
      * @method enable
      * @chainable
      */
     enable() {
+        this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
-        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -180,10 +206,11 @@ export default class AircraftController {
      * @chainable
      */
     disable() {
+        this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
-        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.aircraft_remove);
+        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT_CONFLICT, this.removeConflict);
 
         return this;
@@ -196,9 +223,7 @@ export default class AircraftController {
      * @method addItem
      * @param item {AircraftModel}
      */
-    addItem(item) {
-        this.aircraft.list.push(item);
-    }
+    addItem = (item) => this.aircraft.list.push(item);
 
     /**
      * Callback method fired by an interval defined in the `SpawnScheduler`.
@@ -303,15 +328,15 @@ export default class AircraftController {
      * @method aircraft_remove
      * @param aircraftModel {AircraftModel}
      */
-    aircraft_remove = (aircraftModel) => {
+    aircraft_remove(aircraftModel) {
         AirportController.removeAircraftFromAllRunwayQueues(aircraftModel);
-
         this.removeFlightNumberFromList(aircraftModel);
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
         this.removeStripView(aircraftModel);
-    };
+        this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
+    }
 
     /**
      * This method is part of the game loop.
@@ -378,7 +403,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
                 aircraft.setIsRemovable();
 
                 speech_say([
@@ -393,6 +418,19 @@ export default class AircraftController {
                 i -= 1;
             }
         }
+    }
+
+    /**
+     * @method findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftModel|null}
+     */
+    findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
     /**
@@ -437,7 +475,7 @@ export default class AircraftController {
      * @return {AircraftModel|null}
      */
     debug(callsign = '') {
-        return this._findAircraftByCallsign(callsign);
+        return this.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -569,7 +607,9 @@ export default class AircraftController {
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
 
-        this.addItem(aircraftModel);
+        // triggering event bus rather than calling locally because multiple classes
+        // are listening for the event and aircraft model
+        this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
         this.initAircraftStripView(aircraftModel);
     }
 
@@ -596,9 +636,12 @@ export default class AircraftController {
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
-        const altitude = isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
-            ? 18000
-            : spawnPatternModel.altitude;
+        let altitude = spawnPatternModel.altitude;
+
+        if (isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL) {
+            altitude = Math.min(18000, altitude);
+        }
+
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
         const transponderCode = this._generateUniqueTransponderCode();
 
@@ -621,20 +664,6 @@ export default class AircraftController {
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
-    }
-
-    /**
-     * @method _findAircraftByCallsign
-     * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
-     * @private
-     */
-    _findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
     /**
@@ -783,7 +812,7 @@ export default class AircraftController {
      * @private
      */
     _onStripDoubleClickhandler = (callsign) => {
-        const { relativePosition } = this._findAircraftByCallsign(callsign);
+        const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
