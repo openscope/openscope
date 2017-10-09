@@ -769,6 +769,7 @@ export default class Fms {
         this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
     }
 
+    // TODO: we may need to update the runway in this method
     /**
      * Removes an existing flightPlan and replaces it with a
      * brand new route.
@@ -779,12 +780,23 @@ export default class Fms {
      * @method replaceFlightPlanWithNewRoute
      * @param routeString {string}
      * @param runway {string}
+     * @return {array} [success of operation, response for pilot to read back]
      */
     replaceFlightPlanWithNewRoute(routeString, runway) {
-        // TODO: we may need to update the runway in this method
-        this._destroyLegCollection();
+        let legCollection;
 
-        this.legCollection = this._buildLegCollection(routeString);
+        try {
+            legCollection = this._buildLegCollection(routeString);
+        } catch (error) {
+            console.warn(error);
+
+            return [false, `unable to apply route ${routeString}`];
+        }
+
+        this._destroyLegCollection();
+        this.legCollection = legCollection;
+
+        return [true, `successfully applied route '${routeString}'`];
     }
 
     /**

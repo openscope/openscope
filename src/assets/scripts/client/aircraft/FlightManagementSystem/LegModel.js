@@ -1,13 +1,13 @@
 import _drop from 'lodash/drop';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
-import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import WaypointModel from './WaypointModel';
-import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
-    FLIGHT_PHASE,
+    DEPARTURE_FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
+import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
  * A section of a flight plan containing one to many `WaypointModel` objects.
@@ -373,6 +373,7 @@ export default class LegModel {
      * @param runway {string}
      * @param flightPhase {string}
      * @param holdWaypointProps {object}
+     * @return {array<WaypointModel>}
      * @private
      */
     _buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps) {
@@ -428,12 +429,13 @@ export default class LegModel {
         }
 
         const isHold = true;
-        const holdRouteSegment = extractFixnameFromHoldSegment(routeString);
-        const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
+        const holdFixName = extractFixnameFromHoldSegment(routeString);
+        const fixModel = this._navigationLibrary.findFixByName(holdFixName);
 
         if (!fixModel) {
-            // TODO: Do something more helpful than this, that ends up telling the user their mistake
-            return new Error(`Requested fix of '${holdRouteSegment}' could not be found!`);
+            console.error(`Expected holding fix to be defined, but cannot find fix named '${holdFixName}'`);
+
+            throw new Error(`unable to find fix '${holdFixName}'`);
         }
 
         return [
@@ -503,10 +505,9 @@ export default class LegModel {
             return '';
         }
 
-        // TODO: As amended, the following is probably an unsafe assumption, and should be reexamined.
         let procedureType = PROCEDURE_TYPE.STAR;
 
-        if (flightPhase === FLIGHT_PHASE.APRON) {
+        if (flightPhase in DEPARTURE_FLIGHT_PHASE) {
             procedureType = PROCEDURE_TYPE.SID;
         }
 
