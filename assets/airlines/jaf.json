@@ -1,0 +1,27 @@
+{
+    "icao": "jaf",
+    "name": "TUI Fly Belgium",
+    "callsign": {
+        "name": "Beauty",
+        "length": 3,
+        "alpha": false
+    },
+    "fleets": {
+        "medium": [
+            ["B738", 16],
+            ["B737", 5],
+            ["E190", 4]
+        ],
+        "long": [
+            ["B763", 1],
+            ["B788", 1]
+        ],
+        "default": [
+            ["B738", 16],
+            ["B737", 5],
+            ["E190", 4],
+            ["B763", 1],
+            ["B788", 1]
+        ]
+    }
+}
