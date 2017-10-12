@@ -207,10 +207,9 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runAbort
-     * @param {AircraftModel} aircraft
      * @return {array} [success of operation, readback]
      */
-    runAbort(aircraft) {
+    runAbort() {
         return [false, "the 'abort' command has been deprecated, please see documentation for help"];
     }
 
@@ -251,7 +250,7 @@ export default class AircraftCommander {
         let direction = data[0];
         const heading = data[1];
         const incremental = data[2];
-        const readback = aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
+        const readback = aircraft.pilot.maintainHeading(aircraft, heading, direction, incremental);
 
         if (direction === null) {
             direction = '';
@@ -260,7 +259,7 @@ export default class AircraftCommander {
         aircraft.target.turn = direction;
 
         if (aircraft.hasApproachClearance) {
-            aircraft.cancelApproachClearance(aircraft.altitude, aircraft.heading);
+            aircraft.cancelApproachClearance(aircraft);
         }
 
         return readback;
@@ -569,7 +568,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSayHeading
      * @param aircraft
-     * @return {array}	[success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
         const heading = _round(radiansToDegrees(aircraft.heading));
@@ -585,7 +584,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSayAssignedHeading
      * @param aircraft
-     * @return {array}	[success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     runSayAssignedHeading(aircraft) {
         if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {

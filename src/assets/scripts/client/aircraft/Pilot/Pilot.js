@@ -135,7 +135,7 @@ export default class Pilot {
             clampedAltitude += 1;
         }
 
-        this.cancelApproachClearance();
+        this.cancelApproachClearance(aircraftModel);
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
@@ -164,27 +164,27 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainHeading
-     * @param currentHeading {number}
+     * @param aircraftModel {AircraftModel}
      * @param headingInDegrees {number}                 the heading to maintain, in degrees
      * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
      * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a
      *                                                  number of degrees to turn
      * @return {array}                                  [success of operation, readback]
      */
-    maintainHeading(currentHeading, headingInDegrees, direction, incremental) {
+    maintainHeading(aircraftModel, headingInDegrees, direction, incremental) {
         const nextHeadingInRadians = degreesToRadians(headingInDegrees);
         let correctedHeading = nextHeadingInRadians;
 
         if (incremental) {
             // if direction is left
-            correctedHeading = radians_normalize(currentHeading - nextHeadingInRadians);
+            correctedHeading = radians_normalize(aircraftModel.heading - nextHeadingInRadians);
 
             if (direction === 'right') {
-                correctedHeading = radians_normalize(currentHeading + nextHeadingInRadians);
+                correctedHeading = radians_normalize(aircraftModel.heading + nextHeadingInRadians);
             }
         }
 
-        this.cancelApproachClearance();
+        this.cancelApproachClearance(aircraftModel);
         this._fms.exitHoldIfHolding();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
@@ -210,13 +210,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainPresentHeading
-     * @param heading {number}  the heading the aircraft is facing at the time the command is given
-     * @return {array}          [success of operation, readback]
+     * @param aircraftModel {AircraftModel} the heading the aircraft is facing at the time the command is given
+     * @return {array} [success of operation, readback]
      */
-    maintainPresentHeading(heading) {
-        this.cancelApproachClearance();
+    maintainPresentHeading(aircraftModel) {
+        this.cancelApproachClearance(aircraftModel);
+        this._mcp.setHeadingFieldValue(aircraftModel.heading);
         this._mcp.setHeadingHold();
-        this._mcp.setHeadingFieldValue(heading);
 
         const readback = {};
         readback.log = 'fly present heading';
@@ -409,24 +409,23 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
-     * @param currentAltitude {number}  the aircraft's current altitude, in feet
-     * @param currentHeading {number}   the aircraft's current heading, in radians
-     * @return {array}                  [success of operation, readback]
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, readback]
      */
-    cancelApproachClearance(currentAltitude, currentHeading) {
+    cancelApproachClearance(aircraftModel) {
         if (!this.hasApproachClearance) {
             return [false, 'we have no approach clearance to cancel!'];
         }
 
         const airport = AirportController.airport_get();
         const altitudeToMaintain = Math.max(
-            Math.min(currentAltitude, this._mcp.altitude),
+            Math.min(aircraftModel.altitude, this._mcp.altitude),
             airport.minAssignableAltitude
         );
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
         this._mcp.setAltitudeHold();
-        this._mcp.setHeadingFieldValue(currentHeading);
+        this._mcp.setHeadingFieldValue(aircraftModel.heading);
         this._mcp.setHeadingHold();
         this._mcp.setSpeedHold();
 
