@@ -495,7 +495,7 @@ export default class Pilot {
             nextAltitude = this._fms.getBottomAltitude();
         }
 
-        if (_isNil(nextAltitude) || nextAltitude === Infinity) {
+        if (isNaN(nextAltitude) || nextAltitude === Infinity) {
             return [false, 'unable to descend via STAR'];
         }
 
@@ -503,12 +503,7 @@ export default class Pilot {
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        // Build readback
-        const readback = {};
-        readback.log = 'descend via the arrival';
-        readback.say = 'descend via the arrival';
-
-        return [true, readback];
+        return [true, 'descend via STAR'];
     }
 
     /**
