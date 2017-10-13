@@ -94,7 +94,7 @@ ava('.zoomOut() calls ._eventBus.trigger()', (t) => {
 
     CanvasStageModel.zoomOut();
 
-    t.true(_eventBusTrigger.calledOnce);
+    t.true(_eventBusTrigger.callCount === 2);
 
     _eventBusTrigger.restore();
 });
@@ -132,7 +132,7 @@ ava('.zoomIn() calls ._eventBus.trigger()', (t) => {
 
     CanvasStageModel.zoomIn();
 
-    t.true(_eventBusTrigger.calledOnce);
+    t.true(_eventBusTrigger.callCount === 2);
 
     _eventBusTrigger.restore();
 });

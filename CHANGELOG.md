@@ -18,6 +18,7 @@
 - Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 - Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
+- Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 
 
 
