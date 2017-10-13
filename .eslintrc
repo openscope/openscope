@@ -19,7 +19,7 @@
         "prefer-spread": 1,
         "semi": [2, "always"],
         "space-before-function-paren": [2, "never"],
-        "no-case-declarations": 1,
+        "no-case-declarations": 0,
         "no-continue": 0,
         "no-unused-vars": ["error", { "argsIgnorePattern": "event|error" }],
 

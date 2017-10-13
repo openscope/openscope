@@ -1,10 +1,14 @@
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
+- Add Tampa Intl. (KTPA) [#647](https://github.com/openscope/openscope/issues/647)
+- Add Theodore Francis Green Memorial State Airport (Providence, US) [#107](https://github.com/openscope/openscope/issues/107)
+- New Airport: KDTW (Detroit Metropolitan Wayne County Airport, MI) [#559](https://github.com/openscope/openscope/issues/559)
 
 
 
 ### Bugfixes
+- Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
 
 
 
@@ -12,11 +16,14 @@
 - Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
 - Add git strategy flow chart to documentation [#80](https://github.com/openscope/openscope/issues/80)
 - Force arrivals with non-altitude-restricted STARs/routes descend at least to ceiling of controlled airspace [#662](https://github.com/openscope/openscope/issues/662)
+- Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
+- Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
+- Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
 
 
 
 ## 5.5.1 (October 1, 2017)
---
+---
 ### Hotfix
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 - Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
@@ -75,7 +82,7 @@
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
-- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
+- Add Albuquerque Sunport (KABQ) [#327](https://github.com/openscope/openscope/issues/327)
 - Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
 - Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)

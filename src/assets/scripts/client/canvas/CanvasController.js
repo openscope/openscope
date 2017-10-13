@@ -181,7 +181,7 @@ export default class CanvasController {
          * @type {number}
          * @private
          */
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
 
         /**
          * Flag used to determine if the Aircraft canvas should be updated
@@ -333,7 +333,7 @@ export default class CanvasController {
             height: DEFAULT_CANVAS_SIZE.HEIGHT,
             width: DEFAULT_CANVAS_SIZE.WIDTH
         };
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
         this._shouldDrawFixLabels = false;
@@ -383,7 +383,7 @@ export default class CanvasController {
             this._markDeepRender();
         }, 500);
 
-        this._lastFrameTimestamp = TimeKeeper.gameTime;
+        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
     }
 
     /**
@@ -448,11 +448,9 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = GameController.game_time() - AirportController.airport_get().start;
+        const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(extrapolate_range_clamp(1, GameController.game.speedup, 10, 30, 1));
-        const shouldUpdate = !GameController.game_paused() && TimeKeeper.frames % framestep === 0;
-        const shouldUpdateWind = !GameController.game_paused() && TimeKeeper.frames % 50 === 1;
+        const shouldUpdate = !GameController.game_paused() && TimeKeeper.shouldUpdate();
         const fading = elapsed < 1;
 
         // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
@@ -584,6 +582,7 @@ export default class CanvasController {
         cc.clearRect(0, 0, this.canvas.size.width, this.canvas.size.height);
     }
 
+    // TODO: logic should be updated here to exclusively use `TimeKeeper`
     /**
      * Flag used to determine if we should draw a new frame.
      *
@@ -592,10 +591,11 @@ export default class CanvasController {
      * @return {boolean}
      */
     canvas_should_draw() {
-        const currentTime = TimeKeeper.gameTime;
+        // FIXME: move this to a simple method in TimeKeeper
+        const { currentTime, timewarp } = TimeKeeper;
         const elapsed = currentTime - this._lastFrameTimestamp;
 
-        if (elapsed > (1 / GameController.game.speedup)) {
+        if (elapsed > (1 / timewarp)) {
             this._lastFrameTimestamp = currentTime;
 
             return true;
@@ -988,11 +988,7 @@ export default class CanvasController {
      */
     canvas_draw_radar_target(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
-        let match = false;
-
-        if (prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign)) {
-            match = true;
-        }
+        const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
 
         if (!aircraftModel.isVisible()) {
             return;
@@ -1052,13 +1048,11 @@ export default class CanvasController {
             cc.restore();
         }
 
-        // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
-        // Aircraft
         // Draw the future path
-        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always' ||
-          (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' &&
-           ((aircraftModel.warning || match) && !aircraftModel.isTaxiing()))
-        ) {
+        // breaking project convention here with an if/else simply for readability
+        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') {
+            this.canvas_draw_future_track(cc, aircraftModel);
+        } else if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' && aircraftModel.warning || match) {
             this.canvas_draw_future_track(cc, aircraftModel);
         }
 
@@ -1169,15 +1163,18 @@ export default class CanvasController {
      * @param aircraft {AircraftModel
      */
     canvas_draw_future_track(cc, aircraft) {
+        if (aircraft.isTaxiing() || TimeKeeper.simulationRate !== 1) {
+            return;
+        }
+
         let was_locked = false;
         const future_track = [];
-        const save_delta = GameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.projected = true;
-        GameController.game.delta = 5;
+        TimeKeeper.saveDeltaTimeBeforeFutureTrackCalculation();
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1191,7 +1188,7 @@ export default class CanvasController {
             }
         }
 
-        GameController.game.delta = save_delta;
+        TimeKeeper.restoreDeltaTimeAfterFutureTrackCalculation();
 
         cc.save();
 
@@ -1237,7 +1234,8 @@ export default class CanvasController {
 
         cc.stroke();
 
-        this.canvas_draw_future_track_fixes(cc, twin, future_track);
+        // TODO: following method not in use, leaving for posterity
+        // this.canvas_draw_future_track_fixes(cc, twin, future_track);
 
         cc.restore();
     }
@@ -1255,6 +1253,7 @@ export default class CanvasController {
 
         for (let i = 0; i < radarTargetModels.length; i++) {
             cc.save();
+
             this.canvas_draw_radar_target(cc, radarTargetModels[i]);
 
             cc.restore();

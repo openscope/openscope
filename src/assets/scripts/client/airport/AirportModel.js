@@ -7,12 +7,13 @@ import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
 import AirportWindModel from './AirportWindModel';
-import EventBus from '../lib/EventBus';
-import GameController from '../game/GameController';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
+import EventBus from '../lib/EventBus';
+import GameController from '../game/GameController';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
+import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -525,7 +526,7 @@ export default class AirportModel {
         // TODO: this should live elsewhere and be called by a higher level controller
         GameController.game_reset_score_and_events();
 
-        this.start = GameController.game_time();
+        this.start = TimeKeeper.accumulatedDeltaTime;
 
         this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
