@@ -25,6 +25,7 @@
 - Updates KABQ to AIRAC 1711 [#773](https://github.com/openscope/openscope/issues/773)
 - Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
 - Updates KSTL to AIRAC 1711 [#777](https://github.com/openscope/openscope/issues/777)
+- Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
 
 
 
