@@ -701,11 +701,11 @@ export default class AircraftCommander {
     runTakeoff(aircraft) {
         // TODO: update some of this queue logic to live in the RunwayModel
         const airport = AirportController.airport_get();
+        const { wind } = airport;
         const runway = aircraft.fms.departureRunwayModel;
         const spotInQueue = runway.getAircraftQueuePosition(aircraft.id);
         const isInQueue = spotInQueue > -1;
         const aircraftAhead = runway.queue[spotInQueue - 1];
-        const wind = airport.getWind();
         const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
         const roundedWindSpeed = round(wind.speed);
         const readback = {};

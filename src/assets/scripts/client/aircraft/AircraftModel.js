@@ -1047,7 +1047,6 @@ export default class AircraftModel {
         };
 
         const { wind } = AirportController.airport_get();
-        // const wind = airport.wind;
         const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
 
         // TODO: these two bits of math should be abstracted to helper functions
@@ -2209,7 +2208,8 @@ export default class AircraftModel {
 
         // Calculate wind vector
         const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
-        const wind = AirportController.airport_get().wind;
+        const { wind } = AirportController.airport_get();
+        // TODO: abstract to `AircraftWindModel`
         const windTravelDirection = wind.angle + Math.PI;
         const windTravelSpeedAtSurface = wind.speed;
         const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));

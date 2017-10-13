@@ -188,6 +188,15 @@ export default class AirportModel {
         this.terrain = {};
 
         /**
+         * Current prevailing wind conditions
+         *
+         * @property wind
+         * @type {AirportWindModel}
+         * @default null
+         */
+        this.wind = null;
+
+        /**
          * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
          *
          * @property perimeter
@@ -359,13 +368,13 @@ export default class AirportModel {
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
+        this.wind = new AirportWindModel(data.wind);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
-        this.wind = new AirportWindModel(data.wind);
     }
 
     /**
@@ -520,15 +529,6 @@ export default class AirportModel {
 
         this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
-
-    /**
-     * @for AirportModel
-     * @method getWind
-     * @return wind {number}
-     */
-    getWind = () => {
-        return this.wind;
-    };
 
     /**
      * Set active arrival/departure runways from the runway names

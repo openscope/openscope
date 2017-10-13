@@ -1,4 +1,5 @@
 import _floor from 'lodash/floor';
+import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
 import GameController from '../game/GameController';
 import { calculateNormalDistributedNumber } from '../math/core';
@@ -11,31 +12,26 @@ import { calculateNormalDistributedNumber } from '../math/core';
 export default class AirportWindModel {
     /**
      * @constructor
-     * @param initialAirportWind {object}
+     * @param initialAirportWind {object{ speed: number, angle: number }}
      */
     constructor(initialAirportWind) {
         /**
          *
          *
-         * @proeprty angle
+         * @property angle
          * @type {number}
+         * @default -9999
          */
-        this.angle = 0;
+        this.angle = -9999;
 
         /**
          *
          *
-         * @proeprty speed
+         * @property speed
          * @type {number}
+         * @default -1
          */
-        this.speed = 10;
-
-        /**
-         * Instance of the running schedule.
-         *
-         * @type {gameTimeout|null}
-         */
-        this.currentSchedule = null;
+        this.speed = -1;
 
         return this._init(initialAirportWind)
             ._setupHandlers()
@@ -47,12 +43,16 @@ export default class AirportWindModel {
      *
      * @for AirportWindModel
      * @method _init
-     * @param {Object} data - airport-specific defaults from AirportModel
+     * @param initialAirportWind {object}  wind value defaults from airport json
      * @private
      */
-    _init(data) {
-        this.speed = data.speed;
-        this.angle = data.angle;
+    _init(initialAirportWind) {
+        if (_isNil(initialAirportWind)) {
+            throw new Error('Invalid wind data provided to AirportWindModel. Epected and object with keys `angle` and `speed`.');
+        }
+
+        this.speed = initialAirportWind.speed;
+        this.angle = initialAirportWind.angle;
 
         return this;
     }
@@ -66,7 +66,7 @@ export default class AirportWindModel {
      * @private
      */
     _setupHandlers() {
-        this._onCalculateNextWindHandler = this._calculateNextWind.bind(this);
+        this._calculateNextWindHandler = this._calculateNextWind.bind(this);
 
         return this;
     }
@@ -79,7 +79,6 @@ export default class AirportWindModel {
      * @chainable
      */
     enable() {
-        this._onCalculateNextWindHandler;
         this._createWindUpdateTimer();
 
         return this;
@@ -94,8 +93,8 @@ export default class AirportWindModel {
      */
     _calculateNextWind() {
         // We don't want decimal values, so we round.
-        const speed = _round(calculateNormalDistributedNumber(this.speed));
-        const initialAngle = _round(calculateNormalDistributedNumber(this.angle));
+        const speed = calculateNormalDistributedNumber(this.speed);
+        const initialAngle = calculateNormalDistributedNumber(this.angle);
         let nextAngle = initialAngle;
 
         if (initialAngle > 360) {
@@ -105,8 +104,8 @@ export default class AirportWindModel {
             nextAngle = initialAngle - (360 * factorsOfThreeSixty);
         }
 
-        this.speed = speed;
-        this.angle = nextAngle;
+        this.speed = _round(speed);
+        this.angle = _round(nextAngle);
     }
 
     /**
@@ -119,10 +118,16 @@ export default class AirportWindModel {
      */
     _createWindUpdateTimer() {
         GameController.game_interval(
-            this._onCalculateNextWindHandler,
+            this._calculateNextWindHandler,
             300,
             null,
             null
         );
     }
+
+    // FIXME: taken from the `AircraftModel`. this class should provide a method that does this
+    // const windTravelDirection = wind.angle + Math.PI;
+    // const windTravelSpeedAtSurface = wind.speed;
+    // const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
+    // const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
 }
