@@ -102,7 +102,7 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     t.true(result.length === 15);
 });
 
-ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResult = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
@@ -115,7 +115,7 @@ ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a 
     t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResult);
 });
 
-ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResultBeforeReplacement = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const expectedResult = 'COWBY BIKKR MLF GRNPA1 KLAS';
     const fms = buildFmsMock(isComplexRoute);
