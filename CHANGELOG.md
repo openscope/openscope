@@ -20,6 +20,7 @@
 - Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 - Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
+- Increase the offset of the scale, as it was cut off by the aircraft bar [#545](https://github.com/openscope/openscope/issues/545)
 
 
 
@@ -28,7 +29,6 @@
 ### Hotfix
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 - Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
-
 
 ## 5.5.0 (October 1, 2017)
 ---
@@ -51,6 +51,7 @@
 - Changes background-color of settings option selects to transparent [#740](https://github.com/openscope/openscope/issues/740)
 - Updates param passed to RadarTargetCollection from within AircraftController.aircraft_remove()[#743](https://github.com/openscope/openscope/issues/743)
 - Ensure failure message responses are shown in red [#742](https://github.com/openscope/openscope/issues/742)
+
 
 ### Enhancements & Refactors
 - Modifies `StripView` background-color to use rgba instead of hex to allow for a semi-transparent background [#679](https://github.com/openscope/openscope/issues/679)
