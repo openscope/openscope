@@ -828,24 +828,24 @@ export default class Fms {
      * @Fms
      * @method exitHoldIfHolding
      */
-    exitHoldIfHolding() {
+    leaveHoldFlightPhase() {
         if (this.currentPhase !== FLIGHT_PHASE.HOLD) {
             return;
         }
 
-        this._exitHoldToPreviousFlightPhase();
+        this._setFlightPhaseToPreviousFlightPhase();
     }
 
     /**
      * Sets `#currentPhase` to its previous value
      *
-     * This method should only be called from `.exitHoldIfHolding()`, which performs
+     * This method should only be called from `.leaveHoldFlightPhase()`, which performs
      * the requisit checks for correct `#flightPhase`
      *
      * @for Fms
-     * @method _exitHoldToPreviousFlightPhase
+     * @method _setFlightPhaseToPreviousFlightPhase
      */
-    _exitHoldToPreviousFlightPhase() {
+    _setFlightPhaseToPreviousFlightPhase() {
         this.currentPhase = _last(this._flightPhaseHistory);
     }
 
