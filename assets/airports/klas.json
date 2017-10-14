@@ -252,9 +252,9 @@
                 ["TNP*"]
             ]
         },
-        "COWBY7": {
-            "icao": "COWBY7",
-            "name": "Cowboy Seven",
+        "COWBY8": {
+            "icao": "COWBY8",
+            "name": "Cowboy Eight",
             "rwy": {
                 "1L": ["_1L014NAPSE252", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
                 "1R": ["_1R014NAPSE252", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
@@ -410,9 +410,9 @@
                 ["LEELN", "TOMIS"]
             ]
         },
-        "TRALR8": {
-            "icao": "TRALR8",
-            "name": "Trailer Eight",
+        "TRALR9": {
+            "icao": "TRALR9",
+            "name": "Trailer Nine",
             "rwy": {
                 "1L": ["_1L014NAPSE252", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "1R": ["_1R014NAPSE252", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
@@ -556,9 +556,9 @@
                 ["PGS", "CEJAY", "KADDY"]
             ]
         },
-        "KEPEC5": {
-            "icao": "KEPEC5",
-            "name": "Kepeck Five",
+        "KEPEC6": {
+            "icao": "KEPEC6",
+            "name": "Kepeck Six",
             "entryPoints": {
                 "MISEN": [["MISEN", "A240+"]],
                 "TNP": ["TNP", "JOTNU", "ZELMA"]
@@ -704,7 +704,7 @@
             "origin": "KLAS",
             "destination": "",
             "category": "departure",
-            "route": "KLAS.COWBY7.GUP",
+            "route": "KLAS.COWBY8.GUP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -801,7 +801,7 @@
             "origin": "",
             "destination": "KLAS",
             "category": "arrival",
-            "route": "MISEN.KEPEC5.KLAS",
+            "route": "MISEN.KEPEC6.KLAS",
             "altitude": 24000,
             "speed": 320,
             "method": "random",
