@@ -9,8 +9,8 @@ import {
 let pilot = null;
 
 // Mocks
-const successResponse = [true, 'descend via STAR'];
-const failureResponse = [false, 'unable to descend via STAR'];
+const successResponseMock = [true, 'descend via STAR'];
+const failureResponseMock = [false, 'unable to descend via STAR'];
 const initialAltitudeMock = 18000;
 const nextAltitudeMock = 5000;
 const invalidAltitudeMock = 'threeve';
@@ -31,7 +31,7 @@ ava.afterEach(() => {
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
     const response = pilot.descendViaStar(invalidAltitudeMock);
 
-    t.deepEqual(response, failureResponse);
+    t.deepEqual(response, failureResponseMock);
     t.true(pilot._mcp.altitude === initialAltitudeMock);
 });
 
@@ -41,7 +41,7 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 
     const response = pilot.descendViaStar();
 
-    t.deepEqual(response, failureResponse);
+    t.deepEqual(response, failureResponseMock);
     t.true(pilot._mcp.altitude === initialAltitudeMock);
 });
 
@@ -53,14 +53,14 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 
     const response = pilot.descendViaStar();
 
-    t.deepEqual(response, failureResponse);
+    t.deepEqual(response, failureResponseMock);
     t.true(pilot._mcp.altitude === initialAltitudeMock);
 });
 
 ava('.descendViaStar() correctly configures MCP when no bottom altitude parameter provided but FMS has valid bottom altitude', (t) => {
     const response = pilot.descendViaStar();
 
-    t.deepEqual(response, successResponse);
+    t.deepEqual(response, successResponseMock);
     t.true(pilot._mcp.altitudeMode === 'VNAV');
     t.true(pilot._mcp.speedMode === 'VNAV');
     t.true(pilot._mcp.altitude === 8000);
@@ -69,7 +69,7 @@ ava('.descendViaStar() correctly configures MCP when no bottom altitude paramete
 ava('.descendViaStar() correctly configures MCP when provided valid bottom altitude parameter', (t) => {
     const response = pilot.descendViaStar(nextAltitudeMock);
 
-    t.deepEqual(response, successResponse);
+    t.deepEqual(response, successResponseMock);
     t.true(pilot._mcp.altitudeMode === 'VNAV');
     t.true(pilot._mcp.altitude === nextAltitudeMock);
 });
