@@ -352,7 +352,7 @@
         },
         "BRUWN5": {
             "icao": "BRUWN5",
-            "name": "Broon Five",
+            "name": "Bruin Five",
             "rwy": {
                 "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK"],
                 "9": [["CLAWW", "A40+"], "FENWY", "BUCYK"],
@@ -692,7 +692,7 @@
         },
         "OOSHN5": {
             "icao": "OOSHN5",
-            "name": "Ooshen Five",
+            "name": "Ocean Five",
             "entryPoints": {
                 "AJJAY": [["AJJAY", "A290+"], "SUFFI", ["NIKKO", "A110+"]],
                 "FERNZ": ["FERNZ", ["LONEY", "A110+"], "RODEE"],
@@ -728,7 +728,7 @@
         },
         "ROBUC3": {
             "icao": "ROBUC3",
-            "name": "Roebook Three",
+            "name": "Rowbuck Three",
             "entryPoints": {
                 "RUIZE": [],
                 "JFK": ["JFK", "NEWES", ["FEXXX", "A230"]],
