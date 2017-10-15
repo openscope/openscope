@@ -21,6 +21,11 @@
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 - Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
 - Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
+- Updates KSFO (San Francisco International Airport, CA) [#427](https://github.com/openscope/openscope/issues/427)
+- Updates KABQ to AIRAC 1711 [#773](https://github.com/openscope/openscope/issues/773)
+- Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
+- Updates KSTL to AIRAC 1711 [#777](https://github.com/openscope/openscope/issues/777)
+- Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 
 
