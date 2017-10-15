@@ -21,6 +21,7 @@
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 - Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
 - Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
+- Updates KSFO (San Francisco International Airport, CA) [#427](https://github.com/openscope/openscope/issues/427)
 
 
 
