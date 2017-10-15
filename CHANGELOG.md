@@ -23,6 +23,7 @@
 - Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
 - Updates KSFO (San Francisco International Airport, CA) [#427](https://github.com/openscope/openscope/issues/427)
 - Updates KABQ to AIRAC 1711 [#773](https://github.com/openscope/openscope/issues/773)
+- Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
 
 
 
