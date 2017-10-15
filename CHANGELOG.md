@@ -9,6 +9,7 @@
 
 ### Bugfixes
 - Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
+- Fix bug of aircraft descending via STAR to '0' altitude [#567](https://github.com/openscope/openscope/issues/567)
 
 
 
@@ -19,6 +20,7 @@
 - Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
 - Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
 - Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
+- Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 
 

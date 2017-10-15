@@ -102,7 +102,7 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     t.true(result.length === 15);
 });
 
-ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResult = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
@@ -115,7 +115,7 @@ ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a 
     t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResult);
 });
 
-ava.only('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResultBeforeReplacement = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const expectedResult = 'COWBY BIKKR MLF GRNPA1 KLAS';
     const fms = buildFmsMock(isComplexRoute);
@@ -578,30 +578,30 @@ ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new rout
     t.true(fms.legCollection[2].routeString === expectedResult[2]);
 });
 
-ava('.exitHoldIfHolding() returns early when #currentPhase is not HOLD', (t) => {
+ava('.leaveHoldFlightPhase() returns early when #currentPhase is not HOLD', (t) => {
     const fms = buildFmsMock(isComplexRoute);
-    const _exitHoldToPreviousFlightPhaseSpy = sinon.spy(fms, '_exitHoldToPreviousFlightPhase');
+    const _setFlightPhaseToPreviousFlightPhaseSpy = sinon.spy(fms, '_setFlightPhaseToPreviousFlightPhase');
 
-    fms.exitHoldIfHolding();
+    fms.leaveHoldFlightPhase();
 
-    t.true(_exitHoldToPreviousFlightPhaseSpy.notCalled);
+    t.true(_setFlightPhaseToPreviousFlightPhaseSpy.notCalled);
 });
 
-ava('.exitHoldIfHolding() calls _exitHoldToPreviousFlightPhase when #currentPhase is HOLD', (t) => {
+ava('.leaveHoldFlightPhase() calls _setFlightPhaseToPreviousFlightPhase when #currentPhase is HOLD', (t) => {
     const fms = buildFmsMock(isComplexRoute);
-    const _exitHoldToPreviousFlightPhaseSpy = sinon.spy(fms, '_exitHoldToPreviousFlightPhase');
+    const _setFlightPhaseToPreviousFlightPhaseSpy = sinon.spy(fms, '_setFlightPhaseToPreviousFlightPhase');
     fms.setFlightPhase('HOLD');
 
-    fms.exitHoldIfHolding();
+    fms.leaveHoldFlightPhase();
 
-    t.true(_exitHoldToPreviousFlightPhaseSpy.calledOnce);
+    t.true(_setFlightPhaseToPreviousFlightPhaseSpy.calledOnce);
 });
 
-ava('._exitHoldToPreviousFlightPhase() reverts #currentPhase to the value that was set previous to HOLD', (t) => {
+ava('._setFlightPhaseToPreviousFlightPhase() reverts #currentPhase to the value that was set previous to HOLD', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     fms.setFlightPhase('HOLD');
 
-    fms._exitHoldToPreviousFlightPhase();
+    fms._setFlightPhaseToPreviousFlightPhase();
 
     t.true(fms.currentPhase === 'CRUISE');
 });
