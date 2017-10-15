@@ -219,7 +219,7 @@ class CanvasStageModel {
      */
     translatePostionModelToPreciseCanvasPosition([x, y]) {
         const canvasX = this.translateKilometersToPixels(x) + this._panX;
-        const canvasY = (this.translateKilometersToPixels(y) + this._panY) * -1;
+        const canvasY = (this.translateKilometersToPixels(y) * -1) + this._panY;
 
         return {
             x: canvasX,
