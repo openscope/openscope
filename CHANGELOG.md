@@ -26,6 +26,7 @@
 - Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
 - Updates KSTL to AIRAC 1711 [#777](https://github.com/openscope/openscope/issues/777)
 - Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
+- Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 
 
 
