@@ -1,16 +1,31 @@
-#canvases {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-html.paused #canvases {
-    opacity: 0.5;
-}
-
 canvas {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+#canvases {
+    width: 100%;
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    height: ~"calc(100% - " @command-bar-height ~")";
+    overflow: hidden;
+    position: relative;
+}
+
+.paused #canvases {
+    opacity: 0.5;
+}
+
+
+// following properties are ordered top-down
+// z-index is very important here as we are layering canvases on top of each other
+#static-canvas { z-index: 1 }
+#dynamic-canvas { z-index: 2 }
+
+.canvas-theme-default {
+    background-color: @blue-very-dark;
+}
+
+.canvas-theme-classic {
+    background-color: @darkgreen-light;
 }

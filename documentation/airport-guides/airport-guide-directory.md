@@ -1,0 +1,14 @@
+In order to help you learn the details of each particular airspace, an "airport guide" is available for each of the airports in the game.
+
+- [EIDW - Dublin Airport](eidw.md)
+- [KABQ - Albuquerque International Sunport](kabq.md)
+- [KATL - Hartsfield–Jackson Atlanta International Airport](katl.md)
+- [KBOS - Logan International Airport](kbos.md)
+- [KELP - El Paso International Airport](kelp.md)
+- [KJAX - Jacksonville International Airport](kjax.md)
+- [KSDF - Louisville International Airport](ksdf.md)
+- [KSEA - Seattle–Tacoma International Airport](ksea.md)
+- [KSTL - St. Louis Lambert International Airport](kstl.md)
+- [KTUS - Tucson International Airport](ktus.md)
+- [MDSD - Las Américas International Airport](mdsd.md)
+- [SAEZ - Ministro Pistarini International Airport](saez.md)

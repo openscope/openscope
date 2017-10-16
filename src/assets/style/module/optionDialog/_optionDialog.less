@@ -13,16 +13,17 @@
     position: absolute;
     top: 20%;
     left: 50%;
-    background-color: rgba(15, 25, 20, 1);
+    background-color: @dark;
     color: @light-gray;
     font-size: 12px;
     font-family: inherit;
     opacity: 0;
     border-radius: 1px;
     box-sizing: border-box;
-    box-shadow: 0 0 0 6px rgba(31, 65, 48, 1.0);
+    box-shadow: 0 0 0 6px @blue-medium;
     pointer-events: none;
     transition: opacity 0.5s ease;
+    z-index: 200;
 }
 
 .option-dialog.open {
@@ -55,11 +56,15 @@
 .option-dialog select {
     width: 100%;
     padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
-    background-color: rgba(15, 25, 20, 1);
+    background-color: transparent;
     color: @light-gray;
     font-family: inherit;
     border: 0;
     border-radius: 3px;
     appearance: none;
     cursor: pointer;
+}
+
+.option-dialog select:focus {
+    outline: none;
 }

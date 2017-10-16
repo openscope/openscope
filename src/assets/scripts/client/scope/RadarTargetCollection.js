@@ -1,5 +1,4 @@
 import _filter from 'lodash/filter';
-import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import RadarTargetModel from './RadarTargetModel';
 import BaseCollection from '../base/BaseCollection';
@@ -67,26 +66,24 @@ export default class RadarTargetCollection extends BaseCollection {
     }
 
     /**
-    * Deactivate event handlers
+    * Activate event handlers
     *
     * @for RadarTargetModel
-    * @method disable
+    * @method enable
     */
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
-        this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModelForAircraftModel);
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
     }
 
     /**
-    * Activate event handlers
+    * Deactivate event handlers
     *
     * @for RadarTargetModel
     * @method disable
     */
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addRadarTargetModelForAircraftModel);
-        this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this.removeRadarTargetModelForAircraftModel);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
 

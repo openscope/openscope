@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
 import AirportController from './airport/AirportController';
+import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import UiController from './UiController';
@@ -33,12 +34,12 @@ export default class InputController {
      * @constructor
      * @param $element {JQuery|HTML Element}
      * @param aircraftCommander {AircraftCommander}
-     * @param uiController {UiController}
      * @param scopeModel {ScopeModel}
      * @param tutorialView {TutorialView}
      */
     constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
         this.$element = $element;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -60,13 +61,12 @@ export default class InputController {
         this.input.history_item = null;
         this.input.click = [0, 0];
         this.input.positions = '';
-        this.input.mouseDelta = [0, 0];
-        this.input.mouseDown = [0, 0];
+        this._mouseDelta = [0, 0];
+        this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
         this._init()
-            .setupHandlers()
             .enable();
     }
 
@@ -75,6 +75,7 @@ export default class InputController {
      * @method _init
      */
     _init() {
+        this.$body = this.$element[0];
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
@@ -92,6 +93,8 @@ export default class InputController {
     }
 
     /**
+     * Enable all event handlers
+     *
      * @for InputController
      * @method enable
      */
@@ -103,9 +106,10 @@ export default class InputController {
         // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
         // this.$commandInput.on('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
         this.$canvases.bind('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.on('mousemove', (event) => this.onMouseClickAndDragHandler(event));
         this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
         this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
@@ -114,6 +118,8 @@ export default class InputController {
     }
 
     /**
+     * Disable all event handlers and destroy the instance
+     *
      * @for InputController
      * @method disable
      */
@@ -122,9 +128,10 @@ export default class InputController {
         this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
         // uncomment only after `.on()` for this event has been implemented.
         // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.off('mousemove', (event) => this.onMouseClickAndDragHandler(event));
         this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
         this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
+        this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
@@ -137,6 +144,7 @@ export default class InputController {
      */
     destroy() {
         this.$element = null;
+        this.$body = null;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
@@ -150,8 +158,8 @@ export default class InputController {
         this.input.history_item = null;
         this.input.click = [0, 0];
         this.input.positions = '';
-        this.input.mouseDelta = [0, 0];
-        this.input.mouseDown = [0, 0];
+        this._mouseDelta = [0, 0];
+        this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
 
         return this;
@@ -171,8 +179,8 @@ export default class InputController {
         this.input.history_item = null;
         this.input.click = [0, 0];
         this.input.positions = '';
-        this.input.mouseDelta = [0, 0];
-        this.input.mouseDown = [0, 0];
+        this._mouseDelta = [0, 0];
+        this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
     }
 
@@ -198,29 +206,33 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            UiController.ui_zoom_in();
+            CanvasStageModel.zoomIn();
         } else {
-            UiController.ui_zoom_out();
+            CanvasStageModel.zoomOut();
         }
     }
 
     /**
      * @for InputController
-     * @method onMouseMoveHandler
+     * @method onMouseClickAndDragHandler
      * @param event {jquery Event}
      */
-    onMouseMoveHandler(event) {
+    onMouseClickAndDragHandler(event) {
         if (!this.input.isMouseDown) {
             return this;
         }
 
-        this.input.mouseDelta = [
-            event.pageX - this.input.mouseDown[0],
-            event.pageY - this.input.mouseDown[1]
+        const nextXPan = event.pageX - this._mouseDownScreenPosition[0];
+        const nextYPan = event.pageY - this._mouseDownScreenPosition[1];
+
+        // TODO: investigate `_mouseDelta` and what exactly it does
+        // this updates the current mouseDelta so the next time through we have correct values
+        this._mouseDelta = [
+            nextXPan,
+            nextYPan
         ];
-        prop.canvas.panX = this.input.mouseDelta[0];
-        prop.canvas.panY = this.input.mouseDelta[1];
-        prop.canvas.dirty = true;
+
+        CanvasStageModel.updatePan(nextXPan, nextYPan);
     }
 
     /**
@@ -243,47 +255,53 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
-        // TODO: this should use early returns instead of the else if
+        // TODO: This should use a switch on `event.which` instead of `if/else if`
         if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
-            UiController.ui_zoom_reset();
-        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
+            CanvasStageModel.zoomReset();
+        } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
             // Record mouse down position for panning
-            this.input.mouseDown = [
-                event.pageX - prop.canvas.panX,
-                event.pageY - prop.canvas.panY
+            this._mouseDownScreenPosition = [
+                event.pageX - CanvasStageModel._panX,
+                event.pageY - CanvasStageModel._panY
             ];
             this.input.isMouseDown = true;
-
+        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Aircraft label selection
-            let position = [event.pageX, -event.pageY];
-            position[0] -= prop.canvas.size.width / 2;
-            position[1] += prop.canvas.size.height / 2;
+            let currentMousePosition = [event.pageX, -event.pageY];
+            currentMousePosition[0] -= CanvasStageModel.width / 2;
+            currentMousePosition[1] += CanvasStageModel.height / 2;
 
             const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                UiController.px_to_km(position[0] - prop.canvas.panX),
-                UiController.px_to_km(position[1] + prop.canvas.panY)
+                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0] - CanvasStageModel._panX),
+                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[1] + CanvasStageModel._panY)
             ]);
 
-            if (aircraftModel && distanceFromPosition < UiController.px_to_km(80)) {
-                this.selectAircraft(aircraftModel);
-            } else {
+            if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
                 this.selectAircraft();
+            } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+                const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
+                this.input.command = newCommandValue;
+
+                this.$commandInput.val(newCommandValue);
+                this.processCommand();
+            } else if (aircraftModel) {
+                this.selectAircraft(aircraftModel);
             }
 
-            position = [
-                UiController.px_to_km(position[0]),
-                UiController.px_to_km(position[1])
+            currentMousePosition = [
+                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0]),
+                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[1])
             ];
 
-            position[0] = parseFloat(position[0].toFixed(2));
-            position[1] = parseFloat(position[1].toFixed(2));
-            this.input.positions += `[${position.join(',')}]`;
+            currentMousePosition[0] = parseFloat(currentMousePosition[0].toFixed(2));
+            currentMousePosition[1] = parseFloat(currentMousePosition[1].toFixed(2));
+            // FIXME: what the is this?!
+            this.input.positions += `[${currentMousePosition.join(',')}]`;
 
             return false;
         }
     }
 
-    // TODO: Is this really needed??
     /**
      * @for InputController
      * @method onCommandInputChangeHandler
@@ -351,7 +369,6 @@ export default class InputController {
                 break;
             case KEY_CODES.ENTER:
                 this.processCommand();
-                this.selectAircraft();
 
                 break;
             case KEY_CODES.PAGE_UP:
@@ -571,11 +588,17 @@ export default class InputController {
      * @return {array} [success of operation, response]
      */
     processCommand() {
+        let response = [];
+
         if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
-            return this.processAircraftCommand();
+            response = this.processAircraftCommand();
+        } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+            response = this.processScopeCommand();
         }
 
-        return this.processScopeCommand();
+        this.selectAircraft();
+
+        return response;
     }
 
     /**
@@ -599,7 +622,7 @@ export default class InputController {
         try {
             aircraftCommandParser = new AircraftCommandParser(userCommand);
         } catch (error) {
-            UiController.ui_log('Command not understood');
+            UiController.ui_log('Command not understood', true);
 
             throw error;
         }
@@ -627,7 +650,7 @@ export default class InputController {
         try {
             scopeCommandModel = new ScopeCommandModel(userCommand);
         } catch (error) {
-            UiController.ui_log('ERROR: BAD SYNTAX');
+            UiController.ui_log('ERROR: BAD SYNTAX', true);
 
             throw error;
         }
@@ -646,11 +669,6 @@ export default class InputController {
      */
     processSystemCommand(aircraftCommandParser) {
         switch (aircraftCommandParser.command) {
-            case PARSED_COMMAND_NAME.VERSION:
-                UiController.ui_log(`Air Traffic Control simulator version ${prop.version}`);
-
-                return true;
-
             case PARSED_COMMAND_NAME.TUTORIAL:
                 this._tutorialView.tutorial_toggle();
 
@@ -674,11 +692,13 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.TIMEWARP:
+                let nextTimewarpValue = 0;
+
                 if (aircraftCommandParser.args) {
-                    GameController.game.speedup = aircraftCommandParser.args;
-                } else {
-                    GameController.game_timewarp_toggle();
+                    nextTimewarpValue = aircraftCommandParser.args[0];
                 }
+
+                GameController.updateTimescale(nextTimewarpValue);
 
                 return true;
 
@@ -697,11 +717,9 @@ export default class InputController {
 
                 return true;
             }
+            // TODO: this will be removed entirely, eventually.
             case PARSED_COMMAND_NAME.RATE:
-                // TODO: is this if even needed?
-                if (aircraftCommandParser.args) {
-                    GameController.game.frequency = aircraftCommandParser.args;
-                }
+                UiController.ui_log('this command has been deprecated', true);
 
                 return true;
             case PARSED_COMMAND_NAME.HELP: {
@@ -745,13 +763,13 @@ export default class InputController {
         }
 
         if (matches > 1) {
-            UiController.ui_log('multiple aircraft match the callsign, say again');
+            UiController.ui_log('multiple aircraft match the callsign, say again', true);
 
             return true;
         }
 
         if (match === INVALID_NUMBER) {
-            UiController.ui_log('no such aircraft, say again');
+            UiController.ui_log('no such aircraft, say again', true);
 
             return true;
         }

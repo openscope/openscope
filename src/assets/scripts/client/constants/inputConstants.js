@@ -65,7 +65,6 @@ export const MOUSE_EVENT_CODE = {
  * @final
  */
 export const PARSED_COMMAND_NAME = {
-    VERSION: 'version',
     TUTORIAL: 'tutorial',
     AUTO: 'auto',
     PAUSE: 'pause',

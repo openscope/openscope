@@ -3,6 +3,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
 import GameOptions from './GameOptions';
+import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
@@ -57,14 +58,17 @@ class GameController {
      * @constructor
      */
     constructor() {
+        // TODO: the below $elements _should_ be used instead of the inline vars currently in use but
+        // take caution when implmenting these because it will break tests currently in place. This is
+        // because of the use of $ within lifecycle methods and becuase this is a static class used
+        // by many of the files under test.
+        // this._$htmlElement = $('html');
+        // this._$pauseToggleElement = null;
+        // this._$fastForwardElement = null;
+        // this._$scoreElement = null;
         this.game = {};
-        this.game.paused = true;
         this.game.focused = true;
-        this.game.speedup = 1;
         this.game.frequency = 1;
-        this.game.time = 0;
-        this.game.startTime = 0;
-        this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
         this.game.last_score = 0;
@@ -79,13 +83,10 @@ class GameController {
      * @for GameController
      * @method init_pre
      */
-    init_pre(getDeltaTime) {
-        this.getDeltaTime = getDeltaTime;
-
-        // TODO: move calling of these methods to the proper lifecycle positions
-        this.setupHandlers();
-        this.enable();
-        this.initializeEventCount();
+    init_pre() {
+        return this.setupHandlers()
+            .createChildren()
+            .enable();
     }
 
     /**
@@ -93,58 +94,108 @@ class GameController {
     *
     * @for GameController
     * @method setupHandlers
-    * @return
+    * @chainable
     */
     setupHandlers() {
-        // Set blurring function
-        $(window).blur(() => {
-            this.game.focused = false;
-        });
+        this._onWindowBlurHandler = this._onWindowBlur.bind(this);
+        this._onWindowFocusHandler = this._onWindowFocus.bind(this);
 
-        // Set un-blurring function
-        $(window).focus(() => {
-            this.game.focused = true;
-        });
+        return this;
+    }
+
+    /**
+     * @for GameController
+     * @method createChildren
+     * @chainable
+     */
+    createChildren() {
+        // see comment in constructor. tl;dr these props should be used but are not because they break tests
+        // this._$pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+        // this._$fastForwardElement = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+        // this._$scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+
+        return this;
     }
 
     /**
      * @for GameController
      * @method enable
+     * @chainable
      */
     enable() {
         this._eventBus.on(EVENT.SET_THEME, this._setTheme);
 
-        return this;
+        window.addEventListener('blur', this._onWindowBlurHandler);
+        window.addEventListener('focus', this._onWindowFocusHandler);
+        // for when the browser window receives or looses focus
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                return this._onWindowBlurHandler();
+            }
+
+            return this._onWindowFocusHandler();
+        });
+
+        return this.initializeEventCount();
     }
 
     /**
      * @for GameController
      * @method disable
+     * @chainable
      */
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+
+        return this.destroy();
+    }
+
+    /**
+     * Destroy class properties
+     *
+     * @for GameController
+     * @method destroy
+     * @chainable
+     */
+    destroy() {
+        // this._$htmlElement = $('html');
+        // this._$pauseToggleElement = null;
+        // this._$fastForwardElement = null;
+        // this._$scoreElement = null;
+        this.game = {};
+        this.game.focused = true;
+        // TODO: remove
+        this.game.frequency = 1;
+        this.game.events = {};
+        this.game.timeouts = [];
+        this.game.last_score = 0;
+        this.game.score = 0;
+        this.game.option = new GameOptions();
+        this.theme = THEME.DEFAULT;
 
         return this;
     }
 
     /**
-    * Initialize `GameController.events` to contain appropriate properties with values of 0
-    *
-    * @for GameController
-    * @method initializeEventCount
-    */
+     * Initialize `GameController.events` to contain appropriate properties with values of 0
+     *
+     * @for GameController
+     * @method initializeEventCount
+     */
     initializeEventCount() {
         _forEach(GAME_EVENTS, (gameEvent, key) => {
             this.game.events[key] = 0;
         });
     }
 
+    // TODO: usages of this method should move to use EventBus
     /**
-    * Record a game event to this.game.events, and update this.game.score
-    * @for GameController
-    * @method events_recordNew
-    * @param gameEvent {String} one of the events listed in GAME_EVENTS
-    */
+     * Record a game event to this.game.events, and update this.game.score
+     *
+     * @for GameController
+     * @method events_recordNew
+     * @param gameEvent {String} one of the events listed in GAME_EVENTS
+     */
     events_recordNew(gameEvent) {
         if (!_has(GAME_EVENTS, gameEvent)) {
             throw new TypeError(`Expected a game event listed in GAME_EVENTS, but instead received ${gameEvent}`);
@@ -152,6 +203,8 @@ class GameController {
 
         this.game.events[gameEvent] += 1;
         this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
+
+        this.game_updateScore();
     }
 
 
@@ -160,7 +213,7 @@ class GameController {
      * @method game_get_weighted_score
      */
     game_get_weighted_score() {
-        const hoursPlayed = this.game_time() / TIME.ONE_HOUR_IN_SECONDS;
+        const hoursPlayed = TimeKeeper.accumulatedDeltaTime / TIME.ONE_HOUR_IN_SECONDS;
         const scorePerHour = this.game.score / hoursPlayed;
 
         return scorePerHour;
@@ -178,27 +231,50 @@ class GameController {
 
         // Reset score
         this.game.score = 0;
+
+        this.game_updateScore();
     }
 
     /**
+     *
+     * @for GameController
+     * @method updateTimescale
+     * @param nextValue {number}
+     */
+    updateTimescale(nextValue) {
+        if (nextValue === 0) {
+            this.game_timewarp_toggle();
+
+            return;
+        }
+
+        TimeKeeper.updateSimulationRate(nextValue);
+    }
+
+    /**
+     * Update the visual state of the timewarp control button and call
+     * `TimeKeeper.updateTimescalse` with the next timewarp value.
+     *
+     * This method is called as a result of a user interaction
+     *
      * @for GameController
      * @method game_timewarp_toggle
      */
     game_timewarp_toggle() {
-        const $fastForwards = $(`.${SELECTORS.CLASSNAMES.FAST_FORWARDS}`);
+        const $fastForwards = $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
 
-        if (this.game.speedup === 5) {
-            this.game.speedup = 1;
+        if (TimeKeeper.simulationRate >= 5) {
+            TimeKeeper.updateSimulationRate(1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
-        } else if (this.game.speedup === 1) {
-            this.game.speedup = 2;
+        } else if (TimeKeeper.simulationRate === 1) {
+            TimeKeeper.updateSimulationRate(2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            this.game.speedup = 5;
+            TimeKeeper.updateSimulationRate(5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -211,11 +287,12 @@ class GameController {
      * @method game_pause
      */
     game_pause() {
-        const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
-        this.game.paused = true;
+        TimeKeeper.setPause(true);
 
-        $pauseToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        $pauseToggle.attr('title', 'Resume simulation');
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+
+        $pauseToggleElement.addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $pauseToggleElement.attr('title', 'Resume simulation');
         $('html').addClass(SELECTORS.CLASSNAMES.PAUSED);
     }
 
@@ -224,11 +301,12 @@ class GameController {
      * @method game_unpause
      */
     game_unpause() {
-        const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
-        this.game.paused = false;
+        TimeKeeper.setPause(false);
 
-        $pauseToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        $pauseToggle.attr('title', 'Pause simulation');
+        const $pauseToggleElement = $(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
+
+        $pauseToggleElement.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $pauseToggleElement.attr('title', 'Pause simulation');
         $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
     }
 
@@ -237,7 +315,7 @@ class GameController {
      * @method game_pause_toggle
      */
     game_pause_toggle() {
-        if (this.game.paused) {
+        if (TimeKeeper.isPaused) {
             this.game_unpause();
 
             return;
@@ -252,25 +330,7 @@ class GameController {
      * @return
      */
     game_paused() {
-        return !this.game.focused || this.game.paused;
-    }
-
-    /**
-     * @for GameController
-     * @method game_time
-     * @return {number}
-     */
-    game_time() {
-        return this.game.time;
-    }
-
-    /**
-     * @for GameController
-     * @method game_delta
-     * @return {number}
-     */
-    game_delta() {
-        return this.game.delta;
+        return !this.game.focused || TimeKeeper.isPaused;
     }
 
     /**
@@ -279,7 +339,7 @@ class GameController {
      * @return
      */
     game_speedup() {
-        return !this.game_paused() ? this.game.speedup : 0;
+        return !this.game_paused() ? TimeKeeper.simulationRate : 0;
     }
 
     /**
@@ -292,7 +352,7 @@ class GameController {
      * @return gameTimeout
      */
     game_timeout(functionToCall, delay, that, data) {
-        const timerDelay = this.game_time() + delay;
+        const timerDelay = TimeKeeper.accumulatedDeltaTime + delay;
         const gameTimeout = [functionToCall, timerDelay, data, delay, false, that];
 
         this.game.timeouts.push(gameTimeout);
@@ -310,7 +370,7 @@ class GameController {
      * @return to
      */
     game_interval(func, delay, that, data) {
-        const to = [func, this.game_time() + delay, data, delay, true, that];
+        const to = [func, TimeKeeper.accumulatedDeltaTime + delay, data, delay, true, that];
 
         this.game.timeouts.push(to);
 
@@ -344,17 +404,21 @@ class GameController {
      * @method game_updateScore
      * @param score {number}
      */
-    game_updateScore(score) {
-        const $score = $(SELECTORS.DOM_SELECTORS.SCORE);
-        $score.text(round(score));
+    game_updateScore() {
+        if (this.game.score === this.game.last_score) {
+            return;
+        }
+        const $scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+        $scoreElement.text(round(this.game.score));
 
-        if (score < -0.51) {
-            $score.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
+        // TODO: wait, what? Why not just < 0?
+        if (this.game.score < -0.51) {
+            $scoreElement.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
         } else {
-            $score.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
+            $scoreElement.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
         }
 
-        this.game.last_score = score;
+        this.game.last_score = this.game.score;
     }
 
     /**
@@ -362,19 +426,11 @@ class GameController {
      * @method update_pre
      */
     update_pre() {
-        if (this.game.score !== this.game.last_score) {
-            this.game_updateScore(this.game.score);
+        const $htmlElement = $('html');
+
+        if (!this.game_paused() && $htmlElement.hasClass(SELECTORS.CLASSNAMES.PAUSED)) {
+            $htmlElement.removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
-
-        this.game.delta = Math.min(this.getDeltaTime() * this.game.speedup, 100);
-
-        if (this.game_paused()) {
-            this.game.delta = 0;
-        } else {
-            $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
-        }
-
-        this.game.time += this.game.delta;
 
         this.updateTimers();
     }
@@ -384,6 +440,8 @@ class GameController {
      * @method updateTimers
      */
     updateTimers() {
+        const currentGameTime = TimeKeeper.accumulatedDeltaTime;
+
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
             let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
@@ -393,7 +451,7 @@ class GameController {
             const delayInterval = timeout[3];
             const shouldRepeat = timeout[4];
 
-            if (this.game_time() > delayFireTime) {
+            if (currentGameTime > delayFireTime) {
                 callback.call(timeout[5], callbackArguments);
                 willRemoveTimerFromList = true;
 
@@ -415,7 +473,7 @@ class GameController {
      * @method complete
      */
     complete() {
-        this.game.paused = false;
+        TimeKeeper.setPause(false);
     }
 
     /**
@@ -475,6 +533,33 @@ class GameController {
 
         return isIndicatorEnabled && aircraft.isArrival();
     }
+
+    /**
+     * @for GameController
+     * @method _onWindowBlur
+     * @param event {UIEvent}
+     * @private
+     */
+    _onWindowBlur(event) {
+        this.game.focused = false;
+        // resetting back to 1 here so when focus returns, we can reliably reset
+        // `#game.delta` to 0 to prevent jumpiness
+        TimeKeeper.updateSimulationRate(1);
+        TimeKeeper.setPause(true);
+    }
+
+    /**
+     * @for GameController
+     * @method _onWindowFocus
+     * @param event {UIEvent}
+     * @private
+     */
+    _onWindowFocus(event) {
+        this.game.focused = true;
+
+        TimeKeeper.setPause(false);
+    }
+
 
     // TODO: Upon removal of `this.getPtlLength()`, this will no longer be needed
     /**

@@ -1,0 +1,43 @@
+<div class="footer">
+    <input id="command"
+        placeholder="enter aircraft command"
+        autocapitalize="off"
+        autocorrect="off"
+        autocomplete="off"
+        spellcheck="false"
+        autofocus />
+    {{!-- move to ul li.hlist --}}
+    <ul id="controls">
+        <li class="control toggle-labels" title="Toggle fix and runway labels">
+            <img src="assets/images/icons/labels.png" />
+        </li>
+        <li class="control toggle-sids" title="Toggle SID display">
+            <img src="assets/images/icons/sids.png" />
+        </li>
+        <li class="control toggle-restricted-areas" title="Toggle restricted areas">
+            <img src="assets/images/icons/restricted.png" />
+        </li>
+        <li class="control toggle-terrain active" title="Toggle terrain">
+            <img src="assets/images/icons/terrain.png" />
+        </li>
+        <li class="control fast-forwards" title="Set time warp to 2">
+            <img src="assets/images/icons/fast-forwards.png" />
+        </li>
+        <li class="control pause-toggle" title="Pause simulation">
+            <img src="assets/images/icons/pause.png" />
+        </li>
+        <li class="control speech-toggle" title="Enable speech synthesis (experimental)">
+            <img src="assets/images/icons/speech.png" />
+        </li>
+        <li class="control switch-airport" title="Switch airport">
+            <img src="assets/images/icons/airport.png" />
+        </li>
+        <li class="control toggle-tutorial" title="Open tutorial">
+            <img src="assets/images/icons/tutorial.png" />
+        </li>
+        <li class="control" id="toggle-options" title="Open options">
+            <img src="assets/images/icons/cog.png" />
+        </li>
+    </ul>
+    <div id="score" title="Score">-</div>
+</div>

@@ -1,12 +1,12 @@
-/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
+import AirportController from './airport/AirportController';
+import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import AirportController from './airport/AirportController';
 import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
@@ -14,6 +14,15 @@ import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
+
+/**
+ * Value by which the current zoom level is either increased/decreased
+ *
+ * @property ZOOM_INCREMENT
+ * @type {number}
+ * @final
+ */
+const ZOOM_INCREMENT = 0.9;
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -60,11 +69,6 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
-
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
     }
 
     /**
@@ -180,25 +184,9 @@ class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = INVALID_NUMBER;
-        this.ui.scale_max = INVALID_NUMBER;
-        this.ui.scale_min = INVALID_NUMBER;
         this.ui.scale = INVALID_NUMBER;
 
         return this;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_init_pre
-     */
-    ui_init_pre() {
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
-
-        this.ui_set_scale_from_storage();
     }
 
     /**
@@ -357,24 +345,6 @@ class UiController {
     }
 
     /**
-     * @for uiController
-     * @method buildAirportListItemTemplate
-     * @param icao {string}
-     * @param difficulty {string}
-     * @param name {string}
-     * @param reliabilityFlag {string}
-     * @return {DOM element|string}
-     */
-    buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
-        return `<li class="airport icao-${icao.toLowerCase()}">` +
-                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
-                    `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="symbol">${reliabilityFlag}</span>` +
-                    `<span class="name">${name}</span>` +
-                '</li>';
-    }
-
-    /**
      * @for UiController
      * @method ui_complete
      */
@@ -413,12 +383,13 @@ class UiController {
             const reliabilityFlag = wip
                 ? ''
                 : flagIcon;
-            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
+            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
                 if (event.data !== AirportController.airport_get().icao) {
                     AirportController.airport_set(event.data);
+
                     this.ui_airport_close();
                 }
             });
@@ -468,6 +439,24 @@ class UiController {
     }
 
     /**
+     * @for uiController
+     * @method _buildAirportListItemTemplate
+     * @param icao {string}
+     * @param difficulty {string}
+     * @param name {string}
+     * @param reliabilityFlag {string}
+     * @return {DOM element|string}
+     */
+    _buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
+        return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
+                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
+                    `<span class="icao">${icao.toUpperCase()}</span>` +
+                    `<span class="symbol">${reliabilityFlag}</span>` +
+                    `<span class="name">${name}</span>` +
+                '</li>';
+    }
+
+    /**
      * Build the markup for the airport list footer
      *
      * This is changed based on a user setting
@@ -494,90 +483,6 @@ class UiController {
         const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
 
         this.$airportListNotes.append(notes);
-    }
-
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method px_to_km
-     * @param pixels {number}
-     * @return {number}
-     */
-    px_to_km(pixels) {
-        return pixels / this.scale;
-    }
-
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method km_to_px
-     * @param kilometers {number}
-     * @return {number}
-     */
-    km_to_px(kilometers) {
-        return kilometers * this.scale;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_after_zoom
-     */
-    ui_after_zoom() {
-        localStorage[STORAGE_KEY.ATC_SCALE] = this.scale;
-        prop.canvas.dirty = true;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_out
-     */
-    ui_zoom_out() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
-
-        this.scale *= 0.9;
-
-        if (this.scale < this.scale_min) {
-            this.scale = this.scale_min;
-        }
-
-        this.ui_after_zoom();
-
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_in
-     */
-    ui_zoom_in() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
-
-        this.scale /= 0.9;
-        if (this.scale > this.scale_max) {
-            this.scale = this.scale_max;
-        }
-
-        this.ui_after_zoom();
-
-        prop.canvas.panX = round(this.km_to_px(lastpos[0]));
-        prop.canvas.panY = round(this.km_to_px(lastpos[1]));
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_reset
-     */
-    ui_zoom_reset() {
-        this.scale = this.scale_default;
-
-        this.ui_after_zoom();
     }
 
     /**
@@ -611,15 +516,15 @@ class UiController {
     ui_airport_open() {
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.ACTIVE);
+        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {
-            $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+            $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
         }
 
         const icao = AirportController.airport_get().icao.toLowerCase();
-        $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $(`.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.AIRPORT_LIST_ITEM_IS_ACTIVE);
 
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
@@ -653,7 +558,7 @@ class UiController {
     canvas_labels_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_labels = !prop.canvas.draw_labels;
+        this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
 
     /**
@@ -664,7 +569,7 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
             .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
 
-        prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
+        this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
     }
 
     /**
@@ -675,7 +580,7 @@ class UiController {
     canvas_sids_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        prop.canvas.draw_sids = !prop.canvas.draw_sids;
+        this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
     /**
@@ -685,7 +590,8 @@ class UiController {
      */
     canvas_terrain_toggle(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
+
+        this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
     }
 
     /**
@@ -702,18 +608,6 @@ class UiController {
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
-    }
-
-    /**
-     * @for UiController
-     * @method ui_set_scale_from_storage
-     */
-    ui_set_scale_from_storage() {
-        if (!_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
-            return;
-        }
-
-        this.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }
 

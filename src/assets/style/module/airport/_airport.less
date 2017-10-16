@@ -13,17 +13,18 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: @dark-green;
+    background-color: @dark-06;
     color: @light-gray;
     font-size: 12px;
     overflow-y: auto;
-    border: 6px solid rgba(31, 65, 48, 1.0);
+    border: 6px solid @blue-medium;
     border-radius: 8px;
     box-sizing: border-box;
     box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    z-index: 200;
 }
 
 #airport-switch .title {
@@ -39,7 +40,7 @@
     opacity: 1;
 }
 
-#airport-list {
+.airport-list {
     width: 100%;
     max-width: 500px;
     height: auto;
@@ -47,23 +48,23 @@
     max-height: ~"calc(100% - 2.3em - 32px)";
     margin: 0 auto;
     padding: @spacing-1x @spacing-1x;
-    background-color: @dark-green;
+    background-color: @dark;
     color: @light-gray;
     font-size: 100%;
-    border: 2px solid rgba(31, 65, 48, 1.0);
+    border: 2px solid @blue-medium;
     border-radius: 10px;
     box-sizing: border-box;
     overflow-y: auto;
 }
 
-#airport-switch li {
+.airport-list-item {
     margin-bottom: 2px;
     padding: 8px @spacing-1x;
     list-style-type: none;
     font-weight: bold;
 }
 
-#airport-switch li .difficulty {
+.airport-list-item .difficulty {
     width: 5em;
     display: inline-block;
     font-size: 120%;
@@ -71,40 +72,46 @@
     white-space: nowrap;
 }
 
-#airport-switch li .icao {
+.airport-list-item .icao {
     width: 2.5em;
     margin-left: 1em;
     display: inline-block;
     text-align: center;
 }
 
-#airport-switch li .symbol {
+.airport-list-item .symbol {
     width: 0.7em;
     margin-left: 1em;
     display: inline-block;
     text-align: center;
 }
 
-#airport-switch li .name {
+.airport-list-item .name {
     margin-left: 1em;
     display: inline-block;
     text-align: center;
 }
 
-#airport-switch li:hover {
+.airport-list-item:hover {
     background-color: @white-01;
     cursor: pointer;
 }
 
-#airport-switch li.active {
-    // override margin-left from base 'active' class used in strips
-    margin-left: 0;
-    background-color: #354;
-    cursor: pointer;
+// .airport-list-item .active {
+//     // override margin-left from base 'active' class used in strips
+//     margin-left: 0;
+//     background-color: #335544;
+//     cursor: pointer;
+// }
+
+.airport-list-item.active:hover {
+    cursor: auto;
 }
 
-#airport-switch li.active:hover {
-    cursor: auto;
+.mix-airport-list-item_isActive {
+    margin-left: 0;
+    background-color: @blue-medium;
+    cursor: pointer;
 }
 
 #airport-list-notes {

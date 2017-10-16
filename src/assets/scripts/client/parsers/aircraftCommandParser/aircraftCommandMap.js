@@ -13,7 +13,6 @@ export const SYSTEM_COMMANDS = {
     clear: 'clear',
     pause: 'pause',
     tutorial: 'tutorial',
-    version: 'version',
 
     // single arg commands
     '`': 'moveDataBlock',

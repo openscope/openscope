@@ -1,17 +1,15 @@
-#command {
-    height: @command-bar-height;
-    width: 100%;
-    /* TODO: the right padding here needs to be removed and done in a different way */
-    padding: 0 464px 0 18px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: @black-07;
+#command,
+#command:active,
+#command:focus {
+    height: 100%;
+    padding: 0 18px;
+    flex-grow: 1;
+    background-color: transparent;
     font-size: 100%;
     font-family: inherit;
     color: @light-gray;
     user-select: text;
     border: none;
-    outline: 0;
-
+    overflow: hidden;
+    outline: none;
 }

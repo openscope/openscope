@@ -1,25 +1,84 @@
+## 5.6.0 (November 1, 2017)
+---
+### New Features
+- Add Tampa Intl. (KTPA) [#647](https://github.com/openscope/openscope/issues/647)
+- Add Theodore Francis Green Memorial State Airport (Providence, US) [#107](https://github.com/openscope/openscope/issues/107)
+- New Airport: KDTW (Detroit Metropolitan Wayne County Airport, MI) [#559](https://github.com/openscope/openscope/issues/559)
+
+
+
+### Bugfixes
+- Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
+- Fix bug of aircraft descending via STAR to '0' altitude [#567](https://github.com/openscope/openscope/issues/567)
+
+
+
+### Enhancements & Refactors
+- Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
+- Add git strategy flow chart to documentation [#80](https://github.com/openscope/openscope/issues/80)
+- Force arrivals with non-altitude-restricted STARs/routes descend at least to ceiling of controlled airspace [#662](https://github.com/openscope/openscope/issues/662)
+- Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
+- Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
+- Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
+- Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
+- Updates KSFO (San Francisco International Airport, CA) [#427](https://github.com/openscope/openscope/issues/427)
+- Updates KABQ to AIRAC 1711 [#773](https://github.com/openscope/openscope/issues/773)
+- Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
+- Updates KSTL to AIRAC 1711 [#777](https://github.com/openscope/openscope/issues/777)
+- Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
+- Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
+
+
+
+## 5.5.1 (October 1, 2017)
+---
+### Hotfix
+- Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
+- Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
+
+
 ## 5.5.0 (October 1, 2017)
 ---
 ### New Features
 - Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands [#641](https://github.com/openscope/openscope/issues/641)
 - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets. [#14](https://github.com/openscope/openscope/issues/14)
-- Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709)
-
-
+- The mouse button to drag the radar screen is now right click [#564](https://github.com/openscope/openscope/issues/564)
+- Adds Ted Stevens Anchorage Intl. (PANC) [#637](https://github.com/openscope/openscope/issues/637)
 
 ### Bugfixes
 - Fix SID Names at MDSD following the screen centre [#683](https://github.com/openscope/openscope/issues/683)
 - Fix the command bar displaying a '?' when the up or down arrow is pressed [#685](https://github.com/openscope/openscope/issues/685)
 - Extends departing spawnPatterns outside the airspace at KSDF to prevent point deduction [#699](https://github.com/openscope/openscope/issues/699)
-
-
+- Adds `footer` section to `index.html` and combines former partials `controls` and `score` with the `#command` input [#704](https://github.com/openscope/openscope/issues/704)
+    - updates styles to use flexbox with properly organized children
+- Clear radar target collection when changing airports [#728](https://github.com/openscope/openscope/issues/728)
+- Ensure radar targets are removed when aircraft model is deleted [#732](https://github.com/openscope/openscope/issues/732)
+- Ensure game options initialize to correct default values [#711](https://github.com/openscope/openscope/issues/711)
+- Remove call to `AirportController.hasAirport()` in `index.js` [#741](https://github.com/openscope/openscope/issues/741)
+- Changes background-color of settings option selects to transparent [#740](https://github.com/openscope/openscope/issues/740)
+- Updates param passed to RadarTargetCollection from within AircraftController.aircraft_remove()[#743](https://github.com/openscope/openscope/issues/743)
+- Ensure failure message responses are shown in red [#742](https://github.com/openscope/openscope/issues/742)
 
 ### Enhancements & Refactors
 - Modifies `StripView` background-color to use rgba instead of hex to allow for a semi-transparent background [#679](https://github.com/openscope/openscope/issues/679)
 - Adds Eric Meyer CSS Reset and updates existing CSS to work without `*` reset [#657](https://github.com/openscope/openscope/issues/657)
 - Stops `console.warn()` spam every frame if terrain is less than zero [#695](https://github.com/openscope/openscope/issues/695)
 - Adds `localStorage.setItem()` to `GameOptions.setOptionByName()` and adds test file for `GameOptions` [#670](https://github.com/openscope/openscope/issues/670)
-
+- Update airport format document with new properties and requirements [#452](https://github.com/openscope/openscope/issues/452)
+- Update developer documentation regarding git strategy [#614](https://github.com/openscope/openscope/issues/614)
+- Execute scope command by clicking radar target [#717](https://github.com/openscope/openscope/issues/717)
+- Adds `TimeKeeper` singleton and moves `App.incrementFrame()` logic to this new class [#296](https://github.com/openscope/openscope/issues/296)
+- Removed the `version` command [#721](https://github.com/openscope/openscope/issues/721)
+- Updates Shannon (EINN) - Updated all procedures, added video map and terrain, updated traffic [#527](https://github.com/openscope/openscope/issues/527)
+- Makes first pass at `CanvasController` refactor [#707](https://github.com/openscope/openscope/issues/707)
+    - adds `TimeKeeper` singleton to make time tracking easier to manage
+    - moves logic to update properties of the `CanvasController` to live within the `CanvasController` and happen via triggered events
+    - sets the stage for next round of `CanvasController` updates by adding `CANVAS_NAME` enum to be used when creating canvas elements
+- Add airport guide files and start ksea as an example [#29](https://github.com/openscope/openscope/issues/29)
+- Ensure tutorial selects departure aircraft [#354](https://github.com/openscope/openscope/issues/354)
+- Add documentation and tutorial section for scope commands [#718](https://github.com/openscope/openscope/issues/718)
+- Update UI green colors to match default blue theme [#630](https://github.com/openscope/openscope/issues/630)
+- Checks if an aircraft can reach assigned altitude/speed [#326](https://github.com/openscope/openscope/issues/326)
 
 
 ## 5.4.1 (September 2, 2017)
@@ -31,7 +90,7 @@
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
-- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
+- Add Albuquerque Sunport (KABQ) [#327](https://github.com/openscope/openscope/issues/327)
 - Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
 - Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)

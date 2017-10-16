@@ -43,6 +43,8 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
         "angle": 220,
         "speed": 6
     },
+    "arrivalRunway": "19R",
+    "departureRunway": "19R",
     "airspace": [
         {
             "floor": 0,
@@ -63,7 +65,21 @@ _Note: The code block shown below is an abbreviated version of [klas.json](asset
         "BETHL": ["N36.88434886833625", "W112.44043432584908"],
         "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
     },
-    "runways":[
+    "restricted": [
+        {
+            "name": "EIP10",
+            "height": "5000ft",
+            "coordinates": [
+                ["N53d09m16", "W6d52m47"],
+                ["N53d09m43", "W6d49m27"],
+                ["N53d09m00", "W6d48m16"],
+                ["N53d07m49", "W6d47m59"],
+                ["N53d08m51", "W6d52m45"],
+                ["N53d09m16", "W6d52m47"]
+            ]
+        }
+    ]
+    "runways": [
         {
             "name": ["07L", "25R"],
             "end": [
@@ -210,7 +226,6 @@ _all properties in this section are required_
     "dep": "Las Vegas Departure"
 },
 ```
-
 - **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
 - **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
 - **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
@@ -228,9 +243,11 @@ _all properties in this section are required_
     "speed": 6
 }
 ```
+- **arrivalRunway** ― The default runway to use for arrivals.
+- **departureRunway** ― The default runway to use for departures.
 
 
-### airspace
+### Airspace
 _All properties in this section are required for each airspace section_
 _At least one airspace definition is required for an airport_
 
@@ -255,7 +272,7 @@ Position definition of the airport airspace.  Multiple airspace areas may be def
 - **poly** ― The coordinates of the airspace. in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_
 
 
-### fixes
+### Fixes
 _All fixes listed within the Standard Routes need to be defined within this section_
 
 ```javascript
@@ -282,20 +299,39 @@ You will notice in the list above there is a fix definition preprended with an `
 They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
 
 * The fixes should be located at the thresholds of the runways for which they are named.
-```
+```javascript
 "_RWY33L": [42.354662, -70.991598]
 ```
 * Any fixes desired a given distance away from another fix will be described in fix-radial-distance form. This would be the fix name, three digit bearing, and three digit distance in nautical miles. All of these should be marked as RNAV fixes (via the underscore prefix).
-```
+```javascript
 "_AUTUM220015": [42.324333, -71.736833]
 ```
 * Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold. This would be the runway name, two digit distance in nautical miles, then `DME`. All of these should be marked as RNAV fixes (via the underscore prefix).
-```
+```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
 ```
 
+### Restricted Airspace
+Areas of restricted airspace may be added to the `restricted` property of the airport file. This is an array containing restricted areas such as the example below:
+```javascript
+{
+    "name": "EIP10",
+    "height": "5000ft",
+    "coordinates": [
+        ["N53d09m16", "W6d52m47"],
+        ["N53d09m43", "W6d49m27"],
+        ["N53d09m00", "W6d48m16"],
+        ["N53d07m49", "W6d47m59"],
+        ["N53d08m51", "W6d52m45"],
+        ["N53d09m16", "W6d52m47"]
+    ]
+},
+```
 
-### runways
+Note that `height` represents the _top_ of the restricted area. Currently all restricted areas are assumed to begin at sea level.
+
+
+### Runways
 ```javascript
 "runways": [
     {
@@ -385,7 +421,7 @@ Fixes within the segments can be defined in several different ways:
 These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
 
 
-### sids
+### SIDs
 _All properties in this section are required for each route definition_
 
 ```javascript
@@ -423,7 +459,7 @@ _All properties in this section are required for each route definition_
 SID is an acronym for _Standard Instrument Departure_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
-```
+```javascript
 "COWBY6": {
     "icao": "COWBY6"
 }
@@ -433,13 +469,13 @@ SID is an acronym for _Standard Instrument Departure_.
 - **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
-- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes.
+- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
 
 - _The `body` section must contain at least one fix_
 - _The `exitPoints` section must contain at least one fix_
 
 
-### stars
+### STARs
 _All properties in this section are required for each route definition_
 
 ```javascript
@@ -480,7 +516,7 @@ _All properties in this section are required for each route definition_
 STAR is an acronym for _Standard Terminal Arrival Route_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
-```
+```javascript
 "GRNPA1": {
     "icao": "GRNPA1"
 }
@@ -493,7 +529,7 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 - **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes.
 
 
-### spawnPatterns
+### Spawn Patterns
 _At least one `spawnPattern` is required to get aircraft populating into the app_
 
 ```javascript
@@ -536,7 +572,7 @@ Contains the parameters used to determine how and where aircraft are spawned int
 _see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
 
 
-### maps
+### Maps
 ```javascript
 "maps": {
     "base": [
