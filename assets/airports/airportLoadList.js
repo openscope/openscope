@@ -323,6 +323,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'kpit',
+            level: 'easy',
+            name: 'Pittsburgh International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kpvd',
         //     level: 'beginner',
