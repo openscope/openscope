@@ -490,7 +490,110 @@
         }
     },
     "spawnPatterns": [
-        
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.AHTIY..BURGS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.6,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.BSV",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.CKB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.DILNE..TVT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.0,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.EWC..WOMBT..PIGGZ",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.JST",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.MGW",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "KPIT",
+            "destination": "",
+            "category": "departure",
+            "route": "KPIT.PIT2.REC",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.6,
+            "airlines": [
+                ["aal", 15]
+            ]
+        }
     ],
     "maps": {
         "base": [
