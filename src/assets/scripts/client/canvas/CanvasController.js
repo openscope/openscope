@@ -1510,7 +1510,7 @@ export default class CanvasController {
             calculateMiddle(this.canvas.size.height)
         );
 
-        const airport = AirportController.airport_get();
+        const { wind } = AirportController.airport_get();
         const size = 80;
         const size2 = size / 2;
         const padding = 16;
@@ -1540,26 +1540,26 @@ export default class CanvasController {
         cc.textAlign = 'center';
         cc.textBaseline = 'center';
         cc.font = '9px monoOne, monospace';
-        cc.fillText(airport.wind.speed, 0, 3.8);
+        cc.fillText(wind.speed, 0, 3.8);
         cc.font = 'bold 10px monoOne, monospace';
 
         // Wind line
-        if (airport.wind.speed > 8) {
-            windspeed_line = airport.wind.speed / 2;
+        if (wind.speed > 8) {
+            windspeed_line = wind.speed / 2;
             highwind = true;
         } else {
-            windspeed_line = airport.wind.speed;
+            windspeed_line = wind.speed;
             highwind = false;
         }
 
         cc.save();
         cc.translate(
-            -dot / 2 * sin(airport.wind.angle),
-            dot / 2 * cos(airport.wind.angle)
+            -dot / 2 * sin(wind.angle),
+            dot / 2 * cos(wind.angle)
         );
         cc.beginPath();
         cc.moveTo(0, 0);
-        cc.rotate(airport.wind.angle);
+        cc.rotate(wind.angle);
         cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
