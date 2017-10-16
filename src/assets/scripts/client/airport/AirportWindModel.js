@@ -119,7 +119,7 @@ export default class AirportWindModel {
     _createWindUpdateTimer() {
         GameController.game_interval(
             this._calculateNextWindHandler,
-            300,
+            5,
             null,
             null
         );
