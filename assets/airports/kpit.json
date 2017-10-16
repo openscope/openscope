@@ -18,8 +18,8 @@
         "angle": 250,
         "speed": 7
     },
-    "arrivalRunway": "8",
-    "departureRunway": "8",
+    "arrivalRunway": "28L",
+    "departureRunway": "28R",
     "airspace": [
         {
             "floor": 0,
@@ -213,7 +213,70 @@
         }
     ],
     "fixes": {
-
+        "ACO"  : ["N41d06.47", "W81d12.09"],
+        "AGC"  : ["N40d16.72", "W80d02.45"],
+        "AHTIY": ["N39d54.86", "W80d23.09"],
+        "AIR"  : ["N40d01.02", "W80d49.03"],
+        "BBLAK": ["N40d15.95", "W80d29.57"],
+        "BSV"  : ["N40d44.44", "W81d25.93"],
+        "BSV"  : ["N40d44.44", "W81d25.93"],
+        "BURGS": ["N39d41.91", "W80d35.18"],
+        "CIP"  : ["N41d08.78", "W79d27.48"],
+        "CKB"  : ["N39d15.19", "W80d16.07"],
+        "CKB"  : ["N39d15.19", "W80d16.07"],
+        "COPPE": ["N40d26.67", "W79d57.35"],
+        "CRSBY": ["N40d15.93", "W80d05.31"],
+        "CTW"  : ["N40d13.75", "W81d28.59"],
+        "CUTTA": ["N40d52.58", "W80d38.59"],
+        "CYDNY": ["N40d23.76", "W80d00.30"],
+        "DEMME": ["N40d13.69", "W79d48.79"],
+        "DILNE": ["N40d28.08", "W80d52.54"],
+        "EARED": ["N40d57.54", "W79d40.81"],
+        "EJOCY": ["N40d00.19", "W79d24.30"],
+        "EWC"  : ["N40d49.50", "W80d12.69"],
+        "FEWGA": ["N40d11.23", "W80d35.89"],
+        "FLURY": ["N40d20.51", "W80d13.85"],
+        "GOLDH": ["N40d20.56", "W80d17.96"],
+        "GRACE": ["N40d51.41", "W79d48.04"],
+        "GRUNZ": ["N40d16.46", "W79d56.97"],
+        "GUINZ": ["N40d24.01", "W80d09.18"],
+        "HAYNZ": ["N40d46.52", "W79d49.35"],
+        "HEINZ": ["N40d24.43", "W80d22.88"],
+        "HLG"  : ["N40d15.59", "W80d34.12"],
+        "HNN"  : ["N38d45.25", "W82d01.57"],
+        "IHD"  : ["N39d58.45", "W79d21.50"],
+        "JESEY": ["N40d44.52", "W80d29.08"],
+        "JOEPA": ["N40d22.22", "W80d13.71"],
+        "JPU"  : ["N39d26.47", "W81d22.49"],
+        "JST"  : ["N40d19.00", "W78d50.05"],
+        "KEMAN": ["N39d51.63", "W80d02.50"],
+        "KRIKK": ["N40d35.16", "W80d18.43"],
+        "LEMEW": ["N40d23.70", "W80d37.75"],
+        "LMBRT": ["N40d18.59", "W79d49.76"],
+        "MGW"  : ["N39d33.40", "W79d51.62"],
+        "MLKIN": ["N40d20.49", "W80d11.03"],
+        "MMJ"  : ["N40d29.28", "W80d11.64"],
+        "MYRON": ["N40d37.04", "W79d51.91"],
+        "NESTO": ["N40d11.67", "W79d42.82"],
+        "PENGN": ["N40d24.15", "W80d12.96"],
+        "PLEEZ": ["N40d07.66", "W79d36.32"],
+        "PROGY": ["N40d32.13", "W80d11.11"],
+        "PRUIT": ["N40d28.88", "W80d03.28"],
+        "PSB"  : ["N40d54.98", "W77d59.56"],
+        "PYRAT": ["N39d32.24", "W81d16.95"],
+        "REC"  : ["N40d32.79", "W78d44.82"],
+        "RIVRZ": ["N40d24.24", "W80d16.66"],
+        "ROOSA": ["N40d34.71", "W80d05.85"],
+        "SLT"  : ["N41d30.77", "W77d58.21"],
+        "SSOXX": ["N40d34.89", "W80d11.02"],
+        "STILR": ["N40d22.02", "W79d50.44"],
+        "TERBL": ["N40d35.10", "W80d16.70"],
+        "TOWEL": ["N40d35.35", "W80d22.94"],
+        "TVT"  : ["N40d27.48", "W82d07.61"],
+        "VINSE": ["N39d58.27", "W77d57.35"],
+        "WISKE": ["N40d07.75", "W80d40.57"],
+        "YINZZ": ["N40d35.95", "W80d36.16"],
+        "YNG"  : ["N41d19.86", "W80d40.48"]
     },
     "runways":[
         {
@@ -250,10 +313,164 @@
         }
     ],
     "sids": {
-
+        "PIT2": {
+            "icao": "PIT2",
+            "name": "Pittsburgh Two",
+            "rwy": {
+                "10L": ["#100"],
+                "10C": ["#100"],
+                "10R": ["#100"],
+                "14": ["#144"],
+                "28L": ["#280"],
+                "28C": ["#280"],
+                "28R": ["#280"],
+                "32": ["#324"]
+            },
+            "body": [],
+            "exitPoints": {
+                "AGC": ["AGC"],
+                "AHTIY": ["AHTIY"],
+                "AIR": ["AIR"],
+                "BSV": ["BSV"],
+                "BURGS": ["BURGS"],
+                "CKB": ["CKB"],
+                "DILNE": ["DILNE"],
+                "EWC": ["EWC"],
+                "HLG": ["HLG"],
+                "JST": ["JST"],
+                "KEMAN": ["KEMAN"],
+                "MGW": ["MGW"],
+                "MMJ": ["MMJ"],
+                "REC": ["REC"],
+                "TVT": ["TVT"]
+            },
+            "draw": [
+                ["AGC*"],
+                ["AHTIY*"],
+                ["AIR*"],
+                ["BSV*"],
+                ["BURGS*"],
+                ["CKB*"],
+                ["DILNE*"],
+                ["EWC*"],
+                ["HLG*"],
+                ["JST*"],
+                ["KEMAN*"],
+                ["MGW*"],
+                ["MMJ*"],
+                ["REC*"],
+                ["TVT*"]
+            ]
+        }
     },
     "stars": {
-        
+        "DEMME2": {
+            "icao": "DEMME2",
+            "name": "Demme Two",
+            "entryPoints": {
+                "IHD": ["IHD"],
+                "VINSE": ["VINSE"]
+            },
+            "body": ["EJOCY", "PLEEZ", "NESTO", "DEMME"],
+            "rwy": {
+                "10L": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "10C": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "10R": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "14": [],
+                "28L": ["LMBRT", "STILR", "#070"],
+                "28C": ["LMBRT", "STILR", "#070"],
+                "28R": ["LMBRT", "STILR", "#070"],
+                "32": ["GRUNZ", "#302"]
+            },
+            "draw": [
+                ["IHD*", "EJOCY", "PLEEZ", "NESTO", "DEMME", "GRUNZ"],
+                ["DEMME", "PENGN", "RIVRZ", "HEINZ"],
+                ["DEMME", "LMBRT", "STILR"],
+                ["VINSE*", "EJOCY"]
+            ]
+        },
+        "FEWGA3": {
+            "icao": "FEWGA3",
+            "name": "Fewga Two",
+            "entryPoints": {
+                "CKB": ["CKB"],
+                "CTW": ["CTW"],
+                "HNN": ["HNN", "JPU", "PYRAT"],
+                "JPU": ["JPU", "PYRAT"]
+            },
+            "body": ["AIR", "WISKE", "FEWGA"],
+            "rwy": {
+                "10L": ["LEMEW", "#300"],
+                "10C": ["LEMEW", "#300"],
+                "10R": ["LEMEW", "#300"],
+                "14": [],
+                "28L": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "28C": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "28R": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "32": ["BBLAK", "GOLDH", "FLURY", "MLKIN", "CRSBY", "#145"]
+            },
+            "draw": [
+                ["FEWGA", "BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY"],
+                ["CKB*", "AIR", "WISKE", "FEWGA", "LEMEW"],
+                ["GOLDH", "FLURY", "MLKIN", "CRSBY"],
+                ["JPU*", "PYRAT", "AIR"],
+                ["CTW*", "AIR"],
+                ["HNN*", "JPU"]
+            ]
+        },
+        "HAYNZ4": {
+            "icao": "HAYNZ4",
+            "name": "Haynes Four",
+            "entryPoints": {
+                "CIP": ["CIP"],
+                "PSB": ["PSB"],
+                "SLT": ["SLT"]
+            },
+            "body": ["EARED", "GRACE", "HAYNZ"],
+            "rwy": {
+                "10L": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "10C": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "10R": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "14": [],
+                "28L": ["MYRON", "#125"],
+                "28C": ["MYRON", "#125"],
+                "28R": ["MYRON", "#125"],
+                "32": ["MYRON", "COPPE", "#165"]
+            },
+            "draw": [
+                ["CIP*", "EARED", "GRACE", "HAYNZ", "MYRON", "COPPE"],
+                ["HAYNZ", "ROOSA", "TERBL", "TOWEL"],
+                ["PSB*", "EARED"],
+                ["SLT*", "EARED"]
+            ]
+        },
+        "JESEY2": {
+            "icao": "JESEY2",
+            "name": "Jesse Two",
+            "entryPoints": {
+                "ACO": ["ACO"],
+                "BSV": ["BSV"],
+                "YNG": ["YNG"]
+            },
+            "body": ["CUTTA", "JESEY"],
+            "rwy": {
+                "10L": ["YINZZ", "#250"],
+                "10C": ["YINZZ", "#250"],
+                "10R": ["YINZZ", "#250"],
+                "14": [],
+                "28L": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "28C": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "28R": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "32": ["KRIKK", "PROGY", "PRUIT", "#145"]
+            },
+            "draw": [
+                ["JESEY", "KRIKK", "SSOXX", "ROOSA"],
+                ["ACO*", "CUTTA", "JESEY", "YINZZ"],
+                ["KRIKK", "PROGY", "PRUIT"],
+                ["BSV*", "CUTTA"],
+                ["YNG*", "CUTTA"]
+            ]
+        }
     },
     "spawnPatterns": [
         
