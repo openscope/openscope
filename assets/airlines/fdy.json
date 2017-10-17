@@ -1,0 +1,13 @@
+{
+    "icao": "fdy",
+    "name": "Southern Airways Express",
+    "callsign": {
+        "name": "Friendly",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["C208", 18]
+        ]
+    }
+}
