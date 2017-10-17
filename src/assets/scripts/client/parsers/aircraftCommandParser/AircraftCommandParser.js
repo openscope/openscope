@@ -6,7 +6,7 @@ import _tail from 'lodash/tail';
 import AircraftCommandModel from './AircraftCommandModel';
 import {
     AIRCRAFT_COMMAND_MAP,
-    getCommandNameFromAlias
+    findCommandNameWithAlias
 } from './aircraftCommandMap';
 
 /**
@@ -219,7 +219,7 @@ export default class AircraftCommandParser {
                 return;
             }
 
-            const commandName = getCommandNameFromAlias(commandOrArg);
+            const commandName = findCommandNameWithAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
                 aircraftCommandModel = new AircraftCommandModel(commandName);

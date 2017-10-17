@@ -217,10 +217,10 @@ export const EXPEDITE = ['expedite', 'x'];
 /**
  * Get the name of a command when given any of that command's aliases
  *
- * @function getCommandNameFromAlias
- * @param alias {string}
+ * @function findCommandNameWithAlias
+ * @param commandAlias {string}
  * @return {string}
  */
-export function getCommandNameFromAlias(alias) {
-    return _findKey(AIRCRAFT_COMMAND_MAP, (command) => command.aliases.indexOf(alias) !== -1);
+export function findCommandNameWithAlias(commandAlias) {
+    return _findKey(AIRCRAFT_COMMAND_MAP, (command) => command.aliases.indexOf(commandAlias) !== -1);
 }
