@@ -219,10 +219,8 @@
         "AIR"  : ["N40d01.02", "W80d49.03"],
         "BBLAK": ["N40d15.95", "W80d29.57"],
         "BSV"  : ["N40d44.44", "W81d25.93"],
-        "BSV"  : ["N40d44.44", "W81d25.93"],
         "BURGS": ["N39d41.91", "W80d35.18"],
         "CIP"  : ["N41d08.78", "W79d27.48"],
-        "CKB"  : ["N39d15.19", "W80d16.07"],
         "CKB"  : ["N39d15.19", "W80d16.07"],
         "COFEE": ["N40d29.78", "W80d02.72"],
         "COPPE": ["N40d26.67", "W79d57.35"],
@@ -537,7 +535,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.0,
+            "rate": 1.2,
             "airlines": [
                 ["aal", 15]
             ]
@@ -576,7 +574,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.4,
+            "rate": 0.5,
             "airlines": [
                 ["aal", 15]
             ]
@@ -590,6 +588,84 @@
             "speed": "",
             "method": "random",
             "rate": 0.6,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "IHD.DEMME2.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 2.0,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "VINSE.DEMME2.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 1.8,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "CTW.FEWGA3.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 0.6,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "HNN.FEWGA3.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 1.6,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "SLT.HAYNZ4.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aal", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KPIT",
+            "category": "arrival",
+            "route": "ACO.JESEY2.KPIT",
+            "altitude": 18000,
+            "speed": 320,
+            "method": "random",
+            "rate": 1.6,
             "airlines": [
                 ["aal", 15]
             ]
