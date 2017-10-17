@@ -783,6 +783,29 @@ export default class Pilot {
     }
 
     /**
+     * Set the arrival runway to the specified runway model
+     *
+     * @for Pilot
+     * @method setArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param runwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    setArrivalRunway(aircraft, runwayModel) {
+        if (aircraft.isOnGround()) {
+            return [false, 'unable to accept arrival runway assignment until airborne'];
+        }
+
+        if (_isNil(runwayModel)) {
+            return [false, 'unable to find that runway on our charts'];
+        }
+
+        aircraft.fms.setArrivalRunway(runwayModel);
+
+        return [true, `expecting Runway ${runwayModel.name}`];
+    }
+
+    /**
      * Stop taxiing to the runway and return to the gate
      *
      * @for Pilot

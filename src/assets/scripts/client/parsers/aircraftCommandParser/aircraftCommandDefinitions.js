@@ -151,7 +151,10 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         // return an array here
         parse: (args) => [convertStringToNumber(args)]
     },
-
+    expectArrivalRunway: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
     direct: {
         validate: singleArgumentValidator,
         parse: noop

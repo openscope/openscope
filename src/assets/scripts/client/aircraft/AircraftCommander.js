@@ -316,6 +316,22 @@ export default class AircraftCommander {
     }
 
     /**
+     * Set the arrival runway to expect for approach and landing
+     *
+     * @for AircraftCommander
+     * @method runExpectArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param data {array}
+     * @return {array} [success of operation, response]
+     */
+    runExpectArrivalRunway(aircraft, data) {
+        const airportModel = AirportController.airport_get();
+        const runwayModel = airportModel.getRunway(data[0]);
+
+        return aircraft.pilot.setArrivalRunway(aircraft, runwayModel);
+    }
+
+    /**
      * @for AircraftCommander
      * @method runFlyPresentHeading
      * @param aircraft {AircraftModel}

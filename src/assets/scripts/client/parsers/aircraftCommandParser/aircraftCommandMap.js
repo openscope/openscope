@@ -70,6 +70,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runDirect',
         isSystemCommand: false
     },
+    expectArrivalRunway: {
+        aliases: ['e'],
+        functionName: 'runExpectArrivalRunway',
+        isSystemCommand: false
+    },
     fix: {
         aliases: ['f', 'fix', 'track'],
         functionName: 'runFix',
