@@ -498,7 +498,24 @@
             "method": "random",
             "rate": 1.6,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdx", 4],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5],
+                ["ups", 3]
             ]
         },
         {
@@ -511,7 +528,20 @@
             "method": "random",
             "rate": 1.5,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -524,7 +554,26 @@
             "method": "random",
             "rate": 0.8,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdx", 4],
+                ["fdy", 23],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["n/lightGA", 7],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5],
+                ["ups", 3]
             ]
         },
         {
@@ -537,7 +586,21 @@
             "method": "random",
             "rate": 1.2,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -550,7 +613,21 @@
             "method": "random",
             "rate": 1.5,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -563,7 +640,23 @@
             "method": "random",
             "rate": 0.5,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdy", 23],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["n/lightGA", 7],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -576,7 +669,26 @@
             "method": "random",
             "rate": 0.5,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdx", 4],
+                ["fdy", 23],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["n/lightGA", 7],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5],
+                ["ups", 3]
             ]
         },
         {
@@ -589,7 +701,24 @@
             "method": "random",
             "rate": 0.6,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdy", 23],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["n/lightGA", 7],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -602,7 +731,22 @@
             "method": "random",
             "rate": 2.0,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -615,7 +759,21 @@
             "method": "random",
             "rate": 1.8,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -628,7 +786,23 @@
             "method": "random",
             "rate": 0.6,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdx", 4],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5],
+                ["ups", 3]
             ]
         },
         {
@@ -641,7 +815,23 @@
             "method": "random",
             "rate": 1.6,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["aay", 1],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["fdx", 4],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5],
+                ["ups", 3]
             ]
         },
         {
@@ -654,7 +844,21 @@
             "method": "random",
             "rate": 0.8,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jbu", 5],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         },
         {
@@ -667,7 +871,20 @@
             "method": "random",
             "rate": 1.6,
             "airlines": [
-                ["aal", 15]
+                ["aal", 13],
+                ["ash", 2],
+                ["asq", 2],
+                ["awi", 2],
+                ["dal", 7],
+                ["edv", 10],
+                ["eny", 3],
+                ["jia", 4],
+                ["lof", 2],
+                ["n/fastGA", 20],
+                ["nks", 3],
+                ["rpa", 15],
+                ["swa", 18],
+                ["ual", 5]
             ]
         }
     ],
