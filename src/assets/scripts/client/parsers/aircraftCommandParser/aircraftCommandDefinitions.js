@@ -75,7 +75,7 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    climbViaSID: {
+    climbViaSid: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
@@ -233,6 +233,8 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     }
 };
 
+// TODO: This entire thing ought to be absorbed into aircraftCommandMap, to keep
+// all command definition information in a single place.
 /**
  * Single exported constant that combines all the definitions above
  *

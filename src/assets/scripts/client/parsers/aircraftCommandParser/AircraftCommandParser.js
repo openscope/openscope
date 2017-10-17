@@ -1,16 +1,13 @@
 import _compact from 'lodash/compact';
 import _forEach from 'lodash/forEach';
-import _has from 'lodash/has';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import AircraftCommandModel from './AircraftCommandModel';
-import { unicodeToString } from '../../utilities/generalUtilities';
 import {
-    SYSTEM_COMMANDS,
-    AIRCRAFT_COMMAND_MAP
+    AIRCRAFT_COMMAND_MAP,
+    getCommandNameFromAlias
 } from './aircraftCommandMap';
-import { REGEX } from '../../constants/globalConstants';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -122,7 +119,7 @@ export default class AircraftCommandParser {
      * @return {string|array<string>}
      */
     get args() {
-        if (this.command !== SYSTEM_COMMANDS.transmit) {
+        if (this.command !== 'transmit') {
             return this.commandList[0].args;
         }
 
@@ -187,7 +184,7 @@ export default class AircraftCommandParser {
      * @private
      */
     _buildTransmitAircraftCommandModels(callsignOrSystemCommandName, commandArgSegments) {
-        this.command = SYSTEM_COMMANDS.transmit;
+        this.command = 'transmit';
         this.callsign = callsignOrSystemCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
 
@@ -214,63 +211,31 @@ export default class AircraftCommandParser {
      * @private
      */
     _buildCommandList(commandArgSegments) {
+        const commandList = [];
         let aircraftCommandModel;
 
-        // TODO: this still feels icky and could be simplified some more
-        const commandList = _map(commandArgSegments, (commandOrArg) => {
+        _forEach(commandArgSegments, (commandOrArg) => {
             if (commandOrArg === '') {
-                return;
-            } else if (REGEX.UNICODE.test(commandOrArg)) {
-                const commandString = unicodeToString(commandOrArg);
-                aircraftCommandModel = new AircraftCommandModel(AIRCRAFT_COMMAND_MAP[commandString]);
-
-                return aircraftCommandModel;
-            } else if (_has(AIRCRAFT_COMMAND_MAP, commandOrArg) &&
-                !this._isAliasCommandAnArg(aircraftCommandModel, commandOrArg)
-            ) {
-                aircraftCommandModel = new AircraftCommandModel(AIRCRAFT_COMMAND_MAP[commandOrArg]);
-
-                return aircraftCommandModel;
-            } else if (typeof aircraftCommandModel === 'undefined') {
-                // if we've made it here and aircraftCommandModel is still undefined, a command was not found
                 return;
             }
 
-            aircraftCommandModel.args.push(commandOrArg);
+            const commandName = getCommandNameFromAlias(commandOrArg);
+
+            if (typeof aircraftCommandModel === 'undefined') {
+                aircraftCommandModel = new AircraftCommandModel(commandName);
+            } else if (typeof commandName === 'undefined') {
+                aircraftCommandModel.args.push(commandOrArg);
+            } else {
+                commandList.push(aircraftCommandModel);
+
+                aircraftCommandModel = new AircraftCommandModel(commandName);
+            }
         });
 
+        // add last command to array
+        commandList.push(aircraftCommandModel);
 
-        return _compact(commandList);
-    }
-
-    /**
-     * This method is used for addressing a very specific situation
-     *
-     * When the current command is `heading` and one of the arguments is `l`, the parser interprets
-     * the `l` as another command. `l` is an alias for the `land` command.
-     *
-     * This method expects that a commandString will look like:
-     * `AA321 t l 042`
-     *
-     * We look for the `heading` command and no existing arguments, as the `l` would become the
-     * first argument in this situation.
-     *
-     * @for AircraftCommandParser
-     * @method _isAliasCommandAnArg
-     * @param aircraftCommandModel {AircraftCommandModel}
-     * @param commandOrArg {string}
-     * @return {boolean}
-     */
-    _isAliasCommandAnArg(aircraftCommandModel, commandOrArg) {
-        if (!aircraftCommandModel) {
-            return false;
-        }
-
-        const isHeadingCommand = aircraftCommandModel.name === 'heading';
-        const isNoArgumentCommand = aircraftCommandModel.args.length === 0;
-        const isLeftTurn = commandOrArg === 'l';
-
-        return isHeadingCommand && isNoArgumentCommand && isLeftTurn;
+        return commandList;
     }
 
     /**
@@ -323,7 +288,12 @@ export default class AircraftCommandParser {
      * @return {boolean}
      */
     _isSystemCommand(callsignOrSystemCommandName) {
-        return _has(SYSTEM_COMMANDS, callsignOrSystemCommandName) &&
-            callsignOrSystemCommandName !== SYSTEM_COMMANDS.transmit;
+        const command = AIRCRAFT_COMMAND_MAP[callsignOrSystemCommandName];
+
+        if (typeof command === 'undefined') {
+            return false;
+        }
+
+        return command.isSystemCommand && callsignOrSystemCommandName !== 'transmit';
     }
 }
