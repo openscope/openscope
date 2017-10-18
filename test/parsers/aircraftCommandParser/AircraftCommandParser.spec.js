@@ -8,7 +8,6 @@ import AircraftCommandParser from '../../../src/assets/scripts/client/parsers/ai
 import AircraftCommandModel from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandModel';
 import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 
-const VERSION_COMMAND_MOCK = 'version';
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AAL777';
 const CAF_MOCK = 'caf';
@@ -17,7 +16,6 @@ const TAKEOFF_MOCK = 'to';
 const FH_COMMAND_MOCK = 'fh 180';
 const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
-const UNICODE_STAR_MOCK = '\\u2b50 28R';
 
 const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
 
@@ -97,16 +95,6 @@ ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit
     model._extractCommandsAndArgs(commandStringMock);
 
     t.true(_buildCommandListSpy.calledWithExactly(_tail(expectedArgs)));
-});
-
-ava('._buildCommandList() finds correct command when it recieves a space before a unicode value', t => {
-    const commandListMock = buildCommandList('', UNICODE_STAR_MOCK);
-    const command = buildCommandString('', UNICODE_STAR_MOCK);
-    const model = new AircraftCommandParser(command);
-    const result = model._buildCommandList(_tail(commandListMock));
-
-    t.true(result[0].name === 'land');
-    t.true(result[0].args[0] === '28R');
 });
 
 ava('._buildCommandList() returns an empty array when adding args to an undefined AircraftCommandModel', t => {
