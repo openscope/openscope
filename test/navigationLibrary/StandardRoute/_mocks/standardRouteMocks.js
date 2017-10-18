@@ -88,6 +88,55 @@ export const STAR_LIST_MOCK = {
     }
 };
 
+export const STAR_LIST_WITH_INVALID_DRAW_SEGMENT_MOCK = {
+    'GRNPA1': {
+        'icao': 'GRNPA1',
+        'name': 'Grandpa One',
+        'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
+        'entryPoints': {
+            'BETHL': ['BETHL', ['HOLDM', 'A270']],
+            'BCE':   ['BCE'],
+            'DVC':   ['DVC', 'BETHL', ['HOLDM', 'A270']],
+            'MLF':   ['MLF']
+        },
+        'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ'],
+        'rwy': {
+            '01L': ['THREEVE'],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        },
+        "draw": [
+            ['BETHL', 'HOLDM', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'],
+            ['BCE', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'],
+        ]
+    },
+    'SUNST3': {
+        'icao': 'SUNST3',
+        'name': 'Sunset Three',
+        'entryPoints': {
+            'BTY':   ['BTY'],
+            'TACUS': ['TACUS', 'TUMBE']
+        },
+        'body': [['MYCAL', 'A240'], ['FUZZY', 'A160|S250'], 'TRAGR', ['IPUMY', 'A110|S230'], ['NIPZO', 'A90'], ['SUNST', 'A80|S210'], ['KIMME', 'A80|S210'], ['CHIPZ', 'A80|S170'], 'POKRR', 'PRINO'],
+        'rwy': {
+            '01L': [],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        },
+        "draw": []
+    }
+};
+
 export const STAR_WITHOUT_RWY = {
     'icao': 'GRNPA1',
     'name': 'Grandpa One',
