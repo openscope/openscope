@@ -209,7 +209,7 @@
         "YKM"  : ["N46d34.21", "W120d26.68"],
         "YORKY": ["N45d42.68", "W122d39.18"]
     },
-    "runways":[
+    "runways": [
         {
             "name": ["3", "21"],
             "end": [
@@ -265,8 +265,8 @@
             "rwy": {
                 "10L": ["RIVRR", "COSUG", "LEZLI"],
                 "10R": ["RIVRR", "COSUG", "LEZLI"],
-                "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"]
-                "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"],
+                "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"],
+                "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH"]
             },
             "body": [],
             "exitPoints": {
@@ -492,7 +492,7 @@
             "rwy": {
                 "10L": [["FFULL", "A70+|A90-"], ["SSAIL", "A60+|A80-"], ["MYCRO", "A50|S210"], "BBREW", "PUBBB", "#305"],
                 "10R": [["FFULL", "A70+|A90-"], ["SSAIL", "A60+|A80-"], ["MYCRO", "A50|S210"], "BBREW", "PUBBB", "#305"],
-                "21":  [["HHOPZ", "A70|S210"], "#029"],
+                "21": [["HHOPZ", "A70|S210"], "#029"],
                 "28L": [["WIDMR", "A50|S210"], "ROAGE", "ICEAX", "#103"],
                 "28R": [["WIDMR", "A50|S210"], "ROAGE", "ICEAX", "#103"]
             },
