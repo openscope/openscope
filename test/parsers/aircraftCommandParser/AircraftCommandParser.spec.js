@@ -6,6 +6,7 @@ import _tail from 'lodash/tail';
 
 import AircraftCommandParser from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandParser';
 import AircraftCommandModel from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/AircraftCommandModel';
+import { PARSED_COMMAND_NAME } from '../../../src/assets/scripts/client/constants/inputConstants';
 
 const VERSION_COMMAND_MOCK = 'version';
 const TIMEWARP_50_MOCK = 'timewarp 50';
@@ -66,7 +67,7 @@ ava('sets #command with the correct name when provided a transmit command', t =>
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new AircraftCommandParser(commandStringMock);
 
-    t.true(model.command === 'transmit');
+    t.true(model.command === PARSED_COMMAND_NAME.TRANSMIT);
 });
 
 ava('sets #commandList with a AircraftCommandModel object when provided a system command', t => {

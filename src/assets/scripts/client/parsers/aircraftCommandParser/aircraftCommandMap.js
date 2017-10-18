@@ -1,6 +1,5 @@
 import _findKey from 'lodash/findKey';
 
-// FIXME: These keys should be upper-cased, but waiting for now to keep things working
 /**
  * Complete map of commands
  *

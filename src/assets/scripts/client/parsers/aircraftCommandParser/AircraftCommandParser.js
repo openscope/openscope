@@ -8,6 +8,7 @@ import {
     AIRCRAFT_COMMAND_MAP,
     findCommandNameWithAlias
 } from './aircraftCommandMap';
+import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -119,7 +120,7 @@ export default class AircraftCommandParser {
      * @return {string|array<string>}
      */
     get args() {
-        if (this.command !== 'transmit') {
+        if (this.command !== PARSED_COMMAND_NAME.TRANSMIT) {
             return this.commandList[0].args;
         }
 
@@ -184,7 +185,7 @@ export default class AircraftCommandParser {
      * @private
      */
     _buildTransmitAircraftCommandModels(callsignOrSystemCommandName, commandArgSegments) {
-        this.command = 'transmit';
+        this.command = PARSED_COMMAND_NAME.TRANSMIT;
         this.callsign = callsignOrSystemCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
 
@@ -310,6 +311,6 @@ export default class AircraftCommandParser {
             return false;
         }
 
-        return command.isSystemCommand && callsignOrSystemCommandName !== 'transmit';
+        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
     }
 }
