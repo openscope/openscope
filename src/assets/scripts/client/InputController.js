@@ -406,7 +406,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
+                this.$commandInput.val(`${currentCommandInputValue} \u2b50 `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 

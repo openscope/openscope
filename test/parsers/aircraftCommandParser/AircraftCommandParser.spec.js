@@ -9,14 +9,14 @@ import AircraftCommandModel from '../../../src/assets/scripts/client/parsers/air
 
 const VERSION_COMMAND_MOCK = 'version';
 const TIMEWARP_50_MOCK = 'timewarp 50';
-const CALLSIGN_MOCK = 'AA777';
+const CALLSIGN_MOCK = 'AAL777';
 const CAF_MOCK = 'caf';
 const CVS_MOCK = 'cvs';
-const TO_MOCK = 'to';
+const TAKEOFF_MOCK = 'to';
 const FH_COMMAND_MOCK = 'fh 180';
 const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
-const UNICODE_STAR_MOCK = '\u2B50 28R';
+const UNICODE_STAR_MOCK = '\\u2b50 28R';
 
 const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
 
@@ -27,19 +27,18 @@ const buildCommandList = (...args) => {
 };
 
 ava('throws when called without parameters', t => {
-    t.throws(() => new AircraftCommandParser(false));
-    t.throws(() => new AircraftCommandParser(42));
-    t.throws(() => new AircraftCommandParser({}));
-
-    t.notThrows(() => new AircraftCommandParser());
+    t.throws(() => new AircraftCommandParser());
 });
 
 ava('throws when called with an invalid command', (t) => {
     t.throws(() => new AircraftCommandParser(['threeve']));
+    t.throws(() => new AircraftCommandParser(false));
+    t.throws(() => new AircraftCommandParser(42));
+    t.throws(() => new AircraftCommandParser({}));
 });
 
 ava('throws when called with invalid arguments', (t) => {
-    const commandStringMock = buildCommandString(TO_MOCK, 'threeve');
+    const commandStringMock = buildCommandString(TAKEOFF_MOCK, 'threeve');
 
     t.throws(() => new AircraftCommandParser(commandStringMock));
 });
@@ -64,7 +63,7 @@ ava('sets #command with the correct name when provided a system command', t => {
 });
 
 ava('sets #command with the correct name when provided a transmit command', t => {
-    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new AircraftCommandParser(commandStringMock);
 
     t.true(model.command === 'transmit');
@@ -78,7 +77,7 @@ ava('sets #commandList with a AircraftCommandModel object when provided a system
 });
 
 ava('sets #commandList with AircraftCommandModel objects when it receives transmit commands', t => {
-    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new AircraftCommandParser(commandStringMock);
 
     t.true(model.commandList.length === 3);
@@ -89,8 +88,8 @@ ava('sets #commandList with AircraftCommandModel objects when it receives transm
 });
 
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {
-    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
-    const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
+    const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new AircraftCommandParser(commandStringMock);
     const _buildCommandListSpy = sinon.spy(model, '_buildCommandList');
 
@@ -101,25 +100,26 @@ ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit
 
 ava('._buildCommandList() finds correct command when it recieves a space before a unicode value', t => {
     const commandListMock = buildCommandList('', UNICODE_STAR_MOCK);
-    const model = new AircraftCommandParser(buildCommandString('', UNICODE_STAR_MOCK));
+    const command = buildCommandString('', UNICODE_STAR_MOCK);
+    const model = new AircraftCommandParser(command);
     const result = model._buildCommandList(_tail(commandListMock));
 
     t.true(result[0].name === 'land');
     t.true(result[0].args[0] === '28R');
 });
 
-ava('._buildCommandList() does not throw when it trys to add args to an undefined AircraftCommandModel and returns an empty array', t => {
-    const model = new AircraftCommandParser();
+ava('._buildCommandList() returns an empty array when adding args to an undefined AircraftCommandModel', t => {
+    const model = new AircraftCommandParser('threeve');
 
-    t.notThrows(() => model._buildCommandList(['threeve', '$texas']));
+    t.notThrows(() => model._buildCommandList(['$texas']));
 
-    const result = model._buildCommandList(['threeve', '$texas']);
+    const result = model._buildCommandList(['$texas']);
 
-    t.true(result.length === 0);
+    t.deepEqual(result, []);
 });
 
 ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
-    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TAKEOFF_MOCK);
     const model = new AircraftCommandParser(commandStringMock);
 
     const _validateCommandArgumentsSpy = sinon.spy(model, '_validateCommandArguments');
@@ -130,30 +130,12 @@ ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t
 
 ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists within SYSTEM_COMMANDS and is not transmit', t => {
     const systemCommandMock = 'timewarp';
-    const model = new AircraftCommandParser();
+    const model = new AircraftCommandParser(systemCommandMock);
 
     t.true(model._isSystemCommand(systemCommandMock));
 });
 
 // specific use case tests
-ava('when passed t l 042 as a command it adds l as an argument and not a new command', t => {
-    const commandStringMock = buildCommandString('t', 'l', '042');
-    const model = new AircraftCommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'heading');
-    t.true(model.args[0][1] === 'left');
-});
-
-ava('when passed l as command it adds land as a new command', t => {
-    const commandStringMock = buildCommandString('t', 'l', '042', 'l', '28l');
-    const model = new AircraftCommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'heading');
-    t.true(model.args[0][1] === 'left');
-    t.true(model.args[1][0] === 'land');
-    t.true(model.args[1][2] === '28l');
-});
-
 ava('when passed hold LAM it creates the correct command with the correct arguments', t => {
     const commandStringMock = buildCommandString('hold', 'LAM');
     const model = new AircraftCommandParser(commandStringMock);

@@ -83,6 +83,10 @@ export default class AircraftCommandModel {
      * @return {string|undefined}
      */
     validateArgs() {
+        if (typeof this._commandDefinition === 'undefined') {
+            return;
+        }
+
         return this._commandDefinition.validate(this.args);
     }
 

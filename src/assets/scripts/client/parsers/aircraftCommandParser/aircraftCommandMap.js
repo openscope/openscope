@@ -96,7 +96,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     land: {
-        aliases: ['\\u2B50', '*', 'i', 'ils'],
+        aliases: ['\\u2b50', '*', 'i', 'ils'],
         functionName: 'runLanding',
         isSystemCommand: false
     },

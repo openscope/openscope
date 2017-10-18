@@ -62,7 +62,7 @@ export default class AircraftCommandParser {
      * @for AircraftCommandParser
      * @param rawCommandWithArgs {string}  string present in the `$commandInput` when the user pressed `enter`
      */
-    constructor(rawCommandWithArgs = '') {
+    constructor(rawCommandWithArgs) {
         if (!_isString(rawCommandWithArgs)) {
             // istanbul ignore next
             // eslint-disable-next-line max-len
@@ -214,28 +214,38 @@ export default class AircraftCommandParser {
         const commandList = [];
         let aircraftCommandModel;
 
-        _forEach(commandArgSegments, (commandOrArg) => {
+        for (let i = 0; i < commandArgSegments.length; i++) {
+            const commandOrArg = commandArgSegments[i];
+
             if (commandOrArg === '') {
-                return;
+                continue;
             }
 
             const commandName = findCommandNameWithAlias(commandOrArg);
 
             if (typeof aircraftCommandModel === 'undefined') {
+                if (typeof commandName === 'undefined') {
+                    continue;
+                }
+
                 aircraftCommandModel = new AircraftCommandModel(commandName);
-            } else if (typeof commandName === 'undefined') {
-                aircraftCommandModel.args.push(commandOrArg);
             } else {
+                if (typeof commandName === 'undefined') {
+                    aircraftCommandModel.args.push(commandOrArg);
+
+                    continue;
+                }
+
                 commandList.push(aircraftCommandModel);
 
                 aircraftCommandModel = new AircraftCommandModel(commandName);
             }
-        });
+        }
 
         // add last command to array
         commandList.push(aircraftCommandModel);
 
-        return commandList;
+        return _compact(commandList);
     }
 
     /**
@@ -264,7 +274,11 @@ export default class AircraftCommandParser {
      * @private
      */
     _validateCommandArguments() {
-        return _compact(_map(this.commandList, (command) => {
+        const validatedCommandList = _map(this.commandList, (command) => {
+            if (typeof command === 'undefined') {
+                return;
+            }
+
             const hasError = command.validateArgs();
 
             if (hasError) {
@@ -274,7 +288,9 @@ export default class AircraftCommandParser {
             }
 
             command.parseArgs();
-        }));
+        });
+
+        return _compact(validatedCommandList);
     }
 
     /**
