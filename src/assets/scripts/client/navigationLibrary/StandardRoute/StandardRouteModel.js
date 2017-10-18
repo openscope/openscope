@@ -1,6 +1,7 @@
 import _compact from 'lodash/compact';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _pick from 'lodash/pick';
@@ -300,7 +301,7 @@ export default class StandardRouteModel extends BaseModel {
     getAllFixNamesInUse() {
         // if data has been incorrectly defined in the airport.json file, we throw and provide a useful message
         // this should never throw in production, but should be useful for developers as they create and update airport files
-        if (typeof this.draw[0] === 'undefined' || typeof this.draw[0] === 'string') {
+        if (!_isArray(this.draw[0])) {
             throw new TypeError(`Invalid data set in draw segment of the ${this.icao} procedure. ` +
                 'Expected a 2D array: [[`FIXXA`, `FIXXB*`], [`FIXXC, FIXXD*`]]. Please see airport documentation ' +
                 'for more information (https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).'
