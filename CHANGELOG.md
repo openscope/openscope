@@ -3,6 +3,7 @@
 ### New Features
 - [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
 - [#838](https://github.com/openscope/openscope/issues/838) - Add Zürich Airport (LSZH)
+- [#24](https://github.com/openscope/openscope/issues/24) - Add command to inform arrivals of assigned landing runway
 
 
 
