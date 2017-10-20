@@ -397,7 +397,7 @@
             "entryPoints": {
                 "SEA": ["SEA", "BUWZO"]
             },
-            "body": ["HELNS", "KRATR", "BTG"],
+            "body": ["HELNS", ["KRATR", "A120|S300-"], "BTG"],
             "rwy": {
                 "10L": ["#280"],
                 "10R": ["#280"],
@@ -447,7 +447,7 @@
             "rwy": {
                 "10L": [["VOODU", "A50|S210"], "DOUHH", "NNUTT", "#278"],
                 "10R": [["VOODU", "A50|S210"], "DOUHH", "NNUTT", "#278"],
-                "21": [["BATYL", "A70|S210"], "#210"],
+                "21": [["BATYL", "A70|S210"], "#160"],
                 "28L": [["LIQWD", "A60"], ["SSSUN", "S210"], "SHYNE", "#108"],
                 "28R": [["LIQWD", "A60"], ["SSSUN", "S210"], "SHYNE", "#108"]
             },
@@ -701,7 +701,6 @@
                 ["aca", 1],
                 ["asa", 32],
                 ["n/fastGA", 29],
-                ["nla", 1],
                 ["qxe", 45]
             ]
         },
@@ -717,7 +716,6 @@
             "airlines": [
                 ["aal", 10],
                 ["asa", 10],
-                ["cfs", 1],
                 ["cpz", 4],
                 ["dal", 20],
                 ["fft", 2],
