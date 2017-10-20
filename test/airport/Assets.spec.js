@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const AirportAssetsPath = path.join(__dirname, '..', '..', 'assets', 'airports');
-let error = [];
+const error = [];
 const files = fs.readdirSync(AirportAssetsPath);
 
 ava('Airport JSON  file does not throw', (t) => {
