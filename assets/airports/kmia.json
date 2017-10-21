@@ -327,6 +327,16 @@
                 "ZFP": ["ZFP", "SNSBK", ["ANNEY", "A130|S280"]]
             },
             "body": ["HILEY", "KAINS", "VKZ"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["OMN*","PCMAN","MLB","TRV","PHORD","PBI","ANNEY","HILEY"], ["ZFP*","SNSBK"], ["HILEY","KAINS","VKZ"]]
         },
         "CURSO4": {
@@ -337,6 +347,16 @@
                 "MTH": [["MTH", "S280"], "GUSHY", ["DVALL", "A120-"]]
             },
             "body": [["CURSO", "A100|S250"], "MNNDY", "JODPO", "BEETR"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["EADEN*","STRAP","TIGAR","CARNU","DVALL"],["MTH*","GUSHY","DVALL"],["DVALL","CURSO","MNNDY","JODPO","BEETR"]]
         },
         "CYY7": {
@@ -348,6 +368,16 @@
                 "RSW": ["RSW", "CYY"]
             },
             "body": ["CYY", ["DEEDS", "A160"], ["WORPP", "A100|S250"], "DHP"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["SRQ*", "CYY"], ["PIE*", "CYY"], ["RSW*", "CYY"], ["CYY", "DEEDS", "WORPP", "DHP"]]
         },
         "DVALL2": {
@@ -358,6 +388,16 @@
                 "MTH": ["MTH", "DVALL"]
             },
             "body": [["WEVER", "A100|S250"], "FAMIN", "DHP"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["EYW*","CARNU","DVALL"],["MTH*","DVALL"],["DVALL","WEVER","FAMIN","DHP"]]
         },
         "FLIPR4": {
@@ -370,6 +410,16 @@
                 "URSUS": [["URSUS", "S280"], "ZOLLA", "FOWEE"]
             },
             "body": [["FLIPR", "A120|S280"], "LUVLY", "LECIT", "JODPO"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","NICKO","TINKY","LUCSS","FOWEE"],["HODGY*","JAYEE","PEKRE","TINKY","LUCSS","FOWEE"],["URSUS*","ZOLLA","FOWEE"],["FOWEE","FLIPR","LUVLY","LECIT","JODPO"]]
         },
         "FOWEE8": {
@@ -382,6 +432,16 @@
                 "URSUS": ["URSUS", "FOWEE"]
             },
             "body": [["JUNUR", "A120|S280"], "LUVLY", "DHP"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","TINKY","LUCSS","FOWEE"],["HODGY*","TINKY","LUCSS","FOWEE"],["URSUS*","FOWEE"],["FOWEE","JUNUR","LUVLY","DHP"]]
         },
         "HILEY6": {
@@ -393,6 +453,16 @@
                 "JORAY": [["JORAY", "S280"], "OSOGY", "AMZAR", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"]
             },
             "body": ["HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["OMN*","MALET","PCMAN","MLB","TRV","PHORD","SMUGS","MORGA","PBI","BTOGA","HILEY"], ["JORAY*","OSOGY","AMZAR","STAPL","MILSY","BOYUR","HILEY"], ["ZFP*","STAPL"], ["HILEY","KAINS","CIMBA","JESSS","RUBOE"]]
         },
         "SSCOT3": {
@@ -405,6 +475,16 @@
                 "TAY": ["TAY", "HITTR", "TUCKE", "JUULI", "BAARY"]
             },
             "body": ["BAARY", "CYY", ["DEEDS", "A160|S280"], ["SSCOT", "A100"], "RUBOE", "WALIP"],
+            "rwy": {
+                "8L" : [],
+                "8R" : [],
+                "12" : [],
+                "9"  : [],
+                "26L": [],
+                "26R": [],
+                "30" : [],
+                "27" : []
+            },
             "draw": [["BAGGS*","BAARY"], ["SZW*","HEVVN","LEGGT","PLYER","SEATE","JUULI","BAARY"], ["OTK*","HITTR","TUCKE","JUULI","BAARY"], ["TAY*","HITTR","TUCKE","JUULI","BAARY"], ["BAARY","CYY","DEEDS","SSCOT","RUBOE","WALIP"]]
         }
     },
