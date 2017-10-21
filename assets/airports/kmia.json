@@ -45,14 +45,7 @@
     "arrivalRunway": "12",
     "departureRunway": "8R",
     "fixes": {
-        "_RWY1201DME" : ["N25d48.450340", "W80d19.102247"],
-        "_RWY26L01DME": ["N25d48.166981", "W80d15.065267"],
-        "_RWY26R01DME": ["N25d48.284521", "W80d15.418913"],
-        "_RWY2701DME" : ["N25d47.309821", "W80d15.412784"],
-        "_RWY3001DME" : ["N25d46.704151", "W80d15.687612"],
-        "_RWY8L01DME" : ["N25d48.127907", "W80d19.199413"],
-        "_RWY8R01DME" : ["N25d47.995913", "W80d19.192871"],
-        "_RWY901DME"  : ["N25d47.119607", "W80d19.997022"],
+        "_RWY26L03DME": [25.80430477344, -80.21419083603],
         "AMZAR": ["N26d39.64", "W79d32.87"],
         "ANNEY": ["N26d27.94", "W80d02.97"],
         "BAARY": ["N26d35.00", "W82d14.00"],
@@ -191,131 +184,344 @@
         }
     ],
     "sids": {
+        "BSTER2": {
+            "icao": "BSTER2",
+            "name": "Buster Two",
+            "rwy": {
+                "26L": [],
+                "26R": [],
+                "27": [],
+                "30": []
+            },
+            "body": ["BSTER", "SCATE"],
+            "exitPoints": {
+                "HEDLY": ["SHUTE", "VVMAX", "HEDLY"],
+                "PADUS": ["SKORE", "FORKK", "SHALW", "PADUS"],
+                "VALLY": ["SKORE", "FORKK", "SHALW", "VALLY"],
+                "WINCO": ["BORLE", "MEAGN", "WINCO"]
+            },
+            "draw": [
+                ["BSTER", "SCATE"],
+                ["SCATE", "SHUTE", "VVMAX", "HEDLY*"],
+                ["SCATE", "SKORE", "FORKK", "SHALW", "PADUS*"],
+                ["SCATE", "SHALW", "VALLY*"],
+                ["SCATE", "BORLE", "MEAGN", "WINCO*"]
+            ]
+        },
+        "DEEEP2": {
+            "icao": "DEEEP2",
+            "name": "Deep Two",
+            "rwy": {
+                "26L": [],
+                "26R": [],
+                "27": [],
+                "30": []
+            },
+            "body": ["BSTER", "DEEEP"],
+            "exitPoints": {
+                "EONNS": ["SHULA", "EONNS"],
+                "MNATE": ["FENIR", "MNATE"],
+                "SKIPS": ["CRABI", "SKIPS"]
+            },
+            "draw": [
+                ["BSTER", "DEEEP"],
+                ["DEEEP", "SHULA", "EONNS*"],
+                ["DEEEP", "FENIR", "MNATE*"],
+                ["DEEEP", "CRABI", "SKIPS*"]
+            ]
+        },
         "EONNS2": {
             "icao": "EONNS2",
-            "name": "Eonns Two",
+            "name": "Eons Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "VKZ", "DICKI", "SHULA"],
-                "8R" : ["_RWY26L01DME", "VKZ", "DICKI", "SHULA"],
-                "12" : ["_RWY3001DME", "SABRA", "DICKI", "SHULA"],
-                "9"  : ["_RWY2701DME", "VKZ", "DICKI", "SHULA"],
-                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "SHULA"],
-                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "SHULA"],
-                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "SHULA"],
-                "27" : ["_RWY901DME", "GRITT", "CULBY", "SHULA"]
+                "8L": ["VKZ", "DICKI"],
+                "8R": ["VKZ", "DICKI"],
+                "9": ["VKZ", "DICKI"],
+                "12": ["SABRA", "DICKI"],
+                "26L": ["JADAK", "GRITT", "CULBY"],
+                "26R": ["LICEY", "GRITT", "CULBY"],
+                "27": ["GRITT", "CULBY"],
+                "30": ["LICEY", "GRITT", "CULBY"]
             },
+            "body": ["SHULA"],
             "exitPoints": {
                 "EONNS": ["EONNS"]
             },
-            "draw": [["JADAK","GRITT"], ["LICEY","GRITT"], ["GRITT","CULBY","SHULA"], ["SABRA","DICKI"], ["VKZ","DICKI"], ["DICKI","SHULA","EONNS*"]]
+            "draw": [
+                ["SABRA", "DICKI"],
+                ["VKZ", "DICKI"],
+                ["JADAK", "GRITT"],
+                ["LICEY", "GRITT"],
+                ["GRITT", "CULBY", "SHULA"],
+                ["DICKI", "SHULA", "EONNS*"]
+            ]
         },
         "HEDLY2": {
             "icao": "HEDLY2",
             "name": "Hedly Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "8R" : ["_RWY26L01DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "12" : ["_RWY3001DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "9"  : ["_RWY2701DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "26L": ["_RWY8R01DME", "METTS", "BRBRA", "VVMAX"],
-                "26R": ["_RWY8L01DME", "METTS", "BRBRA", "VVMAX"],
-                "30" : ["_RWY1201DME", "METTS", "BRBRA", "VVMAX"],
-                "27" : ["_RWY901DME", "METTS", "BRBRA", "VVMAX"]
+                "8L": ["SENOY", "CIMBA", "FORKK"],
+                "8R": ["SENOY", "CIMBA", "FORKK"],
+                "9": ["SENOY", "CIMBA", "FORKK"],
+                "12": ["SENOY", "CIMBA", "FORKK"],
+                "26L": ["METTS", "BRBRA"],
+                "26R": ["METTS", "BRBRA"],
+                "27": ["METTS", "BRBRA"],
+                "30": ["METTS", "BRBRA"]
             },
+            "body": ["VVMAX"],
             "exitPoints": {
                 "HEDLY": ["HEDLY"]
             },
-            "draw": [["SENOY", "CIMBA", "FORKK", "VVMAX"], ["METTS", "BRBRA", "VVMAX", "HEDLY*"]]
+            "draw": [
+                ["SENOY", "CIMBA", "FORKK", "VVMAX", "HEDLY*"],
+                ["METTS", "BRBRA", "VVMAX"]
+            ]
+        },
+        "HITAG2": {
+            "icao": "HITAG2",
+            "name": "Hi-tag Two",
+            "rwy": {
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": []
+            },
+            "body": ["POTTR", "HITAG"],
+            "exitPoints": {
+                "HEDLY": ["KAINS", "FORKK", "HOSFU", "VVMAX", "HEDLY"],
+                "PADUS": ["SHALW", "PADUS"],
+                "VALLY": ["SHALW", "VALLY"],
+                "WINCO": ["KAINS", "FORKK", "HOSFU", "BORLE", "WINCO"]
+            },
+            "draw": [
+                ["POTTR", "HITAG"],
+                ["HITAG", "KAINS", "FORKK", "HOSFU"],
+                ["HOSFU", "VVMAX", "HEDLY*"],
+                ["HOSFU", "BORLE", "WINCO*"],
+                ["HITAG", "SHALW"],
+                ["SHALW", "PADUS*"],
+                ["SHALW", "VALLY*"]
+            ]
+        },
+        "JONZI2": {
+            "icao": "JONZI2",
+            "name": "Joanzie Two",
+            "rwy": {
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": []
+            },
+            "body": ["JONZI", "VKZ"],
+            "exitPoints": {
+                "EONNS": ["LUVLY", "MANNN", "EONNS"],
+                "MNATE": ["NREQZ", "MNATE"],
+                "SKIPS": ["SKIPS"]
+            },
+            "draw": [
+                ["JONZI", "VKZ"],
+                ["VKZ", "LUVLY", "MANNN", "EONNS*"],
+                ["VKZ", "NREQZ", "MNATE*"],
+                ["VKZ", "SKIPS*"]
+            ]
+        },
+        "MIA5": {
+            "icao": "MIA5",
+            "name": "Miami Five",
+            "rwy": {
+                "8L": ["#095"],
+                "8R": ["#095"],
+                "9": ["#095"],
+                "12": ["#125"],
+                "26L": ["#275"],
+                "26R": ["#275"],
+                "27": ["#275"],
+                "30": ["#305"]
+            },
+            "body": [],
+            "exitPoints": {
+                "BEECH": ["FLL", "BEECH"],
+                "EONNS": ["DHP", "EONNS"],
+                "HEDLY": ["DRUUM", "HEDLY"],
+                "MNATE": ["DHP", "MNATE"],
+                "PADUS": ["VKZ", "JANUS", "PADUS"],
+                "SKIPS": ["VKZ", "SKIPS"],
+                "WINCO": ["DHP", "WINCO"]
+            },
+            "draw": [
+                ["BEECH*"],
+                ["EONNS*"],
+                ["HEDLY*"],
+                ["MNATE*"],
+                ["PADUS*"],
+                ["SKIPS*"],
+                ["WINCO*"]
+            ]
         },
         "MNATE2": {
             "icao": "MNATE2",
             "name": "Manatee Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "VKZ", "BLUNE", "FENIR"],
-                "8R" : ["_RWY26L01DME", "VKZ", "BLUNE", "FENIR"],
-                "12" : ["_RWY3001DME", "SABRA", "BLUNE", "FENIR"],
-                "9"  : ["_RWY2701DME", "VKZ", "BLUNE", "FENIR"],
-                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "FENIR"],
-                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "FENIR"],
-                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "FENIR"],
-                "27" : ["_RWY901DME", "GRITT", "CULBY", "FENIR"]
+                "8L": ["VKZ", "BLUNE"],
+                "8R": ["VKZ", "BLUNE"],
+                "9": ["VKZ", "BLUNE"],
+                "12": ["SABRA", "BLUNE"],
+                "26L": ["JADAK", "GRITT", "CULBY"],
+                "26R": ["LICEY", "GRITT", "CULBY"],
+                "27": ["GRITT", "CULBY"],
+                "30": ["LICEY", "GRITT", "CULBY"]
             },
+            "body": ["FENIR"],
             "exitPoints": {
                 "MNATE": ["MNATE"]
             },
-            "draw": [["CULBY","FENIR"], ["SABRA","BLUNE"], ["VKZ","BLUNE"], ["BLUNE","FENIR","MNATE*"]]
+            "draw": [
+                ["VKZ", "BLUNE", "FENIR", "MNATE*"],
+                ["SABRA", "BLUNE"],
+                ["BLUNE", "JADAK", "GRITT", "CULBY", "FENIR"],
+                ["BLUNE", "LICEY", "GRITT"]
+            ]
         },
         "PADUS2": {
             "icao": "PADUS2",
-            "name": "Padus Two",
+            "name": "Paydis Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "HINKU", "VAPOR", "SHALW"],
-                "8R" : ["_RWY26L01DME", "GOZZO", "VAPOR", "SHALW"],
-                "12" : ["_RWY3001DME", "RIKEE", "VAPOR", "SHALW"],
-                "9"  : ["_RWY2701DME", "RIKEE", "VAPOR", "SHALW"],
-                "26L": ["_RWY8R01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "26R": ["_RWY8L01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "30" : ["_RWY1201DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "27" : ["_RWY901DME", "METTS", "HAUSR", "FORKK", "SHALW"]
+                "8L": ["HINKU", "VAPOR"],
+                "8R": ["GOZZO", "VAPOR"],
+                "9": ["RIKEE", "VAPOR"],
+                "12": ["RIKEE", "VAPOR"],
+                "26L": ["METTS", "HAUSR", "FORKK"],
+                "26R": ["METTS", "HAUSR", "FORKK"],
+                "27": ["METTS", "HAUSR", "FORKK"],
+                "30": ["METTS", "HAUSR", "FORKK"]
             },
+            "body": ["SHALW", "JANUS"],
             "exitPoints": {
-                "PADUS": ["JANUS", "PADUS"]
+                "PADUS": ["PADUS"]
             },
-            "draw": [["HINKU","VAPOR"],["GOZZO","VAPOR"],["RIKEE","VAPOR"],["VAPOR","SHALW"],["METTS","HAUSR","FORKK","SHALW"],["SHALW","JANUS","PADUS*"]]
+            "draw": [
+                ["HINKU", "VAPOR"],
+                ["GOZZO", "VAPOR"],
+                ["RIKEE", "VAPOR"],
+                ["VAPOR", "SHALW"],
+                ["METTS", "HAUSR", "FORKK", "SHALW"],
+                ["SHALW", "JANUS", "PADUS*"]
+            ]
+        },
+        "POTTR6": {
+            "icao": "POTTR6",
+            "name": "Potter Six",
+            "rwy": {
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": []
+            },
+            "body": ["_RWY26L03DME", "POTTR", "#060"],
+            "exitPoints": {
+                "BEECH": ["FLL", "BEECH"],
+                "HEDLY": ["DRUUM", "HEDLY"],
+                "PADUS": ["VKZ", "PADUS"],
+                "WINCO": ["DHP", "WINCO"]
+            },
+            "draw": [
+                ["FLL", "BEECH*"],
+                ["DRUUM", "HEDLY*"],
+                ["VKZ", "PADUS*"],
+                ["DHP", "WINCO*"]
+            ]
         },
         "SKIPS2": {
             "icao": "SKIPS2",
             "name": "Skips Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "VKZ", "IBISS", "CRABI"],
-                "8R" : ["_RWY26L01DME", "VKZ", "IBISS", "CRABI"],
-                "12" : ["_RWY3001DME", "SABRA", "IBISS", "CRABI"],
-                "9"  : ["_RWY2701DME", "VKZ", "IBISS", "CRABI"],
-                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "27" : ["_RWY901DME", "GRITT", "CULBY", "DICKI", "CRABI"]
+                "8L": ["VKZ", "IBISS"],
+                "8R": ["VKZ", "IBISS"],
+                "9": ["VKZ", "IBISS"],
+                "12": ["SABRA", "IBISS"],
+                "26L": ["JADAK", "GRITT", "CULBY", "DICKI"],
+                "26R": ["LICEY", "GRITT", "CULBY", "DICKI"],
+                "27": ["GRITT", "CULBY", "DICKI"],
+                "30": ["LICEY", "GRITT", "CULBY", "DICKI"]
             },
+            "body": ["CRABI"],
             "exitPoints": {
                 "SKIPS": ["SKIPS"]
             },
-            "draw": [["VKZ", "IBISS"], ["CULBY", "DICKI", "CRABI"], ["SABRA", "IBISS","CRABI","SKIPS*"]]
+            "draw": [
+                ["VKZ", "IBISS", "CRABI", "SKIPS*"],
+                ["SABRA", "IBISS"],
+                ["JADAK", "GRITT", "CULBY", "DICKI", "CRABI"],
+                ["LICEY", "GRITT"]
+            ]
+        },
+        "SOUBY5": {
+            "icao": "SOUBY5",
+            "name": "Sowbie Five",
+            "rwy": {
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": []
+            },
+            "body": ["SOUBY", "VKZ", "#135"],
+            "exitPoints": {
+                "EONNS": ["EONNS"],
+                "MNATE": ["MNATE"],
+                "SKIPS": ["SKIPS"]
+            },
+            "draw": [
+                ["EONNS*"],
+                ["MNATE*"],
+                ["SKIPS*"]
+            ]
         },
         "VALLY2": {
             "icao": "VALLY2",
-            "name": "Valley Two",
+            "name": "Vally Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "HINKU", "VAPOR", "SHALW"],
-                "8R" : ["_RWY26L01DME", "GOZZO", "VAPOR", "SHALW"],
-                "12" : ["_RWY3001DME", "RIKEE", "VAPOR", "SHALW"],
-                "9"  : ["_RWY2701DME", "RIKEE", "VAPOR", "SHALW"],
-                "26L": ["_RWY8R01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "26R": ["_RWY8L01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "30" : ["_RWY1201DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "27" : ["_RWY901DME", "METTS", "HAUSR", "FORKK", "SHALW"]
+                "8L": ["HINKU", "VAPOR"],
+                "8R": ["GOZZO", "VAPOR"],
+                "9": ["RIKEE", "VAPOR"],
+                "12": ["RIKEE", "VAPOR"],
+                "26L": ["METTS", "HAUSR", "FORKK"],
+                "26R": ["METTS", "HAUSR", "FORKK"],
+                "27": ["METTS", "HAUSR", "FORKK"],
+                "30": ["METTS", "HAUSR", "FORKK"]
             },
+            "body": ["SHALW", "JANUS"],
             "exitPoints": {
-                "VALLY": ["JANUS", "VALLY"]
+                "VALLY": ["VALLY"]
             },
-            "draw": [["JANUS","VALLY*"]]
+            "draw": [
+                ["HINKU", "VAPOR", "SHALW", "JANUS", "VALLY*"],
+                ["GOZZO", "VAPOR"],
+                ["RIKEE", "VAPOR"],
+                ["METTS", "HAUSR", "FORKK", "SHALW"]
+            ]
         },
         "WINCO2": {
             "icao": "WINCO2",
             "name": "Winco Two",
             "rwy": {
-                "8L" : ["_RWY26R01DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "8R" : ["_RWY26L01DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "12" : ["_RWY3001DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "9"  : ["_RWY2701DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "26L": ["_RWY8R01DME", "OHOFO", "BORLE"],
-                "26R": ["_RWY8L01DME", "OHOFO", "BORLE"],
-                "30" : ["_RWY1201DME", "OHOFO", "BORLE"],
-                "27" : ["_RWY901DME", "OHOFO", "BORLE"]
+                "8L": ["SENOY", "CIMBA", "FORKK"],
+                "8R": ["SENOY", "CIMBA", "FORKK"],
+                "9": ["SENOY", "CIMBA", "FORKK"],
+                "12": ["SENOY", "CIMBA", "FORKK"],
+                "26L": ["OHOFO"],
+                "26R": ["OHOFO"],
+                "27": ["OHOFO"],
+                "30": ["OHOFO"]
             },
+            "body": ["BORLE", "MEAGN"],
             "exitPoints": {
-                "WINCO": ["MEAGN", "WINCO"]
+                "WINCO": ["WINCO"]
             },
-            "draw": [["FORKK", "BORLE"], ["OHOFO", "BORLE", "MEAGN", "WINCO*"]]
+            "draw": [
+                ["SENOY", "CIMBA", "FORKK", "BORLE", "MEAGN", "WINCO*"],
+                ["OHOFO", "BORLE"]
+            ]
         }
     },
     "stars": {
@@ -323,169 +529,225 @@
             "icao": "ANNEY3",
             "name": "Anney Three",
             "entryPoints": {
-                "OMN": ["OMN", "PCMAN", "MLB", "TRV", ["PHORD", "A240"], "PBI", ["ANNEY", "A130|S280"]],
-                "ZFP": ["ZFP", "SNSBK", ["ANNEY", "A130|S280"]]
+                "MLB": ["MLB", "TRV", "PHORD", "PBI"],
+                "OMN": ["OMN", "PCMAN", "MLB", "TRV", "PHORD", "PBI"],
+                "SNSBK": ["SNSBK"],
+                "TRV": ["TRV", "PHORD", "PBI"]
             },
-            "body": ["HILEY", "KAINS", "VKZ"],
+            "body": ["ANNEY", "HILEY", "KAINS", "VKZ"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["OMN*","PCMAN","MLB","TRV","PHORD","PBI","ANNEY","HILEY"], ["ZFP*","SNSBK"], ["HILEY","KAINS","VKZ"]]
+            "draw": [
+                ["OMN*", "PCMAN", "MLB*", "TRV*", "PHORD", "PBI", "ANNEY", "HILEY", "KAINS", "VKZ"],
+                ["SNSBK*", "ANNEY"]
+            ]
+        },
+        "BLUFI4": {
+            "icao": "BLUFI4",
+            "name": "Bluffy Four",
+            "entryPoints": {
+                "MLB": []
+            },
+            "body": ["MLB", "LEBUR", "DALOO", "TOPPR", "BLUFI", "HEATT", "KAINS", "VKZ"],
+            "rwy": {
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
+                "26L": [],
+                "26R": [],
+                "27": [],
+                "30": []
+            },
+            "draw": [
+                ["MLB*", "LEBUR", "DALOO", "TOPPR", "BLUFI", "HEATT", "KAINS", "VKZ"]
+            ]
         },
         "CURSO4": {
             "icao": "CURSO4",
             "name": "Curso Four",
             "entryPoints": {
-                "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU", ["DVALL", "A120-"]],
-                "MTH": [["MTH", "S280"], "GUSHY", ["DVALL", "A120-"]]
+                "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU"],
+                "MTH": ["MTH", "GUSHY"]
             },
-            "body": [["CURSO", "A100|S250"], "MNNDY", "JODPO", "BEETR"],
+            "body": ["DVALL", "CURSO", "MNNDY", "JODPO"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
-                "26L": [],
-                "26R": [],
-                "30" : [],
-                "27" : []
+                "8L": ["BEETR", "#053"],
+                "8R": ["BEETR", "#053"],
+                "9": ["BEETR", "#053"],
+                "12": ["BEETR", "#053"],
+                "26L": ["LECIT", "#124"],
+                "26R": ["LECIT", "#124"],
+                "27": ["LECIT", "#124"],
+                "30": ["LECIT", "#124"]
             },
-            "draw": [["EADEN*","STRAP","TIGAR","CARNU","DVALL"],["MTH*","GUSHY","DVALL"],["DVALL","CURSO","MNNDY","JODPO","BEETR"]]
+            "draw": [
+                ["EADEN*", "STRAP", "TIGAR", "CARNU", "DVALL", "CURSO", "MNNDY", "JODPO", "BEETR"],
+                ["MTH*", "GUSHY", "DVALL"],
+                ["JODPO", "LECIT"]
+            ]
         },
-        "CYY7": {
-            "icao": "CYY7",
-            "name": "Cypress Seven",
+        "CYY8": {
+            "icao": "CYY8",
+            "name": "Cypress Eight",
             "entryPoints": {
-                "SRQ": ["SRQ", "CYY"],
-                "PIE": ["PIE", "CYY"],
-                "RSW": ["RSW", "CYY"]
+                "PIE": ["PIE"],
+                "RSW": ["RSW"],
+                "SRQ": ["SRQ"]
             },
-            "body": ["CYY", ["DEEDS", "A160"], ["WORPP", "A100|S250"], "DHP"],
+            "body": ["CYY", "DEEDS", "WORPP", "DHP"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["SRQ*", "CYY"], ["PIE*", "CYY"], ["RSW*", "CYY"], ["CYY", "DEEDS", "WORPP", "DHP"]]
+            "draw": [
+                ["PIE*", "CYY", "DEEDS", "WORPP", "DHP"],
+                ["RSW*", "CYY"],
+                ["SRQ*", "CYY"]
+            ]
         },
         "DVALL2": {
             "icao": "DVALL2",
-            "name": "Dvall Two",
+            "name": "DaVall Two",
             "entryPoints": {
-                "EYW": ["EYW", "CARNU", "DVALL"],
-                "MTH": ["MTH", "DVALL"]
+                "EYW": ["EYW", "CARNU"],
+                "MTH": ["MTH"]
             },
-            "body": [["WEVER", "A100|S250"], "FAMIN", "DHP"],
+            "body": ["DVALL", "WEVER", "FAMIN", "DHP"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["EYW*","CARNU","DVALL"],["MTH*","DVALL"],["DVALL","WEVER","FAMIN","DHP"]]
+            "draw": [
+                ["EYW*", "CARNU", "DVALL", "WEVER", "FAMIN", "DHP"],
+                ["MTH*", "DVALL"]
+            ]
         },
         "FLIPR4": {
             "icao": "FLIPR4",
             "name": "Flipper Four",
             "entryPoints": {
-                "ZFP": ["ZFP", "LUCSS", "FOWEE"],
-                "ZQA": ["ZQA", "NICKO", "TINKY", "LUCSS", "FOWEE"],
-                "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS", "FOWEE"],
-                "URSUS": [["URSUS", "S280"], "ZOLLA", "FOWEE"]
+                "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS"],
+                "URSUS": ["URSUS", "ZOLLA"],
+                "ZFP": ["ZFP", "LUCSS"],
+                "ZQA": ["ZQA", "NICKO", "TINKY", "LUCSS"]
             },
-            "body": [["FLIPR", "A120|S280"], "LUVLY", "LECIT", "JODPO"],
+            "body": ["FOWEE", "FLIPR", "LUVLY", "LECIT", "JODPO"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","NICKO","TINKY","LUCSS","FOWEE"],["HODGY*","JAYEE","PEKRE","TINKY","LUCSS","FOWEE"],["URSUS*","ZOLLA","FOWEE"],["FOWEE","FLIPR","LUVLY","LECIT","JODPO"]]
+            "draw": [
+                ["HODGY*", "JAYEE", "PEKRE", "TINKY", "LUCSS", "FOWEE", "FLIPR", "LUVLY", "LECIT", "JODPO"],
+                ["URSUS*", "ZOLLA", "FOWEE"],
+                ["ZFP*", "LUCSS", "FOWEE"],
+                ["ZQA*", "NICKO", "TINKY", "LUCSS"]
+            ]
         },
         "FOWEE8": {
             "icao": "FOWEE8",
             "name": "Fowey Eight",
             "entryPoints": {
-                "ZFP": ["ZFP", "LUCSS", "FOWEE"],
-                "ZQA": ["ZQA", "TINKY", "LUCSS", "FOWEE"],
-                "HODGY": ["HODGY", "TINKY", "LUCSS", "FOWEE"],
-                "URSUS": ["URSUS", "FOWEE"]
+                "HODGY": ["HODGY", "TINKY", "LUCSS"],
+                "URSUS": ["URSUS"],
+                "ZFP": ["ZFP", "LUCSS"],
+                "ZQA": ["ZQA", "TINKY", "LUCSS"]
             },
-            "body": [["JUNUR", "A120|S280"], "LUVLY", "DHP"],
+            "body": ["FOWEE", "JUNUR", "LUVLY", "DHP"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","TINKY","LUCSS","FOWEE"],["HODGY*","TINKY","LUCSS","FOWEE"],["URSUS*","FOWEE"],["FOWEE","JUNUR","LUVLY","DHP"]]
+            "draw": [
+                ["HODGY*", "TINKY", "LUCSS", "FOWEE", "JUNUR", "LUVLY", "DHP"],
+                ["URSUS*", "FOWEE"],
+                ["ZFP*", "LUCSS", "FOWEE"],
+                ["ZQA*", "TINKY", "LUCSS"]
+            ]
         },
         "HILEY6": {
             "icao": "HILEY6",
             "name": "Hiley Six",
             "entryPoints": {
-                "ZFP": ["ZFP", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"],
-                "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", ["PBI", "A170"], ["BTOGA", "A130|S280"], "HILEY"],
-                "JORAY": [["JORAY", "S280"], "OSOGY", "AMZAR", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"]
+                "JORAY": ["JORAY", "OSOGY", "AMZAR", "STAPL", "MILSY", "BOYUR"],
+                "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", "PBI", "BTOGA"],
+                "ZFP": ["ZFP", "STAPL", "MILSY", "BOYUR"]
             },
             "body": ["HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["OMN*","MALET","PCMAN","MLB","TRV","PHORD","SMUGS","MORGA","PBI","BTOGA","HILEY"], ["JORAY*","OSOGY","AMZAR","STAPL","MILSY","BOYUR","HILEY"], ["ZFP*","STAPL"], ["HILEY","KAINS","CIMBA","JESSS","RUBOE"]]
+            "draw": [
+                ["JORAY*", "OSOGY", "AMZAR", "STAPL", "MILSY", "BOYUR", "HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE"],
+                ["OMN*", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", "PBI", "BTOGA", "HILEY"],
+                ["ZFP*", "STAPL"]
+            ]
         },
         "SSCOT3": {
             "icao": "SSCOT3",
             "name": "Scott Three",
             "entryPoints": {
-                "BAGGS": [["BAGGS", "S280"], "BAARY"],
-                "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI", "BAARY"],
-                "OTK": ["OTK", "HITTR", "TUCKE", "JUULI", "BAARY"],
-                "TAY": ["TAY", "HITTR", "TUCKE", "JUULI", "BAARY"]
+                "BAGGS": ["BAGGS"],
+                "OTK": ["OTK", "HITTR", "TUCKE", "JUULI"],
+                "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI"],
+                "TAY": ["TAY", "HITTR", "TUCKE", "JUULI"]
             },
-            "body": ["BAARY", "CYY", ["DEEDS", "A160|S280"], ["SSCOT", "A100"], "RUBOE", "WALIP"],
+            "body": ["BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT"],
             "rwy": {
-                "8L" : [],
-                "8R" : [],
-                "12" : [],
-                "9"  : [],
+                "8L": [],
+                "8R": [],
+                "9": [],
+                "12": [],
                 "26L": [],
                 "26R": [],
-                "30" : [],
-                "27" : []
+                "27": [],
+                "30": []
             },
-            "draw": [["BAGGS*","BAARY"], ["SZW*","HEVVN","LEGGT","PLYER","SEATE","JUULI","BAARY"], ["OTK*","HITTR","TUCKE","JUULI","BAARY"], ["TAY*","HITTR","TUCKE","JUULI","BAARY"], ["BAARY","CYY","DEEDS","SSCOT","RUBOE","WALIP"]]
+            "draw": [
+                ["BAGGS*", "BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT"],
+                ["OTK*", "HITTR", "TUCKE", "JUULI", "BAARY"],
+                ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI"],
+                ["TAY*", "HITTR"]
+            ]
         }
     },
     "spawnPatterns": [
