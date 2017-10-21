@@ -45,14 +45,14 @@
     "arrivalRunway": "12",
     "departureRunway": "8R",
     "fixes": {
-        "_R12-1DME" : ["N25d48.450340", "W80d19.102247"],
-        "_R26L-1DME": ["N25d48.166981", "W80d15.065267"],
-        "_R26R-1DME": ["N25d48.284521", "W80d15.418913"],
-        "_R27-1DME" : ["N25d47.309821", "W80d15.412784"],
-        "_R30-1DME" : ["N25d46.704151", "W80d15.687612"],
-        "_R8L-1DME" : ["N25d48.127907", "W80d19.199413"],
-        "_R8R-1DME" : ["N25d47.995913", "W80d19.192871"],
-        "_R9-1DME"  : ["N25d47.119607", "W80d19.997022"],
+        "_RWY1201DME" : ["N25d48.450340", "W80d19.102247"],
+        "_RWY26L01DME": ["N25d48.166981", "W80d15.065267"],
+        "_RWY26R01DME": ["N25d48.284521", "W80d15.418913"],
+        "_RWY2701DME" : ["N25d47.309821", "W80d15.412784"],
+        "_RWY3001DME" : ["N25d46.704151", "W80d15.687612"],
+        "_RWY8L01DME" : ["N25d48.127907", "W80d19.199413"],
+        "_RWY8R01DME" : ["N25d47.995913", "W80d19.192871"],
+        "_RWY901DME"  : ["N25d47.119607", "W80d19.997022"],
         "AMZAR": ["N26d39.64", "W79d32.87"],
         "ANNEY": ["N26d27.94", "W80d02.97"],
         "BAARY": ["N26d35.00", "W82d14.00"],
@@ -195,14 +195,14 @@
             "icao": "EONNS2",
             "name": "Eonns Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "VKZ", "DICKI", "SHULA"],
-                "8R" : ["_R26L-1DME", "VKZ", "DICKI", "SHULA"],
-                "12" : ["_R30-1DME", "SABRA", "DICKI", "SHULA"],
-                "9"  : ["_R27-1DME", "VKZ", "DICKI", "SHULA"],
-                "26L": ["_R8R-1DME", "JADAK", "GRITT", "CULBY", "SHULA"],
-                "26R": ["_R8L-1DME", "LICEY", "GRITT", "CULBY", "SHULA"],
-                "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "SHULA"],
-                "27" : ["_R9-1DME", "GRITT", "CULBY", "SHULA"]
+                "8L" : ["_RWY26R01DME", "VKZ", "DICKI", "SHULA"],
+                "8R" : ["_RWY26L01DME", "VKZ", "DICKI", "SHULA"],
+                "12" : ["_RWY3001DME", "SABRA", "DICKI", "SHULA"],
+                "9"  : ["_RWY2701DME", "VKZ", "DICKI", "SHULA"],
+                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "SHULA"],
+                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "SHULA"],
+                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "SHULA"],
+                "27" : ["_RWY901DME", "GRITT", "CULBY", "SHULA"]
             },
             "exitPoints": {
                 "EONNS": ["EONNS"]
@@ -213,14 +213,14 @@
             "icao": "HEDLY2",
             "name": "Hedly Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "8R" : ["_R26L-1DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "12" : ["_R30-1DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "9"  : ["_R27-1DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
-                "26L": ["_R8R-1DME", "METTS", "BRBRA", "VVMAX"],
-                "26R": ["_R8L-1DME", "METTS", "BRBRA", "VVMAX"],
-                "30" : ["_R12-1DME", "METTS", "BRBRA", "VVMAX"],
-                "27" : ["_R9-1DME", "METTS", "BRBRA", "VVMAX"]
+                "8L" : ["_RWY26R01DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
+                "8R" : ["_RWY26L01DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
+                "12" : ["_RWY3001DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
+                "9"  : ["_RWY2701DME", "SENOY", "CIMBA", "FORKK", "VVMAX"],
+                "26L": ["_RWY8R01DME", "METTS", "BRBRA", "VVMAX"],
+                "26R": ["_RWY8L01DME", "METTS", "BRBRA", "VVMAX"],
+                "30" : ["_RWY1201DME", "METTS", "BRBRA", "VVMAX"],
+                "27" : ["_RWY901DME", "METTS", "BRBRA", "VVMAX"]
             },
             "exitPoints": {
                 "HEDLY": ["HEDLY"]
@@ -231,14 +231,14 @@
             "icao": "MNATE2",
             "name": "Manatee Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "VKZ", "BLUNE", "FENIR"],
-                "8R" : ["_R26L-1DME", "VKZ", "BLUNE", "FENIR"],
-                "12" : ["_R30-1DME", "SABRA", "BLUNE", "FENIR"],
-                "9"  : ["_R27-1DME", "VKZ", "BLUNE", "FENIR"],
-                "26L": ["_R8R-1DME", "JADAK", "GRITT", "CULBY", "FENIR"],
-                "26R": ["_R8L-1DME", "LICEY", "GRITT", "CULBY", "FENIR"],
-                "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "FENIR"],
-                "27" : ["_R9-1DME", "GRITT", "CULBY", "FENIR"]
+                "8L" : ["_RWY26R01DME", "VKZ", "BLUNE", "FENIR"],
+                "8R" : ["_RWY26L01DME", "VKZ", "BLUNE", "FENIR"],
+                "12" : ["_RWY3001DME", "SABRA", "BLUNE", "FENIR"],
+                "9"  : ["_RWY2701DME", "VKZ", "BLUNE", "FENIR"],
+                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "FENIR"],
+                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "FENIR"],
+                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "FENIR"],
+                "27" : ["_RWY901DME", "GRITT", "CULBY", "FENIR"]
             },
             "exitPoints": {
                 "MNATE": ["MNATE"]
@@ -249,14 +249,14 @@
             "icao": "PADUS2",
             "name": "Padus Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "HINKU", "VAPOR", "SHALW"],
-                "8R" : ["_R26L-1DME", "GOZZO", "VAPOR", "SHALW"],
-                "12" : ["_R30-1DME", "RIKEE", "VAPOR", "SHALW"],
-                "9"  : ["_R27-1DME", "RIKEE", "VAPOR", "SHALW"],
-                "26L": ["_R8R-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "26R": ["_R8L-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "30" : ["_R12-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "27" : ["_R9-1DME", "METTS", "HAUSR", "FORKK", "SHALW"]
+                "8L" : ["_RWY26R01DME", "HINKU", "VAPOR", "SHALW"],
+                "8R" : ["_RWY26L01DME", "GOZZO", "VAPOR", "SHALW"],
+                "12" : ["_RWY3001DME", "RIKEE", "VAPOR", "SHALW"],
+                "9"  : ["_RWY2701DME", "RIKEE", "VAPOR", "SHALW"],
+                "26L": ["_RWY8R01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "26R": ["_RWY8L01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "30" : ["_RWY1201DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "27" : ["_RWY901DME", "METTS", "HAUSR", "FORKK", "SHALW"]
             },
             "exitPoints": {
                 "PADUS": ["JANUS", "PADUS"]
@@ -267,14 +267,14 @@
             "icao": "SKIPS2",
             "name": "Skips Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "VKZ", "IBISS", "CRABI"],
-                "8R" : ["_R26L-1DME", "VKZ", "IBISS", "CRABI"],
-                "12" : ["_R30-1DME", "SABRA", "IBISS", "CRABI"],
-                "9"  : ["_R27-1DME", "VKZ", "IBISS", "CRABI"],
-                "26L": ["_R8R-1DME", "JADAK", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "26R": ["_R8L-1DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
-                "27" : ["_R9-1DME", "GRITT", "CULBY", "DICKI", "CRABI"]
+                "8L" : ["_RWY26R01DME", "VKZ", "IBISS", "CRABI"],
+                "8R" : ["_RWY26L01DME", "VKZ", "IBISS", "CRABI"],
+                "12" : ["_RWY3001DME", "SABRA", "IBISS", "CRABI"],
+                "9"  : ["_RWY2701DME", "VKZ", "IBISS", "CRABI"],
+                "26L": ["_RWY8R01DME", "JADAK", "GRITT", "CULBY", "DICKI", "CRABI"],
+                "26R": ["_RWY8L01DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
+                "30" : ["_RWY1201DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
+                "27" : ["_RWY901DME", "GRITT", "CULBY", "DICKI", "CRABI"]
             },
             "exitPoints": {
                 "SKIPS": ["SKIPS"]
@@ -285,14 +285,14 @@
             "icao": "VALLY2",
             "name": "Valley Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "HINKU", "VAPOR", "SHALW"],
-                "8R" : ["_R26L-1DME", "GOZZO", "VAPOR", "SHALW"],
-                "12" : ["_R30-1DME", "RIKEE", "VAPOR", "SHALW"],
-                "9"  : ["_R27-1DME", "RIKEE", "VAPOR", "SHALW"],
-                "26L": ["_R8R-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "26R": ["_R8L-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "30" : ["_R12-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
-                "27" : ["_R9-1DME", "METTS", "HAUSR", "FORKK", "SHALW"]
+                "8L" : ["_RWY26R01DME", "HINKU", "VAPOR", "SHALW"],
+                "8R" : ["_RWY26L01DME", "GOZZO", "VAPOR", "SHALW"],
+                "12" : ["_RWY3001DME", "RIKEE", "VAPOR", "SHALW"],
+                "9"  : ["_RWY2701DME", "RIKEE", "VAPOR", "SHALW"],
+                "26L": ["_RWY8R01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "26R": ["_RWY8L01DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "30" : ["_RWY1201DME", "METTS", "HAUSR", "FORKK", "SHALW"],
+                "27" : ["_RWY901DME", "METTS", "HAUSR", "FORKK", "SHALW"]
             },
             "exitPoints": {
                 "VALLY": ["JANUS", "VALLY"]
@@ -303,14 +303,14 @@
             "icao": "WINCO2",
             "name": "Winco Two",
             "rwy": {
-                "8L" : ["_R26R-1DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "8R" : ["_R26L-1DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "12" : ["_R30-1DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "9"  : ["_R27-1DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
-                "26L": ["_R8R-1DME", "OHOFO", "BORLE"],
-                "26R": ["_R8L-1DME", "OHOFO", "BORLE"],
-                "30" : ["_R12-1DME", "OHOFO", "BORLE"],
-                "27" : ["_R9-1DME", "OHOFO", "BORLE"]
+                "8L" : ["_RWY26R01DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
+                "8R" : ["_RWY26L01DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
+                "12" : ["_RWY3001DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
+                "9"  : ["_RWY2701DME", "SENOY", "CIMBA", "FORKK", "BORLE"],
+                "26L": ["_RWY8R01DME", "OHOFO", "BORLE"],
+                "26R": ["_RWY8L01DME", "OHOFO", "BORLE"],
+                "30" : ["_RWY1201DME", "OHOFO", "BORLE"],
+                "27" : ["_RWY901DME", "OHOFO", "BORLE"]
             },
             "exitPoints": {
                 "WINCO": ["MEAGN", "WINCO"]
