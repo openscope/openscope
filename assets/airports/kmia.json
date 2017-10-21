@@ -180,35 +180,35 @@
     "runways":[
         {
             "name": ["8L", "26R"],
-            "end":  [
+            "end": [
                 ["N25d48.173872", "W80d18.092530"],
                 ["N25d48.238693", "W80d16.525820"]
             ],
-            "ils":  [true, true]
+            "ils": [true, true]
         },
         {
             "name": ["8R", "26L"],
-            "end":  [
+            "end": [
                 ["N25d48.041917", "W80d18.086010"],
                 ["N25d48.121120", "W80d16.172155"]
             ],
-            "ils":  [true, true]
+            "ils": [true, true]
         },
         {
             "name": ["9", "27"],
-            "end":  [
+            "end": [
                 ["N25d47.165675", "W80d18.890300"],
                 ["N25d47.263888", "W80d16.519535"]
             ],
-            "ils":  [true, true]
+            "ils": [true, true]
         },
         {
             "name": ["12", "30"],
-            "end":  [
+            "end": [
                 ["N25d47.957103", "W80d18.137422"],
                 ["N25d47.197495", "W80d16.652202"]
             ],
-            "ils":  [true, true]
+            "ils": [true, true]
         }
     ],
     "sids": {
@@ -798,12 +798,12 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route":   "JORAY.HILEY6.KMIA",
-            "altitude":  21000,
-            "speed":    280,
+            "route": "JORAY.HILEY6.KMIA",
+            "altitude": 21000,
+            "speed": 280,
             "method": "random",
             "rate": 12,
-            "airlines":  [
+            "airlines": [
                 ["aal", 75],
                 ["aal/long", 48],
                 ["aca", 1],
@@ -844,12 +844,12 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route":   "BAGGS.SSCOT3.KMIA",
-            "altitude":  21000,
-            "speed":    280,
+            "route": "BAGGS.SSCOT3.KMIA",
+            "altitude": 21000,
+            "speed": 280,
             "method": "random",
             "rate": 12,
-            "airlines":  [
+            "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
                 ["swa", 1],
@@ -865,12 +865,12 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route":   "URSUS.FLIPR4.KMIA",
-            "altitude":  21000,
-            "speed":    280,
+            "route": "URSUS.FLIPR4.KMIA",
+            "altitude": 21000,
+            "speed": 280,
             "method": "random",
             "rate": 8,
-            "airlines":  [
+            "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
                 ["swa", 1],
@@ -886,12 +886,12 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route":   "MTH.CURSO4.KMIA",
-            "altitude":  21000,
-            "speed":    280,
+            "route": "MTH.CURSO4.KMIA",
+            "altitude": 21000,
+            "speed": 280,
             "method": "random",
             "rate": 8,
-            "airlines":  [
+            "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
                 ["swa", 1],
