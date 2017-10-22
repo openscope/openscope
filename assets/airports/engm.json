@@ -2,7 +2,7 @@
     "radio": {
         "twr": "Gardermoen Tower",
         "app": "Oslo Approach",
-        "dep": "Norway Control"
+        "dep": "Oslo Approach"
     },
     "icao": "ENGM",
     "iata": "OSL",
@@ -15,11 +15,11 @@
     "rr_center": ["N60d12m10.00", "E11d05m02.00"],
     "has_terrain": false,
     "wind": {
-        "angle": 190,
-        "speed": 8
+        "angle": 010,
+        "speed": 5
     },
-    "arrivalRunway": "19R",
-    "departureRunway": "19R",
+    "arrivalRunway": "01L",
+    "departureRunway": "01R",
     "airspace": [
             {
                 "floor": 0,
@@ -79,7 +79,7 @@
             }
         ],
         "fixes": {
-            "_ENGM103060": ["N59d55.03m0", "E12d59.72m0"],
+            "_1L0193GM442242": ["N60.16596", "E11.06050"],
             "ADOPI": ["N60d19m25.00", "E09d23m00.00"],
             "NIVDU": ["N60d16m20.00", "E09d51m50.00"],
             "VANUK": ["N60d53m20.00", "E10d28m25.00"],
@@ -468,116 +468,147 @@
         ],
         "runways":[
             {
-                "name":        ["19R", "01L"],
-                "name_offset": [[0, 0], [0, 0]],
-                "end":    [ ["N60d12m57.84", "E11d05m29.99", "675.1ft"], ["N60d11m06.00", "E11d04m25.48", "655.5ft"]],
-                "length":      3.60,
-                "ils":         [true, true]
+                "name": ["19R", "01L"],
+                "end": [
+                    ["N60d12m57.84", "E11d05m29.99", "675.1ft"],
+                    ["N60d11m06.00", "E11d04m25.48", "655.5ft"]
+                ],
+                "ils": [true, true]
             },
             {
-                "name":        ["19L", "01R"],
-                "name_offset": [[0, 0], [0, 0]],
-                "end":    [["N60d12m04.35", "E11d07m20.95", "681.0ft"], ["N60d10m32.72", "E11d06m28.02", "669.9ft"]],
-                "length":      2.95,
-                "ils":         [true, true]
+                "name": ["19L", "01R"],
+                "end": [
+                    ["N60d12m04.35", "E11d07m20.95", "681.0ft"],
+                    ["N60d10m32.72", "E11d06m28.02", "669.9ft"]
+                ],
+                "ils": [true, true]
             }
         ],
         "sids": {
-            "MASEV": {
-                "icao": "MASEV",
-                "name": "Masev",
-                "suffix": {"19L":"5C", "19R":"6D", "01L":"4A", "01R":"9B"},
-                "rwy": {
-                    "19L": [["GM604", "K230-"], "GM444", "VIBUK", "GM508", "GM422"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM603", "VEMIN", "GM507", "GM508", "GM422"],
-                    "01L": [["GM436", "K230-"], "GM437", "NIDIM"],
-                    "01R": [["_01RF", "A11+|K205-"], "GM440", "GM506", "GM504", "GM617"]
-                },
-                "body": [],
-                "exitPoints": {
-                    "MASEV": ["MASEV"]
-                },
-                "draw": [["GM604", "GM444", "VIBUK", "GM508"], ["_19RF", "GM442", "GM603", "VEMIN", "GM507", "GM508", "GM422", "MASEV"], ["GM436", "GM437", "NIDIM", "MASEV"], ["_01RF", "GM440", "GM506", "GM504", "GM617", "MASEV"]]
-            },
-            "TOR": {
-                "icao": "TOR",
-                "name": "Torp",
-                "suffix": {"19L":"4C", "19R":"6D", "01L":"4A", "01R":"8B"},
-                "rwy": {
-                    "19L": [["GM604", "K230-"], "GM602", "KUBUB"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM607", "NANON"],
-                    "01L": [["GM436", "K230-"], "GM437", "GM439", "GM614", "NANON"],
-                    "01R": [["_01RF", "A11+|K205-"], ["GM440", "K230-"], "GM441", "KUBUB"]
-                },
-                "body": [],
-                "exitPoints": {
-                    "TOR": ["TOR"]
-                },
-                "draw": [["GM604","GM602","KUBUB","TOR"], ["GM442", "GM607", "NANON"], ["GM437", "GM439", "GM614", "NANON", "TOR"], ["GM440", "GM441", "KUBUB", "TOR"]]
-            },
-            "NUVSA": {
-                "icao": "NUVSA",
-                "name": "Nuvsa",
-                "suffix": {"19L":"4C", "19R":"7D", "01L":"4A", "01R":"8B"},
-                "rwy": {
-                    "19L": [["GM604", "K230-"], "GM444", "VIBUK", "NIDIM", "LILBA"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM603", "VEMIN", "GM443", "PEMUS"],
-                    "01L": [["GM436", "K230-"], "GM437", "GM438", "PEMUS"],
-                    "01R": [["_01RF", "A11+|K205-"], ["GM440", "K230-"], "LULIL", "LILBA"]
-                },
-                "body": [],
-                "exitPoints": {
-                    "NUVSA": ["NUVSA"]
-                },
-                "draw": [["VIBUK", "NIDIM", "LILBA"], ["VEMIN", "GM443", "PEMUS"], ["GM437", "GM438", "PEMUS", "NUVSA"], ["GM440", "LULIL", "LILBA", "NUVSA"]]
-            },
             "ATLAP": {
                 "icao": "ATLAP",
                 "name": "Atlap",
-                "suffix": {"19L":"3C", "19R":"7D", "01L":"5A", "01R":"8B"},
+                "suffix": {"01L":"5A", "01R":"9B", "19L":"3C", "19R":"7D"},
                 "rwy": {
-                    "19L": [["GM604", "K230-"], "GM602", "ODAXI", "GM451"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM616", "GM619", "GM448"],
-                    "01L": [["GM436", "K230-"], "GM437", "GM439", "GM614"],
-                    "01R": [["_01RF", "A11+|K205-"], ["GM440", "K230-"], ["GM441", "K230-"], "GM514", "GM614"]
+                    "01L": [["GM436", "S230-"], "^GM437", "GM439", "GM614"],
+                    "01R": [["GM440", "S230-"], ["GM441", "S230-"], "GM514", "GM614"],
+                    "19L": [["GM604", "S230-"], "GM602", "ODAXI", "GM451"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM616", "GM619", "GM448"]
                 },
-                "body": [],
+                "body": ["ATLAP"],
                 "exitPoints": {
-                    "ATLAP": ["ATLAP"]
+                    "ATLAP": []
                 },
-                "draw": [["GM602", "ODAXI", "GM451", "ATLAP"], ["GM442", "GM616", "GM619", "GM448", "ATLAP"], ["GM441", "GM514", "GM614", "ATLAP"]]
+                "draw": [
+                    ["_1L0193GM442242", "GM442", "GM616", "GM619", "GM448", "ATLAP*"],
+                    ["GM436", "GM437", "GM439", "GM614", "ATLAP"],
+                    ["GM604", "GM602", "ODAXI", "GM451", "ATLAP"],
+                    ["GM440", "GM441", "GM514", "GM614"]
+                ]
             },
             "EVTOG": {
                 "icao": "EVTOG",
                 "name": "Evtog",
-                "suffix": {"19L":"3C", "19R":"7D", "01L":"5A", "01R":"8B"},
+                "suffix": {"01L":"5A", "01R":"9B", "19L":"3C", "19R":"7D"},
                 "rwy": {
-                    "19L": [["GM604", "K230-"], "GM602", "ODAXI", "GM619", "GM717"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM616", "GM619", "GM717"],
-                    "01L": [["GM436", "K230-"], "GM437", "GM438", "GM446", "GM722", "GM445", "GM450"],
-                    "01R": [["_01RF", "A11+|K205-"], ["GM440", "K230-"], ["GM441", "K230-"], "GM514", "GM614", "GM400", "GM445", "GM450"]
+                    "01L": [["GM436", "S230-"], "^GM437", "GM438", "GM446", "GM722", "GM445", "GM450"],
+                    "01R": [["GM440", "S230-"], ["GM441", "S230-"], "GM514", "GM614", "GM400", "GM445", "GM450"],
+                    "19L": [["GM604", "S230-"], "GM602", "ODAXI", "GM619", "GM717"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM616", "GM619", "GM717"]
                 },
-                "body": [],
+                "body": ["EVTOG"],
                 "exitPoints": {
-                    "EVTOG": ["EVTOG"]
+                    "EVTOG": []
                 },
-                "draw": [["ODAXI", "GM619", "GM717", "EVTOG"], ["GM438", "GM446", "GM722", "GM445"], ["GM614", "GM400", "GM445", "GM450", "EVTOG"]]
+                "draw": [
+                    ["GM437", "GM438", "GM446", "GM722", "GM445", "GM450", "EVTOG*"],
+                    ["ODAXI", "GM619", "GM717", "EVTOG"],
+                    ["GM614", "GM400", "GM445", "GM450"]
+                ]
+            },
+            "MASEV": {
+                "icao": "MASEV",
+                "name": "Masev",
+                "suffix": {"01L":"4A", "01R":"6B", "19L":"5C", "19R":"6D"},
+                "rwy": {
+                    "01L": [["GM436", "S230-"], "^GM437", "NIDIM"],
+                    "01R": [["GM440", "S230-"], "GM506", "GM504", "GM617"],
+                    "19L": [["GM604", "S230-"], "GM444", "VIBUK", "GM508", "GM422"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM603", "VEMIN", "GM507", "GM508"]
+                },
+                "body": ["MASEV"],
+                "exitPoints": {
+                    "MASEV": []
+                },
+                "draw": [
+                    ["GM604", "GM444", "VIBUK", "GM508", "GM422", "MASEV*"],
+                    ["GM442", "GM603", "VEMIN", "GM507", "GM508", "MASEV"],
+                    ["GM440", "GM506", "GM504", "GM617", "MASEV"],
+                    ["GM437", "NIDIM", "MASEV"]
+                ]
+            },
+            "NUVSA": {
+                "icao": "NUVSA",
+                "name": "Nuvsa",
+                "suffix": {"01L":"4A", "01R":"9B", "19L":"4C", "19R":"7D"},
+                "rwy": {
+                    "01L": [["GM436", "S230-"], "^GM437", "GM438", "PEMUS"],
+                    "01R": [["GM440", "S230-"], "LULIL", "LILBA"],
+                    "19L": [["GM604", "S230-"], "GM444", "VIBUK", "NIDIM", "LILBA"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM603", "VEMIN", "GM443", "PEMUS"]
+                },
+                "body": ["NUVSA"],
+                "exitPoints": {
+                    "NUVSA": []
+                },
+                "draw": [
+                    ["VEMIN", "GM443", "PEMUS", "NUVSA*"],
+                    ["VIBUK", "NIDIM", "LILBA", "NUVSA"],
+                    ["GM440", "LULIL", "LILBA"],
+                    ["GM438", "PEMUS"]
+                ]
             },
             "OKSAT": {
                 "icao": "OKSAT",
                 "name": "Oksat",
-                "suffix": {"19L":"1C", "19R":"6D", "01L":"4A", "01R":"9B"},
+                "suffix": {"01L":"4A", "01R":"6B", "19L":"1C", "19R":"6D"},
                 "rwy": {
-                    "19L": [["GM604", "K230-"], "GM444", "GM612", "GM613", "GM449", "TUMGU", "ERLUM", "ENEPO", "OKSAT"],
-                    "19R": [["_19RF", "K230-"], "GM442", "GM603", "VEMIN", "GM507", "GM608", "OKAKI", "OKSAT"],
-                    "01L": [["GM436", "K230-"], "GM437", "NIDIM", "OKAKI", "OKSAT"],
-                    "01R": [["_01RF", "A11+|K205-"], "GM440", "GM506", "GM504", "GM503", "OKAKI", "OKSAT"]
+                    "01L": [["GM436", "S230-"], "^GM437", "NIDIM", "OKAKI"],
+                    "01R": [["GM440", "S230-"], "GM506", "GM504", "GM503", "OKAKI"],
+                    "19L": [["GM604", "S230-"], "GM444", "GM612", "GM613", "GM449", "TUMGU", "ERLUM", "ENEPO"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM603", "VEMIN", "GM507", "GM608", "OKAKI"]
                 },
-                "body": [],
+                "body": ["OKSAT"],
                 "exitPoints": {
-                    "OKSAT": ["OKSAT"]
+                    "OKSAT": []
                 },
-                "draw": [["GM444", "GM612", "GM613", "GM449", "TUMGU", "ERLUM", "ENEPO", "OKSAT"], ["GM507", "GM608", "OKAKI"], ["NIDIM", "OKAKI"], ["GM504", "GM503", "OKAKI", "OKSAT"]]
+                "draw": [
+                    ["GM444", "GM612", "GM613", "GM449", "TUMGU", "ERLUM", "ENEPO", "OKSAT*"],
+                    ["NIDIM", "OKAKI", "OKSAT"],
+                    ["GM504", "GM503", "OKAKI"],
+                    ["GM507", "GM608", "OKAKI"]
+                ]
+            },
+            "TOR": {
+                "icao": "TOR",
+                "name": "Torp",
+                "suffix": {"01L":"4A", "01R":"9B", "19L":"4C", "19R":"6D"},
+                "rwy": {
+                    "01L": [["GM436", "S230-"], "^GM437", "GM439", "GM614", "NANON"],
+                    "01R": [["GM440", "S230-"], "GM441", "KUBUB"],
+                    "19L": [["GM604", "S230-"], "GM602", "KUBUB"],
+                    "19R": [["_1L0193GM442242", "S230-"], "GM442", "GM607", "NANON"]
+                },
+                "body": ["TOR"],
+                "exitPoints": {
+                    "TOR": []
+                },
+                "draw": [
+                    ["GM442", "GM607", "NANON", "TOR*"],
+                    ["GM441", "KUBUB", "TOR"],
+                    ["GM614", "NANON"],
+                    ["GM602", "KUBUB"]
+                ]
             }
         },
         "stars": {},
