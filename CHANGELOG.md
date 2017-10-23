@@ -28,6 +28,7 @@
 - Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 - Updates KPDX (Portland International Airport, OR) [#650](https://github.com/openscope/openscope/issues/650)
+- Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment [#791](https://github.com/openscope/openscope/issues/791)
 
 
 

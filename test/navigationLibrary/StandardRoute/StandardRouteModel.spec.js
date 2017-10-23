@@ -16,6 +16,7 @@ import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
+    STAR_LIST_WITH_INVALID_DRAW_SEGMENT_MOCK,
     STAR_WITH_ONLY_VECTORS,
     STAR_WITHOUT_RWY,
     SID_LIST_MOCK,
@@ -131,6 +132,31 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     const result = model.gatherExitPointNames();
 
     t.true(_isEqual(result, expectedResult));
+});
+
+ava('.getAllFixNamesInUse() provides a meaningful error message when #draw is a 1D array', (t) => {
+    // eslint-disable-next-line
+    const expectedResult = 'Invalid data set in draw segment of the SUNST3 procedure. Expected a 2D array: [[`FIXXA`, `FIXXB*`], [`FIXXC, FIXXD*`]]. Please see airport documentation for more information (https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).';
+    const standardRouteModel = new StandardRouteModel(STAR_LIST_WITH_INVALID_DRAW_SEGMENT_MOCK.SUNST3);
+
+    try {
+        standardRouteModel.getAllFixNamesInUse();
+    } catch (error) {
+        t.true(error.message === expectedResult);
+    }
+});
+
+ava('.getAllFixNamesInUse() provides a meaningful error message when #draw is improperly defined', (t) => {
+    // eslint-disable-next-line
+    const expectedResult = 'Invalid data set in draw segment of the SUNST3 procedure. Expected a 2D array: [[`FIXXA`, `FIXXB*`], [`FIXXC, FIXXD*`]]. Please see airport documentation for more information (https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).';
+    const invalidStarMock = Object.assign({}, STAR_LIST_WITH_INVALID_DRAW_SEGMENT_MOCK.SUNST3, { draw: ['threeve'] });
+    const standardRouteModel = new StandardRouteModel(invalidStarMock);
+
+    try {
+        standardRouteModel.getAllFixNamesInUse();
+    } catch (error) {
+        t.true(error.message === expectedResult);
+    }
 });
 
 ava('.getAllFixNamesInUse() returns an array of fix names used by any portion of the procedure', (t) => {
