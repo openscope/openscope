@@ -229,7 +229,23 @@ export default class CanvasController {
         return this;
     }
 
+    /**
+     * @for CanvasController
+     * @method _setupHandlers
+     * @chainable
+     * @private
+     */
     _setupHandlers() {
+        this._onCenterPointInViewHandler = this._onCenterPointInView.bind(this);
+        this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
+        this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
+        this._onMarkDirtyCanvasHandler = this._onMarkDirtyCanvas.bind(this);
+        this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
+        this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
+        this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
+        this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
+        this._setThemeHandler = this._setTheme.bind(this);
+
         return this;
     }
 
@@ -239,17 +255,16 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
-        this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
-        this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
-        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
-        this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabels);
-        this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
-        this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
-        this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
-        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
+        this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
+        this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
+        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvasHandler);
+        this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
+        this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
+        this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
+        this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
+        this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
 
-        // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
 
         return this;
@@ -2042,9 +2057,9 @@ export default class CanvasController {
      * @method _onMarkDirtyCanvas
      * @private
      */
-    _onMarkDirtyCanvas = () => {
+    _onMarkDirtyCanvas() {
         this._markShallowRender();
-    };
+    }
 
     /**
      * Update local props as a result of the user panning the view
@@ -2056,7 +2071,9 @@ export default class CanvasController {
      * @method _onChangeViewportPan
      * @private
      */
-    _onChangeViewportPan = () => this._markDeepRender();
+    _onChangeViewportPan() {
+        this._markDeepRender();
+    }
 
     /**
      * Update local props as a result of a change in the current zoom level
@@ -2069,7 +2086,9 @@ export default class CanvasController {
      * @param mouseDelta {array<number, number>}
      * @private
      */
-    _onChangeViewportZoom = () => this._markDeepRender();
+    _onChangeViewportZoom() {
+        this._markDeepRender();
+    }
 
     /**
      * Toogle current value of `#draw_labels`
@@ -2081,11 +2100,11 @@ export default class CanvasController {
      * @method _onToggleLabels
      * @private
      */
-    _onToggleLabels = () => {
+    _onToggleLabels() {
         this._shouldDrawFixLabels = !this._shouldDrawFixLabels;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_restricted`
@@ -2097,11 +2116,11 @@ export default class CanvasController {
      * @method _onToggleRestrictedAreas
      * @private
      */
-    _onToggleRestrictedAreas = () => {
+    _onToggleRestrictedAreas() {
         this._shouldDrawRestrictedAreas = !this._shouldDrawRestrictedAreas;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_sids`
@@ -2113,11 +2132,11 @@ export default class CanvasController {
      * @method _onToggleSidMap
      * @private
      */
-    _onToggleSidMap = () => {
+    _onToggleSidMap() {
         this._shouldDrawSidMap = !this._shouldDrawSidMap;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_terrain`
@@ -2128,11 +2147,11 @@ export default class CanvasController {
      * @method _onToggleTerrain
      * @private
      */
-    _onToggleTerrain = () => {
+    _onToggleTerrain() {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Update the value of `#_shouldShallowRender` to true, forcing a redraw
@@ -2179,12 +2198,12 @@ export default class CanvasController {
      * @param x {number}    relativePosition.x
      * @param y {number}    relativePosition.y
      */
-    _onCenterPointInView = ({ x, y }) => {
+    _onCenterPointInView({ x, y }) {
         CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
         CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
 
         this._markShallowRender();
-    };
+    }
 
     /**
      * Change theme to the specified name
@@ -2199,7 +2218,7 @@ export default class CanvasController {
      * @method _setTheme
      * @param themeName {string}
      */
-    _setTheme = (themeName) => {
+    _setTheme(themeName) {
         if (!_has(THEME, themeName)) {
             console.error(`Expected valid theme to change to, but received '${themeName}'`);
 
@@ -2212,5 +2231,5 @@ export default class CanvasController {
         this.theme = THEME[themeName];
         // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
-    };
+    }
 }
