@@ -318,18 +318,19 @@ export default class CanvasController {
      * @method canvas_init
      */
     canvas_init() {
-        this.canvas_add(CANVAS_NAME.STATIC);
-        this.canvas_add(CANVAS_NAME.DYNAMIC);
+        this._canvas_add(CANVAS_NAME.STATIC);
+        this._canvas_add(CANVAS_NAME.DYNAMIC);
     }
 
     /**
      * Add a `canvas` element to the DOM
      *
      * @for CanvasController
-     * @method canvas_add
+     * @method _canvas_add
      * @param name {CANVAS_NAME|string}
+     * @private
      */
-    canvas_add(name) {
+    _canvas_add(name) {
         const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
 
         this.$element.append(canvasTemplate);
@@ -374,7 +375,7 @@ export default class CanvasController {
             context.canvas.height = CanvasStageModel.height;
             context.canvas.width = CanvasStageModel.width;
 
-            this.canvas_adjust_hidpi(canvasName);
+            this._canvas_adjust_hidpi(canvasName);
         }
 
         this._markDeepRender();
@@ -382,9 +383,10 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method canvas_adjust_hidpi
+     * @method _canvas_adjust_hidpi
+     * @private
      */
-    canvas_adjust_hidpi(canvasName) {
+    _canvas_adjust_hidpi(canvasName) {
         const devicePixelRatio = window.devicePixelRatio || 1;
         const canvasContext = this._context[canvasName];
 
@@ -413,111 +415,43 @@ export default class CanvasController {
      */
     canvas_update_post() {
         const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
-        const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.shouldUpdate();
         const fading = elapsed < 1;
 
-        // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
         if (this._shouldDeepRender) {
             console.log('_shouldDeepRender');
-        //     this is where we update static drawings like terrain, airspace, video map, etc
-        //     updates that happen here should be infrequent because they are considered expensive
+            // const cc = this.canvas_get(CANVAS_NAME.STATIC);
         }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
-            const cc = this.canvas_get(CANVAS_NAME.STATIC);
-
-            // cc.font = '11px monoOne, monospace';
-
-            // TODO: what is the rationale here? with two ors and a true, this block will always be exectuted.
-            cc.save();
+            const cc = this.canvas_get(CANVAS_NAME.DYNAMIC);
 
             this.canvas_clear(cc);
-
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-            cc.save();
-            cc.globalAlpha = alpha;
-
             this.canvas_draw_videoMap(cc);
             this.canvas_draw_terrain(cc);
             this.canvas_draw_restricted(cc);
             this.canvas_draw_runways(cc);
-
-            cc.restore();
-            cc.save();
-            cc.globalAlpha = alpha;
-
             this.canvas_draw_fixes(cc);
             this.canvas_draw_sids(cc);
+            this.drawAirspaceAndRangeRings(cc);
 
-            cc.restore();
-            cc.restore();
-
-            // Controlled traffic region - (CTR)
-            cc.save();
-            // translate to airport center
-            // FIXME: create method in CanvasStageModel to returns an array with these values
-            cc.translate(
-                round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
-                round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
-            );
-
-            this.canvas_draw_airspace_border(cc);
-            this.canvas_draw_range_rings(cc);
-            cc.restore();
-
+            // FIXME: is this still needed?
             // Special markings for ENGM point merge
-            if (AirportController.airport_get().icao === 'ENGM') {
-                cc.save();
-                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-                this.canvas_draw_engm_range_rings(cc);
-                cc.restore();
-            }
+            // if (AirportController.airport_get().icao === 'ENGM') {
+            //     cc.save();
+            //     cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
-            // Compass
-            cc.font = 'bold 10px monoOne, monospace';
-            cc.save();
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+            //     this.canvas_draw_engm_range_rings(cc);
+
+            //     cc.restore();
+            // }
 
             this.canvas_draw_compass(cc);
-            cc.restore();
-
-            cc.font = BASE_CANVAS_FONT;
-
-            if (this.canvas_should_draw() || true) {
-                cc.save();
-                cc.globalAlpha = alpha;
-                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-                this.canvas_draw_radar_targets(cc);
-
-                cc.restore();
-            }
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
+            this.canvas_draw_radar_targets(cc);
             this.canvas_draw_data_blocks(cc);
-
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
             this.canvas_draw_runway_labels(cc);
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
             this.canvas_draw_scale(cc);
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
             this.canvas_draw_directions(cc);
-            cc.restore();
 
             this._shouldShallowRender = false;
             this._shouldDeepRender = false;
@@ -546,7 +480,6 @@ export default class CanvasController {
         cc.clearRect(0, 0, CanvasStageModel.width, CanvasStageModel.height);
     }
 
-    // TODO: logic should be updated here to exclusively use `TimeKeeper`
     /**
      * Flag used to determine if we should draw a new frame.
      *
@@ -647,30 +580,35 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+        cc.font = '11px monoOne, monospace';
         cc.strokeStyle = this.theme.SCOPE.RUNWAY;
         cc.fillStyle = this.theme.SCOPE.RUNWAY;
         cc.lineWidth = 4;
 
-        const airport = AirportController.airport_get();
+        const airportModel = AirportController.airport_get();
 
         // TODO: we should try to consolidate this so we aren't looping over the runway collection multiple times
         // Extended Centerlines
-        for (let i = 0; i < airport.runways.length; i++) {
+        for (let i = 0; i < airportModel.runways.length; i++) {
             cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][0], true);
+            this.canvas_draw_runway(cc, airportModel.runways[i][0], true);
             cc.restore();
 
             cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][1], true);
+            this.canvas_draw_runway(cc, airportModel.runways[i][1], true);
             cc.restore();
         }
 
         // Runways
-        for (let i = 0; i < airport.runways.length; i++) {
+        for (let i = 0; i < airportModel.runways.length; i++) {
             cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][0], false);
+            this.canvas_draw_runway(cc, airportModel.runways[i][0], false);
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -682,23 +620,26 @@ export default class CanvasController {
         if (!this._shouldDrawFixLabels) {
             return;
         }
+        const airportModel = AirportController.airport_get();
 
-        const airport = AirportController.airport_get();
-
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.fillStyle = this.theme.SCOPE.RUNWAY_LABELS;
 
-        for (let i = 0; i < airport.runways.length; i++) {
+        for (let i = 0; i < airportModel.runways.length; i++) {
             cc.save();
 
-            this.canvas_draw_runway_label(cc, airport.runways[i][0]);
+            this.canvas_draw_runway_label(cc, airportModel.runways[i][0]);
 
             cc.restore();
             cc.save();
 
-            this.canvas_draw_runway_label(cc, airport.runways[i][1]);
+            this.canvas_draw_runway_label(cc, airportModel.runways[i][1]);
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -709,32 +650,31 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      */
     canvas_draw_scale(cc) {
+        cc.save();
+
         const offset = 10;
         const height = 5;
-        const length = round(1 / CanvasStageModel._scale * 50);
+        const length = round(1 / CanvasStageModel.scale * 50);
         const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
         const widthLessOffset = CanvasStageModel.width - offset;
 
         cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
         cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
-
         cc.translate(0.5, 0.5);
-
         cc.lineWidth = 1;
         cc.textAlign = 'center';
-
         cc.moveTo(widthLessOffset, offset);
         cc.lineTo(widthLessOffset, offset + height);
         cc.lineTo(widthLessOffset - px_length, offset + height);
         cc.lineTo(widthLessOffset - px_length, offset);
         cc.stroke();
         cc.translate(-0.5, -0.5);
-
         cc.fillText(
             `${length} km`,
             widthLessOffset - px_length * 0.5,
             offset + height + 17
         );
+        cc.restore();
     }
 
     /**
@@ -772,6 +712,8 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
@@ -786,6 +728,8 @@ export default class CanvasController {
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     // TODO: break this method up into smaller chunks
@@ -803,6 +747,8 @@ export default class CanvasController {
         const textAtPoint = [];
         const { sidLines } = this._navigationLibrary;
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.SID;
         cc.fillStyle = this.theme.SCOPE.SID;
         cc.setLineDash([1, 10]);
@@ -870,6 +816,8 @@ export default class CanvasController {
                 cc.fillText(sid.identifier, labelOffsetX, fixCanvasPosition.y);
             }
         }
+
+        cc.restore();
     }
 
     /**
@@ -1201,6 +1149,10 @@ export default class CanvasController {
      */
 
     canvas_draw_radar_targets(cc) {
+        cc.font = BASE_CANVAS_FONT;
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
         const radarTargetModels = this._scopeModel.radarTargetCollection.items;
 
         for (let i = 0; i < radarTargetModels.length; i++) {
@@ -1210,6 +1162,8 @@ export default class CanvasController {
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -1440,6 +1394,9 @@ export default class CanvasController {
     canvas_draw_data_blocks(cc) {
         const radarTargetModels = this._scopeModel.radarTargetCollection.items;
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
         for (let i = 0; i < radarTargetModels.length; i++) {
             cc.save();
 
@@ -1447,6 +1404,8 @@ export default class CanvasController {
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -1457,12 +1416,14 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      */
     canvas_draw_compass(cc) {
+        cc.save();
+        cc.font = 'bold 10px monoOne, monospace';
         cc.translate(
-            CanvasStageModel.halfWidth,
-            CanvasStageModel.halfHeight
+            CanvasStageModel.width,
+            CanvasStageModel.height
         );
 
-        const airport = AirportController.airport_get();
+        const airportModel = AirportController.airport_get();
         const size = 80;
         const size2 = size / 2;
         const padding = 16;
@@ -1492,26 +1453,26 @@ export default class CanvasController {
         cc.textAlign = 'center';
         cc.textBaseline = 'center';
         cc.font = '9px monoOne, monospace';
-        cc.fillText(airport.wind.speed, 0, 3.8);
+        cc.fillText(airportModel.wind.speed, 0, 3.8);
         cc.font = 'bold 10px monoOne, monospace';
 
         // Wind line
-        if (airport.wind.speed > 8) {
-            windspeed_line = airport.wind.speed / 2;
+        if (airportModel.wind.speed > 8) {
+            windspeed_line = airportModel.wind.speed / 2;
             highwind = true;
         } else {
-            windspeed_line = airport.wind.speed;
+            windspeed_line = airportModel.wind.speed;
             highwind = false;
         }
 
         cc.save();
         cc.translate(
-            -dot / 2 * sin(airport.wind.angle),
-            dot / 2 * cos(airport.wind.angle)
+            -dot / 2 * sin(airportModel.wind.angle),
+            dot / 2 * cos(airportModel.wind.angle)
         );
         cc.beginPath();
         cc.moveTo(0, 0);
-        cc.rotate(airport.wind.angle);
+        cc.rotate(airportModel.wind.angle);
         cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
@@ -1542,6 +1503,23 @@ export default class CanvasController {
             cc.fillText(angle, 0, -size2 + 4);
             cc.restore();
         }
+
+        cc.restore();
+    }
+
+    drawAirspaceAndRangeRings(cc) {
+        cc.save();
+        // translate to airport center
+        // FIXME: create method in CanvasStageModel to returns an array with these values
+        cc.translate(
+            round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
+            round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
+        );
+
+        this.canvas_draw_airspace_border(cc);
+        this.canvas_draw_range_rings(cc);
+
+        cc.restore();
     }
 
     /**
@@ -1568,61 +1546,62 @@ export default class CanvasController {
         }
     }
 
-    /**
-     * Draw range rings for `ENGM`
-     *
-     * This method is used exclusively by `.canvas_draw_engm_range_rings()`
-     *
-     * @for CanvasController
-     * @method canvas_draw_fancy_rings
-     * @param cc {HTMLCanvasContext}
-     * @param fix_origin
-     * @param fix1
-     * @param fix2
-     */
-    canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-        const airport = AirportController.airport_get();
-        const origin = airport.getFixPosition(fix_origin);
-        const f1 = airport.getFixPosition(fix1);
-        const f2 = airport.getFixPosition(fix2);
-        const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
-        const halfPI = Math.PI / 2;
-        const extend_ring = degreesToRadians(10);
-        const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
-        const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
-        const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
-        const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
-        // 5NM = 9.27km
-        const radius = 9.27;
+    // FIXME: are these two methods still needed? why?
+    // /**
+    //  * @for CanvasController
+    //  * @method canvas_draw_engm_range_rings
+    //  * @param cc {HTMLCanvasContext}
+    //  */
+    // // Draw range rings for ENGM airport to assist in point merge
+    // canvas_draw_engm_range_rings(cc) {
+    //     cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
+    //     cc.setLineDash([3, 6]);
 
-        for (let i = 0; i < 4; i++) {
-            cc.beginPath();
-            cc.arc(
-                x,
-                y,
-                CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
-                start_angle, end_angle
-            );
+    //     this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
+    //     this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
+    //     this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
+    //     this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
+    // }
 
-            cc.stroke();
-        }
-    }
+    //  /**
+    //  * Draw range rings for `ENGM`
+    //  *
+    //  * This method is used exclusively by `.canvas_draw_engm_range_rings()`
+    //  *
+    //  * @for CanvasController
+    //  * @method canvas_draw_fancy_rings
+    //  * @param cc {HTMLCanvasContext}
+    //  * @param fix_origin
+    //  * @param fix1
+    //  * @param fix2
+    //  */
+    // canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
+    //     const airport = AirportController.airport_get();
+    //     const origin = airport.getFixPosition(fix_origin);
+    //     const f1 = airport.getFixPosition(fix1);
+    //     const f2 = airport.getFixPosition(fix2);
+    //     const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
+    //     const halfPI = Math.PI / 2;
+    //     const extend_ring = degreesToRadians(10);
+    //     const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
+    //     const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
+    //     const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
+    //     const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
+    //     // 5NM = 9.27km
+    //     const radius = 9.27;
 
-    /**
-     * @for CanvasController
-     * @method canvas_draw_engm_range_rings
-     * @param cc {HTMLCanvasContext}
-     */
-    // Draw range rings for ENGM airport to assist in point merge
-    canvas_draw_engm_range_rings(cc) {
-        cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-        cc.setLineDash([3, 6]);
+    //     for (let i = 0; i < 4; i++) {
+    //         cc.beginPath();
+    //         cc.arc(
+    //             x,
+    //             y,
+    //             CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
+    //             start_angle, end_angle
+    //         );
 
-        this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
-        this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
-        this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
-        this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
-    }
+    //         cc.stroke();
+    //     }
+    // }
 
     /**
      * @for CanvasController
@@ -1630,15 +1609,15 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      */
     canvas_draw_range_rings(cc) {
-        const airport = AirportController.airport_get();
+        const airportModel = AirportController.airport_get();
         // convert input param from nm to km
-        const rangeRingRadius = km(airport.rr_radius_nm);
+        const rangeRingRadius = km(airportModel.rr_radius_nm);
 
-        // Fill up airport's ctr_radius with rings of the specified radius
-        for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
+        // Fill up airportModel's ctr_radius with rings of the specified radius
+        for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
             cc.beginPath();
             cc.linewidth = 1;
-            cc.arc(0, 0, rangeRingRadius * CanvasStageModel._scale * i, 0, tau());
+            cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
             cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
             cc.stroke();
         }
@@ -1715,6 +1694,10 @@ export default class CanvasController {
      * @param max_elevation {number}
      */
     drawTerrainElevationLegend(cc, max_elevation) {
+        cc.save();
+        cc.font = BASE_CANVAS_FONT;
+        cc.lineWidth = 1;
+
         const offset = 10;
         const width = CanvasStageModel.width;
         const height = CanvasStageModel.height;
@@ -1754,6 +1737,8 @@ export default class CanvasController {
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -1770,15 +1755,16 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         // Terrain key rectangles' outline stroke color
         // Also determines color of terrain outline drawn at '0ft'
         cc.strokeStyle = this.theme.SCOPE.FIX_FILL;
         // Somehow used to tint the terrain key rectangles' fill color
         // Also determines color of terrain fill at '0ft'
         cc.fillStyle = this.theme.SCOPE.FIX_FILL;
-        cc.lineWidth = clamp(0.5, (CanvasStageModel._scale / 10), 2);
+        cc.lineWidth = clamp(0.5, (CanvasStageModel.scale / 10), 2);
         cc.lineJoin = 'round';
-
         cc.save();
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
 
@@ -1810,10 +1796,12 @@ export default class CanvasController {
             return;
         }
 
-        cc.font = BASE_CANVAS_FONT;
-        cc.lineWidth = 1;
+        // cc.font = BASE_CANVAS_FONT;
+        // cc.lineWidth = 1;
 
         this.drawTerrainElevationLegend(cc, max_elevation);
+
+        cc.restore();
     }
 
     /**
@@ -1826,18 +1814,22 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+        cc.translate(
+            CanvasStageModel.halfWidth + CanvasStageModel._panX,
+            CanvasStageModel.halfHeight + CanvasStageModel._panY
+        );
         cc.strokeStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
-        cc.lineWidth = Math.max(CanvasStageModel._scale / 3, 2);
+        cc.lineWidth = Math.max(CanvasStageModel.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = AirportController.airport_get();
+        // cc.save();
+        // cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
+        const airportModel = AirportController.airport_get();
 
-        cc.save();
-        cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
-
-        for (let i = 0; i < airport.restricted_areas.length; i++) {
-            const area = airport.restricted_areas[i];
+        for (let i = 0; i < airportModel.restricted_areas.length; i++) {
+            const area = airportModel.restricted_areas[i];
             cc.fillStyle = 'transparent';
 
             this.canvas_draw_poly(cc, area.coordinates);
@@ -1878,22 +1870,22 @@ export default class CanvasController {
      * @param cc {HTMLCanvasContext}
      */
     canvas_draw_videoMap(cc) {
-        if (!_has(AirportController.airport_get(), 'maps')) {
+        const airportModel = AirportController.airport_get();
+
+        if (!_has(airportModel, 'maps')) {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = CanvasStageModel._scale / 15;
+        cc.lineWidth = CanvasStageModel.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
-
-        const airport = AirportController.airport_get();
-
-        cc.save();
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
 
-        for (let i = 0; i < airport.maps.base.length; i++) {
-            const mapItem = airport.maps.base[i];
+        for (let i = 0; i < airportModel.maps.base.length; i++) {
+            const mapItem = airportModel.maps.base[i];
             cc.moveTo(CanvasStageModel.translateKilometersToPixels(mapItem[0]), -CanvasStageModel.translateKilometersToPixels(mapItem[1]));
             // cc.beginPath();
             cc.lineTo(CanvasStageModel.translateKilometersToPixels(mapItem[2]), -CanvasStageModel.translateKilometersToPixels(mapItem[3]));
@@ -1938,6 +1930,8 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+
         const callsign = prop.input.callsign.toUpperCase();
 
         if (callsign.length === 0) {
@@ -1958,7 +1952,7 @@ export default class CanvasController {
         const rectPos = [0, 0];
         const rectSize = [CanvasStageModel.width, CanvasStageModel.height];
 
-        cc.save();
+        // cc.save();
         cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
         cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
         cc.textAlign = 'center';
