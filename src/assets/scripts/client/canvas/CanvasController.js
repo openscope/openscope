@@ -41,9 +41,6 @@ import {
 } from '../constants/globalConstants';
 import { LOG } from '../constants/logLevel';
 
-// Temporary const declaration here to attach to the window AND use as internal property
-const canvas = {};
-
 /**
  * Enumeration of canvas names
  *
@@ -112,9 +109,6 @@ export default class CanvasController {
          * @private
          */
         this._eventBus = EventBus;
-
-        prop.canvas = canvas;
-        this.canvas = canvas;
 
         /**
          * @property _context
@@ -286,7 +280,6 @@ export default class CanvasController {
     destroy() {
         this.$window = null;
         this.$element = null;
-        this.canvas = {};
         this._context = {};
         // resize canvas to fit window?
         this._shouldResize = true;
@@ -410,15 +403,16 @@ export default class CanvasController {
         const fading = elapsed < 1;
 
         // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
-        // if (this._shouldDeepRender) {
+        if (this._shouldDeepRender) {
+            console.log('_shouldDeepRender');
         //     this is where we update static drawings like terrain, airspace, video map, etc
         //     updates that happen here should be infrequent because they are considered expensive
-        // }
+        }
 
         if (this._shouldShallowRender || shouldUpdate || fading) {
             const cc = this.canvas_get(CANVAS_NAME.STATIC);
 
-            cc.font = '11px monoOne, monospace';
+            // cc.font = '11px monoOne, monospace';
 
             // TODO: what is the rationale here? with two ors and a true, this block will always be exectuted.
             cc.save();
