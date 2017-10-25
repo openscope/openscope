@@ -400,10 +400,6 @@ export default class AircraftCommander {
             return response;
         }
 
-        // TODO: toUpperCase might be overly defensive here
-        // update the aircraft destination so the strip display reflects the change of procedure
-        aircraft.destination = sidId.toUpperCase();
-
         return response;
     }
 
