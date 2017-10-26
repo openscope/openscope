@@ -825,7 +825,7 @@
             "category": "departure",
             "route": "KMIA.EONNS2.EONNS..ELLEE..URSUS..GELOG",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -840,7 +840,7 @@
             "category": "departure",
             "route": "KMIA.HEDLY2.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -855,7 +855,7 @@
             "category": "departure",
             "route": "KMIA.MNATE2.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -870,7 +870,7 @@
             "category": "departure",
             "route": "KMIA.PADUS2.PADUS..ZFP..FLINY..HAANA",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -885,7 +885,7 @@
             "category": "departure",
             "route": "KMIA.SKIPS2.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -900,7 +900,7 @@
             "category": "departure",
             "route": "KMIA.VALLY2.VALLY..PERMT..ADOOR..SNABS..EMCEE..SEELO..ILM",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -915,7 +915,7 @@
             "category": "departure",
             "route": "KMIA.WINCO2.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
             "method": "random",
-            "rate": 5.5,
+            "rate": 3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -930,7 +930,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.BEECH..BAHMA..ISAAC..OYSTA..HANKX..MAMML..DIAZZ",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -945,7 +945,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.EONNS..ELLEE..URSUS..GELOG",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -960,7 +960,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -975,7 +975,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -990,7 +990,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.PADUS..ZFP..FLINY..HAANA",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -1005,7 +1005,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -1020,7 +1020,7 @@
             "category": "departure",
             "route": "KMIA.MIA5.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
             "method": "random",
-            "rate": 1,
+            "rate": 0.3,
             "airlines": [
                 ["aal", 10],
                 ["ava", 3],
@@ -1083,7 +1083,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 12,
+            "rate": 9,
             "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
@@ -1104,7 +1104,7 @@
             "altitude": 12000,
             "speed": 280,
             "method": "random",
-            "rate": 8,
+            "rate": 4,
             "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
@@ -1125,7 +1125,7 @@
             "altitude": 10000,
             "speed": 250,
             "method": "random",
-            "rate": 8,
+            "rate": 5,
             "airlines": [
                 ["ual", 5],
                 ["ual/long", 2],
