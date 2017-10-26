@@ -1,10 +1,8 @@
 import _clamp from 'lodash/clamp';
-import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
 import GameController from '../game/GameController';
 import { calculateNormalDistributedNumber } from '../math/core';
-import { tau } from '../math/circle';
 
 /**
  *
@@ -97,10 +95,10 @@ export default class AirportWindModel {
         // We need to make sure that none of the properties are 0.
         // Otherwise, the function will always return 0, because 0 * anything = 0.
         if (this.speed === 0) {
-            this.speed = 1;
+            this.speed = 5;
         }
         if (this.angle === 0) {
-            this.angle = 1;
+            this.angle = 180;
         }
 
         const speed = calculateNormalDistributedNumber(this.speed);
