@@ -94,7 +94,8 @@ export default class AirportWindModel {
     _calculateNextWind() {
         // We need to make sure that none of the properties are 0.
         // Otherwise, the function will always return 0, because 0 * anything = 0.
-        if (this.speed === 0) {
+        // If the speed is less than 2, it tends to get stuck on '1' for a while.
+        if (this.speed < 2) {
             this.speed = 5;
         }
         if (this.angle === 0) {
