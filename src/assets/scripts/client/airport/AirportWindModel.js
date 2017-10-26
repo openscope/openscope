@@ -104,18 +104,10 @@ export default class AirportWindModel {
         }
 
         const speed = calculateNormalDistributedNumber(this.speed);
-        const initialAngle = calculateNormalDistributedNumber(this.angle);
-        let nextAngle = initialAngle;
-
-        if (initialAngle > tau) {
-            // How many times can we subtract 360 and not get a negative number?
-            const factorsOfTau = _floor(initialAngle / tau);
-
-            nextAngle = initialAngle - (tau * factorsOfTau);
-        }
+        const angle = calculateNormalDistributedNumber(this.angle);
 
         this.speed = _clamp(_round(speed), 0, 25);
-        this.angle = _round(nextAngle);
+        this.angle = _round(angle);
     }
 
     /**
