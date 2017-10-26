@@ -19,14 +19,3 @@ ava('.enable() calls ._createWindUpdateTimer()', (t) => {
 
     t.true(_createWindUpdateTimerSpy.calledOnce);
 });
-
-ava('._calculateNextWind() adjusts #angle when it exceeds 360 degrees', (t) => {
-    const model = new AirportWindModel(windMock);
-    model.angle = 1000;
-    const { angle: previousAngle } = model;
-
-    model._calculateNextWind();
-
-    t.false(previousAngle === model.angle);
-    t.true(model.angle <= 360);
-});
