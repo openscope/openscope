@@ -414,17 +414,10 @@ export default class CanvasController {
      * @method canvas_update_post
      */
     canvas_update_post() {
-        const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
         const shouldUpdate = !GameController.game_paused() && TimeKeeper.shouldUpdate();
-        const fading = elapsed < 1;
 
         if (this._shouldDeepRender) {
-            console.log('_shouldDeepRender');
-            // const cc = this.canvas_get(CANVAS_NAME.STATIC);
-        }
-
-        if (this._shouldShallowRender || shouldUpdate || fading) {
-            const cc = this.canvas_get(CANVAS_NAME.DYNAMIC);
+            const cc = this._getCanvasContextByName(CANVAS_NAME.STATIC);
 
             this.canvas_clear(cc);
             this.canvas_draw_videoMap(cc);
@@ -434,24 +427,18 @@ export default class CanvasController {
             this.canvas_draw_fixes(cc);
             this.canvas_draw_sids(cc);
             this.drawAirspaceAndRangeRings(cc);
-
-            // FIXME: is this still needed?
-            // Special markings for ENGM point merge
-            // if (AirportController.airport_get().icao === 'ENGM') {
-            //     cc.save();
-            //     cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-            //     this.canvas_draw_engm_range_rings(cc);
-
-            //     cc.restore();
-            // }
-
             this.canvas_draw_compass(cc);
-            this.canvas_draw_radar_targets(cc);
-            this.canvas_draw_data_blocks(cc);
             this.canvas_draw_runway_labels(cc);
             this.canvas_draw_scale(cc);
             this.canvas_draw_directions(cc);
+        }
+
+        if (this._shouldShallowRender || shouldUpdate) {
+            const cc = this._getCanvasContextByName(CANVAS_NAME.DYNAMIC);
+
+            this.canvas_clear(cc);
+            this.canvas_draw_radar_targets(cc);
+            this.canvas_draw_data_blocks(cc);
 
             this._shouldShallowRender = false;
             this._shouldDeepRender = false;
@@ -462,10 +449,11 @@ export default class CanvasController {
      * Find a canvas context stored within `#_context`
      *
      * @for CanvasController
-     * @method canvas_get
+     * @method _getCanvasContextByName
      * @param name {string}
+     * @private
      */
-    canvas_get(name) {
+    _getCanvasContextByName(name) {
         return this._context[name];
     }
 
@@ -1516,6 +1504,17 @@ export default class CanvasController {
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
 
+        // FIXME: is this still needed?
+        // Special markings for ENGM point merge
+        // if (AirportController.airport_get().icao === 'ENGM') {
+        //     cc.save();
+        //     cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        //     this.canvas_draw_engm_range_rings(cc);
+
+        //     cc.restore();
+        // }
+
         this.canvas_draw_airspace_border(cc);
         this.canvas_draw_range_rings(cc);
 
@@ -1535,7 +1534,6 @@ export default class CanvasController {
         cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
 
-        // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
             const poly = $.map(airport.perimeter.poly, (v) => {
                 return [v.relativePosition];
@@ -1796,9 +1794,6 @@ export default class CanvasController {
             return;
         }
 
-        // cc.font = BASE_CANVAS_FONT;
-        // cc.lineWidth = 1;
-
         this.drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
@@ -1824,8 +1819,6 @@ export default class CanvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        // cc.save();
-        // cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
         const airportModel = AirportController.airport_get();
 
         for (let i = 0; i < airportModel.restricted_areas.length; i++) {
@@ -1886,9 +1879,14 @@ export default class CanvasController {
 
         for (let i = 0; i < airportModel.maps.base.length; i++) {
             const mapItem = airportModel.maps.base[i];
-            cc.moveTo(CanvasStageModel.translateKilometersToPixels(mapItem[0]), -CanvasStageModel.translateKilometersToPixels(mapItem[1]));
-            // cc.beginPath();
-            cc.lineTo(CanvasStageModel.translateKilometersToPixels(mapItem[2]), -CanvasStageModel.translateKilometersToPixels(mapItem[3]));
+            cc.moveTo(
+                CanvasStageModel.translateKilometersToPixels(mapItem[0]),
+                -CanvasStageModel.translateKilometersToPixels(mapItem[1])
+            );
+            cc.lineTo(
+                CanvasStageModel.translateKilometersToPixels(mapItem[2]),
+                -CanvasStageModel.translateKilometersToPixels(mapItem[3])
+            );
         }
 
         cc.stroke();

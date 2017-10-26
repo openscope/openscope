@@ -266,21 +266,11 @@ export default class App {
         $(window).resize(this._appController.resize);
         this._appController.resize();
 
-        this.ready();
+        this.prop.loaded = true;
 
         if (UPDATE) {
             requestAnimationFrame(this.onUpdateHandler);
         }
-
-        return this;
-    }
-
-    /**
-     * @for App
-     * @method ready
-     */
-    ready() {
-        this.prop.loaded = true;
 
         return this;
     }
