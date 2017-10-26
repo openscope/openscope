@@ -92,7 +92,15 @@ export default class AirportWindModel {
      * @private
      */
     _calculateNextWind() {
-        // We don't want decimal values, so we round.
+        // We need to make sure that none of the properties are 0.
+        // Otherwise, the function will always return 0, because 0 * anything = 0.
+        if (this.speed === 0) {
+            this.speed = 1;
+        }
+        if (this.angle === 0) {
+            this.angle = 1;
+        }
+
         const speed = calculateNormalDistributedNumber(this.speed);
         const initialAngle = calculateNormalDistributedNumber(this.angle);
         let nextAngle = initialAngle;
