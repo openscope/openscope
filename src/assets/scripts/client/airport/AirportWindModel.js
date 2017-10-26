@@ -4,6 +4,7 @@ import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
 import GameController from '../game/GameController';
 import { calculateNormalDistributedNumber } from '../math/core';
+import { tau } from '../math/circle';
 
 /**
  *
@@ -106,11 +107,11 @@ export default class AirportWindModel {
         const initialAngle = calculateNormalDistributedNumber(this.angle);
         let nextAngle = initialAngle;
 
-        if (initialAngle > 360) {
+        if (initialAngle > tau) {
             // How many times can we subtract 360 and not get a negative number?
-            const factorsOfThreeSixty = _floor(initialAngle / 360);
+            const factorsOfTau = _floor(initialAngle / tau);
 
-            nextAngle = initialAngle - (360 * factorsOfThreeSixty);
+            nextAngle = initialAngle - (tau * factorsOfTau);
         }
 
         this.speed = _clamp(_round(speed), 0, 25);
