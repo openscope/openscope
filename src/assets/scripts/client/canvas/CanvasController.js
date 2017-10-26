@@ -1510,7 +1510,7 @@ export default class CanvasController {
             calculateMiddle(this.canvas.size.height)
         );
 
-        const { wind } = AirportController.airport_get().wind;
+        const wind = AirportController.airport_get().wind;
         const size = 80;
         const size2 = size / 2;
         const padding = 16;
