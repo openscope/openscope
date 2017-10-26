@@ -1,3 +1,4 @@
+import _clamp from 'lodash/clamp';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
@@ -112,7 +113,7 @@ export default class AirportWindModel {
             nextAngle = initialAngle - (360 * factorsOfThreeSixty);
         }
 
-        this.speed = _round(speed);
+        this.speed = _clamp(_round(speed), 0, 25);
         this.angle = _round(nextAngle);
     }
 
