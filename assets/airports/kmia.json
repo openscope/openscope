@@ -82,6 +82,7 @@
         "DHP"  : [25.800000000, -80.349000000],
         "DIAZZ": [24.854833333, -75.369000000],
         "DICKI": [25.554833333, -80.174500000],
+        "DRIVM": [25.679166667, -80.461833333],
         "DRUUM": [25.828000000, -80.244000000],
         "DVALL": [25.514666667, -80.999000000],
         "EADEN": [24.526166667, -81.858333333],
@@ -290,7 +291,7 @@
                 "27": [],
                 "30": ["_RWY12BSTER081"]
             },
-            "body": ["BSTER", "DEEEP"],
+            "body": ["BSTER", "DRIVM", "DEEEP"],
             "exitPoints": {
                 "EONNS": ["SHULA", "EONNS"],
                 "MNATE": ["FENIR", "MNATE"],
@@ -486,7 +487,6 @@
             "icao": "POTTR6",
             "name": "Potter Six",
             "rwy": {
-                "8L": [],
                 "8R": [],
                 "9": [],
                 "12": []
@@ -495,7 +495,7 @@
             "exitPoints": {
                 "BEECH": ["FLL", "BEECH"],
                 "HEDLY": ["DRUUM", "HEDLY"],
-                "PADUS": ["VKZ", "PADUS"],
+                "PADUS": ["VKZ", "JANUS", "PADUS"],
                 "WINCO": ["DHP", "WINCO"]
             },
             "draw": [
@@ -533,7 +533,6 @@
             "icao": "SOUBY5",
             "name": "Sowbie Five",
             "rwy": {
-                "8L": [],
                 "8R": [],
                 "9": [],
                 "12": []
@@ -651,7 +650,7 @@
                 "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU"],
                 "MTH": ["MTH", "GUSHY"]
             },
-            "body": ["DVALL", "CURSO", "MNNDY", "JODPO"],
+            "body": ["DVALL", "CURSO", "MNNDY", "JODPO", "#272"],
             "rwy": {
                 "8L": ["BEETR", "#053"],
                 "8R": ["BEETR", "#053"],
@@ -778,7 +777,7 @@
                 "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", "PBI", "BTOGA"],
                 "ZFP": ["ZFP", "STAPL", "MILSY", "BOYUR"]
             },
-            "body": ["HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE"],
+            "body": ["HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE", "#271"],
             "rwy": {
                 "8L": [],
                 "8R": [],
@@ -804,7 +803,7 @@
                 "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI"],
                 "TAY": ["TAY", "HITTR", "TUCKE", "JUULI"]
             },
-            "body": ["BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT"],
+            "body": ["BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT", "#126"],
             "rwy": {
                 "8L": [],
                 "8R": [],
