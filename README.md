@@ -54,7 +54,7 @@ Don't know Javascript?  That's cool, we're always looking for beta testers and/o
 
 ## License
 
-[MIT License](license.md)
+[MIT License](LICENSE.md)
 
 
 ## Privacy Disclosures
