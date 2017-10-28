@@ -481,38 +481,19 @@ export default class CanvasController {
     }
 
     /**
-     * Flag used to determine if we should draw a new frame.
-     *
      * @for CanvasController
-     * @method canvas_should_draw
-     * @return {boolean}
-     */
-    canvas_should_draw() {
-        // FIXME: move this to a simple method in TimeKeeper
-        const { currentTime, timewarp } = TimeKeeper;
-        const elapsed = currentTime - this._lastFrameTimestamp;
-
-        if (elapsed > (1 / timewarp)) {
-            this._lastFrameTimestamp = currentTime;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @for CanvasController
-     * @method canvas_draw_runway
+     * @method _drawSingleRunway
      * @param cc {HTMLCanvasContext}
      * @param runwayModel {RunwayModel}
-     * @param mode {boolean}  flag to determine if the runway extended lines should be drawn
+     * @param mode {boolean}               flag to switch between drawing a runway or just a runway centerline
+     * @private
      */
-    canvas_draw_runway(cc, runwayModel, mode) {
-        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2));
+    _drawSingleRunway(cc, runwayModel, mode) {
+        const runwayLength = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) * -2;
         const angle = runwayModel.angle;
         const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
 
+        cc.save();
         cc.translate(runwayPosition.x, runwayPosition.y);
         cc.rotate(angle);
 
@@ -523,7 +504,7 @@ export default class CanvasController {
 
             cc.beginPath();
             cc.moveTo(0, 0);
-            cc.lineTo(0, -2 * length2);
+            cc.lineTo(0, runwayLength);
             cc.stroke();
         } else {
             // extended centerlines
@@ -539,19 +520,22 @@ export default class CanvasController {
             cc.lineTo(0, CanvasStageModel.translateKilometersToPixels(runwayModel.ils.loc_maxDist));
             cc.stroke();
         }
+
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_runway_label
+     * @method _drawRunwayLabel
      * @param cc {HTMLCanvasContext}
      * @param runway {RunwayModel}
+     * @private
      */
-    canvas_draw_runway_label(cc, runwayModel) {
+    _drawRunwayLabel(cc, runwayModel) {
         const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) + 0.5;
         const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
         const { angle } = runwayModel;
-        const text_height = 14;
+        const textHeight = 14;
 
         cc.save();
         cc.translate(runwayPosition.x, runwayPosition.y);
@@ -559,10 +543,7 @@ export default class CanvasController {
         cc.textAlign = 'center';
         cc.textBaseline = 'middle';
         cc.save();
-        cc.translate(
-            0,
-            length2 + text_height
-        );
+        cc.translate(0, length2 + textHeight);
         cc.rotate(-angle);
         cc.fillText(runwayModel.name, 0, 0);
         cc.restore();
@@ -592,20 +573,13 @@ export default class CanvasController {
         // TODO: we should try to consolidate this so we aren't looping over the runway collection multiple times
         // Extended Centerlines
         for (let i = 0; i < airportModel.runways.length; i++) {
-            cc.save();
-            this.canvas_draw_runway(cc, airportModel.runways[i][0], true);
-            cc.restore();
-
-            cc.save();
-            this.canvas_draw_runway(cc, airportModel.runways[i][1], true);
-            cc.restore();
+            this._drawSingleRunway(cc, airportModel.runways[i][0], true);
+            this._drawSingleRunway(cc, airportModel.runways[i][1], true);
         }
 
         // Runways
         for (let i = 0; i < airportModel.runways.length; i++) {
-            cc.save();
-            this.canvas_draw_runway(cc, airportModel.runways[i][0], false);
-            cc.restore();
+            this._drawSingleRunway(cc, airportModel.runways[i][0], false);
         }
 
         cc.restore();
@@ -629,8 +603,8 @@ export default class CanvasController {
         cc.fillStyle = this.theme.SCOPE.RUNWAY_LABELS;
 
         for (let i = 0; i < airportModel.runways.length; i++) {
-            this.canvas_draw_runway_label(cc, airportModel.runways[i][0]);
-            this.canvas_draw_runway_label(cc, airportModel.runways[i][1]);
+            this._drawRunwayLabel(cc, airportModel.runways[i][0]);
+            this._drawRunwayLabel(cc, airportModel.runways[i][1]);
         }
 
         cc.restore();
@@ -820,11 +794,12 @@ export default class CanvasController {
      * Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
      *
      * @for CanvasController
-     * @method canvas_draw_separation_indicator
+     * @method _drawSeparationIndicator
      * @param cc {HTMLCanvasContext}
-     * @param aircraft {AircraftModel}
+     * @param aircraftModel {AircraftModel}
+     * @private
      */
-    canvas_draw_separation_indicator(cc, aircraftModel) {
+    _drawSeparationIndicator(cc, aircraftModel) {
         if (!GameController.shouldUseTrailingSeparationIndicator(aircraftModel)) {
             return;
         }
@@ -849,28 +824,28 @@ export default class CanvasController {
      * conflict with another aircraft
      *
      * @for CanvasController
-     * @method canvas_draw_aircraft_rings
+     * @method _drawAircraftRings
      * @param cc {HTMLCanvasContext}
-     * @param aircraft
+     * @param aircraftModel {AircraftModel}
      */
-    canvas_draw_aircraft_rings(cc, aircraft) {
-        const aircraftAlerts = aircraft.hasAlerts();
+    _drawAircraftRings(cc, aircraftModel) {
+        const aircraftAlerts = aircraftModel.hasAlerts();
 
         cc.save();
 
+        let strokeStyle = cc.fillStyle;
+        // TODO: this block should be simplified
         if (aircraftAlerts[0]) {
             if (aircraftAlerts[1]) {
                 // red violation circle
-                cc.strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
+                strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
             } else {
                 // white warning circle
-                cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
+                strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
             }
-        // TODO: what would the else be in this case?
-        } else {
-            cc.strokeStyle = cc.fillStyle;
         }
 
+        cc.strokeStyle = strokeStyle;
         cc.beginPath();
         cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(3)), 0, tau());  // 3nm RADIUS
         cc.stroke();
@@ -944,7 +919,7 @@ export default class CanvasController {
         if (aircraftModel.isEstablishedOnCourse()) {
             cc.save();
 
-            this.canvas_draw_separation_indicator(cc, aircraftModel);
+            this._drawSeparationIndicator(cc, aircraftModel);
 
             cc.restore();
         }
@@ -952,9 +927,9 @@ export default class CanvasController {
         // Draw the future path
         // breaking project convention here with an if/else simply for readability
         if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') {
-            this.canvas_draw_future_track(cc, aircraftModel);
+            this._drawAircraftFuturePath(cc, aircraftModel);
         } else if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' && aircraftModel.warning || match) {
-            this.canvas_draw_future_track(cc, aircraftModel);
+            this._drawAircraftFuturePath(cc, aircraftModel);
         }
 
         const alerts = aircraftModel.hasAlerts();
@@ -965,7 +940,7 @@ export default class CanvasController {
         this.canvas_draw_aircraft_vector_lines(cc, aircraftModel);
 
         if (aircraftModel.notice || alerts[0]) {
-            this.canvas_draw_aircraft_rings(cc, aircraftModel);
+            this._drawAircraftRings(cc, aircraftModel);
         }
 
         let radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_KM;
@@ -1057,11 +1032,12 @@ export default class CanvasController {
      * Run physics updates into the future, draw future track
      *
      * @for CanvasController
-     * @method canvas_draw_future_track
+     * @method _drawAircraftFuturePath
      * @param cc {HTMLCanvasContext}
-     * @param aircraft {AircraftModel
+     * @param aircraft {AircraftModel}
+     * @private
      */
-    canvas_draw_future_track(cc, aircraft) {
+    _drawAircraftFuturePath(cc, aircraft) {
         if (aircraft.isTaxiing() || TimeKeeper.simulationRate !== 1) {
             return;
         }
@@ -1398,11 +1374,7 @@ export default class CanvasController {
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
 
         for (let i = 0; i < radarTargetModels.length; i++) {
-            cc.save();
-
             this._drawSingleAircraftDataBlock(cc, radarTargetModels[i]);
-
-            cc.restore();
         }
 
         cc.restore();
@@ -1534,8 +1506,8 @@ export default class CanvasController {
         //     cc.restore();
         // }
 
-        this.canvas_draw_airspace_border(cc);
-        this.canvas_draw_range_rings(cc);
+        this._drawAirspaceBorder(cc);
+        this._drawRangeRings(cc);
 
         cc.restore();
     }
@@ -1544,10 +1516,11 @@ export default class CanvasController {
      * Draw polygonal airspace border
      *
      * @for CanvasController
-     * @method canvas_draw_airspace_border
+     * @method _drawAirspaceBorder
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_airspace_border(cc) {
+    _drawAirspaceBorder(cc) {
         const airport = AirportController.airport_get();
 
         cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
@@ -1558,7 +1531,7 @@ export default class CanvasController {
                 return [v.relativePosition];
             });
 
-            this.canvas_draw_poly(cc, poly);
+            this._drawPoly(cc, poly);
             cc.clip();
         }
     }
@@ -1622,31 +1595,33 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method canvas_draw_range_rings
+     * @method _drawRangeRings
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_range_rings(cc) {
+    _drawRangeRings(cc) {
         const airportModel = AirportController.airport_get();
-        // convert input param from nm to km
         const rangeRingRadius = km(airportModel.rr_radius_nm);
+
+        cc.linewidth = 1;
+        cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
 
         // Fill up airportModel's ctr_radius with rings of the specified radius
         for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
             cc.beginPath();
-            cc.linewidth = 1;
             cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
-            cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
             cc.stroke();
         }
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_poly
+     * @method _drawPoly
      * @param cc {HTMLCanvasContext}
      * @param poly {array<array<number, number>>}
+     * @private
      */
-    canvas_draw_poly(cc, poly) {
+    _drawPoly(cc, poly) {
         cc.beginPath();
 
         for (let i = 0; i < poly.length; i++) {
@@ -1663,7 +1638,13 @@ export default class CanvasController {
         cc.fill();
     }
 
-    drawTerrainAtElevation(cc, terrainLevel, elevation) {
+    /**
+     * @param cc {HTMLCanvasContext}
+     * @param terrainLevel {object}
+     * @param elevation {number}
+     * @private
+     */
+    _drawTerrainAtElevation(cc, terrainLevel, elevation) {
         // Here we use HSL colors instead of RGB to enable easier bulk adjustments
         // to saturation/lightness of multiple elevation levels without the need
         // to use web-based color tools
@@ -1706,11 +1687,12 @@ export default class CanvasController {
      * Draw the terrain legend in the upper right hand corner of the scope view
      *
      * @for CanvasController
-     * @method drawTerrainElevationLegend
+     * @method _drawTerrainElevationLegend
      * @param  cc  {HTMLCanvasContext}
      * @param max_elevation {number}
+     * @private
      */
-    drawTerrainElevationLegend(cc, max_elevation) {
+    _drawTerrainElevationLegend(cc, max_elevation) {
         cc.save();
         cc.font = BASE_CANVAS_FONT;
         cc.lineWidth = 1;
@@ -1805,7 +1787,7 @@ export default class CanvasController {
 
             max_elevation = Math.max(max_elevation, elevation);
 
-            this.drawTerrainAtElevation(cc, terrainLevel, elevation);
+            this._drawTerrainAtElevation(cc, terrainLevel, elevation);
         }
 
         cc.restore();
@@ -1814,7 +1796,7 @@ export default class CanvasController {
             return;
         }
 
-        this.drawTerrainElevationLegend(cc, max_elevation);
+        this._drawTerrainElevationLegend(cc, max_elevation);
 
         cc.restore();
     }
@@ -1846,7 +1828,7 @@ export default class CanvasController {
             const area = airportModel.restricted_areas[i];
             cc.fillStyle = 'transparent';
 
-            this.canvas_draw_poly(cc, area.coordinates);
+            this._drawPoly(cc, area.coordinates);
 
             // TODO: Is the restricted airspace EVER filled???
             cc.fillStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
@@ -1911,29 +1893,6 @@ export default class CanvasController {
             );
         }
 
-        cc.stroke();
-        cc.restore();
-    }
-
-    // TODO: is this even in use?
-    /**
-     * Draws crosshairs that point to the currently translated location
-     *
-     * @for CanvasController
-     * @method canvas_draw_crosshairs
-     * @param cc {HTMLCanvasContext}
-     */
-    canvas_draw_crosshairs(cc) {
-        cc.save();
-        cc.strokeStyle = this.theme.SCOPE.CROSSHAIR_STROKE;
-        cc.lineWidth = 3;
-        cc.beginPath();
-        cc.moveTo(-10, 0);
-        cc.lineTo(10, 0);
-        cc.stroke();
-        cc.beginPath();
-        cc.moveTo(0, -10);
-        cc.lineTo(0, 10);
         cc.stroke();
         cc.restore();
     }
