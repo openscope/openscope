@@ -1,0 +1,13 @@
+{
+    "icao": "dae",
+    "name": "DHL Aero Expreso",
+    "callsign": {
+        "name": "Yellow",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B752", 6]
+        ]
+    }
+}

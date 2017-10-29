@@ -1,0 +1,14 @@
+{
+    "icao": "swq",
+    "name": "Swift Air",
+    "callsign": {
+        "name": "Swift Flight",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733", 3],
+            ["B734", 10]
+        ]
+    }
+}
