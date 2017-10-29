@@ -4,6 +4,8 @@
 - Add Tampa Intl. (KTPA) [#647](https://github.com/openscope/openscope/issues/647)
 - Add Theodore Francis Green Memorial State Airport (Providence, US) [#107](https://github.com/openscope/openscope/issues/107)
 - New Airport: KDTW (Detroit Metropolitan Wayne County Airport, MI) [#559](https://github.com/openscope/openscope/issues/559)
+- Splits canvas into STATIC and DYNAMIC canvases, only drawing updates when there are updates to draw. [#236](https://github.com/openscope/openscope/issues/236)
+    - Moves CanvasController arrow functions to bound class methods
 
 
 

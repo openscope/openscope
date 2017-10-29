@@ -595,6 +595,7 @@ export default class CanvasController {
         const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
         const widthLessOffset = CanvasStageModel.width - offset;
 
+        cc.font = '10px monoOne, monospace';
         cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
         cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
         cc.translate(0.5, 0.5);
@@ -1219,6 +1220,7 @@ export default class CanvasController {
 
         cc.moveTo(...leaderStart);
         cc.lineTo(...leaderEnd);
+        cc.strokeStyle = white;
         cc.stroke();
 
         const blockCenterOffset = {
