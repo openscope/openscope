@@ -211,9 +211,9 @@ export default class AppController {
      * @for AppController
      * @method resize
      */
-    resize = () => {
+    resize() {
         this.canvasController.canvas_resize();
-    };
+    }
 
     /**
      * @for AppController
@@ -265,7 +265,7 @@ export default class AppController {
      * @method onAirportChange
      * @param nextAirportJson {object}  response or cached object from airport json
      */
-    onAirportChange = (nextAirportJson) => {
+    onAirportChange(nextAirportJson) {
         if (!AirportController.current) {
             // if `current` is null, then this is the initial load and we dont need to reset andything
             return;
@@ -288,7 +288,7 @@ export default class AppController {
         );
 
         this.updateViewControls();
-    };
+    }
 
     // TODO: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
     // due to jQuery and because this does not belong in the `AirportModel`

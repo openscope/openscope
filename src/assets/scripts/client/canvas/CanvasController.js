@@ -8,7 +8,6 @@ import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
-import { distance2d } from '../math/distance';
 import {
     sin,
     cos,
@@ -31,7 +30,10 @@ import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
-import { BASE_CANVAS_FONT } from '../constants/canvasConstants';
+import {
+    BASE_CANVAS_FONT,
+    CANVAS_NAME
+} from '../constants/canvasConstants';
 import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
@@ -39,21 +41,6 @@ import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
-import { LOG } from '../constants/logLevel';
-
-// Temporary const declaration here to attach to the window AND use as internal property
-const canvas = {};
-
-/**
- * Enumeration of canvas names
- *
- * @property CANVAS_NAME
- * @final
- */
-const CANVAS_NAME = {
-    STATIC: 'static',
-    DYNAMIC: 'dynamic'
-};
 
 /**
  * @class CanvasController
@@ -113,9 +100,6 @@ export default class CanvasController {
          */
         this._eventBus = EventBus;
 
-        prop.canvas = canvas;
-        this.canvas = canvas;
-
         /**
          * @property _context
          * @type {object<string, HTMLCanvasContext>}
@@ -132,15 +116,6 @@ export default class CanvasController {
          * @private
          */
         this._shouldResize = true;
-
-        /**
-         * timestamp of the previous frame
-         *
-         * @property _lastFrameTimestamp
-         * @type {number}
-         * @private
-         */
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
 
         /**
          * Flag used to determine if the Aircraft canvas should be updated
@@ -235,7 +210,26 @@ export default class CanvasController {
         return this;
     }
 
+    /**
+     * @for CanvasController
+     * @method _setupHandlers
+     * @chainable
+     * @private
+     */
     _setupHandlers() {
+        this._onCenterPointInViewHandler = this._onCenterPointInView.bind(this);
+        this._onChangeViewportPanHandler = this._onChangeViewportPan.bind(this);
+        this._onChangeViewportZoomHandler = this._onChangeViewportZoom.bind(this);
+        this._onMarkDirtyCanvasHandler = this._onMarkDirtyCanvas.bind(this);
+        this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
+        this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
+        this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
+        this._onAirportChangeHandler = this._onAirportChange.bind(this);
+        this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
+        this._onResizeHandler = this.canvas_resize.bind(this);
+
+        this._setThemeHandler = this._setTheme.bind(this);
+
         return this;
     }
 
@@ -245,17 +239,18 @@ export default class CanvasController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInView);
-        this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPan);
-        this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoom);
-        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvas);
-        this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabels);
-        this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
-        this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
-        this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
-        this._eventBus.on(EVENT.SET_THEME, this._setTheme);
+        this._eventBus.on(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, this._onCenterPointInViewHandler);
+        this._eventBus.on(EVENT.PAN_VIEWPORT, this._onChangeViewportPanHandler);
+        this._eventBus.on(EVENT.ZOOM_VIEWPORT, this._onChangeViewportZoomHandler);
+        this._eventBus.on(EVENT.MARK_CANVAS_DIRTY, this._onMarkDirtyCanvasHandler);
+        this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
+        this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
+        this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
+        this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
+        this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
+        window.addEventListener('resize', this._onResizeHandler);
 
-        // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
 
         return this;
@@ -274,7 +269,9 @@ export default class CanvasController {
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
         this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+        window.removeEventListener('resize', this._onResizeHandler);
 
         return this.destroy();
     }
@@ -286,11 +283,8 @@ export default class CanvasController {
     destroy() {
         this.$window = null;
         this.$element = null;
-        this.canvas = {};
         this._context = {};
-        // resize canvas to fit window?
         this._shouldResize = true;
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
         this._shouldDrawFixLabels = false;
@@ -310,23 +304,8 @@ export default class CanvasController {
      * @method canvas_init
      */
     canvas_init() {
-        this.canvas_add(CANVAS_NAME.STATIC);
-        this.canvas_add(CANVAS_NAME.DYNAMIC);
-    }
-
-    /**
-     * Add a `canvas` element to the DOM
-     *
-     * @for CanvasController
-     * @method canvas_add
-     * @param name {CANVAS_NAME|string}
-     */
-    canvas_add(name) {
-        const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
-
-        this.$element.append(canvasTemplate);
-
-        this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
+        this._canvas_add(CANVAS_NAME.STATIC);
+        this._canvas_add(CANVAS_NAME.DYNAMIC);
     }
 
     /**
@@ -336,19 +315,16 @@ export default class CanvasController {
      * @method
      */
     canvas_complete() {
+        // TODO: not sure what the rationale is here. this should be removed/reworked if possible
         setTimeout(() => {
             this._markDeepRender();
         }, 500);
-
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
     }
 
     /**
-     * A `resize` event was captured by the `AppController`.
+     * A `resize` event was captured by the `AppController`
      *
-     * Here we re-calculate the canvas dimensions.
-     *
-     * Called by `AppController.resize()`
+     * Here we re-calculate the canvas dimensions
      *
      * @for CanvasController
      * @method canvas_resize
@@ -366,17 +342,83 @@ export default class CanvasController {
             context.canvas.height = CanvasStageModel.height;
             context.canvas.width = CanvasStageModel.width;
 
-            this.canvas_adjust_hidpi(canvasName);
+            this._adjustHidpi(canvasName);
         }
 
         this._markDeepRender();
     }
 
     /**
+     * Main update method called by `AppController.update_post()` within the game loop
+     *
+     * All methods called from this function should accept a canvas context argument.
+     * The rationale here is that each method sets up and tears down any origin or state
+     * transformations themselves. This way the methods can be organized or moved any
+     * way we choose without having to worry about what the current state of the `context`
+     *
+     * It is important for code in this method, or called by this method, to be as
+     * performant as possible so as not to degrade performance.
+     *
      * @for CanvasController
-     * @method canvas_adjust_hidpi
+     * @method canvas_update_post
      */
-    canvas_adjust_hidpi(canvasName) {
+    canvas_update_post() {
+        if (!this._shouldShallowRender && !TimeKeeper.shouldUpdate()) {
+            return;
+        }
+
+        if (this._shouldDeepRender) {
+            // we should only ever enter this block as a result of a change in the view
+            // or an airport change. these methods involve much more complicated drawing
+            // and can degrade performance if called too frequently.
+            const staticCanvasCtx = this._getCanvasContextByName(CANVAS_NAME.STATIC);
+
+            this._clearCanvasContext(staticCanvasCtx);
+            this._drawVideoMap(staticCanvasCtx);
+            this._drawTerrain(staticCanvasCtx);
+            this._drawRestrictedAirspace(staticCanvasCtx);
+            this._drawRunways(staticCanvasCtx);
+            this._drawAirportFixesAndLabels(staticCanvasCtx);
+            this._drawSids(staticCanvasCtx);
+            this._drawAirspaceAndRangeRings(staticCanvasCtx);
+            this._drawWindVane(staticCanvasCtx);
+            this._drawRunwayLabels(staticCanvasCtx);
+            this._drawCurrentScale(staticCanvasCtx);
+            this._drawSelectedAircraftCompass(staticCanvasCtx);
+        }
+
+        const dynamicCanvasCtx = this._getCanvasContextByName(CANVAS_NAME.DYNAMIC);
+
+        this._clearCanvasContext(dynamicCanvasCtx);
+        this._drawRadarTargetList(dynamicCanvasCtx);
+        this._drawAircraftDataBlocks(dynamicCanvasCtx);
+
+        this._shouldShallowRender = false;
+        this._shouldDeepRender = false;
+    }
+
+    /**
+     * Add a `canvas` element to the DOM
+     *
+     * @for CanvasController
+     * @method _canvas_add
+     * @param name {CANVAS_NAME|string}
+     * @private
+     */
+    _canvas_add(name) {
+        const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
+
+        this.$element.append(canvasTemplate);
+
+        this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
+    }
+
+    /**
+     * @for CanvasController
+     * @method _adjustHidpi
+     * @private
+     */
+    _adjustHidpi(canvasName) {
         const devicePixelRatio = window.devicePixelRatio || 1;
         const canvasContext = this._context[canvasName];
 
@@ -395,182 +437,31 @@ export default class CanvasController {
     }
 
     /**
-     * Main update method called by `AppController.update_post()` within the game loop
-     *
-     * It is important for code in this method, or called by this method, to be as
-     * performant as possible so as not to degrade the animation loop.
+     * Clear the current canvas context
      *
      * @for CanvasController
-     * @method canvas_update_post
-     */
-    canvas_update_post() {
-        const elapsed = TimeKeeper.accumulatedDeltaTime - AirportController.airport_get().start;
-        const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const shouldUpdate = !GameController.game_paused() && TimeKeeper.shouldUpdate();
-        const fading = elapsed < 1;
-
-        // TODO: to be implemented in the future as, potentially, another method `.deepRenderUpdate()` or something
-        // if (this._shouldDeepRender) {
-        //     this is where we update static drawings like terrain, airspace, video map, etc
-        //     updates that happen here should be infrequent because they are considered expensive
-        // }
-
-        if (this._shouldShallowRender || shouldUpdate || fading) {
-            const cc = this.canvas_get(CANVAS_NAME.STATIC);
-
-            cc.font = '11px monoOne, monospace';
-
-            // TODO: what is the rationale here? with two ors and a true, this block will always be exectuted.
-            cc.save();
-
-            this.canvas_clear(cc);
-
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-            cc.save();
-            cc.globalAlpha = alpha;
-
-            this.canvas_draw_videoMap(cc);
-            this.canvas_draw_terrain(cc);
-            this.canvas_draw_restricted(cc);
-            this.canvas_draw_runways(cc);
-
-            cc.restore();
-            cc.save();
-            cc.globalAlpha = alpha;
-
-            this.canvas_draw_fixes(cc);
-            this.canvas_draw_sids(cc);
-
-            cc.restore();
-            cc.restore();
-
-            // Controlled traffic region - (CTR)
-            cc.save();
-            // translate to airport center
-            // FIXME: create method in CanvasStageModel to returns an array with these values
-            cc.translate(
-                round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
-                round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
-            );
-
-            this.canvas_draw_airspace_border(cc);
-            this.canvas_draw_range_rings(cc);
-            cc.restore();
-
-            // Special markings for ENGM point merge
-            if (AirportController.airport_get().icao === 'ENGM') {
-                cc.save();
-                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-                this.canvas_draw_engm_range_rings(cc);
-                cc.restore();
-            }
-
-            // Compass
-            cc.font = 'bold 10px monoOne, monospace';
-            cc.save();
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-            this.canvas_draw_compass(cc);
-            cc.restore();
-
-            cc.font = BASE_CANVAS_FONT;
-
-            if (this.canvas_should_draw() || true) {
-                cc.save();
-                cc.globalAlpha = alpha;
-                cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-                this.canvas_draw_radar_targets(cc);
-
-                cc.restore();
-            }
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-            this.canvas_draw_data_blocks(cc);
-
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-            this.canvas_draw_runway_labels(cc);
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            this.canvas_draw_scale(cc);
-            cc.restore();
-
-            cc.save();
-            cc.globalAlpha = alpha;
-            this.canvas_draw_directions(cc);
-            cc.restore();
-
-            this._shouldShallowRender = false;
-            this._shouldDeepRender = false;
-        }
-    }
-
-    /**
-     * Find a canvas context stored within `#_context`
-     *
-     * @for CanvasController
-     * @method canvas_get
-     * @param name {string}
-     */
-    canvas_get(name) {
-        return this._context[name];
-    }
-
-    /**
-     * Clear the current canvas
-     *
-     * @for CanvasController
-     * @method canvas_clear
+     * @method _clearCanvasContext
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_clear(cc) {
+    _clearCanvasContext(cc) {
         cc.clearRect(0, 0, CanvasStageModel.width, CanvasStageModel.height);
     }
 
-    // TODO: logic should be updated here to exclusively use `TimeKeeper`
-    /**
-     * Flag used to determine if we should draw a new frame.
-     *
-     * @for CanvasController
-     * @method canvas_should_draw
-     * @return {boolean}
-     */
-    canvas_should_draw() {
-        // FIXME: move this to a simple method in TimeKeeper
-        const { currentTime, timewarp } = TimeKeeper;
-        const elapsed = currentTime - this._lastFrameTimestamp;
-
-        if (elapsed > (1 / timewarp)) {
-            this._lastFrameTimestamp = currentTime;
-
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * @for CanvasController
-     * @method canvas_draw_runway
+     * @method _drawSingleRunway
      * @param cc {HTMLCanvasContext}
      * @param runwayModel {RunwayModel}
-     * @param mode {boolean}  flag to determine if the runway extended lines should be drawn
+     * @param mode {boolean}               flag to switch between drawing a runway or just a runway centerline
+     * @private
      */
-    canvas_draw_runway(cc, runwayModel, mode) {
-        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2));
+    _drawSingleRunway(cc, runwayModel, mode) {
+        const runwayLength = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) * -2;
         const angle = runwayModel.angle;
         const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
 
+        cc.save();
         cc.translate(runwayPosition.x, runwayPosition.y);
         cc.rotate(angle);
 
@@ -581,7 +472,7 @@ export default class CanvasController {
 
             cc.beginPath();
             cc.moveTo(0, 0);
-            cc.lineTo(0, -2 * length2);
+            cc.lineTo(0, runwayLength);
             cc.stroke();
         } else {
             // extended centerlines
@@ -597,208 +488,212 @@ export default class CanvasController {
             cc.lineTo(0, CanvasStageModel.translateKilometersToPixels(runwayModel.ils.loc_maxDist));
             cc.stroke();
         }
-    }
 
-    /**
-     * @for CanvasController
-     * @method canvas_draw_runway_label
-     * @param cc {HTMLCanvasContext}
-     * @param runway {RunwayModel}
-     */
-    canvas_draw_runway_label(cc, runwayModel) {
-        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) + 0.5;
-        const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
-        const { angle } = runwayModel;
-        const text_height = 14;
-
-
-        cc.translate(runwayPosition.x, runwayPosition.y);
-        cc.rotate(angle);
-
-        cc.textAlign = 'center';
-        cc.textBaseline = 'middle';
-
-        cc.save();
-        cc.translate(
-            0,
-            length2 + text_height
-        );
-        cc.rotate(-angle);
-        cc.fillText(runwayModel.name, 0, 0);
         cc.restore();
     }
 
     /**
-     * * @for CanvasController
-     * @method canvas_draw_runways
+     * @for CanvasController
+     * @method _drawRunwayLabel
      * @param cc {HTMLCanvasContext}
+     * @param runway {RunwayModel}
+     * @private
      */
-    canvas_draw_runways(cc) {
-        if (!this._shouldDrawFixLabels) {
-            return;
-        }
+    _drawRunwayLabel(cc, runwayModel) {
+        const length2 = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) + 0.5;
+        const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
+        const { angle } = runwayModel;
+        const textHeight = 14;
 
-        cc.strokeStyle = this.theme.SCOPE.RUNWAY;
-        cc.fillStyle = this.theme.SCOPE.RUNWAY;
-        cc.lineWidth = 4;
-
-        const airport = AirportController.airport_get();
-
-        // TODO: we should try to consolidate this so we aren't looping over the runway collection multiple times
-        // Extended Centerlines
-        for (let i = 0; i < airport.runways.length; i++) {
-            cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][0], true);
-            cc.restore();
-
-            cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][1], true);
-            cc.restore();
-        }
-
-        // Runways
-        for (let i = 0; i < airport.runways.length; i++) {
-            cc.save();
-            this.canvas_draw_runway(cc, airport.runways[i][0], false);
-            cc.restore();
-        }
+        cc.save();
+        cc.translate(runwayPosition.x, runwayPosition.y);
+        cc.rotate(angle);
+        cc.textAlign = 'center';
+        cc.textBaseline = 'middle';
+        cc.save();
+        cc.translate(0, length2 + textHeight);
+        cc.rotate(-angle);
+        cc.fillText(runwayModel.name, 0, 0);
+        cc.restore();
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_runway_labels
+     * @method _drawRunways
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_runway_labels(cc) {
+    _drawRunways(cc) {
         if (!this._shouldDrawFixLabels) {
             return;
         }
 
-        const airport = AirportController.airport_get();
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+        cc.font = '11px monoOne, monospace';
+        cc.strokeStyle = this.theme.SCOPE.RUNWAY;
+        cc.fillStyle = this.theme.SCOPE.RUNWAY;
+        cc.lineWidth = 4;
 
+        const airportModel = AirportController.airport_get();
+
+        // TODO: we should try to consolidate this so we aren't looping over the runway collection multiple times
+        // Extended Centerlines
+        for (let i = 0; i < airportModel.runways.length; i++) {
+            this._drawSingleRunway(cc, airportModel.runways[i][0], true);
+            this._drawSingleRunway(cc, airportModel.runways[i][1], true);
+        }
+
+        // Runways
+        for (let i = 0; i < airportModel.runways.length; i++) {
+            this._drawSingleRunway(cc, airportModel.runways[i][0], false);
+        }
+
+        cc.restore();
+    }
+
+    /**
+     * @for CanvasController
+     * @method _drawRunwayLabels
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawRunwayLabels(cc) {
+        if (!this._shouldDrawFixLabels) {
+            return;
+        }
+
+        const airportModel = AirportController.airport_get();
+
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.fillStyle = this.theme.SCOPE.RUNWAY_LABELS;
 
-        for (let i = 0; i < airport.runways.length; i++) {
-            cc.save();
-
-            this.canvas_draw_runway_label(cc, airport.runways[i][0]);
-
-            cc.restore();
-            cc.save();
-
-            this.canvas_draw_runway_label(cc, airport.runways[i][1]);
-
-            cc.restore();
+        for (let i = 0; i < airportModel.runways.length; i++) {
+            this._drawRunwayLabel(cc, airportModel.runways[i][0]);
+            this._drawRunwayLabel(cc, airportModel.runways[i][1]);
         }
+
+        cc.restore();
     }
 
     /**
      * Draw scale in the top right corner of the scope
      *
      * @for CanvasController
-     * @method canvas_draw_scale
+     * @method _drawCurrentScale
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_scale(cc) {
-        const offset = 10;
-        const height = 5;
-        const length = round(1 / CanvasStageModel._scale * 50);
-        const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
-        const widthLessOffset = CanvasStageModel.width - offset;
+    _drawCurrentScale(cc) {
+        cc.save();
 
+        const offsetX = 35;
+        const offsetY = 10;
+        const height = 5;
+        const length = round(1 / CanvasStageModel.scale * 50);
+        const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
+        const widthLessOffset = CanvasStageModel.width - offsetX;
+
+        cc.font = '10px monoOne, monospace';
         cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
         cc.strokeStyle = this.theme.SCOPE.TOP_ROW_TEXT;
-
         cc.translate(0.5, 0.5);
-
         cc.lineWidth = 1;
         cc.textAlign = 'center';
-
-        cc.moveTo(widthLessOffset, offset);
-        cc.lineTo(widthLessOffset, offset + height);
-        cc.lineTo(widthLessOffset - px_length, offset + height);
-        cc.lineTo(widthLessOffset - px_length, offset);
+        cc.moveTo(widthLessOffset, offsetY);
+        cc.lineTo(widthLessOffset, offsetY + height);
+        cc.lineTo(widthLessOffset - px_length, offsetY + height);
+        cc.lineTo(widthLessOffset - px_length, offsetY);
         cc.stroke();
         cc.translate(-0.5, -0.5);
-
         cc.fillText(
             `${length} km`,
             widthLessOffset - px_length * 0.5,
-            offset + height + 17
+            offsetY + height + 17
         );
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_fix
+     * @method _drawSingleFixAndLabel
      * @param cc {HTMLCanvasContext}
-     * @param name {string}     name of a fix
+     * @param fixName {string}              name of a fix
+     * @param fixPosition {array<number>}   x, y canvas position of fix
+     * @private
      */
-    canvas_draw_fix(cc, name) {
+    _drawSingleFixAndLabel(cc, fixModel) {
+        const fixPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixModel.relativePosition);
+
+        cc.save();
+        cc.translate(fixPosition.x, fixPosition.y);
         cc.fillStyle = this.theme.SCOPE.FIX_FILL;
         cc.globalCompositeOperation = 'source-over';
         cc.lineWidth = 1;
-
         cc.beginPath();
         cc.moveTo(0, -5);
         cc.lineTo(4, 3);
         cc.lineTo(-4, 3);
         cc.closePath();
         cc.fill();
-
         cc.fillStyle = this.theme.SCOPE.FIX_TEXT;
         cc.textAlign = 'center';
         cc.textBaseline = 'top';
-
-        cc.fillText(name, 0, 6);
+        cc.fillText(fixModel.name, 0, 6);
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_fixes
+     * @method _drawAirportFixesAndLabels
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_fixes(cc) {
+    _drawAirportFixesAndLabels(cc) {
         if (!this._shouldDrawFixLabels) {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
         for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
-            const fix = this._navigationLibrary.realFixes[i];
-            const fixPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fix.relativePosition);
+            const fixModel = this._navigationLibrary.realFixes[i];
 
-            cc.save();
-            cc.translate(fixPosition.x, fixPosition.y);
-
-            this.canvas_draw_fix(cc, fix.name);
-
-            cc.restore();
+            this._drawSingleFixAndLabel(cc, fixModel);
         }
+
+        cc.restore();
     }
 
     // TODO: break this method up into smaller chunks
     /**
      * @for CanvasController
-     * @method canvas_draw_sids
+     * @method _drawSids
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_sids(cc) {
+    _drawSids(cc) {
         if (!this._shouldDrawSidMap) {
             return;
         }
 
-        // Store the count of sid text drawn for a specific transition
         const textAtPoint = [];
         const { sidLines } = this._navigationLibrary;
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.SID;
         cc.fillStyle = this.theme.SCOPE.SID;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
+        // FIXME: simplify/rector these nested loops. can we prepare the result elsewhere and store it
+        // to be retrieved here? seems wasteful to calculate all this _every_ frame
         for (let i = 0; i < sidLines.length; i++) {
             const sid = sidLines[i];
             let shouldDrawProcedureName = true;
@@ -824,7 +719,7 @@ export default class CanvasController {
                     const fixPosition = this._navigationLibrary.getFixRelativePosition(fixName);
 
                     if (!fixPosition) {
-                        log(`Unable to draw line to '${fixList[k]}' because its position is not defined!`, LOG.WARNING);
+                        console.warning(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
                     }
 
                     fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
@@ -861,17 +756,20 @@ export default class CanvasController {
                 cc.fillText(sid.identifier, labelOffsetX, fixCanvasPosition.y);
             }
         }
+
+        cc.restore();
     }
 
     /**
      * Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
      *
      * @for CanvasController
-     * @method canvas_draw_separation_indicator
+     * @method _drawSeparationIndicator
      * @param cc {HTMLCanvasContext}
-     * @param aircraft {AircraftModel}
+     * @param aircraftModel {AircraftModel}
+     * @private
      */
-    canvas_draw_separation_indicator(cc, aircraftModel) {
+    _drawSeparationIndicator(cc, aircraftModel) {
         if (!GameController.shouldUseTrailingSeparationIndicator(aircraftModel)) {
             return;
         }
@@ -896,28 +794,28 @@ export default class CanvasController {
      * conflict with another aircraft
      *
      * @for CanvasController
-     * @method canvas_draw_aircraft_rings
+     * @method _drawAircraftRings
      * @param cc {HTMLCanvasContext}
-     * @param aircraft
+     * @param aircraftModel {AircraftModel}
      */
-    canvas_draw_aircraft_rings(cc, aircraft) {
-        const aircraftAlerts = aircraft.hasAlerts();
+    _drawAircraftRings(cc, aircraftModel) {
+        const aircraftAlerts = aircraftModel.hasAlerts();
 
         cc.save();
 
+        let strokeStyle = cc.fillStyle;
+        // TODO: this block should be simplified
         if (aircraftAlerts[0]) {
             if (aircraftAlerts[1]) {
                 // red violation circle
-                cc.strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
+                strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
             } else {
                 // white warning circle
-                cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
+                strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
             }
-        // TODO: what would the else be in this case?
-        } else {
-            cc.strokeStyle = cc.fillStyle;
         }
 
+        cc.strokeStyle = strokeStyle;
         cc.beginPath();
         cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(3)), 0, tau());  // 3nm RADIUS
         cc.stroke();
@@ -928,11 +826,12 @@ export default class CanvasController {
      * Draw the RADAR RETURN AND HISTORY DOTS ONLY of the specified radar target model
      *
      * @for CanvasController
-     * @method canvas_draw_radar_target
+     * @method _drawSingleRadarTarget
      * @param cc {HTMLCanvasContext}
      * @param radarTargetModel {RadarTargetModel}
+     * @private
      */
-    canvas_draw_radar_target(cc, radarTargetModel) {
+    _drawSingleRadarTarget(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
         const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
 
@@ -990,7 +889,7 @@ export default class CanvasController {
         if (aircraftModel.isEstablishedOnCourse()) {
             cc.save();
 
-            this.canvas_draw_separation_indicator(cc, aircraftModel);
+            this._drawSeparationIndicator(cc, aircraftModel);
 
             cc.restore();
         }
@@ -998,9 +897,9 @@ export default class CanvasController {
         // Draw the future path
         // breaking project convention here with an if/else simply for readability
         if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') {
-            this.canvas_draw_future_track(cc, aircraftModel);
+            this._drawAircraftFuturePath(cc, aircraftModel);
         } else if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' && aircraftModel.warning || match) {
-            this.canvas_draw_future_track(cc, aircraftModel);
+            this._drawAircraftFuturePath(cc, aircraftModel);
         }
 
         const alerts = aircraftModel.hasAlerts();
@@ -1008,10 +907,10 @@ export default class CanvasController {
 
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
-        this.canvas_draw_aircraft_vector_lines(cc, aircraftModel);
+        this._drawAircraftVectorLines(cc, aircraftModel);
 
         if (aircraftModel.notice || alerts[0]) {
-            this.canvas_draw_aircraft_rings(cc, aircraftModel);
+            this._drawAircraftRings(cc, aircraftModel);
         }
 
         let radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_KM;
@@ -1034,11 +933,12 @@ export default class CanvasController {
      * Note: These extend in front of aircraft a definable number of minutes
      *
      * @for CanvasController
-     * @method canvas_draw_aircraft_vector_lines
+     * @method _drawAircraftVectorLines
      * @param cc {HTMLCanvasContext}
      * @param aircraft {AircraftModel}
+     * @private
      */
-    canvas_draw_aircraft_vector_lines(cc, aircraft) {
+    _drawAircraftVectorLines(cc, aircraft) {
         if (aircraft.hit) {
             return;
         }
@@ -1103,11 +1003,12 @@ export default class CanvasController {
      * Run physics updates into the future, draw future track
      *
      * @for CanvasController
-     * @method canvas_draw_future_track
+     * @method _drawAircraftFuturePath
      * @param cc {HTMLCanvasContext}
-     * @param aircraft {AircraftModel
+     * @param aircraft {AircraftModel}
+     * @private
      */
-    canvas_draw_future_track(cc, aircraft) {
+    _drawAircraftFuturePath(cc, aircraft) {
         if (aircraft.isTaxiing() || TimeKeeper.simulationRate !== 1) {
             return;
         }
@@ -1187,20 +1088,27 @@ export default class CanvasController {
      * Draw the RADAR RETURN AND HISTORY DOTS ONLY of all radar target models
      *
      * @for CanvasController
-     * @method canvas_draw_radar_targets
+     * @method _drawRadarTargetList
      * @param cc {HTMLCanvasContext}
+     * @private
      */
 
-    canvas_draw_radar_targets(cc) {
+    _drawRadarTargetList(cc) {
+        cc.font = BASE_CANVAS_FONT;
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
         const radarTargetModels = this._scopeModel.radarTargetCollection.items;
 
         for (let i = 0; i < radarTargetModels.length; i++) {
             cc.save();
 
-            this.canvas_draw_radar_target(cc, radarTargetModels[i]);
+            this._drawSingleRadarTarget(cc, radarTargetModels[i]);
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
@@ -1208,20 +1116,21 @@ export default class CanvasController {
      * (box that contains callsign, altitude, speed)
      *
      * @for CanvasController
-     * @method canvas_draw_data_block
+     * @method _drawSingleAircraftDataBlock
      * @param cc {HTMLCanvasContext}
      * @param radarTargetModel {RadarTargetModel}
+     * @private
      */
-    canvas_draw_data_block(cc, radarTargetModel) {
+    _drawSingleAircraftDataBlock(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
 
         if (!aircraftModel.isVisible() || aircraftModel.hit) {
             return;
         }
 
-        // Initial Setup
         cc.save();
 
+        // FIXME: logic and math here should be done once and not every frame. this could be moved to the `RadarTargetModel`
         const { callsign } = aircraftModel;
         const paddingLR = 5;
         // width of datablock (scales to fit callsign)
@@ -1312,6 +1221,7 @@ export default class CanvasController {
 
         cc.moveTo(...leaderStart);
         cc.lineTo(...leaderEnd);
+        cc.strokeStyle = white;
         cc.stroke();
 
         const blockCenterOffset = {
@@ -1425,35 +1335,40 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method canvas_draw_data_blocks
+     * @method _drawAircraftDataBlocks
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_data_blocks(cc) {
+    _drawAircraftDataBlocks(cc) {
         const radarTargetModels = this._scopeModel.radarTargetCollection.items;
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
         for (let i = 0; i < radarTargetModels.length; i++) {
-            cc.save();
-
-            this.canvas_draw_data_block(cc, radarTargetModels[i]);
-
-            cc.restore();
+            this._drawSingleAircraftDataBlock(cc, radarTargetModels[i]);
         }
+
+        cc.restore();
     }
 
     /**
      * Draw wind vane in lower right section of the scope view
      *
      * @for CanvasController
-     * @method canvas_draw_compass
+     * @method _drawWindVane
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_compass(cc) {
+    _drawWindVane(cc) {
+        cc.save();
+        cc.font = 'bold 10px monoOne, monospace';
         cc.translate(
-            CanvasStageModel.halfWidth,
-            CanvasStageModel.halfHeight
+            CanvasStageModel.width,
+            CanvasStageModel.height
         );
 
-        const airport = AirportController.airport_get();
+        const airportModel = AirportController.airport_get();
         const size = 80;
         const size2 = size / 2;
         const padding = 16;
@@ -1483,26 +1398,26 @@ export default class CanvasController {
         cc.textAlign = 'center';
         cc.textBaseline = 'center';
         cc.font = '9px monoOne, monospace';
-        cc.fillText(airport.wind.speed, 0, 3.8);
+        cc.fillText(airportModel.wind.speed, 0, 3.8);
         cc.font = 'bold 10px monoOne, monospace';
 
         // Wind line
-        if (airport.wind.speed > 8) {
-            windspeed_line = airport.wind.speed / 2;
+        if (airportModel.wind.speed > 8) {
+            windspeed_line = airportModel.wind.speed / 2;
             highwind = true;
         } else {
-            windspeed_line = airport.wind.speed;
+            windspeed_line = airportModel.wind.speed;
             highwind = false;
         }
 
         cc.save();
         cc.translate(
-            -dot / 2 * sin(airport.wind.angle),
-            dot / 2 * cos(airport.wind.angle)
+            -dot / 2 * sin(airportModel.wind.angle),
+            dot / 2 * cos(airportModel.wind.angle)
         );
         cc.beginPath();
         cc.moveTo(0, 0);
-        cc.rotate(airport.wind.angle);
+        cc.rotate(airportModel.wind.angle);
         cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
@@ -1533,115 +1448,152 @@ export default class CanvasController {
             cc.fillText(angle, 0, -size2 + 4);
             cc.restore();
         }
+
+        cc.restore();
+    }
+
+    /**
+     * @for CanvasController
+     * @method _drawAirspaceAndRangeRings
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawAirspaceAndRangeRings(cc) {
+        cc.save();
+        // translate to airport center
+        // FIXME: create method in CanvasStageModel to returns an array with these values
+        cc.translate(
+            round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
+            round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
+        );
+
+        // FIXME: is this still needed?
+        // Special markings for ENGM point merge
+        // if (AirportController.airport_get().icao === 'ENGM') {
+        //     cc.save();
+        //     cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+
+        //     this.canvas_draw_engm_range_rings(cc);
+
+        //     cc.restore();
+        // }
+
+        this._drawAirspaceBorder(cc);
+        this._drawRangeRings(cc);
+
+        cc.restore();
     }
 
     /**
      * Draw polygonal airspace border
      *
      * @for CanvasController
-     * @method canvas_draw_airspace_border
+     * @method _drawAirspaceBorder
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_airspace_border(cc) {
+    _drawAirspaceBorder(cc) {
         const airport = AirportController.airport_get();
 
         cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
 
-        // draw airspace
         for (let i = 0; i < airport.airspace.length; i++) {
             const poly = $.map(airport.perimeter.poly, (v) => {
                 return [v.relativePosition];
             });
 
-            this.canvas_draw_poly(cc, poly);
+            this._drawPoly(cc, poly);
             cc.clip();
         }
     }
 
+    // FIXME: are these two methods still needed? why?
+    // /**
+    //  * @for CanvasController
+    //  * @method canvas_draw_engm_range_rings
+    //  * @param cc {HTMLCanvasContext}
+    //  */
+    // // Draw range rings for ENGM airport to assist in point merge
+    // canvas_draw_engm_range_rings(cc) {
+    //     cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
+    //     cc.setLineDash([3, 6]);
+
+    //     this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
+    //     this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
+    //     this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
+    //     this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
+    // }
+
+    //  /**
+    //  * Draw range rings for `ENGM`
+    //  *
+    //  * This method is used exclusively by `.canvas_draw_engm_range_rings()`
+    //  *
+    //  * @for CanvasController
+    //  * @method canvas_draw_fancy_rings
+    //  * @param cc {HTMLCanvasContext}
+    //  * @param fix_origin
+    //  * @param fix1
+    //  * @param fix2
+    //  */
+    // canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
+    //     const airport = AirportController.airport_get();
+    //     const origin = airport.getFixPosition(fix_origin);
+    //     const f1 = airport.getFixPosition(fix1);
+    //     const f2 = airport.getFixPosition(fix2);
+    //     const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
+    //     const halfPI = Math.PI / 2;
+    //     const extend_ring = degreesToRadians(10);
+    //     const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
+    //     const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
+    //     const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
+    //     const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
+    //     // 5NM = 9.27km
+    //     const radius = 9.27;
+
+    //     for (let i = 0; i < 4; i++) {
+    //         cc.beginPath();
+    //         cc.arc(
+    //             x,
+    //             y,
+    //             CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
+    //             start_angle, end_angle
+    //         );
+
+    //         cc.stroke();
+    //     }
+    // }
+
     /**
-     * Draw range rings for `ENGM`
-     *
-     * This method is used exclusively by `.canvas_draw_engm_range_rings()`
-     *
      * @for CanvasController
-     * @method canvas_draw_fancy_rings
+     * @method _drawRangeRings
      * @param cc {HTMLCanvasContext}
-     * @param fix_origin
-     * @param fix1
-     * @param fix2
+     * @private
      */
-    canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-        const airport = AirportController.airport_get();
-        const origin = airport.getFixPosition(fix_origin);
-        const f1 = airport.getFixPosition(fix1);
-        const f2 = airport.getFixPosition(fix2);
-        const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
-        const halfPI = Math.PI / 2;
-        const extend_ring = degreesToRadians(10);
-        const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
-        const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
-        const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
-        const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
-        // 5NM = 9.27km
-        const radius = 9.27;
+    _drawRangeRings(cc) {
+        const airportModel = AirportController.airport_get();
+        const rangeRingRadius = km(airportModel.rr_radius_nm);
 
-        for (let i = 0; i < 4; i++) {
-            cc.beginPath();
-            cc.arc(
-                x,
-                y,
-                CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
-                start_angle, end_angle
-            );
-
-            cc.stroke();
-        }
-    }
-
-    /**
-     * @for CanvasController
-     * @method canvas_draw_engm_range_rings
-     * @param cc {HTMLCanvasContext}
-     */
-    // Draw range rings for ENGM airport to assist in point merge
-    canvas_draw_engm_range_rings(cc) {
+        cc.linewidth = 1;
         cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-        cc.setLineDash([3, 6]);
 
-        this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
-        this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
-        this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
-        this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
-    }
-
-    /**
-     * @for CanvasController
-     * @method canvas_draw_range_rings
-     * @param cc {HTMLCanvasContext}
-     */
-    canvas_draw_range_rings(cc) {
-        const airport = AirportController.airport_get();
-        // convert input param from nm to km
-        const rangeRingRadius = km(airport.rr_radius_nm);
-
-        // Fill up airport's ctr_radius with rings of the specified radius
-        for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
+        // Fill up airportModel's ctr_radius with rings of the specified radius
+        for (let i = 1; i * rangeRingRadius < airportModel.ctr_radius; i++) {
             cc.beginPath();
-            cc.linewidth = 1;
-            cc.arc(0, 0, rangeRingRadius * CanvasStageModel._scale * i, 0, tau());
-            cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
+            cc.arc(0, 0, rangeRingRadius * CanvasStageModel.scale * i, 0, tau());
             cc.stroke();
         }
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_poly
+     * @method _drawPoly
      * @param cc {HTMLCanvasContext}
      * @param poly {array<array<number, number>>}
+     * @private
      */
-    canvas_draw_poly(cc, poly) {
+    _drawPoly(cc, poly) {
         cc.beginPath();
 
         for (let i = 0; i < poly.length; i++) {
@@ -1658,7 +1610,13 @@ export default class CanvasController {
         cc.fill();
     }
 
-    drawTerrainAtElevation(cc, terrainLevel, elevation) {
+    /**
+     * @param cc {HTMLCanvasContext}
+     * @param terrainLevel {object}
+     * @param elevation {number}
+     * @private
+     */
+    _drawTerrainAtElevation(cc, terrainLevel, elevation) {
         // Here we use HSL colors instead of RGB to enable easier bulk adjustments
         // to saturation/lightness of multiple elevation levels without the need
         // to use web-based color tools
@@ -1701,11 +1659,16 @@ export default class CanvasController {
      * Draw the terrain legend in the upper right hand corner of the scope view
      *
      * @for CanvasController
-     * @method drawTerrainElevationLegend
+     * @method _drawTerrainElevationLegend
      * @param  cc  {HTMLCanvasContext}
      * @param max_elevation {number}
+     * @private
      */
-    drawTerrainElevationLegend(cc, max_elevation) {
+    _drawTerrainElevationLegend(cc, max_elevation) {
+        cc.save();
+        cc.font = BASE_CANVAS_FONT;
+        cc.lineWidth = 1;
+
         const offset = 10;
         const width = CanvasStageModel.width;
         const height = CanvasStageModel.height;
@@ -1745,14 +1708,17 @@ export default class CanvasController {
 
             cc.restore();
         }
+
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_terrain
+     * @method _drawTerrain
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_terrain(cc) {
+    _drawTerrain(cc) {
         const airport = AirportController.airport_get();
         const airportTerrain = airport.terrain;
         let max_elevation = 0;
@@ -1761,15 +1727,16 @@ export default class CanvasController {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         // Terrain key rectangles' outline stroke color
         // Also determines color of terrain outline drawn at '0ft'
         cc.strokeStyle = this.theme.SCOPE.FIX_FILL;
         // Somehow used to tint the terrain key rectangles' fill color
         // Also determines color of terrain fill at '0ft'
         cc.fillStyle = this.theme.SCOPE.FIX_FILL;
-        cc.lineWidth = clamp(0.5, (CanvasStageModel._scale / 10), 2);
+        cc.lineWidth = clamp(0.5, (CanvasStageModel.scale / 10), 2);
         cc.lineJoin = 'round';
-
         cc.save();
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
 
@@ -1792,7 +1759,7 @@ export default class CanvasController {
 
             max_elevation = Math.max(max_elevation, elevation);
 
-            this.drawTerrainAtElevation(cc, terrainLevel, elevation);
+            this._drawTerrainAtElevation(cc, terrainLevel, elevation);
         }
 
         cc.restore();
@@ -1801,37 +1768,39 @@ export default class CanvasController {
             return;
         }
 
-        cc.font = BASE_CANVAS_FONT;
-        cc.lineWidth = 1;
+        this._drawTerrainElevationLegend(cc, max_elevation);
 
-        this.drawTerrainElevationLegend(cc, max_elevation);
+        cc.restore();
     }
 
     /**
      * @for CanvasController
-     * @method canvas_draw_restricted
+     * @method _drawRestrictedAirspace
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_restricted(cc) {
+    _drawRestrictedAirspace(cc) {
         if (!this._shouldDrawRestrictedAreas) {
             return;
         }
 
+        cc.save();
+        cc.translate(
+            CanvasStageModel.halfWidth + CanvasStageModel._panX,
+            CanvasStageModel.halfHeight + CanvasStageModel._panY
+        );
         cc.strokeStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
-        cc.lineWidth = Math.max(CanvasStageModel._scale / 3, 2);
+        cc.lineWidth = Math.max(CanvasStageModel.scale / 3, 2);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = AirportController.airport_get();
+        const airportModel = AirportController.airport_get();
 
-        cc.save();
-        cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
-
-        for (let i = 0; i < airport.restricted_areas.length; i++) {
-            const area = airport.restricted_areas[i];
+        for (let i = 0; i < airportModel.restricted_areas.length; i++) {
+            const area = airportModel.restricted_areas[i];
             cc.fillStyle = 'transparent';
 
-            this.canvas_draw_poly(cc, area.coordinates);
+            this._drawPoly(cc, area.coordinates);
 
             // TODO: Is the restricted airspace EVER filled???
             cc.fillStyle = this.theme.SCOPE.RESTRICTED_AIRSPACE;
@@ -1865,69 +1834,56 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method canvas_draw_videoMap
+     * @method _drawVideoMap
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_videoMap(cc) {
-        if (!_has(AirportController.airport_get(), 'maps')) {
+    _drawVideoMap(cc) {
+        const airportModel = AirportController.airport_get();
+
+        if (!_has(airportModel, 'maps')) {
             return;
         }
 
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = CanvasStageModel._scale / 15;
+        cc.lineWidth = CanvasStageModel.scale / 15;
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
-
-        const airport = AirportController.airport_get();
-
-        cc.save();
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
 
-        for (let i = 0; i < airport.maps.base.length; i++) {
-            const mapItem = airport.maps.base[i];
-            cc.moveTo(CanvasStageModel.translateKilometersToPixels(mapItem[0]), -CanvasStageModel.translateKilometersToPixels(mapItem[1]));
-            // cc.beginPath();
-            cc.lineTo(CanvasStageModel.translateKilometersToPixels(mapItem[2]), -CanvasStageModel.translateKilometersToPixels(mapItem[3]));
+        for (let i = 0; i < airportModel.maps.base.length; i++) {
+            const mapItem = airportModel.maps.base[i];
+            cc.moveTo(
+                CanvasStageModel.translateKilometersToPixels(mapItem[0]),
+                -CanvasStageModel.translateKilometersToPixels(mapItem[1])
+            );
+            cc.lineTo(
+                CanvasStageModel.translateKilometersToPixels(mapItem[2]),
+                -CanvasStageModel.translateKilometersToPixels(mapItem[3])
+            );
         }
 
         cc.stroke();
         cc.restore();
     }
 
-    // TODO: is this even in use?
-    /**
-     * Draws crosshairs that point to the currently translated location
-     *
-     * @for CanvasController
-     * @method canvas_draw_crosshairs
-     * @param cc {HTMLCanvasContext}
-     */
-    canvas_draw_crosshairs(cc) {
-        cc.save();
-        cc.strokeStyle = this.theme.SCOPE.CROSSHAIR_STROKE;
-        cc.lineWidth = 3;
-        cc.beginPath();
-        cc.moveTo(-10, 0);
-        cc.lineTo(10, 0);
-        cc.stroke();
-        cc.beginPath();
-        cc.moveTo(0, -10);
-        cc.lineTo(0, 10);
-        cc.stroke();
-        cc.restore();
-    }
-
+    // TODO: this method should be removed or reworked.
     /**
      * Draw the compass around the edge of the scope view
      *
      * @for CanvasController
-     * @method canvas_draw_directions
+     * @method _drawSelectedAircraftCompass
      * @param cc {HTMLCanvasContext}
+     * @private
      */
-    canvas_draw_directions(cc) {
+    _drawSelectedAircraftCompass(cc) {
         if (GameController.game_paused()) {
             return;
         }
+
+        cc.save();
 
         const callsign = prop.input.callsign.toUpperCase();
 
@@ -1945,11 +1901,11 @@ export default class CanvasController {
             return;
         }
 
-        const pos = this.to_canvas_pos(aircraft.relativePosition);
+        const pos = this._toCanvasPosition(aircraft.relativePosition);
         const rectPos = [0, 0];
         const rectSize = [CanvasStageModel.width, CanvasStageModel.height];
 
-        cc.save();
+        // cc.save();
         cc.strokeStyle = this.theme.SCOPE.COMPASS_HASH;
         cc.fillStyle = this.theme.SCOPE.COMPASS_TEXT;
         cc.textAlign = 'center';
@@ -2008,13 +1964,26 @@ export default class CanvasController {
     }
 
     /**
+     * Find a canvas context stored within `#_context`
+     *
+     * @for CanvasController
+     * @method _getCanvasContextByName
+     * @param name {string}
+     * @private
+     */
+    _getCanvasContextByName(name) {
+        return this._context[name];
+    }
+
+    // TODO: this should be moved to the `CanvasStageModel`
+    /**
      * Calculate an aircraft's position within the canvas from
      *
      * @for CanvasController
-     * @method to_canvas_pos
+     * @method _toCanvasPosition
      * @param pos {DynamicPositionModel}
      */
-    to_canvas_pos(pos) {
+    _toCanvasPosition(pos) {
         return [
             CanvasStageModel.halfWidth + CanvasStageModel._panX + km(pos[0]),
             CanvasStageModel.halfHeight + CanvasStageModel._panY - km(pos[1])
@@ -2048,9 +2017,9 @@ export default class CanvasController {
      * @method _onMarkDirtyCanvas
      * @private
      */
-    _onMarkDirtyCanvas = () => {
+    _onMarkDirtyCanvas() {
         this._markShallowRender();
-    };
+    }
 
     /**
      * Update local props as a result of the user panning the view
@@ -2062,7 +2031,9 @@ export default class CanvasController {
      * @method _onChangeViewportPan
      * @private
      */
-    _onChangeViewportPan = () => this._markDeepRender();
+    _onChangeViewportPan() {
+        this._markDeepRender();
+    }
 
     /**
      * Update local props as a result of a change in the current zoom level
@@ -2075,7 +2046,9 @@ export default class CanvasController {
      * @param mouseDelta {array<number, number>}
      * @private
      */
-    _onChangeViewportZoom = () => this._markDeepRender();
+    _onChangeViewportZoom() {
+        this._markDeepRender();
+    }
 
     /**
      * Toogle current value of `#draw_labels`
@@ -2087,11 +2060,11 @@ export default class CanvasController {
      * @method _onToggleLabels
      * @private
      */
-    _onToggleLabels = () => {
+    _onToggleLabels() {
         this._shouldDrawFixLabels = !this._shouldDrawFixLabels;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_restricted`
@@ -2103,11 +2076,11 @@ export default class CanvasController {
      * @method _onToggleRestrictedAreas
      * @private
      */
-    _onToggleRestrictedAreas = () => {
+    _onToggleRestrictedAreas() {
         this._shouldDrawRestrictedAreas = !this._shouldDrawRestrictedAreas;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_sids`
@@ -2119,11 +2092,11 @@ export default class CanvasController {
      * @method _onToggleSidMap
      * @private
      */
-    _onToggleSidMap = () => {
+    _onToggleSidMap() {
         this._shouldDrawSidMap = !this._shouldDrawSidMap;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Toogle current value of `#draw_terrain`
@@ -2134,11 +2107,11 @@ export default class CanvasController {
      * @method _onToggleTerrain
      * @private
      */
-    _onToggleTerrain = () => {
+    _onToggleTerrain() {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
 
         this._markDeepRender();
-    };
+    }
 
     /**
      * Update the value of `#_shouldShallowRender` to true, forcing a redraw
@@ -2185,27 +2158,42 @@ export default class CanvasController {
      * @param x {number}    relativePosition.x
      * @param y {number}    relativePosition.y
      */
-    _onCenterPointInView = ({ x, y }) => {
+    _onCenterPointInView({ x, y }) {
         CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
         CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
 
         this._markShallowRender();
-    };
+    }
+
+    /**
+     * Callback method fired when an airport is changed
+     *
+     * Changing an airport will require a complete re-draw of all
+     * items on all canvases, thus we call `._markDeepRender()` here
+     * to initiate that process
+     *
+     * @for CanvasController
+     * @method _onAirportChange
+     * @private
+     */
+    _onAirportChange() {
+        this._markDeepRender();
+    }
 
     /**
      * Change theme to the specified name
      *
      * This should ONLY be called through the EventBus during a `SET_THEME` event,
-     * thus ensuring that the same theme is always in use by all app components.
+     * thus ensuring that the same theme is always in use by all app components
      *
      * This method must remain an arrow function in order to preserve the scope
-     * of `this`, since it is being invoked by an EventBus callback.
+     * of `this`, since it is being invoked by an EventBus callback
      *
      * @for CanvasController
      * @method _setTheme
      * @param themeName {string}
      */
-    _setTheme = (themeName) => {
+    _setTheme(themeName) {
         if (!_has(THEME, themeName)) {
             console.error(`Expected valid theme to change to, but received '${themeName}'`);
 
@@ -2218,5 +2206,5 @@ export default class CanvasController {
         this.theme = THEME[themeName];
         // TODO: abstract to method
         this.$element.addClass(this.theme.CLASSNAME);
-    };
+    }
 }

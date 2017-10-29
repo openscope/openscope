@@ -1,4 +1,34 @@
 /**
+ * Enumeration of canvas names
+ *
+ * @enum CANVAS_NAME
+ * @final
+ */
+export const CANVAS_NAME = {
+    /**
+     * Name of the `static` canvas.
+     *
+     * This canvas should hold all of the items that do not update every frame;
+     * things like terrain, fixes, video map, etc
+     *
+     * @memberOf CANVAS_NAME
+     * @property STATIC
+     */
+    STATIC: 'static',
+
+    /**
+     * Name of the `dynamic` canvas.
+     *
+     * This canvas should hold all of the items that do update every frame;
+     * things like aircraft, aircraft data blocks, etc
+     *
+     * @memberOf CANVAS_NAME
+     * @property STATIC
+     */
+    DYNAMIC: 'dynamic'
+};
+
+/**
  * @enum BASE_CANVAS_FONT
  * @final
  */

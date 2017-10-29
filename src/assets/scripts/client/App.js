@@ -65,8 +65,10 @@ export default class App {
         this.loadDefaultAiportAfterStorageIcaoFailureHandler = this.loadDefaultAiportAfterStorageIcaoFailure.bind(this);
         this.loadAirlinesAndAircraftHandler = this.loadAirlinesAndAircraft.bind(this);
         this.setupChildrenHandler = this.setupChildren.bind(this);
+        this.onPauseHandler = this._onPause.bind(this);
+        this.onUpdateHandler = this.update.bind(this);
 
-        this.eventBus.on(EVENT.PAUSE_UPDATE_LOOP, this.updateRun);
+        this.eventBus.on(EVENT.PAUSE_UPDATE_LOOP, this.onPauseHandler);
 
         return this;
     }
@@ -260,27 +262,14 @@ export default class App {
      */
     done() {
         this._appController.done();
-
-        $(window).resize(this._appController.resize);
         this._appController.resize();
 
         this.prop.loaded = true;
 
-        this.ready();
-
         if (UPDATE) {
-            requestAnimationFrame(() => this.update());
+            requestAnimationFrame(this.onUpdateHandler);
         }
 
-
-        return this;
-    }
-
-    /**
-     * @for App
-     * @method ready
-     */
-    ready() {
         return this;
     }
 
@@ -329,7 +318,7 @@ export default class App {
             return this;
         }
 
-        requestAnimationFrame(() => this.update());
+        requestAnimationFrame(this.onUpdateHandler);
 
         this.updatePre();
         this.updatePost();
@@ -340,14 +329,14 @@ export default class App {
 
     /**
      * @for App
-     * @method updateRun
+     * @method _onPause
      * @param shouldUpdate {boolean}
      */
-    updateRun = (shouldUpdate) => {
+    _onPause(shouldUpdate) {
         if (!UPDATE && shouldUpdate) {
-            requestAnimationFrame(() => this.update());
+            requestAnimationFrame(this.onUpdateHandler);
         }
 
         UPDATE = shouldUpdate;
-    };
+    }
 }

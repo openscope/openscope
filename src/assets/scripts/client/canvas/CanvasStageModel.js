@@ -133,6 +133,14 @@ class CanvasStageModel {
     }
 
     /**
+     * @property scale
+     * @type {number}
+     */
+    get scale() {
+        return this._scale;
+    }
+
+    /**
      * @property width
      * @type {number}
      */
