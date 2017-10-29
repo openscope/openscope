@@ -211,9 +211,9 @@ export default class AppController {
      * @for AppController
      * @method resize
      */
-    resize = () => {
+    resize() {
         this.canvasController.canvas_resize();
-    };
+    }
 
     /**
      * @for AppController

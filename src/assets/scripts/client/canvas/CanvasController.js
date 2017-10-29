@@ -30,7 +30,10 @@ import {
     FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
-import { BASE_CANVAS_FONT } from '../constants/canvasConstants';
+import {
+    BASE_CANVAS_FONT,
+    CANVAS_NAME
+} from '../constants/canvasConstants';
 import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
@@ -38,18 +41,6 @@ import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
-import { LOG } from '../constants/logLevel';
-
-/**
- * Enumeration of canvas names
- *
- * @property CANVAS_NAME
- * @final
- */
-const CANVAS_NAME = {
-    STATIC: 'static',
-    DYNAMIC: 'dynamic'
-};
 
 /**
  * @class CanvasController
@@ -125,15 +116,6 @@ export default class CanvasController {
          * @private
          */
         this._shouldResize = true;
-
-        /**
-         * timestamp of the previous frame
-         *
-         * @property _lastFrameTimestamp
-         * @type {number}
-         * @private
-         */
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
 
         /**
          * Flag used to determine if the Aircraft canvas should be updated
@@ -244,6 +226,7 @@ export default class CanvasController {
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
         this._onAirportChangeHandler = this._onAirportChange.bind(this);
         this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
+        this._onResizeHandler = this.canvas_resize.bind(this);
 
         this._setThemeHandler = this._setTheme.bind(this);
 
@@ -266,6 +249,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
+        window.addEventListener('resize', this._onResizeHandler);
 
         this.$element.addClass(this.theme.CLASSNAME);
 
@@ -287,6 +271,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
+        window.removeEventListener('resize', this._onResizeHandler);
 
         return this.destroy();
     }
@@ -300,7 +285,6 @@ export default class CanvasController {
         this.$element = null;
         this._context = {};
         this._shouldResize = true;
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
         this._shouldShallowRender = true;
         this._shouldDeepRender = true;
         this._shouldDrawFixLabels = false;
@@ -351,16 +335,12 @@ export default class CanvasController {
         setTimeout(() => {
             this._markDeepRender();
         }, 500);
-
-        this._lastFrameTimestamp = TimeKeeper.gameTimeInSeconds;
     }
 
     /**
      * A `resize` event was captured by the `AppController`
      *
      * Here we re-calculate the canvas dimensions
-     *
-     * Called by `AppController.resize()`
      *
      * @for CanvasController
      * @method canvas_resize

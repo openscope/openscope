@@ -262,8 +262,6 @@ export default class App {
      */
     done() {
         this._appController.done();
-
-        $(window).resize(this._appController.resize);
         this._appController.resize();
 
         this.prop.loaded = true;
