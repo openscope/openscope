@@ -309,22 +309,6 @@ export default class CanvasController {
     }
 
     /**
-     * Add a `canvas` element to the DOM
-     *
-     * @for CanvasController
-     * @method _canvas_add
-     * @param name {CANVAS_NAME|string}
-     * @private
-     */
-    _canvas_add(name) {
-        const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
-
-        this.$element.append(canvasTemplate);
-
-        this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
-    }
-
-    /**
      * Called by `AppController.complete()`
      *
      * @for CanvasController
@@ -358,33 +342,10 @@ export default class CanvasController {
             context.canvas.height = CanvasStageModel.height;
             context.canvas.width = CanvasStageModel.width;
 
-            this._canvas_adjust_hidpi(canvasName);
+            this._adjustHidpi(canvasName);
         }
 
         this._markDeepRender();
-    }
-
-    /**
-     * @for CanvasController
-     * @method _canvas_adjust_hidpi
-     * @private
-     */
-    _canvas_adjust_hidpi(canvasName) {
-        const devicePixelRatio = window.devicePixelRatio || 1;
-        const canvasContext = this._context[canvasName];
-
-        if (devicePixelRatio <= 1) {
-            return;
-        }
-
-        const $canvasElement = $(`#${canvasContext.canvas.id}`).get(0);
-
-        $($canvasElement).attr('height', CanvasStageModel.height * devicePixelRatio);
-        $($canvasElement).css('height', CanvasStageModel.height);
-        $($canvasElement).attr('width', CanvasStageModel.width * devicePixelRatio);
-        $($canvasElement).css('width', CanvasStageModel.width);
-
-        canvasContext.scale(devicePixelRatio, devicePixelRatio);
     }
 
     /**
@@ -437,15 +398,42 @@ export default class CanvasController {
     }
 
     /**
-     * Find a canvas context stored within `#_context`
+     * Add a `canvas` element to the DOM
      *
      * @for CanvasController
-     * @method _getCanvasContextByName
-     * @param name {string}
+     * @method _canvas_add
+     * @param name {CANVAS_NAME|string}
      * @private
      */
-    _getCanvasContextByName(name) {
-        return this._context[name];
+    _canvas_add(name) {
+        const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
+
+        this.$element.append(canvasTemplate);
+
+        this._context[name] = $(`#${name}-canvas`).get(0).getContext('2d');
+    }
+
+    /**
+     * @for CanvasController
+     * @method _adjustHidpi
+     * @private
+     */
+    _adjustHidpi(canvasName) {
+        const devicePixelRatio = window.devicePixelRatio || 1;
+        const canvasContext = this._context[canvasName];
+
+        if (devicePixelRatio <= 1) {
+            return;
+        }
+
+        const $canvasElement = $(`#${canvasContext.canvas.id}`).get(0);
+
+        $($canvasElement).attr('height', CanvasStageModel.height * devicePixelRatio);
+        $($canvasElement).css('height', CanvasStageModel.height);
+        $($canvasElement).attr('width', CanvasStageModel.width * devicePixelRatio);
+        $($canvasElement).css('width', CanvasStageModel.width);
+
+        canvasContext.scale(devicePixelRatio, devicePixelRatio);
     }
 
     /**
@@ -917,7 +905,7 @@ export default class CanvasController {
 
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
-        this.canvas_draw_aircraft_vector_lines(cc, aircraftModel);
+        this._drawAircraftVectorLines(cc, aircraftModel);
 
         if (aircraftModel.notice || alerts[0]) {
             this._drawAircraftRings(cc, aircraftModel);
@@ -943,11 +931,12 @@ export default class CanvasController {
      * Note: These extend in front of aircraft a definable number of minutes
      *
      * @for CanvasController
-     * @method canvas_draw_aircraft_vector_lines
+     * @method _drawAircraftVectorLines
      * @param cc {HTMLCanvasContext}
      * @param aircraft {AircraftModel}
+     * @private
      */
-    canvas_draw_aircraft_vector_lines(cc, aircraft) {
+    _drawAircraftVectorLines(cc, aircraft) {
         if (aircraft.hit) {
             return;
         }
@@ -1909,7 +1898,7 @@ export default class CanvasController {
             return;
         }
 
-        const pos = this.to_canvas_pos(aircraft.relativePosition);
+        const pos = this._toCanvasPosition(aircraft.relativePosition);
         const rectPos = [0, 0];
         const rectSize = [CanvasStageModel.width, CanvasStageModel.height];
 
@@ -1972,13 +1961,26 @@ export default class CanvasController {
     }
 
     /**
+     * Find a canvas context stored within `#_context`
+     *
+     * @for CanvasController
+     * @method _getCanvasContextByName
+     * @param name {string}
+     * @private
+     */
+    _getCanvasContextByName(name) {
+        return this._context[name];
+    }
+
+    // TODO: this should be moved to the `CanvasStageModel`
+    /**
      * Calculate an aircraft's position within the canvas from
      *
      * @for CanvasController
-     * @method to_canvas_pos
+     * @method _toCanvasPosition
      * @param pos {DynamicPositionModel}
      */
-    to_canvas_pos(pos) {
+    _toCanvasPosition(pos) {
         return [
             CanvasStageModel.halfWidth + CanvasStageModel._panX + km(pos[0]),
             CanvasStageModel.halfHeight + CanvasStageModel._panY - km(pos[1])
