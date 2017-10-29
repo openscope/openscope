@@ -305,7 +305,7 @@
         },
         "EONNS2": {
             "icao": "EONNS2",
-            "name": "Eons Two",
+            "name": "Eonns Two",
             "rwy": {
                 "8L": ["VKZ", "DICKI"],
                 "8R": ["VKZ", "DICKI"],
