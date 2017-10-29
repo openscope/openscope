@@ -94,11 +94,28 @@ class FixCollection extends BaseCollection {
         const fixModel = this.findFixByName(fixName);
 
         if (!fixModel) {
-            // error
             return null;
         }
 
         return fixModel.relativePosition;
+    }
+
+    /**
+     * Return the position model for the specified fix, if that fix exists
+     *
+     * @for FixCollection
+     * @method getPositionModelForFixName
+     * @param fixName {string}
+     * @return {StaticPositionModel}
+     */
+    getPositionModelForFixName(fixName) {
+        const fixModel = this.findFixByName(fixName);
+
+        if (!fixModel) {
+            return null;
+        }
+
+        return fixModel.positionModel;
     }
 
     /**
