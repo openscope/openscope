@@ -589,11 +589,12 @@ export default class CanvasController {
     _drawCurrentScale(cc) {
         cc.save();
 
-        const offset = 10;
+        const offsetX = 35;
+        const offsetY = 10;
         const height = 5;
         const length = round(1 / CanvasStageModel.scale * 50);
         const px_length = round(CanvasStageModel.translateKilometersToPixels(length));
-        const widthLessOffset = CanvasStageModel.width - offset;
+        const widthLessOffset = CanvasStageModel.width - offsetX;
 
         cc.font = '10px monoOne, monospace';
         cc.fillStyle = this.theme.SCOPE.TOP_ROW_TEXT;
@@ -601,16 +602,16 @@ export default class CanvasController {
         cc.translate(0.5, 0.5);
         cc.lineWidth = 1;
         cc.textAlign = 'center';
-        cc.moveTo(widthLessOffset, offset);
-        cc.lineTo(widthLessOffset, offset + height);
-        cc.lineTo(widthLessOffset - px_length, offset + height);
-        cc.lineTo(widthLessOffset - px_length, offset);
+        cc.moveTo(widthLessOffset, offsetY);
+        cc.lineTo(widthLessOffset, offsetY + height);
+        cc.lineTo(widthLessOffset - px_length, offsetY + height);
+        cc.lineTo(widthLessOffset - px_length, offsetY);
         cc.stroke();
         cc.translate(-0.5, -0.5);
         cc.fillText(
             `${length} km`,
             widthLessOffset - px_length * 0.5,
-            offset + height + 17
+            offsetY + height + 17
         );
         cc.restore();
     }
