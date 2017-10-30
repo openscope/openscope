@@ -1,3 +1,18 @@
+## 5.7.0 (December 1, 2017)
+---
+### New Features
+
+
+
+### Bugfixes
+- Corrected an issue where the projected track line would be drawn when an aircraft was selected, even if set to 'never' [#812](https://github.com/openscope/openscope/issues/812)
+
+
+
+### Enhancements & Refactors
+
+
+
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
