@@ -1,18 +1,3 @@
-## 5.7.0 (December 1, 2017)
----
-### New Features
-
-
-
-### Bugfixes
-- Corrected an issue where the projected track line would be drawn when an aircraft was selected, even if set to 'never' [#812](https://github.com/openscope/openscope/issues/812)
-
-
-
-### Enhancements & Refactors
-
-
-
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
@@ -28,6 +13,7 @@
 - Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
 - Fix bug of aircraft descending via STAR to '0' altitude [#567](https://github.com/openscope/openscope/issues/567)
 - `sid` command no longer sets the aircraft's destination property [#787](https://github.com/openscope/openscope/issues/787)
+- Fix bug where the projected track line is drawn when aircraft is selected, even is disabled [#812](https://github.com/openscope/openscope/issues/812)
 
 
 
