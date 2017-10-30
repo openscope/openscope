@@ -66,7 +66,7 @@ ava('.disable() does not change #isEnabled when #isEnabled is false', (t) => {
     t.false(mcp.isEnabled);
 });
 
-ava.only('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = 6000;
     const airspaceCeilingMock = 12000;
@@ -90,7 +90,7 @@ ava.only('.initializeForAirborneFlight() sets MCP for arrival descending via STA
     t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
 });
 
-ava.only('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = Infinity;
     const airspaceCeilingMock = 12000;
@@ -114,7 +114,7 @@ ava.only('.initializeForAirborneFlight() sets MCP for arrival not descending via
     t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
 });
 
-ava.only('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR already below airspace ceiling', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR already below airspace ceiling', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = Infinity;
     const airspaceCeilingMock = 12000;

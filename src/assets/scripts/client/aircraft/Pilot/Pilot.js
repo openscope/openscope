@@ -185,7 +185,7 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance(aircraftModel);
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
 
@@ -391,7 +391,7 @@ export default class Pilot {
         }
 
         this._fms.replaceRouteUpToSharedRouteSegment(routeString);
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
 
         // Build readback
         const readback = {};
@@ -418,10 +418,8 @@ export default class Pilot {
         }
 
         const airport = AirportController.airport_get();
-        const altitudeToMaintain = Math.max(
-            Math.min(aircraftModel.altitude, this._mcp.altitude),
-            airport.minAssignableAltitude
-        );
+        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
         this._mcp.setAltitudeHold();
@@ -487,25 +485,29 @@ export default class Pilot {
      *
      * @for Pilot
      * @method descendViaStar
-     * @param altitude {number}  (optional) altitude at which the descent will end (regardless of fix restrictions)
-     *                                      this should be the altitude of the lowest fix restriction on the STAR
-     * @return {array}           [success of operation, readback]
+     * @param bottomAltitude {number} (optional) altitude at which the descent will end (regardless of fix restrictions)
+     * @return {array}                [success of operation, readback]
      */
-    descendViaStar(altitude = 0) {
-        this._mcp.setAltitudeFieldValue(altitude);
+    descendViaStar(bottomAltitude) {
+        let nextAltitude = bottomAltitude;
+
+        if (typeof nextAltitude === 'undefined') {
+            nextAltitude = this._fms.getBottomAltitude();
+        }
+
+        if (isNaN(nextAltitude) || nextAltitude === Infinity) {
+            return [false, 'unable to descend via STAR'];
+        }
+
+        this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        // Build readback
-        const readback = {};
-        readback.log = 'descend via the arrival';
-        readback.say = 'descend via the arrival';
-
-        return [true, readback];
+        return [true, 'descend via STAR'];
     }
 
     /**
-     * Abort the landing attempt; maintain present heading/speed, and climb to a reasonable alttiude
+     * Abort the landing attempt; maintain present heading/speed, and climb to a reasonable altitude
      *
      * @for Pilot
      * @method goAround
@@ -625,7 +627,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -739,7 +741,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypoint(waypointName);
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];

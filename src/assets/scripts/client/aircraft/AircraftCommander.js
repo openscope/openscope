@@ -259,7 +259,7 @@ export default class AircraftCommander {
         aircraft.target.turn = direction;
 
         if (aircraft.hasApproachClearance) {
-            aircraft.cancelApproachClearance(aircraft);
+            aircraft.pilot.cancelApproachClearance(aircraft);
         }
 
         return readback;
@@ -399,10 +399,6 @@ export default class AircraftCommander {
         if (!response[0]) {
             return response;
         }
-
-        // TODO: toUpperCase might be overly defensive here
-        // update the aircraft destination so the strip display reflects the change of procedure
-        aircraft.destination = sidId.toUpperCase();
 
         return response;
     }

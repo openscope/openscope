@@ -1,8 +1,6 @@
 import _has from 'lodash/has';
-import _lowerCase from 'lodash/lowerCase';
 import AirportModel from './AirportModel';
 import EventBus from '../lib/EventBus';
-import { DEFAULT_AIRPORT_ICAO } from '../constants/airportConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 

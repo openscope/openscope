@@ -1,12 +1,12 @@
-/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
+import AirportController from './airport/AirportController';
+import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import AirportController from './airport/AirportController';
 import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
@@ -69,11 +69,6 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
-
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
     }
 
     /**
@@ -189,25 +184,9 @@ class UiController {
         this.$toggleOptions = null;
 
         this.ui = {};
-        this.ui.scale_default = INVALID_NUMBER;
-        this.ui.scale_max = INVALID_NUMBER;
-        this.ui.scale_min = INVALID_NUMBER;
         this.ui.scale = INVALID_NUMBER;
 
         return this;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_init_pre
-     */
-    ui_init_pre() {
-        this.scale_default = 8; // pixels per km
-        this.scale_max = 80; // max scale
-        this.scale_min = 1; // min scale
-        this.scale = this.scale_default;
-
-        this.ui_set_scale_from_storage();
     }
 
     /**
@@ -506,96 +485,6 @@ class UiController {
         this.$airportListNotes.append(notes);
     }
 
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method px_to_km
-     * @param pixels {number}
-     * @return {number}
-     */
-    px_to_km(pixels) {
-        return pixels / this.scale;
-    }
-
-    // TODO: this function should live in a helper file somewhere
-    /**
-     * @for UiController
-     * @method km_to_px
-     * @param kilometers {number}
-     * @return {number}
-     */
-    km_to_px(kilometers) {
-        return kilometers * this.scale;
-    }
-
-    /**
-     * @for UiController
-     * @method storeZoomLevel
-     */
-    storeZoomLevel() {
-        localStorage[STORAGE_KEY.ZOOM_LEVEL] = this.scale;
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_out
-     */
-    ui_zoom_out() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
-
-        this.scale *= ZOOM_INCREMENT;
-
-        if (this.scale < this.scale_min) {
-            this.scale = this.scale_min;
-        }
-
-        const nextPanPosition = [
-            round(this.km_to_px(lastpos[0])),
-            round(this.km_to_px(lastpos[1]))
-        ];
-
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_in
-     */
-    ui_zoom_in() {
-        const lastpos = [
-            round(this.px_to_km(prop.canvas.panX)),
-            round(this.px_to_km(prop.canvas.panY))
-        ];
-        this.scale /= ZOOM_INCREMENT;
-
-        if (this.scale > this.scale_max) {
-            this.scale = this.scale_max;
-        }
-
-        const nextPanPosition = [
-            round(this.km_to_px(lastpos[0])),
-            round(this.km_to_px(lastpos[1]))
-        ];
-
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT, nextPanPosition);
-    }
-
-    /**
-     * @for UiController
-     * @method ui_zoom_reset
-     */
-    ui_zoom_reset() {
-        this.scale = this.scale_default;
-
-        this.storeZoomLevel();
-        this._eventBus.trigger(EVENT.ZOOM_VIEWPORT);
-    }
-
     /**
      * @for UiController
      * @method ui_log
@@ -719,18 +608,6 @@ class UiController {
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
             $optionsDialog.addClass(SELECTORS.CLASSNAMES.ACTIVE);
         }
-    }
-
-    /**
-     * @for UiController
-     * @method ui_set_scale_from_storage
-     */
-    ui_set_scale_from_storage() {
-        if (!_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
-            return;
-        }
-
-        this.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
 }
 

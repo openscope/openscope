@@ -3,6 +3,10 @@ import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
 import GameController from '../game/GameController';
 import { calculateNormalDistributedNumber } from '../math/core';
+import {
+    vectorize_2d,
+    vscale
+} from '../math/vector';
 
 /**
  *
@@ -85,6 +89,24 @@ export default class AirportWindModel {
     }
 
     /**
+     * Calculates the current wind vector based on an aircraft's altitude
+     *
+     * @for AirportWindModel
+     * @param altitude {number}
+     * @return windVector {number}
+     */
+    calculateWindVector(altitude) {
+        // FIXME: taken from the `AircraftModel`. this class should provide a method that does this
+        const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
+        const windTravelDirection = this.angle + Math.PI;
+        const windTravelSpeedAtSurface = this.speed;
+        const windTravelSpeed = windTravelSpeedAtSurface * (1 + (altitude * windIncreaseFactorPerFoot));
+        const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
+
+        return windVector;
+    }
+
+    /**
      * Actual math function to find the wind on a bell curve.
      *
      * @for AirportWindModel
@@ -125,10 +147,4 @@ export default class AirportWindModel {
             null
         );
     }
-
-    // FIXME: taken from the `AircraftModel`. this class should provide a method that does this
-    // const windTravelDirection = wind.angle + Math.PI;
-    // const windTravelSpeedAtSurface = wind.speed;
-    // const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
-    // const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
 }
