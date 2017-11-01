@@ -1,3 +1,23 @@
+## 5.7.0 (December 1, 2017)
+---
+### New Features
+
+
+
+
+
+### Bugfixes
+
+
+
+
+
+### Enhancements & Refactors
+
+
+
+
+
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
