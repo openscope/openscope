@@ -895,11 +895,19 @@ export default class CanvasController {
         }
 
         // Draw the future path
-        // breaking project convention here with an if/else simply for readability
-        if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'always') {
-            this._drawAircraftFuturePath(cc, aircraftModel);
-        } else if (GameController.game.option.getOptionByName('drawProjectedPaths') === 'selected' && aircraftModel.warning || match) {
-            this._drawAircraftFuturePath(cc, aircraftModel);
+        switch (GameController.game.option.getOptionByName('drawProjectedPaths')) {
+            case 'always':
+                this._drawAircraftFuturePath(cc, aircraftModel);
+
+                break;
+            case 'selected':
+                if (match) {
+                    this._drawAircraftFuturePath(cc, aircraftModel);
+                }
+
+                break;
+            default:
+                break;
         }
 
         const alerts = aircraftModel.hasAlerts();
