@@ -636,9 +636,12 @@ export default class AircraftController {
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
-        const altitude = isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
-            ? 18000
-            : spawnPatternModel.altitude;
+        let altitude = spawnPatternModel.altitude;
+
+        if (isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL) {
+            altitude = Math.min(18000, altitude);
+        }
+
         const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
         const transponderCode = this._generateUniqueTransponderCode();
 

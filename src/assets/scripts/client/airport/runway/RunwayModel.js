@@ -92,13 +92,6 @@ export default class RunwayModel extends BaseModel {
         };
 
         /**
-         * @property labelPos
-         * @type {array<number>}
-         * @default []
-         */
-        this.labelPos = [];
-
-        /**
          * @property length
          * @type
          * @default

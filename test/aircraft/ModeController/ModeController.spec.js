@@ -66,6 +66,78 @@ ava('.disable() does not change #isEnabled when #isEnabled is false', (t) => {
     t.false(mcp.isEnabled);
 });
 
+ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (t) => {
+    const mcp = new ModeController();
+    const bottomAltitudeMock = 6000;
+    const airspaceCeilingMock = 12000;
+    const currentAltitudeMock = 21000;
+    const currentHeadingMock = Math.PI;
+    const currentSpeedMock = 290;
+
+    mcp.initializeForAirborneFlight(
+        bottomAltitudeMock,
+        airspaceCeilingMock,
+        currentAltitudeMock,
+        currentHeadingMock,
+        currentSpeedMock
+    );
+
+    t.true(mcp.altitude === bottomAltitudeMock);
+    t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.VNAV);
+    t.true(mcp.heading === currentHeadingMock);
+    t.true(mcp.headingMode === MCP_MODE.HEADING.LNAV);
+    t.true(mcp.speed === currentSpeedMock);
+    t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
+});
+
+ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR', (t) => {
+    const mcp = new ModeController();
+    const bottomAltitudeMock = Infinity;
+    const airspaceCeilingMock = 12000;
+    const currentAltitudeMock = 21000;
+    const currentHeadingMock = Math.PI;
+    const currentSpeedMock = 290;
+
+    mcp.initializeForAirborneFlight(
+        bottomAltitudeMock,
+        airspaceCeilingMock,
+        currentAltitudeMock,
+        currentHeadingMock,
+        currentSpeedMock
+    );
+
+    t.true(mcp.altitude === airspaceCeilingMock);
+    t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.HOLD);
+    t.true(mcp.heading === currentHeadingMock);
+    t.true(mcp.headingMode === MCP_MODE.HEADING.LNAV);
+    t.true(mcp.speed === currentSpeedMock);
+    t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
+});
+
+ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR already below airspace ceiling', (t) => {
+    const mcp = new ModeController();
+    const bottomAltitudeMock = Infinity;
+    const airspaceCeilingMock = 12000;
+    const currentAltitudeMock = 9000;
+    const currentHeadingMock = Math.PI;
+    const currentSpeedMock = 290;
+
+    mcp.initializeForAirborneFlight(
+        bottomAltitudeMock,
+        airspaceCeilingMock,
+        currentAltitudeMock,
+        currentHeadingMock,
+        currentSpeedMock
+    );
+
+    t.true(mcp.altitude === currentAltitudeMock);
+    t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.HOLD);
+    t.true(mcp.heading === currentHeadingMock);
+    t.true(mcp.headingMode === MCP_MODE.HEADING.LNAV);
+    t.true(mcp.speed === currentSpeedMock);
+    t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
+});
+
 ava('._setModeSelectorMode() sets modeSelector to the specified mode', (t) => {
     const mcp = new ModeController();
 

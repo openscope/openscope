@@ -208,6 +208,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     wip: true
         // },
         {
+            icao: 'kdtw',
+            level: 'medium',
+            name: 'Detroit Metropolitan Wayne County Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kelp',
             level: 'beginner',
             name: 'El Paso International Airport',
@@ -278,10 +285,10 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
         {
             icao: 'kpdx',
-            level: 'easy',
+            level: 'beginner',
             name: 'Portland International Airport',
             premium: false,
-            wip: true
+            wip: false
         },
         {
             icao: 'kphx',
@@ -289,6 +296,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Phoenix Sky Harbor International Airport',
             premium: false,
             wip: true
+        },
+        {
+            icao: 'kpvd',
+            level: 'easy',
+            name: 'Theodore Francis Green Memorial State Airport',
+            premium: false,
+            wip: false
         },
         {
             icao: 'ksdf',
@@ -316,12 +330,19 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'medium',
             name: 'San Francisco International Airport',
             premium: false,
-            wip: true
+            wip: false
         },
         {
             icao: 'kstl',
             level: 'medium',
             name: 'St. Louis Lambert International Airport',
+            premium: false,
+            wip: false
+        },
+        {
+            icao: 'ktpa',
+            level: 'easy',
+            name: 'Tampa International Airport',
             premium: false,
             wip: false
         },

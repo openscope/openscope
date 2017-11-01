@@ -164,6 +164,7 @@
         "KEGBE": ["N38.70035506923790", "W90.28907775322426"],
         "KELLY": ["N39.41370385453669", "W86.67134856598422"],
         "KLAIR": ["N38.41120389048162", "W91.16022490904095"],
+        "KOOOP": ["N38.69188772135863", "W91.74256896425348"],
         "KRIYA": ["N38.96047663729862", "W89.70803832447668"],
         "KSHEE": ["N39.35914817939710", "W90.54952239435397"],
         "LAJUG": ["N36.61211048032011", "W87.31590270420850"],
@@ -248,7 +249,6 @@
         "TINGS": ["N37.30300625628679", "W88.25619506266628"],
         "TONII": ["N38.70544571358344", "W90.48353576104903"],
         "TOY"  : ["N38.73914199374489", "W89.91856383718525"],
-        "TRAKE": ["N38.69188772135863", "W91.74256896425348"],
         "TRAVS": ["N38.60495913815178", "W90.35616301934176"],
         "TWILA": ["N38.78711433998442", "W89.55251311694728"],
         "TWRAY": ["N37.60139383476628", "W91.01458739682472"],
@@ -882,12 +882,12 @@
                 ["ARG", "CGI"]
             ]
         },
-        "KAYLA2": {
-            "icao": "KAYLA2",
-            "name": "Kayla Two",
+        "KAYLA3": {
+            "icao": "KAYLA3",
+            "name": "Kayla Three",
             "entryPoints": {
-                "ANX": ["ANX", ["HEBNA", "A310-|S280"], "TRAKE", ["NATEM", "A230-|S280"]],
-                "BUM": ["BUM", ["FEBAP", "A310-|S280"], "TRAKE", ["NATEM", "A230-|S280"]],
+                "ANX": ["ANX", ["HEBNA", "A310-|S280"], "KOOOP", ["NATEM", "A230-|S280"]],
+                "BUM": ["BUM", ["FEBAP", "A310-|S280"], "KOOOP", ["NATEM", "A230-|S280"]],
                 "SGF": ["SGF", "GNNON", ["JEXAV", "A310-|S280"], ["ZULMO", "A230-|S280"]]
             },
             "body": [["KAYLA", "A110+"], "BGMAC"],
@@ -900,10 +900,35 @@
                 "30R": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"]
             },
             "draw": [
-                ["ANX", "HEBNA", "TRAKE", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
+                ["ANX", "HEBNA", "KOOOP", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
                 ["BGMAC", "GIBEE", "OZZEE", "SNYDR", "HOOOT", "PEJAA", "FLUDD"],
                 ["SGF", "GNNON", "JEXAV", "ZULMO", "KAYLA"],
-                ["BUM", "FEBAP", "TRAKE"]
+                ["BUM", "FEBAP", "KOOOP"]
+            ]
+        },
+        "KOOOP1": {
+            "icao": "KOOOP1",
+            "name": "Coop One",
+            "entryPoints": {
+                "ANX": ["ANX", "PUTSY"],
+                "BUM": ["BUM"],
+                "SGF": ["SGF"]
+            },
+            "body": ["KOOOP", "KAYLA", "FTZ", "AUGST", "SNYDR"],
+            "rwy": {
+                "6": [],
+                "11": [],
+                "12L": [],
+                "12R": [],
+                "24": [],
+                "29": [],
+                "30L": [],
+                "30R": []
+            },
+            "draw": [
+                ["ANX", "PUTSY", "KOOOP", "KAYLA", "FTZ", "AUGST", "SNYDR"],
+                ["BUM", "KOOOP"],
+                ["SGF", "KOOOP"]
             ]
         },
         "LORLE2": {
@@ -978,31 +1003,6 @@
                 ["CNOTA", "UIN", "RIVRS", "LORLE", "MELVY"],
                 ["IRK", "RIVRS"],
                 ["SPI", "RIVRS"]
-            ]
-        },
-        "TRAKE1": {
-            "icao": "TRAKE1",
-            "name": "Trake One",
-            "entryPoints": {
-                "ANX": ["ANX", "PUTSY"],
-                "BUM": ["BUM"],
-                "SGF": ["SGF"]
-            },
-            "body": ["TRAKE", "KAYLA", "FTZ", "AUGST", "SNYDR"],
-            "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
-            },
-            "draw": [
-                ["ANX", "PUTSY", "TRAKE", "KAYLA", "FTZ", "AUGST", "SNYDR"],
-                ["BUM", "TRAKE"],
-                ["SGF", "TRAKE"]
             ]
         },
         "VLA9": {
@@ -1391,7 +1391,7 @@
             "origin": "",
             "destination": "kstl",
             "category": "arrival",
-            "route": "BUM.KAYLA2.KSTL",
+            "route": "BUM.KAYLA3.KSTL",
             "altitude": [31000, 39000],
             "speed": 320,
             "method": "random",
@@ -1455,7 +1455,7 @@
             "origin": "",
             "destination": "kstl",
             "category": "arrival",
-            "route": "SGF.TRAKE1.KSTL",
+            "route": "SGF.KOOOP1.KSTL",
             "altitude": [7000, 10000],
             "speed": 180,
             "method": "random",

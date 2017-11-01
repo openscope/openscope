@@ -1,4 +1,4 @@
-import GameController from '../game/GameController';
+import TimeKeeper from '../engine/TimeKeeper';
 import { digits_integer } from '../utilities/radioUtilities';
 import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
@@ -21,21 +21,23 @@ export default class GameClockView {
     }
 
     /**
-    * Get current time in the user's time zone
-    * @for GameClockView
-    * @property realWorldCurrentLocalTime
-    * @return {number} ms since 01/01/1970, 00:00:00 (user's time zone)
-    */
+     * Get current time in the user's time zone
+     *
+     *  @for GameClockView
+     * @property realWorldCurrentLocalTime
+     * @return {number} ms since 01/01/1970, 00:00:00 (user's time zone)
+     */
     get realWorldCurrentLocalTime() {
         return new Date().getTime();
     }
 
     /**
-    * Get current zulu time in milliseconds
-    * @for GameClockView
-    * @property realWorldCurrentZuluTime
-    * @return utc {number} ms since 01/01/1970, 00:00:00 UTC
-    */
+     * Get current zulu time in milliseconds
+     *
+     * @for GameClockView
+     * @property realWorldCurrentZuluTime
+     * @return utc {number} ms since 01/01/1970, 00:00:00 UTC
+     */
     get realWorldCurrentZuluTime() {
         const date = new Date();
         const utc = date.getTime() + (date.getTimezoneOffset() * TIME.ONE_MINUTE_IN_MILLISECONDS);
@@ -44,10 +46,10 @@ export default class GameClockView {
     }
 
     /**
-    * @for GameClockView
-    * @method destroy
-    * @chainable
-    */
+     * @for GameClockView
+     * @method destroy
+     * @chainable
+     */
     destroy() {
         this.$element = null;
         this.startTime = 0;
@@ -57,14 +59,15 @@ export default class GameClockView {
     }
 
     /**
-    * Generates a string of the current game time in a human-readable format
-    * @for GameClockView
-    * @property timeString
-    * @return clockTime {string} current game time formatted like '03:44:17'
-    */
-    generateCurrentTimeString() {
-        const gameTime = GameController.game.time;
-        const clockDate = new Date(this.startTime + (gameTime * TIME.ONE_SECOND_IN_MILLISECONDS));
+     * Generates a string of the current game time in a human-readable format
+     *
+     * @for GameClockView
+     * @method generateCurrentTimeValue
+     * @return clockTime {string}   current game time formatted like '03:44:17'
+     */
+    generateCurrentTimeValue() {
+        const gameTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
+        const clockDate = new Date(this.startTime + gameTimeInMilliseconds);
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
         const seconds = digits_integer(clockDate.getSeconds(), 2);
@@ -74,46 +77,48 @@ export default class GameClockView {
     }
 
     /**
-    * Updates the stored time and displayed time in webpage
-    * @for GameClockView
-    * @method update
-    */
+     * Re-calculates elapsed time and re-renders the view
+     *
+     * @for GameClockView
+     * @method update
+     */
     update() {
-        this._tick();
+        this._recalculate();
         this._render();
     }
 
     /**
-    * @for GameClockView
-    * @method _init
-    * @private
-    */
+     * @for GameClockView
+     * @method _init
+     * @private
+     */
     _init($element) {
         this.$element = $element.find(SELECTORS.DOM_SELECTORS.CLOCK);
-        this.$element.addClass(SELECTORS.CLASSNAMES.NOT_SELECTABLE);
         this.startTime = this.realWorldCurrentZuluTime;
 
         return this;
     }
 
     /**
-    * Updates the DOM with the new game time
-    * @for GameClockView
-    * @method _render
-    * @private
-    */
-    _render() {
-        this.$element.text(this.generateCurrentTimeString());
+     * Updates the time stored in the clock
+     * @for GameClockView
+     * @method _tick
+     * @private
+     */
+    _recalculate() {
+        const elapsedTime = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
+        this.time = this.startTime + elapsedTime;
     }
 
     /**
-    * Updates the time stored in the clock
-    * @for GameClockView
-    * @method _tick
-    * @private
-    */
-    _tick() {
-        const elapsedTime = GameController.game.time * TIME.ONE_SECOND_IN_MILLISECONDS;
-        this.time = this.startTime + elapsedTime;
+     * Updates the DOM with the new game time
+     * @for GameClockView
+     * @method _render
+     * @private
+     */
+    _render() {
+        const currentTimeValue = this.generateCurrentTimeValue();
+
+        this.$element.text(currentTimeValue);
     }
 }

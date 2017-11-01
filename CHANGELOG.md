@@ -1,5 +1,38 @@
+## 5.6.0 (November 1, 2017)
+---
+### New Features
+- Add Tampa Intl. (KTPA) [#647](https://github.com/openscope/openscope/issues/647)
+- Add Theodore Francis Green Memorial State Airport (Providence, US) [#107](https://github.com/openscope/openscope/issues/107)
+- New Airport: KDTW (Detroit Metropolitan Wayne County Airport, MI) [#559](https://github.com/openscope/openscope/issues/559)
+- Splits canvas into STATIC and DYNAMIC canvases, only drawing updates when there are updates to draw. [#236](https://github.com/openscope/openscope/issues/236)
+    - Moves CanvasController arrow functions to bound class methods
+
+### Bugfixes
+- Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
+- Fix bug of aircraft descending via STAR to '0' altitude [#567](https://github.com/openscope/openscope/issues/567)
+- `sid` command no longer sets the aircraft's destination property [#787](https://github.com/openscope/openscope/issues/787)
+- Ensure aircraft future path is drawn only when directed by settings menu [#812](https://github.com/openscope/openscope/issues/812)
+
+### Enhancements & Refactors
+- Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
+- Add git strategy flow chart to documentation [#80](https://github.com/openscope/openscope/issues/80)
+- Force arrivals with non-altitude-restricted STARs/routes descend at least to ceiling of controlled airspace [#662](https://github.com/openscope/openscope/issues/662)
+- Consolidate GameController timing elements into TimeKeeper [#725](https://github.com/openscope/openscope/issues/725)
+- Fix links in airport guide documentation [#764](https://github.com/openscope/openscope/issues/764)
+- Fix mistake in version number [#768](https://github.com/openscope/openscope/issues/768)
+- Minor renaming of holding related methods in FMS [#768](https://github.com/openscope/openscope/issues/768)
+- Updates KSFO (San Francisco International Airport, CA) [#427](https://github.com/openscope/openscope/issues/427)
+- Updates KABQ to AIRAC 1711 [#773](https://github.com/openscope/openscope/issues/773)
+- Updates KSEA to AIRAC 1711 [#775](https://github.com/openscope/openscope/issues/775)
+- Updates KSTL to AIRAC 1711 [#777](https://github.com/openscope/openscope/issues/777)
+- Updates KBOS to AIRAC 1711 [#780](https://github.com/openscope/openscope/issues/780)
+- Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
+- Updates KPDX (Portland International Airport, OR) [#650](https://github.com/openscope/openscope/issues/650)
+- Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment [#791](https://github.com/openscope/openscope/issues/791)
+
+
 ## 5.5.1 (October 1, 2017)
---
+---
 ### Hotfix
 - Checks if the airport in localStorage exists before loading it [#709](https://github.com/openscope/openscope/issues/709) and [#744](https://github.com/openscope/openscope/issues/744)
 - Updates `.eslint` rules to ignore unused `event` and `error` parameters. [#710](https://github.com/openscope/openscope/issues/710) and [#744](https://github.com/openscope/openscope/issues/744)
@@ -58,7 +91,7 @@
 ## 5.4.0 (September 1, 2017)
 ---
 ### New Features
-- New Airport: KABQ (Albuquerque International Sunport, NM) [#327](https://github.com/openscope/openscope/issues/327)
+- Add Albuquerque Sunport (KABQ) [#327](https://github.com/openscope/openscope/issues/327)
 - Add Hartsfield–Jackson Atlanta Intl. (KATL) [#541](https://github.com/openscope/openscope/issues/541)
 - Add Louisville Intl. (KSDF) [#557](https://github.com/openscope/openscope/issues/557)
 - New Airport: KELP (El Paso International Airport, TX) [#331](https://github.com/openscope/openscope/issues/331)

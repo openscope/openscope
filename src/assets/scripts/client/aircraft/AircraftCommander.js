@@ -3,9 +3,10 @@ import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import UiController from '../UiController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import GameController from '../game/GameController';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
+import TimeKeeper from '../engine/TimeKeeper';
+import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
@@ -206,10 +207,9 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runAbort
-     * @param {AircraftModel} aircraft
      * @return {array} [success of operation, readback]
      */
-    runAbort(aircraft) {
+    runAbort() {
         return [false, "the 'abort' command has been deprecated, please see documentation for help"];
     }
 
@@ -250,7 +250,7 @@ export default class AircraftCommander {
         let direction = data[0];
         const heading = data[1];
         const incremental = data[2];
-        const readback = aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
+        const readback = aircraft.pilot.maintainHeading(aircraft, heading, direction, incremental);
 
         if (direction === null) {
             direction = '';
@@ -259,7 +259,7 @@ export default class AircraftCommander {
         aircraft.target.turn = direction;
 
         if (aircraft.hasApproachClearance) {
-            aircraft.cancelApproachClearance(aircraft.altitude, aircraft.heading);
+            aircraft.pilot.cancelApproachClearance(aircraft);
         }
 
         return readback;
@@ -399,10 +399,6 @@ export default class AircraftCommander {
         if (!response[0]) {
             return response;
         }
-
-        // TODO: toUpperCase might be overly defensive here
-        // update the aircraft destination so the strip display reflects the change of procedure
-        aircraft.destination = sidId.toUpperCase();
 
         return response;
     }
@@ -568,7 +564,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSayHeading
      * @param aircraft
-     * @return {array}	[success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     runSayHeading(aircraft) {
         const heading = _round(radiansToDegrees(aircraft.heading));
@@ -584,7 +580,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSayAssignedHeading
      * @param aircraft
-     * @return {array}	[success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     runSayAssignedHeading(aircraft) {
         if (aircraft.mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
@@ -666,7 +662,7 @@ export default class AircraftCommander {
 
         // TODO: this may need to live in a method on the aircraft somewhere
         aircraft.fms.departureRunwayModel = runway;
-        aircraft.taxi_start = GameController.game_time();
+        aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
         runway.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
@@ -746,7 +742,7 @@ export default class AircraftCommander {
 
         runway.removeAircraftFromQueue(aircraft.id);
         aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = GameController.game_time();
+        aircraft.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
