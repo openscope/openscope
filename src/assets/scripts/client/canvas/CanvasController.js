@@ -898,12 +898,13 @@ export default class CanvasController {
         switch (GameController.game.option.getOptionByName('drawProjectedPaths')) {
             case 'always':
                 this._drawAircraftFuturePath(cc, aircraftModel);
+
                 break;
             case 'selected':
-                if (aircraftModel.warning || match) {
+                if (match) {
                     this._drawAircraftFuturePath(cc, aircraftModel);
-                    break;
                 }
+
                 break;
             default:
                 break;
