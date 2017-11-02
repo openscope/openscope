@@ -477,6 +477,8 @@ export default class CanvasController {
         } else {
             // extended centerlines
             if (!runwayModel.ils.enabled) {
+                cc.restore();
+
                 return;
             }
 
