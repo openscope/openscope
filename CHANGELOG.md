@@ -18,6 +18,12 @@
 
 
 
+## 5.6.1 (November 1, 2017)
+---
+### Hotfix
+- Fix severe canvas bug for airports with runways that don't draw extended centerlines [#814](https://github.com/openscope/openscope/issues/814)
+
+
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
