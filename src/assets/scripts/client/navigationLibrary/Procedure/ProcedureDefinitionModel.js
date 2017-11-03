@@ -4,7 +4,25 @@ import _map from 'lodash/map';
 import ProcedureWaypointModel from './ProcedureWaypointModel';
 import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
 
+/**
+ * Generic class for instrument procedures of multiple types, such as SIDs/STARs
+ *
+ * Used by FMS to generate waypoints from procedure definitions outlined in an
+ * airport's JSON file. The FMS is given a route on spawn, or a reroute by a
+ * controller, and if it contains a procedure, it will look up the associated
+ * `ProcedureDefinitionModel`, and request the waypoints for that procedure at
+ * the planned entry and exit points, which are then consumed by the FMS for
+ * navigation purposes.
+ *
+ * @class ProcedureDefinitionModel
+ */
 export default class ProcedureDefinitionModel {
+    /**
+     * @for ProcedureDefinitionModel
+     * @constructor
+     * @param procedureType {string} must belong to the `PROCEDURE_TYPE` enum
+     * @param data {object} JSON data from airport file
+     */
     constructor(procedureType, data) {
         if (typeof data === 'undefined') {
             throw new TypeError(`Expected valid procedure data, but received '${data}'`);
@@ -25,6 +43,13 @@ export default class ProcedureDefinitionModel {
         this._init(data);
     }
 
+    /**
+     * @for ProcedureDefinitionModel
+     * @method _init
+     * @param data {object} JSON data from airport file
+     * @private
+     * @chainable
+     */
     _init(data) {
         this._draw = data.draw;
         this._icao = data.icao;
@@ -37,6 +62,17 @@ export default class ProcedureDefinitionModel {
         return this._initWaypointsForStar(data);
     }
 
+    /**
+     * Initialize waypoint collections as a SID procedure
+     *
+     * SIDs will have entries from data's `rwy` key, and exits from the `exitPoints` key.
+     *
+     * @for ProcedureDefinitionModel
+     * @method _initWaypointForSid
+     * @param data {object} JSON data from airport file
+     * @private
+     * @chainable
+     */
     _initWaypointForSid(data) {
         this._bodyProcedureWaypoints = this._generateBodyWaypointsFromJson(data.body);
         this._entryProcedureWaypointCollection = this._generateEntryWaypointCollectionFromJson(data.rwy);
@@ -45,6 +81,17 @@ export default class ProcedureDefinitionModel {
         return this;
     }
 
+    /**
+     * Initialize waypoint collections as a STAR procedure
+     *
+     * STARs will have entries from data's `entryPoints` key, and exits from the `rwy` key.
+     *
+     * @for ProcedureDefinitionModel
+     * @method _initWaypointsForStar
+     * @param data {object} JSON data from airport file
+     * @private
+     * @chainable
+     */
     _initWaypointsForStar(data) {
         this._bodyProcedureWaypoints = this._generateBodyWaypointsFromJson(data.body);
         this._entryProcedureWaypointCollection = this._generateEntryWaypointCollectionFromJson(data.entryPoints);
@@ -53,6 +100,15 @@ export default class ProcedureDefinitionModel {
         return this;
     }
 
+    /**
+     * Given an entry point and exit point, return a list of all applicable waypoints
+     *
+     * @for ProcedureDefinitionModel
+     * @method getWaypointModelsForEntryAndExit
+     * @param entry {string} name of the requested entry point
+     * @param exit {string} name of the requested exit point
+     * @return {array<ProcedureWaypointModel>}
+     */
     getWaypointModelsForEntryAndExit(entry, exit) {
         if (!_has(this._entryProcedureWaypointCollection, entry)) {
             console.error(`Expected valid entry of ${this._icao}, but received ${entry}`);
@@ -73,10 +129,26 @@ export default class ProcedureDefinitionModel {
         return [...entryWaypointModels, ...bodyWaypointModels, ...exitWaypointModels];
     }
 
+    /**
+     * Generate waypoint collection for body portion of procedure
+     *
+     * @for ProcedureDefinitionModel
+     * @method _generateBodyWaypointsFromJson
+     * @param data {object} body portion of procedure from airport JSON file
+     * @return {array<ProcedureWaypointModel>}
+     */
     _generateBodyWaypointsFromJson(data) {
         return _map(data, (waypoint) => new ProcedureWaypointModel(waypoint));
     }
 
+    /**
+     * Generate waypoint collection for entry portion of procedure
+     *
+     * @for ProcedureDefinitionModel
+     * @method _generateEntryWaypointCollectionFromJson
+     * @param data {object} entry portion of procedure from airport JSON file
+     * @return {array<ProcedureWaypointModel>}
+     */
     _generateEntryWaypointCollectionFromJson(data) {
         const entries = [];
 
@@ -87,6 +159,14 @@ export default class ProcedureDefinitionModel {
         return entries;
     }
 
+    /**
+     * Generate waypoint collection for exit portion of procedure
+     *
+     * @for ProcedureDefinitionModel
+     * @method _generateExitWaypointCollectionFromJson
+     * @param data {object} exit portion of procedure from airport JSON file
+     * @return {array<ProcedureWaypointModel>}
+     */
     _generateExitWaypointCollectionFromJson(data) {
         const exits = [];
 
@@ -97,10 +177,27 @@ export default class ProcedureDefinitionModel {
         return exits;
     }
 
+    /**
+     * Retrieve the array of `ProcedureWaypointModel`s in the specified entry of this procedure
+     *
+     * @for ProcedureDefinitionModel
+     * @method _getProcedureWaypointsForEntry
+     * @param entry {string} name of the requested entry point
+     * @return {array<ProcedureWaypointModel>}
+     */
     _getProcedureWaypointsForEntry(entry) {
         return this._entryProcedureWaypointCollection[entry];
     }
 
+    /**
+     * Retrieve the array of `ProcedureWaypointModel`s in the specified exit of this procedure
+     *
+     * @for ProcedureDefinitionModel
+     * @method _getProcedureWaypointsForExit
+     * @param exit {string} name of the requested exit point
+     * @param  {[type]} exit [description]
+     * @return {[type]}      [description]
+     */
     _getProcedureWaypointsForExit(exit) {
         return this._exitProcedureWaypointCollection[exit];
     }
