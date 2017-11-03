@@ -16,6 +16,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KLAS - McCarran International Airport](klas.md)
 - [KMCI - Kansas City International Airport](kmci.md)
 - [KPDX - Portland International Airport](kpdx.md)
+- [KPIT - Pittsburgh International Airport](kpit.md)
 - [KRDU - Raleigh–Durham International Airport](krdu.md)
 - [KSDF - Louisville International Airport](ksdf.md)
 - [KSEA - Seattle–Tacoma International Airport](ksea.md)
