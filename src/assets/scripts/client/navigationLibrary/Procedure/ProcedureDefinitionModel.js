@@ -4,7 +4,7 @@ import _map from 'lodash/map';
 import ProcedureWaypointModel from './ProcedureWaypointModel';
 import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
 
-export default class ProcedureModel {
+export default class ProcedureDefinitionModel {
     constructor(procedureType, data) {
         if (typeof data === 'undefined') {
             throw new TypeError(`Expected valid procedure data, but received '${data}'`);

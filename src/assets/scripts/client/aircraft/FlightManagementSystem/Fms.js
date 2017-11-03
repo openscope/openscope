@@ -937,23 +937,23 @@ export default class Fms {
 
         // TODO: abstract this to a method or combine with if/returns below
         // find the prcedure model from the correct collection based on flightPhase
-        const procedureModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
+        const procedureDefinitionModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
             ? this.findStarByProcedureId(routeStringModel.procedure)
             : this.findSidByProcedureId(routeStringModel.procedure);
 
-        if (!procedureModel) {
+        if (!procedureDefinitionModel) {
             return false;
         }
 
         if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
             // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
             // reimplemented as soon as possible.
-            return procedureModel.hasFixName(routeStringModel.entry); // && procedureModel.hasFixName(runway);
+            return procedureDefinitionModel.hasFixName(routeStringModel.entry); // && procedureDefinitionModel.hasFixName(runway);
         }
 
         // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
         // reimplemented as soon as possible.
-        return procedureModel.hasFixName(routeStringModel.exit); // && procedureModel.hasFixName(runway);
+        return procedureDefinitionModel.hasFixName(routeStringModel.exit); // && procedureDefinitionModel.hasFixName(runway);
     }
 
     /**

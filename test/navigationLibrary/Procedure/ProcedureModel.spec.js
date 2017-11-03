@@ -2,7 +2,7 @@ import ava from 'ava';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureModel';
+import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureDefinitionModel';
 import {
     SID_MOCK,
     STAR_MOCK
@@ -21,15 +21,15 @@ ava.afterEach(() => {
 });
 
 ava('throws when instantiated without parameters', (t) => {
-    t.throws(() => new ProcedureModel());
+    t.throws(() => new ProcedureDefinitionModel());
 });
 
 ava('throws when instantiated with unknown procedure type', (t) => {
-    t.throws(() => new ProcedureModel('invalidProcedureType', SID_MOCK.BOACH6));
+    t.throws(() => new ProcedureDefinitionModel('invalidProcedureType', SID_MOCK.BOACH6));
 });
 
 ava('instantiates correctly when given valid SID data', (t) => {
-    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const expectedEntries = ['01L', '01R', '07L', '07R', '19L', '19R', '25L', '25R'];
     const expectedExits = ['HEC', 'TNP'];
 
@@ -45,7 +45,7 @@ ava('instantiates correctly when given valid SID data', (t) => {
 });
 
 ava('instantiates correctly when given valid STAR data', (t) => {
-    const model = new ProcedureModel(PROCEDURE_TYPE.STAR, STAR_MOCK.KEPEC1);
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.STAR, STAR_MOCK.KEPEC1);
     const expectedEntries = ['DAG', 'TNP'];
     const expectedExits = ['01L', '01R', '07L', '07R', '19L', '19R', '25L', '25R'];
 
@@ -62,7 +62,7 @@ ava('instantiates correctly when given valid STAR data', (t) => {
 });
 
 ava('.getWaypointModelsForEntryAndExit() returns early when specified entry is invalid', (t) => {
-    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const invalidEntry = 'blahblahblah';
     const validExit = 'TNP';
     const result = model.getWaypointModelsForEntryAndExit(invalidEntry, validExit);
@@ -71,7 +71,7 @@ ava('.getWaypointModelsForEntryAndExit() returns early when specified entry is i
 });
 
 ava('.getWaypointModelsForEntryAndExit() returns early when specified exit is invalid', (t) => {
-    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const validEntry = '07R';
     const invalidExit = 'blahblahblah';
     const result = model.getWaypointModelsForEntryAndExit(validEntry, invalidExit);
@@ -80,7 +80,7 @@ ava('.getWaypointModelsForEntryAndExit() returns early when specified exit is in
 });
 
 ava('.getWaypointModelsForEntryAndExit() returns correct waypoints when specified entry/exit are valid', (t) => {
-    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const validEntry = '07R';
     const validExit = 'TNP';
     const result = model.getWaypointModelsForEntryAndExit(validEntry, validExit);
