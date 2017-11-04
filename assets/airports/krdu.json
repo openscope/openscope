@@ -18,8 +18,8 @@
         "angle": 230,
         "speed": 7
     },
-    "arrivalRunway": "8",
-    "departureRunway": "8",
+    "arrivalRunway": "23R",
+    "departureRunway": "23L",
     "airspace": [
         {
             "floor": 0,
@@ -43,44 +43,123 @@
         }
     ],
     "fixes": {
+        "AGOLE": ["N35d45.59", "W78d26.88"],
+        "AGUYA": ["N37d02.59", "W77d19.09"],
         "AIMHI": ["N36d16.44", "W78d24.77"],
+        "ALDAN": ["N36d23.88", "W78d56.05"],
+        "ARELE": ["N35d52.78", "W77d52.24"],
+        "ARGAL": ["N36d10.28", "W78d09.92"],
         "BEXGO": ["N36d30.00", "W78d12.13"],
+        "BILLA": ["N36d14.61", "W78d53.37"],
+        "BLNKR": ["N36d03.39", "W78d50.26"],
+        "BLOGS": ["N35d39.42", "W78d15.09"],
+        "BOGPE": ["N37d15.69", "W76d29.72"],
+        "BRADE": ["N35d38.98", "W78d13.99"],
+        "BUTTS": ["N36d09.22", "W78d42.78"],
+        "BUZZY": ["N35d30.32", "W79d23.14"],
+        "CABED": ["N35d43.62", "W78d24.04"],
         "CAE"  : ["N33d51.44", "W81d03.23"],
+        "CAKEY": ["N35d47.86", "W78d53.89"],
         "CARML": ["N37d21.71", "W77d58.14"],
         "CATAR": ["N35d50.12", "W79d18.01"],
+        "CCV"  : ["N37d20.85", "W75d59.86"],
+        "CEBET": ["N36d58.84", "W76d55.91"],
         "CHS"  : ["N32d53.66", "W80d02.27"],
         "CLB"  : ["N34d06.38", "W77d57.68"],
         "CRE"  : ["N33d48.83", "W78d43.47"],
         "DAN"  : ["N36d34.13", "W79d20.20"],
+        "DEMVE": ["N36d31.52", "W77d42.06"],
+        "DOYAS": ["N36d47.42", "W77d13.43"],
+        "DRIVE": ["N36d54.18", "W76d34.10"],
+        "DUFFI": ["N36d20.96", "W77d47.49"],
         "EAGER": ["N35d30.89", "W78d42.40"],
         "EPOCH": ["N36d04.39", "W79d21.93"],
+        "ETBUY": ["N35d06.81", "W79d29.42"],
         "EVIGY": ["N35d37.62", "W78d55.79"],
         "FAK"  : ["N37d31.71", "W77d49.69"],
+        "FAVKO": ["N36d26.02", "W78d56.67"],
         "FAY"  : ["N34d59.13", "W78d52.50"],
         "FITON": ["N35d26.74", "W78d53.80"],
+        "FKN"  : ["N36d42.85", "W77d00.74"],
         "FLO"  : ["N34d13.98", "W79d39.43"],
         "FOCAL": ["N36d02.09", "W79d15.40"],
+        "FRAZI": ["N36d31.37", "W78d58.22"],
+        "FRETO": ["N35d53.48", "W78d52.68"],
+        "GABLR": ["N35d58.60", "W78d50.48"],
+        "GAZER": ["N36d16.86", "W78d49.68"],
+        "GLEYS": ["N35d57.56", "W78d50.56"],
+        "GOLLI": ["N36d37.84", "W77d11.51"],
         "GSO"  : ["N36d02.74", "W79d58.58"],
+        "GVE"  : ["N38d00.82", "W78d09.18"],
+        "HAFNR": ["N38d23.84", "W77d33.98"],
+        "HARSH": ["N36d14.43", "W78d47.49"],
         "HARVY": ["N36d44.77", "W78d28.32"],
+        "HEAVE": ["N35d55.35", "W78d53.27"],
+        "HOGIL": ["N34d57.32", "W79d31.23"],
         "HOOKZ": ["N35d16.82", "W78d55.45"],
+        "HPW"  : ["N37d19.73", "W77d06.96"],
         "HURIC": ["N35d56.29", "W78d06.96"],
         "ILM"  : ["N34d21.10", "W77d52.46"],
+        "IRQ"  : ["N33d42.44", "W82d09.72"],
+        "ISO"  : ["N35d22.26", "W77d33.50"],
+        "JAMIE": ["N37d36.34", "W75d57.81"],
         "JAYRR": ["N36d00.54", "W79d22.55"],
+        "JEMMY": ["N35d53.23", "W78d55.90"],
+        "JODUS": ["N35d47.93", "W78d46.78"],
+        "JOLTY": ["N35d59.68", "W78d47.94"],
+        "JURDI": ["N34d43.76", "W79d50.67"],
+        "KAROO": ["N36d07.32", "W78d16.09"],
+        "KENCH": ["N35d50.04", "W78d41.38"],
+        "KPASS": ["N36d38.94", "W81d49.97"],
+        "LEASA": ["N36d05.35", "W78d22.87"],
+        "LEZZY": ["N35d52.07", "W78d38.88"],
         "LIB"  : ["N35d48.70", "W79d36.76"],
         "LVL"  : ["N36d49.08", "W77d54.18"],
         "LWOOD": ["N36d10.84", "W79d22.89"],
+        "MALNR": ["N35d26.84", "W79d25.58"],
+        "MELTN": ["N37d12.15", "W78d34.74"],
+        "MEYER": ["N36d12.82", "W78d04.60"],
+        "MUFLY": ["N36d00.06", "W78d31.14"],
+        "NEDIE": ["N35d38.10", "W79d09.21"],
+        "NEWIE": ["N35d54.06", "W78d37.67"],
+        "OCHRE": ["N35d50.84", "W78d40.39"],
         "OPUSS": ["N36d35.06", "W79d44.43"],
+        "ORLAC": ["N35d48.86", "W78d34.35"],
+        "OTTOS": ["N35d39.67", "W79d05.97"],
         "OXFRD": ["N36d25.22", "W78d35.34"],
+        "PAINS": ["N36d04.42", "W78d26.39"],
         "PEAVY": ["N36d21.42", "W78d36.70"],
+        "PETTO": ["N33d03.13", "W81d07.37"],
+        "PILOE": ["N37d09.54", "W77d13.97"],
         "PSK"  : ["N37d05.26", "W80d42.77"],
+        "PYRES": ["N33d51.73", "W81d32.68"],
+        "RASKL": ["N35d34.38", "W79d16.45"],
         "RDU"  : ["N35d52.35", "W78d47.00"],
         "ROA"  : ["N37d20.61", "W80d04.22"],
+        "ROBLS": ["N36d57.31", "W80d29.45"],
         "ROZBO": ["N34d57.40", "W78d37.62"],
+        "SAV"  : ["N32d08.78", "W81d11.95"],
         "SBV"  : ["N36d40.50", "W79d00.87"],
+        "SBY"  : ["N38d20.70", "W75d30.63"],
         "SDZ"  : ["N35d12.93", "W79d35.28"],
         "SHPRD": ["N35d39.26", "W80d28.61"],
+        "SMIRF": ["N35d12.38", "W79d34.03"],
+        "STINT": ["N35d47.94", "W78d43.98"],
         "STRMY": ["N35d55.13", "W78d19.18"],
+        "SULIE": ["N35d49.74", "W78d32.87"],
+        "SWL"  : ["N38d03.40", "W75d27.83"],
+        "TABER": ["N37d02.92", "W80d02.93"],
+        "TENNI": ["N34d46.90", "W80d03.81"],
+        "TIBIA": ["N35d54.37", "W78d36.03"],
+        "TIIME": ["N35d50.14", "W78d40.05"],
+        "TILTZ": ["N35d27.27", "W77d45.56"],
+        "TIVAE": ["N37d14.44", "W79d54.35"],
+        "TOYER": ["N35d45.69", "W78d46.76"],
+        "TREAL": ["N33d04.18", "W81d26.46"],
         "TYI"  : ["N35d58.60", "W77d42.22"],
+        "UNCUT": ["N35d57.73", "W78d31.88"],
+        "WENDI": ["N35d43.19", "W78d24.34"],
+        "WISPY": ["N35d37.94", "W79d10.52"],
         "WLFFF": ["N35d49.06", "W79d32.09"]
     },
     "runways":[
@@ -369,7 +448,188 @@
         }
     },
     "stars": {
-        
+        "ALDAN1": {
+            "icao": "ALDAN1",
+            "name": "Aldan One",
+            "entryPoints": {
+                "HAFNR": ["HAFNR", "MELTN"],
+                "KPASS": ["KPASS", "ROBLS", "TABER"],
+                "ROA": ["ROA", "TIVAE"]
+            },
+            "body": [["SBV", "A170-|S280"], "FRAZI", ["FAVKO", "A100+|A120-"], ["ALDAN", "A100+|A120-"]],
+            "rwy": {
+                "5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
+                "5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
+                "23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"], "#151"],
+                "23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"]]
+            },
+            "draw": [
+                ["KPASS*", "ROBLS", "TABER", "SBV", "FRAZI", "FAVKO", "ALDAN", "GAZER", "HARSH", "BUTTS"],
+                ["ALDAN", "FOBAT", "BILLA", "BLNKR", "GABLR", "HEAVE", "JEMMY"],
+                ["HAFNR*", "MELTN", "SBV"],
+                ["ROA*", "TIVAE", "SBV"]
+            ]
+        },
+        "ARGAL5": {
+            "icao": "ARGAL5",
+            "name": "Argal Five",
+            "entryPoints": {
+                "FKN": ["FKN"],
+                "HPW": ["HPW"],
+                "SBY": ["SBY", "CCV", "DRIVE", "FKN"],
+                "SWL": ["SWL", "CCV", "DRIVE", "FKN"]
+            },
+            "body": ["DUFFI", "MEYER", "ARGAL", "RDU"],
+            "rwy": {
+                "5L": [],
+                "5R": [],
+                "14": [],
+                "23L": [],
+                "23R": [],
+                "32": []
+            },
+            "draw": [
+                ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
+                ["SBY*", "CCV", "DRIVE", "FKN"],
+                ["HPW*", "DUFFI"],
+                ["SWL*", "CCV"]
+            ]
+        },
+        "BLOGS1": {
+            "icao": "BLOGS1",
+            "name": "Blogs One",
+            "entryPoints": {
+                "ISO": ["ISO", "TILTZ"],
+                "TYI": ["TYI", "ARELE"],
+                "ILM": ["ILM", "TILTZ"]
+            },
+            "body": [["BLOGS", "A110+|A120-|S250"], ["CABED", "A80+|A90-"]],
+            "rwy": {
+                "5L": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
+                "5R": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
+                "23L": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"],
+                "23R": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"]
+            },
+            "draw": [
+                ["ISO*", "TILTZ", "BLOGS", "CABED", "AGOLE", "SULIE", "TIBIA", "UNCUT"],
+                ["CABED", "ORLAC", "TIIME", "STINT", "TOYER"],
+                ["TYI*", "ARELE", "BLOGS"],
+                ["ILM*", "TILTZ"]
+            ]
+        },
+        "BRADE5": {
+            "icao": "BRADE5",
+            "name": "Braid Five",
+            "entryPoints": {
+                "ISO": ["ISO", "TILTZ"],
+                "TYI": ["TYI"],
+                "ILM": ["ILM", "TILTZ"]
+            },
+            "body": ["BRADE", "WENDI", "RDU"],
+            "rwy": {
+                "5L": [],
+                "5R": [],
+                "14": [],
+                "23L": [],
+                "23R": [],
+                "32": []
+            },
+            "draw": [
+                ["ISO*", "TILTZ", "BRADE", "WENDI", "RDU"],
+                ["ILM*", "TILTZ"],
+                ["TYI*", "BRADE"]
+            ]
+        },
+        "BUZZY6": {
+            "icao": "BUZZY6",
+            "name": "Buzzy Six",
+            "entryPoints": {
+                "CAE": []
+            },
+            "body": ["CAE", "TENNI", "SDZ", "BUZZY", "RDU"],
+            "rwy": {
+                "5L": [],
+                "5R": [],
+                "14": [],
+                "23L": [],
+                "23R": [],
+                "32": []
+            },
+            "draw": [
+                ["CAE*", "TENNI", "SDZ", "BUZZY", "RDU"]
+            ]
+        },
+        "KAROO1": {
+            "icao": "KAROO1",
+            "name": "Karoo One",
+            "entryPoints": {
+                "FKN": ["FKN", "GOLLI", "DUFFI"],
+                "HPW": ["HPW", "PILOE", "AGUYA", "DEMVE"],
+                "SBY": ["SBY", "JAMIE", "BOGPE", ["CEBET", "A220+|A230-"], ["DOYAS", "A170+|A230-"]],
+                "SWL": ["SWL", "JAMIE", "BOGPE", ["CEBET", "A220+|A230-"], ["DOYAS", "A170+|A230-"]]
+            },
+            "body": [["ARGAL", "A100+|A150-"], ["KAROO", "A80+|A120-"]],
+            "rwy": {
+                "5L": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
+                "5R": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
+                "23L": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]],
+                "23R": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]]
+            },
+            "draw": [
+                ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
+                ["SBY*", "CCV", "DRIVE", "FKN"],
+                ["HPW*", "DUFFI"],
+                ["SWL*", "CCV"]
+            ]
+        },
+        "MALNR3": {
+            "icao": "MALNR3",
+            "name": "Malner Three",
+            "entryPoints": {
+                "FLO": ["FLO", "HOGIL", "ETBUY"],
+                "IRQ": ["IRQ", "PYRES", ["JURDI", "A230"], ["SMIRF", "A210-"]],
+                "SAV": ["SAV", "PETTO", ["JURDI", "A230"], ["SMIRF", "A210-"]],
+                "TREAL": ["TREAL", ["JURDI", "A230"], ["SMIRF", "A210-"]]
+            },
+            "body": [["MALNR", "A110+|S250"], ["BUZZY", "A100+|A160-|S250"], "RASKL"],
+            "rwy": {
+                "5L": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
+                "5R": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
+                "23L": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "JODUS", "KENCH", "LEZZY", "#054"],
+                "23R": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "FRETO", "GLEYS", "JOLTY", "#054"]
+            },
+            "draw": [
+                ["FLO*", "HOGIL", "ETBUY", "MALNR", "BUZZY", "RASKL", "NEDIE", "OTTOS"],
+                ["RASKL", "WISPY", "CAKEY", "FRETO", "GLEYS", "JOLTY"],
+                ["IRQ*", "PYRES", "JURDI", "SMIRF", "MALNR"],
+                ["CAKEY", "JODUS", "KENCH", "LEZZY"],
+                ["SAV*", "PETTO", "JURDI"],
+                ["TREAL*", "JURDI"]
+            ]
+        },
+        "SBV4": {
+            "icao": "SBV4",
+            "name": "South Boston Four",
+            "entryPoints": {
+                "GVE": ["GVE"],
+                "PSK": ["PSK", "TABER"],
+                "ROA": ["ROA"]
+            },
+            "body": ["SBV", "ALDAN", "BILLA", "RDU"],
+            "rwy": {
+                "5L": [],
+                "5R": [],
+                "14": [],
+                "23L": [],
+                "23R": [],
+                "32": []
+            },
+            "draw": [
+                ["GVE*", "SBV", "ALDAN", "BILLA", "RDU"],
+                ["PSK*", "TABER", "SBV"],
+                ["ROA*", "SBV"]
+            ]
+        }
     },
     "spawnPatterns": [
         
