@@ -33,13 +33,13 @@ ava('instantiates correctly when given valid SID data', (t) => {
     const expectedEntries = ['01L', '01R', '07L', '07R', '19L', '19R', '25L', '25R'];
     const expectedExits = ['HEC', 'TNP'];
 
-    t.true(model._bodyProcedureWaypoints[0]._name === 'BOACH');
-    t.true(model._bodyProcedureWaypoints.length === 1);
-    t.true(model._entryProcedureWaypointCollection['07R'][0]._name === 'JESJI');
-    t.deepEqual(Object.keys(model._entryProcedureWaypointCollection), expectedEntries);
-    t.true(model._exitProcedureWaypointCollection.TNP[0]._name === 'ZELMA');
-    t.deepEqual(Object.keys(model._exitProcedureWaypointCollection), expectedExits);
-    t.true(model._draw === SID_MOCK.BOACH6.draw);
+    t.deepEqual(model._body[0], ['BOACH', 'A130+']);
+    t.true(model._body.length === 1);
+    t.true(model._entryPoints['07R'][0] === 'JESJI');
+    t.deepEqual(Object.keys(model._entryPoints), expectedEntries);
+    t.true(model._exitPoints.TNP[0] === 'ZELMA');
+    t.deepEqual(Object.keys(model._exitPoints), expectedExits);
+    t.deepEqual(model._draw, SID_MOCK.BOACH6.draw);
     t.true(model._icao === SID_MOCK.BOACH6.icao);
     t.true(model._name === SID_MOCK.BOACH6.name);
 });
@@ -50,18 +50,18 @@ ava('instantiates correctly when given valid STAR data', (t) => {
     const expectedExits = ['01L', '01R', '07L', '07R', '19L', '19R', '25L', '25R'];
 
 
-    t.true(model._bodyProcedureWaypoints[0]._name === 'CLARR');
-    t.true(model._bodyProcedureWaypoints.length === 4);
-    t.true(model._entryProcedureWaypointCollection.TNP[1]._name === 'JOTNU');
-    t.deepEqual(Object.keys(model._entryProcedureWaypointCollection), expectedEntries);
-    t.true(model._exitProcedureWaypointCollection['07R'][0]._name === 'CHIPZ');
-    t.deepEqual(Object.keys(model._exitProcedureWaypointCollection), expectedExits);
-    t.true(model._draw === STAR_MOCK.KEPEC1.draw);
+    t.deepEqual(model._body[0], ['CLARR', 'A130|S250']);
+    t.true(model._body.length === 4);
+    t.true(model._entryPoints.TNP[1] === 'JOTNU');
+    t.deepEqual(Object.keys(model._entryPoints), expectedEntries);
+    t.deepEqual(model._exitPoints['07R'][0], ['CHIPZ', 'A80|S170']);
+    t.deepEqual(Object.keys(model._exitPoints), expectedExits);
+    t.deepEqual(model._draw, STAR_MOCK.KEPEC1.draw);
     t.true(model._icao === STAR_MOCK.KEPEC1.icao);
     t.true(model._name === STAR_MOCK.KEPEC1.name);
 });
 
-ava('.getWaypointModelsForEntryAndExit() returns early when specified entry is invalid', (t) => {
+ava('.getWaypointModelsForEntryAndExit() returns early when specified entry point is invalid', (t) => {
     const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const invalidEntry = 'blahblahblah';
     const validExit = 'TNP';
@@ -70,7 +70,7 @@ ava('.getWaypointModelsForEntryAndExit() returns early when specified entry is i
     t.true(typeof result === 'undefined');
 });
 
-ava('.getWaypointModelsForEntryAndExit() returns early when specified exit is invalid', (t) => {
+ava('.getWaypointModelsForEntryAndExit() returns early when specified exit point is invalid', (t) => {
     const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const validEntry = '07R';
     const invalidExit = 'blahblahblah';
@@ -90,4 +90,18 @@ ava('.getWaypointModelsForEntryAndExit() returns correct waypoints when specifie
     t.true(_isArray(result));
     t.true(result.length === 8);
     t.deepEqual(resultingWaypointNames, expectedWaypointNames);
+});
+
+ava('._generateWaypointsForEntry() throws when specified entry point is invalid', (t) => {
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const invalidEntry = 'blahblahblah';
+
+    t.throws(() => model._generateWaypointsForEntry(invalidEntry));
+});
+
+ava('._generateWaypointsForExit() throws when specified exit point is invalid', (t) => {
+    const model = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+    const invalidExit = 'blahblahblah';
+
+    t.throws(() => model._generateWaypointsForExit(invalidExit));
 });

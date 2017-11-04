@@ -104,13 +104,13 @@ export default class ProcedureDefinitionModel {
      * @return {array<ProcedureWaypointModel>}
      */
     getWaypointModelsForEntryAndExit(entry, exit) {
-        if (!(entry in this._entries)) {
+        if (!(entry in this._entryPoints)) {
             console.error(`Expected valid entry of ${this._icao}, but received ${entry}`);
 
             return;
         }
 
-        if (!(exit in this._exits)) {
+        if (!(exit in this._exitPoints)) {
             console.error(`Expected valid exit of ${this._icao}, but received ${exit}`);
 
             return;
@@ -168,86 +168,4 @@ export default class ProcedureDefinitionModel {
 
         return _map(this._exitPoints[exitPoint], (waypoint) => new ProcedureWaypointModel(waypoint));
     }
-
-    // /**
-    //  * Generate waypoint collection for body portion of procedure
-    //  *
-    //  * @for ProcedureDefinitionModel
-    //  * @method _generateBodyWaypointsFromJson
-    //  * @param data {object} body portion of procedure from airport JSON file
-    //  * @return {array<ProcedureWaypointModel>}
-    //  */
-    // _generateBodyWaypointsFromJson(data) {
-    //     return _map(data, (waypoint) => new ProcedureWaypointModel(waypoint));
-    // }
-    //
-    // /**
-    //  * Generate waypoint collection for entry portion of procedure
-    //  *
-    //  * @for ProcedureDefinitionModel
-    //  * @method _generateEntryWaypointCollectionFromJson
-    //  * @param data {object} entry portion of procedure from airport JSON file
-    //  * @return {array<ProcedureWaypointModel>}
-    //  */
-    // _generateEntryWaypointCollectionFromJson(data) {
-    //     const entries = [];
-    //
-    //     _each(data, (entryData, entryName) => {
-    //         entries[entryName] = _map(entryData, (waypoint) => new ProcedureWaypointModel(waypoint));
-    //     });
-    //
-    //     return entries;
-    // }
-    //
-    // /**
-    //  * Generate waypoint collection for exit portion of procedure
-    //  *
-    //  * @for ProcedureDefinitionModel
-    //  * @method _generateExitWaypointCollectionFromJson
-    //  * @param data {object} exit portion of procedure from airport JSON file
-    //  * @return {array<ProcedureWaypointModel>}
-    //  */
-    // _generateExitWaypointCollectionFromJson(data) {
-    //     const exits = [];
-    //
-    //     _each(data, (exitData, exitName) => {
-    //         exits[exitName] = _map(exitData, (waypoint) => new ProcedureWaypointModel(waypoint));
-    //     });
-    //
-    //     return exits;
-    // }
-    //
-    // /**
-    //  * Retrieve the array of `ProcedureWaypointModel`s in the specified entry of this procedure
-    //  *
-    //  * @for ProcedureDefinitionModel
-    //  * @method _getProcedureWaypointsForEntry
-    //  * @param entryName {string} name of the requested entry point
-    //  * @return {array<ProcedureWaypointModel>}
-    //  */
-    // _getProcedureWaypointsForEntry(entryName) {
-    //     if (this.procedureType === PROCEDURE_TYPE.SID) {
-    //         this._ return this._generateEntryWaypointCollectionFromJson(data.rwy);
-    //     }
-    //
-    //     // assuming procedure must be a STAR
-    //     return this._gener
-    // }
-    //
-    // /**
-    //  * Retrieve the array of `ProcedureWaypointModel`s in the specified exit of this procedure
-    //  *
-    //  * @for ProcedureDefinitionModel
-    //  * @method _getProcedureWaypointsForExit
-    //  * @param exitName {string} name of the requested exit point
-    //  * @return {array<ProcedureWaypointModel>}
-    //  */
-    // _getProcedureWaypointsForExit(exitName) {
-    //     if (this.procedureType === PROCEDURE_TYPE.SID) {
-    //         return this._generateExitWaypointCollectionFromJson(data.exitPoints);
-    //     }
-    //
-    //     // assuming procedure must be a STAR
-    //     return;
-    // }
 }
