@@ -1,3 +1,4 @@
+import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import FixCollection from '../Fix/FixCollection';
 import {
@@ -8,12 +9,28 @@ import {
     RNAV_WAYPOINT_DISPLAY_NAME,
     RNAV_WAYPOINT_PREFIX
 } from '../../constants/navigation/routeConstants';
-import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
-import { degreesToRadians } from '../../utilities/unitConverters';
+// import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import {
+    degreesToRadians,
+    DECIMAL_RADIX
+} from '../../utilities/unitConverters';
 
+/**
+ * A navigation point within an aircraft's flight plan
+ *
+ * This may include various types of restrictions or holding information, all
+ * of which are used by the aircraft to follow various routes and procedures
+ * utilized by the controller.
+ *
+ * @class ProcedureWaypointModel
+ */
 export default class ProcedureWaypointModel {
+    /**
+     * @for ProcedureWaypointModel
+     * @constructor
+     */
     constructor(data) {
-        if (typeof data === 'undefined') {
+        if (typeof data !== 'string' && !_isArray(data)) {
             throw new TypeError(`Expected valid data to create ProcedureWaypointModel but received ${data}`);
         }
 
@@ -38,6 +55,84 @@ export default class ProcedureWaypointModel {
     }
 
     /**
+     * @for ProcedureWaypointModel
+     * @property hasAltitudeRestriction
+     * @type {boolean}
+     */
+    get hasAltitudeRestriction() {
+        return this.altitudeMaximum !== INVALID_NUMBER || this.altitudeMinimum !== INVALID_NUMBER;
+    }
+
+    /**
+     * @for ProcedureWaypointModel
+     * @property hasRestriction
+     * @type {boolean}
+     */
+    get hasRestriction() {
+        return this.hasAltitudeRestriction || this.hasSpeedRestriction;
+    }
+
+    /**
+     * @for ProcedureWaypointModel
+     * @property hasSpeedRestriction
+     * @type {boolean}
+     */
+    get hasSpeedRestriction() {
+        return this.speedMaximum !== INVALID_NUMBER || this.speedMinimum !== INVALID_NUMBER;
+    }
+
+    /**
+     * Provides properties needed for an aircraft to execute a
+     * holding pattern.
+     *
+     * This is used to match an existing API
+     *
+     * @for ProcedureWaypointModel
+     * @property hold
+     * @return {object}
+     */
+    get holdParameters() {
+        if (!this._isHoldWaypoint) {
+            return;
+        }
+
+        return this._holdParameters;
+    }
+
+
+        /**
+         * Returns whether `this` is a fly-over waypoint
+         * @for ProcedureWaypointModel
+         * @property isFlyOverWaypoint
+         * @return {boolean}
+         */
+        get isFlyOverWaypoint() {
+            return this._isFlyOverWaypoint;
+        }
+
+        /**
+        * Returns whether `this` is a hold waypoint
+        *
+        * @for ProcedureWaypointModel
+        * @property isHoldWaypoint
+        * @type {boolean}
+        */
+        get isHoldWaypoint() {
+            return this._isHoldWaypoint;
+        }
+
+        /**
+        * Returns whether `this` is a vector waypoint
+        *
+        * @for ProcedureWaypointModel
+        * @property isVector
+        * @return {boolean}
+        */
+        get isVectorWaypoint() {
+            return this._isVectorWaypoint;
+        }
+
+    /**
      * Returns the name of the waypoint
      *
      * Will return `RNAV` if the waypoint is a specific point in space
@@ -57,54 +152,6 @@ export default class ProcedureWaypointModel {
     }
 
     /**
-     * @for WaypointModel
-     * @property hasAltitudeRestriction
-     * @type {boolean}
-     */
-    get hasAltitudeRestriction() {
-        return this.altitudeMaximum !== INVALID_NUMBER || this.altitudeMinimum !== INVALID_NUMBER;
-    }
-
-    /**
-     * @for WaypointModel
-     * @property hasRestriction
-     * @type {boolean}
-     */
-    get hasRestriction() {
-        return this.hasAltitudeRestriction || this.hasSpeedRestriction;
-    }
-
-    /**
-     * @for WaypointModel
-     * @property hasSpeedRestriction
-     * @type {boolean}
-     */
-    get hasSpeedRestriction() {
-        return this.speedMaximum !== INVALID_NUMBER || this.speedMinimum !== INVALID_NUMBER;
-    }
-
-    /**
-     * Provides properties needed for an aircraft to execute a
-     * holding pattern.
-     *
-     * This is used to match an existing API
-     *
-     * @for WaypointModel
-     * @property hold
-     * @return {object}
-     */
-    get hold() {
-        return {
-            dirTurns: this._turnDirection,
-            fixName: this._name,
-            fixPos: this._positionModel.relativePosition,
-            inboundHeading: this._holdingPatternInboundHeading,
-            legLength: parseInt(this._legLength.replace('min', ''), 10),
-            timer: this.timer
-        };
-    }
-
-    /**
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
@@ -118,7 +165,7 @@ export default class ProcedureWaypointModel {
     /**
      * Fascade to access relative position
      *
-     * @for WaypointModel
+     * @for ProcedureWaypointModel
      * @property relativePosition
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
@@ -127,39 +174,118 @@ export default class ProcedureWaypointModel {
     }
 
     /**
-     * Returns whether `this` is a fly-over waypoint
-     * @for WaypointModel
-     * @property isFlyOverWaypoint
-     * @return {boolean}
+     * Initialize waypoint properties
+     *
+     * @for ProcedureWaypointModel
+     * @method _init
+     * @param data {object}
+     * @private
+     * @chainable
      */
-    get isFlyOverWaypoint() {
-        return this._isFlyOverWaypoint;
+    _init(data) {
+        let fixName = data;
+        let restrictions = '';
+
+        if (_isArray(data)) {
+            if (data.length !== 2) {
+                throw new TypeError(`Expected restricted fix to have restrictions, but received ${data}`);
+            }
+
+            fixName = data[0];
+            restrictions = data[1];
+        }
+
+        this._name = fixName.replace('@', '').replace('^', '');
+
+        this._initSpecialWaypoint(fixName);
+        this._applyRestrictions(restrictions);
+        this._initializePosition();
+
+        return;
+    }
+
+
+    /**
+     * Initialize properties to make this waypoint a fly-over waypoint
+     *
+     * @for ProcedureWaypointModel
+     * @method _initFlyOverWaypoint
+     * @private
+     */
+    _initFlyOverWaypoint() {
+        this._isFlyOverWaypoint = true;
     }
 
     /**
-     * Returns whether `this` is a vector waypoint
+     * Initialize properties to make this waypoint a hold waypoint
      *
-     * @for WaypointModel
-     * @property isVector
-     * @return {boolean}
+     * @for ProcedureWaypointModel
+     * @method _initHoldWaypoint
+     * @private
      */
-    get isVector() {
-        return this._isVector;
+    _initHoldWaypoint() {
+        this._isHoldWaypoint = true;
+        // FIXME: These should be coming from a const file somewhere instead of being hard-coded
+        this._holdParameters = {
+            inboundHeading: undefined,
+            legLength: 1,
+            timer: INVALID_NUMBER,
+            turnDirection: 'right'
+        };
+    }
+
+    /**
+     * Perform additional initialization tasks as needed if waypoint is a flyover/hold/vector/etc waypoint
+     *
+     * @for ProcedureWaypointModel
+     * @method _initSpecialWaypoint
+     * @param fixname {string} name of the fix, including any special characters
+     */
+    _initSpecialWaypoint(fixName) {
+        if (fixName.indexOf('^') !== INVALID_INDEX) {
+            this._initFlyOverWaypoint();
+
+            return;
+        }
+
+        if (fixName.indexOf('@') !== INVALID_INDEX) {
+            this._initHoldWaypoint();
+
+            return;
+        }
+
+        if (fixName.indexOf('#') !== INVALID_INDEX) {
+            this._initVectorWaypoint();
+
+            return;
+        }
+    }
+
+    /**
+     * Initialize properties to make this waypoint a vector waypoint
+     *
+     * @for ProcedureWaypointModel
+     * @method _initVectorWaypoint
+     * @private
+     */
+    _initVectorWaypoint() {
+        this._isVectorWaypoint = true;
     }
 
     /**
      * When `#_isVector` is true, this gets the heading that should be flown
      *
-     * @for WaypointModel
-     * @property vector
+     * @for ProcedureWaypointModel
+     * @method _getVector
      * @type {number}
      */
-    get vector() {
-        if (!this.isVector) {
+    getVector() {
+        if (!this._isVectorWaypoint) {
             return;
         }
 
-        const headingInDegrees = parseInt(extractHeadingFromVectorSegment(this._name), 10);
+        const fixNameWithOutPoundSign = this._name.replace('#', '');
+        const headingInDegrees = parseInt(fixNameWithOutPoundSign, DECIMAL_RADIX);
         const headingInRadians = degreesToRadians(headingInDegrees);
 
         return headingInRadians;
@@ -168,7 +294,7 @@ export default class ProcedureWaypointModel {
     /**
      * Check for a maximum altitude restriction below the given altitude
      *
-     * @for WaypointModel
+     * @for ProcedureWaypointModel
      * @method hasMaximumAltitudeBelow
      * @param altitude {number} in feet
      * @return {boolean}
@@ -181,7 +307,7 @@ export default class ProcedureWaypointModel {
     /**
      * Check for a minimum altitude restriction above the given altitude
      *
-     * @for WaypointModel
+     * @for ProcedureWaypointModel
      * @method hasMinimumAltitudeAbove
      * @param altitude {number} in feet
      * @return {boolean}
@@ -192,59 +318,31 @@ export default class ProcedureWaypointModel {
     }
 
     /**
-     * Add hold-specific properties to an existing `WaypointModel` instance
+     * Stores provided parameters for holding pattern, and marks this as a hold waypoint
      *
-     * @for WaypointModel
-     * @method updateWaypointWithHoldProps
-     * @param inboundHeading {number}  in radians
-     * @param turnDirection {string}   either left or right
-     * @param legLength {string}       length of the hold leg in minutes or nm
+     * @for ProcedureWaypointModel
+     * @method setHoldParametersAndArmHold
+     * @param inboundHeading {number} in radians
+     * @param turnDirection {string} either left or right
+     * @param legLength {string} length of the hold leg in minutes or nm
      */
-    updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength) {
-        this.isHold = true;
-        this._holdingPatternInboundHeading = inboundHeading;
-        this._turnDirection = turnDirection;
-        this._legLength = legLength;
+    setHoldParametersAndArmHold(inboundHeading, turnDirection, legLength) {
+        this._isHoldWaypoint = true;
+        this._holdParameters = {
+            turnDirection: turnDirection,
+            inboundHeading: inboundHeading,
+            legLength: legLength,
+            timer: INVALID_NUMBER
+        };
     }
 
-    _init(data) {
-        let fixName = data;
-        let restrictions = '';
-
-        if (typeof data !== 'string') {
-            fixName = data[0];
-            restrictions = data[1];
-        }
-
-        this._name = fixName.replace('@', '').replace('^', '').replace('#', '');
-        this._isFlyOverWaypoint = fixName.indexOf('^') !== -1;
-        this._isHoldWaypoint = fixName.indexOf('@') !== -1;
-        this._isVectorWaypoint = fixName.indexOf('#') !== -1;
-        this._applyRestrictions(restrictions);
-        this._initializePosition();
-
-        return;
-    }
-
-    _applyRestrictions(restrictions) {
-        if (_isEmpty(restrictions)) {
-            return;
-        }
-
-        const restrictionCollection = restrictions.split('|');
-
-        for (let i = 0; i < restrictionCollection.length; i++) {
-            const restriction = restrictionCollection[i];
-
-            // looking at the first letter of a restriction
-            if (restriction[0] === 'A') {
-                this._applyAltitudeRestriction(restriction.substr(1));
-            } else if (restriction[0] === 'S') {
-                this._applySpeedRestriction(restriction.substr(1));
-            }
-        }
-    }
-
+    /**
+     * Apply an altitude restriction in the appropriate properties
+     *
+     * @for ProcedureWaypointModel
+     * @method _applyAltitudeRestriction
+     * @param restriction {string}
+     */
     _applyAltitudeRestriction(restriction) {
         const altitude = parseInt(restriction, 10) * 100;
 
@@ -262,6 +360,42 @@ export default class ProcedureWaypointModel {
         this.altitudeMinimum = altitude;
     }
 
+    /**
+     * Parse the restrictions, and store the inferred meaning in the appropriate properties
+     *
+     * @for ProcedureWaypointModel
+     * @method _applyRestrictions
+     * @param restrictions {string} restrictions, separated by pipe symbol: '|'
+     */
+    _applyRestrictions(restrictions) {
+        if (_isEmpty(restrictions)) {
+            return;
+        }
+
+        const restrictionCollection = restrictions.split('|');
+
+        for (let i = 0; i < restrictionCollection.length; i++) {
+            const restriction = restrictionCollection[i];
+
+            // looking at the first letter of a restriction
+            if (restriction[0] === 'A') {
+                this._applyAltitudeRestriction(restriction.substr(1));
+            } else if (restriction[0] === 'S') {
+                this._applySpeedRestriction(restriction.substr(1));
+            } else {
+                throw new TypeError('Expected "A" or "S" prefix on restriction, ' +
+                    `but received prefix '${restriction[0]}'`);
+            }
+        }
+    }
+
+    /**
+     * Apply a speed restriction in the appropriate properties
+     *
+     * @for ProcedureWaypointModel
+     * @method _applySpeedRestriction
+     * @param restriction {string}
+     */
     _applySpeedRestriction(restriction) {
         const speed = parseInt(restriction, 10);
 
@@ -279,6 +413,12 @@ export default class ProcedureWaypointModel {
         this.speedMinimum = speed;
     }
 
+    /**
+     * Initialize the waypoint's position model based on #_name
+     *
+     * @for ProcedureWaypointModel
+     * @method _initializePosition
+     */
     _initializePosition() {
         if (this._isVectorWaypoint) {
             return;
