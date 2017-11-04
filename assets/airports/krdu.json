@@ -1,22 +1,22 @@
 {
     "radio": {
-        "twr": "Albuquerque Tower",
-        "app": "Albuquerque Approach",
-        "dep": "Albuquerque Departure"
+        "twr": "Raleigh Tower",
+        "app": "Raleigh Approach",
+        "dep": "Raleigh Departure"
     },
-    "icao": "KABQ",
-    "iata": "ABQ",
-    "magnetic_north": 8.8,
+    "icao": "KRDU",
+    "iata": "RDU",
+    "magnetic_north": -9.1,
     "ctr_radius": 80,
-    "ctr_ceiling": 20000,
-    "initial_alt": 20000,
-    "position": ["N35.03891707960476", "W106.60830688023069", "5355ft"],
+    "ctr_ceiling": 12000,
+    "initial_alt": 7000,
+    "position": ["N35.87764533903037", "W78.78749083843593", "435ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N35.03891707960476", "W106.60830688023069"],
-    "has_terrain": true,
+    "rr_center": ["N35.87764533903037", "W78.78749083843593"],
+    "has_terrain": false,
     "wind": {
-        "angle": 90,
-        "speed": 8
+        "angle": 230,
+        "speed": 7
     },
     "arrivalRunway": "8",
     "departureRunway": "8",
@@ -640,10 +640,10 @@
     },
     "spawnPatterns": [
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.GRZZZ3.FTI",
+            "route": "KRDU.GRZZZ3.FTI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -663,10 +663,10 @@
             ]
         },
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.JEMEZ3.JEMEZ",
+            "route": "KRDU.JEMEZ3.JEMEZ",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -686,10 +686,10 @@
             ]
         },
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.MNZNO3.CME",
+            "route": "KRDU.MNZNO3.CME",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -708,10 +708,10 @@
             ]
         },
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.MNZNO3.TXO",
+            "route": "KRDU.MNZNO3.TXO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -733,10 +733,10 @@
             ]
         },
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.RDRNR3.ZUN",
+            "route": "KRDU.RDRNR3.ZUN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -755,10 +755,10 @@
             ]
         },
         {
-            "origin": "kabq",
+            "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.RDRNR3.GUP",
+            "route": "KRDU.RDRNR3.GUP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -778,9 +778,9 @@
         },
         {
             "origin": "",
-            "destination": "kabq",
+            "destination": "KRDU",
             "category": "arrival",
-            "route": "RECKN.COLTR3.KABQ",
+            "route": "RECKN.COLTR3.KRDU",
             "altitude": [32000, 42000],
             "speed": 350,
             "method": "random",
@@ -802,9 +802,9 @@
         },
         {
             "origin": "",
-            "destination": "kabq",
+            "destination": "KRDU",
             "category": "arrival",
-            "route": "CABNO.KRKEE3.KABQ",
+            "route": "CABNO.KRKEE3.KRDU",
             "altitude": [29000, 33000],
             "speed": 350,
             "method": "random",
@@ -822,9 +822,9 @@
         },
         {
             "origin": "",
-            "destination": "kabq",
+            "destination": "KRDU",
             "category": "arrival",
-            "route": "GUP.LOWBO3.KABQ",
+            "route": "GUP.LOWBO3.KRDU",
             "altitude": [29000, 33000],
             "speed": 350,
             "method": "random",
@@ -843,9 +843,9 @@
         },
         {
             "origin": "",
-            "destination": "kabq",
+            "destination": "KRDU",
             "category": "arrival",
-            "route": "CME.LZZRD3.KABQ",
+            "route": "CME.LZZRD3.KRDU",
             "altitude": [28000, 40000],
             "speed": 350,
             "method": "random",
@@ -863,9 +863,9 @@
         },
         {
             "origin": "",
-            "destination": "kabq",
+            "destination": "KRDU",
             "category": "arrival",
-            "route": "DATME.SNDIA3.KABQ",
+            "route": "DATME.SNDIA3.KRDU",
             "altitude": [28000, 36000],
             "speed": 350,
             "method": "random",
