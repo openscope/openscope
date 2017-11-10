@@ -1,6 +1,9 @@
-// import _each from 'lodash/each';
 // import _has from 'lodash/has';
+// import _flatten from 'lodash/flatten';
+import _forEach from 'lodash/forEach';
+import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
+import _uniq from 'lodash/uniq';
 import ProcedureWaypointModel from './ProcedureWaypointModel';
 import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
 
@@ -92,6 +95,77 @@ export default class ProcedureDefinitionModel {
     _initEntriesAndExitsForStar(data) {
         this._entryPoints = data.entryPoints;
         this._exitPoints = data.rwy;
+    }
+
+    getAllFixNamesInUse() {
+        if (!_isArray(this._draw[0])) {
+            throw new TypeError(`Invalid data set in draw segment of the ${this._icao} procedure. Expected a 2D ` +
+                'array: `[[FIXXA, FIXXB*], [FIXXC, FIXXD*]]`. Please see airport documentation for more information ' +
+                '(https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).'
+            );
+        }
+
+        const entryFixNames = this._getEntryFixNames();
+        const bodyFixNames = this._getBodyFixNames();
+        const exitFixNames = this._getExitFixNames();
+        const drawFixNames = this._getDrawFixNames();
+        const allFixNames = [...entryFixNames, ...bodyFixNames, ...exitFixNames, ...drawFixNames];
+        const uniqueFixNames = _uniq(allFixNames);
+
+        return uniqueFixNames;
+    }
+
+    _getDrawFixNames() {
+        const drawFixNames = this._draw.reduce((fixList, lineSegment) => fixList.concat(lineSegment));
+        const drawFixNamesWithoutAsterisks = drawFixNames.map((fixName) => fixName.replace('*', ''));
+
+        return drawFixNamesWithoutAsterisks;
+    }
+
+    _getEntryFixNames() {
+        let fixNames = [];
+
+        _forEach(this._entryPoints, (segment) => {
+            const fixesInSegment = _map(segment, (restrictedFix) => {
+                return this._getFixNameFromRestrictedFixArray(restrictedFix);
+            });
+
+            fixNames = fixNames.concat(fixesInSegment);
+        });
+
+        return _uniq(fixNames);
+    }
+
+    _getExitFixNames() {
+        let fixNames = [];
+
+        _forEach(this._exitPoints, (segment) => {
+            const fixesInSegment = _map(segment, (restrictedFix) => {
+                return this._getFixNameFromRestrictedFixArray(restrictedFix);
+            });
+
+            fixNames = fixNames.concat(fixesInSegment);
+        });
+
+        return _uniq(fixNames);
+    }
+
+    _getBodyFixNames() {
+        return _map(this._body, (restrictedFix) => {
+            return this._getFixNameFromRestrictedFixArray(restrictedFix);
+        });
+    }
+
+    _getFixNameFromRestrictedFixArray(restrictedFix) {
+        if (_isArray(restrictedFix)) {
+            restrictedFix = restrictedFix[0];
+        }
+
+        if (restrictedFix.indexOf('#') !== -1) {
+            return;
+        }
+
+        return restrictedFix.replace('^', '').replace('@', '');
     }
 
     /**
