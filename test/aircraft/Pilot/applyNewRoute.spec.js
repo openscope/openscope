@@ -1,8 +1,9 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     fmsArrivalFixture,
     modeControllerFixture
@@ -12,6 +13,16 @@ const invalidRouteString = 'a..b.c.d';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const runwayMock = '19L';
 
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
+
 ava('.applyNewRoute() returns an error when passed an invalid route', (t) => {
     const expectedResult = [
         false,
@@ -20,14 +31,14 @@ ava('.applyNewRoute() returns an error when passed an invalid route', (t) => {
             say: 'that route is invalid'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyNewRoute(invalidRouteString, runwayMock);
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.applyNewRoute() calls fms._destroyLegCollection()', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const _destroyLegCollectionSpy = sinon.spy(pilot._fms, '_destroyLegCollection');
 
     pilot.applyNewRoute(complexRouteString, runwayMock);
@@ -36,7 +47,7 @@ ava('.applyNewRoute() calls fms._destroyLegCollection()', (t) => {
 });
 
 ava('.applyNewRoute() removes an existing route and replaces it with a new one', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
 
     pilot.applyNewRoute(complexRouteString, runwayMock);
 
@@ -51,7 +62,7 @@ ava('.applyNewRoute() returns a success message when finished successfully', (t)
             say: 'rerouting as requested'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyNewRoute(complexRouteString, runwayMock);
 
     t.true(_isEqual(result, expectedResult));

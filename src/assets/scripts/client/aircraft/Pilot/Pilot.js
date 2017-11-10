@@ -40,7 +40,7 @@ export default class Pilot {
      * @param modeController {ModeController}
      * @param fms {Fms}
      */
-    constructor(modeController, fms) {
+    constructor(fms, modeController, navigationLibrary) {
         if (!_isObject(modeController) || _isEmpty(modeController)) {
             throw new TypeError('Invalid parameter. expected modeController to an instance of ModeController');
         }
@@ -50,24 +50,33 @@ export default class Pilot {
         }
 
         /**
-         * @property _mcp
-         * @type {ModeController}
-         * @default modeController
-         * @private
-         */
-        this._mcp = modeController;
-
-        /**
+         * @for Pilot
          * @property _fms
          * @type {Fms}
-         * @default fms
          * @private
          */
         this._fms = fms;
 
         /**
+         * @for Pilot
+         * @property _mcp
+         * @type {ModeController}
+         * @private
+         */
+        this._mcp = modeController;
+
+        /**
+         * @for Pilot
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
+        this._navigationLibrary = navigationLibrary;
+
+        /**
          * Whether the aircraft has received a clearance to conduct an approach to a runway
          *
+         * @for Pilot
          * @property hasApproachClearance
          * @type {boolean}
          * @default false
@@ -77,6 +86,7 @@ export default class Pilot {
         /**
          * Whether the aircraft has received an IFR clearance to their destination
          *
+         * @for Pilot
          * @property hasDepartureClearance
          * @type {boolean}
          * @default false

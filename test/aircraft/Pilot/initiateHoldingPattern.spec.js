@@ -3,8 +3,9 @@ import sinon from 'sinon';
 // import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 // import _isObject from 'lodash/isObject';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     fmsArrivalFixture,
     modeControllerFixture
@@ -17,10 +18,19 @@ const turnDirectionMock = 'right';
 const legLengthMock = '1min';
 const fixnameMock = 'COWBY';
 const holdFixLocation = [113.4636606631233, 6.12969620221002];
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('.initiateHoldingPattern() returns error response when #holdFixLocation is undefined', (t) => {
     const expectedResult = [false, 'unable to find fix COWBY'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,
         turnDirectionMock,
@@ -40,7 +50,7 @@ ava('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingP
         'GPS',
         [113.4636606631233, 6.12969620221002]
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const createLegWithHoldingPatternSpy = sinon.spy(pilot._fms, 'createLegWithHoldingPattern');
 
     pilot.initiateHoldingPattern(
@@ -57,7 +67,7 @@ ava('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingP
 
 ava('.initiateHoldingPattern() returns a success message when passed a fixName', (t) => {
     const expectedResult = [true, 'proceed direct COWBY and hold inbound, right turns, 1min legs'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,
         turnDirectionMock,
@@ -71,7 +81,7 @@ ava('.initiateHoldingPattern() returns a success message when passed a fixName',
 
 ava('.initiateHoldingPattern() returns a success message when passed a null fixName', (t) => {
     const expectedResult = [true, 'hold east of present position, right turns, 1min legs'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,
         turnDirectionMock,

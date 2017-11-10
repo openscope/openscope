@@ -106,6 +106,7 @@ export default class AircraftModel {
          */
         this.id = _uniqueId('aircraft-');
 
+        // TODO: Does the aircraft itself really need this?
         /**
          * Reference to the `NavigationLibrary`
          *
@@ -445,7 +446,7 @@ export default class AircraftModel {
 
         this.mcp = new ModeController();
         this.model = new AircraftTypeDefinitionModel(options.model);
-        this.pilot = new Pilot(this.mcp, this.fms);
+        this.pilot = new Pilot(this.fms, this.mcp, navigationLibrary);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {

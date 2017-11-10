@@ -1,5 +1,7 @@
 import ava from 'ava';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     createFmsArrivalFixture,
     createModeControllerFixture
@@ -7,6 +9,7 @@ import {
 
 // Fixtures
 let pilot = null;
+let navigationLibraryFixture;
 
 // Mocks
 const successResponseMock = [true, 'descend via STAR'];
@@ -18,7 +21,8 @@ const invalidAltitudeMock = 'threeve';
 ava.beforeEach(() => {
     const modeControllerFixture = createModeControllerFixture();
     const fmsArrivalFixture = createFmsArrivalFixture();
-    pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
@@ -26,6 +30,7 @@ ava.beforeEach(() => {
 
 ava.afterEach(() => {
     pilot = null;
+    navigationLibraryFixture.reset();
 });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {

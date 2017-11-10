@@ -3,8 +3,9 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     fmsArrivalFixture,
     modeControllerFixture
@@ -14,17 +15,27 @@ import { runwayModel19lFixture } from '../../fixtures/runwayFixtures';
 const airportNameMock = 'McCarran International Airport';
 const validRouteStringMock = 'DAG.KEPEC3.KLAS';
 
+let navigationLibraryFixture;
+
 ava.before(() => {
     sinon.stub(global.console, 'error', () => {});
+});
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
 });
 
 ava.after(() => {
     global.console.error.restore();
 });
 
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
+
 ava('.applyArrivalProcedure() returns an error when passed an invalid routeString', (t) => {
     const expectedResult = [false, 'STAR name not understood'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyArrivalProcedure('~!@#$%', airportNameMock);
 
     t.true(_isEqual(result, expectedResult));
@@ -33,7 +44,7 @@ ava('.applyArrivalProcedure() returns an error when passed an invalid routeStrin
 ava('.applyArrivalProcedure() returns an error when passed an invalid procedure name', (t) => {
     const invalidRouteStringMock = 'DAG.~!@#$.KLAS';
     const expectedResult = [false, 'STAR name not understood'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyArrivalProcedure(invalidRouteStringMock, runwayModel19lFixture, airportNameMock);
 
     t.true(_isEqual(result, expectedResult));
@@ -42,14 +53,14 @@ ava('.applyArrivalProcedure() returns an error when passed an invalid procedure 
 ava('.applyArrivalProcedure() returns an error when passed a procedure with an invaild entry', (t) => {
     const invalidRouteStringMock = 'a.KEPEC3.KLAS';
     const expectedResult = [false, 'STAR name not understood'];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyArrivalProcedure(invalidRouteStringMock, runwayModel19lFixture, airportNameMock);
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.applyArrivalProcedure() returns a success message after success', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.applyArrivalProcedure(validRouteStringMock, runwayModel19lFixture, airportNameMock);
 
     t.true(_isArray(result));
@@ -60,7 +71,7 @@ ava('.applyArrivalProcedure() returns a success message after success', (t) => {
 
 ava('.applyArrivalProcedure() calls #_fms.findStarByProcedureId() with the star procedure id', (t) => {
     const procedureIdMock = 'KEPEC3';
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const findStarByProcedureIdSpy = sinon.spy(pilot._fms, 'findStarByProcedureId');
 
     pilot.applyArrivalProcedure(validRouteStringMock, runwayModel19lFixture, airportNameMock);
@@ -69,7 +80,7 @@ ava('.applyArrivalProcedure() calls #_fms.findStarByProcedureId() with the star 
 });
 
 ava('.applyArrivalProcedure() calls #_fms.replaceArrivalProcedure() with the correct parameters', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const replaceArrivalProcedureSpy = sinon.spy(pilot._fms, 'replaceArrivalProcedure');
 
     pilot.applyArrivalProcedure(validRouteStringMock, runwayModel19lFixture, airportNameMock);
