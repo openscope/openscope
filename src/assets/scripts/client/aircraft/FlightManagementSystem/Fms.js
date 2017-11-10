@@ -937,9 +937,7 @@ export default class Fms {
 
         // TODO: abstract this to a method or combine with if/returns below
         // find the prcedure model from the correct collection based on flightPhase
-        const procedureDefinitionModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
-            ? this.findStarByProcedureId(routeStringModel.procedure)
-            : this.findSidByProcedureId(routeStringModel.procedure);
+        const procedureDefinitionModel = this._navigationLibrary.getProcedure(routeStringModel.procedure);
 
         if (!procedureDefinitionModel) {
             return false;
@@ -1072,51 +1070,6 @@ export default class Fms {
      */
     isFollowingStar() {
         return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.STAR;
-    }
-
-    /**
-     * Fascade method for `sidCollection.findRouteByIcao`
-     *
-     * Allows classes that have access to the `Aircraft`, but not the
-     * navigation library, to do standardRoute building and logic.
-     *
-     * @for Fms
-     * @method findSidByProcedureId
-     * @param procedureId {string}
-     * @return {array<StandardRouteWaypointModel>}
-     */
-    findSidByProcedureId(procedureId) {
-        return this._navigationLibrary.sidCollection.findRouteByIcao(procedureId);
-    }
-
-    /**
-     * Fascade method for `starCollection.findRouteByIcao`
-     *
-     * Allows classes that have access to the `Aircraft`, but not the
-     * navigation library, to do standardRoute building and logic.
-     *
-     * @for Fms
-     * @method findStarByProcedureId
-     * @param procedureId {string}
-     * @return {array<StandardRouteWaypointModel>}
-     */
-    findStarByProcedureId(procedureId) {
-        return this._navigationLibrary.starCollection.findRouteByIcao(procedureId);
-    }
-
-    /**
-     * Fascade method for `sidCollection.findRandomExitPointForSIDIcao`
-     *
-     * Allows classes that have access to the `Aircraft`, but not the
-     * navigation library, to do standardRoute building and logic.
-     *
-     * @Fms
-     * @method findRandomExitPointForSidProcedureId
-     * @param procedureId {string}
-     * @return {array<StandardRouteWaypointModel>}
-     */
-    findRandomExitPointForSidProcedureId(procedureId) {
-        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
     }
 
     /**

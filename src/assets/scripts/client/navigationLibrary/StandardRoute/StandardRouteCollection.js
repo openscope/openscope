@@ -181,30 +181,30 @@ export default class StandardRouteCollection extends BaseCollection {
         return result;
     }
 
-    /**
-     * Find a random name of an `exitPoint` segment that exists within the collection.
-     *
-     * @deprecated
-     * @for StandardRouteCollection
-     * @method findRandomExitPointForSIDIcao
-     * @param icao {string}
-     * @return {string}
-     */
-    findRandomExitPointForSIDIcao(icao) {
-        const sid = this.findRouteByIcao(icao);
-
-        // if sid doesnt have any exit points it ends at fix for which the SID is named
-        if (!sid.hasExitPoints()) {
-            return sid.icao;
-        }
-
-        // if has exitPoints, return a randomly selected one from a list of exitFixNames
-        const exitPointIcaos = sid.gatherExitPointNames();
-        const maxIndex = exitPointIcaos.length - 1;
-        const randomIndex = _random(0, maxIndex);
-
-        return exitPointIcaos[randomIndex];
-    }
+    // /**
+    //  * Find a random name of an `exitPoint` segment that exists within the collection.
+    //  *
+    //  * @deprecated
+    //  * @for StandardRouteCollection
+    //  * @method findRandomExitPointForSIDIcao
+    //  * @param icao {string}
+    //  * @return {string}
+    //  */
+    // findRandomExitPointForSIDIcao(icao) {
+    //     const sid = this.findRouteByIcao(icao);
+    //
+    //     // if sid doesnt have any exit points it ends at fix for which the SID is named
+    //     if (!sid.hasExitPoints()) {
+    //         return sid.icao;
+    //     }
+    //
+    //     // if has exitPoints, return a randomly selected one from a list of exitFixNames
+    //     const exitPointIcaos = sid.gatherExitPointNames();
+    //     const maxIndex = exitPointIcaos.length - 1;
+    //     const randomIndex = _random(0, maxIndex);
+    //
+    //     return exitPointIcaos[randomIndex];
+    // }
 
     /**
      * Find a `StandardRouteModel` within the collection given an `icao`

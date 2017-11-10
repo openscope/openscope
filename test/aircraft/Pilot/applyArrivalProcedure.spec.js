@@ -69,6 +69,7 @@ ava('.applyArrivalProcedure() returns a success message after success', (t) => {
     t.true(result[1].say === 'cleared to McCarran International Airport via the KEPEC THREE arrival');
 });
 
+// TODO: .findStarByProcedureId() has been killed
 ava('.applyArrivalProcedure() calls #_fms.findStarByProcedureId() with the star procedure id', (t) => {
     const procedureIdMock = 'KEPEC3';
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);

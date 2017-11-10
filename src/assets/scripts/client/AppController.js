@@ -307,7 +307,7 @@ export default class AppController {
         this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.navigationLibrary.sidCollection));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(this.navigationLibrary.hasSids);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(airport.data.has_terrain);
     }
 }

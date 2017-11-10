@@ -418,8 +418,9 @@ export default class AircraftCommander {
      * @return {array}  [success of operation, readback]
      */
     _runSIDforSuffix(aircraft, airportModel, sidId) {
-        const routeModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
-        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
+        // FIXME: Check this; it probably won't be working right
+        const procedureModel = this._navigationLibrary.getProcedure(sidId);
+        const runwayName = procedureModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
         const runwayModel = airportModel.getRunway(runwayName);
 
         return aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
@@ -459,9 +460,12 @@ export default class AircraftCommander {
      * @return {array}  [success of operation, readback]
      */
     _runSTARforSuffix(aircraft, airportModel, routeString) {
-        const routeStringModel = new RouteModel(routeString);
-        const routeModel = this._navigationLibrary.starCollection.findRouteByIcao(routeStringModel.procedure);
-        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
+        // FIXME: Check this; it probably won't be working right
+        // const routeStringModel = new RouteModel(routeString);
+        // FIXME: Need to validate this somehow before trying to destructure like this
+        const [entryName, procedureId, exitName] = routeString.split('.');
+        const procedureModel = this._navigationLibrary.getProcedure(procedureId);
+        const runwayName = procedureModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
         const runwayModel = airportModel.getRunway(runwayName);
 
         return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);

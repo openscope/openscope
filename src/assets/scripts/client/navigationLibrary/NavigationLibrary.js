@@ -1,4 +1,4 @@
-// import _filter from 'lodash/filter';
+import _filter from 'lodash/filter';
 import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
@@ -57,6 +57,22 @@ export default class NavigationLibrary {
         this._procedureCollection = {};
 
         this.init(airportJson);
+    }
+
+    get hasSids() {
+        const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
+            return procedure.procedureType === PROCEDURE_TYPE.SID;
+        });
+
+        return sidProcedureModels.length > 0;
+    }
+
+    get hasStars() {
+        const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
+            return procedure.procedureType === PROCEDURE_TYPE.STAR;
+        });
+
+        return starProcedureModels.length > 0;
     }
 
     // get sidCollection() {
@@ -290,6 +306,12 @@ export default class NavigationLibrary {
     //     return staticPositionModel;
     // }
 
+    // FIXME: Fill me out when implementing airways!
+    hasAirway(/* airwayId */) {
+        // for now, will return false because we don't support airways yet
+        return false;
+    }
+
     /**
     * Provides a way to check the `FixCollection` for the existence
     * of a specific `fixName`.
@@ -303,12 +325,6 @@ export default class NavigationLibrary {
         const fixOrNull = this.findFixByName(fixName);
 
         return !_isNil(fixOrNull);
-    }
-
-    // FIXME: Fill me out when implementing airways!
-    hasAirway(/* airwayId */) {
-        // for now, will return false because we don't support airways yet
-        return false;
     }
 
     hasProcedure(procedureId) {

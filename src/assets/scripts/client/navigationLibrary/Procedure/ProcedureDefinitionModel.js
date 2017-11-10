@@ -3,6 +3,7 @@
 import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
+import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import ProcedureWaypointModel from './ProcedureWaypointModel';
 import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
@@ -38,8 +39,8 @@ export default class ProcedureDefinitionModel {
         this.procedureType = procedureType;
         this._body = [];
         this._draw = [];
-        this._entryPoints = [];
-        this._exitPoints = [];
+        this._entryPoints = {};
+        this._exitPoints = {};
         this._icao = '';
         this._name = '';
 
@@ -97,6 +98,14 @@ export default class ProcedureDefinitionModel {
         this._exitPoints = data.rwy;
     }
 
+    hasEntry(entryName) {
+        return entryName in this._entryPoints;
+    }
+
+    hasExit(exitName) {
+        return exitName in this._exitPoints;
+    }
+
     getAllFixNamesInUse() {
         if (!_isArray(this._draw[0])) {
             throw new TypeError(`Invalid data set in draw segment of the ${this._icao} procedure. Expected a 2D ` +
@@ -105,78 +114,33 @@ export default class ProcedureDefinitionModel {
             );
         }
 
-        const entryFixNames = this._getEntryFixNames();
-        const bodyFixNames = this._getBodyFixNames();
-        const exitFixNames = this._getExitFixNames();
-        const drawFixNames = this._getDrawFixNames();
+        const entryFixNames = this._getFixNamesFromEntries();
+        const bodyFixNames = this._getFixNamesFromBody();
+        const exitFixNames = this._getFixNamesFromExits();
+        const drawFixNames = this._getFixNamesFromDraw();
         const allFixNames = [...entryFixNames, ...bodyFixNames, ...exitFixNames, ...drawFixNames];
         const uniqueFixNames = _uniq(allFixNames);
 
         return uniqueFixNames;
     }
 
-    _getDrawFixNames() {
-        const drawFixNames = this._draw.reduce((fixList, lineSegment) => fixList.concat(lineSegment));
-        const drawFixNamesWithoutAsterisks = drawFixNames.map((fixName) => fixName.replace('*', ''));
+    getRandomExitPoint() {
+        const exitNames = Object.keys(this._exitPoints);
+        const maxIndex = exitNames.length - 1;
+        const randomIndex = _random(0, maxIndex);
 
-        return drawFixNamesWithoutAsterisks;
-    }
-
-    _getEntryFixNames() {
-        let fixNames = [];
-
-        _forEach(this._entryPoints, (segment) => {
-            const fixesInSegment = _map(segment, (restrictedFix) => {
-                return this._getFixNameFromRestrictedFixArray(restrictedFix);
-            });
-
-            fixNames = fixNames.concat(fixesInSegment);
-        });
-
-        return _uniq(fixNames);
-    }
-
-    _getExitFixNames() {
-        let fixNames = [];
-
-        _forEach(this._exitPoints, (segment) => {
-            const fixesInSegment = _map(segment, (restrictedFix) => {
-                return this._getFixNameFromRestrictedFixArray(restrictedFix);
-            });
-
-            fixNames = fixNames.concat(fixesInSegment);
-        });
-
-        return _uniq(fixNames);
-    }
-
-    _getBodyFixNames() {
-        return _map(this._body, (restrictedFix) => {
-            return this._getFixNameFromRestrictedFixArray(restrictedFix);
-        });
-    }
-
-    _getFixNameFromRestrictedFixArray(restrictedFix) {
-        if (_isArray(restrictedFix)) {
-            restrictedFix = restrictedFix[0];
-        }
-
-        if (restrictedFix.indexOf('#') !== -1) {
-            return;
-        }
-
-        return restrictedFix.replace('^', '').replace('@', '');
+        return exitNames[randomIndex];
     }
 
     /**
-     * Given an entry point and exit point, return a list of all applicable waypoints
-     *
-     * @for ProcedureDefinitionModel
-     * @method getWaypointModelsForEntryAndExit
-     * @param entry {string} name of the requested entry point
-     * @param exit {string} name of the requested exit point
-     * @return {array<ProcedureWaypointModel>}
-     */
+    * Given an entry point and exit point, return a list of all applicable waypoints
+    *
+    * @for ProcedureDefinitionModel
+    * @method getWaypointModelsForEntryAndExit
+    * @param entry {string} name of the requested entry point
+    * @param exit {string} name of the requested exit point
+    * @return {array<ProcedureWaypointModel>}
+    */
     getWaypointModelsForEntryAndExit(entry, exit) {
         if (!(entry in this._entryPoints)) {
             console.error(`Expected valid entry of ${this._icao}, but received ${entry}`);
@@ -198,26 +162,26 @@ export default class ProcedureDefinitionModel {
     }
 
     /**
-     * Generate new `WaypointModel`s for the body portion of the procedure
-     *
-     * @for ProcedureDefinitionModel
-     * @method _generateWaypointsForBody
-     * @return {array<ProcedureWaypointModel>}
-     * @private
-     */
+    * Generate new `WaypointModel`s for the body portion of the procedure
+    *
+    * @for ProcedureDefinitionModel
+    * @method _generateWaypointsForBody
+    * @return {array<ProcedureWaypointModel>}
+    * @private
+    */
     _generateWaypointsForBody() {
         return _map(this._body, (waypoint) => new ProcedureWaypointModel(waypoint));
     }
 
     /**
-     * Generate new `WaypointModel`s for the specified entry
-     *
-     * @for ProcedureDefinitionModel
-     * @method _generateWaypointsForEntry
-     * @param entryPoint {string} name of the requested entry point
-     * @return {array<ProcedureWaypointModel>}
-     * @private
-     */
+    * Generate new `WaypointModel`s for the specified entry
+    *
+    * @for ProcedureDefinitionModel
+    * @method _generateWaypointsForEntry
+    * @param entryPoint {string} name of the requested entry point
+    * @return {array<ProcedureWaypointModel>}
+    * @private
+    */
     _generateWaypointsForEntry(entryPoint) {
         if (!(entryPoint in this._entryPoints)) {
             throw new TypeError(`Expected valid entry of ${this._icao}, but received ${entryPoint}`);
@@ -227,19 +191,72 @@ export default class ProcedureDefinitionModel {
     }
 
     /**
-     * Generate new `WaypointModel`s for the specified exit
-     *
-     * @for ProcedureDefinitionModel
-     * @method _generateWaypointsForEntry
-     * @param exitPoint {string} name of the requested exit point
-     * @return {array<ProcedureWaypointModel>}
-     * @private
-     */
+    * Generate new `WaypointModel`s for the specified exit
+    *
+    * @for ProcedureDefinitionModel
+    * @method _generateWaypointsForEntry
+    * @param exitPoint {string} name of the requested exit point
+    * @return {array<ProcedureWaypointModel>}
+    * @private
+    */
     _generateWaypointsForExit(exitPoint) {
         if (!(exitPoint in this._exitPoints)) {
             throw new TypeError(`Expected valid exit of ${this._icao}, but received ${exitPoint}`);
         }
 
         return _map(this._exitPoints[exitPoint], (waypoint) => new ProcedureWaypointModel(waypoint));
+    }
+
+    _getFixNamesFromBody() {
+        return _map(this._body, (restrictedFix) => {
+            return this._getFixNameFromRestrictedFixArray(restrictedFix);
+        });
+    }
+
+    _getFixNamesFromDraw() {
+        const drawFixNames = this._draw.reduce((fixList, lineSegment) => fixList.concat(lineSegment));
+        const drawFixNamesWithoutAsterisks = drawFixNames.map((fixName) => fixName.replace('*', ''));
+
+        return drawFixNamesWithoutAsterisks;
+    }
+
+    _getFixNamesFromEntries() {
+        let fixNames = [];
+
+        _forEach(this._entryPoints, (segment) => {
+            const fixesInSegment = _map(segment, (restrictedFix) => {
+                return this._getFixNameFromRestrictedFixArray(restrictedFix);
+            });
+
+            fixNames = fixNames.concat(fixesInSegment);
+        });
+
+        return _uniq(fixNames);
+    }
+
+    _getFixNamesFromExits() {
+        let fixNames = [];
+
+        _forEach(this._exitPoints, (segment) => {
+            const fixesInSegment = _map(segment, (restrictedFix) => {
+                return this._getFixNameFromRestrictedFixArray(restrictedFix);
+            });
+
+            fixNames = fixNames.concat(fixesInSegment);
+        });
+
+        return _uniq(fixNames);
+    }
+
+    _getFixNameFromRestrictedFixArray(restrictedFix) {
+        if (_isArray(restrictedFix)) {
+            restrictedFix = restrictedFix[0];
+        }
+
+        if (restrictedFix.indexOf('#') !== -1) {
+            return;
+        }
+
+        return restrictedFix.replace('^', '').replace('@', '');
     }
 }
