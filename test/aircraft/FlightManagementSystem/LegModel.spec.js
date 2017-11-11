@@ -7,7 +7,7 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 // import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
-// import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+// import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // const holdRouteStringMock = '@COWBY';

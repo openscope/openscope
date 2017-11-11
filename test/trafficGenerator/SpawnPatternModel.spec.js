@@ -7,7 +7,7 @@ import {
     airportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
@@ -20,11 +20,16 @@ import {
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
+// fixtures
+let navigationLibraryFixture;
+
 ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
     airportControllerFixture();
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     resetAirportControllerFixture();
 });
 

@@ -1,12 +1,23 @@
 import ava from 'ava';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
 const approachTypeMock = 'ils';
 const runwayModelMock = airportModelFixture.getRunway('19L');
 const speedMock = 190;
+
+// fixtures
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);

@@ -5,7 +5,7 @@ import _isEqual from 'lodash/isEqual';
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
@@ -29,6 +29,10 @@ const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = airportModelFixture.getRunway('19L');
 const isComplexRoute = true;
 
+// fixtures
+let navigationLibraryFixture;
+
+// helper functions
 function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
     let fms = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 
@@ -44,7 +48,6 @@ function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
 
     return fms;
 }
-
 function buildFmsMockForDeparture(customAircraftProps = null) {
     let fms;
 
@@ -56,6 +59,14 @@ function buildFmsMockForDeparture(customAircraftProps = null) {
 
     return fms;
 }
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('throws when called without parameters', (t) => {
     t.throws(() => new Fms());

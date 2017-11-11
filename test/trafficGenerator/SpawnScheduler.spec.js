@@ -6,13 +6,18 @@ import {
     airportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from '../trafficGenerator/_mocks/spawnPatternMocks';
 
+// stubs
 let aircraftControllerStub;
+
+// fixtures
 let spawnPatternCollectionFixture;
+let navigationLibraryFixture;
 
 ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
     airportControllerFixture();
     spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture);
     aircraftControllerStub = {
@@ -22,6 +27,7 @@ ava.beforeEach(() => {
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     resetAirportControllerFixture();
     spawnPatternCollectionFixture = null;
     aircraftControllerStub = null;

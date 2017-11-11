@@ -1,7 +1,10 @@
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+
+// fixtures
+const navigationLibraryFixture = createNavigationLibraryFixture();
 
 export const AIRCRAFT_DEFINITION_MOCK = {
     name: 'Boeing 737-700',

@@ -3,9 +3,21 @@ import sinon from 'sinon';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
+// mocks
 const nextHeadingDegreesMock = 180;
+
+// fixtures
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
