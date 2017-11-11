@@ -116,10 +116,10 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
             "name": "Summa One",
             "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
             "rwy": {
-                "16L": ["NEVJO"],
-                "16R": ["NEVJO"],
-                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+                "KSEA16L": ["NEVJO"],
+                "KSEA16R": ["NEVJO"],
+                "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
             },
             "exitPoints": {
                 "BKE": ["SUMMA", "BKE"],
@@ -147,10 +147,10 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
             },
             "body": ["CHINS"],
             "rwy": {
-                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+                "KSEA16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "KSEA34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
             },
             "draw": [
                 ["IMB*", "SUNED*", "YKM"],
@@ -457,10 +457,10 @@ _All properties in this section are required for each route definition_
         "name": "Summa One",
         "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
         "rwy": {
-            "16L": ["NEVJO"],
-            "16R": ["NEVJO"],
-            "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-            "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+            "KSEA16L": ["NEVJO"],
+            "KSEA16R": ["NEVJO"],
+            "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+            "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
         },
         "exitPoints": {
             "BKE": ["SUMMA", "BKE"],
@@ -512,10 +512,10 @@ _All properties in this section are required for each route definition_
         },
         "body": ["CHINS"],
         "rwy": {
-            "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-            "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-            "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-            "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+            "KSEA16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "KSEA16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "KSEA34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+            "KSEA34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
         },
         "draw": [
             ["IMB*", "SUNED*", "YKM"],

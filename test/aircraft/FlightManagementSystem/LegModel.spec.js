@@ -3,21 +3,28 @@ import ava from 'ava';
 // import _isArray from 'lodash/isArray';
 // import _isEqual from 'lodash/isEqual';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
+import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureDefinitionModel';
 // import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 // import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
 // import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
+import { LEG_TYPE } from '../../../src/assets/scripts/client/constants/navigation/waypointConstants';
 
 // const holdRouteStringMock = '@COWBY';
 // const directRouteStringMock = 'COWBY';
 // const cowbyFixFixture = navigationLibraryFixture.findFixByName('COWBY');
-const arrivalProcedureRouteStringMock = 'DAG.KEPEC3.KLAS25R';
+// const arrivalProcedureRouteStringMock = 'DAG.KEPEC3.KLAS25R';
 // const departureProcedureRouteStringMock = 'KLAS25R.COWBY6.DRK';
 // const runwayMock = '25R';
 // const arrivalFlightPhaseMock = 'CRUISE';
 // const departureFlightPhaseMock = 'APRON';
+
+const directRouteString = 'PGS';
+const sidRouteString = 'KLAS25R.BOACH6.TNP';
+const starRouteString = 'DAG.KEPEC3.KLAS19R';
 
 let navigationLibrary;
 
@@ -31,15 +38,74 @@ ava.afterEach(() => {
 
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => new LegModel());
+    t.throws(() => new LegModel(directRouteString));
+    t.throws(() => new LegModel(directRouteString, navigationLibrary));
 });
 
-ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new LegModel(navigationLibrary, arrivalProcedureRouteStringMock));
-    // t.notThrows(() => new LegModel(navigationLibrary, directRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
-    // t.notThrows(() => new LegModel(navigationLibrary, holdRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
-    // t.notThrows(() => new LegModel(navigationLibrary, HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK));
-    // t.notThrows(() => new LegModel(navigationLibrary, 'BOACH'));
+ava('throws when passed route string that should be two separate legs', (t) => {
+    const procedureThenDirectRouteString = 'KLAS25R.COWBY6.DRK..PXR';
+    const doubleDirectRouteString = 'PGS..DRK';
+    const directThenProcedureRouteString = 'PXR..DAG.KEPEC1.KLAS';
+
+    t.throws(() => new LegModel(navigationLibrary, procedureThenDirectRouteString));
+    t.throws(() => new LegModel(navigationLibrary, doubleDirectRouteString));
+    t.throws(() => new LegModel(navigationLibrary, directThenProcedureRouteString));
 });
+
+ava.todo('throws when passed airway route string with airway not defined in navigation library'/* , (t) => {
+    const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
+
+    t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
+}*/);
+
+ava('throws when passed procedure route string with procedure not defined in navigation library', (t) => {
+    const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
+
+    t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
+});
+
+ava.todo('instantiates correctly when given a single airway leg\'s route string'/* , (t) => {
+    const model = new LegModel(navigationLibrary, singleAirwayRouteString);
+
+    t.true(model._airwayModel === null);
+    t.true(model._legType === LEG_TYPE.DIRECT);
+    t.true(model._procedureDefinitionModel === null);
+    t.true(model._routeString === singleAirwayRouteString);
+    t.true(model._waypointCollection.length === 1);
+}*/);
+
+ava('instantiates correctly when given a single direct leg\'s route string', (t) => {
+    const model = new LegModel(navigationLibrary, directRouteString);
+
+    t.true(model._airwayModel === null);
+    t.true(model._legType === LEG_TYPE.DIRECT);
+    t.true(model._procedureDefinitionModel === null);
+    t.true(model._routeString === directRouteString);
+    t.true(model._waypointCollection.length === 1);
+});
+
+ava('instantiates correctly when given a single SID leg\'s route string', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteString);
+
+    t.true(model._airwayModel === null);
+    t.true(model._legType === LEG_TYPE.PROCEDURE);
+    t.true(model._procedureDefinitionModel instanceof ProcedureDefinitionModel);
+    t.true(model._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.SID);
+    t.true(model._routeString === sidRouteString);
+    t.true(model._waypointCollection.length === 7);
+});
+
+ava('instantiates correctly when given a single STAR leg\'s route string', (t) => {
+    const model = new LegModel(navigationLibrary, starRouteString);
+
+    t.true(model._airwayModel === null);
+    t.true(model._legType === LEG_TYPE.PROCEDURE);
+    t.true(model._procedureDefinitionModel instanceof ProcedureDefinitionModel);
+    t.true(model._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.STAR);
+    t.true(model._routeString === starRouteString);
+    t.true(model._waypointCollection.length === 13);
+});
+
 
 // ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
 //     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);

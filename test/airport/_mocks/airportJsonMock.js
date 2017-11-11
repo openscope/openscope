@@ -184,14 +184,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "icao": "BOACH6",
             "name": "Boach Six",
             "rwy": {
-                "01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
-                "01R": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
-                "07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], "RODDD"],
-                "19R": ["JAKER", ["ROPPR", "A70"], "RODDD"],
-                "25L": ["PIRMD", ["ROPPR", "A70"], "RODDD"],
-                "25R": ["RBELL", ["ROPPR", "A70"], "RODDD"]
+                "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
+                "KLAS01R": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], "RODDD"],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], "RODDD"],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], "RODDD"],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], "RODDD"]
             },
             "body": [["BOACH", "A130+"]],
             "exitPoints": {
@@ -213,14 +213,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "name": "Cowboy Six",
             'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "rwy": {
-                "01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
-                "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+                "KLAS01L": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "KLAS01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
             },
             "body": ["COWBY"],
             "exitPoints": {
@@ -239,14 +239,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "icao": "SHEAD9",
             "name": "Shead Nine",
             "rwy": {
-                "01L": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "01R": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]]
+                "KLAS01L": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS01R": [["BESSY", "S230"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]]
             },
             "body": [["SHEAD", "A140+"]],
             "exitPoints": {
@@ -264,14 +264,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "icao": "TRALR6",
             "name": "Trailer Six",
             "rwy": {
-                "01L": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
-                "01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
-                "07L": ["WASTE", ["BAKRR", "A70"]],
-                "07R": ["JESJI", ["BAKRR", "A70"]],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
+                "KLAS01L": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
+                "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
+                "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
+                "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
             },
             "body": ["TRALR"],
             "exitPoints": {
@@ -299,14 +299,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["KSINO", "A170"], ["LUXOR", "A120|S250"], ["GRNPA", "A110"], ["DUBLX", "A90"], ["FRAWG", "A80|S210"], "TRROP", "LEMNZ"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -323,14 +323,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A80+|S210"], "TRROP", "LEMNZ"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -343,14 +343,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": ["LEMNZ"],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": ["LEMNZ"],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -363,14 +363,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["CLARR", "A130|S250"], "SKEBR", ["KEPEC", "A130"], ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": ['LEFFT'],
-                "19R": ['RIGHT'],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": ['LEFFT'],
+                "KLAS19R": ['RIGHT'],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -383,14 +383,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["MYCAL", "A240"], ["FUZZY", "A160|S250"], "TRAGR", ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         },
@@ -405,14 +405,14 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             },
             "body": [["KADDY", "A120|S250"], "TYSSN", ["SUZSI", "A100|S210"], ["PRINO", "A80"]],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
             },
             "draw": [[]]
         }

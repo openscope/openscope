@@ -1,4 +1,5 @@
 import _drop from 'lodash/drop';
+import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
@@ -178,11 +179,12 @@ export default class LegModel {
      * @private
      * @chainable
      */
-    _init(navigationLibrary, routeString, /* runway */) {
+    _init(navigationLibrary, routeString) {
         this._routeString = routeString;
 
         const [entryOrFixName, airwayOrProcedureName, exit] = routeString.split('.');
 
+        this._ensureRouteStringIsSingleSegment(routeString);
         this._legType = this._determineLegType(airwayOrProcedureName, navigationLibrary);
         this._airwayModel = this._retrieveAirwayModel(airwayOrProcedureName, navigationLibrary);
         this._procedureDefinitionModel = this._retrieveProcedureDefinitionModel(airwayOrProcedureName, navigationLibrary);
@@ -203,6 +205,16 @@ export default class LegModel {
         return LEG_TYPE.PROCEDURE;
     }
 
+    _ensureRouteStringIsSingleSegment(routeString) {
+        if (routeString.indexOf('..') !== -1) {
+            throw new TypeError(`Expected single fix or single procedure route string, but received '${routeString}'`);
+        }
+
+        if (routeString.split('.').length > 3) {
+            throw new TypeError(`Expected single procedure route string, but received '${routeString}'`);
+        }
+    }
+
     _retrieveAirwayModel(airwayName, navigationLibrary) {
         if (this._legType !== LEG_TYPE.AIRWAY) {
             return null;
@@ -216,7 +228,9 @@ export default class LegModel {
             return null;
         }
 
-        return navigationLibrary.getProcedure(procedureName);
+        const procedureModel = navigationLibrary.getProcedure(procedureName);
+
+        return procedureModel;
     }
 
     _generateWaypointCollection(entryOrFixName, exit) {
@@ -227,6 +241,10 @@ export default class LegModel {
         if (this._legType === LEG_TYPE.AIRWAY) {
             // FIXME: Uncomment this when implementing airways
             // return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        }
+
+        if (_isNil(this._procedureDefinitionModel)) {
+            throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
         }
 
         return this._procedureDefinitionModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
