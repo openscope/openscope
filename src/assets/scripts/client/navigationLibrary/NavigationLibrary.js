@@ -60,19 +60,19 @@ export default class NavigationLibrary {
     }
 
     get hasSids() {
-        const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
+        const sidProcedureDefinitionModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.SID;
         });
 
-        return sidProcedureModels.length > 0;
+        return sidProcedureDefinitionModels.length > 0;
     }
 
     get hasStars() {
-        const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
+        const starProcedureDefinitionModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.STAR;
         });
 
-        return starProcedureModels.length > 0;
+        return starProcedureDefinitionModels.length > 0;
     }
 
     // get sidCollection() {
@@ -408,7 +408,7 @@ export default class NavigationLibrary {
      * @private
      */
     _getAllFixNamesInUse() {
-        const fixGroups = _map(this._procedureCollection, (procedureModel) => procedureModel.getAllFixNamesInUse());
+        const fixGroups = _map(this._procedureCollection, (procedureDefinitionModel) => procedureDefinitionModel.getAllFixNamesInUse());
         const uniqueFixNames = _uniq(_flatten(fixGroups));
 
         return uniqueFixNames.sort();

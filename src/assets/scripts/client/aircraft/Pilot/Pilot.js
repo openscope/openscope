@@ -288,15 +288,15 @@ export default class Pilot {
 
         // FIXME: Must validate this routeString and defend from erroneous user input!
         const [entryName, procedureId, exitName] = routeString.split('.');
-        const procedureModel = this._navigationLibrary.getProcedure(procedureId);
+        const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
 
         // TODO: set mcp modes here
         this._fms.replaceArrivalProcedure(`${entryName.procedureId.exitName}`, runwayModel);
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${procedureModel.icao.toUpperCase()} arrival`;
-        readback.say = `cleared to ${airportName} via the ${procedureModel.name.toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${procedureDefinitionModel.icao.toUpperCase()} arrival`;
+        readback.say = `cleared to ${airportName} via the ${procedureDefinitionModel.name.toUpperCase()} arrival`;
 
         return [true, readback];
     }
@@ -313,9 +313,9 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(procedureId, runwayModel, airportIcao) {
-        const procedureModel = this._navigationLibrary.getProcedure(procedureId);
+        const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
 
-        if (_isNil(procedureModel)) {
+        if (_isNil(procedureDefinitionModel)) {
             return [false, 'SID name not understood'];
         }
 
@@ -323,13 +323,13 @@ export default class Pilot {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
 
-        const exitName = procedureModel.getRandomExitPoint();
+        const exitName = procedureDefinitionModel.getRandomExitPoint();
         const routeString = `${runwayModel.name}.${procedureId}.${exitName}`;
 
-        if (!procedureModel.hasEntry(runwayModel.name)) {
+        if (!procedureDefinitionModel.hasEntry(runwayModel.name)) {
             return [
                 false,
-                `unable, the ${procedureModel.name.toUpperCase()} departure not valid ` +
+                `unable, the ${procedureDefinitionModel.name.toUpperCase()} departure not valid ` +
                 `from Runway ${runwayModel.name.toUpperCase()}`
             ];
         }
@@ -342,7 +342,7 @@ export default class Pilot {
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
-        readback.say = `cleared to destination via the ${procedureModel.name} departure, then as filed`;
+        readback.say = `cleared to destination via the ${procedureDefinitionModel.name} departure, then as filed`;
 
         return [true, readback];
     }

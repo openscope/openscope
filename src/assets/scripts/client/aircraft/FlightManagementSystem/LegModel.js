@@ -46,14 +46,14 @@ export default class LegModel {
         this._legType = '';
 
         /**
-        * Instance of a `ProcedureModel` object (if this is a procedure leg)
+        * Instance of a `ProcedureDefinitionModel` object (if this is a procedure leg)
         *
         * @for LegModel
-        * @property _procedureModel
-        * @type {ProcedureModel|null}
+        * @property _procedureDefinitionModel
+        * @type {ProcedureDefinitionModel|null}
         * @default null
         */
-        this._procedureModel = null;
+        this._procedureDefinitionModel = null;
 
         /**
          * Array of `WaypointModel`s that have been passed (or skipped)
@@ -185,7 +185,7 @@ export default class LegModel {
 
         this._legType = this._determineLegType(airwayOrProcedureName, navigationLibrary);
         this._airwayModel = this._retrieveAirwayModel(airwayOrProcedureName, navigationLibrary);
-        this._procedureModel = this._retrieveProcedureModel(airwayOrProcedureName, navigationLibrary);
+        this._procedureDefinitionModel = this._retrieveProcedureDefinitionModel(airwayOrProcedureName, navigationLibrary);
         this._waypointCollection = this._generateWaypointCollection(entryOrFixName, exit);
 
         return this;
@@ -211,7 +211,7 @@ export default class LegModel {
         return navigationLibrary.getAirway(airwayName);
     }
 
-    _retrieveProcedureModel(procedureName, navigationLibrary) {
+    _retrieveProcedureDefinitionModel(procedureName, navigationLibrary) {
         if (this._legType !== LEG_TYPE.PROCEDURE) {
             return null;
         }
@@ -229,7 +229,7 @@ export default class LegModel {
             // return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
         }
 
-        return this._procedureModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        return this._procedureDefinitionModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
     }
 
     /**
