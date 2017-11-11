@@ -262,13 +262,13 @@ export default class NavigationLibrary {
 
     // FIXME: Fill me out when implementing airways!
     getAirway(/* airwayId */) {
-        // for now, will return undefined because we don't support airways yet
-        return;
+        // for now, will return null because we don't support airways yet
+        return null;
     }
 
     getProcedure(procedureId) {
         if (!this.hasProcedure(procedureId)) {
-            return;
+            return null;
         }
 
         return this._procedureCollection[procedureId];
