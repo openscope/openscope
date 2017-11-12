@@ -51,7 +51,7 @@ export default class ProcedureWaypointModel {
         this._name = '';
         this._positionModel = null;
 
-        this._init(data);
+        this.init(data);
     }
 
     /**
@@ -99,38 +99,37 @@ export default class ProcedureWaypointModel {
         return this._holdParameters;
     }
 
+    /**
+     * Returns whether `this` is a fly-over waypoint
+     * @for ProcedureWaypointModel
+     * @property isFlyOverWaypoint
+     * @return {boolean}
+     */
+    get isFlyOverWaypoint() {
+        return this._isFlyOverWaypoint;
+    }
 
-        /**
-         * Returns whether `this` is a fly-over waypoint
-         * @for ProcedureWaypointModel
-         * @property isFlyOverWaypoint
-         * @return {boolean}
-         */
-        get isFlyOverWaypoint() {
-            return this._isFlyOverWaypoint;
-        }
+    /**
+    * Returns whether `this` is a hold waypoint
+    *
+    * @for ProcedureWaypointModel
+    * @property isHoldWaypoint
+    * @type {boolean}
+    */
+    get isHoldWaypoint() {
+        return this._isHoldWaypoint;
+    }
 
-        /**
-        * Returns whether `this` is a hold waypoint
-        *
-        * @for ProcedureWaypointModel
-        * @property isHoldWaypoint
-        * @type {boolean}
-        */
-        get isHoldWaypoint() {
-            return this._isHoldWaypoint;
-        }
-
-        /**
-        * Returns whether `this` is a vector waypoint
-        *
-        * @for ProcedureWaypointModel
-        * @property isVector
-        * @return {boolean}
-        */
-        get isVectorWaypoint() {
-            return this._isVectorWaypoint;
-        }
+    /**
+    * Returns whether `this` is a vector waypoint
+    *
+    * @for ProcedureWaypointModel
+    * @property isVector
+    * @return {boolean}
+    */
+    get isVectorWaypoint() {
+        return this._isVectorWaypoint;
+    }
 
     /**
      * Returns the name of the waypoint
@@ -173,16 +172,17 @@ export default class ProcedureWaypointModel {
         return this._positionModel.relativePosition;
     }
 
+    // ------------------------------ LIFECYCLE ------------------------------
+
     /**
-     * Initialize waypoint properties
+     * Initialize class properties
      *
      * @for ProcedureWaypointModel
-     * @method _init
+     * @method init
      * @param data {object}
-     * @private
      * @chainable
      */
-    _init(data) {
+    init(data) {
         let fixName = data;
         let restrictions = '';
 
@@ -204,6 +204,27 @@ export default class ProcedureWaypointModel {
         return;
     }
 
+    /**
+     * Reset class properties
+     *
+     * @for ProcedureWaypointModel
+     * @method reset
+     * @chainable
+     */
+    reset() {
+        this.altitudeMaximum = -1;
+        this.altitudeMinimum = -1;
+        this.speedMaximum = -1;
+        this.speedMinimum = -1;
+        this._holdParameters = null;
+        this._isFlyOverWaypoint = false;
+        this._isHoldWaypoint = false;
+        this._isVectorWaypoint = false;
+        this._name = '';
+        this._positionModel = null;
+
+        return this;
+    }
 
     /**
      * Initialize properties to make this waypoint a fly-over waypoint
@@ -272,6 +293,8 @@ export default class ProcedureWaypointModel {
         this._isVectorWaypoint = true;
     }
 
+    // ------------------------------ PUBLIC ------------------------------
+
     /**
      * When `#_isVector` is true, this gets the heading that should be flown
      *
@@ -335,6 +358,8 @@ export default class ProcedureWaypointModel {
             timer: INVALID_NUMBER
         };
     }
+
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * Apply an altitude restriction in the appropriate properties

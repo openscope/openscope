@@ -218,9 +218,10 @@ export default class LegModel {
     reset() {
         this._resetWaypointCollection();
 
-        this.isProcedure = false;
-        this._isHold = false;
+        this._airwayModel = null;
         this._legType = '';
+        this._procedureDefinitionModel = null;
+        this._previousWaypointCollection = [];
         this._routeString = '';
         this._waypointCollection = [];
 
@@ -236,14 +237,15 @@ export default class LegModel {
      * @param navigationLibrary {NavigationLibrary}
      * @return {string} property of `LEG_TYPE` enum
      */
-    _determineLegType(airwayOrProcedureName, navigationLibrary) {
+    _determineLegType(/* airwayOrProcedureName, navigationLibrary */) {
         if (this._routeString.indexOf('.') === INVALID_NUMBER) {
             return LEG_TYPE.DIRECT;
         }
 
-        if (navigationLibrary.hasAirway(airwayOrProcedureName)) {
-            return LEG_TYPE.AIRWAY;
-        }
+        // FIXME: Uuncomment when implementing airways
+        // if (navigationLibrary.hasAirway(airwayOrProcedureName)) {
+        //     return LEG_TYPE.AIRWAY;
+        // }
 
         return LEG_TYPE.PROCEDURE;
     }
@@ -282,10 +284,10 @@ export default class LegModel {
             return [new ProcedureWaypointModel(entryOrFixName)];
         }
 
-        if (this._legType === LEG_TYPE.AIRWAY) {
-            // FIXME: Uncomment this when implementing airways
-            // return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
-        }
+        // FIXME: Uncomment this when implementing airways
+        // if (this._legType === LEG_TYPE.AIRWAY) {
+        //     return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        // }
 
         if (_isNil(this._procedureDefinitionModel)) {
             throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
@@ -319,12 +321,12 @@ export default class LegModel {
      * @return {boolean}
      */
     hasWaypoint(waypointName) {
+        waypointName = waypointName.toUpperCase();
+
         // using a for loop instead of `_find()` to maximize performance
         // because this operation could happen quite frequently
         for (let i = 0; i < this._waypointCollection.length; i++) {
-            const waypoint = this._waypointCollection[i];
-
-            if (waypointName.toLowerCase() === waypoint.name) {
+            if (this._waypointCollection[i].name === waypointName) {
                 return true;
             }
         }
@@ -340,7 +342,7 @@ export default class LegModel {
      * @return {number}
      */
     getProcedureBottomAltitude() {
-        if (!this.isProcedure) {
+        if (!this.isProcedureLeg) {
             return INVALID_NUMBER;
         }
 
@@ -358,7 +360,7 @@ export default class LegModel {
      * @return {number}
      */
     getProcedureTopAltitude() {
-        if (!this.isProcedure) {
+        if (!this.isProcedureLeg) {
             return INVALID_NUMBER;
         }
 
