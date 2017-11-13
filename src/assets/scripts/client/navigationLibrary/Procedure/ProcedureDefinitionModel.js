@@ -30,10 +30,6 @@ export default class ProcedureDefinitionModel {
             throw new TypeError(`Expected valid procedure data, but received '${data}'`);
         }
 
-        if (!(procedureType in PROCEDURE_TYPE)) {
-            throw new TypeError(`Expected procedure of known type, but received procedure type of '${procedureType}'`);
-        }
-
         /**
          * Body segment of the procedure
          *
@@ -203,7 +199,7 @@ export default class ProcedureDefinitionModel {
         }
 
         throw new TypeError('Expected procedure definition with known type, ' +
-            `but received type '${this._procedureType}'`);
+            `but received unknown type '${this._procedureType}'`);
     }
 
     /**
