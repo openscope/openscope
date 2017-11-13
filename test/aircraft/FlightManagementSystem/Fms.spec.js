@@ -15,7 +15,7 @@ import {
 } from '../_mocks/aircraftMocks';
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
-import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
+import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/routeConstants';
 
 const directRouteString = 'COWBY';
 const invalidDirectRouteStringMock = 'COWBY.BIKKR';

@@ -4,16 +4,11 @@ import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _uniq from 'lodash/uniq';
-import StaticPositionModel from '../base/StaticPositionModel';
-import ProcedureDefinitionModel from './Procedure/ProcedureDefinitionModel';
-// import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
-// import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
+import ProcedureDefinitionModel from './Procedure/ProcedureDefinitionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
+import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { degreesToRadians } from '../utilities/unitConverters';
-import {
-    // FLIGHT_PHASE,
-    PROCEDURE_TYPE
-} from '../constants/aircraftConstants';
 
 /**
  *

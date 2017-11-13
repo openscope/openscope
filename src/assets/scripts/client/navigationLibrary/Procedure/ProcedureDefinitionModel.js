@@ -4,7 +4,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import ProcedureWaypointModel from './ProcedureWaypointModel';
-import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
+import { PROCEDURE_TYPE } from '../../constants/routeConstants';
 
 /**
  * Generic class for instrument procedures of multiple types, such as SIDs/STARs

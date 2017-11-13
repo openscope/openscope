@@ -8,7 +8,7 @@ import {
 import {
     RNAV_WAYPOINT_DISPLAY_NAME,
     RNAV_WAYPOINT_PREFIX
-} from '../../constants/navigation/routeConstants';
+} from '../../constants/waypointConstants';
 // import { extractHeadingFromVectorSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     degreesToRadians,

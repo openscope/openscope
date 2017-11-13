@@ -5,11 +5,10 @@ import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
-import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
-import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
-import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
+import BaseCollection from '../../base/BaseCollection';
+import { PROCEDURE_TYPE } from '../../constants/routeConstants';
 
 /**
  * Accept `sids` or `stars` data from an airport json file and create a collection of model objects.

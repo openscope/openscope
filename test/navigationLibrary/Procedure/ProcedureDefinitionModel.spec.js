@@ -9,7 +9,7 @@ import {
     STAR_MOCK
 } from './_mocks/procedureMocks';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
-import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
+import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/routeConstants';
 
 // mocks
 const invalidEntryMock = 'blahblahblah';

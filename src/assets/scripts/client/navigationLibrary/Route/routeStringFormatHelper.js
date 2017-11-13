@@ -5,11 +5,12 @@ import _isString from 'lodash/isString';
 import { REGEX } from '../../constants/globalConstants';
 import {
     DIRECT_SEGMENT_DIVIDER,
+    PROCEDURE_SEGMENT_DIVIDER
+} from '../../constants/routeConstants';
+import {
     HOLD_WAYPOINT_PREFIX,
-    ROUTE_SEGMENT_MAX_LENGTH,
-    PROCEDURE_SEGMENT_DIVIDER,
     VECTOR_WAYPOINT_PREFIX
-} from '../../constants/navigation/routeConstants';
+} from '../../constants/waypointConstants';
 
 /**
  * Encapsulation of a regex used to determine if spaces exist within a string
@@ -84,7 +85,7 @@ export const routeStringFormatHelper = (routeString) => {
             continue;
         }
 
-        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, ROUTE_SEGMENT_MAX_LENGTH);
+        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, 3);
 
         // is a procedure, eg SID, STAR, IAP, airway, etc.
         if (procedureRouteSegments.length < 3) {
@@ -100,7 +101,7 @@ export const routeStringFormatHelper = (routeString) => {
         // chop up the multilink
         const subsequentRouteSegmentsLength = 2;
         const posteriorProcedureRouteSegments = _chunk(
-            _drop(procedureRouteSegments, ROUTE_SEGMENT_MAX_LENGTH), subsequentRouteSegmentsLength
+            _drop(procedureRouteSegments, 3), subsequentRouteSegmentsLength
         );
         let nextProcedureRouteSegment = _last(initialProcedureRouteSegment);
 

@@ -10,8 +10,10 @@ import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 // import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
 // import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
-import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
-import { LEG_TYPE } from '../../../src/assets/scripts/client/constants/navigation/waypointConstants';
+import {
+    LEG_TYPE,
+    PROCEDURE_TYPE
+} from '../../../src/assets/scripts/client/constants/routeConstants';
 
 // const holdRouteStringMock = '@COWBY';
 // const directRouteStringMockMock = 'COWBY';

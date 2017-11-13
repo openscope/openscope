@@ -1,12 +1,13 @@
 import BaseModel from '../../base/BaseModel';
 import { INVALID_INDEX } from '../../constants/globalConstants';
 import {
+    PROCEDURE_SEGMENT_DIVIDER
+} from '../../constants/routeConstants';
+import {
     FLY_OVER_WAYPOINT_PREFIX,
     HOLD_WAYPOINT_PREFIX,
-    ROUTE_SEGMENT_MAX_LENGTH,
-    PROCEDURE_SEGMENT_DIVIDER,
     VECTOR_WAYPOINT_PREFIX
-} from '../../constants/navigation/routeConstants';
+} from '../../constants/waypointConstants';
 
 // TODO: this class needs a better name
 /**
@@ -156,7 +157,7 @@ RouteModel.isProcedureRouteString = (routeString) => {
     }
 
     const elements = routeString.split(PROCEDURE_SEGMENT_DIVIDER);
-    const hasRightNumberOfElements = elements.length === ROUTE_SEGMENT_MAX_LENGTH;
+    const hasRightNumberOfElements = elements.length === 3;
     const isDirectRouteSegment = elements[1] === '';
 
     return hasRightNumberOfElements && !isDirectRouteSegment;

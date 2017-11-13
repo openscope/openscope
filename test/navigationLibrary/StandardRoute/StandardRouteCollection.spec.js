@@ -4,7 +4,7 @@ import _isEmpty from 'lodash/isEmpty';
 import StandardRouteCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteCollection';
 import StandardRouteModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
+import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/routeConstants';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 import {

@@ -1,28 +1,27 @@
 import _isNil from 'lodash/isNil';
-import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import RouteModel from '../Route/RouteModel';
+import BaseModel from '../../base/BaseModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import {
     INVALID_INDEX,
     INVALID_NUMBER
 } from '../../constants/globalConstants';
 import {
-    FLY_OVER_WAYPOINT_PREFIX,
-    VECTOR_WAYPOINT_PREFIX
-} from '../../constants/navigation/routeConstants';
-import {
     ABOVE_SYMBOL,
     ALTITUDE_RESTRICTION_PREFIX,
     BELOW_SYMBOL,
-    DECIMAL_RADIX,
-    FL_TO_THOUSANDS_MULTIPLIER,
+    FLY_OVER_WAYPOINT_PREFIX,
     NAME_INDEX,
     RESTRICTION_INDEX,
     RESTRICTION_SEPARATOR,
-    SPEED_RESTRICTION_PREFIX
-} from '../../constants/navigation/waypointConstants';
-
+    SPEED_RESTRICTION_PREFIX,
+    VECTOR_WAYPOINT_PREFIX
+} from '../../constants/waypointConstants';
+import {
+    DECIMAL_RADIX,
+    UNIT_CONVERSION_CONSTANTS
+} from '../../utilities/unitConverters';
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
  *
@@ -409,7 +408,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @private
      */
     _setAltitudeRestriction(altitudeRestriction) {
-        const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+        const altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_FT;
 
         if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             this.altitudeMinimum = altitude;

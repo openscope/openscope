@@ -4,7 +4,7 @@ import _isNaN from 'lodash/isNaN';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';
-import { DECIMAL_RADIX } from '../constants/navigation/waypointConstants';
+import { DECIMAL_RADIX } from '../utilities/unitConverters';
 import {
     DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR,
     DATA_BLOCK_POSITION_MAP

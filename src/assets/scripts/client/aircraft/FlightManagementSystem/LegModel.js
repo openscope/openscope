@@ -6,7 +6,7 @@ import {
     INVALID_INDEX,
     INVALID_NUMBER
 } from '../../constants/globalConstants';
-import { LEG_TYPE } from '../../constants/navigation/waypointConstants';
+import { LEG_TYPE } from '../../constants/routeConstants';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.

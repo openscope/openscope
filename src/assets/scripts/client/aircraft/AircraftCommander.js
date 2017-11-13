@@ -4,12 +4,16 @@ import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import {
+    FLIGHT_PHASE,
+    FLIGHT_CATEGORY
+} from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
+import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { round } from '../math/core';
 import {
     radio_runway,
@@ -17,12 +21,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import {
-    FLIGHT_PHASE,
-    FLIGHT_CATEGORY,
-    PROCEDURE_TYPE
-} from '../constants/aircraftConstants';
-import { EVENT } from '../constants/eventNames';
+import { radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  * Enum of commands and thier corresponding function.

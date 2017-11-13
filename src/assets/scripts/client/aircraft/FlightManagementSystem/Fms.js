@@ -13,14 +13,14 @@ import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
     FLIGHT_CATEGORY,
-    FLIGHT_PHASE,
-    PROCEDURE_TYPE
+    FLIGHT_PHASE
 } from '../../constants/aircraftConstants';
 import {
     INVALID_INDEX,
     INVALID_NUMBER,
     REGEX
 } from '../../constants/globalConstants';
+import { PROCEDURE_TYPE } from '../../constants/routeConstants';
 import {
     routeStringFormatHelper,
     extractFixnameFromHoldSegment,
