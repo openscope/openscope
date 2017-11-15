@@ -3,7 +3,7 @@ import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
-import ProcedureWaypointModel from './ProcedureWaypointModel';
+import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { PROCEDURE_TYPE } from '../../constants/routeConstants';
 
 /**
@@ -302,7 +302,7 @@ export default class ProcedureDefinitionModel {
     * @method getWaypointModelsForEntryAndExit
     * @param entry {string} name of the requested entry point
     * @param exit {string} name of the requested exit point
-    * @return {array<ProcedureWaypointModel>}
+    * @return {array<WaypointModel>}
     */
     getWaypointModelsForEntryAndExit(entry, exit) {
         if (!(entry in this._entryPoints)) {
@@ -349,24 +349,24 @@ export default class ProcedureDefinitionModel {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
-    * Generate new `ProcedureWaypointModel`s for the body portion of the procedure
+    * Generate new `WaypointModel`s for the body portion of the procedure
     *
     * @for ProcedureDefinitionModel
     * @method _generateWaypointsForBody
-    * @return {array<ProcedureWaypointModel>}
+    * @return {array<WaypointModel>}
     * @private
     */
     _generateWaypointsForBody() {
-        return _map(this._body, (waypoint) => new ProcedureWaypointModel(waypoint));
+        return _map(this._body, (waypoint) => new WaypointModel(waypoint));
     }
 
     /**
-    * Generate new `ProcedureWaypointModel`s for the specified entry
+    * Generate new `WaypointModel`s for the specified entry
     *
     * @for ProcedureDefinitionModel
     * @method _generateWaypointsForEntry
     * @param entryPoint {string} name of the requested entry point
-    * @return {array<ProcedureWaypointModel>}
+    * @return {array<WaypointModel>}
     * @private
     */
     _generateWaypointsForEntry(entryPoint) {
@@ -374,16 +374,16 @@ export default class ProcedureDefinitionModel {
             throw new TypeError(`Expected valid entry of ${this._icao}, but received ${entryPoint}`);
         }
 
-        return _map(this._entryPoints[entryPoint], (waypoint) => new ProcedureWaypointModel(waypoint));
+        return _map(this._entryPoints[entryPoint], (waypoint) => new WaypointModel(waypoint));
     }
 
     /**
-    * Generate new `ProcedureWaypointModel`s for the specified exit
+    * Generate new `WaypointModel`s for the specified exit
     *
     * @for ProcedureDefinitionModel
     * @method _generateWaypointsForEntry
     * @param exitPoint {string} name of the requested exit point
-    * @return {array<ProcedureWaypointModel>}
+    * @return {array<WaypointModel>}
     * @private
     */
     _generateWaypointsForExit(exitPoint) {
@@ -391,7 +391,7 @@ export default class ProcedureDefinitionModel {
             throw new TypeError(`Expected valid exit of ${this._icao}, but received ${exitPoint}`);
         }
 
-        return _map(this._exitPoints[exitPoint], (waypoint) => new ProcedureWaypointModel(waypoint));
+        return _map(this._exitPoints[exitPoint], (waypoint) => new WaypointModel(waypoint));
     }
 
     /**

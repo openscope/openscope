@@ -1,7 +1,7 @@
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
-import ProcedureWaypointModel from '../../navigationLibrary/Procedure/ProcedureWaypointModel';
+import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import {
     INVALID_INDEX,
     INVALID_NUMBER
@@ -281,7 +281,7 @@ export default class LegModel {
      */
     _generateWaypointCollection(entryOrFixName, exit) {
         if (this._legType === LEG_TYPE.DIRECT) {
-            return [new ProcedureWaypointModel(entryOrFixName)];
+            return [new WaypointModel(entryOrFixName)];
         }
 
         // FIXME: Uncomment this when implementing airways
