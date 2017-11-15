@@ -4,7 +4,6 @@ import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../../airport/AirportController';
-import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
 import {
     FLIGHT_CATEGORY,

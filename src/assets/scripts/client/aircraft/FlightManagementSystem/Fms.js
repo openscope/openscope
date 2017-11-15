@@ -10,7 +10,6 @@ import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import LegModel from './LegModel';
-import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE

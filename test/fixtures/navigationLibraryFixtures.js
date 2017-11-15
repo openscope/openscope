@@ -1,6 +1,5 @@
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import FixCollection from '../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import RouteModel from '../../src/assets/scripts/client/navigationLibrary/Route/RouteModel';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 import { FIX_LIST_MOCK } from '../navigationLibrary/Fix/_mocks/fixMocks';
 import { airportPositionFixtureKSFO } from './airportFixtures';
