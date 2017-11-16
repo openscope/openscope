@@ -12,6 +12,20 @@ The procedures are somewhat automated, with the design of the SIDs and STARs tak
 
 ### Sectors Available in OpenScope
 _To be completed. There is little to no information on the structure of the TRACON._
+```
+E - East Departure    (unavailable)
+W - West Departure    (unavailable)
+Y - Cruxx Satellite   (unavailable)
+K - Junkr Satellite   (unavailable)
+P - Pontiac Satellite (unavailable)
+D - City Satellite    (unavailable)
+F - East Feeder   (default)
+S - West Feeder   (unavailable)
+R - Third Feeder  (unavailable)
+B - East Arrival  (unavailable)
+A - West Arrival  (unavailable)
+V - Third Arrival (unavailable)
+```
 
 ### Airports of Interest
 
