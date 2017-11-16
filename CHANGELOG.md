@@ -13,7 +13,7 @@
 
 
 ### Enhancements & Refactors
-
+- Add restricted and prohibited areas to KSEA [#823](https://github.com/openscope/openscope/issues/823)
 
 
 
