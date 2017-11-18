@@ -617,60 +617,12 @@ ava('._setFlightPhaseToPreviousFlightPhase() reverts #currentPhase to the value 
     t.true(fms.currentPhase === 'CRUISE');
 });
 
-ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
-    const invalidRouteString = 'a.b.c';
-    const fms = buildFmsMock();
-
-    t.false(fms.isValidProcedureRoute(invalidRouteString, runwayAssignmentMock, 'arrival'));
-    t.false(fms.isValidProcedureRoute(invalidRouteString, runwayAssignmentMock, 'departure'));
-});
-
 ava.before(() => {
     sinon.stub(global.console, 'error', () => {});
 });
 
 ava.after(() => {
     global.console.error.restore();
-});
-
-ava('.isValidProcedureRoute() returns early if passed a malformed RouteString', (t) => {
-    const invalidRouteStringMock = 'a.b';
-    const fms = buildFmsMock();
-    const hasLegWithRouteStringSpy = sinon.spy(fms, 'hasLegWithRouteString');
-
-    t.false(fms.isValidProcedureRoute(invalidRouteStringMock, runwayAssignmentMock, 'arrival'));
-    t.false(hasLegWithRouteStringSpy.called);
-});
-
-ava('.isValidProcedureRoute() calls ._translateProcedureNameToFlightPhase() when no flightPhase is passed', (t) => {
-    const procedureRouteStringMock = 'dag.kepec3.klas';
-    const fms = buildFmsMock();
-    const _translateProcedureNameToFlightPhaseSpy = sinon.spy(fms, '_translateProcedureNameToFlightPhase');
-
-    t.true(fms.isValidProcedureRoute(procedureRouteStringMock, runwayAssignmentMock));
-    t.true(_translateProcedureNameToFlightPhaseSpy.called);
-});
-
-ava('.isValidProcedureRoute() returns true if the passed route already exists within the #legCollection', (t) => {
-    const procedureRouteStringMock = 'dag.kepec3.klas';
-    const fms = buildFmsMock();
-    const result = fms.isValidProcedureRoute(procedureRouteStringMock, runwayAssignmentMock, 'arrival');
-
-    t.true(result);
-});
-
-ava('.isValidProcedureRoute() returns true if the passed route is a valid arrival route', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.isValidProcedureRoute(arrivalProcedureRouteStringMock, runwayAssignmentMock, 'arrival');
-
-    t.true(result);
-});
-
-ava('.isValidProcedureRoute() returns true if the passed route is a valid departure route', (t) => {
-    const fms = buildFmsMock();
-    const result = fms.isValidProcedureRoute(departureProcedureRouteStringMock, runwayAssignmentMock, 'departure');
-
-    t.true(result);
 });
 
 ava('.isValidRouteAmendment() returns true when a routeAmmendment contains a routeSegment that exists in the flightPlan', (t) => {

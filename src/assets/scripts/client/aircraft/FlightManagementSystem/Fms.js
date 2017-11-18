@@ -849,62 +849,6 @@ export default class Fms {
     }
 
     /**
-     * Determinines if the passed `routeString` is a valid procedure route.
-     *
-     * This can be either a SID or a STAR.
-     * A valid `procedureRouteString` is expected to be in the shape of:
-     * `ENTRY.PROCEDURE_NAME.EXIT`
-     *
-     * @for Fms
-     * @method isValidProcedureRoute
-     * @param routeString {string}
-     * @param runway {string}
-     * @param flightPhase {string}
-     * @return {boolean}
-     */
-    isValidProcedureRoute(routeString, runway, flightPhase = '') {
-        let routeStringModel;
-
-        // RouteModel will throw when presented with an invalid procedureRouteString,
-        // we only want to capture that here and continue on our way.
-        try {
-            routeStringModel = new RouteModel(routeString);
-        } catch (error) {
-            console.error(error);
-
-            return false;
-        }
-
-        // flightPhase is unknown or unavailable so it must be extrapolated based on the `procedureId`.
-        if (flightPhase === '') {
-            flightPhase = this._translateProcedureNameToFlightPhase(routeStringModel.procedure);
-        }
-
-        // a `LegModel` already exists with this routeString
-        if (this.hasLegWithRouteString(routeStringModel.routeCode)) {
-            return true;
-        }
-
-        // TODO: abstract this to a method or combine with if/returns below
-        // find the prcedure model from the correct collection based on flightPhase
-        const procedureDefinitionModel = this._navigationLibrary.getProcedure(routeStringModel.procedure);
-
-        if (!procedureDefinitionModel) {
-            return false;
-        }
-
-        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
-            // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
-            // reimplemented as soon as possible.
-            return procedureDefinitionModel.hasFixName(routeStringModel.entry); // && procedureDefinitionModel.hasFixName(runway);
-        }
-
-        // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
-        // reimplemented as soon as possible.
-        return procedureDefinitionModel.hasFixName(routeStringModel.exit); // && procedureDefinitionModel.hasFixName(runway);
-    }
-
-    /**
      * Given a `routeString`, find if any `routeSegments` match an existing
      * `LegModel#routeString`.
      *
