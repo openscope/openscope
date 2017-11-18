@@ -849,55 +849,6 @@ export default class Fms {
     }
 
     /**
-     * Validate and entire route.
-     *
-     * This can be:
-     * - a directRouteString,
-     * - a procedureRouteString,
-     * - or combination of both directRouteStrings and procedureRouteString
-     *
-     * @for fms
-     * @method isValidRoute
-     * @param routeString {string}
-     * @param runway {string}
-     * @return {boolean}
-     */
-    isValidRoute(routeString, runway = '') {
-        const routeSegments = routeStringFormatHelper(routeString);
-
-        if (!routeSegments) {
-            return false;
-        }
-
-        for (let i = 0; i < routeSegments.length; i++) {
-            let isValid = false;
-            const segment = routeSegments[i];
-
-            if (RouteModel.isProcedureRouteString(segment)) {
-                isValid = this.isValidProcedureRoute(segment, runway);
-            } else if (RouteModel.isHoldRouteString(segment)) {
-                const fixName = extractFixnameFromHoldSegment(segment);
-
-                isValid = this._navigationLibrary.hasFix(fixName);
-            } else if (RouteModel.isVectorRouteString(segment)) {
-                const heading = extractHeadingFromVectorSegment(segment);
-                const isValidNumber = !isNaN(heading);
-                const isThreeDigits = heading.length === 3;
-
-                isValid = isValidNumber && isThreeDigits;
-            } else {
-                isValid = this._navigationLibrary.hasFix(segment);
-            }
-
-            if (!isValid) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
      * Determinines if the passed `routeString` is a valid procedure route.
      *
      * This can be either a SID or a STAR.

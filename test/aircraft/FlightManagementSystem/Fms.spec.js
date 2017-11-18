@@ -617,60 +617,6 @@ ava('._setFlightPhaseToPreviousFlightPhase() reverts #currentPhase to the value 
     t.true(fms.currentPhase === 'CRUISE');
 });
 
-ava('.isValidRoute() returns true when passed a valid directRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(directRouteString, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns true when passed a valid complexRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(complexRouteString, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns true when passed a valid complexRouteString that includes a hold', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(complexRouteStringWithHold, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns true when passed a valid complexRouteString that includes a vector', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(complexRouteStringWithVector, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns true when passed a valid arrival procedureRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(arrivalProcedureRouteStringMock, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns true when passed a valid departure procedureRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.true(fms.isValidRoute(departureProcedureRouteStringMock, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns false when passed an invalid use of a directRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.false(fms.isValidRoute(invalidDirectRouteStringMock, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns false when passed an invalid use of a procedureRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    t.false(fms.isValidRoute(invalidProcedureRouteStringMock, runwayAssignmentMock));
-});
-
-ava('.isValidRoute() returns false when passed an empty string', (t) => {
-    const fms = buildFmsMock();
-
-    t.false(fms.isValidRoute('', runwayAssignmentMock));
-});
-
 ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
     const invalidRouteString = 'a.b.c';
     const fms = buildFmsMock();

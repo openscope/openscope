@@ -358,15 +358,16 @@ export default class Pilot {
     applyNewRoute(routeString, runway) {
         this.hasDepartureClearance = true;
 
-        const isValid = this._fms.isValidRoute(routeString, runway);
-
-        if (!isValid) {
-            const readback = {};
-            readback.log = `requested route of "${routeString}" is invalid`;
-            readback.say = 'that route is invalid';
-
-            return [false, readback];
-        }
+        // FIXME: Validate the route at some point and give appropriate response when route is invalid
+        // const isValid = this._fms.isValidRoute(routeString, runway);
+        //
+        // if (!isValid) {
+        //     const readback = {};
+        //     readback.log = `requested route of "${routeString}" is invalid`;
+        //     readback.say = 'that route is invalid';
+        //
+        //     return [false, readback];
+        // }
 
         this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
 
@@ -387,11 +388,12 @@ export default class Pilot {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        const isValid = this._fms.isValidRoute(routeString);
-
-        if (!isValid) {
-            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
-        }
+        // FIXME: Return appropriate response when provided route is invalid
+        // const isValid = this._fms.isValidRoute(routeString);
+        //
+        // if (!isValid) {
+        //     return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
+        // }
 
         if (!this._fms.isValidRouteAmendment(routeString)) {
             return [
