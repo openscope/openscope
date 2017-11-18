@@ -116,6 +116,7 @@ export default class RouteModel extends BaseModel {
      */
     init(routeString) {
         this._legCollection = this._generateLegsFromRouteString(routeString);
+        this._verifyRouteContainsMultipleWaypoints();
 
         return this;
     }
@@ -209,5 +210,20 @@ export default class RouteModel extends BaseModel {
         });
 
         return legs;
+    }
+
+    /**
+     * Verify that this route's legs collectively have at least two waypoints, or throw an error
+     *
+     * @for RouteModel
+     * @method _verifyRouteContainsMultipleWaypoints
+     * @private
+     */
+    _verifyRouteContainsMultipleWaypoints() {
+        if (this.waypoints.length < 2) {
+            throw new TypeError('Expected RouteModel to have at least two waypoints, but ' +
+                `only found ${this.waypoints.length} waypoints`
+            );
+        }
     }
 }

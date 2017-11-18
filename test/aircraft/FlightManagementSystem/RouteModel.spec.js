@@ -34,6 +34,10 @@ ava('throws when instantiated with route string containing spaces', (t) => {
     t.throws(() => new RouteModel(navigationLibraryFixture, 'KLAS07R BOACH6 TNP'));
 });
 
+ava('throws when instantiated with route string that yields only one waypoint', (t) => {
+    t.throws(() => new RouteModel(navigationLibraryFixture, 'TNP'));
+});
+
 ava('does not throw when instantiated with valid parameters', (t) => {
     t.notThrows(() => new RouteModel(navigationLibraryFixture, complexRouteStringMock));
 });
