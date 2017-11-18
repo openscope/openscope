@@ -11,7 +11,7 @@ import StaticPositionModel from '../base/StaticPositionModel';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { tau } from '../math/circle';
-import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
+// import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { isEmptyObject } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';

@@ -1,7 +1,7 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
-import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
+// import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
     isWithinAirspace,
     calculateDistanceToBoundary,

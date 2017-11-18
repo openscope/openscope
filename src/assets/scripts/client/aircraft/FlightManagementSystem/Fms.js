@@ -20,11 +20,11 @@ import {
     REGEX
 } from '../../constants/globalConstants';
 import { PROCEDURE_TYPE } from '../../constants/routeConstants';
-import {
-    routeStringFormatHelper,
-    extractFixnameFromHoldSegment,
-    extractHeadingFromVectorSegment
-} from '../../navigationLibrary/Route/routeStringFormatHelper';
+// import {
+//     routeStringFormatHelper,
+//     extractFixnameFromHoldSegment,
+//     extractHeadingFromVectorSegment
+// } from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
  * Symbol used to separate `directRouteSegments`

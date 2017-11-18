@@ -48,11 +48,11 @@ export const LEG_TYPE = {
 /**
 * Symbol that divides each route segment
 *
-* @enum PROCEDURE_SEGMENT_DIVIDER
+* @enum PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
 * @type {string}
 * @final
 */
-export const PROCEDURE_SEGMENT_DIVIDER = '.';
+export const PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER = '.';
 
 /**
 * @property PROCEDURE_TYPE
