@@ -109,6 +109,14 @@ ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
+ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'JESJI..BAKRR');
+    const expectedResult = 1.3415936051582544;
+    const result = model.calculateSpawnHeading();
+
+    t.true(result === expectedResult);
+});
+
 ava('.reset() clears #_legCollection', (t) => {
     const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
 
