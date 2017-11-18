@@ -1,6 +1,7 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
+import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 // import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
     isWithinAirspace,
@@ -124,35 +125,6 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
 };
 
 /**
- *
- *
- * @function _buildWaypointModelListFromRoute
- * @return {array}
- * @private
- */
-const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, airport) => {
-    const formattedRoute = routeStringFormatHelper(spawnPatternJson.route);
-
-    if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
-        const initialWaypoint = navigationLibrary.findFixByName(formattedRoute[0]);
-        const nextWaypoint = navigationLibrary.findFixByName(formattedRoute[1]);
-
-        return [initialWaypoint, nextWaypoint];
-    }
-
-    const activeRouteModel = new RouteModel(spawnPatternJson.route);
-    const isPreSpawn = true;
-    const waypointModelList = navigationLibrary.findWaypointModelsForStar(
-        activeRouteModel.procedure,
-        activeRouteModel.entry,
-        airport.arrivalRunwayModel.name,
-        isPreSpawn
-    );
-
-    return waypointModelList;
-};
-
-/**
  * Calculate heading, nextFix and position data to be used when creating an
  * `AircraftModel` along a route.
  *
@@ -165,7 +137,8 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
 const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     // distance between each arriving aircraft, in nm
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
-    const waypointModelList = _buildWaypointModelListFromRoute(spawnPatternJson, navigationLibrary, airport);
+    const routeModel = new RouteModel(navigationLibrary, spawnPatternJson.route);
+    const waypointModelList = routeModel.waypoints;
     const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
