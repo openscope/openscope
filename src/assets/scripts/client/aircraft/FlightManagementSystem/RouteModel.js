@@ -3,6 +3,7 @@ import _first from 'lodash/first';
 import _isString from 'lodash/isString';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
+import _reduce from 'lodash/reduce';
 import LegModel from './LegModel';
 import BaseModel from '../../base/BaseModel';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
@@ -88,6 +89,19 @@ export default class RouteModel extends BaseModel {
         }
 
         return directRouteSegments.join(DIRECT_SEGMENT_DIVIDER);
+    }
+
+    /**
+     * Return an array of all waypoints in all legs of the route
+     *
+     * @for RouteModel
+     * @property waypoints
+     * @type {array<WaypointModel>}
+     */
+    get waypoints() {
+        return _reduce(this._legCollection, (waypointList, legModel) => {
+            return waypointList.concat(legModel.waypoints);
+        }, []);
     }
 
     // ------------------------------ LIFECYCLE ------------------------------

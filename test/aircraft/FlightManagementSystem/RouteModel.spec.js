@@ -1,5 +1,6 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
+import _map from 'lodash/map';
 import RouteModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
@@ -90,6 +91,18 @@ ava('#routeString returns the route string representing the entire route', (t) =
     const result = model.routeString;
 
     t.true(result === expectedResult);
+});
+
+ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const result = model.waypoints;
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'ZELMA',
+        'JOTNU', 'TNP', 'OAL', 'MLF', 'PGS', 'CEJAY', 'KADDY', 'TYSSN', 'SUZSI', 'PRINO'
+    ];
+    const waypointNames = _map(result, (waypointModel) => waypointModel.name);
+
+    t.true(_isArray(result));
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('.reset() clears #_legCollection', (t) => {

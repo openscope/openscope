@@ -1,7 +1,8 @@
 import ava from 'ava';
 import sinon from 'sinon';
-// import _isArray from 'lodash/isArray';
+import _isArray from 'lodash/isArray';
 // import _isEqual from 'lodash/isEqual';
+import _map from 'lodash/map';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureDefinitionModel';
 // import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
@@ -146,7 +147,6 @@ ava('#isDirectLeg returns false when this is not a direct leg', (t) => {
     t.false(model.isDirectLeg);
 });
 
-
 ava('#isDirectLeg returns true when this is a direct leg', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
 
@@ -159,11 +159,20 @@ ava('#isProcedureLeg returns false when this is not a procedure leg', (t) => {
     t.false(model.isProcedureLeg);
 });
 
-
 ava('#isProcedureLeg returns true when this is a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
 
     t.true(model.isProcedureLeg);
+});
+
+ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const result = model.waypoints;
+    const expectedWaypointNames = ['RBELL', 'ROPPR', 'RODDD', 'BOACH', 'ZELMA', 'JOTNU', 'TNP'];
+    const waypointNames = _map(result, (waypointModel) => waypointModel.name);
+
+    t.true(_isArray(result));
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 // ava('.init() calls ._buildWaypointCollection()', (t) => {

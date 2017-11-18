@@ -183,6 +183,17 @@ export default class LegModel {
         return this._routeString;
     }
 
+    /**
+     * Return the `#_waypointCollection`
+     *
+     * @for LegModel
+     * @property waypoints
+     * @type {array<WaypointModel>}
+     */
+    get waypoints() {
+        return this._waypointCollection;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
