@@ -165,6 +165,17 @@ export default class RouteModel extends BaseModel {
         return heading;
     }
 
+    /**
+     * Return `#routeString` with spaces between elements instead of dot notation
+     *
+     * @for RouteModel
+     * @method getRouteStringWithSpaces
+     * @return {string}
+     */
+    getRouteStringWithSpaces() {
+        return this.routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
+    }
+
     // ------------------------------ PRIVATE ------------------------------
 
     /**

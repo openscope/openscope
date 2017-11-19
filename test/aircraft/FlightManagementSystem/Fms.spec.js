@@ -92,18 +92,18 @@ ava('#currentWaypoint.name returns RNAV when the waypoint begins with an undersc
     t.true(fms.currentWaypoint.name === 'RNAV');
 });
 
-ava('#currentRoute returns a routeString for a procedure route', (t) => {
+ava('#routeString returns a routeString for a procedure route', (t) => {
     const expectedResult = 'dag.kepec3.klas';
     const fms = buildFmsMock();
 
-    t.true(_isEqual(fms.currentRoute, expectedResult));
+    t.true(_isEqual(fms.routeString, expectedResult));
 });
 
-ava('#currentRoute returns a routeString for a complex route', (t) => {
+ava('#routeString returns a routeString for a complex route', (t) => {
     const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(_isEqual(fms.currentRoute, expectedResult));
+    t.true(_isEqual(fms.routeString, expectedResult));
 });
 
 ava('#waypoints returns a single array of all the WaypointModels in the flightPlan', (t) => {
@@ -113,31 +113,31 @@ ava('#waypoints returns a single array of all the WaypointModels in the flightPl
     t.true(result.length === 15);
 });
 
-ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResult = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResult);
+    t.true(fms.getRouteStringWithSpaces() === expectedResult);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.nextWaypoint();
 
-    t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResult);
+    t.true(fms.getRouteStringWithSpaces() === expectedResult);
 });
 
-ava('.getFlightPlanRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
+ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previousRouteSegments and #currentRoute', (t) => {
     const expectedResultBeforeReplacement = 'COWBY BIKKR DAG KEPEC3 KLAS';
     const expectedResult = 'COWBY BIKKR MLF GRNPA1 KLAS';
     const fms = buildFmsMock(isComplexRoute);
 
-    t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResultBeforeReplacement);
+    t.true(fms.getRouteStringWithSpaces() === expectedResultBeforeReplacement);
 
     fms.nextWaypoint();
     fms.nextWaypoint();
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.getFlightPlanRouteStringWithSpaces() === expectedResult);
+    t.true(fms.getRouteStringWithSpaces() === expectedResult);
 });
 
 ava('.init() calls ._buildLegCollection()', (t) => {

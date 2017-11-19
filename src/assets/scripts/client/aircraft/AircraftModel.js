@@ -614,7 +614,7 @@ export default class AircraftModel {
             flightPlanAltitude,
             arrivalAirportId: this.destination.toUpperCase(),
             departureAirportId: this.origin.toUpperCase(),
-            flightPlan: this.fms.getFlightPlanRouteStringWithSpaces()
+            flightPlan: this.fms.getRouteStringWithSpaces()
         };
     }
 

@@ -373,7 +373,7 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to: ${this._fms.currentRoute}`;
+        readback.log = `rerouting to: ${this._fms.getRouteStringWithSpaces()}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];
@@ -408,7 +408,7 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to: ${this._fms.currentRoute.toUpperCase()}`;
+        readback.log = `rerouting to: ${this._fms.getRouteStringWithSpaces()}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];

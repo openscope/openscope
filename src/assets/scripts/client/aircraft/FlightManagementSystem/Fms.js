@@ -201,24 +201,6 @@ export default class Fms {
     }
 
     /**
-     * Builds a routeString from the current legs in the `legCollection` and joins
-     * each section with `..`
-     *
-     * A `routeString` might look like one of the following:
-     * - `cowby..bikkr..dag.kepec3.klas`
-     * - `cowby`
-     * - `dag.kepec3.klas`
-     *
-     * @property currentRoute
-     * @type {string}
-     */
-    get currentRoute() {
-        const routeSegments = _map(this.legCollection, (legModel) => legModel.routeString);
-
-        return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
-    }
-
-    /**
      * Return the next waypoint which has an altitude restriction
      *
      * @for Fms
@@ -283,6 +265,17 @@ export default class Fms {
         const waypoints = this.getSpeedRestrictedWaypoints();
 
         return waypoints[0];
+    }
+
+    /**
+     * Get the flight plan route string in dot notation
+     *
+     * @for Fms
+     * @property routeString
+     * @type {string}
+     */
+    get routeString() {
+        return this._routeModel.routeString;
     }
 
     // TODO: this should move to a class method
@@ -389,30 +382,16 @@ export default class Fms {
     }
 
     /**
-     * Get the flight plan route string in dot notation
-     *
-     * @for Fms
-     * @method getFlightPlanRouteStringWithDots
-     * @return {string}
-     */
-    getFlightPlanRouteStringWithDots() {
-        const currentRouteSegments = _map(this.legCollection, (legModel) => legModel.routeString);
-        const previousAndCurrentRouteSegments = this._previousRouteSegments.concat(currentRouteSegments);
-
-        return previousAndCurrentRouteSegments.join('..').toUpperCase();
-    }
-
-    /**
      * Get the flight plan route string with legs separated by spaces
      *
      * This is primarily meant for use in the `StripViewModel`.
      *
      * @for Fms
-     * @method getFlightPlanRouteStringWithSpaces
+     * @method getRouteStringWithSpaces
      * @return {string}
      */
-    getFlightPlanRouteStringWithSpaces() {
-        return this.getFlightPlanRouteStringWithDots().replace(REGEX.DOUBLE_OR_SINGLE_DOT, ' ');
+    getRouteStringWithSpaces() {
+        return this._routeModel.getRouteStringWithSpaces();
     }
 
     /**
