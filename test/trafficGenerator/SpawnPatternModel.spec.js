@@ -189,21 +189,21 @@ ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in mil
     t.true(result === expectedResult);
 });
 
-ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
+ava('._intializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
+    model._intializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
-ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
+ava('._intializePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expectedHeadingResult = 4.436187691083426;
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    model._intializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
