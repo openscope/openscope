@@ -10,6 +10,7 @@ import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import LegModel from './LegModel';
+import RouteModel from './RouteModel';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE
@@ -88,30 +89,6 @@ export default class Fms {
         }
 
         /**
-         * Instance of the `NavigationLibrary`
-         *
-         * provides access to the aiport SIDs, STARs and Fixes via collection objects and fascade methods.
-         * used for route building
-         *
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
-
-        /**
-        * routeSegments of legs that have been completed
-        *
-        * Used to generate a routeString for an entire, original, route
-        *
-        * @property _previousRouteSegments
-        * @type {array<string>}
-        * @default []
-        * @private
-        */
-        this._previousRouteSegments = [];
-
-        /**
          * Name of runway used at arrival airport
          *
          * @for Fms
@@ -138,14 +115,7 @@ export default class Fms {
          */
         this.departureRunwayModel = null;
 
-        /**
-         * @property _flightPhaseHistory
-         * @type {array<string>}
-         * @default []
-         * @private
-         */
-        this._flightPhaseHistory = [];
-
+        // TODO: This value should NOT be changed 'as ATC amends it'
         /**
          * Altitude expected for this flight. Will change as ATC amends it.
          *
@@ -155,14 +125,26 @@ export default class Fms {
          */
         this.flightPlanAltitude = INVALID_NUMBER;
 
+        // FIXME: Do we really need this?
         /**
-         * Collection of `LegModel` objects
-         *
-         * @property legCollection
-         * @type {array}
-         * @default []
-         */
-        this.legCollection = [];
+        * @property _flightPhaseHistory
+        * @type {array<string>}
+        * @default []
+        * @private
+        */
+        this._flightPhaseHistory = [];
+
+        /**
+        * Instance of the `NavigationLibrary`
+        *
+        * provides access to the aiport SIDs, STARs and Fixes via collection objects and fascade methods.
+        * used for route building
+        *
+        * @property _navigationLibrary
+        * @type {NavigationLibrary}
+        * @private
+        */
+        this._navigationLibrary = navigationLibrary;
 
         this.init(aircraftInitProps, initialRunwayAssignment);
     }
@@ -332,17 +314,12 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ altitude, category, model, route }, initialRunwayAssignment) {
+    init({ altitude, category, model, routeString }, initialRunwayAssignment) {
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
+        this._initializeFlightPlanAltitude(altitude, category, model);
 
-        this.flightPlanAltitude = altitude;
-
-        if (category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.flightPlanAltitude = model.ceiling;
-        }
-
-        this.legCollection = this._buildLegCollection(route);
+        this._routeModel = new RouteModel(this._navigationLibrary, routeString);
     }
 
     /**
@@ -353,12 +330,19 @@ export default class Fms {
      */
     destroy() {
         this._navigationLibrary = null;
-        this._previousRouteSegments = [];
         this.currentPhase = '';
         this.departureRunwayModel = null;
         this.arrivalRunwayModel = null;
         this.flightPlanAltitude = INVALID_NUMBER;
         this.legCollection = [];
+    }
+
+    _initializeFlightPlanAltitude(altitude, category, model) {
+        this.flightPlanAltitude = altitude;
+
+        if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.flightPlanAltitude = model.ceiling;
+        }
     }
 
     /**
