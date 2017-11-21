@@ -8,7 +8,7 @@
     "iata": "HAM",
     "magnetic_north": 2.5,
     "ctr_radius": 80,
-    "ctr_ceiling": 10500,
+    "ctr_ceiling": 10000,
     "initial_alt": 5000,
     "position": ["N53.63038909430396", "E9.988220226736836", "53ft"],
     "rr_radius_nm": 5.0,
@@ -23,7 +23,7 @@
     "airspace": [
         {
             "floor": 0,
-            "ceiling": 105,
+            "ceiling": 100,
             "airspace_class": "B",
             "poly": [
                 ["N52d50m05.000", "E09d46m35.000"],
