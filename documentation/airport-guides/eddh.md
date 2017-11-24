@@ -42,7 +42,7 @@ Lübeck Airport
 Lübeck Airport is a small airport serving the city of Lübeck in Schleswig-Holstein. It has very little traffic and has struggled financially in the past few years. Most of the airlines which operated at the airport have ceased their operations at Lübeck, including Ryanair and Wizz Air.
 
 ### Additional Resources
-[EDDH Charts](http://nav.vatsim-germany.org/files/edww/charts/eddh/public/EDDH_AIO.pdf)
-[EDHI Charts](http://nav.vatsim-germany.org/files/edww/charts/edhi/public/EDHI_AIO.pdf)
-[EDDL Charts](http://nav.vatsim-germany.org/files/edww/charts/edhl/public/EDHL_AIO.pdf)
+[EDDH Charts](http://nav.vatsim-germany.org/files/edww/charts/eddh/public/EDDH_AIO.pdf)  
+[EDHI Charts](http://nav.vatsim-germany.org/files/edww/charts/edhi/public/EDHI_AIO.pdf)  
+[EDDL Charts](http://nav.vatsim-germany.org/files/edww/charts/edhl/public/EDHL_AIO.pdf)  
 [VATSIM SOP (in German)](https://drive.google.com/file/d/1wOl8Pj-5YgAAvY87f5_mq_rfeLSPw_kb/view?usp=sharing)
