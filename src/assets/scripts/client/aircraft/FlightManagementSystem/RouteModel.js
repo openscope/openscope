@@ -108,6 +108,23 @@ export default class RouteModel extends BaseModel {
         return this.currentLeg.currentWaypoint;
     }
 
+    // FIXME: This should probably be a method `.getFullRouteString()`
+    /**
+     * Generate a route string for all legs in the `#_previousLegCollection` an `#_legCollection`
+     *
+     * @for RouteModel
+     * @property routeString
+     * @type {string}
+     */
+    get fullRouteString() {
+        const pastAndPresentLegModels = [
+            ...this._previousLegCollection,
+            ...this._legCollection
+        ];
+
+        return this._calculateRouteStringForLegs(pastAndPresentLegModels);
+    }
+
     /**
      * Return the next `LegModel`, if it exists
      *
@@ -142,35 +159,16 @@ export default class RouteModel extends BaseModel {
         return this.nextLeg.currentWaypoint;
     }
 
+    // FIXME: This should probably be a method `.getRouteString()`
     /**
-     * Iterate through the `#_legCollection` and generate a route string
-     * representative of those legs.
+     * Generate a route string for all legs in the `#_legCollection`
      *
      * @for RouteModel
      * @property routeString
      * @type {string}
      */
     get routeString() {
-        const legRouteStrings = _map(this._legCollection, (legModel) => legModel.routeString);
-        const directRouteSegments = [_first(legRouteStrings)];
-
-        for (let i = 1; i < legRouteStrings.length; i++) {
-            const exitOfPreviousLeg = _last(legRouteStrings[i - 1].split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER));
-            const leg = legRouteStrings[i];
-            const legEntry = _first(leg.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER));
-
-            if (legEntry === exitOfPreviousLeg) {
-                const indexOfPreviousLeg = directRouteSegments.length - 1;
-                const legRouteStringWithoutEntry = leg.replace(legEntry, '');
-                directRouteSegments[indexOfPreviousLeg] += legRouteStringWithoutEntry;
-
-                continue;
-            }
-
-            directRouteSegments.push(leg);
-        }
-
-        return directRouteSegments.join(DIRECT_SEGMENT_DIVIDER);
+        return this._calculateRouteStringForLegs(this._legCollection);
     }
 
     /**
@@ -488,6 +486,41 @@ export default class RouteModel extends BaseModel {
     }
 
     // ------------------------------ PRIVATE ------------------------------
+
+    /**
+     * Combine the route strings from all provided legs to form a route string
+     *
+     * This enables us to get a route string for a SPECIFIABLE series of legs, which
+     * may be a portion of the `#_legCollection` or of the `#_previousLegCollection`,
+     * or any combination thereof.
+     *
+     * @for RouteModel
+     * @method _calculateRouteStringForLegs
+     * @param legCollection {array<LegModel>}
+     * @return {string}
+     */
+    _calculateRouteStringForLegs(legCollection) {
+        const legRouteStrings = _map(legCollection, (legModel) => legModel.routeString);
+        const directRouteSegments = [_first(legRouteStrings)];
+
+        for (let i = 1; i < legRouteStrings.length; i++) {
+            const exitOfPreviousLeg = _last(legRouteStrings[i - 1].split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER));
+            const leg = legRouteStrings[i];
+            const legEntry = _first(leg.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER));
+
+            if (legEntry === exitOfPreviousLeg) {
+                const indexOfPreviousLeg = directRouteSegments.length - 1;
+                const legRouteStringWithoutEntry = leg.replace(legEntry, '');
+                directRouteSegments[indexOfPreviousLeg] += legRouteStringWithoutEntry;
+
+                continue;
+            }
+
+            directRouteSegments.push(leg);
+        }
+
+        return directRouteSegments.join(DIRECT_SEGMENT_DIVIDER);
+    }
 
     /**
      * Divide a long route string into segments that can be individually represented by a `LegModel`
