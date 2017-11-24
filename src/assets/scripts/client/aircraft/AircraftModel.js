@@ -1705,7 +1705,7 @@ export default class AircraftModel {
                 return headingToWaypoint;
             }
 
-            this.fms.nextWaypoint();
+            this.fms.moveToNextWaypoint;
         }
 
         return headingToWaypoint;

@@ -355,21 +355,18 @@ export default class Pilot {
      * @param routeString {string}  routeString defining the new route to use
      * @return {array}              [success of operation, readback]
      */
-    applyNewRoute(routeString, runway) {
+    applyNewRoute(routeString) {
+        const routeAppliedSuccessfully = this._fms.replaceFlightPlanWithNewRoute(routeString);
+
+        if (!routeAppliedSuccessfully) {
+            const readback = {};
+            readback.log = `requested route of "${routeString}" is invalid`;
+            readback.say = 'that route is invalid';
+
+            return [false, readback];
+        }
+
         this.hasDepartureClearance = true;
-
-        // FIXME: Validate the route at some point and give appropriate response when route is invalid
-        // const isValid = this._fms.isValidRoute(routeString, runway);
-        //
-        // if (!isValid) {
-        //     const readback = {};
-        //     readback.log = `requested route of "${routeString}" is invalid`;
-        //     readback.say = 'that route is invalid';
-        //
-        //     return [false, readback];
-        // }
-
-        this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
 
         // Build readback
         const readback = {};

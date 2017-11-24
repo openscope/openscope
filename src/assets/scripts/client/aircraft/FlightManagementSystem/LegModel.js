@@ -1,3 +1,4 @@
+import _findIndex from 'lodash/findIndex';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
@@ -147,6 +148,28 @@ export default class LegModel {
      */
     get isProcedureLeg() {
         return this._legType === LEG_TYPE.PROCEDURE;
+    }
+
+    /**
+     * Whether this leg is a SID Procedure leg
+     *
+     * @for RouteModel
+     * @property isSidLeg
+     * @type {boolean}
+     */
+    get isSidLeg() {
+        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === LEG_TYPE.SID;
+    }
+
+    /**
+     * Whether this leg is a STAR Procedure leg
+     *
+     * @for RouteModel
+     * @property isStarLeg
+     * @type {boolean}
+     */
+    get isStarLeg() {
+        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === LEG_TYPE.STAR;
     }
 
     /**
@@ -381,21 +404,6 @@ export default class LegModel {
     }
 
     /**
-     * Move the `#currentWaypoint` to the `#_previousWaypointCollection`
-     *
-     * This also results in the `WaypointModel` previously at index `1` becoming
-     * index `0`, thus making it the new `#currentWaypoint`.
-     *
-     * @for LegModel
-     * @method moveToNextWaypoint
-     */
-    moveToNextWaypoint() {
-        const waypointModelToMove = this._waypointCollection.shift();
-
-        this._previousWaypointCollection.push(waypointModelToMove);
-    }
-
-    /**
      * Move all `WaypointModel`s to the `#_previousWaypointCollection`
      *
      * @for LegModel
@@ -408,22 +416,63 @@ export default class LegModel {
     }
 
     /**
-     * Move all `WaypointModel`s before the specified index to the `#_previousWaypointCollection`
+    * Move the `#currentWaypoint` to the `#_previousWaypointCollection`
+    *
+    * This also results in the `WaypointModel` previously at index `1` becoming
+    * index `0`, thus making it the new `#currentWaypoint`.
+    *
+    * @for LegModel
+    * @method skipToNextWaypoint
+    */
+    skipToNextWaypoint() {
+        const waypointModelToMove = this._waypointCollection.shift();
+
+        this._previousWaypointCollection.push(waypointModelToMove);
+    }
+
+    /**
+     * Move all `WaypointModel`s before the specified waypoint to the `#_previousWaypointCollection`
      *
-     * This also results in the waypoint AT the specified index becoming the new `#currentWaypoint`
+     * This also results in the waypoint with the specified name becoming the new `#currentWaypoint`
      *
      * @for LegModel
-     * @method skipToWaypointAtIndex
-     * @param waypointIndex {number}
+     * @method skipToWaypointName
+     * @param waypointName {string}
+     * @return {boolean} success of operation
      */
-    skipToWaypointAtIndex(waypointIndex) {
+    skipToWaypointName(waypointName) {
+        const waypointIndex = this._findIndexOfWaypointName(waypointName);
+
+        if (waypointIndex === INVALID_INDEX) {
+            return false;
+        }
+
         const numberOfWaypointsToMove = waypointIndex - 1;
         const waypointModelsToMove = this._waypointCollection.splice(0, numberOfWaypointsToMove);
 
         this._previousWaypointCollection.push(...waypointModelsToMove);
     }
 
+    // FIXME: Remove. not used
+    // /**
+    //  * Move all `WaypointModel`s before the specified index to the `#_previousWaypointCollection`
+    //  *
+    //  * This also results in the waypoint AT the specified index becoming the new `#currentWaypoint`
+    //  *
+    //  * @for LegModel
+    //  * @method skipToWaypointAtIndex
+    //  * @param waypointIndex {number}
+    //  */
+    // skipToWaypointAtIndex(waypointIndex) {
+    // }
+
     // ------------------------------ PRIVATE ------------------------------
+
+    _findIndexOfWaypointName(waypointName) {
+        return _findIndex(this._waypointCollection, (waypointModel) => {
+            return waypointModel.name === waypointName;
+        });
+    }
 
     /**
      * Reset all waypoints and move them to the `#_previousWaypointCollection`

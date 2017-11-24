@@ -1,40 +1,15 @@
-import _drop from 'lodash/drop';
-import _find from 'lodash/find';
-import _findIndex from 'lodash/findIndex';
-import _flatten from 'lodash/flatten';
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _last from 'lodash/last';
-import _map from 'lodash/map';
-import _without from 'lodash/without';
 import LegModel from './LegModel';
 import RouteModel from './RouteModel';
 import {
     FLIGHT_CATEGORY,
     FLIGHT_PHASE
 } from '../../constants/aircraftConstants';
-import {
-    INVALID_INDEX,
-    INVALID_NUMBER,
-    REGEX
-} from '../../constants/globalConstants';
+import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_TYPE } from '../../constants/routeConstants';
-// import {
-//     routeStringFormatHelper,
-//     extractFixnameFromHoldSegment,
-//     extractHeadingFromVectorSegment
-// } from '../../navigationLibrary/Route/routeStringFormatHelper';
-
-/**
- * Symbol used to separate `directRouteSegments`
- *
- * @property DIRECT_ROUTE_SEGMENT_SEPARATOR
- * @type {string}
- * @final
- */
-const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
@@ -185,7 +160,7 @@ export default class Fms {
      * @type {WaypointModel}
      */
     get currentWaypoint() {
-        return this.currentLeg.currentWaypoint;
+        return this._routeModel.currentWaypoint;
     }
 
     /**
@@ -197,7 +172,7 @@ export default class Fms {
      * @type {LegModel}
      */
     get currentLeg() {
-        return this.legCollection[0];
+        return this._routeModel.currentLeg;
     }
 
     /**
@@ -268,6 +243,17 @@ export default class Fms {
     }
 
     /**
+     * Get the next waypoint in the flight plan, if it exists
+     *
+     * @for Fms
+     * @property nextWaypoint
+     * @type {WaypointModel}
+     */
+    get nextWaypoint() {
+        return this._routeModel.nextWaypoint;
+    }
+
+    /**
      * Get the flight plan route string in dot notation
      *
      * @for Fms
@@ -278,26 +264,15 @@ export default class Fms {
         return this._routeModel.routeString;
     }
 
-    // TODO: this should move to a class method
     /**
-     * Returns a flattened array of each `WaypointModel` in the flightPlan
+     * Return an array of all waypoints in all legs of the route
      *
-     * This is used only in the `CanvasController` when drawing the projected
-     * aircraft path.
-     *
-     * Using a getter here to stay in line with the previous api.
-     *
+     * @for Fms
      * @property waypoints
      * @type {array<WaypointModel>}
      */
     get waypoints() {
-        const waypointList = _map(this.legCollection, (legModel) => {
-            return [
-                ...legModel.waypointCollection
-            ];
-        });
-
-        return _flatten(waypointList);
+        return this._routeModel.waypoints;
     }
 
     /**
@@ -327,7 +302,6 @@ export default class Fms {
         this.departureRunwayModel = null;
         this.arrivalRunwayModel = null;
         this.flightPlanAltitude = INVALID_NUMBER;
-        this.legCollection = [];
     }
 
     _initializeFlightPlanAltitude(altitude, category, model) {
@@ -346,39 +320,29 @@ export default class Fms {
      * @return {array<WaypointModel>}
      */
     getAltitudeRestrictedWaypoints() {
-        return this.waypoints.filter((waypoint) => waypoint.hasAltitudeRestriction);
+        return this._routeModel.getAltitudeRestrictedWaypoints();
     }
 
     /**
-     * Collects the `.getProcedureTopAltitude()` value from each `LegModel`
-     * in the `#legCollection`, then finds and returns the highest value
+     * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
      *
      * @for LegModel
      * @method getTopAltitude
      * @return {number}
      */
     getTopAltitude() {
-        const maxAltitudeFromLegs = _map(this.legCollection, (leg) => leg.getProcedureTopAltitude());
-
-        return Math.max(...maxAltitudeFromLegs);
+        return this._routeModel.getTopAltitude();
     }
 
     /**
-     * Collects the `.getProcedureBottomAltitude()` value from each `LegModel`
-     * in the `#legCollection`, then finds and returns the lowest value
+     * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
      *
-     * @for LegModel
+     * @for Fms
      * @method getBottomAltitude
      * @return {number}
      */
     getBottomAltitude() {
-        const valueToExclude = INVALID_NUMBER;
-        const minAltitudeFromLegs = _without(
-            _map(this.legCollection, (leg) => leg.getProcedureBottomAltitude()),
-            valueToExclude
-        );
-
-        return Math.min(...minAltitudeFromLegs);
+        return this._routeModel.getBottomAltitude();
     }
 
     /**
@@ -395,27 +359,6 @@ export default class Fms {
     }
 
     /**
-     * Get the next waypoint in the flight plan, if it exists
-     *
-     * @for Fms
-     * @method getNextWaypointModel
-     * @return waypointModel {WaypointModel}
-     */
-    getNextWaypointModel() {
-        if (!this.hasNextWaypoint()) {
-            return null;
-        }
-
-        let waypointModel = this.currentLeg.nextWaypoint;
-
-        if (!this.currentLeg.hasNextWaypoint()) {
-            waypointModel = this.legCollection[1].currentWaypoint;
-        }
-
-        return waypointModel;
-    }
-
-    /**
      * Get the position of the next waypoint in the flight plan
      *
      * Currently only used in `calculateTurnInitiaionDistance()` helper function
@@ -425,9 +368,7 @@ export default class Fms {
      * @return waypointPosition {StaticPositionModel}
      */
     getNextWaypointPositionModel() {
-        const waypointModel = this.getNextWaypointModel();
-
-        return waypointModel.positionModel;
+        return this.nextWaypoint.positionModel;
     }
 
     /**
@@ -455,7 +396,7 @@ export default class Fms {
     /**
      * Encapsulates setting `#departureRunwayModel`
      *
-     * @for fms
+     * @for Fms
      * @method setDepartureRunway
      * @param runwayModel {RunwayModel}
      */
@@ -478,7 +419,7 @@ export default class Fms {
     /**
      * Encapsulates setting of `#arrivalRunwayModel`
      *
-     * @for fms
+     * @for Fms
      * @method setArrivalRunway
      * @param runwayModel {RunwayModel}
      */
@@ -522,28 +463,7 @@ export default class Fms {
         this.currentPhase = phase;
     }
 
-    /**
-     * Add a new `LegModel` to the left side of the `#legCollection`
-     *
-     * @for Fms
-     * @method prependLeg
-     * @param legModel {LegModel}
-     */
-    prependLeg(legModel) {
-        this.legCollection.unshift(legModel);
-    }
-
-    /**
-     * Add a new `LegModel` to the right side of the `#legCollection`
-     *
-     * @for Fms
-     * @method appendLeg
-     * @param legModel {LegModel}
-     */
-    appendLeg(legModel) {
-        this.legCollection.push(legModel);
-    }
-
+    // FIXME: This will no longer work
     // TODO: this method should be simplified
     /**
      * Create a new `LegModel` for a holding pattern at a Fix or a position
@@ -556,45 +476,45 @@ export default class Fms {
      * @param holdRouteSegment {string}
      * @param holdPosition {StaticPositionModel}
      */
-    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition) {
-        // TODO: replace with constant
-        const isPositionHold = holdRouteSegment === 'GPS';
-        const waypointProps = {
-            turnDirection,
-            legLength,
-            isHold: true,
-            inboundHeading,
-            name: holdRouteSegment,
-            positionModel: holdPosition,
-            altitudeMaximum: INVALID_NUMBER,
-            altitudeMinimum: INVALID_NUMBER,
-            speedMaximum: INVALID_NUMBER,
-            speedMinimum: INVALID_NUMBER
-        };
-
-        if (isPositionHold) {
-            const legModel = this._createLegWithHoldWaypoint(waypointProps);
-
-            this.prependLeg(legModel);
-
-            return;
-        }
-
-        const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
-        const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
-
-        if (waypointIndex !== INVALID_NUMBER) {
-            this.skipToWaypoint(waypointNameToFind);
-            this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
-
-            return;
-        }
-
-        const legModel = this._createLegWithHoldWaypoint(waypointProps);
-
-        this.prependLeg(legModel);
-
-        return;
+    createLegWithHoldingPattern(/* inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition */) {
+        // // TODO: replace with constant
+        // const isPositionHold = holdRouteSegment === 'GPS';
+        // const waypointProps = {
+        //     turnDirection,
+        //     legLength,
+        //     isHold: true,
+        //     inboundHeading,
+        //     name: holdRouteSegment,
+        //     positionModel: holdPosition,
+        //     altitudeMaximum: INVALID_NUMBER,
+        //     altitudeMinimum: INVALID_NUMBER,
+        //     speedMaximum: INVALID_NUMBER,
+        //     speedMinimum: INVALID_NUMBER
+        // };
+        //
+        // if (isPositionHold) {
+        //     const legModel = this._createLegWithHoldWaypoint(waypointProps);
+        //
+        //     this.prependLeg(legModel);
+        //
+        //     return;
+        // }
+        //
+        // const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
+        // const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
+        //
+        // if (waypointIndex !== INVALID_NUMBER) {
+        //     this.skipToWaypointName(waypointNameToFind);
+        //     this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
+        //
+        //     return;
+        // }
+        //
+        // const legModel = this._createLegWithHoldWaypoint(waypointProps);
+        //
+        // this.prependLeg(legModel);
+        //
+        // return;
     }
 
     /**
@@ -604,9 +524,9 @@ export default class Fms {
      * or the first waypoint in the next leg.
      *
      * @for LegModel
-     * @method nextWaypoint
+     * @method moveToNextWaypoint
      */
-    nextWaypoint() {
+    moveToNextWaypoint() {
         if (!this.currentLeg.hasNextWaypoint()) {
             this._updatePreviousRouteSegments(this.currentLeg.routeString);
             this._moveToNextLeg();
@@ -614,56 +534,28 @@ export default class Fms {
             return;
         }
 
-        this._moveToNextWaypointInLeg();
+        this.skipToNextWaypoint();
     }
 
     /**
-     * Replace the current flightPlan with an entire new one
-     *
-     * Used when an aircraft has been re-routed
+     * Fascade
      *
      * @for Fms
-     * @method replaceCurrentFlightPlan
-     * @param routeString {string}
-     */
-    replaceCurrentFlightPlan(routeString) {
-        this._destroyLegCollection();
-
-        this.legCollection = this._buildLegCollection(routeString);
-    }
-
-    /**
-     * Given a `waypointName`, find the index of that waypoint within
-     * the `legsColelction`. Then make that Leg active and `waypointName`
-     * the active waypoint for that Leg.
-     *
-     * @for Fms
-     * @method skipToWaypoint
+     * @method skipToWaypointName
      * @param waypointName {string}
      */
-    skipToWaypoint(waypointName) {
-        const { legIndex, waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointName);
-
-        // TODO: this may be deprectaed
-        this._collectRouteStringsForLegsToBeDropped(legIndex);
-
-        this.legCollection = _drop(this.legCollection, legIndex);
-        this.currentLeg.skipToWaypointAtIndex(waypointIndex);
+    skipToWaypointName(waypointName) {
+        return this._routeModel.skipToWaypointName(waypointName);
     }
 
     /**
-     * Find the departure procedure (if it exists) within the `#legCollection` and
-     * reset it with a new departure procedure.
-     *
-     * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` with a departure
-     * procedure cannot be found, then we create a new `LegModel` and place it
-     * at the beginning of the `#legCollection`.
+     * Replace departure procedure and departure runway
      *
      * @for Fms
      * @method replaceDepartureProcedure
      * @param routeString {string}
      * @param runwayModel {RunwayModel}
+     * @return {boolean}
      */
     replaceDepartureProcedure(routeString, runwayModel) {
         if (this.departureRunwayModel.name !== runwayModel.name) {
@@ -677,18 +569,7 @@ export default class Fms {
             this.setDepartureRunway(runwayModel);
         }
 
-        const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
-
-        // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_NUMBER) {
-            const legModel = this._buildLegModelFromRouteSegment(routeString);
-
-            this.prependLeg(legModel);
-
-            return;
-        }
-
-        this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
+        return this._routeModel.replaceDepartureProcedure(routeString);
     }
 
     /**
@@ -704,6 +585,7 @@ export default class Fms {
      * @method replaceArrivalProcedure
      * @param routeString {string}
      * @param runwayModel {RunwayModel}
+     * @return {boolean}
      */
     replaceArrivalProcedure(routeString, runwayModel) {
         if (this.arrivalRunwayModel.name !== runwayModel.name) {
@@ -717,71 +599,41 @@ export default class Fms {
             this.setArrivalRunway(runwayModel);
         }
 
-        const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
-
-        // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === INVALID_NUMBER) {
-            const legModel = this._buildLegModelFromRouteSegment(routeString);
-
-            this.appendLeg(legModel);
-
-            return;
-        }
-
-        this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
+        return this._routeModel.replaceArrivalProcedure(routeString);
     }
 
+    // TODO: we may need to update the runway in this method
     /**
-     * Removes an existing flightPlan and replaces it with a
-     * brand new route.
+     * Replace the current route with an entirely new one
      *
-     * This is a destructive operation.
+     * If route contains the same waypoint as the current waypoint, skip to that waypoint
+     * and continue along the new route. This is a somewhat questionable strategy, but
+     * has the advantage of supporting reroutes done in the middle of the flight,
+     * whereas without this approach, the aircraft would turn around to the very first
+     * waypoint as soon as they are rerouted.
      *
      * @for Fms
      * @method replaceFlightPlanWithNewRoute
      * @param routeString {string}
-     * @param runway {string}
+     * @return {boolean} whether the operation was successful
      */
-    replaceFlightPlanWithNewRoute(routeString, runway) {
-        // TODO: we may need to update the runway in this method
-        this._destroyLegCollection();
+    replaceFlightPlanWithNewRoute(routeString) {
+        const currentWaypointName = this.currentWaypoint.name;
+        let nextRouteModel;
 
-        this.legCollection = this._buildLegCollection(routeString);
-    }
+        try {
+            nextRouteModel = new RouteModel(this._navigationLibrary, routeString);
+        } catch (error) {
+            console.error(error);
 
-    /**
-     * Replace a portion of the existing flightPlan with a new route,
-     * up to a shared routeSegment.
-     *
-     * It is assumed that any `routeString` passed to this method has
-     * already been verified to contain a shared segment with the existing
-     * route. This method is not designed to handle errors for cases where
-     * there are not shared routeSegments.
-     *
-     * @for Fms
-     * @metho replaceRouteUpToSharedRouteSegment
-     * @param routeString {routeString}
-     */
-    replaceRouteUpToSharedRouteSegment(routeString) {
-        let legIndex = INVALID_NUMBER;
-        let amendmentRouteString = '';
-        const routeSegments = routeStringFormatHelper(routeString.toLowerCase());
-
-        for (let i = 0; i < routeSegments.length; i++) {
-            const segment = routeSegments[i];
-
-            // with the current routeSegment, find if this same routeSegment exists already within the #legCollection
-            if (this.hasLegWithRouteString(segment)) {
-                legIndex = this._findLegIndexByRouteString(segment);
-                // build a new routeString with only the pieces we need to create new `LegModels` for
-                amendmentRouteString = routeSegments.slice(0, i);
-
-                break;
-            }
+            return false;
         }
 
-        this._trimLegCollectionAtIndex(legIndex);
-        this._prependLegCollectionWithRouteAmendment(amendmentRouteString);
+        this._routeModel = nextRouteModel;
+
+        this.skipToWaypointName(currentWaypointName);
+
+        return true;
     }
 
     /**
@@ -812,40 +664,7 @@ export default class Fms {
     }
 
     /**
-     * Given a `routeString`, find if any `routeSegments` match an existing
-     * `LegModel#routeString`.
-     *
-     * This method will return true on only the first match.
-     *
-     * This method should be used before using `applyPartialRouteAmendment()`
-     * to verify a `routeAmmendment` has some shared `routeSegment`.
-     *
-     * @for Fms
-     * @method isValidRouteAmendment
-     * @param routeString {string}      any `routeString` representing a future routeAmmendment
-     * @return isValid {boolean}
-     */
-    isValidRouteAmendment(routeString) {
-        let isValid = false;
-        const routeSegments = routeStringFormatHelper(routeString);
-
-        for (let i = 0; i < routeSegments.length; i++) {
-            const segment = routeSegments[i];
-
-            if (this.hasLegWithRouteString(segment)) {
-                isValid = true;
-
-                break;
-            }
-        }
-
-        return isValid;
-    }
-
-    /**
-     * Find if a Waypoint exists within `#legCollection`
-     *
-     * This will call a `.hasWaypoint` method on each `LegModel`
+     * Return whether the route contains a waypoint with the specified name
      *
      * @for Fms
      * @method hasWaypoint
@@ -853,47 +672,18 @@ export default class Fms {
      * @return {boolean}
      */
     hasWaypoint(waypointName) {
-        // using a for loop here instead of `_find()` because this operation could happen a lot and
-        // a for loop is going to be faster than `_find()` in most cases.
-        for (let i = 0; i < this.legCollection.length; i++) {
-            const leg = this.legCollection[i];
-
-            if (leg.hasWaypoint(waypointName)) {
-                return true;
-            }
-        }
-
-        return false;
+        return this._routeModel.hasWaypoint(waypointName);
     }
 
     /**
-     * Encapsulation of boolean logic used to determine if there is a
-     * WaypointModel available after the current one has been flown over.
+     * Return whether the route contains a waypoint after the currently active one
      *
-     * @for fms
+     * @for Fms
      * @method hasNextWaypoint
      * @return {boolean}
      */
     hasNextWaypoint() {
-        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
-    }
-
-    /**
-     * Determiens is any `LegModel` with the `#legCollection` contains
-     * a specific `routeString`.
-     *
-     * It is assumed that if a leg matches the `routeString` provided,
-     * the route is the same.
-     *
-     * @for Fms
-     * @method hasLegWithRouteString
-     * @param routeString {string}
-     * @return {boolean}
-     */
-    hasLegWithRouteString(routeString) {
-        const previousProcedureLeg = this._findLegByRouteString(routeString);
-
-        return typeof previousProcedureLeg !== 'undefined';
+        return this._routeModel.hasNextWaypoint();
     }
 
     /**
@@ -970,13 +760,13 @@ export default class Fms {
      * @return {array<LegModel>}
      * @private
      */
-    _buildLegCollection(routeString) {
-        const routeStringSegments = routeStringFormatHelper(routeString);
-        const legsForRoute = _map(routeStringSegments,
-            (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment)
-        );
-
-        return legsForRoute;
+    _buildLegCollection(/* routeString */) {
+        // const routeStringSegments = routeStringFormatHelper(routeString);
+        // const legsForRoute = _map(routeStringSegments,
+        //     (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment)
+        // );
+        //
+        // return legsForRoute;
     }
 
     /**
@@ -1012,207 +802,6 @@ export default class Fms {
         );
 
         return legModel;
-    }
-
-    /**
-     * Make the next `WaypointModel` in the currentLeg the currentWaypoint
-     *
-     * @for Fms
-     * @method _moveToNextWaypointInLeg
-     * @private
-     */
-    _moveToNextWaypointInLeg() {
-        this.currentLeg.moveToNextWaypoint();
-    }
-
-    /**
-     * Make the next `LegModel` in the `legCollection` the currentWaypoint
-     *
-     * @for Fms
-     * @method _moveToNextLeg
-     * @private
-     */
-    _moveToNextLeg() {
-        this.currentLeg.destroy();
-        // this is mutable
-        this.legCollection.shift();
-    }
-
-    /**
-     * Loop through the `LegModel`s in the `#legCollection` untill
-     * the `waypointName` is found, then return the location indicies
-     * for the Leg and Waypoint.
-     *
-     * Used to adjust `currentLeg` and `currentWaypoint` values by
-     * dropping items to the left of these indicies.
-     *
-     * @for Fms
-     * @method _findLegAndWaypointIndexForWaypointName
-     * @param waypointName {string}
-     * @return {object}
-     * @private
-     */
-    _findLegAndWaypointIndexForWaypointName(waypointName) {
-        let legIndex;
-        let waypointIndex = INVALID_NUMBER;
-
-        for (legIndex = 0; legIndex < this.legCollection.length; legIndex++) {
-            const legModel = this.legCollection[legIndex];
-            // TODO: this should be made into a class method for the WaypointModel
-            waypointIndex = _findIndex(legModel.waypointCollection, { name: waypointName.toLowerCase() });
-
-            if (waypointIndex !== INVALID_NUMBER) {
-                break;
-            }
-        }
-
-        // TODO: what happens here if a waypoint isn't found within the collection?
-
-        return {
-            legIndex,
-            waypointIndex
-        };
-    }
-
-    /**
-     * Given a `procedureType` this locates the array index of a leg with that `#procedureType`.
-     *
-     * @for Fms
-     * @method _findLegIndexForProcedureType
-     * @param procedureType {PROCEDURE_TYPE|string}  either `SID` or `STAR`, but can be extended to anything in the
-     *                                               `PROCEDURE_TYPE` enum
-     * @return {number}                              array index of a `procedureType` from the `#legCollection`
-     * @private
-     */
-    _findLegIndexForProcedureType(procedureType) {
-        return _findIndex(this.legCollection, { isProcedure: true, procedureType: procedureType });
-    }
-
-    /**
-     * Locate a `LegModel` in the collection by it's `#routeString` property
-     *
-     * @for Fms
-     * @method _findLegIndexByRouteString
-     * @param routeString {string}
-     * @return {number|undefined}           array index of the found `LegModel` or undefined
-     */
-    _findLegIndexByRouteString(routeString) {
-        return _findIndex(this.legCollection, { routeString: routeString });
-    }
-
-    /**
-     * Loop through the `#legCollection` up to the `legIndex` and add each
-     * `routeString` to `#_previousRouteSegments`.
-     *
-     * Called from `.skipToWaypoint()` before the `currentLeg` is updated to the
-     * `LegModel` at `legIndex`.
-     *
-     * @for Fms
-     * @method _collectRouteStringsForLegsToBeDropped
-     * @param legIndex {number}  index number of the next currentLeg
-     * @private
-     */
-    _collectRouteStringsForLegsToBeDropped(legIndex) {
-        for (let i = 0; i < legIndex; i++) {
-            this._previousRouteSegments.push(this.legCollection[i].routeString);
-        }
-    }
-
-    /**
-     * Loop through each `LegModel` and call `.destroy()`
-     *
-     * This clears destroys each `WaypointModel` contained within each
-     * `LegModel` in the collection.
-     *
-     * TODO: implement object pooling with `LegModel` and `WaypointModel`,
-     *       this is the method where the `LegModel` is be returned to the pool
-     *
-     * @for Fms
-     * @method _destroyLegCollection
-     * @private
-     */
-    _destroyLegCollection() {
-        for (let i = 0; i < this.legCollection.length; i++) {
-            const legModel = this.legCollection[i];
-
-            legModel.destroy();
-        }
-
-        this.legCollection = [];
-    }
-
-    /**
-     * Find a LegModel within the collection by its route string
-     *
-     * @for Fms
-     * @method _findLegByRouteString
-     * @param routeString {string}
-     * @return {LegModel|undefined}
-     * @private
-     */
-    _findLegByRouteString(routeString) {
-        return _find(this.legCollection, { routeString: routeString.toLowerCase() });
-    }
-
-    /**
-     * This method will find an leg at `legIndex` in the `#legCollection` and
-     * replace it with a new `routeString`.
-     *
-     * It is important to note that this doesn't create a new `LegModel` instance.
-     * Instead, this locates the leg at `legIndex`, destroys it's properties, then
-     * runs `init()` with the new `routeString`.
-     *
-     * @for Fms
-     * @method _replaceLegAtIndexWithRouteString
-     * @param legIndex {number}     array index of the leg to replace
-     * @param routeString {string}  routeString to use for the replacement leg
-     * @private
-     */
-    _replaceLegAtIndexWithRouteString(legIndex, routeString) {
-        const legModel = this.legCollection[legIndex];
-
-        legModel.destroy();
-        legModel.init(routeString, this.currentRunwayName, this.currentPhase);
-    }
-
-    /**
-     * Regenerate SID leg based on current runway assignment
-     *
-     * @for Fms
-     * @method _regenerateSidLeg
-     */
-    _regenerateSidLeg() {
-        const sidLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
-
-        if (sidLegIndex === INVALID_INDEX) {
-            // would be throwing here, except that causes the initial setting of the
-            // departure runway to throw. So instead will just return early.
-            return;
-        }
-
-        const sidLeg = this.legCollection[sidLegIndex];
-
-        this.replaceDepartureProcedure(sidLeg.routeString, this.departureRunwayModel);
-    }
-
-    /**
-     * Regenerate STAR leg based on current runway assignment
-     *
-     * @for Fms
-     * @method _regenerateStarLeg
-     */
-    _regenerateStarLeg() {
-        const starLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
-
-        if (starLegIndex === INVALID_INDEX) {
-            // would be throwing here, except that causes the initial setting of the
-            // arrival runway to throw. So instead will just return early.
-            return;
-        }
-
-        const starLeg = this.legCollection[starLegIndex];
-
-        this.replaceArrivalProcedure(starLeg.routeString, this.arrivalRunwayModel);
     }
 
     /**
@@ -1280,44 +869,6 @@ export default class Fms {
     }
 
     /**
-     * Removes `LegModel`s from index `0` to `#legIndex`.
-     *
-     * This method is useful for removing a specific number of `LegModel`s
-     * from the left of the collection.
-     *
-     * @for Fms
-     * @method _trimLegCollectionAtIndex
-     * @param legIndex {number}
-     * @private
-     */
-    _trimLegCollectionAtIndex(legIndex) {
-        this.legCollection = this.legCollection.slice(legIndex);
-    }
-
-    // TODO: simplify this and abstract it away from `.prependLeg()`
-    /**
-     * Given an array of `routeSegments`, prepend each to the left of the `#legCollection`
-     *
-     * @for Fms
-     * @method _prependLegCollectionWithRouteAmendment
-     * @param routeSegments {array<string>}             direct or procedure routeStrings
-     * @private
-     */
-    _prependLegCollectionWithRouteAmendment(routeSegments) {
-        // reversing order here because we're leveraging `.prependLeg()`, which adds a single
-        // leg to the left of the `#legCollection`. by reversing the array, we can ensure the
-        // correct order of legs.
-        const routeSegmentList = routeSegments.slice().reverse();
-
-        for (let i = 0; i < routeSegmentList.length; i++) {
-            const routeSegment = routeSegmentList[i];
-            const legModel = this._buildLegModelFromRouteSegment(routeSegment);
-
-            this.prependLeg(legModel);
-        }
-    }
-
-    /**
      * Add the `#currentPhase` to `#_flightPhaseHistory`
      *
      * @for Fms
@@ -1330,21 +881,5 @@ export default class Fms {
         }
 
         this._flightPhaseHistory.push(this.currentPhase);
-    }
-
-    /**
-     * Adds a `routeString` to `#_previousRouteSegments` only when it is not
-     * already present in the list
-     *
-     * @for Fms
-     * @method _updatePreviousRouteSegments
-     * @param routeString {string}             a valid routeString
-     */
-    _updatePreviousRouteSegments(routeString) {
-        if (this._previousRouteSegments.indexOf(routeString) !== INVALID_INDEX) {
-            return;
-        }
-
-        this._previousRouteSegments.push(routeString);
     }
 }

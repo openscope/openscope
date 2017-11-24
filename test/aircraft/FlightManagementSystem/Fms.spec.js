@@ -92,6 +92,38 @@ ava('#currentWaypoint.name returns RNAV when the waypoint begins with an undersc
     t.true(fms.currentWaypoint.name === 'RNAV');
 });
 
+
+ava('#nextWaypoint returns the `WaypointModel` for the next Waypoint in the collection', (t) => {
+    const fms = buildFmsMock();
+    const waypointModel = fms.nextWaypoint;
+    const expectedResult = 'misen';
+
+    t.true(waypointModel._name === expectedResult);
+});
+
+ava('#nextWaypoint returns null when fewer than two WaypointModels remaining in collection', (t) => {
+    const fms = buildFmsMock();
+
+    fms.skipToWaypoint('lefft');
+
+    const result = fms.nextWaypoint;
+    const expectedResult = null;
+
+    t.true(result === expectedResult);
+});
+
+ava('#nextWaypoint returns the first `WaypointModel` of the next leg when at the end of the current leg', (t) => {
+    const shouldUseComplexRoute = true;
+    const fms = buildFmsMock(shouldUseComplexRoute);
+
+    fms.skipToWaypoint('bikkr');
+
+    const waypointModel = fms.nextWaypoint;
+    const expectedResult = 'dag';
+
+    t.true(waypointModel._name === expectedResult);
+});
+
 ava('#routeString returns a routeString for a procedure route', (t) => {
     const expectedResult = 'dag.kepec3.klas';
     const fms = buildFmsMock();
@@ -119,9 +151,9 @@ ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previou
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
 
-    fms.nextWaypoint();
-    fms.nextWaypoint();
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint;
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
 });
@@ -133,8 +165,8 @@ ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previou
 
     t.true(fms.getRouteStringWithSpaces() === expectedResultBeforeReplacement);
 
-    fms.nextWaypoint();
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint;
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
@@ -225,25 +257,6 @@ ava('.setArrivalRunway() regenerates STAR legs for new runway', (t) => {
     fms.setArrivalRunway(nextRunwayFixture);
 
     t.true(regenerateStarLegSpy.calledWithExactly());
-});
-
-// TODO: these next two skipped tests need a LegModelFixturewhich does not yet exist
-ava.skip('.prependLeg() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
-    const fms = buildFmsMock();
-
-    fms.prependLeg('BIKKR');
-
-    t.true(fms.currentLeg.routeString === 'bikkr');
-});
-
-ava.skip('.prependLeg() adds a leg to the beginning of the #legCollection when passed a procedureRouteString', (t) => {
-    const fms = buildFmsMock();
-    fms.legCollection = [];
-
-    fms.prependLeg('DAG.KEPEC3.KLAS');
-
-    t.true(fms.legCollection.length === 1);
-    t.true(fms.legCollection[0].waypointCollection.length === 12);
 });
 
 ava('.hasNextWaypoint() returns true if there is a next waypoint', (t) => {
@@ -337,75 +350,75 @@ ava('.createLegWithHoldingPattern() prepends a LegModel Waypoint when a fixName 
     t.true(fms.currentWaypoint._legLength === legLengthMock);
 });
 
-ava('.nextWaypoint() adds current LegModel#routeString to _previousRouteSegments before moving to next waypoint', (t) => {
+ava('.moveToNextWaypoint adds current LegModel#routeString to _previousRouteSegments before moving to next waypoint', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
 
     t.true(fms._previousRouteSegments[0] === 'cowby');
 });
 
-ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
+ava('.moveToNextWaypoint calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _moveToNextLegSpy = sinon.spy(fms, '_moveToNextLeg');
     fms.legCollection[0].waypointCollection = [];
 
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
 
     t.true(_moveToNextLegSpy.calledOnce);
 });
 
-ava('.nextWaypoint() calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
+ava('.moveToNextWaypoint calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
     const fms = buildFmsMock();
     const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
 
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
 
     t.true(_moveToNextWaypointInLegSpy.calledOnce);
 });
 
-ava('.nextWaypoint() removes the first LegModel from legCollection when the first Leg has no waypoints', (t) => {
+ava('.moveToNextWaypoint removes the first LegModel from legCollection when the first Leg has no waypoints', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const length = fms.legCollection.length;
     fms.legCollection[0].waypointCollection = [];
 
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
 
     t.true(fms.legCollection.length === length - 1);
 });
 
-ava('.nextWaypoint() does not call ._moveToNextWaypointInLeg() after calling ._moveToNextLeg() ', (t) => {
+ava('.moveToNextWaypoint does not call ._moveToNextWaypointInLeg() after calling ._moveToNextLeg() ', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
 
 
-    fms.nextWaypoint();
+    fms.moveToNextWaypoint;
 
     t.true(_moveToNextWaypointInLegSpy.notCalled);
 });
 
-ava('.replaceCurrentFlightPlan() calls ._destroyLegCollection()', (t) => {
+ava('.replaceFlightPlanWithNewRoute() calls ._destroyLegCollection()', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _destroyLegCollectionSpy = sinon.spy(fms, '_destroyLegCollection');
 
-    fms.replaceCurrentFlightPlan(simpleRouteString);
+    fms.replaceFlightPlanWithNewRoute(simpleRouteString);
 
     t.true(_destroyLegCollectionSpy.calledOnce);
 });
 
-ava('.replaceCurrentFlightPlan() calls ._buildLegCollection()', (t) => {
+ava('.replaceFlightPlanWithNewRoute() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
 
-    fms.replaceCurrentFlightPlan(simpleRouteString);
+    fms.replaceFlightPlanWithNewRoute(simpleRouteString);
 
     t.true(_buildLegCollectionSpy.calledWithExactly(simpleRouteString));
 });
 
-ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and adds them to the #legCollection', (t) => {
+ava('.replaceFlightPlanWithNewRoute() creates new LegModels from a routeString and adds them to the #legCollection', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.replaceCurrentFlightPlan(simpleRouteString);
+    fms.replaceFlightPlanWithNewRoute(simpleRouteString);
 
     t.true(fms.currentLeg.isProcedure);
     t.true(fms.legCollection.length === 1);
@@ -445,37 +458,6 @@ ava('.skipToWaypoint() skips to a waypoint in a different leg', (t) => {
     fms.skipToWaypoint(waypointNameMock);
 
     t.true(fms.currentWaypoint.name === waypointNameMock);
-});
-
-ava('.getNextWaypointModel() returns the `WaypointModel` for the next Waypoint in the collection', (t) => {
-    const fms = buildFmsMock();
-    const waypointModel = fms.getNextWaypointModel();
-    const expectedResult = 'misen';
-
-    t.true(waypointModel._name === expectedResult);
-});
-
-ava('.getNextWaypointModel() returns null when fewer than two WaypointModels remaining in collection', (t) => {
-    const fms = buildFmsMock();
-
-    fms.skipToWaypoint('lefft');
-
-    const result = fms.getNextWaypointModel();
-    const expectedResult = null;
-
-    t.true(result === expectedResult);
-});
-
-ava('.getNextWaypointModel() returns the first `WaypointModel` of the next leg when at the end of the current leg', (t) => {
-    const shouldUseComplexRoute = true;
-    const fms = buildFmsMock(shouldUseComplexRoute);
-
-    fms.skipToWaypoint('bikkr');
-
-    const waypointModel = fms.getNextWaypointModel();
-    const expectedResult = 'dag';
-
-    t.true(waypointModel._name === expectedResult);
 });
 
 ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
@@ -652,18 +634,6 @@ ava('.hasWaypoint() returns true if a waypoint does exist within the current fli
     t.true(fms.hasWaypoint('SUNST'));
 });
 
-ava('.hasLegWithRouteString() returns false if a LegModel can not be found that matches a provided routeString', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-
-    t.false(fms.hasLegWithRouteString('abc'));
-});
-
-ava('.hasLegWithRouteString() returns true if a LegModel can be found that matches a provided routeString in any case', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-
-    t.true(fms.hasLegWithRouteString('coWbY'));
-});
-
 ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction from all the waypoints', (t) => {
     const expectedResult = 24000;
     const fms = buildFmsMock(isComplexRoute);
@@ -731,26 +701,6 @@ ava('._destroyLegCollection() clears the #legCollection', (t) => {
     fms._destroyLegCollection();
 
     t.true(fms.legCollection.length === 0);
-});
-
-ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each directRouteString in an array', (t) => {
-    const routeAmmendmentMock = ['hitme', 'holdm'];
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms._prependLegCollectionWithRouteAmendment(routeAmmendmentMock);
-
-    t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
-    t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
-});
-
-ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each routeString in an array', (t) => {
-    const routeAmmendmentMock = ['hitme', 'dag.kepec3.klas'];
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms._prependLegCollectionWithRouteAmendment(routeAmmendmentMock);
-
-    t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
-    t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
 });
 
 ava('._regenerateSidLeg() creates a new SID leg of identical route string for the currently assigned departure runway', (t) => {
