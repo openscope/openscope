@@ -17,7 +17,7 @@
 - Updates KSTL to AIRAC 1712 [#825](https://github.com/openscope/openscope/issues/825)
 - Updates KDTW to AIRAC 1712 [#821](https://github.com/openscope/openscope/issues/821)
 - Updates EDDH (Hamburg Airport, Germnay) [#829](https://github.com/openscope/openscope/issues/829)
-
+- Updates documentation on airport format [#833](https://github.com/openscope/openscope/issues/833)
 
 
 

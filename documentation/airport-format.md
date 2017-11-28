@@ -303,7 +303,7 @@ You will notice in the list above there is a fix definition preprended with an `
 
 They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
 
-* The fixes should be located at the thresholds of the runways for which they are named.
+* Any fixes located at runway thresholds should be named after the runway at which they are located.
 ```javascript
 "_RWY33L": [42.354662, -70.991598]
 ```
@@ -311,9 +311,21 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 ```javascript
 "_AUTUM220015": [42.324333, -71.736833]
 ```
-* Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway name for which the procedure is available, two digit distance in nautical miles, then `DME`. All of these should be marked as RNAV fixes (via the underscore prefix).
+* Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose departure path is aimed toward the fix, with the distance being measured from the departure end (denoted in the fix name as a two digit distance in nautical miles, then DME). So a fix named `_RWY1805DME` would be 5.0nm south of the end of Runway 18. All of these should be marked as RNAV fixes (via the underscore prefix).
 ```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
+```
+* Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
+```javascript
+"_SIPLY233STINS324": ["N37.47860", "W122.60090"]
+```
+* Fixes may be defined based on the intersection of a runway's outbound course and an outbound radial of any fix. For a point aligned with Runway 27's departure path and the XYZ VOR's outbound radial 180, we get `_RWY27XYZ180`. Note that if the intersection were to be on the arrival half of a given runway, the opposite runway should be used to keep with the convention of using the departure course.
+```javascript
+"_RWY19RPIE116": [27.848198, 82.546200]
+```
+* Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`.
+```javascript
+"_RWY09RLON02DME": ["N51d32m17.76", "W0d12m45.87"]
 ```
 
 ### Restricted Airspace
