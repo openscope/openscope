@@ -62,6 +62,7 @@
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 - Updates KPDX (Portland International Airport, OR) [#650](https://github.com/openscope/openscope/issues/650)
 - Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment [#791](https://github.com/openscope/openscope/issues/791)
+- Removed Monarch Airlines and Airberlin [#801](https://github.com/openscope/openscope/issues/801) and [#802](https://github.com/openscope/openscope/issues/802)
 
 
 ## 5.5.1 (October 1, 2017)

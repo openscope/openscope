@@ -447,7 +447,6 @@
     },
     "departures": {
         "airlines": [
-            ["ber",  2],
             ["aic",  1],
             ["axb",  5],
             ["aza",  3],
@@ -473,7 +472,6 @@
             "speed":        330,
             "offset":        2,
             "airlines": [
-                ["ber",  2],
                 ["etd", 94],
                 ["jai", 11],
                 ["klm",  2],
@@ -516,7 +514,6 @@
             "speed":        330,
             "offset":        2,
             "airlines": [
-                ["ber",  2],
                 ["aic",  1],
                 ["axb",  5],
                 ["aza",  3],

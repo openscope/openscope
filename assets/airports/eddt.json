@@ -338,7 +338,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -362,7 +361,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -386,7 +384,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -410,7 +407,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -434,7 +430,6 @@
             "rate": 7,
             "airlines": [
                 ["n/fastGA", 5],
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -457,7 +452,6 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["baw", 5],
@@ -475,7 +469,6 @@
             "method": "random",
             "rate": 5,
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["sas", 5]
@@ -492,7 +485,6 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10]
             ]
@@ -508,7 +500,6 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10]
             ]
@@ -524,7 +515,6 @@
             "rate": 10,
             "entrail": [10, 35],
             "airlines": [
-                ["ber", 20],
                 ["gwi", 15],
                 ["dlh", 10],
                 ["aua", 5],
