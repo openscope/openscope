@@ -4,6 +4,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KABQ - Albuquerque International Sunport](kabq.md)
 - [KATL - Hartsfield–Jackson Atlanta International Airport](katl.md)
 - [KBOS - Logan International Airport](kbos.md)
+- [KDTW - Detroit Metropolitan Wayne County Airport](kdtw.md)
 - [KELP - El Paso International Airport](kelp.md)
 - [KJAX - Jacksonville International Airport](kjax.md)
 - [KPDX - Portland International Airport](kpdx.md)
