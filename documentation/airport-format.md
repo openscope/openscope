@@ -299,7 +299,7 @@ You will notice in the list above there is a fix definition preprended with an `
 
 1. To simulate DME arcs (can be seen in SAEZ)
 2. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
-3. To simulate radial intercepts (e.g Intercept radial 180 to OLM)
+3. To simulate radial intercepts (e.g. Intercept radial 180 to OLM)
 
 They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
 
