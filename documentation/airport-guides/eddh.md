@@ -10,7 +10,7 @@ Class C and D airspace (equivalent to American class B airspace) exists on top o
 Of unique note here is the location of Hamburg Finkenwerder Airport (EDHI), which is less than 10km Southwest of Hamburg Airport (EDDH), right along the approach course to runway 05. Pilots sometimes confuse the two airports which has led to several incidents in the past.
 
 ### Instrument Procedures
-The procedures are fairly standard for a German airport. All SID's and STAR's are RNAV and include both altitude and speed restrcitions. Despite this, climb and descent clearances will be issued by ATC. Aircraft will **not** follow the altitude restrictions in the charts. Although not required, vectors are normally used to guide aircraft to their final approach course.
+The procedures are fairly standard for a German airport. All SID's and STAR's are RNAV and include both altitude and speed restrcitions. Despite this, climb and descent clearances will be issued by ATC. Aircraft will **not** follow the altitude restrictions in the charts. Although not required, vectors are normally used to guide aircraft to their final approach course. There are also several approach procedures which are only used in special circumstances (i.e. Loss of communications or emergencies). These procedures are not available in the sim, since such special situations are not simulated.
 
 ### Sectors Available in OpenScope
 ```
