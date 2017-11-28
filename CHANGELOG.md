@@ -7,7 +7,7 @@
 
 
 ### Bugfixes
-
+- Add empty video maps to WIP airports to keep them from crashing [#831](https://github.com/openscope/openscope/issues/831)
 
 
 
