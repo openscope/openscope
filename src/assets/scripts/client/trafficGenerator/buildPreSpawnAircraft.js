@@ -31,18 +31,20 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
 
         // for each fix ahead
         for (let j = 1; j < waypointModelList.length; j++) {
-            const nextWaypoint = waypointModelList[j];
+            const previousWaypointModel = waypointModelList[j - 1];
+            const nextWaypointModel = waypointModelList[j];
+            const distanceToNextWaypoint = previousWaypointModel.calculateDistanceToWaypoint(nextWaypointModel);
 
-            if (nextWaypoint.distanceFromPreviousWaypoint > spawnOffset) {   // if point before next fix
-                const previousFixPosition = waypointModelList[j - 1].positionModel;
-                const heading = previousFixPosition.bearingToPosition(nextWaypoint.positionModel);
-                const positionModel = previousFixPosition.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
+            if (distanceToNextWaypoint > spawnOffset) {   // if point before next fix
+                // const previousFixPosition = previousWaypointModel.positionModel;
+                const heading = previousWaypointModel.calculateBearingToWaypoint(nextWaypointModel);
+                const spawnPositionModel = previousWaypointModel.positionModel.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
 
                 // TODO: this looks like it should be a model object
                 const preSpawnHeadingAndPosition = {
                     heading,
-                    positionModel,
-                    nextFix: nextWaypoint.name
+                    spawnPositionModel,
+                    nextFix: nextWaypointModel.name
                 };
 
                 spawnPositions.push(preSpawnHeadingAndPosition);
@@ -51,7 +53,7 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
             }
 
             // if point beyond next fix subtract distance from spawnOffset and continue
-            spawnOffset -= nextWaypoint.distanceFromPreviousWaypoint;
+            spawnOffset -= distanceToNextWaypoint;
         }
     }
 
@@ -95,27 +97,23 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
     // already an expectation that aircraft must have two waypoints, so this
     // should not be a problem here.
     for (let i = 1; i < waypointModelList.length; i++) {
-        const waypoint = waypointModelList[i];
+        const waypointModel = waypointModelList[i];
         const previousWaypoint = waypointModelList[i - 1];
 
-        if (waypoint.isVector || previousWaypoint.isVector) {
+        if (waypointModel.isVectorWaypoint || previousWaypoint.isVectorWaypoint) {
             continue;
         }
 
-        const waypointPosition = waypoint.relativePosition;
-        const previousPosition = waypoint.relativePosition;
-
-        if (isWithinAirspace(airport, waypointPosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+        if (isWithinAirspace(airport, waypointModel.relativePosition)) {
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, waypointModel.relativePosition));
             totalDistance += distanceFromClosestFixToAirspaceBoundary;
 
             break;
         }
 
-        // this will only work for `StandardRouteWaypointModel` objects.
-        // #_buildWaypointModelListFromRoute may also return `FixModels`, in
-        // which case this line will return `NaN`.
-        totalDistance += waypoint.distanceFromPreviousWaypoint;
+        const distanceBetweenWaypoints = previousWaypoint.positionModel.distanceToPosition(waypointModel.positionModel);
+
+        totalDistance += distanceBetweenWaypoints;
     }
 
     return {

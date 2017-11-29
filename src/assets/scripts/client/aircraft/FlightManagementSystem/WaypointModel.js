@@ -296,6 +296,48 @@ export default class WaypointModel {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
+     * Calculate the distance between two waypoint models
+     *
+     * @for WaypointModel
+     * @method calculateBearingToWaypoint
+     * @param waypointModel {WaypointModel}
+     * @return {number} bearing, in radians
+     */
+    calculateBearingToWaypoint(waypointModel) {
+        if (!(waypointModel instanceof WaypointModel)) {
+            // FIXME: Possibly an error is needed here?
+            return;
+        }
+
+        if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
+            // FIXME: Possibly an error is needed here?
+            return;
+        }
+
+        return this._positionModel.bearingToPosition(waypointModel.positionModel);
+    }
+
+    /**
+     * Calculate the distance between two waypoint models
+     *
+     * @for WaypointModel
+     * @method calculateDistanceToWaypoint
+     * @param waypointModel {WaypointModel}
+     * @return {number} distance, in nautical miles
+     */
+    calculateDistanceToWaypoint(waypointModel) {
+        if (!(waypointModel instanceof WaypointModel)) {
+            return 0;
+        }
+
+        if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
+            return 0;
+        }
+
+        return this._positionModel.distanceToPosition(waypointModel.positionModel);
+    }
+
+    /**
      * When `#_isVector` is true, this gets the heading that should be flown
      *
      * @for WaypointModel
