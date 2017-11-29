@@ -225,7 +225,7 @@ export default class RadarTargetModel {
         this._cruiseAltitude = aircraftModel.fms.flightPlanAltitude;
         this._dataBlockLeaderDirection = this._theme.DATA_BLOCK.LEADER_DIRECTION;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
-        this._routeString = aircraftModel.fms.routeString;
+        this._routeString = aircraftModel.fms.getRouteString();
 
         return this;
     }

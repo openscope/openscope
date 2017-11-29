@@ -254,17 +254,6 @@ export default class Fms {
     }
 
     /**
-     * Get the flight plan route string in dot notation
-     *
-     * @for Fms
-     * @property routeString
-     * @type {string}
-     */
-    get routeString() {
-        return this._routeModel.routeString;
-    }
-
-    /**
      * Return an array of all waypoints in all legs of the route
      *
      * @for Fms
@@ -343,6 +332,17 @@ export default class Fms {
      */
     getBottomAltitude() {
         return this._routeModel.getBottomAltitude();
+    }
+
+    /**
+     * Get the flight plan route string in dot notation
+     *
+     * @for Fms
+     * @method getRouteString
+     * @return {string}
+     */
+    getRouteString() {
+        return this._routeModel.getRouteString();
     }
 
     /**
@@ -528,7 +528,7 @@ export default class Fms {
      */
     moveToNextWaypoint() {
         if (!this.currentLeg.hasNextWaypoint()) {
-            this._updatePreviousRouteSegments(this.currentLeg.routeString);
+            this._updatePreviousRouteSegments(this.currentLeg.getRouteString());
             this._moveToNextLeg();
 
             return;

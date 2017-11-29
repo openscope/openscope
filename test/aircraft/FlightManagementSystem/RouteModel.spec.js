@@ -92,7 +92,7 @@ ava('instantiates correctly when provided valid multi-segment mixed route string
 ava('#routeString returns the route string representing the entire route', (t) => {
     const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
     const expectedResult = nightmareRouteStringMock;
-    const result = model.routeString;
+    const result = model.getRouteString();
 
     t.true(result === expectedResult);
 });

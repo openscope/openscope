@@ -108,23 +108,6 @@ export default class RouteModel extends BaseModel {
         return this.currentLeg.currentWaypoint;
     }
 
-    // FIXME: This should probably be a method `.getFullRouteString()`
-    /**
-     * Generate a route string for all legs in the `#_previousLegCollection` an `#_legCollection`
-     *
-     * @for RouteModel
-     * @property routeString
-     * @type {string}
-     */
-    get fullRouteString() {
-        const pastAndPresentLegModels = [
-            ...this._previousLegCollection,
-            ...this._legCollection
-        ];
-
-        return this._calculateRouteStringForLegs(pastAndPresentLegModels);
-    }
-
     /**
      * Return the next `LegModel`, if it exists
      *
@@ -157,18 +140,6 @@ export default class RouteModel extends BaseModel {
         }
 
         return this.nextLeg.currentWaypoint;
-    }
-
-    // FIXME: This should probably be a method `.getRouteString()`
-    /**
-     * Generate a route string for all legs in the `#_legCollection`
-     *
-     * @for RouteModel
-     * @property routeString
-     * @type {string}
-     */
-    get routeString() {
-        return this._calculateRouteStringForLegs(this._legCollection);
     }
 
     /**
@@ -257,6 +228,46 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Generate a route string for all legs in the `#_previousLegCollection` an `#_legCollection`
+     *
+     * @for RouteModel
+     * @method getRouteString
+     * @return {string}
+     */
+    getFullRouteString() {
+        const pastAndPresentLegModels = [
+            ...this._previousLegCollection,
+            ...this._legCollection
+        ];
+
+        return this._calculateRouteStringForLegs(pastAndPresentLegModels);
+    }
+
+    /**
+     * Return `#fullRouteString` with spaces between elements instead of dot notation
+     *
+     * @for RouteModel
+     * @method getFullRouteStringWithSpaces
+     * @return {string}
+     */
+    getFullRouteStringWithSpaces() {
+        const routeString = this.getFullRouteString();
+
+        return routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
+    }
+
+    /**
+     * Generate a route string for all legs in the `#_legCollection`
+     *
+     * @for RouteModel
+     * @method getRouteString
+     * @return {string}
+     */
+    getRouteString() {
+        return this._calculateRouteStringForLegs(this._legCollection);
+    }
+
+    /**
      * Return `#routeString` with spaces between elements instead of dot notation
      *
      * @for RouteModel
@@ -264,7 +275,9 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     getRouteStringWithSpaces() {
-        return this.routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
+        const routeString = this.getRouteString();
+
+        return routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
     }
 
     /**
@@ -500,7 +513,7 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     _calculateRouteStringForLegs(legCollection) {
-        const legRouteStrings = _map(legCollection, (legModel) => legModel.routeString);
+        const legRouteStrings = _map(legCollection, (legModel) => legModel.getRouteString());
         const directRouteSegments = [_first(legRouteStrings)];
 
         for (let i = 1; i < legRouteStrings.length; i++) {
