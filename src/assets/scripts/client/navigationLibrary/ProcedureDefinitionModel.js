@@ -3,8 +3,8 @@ import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
-import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
-import { PROCEDURE_TYPE } from '../../constants/routeConstants';
+import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
+import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
  * Generic class for instrument procedures of multiple types, such as SIDs/STARs

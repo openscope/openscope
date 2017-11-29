@@ -2,8 +2,8 @@ import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-import modelSourceFactory from '../../base/ModelSource/ModelSourceFactory';
-import BaseCollection from '../../base/BaseCollection';
+import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
+import BaseCollection from '../base/BaseCollection';
 import FixModel from './FixModel';
 
 /**

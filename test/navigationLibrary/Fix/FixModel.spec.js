@@ -1,6 +1,6 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
-import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import {

@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
 import modelSourcePool from '../../../src/assets/scripts/client/base/ModelSource/ModelSourcePool';
-import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,

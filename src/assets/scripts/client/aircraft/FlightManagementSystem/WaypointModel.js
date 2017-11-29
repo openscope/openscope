@@ -1,6 +1,6 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
-import FixCollection from '../../navigationLibrary/Fix/FixCollection';
+import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
     INVALID_NUMBER

@@ -4,7 +4,7 @@ import _isArray from 'lodash/isArray';
 // import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
-import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureDefinitionModel';
+import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureDefinitionModel';
 // import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';

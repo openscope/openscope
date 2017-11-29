@@ -2,8 +2,8 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
-import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/FixCollection';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,

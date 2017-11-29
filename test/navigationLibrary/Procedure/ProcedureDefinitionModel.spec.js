@@ -3,7 +3,7 @@ import _every from 'lodash/every';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/Procedure/ProcedureDefinitionModel';
+import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureDefinitionModel';
 import {
     SID_MOCK,
     STAR_MOCK
