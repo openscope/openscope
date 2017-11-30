@@ -316,7 +316,7 @@ export default class AircraftCommander {
      * Setup the Fms to enter a holding pattern,
      *
      * Can be used to hold at:
-     * - A Waypoint in the current flight plan: which will be made the currentWaypoint via `fms.skipToWaypoint()`
+     * - A Waypoint in the current flight plan: which will be made the currentWaypoint via `fms.skipToWaypointName()`
      * - A Fix not in the flight plan: a new `LegModel` will be created and prepended thus making it the currentWaypoint
      * - The current position: a new `LegModel` will be created and prepended thus making it the currentWaypoint
      *

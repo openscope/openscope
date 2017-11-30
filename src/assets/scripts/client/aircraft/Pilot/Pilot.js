@@ -750,7 +750,7 @@ export default class Pilot {
             return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
         }
 
-        this._fms.skipToWaypoint(waypointName);
+        this._fms.skipToWaypointName(waypointName);
         this._fms.leaveHoldFlightPhase();
         this._mcp.setHeadingLnav();
 

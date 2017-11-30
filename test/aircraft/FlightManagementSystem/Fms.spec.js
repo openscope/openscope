@@ -104,7 +104,7 @@ ava('#nextWaypoint returns the `WaypointModel` for the next Waypoint in the coll
 ava('#nextWaypoint returns null when fewer than two WaypointModels remaining in collection', (t) => {
     const fms = buildFmsMock();
 
-    fms.skipToWaypoint('lefft');
+    fms.skipToWaypointName('lefft');
 
     const result = fms.nextWaypoint;
     const expectedResult = null;
@@ -116,7 +116,7 @@ ava('#nextWaypoint returns the first `WaypointModel` of the next leg when at the
     const shouldUseComplexRoute = true;
     const fms = buildFmsMock(shouldUseComplexRoute);
 
-    fms.skipToWaypoint('bikkr');
+    fms.skipToWaypointName('bikkr');
 
     const waypointModel = fms.nextWaypoint;
     const expectedResult = 'dag';
@@ -273,7 +273,7 @@ ava('.hasNextWaypoint() returns true when the nextWaypoint is part of the nextLe
 
 ava('.hasNextWaypoint() returns false when no nextWaypoint exists', (t) => {
     const fms = buildFmsMock();
-    fms.skipToWaypoint('lefft');
+    fms.skipToWaypointName('lefft');
 
     t.false(fms.hasNextWaypoint());
 });
@@ -425,37 +425,37 @@ ava('.replaceFlightPlanWithNewRoute() creates new LegModels from a routeString a
     t.true(fms.legCollection[0].waypointCollection.length === 13);
 });
 
-ava('.skipToWaypoint() calls ._collectRouteStringsForLegsToBeDropped()', (t) => {
+ava('.skipToWaypointName() calls ._collectRouteStringsForLegsToBeDropped()', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _collectRouteStringsForLegsToBeDroppedSpy = sinon.spy(fms, '_collectRouteStringsForLegsToBeDropped');
 
-    fms.skipToWaypoint('DAG');
+    fms.skipToWaypointName('DAG');
 
     t.true(_collectRouteStringsForLegsToBeDroppedSpy.calledOnce);
 });
 
-ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoint to skip to', (t) => {
+ava('.skipToWaypointName() removes all the legs and waypoints in front of the waypoint to skip to', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.skipToWaypoint('DAG');
+    fms.skipToWaypointName('DAG');
 
     t.true(fms.currentLeg.getRouteString() === 'dag.kepec3.klas');
 });
 
-ava('.skipToWaypoint() does nothing if the waypoint to skip to is the #currentWaypoint', (t) => {
+ava('.skipToWaypointName() does nothing if the waypoint to skip to is the #currentWaypoint', (t) => {
     const waypointNameMock = 'cowby';
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.skipToWaypoint(waypointNameMock);
+    fms.skipToWaypointName(waypointNameMock);
 
     t.true(fms.currentLeg.getRouteString() === waypointNameMock);
 });
 
-ava('.skipToWaypoint() skips to a waypoint in a different leg', (t) => {
+ava('.skipToWaypointName() skips to a waypoint in a different leg', (t) => {
     const waypointNameMock = 'sunst';
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.skipToWaypoint(waypointNameMock);
+    fms.skipToWaypointName(waypointNameMock);
 
     t.true(fms.currentWaypoint.name === waypointNameMock);
 });

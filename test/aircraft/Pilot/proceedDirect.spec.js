@@ -28,7 +28,7 @@ ava('.proceedDirect() returns an error if the waypointName provided is not in th
     t.deepEqual(result, expectedResult);
 });
 
-ava('.proceedDirect() calls ._fms.skipToWaypoint() with the correct arguments', (t) => {
+ava('.proceedDirect() calls ._fms.skipToWaypointName() with the correct arguments', (t) => {
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const skipToWaypointSpy = sinon.spy(pilot._fms, 'skipToWaypoint');
 

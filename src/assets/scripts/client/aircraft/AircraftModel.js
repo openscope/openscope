@@ -575,7 +575,7 @@ export default class AircraftModel {
         }
 
         if (data.nextFix) {
-            this.fms.skipToWaypoint(data.nextFix);
+            this.fms.skipToWaypointName(data.nextFix);
         }
     }
 

@@ -487,7 +487,7 @@ export default class RouteModel extends BaseModel {
         }
 
         if (this.currentLeg.hasWaypoint(waypointName)) {
-            this.currentLeg.skipToWaypoint(waypointName);
+            this.currentLeg.skipToWaypointName(waypointName);
         }
 
         const legIndex = _findIndex(this._legCollection, (legModel) => legModel.hasWaypoint(waypointName));
@@ -495,7 +495,7 @@ export default class RouteModel extends BaseModel {
 
         this._previousLegCollection.push(...legModelsToMove);
 
-        return this.currentLeg.skipToWaypoint(waypointName);
+        return this.currentLeg.skipToWaypointName(waypointName);
     }
 
     /**
