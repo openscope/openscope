@@ -110,6 +110,16 @@ export default class Fms {
         this._flightPhaseHistory = [];
 
         /**
+         * Flight plan route for this aircraft, containing lateral and vertical guidance
+         *
+         * @for Fms
+         * @property _routeModel
+         * @type {RouteModel}
+         * @private
+         */
+        this._routeModel = null;
+
+        /**
         * Instance of the `NavigationLibrary`
         *
         * provides access to the aiport SIDs, STARs and Fixes via collection objects and fascade methods.
@@ -272,11 +282,11 @@ export default class Fms {
      * @param aircraftInitProps {object}
      */
     init({ altitude, category, model, routeString }, initialRunwayAssignment) {
+        this._routeModel = new RouteModel(this._navigationLibrary, routeString);
+
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
         this._initializeFlightPlanAltitude(altitude, category, model);
-
-        this._routeModel = new RouteModel(this._navigationLibrary, routeString);
     }
 
     /**
@@ -413,7 +423,7 @@ export default class Fms {
 
         this.departureRunwayModel = runwayModel;
 
-        this._regenerateSidLeg();
+        this._routeModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
     /**
@@ -436,7 +446,7 @@ export default class Fms {
 
         this.arrivalRunwayModel = runwayModel;
 
-        this._regenerateStarLeg();
+        this._routeModel.updateStarLegForArrivalRunwayModel(runwayModel);
     }
 
     /**

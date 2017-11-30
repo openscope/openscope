@@ -7,7 +7,10 @@ import {
     INVALID_INDEX,
     INVALID_NUMBER
 } from '../../constants/globalConstants';
-import { LEG_TYPE } from '../../constants/routeConstants';
+import {
+    LEG_TYPE,
+    PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
+ } from '../../constants/routeConstants';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.
@@ -231,7 +234,7 @@ export default class LegModel {
     init(navigationLibrary, routeString) {
         this._routeString = routeString;
 
-        const [entryOrFixName, airwayOrProcedureName, exit] = routeString.split('.');
+        const [entryOrFixName, airwayOrProcedureName, exit] = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         this._ensureRouteStringIsSingleSegment(routeString);
         this._legType = this._determineLegType(airwayOrProcedureName, navigationLibrary);
@@ -453,18 +456,67 @@ export default class LegModel {
         this._previousWaypointCollection.push(...waypointModelsToMove);
     }
 
-    // FIXME: Remove. not used
-    // /**
-    //  * Move all `WaypointModel`s before the specified index to the `#_previousWaypointCollection`
-    //  *
-    //  * This also results in the waypoint AT the specified index becoming the new `#currentWaypoint`
-    //  *
-    //  * @for LegModel
-    //  * @method skipToWaypointAtIndex
-    //  * @param waypointIndex {number}
-    //  */
-    // skipToWaypointAtIndex(waypointIndex) {
-    // }
+    /**
+     * If applicable, make the STAR exit match the specified arrival runway model
+     *
+     * @for LegModel
+     * @method updateStarLegForArrivalRunwayModel
+     * @param runwayModel {RunwayModel}
+     */
+    updateStarLegForArrivalRunwayModel(runwayModel) {
+        if (!this.isStarLeg) {
+            return;
+        }
+
+        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const currentEntryName = routeStringComponents[0];
+        const currentExitName = routeStringComponents[2];
+        // assumed first four characters of exit name to be airport ICAO
+        const currentRunwayName = currentExitName.substr(4);
+        const nextRunwayName = runwayModel.name;
+        const nextExitName = currentExitName.substr(0, 4).concat(nextRunwayName);
+
+        if (runwayModel.name === currentRunwayName) {
+            return;
+        }
+
+        if (!this._procedureDefinitionModel.hasExit(nextExitName)) {
+            return;
+        }
+
+        this._waypointCollection = this._generateWaypointCollection(currentEntryName, nextExitName);
+    }
+
+    /**
+     * If applicable, make the SID entry match the specified departure runway
+     *
+     * @for LegModel
+     * @method updateSidLegForDepartureRunwayModel
+     * @param runwayModel {RunwayModel}
+     */
+    updateSidLegForDepartureRunwayModel(runwayModel) {
+        if (!this.isSidLeg) {
+            return;
+        }
+
+        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const currentEntryName = routeStringComponents[0];
+        const currentExitName = routeStringComponents[2];
+        // assumed first four characters of exit name to be airport ICAO
+        const currentRunwayName = currentEntryName.substr(4);
+        const nextRunwayName = runwayModel.name;
+        const nextEntryName = currentExitName.substr(0, 4).concat(nextRunwayName);
+
+        if (runwayModel.name === currentRunwayName) {
+            return;
+        }
+
+        if (!this._procedureDefinitionModel.hasEntry(nextEntryName)) {
+            return;
+        }
+
+        this._waypointCollection = this._generateWaypointCollection(nextEntryName, currentExitName);
+    }
 
     // ------------------------------ PRIVATE ------------------------------
 

@@ -385,7 +385,7 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const starLegIndex = _findIndex(this._legCollection, (legModel) => legModel.isStarLeg);
+        const starLegIndex = this._findStarLegIndex();
 
         // if no STAR leg exists, insert the new one as the new last leg
         if (starLegIndex === INVALID_INDEX) {
@@ -424,7 +424,7 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const sidLegIndex = _findIndex(this._legCollection, (legModel) => legModel.isSidLeg);
+        const sidLegIndex = this._findSidLegIndex();
 
         // if no SID leg exists, insert the new one as the new first leg
         if (sidLegIndex === INVALID_INDEX) {
@@ -496,6 +496,44 @@ export default class RouteModel extends BaseModel {
         this._previousLegCollection.push(...legModelsToMove);
 
         return this.currentLeg.skipToWaypoint(waypointName);
+    }
+
+    /**
+     * Ensure the STAR leg has the specified arrival runway as the exit point
+     *
+     * @for RouteModel
+     * @method updateStarLegForArrivalRunwayModel
+     * @param runwayModel {RunwayModel}
+     */
+    updateStarLegForArrivalRunwayModel(runwayModel) {
+        const starLegIndex = this._findStarLegIndex();
+
+        if (starLegIndex === INVALID_INDEX) {
+            return;
+        }
+
+        const starLegModel = this._legCollection[starLegIndex];
+
+        starLegModel.updateStarLegForArrivalRunwayModel(runwayModel);
+    }
+
+    /**
+     * Ensure the SID leg has the specified departure runway as the entry point
+     *
+     * @for RouteModel
+     * @method updateSidLegForDepartureRunwayModel
+     * @param runwayModel {RunwayModel}
+     */
+    updateSidLegForDepartureRunwayModel(runwayModel) {
+        const sidLegIndex = this._findSidLegIndex();
+
+        if (sidLegIndex === INVALID_INDEX) {
+            return;
+        }
+
+        const sidLegModel = this._legCollection[sidLegIndex];
+
+        sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
     // ------------------------------ PRIVATE ------------------------------
@@ -577,6 +615,36 @@ export default class RouteModel extends BaseModel {
         }
 
         return segmentRouteStrings;
+    }
+
+    /**
+     * Return the index of the SID leg
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method _findSidLegIndex
+     * @return {number}
+     * @private
+     */
+    _findSidLegIndex() {
+        return _findIndex(this._legCollection, (legModel) => legModel.isSidLeg);
+    }
+
+    /**
+     * Return the index of the STAR leg within the `#_legCollection`
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method _findStarLegIndex
+     * @return {number}
+     * @private
+     */
+    _findStarLegIndex() {
+        return _findIndex(this._legCollection, (legModel) => legModel.isStarLeg);
     }
 
     /**
