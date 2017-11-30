@@ -551,7 +551,7 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     _calculateRouteStringForLegs(legCollection) {
-        const legRouteStrings = _map(legCollection, (legModel) => legModel.getRouteString());
+        const legRouteStrings = _map(legCollection, (legModel) => legModel.routeString);
         const directRouteSegments = [_first(legRouteStrings)];
 
         for (let i = 1; i < legRouteStrings.length; i++) {

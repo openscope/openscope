@@ -439,7 +439,7 @@ ava('.skipToWaypointName() removes all the legs and waypoints in front of the wa
 
     fms.skipToWaypointName('DAG');
 
-    t.true(fms.currentLeg.getRouteString() === 'dag.kepec3.klas');
+    t.true(fms.currentLeg.routeString === 'dag.kepec3.klas');
 });
 
 ava('.skipToWaypointName() does nothing if the waypoint to skip to is the #currentWaypoint', (t) => {
@@ -448,7 +448,7 @@ ava('.skipToWaypointName() does nothing if the waypoint to skip to is the #curre
 
     fms.skipToWaypointName(waypointNameMock);
 
-    t.true(fms.currentLeg.getRouteString() === waypointNameMock);
+    t.true(fms.currentLeg.routeString === waypointNameMock);
 });
 
 ava('.skipToWaypointName() skips to a waypoint in a different leg', (t) => {
@@ -495,11 +495,11 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
     const fms = buildFmsMockForDeparture();
 
-    t.false(fms.currentLeg.getRouteString() === nextRouteStringMock.toLowerCase());
+    t.false(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
 
     fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.currentLeg.getRouteString() === nextRouteStringMock.toLowerCase());
+    t.true(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
     t.true(fms.legCollection.length === 1);
 });
 
@@ -525,11 +525,11 @@ ava('.replaceArrivalProcedure() returns undefined after success', (t) => {
 ava('.replaceArrivalProcedure() replaces the currentLeg with the new route', (t) => {
     const fms = buildFmsMock();
 
-    t.false(fms.currentLeg.getRouteString() === arrivalProcedureRouteStringMock.toLowerCase());
+    t.false(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.currentLeg.getRouteString() === arrivalProcedureRouteStringMock.toLowerCase());
+    t.true(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 });
 
 ava('.replaceRouteUpToSharedRouteSegment() calls ._trimLegCollectionAtIndex() with an index of the matching LegModel', (t) => {
@@ -557,7 +557,7 @@ ava('.replaceRouteUpToSharedRouteSegment() calls ._prependLegCollectionWithRoute
     t.true(_prependLegCollectionWithRouteAmendmentSpy.calledWithExactly(expectedResult));
 });
 
-ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new routeSegment up to a shared LegModel.getRouteString()', (t) => {
+ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new routeSegment up to a shared LegModel.routeString', (t) => {
     const expectedResult = ['hitme', 'holdm', 'bikkr'];
     const routeAmmendment = 'HITME..HOLDM..BIKKR..DAG';
     const fms = buildFmsMock(isComplexRoute);
@@ -566,9 +566,9 @@ ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new rout
 
     fms.replaceRouteUpToSharedRouteSegment(routeAmmendment);
 
-    t.true(fms.legCollection[0].getRouteString() === expectedResult[0]);
-    t.true(fms.legCollection[1].getRouteString() === expectedResult[1]);
-    t.true(fms.legCollection[2].getRouteString() === expectedResult[2]);
+    t.true(fms.legCollection[0].routeString === expectedResult[0]);
+    t.true(fms.legCollection[1].routeString === expectedResult[1]);
+    t.true(fms.legCollection[2].routeString === expectedResult[2]);
 });
 
 ava('.leaveHoldFlightPhase() returns early when #currentPhase is not HOLD', (t) => {
@@ -723,7 +723,7 @@ ava('._regenerateSidLeg() creates a new SID leg of identical route string for th
 
     t.true(newWaypoints[0].name === 'jaker');
     t.true(newWaypoints.length === 7);
-    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.getRouteString(), nextRunwayFixture));
+    t.true(replaceDepartureProcedureSpy.calledWithExactly(sidLeg.routeString, nextRunwayFixture));
 });
 
 ava('._regenerateSidLeg() returns early when there is no SID leg in the flightplan', (t) => {
@@ -756,7 +756,7 @@ ava('._regenerateStarLeg() creates a new STAR leg of identical route string for 
 
     t.true(newWaypoints[12].name === 'right');
     t.true(newWaypoints.length === 13);
-    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.getRouteString(), nextRunwayFixture));
+    t.true(replaceArrivalProcedureSpy.calledWithExactly(starLeg.routeString, nextRunwayFixture));
 });
 
 ava('._regenerateStarLeg() returns early when there is no STAR leg in the flightplan', (t) => {

@@ -538,7 +538,7 @@ export default class Fms {
      */
     moveToNextWaypoint() {
         if (!this.currentLeg.hasNextWaypoint()) {
-            this._updatePreviousRouteSegments(this.currentLeg.getRouteString());
+            this._updatePreviousRouteSegments(this.currentLeg.routeString);
             this._moveToNextLeg();
 
             return;
