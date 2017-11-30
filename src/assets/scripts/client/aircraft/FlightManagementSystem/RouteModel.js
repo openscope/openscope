@@ -361,6 +361,23 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Skip ahead to the next waypoint
+     *
+     * If there are no more waypoints in the `#currentLeg`, this will also cause
+     * us to skip to the next leg.
+     *
+     * @for RouteModel
+     * @method moveToNextWaypoint
+     */
+    moveToNextWaypoint() {
+        if (!this.currentLeg.hasNextWaypoint()) {
+            return this.skipToNextLeg();
+        }
+
+        this.currentLeg.moveToNextWaypoint();
+    }
+
+    /**
      * Replace the arrival procedure leg with a new one (if it exists in the route)
      *
      * // FIXME: Is this really what we want to do here?
@@ -454,23 +471,6 @@ export default class RouteModel extends BaseModel {
         const legToMove = this._legCollection.splice(0, 1);
 
         this._previousLegCollection.push(...legToMove);
-    }
-
-    /**
-     * Skip ahead to the next waypoint
-     *
-     * If there are no more waypoints in the `#currentLeg`, this will also cause
-     * us to skip to the next leg.
-     *
-     * @for RouteModel
-     * @method skipToNextWaypoint
-     */
-    skipToNextWaypoint() {
-        if (!this.currentLeg.hasNextWaypoint()) {
-            return this.skipToNextLeg();
-        }
-
-        this.currentLeg.skipToNextWaypoint();
     }
 
     /**

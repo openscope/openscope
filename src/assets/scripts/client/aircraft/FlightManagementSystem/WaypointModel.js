@@ -169,6 +169,10 @@ export default class WaypointModel {
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
+        if (this.isVectorWaypoint) {
+            return;
+        }
+
         return this._positionModel.relativePosition;
     }
 

@@ -544,7 +544,7 @@ export default class Fms {
             return;
         }
 
-        this.skipToNextWaypoint();
+        this._routeModel.moveToNextWaypoint();
     }
 
     /**

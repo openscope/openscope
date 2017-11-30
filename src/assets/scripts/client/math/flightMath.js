@@ -175,7 +175,7 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     const bankAngle = degreesToRadians(nominalBankAngleDegrees);
     const nextWaypointModel = aircraft.fms.nextWaypoint;
 
-    if (!aircraft.fms.hasNextWaypoint() || nextWaypointModel.isVector) {
+    if (!aircraft.fms.hasNextWaypoint() || nextWaypointModel.isVectorWaypoint) {
         return 0;
     }
 
@@ -184,8 +184,8 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     }
 
     const nominalNewCourse = _calculateNominalNewCourse(
-        nextWaypointModel.positionModel,
-        currentWaypointPosition
+        nextWaypointModel.relativePosition,
+        currentWaypointPosition.relativePosition
     );
     const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);
     // meters, bank establishment in 1s

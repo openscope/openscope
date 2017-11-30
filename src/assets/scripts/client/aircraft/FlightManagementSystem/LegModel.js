@@ -425,9 +425,9 @@ export default class LegModel {
     * index `0`, thus making it the new `#currentWaypoint`.
     *
     * @for LegModel
-    * @method skipToNextWaypoint
+    * @method moveToNextWaypoint
     */
-    skipToNextWaypoint() {
+    moveToNextWaypoint() {
         const waypointModelToMove = this._waypointCollection.shift();
 
         this._previousWaypointCollection.push(waypointModelToMove);

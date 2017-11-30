@@ -1680,8 +1680,8 @@ export default class AircraftModel {
             return new Error('Unable to utilize LNAV, because there are no waypoints in the FMS');
         }
 
-        if (this.fms.currentWaypoint.isVector) {
-            return this.fms.currentWaypoint.vector;
+        if (this.fms.currentWaypoint.isVectorWaypoint) {
+            return this.fms.currentWaypoint.getVector();
         }
 
         const waypointPosition = this.fms.currentWaypoint.positionModel;
