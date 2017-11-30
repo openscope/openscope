@@ -12,7 +12,8 @@ import BaseModel from '../../base/BaseModel';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import {
     INVALID_INDEX,
-    INVALID_NUMBER
+    INVALID_NUMBER,
+    REGEX
 } from '../../constants/globalConstants';
 import {
     DIRECT_SEGMENT_DIVIDER,
@@ -277,7 +278,7 @@ export default class RouteModel extends BaseModel {
     getRouteStringWithSpaces() {
         const routeString = this.getRouteString();
 
-        return routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
+        return routeString.replace(REGEX.DOUBLE_DOT, ' ').replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
