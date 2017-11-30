@@ -43,7 +43,7 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
                 // TODO: this looks like it should be a model object
                 const preSpawnHeadingAndPosition = {
                     heading,
-                    spawnPositionModel,
+                    positionModel: spawnPositionModel,
                     nextFix: nextWaypointModel.name
                 };
 
