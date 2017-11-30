@@ -151,9 +151,9 @@ ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previou
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
 
-    fms.moveToNextWaypoint;
-    fms.moveToNextWaypoint;
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
+    fms.moveToNextWaypoint();
+    fms.moveToNextWaypoint();
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
 });
@@ -165,8 +165,8 @@ ava('.getRouteStringWithSpaces() returns a routeString that is a sum of #previou
 
     t.true(fms.getRouteStringWithSpaces() === expectedResultBeforeReplacement);
 
-    fms.moveToNextWaypoint;
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
+    fms.moveToNextWaypoint();
     fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
     t.true(fms.getRouteStringWithSpaces() === expectedResult);
@@ -350,49 +350,49 @@ ava('.createLegWithHoldingPattern() prepends a LegModel Waypoint when a fixName 
     t.true(fms.currentWaypoint._legLength === legLengthMock);
 });
 
-ava('.moveToNextWaypoint adds current LegModel#routeString to _previousRouteSegments before moving to next waypoint', (t) => {
+ava('.moveToNextWaypoint() adds current LegModel#routeString to _previousRouteSegments before moving to next waypoint', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
 
     t.true(fms._previousRouteSegments[0] === 'cowby');
 });
 
-ava('.moveToNextWaypoint calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
+ava('.moveToNextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _moveToNextLegSpy = sinon.spy(fms, '_moveToNextLeg');
     fms.legCollection[0].waypointCollection = [];
 
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
 
     t.true(_moveToNextLegSpy.calledOnce);
 });
 
-ava('.moveToNextWaypoint calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
+ava('.moveToNextWaypoint() calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
     const fms = buildFmsMock();
     const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
 
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
 
     t.true(_moveToNextWaypointInLegSpy.calledOnce);
 });
 
-ava('.moveToNextWaypoint removes the first LegModel from legCollection when the first Leg has no waypoints', (t) => {
+ava('.moveToNextWaypoint() removes the first LegModel from legCollection when the first Leg has no waypoints', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const length = fms.legCollection.length;
     fms.legCollection[0].waypointCollection = [];
 
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
 
     t.true(fms.legCollection.length === length - 1);
 });
 
-ava('.moveToNextWaypoint does not call ._moveToNextWaypointInLeg() after calling ._moveToNextLeg() ', (t) => {
+ava('.moveToNextWaypoint() does not call ._moveToNextWaypointInLeg() after calling ._moveToNextLeg() ', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
 
 
-    fms.moveToNextWaypoint;
+    fms.moveToNextWaypoint();
 
     t.true(_moveToNextWaypointInLegSpy.notCalled);
 });
