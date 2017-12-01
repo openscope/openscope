@@ -10,6 +10,7 @@
 - Updates EDDH (Hamburg Airport, Germnay) [#829](https://github.com/openscope/openscope/issues/829)
 - Updates documentation on airport format [#833](https://github.com/openscope/openscope/issues/833)
 - Updates KLAS (McCarran International Airport, NV) [#485](https://github.com/openscope/openscope/issues/485)
+- Removed Monarch Airlines and Airberlin [#801](https://github.com/openscope/openscope/issues/801) and [#802](https://github.com/openscope/openscope/issues/802)
 
 
 ## 5.6.1 (November 1, 2017)
@@ -49,7 +50,6 @@
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 - Updates KPDX (Portland International Airport, OR) [#650](https://github.com/openscope/openscope/issues/650)
 - Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment [#791](https://github.com/openscope/openscope/issues/791)
-- Removed Monarch Airlines and Airberlin [#801](https://github.com/openscope/openscope/issues/801) and [#802](https://github.com/openscope/openscope/issues/802)
 
 
 ## 5.5.1 (October 1, 2017)
