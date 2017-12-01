@@ -1,17 +1,7 @@
 ## 5.7.0 (December 1, 2017)
 ---
-### New Features
-
-
-
-
-
 ### Bugfixes
 - Add empty video maps to WIP airports to keep them from crashing [#831](https://github.com/openscope/openscope/issues/831)
-
-
-
-
 
 ### Enhancements & Refactors
 - Add restricted and prohibited areas to KSEA [#823](https://github.com/openscope/openscope/issues/823)
@@ -20,9 +10,6 @@
 - Updates EDDH (Hamburg Airport, Germnay) [#829](https://github.com/openscope/openscope/issues/829)
 - Updates documentation on airport format [#833](https://github.com/openscope/openscope/issues/833)
 - Updates KLAS (McCarran International Airport, NV) [#485](https://github.com/openscope/openscope/issues/485)
-
-
-
 
 
 ## 5.6.1 (November 1, 2017)
