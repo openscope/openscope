@@ -284,6 +284,7 @@ export default class Fms {
     init({ altitude, category, model, nextFix, routeString }, initialRunwayAssignment) {
         this._routeModel = new RouteModel(this._navigationLibrary, routeString);
 
+        this._verifyRouteContainsMultipleWaypoints();
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
         this._initializeFlightPlanAltitude(altitude, category, model);
@@ -899,6 +900,25 @@ export default class Fms {
         const collectionName = this._navigationLibrary.findCollectionNameForProcedureId(procedureId);
 
         return collectionToFlightPhaseDictionary[collectionName];
+    }
+
+    /**
+     * Verify that this FMS's route contains at least two waypoints, or throw an error
+     *
+     * This is an expectation on spawn so we can point the aircraft somewhere,
+     * but OTHER than on spawn, there is no reason an aircraft cannot be assigned
+     * a single-fix route (such as "forget everything else, just go direct to the airport!").
+     *
+     * @for Fms
+     * @method _verifyRouteContainsMultipleWaypoints
+     * @private
+     */
+    _verifyRouteContainsMultipleWaypoints() {
+        if (this.waypoints.length < 2) {
+            throw new TypeError('Expected flight plan route to have at least two ' +
+                `waypoints, but only found ${this.waypoints.length} waypoints`
+            );
+        }
     }
 
     /**
