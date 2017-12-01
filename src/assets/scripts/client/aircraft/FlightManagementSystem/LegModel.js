@@ -358,6 +358,10 @@ export default class LegModel {
      * @return {boolean}
      */
     hasWaypoint(waypointName) {
+        if (_isNil(waypointName)) {
+            throw new TypeError(`Expected valid fix name but received '${waypointName}'`);
+        }
+
         waypointName = waypointName.toUpperCase();
 
         // using a for loop instead of `_find()` to maximize performance
@@ -450,7 +454,7 @@ export default class LegModel {
             return false;
         }
 
-        const numberOfWaypointsToMove = waypointIndex - 1;
+        const numberOfWaypointsToMove = waypointIndex;
         const waypointModelsToMove = this._waypointCollection.splice(0, numberOfWaypointsToMove);
 
         this._previousWaypointCollection.push(...waypointModelsToMove);

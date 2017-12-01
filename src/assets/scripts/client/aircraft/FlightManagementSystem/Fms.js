@@ -281,12 +281,13 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ altitude, category, model, routeString }, initialRunwayAssignment) {
+    init({ altitude, category, model, nextFix, routeString }, initialRunwayAssignment) {
         this._routeModel = new RouteModel(this._navigationLibrary, routeString);
 
         this._setCurrentPhaseFromCategory(category);
         this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
         this._initializeFlightPlanAltitude(altitude, category, model);
+        this._setInitialFix(nextFix);
     }
 
     /**
@@ -309,6 +310,35 @@ export default class Fms {
         if (category === FLIGHT_CATEGORY.DEPARTURE) {
             this.flightPlanAltitude = model.ceiling;
         }
+    }
+
+    /**
+     * Skip ahead to the first waypoint a freshly created FMS should be going to
+     *
+     * This method is available because we have the ability to spawn aircraft
+     * in "the middle" of any route, rather than requiring them to fly their
+     * route from the beginning. This way, we have the choice to place the aircraft
+     * wherever we want along the route without having to change its contents.
+     *
+     * This method takes an argument that specifies which fix to go to after spawn,
+     * and if not specified, the FMS will target the second fix (because they are)
+     * spawned AT the first fix.
+     *
+     * @for Fms
+     * @method _setInitialFix
+     * @param fixName {string}
+     * @private
+     */
+    _setInitialFix(fixName) {
+        if (typeof fixName === 'undefined') {
+            return this.moveToNextWaypoint();
+        }
+
+        if (!this._routeModel.hasWaypoint(fixName)) {
+            throw new TypeError(`Expected initial fix to be in flight plan route, but received '${fixName}'`);
+        }
+
+        this.skipToWaypointName(fixName);
     }
 
     /**
@@ -537,14 +567,7 @@ export default class Fms {
      * @method moveToNextWaypoint
      */
     moveToNextWaypoint() {
-        if (!this.currentLeg.hasNextWaypoint()) {
-            this._updatePreviousRouteSegments(this.currentLeg.routeString);
-            this._moveToNextLeg();
-
-            return;
-        }
-
-        this._routeModel.moveToNextWaypoint();
+        return this._routeModel.moveToNextWaypoint();
     }
 
     /**

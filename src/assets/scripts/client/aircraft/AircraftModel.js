@@ -573,10 +573,6 @@ export default class AircraftModel {
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             throw new Error('Invalid #category found in AircraftModel');
         }
-
-        if (data.nextFix) {
-            this.fms.skipToWaypointName(data.nextFix);
-        }
     }
 
     /**
