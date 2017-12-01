@@ -21,196 +21,187 @@ The airport JSON file must be in "[assets/airports](assets/airports)"; the filen
 
 ## Example
 
-_Note: The code block shown below is an abbreviated version of [klas.json](assets/airports/klas.json)._
+_Note: The code block shown below is an abbreviated version of [ksea.json](assets/airports/ksea.json)._
 ```javascript
 {
     "radio": {
-        "twr": "Las Vegas Tower",
-        "app": "Las Vegas Approach",
-        "dep": "Las Vegas Departure"
+        "twr": "Seatle Tower",
+        "app": "Seattle Approach",
+        "dep": "Seattle Departure"
     },
-    "icao": "KLAS",
-    "iata": "LAS",
-    "magnetic_north": 11.9,
-    "ctr_radius": 80,
-    "ctr_ceiling": 19000,
-    "initial_alt": 19000,
-    "position": ["N36.080056", "W115.15225", "2181ft"],
+    "icao": "KSEA",
+    "iata": "SEA",
+    "magnetic_north": 16,
+    "ctr_radius": 110,
+    "ctr_ceiling": 15000,
+    "initial_alt": 15000,
+    "position": ["N47d26.99m0", "W122d18.71m0"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N36.080056", "W115.15225"],
+    "rr_center": ["N47d26.99m0", "W122d18.71m0"],
     "has_terrain": true,
     "wind": {
-        "angle": 220,
-        "speed": 6
+        "angle": 150,
+        "speed": 9
     },
-    "arrivalRunway": "19R",
-    "departureRunway": "19R",
+    "arrivalRunway": "16R",
+    "departureRunway": "16L",
     "airspace": [
         {
             "floor": 0,
-            "ceiling": 190,
+            "ceiling": 150,
             "airspace_class": "B",
             "poly": [
-                ["N35d57m50.000", "W115d51m15.000"],
-                ["N35d34m30.000", "W115d29m00.000"]
+                ["N47.83333330", "W121.69999940"],
+                ["N47.95335007", "W121.97603665"],
+                ["N48.30000000", "W121.96666670"],
+                ["N48.30000000", "W122.30000000"],
+                ["N48.20000000", "W122.45000000"]
             ]
         }
     ],
     "fixes": {
-        "_RWY19L02DME": [36.12883621109, -115.13620132796],
-        "_RWY19R02DME": [36.12992510899, -115.13907057136],
-        "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
-        "BCE"  : ["N37.68918661436860", "W112.30389943797489"],
-        "BESSY": ["N36.10772192196994", "W115.28956463349111"],
-        "BETHL": ["N36.88434886833625", "W112.44043432584908"],
-        "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
+        "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
+        "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
+        "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
+        "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+        "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
+        "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
+        "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
+        "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
+        "BOANE": ["N47d59.10m0", "W122d43.52m0"],
+        "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+        "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
+        "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
+        "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+        "ONSET": ["N48d57.48m0", "W118d00.00m0"],
+        "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+        "WESET": ["N47d24.35m0", "W122d19.10m0"],
+        "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
+        "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
     },
     "restricted": [
         {
-            "name": "EIP10",
-            "height": "5000ft",
+            "name": "P-51",
+            "height": "2500ft",
             "coordinates": [
-                ["N53d09m16", "W6d52m47"],
-                ["N53d09m43", "W6d49m27"],
-                ["N53d09m00", "W6d48m16"],
-                ["N53d07m49", "W6d47m59"],
-                ["N53d08m51", "W6d52m45"],
-                ["N53d09m16", "W6d52m47"]
+                ["N47.7737128", "W122.7710456"],
+                ["N47.7189169", "W122.7706794"],
+                ["N47.6924411", "W122.7388044"],
+                ["N47.6932556", "W122.6940508"],
+                ["N47.7723906", "W122.6948667"]
             ]
         }
-    ]
-    "runways": [
+    ],
+    "runways":[
         {
-            "name": ["07L", "25R"],
+            "name": ["16L", "34R"],
             "end": [
-                ["N36d4m34.82", "W115d10m16.98", "2179ft"],
-                ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+                [47.463767, -122.307749, "432.5ft"],
+                [47.431201, -122.308035, "346.8ft"]
             ],
-            "ils": [false, true]
+            "ils": [true, true],
         },
         {
-            "name": ["07R", "25L"],
+            "name": ["16R", "34L"],
             "end": [
-                ["N36d4m25.04", "W115d9m41.15", "2157ft"],
-                ["N36d4m25.17", "W115d7m32.96", "2049ft"]
+                [47.463806, -122.317884, "415.0ft"],
+                [47.440562, -122.318092, "356.3ft"]
             ],
-            "ils": [false, true]
+            "ils": [true, true],
         }
     ],
-    "airways": {
-        "J100": ["HEC", "CLARR", "LAS", "NORRA", "BCE"],
-        "J146": ["LAS", "NOOTN"],
-        "J9": ["HEC", "CLARR", "LAS", "NORRA", "AVERS", "URIAH", "BERYL",  "MLF"],
-        "J92:" ["BTY", "BLD", "KADDY", "PRFUM", "CADDU", "DRK"],
-        "Q15": ["CHILY", "DOVEE", "BIKKR"],
-        "V8": ["PHYLI", "MMM", "MEADS", "ACLAM", "WINDS", "LYNSY", "SHUSS", "GFS", "HEC"]
-    },
     "sids": {
-        "COWBY6": {
-            "icao": "COWBY6",
-            "name": "Cowboy Six",
-            "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+        "SUMMA1": {
+            "icao": "SUMMA1",
+            "name": "Summa One",
+            "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
             "rwy": {
-                "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-                "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
-                "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
-                "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-                "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+                "16L": ["NEVJO"],
+                "16R": ["NEVJO"],
+                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
             },
-            "body": ["COWBY"],
             "exitPoints": {
-                "DRK": ["NAVHO", "DRK"],
-                "GUP": [["MOSBI", "A150+"], "GUP"],
-                "INW": [["CUTRO", "A150+"], "INW"]
+                "BKE": ["SUMMA", "BKE"],
+                "LKV": ["SUMMA", "LKV"],
+                "SUMMA": ["SUMMA"]
             },
             "draw": [
-                ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
-                ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
-                ["_RWY19L02DME", "NAPSE"],
-                ["_RWY19R02DME", "NAPSE", "RIOOS", "COMPS"],
-                ["COWBY", "NAVHO", "DRK*"]
+                ["NEVJO", "SUMMA"],
+                ["NEZUG", "_NEZUG070PAE139", "_SUMMA326017", "SUMMA"],
+                ["SUMMA", "LKV*"],
+                ["SUMMA*", "BKE*"]
             ]
         }
     },
     "stars": {
-        "GRNPA1": {
-            "icao": "GRNPA1",
-            "name": "Grandpa One",
-            "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+        "CHINS2": {
+            "icao": "CHINS2",
+            "name": "Chins Two",
+            "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
             "entryPoints": {
-                "BETHL": ["BETHL", ["HOLDM", "A270"]],
-                "BCE": ["BCE"],
-                "DVC": ["DVC", "BETHL", ["HOLDM", "A270"]],
-                "MLF": ["MLF"]
+                "CHINS": [],
+                "IMB": ["IMB", "SUNED", "YKM"],
+                "PDT": ["PDT", "BRUKK", "SUNED", "YKM"],
+                "SUNED": ["SUNED", "YKM"]
             },
-            "body": [
-                ["KSINO", "A170"],
-                ["LUXOR", "A120|S250"],
-                ["GRNPA", "A110"],
-                ["DUBLX", "A90"],
-                ["FRAWG", "A80|S210"],
-                "TRROP",
-                "LEMNZ"
-            ],
+            "body": ["CHINS"],
             "rwy": {
-                "01L": [],
-                "01R": [],
-                "07L": [],
-                "07R": [],
-                "19L": [],
-                "19R": [],
-                "25L": [],
-                "25R": []
+                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
             },
-            "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+            "draw": [
+                ["IMB*", "SUNED*", "YKM"],
+                ["PDT*", "BRUKK", "SUNED", "YKM"],
+                ["YKM", "CHINS*", "RADDY", "HUMPP", "AUBRN"]
+            ]
         }
     },
     "spawnPatterns": [
         {
-            "origin": "KLAS",
+            "origin": "KSEA",
             "destination": "",
             "category": "departure",
-            "route": "KLAS.COWBY6.GUP",
-            "altitude": 0,
+            "route": "KSEA.SUMMA1.BKE",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
-            "rate": 5,
+            "rate": 9,
             "airlines": [
-                ["amx", 2],
-                ["aca/long", 4],
-                ["asa", 3],
-                ["aay", 15]
-            ],
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         },
         {
             "origin": "",
-            "destination": "KLAS",
+            "destination": "KSEA",
             "category": "arrival",
-            "route": "BETHL.GRNPA1.KLAS",
-            "altitude": [30000, 40000],
-            "speed": 320
+            "route": "PDT.CHINS2.KSEA",
+            "altitude": [18000, 36000],
+            "speed": 320,
             "method": "random",
-            "entrail": [10, 22],
-            "rate": 10,
+            "rate": 15,
             "airlines": [
-                ["aca/long", 4],
-                ["aay", 15],
-                ["aal", 10]
-            ],
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         }
     ],
     "maps": {
         "base": [
-            ["N36d38m01.199", "W114d36m17.219", "N36d36m32.337", "W114d34m19.673"],
-            ["N36d36m27.904", "W114d36m12.534", "N36d38m06.271", "W114d34m20.227"],
-            ["N35d56m01.371", "W114d51m25.735", "N35d57m09.977", "W114d51m43.334"],
-            ["N35d56m42.691", "W114d52m17.075", "N35d56m28.981", "W114d50m51.994"]
+            ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
+            ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
+            ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
+            ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
+            ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
         ]
     }
 }
+
 ```
 
 ## Property Descriptions
@@ -221,9 +212,9 @@ _all properties in this section are required_
 - **radio** ― The radio callsigns for each controller:
 ```javascript
 "radio": {
-    "twr": "Las Vegas Tower",
-    "app": "Las Vegas Approach",
-    "dep": "Las Vegas Departure"
+    "twr": "Seatle Tower",
+    "app": "Seattle Approach",
+    "dep": "Seattle Departure"
 },
 ```
 - **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
@@ -239,9 +230,9 @@ _all properties in this section are required_
 - **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 ```javascript
 "wind": {
-    "angle": 220,
-    "speed": 6
-}
+    "angle": 150,
+    "speed": 9
+},
 ```
 - **arrivalRunway** ― The default runway to use for arrivals.
 - **departureRunway** ― The default runway to use for departures.
@@ -251,18 +242,21 @@ _all properties in this section are required_
 _All properties in this section are required for each airspace section_
 _At least one airspace definition is required for an airport_
 
- ```javascript
- "airspace": [
-     {
-         "floor": 0,
-         "ceiling": 190,
-         "airspace_class": "B",
-         "poly": [
-             ["N35d57m50.000", "W115d51m15.000"],
-             ["N35d34m30.000", "W115d29m00.000"]
-         ]
-     }
- ],
+```javascript
+"airspace": [
+    {
+        "floor": 0,
+        "ceiling": 150,
+        "airspace_class": "B",
+        "poly": [
+            ["N47.83333330", "W121.69999940"],
+            ["N47.95335007", "W121.97603665"],
+            ["N48.30000000", "W121.96666670"],
+            ["N48.30000000", "W122.30000000"],
+            ["N48.20000000", "W122.45000000"]
+        ]
+    }
+],
 ```
 Position definition of the airport airspace.  Multiple airspace areas may be defined and will all be included in the airspace. This allows for advanced airspace stratification.
 
@@ -277,28 +271,39 @@ _All fixes listed within the Standard Routes need to be defined within this sect
 
 ```javascript
 "fixes": {
-    "_RWY19L02DME": [36.12883621109, -115.13620132796],
-    "_RWY19R02DME": [36.12992510899, -115.13907057136],
-    "BAKRR": ["N36.07582112978773", "W114.95309917207562"],
-    "BCE":   ["N37.68918661436860", "W112.30389943797489"],
-    "BESSY": ["N36.10772192196994", "W115.28956463349111"],
-    "BETHL": ["N36.88434886833625", "W112.44043432584908"],
-    "BIKKR": ["N36.56666216331978", "W116.75003219453492"]
+    "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
+    "_NEZUG070PAE139": ["N47d34.77m0", "W122d05.11m0"],
+    "_NICHY250SEA230": ["N47d19.92m0", "W122d42.78m0"],
+    "_OLM161026" : ["N46d32.31m0", "W122d54.11m0"],
+    "_SEA161002": ["N47d24.12m0", "W122d18.58m0"],
+    "_SEA341004": ["N47d30.12m0", "W122d18.58m0"],
+    "_SUMMA326017": ["N46d53.20m0", "W122d07.08m0"],
+    "AAYRR": ["N46d38.81m0", "W123d43.34m0"],
+    "BOANE": ["N47d59.10m0", "W122d43.52m0"],
+    "EUG"  : ["N44d07.25m0", "W123d13.37m0"],
+    "FEPOT": ["N47d04.85m0", "W123d13.13m0"],
+    "GEG"  : ["N47d33.90m0", "W117d37.61m0"],
+    "KRUZR": ["N48d04.65m0", "W120d34.68m0"],
+    "ONSET": ["N48d57.48m0", "W118d00.00m0"],
+    "PAE"  : ["N47d55.19m0", "W122d16.67m0"],
+    "WESET": ["N47d24.35m0", "W122d19.10m0"],
+    "YXC"  : ["N49d33.30m0", "W116d05.26m0"],
+    "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
 },
 ```
 Each navaid located within or around the airport airspace in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_.  Real life fixes are defined thusly:
 ```javascript
-"BAKRR": ["N36.07582112978773", "W114.95309917207562"]
+"AAYRR": ["N46d38.81m0", "W123d43.34m0"]
 ```
 You will notice in the list above there is a fix definition preprended with an `_`.  This is called an _invisible_ fix.  A few examples of uses for these fixes include:
 
-1. To simulate fly-over waypoints (examples in EIDW)
-1. To simulate DME arcs (can be seen in SAME)
-1. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
+1. To simulate DME arcs (can be seen in SAEZ)
+2. To simulate initial climbs (e.g. Climb runway heading until LON 2DME)
+3. To simulate radial intercepts (e.g. Intercept radial 180 to OLM)
 
 They're used when we need aircraft to fly over a location that doesn't have an actual fix or waypoint. A fix should be created and should be named using the following conventions:
 
-* The fixes should be located at the thresholds of the runways for which they are named.
+* Any fixes located at runway thresholds should be named after the runway at which they are located.
 ```javascript
 "_RWY33L": [42.354662, -70.991598]
 ```
@@ -306,26 +311,39 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 ```javascript
 "_AUTUM220015": [42.324333, -71.736833]
 ```
-* Any fixes desired a given distance out on final of a given runway will be described via the distance from the threshold. This would be the runway name, two digit distance in nautical miles, then `DME`. All of these should be marked as RNAV fixes (via the underscore prefix).
+* Any fixes desired a given distance out from a given runway will be described via the distance from the threshold. This would be the runway whose departure path is aimed toward the fix, with the distance being measured from the departure end (denoted in the fix name as a two digit distance in nautical miles, then DME). So a fix named `_RWY1805DME` would be 5.0nm south of the end of Runway 18. All of these should be marked as RNAV fixes (via the underscore prefix).
 ```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
+```
+* Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
+```javascript
+"_SIPLY233STINS324": ["N37.47860", "W122.60090"]
+```
+* Fixes may be defined based on the intersection of a runway's outbound course and an outbound radial of any fix. For a point aligned with Runway 27's departure path and the XYZ VOR's outbound radial 180, we get `_RWY27XYZ180`. Note that if the intersection were to be on the arrival half of a given runway, the opposite runway should be used to keep with the convention of using the departure course.
+```javascript
+"_RWY19RPIE116": [27.848198, 82.546200]
+```
+* Fixes may be defined based on the intersection of a fix's outbound radial and the DME arc of the specified distance from a separate fix. This is formatted like `_FIXXA050FIXXB05DME`, where the first fix has a three digit outbound radial, and the second fix has a two-digit distance in nm, followed by DME. Similarly, this can be done with runways using the same patterns as before, yielding `_RWY22LFIXXB05DME`.
+```javascript
+"_RWY09RLON02DME": ["N51d32m17.76", "W0d12m45.87"]
 ```
 
 ### Restricted Airspace
 Areas of restricted airspace may be added to the `restricted` property of the airport file. This is an array containing restricted areas such as the example below:
 ```javascript
-{
-    "name": "EIP10",
-    "height": "5000ft",
-    "coordinates": [
-        ["N53d09m16", "W6d52m47"],
-        ["N53d09m43", "W6d49m27"],
-        ["N53d09m00", "W6d48m16"],
-        ["N53d07m49", "W6d47m59"],
-        ["N53d08m51", "W6d52m45"],
-        ["N53d09m16", "W6d52m47"]
-    ]
-},
+"restricted": [
+    {
+        "name": "P-51",
+        "height": "2500ft",
+        "coordinates": [
+            ["N47.7737128", "W122.7710456"],
+            ["N47.7189169", "W122.7706794"],
+            ["N47.6924411", "W122.7388044"],
+            ["N47.6932556", "W122.6940508"],
+            ["N47.7723906", "W122.6948667"]
+        ]
+    }
+],
 ```
 
 Note that `height` represents the _top_ of the restricted area. Currently all restricted areas are assumed to begin at sea level.
@@ -335,10 +353,10 @@ Note that `height` represents the _top_ of the restricted area. Currently all re
 ```javascript
 "runways": [
     {
-        "name": ["07L", "25R"],
+        "name": ["16L", "34R"],
         "end": [
-            ["N36d4m34.82", "W115d10m16.98", "2179ft"],
-            ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+            [47.463767, -122.307749, "432.5ft"],
+            [47.431201, -122.308035, "346.8ft"]
         ],
         "ils": [false, true],
         "ils_distance":[30, 25],
@@ -359,25 +377,26 @@ Note that `height` represents the _top_ of the restricted area. Currently all re
 Runways are defined in pairs because a runway can be used from either direction.  This makes defining runways a little tricky, so special attention should be paid to how the data is set up.  For each property, the first value will be considered part of the first runway and the second property for the second runway.  If you were to take the above example and extract each runway's properties, you would end up with the following two objects:
 
 ```javascript
-// Runway 07L
+// Runway 16L
 {
-    "name": "07L",
+    "name": "16L",
     "end": [
-        ["N36d4m34.82", "W115d10m16.98", "2179ft"]
+        [47.463767, -122.307749, "432.5ft"]
     ],
     "ils": false
 }
 
-// Runway 25R
+// Runway 34R
 {
-    "name": "25R",
+    "name": "34R",
     "end": [
-        ["N36d4m35.05", "W115d7m15.93", "2033ft"]
+        [47.431201, -122.308035, "346.8ft"]
     ],
     "ils": true
 }
 ```
 
+<!---
 ### Airways
 ```javascript
 "airways": {
@@ -391,6 +410,7 @@ Runways are defined in pairs because a runway can be used from either direction.
 ```
 
 Each fix along each airway in successive order (direction does not matter). And of course, all fixes entered here must be defined in the `fixes` section.
+-->
 
 ## Standard Procedures
 
@@ -404,19 +424,25 @@ This structure is used to work with both SIDs and STARs within the app.  Though 
 Fixes within the segments can be defined in several different ways:
 ```javascript
 // fix name only
-"07L": ["WASTE", "COMPS"]
+"16L": ["IMB", "SUNED", "YKM"]
+
+// fix name with fly-over instruction
+"16L": ["IMB", "^SUNED", "YKM"]
+
+// fix name with holding instruction
+"16L": ["IMB", "@SUNED", "YKM"]
 
 // fix name with altitude restriction
-"07L": ["WASTE", ["BAKRR", "A70"], "COMPS"]
+"16L": ["IMB", ["SUNED", "A70"], "YKM"]
 
 // fix name with speed restriction
-"07L": ["WASTE", ["BAKRR", "S200"], "COMPS"]
+"16L": ["IMB", ["SUNED", "S200"], "YKM"]
 
 // fix name with at/below and at/above altitude and speed restrictions
-"07L": ["WASTE", ["BAKRR", "A70+|S250-"], "COMPS"]
+"16L": ["IMB", ["SUNED", "A70+|S250-"], "YKM"]
 
 // fix name with ranged altitude and speed restrictions
-"07L": ["WASTE", ["BAKRR", "A70+|A100-|S210+|S250-"], "COMPS"]
+"16L": ["IMB", ["SUNED", "A70+|A100-|S210+|S250-"], "YKM"]
 ```
 These definitions can be used within any `Entry`, `Body` or `Exit` segment of a standardRoute.
 
@@ -426,32 +452,26 @@ _All properties in this section are required for each route definition_
 
 ```javascript
 "sids": {
-    "COWBY6": {
-        "icao": "COWBY6",
-        "name": "Cowboy Six",
-        "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+    "SUMMA1": {
+        "icao": "SUMMA1",
+        "name": "Summa One",
+        "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
         "rwy": {
-            "01L": ["_RWY19R02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-            "01R": ["_RWY19L02DME", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
-            "07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
-            "07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
-            "19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-            "19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-            "25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
-            "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
+            "16L": ["NEVJO"],
+            "16R": ["NEVJO"],
+            "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+            "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
         },
-        "body": ["COWBY"],
         "exitPoints": {
-            "DRK": ["NAVHO", "DRK"],
-            "GUP": [["MOSBI", "A150+"], "GUP"],
-            "INW": [["CUTRO", "A150+"], "INW"]
+            "BKE": ["SUMMA", "BKE"],
+            "LKV": ["SUMMA", "LKV"],
+            "SUMMA": ["SUMMA"]
         },
         "draw": [
-            ["ROPPR", "CEASR", "HITME", "COWBY", "MOSBI", "GUP*"],
-            ["BAKRR", "COMPS", "COWBY", "CUTRO", "INW*"],
-            ["_RWY19R02DME", "NAPSE"],
-            ["_RWY19L02DME", "NAPSE", "RIOOS", "COMPS"],
-            ["COWBY", "NAVHO", "DRK*"]
+            ["NEVJO", "SUMMA"],
+            ["NEZUG", "_NEZUG070PAE139", "_SUMMA326017", "SUMMA"],
+            ["SUMMA", "LKV*"],
+            ["SUMMA*", "BKE*"]
         ]
     }
 },
@@ -460,8 +480,8 @@ SID is an acronym for _Standard Instrument Departure_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
 ```javascript
-"COWBY6": {
-    "icao": "COWBY6"
+"SUMMA1": {
+    "icao": "SUMMA1"
 }
 ```
 - **name** - spoken name of the route used for read backs.
@@ -469,7 +489,7 @@ SID is an acronym for _Standard Instrument Departure_.
 - **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
-- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
+- **draw** - (2d array of strings) array of lines (arrays) to draw in blue between the listed fixes. The name of the SID will be displayed on top of the fix with a `*` after it (e.g. `["SUMMA", "LKV*"]`). _Please note that the 'draw' array must contain at least one array, even if it is empty: `"draw": [[]]`_
 
 - _The `body` section must contain at least one fix_
 - _The `exitPoints` section must contain at least one fix_
@@ -480,36 +500,28 @@ _All properties in this section are required for each route definition_
 
 ```javascript
 "stars": {
-    "GRNPA1": {
-        "icao": "GRNPA1",
-        "name": "Grandpa One",
-        "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},
+    "CHINS2": {
+        "icao": "CHINS2",
+        "name": "Chins Two",
+        "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
         "entryPoints": {
-            "BETHL": ["BETHL", ["HOLDM", "A270"]],
-            "BCE": ["BCE"],
-            "DVC": ["DVC", "BETHL", ["HOLDM", "A270"]],
-            "MLF": ["MLF"]
+            "CHINS": [],
+            "IMB": ["IMB", "SUNED", "YKM"],
+            "PDT": ["PDT", "BRUKK", "SUNED", "YKM"],
+            "SUNED": ["SUNED", "YKM"]
         },
-        "body": [
-            ["KSINO", "A170"],
-            ["LUXOR", "A120|S250"],
-            ["GRNPA", "A110"],
-            ["DUBLX", "A90"],
-            ["FRAWG", "A80|S210"],
-            "TRROP",
-            "LEMNZ"
-        ],
+        "body": ["CHINS"],
         "rwy": {
-            "01L": [],
-            "01R": [],
-            "07L": [],
-            "07R": [],
-            "19L": [],
-            "19R": [],
-            "25L": [],
-            "25R": []
+            "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+            "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
         },
-        "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+        "draw": [
+            ["IMB*", "SUNED*", "YKM"],
+            ["PDT*", "BRUKK", "SUNED", "YKM"],
+            ["YKM", "CHINS*", "RADDY", "HUMPP", "AUBRN"]
+        ]
     }
 },
 ```
@@ -517,8 +529,8 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 
 - **icao** - icao identifier of the route, should match the object key in spelling and casing
 ```javascript
-"GRNPA1": {
-    "icao": "GRNPA1"
+"CHINS2": {
+    "icao": "CHINS2"
 }
 ```
 - **name** - spoken name of the route used for read backs.
@@ -526,7 +538,7 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 - **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route
-- **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes.
+- **draw** - (2d array of strings) array of lines (arrays) to draw in red between the listed fixes. The name of the STAR will be displayed on top of the fix with a `*` after it (e.g. `["PDT*", "BRUKK"]`)
 
 
 ### Spawn Patterns
@@ -535,35 +547,34 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
 ```javascript
 "spawnPatterns": [
     {
-        "origin": "KLAS",
+        "origin": "KSEA",
         "destination": "",
         "category": "departure",
-        "route": "KLAS.COWBY6.GUP",
+        "route": "KSEA.SUMMA1.BKE",
         "altitude": "",
         "speed": "",
         "method": "random",
-        "rate": 5,
+        "rate": 9,
         "airlines": [
-            ["amx", 2],
-            ["aca/long", 4],
-            ["asa", 3],
-            ["aay", 15]
-        ],
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
     },
     {
         "origin": "",
-        "destination": "KLAS",
+        "destination": "KSEA",
         "category": "arrival",
-        "route": "BETHL.GRNPA1.KLAS",
-        "altitude": [30000, 40000],
-        "speed": 320
+        "route": "PDT.CHINS2.KSEA",
+        "altitude": [18000, 36000],
+        "speed": 320,
         "method": "random",
-        "rate": 10,
+        "rate": 15,
         "airlines": [
-            ["aca/long", 4],
-            ["aay", 15],
-            ["aal", 10]
-        ],
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
     }
 ],
 ```
@@ -576,10 +587,11 @@ _see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detai
 ```javascript
 "maps": {
     "base": [
-        ["N36d38m01.199", "W114d36m17.219", "N36d36m32.337", "W114d34m19.673"],
-        ["N36d36m27.904", "W114d36m12.534", "N36d38m06.271", "W114d34m20.227"],
-        ["N35d56m01.371", "W114d51m25.735", "N35d57m09.977", "W114d51m43.334"],
-        ["N35d56m42.691", "W114d52m17.075", "N35d56m28.981", "W114d50m51.994"]
+        ["N47.46706920", "W122.43465440", "N47.46816390", "W122.43651330"],
+        ["N47.46635080", "W122.43369000", "N47.46706920", "W122.43465440"],
+        ["N47.46975860", "W122.43977560", "N47.47109720", "W122.44296940"],
+        ["N47.46816390", "W122.43651330", "N47.46975860", "W122.43977560"],
+        ["N47.46549330", "W122.43386170", "N47.46635080", "W122.43369000"]
     ]
 }
 ```

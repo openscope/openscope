@@ -679,9 +679,9 @@
                 ["BEART", "NATCA"]
             ]
         },
-        "OZARK6": {
-            "icao": "OZARK6",
-            "name": "Ozark Six",
+        "OZARK7": {
+            "icao": "OZARK7",
+            "name": "Ozark Seven",
             "rwy": {
                 "6": [],
                 "11": [],
@@ -1276,7 +1276,7 @@
             "origin": "kstl",
             "destination": "",
             "category": "departure",
-            "route": "KSTL.OZARK6.MCM",
+            "route": "KSTL.OZARK7.MCM",
             "altitude": "",
             "speed": "",
             "method": "random",
