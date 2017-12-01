@@ -353,11 +353,11 @@ export default class LegModel {
      * in the `#_previousWaypointCollection`.
      *
      * @for LegModel
-     * @method hasWaypoint
+     * @method hasWaypointName
      * @param waypointName {string}
      * @return {boolean}
      */
-    hasWaypoint(waypointName) {
+    hasWaypointName(waypointName) {
         if (_isNil(waypointName)) {
             throw new TypeError(`Expected valid fix name but received '${waypointName}'`);
         }

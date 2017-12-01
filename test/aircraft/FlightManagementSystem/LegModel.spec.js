@@ -248,16 +248,16 @@ ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
 //     t.true(result === 8000);
 // });
 
-ava('.hasWaypoint() returns false when the specified waypoint does not exist in the #waypointCollection', (t) => {
+ava('.hasWaypointName() returns false when the specified waypoint does not exist in the #waypointCollection', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
 
-    t.false(model.hasWaypoint('ABC'));
+    t.false(model.hasWaypointName('ABC'));
 });
 
-ava('.hasWaypoint() returns true when the specified waypoint exists within the #waypointCollection', (t) => {
+ava('.hasWaypointName() returns true when the specified waypoint exists within the #waypointCollection', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
 
-    t.true(model.hasWaypoint('BOACH'));
+    t.true(model.hasWaypointName('BOACH'));
 });
 
 ava('.getProcedureBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {

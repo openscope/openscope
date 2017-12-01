@@ -334,7 +334,7 @@ export default class Fms {
             return this.moveToNextWaypoint();
         }
 
-        if (!this._routeModel.hasWaypoint(fixName)) {
+        if (!this._routeModel.hasWaypointName(fixName)) {
             throw new TypeError(`Expected initial fix to be in flight plan route, but received '${fixName}'`);
         }
 
@@ -700,12 +700,12 @@ export default class Fms {
      * Return whether the route contains a waypoint with the specified name
      *
      * @for Fms
-     * @method hasWaypoint
+     * @method hasWaypointName
      * @param waypointName {string}
      * @return {boolean}
      */
-    hasWaypoint(waypointName) {
-        return this._routeModel.hasWaypoint(waypointName);
+    hasWaypointName(waypointName) {
+        return this._routeModel.hasWaypointName(waypointName);
     }
 
     /**

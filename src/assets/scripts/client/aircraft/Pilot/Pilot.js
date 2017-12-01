@@ -746,7 +746,7 @@ export default class Pilot {
      * @return {array}               [success of operation, readback]
      */
     proceedDirect(waypointName) {
-        if (!this._fms.hasWaypoint(waypointName)) {
+        if (!this._fms.hasWaypointName(waypointName)) {
             return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
         }
 

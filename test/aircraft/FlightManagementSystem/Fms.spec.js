@@ -621,17 +621,17 @@ ava('.isValidRouteAmendment() returns false when a routeAmmendment does not cont
     t.false(fms.isValidRouteAmendment(routeAmmendmentMock));
 });
 
-ava('.hasWaypoint() returns false if a waypoint does not exist within the current flightPlan', (t) => {
+ava('.hasWaypointName() returns false if a waypoint does not exist within the current flightPlan', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
-    t.false(fms.hasWaypoint('ABC'));
+    t.false(fms.hasWaypointName('ABC'));
 });
 
-ava('.hasWaypoint() returns true if a waypoint does exist within the current flightPlan', (t) => {
+ava('.hasWaypointName() returns true if a waypoint does exist within the current flightPlan', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
     // waypoint from within the KEPEC3 arrival
-    t.true(fms.hasWaypoint('SUNST'));
+    t.true(fms.hasWaypointName('SUNST'));
 });
 
 ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction from all the waypoints', (t) => {

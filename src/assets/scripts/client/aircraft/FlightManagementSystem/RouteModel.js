@@ -347,13 +347,13 @@ export default class RouteModel extends BaseModel {
      * Return whether the route contains a waypoint with the specified name
      *
      * @for RouteModel
-     * @method hasWaypoint
+     * @method hasWaypointName
      * @param waypointName {string}
      * @return {boolean}
      */
-    hasWaypoint(waypointName) {
+    hasWaypointName(waypointName) {
         for (let i = 0; i < this._legCollection.length; i++) {
-            if (this._legCollection[i].hasWaypoint(waypointName)) {
+            if (this._legCollection[i].hasWaypointName(waypointName)) {
                 return true;
             }
         }
@@ -483,15 +483,15 @@ export default class RouteModel extends BaseModel {
      * @return {boolean} success of operation
      */
     skipToWaypointName(waypointName) {
-        if (!this.hasWaypoint(waypointName)) {
+        if (!this.hasWaypointName(waypointName)) {
             return false;
         }
 
-        if (this.currentLeg.hasWaypoint(waypointName)) {
+        if (this.currentLeg.hasWaypointName(waypointName)) {
             this.currentLeg.skipToWaypointName(waypointName);
         }
 
-        const legIndex = _findIndex(this._legCollection, (legModel) => legModel.hasWaypoint(waypointName));
+        const legIndex = _findIndex(this._legCollection, (legModel) => legModel.hasWaypointName(waypointName));
         const legModelsToMove = this._legCollection.splice(0, legIndex);
 
         this._previousLegCollection.push(...legModelsToMove);
