@@ -91,7 +91,7 @@ class TimeKeeper {
          */
         this._frameStartTimestamp = 0;
 
-        // FIXME: not entirely sure what this is for
+        // TODO: not entirely sure what this is for
         /**
          *
          *

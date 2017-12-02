@@ -2025,7 +2025,7 @@ export default class AircraftModel {
         //     offsetGameTime
         // ];
 
-        // FIXME: whats the difference here between the if and else blocks? why are we looking for a 0 length?
+        // TODO: whats the difference here between the if and else blocks? why are we looking for a 0 length?
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.relativePositionHistory.length === 0) {

@@ -250,7 +250,7 @@ export default class WaypointModel {
      */
     _initHoldWaypoint() {
         this._isHoldWaypoint = true;
-        // FIXME: These should be coming from a const file somewhere instead of being hard-coded
+        // TODO: These should be coming from a const file somewhere instead of being hard-coded
         this._holdParameters = {
             inboundHeading: undefined,
             legLength: 1,

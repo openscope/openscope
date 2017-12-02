@@ -694,7 +694,7 @@ export default class CanvasController {
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        // FIXME: simplify/rector these nested loops. can we prepare the result elsewhere and store it
+        // TODO: simplify/rector these nested loops. can we prepare the result elsewhere and store it
         // to be retrieved here? seems wasteful to calculate all this _every_ frame
         for (let i = 0; i < sidLines.length; i++) {
             const sid = sidLines[i];
@@ -1140,7 +1140,7 @@ export default class CanvasController {
 
         cc.save();
 
-        // FIXME: logic and math here should be done once and not every frame. this could be moved to the `RadarTargetModel`
+        // TODO: logic and math here should be done once and not every frame. this could be moved to the `RadarTargetModel`
         const { callsign } = aircraftModel;
         const paddingLR = 5;
         // width of datablock (scales to fit callsign)
@@ -1471,22 +1471,11 @@ export default class CanvasController {
     _drawAirspaceAndRangeRings(cc) {
         cc.save();
         // translate to airport center
-        // FIXME: create method in CanvasStageModel to returns an array with these values
+        // TODO: create method in CanvasStageModel to returns an array with these values
         cc.translate(
             round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
-
-        // FIXME: is this still needed?
-        // Special markings for ENGM point merge
-        // if (AirportController.airport_get().icao === 'ENGM') {
-        //     cc.save();
-        //     cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
-
-        //     this.canvas_draw_engm_range_rings(cc);
-
-        //     cc.restore();
-        // }
 
         this._drawAirspaceBorder(cc);
         this._drawRangeRings(cc);
@@ -1518,7 +1507,7 @@ export default class CanvasController {
         }
     }
 
-    // FIXME: are these two methods still needed? why?
+    // TODO: are these two methods still needed? why?
     // /**
     //  * @for CanvasController
     //  * @method canvas_draw_engm_range_rings

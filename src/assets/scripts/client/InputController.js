@@ -293,7 +293,7 @@ export default class InputController {
 
             currentMousePosition[0] = parseFloat(currentMousePosition[0].toFixed(2));
             currentMousePosition[1] = parseFloat(currentMousePosition[1].toFixed(2));
-            // FIXME: what the is this?!
+            // TODO: what the is this?!
             this.input.positions += `[${currentMousePosition.join(',')}]`;
 
             return false;
