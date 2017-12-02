@@ -32,6 +32,10 @@ ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new ProcedureDefinitionModel());
 });
 
+ava('throws when instantiated with a procedure type but no data', (t) => {
+    t.throws(() => new ProcedureDefinitionModel(PROCEDURE_TYPE.SID));
+});
+
 ava('throws when instantiated with unknown procedure type', (t) => {
     t.throws(() => new ProcedureDefinitionModel('invalidProcedureType', SID_MOCK.BOACH6));
 });

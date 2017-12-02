@@ -1,5 +1,6 @@
 import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
+import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
@@ -26,7 +27,7 @@ export default class ProcedureDefinitionModel {
      * @param data {object} JSON data from airport file
      */
     constructor(procedureType, data) {
-        if (typeof data === 'undefined') {
+        if (_isNil(data)) {
             throw new TypeError(`Expected valid procedure data, but received '${data}'`);
         }
 
