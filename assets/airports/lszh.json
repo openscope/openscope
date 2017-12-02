@@ -26,44 +26,67 @@
             "ceiling": 170,
             "airspace_class": "B",
             "poly": [
-                ["N47.76517619125415", "E8.0364990234375"],
-                ["N47.68942806015855", "E8.03924560546875"],
+                ["N47.86517619125415", "E8.0364990234375"],
+                ["N47.68942806015855", "E7.73924560546875"],
                 ["N47.61867153529717", "E7.64261474609375"],
                 ["N47.396490013933416", "E7.59961474609375"],
-                ["N47.2704545156932", "E8d5m1.00"],
-                ["N47.202270864380086", "E8d5m18.00"],
+                ["N47.2704545156932", "E7d57m0.00"],
                 ["N47.094112659842015", "E8d5m18.00"],
                 ["N46.937136280659246", "E8.59954833984375"],
                 ["N46.97275640318636", "E8.96484375"],
                 ["N47.18597932702905", "E9.2889404296875"],
-                ["N47.506069781910846", "E9.2779541015625"],
-                ["N47.70791337194979", "E9.03076171875"],
-                ["N47.97889140226657", "E8.60504150390625"],
-                ["N47.916342040161155", "E8.23699951171875"],
-                ["N47.76517619125415", "E8.0364990234375"]
+                ["N47.606069781910846", "E9.3279541015625"],
+                ["N47.9407591", "E9.03076171875"],
+                ["N48.07889140226657", "E8.60504150390625"],
+                ["N48.016342040161155", "E8.23699951171875"],
+                ["N47.86517619125415", "E8.0364990234375"]
             ]
         }
     ],
     "fixes": {
+        "AMEXO": ["N48d6m6.00", "E10d48m12.00"],
+        "AMIKI": ["N47d34m26.00", "E9d2m15.00"],
         "ARPUS": ["N47d40m21.00", "E6d39m57.00"],
         "BERSU": ["N47d8m8.00", "E7d56m29.00"],
         "BLM"  : ["N47d37m58.00", "E7d29m58.00"],
+        "CANNE": ["N46d10m0.00", "E8d52m52.00"],
         "DEGES": ["N47.412500", "E9.201944"],
+        "DETRI": ["N46d36m22.00", "E8d48m54.00"],
         "DOPIL": ["N47d4m12.00", "E8d1m0.00"],
         "ERMUS": ["N47d13m56.00", "E8d14m41.00"],
+        "ETOXU": ["N47d43m32.89", "E9d33m1.94"],
         "GIPOL": ["N47d30m19.00", "E8d2m27.00"],
         "GUDAX": ["N46d47m5.00", "E7d29m25.00"],
+        "HOC"  : ["N47d27m59.00", "E7d39m55.00"],
+        "IBINI": ["N48d10m8.83", "E8d34m51.33"],
+        "KELIP": ["N46d57m22.00", "E8d45m42.00"],
         "KLO"  : ["N47d27m25.00", "E8d32m44.00"],
+        "KOGOL": ["N47d37m20.16", "E11d23m59.46"],
         "KOLUL": ["N47.467222", "E8.822778"],
         "KONOL": ["N46d59m43.00", "E7d40m51.00"],
         "KORED": ["N46d51m2.00", "E7d24m51.00"],
+        "KPT"  : ["N47d44m44.00", "E10d20m59.00"],
+        "LAMAX": ["N47d37m14.00", "E8d54m14.00"],
+        "LAMGO": ["N48d53m8.80", "E8d46m45.49"],
         "LAMUR": ["N46d34m47.00", "E7d13m53.00"],
         "LUL"  : ["N47d41m17.00", "E6d17m44.00"],
+        "MAH"  : ["N48d15m48.00", "E11d18m42.00"],
+        "MATIV": ["N47d35m35.00", "E9d11m32.00"],
+        "MOSIT": ["N47d4m9.00", "E8d44m38.00"],
         "MOMOL": ["N47d27m42.00", "E8d40m16.00"],
+        "NATLI": ["N47d29m31.00", "E7d30m26.00"],
+        "NEGRA": ["N47d43m20.00", "E9d25m38.00"],
         "NOLKA": ["N47d8m53.00", "E8d7m34.00"],
+        "OMOGI": ["N49d39m21.33", "E8d59m21.40"],
+        "RAVED": ["N47d43m45.00", "E9d40m10.00"],
+        "RILAX": ["N47d56m34.02", "E8d30m48.99"],
         "ROMGA": ["N47d29m26.00", "E9d24m13.00"],
+        "ROREM": ["N47d53m30.00", "E9d50m27.00"],
+        "SUL"  : ["N48d22m53.00", "E8d38m41.00"],
+        "SUNEG": ["N49d11m54.69", "E8d51m51.22"],
         "TADOB": ["N47d10m59.00", "E8d5m23.00"],
         "TRA"  : ["N47d41m22.00", "E8d26m13.00"],
+        "UMTEX": ["N47d50.40", "E9d37.36"],
         "ZH004": ["N47.606320", "E8.608922"],
         "ZH005": ["N47.701158", "E8.543450"],
         "ZH006": ["N47.763022", "E8.500600"],
@@ -89,7 +112,6 @@
         "ZH208": ["N47.323878", "E8.783778"],
         "ZH209": ["N47.314900", "E8.905547"],
         "ZH210": ["N47.305795", "E9.027272"],
-        "ZH264": ["N47.864436", "E8.538222"],
         "ZH265": ["N47.805067", "E8.556806"],
         "ZH266": ["N47.741808", "E8.576556"],
         "ZH267": ["N47.636542", "E8.609317"],
@@ -106,7 +128,6 @@
         "ZH310": ["N47.173169", "E8.554458"],
         "ZH340": ["N47.222394", "E8.709550"],
         "ZH363": ["N47.865092", "E8.528153"],
-        "ZH364": ["N47.800358", "E8.540236"],
         "ZH365": ["N47.724570", "E8.554345"],
         "ZH366": ["N47.634003", "E8.616892"],
         "ZH367": ["N47.543397", "E8.679225"],
@@ -133,11 +154,12 @@
         "ZH578": ["N47.502695", "E8.459167"],
         "ZH625": ["N47.331945", "E8.700833"],
         "ZH626": ["N47.271944", "E8.711389"],
+        "ZH627": ["N47d22m20.7", "E8d37m13.7"],
+        "ZH628": ["N47d16m9.1", "E8d41m28.0"],
         "ZH650": ["N47.362778", "E8.533333"],
         "ZH676": ["N47.461111", "E8.504445"],
         "ZH677": ["N47.577222", "E7.736945"],
         "ZH701": ["N47.630833", "E8.667778"],
-        "ZH702": ["N47.733056", "E8.567500"],
         "ZH703": ["N47.485103", "E8.936397"],
         "ZH713": ["N47.595306", "E8.337528"],
         "ZH725": ["N47.253333", "E8.798056"],
@@ -206,25 +228,6 @@
         }
     },
     "stars": {
-        "BLM": {
-            "icao": "BLM2G",
-            "name": "Basle-Mulhouse Two Golf",
-            "entryPoints": {
-                "BLM": ["BLM"]
-            },
-            "body": [["ZH677", "A120+|S250"], ["@GIPOL", "A70+|A100-|S230"]],
-            "rwy": {
-                "10": [],
-                "14": [],
-                "16": [],
-                "28": [],
-                "32": [],
-                "34": []
-            },
-            "draw": [
-                ["BLM", "ZH677", "GIPOL"]
-            ]
-        },
         "BERSU": {
             "icao": "BERS1G",
             "name": "Bersu One Golf",
@@ -244,6 +247,25 @@
                 ["BERSU", "TADOB", "ERMUS", "GIPOL"]
             ]
         },
+        "BLM": {
+            "icao": "BLM2G",
+            "name": "Basle-Mulhouse Two Golf",
+            "entryPoints": {
+                "BLM": ["BLM"]
+            },
+            "body": [["ZH677", "A120+|S250"], ["@GIPOL", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["BLM", "ZH677", "GIPOL"]
+            ]
+        },
         "DOPIL": {
             "icao": "DOPI1G",
             "name": "Dopil One Golf",
@@ -261,6 +283,83 @@
             },
             "draw": [
                 ["DOPIL", "NOLKA"]
+            ]
+        },
+        "HOC": {
+            "icao": "HOC1G",
+            "name": "Hochwald One Golf",
+            "entryPoints": {
+                "HOC": [["HOC", "S250"]]
+            },
+            "body": [["@GIPOL", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["HOC", "GIPOL"]
+            ]
+        },
+        "KELIP": {
+            "icao": "KELI2G",
+            "name": "Kelip Two Golf",
+            "entryPoints": {
+                "KELIP": [["KELIP", "S270"]]
+            },
+            "body": [["MOSIT", "A140+"], ["ZH628", "A100+|S250"], "ZH627", "KLO", ["@GIPOL", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["KELIP", "MOSIT", "ZH628", "ZH627", "KLO", "GIPOL"]
+            ]
+        },
+        "NEGRA": {
+            "icao": "NEGR1A",
+            "name": "Negra One Alpha",
+            "entryPoints": {
+                "NEGRA": [["NEGRA", "S270"]],
+                "RAVED": ["RAVED", "ETOXU", ["NEGRA", "S270"]]
+            },
+            "body": [["MATIV", "S250"], ["@AMIKI", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["RAVED", "ETOXU", "NEGRA", "MATIV", "AMIKI"]
+            ]
+        },
+        "RILAX": {
+            "icao": "RILA1A",
+            "name": "Rilax One Alpha",
+            "entryPoints": {
+                "RILAX": [["RILAX", "S250|A130-"]]
+            },
+            "body": ["LAMAX", ["@AMIKI", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["RILAX", "LAMAX", "AMIKI"]
             ]
         }
     },
@@ -333,9 +432,139 @@
             "altitude": [25000, 27000],
             "speed": 290,
             "method": "random",
-            "rate": 10,
+            "rate": 0.1,
             "airlines": [
                 ["swr", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "LUL..NATLI..HOC.HOC1G.LSZH",
+            "altitude": [28000, 32000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "LUL..NATLI..HOC.HOC1G.LSZH",
+            "altitude": [23000, 25000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr/long", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "CANNE..DETRI..KELIP.KELI2G.LSZH",
+            "altitude": [30000, 39000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr", 0.1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "CANNE..DETRI..KELIP.KELI2G.LSZH",
+            "altitude": [27000, 32000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr/long", 0.1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "KOGOL..KPT..RAVED.NEGR1A.LSZH",
+            "altitude": [30000, 39000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "KOGOL..KPT..RAVED.NEGR1A.LSZH",
+            "altitude": [29000, 32000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr/long", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "MAH..AMEXO..ROREM..UMTEX..NEGRA.NEGR1A.LSZH",
+            "altitude": [31000, 39000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "MAH..AMEXO..ROREM..UMTEX..NEGRA.NEGR1A.LSZH",
+            "altitude": [29000, 32000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr/long", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "OMOGI..SUNEG..LAMGO..SUL..IBINI..RILAX.RILA1A.LSZH",
+            "altitude": [31000, 39000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "OMOGI..SUNEG..LAMGO..SUL..IBINI..RILAX.RILA1A.LSZH",
+            "altitude": [29000, 34000],
+            "speed": 290,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["swr/long", 30]
             ]
         }
     ],
