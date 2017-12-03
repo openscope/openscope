@@ -308,15 +308,7 @@ export default class WaypointModel {
      * @return {number} bearing, in radians
      */
     calculateBearingToWaypoint(waypointModel) {
-        if (!(waypointModel instanceof WaypointModel)) {
-            // FIXME: Possibly an error is needed here?
-            return;
-        }
-
-        if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
-            // FIXME: Possibly an error is needed here?
-            return;
-        }
+        this._ensureNonVectorWaypointsForThisAndWaypoint(waypointModel);
 
         return this._positionModel.bearingToPosition(waypointModel.positionModel);
     }
@@ -330,13 +322,7 @@ export default class WaypointModel {
      * @return {number} distance, in nautical miles
      */
     calculateDistanceToWaypoint(waypointModel) {
-        if (!(waypointModel instanceof WaypointModel)) {
-            return 0;
-        }
-
-        if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
-            return 0;
-        }
+        this._ensureNonVectorWaypointsForThisAndWaypoint(waypointModel);
 
         return this._positionModel.distanceToPosition(waypointModel.positionModel);
     }
@@ -482,6 +468,32 @@ export default class WaypointModel {
 
         this.speedMaximum = speed;
         this.speedMinimum = speed;
+    }
+
+    /**
+     * Verify that this waypoint and the specified waypoint are both valid, non-vector waypoints
+     *
+     * If either are not, then throw some errors about it.
+     *
+     * This method is used to protect certain methods that would have undesirable
+     * behaviors with vector waypoints (such as those measuring angles or distances
+     * between waypoint models, etc). In those cases, we should be cognizant to
+     * exclude vector (or other undesirable) waypoints from those operations, rather
+     * than attempting to execute a calculation that cannot yield a logical result.
+     *
+     * @for WaypointModel
+     * @method _ensureNonVectorWaypointsForThisAndWaypoint
+     * @param waypointModel {WaypointModel}
+     * @private
+     */
+    _ensureNonVectorWaypointsForThisAndWaypoint(waypointModel) {
+        if (!(waypointModel instanceof WaypointModel)) {
+            throw new TypeError(`Expected a WaypointModel instance, but received type '${waypointModel}'`);
+        }
+
+        if (this._isVectorWaypoint || waypointModel.isVectorWaypoint) {
+            throw new TypeError('Expected .calculateBearingToWaypoint() to never be called with vector waypoints!');
+        }
     }
 
     /**

@@ -1,4 +1,5 @@
 import ava from 'ava';
+import sinon from 'sinon';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
@@ -531,7 +532,14 @@ ava('#positionModel returns #_positionModel', (t) => {
     t.deepEqual(result, expectedResult);
 });
 
-ava('#relativePosition returns #_positionModel.relativePosition', (t) => {
+ava('#relativePosition returns undefined for vector waypoints', (t) => {
+    const waypointModel = new WaypointModel('#320');
+    const result = waypointModel.relativePosition;
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('#relativePosition returns #_positionModel.relativePosition for non-vector waypoints', (t) => {
     const waypointModel = new WaypointModel('BOACH');
     const expectedResult = [-3.3138243641281715, -46.35714730047791];
     const result = waypointModel.relativePosition;
@@ -579,6 +587,44 @@ ava('#isVectorWaypoint returns true when #_isVectorWaypoint is true', (t) => {
     const result = model.isVectorWaypoint;
 
     t.true(result);
+});
+
+ava('.calculateBearingToWaypoint() calls ._ensureNonVectorWaypointsForThisAndWaypoint()', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('FRAWG');
+    const ensureNonVectorWaypointsForThisAndWaypointSpy = sinon.spy(model, '_ensureNonVectorWaypointsForThisAndWaypoint');
+
+    model.calculateBearingToWaypoint(otherModel);
+
+    t.true(ensureNonVectorWaypointsForThisAndWaypointSpy.calledWithExactly(otherModel));
+});
+
+ava('.calculateBearingToWaypoint() returns correct bearing', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('FRAWG');
+    const expectedResult = 0.5299639748799476;
+    const result = model.calculateBearingToWaypoint(otherModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.calculateDistanceToWaypoint() calls ._ensureNonVectorWaypointsForThisAndWaypoint()', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('FRAWG');
+    const ensureNonVectorWaypointsForThisAndWaypointSpy = sinon.spy(model, '_ensureNonVectorWaypointsForThisAndWaypoint');
+
+    model.calculateDistanceToWaypoint(otherModel);
+
+    t.true(ensureNonVectorWaypointsForThisAndWaypointSpy.calledWithExactly(otherModel));
+});
+
+ava('.calculateDistanceToWaypoint() returns correct distance', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('FRAWG');
+    const expectedResult = 37.98364876057637;
+    const result = model.calculateDistanceToWaypoint(otherModel);
+
+    t.true(result === expectedResult);
 });
 
 ava('.getVector() returns undefined if waypoint is not a vector waypoint', (t) => {
@@ -634,4 +680,32 @@ ava('.hasMinimumAltitudeAbove() returns true when waypoint has min restriction a
     const constraint = 10000;
 
     t.true(model.hasMinimumAltitudeAbove(constraint));
+});
+
+ava('._ensureNonVectorWaypointsForThisAndWaypoint() throws if parameter is not a WaypointModel', (t) => {
+    const model = new WaypointModel('BOACH');
+    const nonWaypoint = 'BOACH';
+
+    t.throws(() => model._ensureNonVectorWaypointsForThisAndWaypoint(nonWaypoint));
+});
+
+ava('._ensureNonVectorWaypointsForThisAndWaypoint() throws if this is a vector waypoint', (t) => {
+    const model = new WaypointModel('#320');
+    const otherModel = new WaypointModel('BOACH');
+
+    t.throws(() => model._ensureNonVectorWaypointsForThisAndWaypoint(otherModel));
+});
+
+ava('._ensureNonVectorWaypointsForThisAndWaypoint() throws if parameter is a vector waypoint', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('#320');
+
+    t.throws(() => model._ensureNonVectorWaypointsForThisAndWaypoint(otherModel));
+});
+
+ava('._ensureNonVectorWaypointsForThisAndWaypoint() does not throw when both are valid, non-vector waypoints', (t) => {
+    const model = new WaypointModel('BOACH');
+    const otherModel = new WaypointModel('FRAWG');
+
+    t.notThrows(() => model._ensureNonVectorWaypointsForThisAndWaypoint(otherModel));
 });
