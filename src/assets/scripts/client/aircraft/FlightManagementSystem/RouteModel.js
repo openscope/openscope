@@ -137,7 +137,7 @@ export default class RouteModel extends BaseModel {
         }
 
         if (this.currentLeg.hasNextWaypoint()) {
-            return this.currentLeg.waypoints[1];
+            return this.currentLeg.nextWaypoint;
         }
 
         return this.nextLeg.currentWaypoint;
@@ -228,6 +228,23 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+    * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
+    *
+    * @for RouteModel
+    * @method getBottomAltitude
+    * @return {number}
+    */
+    getBottomAltitude() {
+        const valueToExclude = INVALID_NUMBER;
+        const minAltitudeFromLegs = _without(
+            _map(this._legCollection, (leg) => leg.getProcedureBottomAltitude()),
+            valueToExclude
+        );
+
+        return Math.min(...minAltitudeFromLegs);
+    }
+
+    /**
      * Generate a route string for all legs in the `#_previousLegCollection` an `#_legCollection`
      *
      * @for RouteModel
@@ -253,7 +270,7 @@ export default class RouteModel extends BaseModel {
     getFullRouteStringWithSpaces() {
         const routeString = this.getFullRouteString();
 
-        return routeString.replace(DIRECT_SEGMENT_DIVIDER, ' ').replace(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER, ' ');
+        return routeString.replace(REGEX.DOUBLE_DOT, ' ').replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
@@ -281,23 +298,6 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
-     *
-     * @for RouteModel
-     * @method getBottomAltitude
-     * @return {number}
-     */
-    getBottomAltitude() {
-        const valueToExclude = INVALID_NUMBER;
-        const minAltitudeFromLegs = _without(
-            _map(this._legCollection, (leg) => leg.getProcedureBottomAltitude()),
-            valueToExclude
-        );
-
-        return Math.min(...minAltitudeFromLegs);
-    }
-
-    /**
      * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
     *
     * @for RouteModel
@@ -305,7 +305,7 @@ export default class RouteModel extends BaseModel {
     * @return {number}
     */
     getTopAltitude() {
-        const maxAltitudeFromLegs = _map(this.legCollection, (leg) => leg.getProcedureTopAltitude());
+        const maxAltitudeFromLegs = _map(this._legCollection, (leg) => leg.getProcedureTopAltitude());
 
         return Math.max(...maxAltitudeFromLegs);
     }
@@ -371,7 +371,7 @@ export default class RouteModel extends BaseModel {
      */
     moveToNextWaypoint() {
         if (!this.currentLeg.hasNextWaypoint()) {
-            return this.skipToNextLeg();
+            return this.moveToNextLeg();
         }
 
         this.currentLeg.moveToNextWaypoint();
@@ -461,9 +461,9 @@ export default class RouteModel extends BaseModel {
      * This also results in the `#nextLeg` becoming the `#currentLeg`
      *
      * @for RouteModel
-     * @method skipToNextLeg
+     * @method moveToNextLeg
      */
-    skipToNextLeg() {
+    moveToNextLeg() {
         if (!this.hasNextLeg()) {
             return;
         }
@@ -487,7 +487,7 @@ export default class RouteModel extends BaseModel {
         }
 
         if (this.currentLeg.hasWaypointName(waypointName)) {
-            this.currentLeg.skipToWaypointName(waypointName);
+            return this.currentLeg.skipToWaypointName(waypointName);
         }
 
         const legIndex = _findIndex(this._legCollection, (legModel) => legModel.hasWaypointName(waypointName));
@@ -496,25 +496,6 @@ export default class RouteModel extends BaseModel {
         this._previousLegCollection.push(...legModelsToMove);
 
         return this.currentLeg.skipToWaypointName(waypointName);
-    }
-
-    /**
-     * Ensure the STAR leg has the specified arrival runway as the exit point
-     *
-     * @for RouteModel
-     * @method updateStarLegForArrivalRunwayModel
-     * @param runwayModel {RunwayModel}
-     */
-    updateStarLegForArrivalRunwayModel(runwayModel) {
-        const starLegIndex = this._findStarLegIndex();
-
-        if (starLegIndex === INVALID_INDEX) {
-            return;
-        }
-
-        const starLegModel = this._legCollection[starLegIndex];
-
-        starLegModel.updateStarLegForArrivalRunwayModel(runwayModel);
     }
 
     /**
@@ -534,6 +515,25 @@ export default class RouteModel extends BaseModel {
         const sidLegModel = this._legCollection[sidLegIndex];
 
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
+    }
+
+    /**
+    * Ensure the STAR leg has the specified arrival runway as the exit point
+    *
+    * @for RouteModel
+    * @method updateStarLegForArrivalRunwayModel
+    * @param runwayModel {RunwayModel}
+    */
+    updateStarLegForArrivalRunwayModel(runwayModel) {
+        const starLegIndex = this._findStarLegIndex();
+
+        if (starLegIndex === INVALID_INDEX) {
+            return;
+        }
+
+        const starLegModel = this._legCollection[starLegIndex];
+
+        starLegModel.updateStarLegForArrivalRunwayModel(runwayModel);
     }
 
     // ------------------------------ PRIVATE ------------------------------

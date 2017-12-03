@@ -320,7 +320,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A80+|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], "TRROP", "LEMNZ"],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],

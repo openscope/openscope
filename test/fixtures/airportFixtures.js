@@ -12,6 +12,9 @@ airportControllerKlasFixture.init('klas', AIRPORT_JSON_KLAS_MOCK, AIRPORT_LOAD_L
 airportControllerKlasFixture.airport_set('klas', AIRPORT_JSON_KLAS_MOCK);
 
 export const airportModelFixture = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+export function createAirportModelFixture() {
+    return new AirportModel(AIRPORT_JSON_KLAS_MOCK);
+}
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new StaticPositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);
