@@ -1,4 +1,5 @@
 import _findIndex from 'lodash/findIndex';
+import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
@@ -9,6 +10,7 @@ import {
 } from '../../constants/globalConstants';
 import {
     LEG_TYPE,
+    PROCEDURE_TYPE,
     PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
  } from '../../constants/routeConstants';
 
@@ -161,7 +163,7 @@ export default class LegModel {
      * @type {boolean}
      */
     get isSidLeg() {
-        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === LEG_TYPE.SID;
+        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.SID;
     }
 
     /**
@@ -172,7 +174,7 @@ export default class LegModel {
      * @type {boolean}
      */
     get isStarLeg() {
-        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === LEG_TYPE.STAR;
+        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.STAR;
     }
 
     /**
@@ -336,46 +338,6 @@ export default class LegModel {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
-     * Whether there are any `WaypointModel`s in this leg beyond the `#currentWaypoint`
-     *
-     * @for LegModel
-     * @method hasNextWaypoint
-     * @return {boolean}
-     */
-    hasNextWaypoint() {
-        return this._waypointCollection.length > 1;
-    }
-
-    /**
-     * Whether a `WaypointModel` with the specified name exists within the `#_waypointCollection`
-     *
-     * Note that this will return false even if the specified fix name IS included
-     * in the `#_previousWaypointCollection`.
-     *
-     * @for LegModel
-     * @method hasWaypointName
-     * @param waypointName {string}
-     * @return {boolean}
-     */
-    hasWaypointName(waypointName) {
-        if (_isNil(waypointName)) {
-            throw new TypeError(`Expected valid fix name but received '${waypointName}'`);
-        }
-
-        waypointName = waypointName.toUpperCase();
-
-        // using a for loop instead of `_find()` to maximize performance
-        // because this operation could happen quite frequently
-        for (let i = 0; i < this._waypointCollection.length; i++) {
-            if (this._waypointCollection[i].name === waypointName) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
      *
      * @for LegModel
@@ -411,15 +373,43 @@ export default class LegModel {
     }
 
     /**
-     * Move all `WaypointModel`s to the `#_previousWaypointCollection`
-     *
-     * @for LegModel
-     * @method skipAllWaypointsInLeg
-     */
-    skipAllWaypointsInLeg() {
-        this._previousWaypointCollection.push(...this._waypointCollection);
+    * Whether there are any `WaypointModel`s in this leg beyond the `#currentWaypoint`
+    *
+    * @for LegModel
+    * @method hasNextWaypoint
+    * @return {boolean}
+    */
+    hasNextWaypoint() {
+        return this._waypointCollection.length > 1;
+    }
 
-        this._waypointCollection = [];
+    /**
+    * Whether a `WaypointModel` with the specified name exists within the `#_waypointCollection`
+    *
+    * Note that this will return false even if the specified fix name IS included
+    * in the `#_previousWaypointCollection`.
+    *
+    * @for LegModel
+    * @method hasWaypointName
+    * @param waypointName {string}
+    * @return {boolean}
+    */
+    hasWaypointName(waypointName) {
+        if (_isEmpty(waypointName)) {
+            throw new TypeError(`Expected valid fix name but received '${waypointName}'`);
+        }
+
+        waypointName = waypointName.toUpperCase();
+
+        // using a for loop instead of `_find()` to maximize performance
+        // because this operation could happen quite frequently
+        for (let i = 0; i < this._waypointCollection.length; i++) {
+            if (this._waypointCollection[i].name === waypointName) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -435,6 +425,18 @@ export default class LegModel {
         const waypointModelToMove = this._waypointCollection.shift();
 
         this._previousWaypointCollection.push(waypointModelToMove);
+    }
+
+    /**
+     * Move all `WaypointModel`s to the `#_previousWaypointCollection`
+     *
+     * @for LegModel
+     * @method skipAllWaypointsInLeg
+     */
+    skipAllWaypointsInLeg() {
+        this._previousWaypointCollection.push(...this._waypointCollection);
+
+        this._waypointCollection = [];
     }
 
     /**
@@ -458,6 +460,38 @@ export default class LegModel {
         const waypointModelsToMove = this._waypointCollection.splice(0, numberOfWaypointsToMove);
 
         this._previousWaypointCollection.push(...waypointModelsToMove);
+    }
+
+    /**
+    * If applicable, make the SID entry match the specified departure runway
+    *
+    * @for LegModel
+    * @method updateSidLegForDepartureRunwayModel
+    * @param runwayModel {RunwayModel}
+    */
+    updateSidLegForDepartureRunwayModel(runwayModel) {
+        if (!this.isSidLeg) {
+            return;
+        }
+
+        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const currentEntryName = routeStringComponents[0];
+        const currentExitName = routeStringComponents[2];
+        // assumed first four characters of exit name to be airport ICAO
+        const currentRunwayName = currentEntryName.substr(4);
+        const nextRunwayName = runwayModel.name;
+        const nextEntryName = currentEntryName.substr(0, 4).concat(nextRunwayName);
+
+        if (runwayModel.name === currentRunwayName) {
+            return;
+        }
+
+
+        if (!this._procedureDefinitionModel.hasEntry(nextEntryName)) {
+            return;
+        }
+
+        this._waypointCollection = this._generateWaypointCollection(nextEntryName, currentExitName);
     }
 
     /**
@@ -489,37 +523,6 @@ export default class LegModel {
         }
 
         this._waypointCollection = this._generateWaypointCollection(currentEntryName, nextExitName);
-    }
-
-    /**
-     * If applicable, make the SID entry match the specified departure runway
-     *
-     * @for LegModel
-     * @method updateSidLegForDepartureRunwayModel
-     * @param runwayModel {RunwayModel}
-     */
-    updateSidLegForDepartureRunwayModel(runwayModel) {
-        if (!this.isSidLeg) {
-            return;
-        }
-
-        const routeStringComponents = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
-        const currentEntryName = routeStringComponents[0];
-        const currentExitName = routeStringComponents[2];
-        // assumed first four characters of exit name to be airport ICAO
-        const currentRunwayName = currentEntryName.substr(4);
-        const nextRunwayName = runwayModel.name;
-        const nextEntryName = currentExitName.substr(0, 4).concat(nextRunwayName);
-
-        if (runwayModel.name === currentRunwayName) {
-            return;
-        }
-
-        if (!this._procedureDefinitionModel.hasEntry(nextEntryName)) {
-            return;
-        }
-
-        this._waypointCollection = this._generateWaypointCollection(nextEntryName, currentExitName);
     }
 
     // ------------------------------ PRIVATE ------------------------------

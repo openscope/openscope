@@ -185,7 +185,6 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "name": "Boach Six",
             "rwy": {
                 "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
-                "KLAS01R": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],
                 "KLAS19L": ["FIXIX", ["ROPPR", "A70"], "RODDD"],
@@ -364,7 +363,6 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "body": [["CLARR", "A130|S250"], "SKEBR", ["KEPEC", "A130"], ["IPUMY", "A110|S230"], ["NIPZO", "A90"], ["SUNST", "A80|S210"], ["KIMME", "A80|S210"], ["CHIPZ", "A80|S170"], "POKRR", "PRINO"],
             "rwy": {
                 "KLAS01L": [],
-                "KLAS01R": [],
                 "KLAS07L": [],
                 "KLAS07R": [],
                 "KLAS19L": ['LEFFT'],
