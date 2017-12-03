@@ -1,0 +1,20 @@
+{
+    "icao": "fin",
+    "name": "Finnair",
+    "callsign": {
+        "name": "Finnair",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 8],
+            ["A320", 10],
+            ["A321", 16],
+            ["E190", 12]
+        ],
+        "long": [
+            ["A333", 8],
+            ["A359", 11]
+        ]
+    }
+}
