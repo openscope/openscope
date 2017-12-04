@@ -35,7 +35,7 @@
                 ["N46.937136280659246", "E8.59954833984375"],
                 ["N46.97275640318636", "E8.96484375"],
                 ["N47.18597932702905", "E9.2889404296875"],
-                ["N47.606069781910846", "E9.3279541015625"],
+                ["N47.756069781910846", "E9.3279541015625"],
                 ["N47.9407591", "E9.03076171875"],
                 ["N48.07889140226657", "E8.60504150390625"],
                 ["N48.016342040161155", "E8.23699951171875"],
@@ -44,17 +44,28 @@
         }
     ],
     "fixes": {
+        "ALAGO": ["N47d47m59.02", "E9d27m46.03"],
+        "ALBIX": ["N47d14m59.00", "E8d33m52.00"],
         "AMEXO": ["N48d6m6.00", "E10d48m12.00"],
         "AMIKI": ["N47d34m26.00", "E9d2m15.00"],
         "ARPUS": ["N47d40m21.00", "E6d39m57.00"],
+        "BADEP": ["N47d1m38.00", "E7d25m28.00"],
+        "BALIR": ["N47d18m30.00", "E7d16m53.00"],
         "BERSU": ["N47d8m8.00", "E7d56m29.00"],
+        "BIKBI": ["N47d58m17.03", "E9d27m43.97"],
         "BLM"  : ["N47d37m58.00", "E7d29m58.00"],
+        "BODAN": ["N47d35m15.02", "E9d27m4.98"],
+        "BREGO": ["N47d23m23.00", "E8d20m46.00"],
         "CANNE": ["N46d10m0.00", "E8d52m52.00"],
         "DEGES": ["N47.412500", "E9.201944"],
         "DETRI": ["N46d36m22.00", "E8d48m54.00"],
         "DOPIL": ["N47d4m12.00", "E8d1m0.00"],
+        "ELMEM": ["N47d17.14", "E10d34.19"],
         "ERMUS": ["N47d13m56.00", "E8d14m41.00"],
+        "ETAGO": ["N48d43m39.25", "E9d27m36.19"],
         "ETOXU": ["N47d43m32.89", "E9d33m1.94"],
+        "FRI"  : ["N46d46m39.00", "E7d13m24.00"],
+        "GAMSA": ["N47d24.59", "E9d39.03"],
         "GIPOL": ["N47d30m19.00", "E8d2m27.00"],
         "GUDAX": ["N46d47m5.00", "E7d29m25.00"],
         "HOC"  : ["N47d27m59.00", "E7d39m55.00"],
@@ -64,14 +75,18 @@
         "KOGOL": ["N47d37m20.16", "E11d23m59.46"],
         "KOLUL": ["N47.467222", "E8.822778"],
         "KONOL": ["N46d59m43.00", "E7d40m51.00"],
+        "KONIN": ["N47d51m21.44", "E11d22m5.03"],
         "KORED": ["N46d51m2.00", "E7d24m51.00"],
         "KPT"  : ["N47d44m44.00", "E10d20m59.00"],
         "LAMAX": ["N47d37m14.00", "E8d54m14.00"],
         "LAMGO": ["N48d53m8.80", "E8d46m45.49"],
         "LAMUR": ["N46d34m47.00", "E7d13m53.00"],
         "LUL"  : ["N47d41m17.00", "E6d17m44.00"],
+        "LUMEL": ["N47d24m26.00", "E7d9m14.00"],
+        "MADEB": ["N47d19m27.75", "E10d17m19.99"],
         "MAH"  : ["N48d15m48.00", "E11d18m42.00"],
         "MATIV": ["N47d35m35.00", "E9d11m32.00"],
+        "MINGA": ["N48d10m0.00", "E9d27m43.03"],
         "MOSIT": ["N47d4m9.00", "E8d44m38.00"],
         "MOMOL": ["N47d27m42.00", "E8d40m16.00"],
         "NATLI": ["N47d29m31.00", "E7d30m26.00"],
@@ -79,14 +94,24 @@
         "NOLKA": ["N47d8m53.00", "E8d7m34.00"],
         "OMOGI": ["N49d39m21.33", "E8d59m21.40"],
         "RAVED": ["N47d43m45.00", "E9d40m10.00"],
+        "REKLA": ["N47d32m8.00", "E5d51m3.00"],
+        "REVLI": ["N46d35m11.00", "E6d44m36.00"],
         "RILAX": ["N47d56m34.02", "E8d30m48.99"],
         "ROMGA": ["N47d29m26.00", "E9d24m13.00"],
         "ROREM": ["N47d53m30.00", "E9d50m27.00"],
+        "ROTOS": ["N47d11m24.00", "E7d43m31.00"],
+        "SPR"  : ["N46d28m7.00", "E6d26m53.00"],
         "SUL"  : ["N48d22m53.00", "E8d38m41.00"],
+        "SUDEN": ["N48d31m44.57", "E9d27m43.90"],
         "SUNEG": ["N49d11m54.69", "E8d51m51.22"],
         "TADOB": ["N47d10m59.00", "E8d5m23.00"],
+        "TORPA": ["N47d28m46.00", "E6d39m31.00"],
         "TRA"  : ["N47d41m22.00", "E8d26m13.00"],
+        "ULMES": ["N46d57m18.00", "E7d17m33.00"],
         "UMTEX": ["N47d50.40", "E9d37.36"],
+        "URNAS": ["N47d0m8.00", "E8d38m18.00"],
+        "VEBIT": ["N47d16m7.00", "E8d0m21.00"],
+        "WIL"  : ["N47d10m41.00", "E7d54m21.00"],
         "ZH004": ["N47.606320", "E8.608922"],
         "ZH005": ["N47.701158", "E8.543450"],
         "ZH006": ["N47.763022", "E8.500600"],
@@ -97,7 +122,6 @@
         "ZH066": ["N47.678047", "E8.232519"],
         "ZH107": ["N47.578645", "E8.605192"],
         "ZH108": ["N47.633683", "E8.529958"],
-        "ZH109": ["N47.694775", "E8.446183"],
         "ZH110": ["N47.755808", "E8.362211"],
         "ZH139": ["N47.628536", "E8.335406"],
         "ZH140": ["N47.687583", "E8.253572"],
@@ -167,7 +191,7 @@
         "ZH751": ["N47.556583", "E8.742889"],
         "ZH775": ["N47.588333", "E8.128889"],
         "ZUE"  : ["N47d35m31.00", "E8d49m3.00"],
-        "_RW10094021": ["N47.454888", "E8.596844"],
+        "_RW10KLO002p1DME": ["N47.454888", "E8.596844"],
         "_KLO085050": ["N47.464116","E8.667911"],
         "_KLO085090": ["N47.4697596","E8.7658192"],
         "_KLO253005": ["N47.43260159218", "E8.42814146721"],
@@ -178,7 +202,13 @@
         "_D190M": ["N47.484397", "E8.383446"],
         "_RWY28KLO03DME": ["N47.463082", "E8.472336"],
         "_TRA190110": ["N47.509004", "E8.389844"],
-        "_KLO268055": ["N47.453677", "E8.410562"]
+        "_WIL053027": ["N47.44697748025", "E8.43593332078"],
+        "_WIL053030": ["N47.4767052716", "E8.49516568348"],
+        "_WIL053035": ["N47.52618333434", "E8.59403460793"],
+        "_KLO268055": ["N47.453677", "E8.410562"],
+        "_BREGO053004": ["N47.42971628593", "E8.42461811672"],
+        "_RW14080001": ["N47.48504840699", "E8.56020266075"],
+        "_ZUE232007": ["N47.52021332016", "E8.68170135269"]
     },
     "runways": [
         {
@@ -212,20 +242,78 @@
             "name": "Deges",
             "suffix": {"10":"1D", "16":"2S", "28":"2W", "32":"3L", "34":"3F"},
             "rwy": {
-                "10": ["^_RW10094021", "_KLO085050","^ZH502"],
+                "10": ["^_RW10KLO002p1DME", "_KLO085050","^ZH502"],
                 "16": ["^_D147A", "_KLO085090", "^ZH502"] ,
                 "28": [["^_RWY28KLO03DME", "S210-"], ["_KLO253005", "S210-"], ["^ZH552", "S210-"], ["_KLO232050", "S210-"], ["^KLO","S210-"], ["MOMOL","S210-"]],
                 "32": ["^_D337B", "^_D335D", "_TRA190110", "^_D190M", "_KLO268055", "^KLO", "MOMOL"],
                 "34": ["^_D335D", "_TRA190110", "^_D190M", "_KLO268055", "^KLO", "MOMOL"]
             },
-            "body": ["KOLUL","ZH504","ZH525"],
+            "body": ["KOLUL", "ZH504", "ZH525"],
             "exitPoints": {
                 "DEGES": ["DEGES"]
             },
             "draw": [
                 ["_KLO085050", "ZH502", "KOLUL","ZH504","ZH525","DEGES*"]
             ]
+        },
+        "VEBIT": {
+            "icao": "VEBIT",
+            "name": "Vebit",
+            "suffix": {"10":"2E", "16":"3S", "28":"3W", "32":"2N", "34":"2H"},
+            "rwy": {
+                "10": ["^_RW10KLO002p1DME", "_WIL053030", "^BREGO"],
+                "16": ["^_D147A", "_RW14080001", "_WIL053027", "^BREGO"],
+                "28": ["^_RWY28KLO03DME", "_BREGO053004", "^BREGO"],
+                "32": ["^_D337B", "^_D335D", "_TRA190110", "BREGO"],
+                "34": ["^_D337B", "^_D335D", "_TRA190110", "BREGO"]
+            },
+            "body": ["ZH554", "ZH558"],
+            "exitPoints": {
+                "VEBIT": ["VEBIT"]
+            },
+            "draw": [
+                ["BREGO", "ZH554", "ZH558", "VEBIT*"]
+            ]
+        },
+        "WIL": {
+            "icao": "WIL",
+            "name": "Willisau",
+            "suffix": {"10":"2D", "16":"3R", "28":"3V", "32":"2M", "34":"2G"},
+            "rwy": {
+                "10": ["^_RW10KLO002p1DME", "_WIL053030", "^BREGO"],
+                "16": ["^_D147A", "_RW14080001", "_WIL053027", "^BREGO"],
+                "28": ["^_RWY28KLO03DME", "_BREGO053004", "^BREGO"],
+                "32": ["^_D337B", "^_D335D", "_TRA190110", "BREGO"],
+                "34": ["^_D337B", "^_D335D", "_TRA190110", "BREGO"]
+            },
+            "body": ["ZH555", "ZH551"],
+            "exitPoints": {
+                "WIL": ["WIL"]
+            },
+            "draw": [
+                ["BREGO", "ZH555", "ZH551", "WIL*"]
+            ]
+        },
+        "ZUE": {
+            "icao": "ZUE",
+            "name": "Zurich East",
+            "suffix": {"10":"1D", "16":"2R", "28":"2V", "32":"3L", "34":"3F"},
+            "rwy": {
+                "10": ["^_RW10KLO002p1DME", "_ZUE232007"],
+                "16": ["^_D147A", "_ZUE232007"],
+                "28": [["^_RWY28KLO03DME", "S210-"], ["_KLO253005", "S210-"], ["^ZH552", "S210-"], ["_KLO232050", "S210-"], ["^KLO","S210-"]],
+                "32": ["^_D337B", "^_D335D", "_TRA190110", "^_D190M", "_KLO268055", "^KLO"],
+                "34": ["^_D337B", "^_D335D", "_TRA190110", "^_D190M", "_KLO268055", "^KLO"]
+            },
+            "body": [],
+            "exitPoints": {
+                "ZUE": ["^ZUE"]
+            },
+            "draw": [
+                ["_ZUE232007", "ZUE*"]
+            ]
         }
+        
     },
     "stars": {
         "BERSU": {
@@ -361,6 +449,44 @@
             "draw": [
                 ["RILAX", "LAMAX", "AMIKI"]
             ]
+        },
+        "URNAS": {
+            "icao": "URNA2Z",
+            "name": "Urnas Two Zulu",
+            "entryPoints": {
+                "URNAS": [["URNAS", "S270|A140+"]]
+            },
+            "body": [["ALBIX", "A100+|S250"], ["ZH650", "A80+"], "ZH676", ["@GIPOL", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["URNAS", "ALBIX", "ZH650", "ZH676", "GIPOL"]
+            ]
+        },
+        "WIL": {
+            "icao": "WIL2Z",
+            "name": "Willisau Two Zulu",
+            "entryPoints": {
+                "WIL": [["WIL", "S250"]]
+            },
+            "body": [["@GIPOL", "A70+|A100-|S230"]],
+            "rwy": {
+                "10": [],
+                "14": [],
+                "16": [],
+                "28": [],
+                "32": [],
+                "34": []
+            },
+            "draw": [
+                ["WIL", "GIPOL"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -368,11 +494,111 @@
             "origin": "LSZH",
             "destination": "",
             "category": "departure",
-            "route": "LSZH.DEGES.DEGES..ROMGA",
+            "route": "LSZH.DEGES.DEGES..ROMGA..BODAN..ALAGO..BIKBI..MINGA..SUDEN",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.1,
+            "rate": 5,
+            "airlines": [
+                ["aua", 5],
+                ["dlh", 5],
+                ["ewg", 5],
+                ["ezy", 3],
+                ["gwi", 5],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "LSZH",
+            "destination": "",
+            "category": "departure",
+            "route": "LSZH.DEGES.DEGES..GAMSA..MADEB..ELMEM",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.4,
+            "airlines": [
+                ["aua", 5],
+                ["dlh", 5],
+                ["ewg", 5],
+                ["ezy", 3],
+                ["gwi", 5],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "LSZH",
+            "destination": "",
+            "category": "departure",
+            "route": "LSZH.DEGES.DEGES..ROMGA..BODAN..KPT..KONIN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.1,
+            "airlines": [
+                ["aua", 5],
+                ["dlh", 5],
+                ["ewg", 5],
+                ["ezy", 3],
+                ["gwi", 5],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "LSZH",
+            "destination": "",
+            "category": "departure",
+            "route": "LSZH.VEBIT.VEBIT..BALIR..LUMEL..TORPA..LUL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aua", 5],
+                ["dlh", 5],
+                ["ewg", 5],
+                ["ezy", 3],
+                ["gwi", 5],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "LSZH",
+            "destination": "",
+            "category": "departure",
+            "route": "LSZH.VEBIT.VEBIT..BALIR..LUMEL..TORPA..REKLA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.2,
+            "airlines": [
+                ["aua", 5],
+                ["dlh", 5],
+                ["ewg", 5],
+                ["ezy", 3],
+                ["gwi", 5],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 30]
+            ]
+        },
+        {
+            "origin": "LSZH",
+            "destination": "",
+            "category": "departure",
+            "route": "LSZH.VEBIT.VEBIT..ROTOS..BADEP..ULMES",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.4,
             "airlines": [
                 ["aua", 5],
                 ["dlh", 5],
@@ -392,7 +618,7 @@
             "altitude": [28000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 3.5,
             "airlines": [
                 ["swr", 30]
             ]
@@ -405,7 +631,7 @@
             "altitude": 24000,
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1,
             "airlines": [
                 ["swr/long", 30]
             ]
@@ -418,7 +644,7 @@
             "altitude": [23000, 25000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 2,
             "airlines": [
                 ["swr", 30],
                 ["swr/long", 30]
@@ -432,7 +658,7 @@
             "altitude": [25000, 27000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1.5,
             "airlines": [
                 ["swr", 30]
             ]
@@ -445,7 +671,7 @@
             "altitude": [28000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1.5,
             "airlines": [
                 ["swr", 30]
             ]
@@ -458,7 +684,7 @@
             "altitude": [23000, 25000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 0.2,
             "airlines": [
                 ["swr/long", 30]
             ]
@@ -471,7 +697,7 @@
             "altitude": [30000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1.75,
             "airlines": [
                 ["swr", 0.1]
             ]
@@ -484,7 +710,7 @@
             "altitude": [27000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 0.5,
             "airlines": [
                 ["swr/long", 0.1]
             ]
@@ -497,7 +723,7 @@
             "altitude": [30000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1.7,
             "airlines": [
                 ["swr", 30]
             ]
@@ -510,7 +736,7 @@
             "altitude": [29000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 0.4,
             "airlines": [
                 ["swr/long", 30]
             ]
@@ -523,7 +749,7 @@
             "altitude": [31000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 1.7,
             "airlines": [
                 ["swr", 30]
             ]
@@ -536,7 +762,7 @@
             "altitude": [29000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 0.4,
             "airlines": [
                 ["swr/long", 30]
             ]
@@ -549,7 +775,7 @@
             "altitude": [31000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 0.1,
+            "rate": 3,
             "airlines": [
                 ["swr", 30]
             ]
@@ -562,9 +788,22 @@
             "altitude": [29000, 34000],
             "speed": 290,
             "method": "random",
-            "rate": 10,
+            "rate": 0.75,
             "airlines": [
                 ["swr/long", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LSZH",
+            "category": "arrival",
+            "route": "SPR..REVLI..FRI..WIL.WIL2Z.LSZH",
+            "altitude": [31000, 39000],
+            "speed": 290,
+            "method": "random",
+            "rate": 0.2,
+            "airlines": [
+                ["swr", 1]
             ]
         }
     ],
