@@ -72,6 +72,7 @@ An airport guide must also be included as a way of providing some knowledge to u
 - List of positions/sectors of the airspace
 - Some information on the different airports controlled by the position (location, annual operations, type of traffic)
 - Additional resources (relevant documents, videos, files, etc.)
+
 See reference materials for an example of an airport guide.
 
 ---
