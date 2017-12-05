@@ -500,14 +500,24 @@
             "method": "random",
             "rate": 5.75,
             "airlines": [
-                ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
+                ["afl", 3],
+                ["bti", 2],
+                ["dlh", 10],
+                ["edw", 11],
+                ["ewg", 12],
                 ["ezy", 3],
-                ["gwi", 5],
-                ["n/fastGA", 4],
-                ["nly", 7],
-                ["swr", 30]
+                ["fin", 3],
+                ["gwi", 2],
+                ["klm", 5],
+                ["lot", 2],
+                ["n/fastGA", 2],
+                ["nly", 4],
+                ["oaw", 2],
+                ["ual/long", 1],
+                ["vlg", 1],
+                ["sas", 5],
+                ["swr/long", 8],
+                ["swr", 45]
             ]
         },
         {
@@ -520,14 +530,33 @@
             "method": "random",
             "rate": 3.91,
             "airlines": [
+                ["adr", 3],
+                ["aee", 3],
+                ["asl", 4],
                 ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
+                ["ctn", 2],
+                ["edw", 20],
+                ["edw/long", 8],
+                ["ely", 5],
+                ["etd/long", 5],
+                ["ewg", 2],
                 ["ezy", 3],
-                ["gwi", 5],
+                ["gsw", 8],
+                ["lzb", 2],
                 ["n/fastGA", 4],
-                ["nly", 7],
-                ["swr", 30]
+                ["nly", 8],
+                ["oma/long", 5],
+                ["rja", 4],
+                ["qtr/long", 7],
+                ["asl", 4],
+                ["sia", 6],
+                ["swr/long", 25],
+                ["swr", 60],
+                ["sxs", 5],
+                ["tha/long", 4],
+                ["thy", 7],
+                ["thy/long", 1],
+                ["uae", 10]
             ]
         },
         {
@@ -540,14 +569,20 @@
             "method": "random",
             "rate": 3.565,
             "airlines": [
-                ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
-                ["ezy", 3],
-                ["gwi", 5],
-                ["n/fastGA", 4],
+                ["afl", 5],
+                ["aua", 18],
+                ["aui", 5],
+                ["cca/long", 5],
+                ["cpa", 4],
+                ["dlh", 13],
+                ["edw", 5],
+                ["ewg", 10],
+                ["ezy", 5],
+                ["gwi", 4],
+                ["n/fastGA", 10],
                 ["nly", 7],
-                ["swr", 30]
+                ["swr", 50],
+                ["swr/long", 10]
             ]
         },
         {
@@ -558,16 +593,26 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4.6,
+            "rate": 4.1,
             "airlines": [
-                ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
-                ["ezy", 3],
-                ["gwi", 5],
-                ["n/fastGA", 4],
+                ["aal/long", 5],
+                ["aca/long", 3],
+                ["afr", 10],
+                ["baw", 15],
+                ["cfe", 9],
+                ["dal/long", 5],
+                ["edw/long", 15],
+                ["ein", 7],
+                ["ewg", 2],
+                ["ezy", 10],
+                ["ice", 5],
+                ["klm", 12],
+                ["n/fastGA", 5],
                 ["nly", 7],
-                ["swr", 30]
+                ["swr", 60],
+                ["swr/long", 35],
+                ["tra", 4],
+                ["ual/long", 7]
             ]
         },
         {
@@ -580,14 +625,24 @@
             "method": "random",
             "rate": 1.38,
             "airlines": [
-                ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
-                ["ezy", 3],
-                ["gwi", 5],
-                ["n/fastGA", 4],
+                ["aal/long", 5],
+                ["aca/long", 3],
+                ["afr", 10],
+                ["baw", 15],
+                ["cfe", 9],
+                ["dal/long", 5],
+                ["edw/long", 15],
+                ["ein", 7],
+                ["ewg", 2],
+                ["ezy", 10],
+                ["ice", 3],
+                ["klm", 12],
+                ["n/fastGA", 5],
                 ["nly", 7],
-                ["swr", 30]
+                ["swr", 40],
+                ["swr/long", 20],
+                ["tra", 4],
+                ["ual/long", 7]
             ]
         },
         {
@@ -598,16 +653,17 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.91,
+            "rate": 4.41,
             "airlines": [
-                ["aua", 5],
-                ["dlh", 5],
-                ["ewg", 5],
-                ["ezy", 3],
-                ["gwi", 5],
-                ["n/fastGA", 4],
+                ["edw", 25],
+                ["ezy", 5],
+                ["gsw", 6],
+                ["n/fastGA", 7],
                 ["nly", 7],
-                ["swr", 30]
+                ["swr", 50],
+                ["swr/long", 15],
+                ["tap", 10],
+                ["vlg", 25]
             ]
         },
         {
@@ -620,7 +676,19 @@
             "method": "random",
             "rate": 4.025,
             "airlines": [
-                ["swr", 30]
+                ["afr", 10],
+                ["baw", 15],
+                ["cfe", 9],
+                ["ein", 7],
+                ["ewg", 5],
+                ["ezy", 10],
+                ["ice", 5],
+                ["klm", 12],
+                ["n/fastGA", 7],
+                ["nly", 7],
+                ["swr", 50],
+                ["tra", 5]
+                
             ]
         },
         {
@@ -633,7 +701,12 @@
             "method": "random",
             "rate": 1.15,
             "airlines": [
-                ["swr/long", 30]
+                ["aal/long", 10],
+                ["aca/long", 10],
+                ["dal/long", 10],
+                ["edw/long", 30],
+                ["swr/long", 70],
+                ["ual/long", 10]
             ]
         },
         {
@@ -646,8 +719,15 @@
             "method": "random",
             "rate": 2.3,
             "airlines": [
-                ["swr", 30],
-                ["swr/long", 30]
+                ["edw", 25],
+                ["ezy", 5],
+                ["gsw", 6],
+                ["n/fastGA", 7],
+                ["nly", 7],
+                ["swr", 40],
+                ["swr/long", 10],
+                ["tap", 10],
+                ["vlg", 25]
             ]
         },
         {
@@ -660,7 +740,15 @@
             "method": "random",
             "rate": 1.725,
             "airlines": [
-                ["swr", 30]
+                ["edw", 20],
+                ["ezy", 5],
+                ["gsw", 6],
+                ["n/fastGA", 7],
+                ["nly", 7],
+                ["swr", 50],
+                ["swr/long", 15],
+                ["tap", 10],
+                ["vlg", 25]
             ]
         },
         {
@@ -673,7 +761,18 @@
             "method": "random",
             "rate": 1.75,
             "airlines": [
-                ["swr", 30]
+                ["afr", 10],
+                ["baw", 15],
+                ["cfe", 9],
+                ["ein", 7],
+                ["ewg", 2],
+                ["ezy", 10],
+                ["ice", 3],
+                ["klm", 12],
+                ["n/fastGA", 5],
+                ["nly", 7],
+                ["swr", 50],
+                ["tra", 4]
             ]
         },
         {
@@ -686,7 +785,12 @@
             "method": "random",
             "rate": 0.23,
             "airlines": [
-                ["swr/long", 30]
+                ["aal/long", 10],
+                ["aca/long", 10],
+                ["dal/long", 10],
+                ["edw/long", 30],
+                ["swr/long", 70],
+                ["ual/long", 10]
             ]
         },
         {
@@ -699,7 +803,14 @@
             "method": "random",
             "rate": 2.0125,
             "airlines": [
-                ["swr", 0.1]
+                ["edw", 25],
+                ["ezy", 5],
+                ["gsw", 6],
+                ["n/fastGA", 7],
+                ["nly", 7],
+                ["swr", 40],
+                ["tap", 10],
+                ["vlg", 25]
             ]
         },
         {
@@ -712,7 +823,7 @@
             "method": "random",
             "rate": 0.575,
             "airlines": [
-                ["swr/long", 0.1]
+                ["swr/long", 35]
             ]
         },
         {
@@ -725,7 +836,26 @@
             "method": "random",
             "rate": 1.955,
             "airlines": [
-                ["swr", 30]
+                ["adr", 3],
+                ["aee", 3],
+                ["asl", 4],
+                ["aua", 5],
+                ["ctn", 2],
+                ["edw", 20],
+                ["ely", 5],
+                ["ewg", 2],
+                ["ezy", 3],
+                ["gsw", 8],
+                ["lzb", 2],
+                ["n/fastGA", 4],
+                ["nly", 8],
+                ["rja", 4],
+                ["asl", 4],
+                ["sia", 6],
+                ["swr", 60],
+                ["sxs", 5],
+                ["thy", 7],
+                ["uae", 10]
             ]
         },
         {
@@ -738,7 +868,14 @@
             "method": "random",
             "rate": 0.46,
             "airlines": [
-                ["swr/long", 30]
+                ["edw/long", 8],
+                ["etd/long", 5],
+                ["oma/long", 5],
+                ["qtr/long", 12],
+                ["uae", 12],
+                ["swr/long", 40],
+                ["tha/long", 8],
+                ["thy/long", 1]
             ]
         },
         {
@@ -751,7 +888,18 @@
             "method": "random",
             "rate": 1.955,
             "airlines": [
-                ["swr", 30]
+                ["afl", 3],
+                ["aua", 18],
+                ["aui", 2],
+                ["cpa", 4],
+                ["dlh", 13],
+                ["edw", 5],
+                ["ewg", 10],
+                ["ezy", 5],
+                ["gwi", 4],
+                ["n/fastGA", 4],
+                ["nly", 7],
+                ["swr", 70]
             ]
         },
         {
@@ -764,7 +912,8 @@
             "method": "random",
             "rate": 0.46,
             "airlines": [
-                ["swr/long", 30]
+                ["cca/long", 3],
+                ["swr/long", 20]
             ]
         },
         {
@@ -777,6 +926,21 @@
             "method": "random",
             "rate": 3.45,
             "airlines": [
+                ["afl", 3],
+                ["bti", 2],
+                ["dlh", 10],
+                ["edw", 11],
+                ["ewg", 12],
+                ["ezy", 3],
+                ["fin", 3],
+                ["gwi", 2],
+                ["klm", 5],
+                ["lot", 2],
+                ["n/fastGA", 2],
+                ["nly", 4],
+                ["oaw", 2],
+                ["vlg", 1],
+                ["sas", 5],
                 ["swr", 30]
             ]
         },
@@ -790,7 +954,8 @@
             "method": "random",
             "rate": 0.8625,
             "airlines": [
-                ["swr/long", 30]
+                ["swr/long", 8],
+                ["ual/long", 1]
             ]
         },
         {
