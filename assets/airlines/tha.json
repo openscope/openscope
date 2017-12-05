@@ -1,0 +1,22 @@
+{
+    "icao": "tha",
+    "name": "Thai Airways International",
+    "callsign": {
+        "name": "Thai",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B734", 2]
+        ],
+        "long": [
+            ["A333", 15],
+            ["A359", 9],
+            ["B744", 10],
+            ["B772", 12],
+            ["B77W", 20],
+            ["B788", 6],
+            ["B789", 2]
+        ]
+    }
+}

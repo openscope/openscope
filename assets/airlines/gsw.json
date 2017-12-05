@@ -1,0 +1,14 @@
+{
+    "icao": "gsw",
+    "name": "Germania Flug",
+    "callsign": {
+        "name": "Eiger",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2],
+            ["A320", 1]
+        ]
+    }
+}

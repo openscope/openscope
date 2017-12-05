@@ -1,0 +1,14 @@
+{
+    "icao": "cfe",
+    "name": "BA CityFlyer",
+    "callsign": {
+        "name": "CityFlyer",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["E170",   6],
+            ["E190",  14]
+        ]
+    }
+}
