@@ -135,6 +135,18 @@ export default class Fms {
     }
 
     /**
+    * The active Leg in the `legCollection`
+    *
+    * Assumed to ALWAYS be the first `LegModel` in the `legCollection`
+    *
+    * @property currentLeg
+    * @type {LegModel}
+    */
+    get currentLeg() {
+        return this._routeModel.currentLeg;
+    }
+
+    /**
      * Provides access to the `RunwayModel` currently associated with the Fms
      *
      * It is assumed only an arrival or departure runway will
@@ -171,18 +183,6 @@ export default class Fms {
      */
     get currentWaypoint() {
         return this._routeModel.currentWaypoint;
-    }
-
-    /**
-     * The active Leg in the `legCollection`
-     *
-     * Assumed to ALWAYS be the first `LegModel` in the `legCollection`
-     *
-     * @property currentLeg
-     * @type {LegModel}
-     */
-    get currentLeg() {
-        return this._routeModel.currentLeg;
     }
 
     /**
@@ -274,8 +274,10 @@ export default class Fms {
         return this._routeModel.waypoints;
     }
 
+    // ------------------------------ LIFECYCLE ------------------------------
+
     /**
-     * Initialize the instance and setup initial properties
+     * Initialize class properties
      *
      * @for Fms
      * @method init
@@ -286,18 +288,18 @@ export default class Fms {
 
         this._verifyRouteContainsMultipleWaypoints();
         this._setCurrentPhaseFromCategory(category);
-        this._setInitialRunwayAssignmentFromCategory(category, initialRunwayAssignment);
+        this._initializeRunwayAssignmentsForCategory(category, initialRunwayAssignment);
         this._initializeFlightPlanAltitude(altitude, category, model);
-        this._setInitialFix(nextFix);
+        this._initializePositionInRouteToBeginAtFixName(nextFix);
     }
 
     /**
-     * Destroy the instance and reset properties
+     * Reset class properties
      *
      * @for LegModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
+    reset() {
         this._navigationLibrary = null;
         this.currentPhase = '';
         this.departureRunwayModel = null;
@@ -305,6 +307,16 @@ export default class Fms {
         this.flightPlanAltitude = INVALID_NUMBER;
     }
 
+    /**
+     * Initialize #flightPlanAltitude
+     *
+     * @for Fms
+     * @method _initializeFlightPlanAltitude
+     * @param altitude {number}
+     * @param category {string} one of `FLIGHT_CATEGORY` enum
+     * @param model {AircraftTypeDefinitionModel}
+     * @private
+     */
     _initializeFlightPlanAltitude(altitude, category, model) {
         this.flightPlanAltitude = altitude;
 
@@ -326,11 +338,11 @@ export default class Fms {
      * spawned AT the first fix.
      *
      * @for Fms
-     * @method _setInitialFix
+     * @method _initializePositionInRouteToBeginAtFixName
      * @param fixName {string}
      * @private
      */
-    _setInitialFix(fixName) {
+    _initializePositionInRouteToBeginAtFixName(fixName) {
         if (typeof fixName === 'undefined') {
             return this.moveToNextWaypoint();
         }
@@ -343,180 +355,38 @@ export default class Fms {
     }
 
     /**
-     * Return an array of waypoints in the flight plan that have altitude restrictions
+     * Set the appropriate runway property with the passed `RunwayModel`
      *
      * @for Fms
-     * @method getAltitudeRestrictedWaypoints
-     * @return {array<WaypointModel>}
+     * @method _initializeRunwayAssignmentsForCategory
+     * @param category {string}
+     * @param runway {RunwayModel}
+     * @private
      */
-    getAltitudeRestrictedWaypoints() {
-        return this._routeModel.getAltitudeRestrictedWaypoints();
-    }
-
-    /**
-     * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
-     *
-     * @for LegModel
-     * @method getTopAltitude
-     * @return {number}
-     */
-    getTopAltitude() {
-        return this._routeModel.getTopAltitude();
-    }
-
-    /**
-     * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
-     *
-     * @for Fms
-     * @method getBottomAltitude
-     * @return {number}
-     */
-    getBottomAltitude() {
-        return this._routeModel.getBottomAltitude();
-    }
-
-    /**
-     * Get the flight plan route string in dot notation
-     *
-     * @for Fms
-     * @method getRouteString
-     * @return {string}
-     */
-    getRouteString() {
-        return this._routeModel.getRouteString();
-    }
-
-    /**
-     * Get the flight plan route string with legs separated by spaces
-     *
-     * This is primarily meant for use in the `StripViewModel`.
-     *
-     * @for Fms
-     * @method getRouteStringWithSpaces
-     * @return {string}
-     */
-    getRouteStringWithSpaces() {
-        return this._routeModel.getRouteStringWithSpaces();
-    }
-
-    /**
-     * Get the position of the next waypoint in the flight plan
-     *
-     * Currently only used in `calculateTurnInitiaionDistance()` helper function
-     *
-     * @for Fms
-     * @method getNextWaypointPositionModel
-     * @return waypointPosition {StaticPositionModel}
-     */
-    getNextWaypointPositionModel() {
-        return this.nextWaypoint.positionModel;
-    }
-
-    /**
-     * Return an array of waypoints in the flight plan that have altitude or speed restrictions
-     *
-     * @for Fms
-     * @method getRestrictedWaypoints
-     * @return {array<WaypointModel>}
-     */
-    getRestrictedWaypoints() {
-        return this.waypoints.filter((waypoint) => waypoint.hasRestriction);
-    }
-
-    /**
-     * Return an array of waypoints in the flight plan that have speed restrictions
-     *
-     * @for Fms
-     * @method getSpeedRestrictedWaypoints
-     * @return {array<WaypointModel>}
-     */
-    getSpeedRestrictedWaypoints() {
-        return this.waypoints.filter((waypoint) => waypoint.hasSpeedRestriction);
-    }
-
-    /**
-     * Encapsulates setting `#departureRunwayModel`
-     *
-     * @for Fms
-     * @method setDepartureRunway
-     * @param runwayModel {RunwayModel}
-     */
-    setDepartureRunway(runwayModel) {
-        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
-        // https://github.com/openscope/openscope/issues/93
-        if (!_isObject(runwayModel)) {
-            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+    _initializeRunwayAssignmentsForCategory(category, runway) {
+        // TODO: change to switch with a default throw
+        if (category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.setArrivalRunway(runway);
+        } else if (category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.setDepartureRunway(runway);
         }
-
-        if (this.departureRunwayModel && this.departureRunwayModel.name === runwayModel.name) {
-            return;
-        }
-
-        this.departureRunwayModel = runwayModel;
-
-        this._routeModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
-    /**
-     * Encapsulates setting of `#arrivalRunwayModel`
-     *
-     * @for Fms
-     * @method setArrivalRunway
-     * @param runwayModel {RunwayModel}
-     */
-    setArrivalRunway(runwayModel) {
-        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
-        // https://github.com/openscope/openscope/issues/93
-        if (!_isObject(runwayModel)) {
-            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
-        }
-
-        if (this.arrivalRunwayModel && this.arrivalRunwayModel.name === runwayModel.name) {
-            return;
-        }
-
-        this.arrivalRunwayModel = runwayModel;
-
-        this._routeModel.updateStarLegForArrivalRunwayModel(runwayModel);
-    }
-
-    /**
-     * Set the `#currentPhase`
-     *
-     * this value is used to determine how to calculate and aircraft's next
-     * altitude, heading and speed.
-     *
-     * @for Fms
-     * @method setFlightPhase
-     * @param phase {string}
-     */
-    setFlightPhase(phase) {
-        if (!_has(FLIGHT_PHASE, phase)) {
-            return new TypeError(`Expected known flight phase, but received '${phase}'`);
-        }
-
-        if (this.currentPhase === phase) {
-            return;
-        }
-
-        this._addPhaseToFlightHistory(phase);
-
-        this.currentPhase = phase;
-    }
+    // ------------------------------ PUBLIC ------------------------------
 
     // FIXME: This will no longer work
     // TODO: this method should be simplified
     /**
-     * Create a new `LegModel` for a holding pattern at a Fix or a position
-     *
-     * @for Fms
-     * @method createLegWithHoldingPattern
-     * @param inboundHeading {number}
-     * @param turnDirection {string}
-     * @param legLength {number}
-     * @param holdRouteSegment {string}
-     * @param holdPosition {StaticPositionModel}
-     */
+    * Create a new `LegModel` for a holding pattern at a Fix or a position
+    *
+    * @for Fms
+    * @method createLegWithHoldingPattern
+    * @param inboundHeading {number}
+    * @param turnDirection {string}
+    * @param legLength {number}
+    * @param holdRouteSegment {string}
+    * @param holdPosition {StaticPositionModel}
+    */
     createLegWithHoldingPattern(/* inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition */) {
         // // TODO: replace with constant
         // const isPositionHold = holdRouteSegment === 'GPS';
@@ -559,68 +429,224 @@ export default class Fms {
     }
 
     /**
-     * Move to the next possible waypoint
+     * Return an array of waypoints in the flight plan that have altitude restrictions
      *
-     * This could be the next waypoint in the current leg,
-     * or the first waypoint in the next leg.
-     *
-     * @for LegModel
-     * @method moveToNextWaypoint
+     * @for Fms
+     * @method getAltitudeRestrictedWaypoints
+     * @return {array<WaypointModel>}
      */
+    getAltitudeRestrictedWaypoints() {
+        return this._routeModel.getAltitudeRestrictedWaypoints();
+    }
+
+    /**
+    * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
+    *
+    * @for Fms
+    * @method getBottomAltitude
+    * @return {number}
+    */
+    getBottomAltitude() {
+        return this._routeModel.getBottomAltitude();
+    }
+
+    /**
+    * Get the position of the next waypoint in the flight plan
+    *
+    * Currently only used in `calculateTurnInitiaionDistance()` helper function
+    *
+    * @for Fms
+    * @method getNextWaypointPositionModel
+    * @return waypointPosition {StaticPositionModel}
+    */
+    getNextWaypointPositionModel() {
+        return this.nextWaypoint.positionModel;
+    }
+
+    /**
+    * Return an array of waypoints in the flight plan that have altitude or speed restrictions
+    *
+    * @for Fms
+    * @method getRestrictedWaypoints
+    * @return {array<WaypointModel>}
+    */
+    getRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasRestriction);
+    }
+
+    /**
+     * Get the flight plan route string in dot notation
+     *
+     * @for Fms
+     * @method getRouteString
+     * @return {string}
+     */
+    getRouteString() {
+        return this._routeModel.getRouteString();
+    }
+
+    /**
+     * Get the flight plan route string with legs separated by spaces
+     *
+     * This is primarily meant for use in the `StripViewModel`.
+     *
+     * @for Fms
+     * @method getRouteStringWithSpaces
+     * @return {string}
+     */
+    getRouteStringWithSpaces() {
+        return this._routeModel.getRouteStringWithSpaces();
+    }
+
+    /**
+     * Return an array of waypoints in the flight plan that have speed restrictions
+     *
+     * @for Fms
+     * @method getSpeedRestrictedWaypoints
+     * @return {array<WaypointModel>}
+     */
+    getSpeedRestrictedWaypoints() {
+        return this.waypoints.filter((waypoint) => waypoint.hasSpeedRestriction);
+    }
+
+    /**
+    * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
+    *
+    * @for LegModel
+    * @method getTopAltitude
+    * @return {number}
+    */
+    getTopAltitude() {
+        return this._routeModel.getTopAltitude();
+    }
+
+    /**
+    * Return whether the route contains a waypoint after the currently active one
+    *
+    * @for Fms
+    * @method hasNextWaypoint
+    * @return {boolean}
+    */
+    hasNextWaypoint() {
+        return this._routeModel.hasNextWaypoint();
+    }
+
+    /**
+    * Return whether the route contains a waypoint with the specified name
+    *
+    * @for Fms
+    * @method hasWaypointName
+    * @param waypointName {string}
+    * @return {boolean}
+    */
+    hasWaypointName(waypointName) {
+        return this._routeModel.hasWaypointName(waypointName);
+    }
+
+    /**
+    *
+    *
+    * @for Fms
+    * @method isArrival
+    * @return {boolean}
+    */
+    isArrival() {
+        return this.currentPhase === FLIGHT_PHASE.CRUISE ||
+        this.currentPhase === FLIGHT_PHASE.DESCENT ||
+        this.currentPhase === FLIGHT_PHASE.APPROACH ||
+        this.currentPhase === FLIGHT_PHASE.LANDING;
+    }
+
+    /**
+    *
+    *
+    * @for Fms
+    * @method isDeparture
+    * @return {boolean}
+    */
+    isDeparture() {
+        return this.currentPhase === FLIGHT_PHASE.APRON ||
+        this.currentPhase === FLIGHT_PHASE.TAXI ||
+        this.currentPhase === FLIGHT_PHASE.WAITING ||
+        this.currentPhase === FLIGHT_PHASE.TAKEOFF ||
+        this.currentPhase === FLIGHT_PHASE.CLIMB;
+    }
+
+    /**
+    * Returns true if the `#currentLeg` is a procedure (sid/star)
+    *
+    * @for Fms
+    * @method isFollowingProcedure
+    * @return {boolean}
+    */
+    isFollowingProcedure() {
+        return this.currentLeg.isProcedure;
+    }
+
+    /**
+    * Returns true if the `#currentLeg` is a SID procedure
+    *
+    * @for Fms
+    * @method
+    * @return {boolean}
+    */
+    isFollowingSid() {
+        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.SID;
+    }
+
+    /**
+    * Returns true if the `#currentLeg` is a STAR procedure
+    *
+    * @for Fms
+    * @method
+    * @return {boolean}
+    */
+    isFollowingStar() {
+        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.STAR;
+    }
+
+    /**
+    * Unset `HOLD` as the `#currentPhase` only if `HOLD` is the `#currentPhase`
+    *
+    * @Fms
+    * @method exitHoldIfHolding
+    */
+    leaveHoldFlightPhase() {
+        if (this.currentPhase !== FLIGHT_PHASE.HOLD) {
+            return;
+        }
+
+        this._setFlightPhaseToPreviousFlightPhase();
+    }
+
+    /**
+    * Move to the next possible waypoint
+    *
+    * This could be the next waypoint in the current leg,
+    * or the first waypoint in the next leg.
+    *
+    * @for LegModel
+    * @method moveToNextWaypoint
+    */
     moveToNextWaypoint() {
         return this._routeModel.moveToNextWaypoint();
     }
 
     /**
-     * Fascade
-     *
-     * @for Fms
-     * @method skipToWaypointName
-     * @param waypointName {string}
-     */
-    skipToWaypointName(waypointName) {
-        return this._routeModel.skipToWaypointName(waypointName);
-    }
-
-    /**
-     * Replace departure procedure and departure runway
-     *
-     * @for Fms
-     * @method replaceDepartureProcedure
-     * @param routeString {string}
-     * @param runwayModel {RunwayModel}
-     * @return {boolean}
-     */
-    replaceDepartureProcedure(routeString, runwayModel) {
-        if (this.departureRunwayModel.name !== runwayModel.name) {
-            // This does result in needless recursion (since `setDepartureRunway()`
-            // calls `replaceDepartureProcedure()`, but it is necessary because we
-            // need to be able to both:
-            //   - assign a new runway and have the SID leg regenerated
-            //   - assign a new SID and have some way to prevent aircraft from
-            //     attempting to use it from their current expected runway when it's
-            //     invalid for that procedure
-            this.setDepartureRunway(runwayModel);
-        }
-
-        return this._routeModel.replaceDepartureProcedure(routeString);
-    }
-
-    /**
-     * Find the arrival procedure (if it exists) within the `#legCollection` and
-     * reset it with a new arrival procedure.
-     *
-     * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` without a arrival
-     * procedure cannot be found, then we create a new `LegModel` and place it
-     * at the end of the `#legCollection`.
-     *
-     * @for Fms
-     * @method replaceArrivalProcedure
-     * @param routeString {string}
-     * @param runwayModel {RunwayModel}
-     * @return {boolean}
-     */
+    * Find the arrival procedure (if it exists) within the `#legCollection` and
+    * reset it with a new arrival procedure.
+    *
+    * This method does not remove any `LegModel`s. It instead finds and updates a
+    * `LegModel` with a new routeString. If a `LegModel` without a arrival
+    * procedure cannot be found, then we create a new `LegModel` and place it
+    * at the end of the `#legCollection`.
+    *
+    * @for Fms
+    * @method replaceArrivalProcedure
+    * @param routeString {string}
+    * @param runwayModel {RunwayModel}
+    * @return {boolean}
+    */
     replaceArrivalProcedure(routeString, runwayModel) {
         if (this.arrivalRunwayModel.name !== runwayModel.name) {
             // This does result in needless recursion (since `setArrivalRunway()`
@@ -636,21 +662,45 @@ export default class Fms {
         return this._routeModel.replaceArrivalProcedure(routeString);
     }
 
+    /**
+    * Replace departure procedure and departure runway
+    *
+    * @for Fms
+    * @method replaceDepartureProcedure
+    * @param routeString {string}
+    * @param runwayModel {RunwayModel}
+    * @return {boolean}
+    */
+    replaceDepartureProcedure(routeString, runwayModel) {
+        if (this.departureRunwayModel.name !== runwayModel.name) {
+            // This does result in needless recursion (since `setDepartureRunway()`
+            // calls `replaceDepartureProcedure()`, but it is necessary because we
+            // need to be able to both:
+            //   - assign a new runway and have the SID leg regenerated
+            //   - assign a new SID and have some way to prevent aircraft from
+            //     attempting to use it from their current expected runway when it's
+            //     invalid for that procedure
+            this.setDepartureRunway(runwayModel);
+        }
+
+        return this._routeModel.replaceDepartureProcedure(routeString);
+    }
+
     // TODO: we may need to update the runway in this method
     /**
-     * Replace the current route with an entirely new one
-     *
-     * If route contains the same waypoint as the current waypoint, skip to that waypoint
-     * and continue along the new route. This is a somewhat questionable strategy, but
-     * has the advantage of supporting reroutes done in the middle of the flight,
-     * whereas without this approach, the aircraft would turn around to the very first
-     * waypoint as soon as they are rerouted.
-     *
-     * @for Fms
-     * @method replaceFlightPlanWithNewRoute
-     * @param routeString {string}
-     * @return {boolean} whether the operation was successful
-     */
+    * Replace the current route with an entirely new one
+    *
+    * If route contains the same waypoint as the current waypoint, skip to that waypoint
+    * and continue along the new route. This is a somewhat questionable strategy, but
+    * has the advantage of supporting reroutes done in the middle of the flight,
+    * whereas without this approach, the aircraft would turn around to the very first
+    * waypoint as soon as they are rerouted.
+    *
+    * @for Fms
+    * @method replaceFlightPlanWithNewRoute
+    * @param routeString {string}
+    * @return {boolean} whether the operation was successful
+    */
     replaceFlightPlanWithNewRoute(routeString) {
         const currentWaypointName = this.currentWaypoint.name;
         let nextRouteModel;
@@ -671,115 +721,101 @@ export default class Fms {
     }
 
     /**
-     * Unset `HOLD` as the `#currentPhase` only if `HOLD` is the `#currentPhase`
-     *
-     * @Fms
-     * @method exitHoldIfHolding
-     */
-    leaveHoldFlightPhase() {
-        if (this.currentPhase !== FLIGHT_PHASE.HOLD) {
+    * Encapsulates setting of `#arrivalRunwayModel`
+    *
+    * @for Fms
+    * @method setArrivalRunway
+    * @param runwayModel {RunwayModel}
+    */
+    setArrivalRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
+        if (!_isObject(runwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+        }
+
+        if (this.arrivalRunwayModel && this.arrivalRunwayModel.name === runwayModel.name) {
             return;
         }
 
-        this._setFlightPhaseToPreviousFlightPhase();
+        this.arrivalRunwayModel = runwayModel;
+
+        this._routeModel.updateStarLegForArrivalRunwayModel(runwayModel);
     }
 
     /**
-     * Sets `#currentPhase` to its previous value
-     *
-     * This method should only be called from `.leaveHoldFlightPhase()`, which performs
-     * the requisit checks for correct `#flightPhase`
+     * Encapsulates setting `#departureRunwayModel`
      *
      * @for Fms
-     * @method _setFlightPhaseToPreviousFlightPhase
+     * @method setDepartureRunway
+     * @param runwayModel {RunwayModel}
      */
-    _setFlightPhaseToPreviousFlightPhase() {
-        this.currentPhase = _last(this._flightPhaseHistory);
+    setDepartureRunway(runwayModel) {
+        // TODO: this should be an `instanceof` check and should be implemented as part of (or after)
+        // https://github.com/openscope/openscope/issues/93
+        if (!_isObject(runwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+        }
+
+        if (this.departureRunwayModel && this.departureRunwayModel.name === runwayModel.name) {
+            return;
+        }
+
+        this.departureRunwayModel = runwayModel;
+
+        this._routeModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
     /**
-     * Return whether the route contains a waypoint with the specified name
+     * Set the `#currentPhase`
+     *
+     * this value is used to determine how to calculate and aircraft's next
+     * altitude, heading and speed.
      *
      * @for Fms
-     * @method hasWaypointName
-     * @param waypointName {string}
-     * @return {boolean}
+     * @method setFlightPhase
+     * @param phase {string}
      */
-    hasWaypointName(waypointName) {
-        return this._routeModel.hasWaypointName(waypointName);
+    setFlightPhase(phase) {
+        if (!_has(FLIGHT_PHASE, phase)) {
+            return new TypeError(`Expected known flight phase, but received '${phase}'`);
+        }
+
+        if (this.currentPhase === phase) {
+            return;
+        }
+
+        this._addPhaseToFlightHistory(phase);
+
+        this.currentPhase = phase;
     }
 
     /**
-     * Return whether the route contains a waypoint after the currently active one
-     *
-     * @for Fms
-     * @method hasNextWaypoint
-     * @return {boolean}
-     */
-    hasNextWaypoint() {
-        return this._routeModel.hasNextWaypoint();
+    * Fascade
+    *
+    * @for Fms
+    * @method skipToWaypointName
+    * @param waypointName {string}
+    */
+    skipToWaypointName(waypointName) {
+        return this._routeModel.skipToWaypointName(waypointName);
     }
 
-    /**
-     * Returns true if the `#currentLeg` is a procedure (sid/star)
-     *
-     * @for Fms
-     * @method isFollowingProcedure
-     * @return {boolean}
-     */
-    isFollowingProcedure() {
-        return this.currentLeg.isProcedure;
-    }
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
-     * Returns true if the `#currentLeg` is a SID procedure
-     *
-     * @for Fms
-     * @method
-     * @return {boolean}
-     */
-    isFollowingSid() {
-        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.SID;
-    }
+    * Add the `#currentPhase` to `#_flightPhaseHistory`
+    *
+    * @for Fms
+    * @method _addPhaseToFlightHistory
+    * @private
+    */
+    _addPhaseToFlightHistory() {
+        if (this.currentPhase === '') {
+            return;
+        }
 
-    /**
-     * Returns true if the `#currentLeg` is a STAR procedure
-     *
-     * @for Fms
-     * @method
-     * @return {boolean}
-     */
-    isFollowingStar() {
-        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.STAR;
-    }
-
-    /**
-     *
-     *
-     * @for Fms
-     * @method isDeparture
-     * @return {boolean}
-     */
-    isDeparture() {
-        return this.currentPhase === FLIGHT_PHASE.APRON ||
-            this.currentPhase === FLIGHT_PHASE.TAXI ||
-            this.currentPhase === FLIGHT_PHASE.WAITING ||
-            this.currentPhase === FLIGHT_PHASE.TAKEOFF ||
-            this.currentPhase === FLIGHT_PHASE.CLIMB;
-    }
-
-    /**
-     *
-     *
-     * @for Fms
-     * @method isArrival
-     * @return {boolean}
-     */
-    isArrival() {
-        return this.currentPhase === FLIGHT_PHASE.CRUISE ||
-            this.currentPhase === FLIGHT_PHASE.DESCENT ||
-            this.currentPhase === FLIGHT_PHASE.APPROACH ||
-            this.currentPhase === FLIGHT_PHASE.LANDING;
+        this._flightPhaseHistory.push(this.currentPhase);
     }
 
     /**
@@ -819,13 +855,13 @@ export default class Fms {
     }
 
     /**
-     * Build a `LegModel` instance that contains a `WaypointModel` with hold properties
-     *
-     * @for Fms
-     * @method _createLegWithHoldWaypoint
-     * @param waypointProps {object}
-     * @return legModel {LegModel}
-     */
+    * Build a `LegModel` instance that contains a `WaypointModel` with hold properties
+    *
+    * @for Fms
+    * @method _createLegWithHoldWaypoint
+    * @param waypointProps {object}
+    * @return legModel {LegModel}
+    */
     _createLegWithHoldWaypoint(waypointProps) {
         const legModel = new LegModel(
             waypointProps.name,
@@ -864,21 +900,16 @@ export default class Fms {
     }
 
     /**
-     * Set the appropriate runway property with the passed `RunwayModel`
-     *
-     * @for Fms
-     * @method _setInitialRunwayAssignmentFromCategory
-     * @param category {string}
-     * @param runway {RunwayModel}
-     * @private
-     */
-    _setInitialRunwayAssignmentFromCategory(category, runway) {
-        // TODO: change to switch with a default throw
-        if (category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.setArrivalRunway(runway);
-        } else if (category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.setDepartureRunway(runway);
-        }
+    * Sets `#currentPhase` to its previous value
+    *
+    * This method should only be called from `.leaveHoldFlightPhase()`, which performs
+    * the requisit checks for correct `#flightPhase`
+    *
+    * @for Fms
+    * @method _setFlightPhaseToPreviousFlightPhase
+    */
+    _setFlightPhaseToPreviousFlightPhase() {
+        this.currentPhase = _last(this._flightPhaseHistory);
     }
 
     /**
@@ -919,20 +950,5 @@ export default class Fms {
                 `waypoints, but only found ${this.waypoints.length} waypoints`
             );
         }
-    }
-
-    /**
-     * Add the `#currentPhase` to `#_flightPhaseHistory`
-     *
-     * @for Fms
-     * @method _addPhaseToFlightHistory
-     * @private
-     */
-    _addPhaseToFlightHistory() {
-        if (this.currentPhase === '') {
-            return;
-        }
-
-        this._flightPhaseHistory.push(this.currentPhase);
     }
 }
