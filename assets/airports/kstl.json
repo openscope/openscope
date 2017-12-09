@@ -931,9 +931,9 @@
                 ["SGF", "KOOOP"]
             ]
         },
-        "LORLE2": {
-            "icao": "LORLE2",
-            "name": "Lorely Two",
+        "LORLE3": {
+            "icao": "LORLE3",
+            "name": "Lorely Three",
             "entryPoints": {
                 "GUZIK": ["GUZIK", "SEIZE", ["SKOVE", "A310-|S280"]],
                 "IRK": ["IRK", ["JUDER", "A310-|S280"]],
@@ -1411,7 +1411,7 @@
             "origin": "",
             "destination": "kstl",
             "category": "arrival",
-            "route": "GUZIK.LORLE2.KSTL",
+            "route": "GUZIK.LORLE3.KSTL",
             "altitude": [33000, 41000],
             "speed": 320,
             "method": "random",
