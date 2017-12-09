@@ -421,9 +421,9 @@
                 ["TEKKK", "CAMWI", "HYLND"]
             ]
         },
-        "LBSTA5": {
-            "icao": "LBSTA5",
-            "name": "Lobsta Five",
+        "LBSTA6": {
+            "icao": "LBSTA6",
+            "name": "Lobsta Six",
             "rwy": {
                 "4R": ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAUN"],
                 "9": [["CLAWW", "A40+"], "CLMPP", "SHAUN"],
@@ -871,7 +871,7 @@
             "origin": "kbos",
             "destination": "",
             "category": "departure",
-            "route": "KBOS.LBSTA5.LBSTA..EBONY",
+            "route": "KBOS.LBSTA6.LBSTA..EBONY",
             "altitude": "",
             "speed": "",
             "method": "random",
