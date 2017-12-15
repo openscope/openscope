@@ -23,6 +23,7 @@
 - Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
 - Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 - Convert `NavigationLibrary` to a singleton [#529](http://github.com/openscope/openscope/issues/529)
+- Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
 
 
 
