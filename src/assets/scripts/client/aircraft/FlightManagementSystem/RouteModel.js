@@ -10,6 +10,7 @@ import _without from 'lodash/without';
 import LegModel from './LegModel';
 import BaseModel from '../../base/BaseModel';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
+import AirportController from '../../airport/AirportController';
 import {
     INVALID_INDEX,
     INVALID_NUMBER,
@@ -228,6 +229,126 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Return the ICAO identifier for the airport at whose runway this route will terminate
+     *
+     * @for LegModel
+     * @method getArrivalRunwayAirportIcao
+     * @return {string}
+     */
+    getArrivalRunwayAirportIcao() {
+        if (!this.hasStarLeg()) {
+            return null;
+        }
+
+        const starLegIndex = this._findStarLegIndex();
+
+        return this._legCollection[starLegIndex].getArrivalRunwayAirportIcao();
+    }
+
+    /**
+     * Return the `AirportModel` at whose runway this route will terminate
+     *
+     * @for RouteModel
+     * @method getArrivalRunwayAirportModel
+     * @return {AirportModel}
+     */
+    getArrivalRunwayAirportModel() {
+        const airportIcao = this.getArrivalRunwayAirportIcao();
+
+        return AirportController.airport_get(airportIcao);
+    }
+
+    /**
+     * Return the name of the runway at which this route will terminate
+     *
+     * @for LegModel
+     * @method getArrivalRunwayName
+     * @return {string}
+     */
+    getArrivalRunwayName() {
+        if (!this.hasStarLeg()) {
+            return null;
+        }
+
+        const starLegIndex = this._findStarLegIndex();
+
+        return this._legCollection[starLegIndex].getArrivalRunwayName();
+    }
+
+    /**
+     * Return the `RunwayModel` at which this route will terminate
+     *
+     * @for RouteModel
+     * @method getArrivalRunwayModel
+     * @return {RunwayModel}
+     */
+    getArrivalRunwayModel() {
+        const arrivalRunwayName = this.getArrivalRunwayName();
+
+        return this.getArrivalRunwayAirportModel().getRunway(arrivalRunwayName);
+    }
+
+    /**
+    * Return the ICAO identifier for the airport at whose runway this route originates
+    *
+    * @for LegModel
+    * @method getDepartureRunwayAirportIcao
+    * @return {string}
+    */
+    getDepartureRunwayAirportIcao() {
+        if (!this.hasSidLeg()) {
+            return null;
+        }
+
+        const sidLegIndex = this._findSidLegIndex();
+
+        return this._legCollection[sidLegIndex].getDepartureRunwayAirportIcao();
+    }
+
+    /**
+     * Return the `AirportModel` for the airport at whose runway this route originates
+     *
+     * @for RouteModel
+     * @method getDepartureRunwayAirportModel
+     * @return {AirportModel}
+     */
+    getDepartureRunwayAirportModel() {
+        const airportIcao = this.getDepartureRunwayAirportIcao();
+
+        return AirportController.airport_get(airportIcao);
+    }
+
+    /**
+    * Return the name of the runway at which this route originates
+    *
+    * @for LegModel
+    * @method getDepartureRunwayName
+    * @return {string}
+    */
+    getDepartureRunwayName() {
+        if (!this.hasSidLeg()) {
+            return null;
+        }
+
+        const sidLegIndex = this._findSidLegIndex();
+
+        return this._legCollection[sidLegIndex].getDepartureRunwayName();
+    }
+
+    /**
+     * Return the `RunwayModel` at which this route originates
+     *
+     * @for RouteModel
+     * @method getDepartureRunwayModel
+     * @return {RunwayModel}
+     */
+    getDepartureRunwayModel() {
+        const departureRunwayName = this.getDepartureRunwayName();
+
+        return this.getDepartureRunwayAirportModel().getRunway(departureRunwayName);
+    }
+
+    /**
     * Returns the lowest bottom altitude of any `LegModel` in the `#_legCollection`
     *
     * @for RouteModel
@@ -298,6 +419,74 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Return the ICAO identifier of the SID in use (if any)
+     *
+     * @for RouteModel
+     * @method getSidIcao
+     * @return {string}
+     */
+    getSidIcao() {
+        if (!this.hasSidLeg()) {
+            return;
+        }
+
+        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+
+        return sidLegModel.getProcedureIcao();
+    }
+
+    /**
+     * Return the name of the SID in use (if any)
+     *
+     * @for RouteModel
+     * @method getSidName
+     * @return {string}
+     */
+    getSidName() {
+        if (!this.hasSidLeg()) {
+            return;
+        }
+
+        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+
+        return sidLegModel.getProcedureName();
+    }
+
+    /**
+     * Return the ICAO identifier of the STAR in use (if any)
+     *
+     * @for RouteModel
+     * @method getStarIcao
+     * @return {string}
+     */
+    getStarIcao() {
+        if (!this.hasStarLeg()) {
+            return;
+        }
+
+        const starLegModel = this._legCollection[this._findStarLegIndex()];
+
+        return starLegModel.getProcedureIcao();
+    }
+
+    /**
+     * Return the name of the STAR in use (if any)
+     *
+     * @for RouteModel
+     * @method getStarName
+     * @return {string}
+     */
+    getStarName() {
+        if (!this.hasStarLeg()) {
+            return;
+        }
+
+        const starLegModel = this._legCollection[this._findStarLegIndex()];
+
+        return starLegModel.getProcedureName();
+    }
+
+    /**
      * Returns the highest top altitude of any `LegModel` in the `#_legCollection`
     *
     * @for RouteModel
@@ -340,6 +529,28 @@ export default class RouteModel extends BaseModel {
         }
 
         return !_isNil(this.nextLeg.currentWaypoint);
+    }
+
+    /**
+     * Return whether the route has a SID leg
+     *
+     * @for RouteModel
+     * @method hasSidLeg
+     * @return {boolean}
+     */
+    hasSidLeg() {
+        return this._findSidLegIndex() !== INVALID_INDEX;
+    }
+
+    /**
+     * Return whether the route has a STAR leg
+     *
+     * @for RouteModel
+     * @method hasStarLeg
+     * @return {boolean}
+     */
+    hasStarLeg() {
+        return this._findStarLegIndex() !== INVALID_INDEX;
     }
 
     /**
@@ -402,16 +613,14 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const starLegIndex = this._findStarLegIndex();
-
         // if no STAR leg exists, insert the new one as the new last leg
-        if (starLegIndex === INVALID_INDEX) {
+        if (!this.hasStarLeg()) {
             this._legCollection.push(starLegModel);
 
             return true;
         }
 
-        this._legCollection[starLegIndex] = starLegModel;
+        this._legCollection[this._findStarLegIndex()] = starLegModel;
 
         return true;
     }
@@ -441,16 +650,14 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-
         // if no SID leg exists, insert the new one as the new first leg
-        if (sidLegIndex === INVALID_INDEX) {
+        if (!this.hasSidLeg()) {
             this._legCollection.unshift(sidLegModel);
 
             return true;
         }
 
-        this._legCollection[sidLegIndex] = sidLegModel;
+        this._legCollection[this._findSidLegIndex()] = sidLegModel;
 
         return true;
     }
@@ -506,11 +713,11 @@ export default class RouteModel extends BaseModel {
      * @param runwayModel {RunwayModel}
      */
     updateSidLegForDepartureRunwayModel(runwayModel) {
-        const sidLegIndex = this._findSidLegIndex();
-
-        if (sidLegIndex === INVALID_INDEX) {
+        if (!this.hasSidLeg()) {
             return;
         }
+
+        const sidLegIndex = this._findSidLegIndex();
 
         const sidLegModel = this._legCollection[sidLegIndex];
 
@@ -525,11 +732,11 @@ export default class RouteModel extends BaseModel {
     * @param runwayModel {RunwayModel}
     */
     updateStarLegForArrivalRunwayModel(runwayModel) {
-        const starLegIndex = this._findStarLegIndex();
-
-        if (starLegIndex === INVALID_INDEX) {
+        if (!this.hasStarLeg()) {
             return;
         }
+
+        const starLegIndex = this._findStarLegIndex();
 
         const starLegModel = this._legCollection[starLegIndex];
 

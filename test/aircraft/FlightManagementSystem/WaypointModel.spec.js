@@ -436,7 +436,7 @@ ava('instantiates correctly when given a restricted fix (ranged altitude and ran
     t.deepEqual(model._positionModel.gps, [35.6782610435946, -115.29470074200118]);
 });
 
-ava('#name returns fix name without underscore for fixes with names prefixed with underscore', (t) => {
+ava('#name returns "RNAV" for fixes with names prefixed with underscore', (t) => {
     const model = new WaypointModel('_NAPSE068');
     const expectedResult = 'RNAV';
     const result = model.name;

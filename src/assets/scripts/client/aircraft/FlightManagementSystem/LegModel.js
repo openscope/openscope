@@ -325,12 +325,12 @@ export default class LegModel {
 
         // FIXME: Uncomment this when implementing airways
         // if (this._legType === LEG_TYPE.AIRWAY) {
+        //     this._verifyAirwayAndEntryAndExitAreValid();
+        //
         //     return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
         // }
 
-        if (_isNil(this._procedureDefinitionModel)) {
-            throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
-        }
+        this._verifyProcedureAndEntryAndExitAreValid(entryOrFixName, exit);
 
         return this._procedureDefinitionModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
     }
@@ -338,12 +338,88 @@ export default class LegModel {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
-     * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
+     * Return the ICAO identifier for the airport at which this leg will terminate (if
+     * it is in fact a STAR leg, of course).
      *
      * @for LegModel
-     * @method getProcedureBottomAltitude
-     * @return {number}
+     * @method getArrivalRunwayAirportIcao
+     * @return {string}
      */
+    getArrivalRunwayAirportIcao() {
+        if (!this.isStarLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[2];
+        const arrivalAirportIcao = airportAndRunway.substr(0, 4);
+
+        return arrivalAirportIcao;
+    }
+
+    /**
+     * Return the name of the runway at which this leg will terminate (if it is in fact
+     * a STAR leg, of course).
+     *
+     * @for LegModel
+     * @method getArrivalRunwayName
+     * @return {string}
+     */
+    getArrivalRunwayName() {
+        if (!this.isStarLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[2];
+        const arrivalRunwayName = airportAndRunway.substr(4);
+
+        return arrivalRunwayName;
+    }
+
+    /**
+    * Return the ICAO identifier for the airport at which this leg originates (if
+    * it is in fact a SID leg, of course).
+    *
+    * @for LegModel
+    * @method getDepartureRunwayAirportIcao
+    * @return {string}
+    */
+    getDepartureRunwayAirportIcao() {
+        if (!this.isSidLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[0];
+        const departureAirportIcao = airportAndRunway.substr(0, 4);
+
+        return departureAirportIcao;
+    }
+
+    /**
+    * Return the name of the runway at which this leg begins (if it is in fact
+    * a SID leg, of course).
+    *
+    * @for LegModel
+    * @method getDepartureRunwayName
+    * @return {string}
+    */
+    getDepartureRunwayName() {
+        if (!this.isSidLeg) {
+            return null;
+        }
+
+        const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[0];
+        const departureRunwayName = airportAndRunway.substr(4);
+
+        return departureRunwayName;
+    }
+
+    /**
+    * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
+    *
+    * @for LegModel
+    * @method getProcedureBottomAltitude
+    * @return {number}
+    */
     getProcedureBottomAltitude() {
         if (!this.isProcedureLeg) {
             return INVALID_NUMBER;
@@ -353,6 +429,36 @@ export default class LegModel {
         const positiveValueRestrictionList = _without(minimumAltitudes, INVALID_NUMBER);
 
         return Math.min(...positiveValueRestrictionList);
+    }
+
+    /**
+     * Return the ICAO identifier for the procedure being used by this leg
+     *
+     * @for LegModel
+     * @method getProcedureIcao
+     * @return {string}
+     */
+    getProcedureIcao() {
+        if (!this.isProcedureLeg) {
+            return;
+        }
+
+        return this._procedureDefinitionModel.icao;
+    }
+
+    /**
+     * Return the name of the procedure being used by this leg
+     *
+     * @for LegModel
+     * @method getProcedureName
+     * @return {string}
+     */
+    getProcedureName() {
+        if (!this.isProcedureLeg) {
+            return;
+        }
+
+        return this._procedureDefinitionModel.name;
     }
 
     /**
@@ -460,6 +566,8 @@ export default class LegModel {
         const waypointModelsToMove = this._waypointCollection.splice(0, numberOfWaypointsToMove);
 
         this._previousWaypointCollection.push(...waypointModelsToMove);
+
+        return true;
     }
 
     /**
@@ -548,6 +656,31 @@ export default class LegModel {
 
         for (let i = 0; i < this._previousWaypointCollection.length; i++) {
             this._previousWaypointCollection[i].reset();
+        }
+    }
+
+    /**
+     * Ensure that the procedure, entry, and exit are all valid and can be used to generate waypoints
+     *
+     * Note that this should only be run on PROCEDURE legs!
+     *
+     * @for LegModel
+     * @method _verifyProcedureAndEntryAndExitAreValid
+     * @private
+     */
+    _verifyProcedureAndEntryAndExitAreValid(entryName, exitName) {
+        if (_isNil(this._procedureDefinitionModel)) {
+            throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
+        }
+
+        const procedureIcao = this._procedureDefinitionModel.icao;
+
+        if (!this._procedureDefinitionModel.hasEntry(entryName)) {
+            throw new TypeError(`Expected valid entry of ${procedureIcao}, but received ${entryName}`);
+        }
+
+        if (!this._procedureDefinitionModel.hasExit(exitName)) {
+            throw new TypeError(`Expected valid exit of ${procedureIcao}, but received ${exitName}`);
         }
     }
 }

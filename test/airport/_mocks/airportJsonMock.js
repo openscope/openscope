@@ -263,7 +263,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "icao": "TRALR6",
             "name": "Trailer Six",
             "rwy": {
-                "KLAS01L": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
+                "KLAS01L": ["_NAPSE068", ["NAPSE", "S250-"], "TINNK", "RIOOS"],
                 "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
@@ -292,7 +292,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             'suffix': {'01L': '1A', '01R': '1B', '07L': '2A', '07R': '2B', '19L': '3A', '19R': '3B', '25L': '4A', '25R': '4B'},
             "entryPoints": {
                 "BETHL": ["BETHL", ["HOLDM", "A270"]],
-                "BCE":   ["BCE"],
+                "BCE":   [["BCE", "S310-"]],
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270"]],
                 "MLF":   ["MLF"]
             },
@@ -402,6 +402,26 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "LRAIN": ["LRAIN", ["CORKR", "A200+"], ["ONRUE", "A340-"], ["CEJAY", "A190"]]
             },
             "body": [["KADDY", "A120|S250"], "TYSSN", ["SUZSI", "A100|S210"], ["PRINO", "A80"]],
+            "rwy": {
+                "KLAS01L": [],
+                "KLAS01R": [],
+                "KLAS07L": [],
+                "KLAS07R": [],
+                "KLAS19L": [],
+                "KLAS19R": [],
+                "KLAS25L": [],
+                "KLAS25R": []
+            },
+            "draw": [[]]
+        },
+        // not real. a modification of the TYSSN4 with speed restrictions removed.
+        "ZIMBO1": {
+            "icao": "ZIMBO1",
+            "name": "Zimbo One",
+            "entryPoints": {
+                "DRK": ["DRK", ["IGM", "A240"], ["ZATES", "A190"]]
+            },
+            "body": [["KADDY", "A120"], "TYSSN", ["SUZSI", "A100"], ["PRINO", "A80"]],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],

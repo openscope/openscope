@@ -194,7 +194,7 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance(aircraftModel);
-        this._fms.leaveHoldFlightPhase();
+        this.exitHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
 
@@ -278,24 +278,16 @@ export default class Pilot {
      * @return {array}                   [success of operation, readback]
      */
     applyArrivalProcedure(routeString, runwayModel, airportName) {
-        // if (!this._fms.isValidProcedureRoute(routeString, runwayModel, FLIGHT_CATEGORY.ARRIVAL)) {
-        //     // TODO: may need a better message here
-        //     return [false, 'STAR name not understood'];
-        // }
+        const [successful, response] = this._fms.replaceArrivalProcedure(routeString, runwayModel);
 
-        // const routeStringModel = new RouteModel(routeString);
-
-        // FIXME: Must validate this routeString and defend from erroneous user input!
-        const [entryName, procedureId, exitName] = routeString.split('.');
-        const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
-
-        // TODO: set mcp modes here
-        this._fms.replaceArrivalProcedure(`${entryName.procedureId.exitName}`, runwayModel);
+        if (!successful) {
+            return [false, response];
+        }
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${procedureDefinitionModel.icao.toUpperCase()} arrival`;
-        readback.say = `cleared to ${airportName} via the ${procedureDefinitionModel.name.toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${this._routeModel.getStarIcao().toUpperCase()} arrival`;
+        readback.say = `cleared to ${airportName} via the ${this._routeModel.getStarName().toUpperCase()} arrival`;
 
         return [true, readback];
     }
@@ -401,7 +393,7 @@ export default class Pilot {
         }
 
         this._fms.replaceRouteUpToSharedRouteSegment(routeString);
-        this._fms.leaveHoldFlightPhase();
+        this.exitHold();
 
         // Build readback
         const readback = {};
@@ -514,6 +506,20 @@ export default class Pilot {
         this._mcp.setSpeedVnav();
 
         return [true, 'descend via STAR'];
+    }
+
+    // FIXME: This will need to do stuff
+    /**
+    * Arm the exit of the holding pattern
+    *
+    * @for Pilot
+    * @method exitHold
+    */
+    exitHold() {
+        // FIXME: This probably ought to be checking if the current waypoint #_isHoldWaypoint
+        if (this._fms.currentPhase !== FLIGHT_PHASE.HOLD) {
+            return;
+        }
     }
 
     /**
@@ -637,7 +643,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this._fms.leaveHoldFlightPhase();
+        this.exitHold();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -751,7 +757,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypointName(waypointName);
-        this._fms.leaveHoldFlightPhase();
+        this.exitHold();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];

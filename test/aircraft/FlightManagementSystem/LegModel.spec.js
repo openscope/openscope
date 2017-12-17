@@ -360,14 +360,13 @@ ava('.skipToWaypointName() returns false early when the specified waypoint is no
 
 ava('.skipToWaypointName() moves all waypoints before the specified waypoint to the #_previousWaypointCollection', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
-
-    model.skipToWaypointName('BOACH');
-
     const expectedPreviousFixNames = ['RBELL', 'ROPPR', 'RODDD'];
     const expectedRemainingFixNames = ['BOACH', 'ZELMA', 'JOTNU', 'TNP'];
+    const result = model.skipToWaypointName('BOACH');
     const previousFixNames = model._previousWaypointCollection.map((wp) => wp.name);
     const remainingFixNames = model._waypointCollection.map((wp) => wp.name);
 
+    t.true(result);
     t.deepEqual(previousFixNames, expectedPreviousFixNames);
     t.deepEqual(remainingFixNames, expectedRemainingFixNames);
 });
