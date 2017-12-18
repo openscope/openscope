@@ -468,8 +468,8 @@
             "icao": "NEGR1A",
             "name": "Negra One Alpha",
             "entryPoints": {
-                "NEGRA": [["NEGRA", "A190+|S270"]],
-                "RAVED": ["RAVED", "ETOXU", ["NEGRA", "A190+|S270"]]
+                "NEGRA": [["NEGRA", "A180+|S270"]],
+                "RAVED": ["RAVED", "ETOXU", ["NEGRA", "A180+|S270"]]
             },
             "body": [["MATIV", "S250"], ["AMIKI", "A100|S250"]],
             "rwy": {
@@ -488,7 +488,7 @@
             "icao": "RILA1A",
             "name": "Rilax One Alpha",
             "entryPoints": {
-                "RILAX": [["RILAX", "S250|A130-"]]
+                "RILAX": [["RILAX", "S250|A130+"]]
             },
             "body": ["LAMAX", ["AMIKI", "A70+|A100-|S250"]],
             "rwy": {
