@@ -353,6 +353,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+	{
+            icao: 'lfpo',
+            level: 'medium',
+            name: 'Paris Orly International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'lkpr',
         //     level: 'easy',
