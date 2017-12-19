@@ -1,14 +1,12 @@
 import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
-import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../../airport/AirportController';
+import Fms from '../FlightManagementSystem/Fms';
+import ModeController from '../ModeControl/ModeController';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
-import {
-    FLIGHT_CATEGORY,
-    FLIGHT_PHASE
-} from '../../constants/aircraftConstants';
+import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { radians_normalize } from '../../math/circle';
 import { clamp } from '../../math/core';
@@ -40,12 +38,18 @@ export default class Pilot {
      * @param fms {Fms}
      */
     constructor(fms, modeController, navigationLibrary) {
-        if (!_isObject(modeController) || _isEmpty(modeController)) {
-            throw new TypeError('Invalid parameter. expected modeController to an instance of ModeController');
+        if (!(fms instanceof Fms)) {
+            throw new TypeError(`Expected fms to an instance of Fms but received ${typeof fms}`);
         }
 
-        if (!_isObject(fms) || _isEmpty(fms)) {
-            throw new TypeError('Invalid parameter. expected fms to an instance of Fms');
+        if (!(modeController instanceof ModeController)) {
+            throw new TypeError('Expected modeController to an instance of ' +
+                `ModeController, but received ${typeof modeController}`);
+        }
+
+        if (!(navigationLibrary instanceof NavigationLibrary)) {
+            throw new TypeError('Expected modeController to an instance of ' +
+                `ModeController, but received ${typeof navigationLibrary}`);
         }
 
         /**
@@ -273,12 +277,11 @@ export default class Pilot {
      * @for Pilot
      * @method applyArrivalProcedure
      * @param routeString {string}       route string in the form of `entry.procedure.airport`
-     * @param runwayModel {RunwayModel}
      * @param airportName {string}
      * @return {array}                   [success of operation, readback]
      */
-    applyArrivalProcedure(routeString, runwayModel, airportName) {
-        const [successful, response] = this._fms.replaceArrivalProcedure(routeString, runwayModel);
+    applyArrivalProcedure(routeString, airportName) {
+        const [successful, response] = this._fms.replaceArrivalProcedure(routeString);
 
         if (!successful) {
             return [false, response];
@@ -286,8 +289,8 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to ${airportName} via the ${this._routeModel.getStarIcao().toUpperCase()} arrival`;
-        readback.say = `cleared to ${airportName} via the ${this._routeModel.getStarName().toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${this._fms._routeModel.getStarIcao().toUpperCase()} arrival`;
+        readback.say = `cleared to ${airportName} via the ${this._fms._routeModel.getStarName().toUpperCase()} arrival`;
 
         return [true, readback];
     }
@@ -299,11 +302,10 @@ export default class Pilot {
      * @for Pilot
      * @method applyDepartureProcedure
      * @param procedureId {String}          the identifier for the procedure
-     * @param runwayModel {RunwayModel}     RunwayModel used for departure
      * @param airportIcao {string}          airport icao identifier
      * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, runwayModel, airportIcao) {
+    applyDepartureProcedure(procedureId, airportIcao) {
         const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
 
         if (_isNil(procedureDefinitionModel)) {
@@ -329,7 +331,7 @@ export default class Pilot {
 
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeString, runwayModel);
+        this._fms.replaceDepartureProcedure(routeString);
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;

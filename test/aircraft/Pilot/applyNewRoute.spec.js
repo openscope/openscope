@@ -9,9 +9,7 @@ import {
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 
-const invalidRouteString = 'a..b.c.d';
-const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS19L';
-
+// fixtures
 let navigationLibraryFixture;
 
 ava.beforeEach(() => {
@@ -31,38 +29,29 @@ ava('.applyNewRoute() returns an error when passed an invalid route', (t) => {
         }
     ];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    const result = pilot.applyNewRoute(invalidRouteString);
+    const result = pilot.applyNewRoute('a..b.c.d');
 
     t.true(_isEqual(result, expectedResult));
-});
-
-ava('.applyNewRoute() calls fms._destroyLegCollection()', (t) => {
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    const _destroyLegCollectionSpy = sinon.spy(pilot._fms, '_destroyLegCollection');
-
-    pilot.applyNewRoute(complexRouteString);
-
-    t.true(_destroyLegCollectionSpy.calledOnce);
 });
 
 ava('.applyNewRoute() removes an existing route and replaces it with a new one', (t) => {
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
 
-    pilot.applyNewRoute(complexRouteString);
+    pilot.applyNewRoute('COWBY..BIKKR..DAG');
 
-    t.true(pilot._fms.currentWaypoint.name === 'cowby');
+    t.true(pilot._fms.currentWaypoint.name === 'COWBY');
 });
 
 ava('.applyNewRoute() returns a success message when finished successfully', (t) => {
     const expectedResult = [
         true,
         {
-            log: 'rerouting to: cowby..bikkr..dag.kepec3.klas',
+            log: 'rerouting to: COWBY BIKKR DAG',
             say: 'rerouting as requested'
         }
     ];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    const result = pilot.applyNewRoute(complexRouteString);
+    const result = pilot.applyNewRoute('COWBY..BIKKR..DAG');
 
     t.true(_isEqual(result, expectedResult));
 });

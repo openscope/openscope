@@ -208,32 +208,3 @@ ava('._intializePositionAndHeadingForArrival() calculates aircraft heading and p
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
 });
-
-ava('._generateWaypointListForRoute() does not throw when a route has a single entry and rwy waypoint', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-
-    t.notThrows(
-        () => model._generateWaypointListForRoute(ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK.route, navigationLibraryFixture)
-    );
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a procedure route string that contains only an entry and a rwy', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 2);
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a direct routes string', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_ROUTE_STRING_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 2);
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a procedure route string', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 9);
-});

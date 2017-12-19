@@ -281,26 +281,6 @@ export default class NavigationLibrary {
         return FixCollection.getFixRelativePosition(fixName);
     }
 
-    // /**
-    //  * Create a `StaticPositionModel` from a provided lat/long
-    //  *
-    //  * This allows classes that have access to the `NavigationLibrary` to
-    //  * create a `StaticPositionModel` without needing to know about a
-    //  * `#referencePosition` or `#magneticNorth`.
-    //  *
-    //  * @for NavigationLibrary
-    //  * @method generateStaticPositionModelForLatLong
-    //  * @param latLong {array<number>}
-    //  * @return staticPositionModel {StaticPositionModel}
-    //  */
-    // generateStaticPositionModelForLatLong(latLong) {
-    //     const staticPositionModel = new StaticPositionModel(latLong,
-    //         this._referencePosition, this._referencePosition.magneticNorth
-    //     );
-    //
-    //     return staticPositionModel;
-    // }
-
     // FIXME: Fill me out when implementing airways!
     hasAirway(/* airwayId */) {
         // for now, will return false because we don't support airways yet
@@ -358,21 +338,6 @@ export default class NavigationLibrary {
     //     }
     //
     //     return typeof route !== 'undefined' && route.hasSuffix();
-    // }
-    //
-    // /**
-    //  * Encapsulates boolean logic used to determine if a `flightPhase`
-    //  * indicates an aircraft is still on the ground or en-route
-    //  *
-    //  * @for NavigationLibrary
-    //  * @method isGroundedFlightPhase
-    //  * @param flightPhase {string}
-    //  * @return {boolean}
-    //  */
-    // isGroundedFlightPhase(flightPhase) {
-    //     return flightPhase === FLIGHT_PHASE.APRON ||
-    //         flightPhase === FLIGHT_PHASE.TAXI ||
-    //         flightPhase === FLIGHT_PHASE.WAITING;
     // }
 
     /**

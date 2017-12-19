@@ -8,7 +8,20 @@ import {
     FIX_COORDINATE_MOCK
 } from './_mocks/fixMocks';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+
+// fixtures
+// eslint-disable-next-line no-unused-vars
+let navigationLibraryFixture;   // ignore lint error, this creates the fix collection!
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture = null;
+});
 
 ava('does not throw when instantiated with invalid parameters', t => {
     t.notThrows(() => new FixModel());
@@ -71,7 +84,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     const result = model.toWaypointModel();
 
     t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK);
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeMaximum === INVALID_NUMBER);
     t.true(result.altitudeMinimum === INVALID_NUMBER);
@@ -79,12 +92,12 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     t.true(result.speedMinimum === INVALID_NUMBER);
 });
 
-ava('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
+ava.skip('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const result = model.toWaypointModel(true);
 
     t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK);
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeMaximum === INVALID_NUMBER);
     t.true(result.altitudeMinimum === INVALID_NUMBER);
@@ -95,7 +108,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance with hold propertie
     t.true(result.timer === -999);
 });
 
-ava('.toWaypointModel() returns a new WaypointModel instance with specific hold properties', (t) => {
+ava.skip('.toWaypointModel() returns a new WaypointModel instance with specific hold properties', (t) => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const holdPropsMock = {
         turnDirection: 'right',
@@ -104,7 +117,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance with specific hold 
     const result = model.toWaypointModel(true, holdPropsMock);
 
     t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK);
     t.true(result.isHold);
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeMaximum === INVALID_NUMBER);

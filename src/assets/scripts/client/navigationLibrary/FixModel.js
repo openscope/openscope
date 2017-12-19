@@ -137,25 +137,26 @@ export default class FixModel extends BaseModel {
      * @param holdProps {object}
      * @return {WaypointModel}
      */
-    toWaypointModel(isHold = false, holdProps = {}) {
-        const waypointProps = {
-            name: this.name,
-            positionModel: this.clonePosition(),
-            altitudeMaximum: INVALID_NUMBER,
-            altitudeMinimum: INVALID_NUMBER,
-            speedMaximum: INVALID_NUMBER,
-            speedMinimum: INVALID_NUMBER
-        };
+    toWaypointModel(/* isHold = false, holdProps = {} */) {
+        // FIXME: Restore holding functionality
+        // const waypointProps = {
+        //     name: this.name,
+        //     positionModel: this.clonePosition(),
+        //     altitudeMaximum: INVALID_NUMBER,
+        //     altitudeMinimum: INVALID_NUMBER,
+        //     speedMaximum: INVALID_NUMBER,
+        //     speedMinimum: INVALID_NUMBER
+        // };
+        //
+        // // TODO: Move these default behaviors to a constants file
+        // if (isHold) {
+        //     waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
+        //     waypointProps.isHold = true;
+        //     waypointProps.legLength = _get(holdProps, 'legLength', '1min');
+        //     waypointProps.timer = -999;
+        //     waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
+        // }
 
-        // TODO: Move these default behaviors to a constants file
-        if (isHold) {
-            waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
-            waypointProps.isHold = true;
-            waypointProps.legLength = _get(holdProps, 'legLength', '1min');
-            waypointProps.timer = -999;
-            waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
-        }
-
-        return new WaypointModel(waypointProps);
+        return new WaypointModel(this.name);
     }
 }

@@ -55,11 +55,10 @@ export default class Fms {
     /**
      * @constructor
      * @param aircraftInitProps {object}
-     * @param initialRunwayAssignment {RunwayModel}
      * @param typeDefinitionModel {AircraftTypeDefinitionModel}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftInitProps, initialRunwayAssignment, typeDefinitionModel, navigationLibrary) {
+    constructor(aircraftInitProps, typeDefinitionModel, navigationLibrary) {
         if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
             throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
@@ -139,9 +138,9 @@ export default class Fms {
         * @type {NavigationLibrary}
         * @private
         */
-        this._navigationLibrary = navigationLibrary;
+        this._navigationLibrary = null;
 
-        this.init(aircraftInitProps);
+        this.init(aircraftInitProps, navigationLibrary);
     }
 
     /**
@@ -294,10 +293,13 @@ export default class Fms {
      * @for Fms
      * @method init
      * @param aircraftInitProps {object}
+     * @param navigationLibrary {NavigationLibrary}
      * @chainable
      */
-    init({ altitude, category, destination, model, nextFix, origin, routeString }) {
+    init({ altitude, category, destination, model, nextFix, origin, routeString }, navigationLibrary) {
+        this._navigationLibrary = navigationLibrary;
         this._routeModel = new RouteModel(this._navigationLibrary, routeString);
+
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
         this._initializeDepartureAirport(origin);
@@ -325,6 +327,7 @@ export default class Fms {
         this.departureRunwayModel = null;
         this.flightPlanAltitude = INVALID_NUMBER;
         this._routeModel = null;
+        this._navigationLibrary = null;
 
         return this;
     }
@@ -888,27 +891,6 @@ export default class Fms {
     //
     //     return legModel;
     // }
-
-    /**
-     * Given a `procedureId` find the `#collectionName` that
-     * procedure belongs to, then translate that `#collectionName`
-     * to a `flightPhase`.
-     *
-     * @for Fms
-     * @method _translateProcedureNameToFlightPhase
-     * @param procedureId {string}
-     * @return {string}
-     * @private
-     */
-    _translateProcedureNameToFlightPhase(procedureId) {
-        const collectionToFlightPhaseDictionary = {
-            sidCollection: FLIGHT_CATEGORY.DEPARTURE,
-            starCollection: FLIGHT_CATEGORY.ARRIVAL
-        };
-        const collectionName = this._navigationLibrary.findCollectionNameForProcedureId(procedureId);
-
-        return collectionToFlightPhaseDictionary[collectionName];
-    }
 
     /**
      * Update the expected arrival runway based on the STAR's exit point runway

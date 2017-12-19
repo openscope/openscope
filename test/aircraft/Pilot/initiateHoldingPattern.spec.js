@@ -28,7 +28,7 @@ ava.afterEach(() => {
     navigationLibraryFixture.reset();
 });
 
-ava('.initiateHoldingPattern() returns error response when #holdFixLocation is undefined', (t) => {
+ava.skip('.initiateHoldingPattern() returns error response when #holdFixLocation is undefined', (t) => {
     const expectedResult = [false, 'unable to find fix COWBY'];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(
@@ -42,7 +42,7 @@ ava('.initiateHoldingPattern() returns error response when #holdFixLocation is u
     t.deepEqual(result, expectedResult);
 });
 
-ava('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingPattern() with GPS as the fixname', (t) => {
+ava.skip('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingPattern() with GPS as the fixname', (t) => {
     const expectedResult = [
         -1.62476729292438,
         'right',
@@ -65,7 +65,7 @@ ava('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingP
     t.true(pilot._fms.currentWaypoint.name === 'gps');
 });
 
-ava('.initiateHoldingPattern() returns a success message when passed a fixName', (t) => {
+ava.skip('.initiateHoldingPattern() returns a success message when passed a fixName', (t) => {
     const expectedResult = [true, 'proceed direct COWBY and hold inbound, right turns, 1min legs'];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(
@@ -79,7 +79,7 @@ ava('.initiateHoldingPattern() returns a success message when passed a fixName',
     t.deepEqual(result, expectedResult);
 });
 
-ava('.initiateHoldingPattern() returns a success message when passed a null fixName', (t) => {
+ava.skip('.initiateHoldingPattern() returns a success message when passed a null fixName', (t) => {
     const expectedResult = [true, 'hold east of present position, right turns, 1min legs'];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
     const result = pilot.initiateHoldingPattern(

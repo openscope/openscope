@@ -38,4 +38,6 @@ ava('._buildAircraftTypeDefinitionModelList() returns a list of AircraftTypeDefi
     });
 });
 
-ava.skip('.getAircraftDefinitionForAirlineId()', (t) => {});
+ava.skip('.getAircraftDefinitionForAirlineId()', (t) => {
+    t.true(true);
+});

@@ -1008,40 +1008,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.heading = this._routeModel.calculateSpawnHeading();
     }
 
-    // /**
-    //  * Given a `routeString`, find the `FixModel`s or `WaypointModel`s associated with that route.
-    //  *
-    //  * @for SpawnPatternModel
-    //  * @method _generateWaypointListForRoute
-    //  * @param routeString {string}
-    //  * @param navigationLibrary {NavigationLibrary}
-    //  * @return {array<FixModel>|array<StandardWaypointModel>}
-    //  */
-    // _generateWaypointListForRoute(routeString, navigationLibrary) {
-    //     const formattedRoute = routeStringFormatHelper(routeString);
-    //
-    //     if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
-    //         // this assumes that if a routeString is not a procedure, it will be a list of fixes. this may be
-    //         // an incorrect/short sided assumption and may need to be revisited in the near future.
-    //         this.waypoints = formattedRoute;
-    //         const initialWaypoint = navigationLibrary.findFixByName(formattedRoute[0]);
-    //         const nextWaypoint = navigationLibrary.findFixByName(formattedRoute[1]);
-    //
-    //         return [initialWaypoint, nextWaypoint];
-    //     }
-    //
-    //     const isPreSpawn = false;
-    //     const routeModel = new RouteModel(formattedRoute[0]);
-    //     const waypointModelList = navigationLibrary.starCollection.findRouteWaypointsForRouteByEntryAndExit(
-    //         routeModel.procedure,
-    //         routeModel.entry,
-    //         AirportController.getInitialArrivalRunwayName(),
-    //         isPreSpawn
-    //     );
-    //
-    //     return waypointModelList;
-    // }
-
     /**
      *
      * @for SpawnPatternModel

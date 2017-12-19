@@ -386,14 +386,13 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const runwayModel = aircraft.fms.departureRunwayModel;
         const airportModel = AirportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
             return this._runSIDforSuffix(aircraft, airportModel, sidId);
         }
 
-        const response = aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
+        const response = aircraft.pilot.applyDepartureProcedure(sidId, airportModel.icao);
 
         if (!response[0]) {
             return response;
@@ -402,6 +401,7 @@ export default class AircraftCommander {
         return response;
     }
 
+    // FIXME: Check this; it probably won't be working right
     /**
      * Used only for suffix routes.
      *
@@ -417,12 +417,7 @@ export default class AircraftCommander {
      * @return {array}  [success of operation, readback]
      */
     _runSIDforSuffix(aircraft, airportModel, sidId) {
-        // FIXME: Check this; it probably won't be working right
-        const procedureDefinitionModel = this._navigationLibrary.getProcedure(sidId);
-        const runwayName = procedureDefinitionModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
-        const runwayModel = airportModel.getRunway(runwayName);
-
-        return aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
+        return aircraft.pilot.applyDepartureProcedure(sidId, airportModel.icao);
     }
 
     /**
@@ -433,17 +428,16 @@ export default class AircraftCommander {
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
-        // TODO: why are we passing this if we already have it?
-        const runwayModel = aircraft.fms.arrivalRunwayModel;
         const airportModel = AirportController.airport_get();
 
         if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {
             return this._runSTARforSuffix(aircraft, airportModel, routeString);
         }
 
-        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
+        return aircraft.pilot.applyArrivalProcedure(routeString, airportModel.name);
     }
 
+    // FIXME: Check this; it probably won't be working right
     /**
      * Used only for suffix routes.
      *
@@ -459,15 +453,7 @@ export default class AircraftCommander {
      * @return {array}  [success of operation, readback]
      */
     _runSTARforSuffix(aircraft, airportModel, routeString) {
-        // FIXME: Check this; it probably won't be working right
-        // const routeStringModel = new RouteModel(routeString);
-        // FIXME: Need to validate this somehow before trying to destructure like this
-        const [entryName, procedureId, exitName] = routeString.split('.');
-        const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
-        const runwayName = procedureDefinitionModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
-        const runwayModel = airportModel.getRunway(runwayName);
-
-        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
+        return aircraft.pilot.applyArrivalProcedure(routeString, airportModel.name);
     }
 
     /**

@@ -36,7 +36,6 @@ const starRouteStringMock = 'MLF.GRNPA1.KLAS07R';
 const sidRouteStringMock = 'KLAS07R.COWBY6.DRK';
 const fullRouteStringMock = 'KLAS07R.COWBY6.DRK..OAL..MLF..TNP.KEPEC3.KLAS07R';
 const directOnlyRouteStringMock = 'TNP..BIKKR..OAL..MLF..PGS..DRK';
-const runwayAssignmentMock = airportModelFixture.getRunway('07R');
 // const isComplexRoute = true;
 
 // fixtures
@@ -46,12 +45,12 @@ let navigationLibraryFixture;
 function buildFmsForAircraftInApronPhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 }
 function buildFmsForAircraftInCruisePhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 }
 
 ava.before(() => {
@@ -67,7 +66,7 @@ ava.beforeEach(() => {
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    navigationLibraryFixture = null;
 });
 
 ava('throws when called without parameters', (t) => {

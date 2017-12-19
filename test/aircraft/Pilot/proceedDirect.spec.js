@@ -19,7 +19,6 @@ ava.afterEach(() => {
     navigationLibraryFixture.reset();
 });
 
-
 ava('.proceedDirect() returns an error if the waypointName provided is not in the current flightPlan', (t) => {
     const expectedResult = [false, 'cannot proceed direct to ABC, it does not exist in our flight plan'];
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
@@ -30,11 +29,11 @@ ava('.proceedDirect() returns an error if the waypointName provided is not in th
 
 ava('.proceedDirect() calls ._fms.skipToWaypointName() with the correct arguments', (t) => {
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    const skipToWaypointSpy = sinon.spy(pilot._fms, 'skipToWaypoint');
+    const skipToWaypointNameSpy = sinon.spy(pilot._fms, 'skipToWaypointName');
 
     pilot.proceedDirect(waypointNameMock);
 
-    t.true(skipToWaypointSpy.calledWithExactly(waypointNameMock));
+    t.true(skipToWaypointNameSpy.calledWithExactly(waypointNameMock));
 });
 
 ava('.proceedDirect() sets the correct #_mcp mode', (t) => {
@@ -45,13 +44,14 @@ ava('.proceedDirect() sets the correct #_mcp mode', (t) => {
     t.true(pilot._mcp.headingMode === 'LNAV');
 });
 
-ava('.proceedDirect() returns to the correct flightPhase after a hold', (t) => {
+ava('.proceedDirect() calls .exitHold()', (t) => {
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    pilot._fms.setFlightPhase('HOLD');
+    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
 
+    pilot._fms.setFlightPhase('HOLD');
     pilot.proceedDirect(waypointNameMock);
 
-    t.true(pilot._fms.currentPhase === 'CRUISE');
+    t.true(exitHoldSpy.calledWithExactly());
 });
 
 ava('.proceedDirect() returns success message when finished', (t) => {

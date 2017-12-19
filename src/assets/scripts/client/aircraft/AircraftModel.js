@@ -561,8 +561,8 @@ export default class AircraftModel {
 
     initFms(data) {
         const airport = AirportController.airport_get();
-        const initialRunway = airport.getActiveRunwayForCategory(this.category);
-        this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
+        // const initialRunway = airport.getActiveRunwayForCategory(this.category);
+        this.fms = new Fms(data, this.model, this._navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.setFlightPhase(FLIGHT_PHASE.APRON);
