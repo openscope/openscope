@@ -1,10 +1,10 @@
-// import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
-// import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 // import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // fixtures
-// const navigationLibraryFixture = createNavigationLibraryFixture();
+const navigationLibraryFixture = createNavigationLibraryFixture();
 
 export const AIRCRAFT_DEFINITION_MOCK = {
     name: 'Boeing 737-700',
@@ -108,8 +108,8 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
 //         routeString: 'BESSY..BOACH..HEC'
 //     }
 // );
-//
-// export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+
+export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
@@ -149,9 +149,9 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
 //     routeString: 'COWBY..BIKKR..DAG',
 //     waypoints: []
 // };
-//
-// export const ARRIVAL_AIRCRAFT_MODEL_MOCK = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
-//
+
+export const ARRIVAL_AIRCRAFT_MODEL_MOCK = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+
 // export const HOLD_WAYPOINT_MOCK = {
 //     turnDirection: 'left',
 //     legLength: '3min',

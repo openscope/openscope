@@ -41,14 +41,14 @@ ava('.generateStaticPositionModelForLatLong() returns a DynamicPositionModel fro
     t.true(result instanceof DynamicPositionModel);
 });
 
-ava.todo('.isSuffixRoute() returns true when passed a routeString associated with a star suffix StandardRouteModel', (t) => {
+ava.skip('.isSuffixRoute() returns true when passed a routeString associated with a star suffix StandardRouteModel', (t) => {
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
     const result = navigationLibrary.isSuffixRoute(starSuffixRouteStringMock, 'STAR');
 
     t.true(result);
 });
 
-ava.todo('.isSuffixRoute() returns true when passed a routeString associated with a sid suffix StandardRouteModel', (t) => {
+ava.skip('.isSuffixRoute() returns true when passed a routeString associated with a sid suffix StandardRouteModel', (t) => {
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
     const result = navigationLibrary.isSuffixRoute(sidSuffixProcedureIdMock, 'SID');
 

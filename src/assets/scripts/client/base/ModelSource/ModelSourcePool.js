@@ -108,13 +108,13 @@ class ModelSourcePool extends BaseCollection {
      * @private
      */
     _hydratePool() {
-        _forEach(CLASS_MAP, (ModelSource) => {
-            for (let i = 0; i < MAX_POOL_SIZE_PER_MODEL; i++) {
-                const model = new ModelSource();
-
-                this._items.push(model);
-            }
-        });
+        // _forEach(CLASS_MAP, (ModelSource) => {
+        //     for (let i = 0; i < MAX_POOL_SIZE_PER_MODEL; i++) {
+        //         const model = new ModelSource();
+        //
+        //         this._items.push(model);
+        //     }
+        // });
     }
 
     /**
