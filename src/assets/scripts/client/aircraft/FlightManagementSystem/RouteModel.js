@@ -255,6 +255,10 @@ export default class RouteModel extends BaseModel {
     getArrivalRunwayAirportModel() {
         const airportIcao = this.getArrivalRunwayAirportIcao();
 
+        if (airportIcao === null) {
+            return null;
+        }
+
         return AirportController.airport_get(airportIcao);
     }
 
@@ -284,6 +288,10 @@ export default class RouteModel extends BaseModel {
      */
     getArrivalRunwayModel() {
         const arrivalRunwayName = this.getArrivalRunwayName();
+
+        if (arrivalRunwayName === null) {
+            return null;
+        }
 
         return this.getArrivalRunwayAirportModel().getRunway(arrivalRunwayName);
     }
@@ -315,6 +323,10 @@ export default class RouteModel extends BaseModel {
     getDepartureRunwayAirportModel() {
         const airportIcao = this.getDepartureRunwayAirportIcao();
 
+        if (airportIcao === null) {
+            return null;
+        }
+
         return AirportController.airport_get(airportIcao);
     }
 
@@ -344,6 +356,10 @@ export default class RouteModel extends BaseModel {
      */
     getDepartureRunwayModel() {
         const departureRunwayName = this.getDepartureRunwayName();
+
+        if (departureRunwayName === null) {
+            return null;
+        }
 
         return this.getDepartureRunwayAirportModel().getRunway(departureRunwayName);
     }

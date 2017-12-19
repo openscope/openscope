@@ -210,31 +210,43 @@ ava('.reset() resets all class properties to appropriate default values', (t) =>
 
 ava('._initializeArrivalAirport() returns early when destination ICAO is an empty string', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
-
     const result = fms.reset()._initializeArrivalAirport('');
 
     t.true(typeof result === 'undefined');
     t.true(fms.arrivalAirportModel === null);
 });
 
+ava('._initializeArrivalAirport() sets #arrivalAirportModel to the specified destination airport', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
+    const result = fms.reset()._initializeArrivalAirport('ksea');
+
+    t.true(typeof result === 'undefined');
+    t.true(fms.arrivalAirportModel.icao === 'ksea');
+});
+
 ava('._initializeArrivalRunway() returns early when #arrivalAirportModel is null', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const setArrivalRunwaySpy = sinon.spy(fms, 'setArrivalRunway');
-
     const result = fms.reset()._initializeArrivalRunway();
 
     t.true(typeof result === 'undefined');
     t.true(setArrivalRunwaySpy.notCalled);
 });
 
-ava('._initializeArrivalRunway() returns early when unable to deduce arrival runway from route', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
-    const setArrivalRunwaySpy = sinon.spy(fms, 'setArrivalRunway');
-
+ava('._initializeArrivalRunway() sets #arrivalRunwayModel to arrival airport\'s standard arrival runway when unable to deduce arrival runway from route', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(directOnlyRouteStringMock);
     const result = fms._initializeArrivalRunway();
 
     t.true(typeof result === 'undefined');
-    t.true(setArrivalRunwaySpy.notCalled);
+    t.deepEqual(fms.arrivalRunwayModel, fms.arrivalAirportModel.arrivalRunwayModel);
+});
+
+ava('._initializeArrivalRunway() sets #arrivalRunwayModel IAW the route model', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString('KLAS07L.COWBY6.DRK..OAL..MLF..TNP.KEPEC3.KLAS07R');
+    const result = fms._initializeArrivalRunway();
+
+    t.true(typeof result === 'undefined');
+    t.true(fms.arrivalRunwayModel.name === '07R');
 });
 
 ava('._initializeDepartureAirport() returns early when destination ICAO is an empty string', (t) => {
@@ -246,24 +258,43 @@ ava('._initializeDepartureAirport() returns early when destination ICAO is an em
     t.true(fms.departureAirportModel === null);
 });
 
+ava('._initializeDepartureAirport() sets #departureAirportModel to the specified origin airport', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
+    const result = fms.reset()._initializeDepartureAirport('ksea');
+
+    t.true(typeof result === 'undefined');
+    t.true(fms.departureAirportModel.icao === 'ksea');
+});
+
 ava('._initializeDepartureRunway() returns early when #departureAirportModel is null', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const setDepartureRunwaySpy = sinon.spy(fms, 'setDepartureRunway');
-
     const result = fms.reset()._initializeDepartureRunway();
 
     t.true(typeof result === 'undefined');
     t.true(setDepartureRunwaySpy.notCalled);
 });
 
-ava('._initializeDepartureRunway() returns early when unable to deduce departure runway from route', (t) => {
+ava('._initializeDepartureRunway() sets #departureRunwayModel to departure airport\'s standard departure runway when unable to deduce departure runway from route', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(starRouteStringMock);
-    const setDepartureRunwaySpy = sinon.spy(fms, 'setDepartureRunway');
-
     const result = fms._initializeDepartureRunway();
 
     t.true(typeof result === 'undefined');
-    t.true(setDepartureRunwaySpy.notCalled);
+    t.deepEqual(fms.departureRunwayModel, fms.departureAirportModel.departureRunwayModel);
+});
+
+ava('._initializeDepartureRunway() sets #departureRunwayModel IAW the route model', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString('KLAS07L.COWBY6.DRK..OAL..MLF..TNP.KEPEC3.KLAS07R');
+    const result = fms._initializeDepartureRunway();
+
+    t.true(typeof result === 'undefined');
+    t.true(fms.departureRunwayModel.name === '07L');
+});
+
+ava('._initializeFlightPhaseForCategory() throws when category is neither arrival nor departure', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+
+    t.throws(() => fms._initializeFlightPhaseForCategory('invalidSpawnPatternCategory'));
 });
 
 ava('._initializeFlightPhaseForCategory() calls .setFlightPhase() with cruise phase for arrival category', (t) => {
@@ -703,6 +734,71 @@ ava('.skipToWaypointName() returns #_routeModel.skipToWaypointName()', (t) => {
 
     t.true(result);
     t.true(routeModelSkipTowWaypointNameSpy.calledWithExactly(nextWaypointNameMock));
+});
+
+ava('._updateArrivalRunwayFromRoute() returns early when arrival runway cannot be deduced from route', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
+    const setArrivalRunwaySpy = sinon.spy(fms, 'setArrivalRunway');
+    const result = fms._updateArrivalRunwayFromRoute();
+
+    t.true(typeof result === 'undefined');
+    t.true(setArrivalRunwaySpy.notCalled);
+});
+
+ava('._updateArrivalRunwayFromRoute() calls .setArrivalRunway() IAW the route\'s arrival runway', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString('MLF.GRNPA1.KLAS07R');
+    const setArrivalRunwaySpy = sinon.spy(fms, 'setArrivalRunway');
+    const expectedRunwayModel = fms.arrivalAirportModel.getRunway('07R');
+    const result = fms._updateArrivalRunwayFromRoute();
+
+    t.true(typeof result === 'undefined');
+    t.true(setArrivalRunwaySpy.calledWithExactly(expectedRunwayModel));
+});
+
+ava('._updateDepartureRunwayFromRoute() returns early when departure runway cannot be deduced from route', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(starRouteStringMock);
+    const setDepartureRunwaySpy = sinon.spy(fms, 'setDepartureRunway');
+    const result = fms._updateDepartureRunwayFromRoute();
+
+    t.true(typeof result === 'undefined');
+    t.true(setDepartureRunwaySpy.notCalled);
+});
+
+ava('._updateDepartureRunwayFromRoute() calls .setDepartureRunway() IAW the route\'s departure runway', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString('KLAS07R.COWBY6.DRK');
+    const setDepartureRunwaySpy = sinon.spy(fms, 'setDepartureRunway');
+    const expectedRunwayModel = fms.arrivalAirportModel.getRunway('07R');
+    const result = fms._updateDepartureRunwayFromRoute();
+
+    t.true(typeof result === 'undefined');
+    t.true(setDepartureRunwaySpy.calledWithExactly(expectedRunwayModel));
+});
+
+ava('._verifyRouteContainsMultipleWaypoints() throws when route has zero waypoints', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+
+    fms._routeModel.reset();
+
+    t.true(fms.waypoints.length === 0);
+    t.throws(() => fms._verifyRouteContainsMultipleWaypoints());
+});
+
+ava('._verifyRouteContainsMultipleWaypoints() throws when route has one waypoint', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+
+    fms.replaceFlightPlanWithNewRoute('DRK');
+
+    t.true(fms.waypoints.length === 1);
+    t.throws(() => fms._verifyRouteContainsMultipleWaypoints());
+});
+
+ava('._verifyRouteContainsMultipleWaypoints() does not throw when route has more than one waypoint', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+
+    fms.replaceFlightPlanWithNewRoute('DRK..MLF');
+
+    t.true(fms.waypoints.length === 2);
+    t.notThrows(() => fms._verifyRouteContainsMultipleWaypoints());
 });
 
 ava.todo('------------------------------------------------------------------------');

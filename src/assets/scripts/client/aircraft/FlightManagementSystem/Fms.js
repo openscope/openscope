@@ -363,7 +363,7 @@ export default class Fms {
         const arrivalRunwayName = this._routeModel.getArrivalRunwayName();
 
         if (arrivalRunwayName === null) {
-            return;
+            return this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
         }
 
         const arrivalRunwayModel = this.arrivalAirportModel.getRunway(arrivalRunwayName);
@@ -402,7 +402,7 @@ export default class Fms {
         const departureRunwayName = this._routeModel.getDepartureRunwayName();
 
         if (departureRunwayName === null) {
-            return;
+            return this.setDepartureRunway(this.departureAirportModel.departureRunwayModel);
         }
 
         const departureRunwayModel = this.departureAirportModel.getRunway(departureRunwayName);
@@ -427,7 +427,7 @@ export default class Fms {
                 return this.setFlightPhase(FLIGHT_PHASE.APRON);
 
             default:
-                break;
+                throw new TypeError(`Expected known spawn pattern category, but received "${category}"`);
         }
     }
 
@@ -486,57 +486,57 @@ export default class Fms {
 
     // FIXME: This will no longer work
     // TODO: this method should be simplified
-    /**
-    * Create a new `LegModel` for a holding pattern at a Fix or a position
-    *
-    * @for Fms
-    * @method createLegWithHoldingPattern
-    * @param inboundHeading {number}
-    * @param turnDirection {string}
-    * @param legLength {number}
-    * @param holdRouteSegment {string}
-    * @param holdPosition {StaticPositionModel}
-    */
-    createLegWithHoldingPattern(/* inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition */) {
-        // // TODO: replace with constant
-        // const isPositionHold = holdRouteSegment === 'GPS';
-        // const waypointProps = {
-        //     turnDirection,
-        //     legLength,
-        //     isHold: true,
-        //     inboundHeading,
-        //     name: holdRouteSegment,
-        //     positionModel: holdPosition,
-        //     altitudeMaximum: INVALID_NUMBER,
-        //     altitudeMinimum: INVALID_NUMBER,
-        //     speedMaximum: INVALID_NUMBER,
-        //     speedMinimum: INVALID_NUMBER
-        // };
-        //
-        // if (isPositionHold) {
-        //     const legModel = this._createLegWithHoldWaypoint(waypointProps);
-        //
-        //     this.prependLeg(legModel);
-        //
-        //     return;
-        // }
-        //
-        // const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
-        // const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
-        //
-        // if (waypointIndex !== INVALID_NUMBER) {
-        //     this.skipToWaypointName(waypointNameToFind);
-        //     this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
-        //
-        //     return;
-        // }
-        //
-        // const legModel = this._createLegWithHoldWaypoint(waypointProps);
-        //
-        // this.prependLeg(legModel);
-        //
-        // return;
-    }
+    // /**
+    // * Create a new `LegModel` for a holding pattern at a Fix or a position
+    // *
+    // * @for Fms
+    // * @method createLegWithHoldingPattern
+    // * @param inboundHeading {number}
+    // * @param turnDirection {string}
+    // * @param legLength {number}
+    // * @param holdRouteSegment {string}
+    // * @param holdPosition {StaticPositionModel}
+    // */
+    // createLegWithHoldingPattern(/* inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition */) {
+    //     // TODO: replace with constant
+    //     const isPositionHold = holdRouteSegment === 'GPS';
+    //     const waypointProps = {
+    //         turnDirection,
+    //         legLength,
+    //         isHold: true,
+    //         inboundHeading,
+    //         name: holdRouteSegment,
+    //         positionModel: holdPosition,
+    //         altitudeMaximum: INVALID_NUMBER,
+    //         altitudeMinimum: INVALID_NUMBER,
+    //         speedMaximum: INVALID_NUMBER,
+    //         speedMinimum: INVALID_NUMBER
+    //     };
+    //
+    //     if (isPositionHold) {
+    //         const legModel = this._createLegWithHoldWaypoint(waypointProps);
+    //
+    //         this.prependLeg(legModel);
+    //
+    //         return;
+    //     }
+    //
+    //     const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
+    //     const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
+    //
+    //     if (waypointIndex !== INVALID_NUMBER) {
+    //         this.skipToWaypointName(waypointNameToFind);
+    //         this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
+    //
+    //         return;
+    //     }
+    //
+    //     const legModel = this._createLegWithHoldWaypoint(waypointProps);
+    //
+    //     this.prependLeg(legModel);
+    //
+    //     return;
+    // }
 
     /**
      * Return an array of waypoints in the flight plan that have altitude restrictions
