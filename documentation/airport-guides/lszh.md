@@ -16,7 +16,7 @@ D - Zurich Departure
 W - Zurich Arrival (West)
 E - Zurich Arrival (East)
 A - Zurich Arrival (ARFA)  
-F - Zurich Final Approach
+F - Zurich Final
 ```
 
 ### Airports of Interest
@@ -58,5 +58,6 @@ Today Dübendorf AFB is the home of Lufttransportstaffel 3 and Lufttransportstaf
 
 ### Additional Resources
 VATSIM Charts (http://www.vacc.ch/en/airports_and_charts/)  
-Jeppesen Charts (http://vau.aero/navdb/chart/LSZH.pdf)
+Jeppesen Charts (http://vau.aero/navdb/chart/LSZH.pdf)  
+IVAO Operating Manual (http://ivao.ch/downloads/public/documents/LSZH_OM.pdf)
 
