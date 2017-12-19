@@ -5,7 +5,7 @@ Skyguide Air Navigation Center, Dübendorf, Switzerland
 Located at Dübendorf Air Base (close to Zurich), besides the LSAZ FIR, the Skyguide Air Navigation Center is also responsible for the in- and outbound traffic of Switzerlands major airport Zurich (LSZH).
 
 ### Airspace
-The airspace encompasses a large area around Zurich up to FL190 and also includes some German territory. Approaches to Friedrichshafen (EDNY) and St. Gallen-Altenrhein (LSZR) are controlled by the Zurich Arrival ARFA sector, which is covering the eastern part of the Zurich Arrival East sector up to FL100.
+The airspace encompasses a large area around Zurich up to FL190. It includes a fairly large shelf to the East with a floor of FL100. The airspace below it, is used by the ARFA sector which controls EDNY and LSZR. Zurich airspace also includes some German territory to the North which is heavily used for approaches to runways 14 and 16. During the German curfew period runways 28 or 34 must be used which reduces the capacity of the airport.
 
 ### Instrument Procedures
 LSZH offers several departure procedures, however the DEGES and VEBIT departures are the most commonly used. Arrivals follow their STAR's to either GIPOL or AMIKI, where aircraft must be vectored to their final approach course.
