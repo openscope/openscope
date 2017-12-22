@@ -776,7 +776,7 @@ export default class CanvasController {
             return;
         }
 
-        const runway = aircraftModel.fms.currentRunway;
+        const runway = aircraftModel.fms.arrivalRunwayModel;
         const oppositeOfRunwayHeading = runway.oppositeAngle;
         const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(aircraftModel.relativePosition);
         cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;

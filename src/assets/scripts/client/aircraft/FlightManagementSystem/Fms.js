@@ -155,35 +155,6 @@ export default class Fms {
         return this._routeModel.currentLeg;
     }
 
-    // FIXME: Do we really need this?
-    /**
-     * Provides access to the `RunwayModel` currently associated with the Fms
-     *
-     * It is assumed only an arrival or departure runway will
-     * exist at any one time
-     *
-     * @property currentRunway
-     * @return {RunwayModel}
-     */
-    get currentRunway() {
-        return this.arrivalRunwayModel || this.departureRunwayModel;
-    }
-
-    // FIXME: Do we really need this?
-    /**
-     * The name of the currently assigned runway
-     *
-     * // TODO: this may need to be moved to a function in the event
-     *          both departure and arrival runways are supported for
-     *          a single aircraft
-     *
-     * @property currentRunwayName
-     * @type {string}
-     */
-    get currentRunwayName() {
-        return this.currentRunway.name;
-    }
-
     /**
      * The active waypoint an aircraft is flying towards
      *

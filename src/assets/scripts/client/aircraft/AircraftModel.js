@@ -951,8 +951,9 @@ export default class AircraftModel {
      */
     isOnGround() {
         const errorAllowanceInFeet = 5;
-        const airport = AirportController.airport_get();
-        const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
+        const airport = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
+        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
+        const nearRunwayAltitude = abs(this.altitude - runwayModel.elevation) < errorAllowanceInFeet;
         const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
@@ -1044,9 +1045,9 @@ export default class AircraftModel {
             head: 0
         };
 
-        const { wind } = AirportController.airport_get();
-        // const wind = airport.wind;
-        const angle = this.fms.currentRunway.calculateCrosswindAngleForRunway(wind.angle);
+        const { wind } = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
+        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
+        const angle = runwayModel.calculateCrosswindAngleForRunway(wind.angle);
 
         // TODO: these two bits of math should be abstracted to helper functions
         windForRunway.cross = sin(angle) * wind.speed;

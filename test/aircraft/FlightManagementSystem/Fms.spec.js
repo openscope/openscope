@@ -97,10 +97,6 @@ ava('#currentLeg returns #_routeModel.currentLeg', (t) => {
     t.deepEqual(fms.currentLeg, fms._routeModel.currentLeg);
 });
 
-ava.todo('#currentRunway');
-
-ava.todo('#currentRunwayName');
-
 ava('#currentWaypoint returns the first waypoint of the #_routeModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
 

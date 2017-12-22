@@ -245,7 +245,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', departureAircraft.fms.currentRunwayName);
+                return t.replace('{RUNWAY}', departureAircraft.fms.departureRunwayModel.name);
             },
             side: 'left',
             position: tutorial_position
@@ -262,7 +262,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', departureAircraft.fms.currentRunwayName);
+                return t.replace('{RUNWAY}', departureAircraft.fms.departureRunwayModel.name);
             },
             side: 'left',
             position: tutorial_position
@@ -280,7 +280,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', departureAircraft.fms.currentRunwayName);
+                return t.replace('{RUNWAY}', departureAircraft.fms.departureRunwayModel.name);
             },
             side: 'left',
             position: tutorial_position
@@ -297,7 +297,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', departureAircraft.fms.currentRunwayName);
+                return t.replace('{RUNWAY}', departureAircraft.fms.departureRunwayModel.name);
             },
             side: 'left',
             position: tutorial_position
