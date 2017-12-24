@@ -296,23 +296,32 @@ ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
 //     t.true(result === 8000);
 // });
 
-ava('.hasWaypointName() throws when the not provided with a waypoint name', (t) => {
+ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const result = model.getArrivalRunwayAirportIcao();
 
-    t.throws(() => model.hasWaypointName());
-    t.throws(() => model.hasWaypointName(''));
+    t.true(result === null);
 });
 
-ava('.hasWaypointName() returns false when the specified waypoint does not exist in the #waypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+ava('.getArrivalRunwayAirportIcao() returns the first four characters of the STAR exit name', (t) => {
+    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const result = model.getArrivalRunwayAirportIcao();
 
-    t.false(model.hasWaypointName('ABC'));
+    t.true(result === 'klas');
 });
 
-ava('.hasWaypointName() returns true when the specified waypoint exists within the #waypointCollection', (t) => {
+ava('.getArrivalRunwayName() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const result = model.getArrivalRunwayName();
 
-    t.true(model.hasWaypointName('BOACH'));
+    t.true(result === null);
+});
+
+ava('.getArrivalRunwayName() returns the all but first four characters of the STAR exit name', (t) => {
+    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const result = model.getArrivalRunwayName();
+
+    t.true(result === '19R');
 });
 
 ava('.getBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {
@@ -339,6 +348,71 @@ ava('.getBottomAltitude() returns the correct bottom altitude when leg is a proc
     t.true(result === expectedResult);
 });
 
+ava('.getDepartureRunwayAirportIcao() returns null when this is not a SID leg', (t) => {
+    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const result = model.getDepartureRunwayAirportIcao();
+
+    t.true(result === null);
+});
+
+ava('.getDepartureRunwayAirportIcao() returns the first four characters of the SID entry name', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const result = model.getDepartureRunwayAirportIcao();
+
+    t.true(result === 'klas');
+});
+
+ava('.getDepartureRunwayName() returns null when this is not a SID leg', (t) => {
+    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const result = model.getDepartureRunwayName();
+
+    t.true(result === null);
+});
+
+ava('.getDepartureRunwayName() returns the all but first four characters of the SID entry name', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const result = model.getDepartureRunwayName();
+
+    t.true(result === '25R');
+});
+
+ava('.getProcedureIcao() returns undefined when this is not a procedure leg', (t) => {
+    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const result = model.getProcedureIcao();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getProcedureIcao() returns the ICAO identifier of the ProcedureDefinitionModel in use by this leg', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const expectedResult = 'BOACH6';
+    const result = model.getProcedureIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getProcedureName() returns undefined when this is not a procedure leg', (t) => {
+    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const result = model.getProcedureName();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getProcedureName() returns the name of the ProcedureDefinitionModel in use by this leg', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const expectedResult = 'Boach Six';
+    const result = model.getProcedureName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.hasWaypointName() throws when the not provided with a waypoint name', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+
+    t.throws(() => model.hasWaypointName());
+    t.throws(() => model.hasWaypointName(''));
+});
+
 ava('.getTopAltitude() returns -1 when leg is not a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
     const expectedResult = -1;
@@ -361,6 +435,62 @@ ava('.getTopAltitude() returns the correct top altitude when leg is a procedure 
     const result = model.getTopAltitude();
 
     t.true(result === expectedResult);
+});
+
+ava('.hasNextWaypoint() returns false when #_waypointCollection has less than two elements', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+
+    model._waypointCollection = [model._waypointCollection[0]];
+
+    const result = model.hasNextWaypoint();
+
+    t.true(model._waypointCollection.length === 1);
+    t.false(result);
+});
+
+ava('.hasNextWaypoint() returns true when #_waypointCollection has at least two elements', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const result = model.hasNextWaypoint();
+
+    t.true(model._waypointCollection.length > 1);
+    t.true(result);
+});
+
+ava('.hasWaypointName() returns false when the specified waypoint does not exist in the #waypointCollection', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+
+    t.false(model.hasWaypointName('ABC'));
+});
+
+ava('.hasWaypointName() returns true when the specified waypoint exists within the #waypointCollection', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+
+    t.true(model.hasWaypointName('BOACH'));
+});
+
+ava('.moveToNextWaypoint() moves #currentWaypoint into the #_previousWaypointCollection', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+
+    t.true(model._previousWaypointCollection.length === 0);
+    t.true(model._waypointCollection.length === 7);
+
+    model.moveToNextWaypoint();
+
+    t.true(model._previousWaypointCollection.length === 1);
+    t.true(model._waypointCollection.length === 6);
+});
+
+ava('.skipAllWaypointsInLeg() moves entire #_waypointCollection into the #_previousWaypointCollection', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const oldWaypointCollection = model._waypointCollection;
+
+    t.true(model._previousWaypointCollection.length === 0);
+    t.true(model._waypointCollection.length === 7);
+
+    model.skipAllWaypointsInLeg();
+
+    t.deepEqual(model._waypointCollection, []);
+    t.deepEqual(model._previousWaypointCollection, oldWaypointCollection);
 });
 
 ava('.skipToWaypointName() returns false early when the specified waypoint is not in the leg', (t) => {
@@ -515,6 +645,22 @@ ava('.updateStarLegForArrivalRunwayModel() regenerates #_waypointCollection IAW 
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
+ava('._findIndexOfWaypointName() returns -1 when no waypoint in the #waypointCollection has the specified name', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const expectedResult = -1;
+    const result = model._findIndexOfWaypointName('thisFixIsNotInTheRoute');
+
+    t.true(result === expectedResult);
+});
+
+ava('._findIndexOfWaypointName() returns the index of the WaypointModel in the #waypointCollection with the specified name', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const expectedResult = 3;
+    const result = model._findIndexOfWaypointName('BOACH');
+
+    t.true(result === expectedResult);
+});
+
 ava('._resetWaypointCollection() calls .skipAllWaypointsInLeg()', (t) => {
     const model = new LegModel(navigationLibrary, shortSidRouteStringMock);
     const skipAllWaypointsInLegSpy = sinon.spy(model, 'skipAllWaypointsInLeg');
@@ -541,6 +687,36 @@ ava('._resetWaypointCollection() calls .reset() method of all waypoints', (t) =>
     t.true(bakrrWaypointResetSpy.calledWithExactly());
     t.true(tralrWaypointResetSpy.calledWithExactly());
     t.true(mlfWaypointResetSpy.calledWithExactly());
+});
+
+ava('._verifyProcedureAndEntryAndExitAreValid() throws when #_procedureDefinitionModel is null', (t) => {
+    const model = new LegModel(navigationLibrary, directRouteStringMock);
+
+    t.throws(() => model._verifyProcedureAndEntryAndExitAreValid('entryName', 'exitName'));
+});
+
+ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified entry is not valid for the procedure', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const invalidEntryName = 'invalidEntry';
+    const validExitName = 'HEC';
+
+    t.throws(() => model._verifyProcedureAndEntryAndExitAreValid(invalidEntryName, validExitName));
+});
+
+ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified exit is not valid for the procedure', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const validEntryName = 'KLAS25L';
+    const invalidExitName = 'invalidExit';
+
+    t.throws(() => model._verifyProcedureAndEntryAndExitAreValid(validEntryName, invalidExitName));
+});
+
+ava('._verifyProcedureAndEntryAndExitAreValid() does not throw when the specified entry and exit are valid for the procedure', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const validEntryName = 'KLAS25L';
+    const validExitName = 'HEC';
+
+    t.notThrows(() => model._verifyProcedureAndEntryAndExitAreValid(validEntryName, validExitName));
 });
 
 // ava('._buildWaypointForDirectRoute() returns an array with a single instance of a WaypointModel', (t) => {

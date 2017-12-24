@@ -115,7 +115,7 @@ export default class LegModel {
      * @type {WaypointModel}
      */
     get currentWaypoint() {
-        if (this._waypointCollection.length < 1) {
+        if (this._waypointCollection.length === 0) {
             throw new TypeError('Expected the current leg to contain at least one waypoint');
         }
 
@@ -376,6 +376,29 @@ export default class LegModel {
     }
 
     /**
+    * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
+    *
+    * @for LegModel
+    * @method getBottomAltitude
+    * @return {number}
+    */
+    getBottomAltitude() {
+        if (!this.isProcedureLeg) {
+            return INVALID_NUMBER;
+        }
+
+        const minimumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMinimum);
+        const positiveValueRestrictionList = _without(minimumAltitudes, INVALID_NUMBER);
+        const bottomAltitude = Math.min(...positiveValueRestrictionList);
+
+        if (bottomAltitude === Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return bottomAltitude;
+    }
+
+    /**
     * Return the ICAO identifier for the airport at which this leg originates (if
     * it is in fact a SID leg, of course).
     *
@@ -411,29 +434,6 @@ export default class LegModel {
         const departureRunwayName = airportAndRunway.substr(4);
 
         return departureRunwayName;
-    }
-
-    /**
-    * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
-    *
-    * @for LegModel
-    * @method getBottomAltitude
-    * @return {number}
-    */
-    getBottomAltitude() {
-        if (!this.isProcedureLeg) {
-            return INVALID_NUMBER;
-        }
-
-        const minimumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMinimum);
-        const positiveValueRestrictionList = _without(minimumAltitudes, INVALID_NUMBER);
-        const bottomAltitude = Math.min(...positiveValueRestrictionList);
-
-        if (bottomAltitude === Infinity) {
-            return INVALID_NUMBER;
-        }
-
-        return bottomAltitude;
     }
 
     /**
@@ -479,7 +479,8 @@ export default class LegModel {
         }
 
         const maximumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMaximum);
-        const topAltitude = Math.max(...maximumAltitudes);
+        const positiveValueRestrictionList = _without(maximumAltitudes, INVALID_NUMBER);
+        const topAltitude = Math.max(...positiveValueRestrictionList);
 
         if (topAltitude === -Infinity) {
             return INVALID_NUMBER;

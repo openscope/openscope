@@ -33,9 +33,10 @@ ava.afterEach(() => {
 });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
+    const expectedResponse = [false, 'unable to descend to bottom altitude of threeve'];
     const response = pilot.descendViaStar(invalidAltitudeMock);
 
-    t.deepEqual(response, failureResponseMock);
+    t.deepEqual(response, expectedResponse);
     t.true(pilot._mcp.altitude === initialAltitudeMock);
 });
 

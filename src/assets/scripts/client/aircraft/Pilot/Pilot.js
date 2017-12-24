@@ -499,8 +499,12 @@ export default class Pilot {
             nextAltitude = this._fms.getBottomAltitude();
         }
 
-        if (isNaN(nextAltitude) || nextAltitude === Infinity) {
+        if (nextAltitude === INVALID_NUMBER) {
             return [false, 'unable to descend via STAR'];
+        }
+
+        if (typeof nextAltitude !== 'number') {
+            return [false, `unable to descend to bottom altitude of ${nextAltitude}`];
         }
 
         this._mcp.setAltitudeFieldValue(nextAltitude);
