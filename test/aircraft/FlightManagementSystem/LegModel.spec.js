@@ -250,48 +250,48 @@ ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
 //     t.true(model.currentWaypoint.name === 'skebr');
 // });
 //
-// ava('.getProcedureTopAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
+// ava('.getTopAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
 //     const model = new LegModel(directRouteStringMockMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getProcedureTopAltitude();
+//     const result = model.getTopAltitude();
 //
 //     t.true(result === INVALID_NUMBER);
 // });
 //
-// ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
+// ava('.getTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
 //     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 //     const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
 //
-//     model.getProcedureTopAltitude();
+//     model.getTopAltitude();
 //
 //     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
 // });
 //
-// ava('.getProcedureTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
+// ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
 //     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getProcedureTopAltitude();
+//     const result = model.getTopAltitude();
 //
 //     t.true(result === 24000);
 // });
 //
-// ava('.getProcedureBottomAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
+// ava('.getBottomAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
 //     const model = new LegModel(directRouteStringMockMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getProcedureBottomAltitude();
+//     const result = model.getBottomAltitude();
 //
 //     t.true(result === INVALID_NUMBER);
 // });
 //
-// ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
+// ava('.getBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
 //     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 //     const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
 //
-//     model.getProcedureBottomAltitude();
+//     model.getBottomAltitude();
 //
 //     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
 // });
 //
-// ava('.getProcedureBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
+// ava('.getBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
 //     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getProcedureBottomAltitude();
+//     const result = model.getBottomAltitude();
 //
 //     t.true(result === 8000);
 // });
@@ -315,34 +315,50 @@ ava('.hasWaypointName() returns true when the specified waypoint exists within t
     t.true(model.hasWaypointName('BOACH'));
 });
 
-ava('.getProcedureBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {
+ava('.getBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
     const expectedResult = -1;
-    const result = model.getProcedureBottomAltitude();
+    const result = model.getBottomAltitude();
 
     t.true(result === expectedResult);
 });
 
-ava('.getProcedureBottomAltitude() returns the correct bottom altitude when leg is a procedure leg', (t) => {
+ava('.getBottomAltitude() returns -1 when procedure leg does not have a bottom altitude', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS19L.COWBY6.DRK');
+    const expectedResult = -1;
+    const result = model.getBottomAltitude();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getBottomAltitude() returns the correct bottom altitude when leg is a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, starRouteStringMock);
     const expectedResult = 8000;
-    const result = model.getProcedureBottomAltitude();
+    const result = model.getBottomAltitude();
 
     t.true(result === expectedResult);
 });
 
-ava('.getProcedureTopAltitude() returns -1 when leg is not a procedure leg', (t) => {
+ava('.getTopAltitude() returns -1 when leg is not a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
     const expectedResult = -1;
-    const result = model.getProcedureTopAltitude();
+    const result = model.getTopAltitude();
 
     t.true(result === expectedResult);
 });
 
-ava('.getProcedureTopAltitude() returns the correct top altitude when leg is a procedure leg', (t) => {
+ava('.getTopAltitude() returns -1 when procedure leg does not have a top altitude', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS19L.COWBY6.DRK');
+    const expectedResult = -1;
+    const result = model.getTopAltitude();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getTopAltitude() returns the correct top altitude when leg is a procedure leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
     const expectedResult = 7000;
-    const result = model.getProcedureTopAltitude();
+    const result = model.getTopAltitude();
 
     t.true(result === expectedResult);
 });

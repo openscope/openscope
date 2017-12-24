@@ -7,6 +7,7 @@ import _map from 'lodash/map';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import RouteModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
+import AirportModel from '../../../src/assets/scripts/client/airport/AirportModel';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { createAirportModelFixture } from '../../fixtures/airportFixtures';
 
@@ -199,6 +200,152 @@ ava('.getAltitudeRestrictedWaypoints() returns an array of WaypointModels that h
     t.true(allWaypointsHaveRestrictions);
 });
 
+ava('.getArrivalRunwayAirportIcao() returns null if there is no STAR leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getArrivalRunwayAirportIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayAirportIcao() returns the appropriate runway\'s airport\'s ICAO identifier', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const expectedResult = 'klas';
+    const result = model.getArrivalRunwayAirportIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayAirportModel() returns null when there is no STAR leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getArrivalRunwayAirportModel();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayAirportModel() returns the appropriate runway\'s AirportModel', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const expectedAirportIcao = 'klas';
+    const result = model.getArrivalRunwayAirportModel();
+
+    t.true(result instanceof AirportModel);
+    t.true(result.icao === expectedAirportIcao);
+});
+
+ava('.getArrivalRunwayName() returns null when there is no STAR leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getArrivalRunwayName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayName() returns the appropriate runway name', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const expectedResult = '07R';
+    const result = model.getArrivalRunwayName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayModel() returns null when there is no STAR leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getArrivalRunwayModel();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getArrivalRunwayModel() returns the appropriate RunwayModel', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const expectedRunwayName = '07R';
+    const result = model.getArrivalRunwayModel();
+
+    t.true(result.name === expectedRunwayName);
+});
+
+ava('.getBottomAltitude() returns -1 when there is no bottom altitude in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const expectedResult = -1;
+    const result = model.getBottomAltitude();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getBottomAltitude() returns the lowest #altitudeMinimum of any LegModel in the #_legCollection', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R..DRK.ZIMBO1.KLAS07R');
+    const expectedResult = 6000;
+    const result = model.getBottomAltitude();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayAirportIcao() returns null if there is no SID leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getDepartureRunwayAirportIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayAirportIcao() returns the appropriate runway\'s airport\'s ICAO identifier', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const expectedResult = 'klas';
+    const result = model.getDepartureRunwayAirportIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayAirportModel() returns null when there is no SID leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getDepartureRunwayAirportModel();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayAirportModel() returns the appropriate runway\'s AirportModel', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const expectedAirportIcao = 'klas';
+    const result = model.getDepartureRunwayAirportModel();
+
+    t.true(result instanceof AirportModel);
+    t.true(result.icao === expectedAirportIcao);
+});
+
+ava('.getDepartureRunwayName() returns null when there is no SID leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getDepartureRunwayName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayName() returns the appropriate runway name', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const expectedResult = '07R';
+    const result = model.getDepartureRunwayName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayModel() returns null when there is no SID leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const expectedResult = null;
+    const result = model.getDepartureRunwayModel();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDepartureRunwayModel() returns the appropriate RunwayModel', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const expectedRunwayName = '07R';
+    const result = model.getDepartureRunwayModel();
+
+    t.true(result.name === expectedRunwayName);
+});
+
 ava('.getFullRouteString() returns a route string for the entire route, including past legs, in dot notation', (t) => {
     const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
 
@@ -240,16 +387,72 @@ ava('.getRouteStringWithSpaces() returns a route string for the remaining legs o
     t.true(result === 'GUP IGM');
 });
 
-ava('.getBottomAltitude() returns the lowest bottom altitude of any leg in the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07L..BETHL.GRNPA2.KLAS07L');
-    const expectedResult = 7000;
-    const result = model.getBottomAltitude();
+ava('.getSidIcao() returns undefined when there is no SID leg in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const result = model.getSidIcao();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getSidIcao() returns the ICAO identifier for the SID procedure in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const result = model.getSidIcao();
+
+    t.true(result === 'BOACH6');
+});
+
+ava('.getSidName() returns undefined when there is no SID leg in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const result = model.getSidName();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getSidName() returns the spoken name of the SID procedure in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const result = model.getSidName();
+
+    t.true(result === 'Boach Six');
+});
+
+ava('.getStarIcao() returns undefined when there is no STAR leg in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const result = model.getStarIcao();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getStarIcao() returns the ICAO identifier for the STAR procedure in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const result = model.getStarIcao();
+
+    t.true(result === 'TYSSN4');
+});
+
+ava('.getStarName() returns undefined when there is no STAR leg in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const result = model.getStarName();
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('.getStarName() returns the spoken name of the STAR procedure in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const result = model.getStarName();
+
+    t.true(result === 'Tyson Four');
+});
+
+ava('.getTopAltitude() returns -1 when there is no top altitude in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const expectedResult = -1;
+    const result = model.getTopAltitude();
 
     t.true(result === expectedResult);
 });
 
-ava('.getTopAltitude() returns the highest top altitude of any leg in the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS25R.SHEAD9.KENNO');
+ava('.getTopAltitude() returns the highest #altitudeMaximum of any LegModel in the #_legCollection', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'KLAS25R.BOACH6.HEC..KLAS25R.SHEAD9.KENNO');
     const expectedResult = 11000;
     const result = model.getTopAltitude();
 

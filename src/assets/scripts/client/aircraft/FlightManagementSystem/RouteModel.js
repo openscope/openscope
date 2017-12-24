@@ -372,13 +372,17 @@ export default class RouteModel extends BaseModel {
     * @return {number}
     */
     getBottomAltitude() {
-        const valueToExclude = INVALID_NUMBER;
-        const minAltitudeFromLegs = _without(
-            _map(this._legCollection, (leg) => leg.getProcedureBottomAltitude()),
-            valueToExclude
+        const minAltitudesFromLegs = _without(
+            _map(this._legCollection, (leg) => leg.getBottomAltitude()),
+            INVALID_NUMBER
         );
+        const bottomAltitude = Math.min(...minAltitudesFromLegs);
 
-        return Math.min(...minAltitudeFromLegs);
+        if (bottomAltitude === Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return bottomAltitude;
     }
 
     /**
@@ -510,9 +514,17 @@ export default class RouteModel extends BaseModel {
     * @return {number}
     */
     getTopAltitude() {
-        const maxAltitudeFromLegs = _map(this._legCollection, (leg) => leg.getProcedureTopAltitude());
+        const maxAltitudesFromLegs = _without(
+            _map(this._legCollection, (leg) => leg.getTopAltitude()),
+            INVALID_NUMBER
+        );
+        const topAltitude = Math.max(...maxAltitudesFromLegs);
 
-        return Math.max(...maxAltitudeFromLegs);
+        if (topAltitude === -Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return topAltitude;
     }
 
     /**

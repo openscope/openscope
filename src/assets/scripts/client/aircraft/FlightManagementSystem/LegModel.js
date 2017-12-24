@@ -353,7 +353,7 @@ export default class LegModel {
         const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[2];
         const arrivalAirportIcao = airportAndRunway.substr(0, 4);
 
-        return arrivalAirportIcao;
+        return arrivalAirportIcao.toLowerCase();
     }
 
     /**
@@ -391,7 +391,7 @@ export default class LegModel {
         const airportAndRunway = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER)[0];
         const departureAirportIcao = airportAndRunway.substr(0, 4);
 
-        return departureAirportIcao;
+        return departureAirportIcao.toLowerCase();
     }
 
     /**
@@ -417,18 +417,23 @@ export default class LegModel {
     * Returns the lowest `#altitudeMinimum` of all `WaypointModel`s in this leg
     *
     * @for LegModel
-    * @method getProcedureBottomAltitude
+    * @method getBottomAltitude
     * @return {number}
     */
-    getProcedureBottomAltitude() {
+    getBottomAltitude() {
         if (!this.isProcedureLeg) {
             return INVALID_NUMBER;
         }
 
         const minimumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMinimum);
         const positiveValueRestrictionList = _without(minimumAltitudes, INVALID_NUMBER);
+        const bottomAltitude = Math.min(...positiveValueRestrictionList);
 
-        return Math.min(...positiveValueRestrictionList);
+        if (bottomAltitude === Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return bottomAltitude;
     }
 
     /**
@@ -465,17 +470,22 @@ export default class LegModel {
      * Returns the highest `#altitudeMaximum` of all `WaypointModel`s in this leg
      *
      * @for LegModel
-     * @method getProcedureTopAltitude
+     * @method getTopAltitude
      * @return {number}
      */
-    getProcedureTopAltitude() {
+    getTopAltitude() {
         if (!this.isProcedureLeg) {
             return INVALID_NUMBER;
         }
 
         const maximumAltitudes = _map(this._waypointCollection, (waypoint) => waypoint.altitudeMaximum);
+        const topAltitude = Math.max(...maximumAltitudes);
 
-        return Math.max(...maximumAltitudes);
+        if (topAltitude === -Infinity) {
+            return INVALID_NUMBER;
+        }
+
+        return topAltitude;
     }
 
     /**

@@ -216,7 +216,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS01R": ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"], "COMPS"],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"], "COMPS"],
-                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
+                "KLAS19L": ["FIXIX", "ROPPR", "CEASR", "HITME"],
                 "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
                 "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]],
                 "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
@@ -394,7 +394,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         },
         "TYSSN4": {
             "icao": "TYSSN4",
-            "name": "Tyson Three",
+            "name": "Tyson Four",
             "entryPoints": {
                 "DRK":   ["DRK", ["IGM", "A240"], ["ZATES", "A190"]],
                 "IGM":   [["IGM", "A240"], ["ZATES", "A190"]],
@@ -421,7 +421,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "entryPoints": {
                 "DRK": ["DRK", ["IGM", "A240"], ["ZATES", "A190"]]
             },
-            "body": [["KADDY", "A120"], "TYSSN", ["SUZSI", "A100"], ["PRINO", "A80"]],
+            "body": [["KADDY", "A120"], "TYSSN", ["SUZSI", "A100"], ["PRINO", "A60"]],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],
