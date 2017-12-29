@@ -1,11 +1,13 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import _isPlainObject from 'lodash/isPlainObject';
 import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
     INVALID_NUMBER
 } from '../../constants/globalConstants';
 import {
+    DEFAULT_HOLD_PARAMETERS,
     RNAV_WAYPOINT_DISPLAY_NAME,
     RNAV_WAYPOINT_PREFIX
 } from '../../constants/waypointConstants';
@@ -249,14 +251,8 @@ export default class WaypointModel {
      * @private
      */
     _initHoldWaypoint() {
+        this._holdParameters = DEFAULT_HOLD_PARAMETERS;
         this._isHoldWaypoint = true;
-        // TODO: These should be coming from a const file somewhere instead of being hard-coded
-        this._holdParameters = {
-            inboundHeading: undefined,
-            legLength: 1,
-            timer: INVALID_NUMBER,
-            turnDirection: 'right'
-        };
     }
 
     /**
@@ -300,6 +296,20 @@ export default class WaypointModel {
     // ------------------------------ PUBLIC ------------------------------
 
     /**
+     * Mark this waypoint as a hold waypoint
+     *
+     * @for WaypointModel
+     * @method activateHold
+     */
+    activateHold() {
+        if (this._holdParameters === null) {
+            this.setHoldParameters({});
+        }
+
+        this._isHoldWaypoint = true;
+    }
+
+    /**
      * Calculate the distance between two waypoint models
      *
      * @for WaypointModel
@@ -325,6 +335,16 @@ export default class WaypointModel {
         this._ensureNonVectorWaypointsForThisAndWaypoint(waypointModel);
 
         return this._positionModel.distanceToPosition(waypointModel.positionModel);
+    }
+
+    /**
+     * Cancel any hold at this waypoint
+     *
+     * @for WaypointModel
+     * @method deactivateHold
+     */
+    deactivateHold() {
+        this._isHoldWaypoint = false;
     }
 
     /**
@@ -373,22 +393,34 @@ export default class WaypointModel {
     }
 
     /**
+     * Set parameters for the planned holding pattern at this waypoint. This does NOT
+     * inherently make this a hold waypoint, but simply describes the holding pattern
+     * aircraft should follow IF they are told to hold at this waypoint
+     *
+     * @for WaypointModel
+     * @method setHoldParameters
+     * @param holdParameters {object}
+     */
+    setHoldParameters(holdParameters) {
+        if (!_isPlainObject(holdParameters)) {
+            throw new TypeError(`Expected valid hold parameter object but received type ${typeof holdParameters}`);
+        }
+
+        this._holdParameters = Object.assign(DEFAULT_HOLD_PARAMETERS, holdParameters);
+    }
+
+    /**
      * Stores provided parameters for holding pattern, and marks this as a hold waypoint
      *
      * @for WaypointModel
-     * @method setHoldParametersAndArmHold
+     * @method setHoldParametersAndActivateHold
      * @param inboundHeading {number} in radians
      * @param turnDirection {string} either left or right
      * @param legLength {string} length of the hold leg in minutes or nm
      */
-    setHoldParametersAndArmHold(inboundHeading, turnDirection, legLength) {
-        this._isHoldWaypoint = true;
-        this._holdParameters = {
-            turnDirection: turnDirection,
-            inboundHeading: inboundHeading,
-            legLength: legLength,
-            timer: INVALID_NUMBER
-        };
+    setHoldParametersAndActivateHold(holdParameters) {
+        this.setHoldParameters(holdParameters);
+        this.activateHold();
     }
 
     // ------------------------------ PRIVATE ------------------------------

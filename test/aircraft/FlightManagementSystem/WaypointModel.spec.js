@@ -5,6 +5,7 @@ import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticP
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+import { DEFAULT_HOLD_PARAMETERS } from '../../../src/assets/scripts/client/constants/waypointConstants';
 
 let navigationLibrary;
 
@@ -436,22 +437,6 @@ ava('instantiates correctly when given a restricted fix (ranged altitude and ran
     t.deepEqual(model._positionModel.gps, [35.6782610435946, -115.29470074200118]);
 });
 
-ava('#name returns "RNAV" for fixes with names prefixed with underscore', (t) => {
-    const model = new WaypointModel('_NAPSE068');
-    const expectedResult = 'RNAV';
-    const result = model.name;
-
-    t.true(result === expectedResult);
-});
-
-ava('#name returns value of #_name for fixes with names not prefixed with underscore', (t) => {
-    const model = new WaypointModel('BOACH');
-    const expectedResult = 'BOACH';
-    const result = model.name;
-
-    t.true(result === expectedResult);
-});
-
 ava('#hasAltitudeRestriction returns true when a minimum or maximium altitude restriction exists', (t) => {
     const modelWithSimpleRestriction = new WaypointModel(['BOACH', 'A100']);
     const modelWithMaximumRestriction = new WaypointModel(['BOACH', 'A120-']);
@@ -522,31 +507,6 @@ ava('#holdParameters returns object with appropriate contents when #_isHoldWaypo
     t.deepEqual(result, expectedResult);
 });
 
-ava('#positionModel returns #_positionModel', (t) => {
-    const waypointModel = new WaypointModel('BOACH');
-    const positionModel = waypointModel.positionModel;
-    const expectedResult = [35.6782610435946, -115.29470074200118];
-    const result = positionModel.gps;
-
-    t.true(positionModel instanceof StaticPositionModel);
-    t.deepEqual(result, expectedResult);
-});
-
-ava('#relativePosition returns undefined for vector waypoints', (t) => {
-    const waypointModel = new WaypointModel('#320');
-    const result = waypointModel.relativePosition;
-
-    t.true(typeof result === 'undefined');
-});
-
-ava('#relativePosition returns #_positionModel.relativePosition for non-vector waypoints', (t) => {
-    const waypointModel = new WaypointModel('BOACH');
-    const expectedResult = [-3.3138243641281715, -46.35714730047791];
-    const result = waypointModel.relativePosition;
-
-    t.deepEqual(result, expectedResult);
-});
-
 ava('#isFlyOverWaypoint returns false when #_isFlyOverWaypoint is false', (t) => {
     const model = new WaypointModel('BOACH');
     const result = model.isFlyOverWaypoint;
@@ -589,6 +549,68 @@ ava('#isVectorWaypoint returns true when #_isVectorWaypoint is true', (t) => {
     t.true(result);
 });
 
+ava('#name returns "RNAV" for fixes with names prefixed with underscore', (t) => {
+    const model = new WaypointModel('_NAPSE068');
+    const expectedResult = 'RNAV';
+    const result = model.name;
+
+    t.true(result === expectedResult);
+});
+
+ava('#name returns value of #_name for fixes with names not prefixed with underscore', (t) => {
+    const model = new WaypointModel('BOACH');
+    const expectedResult = 'BOACH';
+    const result = model.name;
+
+    t.true(result === expectedResult);
+});
+
+ava('#positionModel returns #_positionModel', (t) => {
+    const waypointModel = new WaypointModel('BOACH');
+    const positionModel = waypointModel.positionModel;
+    const expectedResult = [35.6782610435946, -115.29470074200118];
+    const result = positionModel.gps;
+
+    t.true(positionModel instanceof StaticPositionModel);
+    t.deepEqual(result, expectedResult);
+});
+
+ava('#relativePosition returns undefined for vector waypoints', (t) => {
+    const waypointModel = new WaypointModel('#320');
+    const result = waypointModel.relativePosition;
+
+    t.true(typeof result === 'undefined');
+});
+
+ava('#relativePosition returns #_positionModel.relativePosition for non-vector waypoints', (t) => {
+    const waypointModel = new WaypointModel('BOACH');
+    const expectedResult = [-3.3138243641281715, -46.35714730047791];
+    const result = waypointModel.relativePosition;
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.activateHold() calls .setHoldParameters() with empty object when #_holdParameters is null', (t) => {
+    const waypointModel = new WaypointModel('BOACH');
+    const setHoldParametersSpy = sinon.spy(waypointModel, 'setHoldParameters');
+    const result = waypointModel.activateHold();
+
+    t.true(typeof result === 'undefined');
+    t.true(setHoldParametersSpy.calledWithExactly({}));
+    t.true(waypointModel._isHoldWaypoint);
+});
+
+ava('.activateHold() sets #_isHoldWaypoint to true', (t) => {
+    const waypointModel = new WaypointModel('@BOACH');
+
+    waypointModel._isHoldWaypoint = false;
+
+    const result = waypointModel.activateHold();
+
+    t.true(typeof result === 'undefined');
+    t.true(waypointModel._isHoldWaypoint);
+});
+
 ava('.calculateBearingToWaypoint() calls ._ensureNonVectorWaypointsForThisAndWaypoint()', (t) => {
     const model = new WaypointModel('BOACH');
     const otherModel = new WaypointModel('FRAWG');
@@ -625,6 +647,15 @@ ava('.calculateDistanceToWaypoint() returns correct distance', (t) => {
     const result = model.calculateDistanceToWaypoint(otherModel);
 
     t.true(result === expectedResult);
+});
+
+ava('.deactivateHold() sets #_isHoldWaypoint to false', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    model._isHoldWaypoint = true;
+    model.deactivateHold();
+
+    t.false(model._isHoldWaypoint);
 });
 
 ava('.getVector() returns undefined if waypoint is not a vector waypoint', (t) => {
@@ -682,6 +713,146 @@ ava('.hasMinimumAltitudeAbove() returns true when waypoint has min restriction a
     t.true(model.hasMinimumAltitudeAbove(constraint));
 });
 
+ava('.setHoldParameters() throws when provided argument is not an object', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    t.throws(() => model.setHoldParameters());
+    t.throws(() => model.setHoldParameters(''));
+    t.throws(() => model.setHoldParameters([]));
+});
+
+ava('.setHoldParameters() sets #_holdParameters to default values when provided argument is an empty object', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    model.setHoldParameters({});
+
+    t.deepEqual(model._holdParameters, DEFAULT_HOLD_PARAMETERS);
+});
+
+ava('.setHoldParameters() sets #_holdParameters to according to provided parameters', (t) => {
+    const model = new WaypointModel('BOACH');
+    const holdParametersMock = {
+        inboundHeading: 3.14,
+        legLength: 2,
+        turnDirection: 'left'
+    };
+    const expectedResult = {
+        inboundHeading: 3.14,
+        legLength: 2,
+        timer: -1,
+        turnDirection: 'left'
+    };
+
+    model.setHoldParameters(holdParametersMock);
+
+    t.deepEqual(model._holdParameters, expectedResult);
+});
+
+ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activateHold()', (t) => {
+    const model = new WaypointModel('BOACH');
+    const setHoldParametersSpy = sinon.spy(model, 'setHoldParameters');
+    const activateHoldSpy = sinon.spy(model, 'activateHold');
+    const holdParametersMock = {
+        inboundHeading: 3.14,
+        legLength: 2,
+        turnDirection: 'left'
+    };
+    const result = model.setHoldParametersAndActivateHold(holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(setHoldParametersSpy.calledWithExactly(holdParametersMock));
+    t.true(activateHoldSpy.calledWithExactly());
+});
+
+ava('._applyAltitudeRestriction() sets #altitudeMinimum to specified value (x100) when restriction has "+" character', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '65+';
+    const result = model._applyAltitudeRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === -1);
+    t.true(model.altitudeMinimum === 6500);
+});
+
+ava('._applyAltitudeRestriction() sets #altitudeMaximum to specified value (x100) when restriction has "-" character', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '65-';
+    const result = model._applyAltitudeRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === 6500);
+    t.true(model.altitudeMinimum === -1);
+});
+
+ava('._applyAltitudeRestriction() sets #altitudeMinimum and #altitudeMaximum to specified value (x100) when restriction has neither "+" or "-" characters', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '65';
+    const result = model._applyAltitudeRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.altitudeMaximum === 6500);
+    t.true(model.altitudeMinimum === 6500);
+});
+
+ava('._applyRestrictions() throws when an invalid restriction-type-qualifier is used to prefix the value', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    t.throws(() => model._applyRestrictions('Y80'));
+    t.throws(() => model._applyRestrictions('A120|Y80'));
+});
+
+ava('._applyRestrictions() returns early when specified restriction is an empty string', (t) => {
+    const model = new WaypointModel('BOACH');
+    const applyAltitudeRestrictionSpy = sinon.spy(model, '_applyAltitudeRestriction');
+    const applySpeedRestrictionSpy = sinon.spy(model, '_applySpeedRestriction');
+    const result = model._applyRestrictions('');
+
+    t.true(typeof result === 'undefined');
+    t.true(applyAltitudeRestrictionSpy.notCalled);
+    t.true(applySpeedRestrictionSpy.notCalled);
+});
+
+ava('._applyRestrictions() calls ._applyAltitudeRestriction() and ._applySpeedRestriction() appropriately', (t) => {
+    const model = new WaypointModel('BOACH');
+    const applyAltitudeRestrictionSpy = sinon.spy(model, '_applyAltitudeRestriction');
+    const applySpeedRestrictionSpy = sinon.spy(model, '_applySpeedRestriction');
+    const result = model._applyRestrictions('A125|S210');
+
+    t.true(typeof result === 'undefined');
+    t.true(applyAltitudeRestrictionSpy.calledWithExactly('125'));
+    t.true(applySpeedRestrictionSpy.calledWithExactly('210'));
+});
+
+ava('._applySpeedRestriction() sets #speedMinimum to specified value when restriction has "+" character', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '210+';
+    const result = model._applySpeedRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.speedMaximum === -1);
+    t.true(model.speedMinimum === 210);
+});
+
+ava('._applySpeedRestriction() sets #speedMaximum to specified value when restriction has "-" character', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '210-';
+    const result = model._applySpeedRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.speedMaximum === 210);
+    t.true(model.speedMinimum === -1);
+});
+
+ava('._applySpeedRestriction() sets #speedMinimum and #speedMaximum to specified value when restriction has neither "+" or "-" characters', (t) => {
+    const model = new WaypointModel('BOACH');
+    const restrictionMock = '210';
+    const result = model._applySpeedRestriction(restrictionMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model.speedMaximum === 210);
+    t.true(model.speedMinimum === 210);
+});
+
 ava('._ensureNonVectorWaypointsForThisAndWaypoint() throws if parameter is not a WaypointModel', (t) => {
     const model = new WaypointModel('BOACH');
     const nonWaypoint = 'BOACH';
@@ -708,4 +879,33 @@ ava('._ensureNonVectorWaypointsForThisAndWaypoint() does not throw when both are
     const otherModel = new WaypointModel('FRAWG');
 
     t.notThrows(() => model._ensureNonVectorWaypointsForThisAndWaypoint(otherModel));
+});
+
+ava('._initializePosition() returns early when this is a vector waypoint', (t) => {
+    const model = new WaypointModel('#320');
+    const result = model._initializePosition();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._positionModel === null);
+});
+
+ava('._initializePosition() throws when #_name does not have a corresponding fix definition in the FixCollection', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    model._name = 'nonsense';
+
+    t.throws(() => model._initializePosition());
+});
+
+ava('._initializePosition() sets #_positionModel to the position corresponding with the #_name waypoint', (t) => {
+    const model = new WaypointModel('BIKKR');
+
+    model._name = 'BOACH';
+
+    const result = model._initializePosition();
+    const expectedGpsCoordinates = [35.67826104359460, -115.29470074200118];
+    const resultingGpsCoordinates = model.positionModel.gps;
+
+    t.true(typeof result === 'undefined');
+    t.deepEqual(resultingGpsCoordinates, expectedGpsCoordinates);
 });

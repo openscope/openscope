@@ -26,6 +26,20 @@ export const ALTITUDE_RESTRICTION_PREFIX = 'A';
 export const BELOW_SYMBOL = '-';
 
 /**
+ * Default options for holding patterns
+ *
+ * @enum DEFAULT_HOLD_PARAMETERS
+ * @type {Object}
+ * @final
+ */
+export const DEFAULT_HOLD_PARAMETERS = {
+    inboundHeading: undefined,
+    legLength: 1,
+    timer: -1,
+    turnDirection: 'right'
+};
+
+/**
 * Symbol that prepends a fixname indicating the aircraft should pass completely
 * over the fix before turning toward the next fix on their route
 *
