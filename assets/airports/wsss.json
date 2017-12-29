@@ -19,7 +19,7 @@
         "speed": 0
     },
     "arrivalRunway": "02L",
-    "departureRunway": "02L",
+    "departureRunway": "02C",
     "airspace": [
         {
             "floor":             0,
@@ -157,6 +157,9 @@
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "ANITO"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "ANITO"]
             },
+	"exitPoints": {
+                "ANITO": ["ANITO"]
+            },
             "draw": [
                 ["RW02L", "TOPOM", "TOKIM", "DOKTA", "DOGRA"],
                 ["RW02C", "TOKIM"],
@@ -175,6 +178,9 @@
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "AGROT", "ABVIP", ["ADMIM", "A100+"], "ASUNA"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", ["SAMKO", "A60-"], "ABVIP", ["ADMIM", "A100+"], "ASUNA"]
             },
+	"exitPoints": {
+                "ASUNA": ["ASUNA"]
+            },
             "draw": [
                 ["DOGRA", "ABVIP", "ADMIM"],
                 ["SUNGO", "SAMKO", "ABVIP"],
@@ -192,6 +198,9 @@
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["HOSBA", "A70+"], "TOMAN"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], ["RUVIK", "A70-"], ["HOSBA", "A70+"], "TOMAN"]
             },
+	"exitPoints": {
+                "TOMAN": ["TOMAN"]
+            },
             "draw": [
                 ["DOKTA", "HOSBA"],
                 ["DOGRA", "RUVIK", "HOSBA"],
@@ -208,6 +217,9 @@
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"]
             },
+	"exitPoints": {
+                "BAVUS": ["BAVUS"]
+            },
             "draw": [
                 ["DOSNO", "VENPA", "ATKAX"],
                 ["ATKAX", "BAVUS"]
@@ -222,6 +234,9 @@
                 "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AKMET", "A110+"], "AROSO"],
                 "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], ["AKMET", "A110+"], "AROSO"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AKMET", "A110+"], "AROSO"]
+            },
+	"exitPoints": {
+                "AROSO": ["AROSO"]
             },
             "draw": [
                 ["TOPOM", "ATRUM", "AKOMA", "AKMET"],
@@ -240,6 +255,9 @@
                 "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], ["AGVAR", "A110+"], "SABKA", "MASBO"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AGVAR", "A110+"], "SABKA", "MASBO"]
             },
+	"exitPoints": {
+                "MASBO": ["MASBO"]
+            },
             "draw": [
                 ["AKOMA", "AGVAR", "SABKA", "MASBO"]
             ]
@@ -253,6 +271,9 @@
                 "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", "VMR"],
                 "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], "VMR"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AGVAR", "A110+"], "SABKA", "MASBO"]
+            },
+	"exitPoints": {
+                "VMR": ["VMR"]
             },
             "draw": [
                 ["AKOMA", "VMR"]
@@ -268,6 +289,9 @@
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"]
             },
+	"exitPoints": {
+                "SURGA": ["SURGA"]
+            },
             "draw": [
                 ["VENPA", "VENIX", "SURGA"]
             ]
@@ -281,6 +305,9 @@
                 "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"],
                 "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"],
                 "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"]
+            },
+	"exitPoints": {
+                "KADAR": ["KADAR"]
             },
             "draw": [
                 ["ATKAX", "KADAR"]
@@ -379,24 +406,6 @@
                 ["ARAMA", "LELIB", "JB", "ALFA", "BIDUS"]
             ]
         },
-        "BIKTA": {
-            "icao": "BIKTA",
-            "name": "Bikta",
-            "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
-            "entryPoints": {
-                "BIKTA": ["BIKTA"]
-            },
-            "rwy": {
-                "02L": [["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-                "02C": [["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-                "20R": [["PIBAP", "A210-|S250"], ["PASPU", "A60"], ["NYLON", "A30|S190"]],
-                "20C": [["PIBAP", "A210-|S250"], ["PASPU", "A60"], ["NYLON", "A30|S190"]]
-            },
-            "draw": [
-                ["BIKTA", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],
-                ["BIKTA", "PIBAP", "PASPU", "NYLON"]
-            ]
-        },
         "MABAL": {
             "icao": "MABAL",
             "name": "Mabal",
@@ -482,26 +491,6 @@
                 ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"],
                 ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
             ]
-        },
-        "VEPLI": {
-            "icao": "VEPLI",
-            "name": "Vepli",
-            "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
-            "entryPoints": {
-                "VEPLI": ["VEPLI"]
-            },
-            "body": ["VINIL", ["PIBAP", "A210-|S250"]],
-            "rwy": {
-                "02L": [["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-                "02C": [["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-                "20R": [["PASPU", "A60|S220"], ["NYLON", "A30|S190"]],
-                "20C": [["PASPU", "A60|S220"], ["NYLON", "A30|S190"]]
-            },
-            "draw": [
-                ["VEPLI", "VINIL", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],
-                ["VEPLI", "VINIL", "PIBAP", "PASPU", "NYLON"]
-            ]
-        }
     },
     "spawnPatterns": [
         {
@@ -1181,5 +1170,9 @@
                 ["ups",  4]
             ]
         }
-    ]
+    ],
+    "maps": {
+        "base": [
+        ]
+    }
 }
