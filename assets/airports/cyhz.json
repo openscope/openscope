@@ -1065,22 +1065,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1093,22 +1093,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1121,22 +1121,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1149,22 +1149,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1177,22 +1177,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1205,22 +1205,22 @@
             "method": "random",
             "rate": 0.792,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
-                ["fpo", 2],
+                ["aca", 29],
                 ["cfg", 2],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["fpo", 2],
+                ["kal", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
-                ["ual", 1],
-                ["wja", 15],
-                ["wen", 5],
-                ["fdx", 1],
-                ["kal", 2],
                 ["qtr", 2],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["ual", 1],
+                ["wen", 5],
+                ["wja", 15]
             ]
         },
         {
@@ -1233,18 +1233,18 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
+                ["aca", 29],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
                 ["ual", 1],
-                ["wja", 15],
                 ["wen", 5],
-                ["fdx", 1],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["wja", 15]
             ]
         },
         {
@@ -1257,18 +1257,18 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
+                ["aca", 29],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
                 ["ual", 1],
-                ["wja", 15],
                 ["wen", 5],
-                ["fdx", 1],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["wja", 15]
             ]
         },
         {
@@ -1281,18 +1281,18 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
+                ["aca", 29],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
                 ["ual", 1],
-                ["wja", 15],
                 ["wen", 5],
-                ["fdx", 1],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["wja", 15]
             ]
         },
         {
@@ -1306,12 +1306,12 @@
             "rate": 2,
             "airlines": [
                 ["aca", 29],
-                ["fpo", 2],
                 ["cfg", 2],
-                ["wja", 15],
                 ["fdx", 1],
+                ["fpo", 2],
                 ["kal", 2],
-                ["qtr", 2]
+                ["qtr", 2],
+                ["wja", 15]
             ]
         },
         {
@@ -1324,18 +1324,18 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["aca", 29],
                 ["aal", 1],
+                ["aca", 29],
                 ["dal", 1],
+                ["emb", 3],
+                ["fdx", 1],
                 ["fle", 2],
+                ["n/cessna", 8],
                 ["poe", 5],
                 ["pvl", 1],
                 ["ual", 1],
-                ["wja", 15],
                 ["wen", 5],
-                ["fdx", 1],
-                ["n/cessna", 8],
-                ["emb", 3]
+                ["wja", 15]
             ]
         }
     ],

@@ -9,7 +9,7 @@
     },
     "fleets": {
         "default": [
-            ["dh8d", 28]
+            ["DH8D", 29]
         ]
     }
 }
