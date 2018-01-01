@@ -3,18 +3,18 @@
     "name": "FlyBe",
     "callsign": {
         "name": "Jersey",
-        "length": 3
+        "length": 3,
+        "alpha": true
     },
     "fleets": {
         "default": [
-            ["AT72", 2],
-            ["D328", 2],
-            ["DH8D", 49],
+            ["AT45", 1],
+            ["AT76", 6],
+            ["DH8D", 56],
             ["DHC6", 2],
             ["E170", 11],
             ["E190", 9],
-            ["SB20", 3],
-            ["SF34", 12]
+            ["JS41", 1]
         ]
     }
 }
