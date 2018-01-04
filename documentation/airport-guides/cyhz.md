@@ -3,7 +3,7 @@ Halifax Stanfield International Airport is a Canadian airport serving Halifax an
 Opened in June 1960, it is now a hub for Air Canada and Air Canada Express.
 
 ### Statistics
-3,908,799 passengers in 2015-2016
+3,908,799 passengers in 2015-2016  
 80,278 aircraft movement in 2015-2016
 
 ### Positions
@@ -64,7 +64,8 @@ The following fixes are Final Approach Course Fixes, meaning that aircraft can b
 * LEROS -> ILS, RNAV or NDB 23
 * VOKIL -> RNAV 32
 
-There are various transitions which can bring aircraft from an Initial Approach Fix to a FACF or onto approach:
+There are various transitions which can bring aircraft from an Initial Approach Fix to a FACF or onto approach:  
+
 | Runway | Type of Approach |       Transition names     |
 |--------|:----------------:|:--------------------------:|
 |   05   |   LOC, RNAV(Z)   |        OBNOM, HOROW        |
@@ -76,26 +77,11 @@ There are various transitions which can bring aircraft from an Initial Approach 
 |   32   |     RNAV (Z)     |        EMBAX, GABAP        |
 |        |     RNAV (Y)     | NOTUB, EBLUV, MENVO, AVRIX |
 
-The correct phraseology for clearing an aircraft onto approach via a transition is:
-"XXXXX, cleared APPROACH runway NUMBER, via TRANISTION"
-
-Substitute:
-- APPROACH for ILS, LOC, RNAV, visual
-- NUMBER for runway number
-- Transition for transition name
-
-
-eg. *Encore 3423, cleared ILS approach runway 23 via DUTIR*
-
 
 ### Sectors Available in OpenScope
 ```
-Class B airspace between 12,500ft and 18,000ft (unavailable)
-Class D airspace between 1,700ft and 2,900ft (unavailable)
-Class D airspace between 2,900ft and 12,500ft (unavailable)
+Halifax Terminal
 ```
-
-Currently, a bandbox of all the positions above is being used within OpenScope.
 
 ### Restricted Airspace
 There are three restricted airspaces within the Halifax TCAs, CYR717, CYR 747 and CYR748.
@@ -146,5 +132,5 @@ The videomap also contains:
 
 
 ### Additional Resources
-[Halifax Charts, Moncton FIR (VATCAN)](http://czqm.ca/Charts.aspx)
+[Halifax Charts, Moncton FIR (VATCAN)](http://czqm.ca/Charts.aspx)  
 [Designated Airspace Handbook](https://www.navcanada.ca/EN/products-and-services/Documents/DAH_Current_EN.pdf)
