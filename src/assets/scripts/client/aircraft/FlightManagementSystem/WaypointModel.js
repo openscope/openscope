@@ -1,6 +1,5 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
-import _isPlainObject from 'lodash/isPlainObject';
 import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
@@ -40,13 +39,7 @@ export default class WaypointModel {
         this.altitudeMinimum = -1;
         this.speedMaximum = -1;
         this.speedMinimum = -1;
-        /**
-         * Contains `timer`, `inboundHeading`, 'legLength', 'turnDirection'
-         * @for WaypointModel
-         * @property _holdParameters
-         * @type {object}
-         */
-        this._holdParameters = null;
+        this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
         this._isVectorWaypoint = false;
@@ -222,7 +215,7 @@ export default class WaypointModel {
         this.altitudeMinimum = -1;
         this.speedMaximum = -1;
         this.speedMinimum = -1;
-        this._holdParameters = null;
+        this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
         this._isVectorWaypoint = false;
@@ -251,7 +244,6 @@ export default class WaypointModel {
      * @private
      */
     _initHoldWaypoint() {
-        this._holdParameters = DEFAULT_HOLD_PARAMETERS;
         this._isHoldWaypoint = true;
     }
 
@@ -302,10 +294,6 @@ export default class WaypointModel {
      * @method activateHold
      */
     activateHold() {
-        if (this._holdParameters === null) {
-            this.setHoldParameters({});
-        }
-
         this._isHoldWaypoint = true;
     }
 
@@ -393,6 +381,16 @@ export default class WaypointModel {
     }
 
     /**
+     * Reset the value of #_holdParameters.timer to the default
+     *
+     * @for WaypointModel
+     * @method resetHoldTimer
+     */
+    resetHoldTimer() {
+        this._holdParameters.timer = DEFAULT_HOLD_PARAMETERS.timer;
+    }
+
+    /**
      * Set parameters for the planned holding pattern at this waypoint. This does NOT
      * inherently make this a hold waypoint, but simply describes the holding pattern
      * aircraft should follow IF they are told to hold at this waypoint
@@ -402,11 +400,7 @@ export default class WaypointModel {
      * @param holdParameters {object}
      */
     setHoldParameters(holdParameters) {
-        if (!_isPlainObject(holdParameters)) {
-            throw new TypeError(`Expected valid hold parameter object but received type ${typeof holdParameters}`);
-        }
-
-        this._holdParameters = Object.assign(DEFAULT_HOLD_PARAMETERS, holdParameters);
+        this._holdParameters = Object.assign({}, this._holdParameters, holdParameters);
     }
 
     /**
@@ -421,6 +415,23 @@ export default class WaypointModel {
     setHoldParametersAndActivateHold(holdParameters) {
         this.setHoldParameters(holdParameters);
         this.activateHold();
+    }
+
+    /**
+     * Set the value of #_holdParameters.timer
+     *
+     * @for WaypointModel
+     * @method setHoldTimer
+     * @param expirationTime {number} game time (seconds) when the timer should "expire"
+     */
+    setHoldTimer(expirationTime) {
+        if (typeof expirationTime !== 'number') {
+            throw new TypeError('Expected hold timer expiration time to be a ' +
+                `number, but received type ${typeof expirationTime}`
+            );
+        }
+
+        this._holdParameters.timer = expirationTime;
     }
 
     // ------------------------------ PRIVATE ------------------------------

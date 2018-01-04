@@ -223,78 +223,27 @@ ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
-// ava('.init() calls ._buildWaypointCollection()', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const _buildWaypointCollectionSpy = sinon.spy(model, '_buildWaypointCollection');
-//
-//     model.init(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock);
-//
-//     t.true(_buildWaypointCollectionSpy.calledWithExactly(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, undefined));
-// });
-//
-// ava('.destroy() calls ._destroyWaypointCollection()', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const _destroyWaypointCollectionSpy = sinon.spy(model, '_destroyWaypointCollection');
-//
-//     model.destroy();
-//
-//     t.true(_destroyWaypointCollectionSpy.calledOnce);
-// });
-//
-// ava('.skipToWaypointAtIndex() drops n number of WaypointModels from the left of #waypointCollection', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//
-//     model.skipToWaypointAtIndex(3);
-//
-//     t.true(model.waypointCollection.length === 10);
-//     t.true(model.currentWaypoint.name === 'skebr');
-// });
-//
-// ava('.getTopAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
-//     const model = new LegModel(directRouteStringMockMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getTopAltitude();
-//
-//     t.true(result === INVALID_NUMBER);
-// });
-//
-// ava('.getTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
-//
-//     model.getTopAltitude();
-//
-//     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
-// });
-//
-// ava('.getTopAltitude() returns the highest "AT" or "AT/BELOW" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getTopAltitude();
-//
-//     t.true(result === 24000);
-// });
-//
-// ava('.getBottomAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
-//     const model = new LegModel(directRouteStringMockMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getBottomAltitude();
-//
-//     t.true(result === INVALID_NUMBER);
-// });
-//
-// ava('.getBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
-//
-//     model.getBottomAltitude();
-//
-//     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
-// });
-//
-// ava('.getBottomAltitude() returns the lowest "AT" or "AT/ABOVE" altitude restriction value in the #waypointCollection when #isProcedure is true', (t) => {
-//     const model = new LegModel(arrivalProcedureRouteStringMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
-//     const result = model.getBottomAltitude();
-//
-//     t.true(result === 8000);
-// });
+ava('.activateHoldForWaypointName() returns early when the specified waypoint does not exist in the route', (t) => {
+    const model = new LegModel(navigationLibrary, 'KEPEC');
+    const waypointModel = model._waypointCollection[0];
+    const setHoldParametersAndActivateHoldSpy = sinon.spy(waypointModel, 'setHoldParametersAndActivateHold');
+    const holdParametersMock = { turnDirection: 'left' };
+    const result = model.activateHoldForWaypointName('PRINO', holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(setHoldParametersAndActivateHoldSpy.notCalled);
+});
+
+ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() with the appropriate arguments', (t) => {
+    const model = new LegModel(navigationLibrary, 'KEPEC');
+    const waypointModel = model._waypointCollection[0];
+    const setHoldParametersAndActivateHoldSpy = sinon.spy(waypointModel, 'setHoldParametersAndActivateHold');
+    const holdParametersMock = { turnDirection: 'left' };
+    const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(setHoldParametersAndActivateHoldSpy.calledWithExactly(holdParametersMock));
+});
 
 ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
@@ -742,7 +691,7 @@ ava('._verifyProcedureAndEntryAndExitAreValid() does not throw when the specifie
 //     t.true(result[0].speedMinimum === INVALID_NUMBER);
 //     t.true(result[0]._turnDirection === 'right');
 //     t.true(result[0]._legLength === '1min');
-//     t.true(result[0].timer === -999);
+//     t.true(result[0].timer === INVALID_NUMBER);
 // });
 //
 // ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single instance of a WaypointModel with hold properties for GPS', (t) => {

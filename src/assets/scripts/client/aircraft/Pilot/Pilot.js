@@ -522,8 +522,7 @@ export default class Pilot {
     * @method exitHold
     */
     exitHold() {
-        // FIXME: This probably ought to be checking if the current waypoint #_isHoldWaypoint
-        if (this._fms.currentPhase !== FLIGHT_PHASE.HOLD) {
+        if (!this._fms.currentWaypoint.isHoldWaypoint) {
             return;
         }
     }
@@ -660,45 +659,27 @@ export default class Pilot {
         return [true, readback];
     }
 
+    // TODO: Add ability to hold at present position
     /**
-     * Conduct a holding pattern at a specific Fix/Waypoint/Position
+     * Conduct a holding pattern at a specific fix
      *
      * @for Fms
      * @method initiateHoldingPattern
-     * @param inboundHeading {number}
-     * @param turnDirection {string}                     direction to turn once established in a holding pattern
-     * @param legLength {string}                         in either `min` or `nm` length of each side of the
-     *                                                   holding pattern.
-     * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
-     *                                                   current position
-     * @param holdPosition {StaticPositionModel}         StaticPositionModel of the position to hold over
+     * @param fixName {string} name of the fix to hold over
+     * @param holdParameters {object} parameters to apply to WaypointModel._holdParameters
      * @return {array} [success of operation, readback]
      */
-    initiateHoldingPattern(
-        inboundHeading,
-        turnDirection,
-        legLength,
-        fixName = null,
-        holdPosition = null
-    ) {
-        let holdRouteSegment = `@${fixName}`;
-        const inboundDirection = getRadioCardinalDirectionNameForHeading(inboundHeading);
-        let successMessage = `proceed direct ${fixName} and hold inbound, ${turnDirection} turns, ${legLength} legs`;
+    initiateHoldingPattern(fixName, holdParameters) {
+        const cardinalDirectionFromFix = getRadioCardinalDirectionNameForHeading(holdParameters.inboundHeading);
+        const problematicResponse = this._fms.activateHoldForWaypointName(fixName, holdParameters);
 
-        if (!holdPosition) {
-            return [false, `unable to find fix ${fixName}`];
+        if (typeof problematicResponse !== 'undefined') {
+            return problematicResponse;
         }
 
-        if (!fixName) {
-            holdRouteSegment = 'GPS';
-            successMessage = `hold ${inboundDirection} of present position, ${turnDirection} turns, ${legLength} legs`;
-        }
-
-        // TODO: there are probably some `_mcp` updates that should happen here too.
-
-        this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition);
-
-        return [true, successMessage];
+        return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, ` +
+            `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
+        ];
     }
 
     /**

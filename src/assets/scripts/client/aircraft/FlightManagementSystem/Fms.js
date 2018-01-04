@@ -455,59 +455,13 @@ export default class Fms {
 
     // ------------------------------ PUBLIC ------------------------------
 
-    // FIXME: This will no longer work
-    // TODO: this method should be simplified
-    // /**
-    // * Create a new `LegModel` for a holding pattern at a Fix or a position
-    // *
-    // * @for Fms
-    // * @method createLegWithHoldingPattern
-    // * @param inboundHeading {number}
-    // * @param turnDirection {string}
-    // * @param legLength {number}
-    // * @param holdRouteSegment {string}
-    // * @param holdPosition {StaticPositionModel}
-    // */
-    // createLegWithHoldingPattern(/* inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition */) {
-    //     // TODO: replace with constant
-    //     const isPositionHold = holdRouteSegment === 'GPS';
-    //     const waypointProps = {
-    //         turnDirection,
-    //         legLength,
-    //         isHold: true,
-    //         inboundHeading,
-    //         name: holdRouteSegment,
-    //         positionModel: holdPosition,
-    //         altitudeMaximum: INVALID_NUMBER,
-    //         altitudeMinimum: INVALID_NUMBER,
-    //         speedMaximum: INVALID_NUMBER,
-    //         speedMinimum: INVALID_NUMBER
-    //     };
-    //
-    //     if (isPositionHold) {
-    //         const legModel = this._createLegWithHoldWaypoint(waypointProps);
-    //
-    //         this.prependLeg(legModel);
-    //
-    //         return;
-    //     }
-    //
-    //     const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
-    //     const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
-    //
-    //     if (waypointIndex !== INVALID_NUMBER) {
-    //         this.skipToWaypointName(waypointNameToFind);
-    //         this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
-    //
-    //         return;
-    //     }
-    //
-    //     const legModel = this._createLegWithHoldWaypoint(waypointProps);
-    //
-    //     this.prependLeg(legModel);
-    //
-    //     return;
-    // }
+    activateHoldForWaypointName(waypointName, holdParameters) {
+        if (!this._routeModel.hasWaypointName(waypointName)) {
+            return [false, `unable to hold at ${waypointName}; it is not on our route!`];
+        }
+
+        this._routeModel.activateHoldForWaypointName(waypointName, holdParameters);
+    }
 
     /**
      * Return an array of waypoints in the flight plan that have altitude restrictions

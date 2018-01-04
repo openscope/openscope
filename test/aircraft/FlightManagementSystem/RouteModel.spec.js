@@ -181,6 +181,34 @@ ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (
 
 ava.todo('.absorbRouteModel()');
 
+ava('.activateHoldForWaypointName() returns early when the specified waypoint does not exist in the route', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'DAG..KEPEC');
+    const legModel1 = model._legCollection[0];
+    const legModel2 = model._legCollection[1];
+    const activateHoldForWaypointNameSpy1 = sinon.spy(legModel1, 'activateHoldForWaypointName');
+    const activateHoldForWaypointNameSpy2 = sinon.spy(legModel2, 'activateHoldForWaypointName');
+    const holdParametersMock = { turnDirection: 'left' };
+    const result = model.activateHoldForWaypointName('PRINO', holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(activateHoldForWaypointNameSpy1.notCalled);
+    t.true(activateHoldForWaypointNameSpy2.notCalled);
+});
+
+ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName() with the appropriate arguments on the appropriate leg', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, 'DAG..KEPEC');
+    const legModel1 = model._legCollection[0];
+    const legModel2 = model._legCollection[1];
+    const activateHoldForWaypointNameSpy1 = sinon.spy(legModel1, 'activateHoldForWaypointName');
+    const activateHoldForWaypointNameSpy2 = sinon.spy(legModel2, 'activateHoldForWaypointName');
+    const holdParametersMock = { turnDirection: 'left' };
+    const result = model.activateHoldForWaypointName('KEPEC', holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(activateHoldForWaypointNameSpy1.notCalled);
+    t.true(activateHoldForWaypointNameSpy2.calledWithExactly('KEPEC', holdParametersMock));
+});
+
 ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
     const model = new RouteModel(navigationLibraryFixture, 'JESJI..BAKRR');
     const expectedResult = 1.3415936051582544;

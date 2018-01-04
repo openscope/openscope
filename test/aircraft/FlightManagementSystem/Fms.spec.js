@@ -69,8 +69,11 @@ ava.afterEach(() => {
     navigationLibraryFixture = null;
 });
 
-ava('throws when called without parameters', (t) => {
+ava('throws when called without proper parameters', (t) => {
     t.throws(() => new Fms());
+    t.throws(() => new Fms(''));
+    t.throws(() => new Fms([]));
+    t.throws(() => new Fms({}));
 });
 
 ava('throws when instantiated with a route string containing less than two waypoints', (t) => {
@@ -188,6 +191,29 @@ ava('#waypoints returns an array containing all the WaypointModels in the route'
 
     t.true(result.length === 20);
     t.true(_every(result, (waypoint) => waypoint instanceof WaypointModel));
+});
+
+ava('.activateHoldForWaypointName() returns failure message when the route does not contain the specified waypoint', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
+    const unknownWaypointName = 'DINGBAT';
+    const holdParametersMock = { turnDirection: 'left' };
+    const expectedResult = [false, `unable to hold at ${unknownWaypointName}; it is not on our route!`];
+    const result = fms.activateHoldForWaypointName(unknownWaypointName, holdParametersMock);
+
+    t.true(routeModelActivateHoldForWaypointNameSpy.notCalled);
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.activateHoldForWaypointName() calls #_routeModel.activateHoldForWaypointName() with appropriate parameters', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const routeModelActivateHoldForWaypointNameSpy = sinon.spy(fms._routeModel, 'activateHoldForWaypointName');
+    const holdWaypointName = 'OAL';
+    const holdParametersMock = { turnDirection: 'left' };
+    const result = fms.activateHoldForWaypointName(holdWaypointName, holdParametersMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
 });
 
 ava('.reset() resets all class properties to appropriate default values', (t) => {

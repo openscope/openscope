@@ -34,7 +34,7 @@ export const BELOW_SYMBOL = '-';
  */
 export const DEFAULT_HOLD_PARAMETERS = {
     inboundHeading: undefined,
-    legLength: 1,
+    legLength: '1min',
     timer: -1,
     turnDirection: 'right'
 };

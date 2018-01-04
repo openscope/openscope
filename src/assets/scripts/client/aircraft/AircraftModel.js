@@ -1257,9 +1257,6 @@ export default class AircraftModel {
             case FLIGHT_PHASE.CRUISE:
                 break;
 
-            case FLIGHT_PHASE.HOLD:
-                break;
-
             case FLIGHT_PHASE.DESCENT:
                 break;
 
@@ -1325,12 +1322,6 @@ export default class AircraftModel {
     updateFlightPhase() {
         const runwayModel = this.fms.departureRunwayModel;
 
-        if (this._shouldEnterHoldingPattern()) {
-            this.setFlightPhase(FLIGHT_PHASE.HOLD);
-
-            return;
-        }
-
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
                 const elapsed = TimeKeeper.accumulatedDeltaTime - this.taxi_start;
@@ -1359,9 +1350,6 @@ export default class AircraftModel {
                     this.setFlightPhase(FLIGHT_PHASE.CRUISE);
                 }
 
-                break;
-
-            case FLIGHT_PHASE.HOLD:
                 break;
 
             case FLIGHT_PHASE.CRUISE:
@@ -1404,12 +1392,6 @@ export default class AircraftModel {
      */
     _calculateTargetedHeading() {
         if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
-            return;
-        }
-
-        if (this.flightPhase === FLIGHT_PHASE.HOLD) {
-            this.updateTargetHeadingForHold();
-
             return;
         }
 
@@ -1681,6 +1663,10 @@ export default class AircraftModel {
             return this.fms.currentWaypoint.getVector();
         }
 
+        if (this.fms.currentWaypoint.isHoldWaypoint) {
+            return this._calculateTargetedHeadingHold();
+        }
+
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
@@ -1712,19 +1698,21 @@ export default class AircraftModel {
      * This will sets up and prepares the aircraft to hold
      *
      * @for AircraftModel
-     * @method updateTargetHeadingForHold
+     * @method _calculateTargetedHeadingHold
      */
-    updateTargetHeadingForHold() {
-        const invalidTimerValue = -999;
-        const { hold } = this.fms.currentWaypoint;
-        const outboundHeading = radians_normalize(hold.inboundHeading + Math.PI);
-        const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
-        const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
-        const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
+    _calculateTargetedHeadingHold() {
+        const currentWaypoint = this.fms.currentWaypoint;
+        const holdParameters = currentWaypoint.holdParameters;
+        const waypointRelativePosition = currentWaypoint.relativePosition;
+        const outboundHeading = radians_normalize(holdParameters.inboundHeading + Math.PI);
+        const offset = getOffset(this, waypointRelativePosition, holdParameters.inboundHeading);
+        const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
+        const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
+        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
-        const isTimerSet = hold.timer !== invalidTimerValue;
-        const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
+        const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
+        const isTimerExpired = isTimerSet && gameTime > holdParameters.timer;
 
         if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
@@ -1739,22 +1727,21 @@ export default class AircraftModel {
         let nextTargetHeading = outboundHeading;
 
         if (this.heading === outboundHeading && !isTimerSet) {
-            // set timer
-            this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;
+            currentWaypoint.setHoldTimer(gameTime + holdLegDurationInSeconds);
         }
 
         if (isTimerExpired) {
             nextTargetHeading = bearingToHoldFix;
 
             if (isPastFix) {
-                this.fms.currentWaypoint.timer = invalidTimerValue;
+                currentWaypoint.resetHoldTimer();
                 nextTargetHeading = outboundHeading;
             }
         }
 
-        // turn direction is defaulted to `right` by the AircraftCommandParser
-        this.target.turn = hold.dirTurns;
-        this.target.heading = nextTargetHeading;
+        this.target.turn = holdParameters.turnDirection;
+
+        return nextTargetHeading;
 
         // TODO: add distance based hold
     }
@@ -2404,40 +2391,10 @@ export default class AircraftModel {
     }
 
     /**
-     * Encapsulation of boolean logic used to determine when the `#flightPhase` should be
-     * changed to `HOLD`
-     *
-     * @method _shouldEnterHoldingPattern
-     * @return {boolean}
-     * @private
-     */
-    _shouldEnterHoldingPattern() {
-        if (!this.fms.currentWaypoint.isHold) {
-            return false;
-        }
-
-        const distanceToHoldPosition = this.positionModel.distanceToPosition(this.fms.currentWaypoint.positionModel);
-        const maximumAcceptableDistance = 3;    // in nm
-        const shouldEnterHold = distanceToHoldPosition <= maximumAcceptableDistance;
-
-        return shouldEnterHold;
-    }
-
-    /**
-     * @for AircraftModel
-     * @method updateAuto
-     */
-    updateAuto() {}
-
-    /**
      * @for AircraftModel
      * @method update
      */
     update() {
-        if (prop.aircraft.auto.enabled) {
-            this.updateAuto();
-        }
-
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();

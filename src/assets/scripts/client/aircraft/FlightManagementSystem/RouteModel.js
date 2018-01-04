@@ -201,6 +201,25 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Mark the specified waypoint as a hold waypoint
+     *
+     * @for RouteModel
+     * @method activateHoldForWaypointName
+     * @param waypointName {string} name of waypoint in route
+     * @param holdParameters {object}
+     */
+    activateHoldForWaypointName(waypointName, holdParameters) {
+        if (!this.hasWaypointName(waypointName)) {
+            return;
+        }
+
+        const legIndex = this._findIndexOfLegContainingWaypointName(waypointName);
+        const legModel = this._legCollection[legIndex];
+
+        legModel.activateHoldForWaypointName(waypointName, holdParameters);
+    }
+
+    /**
      * Calculate the heading from the first waypoint to the second waypoint
      *
      * This is used to determine the heading of newly spawned aircraft
@@ -850,6 +869,10 @@ export default class RouteModel extends BaseModel {
         }
 
         return segmentRouteStrings;
+    }
+
+    _findIndexOfLegContainingWaypointName(waypointName) {
+        return _findIndex(this._legCollection, (legModel) => legModel.hasWaypointName(waypointName));
     }
 
     /**

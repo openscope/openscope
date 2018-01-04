@@ -92,6 +92,8 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     t.true(result.speedMinimum === INVALID_NUMBER);
 });
 
+// FIXME: Trying to get rid of FixModel.toWaypointModel() method in favor of creating waypoints
+// always from within the FMS and/or RouteModel
 ava.skip('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const result = model.toWaypointModel(true);
@@ -104,8 +106,8 @@ ava.skip('.toWaypointModel() returns a new WaypointModel instance with hold prop
     t.true(result.speedMaximum === INVALID_NUMBER);
     t.true(result.speedMinimum === INVALID_NUMBER);
     t.true(result._turnDirection === 'right');
-    t.true(result._legLength === '1min');
-    t.true(result.timer === -999);
+    t.true(result._legLength === 1);
+    t.true(result.timer === INVALID_NUMBER);
 });
 
 ava.skip('.toWaypointModel() returns a new WaypointModel instance with specific hold properties', (t) => {

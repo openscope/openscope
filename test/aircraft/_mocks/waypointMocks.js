@@ -18,6 +18,8 @@ export const ENROUTE_TO_HOLD_WAYPOINT_MOCK = {
     speed: 230
 };
 
+// FIXME: This is not what a waypoint should like like anymore; #hold does not exist,
+// and its replacement #_holdParameters takes a different form
 export const EXPANDED_WAYPOINT_MOCK = {
     navmode: 'hold',
     speed: 230,
@@ -27,7 +29,7 @@ export const EXPANDED_WAYPOINT_MOCK = {
         fixName: 'BOLDR',
         fixPos: [37.28695678169094, -42.26087965200279],
         dirTurns: 'right',
-        legLength: '1min',
+        legLength: 1,
         inboundHeading: 2.697288004800421,
         timer: null
     }

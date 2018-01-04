@@ -327,19 +327,20 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const turnDirection = data[0];
-        const legLength = data[1];
-        const holdFix = data[2];
-        const fixModel = this._navigationLibrary.findFixByName(holdFix);
-        let holdPosition = aircraft.positionModel;
-        let inboundHeading = aircraft.heading;
+        const fixName = data[2];
+        const fixModel = this._navigationLibrary.findFixByName(fixName);
 
-        if (fixModel) {
-            holdPosition = fixModel.relativePosition;
-            inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        if (!fixModel) {
+            return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        return aircraft.pilot.initiateHoldingPattern(inboundHeading, turnDirection, legLength, holdFix, holdPosition);
+        const holdParameters = {
+            turnDirection: data[0],
+            legLength: data[1],
+            inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
+        };
+
+        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
     }
 
     /**

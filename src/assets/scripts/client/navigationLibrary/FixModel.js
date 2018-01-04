@@ -118,6 +118,7 @@ export default class FixModel extends BaseModel {
         return _cloneDeep(this._positionModel);
     }
 
+    // FIXME: Would be good if we can get rid of this, and create WaypointModels through the FMS only
     /**
      * Build a new `WaypointModel` from the current instance.
      *
@@ -152,7 +153,7 @@ export default class FixModel extends BaseModel {
         // if (isHold) {
         //     waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
         //     waypointProps.isHold = true;
-        //     waypointProps.legLength = _get(holdProps, 'legLength', '1min');
+        //     waypointProps.legLength = _get(holdProps, 'legLength', 1);
         //     waypointProps.timer = -999;
         //     waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
         // }

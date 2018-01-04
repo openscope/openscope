@@ -498,7 +498,7 @@ ava('#holdParameters returns object with appropriate contents when #_isHoldWaypo
     const model = new WaypointModel('@BOACH');
     const expectedResult = {
         inboundHeading: undefined,
-        legLength: 1,
+        legLength: '1min',
         timer: INVALID_NUMBER,
         turnDirection: 'right'
     };
@@ -588,16 +588,6 @@ ava('#relativePosition returns #_positionModel.relativePosition for non-vector w
     const result = waypointModel.relativePosition;
 
     t.deepEqual(result, expectedResult);
-});
-
-ava('.activateHold() calls .setHoldParameters() with empty object when #_holdParameters is null', (t) => {
-    const waypointModel = new WaypointModel('BOACH');
-    const setHoldParametersSpy = sinon.spy(waypointModel, 'setHoldParameters');
-    const result = waypointModel.activateHold();
-
-    t.true(typeof result === 'undefined');
-    t.true(setHoldParametersSpy.calledWithExactly({}));
-    t.true(waypointModel._isHoldWaypoint);
 });
 
 ava('.activateHold() sets #_isHoldWaypoint to true', (t) => {
@@ -713,39 +703,43 @@ ava('.hasMinimumAltitudeAbove() returns true when waypoint has min restriction a
     t.true(model.hasMinimumAltitudeAbove(constraint));
 });
 
-ava('.setHoldParameters() throws when provided argument is not an object', (t) => {
+ava('.setHoldParameters() sets #_holdParameters to default values when no argument is provided', (t) => {
     const model = new WaypointModel('BOACH');
 
-    t.throws(() => model.setHoldParameters());
-    t.throws(() => model.setHoldParameters(''));
-    t.throws(() => model.setHoldParameters([]));
-});
-
-ava('.setHoldParameters() sets #_holdParameters to default values when provided argument is an empty object', (t) => {
-    const model = new WaypointModel('BOACH');
-
-    model.setHoldParameters({});
+    model.setHoldParameters();
 
     t.deepEqual(model._holdParameters, DEFAULT_HOLD_PARAMETERS);
 });
 
-ava('.setHoldParameters() sets #_holdParameters to according to provided parameters', (t) => {
+ava('.setHoldParameters() sets #_holdParameters according to provided parameters', (t) => {
     const model = new WaypointModel('BOACH');
     const holdParametersMock = {
         inboundHeading: 3.14,
-        legLength: 2,
+        legLength: '2min',
         turnDirection: 'left'
     };
     const expectedResult = {
         inboundHeading: 3.14,
-        legLength: 2,
+        legLength: '2min',
         timer: -1,
         turnDirection: 'left'
     };
 
-    model.setHoldParameters(holdParametersMock);
+    const result = model.setHoldParameters(holdParametersMock);
 
+    t.true(typeof result === 'undefined');
     t.deepEqual(model._holdParameters, expectedResult);
+});
+
+ava('.resetHoldTimer() sets #_holdParameters.timer back to the default value', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    model._holdParameters.timer = 515;
+
+    const result = model.resetHoldTimer();
+
+    t.true(typeof result === 'undefined');
+    t.true(model._holdParameters.timer === DEFAULT_HOLD_PARAMETERS.timer);
 });
 
 ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activateHold()', (t) => {
@@ -754,7 +748,7 @@ ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activat
     const activateHoldSpy = sinon.spy(model, 'activateHold');
     const holdParametersMock = {
         inboundHeading: 3.14,
-        legLength: 2,
+        legLength: '2min',
         turnDirection: 'left'
     };
     const result = model.setHoldParametersAndActivateHold(holdParametersMock);
@@ -762,6 +756,24 @@ ava('.setHoldParametersAndActivateHold() calls .setHoldParameters() and .activat
     t.true(typeof result === 'undefined');
     t.true(setHoldParametersSpy.calledWithExactly(holdParametersMock));
     t.true(activateHoldSpy.calledWithExactly());
+});
+
+ava('.setHoldTimer() throws when specified timer value is not a number', (t) => {
+    const model = new WaypointModel('BOACH');
+
+    t.throws(() => model.setHoldTimer());
+    t.throws(() => model.setHoldTimer(''));
+    t.throws(() => model.setHoldTimer([]));
+    t.throws(() => model.setHoldTimer({}));
+});
+
+ava('.setHoldTimer() sets #_holdParameters.timer to the specified value', (t) => {
+    const model = new WaypointModel('BOACH');
+    const timerValueMock = 881.1234;
+    const result = model.setHoldTimer(timerValueMock);
+
+    t.true(typeof result === 'undefined');
+    t.true(model._holdParameters.timer === timerValueMock);
 });
 
 ava('._applyAltitudeRestriction() sets #altitudeMinimum to specified value (x100) when restriction has "+" character', (t) => {
