@@ -408,9 +408,9 @@
                 ["SEA", "BUWZO", "HELNS", "KRATR", "BTG"]
             ]
         },
-        "HHOOD3": {
-            "icao": "HHOOD3",
-            "name": "Hood Three",
+        "HHOOD4": {
+            "icao": "HHOOD4",
+            "name": "Hood Four",
             "entryPoints": {
                 "BAYYR": [["BAYYR", "A130+|S270"]],
                 "DUFUR": ["DUFUR", ["RABBI", "A130+|S270"]],
@@ -668,7 +668,7 @@
             "origin": "",
             "destination": "kpdx",
             "category": "arrival",
-            "route": "JKNOX.HHOOD3.KPDX",
+            "route": "JKNOX.HHOOD4.KPDX",
             "altitude": [24000, 38000],
             "speed": 320,
             "method": "random",
