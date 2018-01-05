@@ -1,6 +1,6 @@
 {
   "name": "openscope",
-  "version": "5.5.0-BETA",
+  "version": "5.8.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "7.0.0",
@@ -14,7 +14,7 @@
     "coverage": "npm run test && npm run report",
     "coveralls": "nyc report -r text-lcov | coveralls",
     "lint": "eslint src/**; exit 0",
-    "start": "nodemon --watch public/assets/scripts/ --watch public/assets/style/ ./public/assets/scripts/server/index.js",
+    "start": "nodemon --watch public/assets/scripts/ ./public/assets/scripts/server/index.js",
     "server": "npm run start"
   },
   "repository": {
@@ -68,6 +68,7 @@
     "all": false,
     "include": [
       "src/assets/scripts/**/*.js",
+      "!src/assets/scripts/client/constants/**/*.js",
       "!**/_mocks/**",
       "!**/fixtures/**",
       "!**/testHelpers/**",

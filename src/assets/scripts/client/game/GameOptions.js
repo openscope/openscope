@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+import _isNil from 'lodash/isNil';
 import EventBus from '../lib/EventBus';
 import { GAME_OPTION_VALUES } from '../constants/gameOptionConstants';
 
@@ -66,7 +66,7 @@ export default class GameOptions {
         this._options[optionProps.name] = optionProps;
         let optionValue = optionProps.defaultValue;
 
-        if (typeof storedOptionValue !== 'undefined') {
+        if (!_isNil(storedOptionValue)) {
             optionValue = storedOptionValue;
         }
 

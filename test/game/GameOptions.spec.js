@@ -1,5 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
+import _isNil from 'lodash/isNil';
 import GameOptions from '../../src/assets/scripts/client/game/GameOptions';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import { GAME_OPTION_LIST_MOCK } from './_mocks/gameOptionMocks';
@@ -52,8 +53,8 @@ ava('.addOption() adds option to #_options and creates new property from option.
     model._options = {};
     model.addOption(GAME_OPTION_LIST_MOCK[0]);
 
-    t.false(typeof model._options[optionKeyMock] === 'undefined');
-    t.false(typeof model[optionKeyMock] === 'undefined');
+    t.false(_isNil(model._options[optionKeyMock]));
+    t.false(_isNil(model[optionKeyMock]));
     t.true(model[optionKeyMock] === optionValueMock);
 });
 

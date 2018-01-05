@@ -359,19 +359,31 @@ export default class ModeController {
     }
 
     /**
-     * Set the appropriate values in the MCP when spawning an aircraft that's already in flight
+     * Set the appropriate values in the MCP when spawning an aircraft already in flight
      *
      * @for ModeController
      * @method initializeForAirborneFlight
+     * @param {number} bottomAltitude - the lowest altitude restriction in the FMS
+     * @param {number} airspaceCeiling - maximum altitude belonging to the controller
+     * @param {number} currentAltitude - aircraft's current altitude, in feet ASL
+     * @param {number} currentHeading - aircraft's current heading, in radians
+     * @param {number} currentSpeed - aircraft's current speed, in knots
      */
-    initializeForAirborneFlight(bottomAltitude, currentHeading, currentSpeed) {
-        // TODO: We will need to set the altitude field to the lowest restriction on the STAR,
-        // if applicable, or otherwise to the spawn altitude.
+    initializeForAirborneFlight(bottomAltitude, airspaceCeiling, currentAltitude, currentHeading, currentSpeed) {
         this.setAltitudeFieldValue(bottomAltitude);
-        this.setHeadingFieldValue(currentHeading);
-        this.setSpeedFieldValue(currentSpeed);
         this.setAltitudeVnav();
+
+        // if unable to descend via STAR, force a descent to the top of our airspace
+        if (bottomAltitude === Infinity) {
+            const descentAltitude = Math.min(currentAltitude, airspaceCeiling);
+
+            this.setAltitudeFieldValue(descentAltitude);
+            this.setAltitudeHold();
+        }
+
+        this.setHeadingFieldValue(currentHeading);
         this.setHeadingLnav();
+        this.setSpeedFieldValue(currentSpeed);
         this.setSpeedVnav();
         this.enable();
     }

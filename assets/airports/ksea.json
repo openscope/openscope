@@ -185,6 +185,62 @@
         "ZUMBI": ["N47d37.68m0", "W122d37.04m0"],
         "ZUVEN": ["N47d47.98m0", "W122d25.15m0"]
     },
+    "restricted": [
+        {
+            "name": "P-51",
+            "height": "2500ft",
+            "coordinates": [
+                ["N47.7737128", "W122.7710456"],
+                ["N47.7189169", "W122.7706794"],
+                ["N47.6924411", "W122.7388044"],
+                ["N47.6932556", "W122.6940508"],
+                ["N47.7723906", "W122.6948667"]
+            ]
+        },
+        {
+            "name": "R-6701",
+            "height": "5000ft",
+            "coordinates": [
+                ["N48d09m59.0", "W122d34m53.0"],
+                ["N48d05m44.0", "W122d31m35.0"],
+                ["N48d06m05.0", "W122d41m17.0"],
+                ["N48d09m59.0", "W122d41m01.0"]
+            ]
+        },
+        {
+            "name": "R-6703",
+            "height": "14000ft",
+            "coordinates": [
+                ["N47.0748375", "W122.6872544"],
+                ["N47.0498750", "W122.6892869"],
+                ["N46.9185069", "W122.7452333"],
+                ["N46.9044025", "W122.7290589"],
+                ["N46.9089739", "W122.6934717"],
+                ["N46.9723142", "W122.6294256"],
+                ["N47.0597075", "W122.5953322"],
+                ["N47.0773244", "W122.6391833"]
+            ]
+        },
+        {
+            "name": "R-6703",
+            "height": "5000ft",
+            "coordinates": [
+                ["N47.0597075", "W122.5953322"],
+                ["N46.9723142", "W122.6294256"],
+                ["N46.9995172", "W122.5956517"],
+                ["N47.0009233", "W122.5840667"],
+                ["N47.0052567", "W122.5638861"],
+                ["N47.0070700", "W122.5581578"],
+                ["N47.0100983", "W122.5547606"],
+                ["N47.0128631", "W122.5528642"],
+                ["N47.0144636", "W122.5381808"],
+                ["N47.0145578", "W122.5332692"],
+                ["N47.0167531", "W122.5288344"],
+                ["N47.0288761", "W122.5287250"],
+                ["N47.0354517", "W122.5350172"]
+            ]
+        }
+    ],
     "runways":[
         {
             "name": ["16L", "34R"],
@@ -215,9 +271,9 @@
         }
     ],
     "sids": {
-        "ATOME1": {
-            "icao": "ATOME1",
-            "name": "Atom One",
+        "ATOME2": {
+            "icao": "ATOME2",
+            "name": "Atom Two",
             "rwy": {
                 "34L": ["CUSBU"],
                 "34C": ["NESOE"],
@@ -262,9 +318,9 @@
                 ["JESSP", "NORMY*"]
             ]
         },
-        "BANGR8": {
-            "icao": "BANGR8",
-            "name": "Bangor Eight",
+        "BANGR9": {
+            "icao": "BANGR9",
+            "name": "Bangor Nine",
             "rwy": {
                 "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE"],
                 "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE"],
@@ -292,9 +348,9 @@
                 ["BANGR", "ARRIE*"]
             ]
         },
-        "ELMAA2": {
-            "icao": "ELMAA2",
-            "name": "Elma Two",
+        "ELMAA3": {
+            "icao": "ELMAA3",
+            "name": "Elma Three",
             "rwy": {
                 "16L": [],
                 "16C": [],
@@ -312,9 +368,9 @@
                 ["ELMAA", "CVO*"]
             ]
         },
-        "HAROB5": {
-            "icao": "HAROB5",
-            "name": "Harob Five",
+        "HAROB6": {
+            "icao": "HAROB6",
+            "name": "Harob Six",
             "rwy": {
                 "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD"],
                 "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD"],
@@ -345,9 +401,9 @@
                 ["HAROB*", "FEPOT*", "HISKU*"]
             ]
         },
-        "MOUNT8": {
-            "icao": "MOUNT8",
-            "name": "Mountain Eight",
+        "MOUNT9": {
+            "icao": "MOUNT9",
+            "name": "Mountain Nine",
             "rwy": {
                 "16L": [["NICHY", "A30+"]],
                 "16C": [["NICHY", "A30+"]],
@@ -356,7 +412,7 @@
                 "34C": [["NEZUG", "A40+"]],
                 "34R": [["NEZUG", "A40+"]]
             },
-            "body": ["#070"],
+            "body": ["#071"],
             "exitPoints": {
                 "ELN": ["ELN"],
                 "EPH": ["EPH"],
@@ -384,9 +440,9 @@
                 ["YVR*"]
             ]
         },
-        "SEATL5": {
-            "icao": "SEATL5",
-            "name": "Seattle Five",
+        "SEA6": {
+            "icao": "SEA6",
+            "name": "Seattle Six",
             "rwy": {
                 "16L": ["_SEA161002", "#161"],
                 "16C": ["_SEA161002", "#161"],
@@ -431,9 +487,9 @@
                 ["YYJ*"]
             ]
         },
-        "SUMMA9": {
-            "icao": "SUMMA9",
-            "name": "Summa Nine",
+        "SUMMA1": {
+            "icao": "SUMMA1",
+            "name": "Summa One",
             "rwy": {
                 "16L": ["NEVJO"],
                 "16C": ["NEVJO"],
@@ -526,9 +582,9 @@
                 ["GLASR", "JAKSN", "WOODI", "HETHR"]
             ]
         },
-        "HAWKZ5": {
-            "icao": "HAWKZ5",
-            "name": "Hawks Five",
+        "HAWKZ6": {
+            "icao": "HAWKZ6",
+            "name": "Hawks Six",
             "entryPoints": {
                 "BTG": [["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
                 "HAWKZ": [],
@@ -539,9 +595,9 @@
             },
             "body": [["HAWKZ", "A120+|S270"], "LIINE"],
             "rwy": {
-                "16L": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
-                "16C": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
-                "16R": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#343"],
+                "16L": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
+                "16C": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
+                "16R": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
                 "34L": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
                 "34C": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
                 "34R": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
@@ -581,9 +637,9 @@
                 ["JAWBN", "DIGGN", "ALKIA"]
             ]
         },
-        "MARNR6": {
-            "icao": "MARNR6",
-            "name": "Mariner Six",
+        "MARNR7": {
+            "icao": "MARNR7",
+            "name": "Mariner Seven",
             "entryPoints": {
                 "BUHNR": [["BUHNR", "A120+"]],
                 "JIGEB": [["JIGEB", "A120+"]],
@@ -598,9 +654,9 @@
                 "16L": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
                 "16C": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
                 "16R": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
-                "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
-                "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"],
-                "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#163"]
+                "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
+                "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
+                "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"]
             },
             "draw": [
                 ["BUHNR*", "MARNR*"],
@@ -641,7 +697,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.BANGR8.ARRIE",
+            "route": "KSEA.BANGR9.ARRIE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -674,7 +730,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.BANGR8.PANGL",
+            "route": "KSEA.BANGR9.PANGL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -707,7 +763,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB5.ERAVE",
+            "route": "KSEA.HAROB6.ERAVE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -740,7 +796,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB5.FEPOT",
+            "route": "KSEA.HAROB6.FEPOT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -773,7 +829,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB5.HISKU",
+            "route": "KSEA.HAROB6.HISKU",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -806,7 +862,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB5.HQM",
+            "route": "KSEA.HAROB6.HQM",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -839,7 +895,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.SUMMA9.BKE",
+            "route": "KSEA.SUMMA1.BKE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -872,7 +928,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.SUMMA9.LKV",
+            "route": "KSEA.SUMMA1.LKV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -971,7 +1027,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "LMT.HAWKZ5.KSEA",
+            "route": "LMT.HAWKZ6.KSEA",
             "altitude": [24000, 36000],
             "speed": 320,
             "method": "random",
@@ -1004,7 +1060,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "YVR.MARNR6.KSEA",
+            "route": "YVR.MARNR7.KSEA",
             "altitude": [18000, 34000],
             "speed": 320,
             "method": "random",

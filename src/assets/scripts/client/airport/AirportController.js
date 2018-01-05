@@ -1,8 +1,6 @@
 import _has from 'lodash/has';
-import _lowerCase from 'lodash/lowerCase';
 import AirportModel from './AirportModel';
 import EventBus from '../lib/EventBus';
-import { DEFAULT_AIRPORT_ICAO } from '../constants/airportConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -64,10 +62,11 @@ class AirportController {
      *
      * @for AirportController
      * @method init
+     * @param InitialAirportIcao {string}
      * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
      */
-    init(initialAirportData, airportLoadList) {
+    init(initialAirportIcao, initialAirportData, airportLoadList) {
         this._airportListToLoad = airportLoadList;
 
         for (let i = 0; i < this._airportListToLoad.length; i++) {
@@ -76,7 +75,7 @@ class AirportController {
             this.airport_load(airport);
         }
 
-        this.ready(initialAirportData);
+        this.airport_set(initialAirportIcao, initialAirportData);
     }
 
     /**
@@ -107,8 +106,6 @@ class AirportController {
         const airportModel = new AirportModel({ icao, level, name, wip });
 
         this.airport_add(airportModel);
-
-        return airportModel;
     }
 
     /**
@@ -120,30 +117,6 @@ class AirportController {
      */
     airport_add(airport) {
         this.airports[airport.icao] = airport;
-    }
-
-    /**
-     * Lifecycle method. Should run only once on App initialiazation
-     *
-     * @for AirportController
-     * @method ready
-     * @param initialAirportData {object}
-     */
-    ready(initialAirportData) {
-        let airportName = DEFAULT_AIRPORT_ICAO;
-
-        if (
-            _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            _has(this.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
-        ) {
-            airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
-        }
-
-        if (airportName !== initialAirportData.icao.toLowerCase()) {
-            this.airport_set(airportName);
-        }
-
-        this.airport_set(airportName, initialAirportData);
     }
 
     /**

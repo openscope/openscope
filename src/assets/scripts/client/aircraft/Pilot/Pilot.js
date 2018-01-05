@@ -107,14 +107,26 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
-     * @param currentAltitude {number}
      * @param altitude {number}   the altitude to maintain, in feet
      * @param expedite {boolean}  whether to use maximum possible climb/descent rate
      * @param shouldUseSoftCeiling {boolean}
      * @param airportModel {AirportModel}
-     * @return {array}            [success of operation, readback]
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, readback]
      */
-    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
+    maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
+        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
+            const verbalRequestedAltitude = radio_altitude(altitude);
+            const readback = {};
+            readback.log = `unable to maintain ${altitude} due to performance`;
+            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
+
+            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
+
+            return [false, readback];
+        }
+
+        const currentAltitude = aircraftModel.altitude;
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
 
@@ -123,11 +135,10 @@ export default class Pilot {
             clampedAltitude += 1;
         }
 
-        this.cancelApproachClearance();
+        this.cancelApproachClearance(aircraftModel);
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
-        // TODO: this could be split to another method
         // Build readback
         const readbackAltitude = _floor(clampedAltitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
@@ -153,30 +164,30 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainHeading
-     * @param currentHeading {number}
+     * @param aircraftModel {AircraftModel}
      * @param headingInDegrees {number}                 the heading to maintain, in degrees
      * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
      * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a
      *                                                  number of degrees to turn
      * @return {array}                                  [success of operation, readback]
      */
-    maintainHeading(currentHeading, headingInDegrees, direction, incremental) {
+    maintainHeading(aircraftModel, headingInDegrees, direction, incremental) {
         const nextHeadingInRadians = degreesToRadians(headingInDegrees);
         let correctedHeading = nextHeadingInRadians;
 
         if (incremental) {
             // if direction is left
-            correctedHeading = radians_normalize(currentHeading - nextHeadingInRadians);
+            correctedHeading = radians_normalize(aircraftModel.heading - nextHeadingInRadians);
 
             if (direction === 'right') {
-                correctedHeading = radians_normalize(currentHeading + nextHeadingInRadians);
+                correctedHeading = radians_normalize(aircraftModel.heading + nextHeadingInRadians);
             }
         }
 
-        this.cancelApproachClearance();
-        this._fms.exitHoldIfHolding();
-        this._mcp.setHeadingHold();
+        this.cancelApproachClearance(aircraftModel);
+        this._fms.leaveHoldFlightPhase();
         this._mcp.setHeadingFieldValue(correctedHeading);
+        this._mcp.setHeadingHold();
 
         const headingStr = heading_to_string(correctedHeading);
         const readback = {};
@@ -199,13 +210,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainPresentHeading
-     * @param heading {number}  the heading the aircraft is facing at the time the command is given
-     * @return {array}          [success of operation, readback]
+     * @param aircraftModel {AircraftModel} the heading the aircraft is facing at the time the command is given
+     * @return {array} [success of operation, readback]
      */
-    maintainPresentHeading(heading) {
-        this.cancelApproachClearance();
+    maintainPresentHeading(aircraftModel) {
+        this.cancelApproachClearance(aircraftModel);
+        this._mcp.setHeadingFieldValue(aircraftModel.heading);
         this._mcp.setHeadingHold();
-        this._mcp.setHeadingFieldValue(heading);
 
         const readback = {};
         readback.log = 'fly present heading';
@@ -219,14 +230,24 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
-     * @param {Number} speed - the speed to maintain, in knots
+     * @param speed {Number} - the speed to maintain, in knots
+     * @param aircraftModel {AircraftModel}
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(currentSpeed, speed) {
+    maintainSpeed(speed, aircraftModel) {
+        if (!aircraftModel.model.isAbleToMaintainSpeed(speed)) {
+            const readback = {};
+            readback.log = `unable to maintain ${speed} knots due to performance`;
+            readback.say = `unable to maintain ${radio_spellOut(speed)} knots due to performance`;
+
+            return [false, readback];
+        }
+
+        const currentSpeed = aircraftModel.speed;
         const instruction = radio_trend('speed', currentSpeed, speed);
 
-        this._mcp.setSpeedHold();
         this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
 
         // Build the readback
         const readback = {};
@@ -370,7 +391,7 @@ export default class Pilot {
         }
 
         this._fms.replaceRouteUpToSharedRouteSegment(routeString);
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
 
         // Build readback
         const readback = {};
@@ -388,24 +409,21 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
-     * @param currentHeading {number}   the aircraft's current heading, in radians
-     * @param currentSpeed {number}     the aircraft's current speed, in knots
-     * @return {array}                  [success of operation, readback]
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, readback]
      */
-    cancelApproachClearance(currentAltitude, currentHeading) {
+    cancelApproachClearance(aircraftModel) {
         if (!this.hasApproachClearance) {
             return [false, 'we have no approach clearance to cancel!'];
         }
 
         const airport = AirportController.airport_get();
-        const altitudeToMaintain = Math.max(
-            Math.min(currentAltitude, this._mcp.altitude),
-            airport.minAssignableAltitude
-        );
+        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
         this._mcp.setAltitudeHold();
-        this._mcp.setHeadingFieldValue(currentHeading);
+        this._mcp.setHeadingFieldValue(aircraftModel.heading);
         this._mcp.setHeadingHold();
         this._mcp.setSpeedHold();
 
@@ -467,25 +485,29 @@ export default class Pilot {
      *
      * @for Pilot
      * @method descendViaStar
-     * @param altitude {number}  (optional) altitude at which the descent will end (regardless of fix restrictions)
-     *                                      this should be the altitude of the lowest fix restriction on the STAR
-     * @return {array}           [success of operation, readback]
+     * @param bottomAltitude {number} (optional) altitude at which the descent will end (regardless of fix restrictions)
+     * @return {array}                [success of operation, readback]
      */
-    descendViaStar(altitude = 0) {
-        this._mcp.setAltitudeFieldValue(altitude);
+    descendViaStar(bottomAltitude) {
+        let nextAltitude = bottomAltitude;
+
+        if (typeof nextAltitude === 'undefined') {
+            nextAltitude = this._fms.getBottomAltitude();
+        }
+
+        if (isNaN(nextAltitude) || nextAltitude === Infinity) {
+            return [false, 'unable to descend via STAR'];
+        }
+
+        this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        // Build readback
-        const readback = {};
-        readback.log = 'descend via the arrival';
-        readback.say = 'descend via the arrival';
-
-        return [true, readback];
+        return [true, 'descend via STAR'];
     }
 
     /**
-     * Abort the landing attempt; maintain present heading/speed, and climb to a reasonable alttiude
+     * Abort the landing attempt; maintain present heading/speed, and climb to a reasonable altitude
      *
      * @for Pilot
      * @method goAround
@@ -605,7 +627,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -719,7 +741,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypoint(waypointName);
-        this._fms.exitHoldIfHolding();
+        this._fms.leaveHoldFlightPhase();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];

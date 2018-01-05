@@ -6,12 +6,13 @@ import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
-import EventBus from '../lib/EventBus';
-import GameController from '../game/GameController';
 import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
+import EventBus from '../lib/EventBus';
+import GameController from '../game/GameController';
 import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
+import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round } from '../math/core';
@@ -175,6 +176,16 @@ export default class AirportModel {
          * @default null
          */
         this.airspace = null;
+
+        // TODO: this should really be its own class possibly separate from the `AirportModel`
+        /**
+         * Container for airport terrain definition
+         *
+         * @property terrain
+         * @type {object}
+         * @default {}
+         */
+        this.terrain = {};
 
         /**
          * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
@@ -531,9 +542,9 @@ export default class AirportModel {
         // TODO: this should live elsewhere and be called by a higher level controller
         GameController.game_reset_score_and_events();
 
-        this.start = GameController.game_time();
+        this.start = TimeKeeper.accumulatedDeltaTime;
 
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, true);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, true);
     }
 
     /**
@@ -548,10 +559,10 @@ export default class AirportModel {
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
         // const wind = Object.assign({}, this.wind);
         // let s = 1;
-        // const angle_factor = sin((s + GameController.game_time()) * 0.5) + sin((s + GameController.game_time()) * 2);
+        // const angle_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
         // // TODO: why is this var getting reassigned to a magic number?
         // s = 100;
-        // const speed_factor = sin((s + GameController.game_time()) * 0.5) + sin((s + GameController.game_time()) * 2);
+        // const speed_factor = sin((s + TimeKeeper.accumulatedDeltaTime) * 0.5) + sin((s + TimeKeeper.accumulatedDeltaTime) * 2);
         // wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
         // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
         //
@@ -736,7 +747,6 @@ export default class AirportModel {
             return;
         }
 
-        // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
         // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
@@ -772,9 +782,9 @@ export default class AirportModel {
         }
 
         this.loading = true;
-        this.eventBus.trigger(EVENT.SHOULD_PAUSE_UPDATE_LOOP, false);
+        this.eventBus.trigger(EVENT.PAUSE_UPDATE_LOOP, false);
 
-        if (airportJson) {
+        if (airportJson && airportJson.icao.toLowerCase() === this.icao) {
             this.onLoadIntialAirportFromJson(airportJson);
 
             return;

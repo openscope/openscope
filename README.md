@@ -4,12 +4,17 @@
 [![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-## Air Traffic Control
+## OpenScope Air Traffic Control Simulator
 
-An ATC simulator in HTML5. Visit http://openscope.co to begin playing now!
+Visit http://openscope.co to begin playing now!
 
+If you're just getting started, try the tutorial and see the [command reference](documentation/commands.md) for a full list of commands you can use. For information on each airport, see the [airport guide](documentation/airport-guides/airport-guide-directory.md).
 
-## Quick Start
+Feel free to [join us on slack](http://slack.openscope.co/) if you have questions, comments or would like to contribute to the project. We can then add you to the organization so you can begin committing to this repo.
+
+---
+
+## Developer Quick Start
 
 _Prerequisites: In order to successfully complete this quick start, you will need to have the following installed locally:_
 - [Git](https://git-scm.com/downloads)
@@ -40,19 +45,16 @@ For more information on the available tools, please view the [Tools Readme](tool
 
 ## Contributing
 
+We do not use forks. Instead, we add to add all contributors to the openScope organization. This way, we can keep all branches local to the organization, and use testing integrations on pull requests. If you are interested in contributing, _please message Erik Quinn or Nate Geslin on slack_ so you can be added to the organization.
+
 We use the [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) for managing branches.  If you would like to contribute, you will be expected to use appropriate branch names based on this methodology (and we can help if you have questions).
 
 Don't know Javascript?  That's cool, we're always looking for beta testers and/or airport contributors.  If you would like to add a new airport, or help update existing airports, please read the [Airport Documentation](https://github.com/openscope/openscope/wiki/Airport.json) to get up to speed on what is expected in that file.
 
 
-## Slack
-
-Please join us on our [Slack Channel](http://slack.openscope.co/) if you have questions, comments or would like to contribute.  We can then add you to the organization so you can begin committing to this repo.
-
-
 ## License
 
-MIT
+[MIT License](LICENSE.md)
 
 
 ## Privacy Disclosures
