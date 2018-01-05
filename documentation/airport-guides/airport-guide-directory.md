@@ -4,6 +4,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [EDDH - Hamburg Airport](eddh.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
 - [EIDW - Dublin Airport](eidw.md)
+- [ENGM - Oslo Gardermoen International Airport](engm.md)
 - [KABQ - Albuquerque International Sunport](kabq.md)
 - [KATL - Hartsfield–Jackson Atlanta International Airport](katl.md)
 - [KBOS - Logan International Airport](kbos.md)
