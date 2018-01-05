@@ -342,7 +342,7 @@
             "name": "Willisau",
             "suffix": {"10":"2D", "16":"3R", "28":"3V", "32":"2M", "34":"2G"},
             "rwy": {
-                "10": [["^_RWY10KLO02.1DME", "S210-"], ["_KLO360002.7", "A40+|S210-"], ["^BREGO", "A50+"]],
+                "10": [["^_RWY10KLO02.1DME", "S210-"], ["_KLO360002.7", "A40+|S210-"], ["BREGO", "A50+"]],
                 "16": [["^_RWY16KLO01DME", "S210-"], ["_KLO360001.5", "S210-|A40+"], "_WIL053027", ["BREGO", "A50+"]],
                 "28": ["^_RWY28KLO03DME", "_BREGO053004", ["BREGO", "A50+"]],
                 "32": ["^_RWY34KLO02DME", ["^_RWY34KLO04DME", "A35+"], "_TRA190011", ["BREGO", "A50+"]],
@@ -361,8 +361,8 @@
             "name": "Zurich East",
             "suffix": {"10":"1D", "16":"2R", "28":"2V", "32":"3L", "34":"3F"},
             "rwy": {
-                "10": [["^_RWY10KLO02.1DME", "S210-"], ["_ZUE232007", "S210-"]],
-                "16": [["^_RWY16KLO01DME", "S210-"], ["_ZUE232007", "S210-"]],
+                "10": ["^_RWY10KLO02.1DME", "_ZUE232007"],
+                "16": ["^_RWY16KLO01DME", "_ZUE232007"],
                 "28": [["^_RWY28KLO03DME", "S210-"], ["_KLO253005", "S210-"], ["^ZH552", "S210-"], "_KLO232005", "KLO"],
                 "32": ["^_RWY34KLO02DME", ["^_RWY34KLO04DME", "A35+|S210-"], "_TRA190011", ["^_TRA190012.5", "A45+"], "_KLO269005.5", ["KLO", "A50+"]],
                 "34": ["^_RWY34KLO02DME", ["^_RWY34KLO04DME", "A35+|S210-"], "_TRA190011", ["^_TRA190012.5", "A45+"], "_KLO269005.5", ["KLO", "A50+"]]
@@ -384,7 +384,7 @@
             "entryPoints": {
                 "BERSU": ["BERSU"]
             },
-            "body": [["TADOB", "S270"], ["ERMUS", "A80+|A130-|S250"] ,["GIPOL", "A70+|A100-|S250"]],
+            "body": ["TADOB", ["ERMUS", "A80+"], ["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -401,9 +401,9 @@
             "icao": "BLM2G",
             "name": "Basle-Mulhouse Two Golf",
             "entryPoints": {
-                "BLM": ["BLM"]
+                "BLM": [["BLM", "A200-"]]
             },
-            "body": [["ZH677", "A120+|S250"], ["GIPOL", "A70+|A100-|S250"]],
+            "body": [["ZH677", "A120+"], ["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -422,7 +422,7 @@
             "entryPoints": {
                 "DOPIL": ["DOPIL"]
             },
-            "body": [["NOLKA", "S270"], ["ERMUS", "A80+|A130-|S250"] ,["GIPOL", "A70+|A100-|S250"]],
+            "body": ["NOLKA", ["ERMUS", "A80+"], ["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -439,9 +439,9 @@
             "icao": "HOC1G",
             "name": "Hochwald One Golf",
             "entryPoints": {
-                "HOC": [["HOC", "S250"]]
+                "HOC": ["HOC"]
             },
-            "body": [["GIPOL", "A70+|A100-|S250"]],
+            "body": [["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -458,9 +458,9 @@
             "icao": "KELI2G",
             "name": "Kelip Two Golf",
             "entryPoints": {
-                "KELIP": [["KELIP", "S270"]]
+                "KELIP": ["KELIP"]
             },
-            "body": [["MOSIT", "A140+"], ["ZH628", "A100+|S250"], "ZH627", "KLO", ["GIPOL", "A70+|A100-|S250"]],
+            "body": [["MOSIT", "A140+"], ["ZH628", "A100+"], "ZH627", "KLO", ["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -477,10 +477,10 @@
             "icao": "NEGR1A",
             "name": "Negra One Alpha",
             "entryPoints": {
-                "NEGRA": [["NEGRA", "A190+|S270"]],
-                "RAVED": ["RAVED", "ETOXU", ["NEGRA", "A190+|S270"]]
+                "NEGRA": ["NEGRA"],
+                "RAVED": ["RAVED", "ETOXU", "NEGRA"]
             },
-            "body": [["MATIV", "S250"], ["AMIKI", "A100|S250"]],
+            "body": ["MATIV", ["AMIKI", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -497,9 +497,9 @@
             "icao": "RILA1A",
             "name": "Rilax One Alpha",
             "entryPoints": {
-                "RILAX": [["RILAX", "S250|A130-"]]
+                "RILAX": ["RILAX"]
             },
-            "body": ["LAMAX", ["AMIKI", "A70+|A100-|S250"]],
+            "body": ["LAMAX", ["AMIKI", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -518,7 +518,7 @@
             "entryPoints": {
                 "TRA": ["TRA"]
             },
-            "body": [["AMIKI", "A70+|A100-|S250"]],
+            "body": [["AMIKI", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -535,9 +535,9 @@
             "icao": "URNA2Z",
             "name": "Urnas Two Zulu",
             "entryPoints": {
-                "URNAS": [["URNAS", "S270|A140+"]]
+                "URNAS": [["URNAS", "A140+"]]
             },
-            "body": [["ALBIX", "A100+|S250"], ["ZH650", "A80+"], "ZH676", ["GIPOL", "A70+|A100-|S250"]],
+            "body": [["ALBIX", "A100+"], ["ZH650", "A80+"], "ZH676", ["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
@@ -554,9 +554,9 @@
             "icao": "WIL2Z",
             "name": "Willisau Two Zulu",
             "entryPoints": {
-                "WIL": [["WIL", "S250"]]
+                "WIL": [["WIL"]]
             },
-            "body": [["GIPOL", "A70+|A100-|S250"]],
+            "body": [["GIPOL", "A70+"]],
             "rwy": {
                 "10": [],
                 "14": [],
