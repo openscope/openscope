@@ -31,7 +31,7 @@
 - Overhaul of Manchester International Airport (England, United Kingdom)[#854](https://github.com/openscope/openscope/issues/854)
 - Customisation of callsign formats [#866](https://github.com/openscope/openscope/issues/866)
 - Overhaul of Frankfurt Am Main International Airport (Germany) [#199](https://github.com/openscope/openscope/issues/199)
-- Updates KBOS to AIRAC 1713 [#842](https://github.com/openscope/openscope/issues/842)
+- Updates KBOS to AIRAC 1801 [#842](https://github.com/openscope/openscope/issues/842)
 
 
 
