@@ -75,6 +75,7 @@ The airspace within the area bounded by a line beginning at:
     N45°21'00.00" W075°55'00.00" to
     N45°23'00.00" W075°57'00.00" to
     N45°24'00.00" W075°55'00.00"
+
 Designated Altitude – Surface to 1000´
 Time of Designation – Continuous
 Operating Procedures – No person shall operate an aircraft within the area described unless the flight has been authorized by the User/Controlling Agency.
@@ -85,6 +86,7 @@ Connaught Range is a cadet training centre.
 The airspace within the area bounded by a circle of:
     0.4 mile radius centred on
     N45°19'18.00" W075°52'32.00"
+
 Designated Altitude – Surface to 1400´
 Time of Designation – Continuous during daylight
 Operating Procedures – No person shall operate an aircraft within the area described unless the flight has been authorized by the User/Controlling Agency.
@@ -95,6 +97,7 @@ Within this airspace is CANMET Complex, a building which hosts many different re
 The airspace within the area bounded by a circle of:
     0.35 mile radius centred on
     N45°25'29.00" W075°41'59.00"
+
 Designated Altitude – Surface to 3000´
 Time of Designation – Continuous
 Operating Procedures – No person shall operate an aircraft, including model aircraft, within the area described unless the flight has been authorized by the User/Controlling Agency, except for medical, police and military aircraft on official duty flights and IFR flights.
@@ -102,10 +105,10 @@ Operating Procedures – No person shall operate an aircraft, including model ai
 Within this area is the Parliament of Canada.
 
 ##### CYR538 Rideau Hall, Ontario
-CYR538 RIDEAU HALL, ON
 The airspace within the area bounded by a circle of:
     0.4 mile radius centred on
     N45°26'38.90" W075°41'17.80"
+
 Designated Altitude – Surface to 3000´
 Time of Designation – Continuous
 Operating Procedures – No person shall operate an aircraft, including model aircraft, within the area described unless the flight has been authorized by the User/Controlling Agency, except for medical, police and military aircraft on official duty flights and IFR flights.
@@ -119,6 +122,7 @@ The airspace within the area bounded by a line beginning at:
     N45°05'16.00" W075°57'09.00" to
     N45°07'35.00" W075°59'10.00" to
     N45°09'46.00" W075°56'24.00"
+    
 Designated Altitude – Surface to 2500´
 Time of Designation – Continuous
 Operating Procedures – No person shall operate an aircraft within the area described 

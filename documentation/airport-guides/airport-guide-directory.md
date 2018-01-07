@@ -1,5 +1,6 @@
 In order to help you learn the details of each particular airspace, an "airport guide" is available for each of the airports in the game.
 
+- [CYOW - Ottawa Macdonald–Cartier International Airport](cyow.md)
 - [EDDH - Hamburg Airport](eddh.md)
 - [EIDW - Dublin Airport](eidw.md)
 - [KABQ - Albuquerque International Sunport](kabq.md)
