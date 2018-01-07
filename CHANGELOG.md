@@ -2,6 +2,8 @@
 ---
 ### New Features
 - Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
+- Add Leeds Bradford International Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/pull/266)
+
 
 
 
