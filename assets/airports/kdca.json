@@ -721,28 +721,395 @@
     },
     "spawnPatterns": [
         {
-            "origin": "xx",
+            "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "xx.xx.xx",
-            "altitude": null,
-            "speed": null,
+            "route": "KDCA.JDUBB1.GSO",
+            "altitude": 0,
+            "speed": 0,
             "method": "random",
-            "rate": 0,
+            "rate": 18,
             "airlines": [
-
+                ["aal", 4],
+                ["jbu", 5],
+                ["jia", 2],
+                ["swa", 2],
+                ["lof", 2],
+                ["rpa", 3]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.HORTO2.JERES",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 11,
+            "airlines": [
+                ["asq", 2],
+                ["lof", 5],
+                ["jia", 1],
+                ["rpa", 1],
+                ["skv", 2]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.BOOCK2.COLIN",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 20,
+            "airlines": [
+                ["aal", 9],
+                ["jbu", 6],
+                ["rpa", 2],
+                ["jia", 1],
+                ["swa", 2]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.CLTCH1.MAULS",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 11,
+            "airlines": [
+                ["jia", 5],
+                ["rpa", 3],
+                ["swa", 2],
+                ["ash", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.REBLL3.OTTTO",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 23,
+            "airlines": [
+                ["aal", 5],
+                ["jia", 5],
+                ["rpa", 2],
+                ["swa", 8],
+                ["dal", 1],
+                ["edv", 1],
+                ["asa", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.WYNGS3.RAMAY",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 26,
+            "airlines": [
+                ["jia", 3],
+                ["ual", 2],
+                ["aal", 4],
+                ["swa", 6],
+                ["lof", 3],
+                ["rpa", 5],
+                ["skw", 2],
+                ["dal", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.SOOKI3.SWANN",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 32,
+            "airlines": [
+                ["jbu", 6],
+                ["jia", 10],
+                ["rpa", 4],
+                ["lof", 6],
+                ["aal", 2],
+                ["swa", 1],
+                ["jza", 2],
+                ["asq", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.HORTO2.BUFFR",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["lof", 2],
+                ["edv", 1],
+                ["swa", 1],
+                ["dal", 4],
+                ["rpa", 2],
+                ["jia", 2],
+                ["ual", 1],
+                ["fft", 1],
+                ["asa", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.CLTCH1.FLASK",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["dal", 4],
+                ["rpa", 2],
+                ["swa", 2]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.DOCTR3.AGARD",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 8,
+            "airlines": [
+                ["edv", 2],
+                ["rpa", 5],
+                ["lof", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.SCRAM3.LYH",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["jia", 3],
+                ["aal", 3],
+                ["eny", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.DOCTR3.DQO",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["rpa", 1],
+                ["jia", 1]
+            ]
+        },
+        {
+            "origin": "KDCA",
+            "destination": "",
+            "category": "departure",
+            "route": "KDCA.JDUBB1.SBV",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["lof", 1],
+                ["rpa", 1],
+                ["gjs", 1]
             ]
         },
         {
             "origin": "",
-            "destination": "xx",
+            "destination": "KDCA",
             "category": "arrival",
-            "route": "xx.xx.xx",
+            "route": "MXE.CLIPR1.KDCA",
             "altitude": 0,
             "speed": 0,
             "method": "random",
-            "rate": 0,
+            "rate": 34,
             "airlines": [
+                ["rpa", 12],
+                ["edv", 2],
+                ["aal", 6],
+                ["asq", 2],
+                ["lof", 5],
+                ["jbu", 4],
+                ["jia", 2],
+                ["jza", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "WAVES.CAPSS2.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 61,
+            "airlines": [
+                ["jbu", 8],
+                ["swa", 8],
+                ["aal", 15],
+                ["dal", 6],
+                ["rpa", 9],
+                ["jia", 11],
+                ["lof", 3],
+                ["gjs", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "BKW.TRUPS3.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 25,
+            "airlines": [
+                ["swa", 6],
+                ["aal", 5],
+                ["rpa", 3],
+                ["jia", 7],
+                ["lof", 2],
+                ["eny", 1],
+                ["ash", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "BUCKO.FRDMM3.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 54,
+            "airlines": [
+                ["dal", 6],
+                ["swa", 10],
+                ["ual", 4],
+                ["lof", 5],
+                ["jia", 7],
+                ["rpa", 11],
+                ["aal", 3],
+                ["skw", 3],
+                ["asq", 2],
+                ["fft", 3],
+                ["asa", 1],
+                ["vrd", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "THHMP.CAPSS2.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["jbu", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "HVQ.TRUPS3.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["jia", 2],
+                ["rpa", 1],
+                ["aal", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "PSB.SKILS3.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 11,
+            "airlines": [
+                ["jia", 2],
+                ["rpa", 3],
+                ["lof", 3],
+                ["skv", 2],
+                ["jza", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "LAFLN.DEALE2.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["jia", 4],
+                ["swa", 1],
+                ["jbu", 1],
+                ["rpa", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "PLDGE.FRDMM3.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["jia", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KDCA",
+            "category": "arrival",
+            "route": "RIC.IRONS7.KDCA",
+            "altitude": 0,
+            "speed": 0,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rpa", 1]
             ]
         }
     ],
