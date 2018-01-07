@@ -19,7 +19,7 @@ Due to the size of the airport, Leeds does not have a ground position. Leeds Tow
 |"LEEDS TOWER"      | 120.300MHz | Designated Operational Coverage 25nm/4,000ft                                         |
 |"LEEDS DELIVERY"   | 121.800MHz | Designated Operational Coverage 5nm/SFC, open Winter 0600z-2200z, Summer 0500z-2100z |
 |                   |            |                                                                                      |
-|"LEEDS RADAR"      | 134.575MHz | Designated Operational Coverage 40nm/10,000ft                                        |
+|"LEEDS RADAR"      | 134.575MHz | Designated Operational Coverage 40nm/10,000ft, departure frequency                   |
 |"LEEDS DIRECTOR"   | 125.375MHz | Designated Operational Coverage 40nm/10,000ft                                        |
 |                   |            |                                                                                      |
 |"LEEDS INFORMATION"| 118.025MHz | Designated Operational Coverage 50nm/20,000ft                                        |
@@ -95,14 +95,9 @@ VFR pilots should exit using the following Visual Reference Points, however for 
 
 ### Sectors Available in OpenScope
 ```
-Leeds Bradford CTR (unavailable)
-Leeds Bradford CTA 1 (unavailable)
-Leeds Bradford CTA 2 (unavailable)
-Leeds Bradford CTA 3 (unavailable)
-Leeds Bradford ATZ (unavailable)
+Leeds Radar
+Leeds Approach
 ```
-
-Currently, a bandbox of all the positions above is being used within OpenScope.
 
 ### Restricted Airspace
 The only restricted airspace within the Leeds Bradford Control Area/Zone is EG R321 Wakefield, a circle of radius 1.3nm centred on 534057N 0013034W.
@@ -113,7 +108,7 @@ Provided with the videomap is a top down view of the airport's taxiways and runw
 
 In addition, the VRPs are marked on, those being the four (4) small circles, three within the airspace and one outside. The radials from the VOR Pole Hill to those VRPs are marked on too. 
 
-The lines representing radials on the videomap originating from the three VHF omnidirectional range stations, Gamston, Pole Hill and Leeds Bradford each represent four (4) nautical miles.
+The lines representing radials on the videomap originating from the VHF omnidirectional range stations, Gamston and Pole Hill and Non-Directional Beacon, Leeds Bradford each represent four (4) nautical miles.
 
 Plotted on are the following:
 * Gamston Radial 327 (used within DOPEK2X/LAMIX2X);
