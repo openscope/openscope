@@ -1,7 +1,7 @@
 ## 5.8.0 (January 1, 2018)
 ---
 ### New Features
-
+- Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
 
 
 
