@@ -9,7 +9,7 @@
     "magnetic_north": 0.16,
     "ctr_radius": 32,
     "ctr_ceiling": 8500,
-    "initial_alt": 3000,
+    "initial_alt": 7000,
     "position": ["N53d51m57.69",  "W001d39m38.77", "681ft"],
     "rr_radius_nm": 5,
     "rr_center": ["N53d51m57.69",  "W001d39m38.77"],
@@ -425,9 +425,8 @@
         "_ILF0.5DME": [53.88059032404, -1.68318520718],
         "_ILF2.1DME": ["N53d53m40", "W001d42m58"],
         "_ILF3.5DME": ["N53d54m05", "W001d45m21"],
-        "_INTGAM319": [53.83812565585, -1.80078584616],
-        "_INTGAM327": [53.80386036283, -1.54521643089],
-        "_INTLBA272": [53.86807087448, -1.99056411465],
+        "_GAM319045": [53.83812565585, -1.80078584616],
+        "_LBA272012": [53.86807087448, -1.99056411465],
         "_POL053010": [53.84593149446, -1.88134211524],
         "_POL053011": [53.85611304431, -1.85908369973],
         "_POL053012": [53.86629039438, -1.83681441],
@@ -597,16 +596,16 @@
             "name": "Dopek",
             "suffix": {"14":"2X", "32":"2W"},
             "rwy": {
-                "14": ["_ILBF2DME", "_INTGAM327", ["_GAM327036", "A30+|A70-"], ["_GAM327032", "A35+|A70-"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
-                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "_ILF3.5DME", ["_INTGAM319", "A30+|A70-"], ["_GAM319038", "A35+|A70-"], ["_GAM319035", "A60+|A70-"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
+                "14": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
+                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
             },
             "body": [],
             "exitPoints": {
                 "DOPEK": ["DOPEK"]
             },
             "draw": [
-                ["_ILBF2DME", "_INTGAM327", "_GAM327036", "_GAM327032", "_GAM327029", "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118", "DOPEK"],
-                ["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_INTGAM319", "_GAM319038", "_GAM319035", "_GAM319031", "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
+                ["_ILBF2DME", "_GAM327036", "_GAM327032", "_GAM327029", "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118", "DOPEK"],
+                ["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_GAM319045", "_GAM319038", "_GAM319035", "_GAM319031", "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
             ]
         },
         "LAMIX": {
@@ -614,8 +613,8 @@
             "name": "Lamix",
             "suffix": {"14":"2X", "32":"2W"},
             "rwy": {
-                "14": ["_ILBF2DME", "_INTGAM327", ["_GAM327036", "A30+|A70-"], ["_GAM327032", "A35+|A70-"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
-                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "_ILF3.5DME", ["_INTGAM319", "A30+|A70-"], ["_GAM319038", "A35+|A70-"], ["_GAM319035", "A60+|A70-"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME"]
+                "14": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
+                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME"]
             },
             "body": ["DOPEK"],
             "exitPoints": {
@@ -631,23 +630,27 @@
             "rwy": {
                 "32": [["_ILF0.5DME", "A12+"]]
             },
-            "body": ["_ILF2.1DME", "_ILF3.5DME", ["_POL053012", "A30+|A70-"], "_POL053011" ,["_POL053010", "A35+|A70-"], "_INTLBA272"],
+            "body": ["_ILF2.1DME", "^_ILF3.5DME", ["_POL053012", "A30+"], "^_POL053011", ["_POL053010", "A35+"], "_LBA272012"],
             "exitPoints": {
                 "NELSA": [["NELSA", "A70"]]
             },
-            "draw": [["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_POL053012", "_POL053011", "_POL053010", "_INTLBA272", "NELSA"]]   
+            "draw": [
+                ["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_POL053012", "_POL053011", "_POL053010", "_LBA272012", "NELSA"]
+            ]   
         },
         "POL2X": {
             "icao": "POL2X",
             "name": "Pole Hill Two Xray",
             "rwy": {
-                "14": ["_ILBF2DME"]
+                "14": ["^_ILBF2DME"]
             },
-            "body": [["_POL083014", "A30+|A70-"], ["_POL083010", "A35+|A70-"]],
+            "body": [["_POL083014", "A30+"], ["_POL083010", "A35+"]],
             "exitPoints": {
                 "POL": [["POL", "A70"]]
             },
-            "draw": [["_ILBF2DME", "_POL083014", "_POL083010", "POL"]]
+            "draw": [
+                ["_ILBF2DME", "_POL083014", "_POL083010", "POL"]
+            ]
         }
     },
     "spawnPatterns": [
@@ -659,7 +662,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.5,
             "airlines": [
                 ["bee", 1],
                 ["exs", 22],
@@ -675,7 +678,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.5,
+            "rate": 3,
             "airlines": [
                 ["bee", 1],
                 ["exs", 22],
@@ -691,7 +694,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.5,
+            "rate": 3,
             "airlines": [
                 ["bee", 7],
                 ["exs", 22],
@@ -710,7 +713,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.5,
             "airlines": [
                 ["bee", 5]
             ]
@@ -723,7 +726,7 @@
             "altitude": 8000,
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["exs", 12],
                 ["eze", 2],
@@ -752,7 +755,7 @@
             "altitude": 8000,
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["bee", 1],
                 ["exs", 28],
@@ -768,7 +771,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 0.5,
+            "rate": 1,
             "airlines": [
                 ["bee", 1],
                 ["exs", 4],
@@ -784,7 +787,7 @@
             "altitude": 7000,
             "speed": 250,
             "method": "random",
-            "rate": 0.5,
+            "rate": 1,
             "airlines": [
                 ["ryr", 2],
                 ["stk/einRegional", 3]

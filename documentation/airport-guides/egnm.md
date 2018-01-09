@@ -1,5 +1,5 @@
 ### About Leeds
-Leeds Bradford International Airport is an airport in the North of England, 10km from the cities of Leeds and Bradford. It started off being called Yeadon Aerodrome, where over the years it developed to be a commercial airport. It is the highest airport within England.
+Leeds Bradford Airport is an international airport in the North of England, 10km from the cities of Leeds and Bradford. It started off being called Yeadon Aerodrome, where over the years it developed to be a commercial airport. It is the highest airport within England.
 
 During the airport's existance, one particular event has stood out - [Concorde landed at Leeds Bradford in 1986](https://www.youtube.com/watch?v=AgmlLxS-EHc), despite the runway being only 2.25km long.
 
@@ -35,12 +35,7 @@ After leaving the Leeds Bradford Control Areas, aircraft should be handed off to
 ###### Preferential Runway
 Aircraft should use runway 32 for departure and runway 14 for arrival whenever possible in regards to wind, cloud base, approach aid limitations, aircraft performance and requirements. In the case of an emergency, the runway to be used is to be selected by the commander of the aircraft. Generally, in the real world, runway 32 is used the most for both takeoff and landing.
 
-##### Noise Abatement Procedures and Targets
-Departing aircraft are to follow the outlined noise abatement procedures as outlined in the eAIP for the United Kingdom. These procedures are also built into the SIDs out of Leeds.
-
-Aircraft departing runway 14 should maintain runway heading after takeoff to ILBF DME 2 before continuing on cleared route (ILF DME 2 should be used if runway 32 is being used for landing)
-
-On departure from runway 32, aircraft should climb on runway heading. AT 1,181ft local QNH (500ft QFE) or ILF DME 0.5, whichever is later, then turn left to track 313° MAG. At ILF DME 2.1, aircraft should reduce to minimum safe power settings and turn left to make good a track of 274° MAG. Aircraft should maintain this track to ILF DME 3.5 before continuing on cleared route. Turboprops should make good a track of 313° MAG until DME 2.1 when they should turn onto course.
+##### Noise Limits
 
 All aircraft should operate in a way that at the monitoring points they should not generate a noise level of:
 1. After take-off from Runway 32 more than 85 dB(A) by day or 77dB(A) by night;
@@ -83,8 +78,8 @@ The following routes are standard for aircraft approaching from airways:
 
 Aircraft intending to enter the Leeds Bradford Control Zone or Control Area direct from the London Flight Information Region must require permission 10 minutes prior to reaching the CTR/CTA boundary.
 
-### VFR exit points
-VFR pilots should exit using the following Visual Reference Points, however for the benefit of those who wish to determine their position using navigational aids, the points are listed below:
+### VFR reference points
+VFR pilots should enter/exit using the following Visual Reference Points, however for the benefit of those who wish to determine their position using navigational aids, the points are listed below:
 
 |                   VRP                   |   VOR/DME Fix  |
 |-----------------------------------------|:--------------:|
