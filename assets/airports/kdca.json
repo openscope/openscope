@@ -10,7 +10,7 @@
     "ctr_radius": 80,
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
-    "position": ["N38d51m05.20", "W077d02m15.80"],
+    "position": ["N38d51m05.20", "W077d02m15.80", "14.1ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N38d51m05.20", "W077d02m15.80"],
     "has_terrain": false,
