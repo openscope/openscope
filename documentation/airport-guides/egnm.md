@@ -5,6 +5,8 @@ During the airport's existance, one particular event has stood out - [Concorde l
 
 Today the airport is privately owned, seeking further expansion. It is base to low-cost airline Jet2.com, Ryanair and seasonally TUI Airways. Previously Monarch had a base here before its demise in October 2017. There is a Multiflight hangar, which provides various aviation services and facilities.
 
+Leeds Bradford has a relatively short runway meaning that backtrack for departure is available, however it is not common that aircraft depart directly from D1 or A1.
+
 ### Statistics
 3,612,117 passengers in 2015-2016
 44,304 aircraft movement in 2015-2016
@@ -95,8 +97,7 @@ Leeds Approach
 ```
 
 ### Restricted Airspace
-The only restricted airspace within the Leeds Bradford Control Area/Zone is EG R321 Wakefield, a circle of radius 1.3nm centred on 534057N 0013034W.
-The restricted area only applies to helicopters, with exception of any helicopter operated by or on behalf of a police force for any area of the United Kingdom. The upper limit is 1,600ft and the lower limit is the surface.
+The only restricted airspace within the Leeds Bradford Control Area/Zone is EG R321 Wakefield, a circle of radius 1.3nm centred on 534057N 0013034W. This is **not** available in OpenScope as this restricted area only applies to helicopters, with exception of any helicopter operated by or on behalf of a police force for any area of the United Kingdom. The upper limit is 1,600ft and the lower limit is the surface.
 
 ### Videomap
 Provided with the videomap is a top down view of the airport's taxiways and runway. Each horizontal line on the extended centreline represents one (1) nautical mile, with each vertical line representing four (4) nautical miles. 
@@ -112,7 +113,8 @@ Plotted on are the following:
 * Pole Hill Radial 083 (used within POL2X);
 * Pole Hill Radial 053 (used within NELSA3W);
 * Leeds Bradford Radial 272 (used within NELSA3W);
-* Pole Hill Radials 102, 070, 055, 044 (to the VRPs)
+* Pole Hill Radials 102, 070, 055, 044 (to the VRPs);
+* Restricted Airspace EG R321 Wakefield
 
 
 ### Additional Resources
