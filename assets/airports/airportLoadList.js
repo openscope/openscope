@@ -214,7 +214,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'kdca',
             level: 'easy',
-            name: 'Reagan National Airport',
+            name: 'Ronald Reagan Washington National Airport',
             premium: false,
             wip: false
         },
