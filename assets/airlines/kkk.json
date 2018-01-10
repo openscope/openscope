@@ -1,0 +1,17 @@
+{
+    "icao": "kkk",
+    "name": "AtlasGlobal",
+    "callsign": {
+        "name": "Atlas Global",
+        "length": 3,
+        "alpha": true
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 5],
+            ["A321", 16],
+            ["B738", 1]
+        ]
+    }
+}

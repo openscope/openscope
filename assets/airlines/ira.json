@@ -1,0 +1,19 @@
+{
+    "icao": "ira",
+    "name": "IranAir",
+    "callsign": {
+        "name": "Iran Air",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A306", 8],
+            ["A310", 2],
+            ["A320", 6],
+            ["A321", 1],
+            ["A332", 1],
+            ["F100", 16],
+            ["MD82", 4]
+        ]
+    }
+}
