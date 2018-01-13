@@ -18,7 +18,7 @@
         "angle": 202,
         "speed": 8
     },
-    "arrivalRunway": "25L",
+    "arrivalRunway": "25R",
     "departureRunway": "25C",
     "airspace": [
         {
@@ -356,10 +356,12 @@
         "_FFM351015": [49.7917, 8.68088],
         "_FRD066006": [50.06761261048, 8.71188623699],
         "_FRD2461.5": [50.02022189745, 8.53248042093],
+        "_MTR191016": [50.01640510369, 8.75818429846],
         "_MTR202010": [50.12372387054, 8.74470303298],
         "_RID356009": [49.93141571698, 8.53173738603],
         "ADEVO": ["N49d57m06.20", "E008d20m24.69"],
         "ADNIS": ["N49d42m00.60", "E009d17m23.40"],
+        "ADUSU": ["N49d57m22.00", "E006d11m46.00"],
         "AGOLO": ["N50d12m00.40", "E009d40m34.27"],
         "AKONI": ["N49d44m48.46", "E009d11m15.15"],
         "ALIDI": ["N50d43m18.06", "E008d39m28.17"],
@@ -367,7 +369,10 @@
         "ANEKI": ["N49d19m02.18", "E008d28m49.54"],
         "APROX": ["N50d43m30.87", "E008d42m57.08"],
         "ASPAT": ["N49d11m46.00", "E010d43m33.00"],
+        "BARSU": ["N49d55m18.00", "E010d23m22.00"],
         "CHA"  : ["N49d55m15.97", "E009d02m23.32"],
+        "COL"  : ["N50d47m00.70", "E007d35m39.03"],
+        "DEMAB": ["N50d32m28.00", "E009d57m21.00"],
         "DF132": ["N50d06m59.33", "E008d19m21.15"],
         "DF133": ["N50d01m50.16", "E008d26m48.51"],
         "DF134": ["N50d01m43.74", "E008d31m07.58"],
@@ -481,12 +486,16 @@
         "DKB"  : ["N49d08m33.91", "E010d14m17.90"],
         "DONAB": ["N49d49m15.89", "E008d01m44.83"],
         "EBIPA": ["N50d22m53.01", "E009d31m17.61"],
+        "EKPUT": ["N49d47m13.00", "E010d05m48.00"],
+        "EMGOD": ["N50d11m47.00", "E007d19m44.00"],
         "EMPAX": ["N48d27m43.00", "E008d59m53.00"],
+        "ERMEL": ["N49d11m16.00", "E011d02m41.00"],
         "ESUPI": ["N50d03m30.40", "E008d07m15.95"],
         "ETARU": ["N50d17m08.00", "E008d06m44.00"],
         "FFM"  : ["N50d03m13.47", "E008d38m13.53"],
         "FR"   : ["N50d03m57.00", "E008d41m01.00"],
         "FRD"  : ["N50d01m47.00", "E008d34m06.00"],
+        "GAPLA": ["N50d39m14.00", "E010d16m50.00"],
         "GEBNO": ["N49d10m00.08", "E009d55m56.25"],
         "GED"  : ["N50d24m43.01", "E009d14m56.99"],
         "GIBSA": ["N49d40m05.56", "E009d40m03.14"],
@@ -494,9 +503,12 @@
         "GISNO": ["N49d45m55.53", "E007d51m26.46"],
         "GUBAX": ["N50d17m25.00", "E007d54m40.32"],
         "HAREM": ["N49d37m06.39", "E009d24m52.43"],
+        "IBAGA": ["N49d44m39.00", "E010d33m35.00"],
         "IBVIL": ["N50d26m04.00", "E007d22m09.00"],
+        "IDOVI": ["N50d04m41.00", "E007d17m29.00"],
         "INBOS": ["N49d56m06.03", "E009d37m26.97"],
         "KERAX": ["N50d28m30.00", "E009d34m55.00"],
+        "KOKEB": ["N50d52m50.00", "E010d12m39.00"],
         "KOMIB": ["N50d04m24.10", "E010d14m33.75"],
         "KOVAN": ["N48d52m57.00", "E009d05m03.00"],
         "KUPIP": ["N49d56m26.82", "E008d09m37.02"],
@@ -504,7 +516,9 @@
         "LAMPU": ["N49d20m24.35", "E009d40m04.97"],
         "LEDKI": ["N50d06m14.76", "E008d51m21.21"],
         "LEPSA": ["N49d49m22.00", "E009d35m26.00"],
+        "LESMO": ["N50d47m50.00", "E010d12m33.00"],
         "LIKSI": ["N50d28m23.50", "E008d30m16.44"],
+        "LIPMI": ["N51d07m06.00", "E007d16m08.00"],
         "LISKU": ["N50d02m50.58", "E008d16m38.23"],
         "LOMPO": ["N49d57m59.15", "E008d15m36.27"],
         "LORPA": ["N50d43m32.42", "E008d37m32.69"],
@@ -514,15 +528,20 @@
         "MASIR": ["N50d15m17.69", "E007d44m16.54"],
         "MTR"  : ["N50d16m34.59", "E008d50m55.05"],
         "NELLI": ["N48d37m40.00", "E009d01m25.00"],
+        "NIVNU": ["N50d21m34.00", "E006d29m35.00"],
         "NOMBO": ["N49d03m48.56", "E010d05m16.56"],
         "OBOKA": ["N50d44m41.51", "E007d20m16.97"],
         "ODAGA": ["N50d19m36.08", "E008d37m07.96"],
         "OKTUM": ["N50d11m58.63", "E010d00m38.11"],
+        "OLUXU": ["N49d55m33.00", "E010d10m20.00"],
         "OSPUL": ["N50d15m49.00", "E008d02m14.96"],
         "PABVI": ["N49d53m05.98", "E008d22m22.99"],
+        "PESOV": ["N50d22m39.00", "E006d20m54.00"],
+        "PIPEP": ["N50d27m20.00", "E007d02m26.00"],
         "PIPIX": ["N49d42m25.94", "E008d13m23.62"],
         "PSA"  : ["N49d51m44.07", "E009d20m53.97"],
         "RAMOB": ["N50d06m41.00", "E007d41m02.00"],
+        "RASVO": ["N50d26m17.00", "E006d47m42.00"],
         "RATIM": ["N49d41m35.32", "E009d31m00.40"],
         "RAVKI": ["N50d21m41.99", "E007d39m53.65"],
         "REDGO": ["N50d06m33.03", "E008d51m22.94"],
@@ -537,12 +556,18 @@
         "SIRPO": ["N49d41m12.00", "E009d51m15.60"],
         "SIVDO": ["N49d53m26.07", "E008d15m56.78"],
         "SOBRA": ["N49d51m39.00", "E007d46m32.00"],
+        "SOLVU": ["N50d30m08.00", "E009d44m24.00"],
+        "SPI"  : ["N50d30m53.00", "E005d37m25.00"],
         "SULUS": ["N50d04m30.69", "E010d43m43.71"],
         "TABUM": ["N50d17m27.33", "E008d24m18.21"],
+        "TALAL": ["N49d06m30.00", "E011d05m07.00"],
+        "TAMEB": ["N50d48m28.00", "E010d43m48.00"],
         "TAU"  : ["N50d15m02.00", "E008d09m45.00"],
         "TESGA": ["N50d26m41.64", "E008d37m07.94"],
         "TOBAK": ["N50d34m17.93", "E008d47m08.81"],
+        "TOBOP": ["N50d21m50.00", "E006d25m06.00"],
         "TUKRU": ["N49d56m23.72", "E008d43m15.90"],
+        "TUNIV": ["N50d37m32.00", "E009d40m26.00"],
         "ULKIG": ["N49d52m11.00", "E007d43m10.00"],
         "UNOKO": ["N50d27m17.00", "E007d13m38.00"],
         "VETUX": ["N49d47m04.06", "E007d59m56.83"],
@@ -551,12 +576,14 @@
         "XAMUB": ["N49d47m39.01", "E008d19m40.42"],
         "XIBGI": ["N49d00m00.60", "E009d06m07.80"],
         "XINLA": ["N49d17m01.00", "E009d08m30.00"],
-        "XOPMO": ["N49d36m00.60", "E009d15m14.40"],
-        "_MTR191016": [50.01640510369, 8.75818429846]
+        "XOPMO": ["N49d36m00.60", "E009d15m14.40"]
     },
+    "restricted": [
+
+    ],
     "runways":[
         {
-            "name": ["07L", "25R"],
+            "name": ["07L", "25R"], 
             "end": [
                 ["N50d02m13.396", "E008d29m49.482", "305ft"],
                 ["N50d02m44.971", "E008d32m01.377", "353ft"]
@@ -1095,11 +1122,11 @@
                 ["baw", 3],
                 ["bmr", 3],
                 ["cfg", 2],
+                ["dal/long", 3],
                 ["dlh", 81],
                 ["klm", 1],
                 ["tui", 2],
-                ["ual/long", 4],
-                ["dal/long", 3]
+                ["ual/long", 4]
             ]
         },
         {
@@ -1128,8 +1155,8 @@
                 ["afr/short", 8],
                 ["baw", 3],
                 ["bmr", 3],
-                ["dlh/cityline", 27],
-                ["dlh", 81]
+                ["dlh", 81],
+                ["dlh/cityline", 27]
             ]
         },
         {
@@ -1156,11 +1183,11 @@
                 ["pgt", 1],
                 ["pti", 1],
                 ["qtr", 1],
-                ["uae", 1],
                 ["rja", 1],
                 ["rot", 1],
                 ["swr", 2],
-                ["sxd", 1]
+                ["sxd", 1],
+                ["uae", 1]
             ]
         },
         {
@@ -1175,10 +1202,191 @@
             "airlines": [
                 ["cca", 3],
                 ["dlh", 81],
-                ["lot", 1],
-                ["mgx", 1],
                 ["jal", 1],
-                ["kal", 1]
+                ["kal", 1],
+                ["lot", 1],
+                ["mgx", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "TAMEB..GAPLA..DEMAB..SOLVU..KERAX.KERAX.EDDF",
+            "altitude": 24000,
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["afl", 2],
+                ["ana", 1],
+                ["bru", 1],
+                ["bti", 1],
+                ["cal", 1],
+                ["cao", 2],
+                ["cpa", 1],
+                ["dlh", 30],
+                ["gec", 15],
+                ["hvn", 1],
+                ["kal", 1],
+                ["kzr", 1],
+                ["tha", 1]
+        
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "KOKEB..LESMO..TUNIV..KERAX.KERAX.EDDF",
+            "altitude": 21000,
+            "speed": 250,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["box", 10],
+                ["dlh", 35],
+                ["fin", 1],
+                ["gec", 15],
+                ["lot", 2],
+                ["sas", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "TALAL..ERMEL..PSA.PSA.EDDF",
+            "altitude": 27000,
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aee", 1],
+                ["aic", 1],
+                ["aua", 1],
+                ["aza", 1],
+                ["box", 10],
+                ["cca", 3],
+                ["dlh", 40],
+                ["eth", 1],
+                ["fcb", 1],
+                ["fdx", 3],
+                ["gec", 15],
+                ["gfa", 1],
+                ["mgx", 1],
+                ["mld", 1],
+                ["msr", 1],
+                ["oma", 1],
+                ["pgt", 1],
+                ["qtr", 1],
+                ["rja", 1],
+                ["sia", 1],
+                ["sxd", 1],
+                ["thy", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "IBAGA..EKPUT..LEPSA..PSA.PSA.EDDF",
+            "altitude": 24000,
+            "speed": 250,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["box", 10],
+                ["cfg", 4],
+                ["dlh/cityline", 35],
+                ["ezy", 3],
+                ["gec", 15],
+                ["kzr", 1],
+                ["rot", 2],
+                ["swr", 1]
+
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "LIPMI..COL..ROLIS.ROLIS.EDDF",
+            "altitude": 30000,
+            "speed": 300,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["abw", 5],
+                ["aca", 1],
+                ["baw", 3],
+                ["bmr", 3],
+                ["box", 10],
+                ["cfg", 2],
+                ["dal/long", 3],
+                ["dlh", 40],
+                ["fdx", 3],
+                ["gec", 15],
+                ["ice", 1],
+                ["klm", 1],
+                ["tui", 2],
+                ["uae", 1],
+                ["ual/long", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "IDOVI..EMGOD..ROLIS.ROLIS.EDDF",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["afr", 8],
+                ["fdx", 3],
+                ["gec", 15]
+        
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "SPI..PESOV..TOBOP..NIVNU..RASVO..PIPEP..UNOKO.UNOKO.EDDF",
+            "altitude": 30000,
+            "speed": 300,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afr", 8],
+                ["baw", 4],
+                ["box", 10],
+                ["dlh", 65],
+                ["ein", 2],
+                ["fdx", 3],
+                ["gec", 15]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EDDF",
+            "category": "arrival",
+            "route": "ADUSU..NIVNU..RASVO..PIPEP..UNOKO.UNOKO.EDDF",
+            "altitude": 27000,
+            "speed": 300,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["cfg", 4],
+                ["dah", 1],
+                ["dlh", 50],
+                ["gec", 15],
+                ["ibe", 1],
+                ["tam", 1],
+                ["tap", 1],
+                ["tui", 1]
             ]
         }
     ],
