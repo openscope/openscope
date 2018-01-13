@@ -1,0 +1,14 @@
+{
+    "icao": "gec",
+    "name": "Lufthansa Cargo",
+    "callsign": {
+        "name": "Lufthansa Cargo",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B772", 5],
+            ["MD11", 12]
+        ]
+    }
+}
