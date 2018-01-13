@@ -104,10 +104,10 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
         {
             icao: 'egkk',
-            level: 'easy',
+            level: 'hard',
             name: 'London Gatwick Airport',
             premium: false,
-            wip: true
+            wip: false
         },
         {
             icao: 'eglc',
