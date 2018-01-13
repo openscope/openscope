@@ -380,7 +380,6 @@
                 ["_ZUE232007", "ZUE*"]
             ]
         }
-        
     },
     "stars": {
         "BERS1G": {
@@ -629,7 +628,7 @@
                 ["ezy", 3],
                 ["gsw", 8],
                 ["lzb", 2],
-                ["n/fastGA", 4],
+                ["n/fastGA", 1],
                 ["nly", 8],
                 ["oma/long", 5],
                 ["qtr/long", 8],
@@ -664,7 +663,7 @@
                 ["ewg", 10],
                 ["ezy", 5],
                 ["gwi", 4],
-                ["n/fastGA", 10],
+                ["n/fastGA", 4],
                 ["nly", 7],
                 ["swr", 55],
                 ["swr/long", 10]
@@ -690,7 +689,7 @@
                 ["ewg", 10],
                 ["ezy", 5],
                 ["gwi", 4],
-                ["n/fastGA", 10],
+                ["n/fastGA", 4],
                 ["nly", 7],
                 ["swr", 55],
                 ["swr/long", 10]
@@ -718,7 +717,7 @@
                 ["ezy", 10],
                 ["ice", 5],
                 ["klm", 12],
-                ["n/fastGA", 5],
+                ["n/fastGA", 2],
                 ["nly", 7],
                 ["swr", 62],
                 ["swr/long", 35],
@@ -748,7 +747,7 @@
                 ["ezy", 10],
                 ["ice", 3],
                 ["klm", 12],
-                ["n/fastGA", 4],
+                ["n/fastGA", 3],
                 ["nly", 7],
                 ["swr", 42],
                 ["swr/long", 20],
@@ -814,7 +813,7 @@
                 ["ezy", 10],
                 ["ice", 5],
                 ["klm", 12],
-                ["n/fastGA", 5],
+                ["n/fastGA", 2],
                 ["nly", 7],
                 ["swr", 52],
                 ["tra", 5]
@@ -852,7 +851,7 @@
                 ["edw", 25],
                 ["ezy", 5],
                 ["gsw", 6],
-                ["n/fastGA", 7],
+                ["n/fastGA", 3],
                 ["nly", 7],
                 ["swr", 48],
                 ["swr/long", 10],
@@ -873,7 +872,7 @@
                 ["edw", 20],
                 ["ezy", 5],
                 ["gsw", 6],
-                ["n/fastGA", 7],
+                ["n/fastGA", 2],
                 ["nly", 7],
                 ["swr", 58],
                 ["swr/long", 15],
@@ -899,7 +898,7 @@
                 ["ezy", 10],
                 ["ice", 3],
                 ["klm", 12],
-                ["n/fastGA", 5],
+                ["n/fastGA", 2],
                 ["nly", 7],
                 ["swr", 54],
                 ["tra", 4]
@@ -963,13 +962,12 @@
             "altitude": [30000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 1.955,
+            "rate": 2.455,
             "airlines": [
                 ["adr", 3],
                 ["aee", 3],
                 ["asl", 4],
-                ["asl", 4],
-                ["aua", 5],
+                ["aua", 9],
                 ["ctn", 2],
                 ["edw", 20],
                 ["ely", 5],
@@ -994,16 +992,16 @@
             "altitude": [32000, 35000],
             "speed": 290,
             "method": "random",
-            "rate": 0.46,
+            "rate": 0.86,
             "airlines": [
                 ["edw/long", 15],
                 ["etd/long", 5],
                 ["oma/long", 5],
                 ["qtr/long", 12],
-                ["uae", 20],
-                ["swr/long", 50],
+                ["swr/long", 35],
                 ["tha/long", 8],
-                ["thy/long", 3]
+                ["thy/long", 3],
+                ["uae", 20]
             ]
         },
         {
@@ -1014,7 +1012,7 @@
             "altitude": [31000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 1.955,
+            "rate": 1.155,
             "airlines": [
                 ["afl", 3],
                 ["aua", 18],
@@ -1037,7 +1035,7 @@
             "altitude": [29000, 32000],
             "speed": 290,
             "method": "random",
-            "rate": 0.46,
+            "rate": 0.36,
             "airlines": [
                 ["cca/long", 3],
                 ["swr/long", 20]
@@ -1051,7 +1049,7 @@
             "altitude": [31000, 39000],
             "speed": 290,
             "method": "random",
-            "rate": 3.45,
+            "rate": 4.05,
             "airlines": [
                 ["afl", 3],
                 ["bti", 2],
@@ -1079,7 +1077,7 @@
             "altitude": [29000, 34000],
             "speed": 290,
             "method": "random",
-            "rate": 0.8625,
+            "rate": 0.2625,
             "airlines": [
                 ["swr/long", 10],
                 ["ual/long", 1]
