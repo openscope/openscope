@@ -114,12 +114,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'London Luton Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'egkk',
-        //     level: 'easy',
-        //     name: 'London Gatwick Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'egkk',
+            level: 'easy',
+            name: 'London Gatwick Airport',
+            premium: false
+        },
         // {
         //     icao: 'eglc',
         //     level: 'medium',
