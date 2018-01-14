@@ -1,5 +1,5 @@
 ### About the Langen Flight Information Region
-The Langen FIR is one of Germany's area control centres, operated by the Deutsche Flugsicherung (German Air Traffic Control). There are four ACCs, Bremen, Muenchen, Langen and Karlsruhe. Langen controls the west side of Germany, which includes major airports such as  Frankfurt, Duesseldorf and Stuttgart.
+The Langen FIR is one of Germany's area control centres, operated by the Deutsche Flugsicherung (German Air Traffic Control). There are four ACCs, Bremen, Muenchen, Langen and Karlsruhe. Langen controls the west side of Germany, which includes major airports such as Frankfurt, Duesseldorf and Stuttgart.
 
 ### Flughafen Frankfurt am Main
 Frankfurt Airport is a major international airport that serves one of the world's leading financial centres, Frankfurt. It covers 5,683 acres of land with two large passenger terminals, four runways and a large cargo apron. It is the fourth busiest airport in Europe after London Heathrow, Paris CDG and Amsterdam Schiphol.
@@ -64,11 +64,14 @@ Frankfurt has a variety of departures. However, there are certain rules as to wh
 ##### Arrivals
 Frankfurt primarily uses the transitions to position aircraft onto downwind or base legs to establish onto instrument procedures for the runways. The STARs are rarely used; they are generally used in the case that an aircraft has lost communications.
 
-Transitions with the suffix 07N/25N are used to sequence aircraft for arrival onto 07L/25R; 07S for 07C/25C and 07R/25L.
+Transitions with the suffix 07N/25N are used to sequence aircraft for arrival onto 07L/25R; 07S/25S for 07C/25C and 07R/25L.
 
 ### Sectors Available in OpenScope
 ```
-Langen Radar
+Langen Radar (Departure)
+Langen Radar (North Approach)
+Langen Radar (North Approach)
+Frankfurt Director
 ```
 
 ### Other aerodromes within the Frankfurt Terminal Area
