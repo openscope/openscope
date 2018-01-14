@@ -15,10 +15,10 @@
     "rr_center": ["N53d21m14", "W02d16m30"],
     "has_terrain": false,
     "wind": {
-        "angle": 160,
-        "speed": 7
+        "angle": 180,
+        "speed": 9
     },
-    "arrivalRunway": "23L",
+    "arrivalRunway": "23R",
     "departureRunway": "23L",
     "fixes": {
         "_RWY05L": ["N53d20m51.20", "W002d17m15.95"],
@@ -462,5 +462,10 @@
     },
     "spawnPatterns": [
         
-    ]
+    ],
+    "maps": {
+        "base": [
+            
+        ]
+    }
 }
