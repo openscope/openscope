@@ -1,18 +1,18 @@
 {
     "radio": {
         "twr": "Manchester Tower",
-        "app": "Manchester Director",
-        "dep": "Manchester Radar"
+        "app": "Manchester Radar",
+        "dep": "Scottish Control"
     },
     "icao": "EGCC",
     "iata": "MAN",
-    "magnetic_north": 0.16,
+    "magnetic_north": -1.13,
     "ctr_radius": 90,
     "ctr_ceiling": 19500,
     "initial_alt": 5000,
-    "position": ["N53d21m14.00", "W02d16m30.00", "257ft"],
+    "position": ["N53d21m14", "W02d16m30", "257ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N53d21m14.00", "W02d16m30.00"],
+    "rr_center": ["N53d21m14", "W02d16m30"],
     "has_terrain": false,
     "wind": {
         "angle": 160,
@@ -21,870 +21,446 @@
     "arrivalRunway": "23L",
     "departureRunway": "23L",
     "fixes": {
-        "12MCT":    ["N53d22m13.000", "W002d16m50.000"],
-        "AMLET":    ["N53d16m07.000", "W001d50m18.000"],
-        "ARTHA":    ["N53d46m59.000", "W002d17m07.000"],
-        "ASMIM":    ["N53d26m46.000", "W002d39m11.000"],
-        "BEGAM":    ["N54d09m25.000", "W002d07m15.000"],
-        "BURNI":    ["N53d43m38.000", "W002d31m04.000"],
-        "D053L":    ["N53d28m88.000", "W001d53m57.000"],
-        "D053G":    ["N53d25m74.000", "W002d06m54.000"],
-        "D056B":    ["N53d22m61.000", "W002d13m05.000"],
-        "D082B":    ["N53d23m89.000", "W003d04m78.000"],
-        "D082P":    ["N53d26m48.000", "W002d41m77.000"],
-        "D181H":    ["N53d36m63.000", "W002d05m97.000"],
-        "D181L":    ["N53d32m64.000", "W002d05m85.000"],
-        "D188X":    ["N53d20m78.000", "W002d10m02.000"],
-        "D220I":    ["N53d37m54.000", "W002d15m53.000"],
-        "D220P":    ["N53d32m03.000", "W002d22m76.000"],
-        "D255H":    ["N53d19m05.000", "W002d28m49.000"],
-        "D255L":    ["N53d17m85.000", "W002d34m85.000"],
-        "D255M":    ["N53d17m55.000", "W002d36m45.000"],
-        "D255P":    ["N53d16m65.000", "W002d41m21.000"],
-        "D299G":    ["N53d24m45.000", "W002d26m38.000"],
-        "DALEY":    ["N53d40m16.000", "W002d20m57.000"],
-        "DAYNE":    ["N53d14m19.000", "W002d01m45.000"],
-        "DESIG":    ["N53d31m38.000", "W001d53m34.000"],
-        "EKLAD":    ["N53d15m14.000", "W002d49m29.000"],
-        "GASKO":    ["N54d13m29.000", "W001d57m21.000"],
-        "GIGTO":    ["N53d38m00.000", "W004d05m09.000"],
-        "GOLES":    ["N53d36m29.000", "W001d05m00.000"],
-        "HON58":    ["N53d12m79.000", "W002d20m05.000"],
-        "IBRAR":    ["N53d31m09.000", "W003d41m02.000"],
-        "IOM":        ["N54d04m00.000", "W004d45m08.000"],
-        "KELLY":    ["N53d54m03.000", "W004d21m09.000"],
-        "KUXEM":    ["N53d15m11.000", "W002d40m47.000"],
-        "LAKEY":    ["N54d14m03.000", "W002d58m09.000"],
-        "LESTA":    ["N52d44m27.000", "W001d04m19.000"],
-        "LIBSO":    ["N53d31m29.000", "E000d05m36.000"],
-        "LISTO":    ["N53d08m36.000", "W002d11m57.000"],
-        "LYNAS":    ["N53d26m06.000", "W004d20m00.000"],
-        "MAKUX":    ["N53d58m05.000", "W004d52m05.000"],
-        "MALUD":    ["N53d24m08.000", "W003d36m05.000"],
-        "MCT":        ["N53d21m25.000", "W002d15m44.000"],
-        "MCT06":    ["N53d26m77.000", "W002d20m28.000"],
-        "MCT07":    ["N53d24m38.000", "W002d26m41.000"],
-        "MCT08":    ["N53d25m69.000", "W002d27m13.000"],
-        "MCT12":    ["N53d22m31.000", "W002d14m26.000"],
-        "MIRSI":    ["N53d32m03.000", "W002d42m07.000"],
-        "MONTY":    ["N52d53m34.000", "W003d10m26.000"],
-        "OKTEM":    ["N52d43m10.000", "W003d11m15.000"],
-        "OTBED":    ["N53d17m17.000", "E000d01m55.000"],
-        "PENIL":    ["N53d37m00.000", "W003d39m08.000"],
-        "PO28A":    ["N53d16m79.000", "W002d10m66.000"],
-        "POL":        ["N53d44m38.000", "W002d06m12.000"],
-        "POL33":    ["N53d11m83.000", "W002d11m44.000"],
-        "POL34":    ["N53d16m81.000", "W002d38m90.000"],
-        "POL36":    ["N53d15m97.000", "W002d42m65.000"],
-        "REXAM":    ["N53d04m00.000", "W003d09m06.000"],
-        "ROSUN":    ["N53d40m08.000", "W002d20m57.000"],
-        "SANBA":    ["N53d08m22.000", "W002d20m03.000"],
-        "SETEL":    ["N54d00m45.000", "W002d26m09.000"],
-        "SONEX":    ["N53d29m53.000", "W002d10m21.000"],
-        "SOSIM":    ["N53d48m09.000", "W004d30m05.000"],
-        "TABLY":    ["N53d16m19.000", "W002d27m02.000"],
-        "TILNI":    ["N54d32m51.000", "W001d51m18.000"],
-        "TNT":        ["N53d03m14.000", "W001d40m12.000"],
-        "UPTON":    ["N53d35m13.000", "W001d18m03.000"],
-        "WAL":        ["N53d23m05.000", "W003d08m04.000"],
-        "WAL33":    ["N53d29m51.000", "W002d13m77.000"],
-        "XOBRO":    ["N53d28m17.000", "W002d25m18.000"],
-        "XUMAT":    ["N53d27m95.000", "W002d28m38.000"],
-        "_05L":        ["N53d20m51.200", "W002d17m15.950"],
-        "_05R":        ["N53d19m55.100", "W002d18m38.380"],
-        "_23L":        ["N53d20m53.350", "W002d16m37.950"],
-        "_23R":        ["N53d21m40.750", "W002d15m33.410"],
-        "_EGCC":    ["N53d21m14.000", "W002d16m30.000"]
+        "_RWY05L": ["N53d20m51.20", "W002d17m15.95"],
+        "_RWY05R": ["N53d19m55.10", "W002d18m38.38"],
+        "_RWY23L": ["N53d20m53.35", "W002d16m37.95"],
+        "_RWY23R": ["N53d21m40.75", "W002d15m33.41"]
+
     },
-
-
     "runways": [
         {
             "name": ["05L", "23R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N53d20m51.20", "W002d17m15.95", "212ft"], ["N53d21m40.75", "W002d15m33.41", "249ft"]],
-            "length": 3.048,
+            "end": [
+                ["N53d20m51.20", "W002d17m15.95", "212ft"],
+                ["N53d21m40.75", "W002d15m33.41", "249ft"]
+            ],
             "ils": [true, true]
         },
         {
-            "name": ["05R","23L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N53d19m55.10", "W002d18m38.38", "186ft"], ["N53d20m53.35", "W002d16m37.95", "186ft"]],
-            "length": 3.050,
+            "name": ["05R", "23L"],
+            "end": [
+                ["N53d19m55.10", "W002d18m38.38", "186ft"], 
+                ["N53d20m53.35", "W002d16m37.95", "227ft"]
+            ],
             "ils": [true, false]
         }
     ],
-
     "sids": {
         "ASMIM": {
             "icao": "ASMIM",
-            "name": "ASMIM",
+            "name": "Asmim",
             "suffix": {"05L":"1S", "05R":"1Z"},
             "rwy": {
-                "05L": ["_23R", "MCT06", "XOBRO", "ASMIM"],
-                "05R": ["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]
+                "05L": [],
+                "05R": []
             },
-            "draw": [["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]]
+            "body": ["^_MCT051002", "_XOBRO299xxx", ["_MCTxxx006", "A25+|A50-"], "XOBRO"],
+            "exitPoints": {
+                "ASMIM": [["ASMIM", "A50"]]
+            },
+            "draw": [
+                ["_MCT051002", "_XOBRO299xxx", "_MCTxxx006", "XOBRO"]
+            ]
         },
-
         "DESIG": {
             "icao": "DESIG",
-            "name": "DESIG",
+            "name": "Desig",
             "suffix": {"05L":"1S", "05R":"1Z"},
             "rwy": {
-                "05L": ["_23R", "D053L", "DESIG"],
-                "05R": ["_23L", "D053L", "DESIG"]
+                "05L": [["_RWY23R", "A08+"]],
+                "05R": [["_RWY23L", "A08+"]]
             },
-            "draw": [["_23R", "D053L", "DESIG"]]
+            "body": ["_MCT052002", ["_MCT052012", "A40+|A50-"], "_MCT052014", "_WAL081xxx"],
+            "exitPoints": {
+                "DESIG": [["DESIG", "A50"]]
+            },
+            "draw": [
+                ["_RWY23L", "_MCT052002"],
+                ["_RWY23R", "_MCT052002", "_MCT052012", "_MCT052014", "_WAL081xxx"]
+            ]
         },
         "EKLAD": {
             "icao": "EKLAD",
-            "name": "EKLAD",
+            "name": "Eklad",
             "suffix": {"23L":"1Y", "23R":"1R"},
             "rwy": {
-                "23L": ["_05R", "D255H", "D255M", "D255P", "EKLAD"],
-                "23R": ["_05L", "D255H", "D255M", "D255P", "EKLAD"]
+                "23L": ["_MCT2313.2"],
+                "23R": ["_MCT231003"]
             },
-            "draw": [["_05R", "D255H", "D255M", "D255P", "EKLAD"]]
+            "body": [["_MCT254008", "A25+|A50-"], ["_MCT254013", "A40+|A50-"], ["_MCT254016", "A50"]],
+            "exitPoints": {
+                "EKLAD": ["EKLAD"]
+            },
+            "draw": [
+                ["_MCT231003", "_MCT254008"],
+                ["_MCT2313.2", "_MCT254008", "_MCT254013", "_MCT254016", "EKLAD"]
+            ]
         },
-
         "KUXEM": {
             "icao": "KUXEM",
-            "name": "KUXEM",
+            "name": "Kuxem",
             "suffix": {"23L":"1Y", "23R":"1R"},
             "rwy": {
-                "23L": ["_05R", "D255H", "D255L", "POL34", "KUXEM"],
-                "23R": ["_05L", "D255H", "D255L", "POL34", "KUXEM"]
+                "23L": ["_MCT2313.2"],
+                "23R": ["_MCT231003"]
             },
-            "draw": [["_05R", "D255H", "D255L", "POL34", "KUXEM"]]
+            "body": [["_MCT254008", "A25+|A50-"], "^_MCT254012", ["_POL217034", "A50"]],
+            "exitPoints": {
+                "KUXEM": ["KUXEM"]
+            },
+            "draw": [
+                ["_MCT254012", "_POL217034", "KUXEM"]
+            ]
         },
-
         "LISTO": {
             "icao": "LISTO",
-            "name": "LISTO",
+            "name": "Listo",
             "suffix": {"05L":"2S", "05R":"2Z", "23L":"2Y", "23R":"2R"},
             "rwy": {
-                "05L": ["_23R", "MCT12", "D188X", "PO28A", "POL33", "LISTO"],
-                "05R": ["_23L", "12MCT", "D188X", "PO28A", "POL33", "LISTO"],
-                "23L": ["_05R", "LISTO"],
-                "23R": ["_05L", "LISTO"]
+                "05L": ["_MCT0511.2", "_MCTxxx2.7", ["_POL188024", "A20+|A50-"], ["_POL188028", "A30+|A50-"], ["_POL188033", "A40+|A50-"]],
+                "05R": ["_MCT0511.2", ["_POL188024", "A20+|A50-"], ["_POL188028", "A30+|A50-"], ["_POL188033", "A40+|A50-"]],
+                "23L": ["_MCT2313.2", ["_MCTxxx007", "A30+|A50-"]],
+                "23R": ["_MCT231002", ["_MCTxxx007", "A30+|A50-"]]
             },
-            "draw": [["_23R", "MCT12", "D188X", "PO28A", "POL33", "LISTO"], ["_05L", "LISTO"]]
+            "exitPoints": {
+                "LISTO": [["LISTO", "A50"]]
+            },
+            "draw": [
+                ["_MCT0511.2", "_MCTxxx2.7", "_POL188024", "_POL188028", "_POL188033", "LISTO"],
+                ["_MCT0511.2", "_POL188024"],
+                ["_MCT2333.2", "MCTxxx007", "LISTO"],
+                ["_MCT231002", "MCTxxx007", "LISTO"]
+            ]
         },
-
         "MONTY": {
             "icao": "MONTY",
-            "name": "MONTY",
+            "name": "Monty",
             "suffix": {"05L":"1S", "05R":"1Z", "23L":"1Y", "23R":"1R"},
             "rwy": {
-                "05L": ["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
-                "05R": ["_23L", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
-                "23L": ["_05R", "D255H", "D255M", "POL36", "MONTY"],
-                "23R": ["_05L", "D255H", "D255M", "POL36", "MONTY"]
+                "05L": ["^_MCT051002", ["_MCTxx006", "A25+|A50-"], "XOBRO", ["_WAL081016", "A50"], "^_WAL081002", "WAL184005"],
+                "05R": ["^_MCT051002", ["_MCTxx006", "A25+|A50-"], "XOBRO", ["_WAL081016", "A50"], "^_WAL081002", "WAL184005"],
+                "23L": ["_MCT2313.2", ["_MCT254008", "A25+|A50-"], ["_MCT254013", "A40+|A50-"], "^_MCT254015", ["_POL219036", "A50"]],
+                "23R": ["_MCT231003", ["_MCT254008", "A25+|A50-"], ["_MCT254013", "A40+|A50-"], "^_MCT254015", ["_POL219036", "A50"]]
             },
-            "draw": [["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"], ["_05R","D255H", "D255M", "POL36", "MONTY"]]
+            "exitPoints": {
+                "MONTY": ["MONTY"]
+            },
+            "draw": [
+                ["_MCT051002", "_MCTxxx006", "XOBRO", "_WAL081016", "_WAL081002", "_WAL184005"],
+                ["_MCT2313.2", "_MCT254008"],
+                ["_MCT231003", "_MCT254008", "_MCT254013", "_MCT254015", "_POL219036", "MONTY"]
+            ]
         },
-
         "POL": {
             "icao": "POL",
-            "name": "POLE HILL",
+            "name": "Pole Hill",
             "suffix": {"05L":"4S", "05R":"1Z", "23L":"1Y", "23R":"5R"},
             "rwy": {
-                "05L": ["_23R", "D053G", "D181L", "D181H", "POL"],
-                "05R": ["_23L", "D053G", "D181L", "D181H", "POL"],
-                "23L": ["_05R", "D299G", "XUMAT", "D220P", "D220I", "POL"],
-                "23R": ["_05L", "D299G", "XUMAT", "D220P", "D220I", "POL"]
+                "05L": ["_RWY23R", "_MCT053002", "_MCT053007", ["_POL182012", "A40+|A50-"], ["_POL182008", "A50"]],
+                "05R": ["_RWY23L", "_MCT053002", "_MCT053007", ["_POL182012", "A40+|A50-"], ["_POL182008", "A50"]],
+                "23L": ["^_MCT2313.2", ["_MCTxxx007", "A25+|A50-"], "_MCTxxx008", "XUMAT", ["_POL221016", "A40+|A50-"], ["_POL221009", "A50"]],
+                "23R": ["^_MCT231003", ["_MCTxxx007", "A25+|A50-"], "_MCTxxx008", "XUMAT", ["_POL221016", "A40+|A50-"], ["_POL221009", "A50"]]
             },
-            "draw": [["_23R", "D053G", "D181L", "D181H", "POL"], ["_05R", "D299G", "XUMAT", "D220P", "D220I", "POL"]]
+            "exitPoints": {
+                "POL": ["POL"]
+            },
+            "draw": [
+                ["_RWY23R", "_MCT053002", "_MCT053007", "_POL182012", "_POL182008", "POL"],
+                ["_RWY23L", "_MCT053002"],
+                ["_MCT231003", "_MCTxxx007"],
+                ["_MCT2313.2", "_MCTxxx007", "_MCTxxx008", "XUMAT", "_POL221016", "_POL221009", "POL"]
+            ]
         },
-
         "SANBA": {
             "icao": "SANBA",
             "name": "SANBA",
             "suffix": {"23L":"1Y", "23R":"1R"},
             "rwy": {
-                "23L": ["_05R", "TABLY", "HON58", "SANBA"],
-                "23R": ["_05L", "TABLY", "HON58", "SANBA"]
+                "23L": ["^_MCT231003", "^_MCTxxx005"],
+                "23R": ["^_MCT231003", "^_MCTxxx005"]
             },
-            "draw": [["_05R", "TABLY", "HON58", "SANBA"]]
+            "body": ["TABLY", ["_HON335058", "A30+|A50-"]],
+            "exitPoints": {
+                "SANBA": ["SANBA"]
+            },
+            "draw": [
+                ["_MCT231003", "_MCTxxx005"],
+                ["_MCT231003", "_MCTxxx005", "TABLY", "_HON335058", "SANBA"]
+            ]
         },
-
         "SONEX": {
             "icao": "SONEX",
             "name": "SONEX",
             "suffix": {"23L":"1Y", "23R":"1R"},
             "rwy": {
-                "23L": ["_05R", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"],
-                "23R": ["_05L", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]
+                "23L": ["^_MCT2313.2"],
+                "23R": ["^_MCT231003"]
             },
-            "draw": [["_05R", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]]
+            "body": [["_MCTxxx007", "A25+|A50-"], "_MCTxxx008", "XUMAT", ["_WAL082033", "A50"]],
+            "exitPoints": {
+                "SONEX": [["SONEX", "A50"]]
+            },
+            "draw": [
+                ["_MCT231003", "_MCTxxx007"],
+                ["_MCT2313.2", "_MCTxxx007", "_MCTxxx008", "XUMAT", "_WAL082033", "SONEX"]
+            ]
+        }
+    },
+    "stars": {
+        "DALEY2A": {
+            "icao": "DALEY2A",
+            "name": "Daley Two Alpha",
+            "entryPoints": {
+                "LAKEY": ["LAKEY"]
+            },
+            "body": ["LAKEY", ["_TNT329056", "S250-"], ["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DALEY2B": {
+            "icao": "DALEY2B",
+            "name": "Daley Two Bravo",
+            "entryPoints": {
+                "SETEL": [["SETEL", "S250-"]]
+            },
+            "body": [["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DALEY4D": {
+            "icao": "DALEY4D",
+            "name": "Daley Four Delta",
+            "entryPoints": {
+                "TILNI": ["TILNI"]
+            },
+            "body": ["GASKO", "BEGAM", ["SETEL", "S250-"], ["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DALEY2E": {
+            "icao": "DALEY2E",
+            "name": "Daley Two Echo",
+            "entryPoints": {
+                "GOLES": ["GOLES"]
+            },
+            "body": ["UPTON", "DESIG", ["POL", "S250-"], "^ARTHA", ["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DALEY1F": {
+            "icao": "DALEY1F",
+            "name": "Daley One Foxtrot",
+            "entryPoints": {
+                "OTBED": ["OTBED"]
+            },
+            "body": ["GOLES", ["POL", "S250-"], "^ARTHA", ["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DALEY1G": {
+            "icao": "DALEY1G",
+            "name": "Daley One Golf",
+            "entryPoints": {
+                "LIBSO": ["LIBSO"]
+            },
+            "body": ["GOLES", ["POL", "S250-"], "^ARTHA", ["@DALEY", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DAYNE2A": {
+            "icao": "DAYNE2A",
+            "name": "Dayne Two Alpha",
+            "entryPoints": {
+                "TNT": ["TNT"]
+            },
+            "body": [["_TNT321005", "S250-"], "@DAYNE"],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "DAYNE1B": {
+            "icao": "DAYNE1B",
+            "name": "Dayne One Bravo",
+            "entryPoints": {
+                "LESTA": ["LESTA"]
+            },
+            "body": ["_TNT132025", "TNT", ["_TNT321005", "S250-"], "@DAYNE"],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "MIRSI1A": {
+            "icao": "MIRSI1A",
+            "name": "Mirsi One Alpha",
+            "entryPoints": {
+                "MONTY": ["MONTY"]
+            },
+            "body": ["REXAM", ["WAL", "S250-"], ["@MIRSI", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "MIRSI2B": {
+            "icao": "MIRSI2B",
+            "name": "Mirsi Two Bravo",
+            "entryPoints": {
+                "MALUD": ["MALUD"]
+            },
+            "body": [["WAL", "S250-"], ["@MIRSI", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "MIRSI2C": {
+            "icao": "MIRSI2C",
+            "name": "Mirsi Two Charlie",
+            "entryPoints": {
+                "PENIL": ["PENIL"]
+            },
+            "body": [["WAL", "S250-"], ["@MIRSI", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "MIRSI2D": {
+            "icao": "MIRSI2D",
+            "name": "Mirsi Two Delta",
+            "entryPoints": {
+                "GIGTO": ["GIGTO"]
+            },
+            "body": ["IBRAR", ["WAL", "S250-"], ["@MIRSI", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN2A": {
+            "icao": "ROSUN2A",
+            "name": "Rosun Two Alpha",
+            "entryPoints": {
+                "LAKEY": ["LAKEY"]
+            },
+            "body": [["_TNT328056", "S250-"], ["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN2B": {
+            "icao": "ROSUN2A",
+            "name": "Rosun Two Bravo",
+            "entryPoints": {
+                "SETEL": [["SETEL", "S250-"]]
+            },
+            "body": [["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN4D": {
+            "icao": "ROSUN4D",
+            "name": "Rosun Four Delta",
+            "entryPoints": {
+                "TILNI": ["TILNI"]
+            },
+            "body": ["GASKO", "BEGAM", ["SETEL", "S250-"], ["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN2E": {
+            "icao": "ROSUN2E",
+            "name": "Rosun Two Echo",
+            "entryPoints": {
+                "GOLES": ["GOLES"]
+            },
+            "body": ["UPTON", "DESIG", ["POL", "S250-"], "^BURNI", ["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN1F": {
+            "icao": "ROSUN1F",
+            "name": "Rosun One Foxtrot",
+            "entryPoints": {
+                "OTBED": ["OTBED"]
+            },
+            "body": ["GOLES", ["POL", "S250-"], "^BURNI", ["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
+        },
+        "ROSUN1G": {
+            "icao": "ROSUN1G",
+            "name": "Rosun One Golf",
+            "entryPoints": {
+                "LIBSO": ["LIBSO"]
+            },
+            "body": ["GOLES", ["POL", "S250-"], "^BURNI", ["@ROSUN", "S230-"]],
+            "rwy": {
+                "05L": [],
+                "05R": [],
+                "23L": [],
+                "23R": []
+            }
         }
     },
     "spawnPatterns": [
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.ASMIM.ASMIM",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.DESIG.DESIG",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.EKLAD.EKLAD",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.KUXEM.KUXEM",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.LISTO.LISTO",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.MONTY.MONTY",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.POL.POL",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.SANBA.SANBA",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "EGCC",
-            "destination": "",
-            "category": "departure",
-            "route": "EGCC.SONEX.SONEX",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["aal", 3],
-                ["aca", 5],
-                ["afr", 5],
-                ["aua", 5],
-                ["baw", 40],
-                ["bee", 80],
-                ["bel", 5],
-                ["cpa", 3],
-                ["dal", 3],
-                ["dlh", 10],
-                ["etd", 3],
-                ["exs", 60],
-                ["ezy", 20],
-                ["ibe", 5],
-                ["klc", 5],
-                ["nax", 8],
-                ["ryr", 25],
-                ["sas", 8],
-                ["swr", 10],
-                ["tcx", 35],
-                ["thy", 5],
-                ["tom", 30],
-                ["uae", 3],
-                ["ual", 3],
-                ["vir", 45]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "OTBED..GOLES..POL..ARTHA..DALEY",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LIBSO..GOLES..POL..ARTHA..DALEY",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3],
-                ["bel", 6]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LAKEY..DALEY",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 15],
-                ["baw", 3],
-                ["vir", 2],
-                ["baw", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "SETEL..DALEY",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "GOLES..UPTON..DESIG..POL..ARTHA..DALEY",
-            "altitude": [7000, 8000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "TILNI..GASKO..BEGAM..SETEL..DALEY",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 15],
-                ["baw", 3],
-                ["vir", 5],
-                ["baw", 2],
-                ["cpa", 2],
-                ["ryr", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LESTA..TNT..DAYNE",
-            "altitude": 8000,
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["ezy", 1],
-                ["baw", 1],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["vir", 3],
-                ["swr", 6],
-                ["tom", 4],
-                ["tcx", 5],
-                ["ezy", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "TNT..DAYNE",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["ezy", 1],
-                ["baw", 1],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["vir", 3],
-                ["swr", 6],
-                ["tom", 4],
-                ["tcx", 5],
-                ["ezy", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "OKTEM..MONTY..REXAM..WAL..MIRSI",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["baw", 5],
-                ["bee", 15],
-                ["baw", 1],
-                ["klc", 5],
-                ["exs", 5],
-                ["tom", 3],
-                ["tcx", 3],
-                ["afr", 3],
-                ["vir", 10],
-                ["ryr", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LYNAS..MALUD..WAL..MIRSI",
-            "altitude": [6000, 8000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["ual", 1],
-                ["aal", 1],
-                ["vir", 1],
-                ["dal", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "IOM..KELLY..PENIL..WAL..MIRSI",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["ual", 2],
-                ["aal", 2],
-                ["dal", 2],
-                ["baw", 4],
-                ["aca", 2],
-                ["ryr", 5],
-                ["ein", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "MAKUX..SOSIM..GIGTO..IBRAR..WAL..MIRSI",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["ual", 4],
-                ["aal", 4],
-                ["baw", 7],
-                ["dal", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "OTBED..GOLES..POL..BURNI..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LIBSO..GOLES..POL..BURNI..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "LAKEY..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 15],
-                ["baw", 3],
-                ["vir", 2],
-                ["baw", 2],
-                ["nax", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "SETEL..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 5]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "GOLES..UPTON..DESIG..POL..BURNI..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["cpa", 1],
-                ["thy", 1],
-                ["baw", 4],
-                ["klc", 5],
-                ["klm", 5],
-                ["ual", 1],
-                ["dlh", 5],
-                ["swr", 3]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EGCC",
-            "category": "arrival",
-            "route": "TILNI..GASKO..BEGAM..SETEL..ROSUN",
-            "altitude": [10000, 12000],
-            "speed": 250,
-            "method": "wave",
-            "rate": 2.5,
-            "airlines": [
-                ["bee", 15],
-                ["baw", 3],
-                ["vir", 5],
-                ["baw", 2],
-                ["cpa", 2]
-            ]
-        }
+        
     ]
 }
