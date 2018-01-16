@@ -12,6 +12,7 @@
 
 
 ### Bugfixes
+- Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
 
 
 
