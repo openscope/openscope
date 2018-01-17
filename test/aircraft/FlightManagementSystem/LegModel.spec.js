@@ -355,6 +355,30 @@ ava('.getProcedureName() returns the name of the ProcedureDefinitionModel in use
     t.true(result === expectedResult);
 });
 
+ava('.getRouteStringWithoutAirports() returns #_routeString when neither a SID or STAR leg', (t) => {
+    const model = new LegModel(navigationLibrary, 'BOACH');
+    const expectedResult = model._routeString;
+    const result = model.getRouteStringWithoutAirports();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getRouteStringWithoutAirports() returns route string without airport for SID leg', (t) => {
+    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const expectedResult = 'BOACH6.TNP';
+    const result = model.getRouteStringWithoutAirports();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getRouteStringWithoutAirports() returns route string without airport for SID leg', (t) => {
+    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const expectedResult = 'DAG.KEPEC3';
+    const result = model.getRouteStringWithoutAirports();
+
+    t.true(result === expectedResult);
+});
+
 ava('.hasWaypointName() throws when the not provided with a waypoint name', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
 

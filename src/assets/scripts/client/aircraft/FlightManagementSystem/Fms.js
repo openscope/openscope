@@ -486,6 +486,18 @@ export default class Fms {
     }
 
     /**
+    * Get the full flight plan route string (with airports removed), with legs separated by spaces
+    * For example, `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+    *
+    * @for Fms
+    * @method getFullRouteStringWithoutAirportsWithSpaces
+    * @return {string}
+    */
+    getFullRouteStringWithoutAirportsWithSpaces() {
+        return this._routeModel.getFullRouteStringWithoutAirportsWithSpaces();
+    }
+
+    /**
     * Get the position of the next waypoint in the flight plan
     *
     * Currently only used in `calculateTurnInitiaionDistance()` helper function

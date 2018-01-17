@@ -384,6 +384,17 @@ ava('.getFullRouteString() returns a route string for the entire route, includin
     t.true(result === nightmareRouteStringMock);
 });
 
+ava('.getFullRouteStringWithoutAirportsWithSpaces() returns the full route string, with airports removed, with spaces', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+
+    model.skipToWaypointName('GUP');
+
+    const expectedResult = 'TNP KEPEC3 BOACH6 TNP OAL PGS TYSSN4 BOACH6 TNP GUP IGM';
+    const result = model.getFullRouteStringWithoutAirportsWithSpaces();
+
+    t.true(result === expectedResult);
+});
+
 ava('.getFullRouteStringWithSpaces() returns a route string for the entire route, including past legs, separated by spaces', (t) => {
     const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
 
@@ -713,4 +724,18 @@ ava('.reset() clears #_legCollection', (t) => {
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 0);
+});
+
+ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated with #_legCollection', (t) => {
+    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+
+    model.skipToWaypointName('GUP');
+
+    const expectedResult = [
+        ...model._previousLegCollection,
+        ...model._legCollection
+    ];
+    const result = model._getPastAndPresentLegModels();
+
+    t.deepEqual(result, expectedResult);
 });

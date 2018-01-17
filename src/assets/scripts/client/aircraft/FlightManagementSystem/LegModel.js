@@ -486,6 +486,42 @@ export default class LegModel {
     }
 
     /**
+     * Returns the route string for this leg, removing any airports
+     * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+     *
+     * BE CAREFUL using this method, because technically `BANGR9.PANGL` is not technically a
+     * valid route string, as it does not follow the proper format. This method was created
+     * as a means to remove the airports from the route strings so we can display a route on
+     * the flight strip that excludes the airport, since this is instead shown in a separate
+     * section of the flight strip, and should not be included in the route section.
+     *
+     * @for LegModel
+     * @method getRouteStringWithoutAirports
+     * @return {string}
+     */
+    getRouteStringWithoutAirports() {
+        const routeString = this._routeString;
+
+        if (this.isSidLeg) {
+            const elements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+            const procedure = elements[1];
+            const exit = elements[2];
+
+            return `${procedure}.${exit}`;
+        }
+
+        if (this.isStarLeg) {
+            const elements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+            const entry = elements[0];
+            const procedure = elements[1];
+
+            return `${entry}.${procedure}`;
+        }
+
+        return routeString;
+    }
+
+    /**
      * Returns the highest `#altitudeMaximum` of all `WaypointModel`s in this leg
      *
      * @for LegModel

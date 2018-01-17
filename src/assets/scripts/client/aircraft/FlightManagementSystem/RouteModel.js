@@ -412,12 +412,29 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     getFullRouteString() {
-        const pastAndPresentLegModels = [
-            ...this._previousLegCollection,
-            ...this._legCollection
-        ];
+        const pastAndPresentLegModels = this._getPastAndPresentLegModels();
+        const pastAndPresentLegRouteStrings = _map(pastAndPresentLegModels, (legModel) => legModel.routeString);
 
-        return this._calculateRouteStringForLegs(pastAndPresentLegModels);
+        return this._combineRouteStrings(pastAndPresentLegRouteStrings);
+    }
+
+    /**
+    * Returns the full route string, with airports removed
+    * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+    *
+    * @for RouteModel
+    * @method getFullRouteStringWithoutAirportsWithSpaces
+    * @return {string}
+    */
+    getFullRouteStringWithoutAirportsWithSpaces() {
+        const pastAndPresentLegModels = this._getPastAndPresentLegModels();
+        const legRouteStringsWithoutAirports = _map(pastAndPresentLegModels, (legModel) => {
+            return legModel.getRouteStringWithoutAirports();
+        });
+
+        return this._combineRouteStrings(legRouteStringsWithoutAirports)
+        .replace(REGEX.DOUBLE_DOT, ' ')
+        .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
@@ -441,7 +458,9 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     getRouteString() {
-        return this._calculateRouteStringForLegs(this._legCollection);
+        const legRouteStrings = _map(this._legCollection, (legModel) => legModel.routeString);
+
+        return this._combineRouteStrings(legRouteStrings);
     }
 
     /**
@@ -793,19 +812,18 @@ export default class RouteModel extends BaseModel {
     // ------------------------------ PRIVATE ------------------------------
 
     /**
-     * Combine the route strings from all provided legs to form a route string
+     * Combine all provided route strings
      *
      * This enables us to get a route string for a SPECIFIABLE series of legs, which
      * may be a portion of the `#_legCollection` or of the `#_previousLegCollection`,
-     * or any combination thereof.
+     * or any combination thereof, including manipulated route strings.
      *
      * @for RouteModel
-     * @method _calculateRouteStringForLegs
-     * @param legCollection {array<LegModel>}
+     * @method _combineRouteStrings
+     * @param legRouteStrings {array<string>}
      * @return {string}
      */
-    _calculateRouteStringForLegs(legCollection) {
-        const legRouteStrings = _map(legCollection, (legModel) => legModel.routeString);
+    _combineRouteStrings(legRouteStrings) {
         const directRouteSegments = [_first(legRouteStrings)];
 
         for (let i = 1; i < legRouteStrings.length; i++) {
@@ -871,6 +889,13 @@ export default class RouteModel extends BaseModel {
         return segmentRouteStrings;
     }
 
+    /**
+     * Return the index of the leg in the #_legCollection that contains the specified waypoint name
+     *
+     * @for RouteModel
+     * @method _findIndexOfLegContainingWaypointName
+     * @return {number}
+     */
     _findIndexOfLegContainingWaypointName(waypointName) {
         return _findIndex(this._legCollection, (legModel) => legModel.hasWaypointName(waypointName));
     }
@@ -921,5 +946,19 @@ export default class RouteModel extends BaseModel {
         });
 
         return legs;
+    }
+
+    /**
+     * Return a single continuous array containing the #_previousLegCollection AND #_legCollection
+     *
+     * @for RouteModel
+     * @method _getPastAndPresentLegModels
+     * @return {array<LegModel>}
+     */
+    _getPastAndPresentLegModels() {
+        return [
+            ...this._previousLegCollection,
+            ...this._legCollection
+        ];
     }
 }

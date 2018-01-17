@@ -405,6 +405,13 @@ ava('.getBottomAltitude() returns #_routeModel.getBottomAltitude()', (t) => {
     t.deepEqual(fms.getBottomAltitude(), fms._routeModel.getBottomAltitude());
 });
 
+ava('.getFullRouteStringWithoutAirportsWithSpaces calls #_routeModel.getFullRouteStringWithoutAirportsWithSpaces()', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
+    const routeModelSpy = sinon.spy(fms._routeModel, 'getFullRouteStringWithoutAirportsWithSpaces');
+
+    t.true(routeModelSpy.calledWithExactly());
+});
+
 ava('.getNextWaypointPositionModel() returns #nextWaypoint.positionModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
 
