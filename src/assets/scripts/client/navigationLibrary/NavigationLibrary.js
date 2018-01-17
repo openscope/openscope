@@ -306,40 +306,6 @@ export default class NavigationLibrary {
         return procedureId in this._procedureCollection;
     }
 
-    // /**
-    //  * Determine if a procedureRouteString contains a suffix route
-    //  *
-    //  * Used from the `AircraftCommander` for branching logic that will
-    //  * enable updating of a runway for a particular suffix route
-    //  *
-    //  * @NavigationLibrary
-    //  * @method isSuffixRoute
-    //  * @param routeString {string}
-    //  * @param procedureType {string}
-    //  * @return {boolean}
-    //  */
-    // isSuffixRoute(routeString, procedureType) {
-    //     let route;
-    //
-    //     switch (procedureType) {
-    //         case PROCEDURE_TYPE.SID:
-    //             route = this.sidCollection.findRouteByIcao(routeString);
-    //
-    //             break;
-    //         case PROCEDURE_TYPE.STAR: {
-    //             const { procedure } = new RouteModel(routeString);
-    //
-    //             route = this.starCollection.findRouteByIcao(procedure);
-    //
-    //             break;
-    //         }
-    //         default:
-    //             return false;
-    //     }
-    //
-    //     return typeof route !== 'undefined' && route.hasSuffix();
-    // }
-
     /**
      * Check all fixes used in procedures, and gather a list of any fixes that are
      * not defined in the `fixes` section of the airport file, then sort and print

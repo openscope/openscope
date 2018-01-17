@@ -9,11 +9,7 @@ import {
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 
-const runwayModelMock = {
-    name: '19L'
-};
 const sidIdMock = 'COWBY6';
-// const suffixSidIdMock = 'COWBY61A';
 const airportIcaoMock = 'KLAS';
 
 let navigationLibraryFixture;
