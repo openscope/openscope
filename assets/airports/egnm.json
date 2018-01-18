@@ -462,32 +462,55 @@
         }
     ],
     "sids": {
-        "DOPEK": {
-            "icao": "DOPEK",
-            "name": "Dopek",
-            "suffix": {"14":"2X", "32":"2W"},
+        "DOPEK2X": {
+            "icao": "DOPEK2X",
+            "name": "Dopek Two Xray",
             "rwy": {
-                "14": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
-                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
+                "EGNM14": []            
             },
-            "body": [],
+            "body": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
             "exitPoints": {
                 "DOPEK": ["DOPEK"]
             },
             "draw": [
-                ["_ILBF2DME", "_GAM327036", "_GAM327032", "_GAM327029", "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118", "DOPEK"],
+                ["_ILBF2DME", "_GAM327036", "_GAM327032", "_GAM327029", "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118", "DOPEK"]
+            ]
+        },
+        "DOPEK2W": {
+            "icao": "DOPEK2W",
+            "name": "Dopek Two Whiskey",
+            "rwy": {
+                "EGNM32": []
+            },
+            "body": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"],
+            "exitPoints": {
+                "DOPEK": ["DOPEK"]
+            },
+            "draw": [
                 ["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_GAM319045", "_GAM319038", "_GAM319035", "_GAM319031", "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"]
             ]
         },
-        "LAMIX": {
-            "icao": "LAMIX",
-            "name": "Lamix",
-            "suffix": {"14":"2X", "32":"2W"},
+        "LAMIX2X": {
+            "icao": "LAMIX2X",
+            "name": "Lamix Two Xray",
             "rwy": {
-                "14": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
-                "32": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME"]
+                "EGNM14": []
             },
-            "body": ["DOPEK"],
+            "body": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118", "DOPEK"],
+            "exitPoints": {
+                "LAMIX": ["LAMIX"]
+            },
+            "draw": [
+                ["DOPEK", "LAMIX"]
+            ]
+        },
+        "LAMIX2W": {
+            "icao": "LAMIX2W",
+            "name": "Lamix Two Whiskey",
+            "rwy": {
+                "EGNM32": []
+            },
+            "body": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_GAM319045", "A30+"], ["_GAM319038", "A35+"], ["_GAM319035", "A60+"], ["_GAM319031", "A70"], "_GAM319019", "_GAM319018", "_GAMR319INTPOLR118", "_GAM15DME", "DOPEK"],
             "exitPoints": {
                 "LAMIX": ["LAMIX"]
             },
@@ -499,9 +522,9 @@
             "icao": "NELSA3W",
             "name": "Nelsa Three Whiskey",
             "rwy": {
-                "32": [["_ILF0.5DME", "A12+"]]
+                "EGNM32": []
             },
-            "body": ["_ILF2.1DME", "^_ILF3.5DME", ["_POL053012", "A30+"], "^_POL053011", ["_POL053010", "A35+"], "_LBA272012"],
+            "body": [["_ILF0.5DME", "A12+"], "_ILF2.1DME", "^_ILF3.5DME", ["_POL053012", "A30+"], "^_POL053011", ["_POL053010", "A35+"], "_LBA272012"],
             "exitPoints": {
                 "NELSA": [["NELSA", "A70"]]
             },
@@ -513,9 +536,9 @@
             "icao": "POL2X",
             "name": "Pole Hill Two Xray",
             "rwy": {
-                "14": ["^_ILBF2DME"]
+                "EGNM14": []
             },
-            "body": [["_POL083014", "A30+"], ["_POL083010", "A35+"]],
+            "body": ["^_ILBF2DME", ["_POL083014", "A30+"], ["_POL083010", "A35+"]],
             "exitPoints": {
                 "POL": [["POL", "A70"]]
             },
@@ -529,7 +552,7 @@
             "origin": "EGNM",
             "destination": "",
             "category": "departure",
-            "route": "EGNM.DOPEK.DOPEK",
+            "route": "EGNM.DOPEK2W.DOPEK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -545,7 +568,7 @@
             "origin": "EGNM",
             "destination": "",
             "category": "departure",
-            "route": "EGNM.LAMIX.LAMIX",
+            "route": "EGNM.LAMIX2W.LAMIX",
             "altitude": "",
             "speed": "",
             "method": "random",
