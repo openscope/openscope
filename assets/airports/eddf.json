@@ -719,26 +719,61 @@
                 ["DF149", "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"]
             ]
         },
-        "MARUN": {
-            "icao": "MARUN",
-            "name": "Marun",
-            "suffix": {"07C":"9D", "07R":"9D", "18":"4T", "25L":"1K", "25C":"1W"},
+        "MARUN9D": {
+            "icao": "MARUN9D",
+            "name": "Marun Niner Delta",
             "rwy": {
-                "07C": [["DF149", "A08+|S220-"], "MTR", "TOBAK", "APROX"],
-                "07R": [["DF149", "A08+|S220-"], "MTR", "TOBAK", "APROX"],
-                "18":  [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "S250-|A90+"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA", "ALIDI"],
-                "25L": [["DF980", "A08+|S200-"], ["DF979", "A18+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
-                "25C": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": [],
+            "body": [["DF149", "A08+|S220-"], "MTR", "TOBAK", "APROX"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
             "draw": [
-                ["DF149", "MTR", "TOBAK", "APROX", "MARUN"],
-                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MABOB", "TESGA", "ALIDI", "MARUN"],
-                ["DF235", "DF133"],
-                ["DF234", "DF133", "DF236", "DF238", "TABUM", "LIKSI", "LORPA", "MARUN"]
+                ["DF149", "MTR", "TOBAK", "APROX", "MARUN"]
+            ]
+        },
+        "MARUN4T": {
+            "icao": "MARUN4T",
+            "name": "Marun Four Tango",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "S250-|A90+"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA", "ALIDI"],
+            "exitPoints": {
+                "MARUN": ["MARUN"]
+            },
+            "draw": [
+                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MABOB", "TESGA", "ALIDI", "MARUN"]
+            ]
+        },
+        "MARUN1K": {
+            "icao": "MARUN1K",
+            "name": "Marun One Kilo",
+            "rwy": {
+                "EDDF25L": []
+            },
+            "body": [["DF980", "A08+|S200-"], ["DF979", "A18+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
+            "exitPoints": {
+                "MARUN": ["MARUN"]
+            },
+            "draw": [
+                ["DF980", "DF979", "DF996", "DF995", "DF994", "DF992", "LISKU", "TABUM", "LIKSI", "LORPA", "MARUN"]
+            ]
+        },
+        "MARUN1W": {
+            "icao": "MARUN1W",
+            "name": "Marun One Whiskey",
+            "rwy": {
+                "EDDF25C": []
+            },
+            "body": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
+            "exitPoints": {
+                "MARUN": ["MARUN"]
+            },
+            "draw": [
+                ["DF999", "DF998", "DF996", "DF995", "DF994", "DF992", "LISKU", "TABUM", "LIKSI", "LORPA", "MARUN"]
             ]
         },
         "MTR4C": {
