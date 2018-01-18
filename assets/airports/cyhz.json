@@ -1076,10 +1076,10 @@
             "icao": "CYHZ4",
             "name": "Halifax Four",
             "rwy": {
-                "05": ["#053"],
-                "14": ["#143"],
-                "23": ["#233"],
-                "32": ["#323"]
+                "CYHZ05": ["#053"],
+                "CYHZ14": ["#143"],
+                "CYHZ23": ["#233"],
+                "CYHZ32": ["#323"]
             },
             "body": ["YHZ"],
             "exitPoints": {
@@ -1109,10 +1109,10 @@
             },
             "body": ["BOSUB"],
             "rwy": {
-                "05": ["OTVUV", ["PEPTA", "A50|S210-"], ["OBNOM", "A40+|S210-"], "#233"],
-                "14": ["KEBOT", ["VIMLA", "A50|S210-"], ["IGVOP", "A40+|S210-"], "#323"],
-                "23": [["LEROS", "A30+|S200-"]],
-                "32": [["MENVO", "A50|S230-"], ["GABAP", "A40+|S210-"], "KIXIT", "#143"]
+                "CYHZ05": ["OTVUV", ["PEPTA", "A50|S210-"], ["OBNOM", "A40+|S210-"], "#233"],
+                "CYHZ14": ["KEBOT", ["VIMLA", "A50|S210-"], ["IGVOP", "A40+|S210-"], "#323"],
+                "CYHZ23": [["LEROS", "A30+|S200-"]],
+                "CYHZ32": [["MENVO", "A50|S230-"], ["GABAP", "A40+|S210-"], "KIXIT", "#143"]
             },
             "draw": [
                 ["CAYLY*", "BOSUB", "KEBOT", "VIMLA", "IGVOP"],
@@ -1130,10 +1130,10 @@
             },
             "body": ["MUVOX"],
             "rwy": {
-                "05": [["ODKAS", "A30+|S200-"]],
-                "14": [["TETAR", "A30+|S200-"]],
-                "23": [["LOGPO", "A50|S210-"], ["DUTIR", "A40+|S210-"], "#053"],
-                "32": [["EBLUV", "A50|S210-"], ["EMBAX", "A40+|S210-"], "#143"]
+                "CYHZ05": [["ODKAS", "A30+|S200-"]],
+                "CYHZ14": [["TETAR", "A30+|S200-"]],
+                "CYHZ23": [["LOGPO", "A50|S210-"], ["DUTIR", "A40+|S210-"], "#053"],
+                "CYHZ32": [["EBLUV", "A50|S210-"], ["EMBAX", "A40+|S210-"], "#143"]
             },
             "draw": [
                 ["EBONY*", "EBKID", "MUVOX", "TETAR"],
@@ -1150,10 +1150,10 @@
             },
             "body": ["LIRLA"],
             "rwy": {
-                "05": [["PEPTA", "A50|S210-"], ["OBNOM", "A40+|S210-"], "#233"],
-                "14": [["VIMLA", "A50|S210-"], ["IGVOP", "A40+|S210-"], "#323"],
-                "23": [["LEROS", "A30+|S200-"]],
-                "32": [["VOKIL", "A30+|S200-"]]
+                "CYHZ05": [["PEPTA", "A50|S210-"], ["OBNOM", "A40+|S210-"], "#233"],
+                "CYHZ14": [["VIMLA", "A50|S210-"], ["IGVOP", "A40+|S210-"], "#323"],
+                "CYHZ23": [["LEROS", "A30+|S200-"]],
+                "CYHZ32": [["VOKIL", "A30+|S200-"]]
             },
             "draw": [
                 ["AGMIR", "LIRLA", "VIMLA", "IGVOP"],
@@ -1171,10 +1171,10 @@
             },
             "body": ["ETGAR"],
             "rwy": {
-                "05": [["ODKAS", "A30+|S200-"]],
-                "14": [["ILOTA", "A50|S210-"], ["MODIR", "A40+|S210-"], "DUNUB", "#323"],
-                "23": ["OBNOM", ["RUDBU", "A50|S210-"], ["OTVUV", "A40+|S210-"], "#053"],
-                "32": [["NOTUB", "A50|S230-"], ["EMBAX", "A40+|S210-"], "EBLIT", "#143"]
+                "CYHZ05": [["ODKAS", "A30+|S200-"]],
+                "CYHZ14": [["ILOTA", "A50|S210-"], ["MODIR", "A40+|S210-"], "DUNUB", "#323"],
+                "CYHZ23": ["OBNOM", ["RUDBU", "A50|S210-"], ["OTVUV", "A40+|S210-"], "#053"],
+                "CYHZ32": [["NOTUB", "A50|S230-"], ["EMBAX", "A40+|S210-"], "EBLIT", "#143"]
             },
             "draw": [
                 ["TUSKY", "ETGAR", "ILOTA", "MODIR", "DUNUB"],
