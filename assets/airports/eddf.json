@@ -708,8 +708,8 @@
             "icao": "KOMIB3D",
             "name": "Komib Three Delta",
             "rwy": {
-                "07C": [],
-                "07R": []
+                "EDDF07C": [],
+                "EDDF07R": []
             },
             "body": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM"],
             "exitPoints": {
