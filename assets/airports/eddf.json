@@ -1091,33 +1091,68 @@
                 ["_FFM258010", "_FFM258012", "TAU"]
             ]
         },
-        "TOBAK": {
-            "icao": "TOBAK",
-            "name": "Tobak",
-            "suffix": {"07C":"9D", "07R":"9D", "18":"6T", "25L":"1K", "25C":"1W"},
+        "TOBAK9D": {
+            "icao": "TOBAK9D",
+            "name": "Tobak Niner Delta",
             "rwy": {
-                "07C": [["DF149", "A08+|S220-"], "MTR"],
-                "07R": [["DF149", "A08+|S220-"], "MTR"],
-                "18":  [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA"],
-                "25L": [["DF980", "A08+|S200-"], ["DF979", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
-                "25C": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": [],
+            "body": [["DF149", "A08+|S220-"], "MTR"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
             "draw": [
-                ["DF149", "MTR", "TOBAK"],
-                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MABOB", "TESGA"],
-                ["DF235", "DF133"],
-                ["DF234", "DF133", "DF236", "DF238", "TABUM", "TESGA", "TOBAK"]
+                ["DF149", "MTR", "TOBAK"]
+            ]
+        },
+        "TOBAK6T": {
+            "icao": "TOBAK6T",
+            "name": "Tobak Six Tango",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA"],
+            "exitPoints": {
+                "TOBAK": ["TOBAK"]
+            },
+            "draw": [
+                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MABOB", "TESGA", "TOBAK"]
+            ]
+        },
+        "TOBAK1K": {
+            "icao": "TOBAK1K",
+            "name": "Tobak One Kilo",
+            "rwy": {
+                "EDDF25L": []
+            },
+            "body": [["DF980", "A08+|S200-"], ["DF979", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "exitPoints": {
+                "TOBAK": ["TOBAK"]
+            },
+            "draw": [
+                ["DF980", "DF979", "DF996", "DF995", "DF994", "DF992", "LISKU", "TABUM", "TESGA", "TOBAK"]
+            ]
+        },
+        "TOBAK1W": {
+            "icao": "TOBAK1W",
+            "name": "Tobak One Whiskey",
+            "rwy": {
+                "EDDF25C": []
+            },
+            "body": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "exitPoints": {
+                "TOBAK": ["TOBAK"]
+            },
+            "draw": [
+                ["DF999", "DF998", "DF996", "DF995", "DF994", "DF992", "LISKU", "TABUM", "TESGA", "TOBAK"]
             ]
         },
         "ULKIG1L": {
             "icao": "ULKIG1L",
             "name": "Ulkig One Lima",
             "rwy": {
-                "18": []
+                "EDDF18": []
             },
             "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "S250-"], ["GISNO", "S250-"]],
             "exitPoints": {
