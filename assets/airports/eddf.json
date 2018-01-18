@@ -1031,34 +1031,57 @@
                 ["DF135", "DF165", "DF166", "DF201", "DONAB", "SOBRA"]
             ]
         },
-        "SULUS": {
-            "icao": "SULUS",
-            "name": "Sulus",
-            "suffix": {"07C":"1D", "07R":"1D", "18":"8L", "25L":"9F", "25C":"9F"},
+        "SULUS1D": {
+            "icao": "SULUS1D",
+            "name": "Sulus One Delta",
             "rwy": {
-                "07C": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"],
-                "07R": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"],
-                "18":  [["RID", "A08+|S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": [],
+            "body": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"],
             "exitPoints": {
                 "SULUS": ["SULUS"]
             },
             "draw": [
-                ["DF149", "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB", "SULUS"],
-                ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX"],
+                ["DF149", "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB", "SULUS"]
+            ]
+        },
+        "SULUS8L": {
+            "icao": "SULUS8L",
+            "name": "Sulus Eight Lima",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
+            "exitPoints": {
+                "SULUS": ["SULUS"]
+            },
+            "draw": [
                 ["RID", "AMTIX", "AKONI", "GIBSA", "WUR", "SULUS"]
+            ]
+        },
+        "SULUS9F": {
+            "icao": "SULUS9F",
+            "name": "Sulus Niner Foxtrot",
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"],
+            "exitPoints": {
+                "SULUS": ["SULUS"]
+            },
+            "draw": [
+                ["DF134", "DF141", "DF143"],
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AMTIX", "AKONI", "GIBSA", "WUR", "SULUS"]
             ]
         },
         "TAU4Q": {
             "icao": "TAU4Q",
             "name": "Taunus Four Quebec",
             "rwy": {
-                "25L": [],
-                "25C": []
+                "EDDF25L": [],
+                "EDDF25C": []
             },
             "body": ["_FFM258010", ["_FFM258012", "A35"]],
             "exitPoints": {
