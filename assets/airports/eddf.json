@@ -823,10 +823,9 @@
         "NOMBO9F": {
             "icao": "NOMBO9F",
             "name": "Nombo Niner Foxtrot",
-            "suffix": {"07C":"1D", "07R":"1D", "18":"8L", "25L":"9F", "25C":"9F"},
             "rwy": {
-                "25L": [["^DF135", "A08+"], "DF142"],
-                "25C": [["^DF134", "A08+"], "DF141"]
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
             },
             "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
             "exitPoints": {
@@ -837,50 +836,94 @@
                 ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
             ]
         },
-        "OBOKA": {
-            "icao": "OBOKA",
-            "name": "Oboka",
-            "suffix": {"07C":"1D", "07R":"1D", "18":"1T", "25L":"1G", "25C":"1G"},
+        "OBOKA1D": {
+            "icao": "OBOKA1D",
+            "name": "Oboka One Delta",
             "rwy": {
-                "07C": [["DF149", "A08+"], "MTR", "ODAGA", "KUSOM", "GUBAX"],
-                "07R": [["DF149", "A08+"], "MTR", "ODAGA", "KUSOM", "GUBAX"],
-                "18":  [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MASIR"],
-                "25L": [["DF235", "A08+"], "DF133", ["DF136", "A36+"], "ESUPI", "MASIR"],
-                "25C": [["DF234", "A08+"], "DF133", ["DF136", "A36+"], "ESUPI", "MASIR"]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": ["RAVKI", "DITAM"],
+            "body": [["DF149", "A08+"], "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
             "draw": [
-                ["DF149", "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI"],
-                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MASIR", "RAVKI"],
-                ["DF235", "DF133", "DF136", "ESUPI", "MASIR"],
-                ["DF234", "DF133"],
-                ["RAVKI", "DITAM", "OBOKA"]
+                ["DF149", "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM", "OBOKA"]
             ]
         },
-        "RATIM": {
-            "icao": "RATIM",
-            "name": "Ratim",
-            "suffix": {"07C":"6D", "07R":"6D", "18":"5S", "25L":"7F", "25C":"7F"},
+        "OBOKA1T": {
+            "icao": "OBOKA1T",
+            "name": "Oboka One Tango",
             "rwy": {
-                "07C": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153"],
-                "07R": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153"],
-                "18":  [["DF158", "A08+|S220-"], ["DF159", "A25+"]],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]]
+                "EDDF18": []
             },
-            "body": ["AMTIX", "AKONI"],
+            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MASIR", "RAVKI", "DITAM"],
+            "exitPoints": {
+                "OBOKA": ["OBOKA"]
+            },
+            "draw": [
+                ["DF160", "DF200", "PIPIX", "VETUX", "RUDUS", "MASIR", "RAVKI", "DITAM", "OBOKA"]
+            ]
+        },
+        "OBOKA1G": {
+            "icao": "OBOKA1G",
+            "name": "Oboka One Golf",
+            "rwy": {
+                "EDDF25L": [["DF235", "A08+"]],
+                "EDDF25C": [["DF234", "A08+"]]
+            },
+            "body": ["DF133", ["DF136", "A36+"], "ESUPI", "MASIR", "RAVKI", "DITAM"],
+            "exitPoints": {
+                "OBOKA": ["OBOKA"]
+            },
+            "draw": [
+                ["DF235", "DF133"],
+                ["DF234", "DF133", "DF136", "ESUPI", "MASIR", "RAVKI", "DITAM", "OBOKA"]
+            ]
+        },
+        "RATIM6D": {
+            "icao": "RATIM6D",
+            "name": "Ratim Six Delta",
+            "rwy": {
+                "EDDF07C": [],
+                "EDDF07R": []
+            },
+            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
             "exitPoints": {
                 "RATIM": ["RATIM"]
             },
             "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "RATIM"],
-                ["DF158", "DF159", "AMTIX"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX"],
+                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "RATIM"]
+            ]
+        },
+        "RATIM5S": {
+            "icao": "RATIM5S",
+            "name": "Ratim Five Sierra",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
+            "exitPoints": {
+                "RATIM": ["RATIM"]
+            },
+            "draw": [
+                ["DF158", "DF159", "AMTIX", "AKONI", "RATIM"]
+            ]
+        },
+        "RATIM7F": {
+            "icao": "RATIM7F",
+            "name": "Ratim Seven Foxtrot",
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
+            "exitPoints": {
+                "RATIM": ["RATIM"]
+            },
+            "draw": [
                 ["DF134", "DF141", "DF143"],
-                ["RATIM"]
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "RATIM"]
             ]
         },
         "RID": {
