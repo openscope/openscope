@@ -926,66 +926,109 @@
                 ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "RATIM"]
             ]
         },
-        "RID": {
-            "icao": "RID",
-            "name": "Ried",
-            "suffix": {"07C":"8C", "07R":"8C", "25L":"3Q", "25C":"3Q"},
+        "RID8C": {
+            "icao": "RID8C",
+            "name": "Ried Eight Charlie",
             "rwy": {
-                "07C": [["FR", "A08+"], "^_FRD066006", ["_MTR191016", "S220-"], "_FFM171015"],
-                "07R": [["FR", "A08+"], "^_FRD066006", ["_MTR191016", "S220-"], "_FFM171015"],
-                "25L": [["^_FRD2461.5", "A08+"], ["_RID356009", "S220-"]],
-                "25C": [["^_FRD2461.5", "A08+"], ["_RID356009", "S220-"]]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": [],
+            "body": [["FR", "A08+"], "^_FRD066006", ["_MTR191016", "S220-"], "_FFM171015"],
             "exitPoints": {
                 "RID": ["RID"]
             },
             "draw": [
-                ["FR", "_FRD066006", "_MTR191016", "_FFM171015", "RID"],
+                ["FR", "_FRD066006", "_MTR191016", "_FFM171015", "RID"]
+            ]
+        },
+        "RID3Q": {
+            "icao": "RID3Q",
+            "name": "Ried Three Quebec",
+            "rwy": {
+                "EDDF25L": [],
+                "EDDF25C": []
+            },
+            "body": [["^_FRD2461.5", "A08+"], ["_RID356009", "S220-"]],
+            "exitPoints": {
+                "RID": ["RID"]
+            },
+            "draw": [
                 ["_FRD2461.5", "_RID356009", "RID"]
             ]
         },
-        "ROTEN": {
-            "icao": "ROTEN",
-            "name": "Roten",
-            "suffix": {"18":"5L", "25L":"8F", "25C":"8F"},
+        "ROTEN5L": {
+            "icao": "ROTEN5L",
+            "name": "Roten Five Lima",
             "rwy": {
-                "18":  [["RID", "A08+|S220-"]],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]]
+                "EDDF18":  [["RID", "A08+|S220-"]]
             },
             "body": ["AMTIX", "AKONI"],
             "exitPoints": {
                 "ROTEN": ["ROTEN"]
             },
             "draw": [
-                ["RID", "AMTIX"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX"],
-                ["DF134", "DF141", "DF143"],
-                ["AMTIX", "AKONI", "ROTEN"]
+                ["RID", "AMTIX", "AKONI", "ROTEN"]
             ]
         },
-        "SOBRA": {
-            "icao": "SOBRA",
-            "name": "Sobra",
-            "suffix": {"07C":"6D", "07R":"6D", "18":"1L", "25L":"6N", "25C":"6N"},
+        "ROTEN8F": {
+            "icao": "ROTEN8F",
+            "name": "Roten Eight Foxtrot",
             "rwy": {
-                "07C": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157", "RID", ["ROSIG", "A90+"]],
-                "07R": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157", "RID", ["ROSIG", "A90+"]],
-                "18":  [["DF160", "A08+|S220-"], "DF198", ["ROSIG", "A90+"]],
-                "25L": [["^DF135", "A08+"], ["DF165", "S220-"], "DF166", "DF201"],
-                "25C": [["^DF134", "A08+"], ["DF162", "S220-"], "DF166", "DF201"]
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
             },
-            "body": ["DONAB"],
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
+            "exitPoints": {
+                "ROTEN": ["ROTEN"]
+            },
+            "draw": [
+                ["DF134", "DF141", "DF143"],
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI"]
+            ]
+        },
+        "SOBRA6D": {
+            "icao": "SOBRA6D",
+            "name": "Sobra Six Delta",
+            "rwy": {
+                "EDDF07C": [],
+                "EDDF07R": []
+            },
+            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157", "RID", ["ROSIG", "A90+"], "DONAB"],
             "exitPoints": {
                 "SOBRA": ["SOBRA"]
             },
             "draw": [
-                ["DF152", "DF150", "DF157", "RID", "ROSIG", "DONAB"],
-                ["DF160", "DF198", "ROSIG"],
-                ["DF135", "DF165", "DF166", "DF201", "DONAB"],
+                ["DF152", "DF150", "DF157", "RID", "ROSIG", "DONAB", "SOBRA"]
+            ]
+        },
+        "SOBRA1L": {
+            "icao": "SOBRA1L",
+            "name": "Sobra One Lima",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["DF160", "A08+|S220-"], "DF198", ["ROSIG", "A90+"], "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
+                ["DF160", "DF198", "ROSIG", "DONAB", "SOBRA"]
+            ]
+        },
+        "SOBRA6N": {
+            "icao": "SOBRA6N",
+            "name": "Sobra Six November",
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], ["DF165", "S220-"]],
+                "EDDF25C": [["^DF134", "A08+"], ["DF162", "S220-"]]
+            },
+            "body": ["DF166", "DF201", "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
                 ["DF134", "DF162", "DF166"],
-                ["DONAB", "SOBRA"]
+                ["DF135", "DF165", "DF166", "DF201", "DONAB", "SOBRA"]
             ]
         },
         "SULUS": {
