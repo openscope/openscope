@@ -791,27 +791,50 @@
                 ["FR", "_MTR202010", "MTR"]
             ]
         },
-        "NOMBO": {
-            "icao": "NOMBO",
-            "name": "Nombo",
-            "suffix": {"07C":"1D", "07R":"1D", "18":"8L", "25L":"9F", "25C":"9F"},
+        "NOMBO1D": {
+            "icao": "NOMBO1D",
+            "name": "Nombo One Delta",
             "rwy": {
-                "07C": [["^DF152", "A80+"], ["DF150", "S220-"], "DF153"],
-                "07R": [["^DF152", "A80+"], ["DF150", "S220-"], "DF153"],
-                "18":  [["RID", "A08+|S220-"]],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": ["AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
+            "body": [["^DF152", "A80+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
             "exitPoints": {
                 "NOMBO": ["NOMBO"]
             },
             "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX"],
-                ["RID", "AMTIX"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX"],
+                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
+            ]
+        },
+        "NOMBO8L": {
+            "icao": "NOMBO8L",
+            "name": "Nombo Eight Lima",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
+            "exitPoints": {
+                "NOMBO": ["NOMBO"]
+            },
+            "draw": [
+                ["RID", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
+            ]
+        },
+        "NOMBO9F": {
+            "icao": "NOMBO9F",
+            "name": "Nombo Niner Foxtrot",
+            "suffix": {"07C":"1D", "07R":"1D", "18":"8L", "25L":"9F", "25C":"9F"},
+            "rwy": {
+                "25L": [["^DF135", "A08+"], "DF142"],
+                "25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
+            "exitPoints": {
+                "NOMBO": ["NOMBO"]
+            },
+            "draw": [
                 ["DF134", "DF141", "DF143"],
-                ["AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
             ]
         },
         "OBOKA": {
