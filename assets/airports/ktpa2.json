@@ -58,6 +58,9 @@
         }
     ],
     "fixes": {
+        "_KTPA": [27.9775, -82.535166667],
+        "_KTPA277005": [27.9785, -82.63],
+        "_KTPA097005": [27.9725, -82.439166667],
         "_RWY19RPIE116": ["N27.848198", "W82.546200"],
         "_RWY19LPIE116": ["N27.842546", "W82.533100"],
         "AGASE": ["N28d03.68", "W82d49.94"],
@@ -351,12 +354,12 @@
             "entryPoints": {
                 "SIMMR": ["SIMMR", "RUDOF"]
             },
-            "body": ["BLOND", "AGASE"],
+            "body": ["BLOND", "PIE"],
             "rwy": {
                 "1L": ["DADPE", "BAYZZ", "WOBKI", "#097"],
                 "1R": ["DADPE", "BAYZZ", "WOBKI", "#097"],
-                "19L": ["OOSAF", "GUSNE", "#097"],
-                "19R": ["OOSAF", "GUSNE", "#097"]
+                "19L": ["_KTPA277005", "#007"],
+                "19R": ["_KTPA277005", "#007"]
             },
             "draw": [
                 ["SIMMR", "RUDOF", "BLOND", "AGASE", "OOSAF", "GUSNE"],
@@ -433,8 +436,8 @@
             "rwy": {
                 "1L": ["#277"],
                 "1R": ["#277"],
-                "19L": ["GUZDA", "JKBAL", "#277"],
-                "19R": ["GUZDA", "JKBAL", "#277"]
+                "19L": ["_KTPA097005", "#007"],
+                "19R": ["_KTPA097005", "#007"]
             },
             "draw": [
                 ["PHK", "ROGAN"],
@@ -480,104 +483,14 @@
     },
     "spawnPatterns": [
         {
-            "origin": "KTPA",
-            "destination": "",
-            "category": "departure",
-            "route": "KTPA.BAYPO7.DUNKN",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 7.8,
-            "airlines": [
-                ["aal", 38],
-                ["aca", 2],
-                ["baw/long", 1],
-                ["dal", 34],
-                ["dlh/long", 1],
-                ["edv", 2],
-                ["eny", 1],
-                ["fft", 4],
-                ["jbu", 14],
-                ["n/fastGA", 2],
-                ["nks", 7],
-                ["swa", 75],
-                ["ual", 18],
-                ["wja", 1]
-            ]
-        },
-        {
-            "origin": "KTPA",
-            "destination": "",
-            "category": "departure",
-            "route": "KTPA.ENDED7.CTY",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 6.5,
-            "airlines": [
-                ["aal", 38],
-                ["aca", 2],
-                ["asa", 2],
-                ["dal", 34],
-                ["edv", 2],
-                ["eny", 1],
-                ["fft", 4],
-                ["jbu", 14],
-                ["n/fastGA", 2],
-                ["nks", 7],
-                ["swa", 75],
-                ["ual", 18]
-            ]
-        },
-        {
-            "origin": "KTPA",
-            "destination": "",
-            "category": "departure",
-            "route": "KTPA.GANDY7.SABEE",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2.6,
-            "airlines": [
-                ["aal", 5],
-                ["cmp", 3],
-                ["edv", 2],
-                ["eny", 1],
-                ["n/fastGA", 2],
-                ["nks", 2],
-                ["sil", 15]
-            ]
-        },
-        {
-            "origin": "KTPA",
-            "destination": "",
-            "category": "departure",
-            "route": "KTPA.SYKES7.SIMMR",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 2.6,
-            "airlines": [
-                ["aal", 38],
-                ["dal", 34],
-                ["edv", 2],
-                ["eny", 1],
-                ["fft", 4],
-                ["n/fastGA", 2],
-                ["nks", 7],
-                ["swa", 75],
-                ["ual", 18]
-            ]
-        },
-        {
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
             "route": "SIMMR.BLOND4.KTPA",
-            "altitude": 10000,
-            "speed": 320,
+            "altitude": 6000,
+            "speed": 250,
             "method": "random",
-            "rate": 1.3,
+            "rate": 25,
             "airlines": [
                 ["aal", 38],
                 ["dal", 34],
@@ -588,45 +501,6 @@
                 ["nks", 7],
                 ["swa", 75],
                 ["ual", 18]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KTPA",
-            "category": "arrival",
-            "route": "PHK.BRDGE8.KTPA",
-            "altitude": 11000,
-            "speed": 250,
-            "method": "random",
-            "rate": 0.65,
-            "airlines": [
-                ["sil", 15]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KTPA",
-            "category": "arrival",
-            "route": "TAY.DADES4.KTPA",
-            "altitude": 12000,
-            "speed": 320,
-            "method": "random",
-            "rate": 7.8,
-            "airlines": [
-                ["aal", 38],
-                ["aca", 2],
-                ["baw/long", 1],
-                ["dal", 34],
-                ["dlh/long", 1],
-                ["edv", 2],
-                ["eny", 1],
-                ["fft", 4],
-                ["jbu", 14],
-                ["n/fastGA", 2],
-                ["nks", 7],
-                ["swa", 75],
-                ["ual", 18],
-                ["wja", 1]
             ]
         },
         {
@@ -634,10 +508,10 @@
             "destination": "KTPA",
             "category": "arrival",
             "route": "LBV.DEAKK5.KTPA",
-            "altitude": 11000,
-            "speed": 320,
+            "altitude": 6000,
+            "speed": 250,
             "method": "random",
-            "rate": 1.3,
+            "rate": 25,
             "airlines": [
                 ["aal", 5],
                 ["cmp", 3],
@@ -645,30 +519,6 @@
                 ["eny", 1],
                 ["n/fastGA", 2],
                 ["nks", 2]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KTPA",
-            "category": "arrival",
-            "route": "SZW.FOOXX4.KTPA",
-            "altitude": 12000,
-            "speed": 320,
-            "method": "random",
-            "rate": 3.9,
-            "airlines": [
-                ["aal", 38],
-                ["aca", 2],
-                ["asa", 2],
-                ["dal", 34],
-                ["edv", 2],
-                ["eny", 1],
-                ["fft", 4],
-                ["jbu", 14],
-                ["n/fastGA", 2],
-                ["nks", 7],
-                ["swa", 75],
-                ["ual", 18]
             ]
         }
     ],

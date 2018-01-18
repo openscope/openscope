@@ -140,7 +140,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property LEADER_DIRECTION
      */
-    LEADER_DIRECTION: 360,
+    LEADER_DIRECTION: 315,
 
     /**
      * Number of additional pixels away from the target to position the data block
