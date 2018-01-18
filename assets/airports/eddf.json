@@ -780,8 +780,8 @@
             "icao": "MTR4C",
             "name": "Metro Four Charlie",
             "rwy": {
-                "07C": [],
-                "07R": []
+                "EDDF07C": [],
+                "EDDF07R": []
             },
             "body": [["FR", "A08+"], "_MTR202010"],
             "exitPoints": {
