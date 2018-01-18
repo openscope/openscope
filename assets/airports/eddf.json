@@ -659,27 +659,49 @@
                 ["DF135", "DF142", "DF143", "DF137", "RID", "ANEKI"]
             ]
         },
-        "DKB": {
-            "icao": "DKB",
-            "name": "Dinkelsbühl",
-            "suffix": {"07C":"1D", "07R":"1D", "18":"6L", "25L":"8F", "25C":"8F"},
+        "DKB1D": {
+            "icao": "DKB1D",
+            "name": "Dinkelsbühl One Delta",
             "rwy": {
-                "07C": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153"],
-                "07R": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153"],
-                "18":  [["RID", "A08+|S220-"]],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], ["DF159", "A25+"]]
+                "EDDF07C": [],
+                "EDDF07R": []
             },
-            "body": ["AMTIX", "AKONI"],
+            "body": ["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
             "exitPoints": {
                 "DKB": ["DKB"]
             },
             "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX"],
-                ["RID", "AMTIX"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX"],
+                ["DF152", "DF150", "DF153", "AMTIX", "DKB"]
+            ]
+        },
+        "DKB6L": {
+            "icao": "DKB6L",
+            "name": "Dinkelsbühl Six Lima",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI"],
+            "exitPoints": {
+                "DKB": ["DKB"]
+            },
+            "draw": [
+                ["RID", "AMTIX", "AKONI", "DKB"]
+            ]
+        },
+        "DKB8F": {
+            "icao": "DKB8F",
+            "name": "Dinkelsbühl Eight Foxtrot",
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
+            "exitPoints": {
+                "DKB": ["DKB"]
+            },
+            "draw": [
                 ["DF134", "DF141", "DF143"],
-                ["AMTIX", "AKONI", "DKB"]
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "DKB"]
             ]
         },
         "KOMIB3D": {
