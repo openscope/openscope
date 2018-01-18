@@ -601,27 +601,62 @@
         }
     ],
     "sids": {
-        "ANEKI": {
-            "icao": "ANEKI",
-            "name": "Aneki",
-            "suffix": {"07C":"2D", "07R":"4E", "18":"9L", "25L":"9F", "25C":"9F"},
+        "ANEKI2D": {
+            "icao": "ANEKI2D",
+            "name": "Aneki Two Delta",
             "rwy": {
-                "07C": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157"],
-                "07R": [["^DF144", "A08+"], ["DF154", "A25+|S220-"], "DF160", "RID"],
-                "18":  [["RID", "S220-"]],
-                "25L": [["^DF135", "A08+"], "DF142", "DF143", ["DF137", "S210-"], "RID"],
-                "25C": [["^DF134", "A08+"], "DF141", "DF143", ["DF137", "S210-"], "RID"]
+                "EDDF07C": []
             },
-            "body": [],
+            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157"],
             "exitPoints": {
                 "ANEKI": ["ANEKI"]
             },
             "draw": [
-                ["DF152", "DF150", "DF157", "ANEKI"],
-                ["DF144", "DF154", "DF160", "RID"],
-                ["DF135", "DF142", "DF143", "DF137", "RID"],
-                ["DF134", "DF141", "DF143"],
+                ["DF152", "DF150", "DF157", "ANEKI"]
+            ]
+        },
+        "ANEKI4E": {
+            "icao": "ANEKI4E",
+            "name": "Aneki Four Echo",
+            "rwy": {
+                "EDDF07R": []
+            },
+            "body": [["^DF144", "A08+"], ["DF154", "A25+|S220-"], "DF160", "RID"],
+            "exitPoints": {
+                "ANEKI": ["ANEKI"]
+            },
+            "draw": [
+                ["DF144", "DF154", "DF160", "RID", "ANEKI"]
+            ]
+        },
+        "ANEKI9L": {
+            "icao": "ANEKI9L",
+            "name": "Aneki Niner Lima",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "S220-"]],
+            "exitPoints": {
+                "ANEKI": ["ANEKI"]
+            },
+            "draw": [
                 ["RID", "ANEKI"]
+            ]
+        },
+        "ANEKI9F": {
+            "icao": "ANEKI9F",
+            "name": "Aneki Niner Foxtrot",
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], "RID"],
+            "exitPoints": {
+                "ANEKI": ["ANEKI"]
+            },
+            "draw": [
+                ["DF134", "DF141", "DF143"],
+                ["DF135", "DF142", "DF143", "DF137", "RID", "ANEKI"]
             ]
         },
         "DKB": {
