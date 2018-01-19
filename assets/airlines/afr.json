@@ -3,7 +3,9 @@
     "name": "Air France",
     "callsign": {
         "name": "Air France",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Air Moldova",
     "callsign": {
         "name": "Air Moldova",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

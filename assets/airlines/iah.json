@@ -3,7 +3,9 @@
     "name": "Air Incheon",
     "callsign": {
         "name": "Air-Incheon",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

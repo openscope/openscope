@@ -3,7 +3,9 @@
     "name": "Atlas Air",
     "callsign": {
         "name": "Giant",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

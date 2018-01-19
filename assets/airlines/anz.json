@@ -3,7 +3,9 @@
     "name": "Air New Zealand",
     "callsign": {
         "name": "New Zealand",
-        "length": 2
+        "callsignFormats": [
+            "##"
+        ]
     },
     "fleets": {
         "long": [

@@ -3,7 +3,9 @@
     "name": "Luxair",
     "callsign": {
         "name": "Luxair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

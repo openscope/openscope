@@ -3,7 +3,9 @@
     "name": "FedEx Express",
     "callsign": {
         "name": "Fedex",
-        "length": 4
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

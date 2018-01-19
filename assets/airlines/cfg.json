@@ -3,7 +3,9 @@
     "name": "Condor Flugdienst",
     "callsign": {
         "name": "Condor",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

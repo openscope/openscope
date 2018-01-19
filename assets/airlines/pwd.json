@@ -3,7 +3,9 @@
     "name": "Pan Am World Airways Dominicana",
     "callsign": {
         "name": "Pawa",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

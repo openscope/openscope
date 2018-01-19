@@ -3,7 +3,9 @@
     "name": "Qatar Airways",
     "callsign": {
         "name": "Qatari",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "American Airlines",
     "callsign": {
         "name": "American",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

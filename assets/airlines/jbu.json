@@ -3,8 +3,9 @@
     "name": "JetBlue",
     "callsign": {
         "name": "JetBlue",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

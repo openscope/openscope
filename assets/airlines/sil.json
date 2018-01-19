@@ -3,7 +3,9 @@
     "name": "Silver Airways",
     "callsign": {
         "name": "Silver Wings",
-        "length": 2
+        "callsignFormats": [
+            "##"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Singapore Airlines",
     "callsign": {
         "name": "Singapore",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

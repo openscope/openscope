@@ -3,8 +3,11 @@
     "name": "FlyBe",
     "callsign": {
         "name": "Jersey",
-        "length": 4,
-        "alpha": true
+        "callsignFormats": [
+            "####",
+            "##AA",
+            "###A"
+        ]
     },
     "fleets": {
         "default": [

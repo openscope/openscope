@@ -3,7 +3,9 @@
     "name": "Rossiya Airlines",
     "callsign": {
         "name": "Russia",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

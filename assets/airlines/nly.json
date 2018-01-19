@@ -3,7 +3,9 @@
     "name": "Niki",
     "callsign": {
         "name": "Niki",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

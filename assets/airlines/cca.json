@@ -3,7 +3,9 @@
     "name": "Air China",
     "callsign": {
         "name": "Air China",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

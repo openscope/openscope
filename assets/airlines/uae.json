@@ -3,7 +3,11 @@
     "name": "Emirates",
     "callsign": {
         "name": "Emirates",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "##",
+            "#"
+        ]
     },
     "fleets": {
         "default": [

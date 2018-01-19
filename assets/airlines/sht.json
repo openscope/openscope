@@ -3,8 +3,10 @@
     "name": "British Airways",
     "callsign": {
         "name": "Shuttle",
-        "length": 3,
-        "alpha": true
+        "callsignFormats": [
+            "##A",
+            "####"
+        ]
     },
     "fleets": {
         "default": [

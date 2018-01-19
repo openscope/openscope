@@ -3,7 +3,9 @@
     "name": "Qantas",
     "callsign": {
         "name": "Qantas",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

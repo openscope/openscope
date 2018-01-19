@@ -3,7 +3,9 @@
     "name": "Austral Líneas Aéreas",
     "callsign": {
         "name": "Austral",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,8 +3,12 @@
     "name": "easyJet",
     "callsign": {
         "name": "Easy",
-        "length": 4,
-        "alpha": true
+        "callsignFormats": [
+            "####",
+            "###A",
+            "##AA",
+            "###"
+        ]
     },
     "fleets": {
         "default": [

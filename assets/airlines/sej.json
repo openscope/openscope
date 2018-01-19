@@ -3,7 +3,9 @@
     "name": "SpiceJet",
     "callsign": {
         "name": "Spicejet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

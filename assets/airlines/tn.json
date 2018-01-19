@@ -3,8 +3,9 @@
     "name": "Airtaxi",
     "callsign": {
         "name": "Tango",
-        "length": 5,
-        "alpha": true
+        "callsignFormats": [
+            "AAA"
+        ]
     },
     "fleets": {
         "default": [

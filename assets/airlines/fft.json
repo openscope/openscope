@@ -3,8 +3,9 @@
     "name": "Frontier Airlines",
     "callsign": {
         "name": "FRONTIER FLIGHT",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

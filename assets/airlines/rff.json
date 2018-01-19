@@ -3,7 +3,9 @@
     "name": "Russian Air Force",
     "callsign": {
         "name": "Russian Air Force",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

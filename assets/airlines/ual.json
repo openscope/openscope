@@ -3,7 +3,11 @@
     "name": "United Airlines",
     "callsign": {
         "name": "United",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "##",
+            "#"
+        ]
     },
     "fleets": {
         "default": [
