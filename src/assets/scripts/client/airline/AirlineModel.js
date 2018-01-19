@@ -208,11 +208,9 @@ export default class AirlineModel extends BaseModel {
         let flightNumber = '';
         const numbersList = '0123456789';
         const alphaList = 'abcdefghijklmnopqrstuvwxyz';
-
         const formats = this.flightNumberGeneration.callsignFormats;
 
         const chosenFormat = choose(formats);
-        console.log(chosenFormat);
         for (let i = 0; i < chosenFormat.length; i++) {
             if (chosenFormat[i] === '#') {
                 if (i !== 0) {
