@@ -28,6 +28,7 @@
 - Remove nonfunctional airports from load list broken by feature/809 [#881](http://github.com/openscope/openscope/issues/881)
 - Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
 - Overhaul of Manchester International Airport (England, United Kingdom)[#854](https://github.com/openscope/openscope/issues/854)
+- Customisation of callsign formats [#866](https://github.com/openscope/openscope/issues/866)
 
 
 
