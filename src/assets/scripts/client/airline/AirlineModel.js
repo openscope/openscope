@@ -30,7 +30,7 @@ export default class AirlineModel extends BaseModel {
     constructor(airlineDefinition) {
         super();
 
-       if (isEmptyObject(airlineDefinition)) {
+        if (isEmptyObject(airlineDefinition)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
         }
@@ -68,26 +68,15 @@ export default class AirlineModel extends BaseModel {
          */
         this.flightNumberGeneration = {
             /**
-             * Length of callsign
+             * Array of callsign formats
              *
              * @memberof flightNumberGeneration
-             * @property length
-             * @type {number}
-             * @default 3
-             */
-            length: 3,
+             * @property callsignFormats
+             * @type {Array}
+             * @default ['###']
+            */
 
-            /**
-             * Whether to use alphabetical characters
-             *
-             * Used to generate a North American style registration number, minus the `N`
-             *
-             * @memberof flightNumberGeneration
-             * @property alphaNumeric
-             * @type {boolean}
-             * @default false
-             */
-            alphaNumeric: false
+            callsignFormats: ['###']
         };
 
         /**
@@ -161,8 +150,7 @@ export default class AirlineModel extends BaseModel {
         // TODO: these _get() lines are likely redundant and could be removed only after proper testing
         this.icao = _get(airlineDefinition, 'icao', this.icao).toLowerCase();
         this.radioName = _get(airlineDefinition, 'callsign.name', this.radioName);
-        this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
-        this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
+        this.flightNumberGeneration.callsignFormats = _get(airlineDefinition, 'callsign.callsignFormats', ['###']);
         this.fleets = _get(airlineDefinition, 'fleets');
 
         this._transformFleetNamesToLowerCase();
@@ -218,29 +206,25 @@ export default class AirlineModel extends BaseModel {
      */
     generateFlightNumber() {
         let flightNumber = '';
-        let list = '0123456789';
+        const numbersList = '0123456789';
+        const alphaList = 'abcdefghijklmnopqrstuvwxyz';
 
-        // Start with a number other than zero
-        flightNumber += choose(list.substr(1));
+        const formats = this.flightNumberGeneration.callsignFormats;
 
-        if (!this.flightNumberGeneration.alphaNumeric) {
-            for (let i = 1; i < this.flightNumberGeneration.length; i++) {
-                flightNumber += choose(list);
+        const chosenFormat = choose(formats);
+        console.log(chosenFormat);
+        for (let i = 0; i < chosenFormat.length; i++) {
+            if (chosenFormat[i] === '#') {
+                if (i !== 0) {
+                    flightNumber += choose(numbersList);
+                } else {
+                    flightNumber += choose(numbersList.substr(1));
+                }
+            } else if (chosenFormat[i] === 'A') {
+                flightNumber += choose(alphaList);
+            } else {
+                console.warn(`${this.icao} has an incorrect callsign format, it should only contain 'A' or '#'`);
             }
-
-            return flightNumber;
-        }
-
-        // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
-        for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
-            flightNumber += choose(list);
-        }
-
-        list = 'abcdefghijklmnopqrstuvwxyz';
-
-        // the end of an `N` style registration: `N322WT`
-        for (let i = 0; i < 2; i++) {
-            flightNumber += choose(list);
         }
 
         return flightNumber;
