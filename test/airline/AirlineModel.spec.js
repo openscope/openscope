@@ -93,27 +93,6 @@ ava('.getRandomAircraftType() calls ._getRandomAircraftTypeFromFleet() fleet is 
     t.true(_getRandomAircraftTypeFromFleetSpy.calledWithExactly(fleetNameMock));
 });
 
-ava('.generateFlightNumber() creates a flightNumber made up of numbers if !flightNumberGeneration.alphaNumeric', (t) => {
-    const numericRegex = /[0-9]+$/;
-    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
-    const result = model.generateFlightNumber();
-
-    t.true(result.length === model.flightNumberGeneration.length);
-    t.true(numericRegex.test(result));
-});
-
-ava('.generateFlightNumber() creates a flightNumber made up of numbers and letters if flightNumberGeneration.alphaNumeric', (t) => {
-    const alphaNumericRegex = /\w+/;
-    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
-    model.flightNumberGeneration.length = 5;
-    model.flightNumberGeneration.alphaNumeric = true;
-
-    const result = model.generateFlightNumber();
-
-    t.true(result.length === model.flightNumberGeneration.length);
-    t.true(alphaNumericRegex.test(result));
-});
-
 ava.skip('.generateFlightNumber() creates a flightNumber with a prefix', (t) => {
     const expectedResult = 'N';
     const model = new AirlineModel(NOVEMBER_AIRLINE_MOCK);
