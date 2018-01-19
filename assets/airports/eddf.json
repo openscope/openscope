@@ -1252,35 +1252,70 @@
             },
             "body": ["GED", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
             "rwy": {
-                "25R": []
+                "EDDF25R": []
             },
             "draw": [
                 ["GED", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"]
             ]
         },
-        "PSA": {
-            "icao": "PSA",
-            "name": "Spessart",
-            "suffix": {"07L":"07N", "07C":"07S", "07R":"07S", "25L":"25S", "25C":"25S", "25R":"25N"},
+        "PSA07N": {
+            "icao": "PSA07N",
+            "name": "Spessart Zero Seven North Transition",
             "entryPoints": {
                 "PSA": ["PSA"]
             },
-            "body": [],
+            "body": ["RIPKU", "DF436", "DF437", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
             "rwy": {
-                "07L": ["RIPKU", "DF436", "DF437", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
-                "07C": ["CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651", "LOMPO"],
-                "07R": ["CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651", "ROBSA"],
-                "25L": ["CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621", "LEDKI"],
-                "25C": ["CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621", "REDGO"],
-                "25R": ["RIPKU", "DF406", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"]
+                "EDDF07L": []
             },
             "draw": [
-                ["PSA", "RIPKU", "DF436", "DF437", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
+                ["PSA", "RIPKU", "DF436", "DF437", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"]
+            ]
+        },
+        "PSA07S": {
+            "icao": "PSA07S",
+            "name": "Spessart Zero Seven South Transition",
+            "entryPoints": {
+                "PSA": ["PSA"]
+            },
+            "body": ["CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651"],
+            "rwy": {
+                "EDDF07C": ["LOMPO"],
+                "EDDF07R": ["ROBSA"]
+            },
+            "draw": [
                 ["PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651", "LOMPO"],
-                ["DF651", "ROBSA"],
-                ["RIPKU", "DF406", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
+                ["DF651", "ROBSA"]
+            ]
+        },
+        "PSA25N": {
+            "icao": "PSA25S",
+            "name": "Spessart Two Five South Transition",
+            "entryPoints": {
+                "PSA": ["PSA"]
+            },
+            "body": ["CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621"],
+            "rwy": {
+                "EDDF25L": ["LEDKI"],
+                "EDDF25C": ["REDGO"]
+            },
+            "draw": [
                 ["PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621", "LEDKI"],
                 ["DF621", "REDGO"]
+            ]
+        },
+        "PSA25S": {
+            "icao": "PSA25S",
+            "name": "Spessart Two Five South Transition",
+            "entryPoints": {
+                "PSA": ["PSA"]
+            },
+            "body": ["RIPKU", "DF406", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
+            "rwy": {
+                "EDDF25R": []
+            },
+            "draw": [
+                ["RIPKU", "DF406", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"]
             ]
         },
         "ROLIS": {
