@@ -666,7 +666,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": ["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
+            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
             "exitPoints": {
                 "DKB": ["DKB"]
             },
@@ -1164,40 +1164,6 @@
         }
     },
     "stars": {
-        "ASPAT": {
-            "icao": "ASPAT",
-            "name": "Aspat",
-            "suffix": {"07R":"2E", "25L":"2W"},
-            "entryPoints": {
-                "ASPAT": ["ASPAT"]
-            },
-            "body": ["GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA"],
-            "rwy": {
-                "07R": ["DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
-                "25L": ["DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
-            },
-            "draw": [
-                ["ASPAT", "GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
-                ["CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
-            ]
-        },
-        "EMPAX": {
-            "icao": "EMPAX",
-            "name": "Empax",
-            "suffix": {"07R":"2E", "25L":"2W"},
-            "entryPoints": {
-                "EMPAX": ["EMPAX"]
-            },
-            "body": ["NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA"],
-            "rwy": {
-                "07R": ["DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
-                "25L": ["DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
-            },
-            "draw": [
-                ["EMPAX", "NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
-                ["CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
-            ]
-        },
         "KERAX07N": {
             "icao": "KERAX07N",
             "name": "Kerax Zero Seven North Transition",
