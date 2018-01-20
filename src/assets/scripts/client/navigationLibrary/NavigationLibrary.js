@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _uniq from 'lodash/uniq';
+import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
 import ProcedureDefinitionModel from './ProcedureDefinitionModel';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -22,14 +23,7 @@ export default class NavigationLibrary {
      * @param airportJson {object}
      */
     constructor(airportJson) {
-        /**
-         *
-         *
-         * @property _referencePosition
-         * @type {StaticPositionModel}
-         * @default null
-         */
-        this._referencePosition = null;
+        this._airwayCollection = [];
 
         // /**
         //  *
@@ -50,6 +44,15 @@ export default class NavigationLibrary {
         // this._starCollection = null;
 
         this._procedureCollection = {};
+
+        /**
+         *
+         *
+         * @property _referencePosition
+         * @type {StaticPositionModel}
+         * @default null
+         */
+        this._referencePosition = null;
 
         this.init(airportJson);
     }
@@ -106,12 +109,23 @@ export default class NavigationLibrary {
      * @method init
      */
     init(airportJson) {
-        const { fixes, sids, stars } = airportJson;
+        const { airways, fixes, sids, stars } = airportJson;
 
         this._initializeReferencePosition(airportJson);
         this._initializeFixCollection(fixes);
+        this._initializeAirwayCollection(airways);
         this._initializeProcedureCollection(sids, stars);
         this._showConsoleWarningForUndefinedFixes();
+    }
+
+    _initializeAirwayCollection(airways) {
+        _forEach(airways, (fixNames, airwayName) => {
+            if (airwayName in this._airwayCollection) {
+                throw new TypeError(`Expected single defintiion for "${airwayName}" airway, but received multiple`);
+            }
+
+            this._airwayCollection.push(new AirwayModel(airwayName, fixNames, this));
+        });
     }
 
     _initializeFixCollection(fixes) {
@@ -153,8 +167,9 @@ export default class NavigationLibrary {
     reset() {
         FixCollection.removeItems();
 
-        this._referencePosition = null;
+        this._airwayCollection = [];
         this._procedureCollection = {};
+        this._referencePosition = null;
     }
 
     // /**
