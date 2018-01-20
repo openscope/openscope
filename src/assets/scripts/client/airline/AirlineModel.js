@@ -198,7 +198,7 @@ export default class AirlineModel extends BaseModel {
         const flightNumber = flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
 
         if (this.activeFlightNumbers.indexOf(flightNumber) !== -1) {
-            return flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
+            return this.generateFlightNumber();
         }
 
         return flightNumber;
