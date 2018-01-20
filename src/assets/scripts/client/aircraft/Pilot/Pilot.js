@@ -306,9 +306,9 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(procedureId, airportIcao) {
-        const procedureDefinitionModel = this._navigationLibrary.getProcedure(procedureId);
+        const procedureModel = this._navigationLibrary.getProcedure(procedureId);
 
-        if (_isNil(procedureDefinitionModel)) {
+        if (_isNil(procedureModel)) {
             return [false, 'SID name not understood'];
         }
 
@@ -316,13 +316,13 @@ export default class Pilot {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
 
-        const exitName = procedureDefinitionModel.getRandomExitPoint();
+        const exitName = procedureModel.getRandomExitPoint();
         const routeString = `${runwayModel.name}.${procedureId}.${exitName}`;
 
-        if (!procedureDefinitionModel.hasEntry(runwayModel.name)) {
+        if (!procedureModel.hasEntry(runwayModel.name)) {
             return [
                 false,
-                `unable, the ${procedureDefinitionModel.name.toUpperCase()} departure not valid ` +
+                `unable, the ${procedureModel.name.toUpperCase()} departure not valid ` +
                 `from Runway ${runwayModel.name.toUpperCase()}`
             ];
         }
@@ -335,7 +335,7 @@ export default class Pilot {
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
-        readback.say = `cleared to destination via the ${procedureDefinitionModel.name} departure, then as filed`;
+        readback.say = `cleared to destination via the ${procedureModel.name} departure, then as filed`;
 
         return [true, readback];
     }

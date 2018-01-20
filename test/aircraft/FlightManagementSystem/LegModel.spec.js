@@ -4,7 +4,7 @@ import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import AirportModel from '../../../src/assets/scripts/client/airport/AirportModel';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
-import ProcedureDefinitionModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureDefinitionModel';
+import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureModel';
 // import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
@@ -76,7 +76,7 @@ ava.todo('instantiates correctly when given a single airway leg\'s route string'
 
     t.true(model._airwayModel === null);
     t.true(model._legType === LEG_TYPE.DIRECT);
-    t.true(model._procedureDefinitionModel === null);
+    t.true(model._procedureModel === null);
     t.true(model._routeString === airwayRouteStringMock);
     t.true(model._waypointCollection.length === 1);
 }*/);
@@ -86,7 +86,7 @@ ava('instantiates correctly when given a single direct leg\'s route string', (t)
 
     t.true(model._airwayModel === null);
     t.true(model._legType === LEG_TYPE.DIRECT);
-    t.true(model._procedureDefinitionModel === null);
+    t.true(model._procedureModel === null);
     t.true(model._routeString === directRouteStringMock);
     t.true(model._waypointCollection.length === 1);
 });
@@ -96,8 +96,8 @@ ava('instantiates correctly when given a single SID leg\'s route string', (t) =>
 
     t.true(model._airwayModel === null);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
-    t.true(model._procedureDefinitionModel instanceof ProcedureDefinitionModel);
-    t.true(model._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.SID);
+    t.true(model._procedureModel instanceof ProcedureModel);
+    t.true(model._procedureModel.procedureType === PROCEDURE_TYPE.SID);
     t.true(model._routeString === sidRouteStringMock);
     t.true(model._waypointCollection.length === 7);
 });
@@ -107,8 +107,8 @@ ava('instantiates correctly when given a single STAR leg\'s route string', (t) =
 
     t.true(model._airwayModel === null);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
-    t.true(model._procedureDefinitionModel instanceof ProcedureDefinitionModel);
-    t.true(model._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.STAR);
+    t.true(model._procedureModel instanceof ProcedureModel);
+    t.true(model._procedureModel.procedureType === PROCEDURE_TYPE.STAR);
     t.true(model._routeString === starRouteStringMock);
     t.true(model._waypointCollection.length === 13);
 });
@@ -332,7 +332,7 @@ ava('.getProcedureIcao() returns undefined when this is not a procedure leg', (t
     t.true(typeof result === 'undefined');
 });
 
-ava('.getProcedureIcao() returns the ICAO identifier of the ProcedureDefinitionModel in use by this leg', (t) => {
+ava('.getProcedureIcao() returns the ICAO identifier of the ProcedureModel in use by this leg', (t) => {
     const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
     const expectedResult = 'BOACH6';
     const result = model.getProcedureIcao();
@@ -347,7 +347,7 @@ ava('.getProcedureName() returns undefined when this is not a procedure leg', (t
     t.true(typeof result === 'undefined');
 });
 
-ava('.getProcedureName() returns the name of the ProcedureDefinitionModel in use by this leg', (t) => {
+ava('.getProcedureName() returns the name of the ProcedureModel in use by this leg', (t) => {
     const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
     const expectedResult = 'Boach Six';
     const result = model.getProcedureName();
@@ -506,7 +506,7 @@ ava('.reset() resets to default all properties', (t) => {
 
     t.true(model._airwayModel === null);
     t.true(model._legType === '');
-    t.true(model._procedureDefinitionModel === null);
+    t.true(model._procedureModel === null);
     t.deepEqual(model._previousWaypointCollection, []);
     t.true(model._routeString === '');
     t.deepEqual(model._waypointCollection, []);
@@ -662,7 +662,7 @@ ava('._resetWaypointCollection() calls .reset() method of all waypoints', (t) =>
     t.true(mlfWaypointResetSpy.calledWithExactly());
 });
 
-ava('._verifyProcedureAndEntryAndExitAreValid() throws when #_procedureDefinitionModel is null', (t) => {
+ava('._verifyProcedureAndEntryAndExitAreValid() throws when #_procedureModel is null', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
 
     t.throws(() => model._verifyProcedureAndEntryAndExitAreValid('entryName', 'exitName'));

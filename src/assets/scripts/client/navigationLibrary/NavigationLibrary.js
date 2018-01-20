@@ -7,7 +7,7 @@ import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
 import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
-import ProcedureDefinitionModel from './ProcedureDefinitionModel';
+import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { degreesToRadians } from '../utilities/unitConverters';
@@ -59,19 +59,19 @@ export default class NavigationLibrary {
     }
 
     get hasSids() {
-        const sidProcedureDefinitionModels = _filter(this._procedureCollection, (procedure) => {
+        const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.SID;
         });
 
-        return sidProcedureDefinitionModels.length > 0;
+        return sidProcedureModels.length > 0;
     }
 
     get hasStars() {
-        const starProcedureDefinitionModels = _filter(this._procedureCollection, (procedure) => {
+        const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.STAR;
         });
 
-        return starProcedureDefinitionModels.length > 0;
+        return starProcedureModels.length > 0;
     }
 
     // get sidCollection() {
@@ -139,7 +139,7 @@ export default class NavigationLibrary {
                 throw new TypeError(`Expected single definition for '${sidId}' procedure, but received multiple`);
             }
 
-            this._procedureCollection[sidId] = new ProcedureDefinitionModel(PROCEDURE_TYPE.SID, sid);
+            this._procedureCollection[sidId] = new ProcedureModel(PROCEDURE_TYPE.SID, sid);
         });
 
         _forEach(stars, (star, starId) => {
@@ -147,7 +147,7 @@ export default class NavigationLibrary {
                 throw new TypeError(`Expected single definition for '${starId}' procedure, but received multiple`);
             }
 
-            this._procedureCollection[starId] = new ProcedureDefinitionModel(PROCEDURE_TYPE.STAR, star);
+            this._procedureCollection[starId] = new ProcedureModel(PROCEDURE_TYPE.STAR, star);
         });
     }
 
@@ -287,11 +287,11 @@ export default class NavigationLibrary {
     }
 
     /**
-     * Return the corresponding ProcedureDefinitionModel with the specified identifier
+     * Return the corresponding ProcedureModel with the specified identifier
      *
      * @for NavigationLibrary
      * @method getProcedure
-     * @return {ProcedureDefinitionModel}
+     * @return {ProcedureModel}
      */
     getProcedure(procedureId) {
         if (!this.hasProcedure(procedureId)) {
@@ -375,7 +375,7 @@ export default class NavigationLibrary {
      */
     _getAllFixNamesInUse() {
         const airwayFixes = _map(this._airwayCollection, (airwayModel) => airwayModel.fixNameCollection);
-        const fixGroups = _map(this._procedureCollection, (procedureDefinitionModel) => procedureDefinitionModel.getAllFixNamesInUse());
+        const fixGroups = _map(this._procedureCollection, (procedureModel) => procedureModel.getAllFixNamesInUse());
         const uniqueFixNames = _without(_uniq(_flatten([...airwayFixes, ...fixGroups])), undefined);
 
         return uniqueFixNames.sort();

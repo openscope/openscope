@@ -50,15 +50,15 @@ export default class LegModel {
         this._legType = '';
 
         /**
-         * Reference to an instance of a `ProcedureDefinitionModel` object (if this is a procedure leg)
+         * Reference to an instance of a `ProcedureModel` object (if this is a procedure leg)
          *
          * @for LegModel
-         * @property _procedureDefinitionModel
-         * @type {ProcedureDefinitionModel|null}
+         * @property _procedureModel
+         * @type {ProcedureModel|null}
          * @default null
          * @private
          */
-        this._procedureDefinitionModel = null;
+        this._procedureModel = null;
 
         /**
          * Array of `WaypointModel`s that have been passed (or skipped)
@@ -163,7 +163,7 @@ export default class LegModel {
      * @type {boolean}
      */
     get isSidLeg() {
-        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.SID;
+        return this.isProcedureLeg && this._procedureModel.procedureType === PROCEDURE_TYPE.SID;
     }
 
     /**
@@ -174,7 +174,7 @@ export default class LegModel {
      * @type {boolean}
      */
     get isStarLeg() {
-        return this.isProcedureLeg && this._procedureDefinitionModel.procedureType === PROCEDURE_TYPE.STAR;
+        return this.isProcedureLeg && this._procedureModel.procedureType === PROCEDURE_TYPE.STAR;
     }
 
     /**
@@ -241,7 +241,7 @@ export default class LegModel {
         this._ensureRouteStringIsSingleSegment(routeString);
         this._legType = this._determineLegType(airwayOrProcedureName, navigationLibrary);
         this._airwayModel = navigationLibrary.getAirway(airwayOrProcedureName);
-        this._procedureDefinitionModel = navigationLibrary.getProcedure(airwayOrProcedureName);
+        this._procedureModel = navigationLibrary.getProcedure(airwayOrProcedureName);
         this._waypointCollection = this._generateWaypointCollection(entryOrFixName, exit);
 
         return this;
@@ -259,7 +259,7 @@ export default class LegModel {
 
         this._airwayModel = null;
         this._legType = '';
-        this._procedureDefinitionModel = null;
+        this._procedureModel = null;
         this._previousWaypointCollection = [];
         this._routeString = '';
         this._waypointCollection = [];
@@ -336,7 +336,7 @@ export default class LegModel {
 
         this._verifyProcedureAndEntryAndExitAreValid(entryOrFixName, exit);
 
-        return this._procedureDefinitionModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        return this._procedureModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
     }
 
     // ------------------------------ PUBLIC ------------------------------
@@ -471,7 +471,7 @@ export default class LegModel {
             return;
         }
 
-        return this._procedureDefinitionModel.icao;
+        return this._procedureModel.icao;
     }
 
     /**
@@ -486,7 +486,7 @@ export default class LegModel {
             return;
         }
 
-        return this._procedureDefinitionModel.name;
+        return this._procedureModel.name;
     }
 
     /**
@@ -665,7 +665,7 @@ export default class LegModel {
         }
 
 
-        if (!this._procedureDefinitionModel.hasEntry(nextEntryName)) {
+        if (!this._procedureModel.hasEntry(nextEntryName)) {
             return;
         }
 
@@ -696,7 +696,7 @@ export default class LegModel {
             return;
         }
 
-        if (!this._procedureDefinitionModel.hasExit(nextExitName)) {
+        if (!this._procedureModel.hasExit(nextExitName)) {
             return;
         }
 
@@ -764,17 +764,17 @@ export default class LegModel {
      * @private
      */
     _verifyProcedureAndEntryAndExitAreValid(entryName, exitName) {
-        if (_isNil(this._procedureDefinitionModel)) {
+        if (_isNil(this._procedureModel)) {
             throw new TypeError('Unable to generate waypoints because the requested procedure does not exist');
         }
 
-        const procedureIcao = this._procedureDefinitionModel.icao;
+        const procedureIcao = this._procedureModel.icao;
 
-        if (!this._procedureDefinitionModel.hasEntry(entryName)) {
+        if (!this._procedureModel.hasEntry(entryName)) {
             throw new TypeError(`Expected valid entry of ${procedureIcao}, but received ${entryName}`);
         }
 
-        if (!this._procedureDefinitionModel.hasExit(exitName)) {
+        if (!this._procedureModel.hasExit(exitName)) {
             throw new TypeError(`Expected valid exit of ${procedureIcao}, but received ${exitName}`);
         }
     }

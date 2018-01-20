@@ -13,15 +13,15 @@ import { PROCEDURE_TYPE } from '../constants/routeConstants';
  * Used by FMS to generate waypoints from instrument procedures outlined in an
  * airport's JSON file. The FMS is given a route on spawn, or a reroute by a
  * controller, and if it contains a procedure, it will look up the associated
- * `ProcedureDefinitionModel`, and request the waypoints for that procedure at
+ * `ProcedureModel`, and request the waypoints for that procedure at
  * the planned entry and exit points, which are then consumed by the FMS for
  * navigation purposes.
  *
- * @class ProcedureDefinitionModel
+ * @class ProcedureModel
  */
-export default class ProcedureDefinitionModel {
+export default class ProcedureModel {
     /**
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @constructor
      * @param procedureType {string} must belong to the `PROCEDURE_TYPE` enum
      * @param data {object} JSON data from airport file
@@ -39,7 +39,7 @@ export default class ProcedureDefinitionModel {
          * any waypoints, provided that no combination of entry/exit would result
          * in fewer than two waypoints.
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _body
          * @type {array<array<string>|<string>>}
          * @default []
@@ -56,7 +56,7 @@ export default class ProcedureDefinitionModel {
          *     ['FIXXA', 'FIXXC']
          * ]
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _draw
          * @type {array<array<string>>}
          * @default []
@@ -70,7 +70,7 @@ export default class ProcedureDefinitionModel {
          * Each entry fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that entry in order to join the body of the procedure.
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _entryPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -84,7 +84,7 @@ export default class ProcedureDefinitionModel {
          * Each exit fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that exit in order to leave the procedure.
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _exitPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -95,7 +95,7 @@ export default class ProcedureDefinitionModel {
         /**
          * The ICAO identifier for this procedure
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _icao
          * @type {string}
          * @default ''
@@ -109,7 +109,7 @@ export default class ProcedureDefinitionModel {
          * Nonstandard spellings may be used to achieve the desired pronunciations,
          * since this is only used for speech synthesis.
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _name
          * @type {string}
          * @default ''
@@ -120,7 +120,7 @@ export default class ProcedureDefinitionModel {
         /**
          * The type of instrument procedure (must be one of `PROCEDURE_TYPE`)
          *
-         * @for ProcedureDefinitionModel
+         * @for ProcedureModel
          * @property _procedureType
          * @type {string}
          * @default ''
@@ -134,7 +134,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return value of `#_draw`
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @property draw
      * @type {array}
      */
@@ -145,7 +145,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return value of `#_icao`
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @property icao
      * @type {string}
      */
@@ -156,7 +156,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return value of `#_name`
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @property name
      * @type {string}
      */
@@ -167,7 +167,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return value of `#_procedureType`
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @property procedureType
      * @type {string}
      */
@@ -180,7 +180,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Initialize class properties
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method init
      * @param procedureType {string} must belong to the `PROCEDURE_TYPE` enum
      * @param data {object} JSON data from airport file
@@ -206,7 +206,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Reset class properties
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method reset
      * @chainable
      */
@@ -225,7 +225,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Initialize `#_entryPoints` and `#_exitPoints` for 'SID' procedure
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _initEntriesAndExitsForSid
      * @param data {object} JSON data from airport file
      * @private
@@ -241,7 +241,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Initialize `#_entryPoints` and `#_exitPoints` for 'STAR' procedure
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _initEntriesAndExitsForStar
      * @param data {object} JSON data from airport file
      * @private
@@ -259,7 +259,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return an array of names of all fixes existing in any segment of this procedure
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method getAllFixNamesInUse
      * @return {array<string>}
      */
@@ -284,7 +284,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return the name of a randomly selected exit point
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method getRandomExitPoint
      * @return {string}
      */
@@ -299,7 +299,7 @@ export default class ProcedureDefinitionModel {
     /**
     * Given an entry point and exit point, return a list of all applicable waypoints
     *
-    * @for ProcedureDefinitionModel
+    * @for ProcedureModel
     * @method getWaypointModelsForEntryAndExit
     * @param entry {string} name of the requested entry point
     * @param exit {string} name of the requested exit point
@@ -328,7 +328,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return whether this procedure contains an entry point with the specified name
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method hasEntry
      * @return {boolean}
      */
@@ -339,7 +339,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return whether this procedure contains an exit point with the specified name
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method hasExit
      * @return {boolean}
      */
@@ -352,7 +352,7 @@ export default class ProcedureDefinitionModel {
     /**
     * Generate new `WaypointModel`s for the body portion of the procedure
     *
-    * @for ProcedureDefinitionModel
+    * @for ProcedureModel
     * @method _generateWaypointsForBody
     * @return {array<WaypointModel>}
     * @private
@@ -364,7 +364,7 @@ export default class ProcedureDefinitionModel {
     /**
     * Generate new `WaypointModel`s for the specified entry
     *
-    * @for ProcedureDefinitionModel
+    * @for ProcedureModel
     * @method _generateWaypointsForEntry
     * @param entryPoint {string} name of the requested entry point
     * @return {array<WaypointModel>}
@@ -381,7 +381,7 @@ export default class ProcedureDefinitionModel {
     /**
     * Generate new `WaypointModel`s for the specified exit
     *
-    * @for ProcedureDefinitionModel
+    * @for ProcedureModel
     * @method _generateWaypointsForEntry
     * @param exitPoint {string} name of the requested exit point
     * @return {array<WaypointModel>}
@@ -398,7 +398,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return an array containing names of all fixes existing in the body
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _getFixNamesFromBody
      * @return {array<string>}
      * @private
@@ -412,7 +412,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return an array containing names of all fixes existing in the draw array
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _getFixNamesFromDraw
      * @return {array<string>}
      * @private
@@ -427,7 +427,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return an array containing names of all fixes existing in any entry
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _getFixNamesFromEntries
      * @return {array<string>}
      * @private
@@ -449,7 +449,7 @@ export default class ProcedureDefinitionModel {
     /**
      * Return an array containing names of all fixes existing in any exit
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _getFixNamesFromExits
      * @return {array<string>}
      * @private
@@ -473,7 +473,7 @@ export default class ProcedureDefinitionModel {
      *
      * Ex:    ['FIXXA', 'A100']    -->    'FIXXA'
      *
-     * @for ProcedureDefinitionModel
+     * @for ProcedureModel
      * @method _getFixNameFromRestrictedFixArray
      * @param restrictedFix {array<string>}
      * @return {string}
