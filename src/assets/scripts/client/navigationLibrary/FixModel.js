@@ -117,47 +117,4 @@ export default class FixModel extends BaseModel {
     clonePosition() {
         return _cloneDeep(this._positionModel);
     }
-
-    // FIXME: Would be good if we can get rid of this, and create WaypointModels through the FMS only
-    /**
-     * Build a new `WaypointModel` from the current instance.
-     *
-     * This method provides a way to create a `WaypointModel` with the current
-     * properties of a `FixModel` instance.
-     *
-     * This is used by `LegModel` when building a flight plan from `routeString`. A `directRouteString`
-     * will result in finding a `FixModel`. From that `FixModel` we need to be able to create a
-     * `WaypointModel` that the Fms can consume.
-     *
-     * There is a method of the same name in the `StandardRouteWaypointModel` that does this same thing
-     * but will be used only for `procedureRouteStrings`.
-     *
-     * @for FixModel
-     * @method toWaypointModel
-     * @param isHold {boolean}
-     * @param holdProps {object}
-     * @return {WaypointModel}
-     */
-    toWaypointModel(/* isHold = false, holdProps = {} */) {
-        // FIXME: Restore holding functionality
-        // const waypointProps = {
-        //     name: this.name,
-        //     positionModel: this.clonePosition(),
-        //     altitudeMaximum: INVALID_NUMBER,
-        //     altitudeMinimum: INVALID_NUMBER,
-        //     speedMaximum: INVALID_NUMBER,
-        //     speedMinimum: INVALID_NUMBER
-        // };
-        //
-        // // TODO: Move these default behaviors to a constants file
-        // if (isHold) {
-        //     waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
-        //     waypointProps.isHold = true;
-        //     waypointProps.legLength = _get(holdProps, 'legLength', 1);
-        //     waypointProps.timer = -999;
-        //     waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
-        // }
-
-        return new WaypointModel(this.name);
-    }
 }

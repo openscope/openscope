@@ -1,15 +1,12 @@
 import ava from 'ava';
-import _isArray from 'lodash/isArray';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
 import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
-import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
 } from './_mocks/fixMocks';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // fixtures
 // eslint-disable-next-line no-unused-vars
@@ -77,56 +74,4 @@ ava('.clonePosition() returns a DynamicPositionModel with the position informati
     t.true(result instanceof DynamicPositionModel);
     t.true(result.latitude === result.latitude);
     t.true(result.longitude === result.longitude);
-});
-
-ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    const result = model.toWaypointModel();
-
-    t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK);
-    t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeMaximum === INVALID_NUMBER);
-    t.true(result.altitudeMinimum === INVALID_NUMBER);
-    t.true(result.speedMaximum === INVALID_NUMBER);
-    t.true(result.speedMinimum === INVALID_NUMBER);
-});
-
-// FIXME: Trying to get rid of FixModel.toWaypointModel() method in favor of creating waypoints
-// always from within the FMS and/or RouteModel
-ava.skip('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    const result = model.toWaypointModel(true);
-
-    t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK);
-    t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeMaximum === INVALID_NUMBER);
-    t.true(result.altitudeMinimum === INVALID_NUMBER);
-    t.true(result.speedMaximum === INVALID_NUMBER);
-    t.true(result.speedMinimum === INVALID_NUMBER);
-    t.true(result._turnDirection === 'right');
-    t.true(result._legLength === 1);
-    t.true(result.timer === INVALID_NUMBER);
-});
-
-ava.skip('.toWaypointModel() returns a new WaypointModel instance with specific hold properties', (t) => {
-    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
-    const holdPropsMock = {
-        turnDirection: 'right',
-        legLength: '3min'
-    };
-    const result = model.toWaypointModel(true, holdPropsMock);
-
-    t.true(result instanceof WaypointModel);
-    t.true(result._name === FIXNAME_MOCK);
-    t.true(result.isHold);
-    t.true(_isArray(result.relativePosition));
-    t.true(result.altitudeMaximum === INVALID_NUMBER);
-    t.true(result.altitudeMinimum === INVALID_NUMBER);
-    t.true(result.speedMaximum === INVALID_NUMBER);
-    t.true(result.speedMinimum === INVALID_NUMBER);
-    t.true(result._turnDirection === holdPropsMock.turnDirection);
-    t.true(result._legLength === holdPropsMock.legLength);
-    t.true(result.timer === -999);
 });

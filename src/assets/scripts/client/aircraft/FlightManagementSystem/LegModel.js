@@ -188,7 +188,6 @@ export default class LegModel {
         return this._legType;
     }
 
-    // FIXME: Do we need this?
     /**
      * Returns the `WaypointModel` immediately following the `#currentWaypoint`
      *

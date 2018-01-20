@@ -379,13 +379,6 @@ export default class Pilot {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        // FIXME: Return appropriate response when provided route is invalid
-        // const isValid = this._fms.isValidRoute(routeString);
-        //
-        // if (!isValid) {
-        //     return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
-        // }
-
         if (!this._fms.isValidRouteAmendment(routeString)) {
             return [
                 false,

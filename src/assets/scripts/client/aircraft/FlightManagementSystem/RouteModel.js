@@ -65,7 +65,6 @@ export default class RouteModel extends BaseModel {
          */
         this._navigationLibrary = navigationLibrary;
 
-        // FIXME: Use this
         /**
          * Array of `LegModel`s that have been passed (or skipped)
          *
