@@ -6,3 +6,8 @@
  * @type {string}
  */
 export const AIRLINE_NAME_FLEET_SEPARATOR = '/';
+
+/**
+ * Default callsign format (three numbers)
+*/
+export const DEFAULT_CALLSIGN_FORMAT = '###';

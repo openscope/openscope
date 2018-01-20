@@ -7,9 +7,10 @@ import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
+import flightNumberBuilder from '../airline/flightNumberBuilder';
 import { INVALID_INDEX } from '../constants/globalConstants';
-import { choose } from '../utilities/generalUtilities';
 import { isEmptyObject } from '../utilities/validatorUtilities';
+import { DEFAULT_CALLSIGN_FORMAT } from '../constants/airlineConstants';
 
 /**
  * An aircraft operating agency
@@ -76,7 +77,7 @@ export default class AirlineModel extends BaseModel {
              * @default ['###']
             */
 
-            callsignFormats: ['###']
+            callsignFormats: [DEFAULT_CALLSIGN_FORMAT]
         };
 
         /**
@@ -193,36 +194,11 @@ export default class AirlineModel extends BaseModel {
         return this._getRandomAircraftTypeFromFleet(fleet);
     }
 
-    // TODO: the logic here can be simplified.
-    /**
-     * Create a flight number/identifier
-     *
-     * This method should only be called from the `AircraftController` so the controller
-     * can guarantee unique `flightNumbers` across all `AirlineModels`.
-     *
-     * @for AirlineModel
-     * @method generateFlightNumber
-     * @return flightNumber {string}
-     */
     generateFlightNumber() {
-        let flightNumber = '';
-        const numbersList = '0123456789';
-        const alphaList = 'abcdefghijklmnopqrstuvwxyz';
-        const formats = this.flightNumberGeneration.callsignFormats;
+        const flightNumber = flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
 
-        const chosenFormat = choose(formats);
-        for (let i = 0; i < chosenFormat.length; i++) {
-            if (chosenFormat[i] === '#') {
-                if (i !== 0) {
-                    flightNumber += choose(numbersList);
-                } else {
-                    flightNumber += choose(numbersList.substr(1));
-                }
-            } else if (chosenFormat[i] === 'A') {
-                flightNumber += choose(alphaList);
-            } else {
-                console.warn(`${this.icao} has an incorrect callsign format, it should only contain 'A' or '#'`);
-            }
+        if (this.activeFlightNumbers.indexOf(flightNumber) !== -1) {
+            return flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
         }
 
         return flightNumber;
