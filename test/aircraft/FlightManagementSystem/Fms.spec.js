@@ -406,9 +406,12 @@ ava('.getBottomAltitude() returns #_routeModel.getBottomAltitude()', (t) => {
 });
 
 ava('.getFullRouteStringWithoutAirportsWithSpaces calls #_routeModel.getFullRouteStringWithoutAirportsWithSpaces()', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString('KLAS07R.COWBY6.DRK');
     const routeModelSpy = sinon.spy(fms._routeModel, 'getFullRouteStringWithoutAirportsWithSpaces');
+    const expectedResult = 'COWBY6 DRK';
+    const result = fms.getFullRouteStringWithoutAirportsWithSpaces();
 
+    t.true(result === expectedResult);
     t.true(routeModelSpy.calledWithExactly());
 });
 

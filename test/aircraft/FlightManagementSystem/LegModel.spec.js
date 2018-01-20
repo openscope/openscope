@@ -662,6 +662,36 @@ ava('._resetWaypointCollection() calls .reset() method of all waypoints', (t) =>
     t.true(mlfWaypointResetSpy.calledWithExactly());
 });
 
+ava('._verifyAirwayAndEntryAndExitAreValid() throws when #_airwayModel is null', (t) => {
+    const model = new LegModel(navigationLibrary, directRouteStringMock);
+
+    t.throws(() => model._verifyAirwayAndEntryAndExitAreValid('entryName', 'exitName'));
+});
+
+ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified entry is not on the airway', (t) => {
+    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const invalidEntryName = 'invalidEntry';
+    const validExitName = 'SUVIE';
+
+    t.throws(() => model._verifyAirwayAndEntryAndExitAreValid(invalidEntryName, validExitName));
+});
+
+ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified exit is not on the airway', (t) => {
+    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const validEntryName = 'DISBE';
+    const invalidExitName = 'invalidExit';
+
+    t.throws(() => model._verifyAirwayAndEntryAndExitAreValid(validEntryName, invalidExitName));
+});
+
+ava('._verifyAirwayAndEntryAndExitAreValid() does not throw when the specified entry and exit are both on the airway', (t) => {
+    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const validEntryName = 'DISBE';
+    const validExitName = 'SUVIE';
+
+    t.notThrows(() => model._verifyAirwayAndEntryAndExitAreValid(validEntryName, validExitName));
+});
+
 ava('._verifyProcedureAndEntryAndExitAreValid() throws when #_procedureModel is null', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
 

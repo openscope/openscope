@@ -16,7 +16,7 @@ import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFix
 let navigationLibraryFixture;
 const airwayNameMock = 'V587';
 const validAirwayFixes = ['DAG', 'JOKUR', 'DANBY', 'WHIGG', 'BOACH', 'CRESO', 'BLD'];
-const airwayWithInvalidFix = ['DAG', 'JOKUR', 'UNKNOWN', 'WHIGG', 'BOACH', 'CRESO', 'BLD'];
+const airwayWithUnknownFix = ['DAG', 'JOKUR', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'WHIGG', 'BOACH', 'CRESO', 'BLD'];
 const fixNotOnAirway = 'PRINO';
 
 ava.beforeEach(() => {
@@ -28,7 +28,7 @@ ava.afterEach(() => {
 });
 
 ava('throws when any fix in the airway definition is not defined in the fixes section', (t) => {
-    t.throws(() => new AirwayModel(airwayNameMock, airwayWithInvalidFix, navigationLibraryFixture));
+    t.throws(() => new AirwayModel(airwayNameMock, airwayWithUnknownFix, navigationLibraryFixture));
 });
 
 ava('throws when an empty airway name is given', (t) => {
@@ -48,8 +48,8 @@ ava('initializes correctly when provided valid airway name and fix list', (t) =>
     const model = new AirwayModel(airwayNameMock, validAirwayFixes, navigationLibraryFixture);
 
     t.true(model._icao === airwayNameMock);
-    t.true(_isArray(model._fixCollection));
-    t.true(model._fixCollection.length === 7);
+    t.true(_isArray(model._fixNameCollection));
+    t.true(model._fixNameCollection.length === 7);
     t.deepEqual(model._navigationLibrary, navigationLibraryFixture);
 });
 
@@ -102,28 +102,18 @@ ava('.getWaypointModelsForEntryAndExit() calls ._getFixNamesFromIndexToIndex() c
     t.deepEqual(fixNames, expectedFixNames);
 });
 
-ava('._findIndexOfFixName() returns -1 when specified fix is not in the #_fixCollection', (t) => {
+ava('.hasFixName() returns false when the specified fix is not on the airway', (t) => {
     const model = new AirwayModel(airwayNameMock, validAirwayFixes, navigationLibraryFixture);
-    const expectedResult = -1;
-    const result = model._findIndexOfFixName('ABCDE');
+    const result = model.hasFixName('ABCDE');
 
-    t.true(result === expectedResult);
+    t.false(result);
 });
 
-ava('._findIndexOfFixName() returns the correct index for upper cased fix name', (t) => {
+ava('.hasFixName() returns true when the specified fix is on the airway', (t) => {
     const model = new AirwayModel(airwayNameMock, validAirwayFixes, navigationLibraryFixture);
-    const expectedResult = 2;
-    const result = model._findIndexOfFixName('DANBY');
+    const result = model.hasFixName('BOACH');
 
-    t.true(result === expectedResult);
-});
-
-ava('._findIndexOfFixName() returns the correct index for lower cased fix name', (t) => {
-    const model = new AirwayModel(airwayNameMock, validAirwayFixes, navigationLibraryFixture);
-    const expectedResult = 2;
-    const result = model._findIndexOfFixName('danby');
-
-    t.true(result === expectedResult);
+    t.true(result);
 });
 
 ava('._getFixNamesFromIndexToIndex() throws when specified indices are the same', (t) => {

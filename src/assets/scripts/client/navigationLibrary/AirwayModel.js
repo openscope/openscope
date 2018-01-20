@@ -42,6 +42,8 @@ export default class AirwayModel {
         this._icao = icao;
         this._navigationLibrary = navigationLibrary;
 
+        this._verifyFixNamesExistInNavigationLibrary(fixNames);
+
         return this;
     }
 
@@ -51,12 +53,6 @@ export default class AirwayModel {
         this._navigationLibrary = null;
 
         return this;
-    }
-
-    _initFixCollection(fixNames) {
-        this._verifyFixNamesExistInNavigationLibrary(fixNames);
-
-        this._fixNameCollection = fixNames;
     }
 
     _verifyFixNamesExistInNavigationLibrary(fixNames) {
