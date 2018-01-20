@@ -276,17 +276,22 @@ export default class LegModel {
      * @param navigationLibrary {NavigationLibrary}
      * @return {string} property of `LEG_TYPE` enum
      */
-    _determineLegType(/* airwayOrProcedureName, navigationLibrary */) {
+    _determineLegType(airwayOrProcedureName, navigationLibrary) {
         if (this._routeString.indexOf('.') === INVALID_NUMBER) {
             return LEG_TYPE.DIRECT;
         }
 
-        // FIXME: Uuncomment when implementing airways
-        // if (navigationLibrary.hasAirway(airwayOrProcedureName)) {
-        //     return LEG_TYPE.AIRWAY;
-        // }
+        if (navigationLibrary.hasAirway(airwayOrProcedureName)) {
+            return LEG_TYPE.AIRWAY;
+        }
 
-        return LEG_TYPE.PROCEDURE;
+        if (navigationLibrary.hasProcedure(airwayOrProcedureName)) {
+            return LEG_TYPE.PROCEDURE;
+        }
+
+        throw new TypeError(`Expected airway or procedure name, but we can't ' +
+            'determine what kind of leg ${airwayOrProcedureName} is`
+        );
     }
 
     /**
@@ -323,12 +328,11 @@ export default class LegModel {
             return [new WaypointModel(entryOrFixName)];
         }
 
-        // FIXME: Uncomment this when implementing airways
-        // if (this._legType === LEG_TYPE.AIRWAY) {
-        //     this._verifyAirwayAndEntryAndExitAreValid();
-        //
-        //     return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
-        // }
+        if (this._legType === LEG_TYPE.AIRWAY) {
+            this._verifyAirwayAndEntryAndExitAreValid(entryOrFixName, exit);
+
+            return this._airwayModel.getWaypointModelsForEntryAndExit(entryOrFixName, exit);
+        }
 
         this._verifyProcedureAndEntryAndExitAreValid(entryOrFixName, exit);
 
@@ -722,6 +726,31 @@ export default class LegModel {
 
         for (let i = 0; i < this._previousWaypointCollection.length; i++) {
             this._previousWaypointCollection[i].reset();
+        }
+    }
+
+    /**
+     * Ensure that the airway, entry, and exit are all valid and can be used to generate waypoints
+     *
+     * Note that this should only be run on AIRWAY legs!
+     *
+     * @for LegModel
+     * @method _verifyAirwayAndEntryAndExitAreValid
+     * @private
+     */
+    _verifyAirwayAndEntryAndExitAreValid(entryName, exitName) {
+        if (_isNil(this._airwayModel)) {
+            throw new TypeError('Unable to generate waypoints because the requested airway does not exist');
+        }
+
+        const airwayIcao = this._airwayModel.icao;
+
+        if (!this._airwayModel.hasFixName(entryName)) {
+            throw new TypeError(`Expected valid entry of ${airwayIcao}, but received ${entryName}`);
+        }
+
+        if (!this._airwayModel.hasFixName(exitName)) {
+            throw new TypeError(`Expected valid exit of ${airwayIcao}, but received ${exitName}`);
         }
     }
 

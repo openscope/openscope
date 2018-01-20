@@ -1,6 +1,7 @@
-import _findIndex from 'lodash/findIndex';
+import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
+import _some from 'lodash/some';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
@@ -14,45 +15,57 @@ export default class AirwayModel {
             throw new TypeError(`Expected a list of fix names for airway "${icao}", but received none`);
         }
 
-        this._icao = '';
+        this._fixNameCollection = [];
 
-        this._fixCollection = [];
+        this._icao = '';
 
         this._navigationLibrary = null;
 
         this.init(icao, fixNames, navigationLibrary);
     }
 
+    /**
+     * Return the #_fixNameCollection
+     *
+     * @for AirwayModel
+     * @property fixNameCollection
+     * @type {array<string>}
+     */
+    get fixNameCollection() {
+        return this._fixNameCollection;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     init(icao, fixNames, navigationLibrary) {
+        this._fixNameCollection = fixNames;
         this._icao = icao;
         this._navigationLibrary = navigationLibrary;
-
-        this._initFixCollection(fixNames);
 
         return this;
     }
 
     reset() {
+        this._fixNameCollection = [];
         this._icao = '';
-        this._fixCollection = [];
         this._navigationLibrary = null;
 
         return this;
     }
 
     _initFixCollection(fixNames) {
-        this._fixCollection = _map(fixNames, (fixName) => {
-            const fixModel = this._navigationLibrary.findFixByName(fixName);
+        this._verifyFixNamesExistInNavigationLibrary(fixNames);
 
-            if (fixModel === null) {
+        this._fixNameCollection = fixNames;
+    }
+
+    _verifyFixNamesExistInNavigationLibrary(fixNames) {
+        _forEach(fixNames, (fixName) => {
+            if (!this._navigationLibrary.hasFixName(fixName)) {
                 throw new TypeError(`Expected to find fix "${fixName}" for ` +
                     `airway "${this._icao}", but it is not a defined fix!`
                 );
             }
-
-            return fixModel;
         });
     }
 
@@ -65,8 +78,8 @@ export default class AirwayModel {
             return;
         }
 
-        const indexOfEntryFix = this._findIndexOfFixName(entryName);
-        const indexOfExitFix = this._findIndexOfFixName(exitName);
+        const indexOfEntryFix = this._fixNameCollection.indexOf(entryName);
+        const indexOfExitFix = this._fixNameCollection.indexOf(exitName);
 
         if (indexOfEntryFix === INVALID_INDEX) {
             console.error(`Expected valid entry of "${this._icao}" airway, but received "${entryName}"`);
@@ -86,11 +99,18 @@ export default class AirwayModel {
         return waypointModels;
     }
 
-    // ------------------------------ PRIVATE ------------------------------
-
-    _findIndexOfFixName(fixName) {
-        return _findIndex(this._fixCollection, (fixModel) => fixModel.name === fixName.toUpperCase());
+    /**
+     * Returns whether the specified fix name is on the airway
+     *
+     * @for AirwayModel
+     * @method hasFixName
+     * @return {boolean}
+     */
+    hasFixName(fixName) {
+        return this._fixNameCollection.indexOf(fixName) !== INVALID_INDEX;
     }
+
+    // ------------------------------ PRIVATE ------------------------------
 
     _getFixNamesFromIndexToIndex(startIndex, endIndex) {
         if (startIndex === endIndex) {
@@ -99,16 +119,10 @@ export default class AirwayModel {
 
         const numberOfFixes = Math.abs(endIndex - startIndex) + 1;
 
-        if (startIndex > endIndex) {
-            const fixModels = this._fixCollection.slice().splice(endIndex, numberOfFixes);
-            const fixNames = _map(fixModels, (fixModel) => fixModel.name);
-
-            return fixNames.reverse();
+        if (endIndex > startIndex) {
+            return this._fixNameCollection.slice().splice(startIndex, numberOfFixes);
         }
 
-        const fixModels = this._fixCollection.slice().splice(startIndex, numberOfFixes);
-        const fixNames = _map(fixModels, (fixModel) => fixModel.name);
-
-        return fixNames;
+        return this._fixNameCollection.slice().splice(endIndex, numberOfFixes).reverse();
     }
 }

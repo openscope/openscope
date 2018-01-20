@@ -3,6 +3,7 @@ import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
 import AirwayModel from './AirwayModel';
 import FixCollection from './FixCollection';
@@ -23,7 +24,7 @@ export default class NavigationLibrary {
      * @param airportJson {object}
      */
     constructor(airportJson) {
-        this._airwayCollection = [];
+        this._airwayCollection = {};
 
         // /**
         //  *
@@ -124,7 +125,7 @@ export default class NavigationLibrary {
                 throw new TypeError(`Expected single defintiion for "${airwayName}" airway, but received multiple`);
             }
 
-            this._airwayCollection.push(new AirwayModel(airwayName, fixNames, this));
+            this._airwayCollection[airwayName] = new AirwayModel(airwayName, fixNames, this);
         });
     }
 
@@ -167,7 +168,7 @@ export default class NavigationLibrary {
     reset() {
         FixCollection.removeItems();
 
-        this._airwayCollection = [];
+        this._airwayCollection = {};
         this._procedureCollection = {};
         this._referencePosition = null;
     }
@@ -270,12 +271,28 @@ export default class NavigationLibrary {
         return FixCollection.findFixByName(fixName);
     }
 
-    // FIXME: Fill me out when implementing airways!
-    getAirway(/* airwayId */) {
-        // for now, will return null because we don't support airways yet
-        return null;
+    /**
+     * Return the corresponding AirwayModel with the specified identifier
+     *
+     * @for NavigationLibrary
+     * @method getAirway
+     * @return {AirwayModel}
+     */
+    getAirway(airwayId) {
+        if (!this.hasAirway(airwayId)) {
+            return null;
+        }
+
+        return this._airwayCollection[airwayId];
     }
 
+    /**
+     * Return the corresponding ProcedureDefinitionModel with the specified identifier
+     *
+     * @for NavigationLibrary
+     * @method getProcedure
+     * @return {ProcedureDefinitionModel}
+     */
     getProcedure(procedureId) {
         if (!this.hasProcedure(procedureId)) {
             return null;
@@ -296,10 +313,16 @@ export default class NavigationLibrary {
         return FixCollection.getFixRelativePosition(fixName);
     }
 
-    // FIXME: Fill me out when implementing airways!
-    hasAirway(/* airwayId */) {
-        // for now, will return false because we don't support airways yet
-        return false;
+    /**
+     * Return whether the specified airway identifier is listed in the #_airwayCollection
+     *
+     * @for NavigationLibrary
+     * @method hasAirway
+     * @param airwayId {string}
+     * @return {boolean}
+     */
+    hasAirway(airwayId) {
+        return airwayId in this._airwayCollection;
     }
 
     /**
@@ -307,11 +330,11 @@ export default class NavigationLibrary {
     * of a specific `fixName`.
     *
     * @for NavigationLibrary
-    * @method hasFix
+    * @method hasFixName
     * @param fixName {string}
     * @return {boolean}
     */
-    hasFix(fixName) {
+    hasFixName(fixName) {
         const fixOrNull = this.findFixByName(fixName);
 
         return !_isNil(fixOrNull);
@@ -331,7 +354,9 @@ export default class NavigationLibrary {
      */
     _showConsoleWarningForUndefinedFixes() {
         const allFixNames = this._getAllFixNamesInUse();
-        const missingFixes = allFixNames.filter((fix) => !FixCollection.findFixByName(fix));
+        const missingFixes = allFixNames.filter((fix) =>
+            !FixCollection.findFixByName(fix)
+        );
 
         if (missingFixes.length < 1) {
             return;
@@ -349,8 +374,9 @@ export default class NavigationLibrary {
      * @private
      */
     _getAllFixNamesInUse() {
+        const airwayFixes = _map(this._airwayCollection, (airwayModel) => airwayModel.fixNameCollection);
         const fixGroups = _map(this._procedureCollection, (procedureDefinitionModel) => procedureDefinitionModel.getAllFixNamesInUse());
-        const uniqueFixNames = _uniq(_flatten(fixGroups));
+        const uniqueFixNames = _without(_uniq(_flatten([...airwayFixes, ...fixGroups])), undefined);
 
         return uniqueFixNames.sort();
     }
