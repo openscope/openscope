@@ -194,6 +194,12 @@ export default class AirlineModel extends BaseModel {
         return this._getRandomAircraftTypeFromFleet(fleet);
     }
 
+    // TODO: the logic here can be simplified.
+    /**
+     * @for AirlineModel
+     * @method generateFlightNumber
+     * @return flightNumber {string}
+    */
     generateFlightNumber() {
         const flightNumber = flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
 
