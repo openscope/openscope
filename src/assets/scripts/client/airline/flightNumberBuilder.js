@@ -6,8 +6,11 @@ const NUMERIC = '0123456789';
 /**
  * This picks a random number. If it is the first value within the callsign (ie. i === 0), then it picks a
  * number between 1 and 9. Otherwise, it picks a number between 0 and 9.
+ * @function _generateNumericValue
+ * @param i {number}
+ * @return NUMERIC {string}
 */
-const generateNumericValue = (i) => {
+const _generateNumericValue = (i) => {
     if (i === 0) {
         return choose(NUMERIC.substr(1));
     }
@@ -16,9 +19,11 @@ const generateNumericValue = (i) => {
 };
 
 /**
- * Self-explanatory; this function picks a random letter and returns it.
+ * This function picks a random letter and returns it.
+ * @function _generateAlphaValue
+ * @return ALPHA {string}
 */
-const generateAlphaValue = () => {
+const _generateAlphaValue = () => {
     return choose(ALPHA);
 };
 
@@ -29,7 +34,7 @@ const generateAlphaValue = () => {
  * @function flightNumberBuilder
  * @param callsignFormats {array}
  * @return {string}
- */
+*/
 export const flightNumberBuilder = (callsignFormats) => {
     let flightNumber = '';
     const chosenFormat = choose(callsignFormats);
@@ -37,10 +42,10 @@ export const flightNumberBuilder = (callsignFormats) => {
     for (let i = 0; i < chosenFormat.length; i++) {
         switch (chosenFormat[i]) {
             case '#':
-                flightNumber += generateNumericValue(i);
+                flightNumber += _generateNumericValue(i);
                 break;
             case 'A':
-                flightNumber += generateAlphaValue();
+                flightNumber += _generateAlphaValue();
                 break;
             default:
                 console.warn(`${this.icao} has an incorrect callsign format, it should only contain 'A' or '#'`);
