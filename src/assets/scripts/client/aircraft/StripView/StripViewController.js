@@ -132,14 +132,11 @@ export default class StripViewController {
             // is shown immediately. For arrivals, this does not work so well. We need to `$.detach() the
             // strip and re-add it to the list so it is at the end of the list.
             if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
-                stripViewModel.$element.detach();
                 this._addViewToStripList(stripViewModel);
             }
 
             if (aircraftModel.inside_ctr) {
                 stripViewModel.update(aircraftModel);
-            } else {
-                // stripViewModel.hide();
             }
         }
     }
@@ -156,7 +153,10 @@ export default class StripViewController {
         const stripViewModel = new StripViewModel(aircraftModel, stripViewCid);
 
         this._collection.addItem(stripViewModel);
-        this._addViewToStripList(stripViewModel);
+
+        if (aircraftModel.isDeparture() || aircraftModel.inside_ctr) {
+            this._addViewToStripList(stripViewModel);
+        }
     }
 
     /**
@@ -244,7 +244,7 @@ export default class StripViewController {
      */
     _addViewToStripList(stripViewModel) {
         if (!(stripViewModel instanceof StripViewModel)) {
-            throw new TypeError(`Expected an instance of StripViewModel but reveiced ${typeof stripViewModel}`);
+            throw new TypeError(`Expected an instance of StripViewModel but received ${typeof stripViewModel}`);
         }
 
         const scrollPosition = this.$stripViewList.scrollTop();
@@ -253,7 +253,6 @@ export default class StripViewController {
         // shift scroll down one strip's height
         this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
-
 
     /**
      * Event handler for when a `StripViewModel` instance is clicked

@@ -34,6 +34,8 @@
 - Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
 - Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
 - Updates KPDX to AIRAC 1802 [#851](https://github.com/openscope/openscope/issues/851)
+- Refactors `StripView` classes to not use `$.show()` and `$.hide()` [#837](https://github.com/openscope/openscope/issues/837)
+    - updates css to use `flexbox` instead of the clever `translateY()` tricks.
 
 
 

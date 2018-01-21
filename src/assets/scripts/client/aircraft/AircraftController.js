@@ -294,11 +294,12 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_visible
+     * @method isAircraftVisible
      * @param aircraft {AircraftModel}
      * @param factor {number}
+     * @returns {boolean}
      */
-    aircraft_visible(aircraft, factor = 1) {
+    isAircraftVisible(aircraft, factor = 1) {
         return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
     }
 
@@ -404,7 +405,7 @@ export default class AircraftController {
             }
 
             // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
+            if (!this.isAircraftVisible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
                 this.aircraft_remove(aircraft);
                 i -= 1;
             }
