@@ -7,8 +7,7 @@ import _map from 'lodash/map';
 import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
 import {
     AIRLINE_DEFINITION_MOCK,
-    AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK,
-    NOVEMBER_AIRLINE_MOCK
+    AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK
 } from './_mocks/airlineMocks';
 
 ava('throws when called with invalid data', (t) => {
@@ -91,14 +90,6 @@ ava('.getRandomAircraftType() calls ._getRandomAircraftTypeFromFleet() fleet is 
     model.getRandomAircraftType(fleetNameMock);
 
     t.true(_getRandomAircraftTypeFromFleetSpy.calledWithExactly(fleetNameMock));
-});
-
-ava.skip('.generateFlightNumber() creates a flightNumber with a prefix', (t) => {
-    const expectedResult = 'N';
-    const model = new AirlineModel(NOVEMBER_AIRLINE_MOCK);
-    const result = model.generateFlightNumber();
-
-    t.true(result[0] === expectedResult);
 });
 
 ava('._getRandomAircraftTypeFromFleet() throws if it received an invalid fleetName', (t) => {
