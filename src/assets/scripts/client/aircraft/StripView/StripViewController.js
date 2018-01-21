@@ -139,7 +139,7 @@ export default class StripViewController {
             if (aircraftModel.inside_ctr) {
                 stripViewModel.update(aircraftModel);
             } else {
-                stripViewModel.hide();
+                // stripViewModel.hide();
             }
         }
     }

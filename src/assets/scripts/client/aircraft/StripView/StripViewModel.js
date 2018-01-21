@@ -528,9 +528,9 @@ export default class StripViewModel extends BaseModel {
             return;
         }
 
-        this.hide();
+        // this.hide();
         this._updateStripView(aircraftModel);
-        this.show();
+        // this.show();
     }
 
     /**
