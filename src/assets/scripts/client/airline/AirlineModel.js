@@ -196,6 +196,11 @@ export default class AirlineModel extends BaseModel {
 
     // TODO: the logic here can be simplified.
     /**
+     * Creates a flight number/identifier
+     *
+     * This method should only be called from the `AircraftController` so the controller
+     * can guarantee unique `flightNumbers` across all `AirlineModels`.
+     *
      * @for AirlineModel
      * @method generateFlightNumber
      * @return flightNumber {string}
