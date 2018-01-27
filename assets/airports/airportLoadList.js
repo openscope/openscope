@@ -165,6 +165,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: true
         },
+        {
+            icao: 'epwa',
+            level: 'easy',
+            name: 'Warsaw Chopin Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'espa',
         //     level: 'easy',
