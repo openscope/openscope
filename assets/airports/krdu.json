@@ -276,12 +276,12 @@
             "icao": "BEXGO2",
             "name": "Bexgo Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["AIMHI", "BEXGO"],
             "exitPoints": {
@@ -295,12 +295,12 @@
             "icao": "BLUUE4",
             "name": "Blue Devil Four",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["RDU", "JAYRR"],
             "exitPoints": {
@@ -316,12 +316,12 @@
             "icao": "FAY3",
             "name": "Fayetteville Three",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["RDU", "EVIGY", "FAY"],
             "exitPoints": {
@@ -340,12 +340,12 @@
             "icao": "HOOKZ2",
             "name": "Hooks Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["FITON", "HOOKZ"],
             "exitPoints": {
@@ -359,12 +359,12 @@
             "icao": "HURIC2",
             "name": "Huric Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["STRMY", "HURIC"],
             "exitPoints": {
@@ -378,10 +378,10 @@
             "icao": "LWOOD2",
             "name": "Lwood Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "23L": ["#232"],
-                "23R": ["#232"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"]
             },
             "body": ["FOCAL", "EPOCH", "LWOOD"],
             "exitPoints": {
@@ -397,12 +397,12 @@
             "icao": "OXFRD2",
             "name": "Oxford Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["PEAVY", "OXFRD", "HARVY", "CARML"],
             "exitPoints": {
@@ -416,10 +416,10 @@
             "icao": "PACK7",
             "name": "Pack Seven",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "23L": ["#232"],
-                "23R": ["#232"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"]
             },
             "body": ["RDU", "LIB"],
             "exitPoints": {
@@ -435,12 +435,12 @@
             "icao": "RDU8",
             "name": "Raleigh Eight",
             "rwy": {
-                "5L": ["#054"],
-                "5R": ["#054"],
-                "14": ["#144"],
-                "23L": ["#234"],
-                "23R": ["#234"],
-                "32": ["#324"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": [],
             "exitPoints": {
@@ -472,12 +472,12 @@
             "icao": "ROZBO2",
             "name": "Rozbo Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["EAGER", "ROZBO"],
             "exitPoints": {
@@ -495,10 +495,10 @@
             "icao": "SHPRD2",
             "name": "Shepherd Two",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "23L": ["#232"],
-                "23R": ["#232"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"]
             },
             "body": ["CATAR", "WLFFF"],
             "exitPoints": {
@@ -512,12 +512,12 @@
             "icao": "TARL9",
             "name": "Tar Heel Nine",
             "rwy": {
-                "5L": ["#052"],
-                "5R": ["#052"],
-                "14": ["#142"],
-                "23L": ["#232"],
-                "23R": ["#232"],
-                "32": ["#322"]
+                "KRDU5L": ["#052"],
+                "KRDU5R": ["#052"],
+                "KRDU14": ["#142"],
+                "KRDU23L": ["#232"],
+                "KRDU23R": ["#232"],
+                "KRDU32": ["#322"]
             },
             "body": ["RDU", "ROZBO"],
             "exitPoints": {
@@ -541,10 +541,10 @@
             },
             "body": [["SBV", "A170-|S280"], "FRAZI", ["FAVKO", "A100+|A120-"], ["ALDAN", "A100+|A120-"]],
             "rwy": {
-                "5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
-                "5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
-                "23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"], "#151"],
-                "23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"]]
+                "KRDU5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
+                "KRDU5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
+                "KRDU23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"], "#151"],
+                "KRDU23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"]]
             },
             "draw": [
                 ["KPASS*", "ROBLS", "TABER", "SBV", "FRAZI", "FAVKO", "ALDAN", "GAZER", "HARSH", "BUTTS"],
@@ -564,12 +564,12 @@
             },
             "body": ["DUFFI", "MEYER", "ARGAL", "RDU"],
             "rwy": {
-                "5L": [],
-                "5R": [],
-                "14": [],
-                "23L": [],
-                "23R": [],
-                "32": []
+                "KRDU5L": [],
+                "KRDU5R": [],
+                "KRDU14": [],
+                "KRDU23L": [],
+                "KRDU23R": [],
+                "KRDU32": []
             },
             "draw": [
                 ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
@@ -588,10 +588,10 @@
             },
             "body": [["BLOGS", "A110+|A120-|S250"], ["CABED", "A80+|A90-"]],
             "rwy": {
-                "5L": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
-                "5R": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
-                "23L": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"],
-                "23R": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"]
+                "KRDU5L": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
+                "KRDU5R": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
+                "KRDU23L": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"],
+                "KRDU23R": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"]
             },
             "draw": [
                 ["ISO*", "TILTZ", "BLOGS", "CABED", "AGOLE", "SULIE", "TIBIA", "UNCUT"],
@@ -610,12 +610,12 @@
             },
             "body": ["BRADE", "WENDI", "RDU"],
             "rwy": {
-                "5L": [],
-                "5R": [],
-                "14": [],
-                "23L": [],
-                "23R": [],
-                "32": []
+                "KRDU5L": [],
+                "KRDU5R": [],
+                "KRDU14": [],
+                "KRDU23L": [],
+                "KRDU23R": [],
+                "KRDU32": []
             },
             "draw": [
                 ["ISO*", "TILTZ", "BRADE", "WENDI", "RDU"],
@@ -631,12 +631,12 @@
             },
             "body": ["CAE", "TENNI", "SDZ", "BUZZY", "RDU"],
             "rwy": {
-                "5L": [],
-                "5R": [],
-                "14": [],
-                "23L": [],
-                "23R": [],
-                "32": []
+                "KRDU5L": [],
+                "KRDU5R": [],
+                "KRDU14": [],
+                "KRDU23L": [],
+                "KRDU23R": [],
+                "KRDU32": []
             },
             "draw": [
                 ["CAE*", "TENNI", "SDZ", "BUZZY", "RDU"]
@@ -653,10 +653,10 @@
             },
             "body": [["ARGAL", "A100+|A150-"], ["KAROO", "A80+|A120-"]],
             "rwy": {
-                "5L": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
-                "5R": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
-                "23L": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]],
-                "23R": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]]
+                "KRDU5L": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
+                "KRDU5R": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
+                "KRDU23L": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]],
+                "KRDU23R": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]]
             },
             "draw": [
                 ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
@@ -676,10 +676,10 @@
             },
             "body": [["MALNR", "A110+|S250"], ["BUZZY", "A100+|A160-|S250"], "RASKL"],
             "rwy": {
-                "5L": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
-                "5R": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
-                "23L": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "JODUS", "KENCH", "LEZZY", "#054"],
-                "23R": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "FRETO", "GLEYS", "JOLTY", "#054"]
+                "KRDU5L": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
+                "KRDU5R": [["NEDIE", "A60+|A80-"], ["OTTOS", "A60|S230"]],
+                "KRDU23L": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "JODUS", "KENCH", "LEZZY", "#054"],
+                "KRDU23R": [["WISPY", "A120-"], ["CAKEY", "A80|S210"], "FRETO", "GLEYS", "JOLTY", "#054"]
             },
             "draw": [
                 ["FLO*", "HOGIL", "ETBUY", "MALNR", "BUZZY", "RASKL", "NEDIE", "OTTOS"],
@@ -700,12 +700,12 @@
             },
             "body": ["SBV", "ALDAN", "BILLA", "RDU"],
             "rwy": {
-                "5L": [],
-                "5R": [],
-                "14": [],
-                "23L": [],
-                "23R": [],
-                "32": []
+                "KRDU5L": [],
+                "KRDU5R": [],
+                "KRDU14": [],
+                "KRDU23L": [],
+                "KRDU23R": [],
+                "KRDU32": []
             },
             "draw": [
                 ["GVE*", "SBV", "ALDAN", "BILLA", "RDU"],
