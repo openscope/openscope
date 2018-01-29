@@ -992,9 +992,7 @@ export default class SpawnPatternModel extends BaseModel {
         }
 
         const waypointModelList = this._generateWaypointListForRoute(spawnPatternJson.route, navigationLibrary);
-        // grab position of first fix/waypoint
         const initialPosition = waypointModelList[0].positionModel;
-        // calculate heading from first fix/waypoint to second fix/waypoint
         const heading = initialPosition.bearingToPosition(waypointModelList[1].positionModel);
 
         this._positionModel = initialPosition;

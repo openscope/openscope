@@ -71,11 +71,10 @@ ava('.findRouteWaypointsForRouteByEntryAndExit() returns a list of `StandardRout
     t.true(result.length === 8);
 });
 
-ava('.findRouteWaypointsForRouteByEntryAndExit() returns early if not provided an `icao`', (t) => {
+ava('.findRouteWaypointsForRouteByEntryAndExit() throws if not provided an `icao`', (t) => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK, PROCEDURE_TYPE.STAR);
-    const result = collection.findRouteWaypointsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
-    t.true(typeof result === 'undefined');
+    t.throws(() => collection.findRouteWaypointsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK));
 });
 
 ava('.findRouteByIcao() returns undefined when an icao cannot be found', (t) => {

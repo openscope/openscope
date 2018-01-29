@@ -347,9 +347,9 @@ export default class Pilot {
     applyNewRoute(routeString, runway) {
         this.hasDepartureClearance = true;
 
-        const isValid = this._fms.isValidRoute(routeString, runway);
+        const isValidRoute = this._fms.isValidRoute(routeString, runway);
 
-        if (!isValid) {
+        if (!isValidRoute) {
             const readback = {};
             readback.log = `requested route of "${routeString}" is invalid`;
             readback.say = 'that route is invalid';
@@ -357,7 +357,13 @@ export default class Pilot {
             return [false, readback];
         }
 
-        this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
+        const [successful, message] = this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
+
+        if (!successful) {
+            return [successful, message];
+        }
+
+        this._mcp.setHeadingLnav();
 
         // Build readback
         const readback = {};

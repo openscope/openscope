@@ -8,6 +8,106 @@ export const FLIGHT_CATEGORY = {
     DEPARTURE: 'departure'
 };
 
+export const DEPARTURE_FLIGHT_PHASE = {
+    /**
+     * Phase in which aircraft are parked at the gate, awaiting instructions
+     *
+     * @memberof DEPARTURE_FLIGHT_PHASE
+     * @property
+     * @type {string}
+     */
+    APRON: 'APRON',
+
+    /**
+     * Phase in which aircraft are taxiing on the ground
+     *
+     * @memberof DEPARTURE_FLIGHT_PHASE
+     * @property TAXI
+     * @type {string}
+     */
+    TAXI: 'TAXI',
+
+    /**
+     * Phase in which aircraft have completed their departure taxi, and are waiting
+     * in the line of aircraft at the runway for takeoff
+     *
+     * @memberof DEPARTURE_FLIGHT_PHASE
+     * @property WAITING
+     * @type {string}
+     */
+    WAITING: 'WAITING',
+
+    /**
+     * Phase in which aircraft are actively taking off, and still below the
+     * minimum turning altitude
+     *
+     * @memberof DEPARTURE_FLIGHT_PHASE
+     * @property TAKEOFF
+     * @type {string}
+     */
+    TAKEOFF: 'TAKEOFF',
+
+    /**
+     * Phase in which aircraft have taken off and have not yet reached their cruise altitude
+     *
+     * @memberof DEPARTURE_FLIGHT_PHASE
+     * @property CLIMB
+     * @type {string}
+     */
+    CLIMB: 'CLIMB'
+};
+
+export const CRUISE_FLIGHT_PHASE = {
+    /**
+     * Phase in which aircraft are established at their filed cruise altitude
+     *
+     * @memberof CRUISE_FLIGHT_PHASE
+     * @property CRUISE
+     * @type {string}
+     */
+    CRUISE: 'CRUISE',
+
+    /**
+     * Phase in which aircraft are in a holding pattern. Note that this Phase
+     * will take precedence if the aircraft would otherwise be considered to be
+     * in the 'DESCENT' or 'CLIMB' phase.
+     *
+     * @memberof CRUISE_FLIGHT_PHASE
+     * @property HOLD
+     * @type {string}
+     */
+    HOLD: 'HOLD'
+};
+
+export const ARRIVAL_FLIGHT_PHASE = {
+    /**
+     * Phase in which aircraft have descended out of their cruise altitude
+     *
+     * @memberof ARRIVAL_FLIGHT_PHASE
+     * @property DESCENT
+     * @type {string}
+     */
+    DESCENT: 'DESCENT',
+
+    /**
+     * Phase in which aircraft have an approach clearance for any runway
+     *
+     * @memberof ARRIVAL_FLIGHT_PHASE
+     * @property APPROACH
+     * @type {string}
+     */
+    APPROACH: 'APPROACH',
+
+    /**
+     * Phase in which aircraft are established on final approach to any runway
+     *
+     * @memberof ARRIVAL_FLIGHT_PHASE
+     * @property LANDING
+     * @type {string}
+     */
+    LANDING: 'LANDING'
+};
+
 /**
  * Enumeration for the phases of flight
  *
@@ -16,84 +116,9 @@ export const FLIGHT_CATEGORY = {
  * @final
  */
 export const FLIGHT_PHASE = {
-    /**
-     * initial status of a new departing aircraft. After the aircraft is issued the 'taxi' command,
-     * the aircraft transitions to 'taxi' mode
-     *
-     * @memberof FLIGHT_PHASE
-     * @property
-     * @type {string}
-     */
-    APRON: 'APRON',
-    /**
-     * the process of getting ready for takeoff. After a delay, the aircraft becomes ready and
-     * transitions into 'waiting' mode
-     *
-     * @memberof FLIGHT_PHASE
-     * @property TAXI
-     * @type {string}
-     */
-    TAXI: 'TAXI',
-    /**
-     * the aircraft is ready for takeoff and awaits clearence to take off
-     *
-     * @memberof FLIGHT_PHASE
-     * @property WAITING
-     * @type {string}
-     */
-    WAITING: 'WAITING',
-    /**
-     * is assigned to an aircraft in the process of taking off. The aircraft are still on the
-     * ground or have not yet reached the minimum altitude
-     *
-     * @memberof FLIGHT_PHASE
-     * @property TAKEOFF
-     * @type {string}
-     */
-    TAKEOFF: 'TAKEOFF',
-    /**
-     * @memberof FLIGHT_PHASE
-     * @property CLIMB
-     * @type {string}
-     */
-    CLIMB: 'CLIMB',
-    /**
-     * describes an aircraft currently in flight and not following an ILS path. Aircraft entering
-     * controlled airspace also have this state. If an ILS path is picked up, the aircraft
-     * will transition to 'landing'
-     *
-     * @memberof FLIGHT_PHASE
-     * @property CRUISE
-     * @type {string}
-     */
-    CRUISE: 'CRUISE',
-    /**
-     * @memberof FLIGHT_PHASE
-     * @property HOLD
-     * @type {string}
-     */
-    HOLD: 'HOLD',
-    /**
-     * @memberof FLIGHT_PHASE
-     * @property DESCENT
-     * @type {string}
-     */
-    DESCENT: 'DESCENT',
-    /**
-     * @memberof FLIGHT_PHASE
-     * @property APPROACH
-     * @type {string}
-     */
-    APPROACH: 'APPROACH',
-    /**
-     * aircraft following an ILS path or is on the runway in the process of stopping.
-     * If an ILS approach or a landing is aborted, the aircraft re-enters 'cruise' mode
-     *
-     * @memberof FLIGHT_PHASE
-     * @property LANDING
-     * @type {string}
-     */
-    LANDING: 'LANDING'
+    ...DEPARTURE_FLIGHT_PHASE,
+    ...CRUISE_FLIGHT_PHASE,
+    ...ARRIVAL_FLIGHT_PHASE
 };
 
 /**

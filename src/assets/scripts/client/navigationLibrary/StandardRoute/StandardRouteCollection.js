@@ -152,7 +152,9 @@ export default class StandardRouteCollection extends BaseCollection {
      */
     findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
         if (!icao) {
-            return;
+            console.error(`Expected valid procedure name but received ${icao}`);
+
+            throw new Error(`unable to find '${icao}' procedure`);
         }
 
         return this._findRouteOrAddToCache(icao, entry, exit, isPreSpawn);
@@ -342,15 +344,16 @@ export default class StandardRouteCollection extends BaseCollection {
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @param cacheKey {string}    the key used to store the found route in `#_cache`
-     * @return {function|array<StandardRouteWaypointModel>}
+     * @return {array<StandardRouteWaypointModel>}
      */
     _findRouteWaypointModels(icao, entry, exit, isPreSpawn, cacheKey) {
         const uppercaseIcao = icao.toUpperCase();
         const routeModel = this.findRouteByIcao(uppercaseIcao);
 
         if (typeof routeModel === 'undefined') {
-            // TODO: there will need to be some feedback here but should still fail quietly
-            return;
+            console.error(`Unable to generate waypoints for ${entry}.${icao}.${exit}`);
+
+            throw new Error(`our FMS rejected the route '${entry}.${icao}.${exit}'`);
         }
 
         if (routeModel.hasSuffix(uppercaseIcao)) {
@@ -358,6 +361,7 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+
         this._cache[cacheKey] = routeWaypoints;
 
         return routeWaypoints;
@@ -379,17 +383,20 @@ export default class StandardRouteCollection extends BaseCollection {
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {function}
+     * @return {array<StandardRouteWaypointModel>}
      */
     _findAndCacheRouteWithSuffix(routeModel, icaoWithSuffix, entry, exit, isPreSpawn) {
         if (this._type === PROCEDURE_TYPE.STAR) {
             exit = routeModel.getSuffixSegmentName(this._type);
-        } else {
+        } else if (this._type === PROCEDURE_TYPE.SID) {
             entry = routeModel.getSuffixSegmentName(this._type);
+        } else {
+            throw new Error(`Expected SID or STAR but received '${this._type}', which is not yet supported`);
         }
 
         const cacheKey = this._generateCacheKey(icaoWithSuffix, entry, exit);
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+
         this._cache[cacheKey] = routeWaypoints;
 
         return routeWaypoints;
