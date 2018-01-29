@@ -329,13 +329,13 @@
             "icao": "BLZZR4",
             "name": "Blazer Four",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
-                "9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27": ["_BOS261002", "KIRAA"],
-                "33L": ["_BOS312003", "TEKKK", "EXXXX"]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS27": ["_BOS261002", "KIRAA"],
+                "KBOS33L": ["_BOS312003", "TEKKK", "EXXXX"]
             },
             "body": [],
             "exitPoints": {
@@ -354,13 +354,13 @@
             "icao": "BRUWN5",
             "name": "Bruin Five",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK"],
-                "9": [["CLAWW", "A40+"], "FENWY", "BUCYK"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "BUCYK"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
-                "27": ["_BOS261002", "KIRAA", "COLYN", "BEREI"],
-                "33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN", "BEREI"]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "BUCYK"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "BUCYK"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
+                "KBOS27": ["_BOS261002", "KIRAA", "COLYN", "BEREI"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN", "BEREI"]
             },
             "body": [],
             "exitPoints": {
@@ -377,13 +377,13 @@
             "icao": "CELTK5",
             "name": "Celtic Five",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "TONNI"],
-                "9": [["CLAWW", "A40+"], "FENWY", "SCOAR"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "SCOAR"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
-                "27": ["_BOS261002", "KIRAA", "COLYN"],
-                "33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "TONNI"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "SCOAR"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "SCOAR"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
+                "KBOS27": ["_BOS261002", "KIRAA", "COLYN"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
             },
             "body": [],
             "exitPoints": {
@@ -400,13 +400,13 @@
             "icao": "HYLND5",
             "name": "Hyland Five",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAAN"],
-                "9": [["CLAWW", "A40+"], "CORRT", "STAYC"],
-                "15R": ["_BOS146001", "FOXXX", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "22L": ["_BOS226002", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "22R": ["_BOS227002", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "27": ["_BOS261002", "KIRAA", "GLOWB", "HRALD"],
-                "33L": ["_BOS312003", "TEKKK", ["CAMWI", "A40+"]]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAAN"],
+                "KBOS9": [["CLAWW", "A40+"], "CORRT", "STAYC"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "KBOS27": ["_BOS261002", "KIRAA", "GLOWB", "HRALD"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["CAMWI", "A40+"]]
             },
             "body": [],
             "exitPoints": {
@@ -425,13 +425,13 @@
             "icao": "LBSTA6",
             "name": "Lobsta Six",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAUN"],
-                "9": [["CLAWW", "A40+"], "CLMPP", "SHAUN"],
-                "15R": ["_BOS146001", "FOXXX", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "22L": ["_BOS226002", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "22R": ["_BOS227002", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "27": ["_BOS261002", "KIRAA", "GLOWB", "HRALD", "CAMWI"],
-                "33L": ["_BOS312003", "TEKKK", ["CAMWI", "A40+"]]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAUN"],
+                "KBOS9": [["CLAWW", "A40+"], "CLMPP", "SHAUN"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "KBOS27": ["_BOS261002", "KIRAA", "GLOWB", "HRALD", "CAMWI"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["CAMWI", "A40+"]]
             },
             "body": [],
             "exitPoints": {
@@ -449,15 +449,15 @@
             "icao": "LOGAN2",
             "name": "Logan Two",
             "rwy": {
-                "4L": ["_BOS036004", "#090"],
-                "4R": ["_BOS037004", "#090"],
-                "9": ["#092"],
-                "14": ["_BOS142001", "#120"],
-                "15R": ["_BOS151001", "#120"],
-                "22L": ["#140"],
-                "22R": ["#140"],
-                "27": ["_BOS273002", "#235"],
-                "33L": ["_BOS331002", "#316"]
+                "KBOS4L": ["_BOS036004", "#090"],
+                "KBOS4R": ["_BOS037004", "#090"],
+                "KBOS9": ["#092"],
+                "KBOS14": ["_BOS142001", "#120"],
+                "KBOS15R": ["_BOS151001", "#120"],
+                "KBOS22L": ["#140"],
+                "KBOS22R": ["#140"],
+                "KBOS27": ["_BOS273002", "#235"],
+                "KBOS33L": ["_BOS331002", "#316"]
             },
             "body": [],
             "exitPoints": {
@@ -507,13 +507,13 @@
             "icao": "PATSS5",
             "name": "Patss Five",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
-                "9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27": ["_BOS261002", "KIRAA"],
-                "33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"]]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS27": ["_BOS261002", "KIRAA"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"]]
             },
             "body": [],
             "exitPoints": {
@@ -530,13 +530,13 @@
             "icao": "REVSS4",
             "name": "Revs Four",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
-                "9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27": ["_BOS261002", "KIRAA", "GLOWB"],
-                "33L": ["_BOS312003", "TEKKK", "DUBYU"]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "KBOS27": ["_BOS261002", "KIRAA", "GLOWB"],
+                "KBOS33L": ["_BOS312003", "TEKKK", "DUBYU"]
             },
             "body": [],
             "exitPoints": {
@@ -553,13 +553,13 @@
             "icao": "SSOXS5",
             "name": "Socks Five",
             "rwy": {
-                "4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK", "JSTER"],
-                "9": [["CLAWW", "A40+"], "FENWY", "BUCYK", "JSTER"],
-                "15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "27": ["_BOS261002", "KIRAA", "COLYN"],
-                "33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
+                "KBOS4R": ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK", "JSTER"],
+                "KBOS9": [["CLAWW", "A40+"], "FENWY", "BUCYK", "JSTER"],
+                "KBOS15R": ["_BOS146001", "FOXXX", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "KBOS22L": ["_BOS226002", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "KBOS22R": ["_BOS227002", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "KBOS27": ["_BOS261002", "KIRAA", "COLYN"],
+                "KBOS33L": ["_BOS312003", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
             },
             "body": [],
             "exitPoints": {
@@ -574,7 +574,7 @@
             "icao": "WYLLY3",
             "name": "Willy Three",
             "rwy": {
-                "27": ["_BOS261002", "WYLYY", "CYOTI"]
+                "KBOS27": ["_BOS261002", "WYLYY", "CYOTI"]
             },
             "body": [],
             "exitPoints": {
@@ -625,14 +625,14 @@
             },
             "body": ["GDM", "BRONC", "LOBBY", "REVER", "BOS"],
             "rwy": {
-                "4R": [],
-                "4L": [],
-                "15R": [],
-                "22R": [],
-                "22L": [],
-                "27": [],
-                "33L": [],
-                "32": []
+                "KBOS4R": [],
+                "KBOS4L": [],
+                "KBOS15R": [],
+                "KBOS22R": [],
+                "KBOS22L": [],
+                "KBOS27": [],
+                "KBOS33L": [],
+                "KBOS32": []
             },
             "draw": [
                 ["ALB", "WIKID", "GDM", "BRONC", "LOBBY", "REVER", "BOS"]
@@ -648,14 +648,14 @@
             },
             "body": ["JFUND"],
             "rwy": {
-                "4R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
-                "4L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
-                "15R": [["BADCA", "A90+|S250"], ["WACHU", "A70|S210"], "SSAAM", "AADMS"],
-                "22R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
-                "22L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
-                "27": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "REVER", ["SEHAG", "A60|S210"]],
-                "33L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
-                "32": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
+                "KBOS4R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "KBOS4L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "KBOS15R": [["BADCA", "A90+|S250"], ["WACHU", "A70|S210"], "SSAAM", "AADMS"],
+                "KBOS22R": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
+                "KBOS22L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["ISLAY", "A60|S220"], ["LWLND", "A60|S210"]],
+                "KBOS27": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], "REVER", ["SEHAG", "A60|S210"]],
+                "KBOS33L": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
+                "KBOS32": [["AUTUM", "A110+|A120-|S270"], ["WINTA", "A80+|A100-|S250"], "HRRIS", ["SPYSD", "A70|S220"], ["BRODI", "A60-"], ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
             },
             "draw": [
                 ["PONCT", "STOLI", "MNSTA", "SEETS", "DUBLE", "BASEZ", "JFUND", "AUTUM", "WINTA", "HRRIS", "SPYSD", "REVER", "SEHAG"],
@@ -675,14 +675,14 @@
             },
             "body": ["PVD", "KRANN"],
             "rwy": {
-                "4R": [],
-                "4L": [],
-                "15R": [],
-                "22R": [],
-                "22L": [],
-                "27": [],
-                "33L": [],
-                "32": []
+                "KBOS4R": [],
+                "KBOS4L": [],
+                "KBOS15R": [],
+                "KBOS22R": [],
+                "KBOS22L": [],
+                "KBOS27": [],
+                "KBOS33L": [],
+                "KBOS32": []
             },
             "draw": [
                 ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT", "PVD", "KRANN"],
@@ -704,14 +704,14 @@
             },
             "body": [["EURRO", "A100+"], ["OOSHN", "A90+|A140-|S250"]],
             "rwy": {
-                "4R": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
-                "4L": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
-                "15R": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["HNOVR", "A50|S220"], ["RDHOK", "A50|S210"], ["TKMAN", "A50|S210"]],
-                "22R": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
-                "22L": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
-                "27": ["PUDJJ", ["AYBEE", "A60|S210"]],
-                "33L": [["TTERI", "A90+|S250"], "WAATR", "PLGRM", ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
-                "32": [["TTERI", "A90+|S250"], "WAATR", "PLGRM", ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
+                "KBOS4R": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "KBOS4L": [["TTERI", "A90+|S250"], "WAATR", ["FLUTI", "A90+"], "GRIFI", ["GGABE", "A60|S220"], ["JOBEE", "A60|S210"]],
+                "KBOS15R": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["HNOVR", "A50|S220"], ["RDHOK", "A50|S210"], ["TKMAN", "A50|S210"]],
+                "KBOS22R": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
+                "KBOS22L": [["GRGIO", "A90-"], ["BRGIT", "A70"], ["ADDDA", "A60|S220"], ["LEEZI", "A60|S210"]],
+                "KBOS27": ["PUDJJ", ["AYBEE", "A60|S210"]],
+                "KBOS33L": [["TTERI", "A90+|S250"], "WAATR", "PLGRM", ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]],
+                "KBOS32": [["TTERI", "A90+|S250"], "WAATR", "PLGRM", ["BECHH", "A50|S220"], ["SCITU", "A50|S210"]]
             },
             "draw": [
                 ["RIFLE", "KYSKY", "CUTOX", "CUJKE", "FERNZ", "LONEY", "RODEE", "EURRO"],
@@ -736,14 +736,14 @@
             },
             "body": [["RUIZE", "A210+|A230-"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
             "rwy": {
-                "4R": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["NUNZO", "A60|S210"]],
-                "4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]],
-                "15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
-                "22R": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
-                "22L": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
-                "27": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
-                "33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]],
-                "32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]]
+                "KBOS4R": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["NUNZO", "A60|S210"]],
+                "KBOS4L": [["SOFEE", "A90+|A100-|S220"], ["ERNEI", "A70+|A80-"], ["GOSHI", "A60|S210"]],
+                "KBOS15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
+                "KBOS22R": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
+                "KBOS22L": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
+                "KBOS27": [["KRANN", "A110+|A120-|S250"], ["CRADL", "A80+|A100-"], ["KLEBB", "A80|S250"], ["HOKDU", "A50|S210"]],
+                "KBOS33L": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]],
+                "KBOS32": [["JAYNA", "A110|S250"], ["ANSLY", "A80|S240"], ["BEREI", "A60+|A70-|S220"], ["BBOGG", "A60|S210"]]
             },
             "draw": [
                 ["MERIT", "RUIZE", "AWLIN", "BANKI", "ROBUC", "PROVI", "JOODY", "KRANN", "CRADL", "KLEBB", "HOKDU"],
@@ -763,14 +763,14 @@
             },
             "body": ["JEWIT", "FOSTY", "HEFTY", "WOONS"],
             "rwy": {
-                "4R": [],
-                "4L": [],
-                "15R": [],
-                "22R": [],
-                "22L": [],
-                "27": [],
-                "33L": [],
-                "32": []
+                "KBOS4R": [],
+                "KBOS4L": [],
+                "KBOS15R": [],
+                "KBOS22R": [],
+                "KBOS22L": [],
+                "KBOS27": [],
+                "KBOS33L": [],
+                "KBOS32": []
             },
             "draw": [
                 ["ORW", "JEWIT", "FOSTY", "HEFTY", "WOONS"]
