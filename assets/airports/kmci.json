@@ -183,12 +183,12 @@
             "icao": "CHIEF6",
             "name": "Chief Six",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI"],
             "exitPoints": {
@@ -204,12 +204,12 @@
             "icao": "LAKES1",
             "name": "Lakes One",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI"],
             "exitPoints": {
@@ -227,12 +227,12 @@
             "icao": "RACER6",
             "name": "Racer Six",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI"],
             "exitPoints": {
@@ -250,12 +250,12 @@
             "icao": "ROYAL8",
             "name": "Royal Eight",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI"],
             "exitPoints": {
@@ -273,12 +273,12 @@
             "icao": "TIFTO5",
             "name": "Tifto Five",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI", "DIGGY", "TIFTO"],
             "exitPoints": {
@@ -292,12 +292,12 @@
             "icao": "WLDCT4",
             "name": "Wildcat Four",
             "rwy": {
-                "1L": [],
-                "1R": [],
-                "9": [],
-                "19L": [],
-                "19R": [],
-                "27": []
+                "KMCI1L": [],
+                "KMCI1R": [],
+                "KMCI9": [],
+                "KMCI19L": [],
+                "KMCI19R": [],
+                "KMCI27": []
             },
             "body": ["MCI"],
             "exitPoints": {
@@ -324,12 +324,12 @@
             },
             "body": ["BQS", "DONNS"],
             "rwy": {
-                "1L": ["MATTZ", ["BYGEC", "S210"], "#190"],
-                "1R": ["MATTZ", ["BYGEC", "S210"], "#190"],
-                "9": [],
-                "19L": ["#255"],
-                "19R": ["#255"],
-                "27": []
+                "KMCI1L": ["MATTZ", ["BYGEC", "S210"], "#190"],
+                "KMCI1R": ["MATTZ", ["BYGEC", "S210"], "#190"],
+                "KMCI9": [],
+                "KMCI19L": ["#255"],
+                "KMCI19R": ["#255"],
+                "KMCI27": []
             },
             "draw": [
                 ["LMN*", "BQS", "DONNS", "MATTZ", "BYGEC"],
@@ -347,12 +347,12 @@
             },
             "body": ["JHAWK", "HOOZE"],
             "rwy": {
-                "1L": ["#060"],
-                "1R": ["#060"],
-                "9": [],
-                "19L": ["RUGBB", ["NOAHS", "S210"], "#010"],
-                "19R": ["RUGBB", ["NOAHS", "S210"], "#010"],
-                "27": []
+                "KMCI1L": ["#060"],
+                "KMCI1R": ["#060"],
+                "KMCI9": [],
+                "KMCI19L": ["RUGBB", ["NOAHS", "S210"], "#010"],
+                "KMCI19R": ["RUGBB", ["NOAHS", "S210"], "#010"],
+                "KMCI27": []
             },
             "draw": [
                 ["CNU*", "JHAWK", "HOOZE", "RUGBB", "NOAHS"],
@@ -369,12 +369,12 @@
             },
             "body": ["RBA", "JUDAA"],
             "rwy": {
-                "1L": ["PEGGI", ["HUGGY", "S210"], "#190"],
-                "1R": ["PEGGI", ["HUGGY", "S210"], "#190"],
-                "9": [],
-                "19L": ["#110"],
-                "19R": ["#110"],
-                "27": []
+                "KMCI1L": ["PEGGI", ["HUGGY", "S210"], "#190"],
+                "KMCI1R": ["PEGGI", ["HUGGY", "S210"], "#190"],
+                "KMCI9": [],
+                "KMCI19L": ["#110"],
+                "KMCI19R": ["#110"],
+                "KMCI27": []
             },
             "draw": [
                 ["PWE*", "RBA", "JUDAA", "PEGGI", "HUGGY"],
@@ -390,12 +390,12 @@
             },
             "body": ["SGF", "KRAZO", "TYGER", "TRIKE"],
             "rwy": {
-                "1L": ["#290"],
-                "1R": ["#290"],
-                "9": [],
-                "19L": ["MORAY", ["SLABB", "S210"], "#010"],
-                "19R": ["MORAY", ["SLABB", "S210"], "#010"],
-                "27": []
+                "KMCI1L": ["#290"],
+                "KMCI1R": ["#290"],
+                "KMCI9": [],
+                "KMCI19L": ["MORAY", ["SLABB", "S210"], "#010"],
+                "KMCI19R": ["MORAY", ["SLABB", "S210"], "#010"],
+                "KMCI27": []
             },
             "draw": [
                 ["SGF*", "KRAZO", "TYGER", "TRIKE", "MORAY", "SLABB"]
