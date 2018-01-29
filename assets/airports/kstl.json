@@ -317,14 +317,14 @@
             "icao": "BERYY4",
             "name": "Berry Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "GEJAY"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"], "WAARN"],
-                "30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB"],
-                "30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"], "WAARN"],
+                "KSTL30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB"],
+                "KSTL30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB"]
             },
             "body": ["BERYY"],
             "exitPoints": {
@@ -341,14 +341,14 @@
             "icao": "BGOOD4",
             "name": "Be Good Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "TRAVS"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"], "WAARN", "FLPPS"],
-                "30L": [["PYUNG", "A25+"], "ALLNT", "FLPPS"],
-                "30R": [["PYUNG", "A25+"], "ALLNT", "FLPPS"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"], "WAARN", "FLPPS"],
+                "KSTL30L": [["PYUNG", "A25+"], "ALLNT", "FLPPS"],
+                "KSTL30R": [["PYUNG", "A25+"], "ALLNT", "FLPPS"]
             },
             "body": ["BGOOD"],
             "exitPoints": {
@@ -364,14 +364,14 @@
             "icao": "BLUES6",
             "name": "Blues Six",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["CSX", "ENL"],
             "exitPoints": {
@@ -388,14 +388,14 @@
             "icao": "BRAKK4",
             "name": "Brake Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"]],
-                "30L": [["PYUNG", "A25+"]],
-                "30R": [["PYUNG", "A25+"]]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"]],
+                "KSTL30L": [["PYUNG", "A25+"]],
+                "KSTL30R": [["PYUNG", "A25+"]]
             },
             "body": ["BRAKK"],
             "exitPoints": {
@@ -411,14 +411,14 @@
             "icao": "CARDS1",
             "name": "Cards One",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["CSX"],
             "exitPoints": {
@@ -442,14 +442,14 @@
             "icao": "CHUUC4",
             "name": "Chuck Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "GEJAY"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"], "WAARN", "ELDBB"],
-                "30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB"],
-                "30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "GEJAY"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"], "WAARN", "ELDBB"],
+                "KSTL30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB"],
+                "KSTL30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB"]
             },
             "body": ["CHUUC"],
             "exitPoints": {
@@ -468,14 +468,14 @@
             "icao": "DRUSE4",
             "name": "Droose Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"]],
-                "12L": [["HEFNR", "A25+"]],
-                "12R": [["HEFNR", "A25+"]],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"], "WAARN", "ELDBB", "BERAA"],
-                "30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB", "BERAA"],
-                "30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB", "BERAA"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"]],
+                "KSTL12L": [["HEFNR", "A25+"]],
+                "KSTL12R": [["HEFNR", "A25+"]],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"], "WAARN", "ELDBB", "BERAA"],
+                "KSTL30L": [["PYUNG", "A25+"], "ALLNT", "ELDBB", "BERAA"],
+                "KSTL30R": [["PYUNG", "A25+"], "ALLNT", "ELDBB", "BERAA"]
             },
             "body": ["DRUSE"],
             "exitPoints": {
@@ -493,14 +493,14 @@
             "icao": "EEMOS4",
             "name": "Emose Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"], "CONRR"],
-                "30L": [["WOLTR", "A25+"], "CONRR"],
-                "30R": [["WOLTR", "A25+"], "CONRR"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"], "CONRR"],
+                "KSTL30L": [["WOLTR", "A25+"], "CONRR"],
+                "KSTL30R": [["WOLTR", "A25+"], "CONRR"]
             },
             "body": ["EEMOS"],
             "exitPoints": {
@@ -516,14 +516,14 @@
             "icao": "GATWY9",
             "name": "Gateway Nine",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["CSX", "TWILA"],
             "exitPoints": {
@@ -548,14 +548,14 @@
             "icao": "JAHNY4",
             "name": "Jahny Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "TRAVS"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"], "WAARN", "FLPPS"],
-                "30L": [["PYUNG", "A25+"], "ALLNT", "FLPPS"],
-                "30R": [["PYUNG", "A25+"], "ALLNT", "FLPPS"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"], "WAARN", "FLPPS"],
+                "KSTL30L": [["PYUNG", "A25+"], "ALLNT", "FLPPS"],
+                "KSTL30R": [["PYUNG", "A25+"], "ALLNT", "FLPPS"]
             },
             "body": ["JAHNY"],
             "exitPoints": {
@@ -570,14 +570,14 @@
             "icao": "JHART5",
             "name": "Jayhart Five",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "RAMKR"],
-                "12L": [["FUNKE", "A25+"], "RAMKR"],
-                "12R": [["FUNKE", "A25+"], "RAMKR"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"], "ANNII", "LENXX", "KAEYE"],
-                "30L": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"],
-                "30R": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL12L": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL12R": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"], "ANNII", "LENXX", "KAEYE"],
+                "KSTL30L": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"],
+                "KSTL30R": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"]
             },
             "body": ["JHART"],
             "exitPoints": {
@@ -601,14 +601,14 @@
             "icao": "KSHEE4",
             "name": "Kashee Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"], "CONRR"],
-                "30L": [["WOLTR", "A25+"], "CONRR"],
-                "30R": [["WOLTR", "A25+"], "CONRR"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"], "CONRR"],
+                "KSTL30L": [["WOLTR", "A25+"], "CONRR"],
+                "KSTL30R": [["WOLTR", "A25+"], "CONRR"]
             },
             "body": ["KSHEE"],
             "exitPoints": {
@@ -625,14 +625,14 @@
             "icao": "LINDY6",
             "name": "Lindbergh Six",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["STL"],
             "exitPoints": {
@@ -660,14 +660,14 @@
             "icao": "NATCA4",
             "name": "Natca Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "BEART"],
-                "12L": [["FUNKE", "A25+"], "BEART"],
-                "12R": [["FUNKE", "A25+"], "BEART"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"]],
-                "30L": [["WOLTR", "A25+"], "ANNII"],
-                "30R": [["WOLTR", "A25+"], "ANNII"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "BEART"],
+                "KSTL12L": [["FUNKE", "A25+"], "BEART"],
+                "KSTL12R": [["FUNKE", "A25+"], "BEART"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"]],
+                "KSTL30L": [["WOLTR", "A25+"], "ANNII"],
+                "KSTL30R": [["WOLTR", "A25+"], "ANNII"]
             },
             "body": ["NATCA"],
             "exitPoints": {
@@ -683,14 +683,14 @@
             "icao": "OZARK7",
             "name": "Ozark Seven",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["STL"],
             "exitPoints": {
@@ -708,14 +708,14 @@
             "icao": "PLESS5",
             "name": "Pless Five",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["STL", "PLESS"],
             "exitPoints": {
@@ -732,14 +732,14 @@
             "icao": "ROTRY4",
             "name": "Rotary Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"]],
-                "30L": [["WOLTR", "A25+"]],
-                "30R": [["WOLTR", "A25+"]]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12L": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL12R": [["FUNKE", "A25+"], "BEART", "GMSKI"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"]],
+                "KSTL30L": [["WOLTR", "A25+"]],
+                "KSTL30R": [["WOLTR", "A25+"]]
             },
             "body": ["ROTRY"],
             "exitPoints": {
@@ -755,14 +755,14 @@
             "icao": "TEDDD4",
             "name": "Ted Four",
             "rwy": {
-                "6": ["#064"],
-                "11": [["FUNKE", "A25+"], "RAMKR"],
-                "12L": [["FUNKE", "A25+"], "RAMKR"],
-                "12R": [["FUNKE", "A25+"], "RAMKR"],
-                "24": ["#244"],
-                "29": [["DSAPP", "A25+"], "ANNII", "LENXX", "KAEYE"],
-                "30L": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"],
-                "30R": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"]
+                "KSTL6": ["#064"],
+                "KSTL11": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL12L": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL12R": [["FUNKE", "A25+"], "RAMKR"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["DSAPP", "A25+"], "ANNII", "LENXX", "KAEYE"],
+                "KSTL30L": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"],
+                "KSTL30R": [["WOLTR", "A25+"], "ANNII", "LENXX", "KAEYE"]
             },
             "body": ["TEDDD"],
             "exitPoints": {
@@ -779,14 +779,14 @@
             "icao": "TURBO9",
             "name": "Turbo Nine",
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "body": ["CSX"],
             "exitPoints": {
@@ -810,14 +810,14 @@
             "icao": "WHRLI5",
             "name": "Whirly Five",
             "rwy": {
-                "6": ["#064"],
-                "11": [["LUUBE", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
-                "24": ["#244"],
-                "29": [["HAGEE", "A25+"]],
-                "30L": [["PYUNG", "A25+"]],
-                "30R": [["PYUNG", "A25+"]]
+                "KSTL6": ["#064"],
+                "KSTL11": [["LUUBE", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL12L": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL12R": [["HEFNR", "A25+"], "DAFUS", "TRAVS", "SEKAY", "LIISA"],
+                "KSTL24": ["#244"],
+                "KSTL29": [["HAGEE", "A25+"]],
+                "KSTL30L": [["PYUNG", "A25+"]],
+                "KSTL30R": [["PYUNG", "A25+"]]
             },
             "body": ["WHRLI"],
             "exitPoints": {
@@ -841,12 +841,12 @@
             },
             "body": [["AARCH", "A110+|S280"], "PETTI"],
             "rwy": {
-                "11": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
-                "12L": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
-                "12R": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
-                "29": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"],
-                "30L": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"],
-                "30R": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"]
+                "KSTL11": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
+                "KSTL12L": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
+                "KSTL12R": [["KRIYA", "A110+|A150-|S280"], ["JAAKK", "A100+|A110-"], ["CHOTO", "A80+|A100-"], ["GETEE", "A70+|A80-|S210"], ["HRBEE", "A50+|S210"], ["BUELL", "A50|S210"], "#301"],
+                "KSTL29": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"],
+                "KSTL30L": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"],
+                "KSTL30R": [["SSKOT", "A90+|A100-"], ["EADDS", "A80+|A90-"], ["OSHIE", "A70+|A80-|S250"], ["FDRKO", "A60+|A70-"], "#226"]
             },
             "draw": [
                 ["VHP", "AKBAR", "PRUET", "UKAAY", "AARCH", "PETTI", "KRIYA", "JAAKK", "CHOTO", "GETEE", "HRBEE", "BUELL"],
@@ -866,12 +866,12 @@
             },
             "body": [["BOOSH", "A140+|S280"], "QBALL"],
             "rwy": {
-                "11": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
-                "12L": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
-                "12R": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
-                "29": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"],
-                "30L": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"],
-                "30R": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"]
+                "KSTL11": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
+                "KSTL12L": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
+                "KSTL12R": [["OOJAY", "A110+|A150-|S280"], ["PTEES", "A100+|A110"], ["CHIKN", "A80+|A90-"], ["LETRR", "A70+|A80-|S210"], ["RRIPP", "A50+|S210"], ["JBUCK", "A50|S210"], "#302"],
+                "KSTL29": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"],
+                "KSTL30L": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"],
+                "KSTL30R": [["DENAA", "A100+|A110-"], ["HRTSO", "A90+|A100-|S250"], ["TEEBE", "A80+|A90-"], "#356"]
             },
             "draw": [
                 ["BNA", "CGI", "DLITE", "FATSS", "BOOSH", "QBALL", "DENAA", "HRTSO", "TEEBE"],
@@ -892,12 +892,12 @@
             },
             "body": [["KAYLA", "A110+"], "BGMAC"],
             "rwy": {
-                "11": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
-                "12L": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
-                "12R": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
-                "29": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"],
-                "30L": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"],
-                "30R": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"]
+                "KSTL11": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
+                "KSTL12L": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
+                "KSTL12R": [["DNISE", "A90+|A100-"], ["ELBRT", "A80+|A90-|S240+"], ["STAAN", "A70|S240+"], "#061"],
+                "KSTL29": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"],
+                "KSTL30L": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"],
+                "KSTL30R": [["GIBEE", "A110+|A150-|S280"], ["OZZEE", "A100+|A110-"], ["SNYDR", "A80+|A90-"], ["HOOOT", "A70+|A80-|S210"], ["PEJAA", "A50+|S210"], ["FLUDD", "A50|S210"], "#124"]
             },
             "draw": [
                 ["ANX", "HEBNA", "KOOOP", "NATEM", "KAYLA", "BGMAC", "DNISE", "ELBRT", "STAAN"],
@@ -916,14 +916,14 @@
             },
             "body": ["KOOOP", "KAYLA", "FTZ", "AUGST", "SNYDR"],
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "draw": [
                 ["ANX", "PUTSY", "KOOOP", "KAYLA", "FTZ", "AUGST", "SNYDR"],
@@ -941,12 +941,12 @@
             },
             "body": [["RIVRS", "A120+|S280"], "LORLE"],
             "rwy": {
-                "11": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
-                "12L": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
-                "12R": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
-                "29": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"],
-                "30L": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"],
-                "30R": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"]
+                "KSTL11": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
+                "KSTL12L": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
+                "KSTL12R": [["HMFRZ", "A90+|A100-"], ["VEEGE", "A80+|A90-|S250"], "#166"],
+                "KSTL29": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"],
+                "KSTL30L": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"],
+                "KSTL30R": [["GETUP", "A110+|A150-|S280"], ["TATRR", "A100+|A110-"], "MELVY", ["BRDWL", "A80+|A90-"], ["ENNEE", "A70+|A80-|S210"], ["JYAAR", "A50+|S210"], ["DOBLZ", "A50|S210"], "#124"]
             },
             "draw": [
                 ["GUZIK", "SEIZE", "SKOVE", "RIVRS", "LORLE", "GETUP", "TATRR", "MELVY", "BRDWL", "ENNEE", "JYAAR", "DOBLZ"],
@@ -965,14 +965,14 @@
             },
             "body": ["QBALL"],
             "rwy": {
-                "6": ["CHIKN"],
-                "11": ["CHIKN"],
-                "12L": ["CHIKN"],
-                "12R": ["CHIKN"],
-                "24": ["ESSAR"],
-                "29": ["ESSAR"],
-                "30L": ["ESSAR"],
-                "30R": ["ESSAR"]
+                "KSTL6": ["CHIKN"],
+                "KSTL11": ["CHIKN"],
+                "KSTL12L": ["CHIKN"],
+                "KSTL12R": ["CHIKN"],
+                "KSTL24": ["ESSAR"],
+                "KSTL29": ["ESSAR"],
+                "KSTL30L": ["ESSAR"],
+                "KSTL30R": ["ESSAR"]
             },
             "draw": [
                 ["BNA", "VISQA", "SCRCH", "CGI", "BREAK", "SNOKR", "FATSS", "QBALL", "CHIKN", "ESSAR"],
@@ -990,14 +990,14 @@
             },
             "body": ["RIVRS", "LORLE", "MELVY"],
             "rwy": {
-                "6": [],
-                "11": [],
-                "12L": [],
-                "12R": [],
-                "24": [],
-                "29": [],
-                "30L": [],
-                "30R": []
+                "KSTL6": [],
+                "KSTL11": [],
+                "KSTL12L": [],
+                "KSTL12R": [],
+                "KSTL24": [],
+                "KSTL29": [],
+                "KSTL30L": [],
+                "KSTL30R": []
             },
             "draw": [
                 ["CNOTA", "UIN", "RIVRS", "LORLE", "MELVY"],
@@ -1015,14 +1015,14 @@
             },
             "body": ["MUZUL"],
             "rwy": {
-                "6": ["SHAAD"],
-                "11": ["SHAAD"],
-                "12L": ["SHAAD"],
-                "12R": ["SHAAD"],
-                "24": ["TOY"],
-                "29": ["TOY"],
-                "30L": ["TOY"],
-                "30R": ["TOY"]
+                "KSTL6": ["SHAAD"],
+                "KSTL11": ["SHAAD"],
+                "KSTL12L": ["SHAAD"],
+                "KSTL12R": ["SHAAD"],
+                "KSTL24": ["TOY"],
+                "KSTL29": ["TOY"],
+                "KSTL30L": ["TOY"],
+                "KSTL30R": ["TOY"]
             },
             "draw": [
                 ["RBS", "JARKE", "WLDBL", "VLA", "PETTI", "MUZUL", "SHAAD"],
