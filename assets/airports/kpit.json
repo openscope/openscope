@@ -332,14 +332,14 @@
             "icao": "PIT2",
             "name": "Pittsburgh Two",
             "rwy": {
-                "10L": ["#100"],
-                "10C": ["#100"],
-                "10R": ["#100"],
-                "14": ["#144"],
-                "28L": ["#280"],
-                "28C": ["#280"],
-                "28R": ["#280"],
-                "32": ["#324"]
+                "KPIT10L": ["#100"],
+                "KPIT10C": ["#100"],
+                "KPIT10R": ["#100"],
+                "KPIT14": ["#144"],
+                "KPIT28L": ["#280"],
+                "KPIT28C": ["#280"],
+                "KPIT28R": ["#280"],
+                "KPIT32": ["#324"]
             },
             "body": [],
             "exitPoints": {
@@ -388,14 +388,14 @@
             },
             "body": ["EJOCY", "PLEEZ", "NESTO", "DEMME"],
             "rwy": {
-                "10L": ["PENGN", "RIVRZ", "HEINZ", "#280"],
-                "10C": ["PENGN", "RIVRZ", "HEINZ", "#280"],
-                "10R": ["PENGN", "RIVRZ", "HEINZ", "#280"],
-                "14": [],
-                "28L": ["LMBRT", "STILR", "#070"],
-                "28C": ["LMBRT", "STILR", "#070"],
-                "28R": ["LMBRT", "STILR", "#070"],
-                "32": ["GRUNZ", "#302"]
+                "KPIT10L": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "KPIT10C": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "KPIT10R": ["PENGN", "RIVRZ", "HEINZ", "#280"],
+                "KPIT14": [],
+                "KPIT28L": ["LMBRT", "STILR", "#070"],
+                "KPIT28C": ["LMBRT", "STILR", "#070"],
+                "KPIT28R": ["LMBRT", "STILR", "#070"],
+                "KPIT32": ["GRUNZ", "#302"]
             },
             "draw": [
                 ["IHD*", "EJOCY", "PLEEZ", "NESTO", "DEMME", "GRUNZ"],
@@ -415,14 +415,14 @@
             },
             "body": ["AIR", "WISKE", "FEWGA"],
             "rwy": {
-                "10L": ["LEMEW", "#300"],
-                "10C": ["LEMEW", "#300"],
-                "10R": ["LEMEW", "#300"],
-                "14": [],
-                "28L": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
-                "28C": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
-                "28R": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
-                "32": ["BBLAK", "GOLDH", "FLURY", "MLKIN", "CRSBY", "#145"]
+                "KPIT10L": ["LEMEW", "#300"],
+                "KPIT10C": ["LEMEW", "#300"],
+                "KPIT10R": ["LEMEW", "#300"],
+                "KPIT14": [],
+                "KPIT28L": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "KPIT28C": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "KPIT28R": ["BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY", "#100"],
+                "KPIT32": ["BBLAK", "GOLDH", "FLURY", "MLKIN", "CRSBY", "#145"]
             },
             "draw": [
                 ["FEWGA", "BBLAK", "GOLDH", "JOEPA", "GUINZ", "CYDNY"],
@@ -443,14 +443,14 @@
             },
             "body": ["EARED", "GRACE", "HAYNZ"],
             "rwy": {
-                "10L": ["ROOSA", "TERBL", "TOWEL", "#281"],
-                "10C": ["ROOSA", "TERBL", "TOWEL", "#281"],
-                "10R": ["ROOSA", "TERBL", "TOWEL", "#281"],
-                "14": [],
-                "28L": ["MYRON", "#125"],
-                "28C": ["MYRON", "#125"],
-                "28R": ["MYRON", "#125"],
-                "32": ["MYRON", "COPPE", "#165"]
+                "KPIT10L": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "KPIT10C": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "KPIT10R": ["ROOSA", "TERBL", "TOWEL", "#281"],
+                "KPIT14": [],
+                "KPIT28L": ["MYRON", "#125"],
+                "KPIT28C": ["MYRON", "#125"],
+                "KPIT28R": ["MYRON", "#125"],
+                "KPIT32": ["MYRON", "COPPE", "#165"]
             },
             "draw": [
                 ["CIP*", "EARED", "GRACE", "HAYNZ", "MYRON", "COPPE"],
@@ -469,14 +469,14 @@
             },
             "body": ["CUTTA", "JESEY"],
             "rwy": {
-                "10L": ["YINZZ", "#250"],
-                "10C": ["YINZZ", "#250"],
-                "10R": ["YINZZ", "#250"],
-                "14": [],
-                "28L": ["KRIKK", "SSOXX", "ROOSA", "#101"],
-                "28C": ["KRIKK", "SSOXX", "ROOSA", "#101"],
-                "28R": ["KRIKK", "SSOXX", "ROOSA", "#101"],
-                "32": ["KRIKK", "PROGY", "PRUIT", "#145"]
+                "KPIT10L": ["YINZZ", "#250"],
+                "KPIT10C": ["YINZZ", "#250"],
+                "KPIT10R": ["YINZZ", "#250"],
+                "KPIT14": [],
+                "KPIT28L": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "KPIT28C": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "KPIT28R": ["KRIKK", "SSOXX", "ROOSA", "#101"],
+                "KPIT32": ["KRIKK", "PROGY", "PRUIT", "#145"]
             },
             "draw": [
                 ["JESEY", "KRIKK", "SSOXX", "ROOSA"],
