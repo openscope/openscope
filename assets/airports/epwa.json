@@ -750,246 +750,678 @@
         },
     ],
     "sids": {
-        "BAMSO": {
-            "icao": "BAMSO",
-            "name": "Bamso",
-            "suffix": {"11":"4A", "15":"5D", "29":"5G", "33":"5K"},
+        "BAMSO 4A": {
+            "icao": "BAMSO 4A",
+            "name": "Bamso Four Alpha",
             "rwy": {
-                "11": [["WA601", "A30+"], "WA698"],
-                "15": [["WA401", "A15+|S200-"], "WA404", "WA657", "WA698"],
-                "29": [["WA901", "A20+|S200-"], "WA931", ["WA932", "S240-"], ["WA791", "A60+|S240-"], "BITVA", "WA571"],
-                "33": [["WA801", "A15+|S220-"], ["WA803", "S250-"], ["WA791", "A60+|S250-"], "BITVA", "WA571"]
+                "EPWA11": []
             },
-            "body": [],
+            "body": [["WA601", "A30+"], "WA698", "BAMSO"],
             "exitPoints": {
-                "BAMSO": ["BAMSO"]
+                "BAMSO": []
             },
             "draw": [
-                ["WA901", "WA931", "WA932", "WA791", "BITVA", "WA571", "BAMSO*"],
+                ["WA601", "WA698", "BAMSO*"]
+            ]
+        },
+        "BAMSO 5D": {
+            "icao": "BAMSO 5D",
+            "name": "Bamso Five Delta",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["WA401", "A15+|S200-"], "WA404", "WA657", "WA698", "BAMSO"],
+            "exitPoints": {
+                "BAMSO": []
+            },
+            "draw": [
                 ["WA401", "WA404", "WA657", "WA698", "BAMSO*"]
             ]
         },
-        "OLILA": {
-            "icao": "OLILA",
-            "name": "Olila",
-            "suffix": {"11":"5A", "15":"5D", "29":"5G", "33":"5K"},
+        "BAMSO 5G": {
+            "icao": "BAMSO 5G",
+            "name": "Bamso Five Golf",
             "rwy": {
-                "11": [["WA601", "A30+|S200"], ["DOPOX", "A60+|S250-"], ["TISEX", "S250-"], "INSON", "WA663"],
-                "15": [["WA401", "A15+|S200-"], ["WA404", "S220-"], ["DOPOX", "A60+|S250-"], ["TISEX", "S250-"], "INSON"],
-                "29": [["WA901", "A20+|S200-"], "WA931", "WA932", ["WA791", "A60+"], ["INRAS", "A70+"], "RODEV"],
-                "33": [["WA801", "A15+|S220-"], ["WA803", "S250-"], ["WA791", "A60+|S250-"], ["INRAS", "A70+"], "RODEV"]
+                "EPWA29": []
             },
-            "body": [],
+            "body": [["WA901", "A20+|S200-"], "WA931", ["WA932", "S240-"], ["WA791", "A60+|S240-"], "BITVA", "WA571", "BAMSO"],
             "exitPoints": {
-                "OLILA": ["OLILA"]
+                "BAMSO": []
             },
             "draw": [
-                ["WA901", "WA931", "WA932", "WA791", "INRAS", "RODEV", "OLILA*"],
+                ["WA901", "WA931", "WA932", "WA791", "BITVA", "WA571", "BAMSO*"]
+            ]
+        },
+        "BAMSO 5K": {
+            "icao": "BAMSO 5K",
+            "name": "Bamso",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["WA801", "A15+|S220-"], ["WA803", "S250-"], ["WA791", "A60+|S250-"], "BITVA", "WA571", "BAMSO"],
+            "exitPoints": {
+                "BAMSO": []
+            },
+            "draw": [
+                ["WA801", "WA803", "WA791", "BITVA", "WA571", "BAMSO*"]
+            ]
+        },
+        "OLILA 5A": {
+            "icao": "OLILA 5A",
+            "name": "Olila Five Alpha",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["WA601", "A30+|S200"], ["DOPOX", "A60+|S250-"], ["TISEX", "S250-"], "INSON", "WA663", "OLILA"],
+            "exitPoints": {
+                "OLILA": []
+            },
+            "draw": [
+                ["WA601", "DOPOX", "TISEX", "INSON", "WA663", "OLILA*"]
+            ]
+        },
+        "OLILA 5D": {
+            "icao": "OLILA 5D",
+            "name": "Olila Five Delta",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["WA401", "A15+|S200-"], ["WA404", "S220-"], ["DOPOX", "A60+|S250-"], ["TISEX", "S250-"], "INSON", "OLILA"],
+            "exitPoints": {
+                "OLILA": []
+            },
+            "draw": [
                 ["WA401", "WA404", "DOPOX", "TISEX", "INSON", "OLILA*"]
             ]
         },
-        "LOLSI": {
-            "icao": "LOLSI",
-            "name": "Lolsi",
-            "suffix": {"11":"5A", "15":"6D", "29":"6G", "33":"5K"},
+        "OLILA 5G": {
+            "icao": "OLILA 5G",
+            "name": "Olila Five Golf",
             "rwy": {
-                "11": [["WA606", "A40+|S200-"], "GILAL", "WA664"],
-                "15": [["WA401", "A15+|S200-"], "WA402", "GILAL"],
-                "29": [["WA901", "A20+|S200-"], "WA902", ["WA903", "A50+"], "MAKUS"],
-                "33": [["WA801", "A15+|S220-"], "WA802", "MAKUS"]
+                "EPWA29": []
             },
-            "body": [],
+            "body": [["WA901", "A20+|S200-"], "WA931", "WA932", ["WA791", "A60+"], ["INRAS", "A70+"], "RODEV", "OLILA"],
             "exitPoints": {
-                "LOLSI": ["LOLSI"]
+                "OLILA": []
             },
             "draw": [
-                ["WA901", "WA902", "WA903", "MAKUS", "LOLSI*"],
+                ["WA901", "WA931", "WA932", "WA791", "INRAS", "RODEV", "OLILA*"]
+            ]
+        },
+        "OLILA 5K": {
+            "icao": "OLILA 5K",
+            "name": "Olila Five Kilo",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["WA801", "A15+|S220-"], ["WA803", "S250-"], ["WA791", "A60+|S250-"], ["INRAS", "A70+"], "RODEV", "OLILA"],
+            "exitPoints": {
+                "OLILA": []
+            },
+            "draw": [
+                ["WA801", "WA803", "WA791", "INRAS", "RODEV", "OLILA*"]
+            ]
+        },
+        "LOLSI 5A": {
+            "icao": "LOLSI 5A",
+            "name": "Lolsi Five Alpha",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["WA606", "A40+|S200-"], "GILAL", "WA664", "LOLSI"],
+            "exitPoints": {
+                "LOLSI": []
+            },
+            "draw": [
+                ["WA606", "GILAL", "WA664", "LOLSI*"]
+            ]
+        },
+        "LOLSI 6D": {
+            "icao": "LOLSI 6D",
+            "name": "Lolsi Six Delta",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["WA401", "A15+|S200-"], "WA402", "GILAL", "LOLSI"],
+            "exitPoints": {
+                "LOLSI": []
+            },
+            "draw": [
                 ["WA401", "WA402", "GILAL", "LOLSI*"]
             ]
         },
-        "SOXER": {
-            "icao": "SOXER",
-            "name": "Soxer",
-            "suffix": {"11":"5A", "15":"6D", "29":"6G", "33":"5K"},
+        "LOLSI 6G": {
+            "icao": "LOLSI 6G",
+            "name": "Lolsi Six Golf",
             "rwy": {
-                "11": [["WA606", "A40+|S200-"], "GILAL", "WA666"],
-                "15": [["WA401", "A15+|S200-"], "WA402", "GILAL"],
-                "29": [["WA901", "A20+|S200-"], "WA902", ["WA903", "A50+"], "MAKUS"],
-                "33": [["WA801", "A15+|S220-"], "WA802", "MAKUS"]
+                "EPWA29": []
             },
-            "body": [],
+            "body": [["WA901", "A20+|S200-"], "WA902", ["WA903", "A50+"], "MAKUS", "LOLSI"],
             "exitPoints": {
-                "SOXER": ["SOXER"]
+                "LOLSI": []
             },
             "draw": [
-                ["WA901", "WA902", "WA903", "MAKUS", "SOXER*"],
+                ["WA901", "WA902", "WA903", "MAKUS", "LOLSI*"]
+            ]
+        },
+        "LOLSI 5K": {
+            "icao": "LOLSI 5K",
+            "name": "Lolsi Five Kilo",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["WA801", "A15+|S220-"], "WA802", "MAKUS", "LOLSI"],
+            "exitPoints": {
+                "LOLSI": []
+            },
+            "draw": [
+                ["WA801", "WA802", "MAKUS", "LOLSI*"]
+            ]
+        },
+        "SOXER 5A": {
+            "icao": "SOXER 5A",
+            "name": "Soxer Five Alpha",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["WA606", "A40+|S200-"], "GILAL", "WA666", "SOXER"],
+            "exitPoints": {
+                "SOXER": []
+            },
+            "draw": [
+                ["WA606" "GILAL", "WA666", "SOXER*"]
+            ]
+        },
+        "SOXER 6D": {
+            "icao": "SOXER 6D",
+            "name": "Soxer Six Delta",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["WA401", "A15+|S200-"], "WA402", "GILAL", "SOXER"],
+            "exitPoints": {
+                "SOXER": []
+            },
+            "draw": [
                 ["WA401", "WA402", "GILAL", "SOXER*"]
             ]
         },
-        "EVINA": {
-            "icao": "EVINA",
-            "name": "Evina",
-            "suffix": {"11":"4A", "15":"5D", "29":"6G", "33":"4K"},
+        "SOXER 6G": {
+            "icao": "SOXER 6G",
+            "name": "Soxer Six Golf",
             "rwy": {
-                "11": [["WA606", "A40+|S200-"], "NITKI", ["NIPUS", "A180+"]],
-                "15": [["WA401", "A15+|S200-"], "WA402", "NITKI", ["NIPUS", "A180+"]],
-                "29": [["WA901", "A20+|S200-"], ["WA921", "A50+"], "EVDEX", ["NIPUS", "A180+"]],
-                "33": [["WA801", "A15+|S220-"], "WA802", "EVDEX", ["NIPUS", "A180+"]]
-              },
-            "body": [],
+                "EPWA29": []
+            },
+            "body": [["WA901", "A20+|S200-"], "WA902", ["WA903", "A50+"], "MAKUS", "SOXER"],
             "exitPoints": {
-                "EVINA": ["EVINA"]
+                "SOXER": []
             },
             "draw": [
-                ["WA901", "WA921", "EVDEX", "NIPUS", "EVINA*"],
+                ["WA901", "WA902", "WA903", "MAKUS", "SOXER*"]
+            ]
+        },
+        "SOXER 5K": {
+            "icao": "SOXER 5K",
+            "name": "Soxer Five Kilo",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["WA801", "A15+|S220-"], "WA802", "MAKUS", "SOXER"],
+            "exitPoints": {
+                "SOXER": []
+            },
+            "draw": [
+                ["WA801", "WA802", "MAKUS", "SOXER"]
+            ]
+        },
+        "EVINA 4A": {
+            "icao": "EVINA 4A",
+            "name": "Evina Four Alpha",
+            "rwy": {
+                "EPWA11": []
+              },
+            "body": [["WA606", "A40+|S200-"], "NITKI", ["NIPUS", "A180+"], "EVINA"],
+            "exitPoints": {
+                "EVINA": []
+            },
+            "draw": [
+                ["WA606", "NITKI", "NIPUS", "EVINA*"]
+            ]
+        },
+        "EVINA 5D": {
+            "icao": "EVINA 5D",
+            "name": "Evina Five Delta",
+            "rwy": {
+                "EPWA15": []
+              },
+            "body": [["WA401", "A15+|S200-"], "WA402", "NITKI", ["NIPUS", "A180+"], "EVINA"],
+            "exitPoints": {
+                "EVINA": []
+            },
+            "draw": [
                 ["WA401", "WA402", "NITKI", "NIPUS", "EVINA*"]
             ]
         },
-        "XIMBA": {
-            "icao": "XIMBA",
-            "name": "Ximba",
-            "suffix": {"11":"4A", "15":"6D", "29":"6G", "33":"4K"},
+        "EVINA 6G": {
+            "icao": "EVINA 6G",
+            "name": "Evina Six Golf",
             "rwy": {
-                "11": [["WA604", "A40+|S200-"]],
-                "15": [["WA401", "A15+"], "WA403"],
-                "29": [["WA901", "A20+|S200-"], ["WA921", "A50+"], "EVDEX", ["XENOM", "A110+"], "TISTA"],
-                "33": [["WA801", "A15+|S220-"], "WA802", "EVDEX", ["XENOM", "A110+"], "TISTA"]
+                "EPWA29": []
               },
-            "body": [],
+            "body": [["WA901", "A20+|S200-"], ["WA921", "A50+"], "EVDEX", ["NIPUS", "A180+"], "EVINA"],
             "exitPoints": {
-                "XIMBA": ["XIMBA"]
+                "EVINA": []
             },
             "draw": [
-                ["WA901", "WA921", "EVDEX", "XENOM", "TISTA", "XIMBA*"],
+                ["WA901", "WA921", "EVDEX", "NIPUS", "EVINA*"]
+            ]
+        },
+        "EVINA 4K": {
+            "icao": "EVINA 4K",
+            "name": "Evina Four Kilo",
+            "rwy": {
+                "EPWA33": []
+              },
+            "body": [["WA801", "A15+|S220-"], "WA802", "EVDEX", ["NIPUS", "A180+"], "EVINA"],
+            "exitPoints": {
+                "EVINA": []
+            },
+            "draw": [
+                ["WA801", "WA802", "EVDEX", "NIPUS", "EVINA*"]
+            ]
+        },
+        "XIMBA 4A": {
+            "icao": "XIMBA 4A",
+            "name": "Ximba Four Alpha",
+            "rwy": {
+                "EPWA11": []
+              },
+            "body": [["WA604", "A40+|S200-"], "XIMBA"],
+            "exitPoints": {
+                "XIMBA": []
+            },
+            "draw": [
+                ["WA604", "XIMBA*"]
+            ]
+        },
+        "XIMBA 6D": {
+            "icao": "XIMBA 6D",
+            "name": "Ximba Six Delta",
+            "rwy": {
+                "EPWA15": []
+              },
+            "body": [["WA401", "A15+"], "WA403", "XIMBA"],
+            "exitPoints": {
+                "XIMBA": []
+            },
+            "draw": [
                 ["WA401", "WA403", "XIMBA*"]
+            ]
+        },
+        "XIMBA 6G": {
+            "icao": "XIMBA 6G",
+            "name": "Ximba Six Golf",
+            "rwy": {
+                "EPWA29": []
+              },
+            "body": [["WA901", "A20+|S200-"], ["WA921", "A50+"], "EVDEX", ["XENOM", "A110+"], "TISTA", "XIMBA"],
+            "exitPoints": {
+                "XIMBA": []
+            },
+            "draw": [
+                ["WA901", "WA921", "EVDEX", "XENOM", "TISTA", "XIMBA*"]
+            ]
+        },
+        "XIMBA 4K": {
+            "icao": "XIMBA 4K",
+            "name": "Ximba Four Kilo",
+            "rwy": {
+                "EPWA33": []
+              },
+            "body": [["WA801", "A15+|S220-"], "WA802", "EVDEX", ["XENOM", "A110+"], "TISTA", "XIMBA"],
+            "exitPoints": {
+                "XIMBA": []
+            },
+            "draw": [
+                ["WA801", "WA802", "EVDEX", "XENOM", "TISTA", "XIMBA*"]
             ]
         }
     },
     "stars": {
-        "BIMPA" : {
-            "icao": "BIMPA",
-            "name": "Bimpa",
-            "suffix": {"11":"5N", "15":"3P", "29":"4V", "33":"4U"},
+        "BIMPA 5N" : {
+            "icao": "BIMPA 5N",
+            "name": "Bimpa Five November",
             "rwy": {
-                "11": [["BIMPA", "A170-|S280"], ["WA444", "S250"], ["OLDIM", "A110-|S220"], "ELGAD", ["SOPAM", "S220"], "RUNIN", "MIGVI", "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-                "15": [["BIMPA", "A170-|S280"], ["INREN", "A110-|S250"], "WA448", ["LUGEL", "S220"], "AMLAS", "RILSU", ["MARUP", "S220"], "LUXIB", "NANOM", ["RONIR", "S220"], "WA618", "WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-                "29": [["BIMPA", "A190-|S280"], ["GOMSA", "S250"], ["WA507", "A120-"], ["WA709", "S220"], "WA532", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["BIMPA", "A190-|S280"], ["GOMSA", "S250"], ["WA507", "A120-"], ["LAVMO", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "EPWA11": []
             },
-            "body": [],
+            "body": [["BIMPA", "A170-|S280"], ["WA444", "S250"], ["OLDIM", "A110-|S220"], "ELGAD", ["SOPAM", "S220"], "RUNIN", "MIGVI", "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
             "entryPoints": {
-                "BIMPA": ["BIMPA"]
+                "BIMPA": []
             },
-            "_draw": [
-                ["BIMPA", "GOMSA", "WA507", "LAVMO", "UMTIX", "OTMUL", "NEGEN", "BARBA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"],
-                ["BIMPA", "GOMSA", "WA507", "WA709", "WA532", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"],
-                ["BIMPA", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"],
-                ["BIMPA", "WA444", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            "draw": [
+                ["BIMPA*", "WA444", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "SORIX" : {
-            "icao": "SORIX",
-            "name": "Sorix",
-            "suffix": {"11":"5N", "15":"3P", "29":"4V", "33":"4U"},
+        "BIMPA 3P" : {
+            "icao": "BIMPA 3P",
+            "name": "Bimpa Three Papa",
             "rwy": {
-                "11": [["SORIX", "A150-|S280"], ["IRDOM", "S250"], ["OLDIM", "A110-|S220"], "ELGAD", ["SOPAM", "S220"], "RUNIN", "MIGVI", "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-                "15": [["SORIX", "A150-|S280"], ["INREN", "A110-|S250"], "WA448", ["LUGEL", "S220"], "AMLAS", "RILSU", ["MARUP", "S220"], "LUXIB", "NANOM", ["RONIR", "S220"], "WA618", "WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-                "29": [["SORIX", "A210-|S280"], ["DINRI", "S250"], ["WA508", "A130-"], ["TINBU", "S220"], "REBSO", "DINVA", ["ODRIM", "S220"], "ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["SORIX", "A210-|S280"], ["DINRI", "S250"], ["WA508", "A130-"], ["TINBU", "S220"], "REBSO", "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "EPWA15": []
             },
-            "body": [],
+            "body": [["BIMPA", "A170-|S280"], ["INREN", "A110-|S250"], "WA448", ["LUGEL", "S220"], "AMLAS", "RILSU", ["MARUP", "S220"], "LUXIB", "NANOM", ["RONIR", "S220"], "WA618", "WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
             "entryPoints": {
-                "SORIX": ["SORIX"]
+                "BIMPA": []
             },
-            "_draw": [
-                ["SORIX", "DINRI", "WA508", "TINBU", "REBSO", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"],
-                ["SORIX", "DINRI", "WA508", "TINBU", "REBSO", "DINVA", "ODRIM", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"],
-                ["SORIX", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"],
-                ["SORIX", "IRDOM", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            "draw": [
+                ["BIMPA*", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "NEPOX" : {
-            "icao": "NEPOX",
-            "name": "Nepox",
-            "suffix": {"11":"4N", "15":"3P", "29":"4V", "33":"4U"},
+        "BIMPA 4V" : {
+            "icao": "BIMPA 4V",
+            "name": "Bimpa Four Victor",
             "rwy": {
-                "11": [["NEPOX", "A210-|S280"], "INPAL", ["DETOR", "S250"], ["EMKEN", "A130-|S230"], ["TOSLU", "S220"], ["XIMPU", "S220"], ["NIMIS", "S220"], "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-                "15": [["NEPOX", "A210-|S280"], "INPAL", ["DETOR", "S250"], ["EMKEN", "A130-|S230"], ["WA468", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-                "29": [["NEPOX", "A150-|S280"], "WA704", ["SUPID", "S220"], ["ROPUX", "A110-"], ["UNDES", "S220"],"ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["NEPOX", "A190-|S280"], ["WA573", "S250"], "WA594", ["IPSIM", "A110-|S220"], ["PISEN", "S220"], "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "EPWA29": []
             },
-            "body": [],
+            "body": [["BIMPA", "A190-|S280"], ["GOMSA", "S250"], ["WA507", "A120-"], ["WA709", "S220"], "WA532", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
             "entryPoints": {
-                "NEPOX": ["NEPOX"]
+                "BIMPA": []
             },
-            "_draw": [
-                ["NEPOX","WA573","WA594","IPSIM","PISEN","BEXON","ADINI","SISLU","LEMBU","NUTSO","WA537","WA536","WA534","WA533","ERLEG","FAP33"],
-                ["NEPOX","WA704","SUPID","ROPUX","UNDES","ODMEK","TIGTU","RIKNO","WA732","WA731","WA729","TEBRU","FAF29"],
-                ["NEPOX","INPAL","DETOR","EMKEN","WA468","NEDNA","SUBEG","ELGEL","GIMKU","WA617","WA616","WA614","OSNUT","FAF15"],
-                ["NEPOX","INPAL","DETOR","EMKEN","TOSLU","XIMPU","NIMIS","REMDI","AGESI","TABET","INLUT","WA413","WA412","WA411","GOSIT","FAP11"]
+            "draw": [
+                ["BIMPA*", "GOMSA", "WA507", "WA709", "WA532", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "LIMVI" : {
-            "icao": "LIMVI",
-            "name": "Limvi",
-            "suffix": {"11":"4N", "15":"3P", "29":"4V", "33":"4U"},
+        "BIMPA 4U" : {
+            "icao": "BIMPA 4U",
+            "name": "Bimpa Four Uniform",
             "rwy": {
-              "11": [["LIMVI", "A160-|S280"], ["WA442", "S250"], ["EMKEN", "A130-|S230"], ["TOSLU", "S220"], ["XIMPU", "S220"], ["NIMIS", "S220"], "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-              "15": [["LIMVI", "A160-|S280"], ["WA442", "S250"], ["EMKEN", "A130-|S230"], ["WA468", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-              "29": [["LIMVI", "A140-|S280"], "WA511", ["WA512", "S250"], ["SUPID", "S220"], ["ROPUX", "A110-"], ["UNDES", "S220"],"ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["LIMVI", "A150-|S280"], "RILET", ["DETOR", "S250"], "WA594", ["IPSIM", "A110-|S220"], ["PISEN", "S220"], "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "33": []
             },
-            "body": [],
+            "body": [["BIMPA", "A190-|S280"], ["GOMSA", "S250"], ["WA507", "A120-"], ["LAVMO", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
             "entryPoints": {
-                "LIMVI": ["LIMVI"]
+                "BIMPA": []
             },
-            "_draw": [
-                ["LIMVI", "RILET", "DETOR", "WA594", "IPSIM", "PISEN", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"],
-                ["LIMVI", "WA511", "WA512", "SUPID", "ROPUX", "UNDES", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"],
-                ["LIMVI"," WA442", "EMKEN", "WA468", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"],
-                ["LIMVI", "WA442", "EMKEN", "TOSLU", "XIMPU", "NIMIS", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            "draw": [
+                ["BIMPA*", "GOMSA", "WA507", "LAVMO", "UMTIX", "OTMUL", "NEGEN", "BARBA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         },
-        "LOGDA" : {
-            "icao": "LOGDA",
-            "name": "Logda",
-            "suffix": {"11":"4N", "15":"3P", "29":"4V", "33":"4U"},
+        "SORIX 5N" : {
+            "icao": "SORIX 5N",
+            "name": "Sorix Five November",
             "rwy": {
-                "11": [["LOGDA", "A210-|S280"], "GIPUL", ["BEMRA", "A120-|S250"], ["OLOKU", "S220"], ["SOSIN", "S220"], ["BASEK", "S220"], "LUGEL", "PIBAR", ["REDSA", "S220"], "WA414", "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-                "15": [["LOGDA", "A210-|S280"], "GIPUL", ["BEMRA", "A120-|S250"], ["WA452", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-                "29": [["LOGDA", "A190-|S280"], ["WA593", "S250"], ["INSEX", "A100-"], "KUVAM", ["OSTET", "S220"], "SOROT", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["LOGDA", "A190-|S280"], ["WA593", "S250"], ["INSEX", "A100-"], ["WA564", "S220"], ["XEMRO", "S220"], ["PIVIP", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "EPWA11": []
             },
-            "body": [],
+            "body": [["SORIX", "A150-|S280"], ["IRDOM", "S250"], ["OLDIM", "A110-|S220"], "ELGAD", ["SOPAM", "S220"], "RUNIN", "MIGVI", "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
             "entryPoints": {
-                "LOGDA": ["LOGDA"]
+                "SORIX": []
             },
-            "_draw": [
-                ["LOGDA", "WA593", "INSEX", "WA564", "XEMRO", "PIVIP", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"],
-                ["LOGDA", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"],
-                ["LOGDA", "GIPUL", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"],
-                ["LOGDA", "GIPUL", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            "draw": [
+                ["SORIX*", "IRDOM", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "AGAVA" : {
-            "icao": "AGAVA",
-            "name": "Agava",
-            "suffix": {"11":"4N", "15":"3P", "29":"4V", "33":"4U"},
+        "SORIX 3P" : {
+            "icao": "SORIX 3P",
+            "name": "Sorix Three Papa",
             "rwy": {
-                "11": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], "AMSOS", "ESINI", ["BEMRA", "A120-|S250"], ["OLOKU", "S220"], ["SOSIN", "S220"], ["BASEK", "S220"], "LUGEL", "PIBAR", ["REDSA", "S220"], "WA414", "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
-                "15": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], "AMSOS", "ESINI", ["BEMRA", "A120-|S250"], ["WA452", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
-                "29": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], ["AMSOS", "S250"], ["WA593", "S250"], ["INSEX", "A100-"], "KUVAM", ["OSTET", "S220"], "SOROT", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
-                "33": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], ["AMSOS", "S250"], ["WA593", "S250"], ["INSEX", "A100-"], ["WA564", "S220"], ["XEMRO", "S220"], ["PIVIP", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]]
+                "EPWA15": [["SORIX", "A150-|S280"], ["INREN", "A110-|S250"], "WA448", ["LUGEL", "S220"], "AMLAS", "RILSU", ["MARUP", "S220"], "LUXIB", "NANOM", ["RONIR", "S220"], "WA618", "WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]]
             },
-            "body": [],
+            "body": [["SORIX", "A150-|S280"], ["INREN", "A110-|S250"], "WA448", ["LUGEL", "S220"], "AMLAS", "RILSU", ["MARUP", "S220"], "LUXIB", "NANOM", ["RONIR", "S220"], "WA618", "WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
             "entryPoints": {
-                "AGAVA": ["AGAVA"]
+                "SORIX": []
             },
-            "_draw": [
-                ["AGAVA", "ELKIR", "AMSOS", "WA593", "INSEX", "WA564", "XEMRO", "PIVIP", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"],
-                ["AGAVA", "ELKIR", "AMSOS", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"],
-                ["AGAVA", "ELKIR", "AMSOS", "ESINI", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"],
-                ["AGAVA", "ELKIR", "AMSOS", "ESINI", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            "draw": [
+                ["SORIX*", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
+            ]
+        },
+        "SORIX 4V" : {
+            "icao": "SORIX 4V",
+            "name": "Sorix Four Victor",
+            "rwy": {
+                "EPWA29": []
+            },
+            "body": [["SORIX", "A210-|S280"], ["DINRI", "S250"], ["WA508", "A130-"], ["TINBU", "S220"], "REBSO", "DINVA", ["ODRIM", "S220"], "ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
+            "entryPoints": {
+                "SORIX": []
+            },
+            "draw": [
+                ["SORIX*", "DINRI", "WA508", "TINBU", "REBSO", "DINVA", "ODRIM", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
+            ]
+        },
+        "SORIX 4U" : {
+            "icao": "SORIX 4U",
+            "name": "Sorix Four Uniform",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["SORIX", "A210-|S280"], ["DINRI", "S250"], ["WA508", "A130-"], ["TINBU", "S220"], "REBSO", "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
+            "entryPoints": {
+                "SORIX": []
+            },
+            "draw": [
+                ["SORIX*", "DINRI", "WA508", "TINBU", "REBSO", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
+            ]
+        },
+        "NEPOX 4N" : {
+            "icao": "NEPOX 4N",
+            "name": "Nepox Four November",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["NEPOX", "A210-|S280"], "INPAL", ["DETOR", "S250"], ["EMKEN", "A130-|S230"], ["TOSLU", "S220"], ["XIMPU", "S220"], ["NIMIS", "S220"], "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
+            "entryPoints": {
+                "NEPOX": []
+            },
+            "draw": [
+                ["NEPOX*","INPAL","DETOR","EMKEN","TOSLU","XIMPU","NIMIS","REMDI","AGESI","TABET","INLUT","WA413","WA412","WA411","GOSIT","FAP11"]
+            ]
+        },
+        "NEPOX 3P" : {
+            "icao": "NEPOX 3P",
+            "name": "Nepox Three Papa",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["NEPOX", "A210-|S280"], "INPAL", ["DETOR", "S250"], ["EMKEN", "A130-|S230"], ["WA468", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
+            "entryPoints": {
+                "NEPOX": []
+            },
+            "draw": [
+                ["NEPOX*","INPAL","DETOR","EMKEN","WA468","NEDNA","SUBEG","ELGEL","GIMKU","WA617","WA616","WA614","OSNUT","FAF15"]
+            ]
+        },
+        "NEPOX 4V" : {
+            "icao": "NEPOX 4V",
+            "name": "Nepox Four Victor",
+            "rwy": {
+                "EPWA29": []
+            },
+            "body": [["NEPOX", "A150-|S280"], "WA704", ["SUPID", "S220"], ["ROPUX", "A110-"], ["UNDES", "S220"],"ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
+            "entryPoints": {
+                "NEPOX": []
+            },
+            "draw": [
+                ["NEPOX*","WA704","SUPID","ROPUX","UNDES","ODMEK","TIGTU","RIKNO","WA732","WA731","WA729","TEBRU","FAF29"]
+            ]
+        },
+        "NEPOX 4U" : {
+            "icao": "NEPOX 4U",
+            "name": "Nepox Four Uniform",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["NEPOX", "A190-|S280"], ["WA573", "S250"], "WA594", ["IPSIM", "A110-|S220"], ["PISEN", "S220"], "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
+            "entryPoints": {
+                "NEPOX": []
+            },
+            "draw": [
+                ["NEPOX*","WA573","WA594","IPSIM","PISEN","BEXON","ADINI","SISLU","LEMBU","NUTSO","WA537","WA536","WA534","WA533","ERLEG","FAP33"]
+            ]
+        },
+        "LIMVI 4N" : {
+            "icao": "LIMVI 4N",
+            "name": "Limvi Four November",
+            "rwy": {
+              "EPWA11": []
+            },
+            "body": [["LIMVI", "A160-|S280"], ["WA442", "S250"], ["EMKEN", "A130-|S230"], ["TOSLU", "S220"], ["XIMPU", "S220"], ["NIMIS", "S220"], "REMDI", ["AGESI", "S220"], "TABET", ["INLUT", "S220"], "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
+            "entryPoints": {
+                "LIMVI": []
+            },
+            "draw": [
+              ["LIMVI*", "WA442", "EMKEN", "TOSLU", "XIMPU", "NIMIS", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            ]
+        },
+        "LIMVI 3P" : {
+            "icao": "LIMVI 3P",
+            "name": "Limvi Three Papa",
+            "rwy": {
+              "EPWA15": []
+            },
+            "body": [["LIMVI", "A160-|S280"], ["WA442", "S250"], ["EMKEN", "A130-|S230"], ["WA468", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
+            "entryPoints": {
+                "LIMVI": []
+            },
+            "draw": [
+                ["LIMVI*"," WA442", "EMKEN", "WA468", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
+            ]
+        },
+        "LIMVI 4V" : {
+            "icao": "LIMVI 4V",
+            "name": "Limvi Four Victor",
+            "rwy": {
+                "EPWA29": []
+            },
+            "body": [["LIMVI", "A140-|S280"], "WA511", ["WA512", "S250"], ["SUPID", "S220"], ["ROPUX", "A110-"], ["UNDES", "S220"],"ODMEK", "TIGTU", ["RIKNO", "S220"], "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
+            "entryPoints": {
+                "LIMVI": []
+            },
+            "draw": [
+                ["LIMVI*", "WA511", "WA512", "SUPID", "ROPUX", "UNDES", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
+            ]
+        },
+        "LIMVI 4U" : {
+            "icao": "LIMVI 4U",
+            "name": "Limvi Four Uniform",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["LIMVI", "A150-|S280"], "RILET", ["DETOR", "S250"], "WA594", ["IPSIM", "A110-|S220"], ["PISEN", "S220"], "BEXON", ["ADINI", "S220"], "SISLU", "LEMBU", ["NUTSO", "S220"], "WA537", "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
+            "entryPoints": {
+                "LIMVI": []
+            },
+            "draw": [
+                ["LIMVI*", "RILET", "DETOR", "WA594", "IPSIM", "PISEN", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
+            ]
+        },
+        "LOGDA 4N" : {
+            "icao": "LOGDA 4N",
+            "name": "Logda Four November",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["LOGDA", "A210-|S280"], "GIPUL", ["BEMRA", "A120-|S250"], ["OLOKU", "S220"], ["SOSIN", "S220"], ["BASEK", "S220"], "LUGEL", "PIBAR", ["REDSA", "S220"], "WA414", "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
+            "entryPoints": {
+                "LOGDA": []
+            },
+            "draw": [
+                ["LOGDA*", "GIPUL", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            ]
+        },
+        "LOGDA 3P" : {
+            "icao": "LOGDA 3P",
+            "name": "Logda Three Papa",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["LOGDA", "A210-|S280"], "GIPUL", ["BEMRA", "A120-|S250"], ["WA452", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
+            "entryPoints": {
+                "LOGDA": []
+            },
+            "draw": [
+                ["LOGDA*", "GIPUL", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
+            ]
+        },
+        "LOGDA 4V" : {
+            "icao": "LOGDA 4V",
+            "name": "Logda Four Victor",
+            "rwy": {
+                "EPWA29": []
+            },
+            "body": [["LOGDA", "A190-|S280"], ["WA593", "S250"], ["INSEX", "A100-"], "KUVAM", ["OSTET", "S220"], "SOROT", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
+            "entryPoints": {
+                "LOGDA": []
+            },
+            "draw": [
+                ["LOGDA*", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
+            ]
+        },
+        "LOGDA 4U" : {
+            "icao": "LOGDA 4U",
+            "name": "Logda Four Uniform",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["LOGDA", "A190-|S280"], ["WA593", "S250"], ["INSEX", "A100-"], ["WA564", "S220"], ["XEMRO", "S220"], ["PIVIP", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
+            "entryPoints": {
+                "LOGDA": []
+            },
+            "draw": [
+                ["LOGDA*", "WA593", "INSEX", "WA564", "XEMRO", "PIVIP", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
+            ]
+        },
+        "AGAVA 4N" : {
+            "icao": "AGAVA 4N",
+            "name": "Agava Four November",
+            "rwy": {
+                "EPWA11": []
+            },
+            "body": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], "AMSOS", "ESINI", ["BEMRA", "A120-|S250"], ["OLOKU", "S220"], ["SOSIN", "S220"], ["BASEK", "S220"], "LUGEL", "PIBAR", ["REDSA", "S220"], "WA414", "WA413", "WA412", "WA411", "GOSIT", ["FAP11", "A30"]],
+            "entryPoints": {
+                "AGAVA": []
+            },
+            "draw": [
+                ["AGAVA*", "ELKIR", "AMSOS", "ESINI", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
+            ]
+        },
+        "AGAVA 3P" : {
+            "icao": "AGAVA 3P",
+            "name": "Agava Three Papa",
+            "rwy": {
+                "EPWA15": []
+            },
+            "body": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], "AMSOS", "ESINI", ["BEMRA", "A120-|S250"], ["WA452", "S220"], "NEDNA", ["SUBEG", "S220"], "ELGEL", ["GIMKU", "S220"],"WA617", "WA616", "WA614", "OSNUT", ["FAF15", "A30"]],
+            "entryPoints": {
+                "AGAVA": []
+            },
+            "draw": [
+                ["AGAVA*", "ELKIR", "AMSOS", "ESINI", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
+            ]
+        },
+        "AGAVA 4V" : {
+            "icao": "AGAVA 4V",
+            "name": "Agava Four Victor",
+            "rwy": {
+                "EPWA29": []
+            },
+            "body": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], ["AMSOS", "S250"], ["WA593", "S250"], ["INSEX", "A100-"], "KUVAM", ["OSTET", "S220"], "SOROT", ["WA531", "S220"], ["ABAPA", "S220"], "MAPIX", "KUMUT", ["ENIMO", "S220"], "WA733", "WA732", "WA731", "WA729", "TEBRU", ["FAF29", "A30"]],
+            "entryPoints": {
+                "AGAVA": []
+            },
+            "draw": [
+                ["AGAVA", "ELKIR", "AMSOS", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
+            ]
+        },
+        "AGAVA 4U" : {
+            "icao": "AGAVA 4U",
+            "name": "Agava Four Uniform",
+            "rwy": {
+                "EPWA33": []
+            },
+            "body": [["AGAVA", "A190-|S280"], ["ELKIR", "A170-"], ["AMSOS", "S250"], ["WA593", "S250"], ["INSEX", "A100-"], ["WA564", "S220"], ["XEMRO", "S220"], ["PIVIP", "S220"], "UMTIX", ["OTMUL", "S220"], "NEGEN", ["BARNA", "S220"], "WA536", "WA534", "WA533", "ERLEG", ["FAP33", "A30"]],
+            "entryPoints": {
+                "AGAVA": []
+            },
+            "draw": [
+                ["AGAVA", "ELKIR", "AMSOS", "WA593", "INSEX", "WA564", "XEMRO", "PIVIP", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         }
     },
@@ -1051,7 +1483,6 @@
             "entrail": [10, 22],
             "rate": 5,
             "airlines": [
-                ["ber", 2],
                 ["lot", 38],
                 ["dlh", 2],
                 ["nax", 1],
@@ -1091,8 +1522,7 @@
                 ["cnd", 1],
                 ["ent", 2],
                 ["lbt", 1],
-                ["tvp", 3],
-                ["tvs", 3]
+                ["tvs", 6]
             ]
         },
         {
@@ -1119,8 +1549,7 @@
                 ["ent", 3],
                 ["llc", 1],
                 ["tvl", 1],
-                ["tvp", 6],
-                ["tvs", 6]
+                ["tvs", 12]
             ]
         },
         {
@@ -1165,7 +1594,6 @@
             "airlines": [
                 ["ein", 1],
                 ["baw", 2],
-                ["ber", 2],
                 ["afr", 3],
                 ["bel", 2],
                 ["ewg", 2],
@@ -1177,7 +1605,7 @@
                 ["srn", 1],
                 ["ibk", 1],
                 ["pgt", 1],
-                ["tvp", 1],
+                ["tvs", 1],
                 ["tfl", 1]
             ]
         },
@@ -1249,8 +1677,7 @@
                 ["cai", 1],
                 ["ent", 2],
                 ["lbt", 2],
-                ["tvp", 2],
-                ["tvs", 2],
+                ["tvs", 4],
                 ["asl", 1],
                 ["srn", 1],
                 ["lzb", 1],
@@ -1281,8 +1708,7 @@
                 ["ent", 4],
                 ["llc", 1],
                 ["sxs", 1],
-                ["tvp", 6],
-                ["tvs", 6],
+                ["tvs", 12],
                 ["twi", 1]
             ]
         },
