@@ -1,0 +1,14 @@
+{
+    "icao": "llp",
+    "name": "Small Planet Airlines Poland",
+    "callsign": {
+        "name": "SKYPOL",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 6 ],
+            ["A321", 4 ]
+        ]
+    }
+}

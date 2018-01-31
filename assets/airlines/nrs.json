@@ -1,0 +1,16 @@
+{
+    "icao": "nrs",
+    "name": "Norwegian Air UK",
+    "callsign": {
+        "name": "NORWORLD",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["B738", 1]
+        ],
+        "long": [
+            ["B789", 9]
+        ]
+    }
+}

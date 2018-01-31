@@ -2,13 +2,14 @@
     "icao": "pgt",
     "name": "Pegasus Airlines",
     "callsign": {
-        "name": "Sun Turk",
+        "name": "SUNTURK",
         "length": 3
     },
     "fleets": {
         "default": [
-            ["A320", 10],
-            ["B738", 58]
+            ["A320", 12],
+            ["A20N", 15],
+            ["B738", 44]
         ]
     }
 }

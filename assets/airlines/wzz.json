@@ -1,0 +1,14 @@
+{
+    "icao": "wzz",
+    "name": "Wizz Air",
+    "callsign": {
+        "name": "WIZZAIR",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["A320", 64],
+            ["A321", 24]
+        ]
+    }
+}

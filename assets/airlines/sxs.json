@@ -1,0 +1,13 @@
+{
+    "icao": "sxs",
+    "name": "SunExpress",
+    "callsign": {
+        "name": "SUNEXPRESS",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["B738", 51]
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 {
     "icao": "aza",
-    "name": "Alitalia",
+    "name": "Alitalia Linee Aeree Italiane",
     "callsign": {
         "name": "Alitalia",
         "length": 3
@@ -19,11 +19,12 @@
         ],
         "long": [
             ["A332", 14 ],
-            ["B772", 7 ]
+            ["B772", 11 ],
+            ["B773", 1]
         ],
         "default": [
             ["A319", 22 ],
-            ["A320", 44 ],
+            ["A320", 28 ],
             ["A321", 12 ]
         ]
     }

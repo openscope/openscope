@@ -1,0 +1,15 @@
+{
+    "icao": "qac",
+    "name": "Qatar Airways Cargo",
+    "callsign": {
+        "name": "QATAR CARGO",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["A332", 8],
+            ["B748", 2],
+            ["B77L", 12]
+        ]
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "icao": "bcs",
+    "name": "EAT Leipzig",
+    "callsign": {
+        "name": "EUROTRANS",
+        "length": 3
+    },
+    "fleets": {
+        "long": [
+            ["A306", 21 ],
+            ["A333", 1  ]
+        ],
+        "default": [
+            ["B752", 10 ]
+        ]
+    }
+}
