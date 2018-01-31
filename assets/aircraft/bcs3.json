@@ -1,0 +1,37 @@
+{
+    "name": "Bombardier BD-500 C Series CS300",
+    "icao": "BCS3",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightclass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 8,
+        "recat": "D"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3100,
+        "descent":    3000,
+        "accelerate": 7,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 1.890,
+        "landing": 1.448
+    },
+    "speed":{
+        "min":     130,
+        "landing": 140,
+        "cruise":  447,
+        "cruiseM": 0.78,
+        "max":     470,
+        "maxM":    0.82
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}
