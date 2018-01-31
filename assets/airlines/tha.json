@@ -3,7 +3,9 @@
     "name": "Thai Airways International",
     "callsign": {
         "name": "Thai",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

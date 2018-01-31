@@ -3,7 +3,13 @@
     "name": "BA CityFlyer",
     "callsign": {
         "name": "CityFlyer",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###A",
+            "##AA",
+            "##A",
+            "#AA"
+        ]
     },
     "fleets": {
         "default": [

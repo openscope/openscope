@@ -3,7 +3,12 @@
     "name": "Edelweiss Air",
     "callsign": {
         "name": "Edelweiss",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "###A",
+            "##",
+            "##A"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,11 @@
     "name": "Germania Flug",
     "callsign": {
         "name": "Eiger",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###",
+            "###A"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Oman Air",
     "callsign": {
         "name": "Oman Air",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

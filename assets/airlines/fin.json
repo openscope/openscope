@@ -3,7 +3,12 @@
     "name": "Finnair",
     "callsign": {
         "name": "Finnair",
-        "length": 3
+        "callsignFormats": [
+            "#AA",
+            "##A",
+            "###",
+            "####"
+        ]
     },
     "fleets": {
         "default": [

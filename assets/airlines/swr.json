@@ -3,7 +3,13 @@
     "name": "Swiss International Air Lines",
     "callsign": {
         "name": "Swiss",
-        "length": 4
+        "callsignFormats": [
+            "####",
+            "###A",
+            "##AA",
+            "##A",
+            "###"
+        ]
     },
     "fleets": {
         "default": [

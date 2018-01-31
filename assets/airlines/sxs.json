@@ -3,7 +3,11 @@
     "name": "SunExpress",
     "callsign": {
         "name": "Sunexpress",
-        "length": 4
+        "callsignFormats": [
+            "#AA",
+            "##A",
+            "#A"
+        ]
     },
     "fleets": {
         "default": [
