@@ -360,6 +360,52 @@ export default class LegModel {
     }
 
     /**
+     * Return the identifier of the airway being used in this leg
+     *
+     * @for LegModel
+     * @method getAirwayName
+     * @return {string}
+     */
+    getAirwayName() {
+        if (!this.isAirwayLeg) {
+            return;
+        }
+
+        return this._airwayModel.icao;
+    }
+
+    // FIXME: test
+    /**
+     * Return an array of WaypointModels AFTER (not including) the specified waypoint
+     *
+     * @for LegModel
+     * @method getAllWaypointModelsAfterWaypointName
+     * @return {array<WaypointModel>}
+     */
+    getAllWaypointModelsAfterWaypointName(waypointName) {
+        const indexOfWaypointName = this._findIndexOfWaypointName(waypointName);
+
+        return this._waypointCollection.slice().splice(indexOfWaypointName + 1);
+    }
+
+    // FIXME: test
+    /**
+     * Return an array of WaypointModels BEFORE (not including) the specified waypoint
+     *
+     * @for LegModel
+     * @method getAllWaypointModelsBeforeWaypointName
+     * @return {array<WaypointModel>}
+     */
+    getAllWaypointModelsBeforeWaypointName(waypointName) {
+        const indexOfWaypointName = this._findIndexOfWaypointName(waypointName);
+        const copyOfWaypointCollection = this._waypointCollection.slice();
+
+        copyOfWaypointCollection.splice(indexOfWaypointName);
+
+        return copyOfWaypointCollection;
+    }
+
+    /**
      * Return the ICAO identifier for the airport at which this leg will terminate (if
      * it is in fact a STAR leg, of course).
      *
@@ -488,6 +534,42 @@ export default class LegModel {
         return this._procedureModel.name;
     }
 
+    // FIXME: test
+    /**
+     * Return the name of this leg's exit fix
+     *
+     * @for LegModel
+     * @method getExitFixName
+     * @return {string}
+     */
+    getEntryFixName() {
+        if (this.isDirectLeg) {
+            return this._routeString;
+        }
+
+        const routeStringElements = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        return routeStringElements[0];
+    }
+
+    // FIXME: test
+    /**
+     * Return the name of this leg's exit fix
+     *
+     * @for LegModel
+     * @method getExitFixName
+     * @return {string}
+     */
+    getExitFixName() {
+        if (this.isDirectLeg) {
+            return this._routeString;
+        }
+
+        const routeStringElements = this._routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        return routeStringElements[2];
+    }
+
     /**
      * Returns the route string for this leg, removing any airports
      * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
@@ -600,6 +682,22 @@ export default class LegModel {
         const waypointModelToMove = this._waypointCollection.shift();
 
         this._previousWaypointCollection.push(waypointModelToMove);
+    }
+
+    procedureHasEntry(entryName) {
+        if (!this.isProcedureLeg) {
+            return false;
+        }
+
+        return this._procedureModel.hasEntry(entryName);
+    }
+
+    procedureHasExit(exitName) {
+        if (!this.isProcedureLeg) {
+            return false;
+        }
+
+        return this._procedureModel.hasExit(exitName);
     }
 
     /**

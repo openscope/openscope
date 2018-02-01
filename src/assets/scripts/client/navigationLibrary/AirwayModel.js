@@ -35,6 +35,10 @@ export default class AirwayModel {
         return this._fixNameCollection;
     }
 
+    get icao() {
+        return this._icao;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     init(icao, fixNames, navigationLibrary) {

@@ -245,6 +245,16 @@ ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() wi
     t.true(setHoldParametersAndActivateHoldSpy.calledWithExactly(holdParametersMock));
 });
 
+ava('.getAllWaypointModelsAfterWaypointName() returns an array of all waypoint models after and excluding the specified one', (t) => {
+    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const lastExcludedWaypoint = 'BOACH';
+    const result = model.getAllWaypointModelsAfterWaypointName(lastExcludedWaypoint);
+    const expectedRemainingFixNames = ['ZELMA', 'JOTNU', 'TNP'];
+    const remainingFixNames = result.map((wp) => wp.name);
+
+    t.deepEqual(remainingFixNames, expectedRemainingFixNames);
+});
+
 ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
     const result = model.getArrivalRunwayAirportIcao();
