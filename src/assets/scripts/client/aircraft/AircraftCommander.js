@@ -569,28 +569,29 @@ export default class AircraftCommander {
         let taxiDestination = data[0];
         const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
         const flightPhase = aircraft.flightPhase;
+        const airportModel = AirportController.airport_get();
+        const previousRunwayModel = aircraft.fms.departureRunwayModel;
 
         // Set the runway to taxi to
         if (!taxiDestination) {
-            const airport = AirportController.airport_get();
-            taxiDestination = airport.departureRunwayModel.name;
+            taxiDestination = airportModel.departureRunwayModel.name;
         }
 
-        const runwayModel = AirportController.airport_get().getRunway(taxiDestination.toUpperCase());
+        const nextRunwayModel = airportModel.getRunway(taxiDestination.toUpperCase());
 
-        if (!runwayModel) {
+        if (!nextRunwayModel) {
             return [false, `unable to find Runway ${taxiDestination.toUpperCase()} on our charts`];
         }
 
-        if (!aircraft.fms.isRunwayModelValidForSid(runwayModel)) {
+        if (!aircraft.fms.isRunwayModelValidForSid(nextRunwayModel)) {
             aircraft.pilot.cancelDepartureClearance(aircraft);
         }
 
-        const readback = aircraft.pilot.taxiToRunway(runwayModel, isDeparture, flightPhase);
+        const readback = aircraft.pilot.taxiToRunway(nextRunwayModel, isDeparture, flightPhase);
         aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
-        aircraft.fms.setDepartureRunway(runwayModel);
-        runwayModel.addAircraftToQueue(aircraft.id);
+        nextRunwayModel.addAircraftToQueue(aircraft.id);
+        previousRunwayModel.removeAircraftFromQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         GameController.game_timeout(
