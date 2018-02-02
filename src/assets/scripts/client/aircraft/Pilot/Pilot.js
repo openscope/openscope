@@ -341,36 +341,6 @@ export default class Pilot {
     }
 
     /**
-     * Replace the entire route stored in the FMS with legs freshly generated
-     * based on the provided route string
-     *
-     * @for Pilot
-     * @method applyNewRoute
-     * @param routeString {string}  routeString defining the new route to use
-     * @return {array}              [success of operation, readback]
-     */
-    applyNewRoute(routeString) {
-        const routeAppliedSuccessfully = this._fms.replaceFlightPlanWithNewRoute(routeString);
-
-        if (!routeAppliedSuccessfully) {
-            const readback = {};
-            readback.log = `requested route of "${routeString}" is invalid`;
-            readback.say = 'that route is invalid';
-
-            return [false, readback];
-        }
-
-        this.hasDepartureClearance = true;
-
-        // Build readback
-        const readback = {};
-        readback.log = `rerouting to: ${this._fms.getRouteStringWithSpaces()}`;
-        readback.say = 'rerouting as requested';
-
-        return [true, readback];
-    }
-
-    /**
      * Apply the specified route, and as applicable, merge it with the current route
      *
      * @for Pilot
@@ -379,23 +349,7 @@ export default class Pilot {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        if (!this._fms.isValidRouteAmendment(routeString)) {
-            return [
-                false,
-                `requested route of "${routeString.toUpperCase()}" is invalid, it ` +
-                    'must contain a Waypoint in the current route'
-            ];
-        }
-
-        this._fms.replaceRouteUpToSharedRouteSegment(routeString);
-        this.exitHold();
-
-        // Build readback
-        const readback = {};
-        readback.log = `rerouting to: ${this._fms.getRouteStringWithSpaces()}`;
-        readback.say = 'rerouting as requested';
-
-        return [true, readback];
+        return this._fms.applyPartialRouteAmendment(routeString);
     }
 
     /**
@@ -754,6 +708,18 @@ export default class Pilot {
      */
     raiseLandingGearAndActivateAutopilot() {
         this._mcp.enable();
+    }
+
+    /**
+     * Replace the entire route with a new one built from the provided route string
+     *
+     * @for Pilot
+     * @method replaceFlightPlanWithNewRoute
+     * @param routeString {string}  routeString defining the new route to use
+     * @return {array}              [success of operation, readback]
+     */
+    replaceFlightPlanWithNewRoute(routeString) {
+        return this._fms.replaceFlightPlanWithNewRoute(routeString);
     }
 
     /**

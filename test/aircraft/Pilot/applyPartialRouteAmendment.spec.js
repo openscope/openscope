@@ -24,7 +24,7 @@ ava.afterEach(() => {
 
 function buildPilotWithComplexRoute() {
     const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
-    pilot.applyNewRoute(complexRouteString);
+    pilot.replaceFlightPlanWithNewRoute(complexRouteString);
 
     return pilot;
 }

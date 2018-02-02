@@ -464,6 +464,28 @@ export default class Fms {
     }
 
     /**
+     * Apply the specified route, and as applicable, merge it with the current route
+     *
+     * @for Fms
+     * @method applyPartialRouteAmendment
+     * @param routeString {tring}  route string in the form of `entry.procedure.airport`
+     * @return {array}             [success of operation, readback]
+     */
+    applyPartialRouteAmendment(routeString) {
+        let nextRouteModel;
+
+        try {
+            nextRouteModel = new RouteModel(this._navigationLibrary, routeString);
+        } catch (error) {
+            console.error(error);
+
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
+        }
+
+        return this._routeModel.absorbRouteModel(nextRouteModel);
+    }
+
+    /**
      * Return an array of waypoints in the flight plan that have altitude restrictions
      *
      * @for Fms
@@ -726,14 +748,24 @@ export default class Fms {
         } catch (error) {
             console.error(error);
 
-            return false;
+            const readback = {};
+            readback.log = `requested route of "${routeString}" is invalid`;
+            readback.say = 'that route is invalid';
+
+            return [false, readback];
         }
 
         this._routeModel = nextRouteModel;
+        this.hasDepartureClearance = true;
 
         this.skipToWaypointName(currentWaypointName);
 
-        return true;
+        // Build readback
+        const readback = {};
+        readback.log = `rerouting to: ${this.getRouteStringWithSpaces()}`;
+        readback.say = 'rerouting as requested';
+
+        return [true, readback];
     }
 
     /**

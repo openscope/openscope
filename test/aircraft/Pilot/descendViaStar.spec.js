@@ -42,7 +42,7 @@ ava('.descendViaStar() returns early when provided bottom altitude parameter is 
 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS has no bottom altitude', (t) => {
     // replace route with one that will have NO altitude restrictions whatsoever
-    pilot.applyNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
+    pilot.replaceFlightPlanWithNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
 
     const response = pilot.descendViaStar();
 
@@ -52,7 +52,7 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS bottom altitude is invalid', (t) => {
     // replace route with one that will have NO altitude restrictions whatsoever
-    pilot.applyNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
+    pilot.replaceFlightPlanWithNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
 
     pilot._fms.waypoints[2].altitudeMaximum = invalidAltitudeMock;
 
