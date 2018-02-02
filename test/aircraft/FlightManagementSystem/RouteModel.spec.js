@@ -182,19 +182,20 @@ ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (
 ava('.absorbRouteModel() returns no-continuity message when routes have no common fixes', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
     const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..CRESO..BLD');
-    const expectedResult = 'routes do not have continuity!';
+    const expectedResult = [false, 'routes do not have continuity!'];
     const result = primaryModel.absorbRouteModel(otherModel);
 
-    t.true(result === expectedResult);
+    t.deepEqual(result, expectedResult);
 });
 
 ava('.absorbRouteModel() calls ._overwriteRouteBetweenWaypointNames() when provided route has two points of continuity with this route', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY..TOMIS..LEMNZ..LOOSN');
     const otherModel = new RouteModel(navigationLibraryFixture, 'MDDOG..JEBBB..BESSY..LEMNZ');
     const primaryModelOverwriteRouteBetweenWaypointNamesSpy = sinon.spy(primaryModel, '_overwriteRouteBetweenWaypointNames');
+    const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR MDDOG JEBBB BESSY LEMNZ LOOSN', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelOverwriteRouteBetweenWaypointNamesSpy.calledWithExactly('MDDOG', 'LEMNZ', otherModel));
 });
 
@@ -202,9 +203,10 @@ ava('.absorbRouteModel() calls ._prependRouteModelEndingAtWaypointName() when pr
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
     const primaryModelPrependRouteModelEndingAtWaypointNameSpy = sinon.spy(primaryModel, '_prependRouteModelEndingAtWaypointName');
+    const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelPrependRouteModelEndingAtWaypointNameSpy.calledWithExactly('CLARR', otherModel));
 });
 
@@ -212,9 +214,10 @@ ava('.absorbRouteModel() calls ._appendRouteModelBeginningAtWaypointName() when 
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
     const primaryModelAppendRouteModelBeginningAtWaypointNameSpy = sinon.spy(primaryModel, '_appendRouteModelBeginningAtWaypointName');
+    const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelAppendRouteModelBeginningAtWaypointNameSpy.calledWithExactly('CLARR', otherModel));
 });
 
@@ -790,9 +793,10 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfAi
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
     const primaryModelAppendRouteModelOutOfAirwayLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfAirwayLeg');
+    const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('CLARR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelAppendRouteModelOutOfAirwayLegSpy.calledWithExactly('CLARR', otherModel));
 });
 
@@ -800,9 +804,10 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfDi
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
     const otherModel = new RouteModel(navigationLibraryFixture, 'SKEBR..CRESO..BLD');
     const primaryModelAppendRouteModelOutOfDirectLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfDirectLeg');
+    const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR CRESO BLD', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('SKEBR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelAppendRouteModelOutOfDirectLegSpy.calledWithExactly('SKEBR', otherModel));
 });
 
@@ -810,9 +815,10 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfSi
     const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
     const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..SKEBR..TARRK');
     const primaryModelAppendRouteModelOutOfSidLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfSidLeg');
+    const expectedResult = [true, { log: 'rerouting to: JESJI BAKRR MINEY HITME BOACH SKEBR TARRK', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('BOACH', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelAppendRouteModelOutOfSidLegSpy.calledWithExactly('BOACH', otherModel));
 });
 
@@ -820,18 +826,20 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfSt
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'LUXOR..WINDS..CRESO');
     const primaryModelAppendRouteModelOutOfStarLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfStarLeg');
+    const expectedResult = [true, { log: 'rerouting to: DVC BETHL HOLDM KSINO LUXOR WINDS CRESO', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('LUXOR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelAppendRouteModelOutOfStarLegSpy.calledWithExactly('LUXOR', otherModel));
 });
 
 ava('._appendRouteModelOutOfAirwayLeg() correctly places RouteModel and adjusts airway exit', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
+    const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfAirwayLeg('CLARR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'DAG.V394.CLARR');
     t.true(primaryModel._legCollection[1].routeString === 'CLARR');
@@ -842,9 +850,10 @@ ava('._appendRouteModelOutOfAirwayLeg() correctly places RouteModel and adjusts 
 ava('._appendRouteModelOutOfDirectLeg() correctly places RouteModel', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
     const otherModel = new RouteModel(navigationLibraryFixture, 'SKEBR..CRESO..BLD');
+    const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR CRESO BLD', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfDirectLeg('SKEBR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'CLARR');
     t.true(primaryModel._legCollection[1].routeString === 'SKEBR');
@@ -855,9 +864,10 @@ ava('._appendRouteModelOutOfDirectLeg() correctly places RouteModel', (t) => {
 ava('._appendRouteModelOutOfSidLeg() correctly places RouteModel and explodes remaining SID waypoints into legs', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
     const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..SKEBR..TARRK');
+    const expectedResult = [true, { log: 'rerouting to: JESJI BAKRR MINEY HITME BOACH SKEBR TARRK', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfSidLeg('BOACH', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 7);
     t.true(primaryModel._legCollection[0].routeString === 'JESJI');
     t.true(primaryModel._legCollection[1].routeString === 'BAKRR');
@@ -871,9 +881,10 @@ ava('._appendRouteModelOutOfSidLeg() correctly places RouteModel and explodes re
 ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and changes STAR exit when divergent fix is a valid exit', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'BCE.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'DUBLX..PRINO..RELIN');
+    const expectedResult = [true, { log: 'rerouting to: BCE GRNPA1 DUBLX PRINO RELIN', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfStarLeg('DUBLX', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'BCE.GRNPA1.DUBLX');
     t.true(primaryModel._legCollection[1].routeString === 'DUBLX');
@@ -884,9 +895,10 @@ ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and changes ST
 ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and explodes remaining STAR waypoints into legs', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'LUXOR..WINDS..CRESO');
+    const expectedResult = [true, { log: 'rerouting to: DVC BETHL HOLDM KSINO LUXOR WINDS CRESO', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfStarLeg('LUXOR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 7);
     t.true(primaryModel._legCollection[0].routeString === 'DVC');
     t.true(primaryModel._legCollection[1].routeString === 'BETHL');
@@ -933,7 +945,7 @@ ava('._createAmendedConvergentLeg() calls ._createAmendedAirwayLegUsingDifferent
     const model = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
-    const expectedResult = model._createAmendedAirwayLegUsingDifferentEntryName(waypointName, legIndex);
+    const expectedResult = [model._createAmendedAirwayLegUsingDifferentEntryName(waypointName, legIndex)];
     const createAmendedAirwayLegUsingDifferentEntryNameSpy = sinon.spy(model, '_createAmendedAirwayLegUsingDifferentEntryName');
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
 
@@ -941,13 +953,13 @@ ava('._createAmendedConvergentLeg() calls ._createAmendedAirwayLegUsingDifferent
     t.deepEqual(result, expectedResult);
 });
 
-ava('._createAmendedConvergentLeg() returns undefined when leg is a direct leg', (t) => {
+ava('._createAmendedConvergentLeg() returns an empty array when leg is a direct leg', (t) => {
     const model = new RouteModel(navigationLibraryFixture, 'CLARR');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, []);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypointName() when leg is a SID leg', (t) => {
@@ -966,7 +978,7 @@ ava('._createAmendedConvergentLeg() calls ._createAmendedStarLegUsingDifferentEn
     const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const waypointName = 'BETHL';
     const legIndex = 0;
-    const expectedResult = model._createAmendedStarLegUsingDifferentEntryName(waypointName, legIndex);
+    const expectedResult = [model._createAmendedStarLegUsingDifferentEntryName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentEntryNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentEntryName');
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
 
@@ -1000,7 +1012,7 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentE
     const model = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
-    const expectedResult = model._createAmendedAirwayLegUsingDifferentExitName(waypointName, legIndex);
+    const expectedResult = [model._createAmendedAirwayLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedAirwayLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedAirwayLegUsingDifferentExitName');
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
 
@@ -1008,13 +1020,13 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentE
     t.deepEqual(result, expectedResult);
 });
 
-ava('._createAmendedDivergentLeg() returns undefined when leg is a direct leg', (t) => {
+ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct leg', (t) => {
     const model = new RouteModel(navigationLibraryFixture, 'CLARR');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, []);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypointName() when leg is a SID leg', (t) => {
@@ -1033,7 +1045,7 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedStarLegUsingDifferentExi
     const model = new RouteModel(navigationLibraryFixture, 'BCE.GRNPA1.KLAS07R');
     const waypointName = 'DUBLX';
     const legIndex = 0;
-    const expectedResult = model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex);
+    const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentExitName');
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
 
@@ -1166,9 +1178,10 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoAirw
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
     const primaryModelPrependRouteModelIntoAirwayLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoAirwayLeg');
+    const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('CLARR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelPrependRouteModelIntoAirwayLegSpy.calledWithExactly('CLARR', otherModel));
 });
 
@@ -1176,9 +1189,10 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoDire
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
     const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..MDDOG');
     const primaryModelPrependRouteModelIntoDirectLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoDirectLeg');
+    const expectedResult = [true, { log: 'rerouting to: BOACH MDDOG IPUMY', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('MDDOG', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelPrependRouteModelIntoDirectLegSpy.calledWithExactly('MDDOG', otherModel));
 });
 
@@ -1186,9 +1200,10 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoSidL
     const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
     const otherModel = new RouteModel(navigationLibraryFixture, 'IPUMY..HITME');
     const primaryModelPrependRouteModelIntoSidLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoSidLeg');
+    const expectedResult = [true, { log: 'rerouting to: IPUMY HITME BOACH HEC', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('HITME', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelPrependRouteModelIntoSidLegSpy.calledWithExactly('HITME', otherModel));
 });
 
@@ -1196,18 +1211,20 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoStar
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'GUP..PGA..BETHL');
     const primaryModelPrependRouteModelIntoStarLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoStarLeg');
+    const expectedResult = [true, { log: 'rerouting to: GUP PGA BETHL GRNPA1 KLAS07R', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('BETHL', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModelPrependRouteModelIntoStarLegSpy.calledWithExactly('BETHL', otherModel));
 });
 
 ava('._prependRouteModelIntoAirwayLeg() correctly places RouteModel and adjusts airway entry', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
     const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
+    const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoAirwayLeg('CLARR', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'GFS');
     t.true(primaryModel._legCollection[1].routeString === 'WHIGG');
@@ -1218,9 +1235,10 @@ ava('._prependRouteModelIntoAirwayLeg() correctly places RouteModel and adjusts 
 ava('._prependRouteModelIntoDirectLeg() correctly places RouteModel', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
     const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..MDDOG');
+    const expectedResult = [true, { log: 'rerouting to: BOACH MDDOG IPUMY', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoDirectLeg('MDDOG', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 3);
     t.true(primaryModel._legCollection[0].routeString === 'BOACH');
     t.true(primaryModel._legCollection[1].routeString === 'MDDOG');
@@ -1230,9 +1248,10 @@ ava('._prependRouteModelIntoDirectLeg() correctly places RouteModel', (t) => {
 ava('._prependRouteModelIntoSidLeg() correctly places RouteModel and explodes remaining SID waypoints into legs', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
     const otherModel = new RouteModel(navigationLibraryFixture, 'IPUMY..HITME');
+    const expectedResult = [true, { log: 'rerouting to: IPUMY HITME BOACH HEC', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoSidLeg('HITME', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'IPUMY');
     t.true(primaryModel._legCollection[1].routeString === 'HITME');
@@ -1243,9 +1262,10 @@ ava('._prependRouteModelIntoSidLeg() correctly places RouteModel and explodes re
 ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and changes STAR entry when route ends at an entry', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'GUP..PGA..BETHL');
+    const expectedResult = [true, { log: 'rerouting to: GUP PGA BETHL GRNPA1 KLAS07R', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoStarLeg('BETHL', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'GUP');
     t.true(primaryModel._legCollection[1].routeString === 'PGA');
@@ -1256,9 +1276,10 @@ ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and changes ST
 ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and explodes remaining STAR waypoints into legs', (t) => {
     const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
     const otherModel = new RouteModel(navigationLibraryFixture, 'PGA..FRAWG');
+    const expectedResult = [true, { log: 'rerouting to: PGA FRAWG TRROP LEMNZ', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoStarLeg('FRAWG', otherModel);
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.true(primaryModel._legCollection.length === 4);
     t.true(primaryModel._legCollection[0].routeString === 'PGA');
     t.true(primaryModel._legCollection[1].routeString === 'FRAWG');

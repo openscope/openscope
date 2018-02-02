@@ -648,25 +648,27 @@ ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() when 
     t.deepEqual(response, expectedResponse);
 });
 
-ava('.replaceFlightPlanWithNewRoute() returns false and does not modify route when proposed route is not valid', (t) => {
+ava('.replaceFlightPlanWithNewRoute() returns failure response and does not modify route when proposed route is not valid', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const invalidProposedRoute = 'KLAS07R.BOACH6.BOP';
     const originalRouteModel = fms._routeModel;
     const skipToWaypointNameSpy = sinon.spy(fms, 'skipToWaypointName');
+    const expectedResult = [false, { log: 'requested route of "KLAS07R.BOACH6.BOP" is invalid', say: 'that route is invalid' }];
     const result = fms.replaceFlightPlanWithNewRoute(invalidProposedRoute);
 
-    t.false(result);
+    t.deepEqual(result, expectedResult);
     t.true(skipToWaypointNameSpy.notCalled);
     t.deepEqual(originalRouteModel, fms._routeModel);
 });
 
-ava('.replaceFlightPlanWithNewRoute() returns true and replaces old route with new route when proposed route is valid', (t) => {
+ava('.replaceFlightPlanWithNewRoute() returns correct response and replaces old route with new route when proposed route is valid', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('TNP..BIKKR..HEC');
     const proposedRoute = 'JESJI..BAKRR..MINEY..HITME';
     const skipToWaypointNameSpy = sinon.spy(fms, 'skipToWaypointName');
+    const expectedResult = [true, { log: 'rerouting to: JESJI BAKRR MINEY HITME', say: 'rerouting as requested' }];
     const result = fms.replaceFlightPlanWithNewRoute(proposedRoute);
 
-    t.true(result);
+    t.deepEqual(result, expectedResult);
     t.true(skipToWaypointNameSpy.calledWithExactly('BIKKR'));
     t.true(fms._routeModel.getRouteString() === proposedRoute);
 });
@@ -832,8 +834,6 @@ ava('._verifyRouteContainsMultipleWaypoints() does not throw when route has more
     t.true(fms.waypoints.length === 2);
     t.notThrows(() => fms._verifyRouteContainsMultipleWaypoints());
 });
-
-ava.todo('------------------------------------------------------------------------');
 
 // ava('#routeString returns a routeString for a procedure route', (t) => {
 //     const expectedResult = 'dag.kepec3.klas';
