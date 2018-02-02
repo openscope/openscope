@@ -863,7 +863,7 @@ export default class CanvasController {
 
         for (let i = 0; i < positionHistory.length; i++) {
             const position = aircraftModel.relativePositionHistory[i];
-            const canvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+            const canvasPosition = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(position);
 
             cc.beginPath();
             cc.arc(
@@ -913,7 +913,7 @@ export default class CanvasController {
         }
 
         const alerts = aircraftModel.hasAlerts();
-        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(aircraftModel.relativePosition);
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(aircraftModel.relativePosition);
 
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
