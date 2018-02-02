@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import AirportModel from '../../../src/assets/scripts/client/airport/AirportModel';
+import AirwayModel from '../../../src/assets/scripts/client/navigationLibrary/AirwayModel';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureModel';
 // import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
@@ -25,7 +26,7 @@ import {
 // const arrivalFlightPhaseMock = 'CRUISE';
 // const departureFlightPhaseMock = 'APRON';
 
-// const airwayRouteStringMock = '';
+const airwayRouteStringMock = 'CHRLT.V394.LAS';
 const directRouteStringMock = 'PGS';
 const sidRouteStringMock = 'KLAS25R.BOACH6.TNP';
 const shortSidRouteStringMock = 'KLAS07R.TRALR6.MLF';
@@ -59,11 +60,11 @@ ava('throws when instantiated with route string that should be two separate legs
     t.throws(() => new LegModel(navigationLibrary, directThenProcedureRouteString));
 });
 
-ava.todo('throws when instantiated with airway route string with airway not defined in navigation library'/* , (t) => {
+ava('throws when instantiated with airway route string with airway not defined in navigation library', (t) => {
     const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
 
     t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
-}*/);
+});
 
 ava('throws when instantiated with procedure route string with procedure not defined in navigation library', (t) => {
     const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
@@ -71,15 +72,15 @@ ava('throws when instantiated with procedure route string with procedure not def
     t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
 });
 
-ava.todo('instantiates correctly when given a single airway leg\'s route string'/* , (t) => {
+ava('instantiates correctly when given a single airway leg\'s route string', (t) => {
     const model = new LegModel(navigationLibrary, airwayRouteStringMock);
 
-    t.true(model._airwayModel === null);
-    t.true(model._legType === LEG_TYPE.DIRECT);
+    t.true(model._airwayModel instanceof AirwayModel);
+    t.true(model._legType === LEG_TYPE.AIRWAY);
     t.true(model._procedureModel === null);
     t.true(model._routeString === airwayRouteStringMock);
-    t.true(model._waypointCollection.length === 1);
-}*/);
+    t.true(model._waypointCollection.length === 4);
+});
 
 ava('instantiates correctly when given a single direct leg\'s route string', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
@@ -135,11 +136,11 @@ ava('#isAirwayLeg returns false when this is not an airway leg', (t) => {
     t.false(model.isAirwayLeg);
 });
 
-ava.todo('#isAirwayLeg returns true when this is an airway leg'/* , (t) => {
+ava('#isAirwayLeg returns true when this is an airway leg', (t) => {
     const model = new LegModel(navigationLibrary, airwayRouteStringMock);
 
     t.true(model.isAirwayLeg);
-}*/);
+});
 
 ava('#isDirectLeg returns false when this is not a direct leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
