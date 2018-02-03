@@ -178,7 +178,7 @@ export default class ProcedureModel {
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for ProcedureModel
      * @method init
@@ -204,7 +204,7 @@ export default class ProcedureModel {
     }
 
     /**
-     * Reset class properties
+     * Reset instance properties
      *
      * @for ProcedureModel
      * @method reset

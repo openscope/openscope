@@ -84,7 +84,7 @@ ava('instantiates correctly when given a vector fix', (t) => {
     t.true(model._isHoldWaypoint === false);
     t.true(model._isVectorWaypoint === true);
     t.true(model._name === '#320');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 });
 
 ava('instantiates correctly when given an unrestricted fix', (t) => {
@@ -898,7 +898,7 @@ ava('._initializePosition() returns early when this is a vector waypoint', (t) =
     const result = model._initializePosition();
 
     t.true(typeof result === 'undefined');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 });
 
 ava('._initializePosition() throws when #_name does not have a corresponding fix definition in the FixCollection', (t) => {

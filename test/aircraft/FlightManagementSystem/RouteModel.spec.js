@@ -130,7 +130,7 @@ ava('#nextLeg returns null when there are no more legs after the current leg', (
     const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
     const result = model.nextLeg;
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('#nextLeg returns the second element of the #_legCollection when it exists', (t) => {
@@ -145,7 +145,7 @@ ava('#nextWaypoint returns null when there are no more waypoints after the curre
     const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
     const result = model.nextWaypoint;
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('#nextWaypoint returns next waypoint of the current leg when the current leg has another waypoint', (t) => {

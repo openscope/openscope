@@ -106,16 +106,6 @@ export default class AircraftModel {
          */
         this.id = _uniqueId('aircraft-');
 
-        // TODO: Does the aircraft itself really need this?
-        /**
-         * Reference to the `NavigationLibrary`
-         *
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
-
         /**
          * Aircraft Position
          *
@@ -442,7 +432,7 @@ export default class AircraftModel {
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
         this.parse(options);
-        this.initFms(options);
+        this.initFms(options, navigationLibrary);
 
         this.mcp = new ModeController();
         this.model = new AircraftTypeDefinitionModel(options.model);
@@ -559,10 +549,10 @@ export default class AircraftModel {
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
-    initFms(data) {
+    initFms(data, navigationLibrary) {
         const airport = AirportController.airport_get();
         // const initialRunway = airport.getActiveRunwayForCategory(this.category);
-        this.fms = new Fms(data, this.model, this._navigationLibrary);
+        this.fms = new Fms(data, navigationLibrary);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.setFlightPhase(FLIGHT_PHASE.APRON);
@@ -703,7 +693,7 @@ export default class AircraftModel {
      */
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
-        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        // flightnumber and visa versa. this needs to be ironed out first before making an instance property.
         return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
@@ -950,11 +940,17 @@ export default class AircraftModel {
      * @method isOnGround
      */
     isOnGround() {
+        let airportModel = this.fms.departureAirportModel;
+        let runwayModel = this.fms.departureRunwayModel;
+
+        if (this.isArrival()) {
+            airportModel = this.fms.arrivalAirportModel;
+            runwayModel = this.fms.arrivalRunwayModel;
+        }
+
         const errorAllowanceInFeet = 5;
-        const airport = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
-        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
         const nearRunwayAltitude = abs(this.altitude - runwayModel.elevation) < errorAllowanceInFeet;
-        const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
+        const nearAirportAltitude = abs(this.altitude - airportModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }

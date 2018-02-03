@@ -174,7 +174,7 @@ export default class WaypointModel {
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for WaypointModel
      * @method init
@@ -204,7 +204,7 @@ export default class WaypointModel {
     }
 
     /**
-     * Reset class properties
+     * Reset instance properties
      *
      * @for WaypointModel
      * @method reset
@@ -552,7 +552,7 @@ export default class WaypointModel {
 
         const fixPosition = FixCollection.getPositionModelForFixName(this._name);
 
-        if (fixPosition === null) {
+        if (!fixPosition) {
             throw new TypeError(`Expected fix with known position, but cannot find fix '${this._name}'`);
         }
 

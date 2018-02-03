@@ -33,23 +33,23 @@ ava('returns early when instantiated with incorrect parameters', t => {
 
     model = new FixModel(FIXNAME_MOCK);
     t.true(model.name === '');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 
     model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
     t.true(model.name === '');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 
     model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 
     model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 
     model = new FixModel(null, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 });
 
 ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {

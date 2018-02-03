@@ -45,7 +45,7 @@ ava.skip('.returnReusable() adds the modelToAdd to the pool', t => {
 ava.skip('._findModelByConstructorName() returns null if no instance is found within the pool', t => {
     const result = modelSourcePool._findModelByConstructorName('Date');
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 // when reactivating, use ava.serial

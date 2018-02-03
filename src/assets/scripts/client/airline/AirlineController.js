@@ -100,7 +100,7 @@ export default class AirlineController {
     }
 
     /**
-     * Reset session specific class properties
+     * Reset session specific instance properties
      *
      * Used when changing airports. Clears activeFlightNumbers and
      * any other properties specific to a current session at a

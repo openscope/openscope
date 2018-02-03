@@ -224,7 +224,7 @@ export default class LegModel {
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for LegModel
      * @method init
@@ -247,7 +247,7 @@ export default class LegModel {
     }
 
     /**
-     * Reset class properties
+     * Reset instance properties
      *
      * @for LegModel
      * @method reset

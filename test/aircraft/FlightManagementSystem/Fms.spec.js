@@ -45,12 +45,12 @@ let navigationLibraryFixture;
 function buildFmsForAircraftInApronPhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock, navigationLibraryFixture);
 }
 function buildFmsForAircraftInCruisePhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock, navigationLibraryFixture);
 }
 
 ava.before(() => {
@@ -216,18 +216,18 @@ ava('.activateHoldForWaypointName() calls #_routeModel.activateHoldForWaypointNa
     t.true(routeModelActivateHoldForWaypointNameSpy.calledWithExactly(holdWaypointName, holdParametersMock));
 });
 
-ava('.reset() resets all class properties to appropriate default values', (t) => {
+ava('.reset() resets all instance properties to appropriate default values', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
 
     fms.reset();
 
-    t.true(fms.arrivalAirportModel === null);
-    t.true(fms.arrivalRunwayModel === null);
+    t.true(!fms.arrivalAirportModel);
+    t.true(!fms.arrivalRunwayModel);
     t.true(fms.currentPhase === '');
-    t.true(fms.departureAirportModel === null);
-    t.true(fms.departureRunwayModel === null);
+    t.true(!fms.departureAirportModel);
+    t.true(!fms.departureRunwayModel);
     t.true(fms.flightPlanAltitude === INVALID_NUMBER);
-    t.true(fms._routeModel === null);
+    t.true(!fms._routeModel);
 });
 
 ava('._initializeArrivalAirport() returns early when destination ICAO is an empty string', (t) => {
@@ -235,7 +235,7 @@ ava('._initializeArrivalAirport() returns early when destination ICAO is an empt
     const result = fms.reset()._initializeArrivalAirport('');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.arrivalAirportModel === null);
+    t.true(!fms.arrivalAirportModel);
 });
 
 ava('._initializeArrivalAirport() sets #arrivalAirportModel to the specified destination airport', (t) => {
@@ -277,7 +277,7 @@ ava('._initializeDepartureAirport() returns early when destination ICAO is an em
     const result = fms.reset()._initializeDepartureAirport('');
 
     t.true(typeof result === 'undefined');
-    t.true(fms.departureAirportModel === null);
+    t.true(!fms.departureAirportModel);
 });
 
 ava('._initializeDepartureAirport() sets #departureAirportModel to the specified origin airport', (t) => {

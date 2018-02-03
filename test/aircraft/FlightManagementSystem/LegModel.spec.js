@@ -77,7 +77,7 @@ ava('instantiates correctly when given a single airway leg\'s route string', (t)
 
     t.true(model._airwayModel instanceof AirwayModel);
     t.true(model._legType === LEG_TYPE.AIRWAY);
-    t.true(model._procedureModel === null);
+    t.true(!model._procedureModel);
     t.true(model._routeString === airwayRouteStringMock);
     t.true(model._waypointCollection.length === 4);
 });
@@ -85,9 +85,9 @@ ava('instantiates correctly when given a single airway leg\'s route string', (t)
 ava('instantiates correctly when given a single direct leg\'s route string', (t) => {
     const model = new LegModel(navigationLibrary, directRouteStringMock);
 
-    t.true(model._airwayModel === null);
+    t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.DIRECT);
-    t.true(model._procedureModel === null);
+    t.true(!model._procedureModel);
     t.true(model._routeString === directRouteStringMock);
     t.true(model._waypointCollection.length === 1);
 });
@@ -95,7 +95,7 @@ ava('instantiates correctly when given a single direct leg\'s route string', (t)
 ava('instantiates correctly when given a single SID leg\'s route string', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
 
-    t.true(model._airwayModel === null);
+    t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
     t.true(model._procedureModel instanceof ProcedureModel);
     t.true(model._procedureModel.procedureType === PROCEDURE_TYPE.SID);
@@ -106,7 +106,7 @@ ava('instantiates correctly when given a single SID leg\'s route string', (t) =>
 ava('instantiates correctly when given a single STAR leg\'s route string', (t) => {
     const model = new LegModel(navigationLibrary, starRouteStringMock);
 
-    t.true(model._airwayModel === null);
+    t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
     t.true(model._procedureModel instanceof ProcedureModel);
     t.true(model._procedureModel.procedureType === PROCEDURE_TYPE.STAR);
@@ -260,7 +260,7 @@ ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
     const result = model.getArrivalRunwayAirportIcao();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getArrivalRunwayAirportIcao() returns the first four characters of the STAR exit name', (t) => {
@@ -274,7 +274,7 @@ ava('.getArrivalRunwayName() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(navigationLibrary, sidRouteStringMock);
     const result = model.getArrivalRunwayName();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getArrivalRunwayName() returns the all but first four characters of the STAR exit name', (t) => {
@@ -312,7 +312,7 @@ ava('.getDepartureRunwayAirportIcao() returns null when this is not a SID leg', 
     const model = new LegModel(navigationLibrary, starRouteStringMock);
     const result = model.getDepartureRunwayAirportIcao();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getDepartureRunwayAirportIcao() returns the first four characters of the SID entry name', (t) => {
@@ -326,7 +326,7 @@ ava('.getDepartureRunwayName() returns null when this is not a SID leg', (t) => 
     const model = new LegModel(navigationLibrary, starRouteStringMock);
     const result = model.getDepartureRunwayName();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getDepartureRunwayName() returns the all but first four characters of the SID entry name', (t) => {
@@ -515,9 +515,9 @@ ava('.reset() resets to default all properties', (t) => {
 
     model.reset();
 
-    t.true(model._airwayModel === null);
+    t.true(!model._airwayModel);
     t.true(model._legType === '');
-    t.true(model._procedureModel === null);
+    t.true(!model._procedureModel);
     t.deepEqual(model._previousWaypointCollection, []);
     t.true(model._routeString === '');
     t.deepEqual(model._waypointCollection, []);

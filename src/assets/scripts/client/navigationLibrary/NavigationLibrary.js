@@ -101,7 +101,7 @@ export default class NavigationLibrary {
     // }
 
     /**
-     * Set initial class properties
+     * Set initial instance properties
      *
      * May be run multiple times on an instance. Subsequent calls to this method
      * should happen only after a call to `.reset()`

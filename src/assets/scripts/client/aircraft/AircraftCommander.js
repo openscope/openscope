@@ -251,7 +251,7 @@ export default class AircraftCommander {
         const incremental = data[2];
         const readback = aircraft.pilot.maintainHeading(aircraft, heading, direction, incremental);
 
-        if (direction === null) {
+        if (!direction) {
             direction = '';
         }
 
@@ -327,6 +327,8 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
+        const turnDirection = data[0];
+        const legLength = data[1];
         const fixName = data[2];
         const fixModel = this._navigationLibrary.findFixByName(fixName);
 
@@ -335,8 +337,8 @@ export default class AircraftCommander {
         }
 
         const holdParameters = {
-            turnDirection: data[0],
-            legLength: data[1],
+            turnDirection,
+            legLength,
             inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
         };
 

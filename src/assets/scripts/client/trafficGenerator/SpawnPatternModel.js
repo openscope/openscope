@@ -692,7 +692,7 @@ export default class SpawnPatternModel extends BaseModel {
      * Sets `_minimumAltitude` and `_maximumAltitude` from a provided altitude.
      *
      * Altitude may be a single number or a range, expressed as: `[min, max]`.
-     * This method handles that variation and sets the class properties with
+     * This method handles that variation and sets the instance properties with
      * the correct values.
      *
      * @for SpawnPatternModel

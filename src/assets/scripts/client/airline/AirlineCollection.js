@@ -53,7 +53,7 @@ export default class AirlineCollection extends BaseCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation
      *
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for AirlineCollection
      * @method init

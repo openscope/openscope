@@ -40,11 +40,11 @@ export default class RouteModel extends BaseModel {
      * @param routeString {string}
      */
     constructor(navigationLibrary, routeString) {
+        super();
+
         if (!(navigationLibrary instanceof NavigationLibrary)) {
             throw new TypeError(`Expected valid navigationLibrary, but received ${typeof navigationLibrary}`);
         }
-
-        super();
 
         /**
          * Array of `LegModel`s on the route
@@ -160,7 +160,7 @@ export default class RouteModel extends BaseModel {
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for RouteModel
      * @method init
@@ -174,7 +174,7 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Reset class properties
+     * Reset instance properties
      *
      * @for RouteModel
      * @method reset
@@ -291,7 +291,7 @@ export default class RouteModel extends BaseModel {
     getArrivalRunwayAirportModel() {
         const airportIcao = this.getArrivalRunwayAirportIcao();
 
-        if (airportIcao === null) {
+        if (!airportIcao) {
             return null;
         }
 
@@ -325,7 +325,7 @@ export default class RouteModel extends BaseModel {
     getArrivalRunwayModel() {
         const arrivalRunwayName = this.getArrivalRunwayName();
 
-        if (arrivalRunwayName === null) {
+        if (!arrivalRunwayName) {
             return null;
         }
 
@@ -359,7 +359,7 @@ export default class RouteModel extends BaseModel {
     getDepartureRunwayAirportModel() {
         const airportIcao = this.getDepartureRunwayAirportIcao();
 
-        if (airportIcao === null) {
+        if (!airportIcao) {
             return null;
         }
 
@@ -393,7 +393,7 @@ export default class RouteModel extends BaseModel {
     getDepartureRunwayModel() {
         const departureRunwayName = this.getDepartureRunwayName();
 
-        if (departureRunwayName === null) {
+        if (!departureRunwayName) {
             return null;
         }
 

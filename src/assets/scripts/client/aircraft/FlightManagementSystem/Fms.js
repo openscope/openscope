@@ -12,6 +12,7 @@ import {
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
 
+
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
  * and waypoints that make up that flightPlan.
@@ -55,10 +56,9 @@ export default class Fms {
     /**
      * @constructor
      * @param aircraftInitProps {object}
-     * @param typeDefinitionModel {AircraftTypeDefinitionModel}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftInitProps, typeDefinitionModel, navigationLibrary) {
+    constructor(aircraftInitProps, navigationLibrary) {
         if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
             throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
@@ -259,7 +259,7 @@ export default class Fms {
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
-     * Initialize class properties
+     * Initialize instance properties
      *
      * @for Fms
      * @method init
@@ -267,7 +267,17 @@ export default class Fms {
      * @param navigationLibrary {NavigationLibrary}
      * @chainable
      */
-    init({ altitude, category, destination, model, nextFix, origin, routeString }, navigationLibrary) {
+    init(aircraftInitProps, navigationLibrary) {
+        const {
+            altitude,
+            category,
+            destination,
+            model,
+            nextFix,
+            origin,
+            routeString
+        } = aircraftInitProps;
+
         this._navigationLibrary = navigationLibrary;
         this._routeModel = new RouteModel(this._navigationLibrary, routeString);
 
@@ -284,7 +294,7 @@ export default class Fms {
     }
 
     /**
-     * Reset class properties
+     * Reset instance properties
      *
      * @for LegModel
      * @method reset
@@ -327,13 +337,13 @@ export default class Fms {
      * @private
      */
     _initializeArrivalRunway() {
-        if (this.arrivalAirportModel === null) {
+        if (!this.arrivalAirportModel) {
             return;
         }
 
         const arrivalRunwayName = this._routeModel.getArrivalRunwayName();
 
-        if (arrivalRunwayName === null) {
+        if (!arrivalRunwayName) {
             return this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
         }
 
@@ -366,13 +376,13 @@ export default class Fms {
      * @private
      */
     _initializeDepartureRunway() {
-        if (this.departureAirportModel === null) {
+        if (!this.departureAirportModel) {
             return;
         }
 
         const departureRunwayName = this._routeModel.getDepartureRunwayName();
 
-        if (departureRunwayName === null) {
+        if (!departureRunwayName) {
             return this.setDepartureRunway(this.departureAirportModel.departureRunwayModel);
         }
 
