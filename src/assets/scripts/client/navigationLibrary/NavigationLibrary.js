@@ -91,14 +91,20 @@ export default class NavigationLibrary {
         return FixCollection.findRealFixes();
     }
 
-    // /**
-    //  *
-    //  * @property sidLines
-    //  * @return
-    //  */
-    // get sidLines() {
-    //     return this.sidCollection.draw;
-    // }
+    // FIXME: test
+    /**
+     *
+     * @property sidLines
+     * @return
+     */
+    get sidLines() {
+        const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid());
+        const lines = _map(sids, (sid) => {
+            return { identifier: sid.icao, draw: sid.draw };
+        });
+
+        return lines;
+    }
 
     /**
      * Set initial instance properties

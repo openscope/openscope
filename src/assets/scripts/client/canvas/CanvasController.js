@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
-import _has from 'lodash/has';
 import _filter from 'lodash/filter';
+import _has from 'lodash/has';
+import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -686,6 +687,7 @@ export default class CanvasController {
 
         const textAtPoint = [];
         const { sidLines } = this._navigationLibrary;
+        let mostRecentFixName = '';
 
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
@@ -701,8 +703,8 @@ export default class CanvasController {
             let shouldDrawProcedureName = true;
             let fixCanvasPosition;
 
-            if (!_has(sid, 'draw')) {
-                return;
+            if (_isEmpty(sid)) {
+                continue;
             }
 
             for (let j = 0; j < sid.draw.length; j++) {
@@ -717,8 +719,8 @@ export default class CanvasController {
                     }
 
                     // TODO: this is duplicated in the if block above. need to consolidate
-                    const fixName = fixList[k].replace('*', '');
-                    const fixPosition = this._navigationLibrary.getFixRelativePosition(fixName);
+                    mostRecentFixName = fixList[k].replace('*', '');
+                    const fixPosition = this._navigationLibrary.getFixRelativePosition(mostRecentFixName);
 
                     if (!fixPosition) {
                         console.warning(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
@@ -737,25 +739,35 @@ export default class CanvasController {
                 cc.stroke();
 
                 if (exitName) {
-                    // Initialize count for this transition
-                    if (isNaN(textAtPoint[exitName])) {
-                        textAtPoint[exitName] = 0;
+                    if (!(exitName in textAtPoint)) {
+                        textAtPoint[exitName] = [];
                     }
 
-                    // Move the y point for drawing depending on how many sids we have drawn text for
-                    // at this point already
-                    const y_point = fixCanvasPosition.y + (15 * textAtPoint[exitName]);
-                    cc.fillText(`${sid.identifier}.${exitName}`, fixCanvasPosition.x + 10, y_point);
-
-                    // Increment the count for this transition
-                    textAtPoint[exitName] += 1;
+                    textAtPoint[exitName].push(`${sid.identifier}.${exitName}`);
                 }
             }
 
             if (shouldDrawProcedureName) {
-                const labelOffsetX = fixCanvasPosition.x + 10;
+                if (!(mostRecentFixName in textAtPoint)) {
+                    textAtPoint[mostRecentFixName] = [];
+                }
 
-                cc.fillText(sid.identifier, labelOffsetX, fixCanvasPosition.y);
+                textAtPoint[mostRecentFixName].push(sid.identifier);
+            }
+        }
+
+        // draw SID labels
+        for (const j in textAtPoint) {
+            const textItemsToPrint = textAtPoint[j];
+            const fixPosition = this._navigationLibrary.getFixRelativePosition(j);
+            const fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
+
+            for (let k = 0; k < textItemsToPrint.length; k++) {
+                const textItem = textItemsToPrint[k];
+                const x_position = fixCanvasPosition.x + 10;
+                const y_position = fixCanvasPosition.y + (15 * k);
+
+                cc.fillText(textItem, x_position, y_position);
             }
         }
 
