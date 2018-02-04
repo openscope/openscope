@@ -6,18 +6,17 @@ import {
     FIX_COORDINATE_MOCK
 } from './_mocks/fixMocks';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-
-// fixtures
-// eslint-disable-next-line no-unused-vars
-let navigationLibraryFixture;   // ignore lint error, this creates the fix collection!
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture = null;
+    resetNavigationLibraryFixture();
 });
 
 ava('does not throw when instantiated with invalid parameters', t => {

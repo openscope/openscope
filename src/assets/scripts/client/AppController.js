@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
-import _isNil from 'lodash/isNil';
 import AircraftCommander from './aircraft/AircraftCommander';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
@@ -156,8 +155,8 @@ export default class AppController {
         // this order could break a lot of things. This interdependency is something we should
         // work on reducing in the future.
         AirportController.init(initialAirportIcao, initialAirportData, airportLoadList);
+        NavigationLibrary.init(initialAirportData);
 
-        this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
         this.scopeModel = new ScopeModel();
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary, this.scopeModel);
@@ -271,7 +270,7 @@ export default class AppController {
             return;
         }
 
-        this.navigationLibrary.reset();
+        NavigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
         this.scopeModel.radarTargetCollection.reset();
@@ -280,7 +279,7 @@ export default class AppController {
 
         this.spawnScheduler = null;
 
-        this.navigationLibrary.init(nextAirportJson);
+        NavigationLibrary.init(nextAirportJson);
         this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(
             this.spawnPatternCollection,
@@ -296,7 +295,7 @@ export default class AppController {
      * Update visibility of icons at the bottom of the view that allow toggling of
      * certain view elements.
      *
-     * Abstrcated from `AirportModel`
+     * Abstracted from `AirportModel`
      *
      * @for App
      * @method updateViewControls
@@ -307,7 +306,7 @@ export default class AppController {
         this._eventBus.trigger(EVENT.MARK_DIRTY_CANVAS);
 
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(this.navigationLibrary.hasSids);
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(NavigationLibrary.hasSids);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(airport.data.has_terrain);
     }
 }

@@ -10,7 +10,8 @@ import { airportPositionFixtureKSFO } from './airportFixtures';
 // Only import `navigationLibraryFixture` where it will NOT be modified!
 // Else, it is better to import and invoke the function `createNavigationLibraryFixture`
 // to get a fresh fixture for each test.
-export const navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+// export const navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+
 // export const arrivalRouteModelFixture = new RouteModel(arrivalProcedureRouteStringMock);
 // export const departureRouteModelFixture = new RouteModel(departureProcedureRouteStringMock);
 export const fixCollectionFixture = FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
@@ -19,5 +20,9 @@ export const fixCollectionFixture = FixCollection.addItems(FIX_LIST_MOCK, airpor
 // changes to be made to the navigation library, it is wiser to call this function
 // in `ava.beforeEach()`in order to generate a fresh fixture for each and every test
 export function createNavigationLibraryFixture() {
-    return new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    NavigationLibrary.init(AIRPORT_JSON_KLAS_MOCK);
+}
+
+export function resetNavigationLibraryFixture() {
+    NavigationLibrary.reset();
 }
