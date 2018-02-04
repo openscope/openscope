@@ -108,7 +108,7 @@ export default class LoadingView {
      * @private
      */
     _resetCallback() {
-        if (this.callback === null) {
+        if (!this.callback) {
             return this;
         }
 

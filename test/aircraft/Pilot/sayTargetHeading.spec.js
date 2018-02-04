@@ -1,16 +1,21 @@
 import ava from 'ava';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
+import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import { fmsArrivalFixture } from '../../fixtures/aircraftFixtures';
 
 let pilot;
+let navigationLibraryFixture;
+
 ava.beforeEach(() => {
     const modeController = new ModeController();
-    pilot = new Pilot(modeController, fmsArrivalFixture);
+    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    pilot = new Pilot(fmsArrivalFixture, modeController, navigationLibraryFixture);
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     pilot = null;
 });
 

@@ -4,18 +4,23 @@ import {
     airportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
 } from './_mocks/aircraftMocks';
 
+// fixtures
+let navigationLibraryFixture;
+
 ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
     airportControllerFixture();
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     resetAirportControllerFixture();
 });
 

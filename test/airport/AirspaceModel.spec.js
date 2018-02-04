@@ -21,7 +21,7 @@ ava('does not throw when instantiated with a 0 magneticNorth', t => {
     t.notThrows(() => new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, 0));
 })
 
-ava('accepts an airspace object that is used to set the class properties', t => {
+ava('accepts an airspace object that is used to set the instance properties', t => {
     const model = new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, magneticNorth);
 
     t.false(typeof model._id === 'undefined');

@@ -129,6 +129,7 @@
         "LMT"  : ["N42d09.19m0", "W121d43.65m0"],
         "LOOOO": ["N48d07.23m0", "W123d22.98m0"],
         "LOSTT": ["N48d11.69m0", "W120d14.91m0"],
+        "LTJ"  : ["N45d42.81m0", "W121d06.05m0"],
         "MARNR": ["N48d02.33m0", "W122d50.99m0"],
         "MLP"  : ["N47d27.41m0", "W115d38.76m0"],
         "MWH"  : ["N47d12.65m0", "W119d19.01m0"],
@@ -159,6 +160,7 @@
         "RENBE": ["N47d19.22m0", "W122d18.69m0"],
         "RICHR": ["N47d18.40m0", "W122d26.25m0"],
         "ROESH": ["N48d37.87m0", "W123d01.14m0"],
+        "SEA"  : ["N47d26.12m0", "W122d18.58m0"],
         "SHIPZ": ["N47d21.48m0", "W122d27.94m0"],
         "SKYKO": ["N47d46.03m0", "W121d25.73m0"],
         "SONDR": ["N47d07.43m0", "W122d20.94m0"],
@@ -171,6 +173,7 @@
         "UNITT": ["N47d34.50m0", "W122d27.82m0"],
         "VASHN": ["N47d30.69m0", "W122d27.32m0"],
         "VEGGN": ["N47d43.30m0", "W122d33.86m0"],
+        "WANTA": ["N46d28.40m0", "W121d37.42m0"],
         "WESET": ["N47d24.35m0", "W122d19.10m0"],
         "WITRO": ["N47d46.83m0", "W120d08.20m0"],
         "WOODI": ["N47d46.12m0", "W121d51.80m0"],
@@ -270,18 +273,22 @@
             "glideslope": [3.00, 3.00]
         }
     ],
+    "airways": {
+        "J70": ["HQM", "ELMAA", "SEA", "NORMY", "BLUIT", "EPH", "MLP"],
+        "J523": ["TOU", "ARRIE", "SEA", "WANTA", "LTJ", "IMB"]
+    },
     "sids": {
         "ATOME2": {
             "icao": "ATOME2",
             "name": "Atom Two",
             "rwy": {
-                "34L": ["CUSBU"],
-                "34C": ["NESOE"],
-                "34R": ["DODVE"]
+                "KSEA34L": ["CUSBU"],
+                "KSEA34C": ["NESOE"],
+                "KSEA34R": ["DODVE"]
             },
             "body": [["WUREL", "A31+"], ["ATOME", "A50+"]],
             "exitPoints": {
-                "ALDER": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "ALDER"],
+                "ALDER": ["HQM", "ELMAA", "SEA", "NORMY", "BLUIT", "EPH", "MLP", "TOU", "ARRIE", "SEA", "WANTA", "LTJ", "IMB"],
                 "ALPSE": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], "ALPSE"],
                 "ARRIE": ["BREMM", ["ZUMBI", "A90-"], ["KIMSH", "A100+"], "BANGR", "ARRIE"],
                 "BANDR": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "BANDR"],
@@ -322,12 +329,12 @@
             "icao": "BANGR9",
             "name": "Bangor Nine",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE"],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE"],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE"],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
+                "KSEA16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "KSEA16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "KSEA16R": ["WESET", ["RENBE", "A30+"], "RICHR", "TOMRE"],
+                "KSEA34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "KSEA34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "KSEA34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
             "body": [["BANGR", "A100+"]],
             "exitPoints": {
@@ -352,9 +359,9 @@
             "icao": "ELMAA3",
             "name": "Elma Three",
             "rwy": {
-                "16L": [],
-                "16C": [],
-                "16R": []
+                "KSEA16L": [],
+                "KSEA16C": [],
+                "KSEA16R": []
             },
             "body": [["NICHY", "A30+"], "_NICHY250SEA230", "ELMAA"],
             "exitPoints": {
@@ -372,12 +379,12 @@
             "icao": "HAROB6",
             "name": "Harob Six",
             "rwy": {
-                "16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD"],
-                "16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD"],
-                "16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD"],
-                "34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
-                "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
-                "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
+                "KSEA16L": ["CAVOB", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "KSEA16C": ["OTLIE", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "KSEA16R": ["WESET", ["RENBE", "A30+"], "RICHR", "EMRLD"],
+                "KSEA34L": ["CUSBU", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "KSEA34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM"],
+                "KSEA34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM"]
             },
             "body": [["HAROB", "A100+"]],
             "exitPoints": {
@@ -405,12 +412,12 @@
             "icao": "MOUNT9",
             "name": "Mountain Nine",
             "rwy": {
-                "16L": [["NICHY", "A30+"]],
-                "16C": [["NICHY", "A30+"]],
-                "16R": [["NICHY", "A30+"]],
-                "34L": [["NEZUG", "A40+"]],
-                "34C": [["NEZUG", "A40+"]],
-                "34R": [["NEZUG", "A40+"]]
+                "KSEA16L": [["NICHY", "A30+"]],
+                "KSEA16C": [["NICHY", "A30+"]],
+                "KSEA16R": [["NICHY", "A30+"]],
+                "KSEA34L": [["NEZUG", "A40+"]],
+                "KSEA34C": [["NEZUG", "A40+"]],
+                "KSEA34R": [["NEZUG", "A40+"]]
             },
             "body": ["#071"],
             "exitPoints": {
@@ -444,12 +451,12 @@
             "icao": "SEA6",
             "name": "Seattle Six",
             "rwy": {
-                "16L": ["_SEA161002", "#161"],
-                "16C": ["_SEA161002", "#161"],
-                "16R": ["_SEA161002", "#161"],
-                "34L": ["_SEA341004", "#341"],
-                "34C": ["_SEA341004", "#341"],
-                "34R": ["_SEA341004", "#341"]
+                "KSEA16L": ["_SEA161002", "#161"],
+                "KSEA16C": ["_SEA161002", "#161"],
+                "KSEA16R": ["_SEA161002", "#161"],
+                "KSEA34L": ["_SEA341004", "#341"],
+                "KSEA34C": ["_SEA341004", "#341"],
+                "KSEA34R": ["_SEA341004", "#341"]
             },
             "body": [],
             "exitPoints": {
@@ -491,12 +498,12 @@
             "icao": "SUMMA1",
             "name": "Summa One",
             "rwy": {
-                "16L": ["NEVJO"],
-                "16C": ["NEVJO"],
-                "16R": ["NEVJO"],
-                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-                "34C": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+                "KSEA16L": ["NEVJO"],
+                "KSEA16C": ["NEVJO"],
+                "KSEA16R": ["NEVJO"],
+                "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "KSEA34C": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
             },
             "exitPoints": {
                 "BKE": ["SUMMA", "BKE"],
@@ -523,12 +530,12 @@
             },
             "body": ["CHINS"],
             "rwy": {
-                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "16C": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-                "34C": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+                "KSEA16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA16C": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "KSEA34C": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "KSEA34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
             },
             "draw": [
                 ["IMB*", "SUNED*", "YKM"],
@@ -545,12 +552,12 @@
             },
             "body": ["EPH", "SKYKO", "HUVUS", "HETHR"],
             "rwy": {
-                "16L": ["#250"],
-                "16C": ["#250"],
-                "16R": ["#250"],
-                "34L": ["#163"],
-                "34C": ["#163"],
-                "34R": ["#163"]
+                "KSEA16L": ["#250"],
+                "KSEA16C": ["#250"],
+                "KSEA16R": ["#250"],
+                "KSEA34L": ["#163"],
+                "KSEA34C": ["#163"],
+                "KSEA34R": ["#163"]
             },
             "draw": [
                 ["ODESS*", "EPH*", "SKYKO", "HUVUS", "HETHR"]
@@ -569,12 +576,12 @@
             },
             "body": ["GLASR"],
             "rwy": {
-                "16L": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
-                "16C": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
-                "16R": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
-                "34L": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
-                "34C": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
-                "34R": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"]
+                "KSEA16L": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "KSEA16C": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "KSEA16R": [["JAKSN", "A120|S250"], "WOODI", "HETHR", "#250"],
+                "KSEA34L": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "KSEA34C": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"],
+                "KSEA34R": [["JAKSN", "A160+|S270"], ["WOODI", "A140-"], ["HETHR", "A120|S250"], "#163"]
             },
             "draw": [
                 ["MLP*", "GEG*", "TEMPL*", "WITRO", "ODAHL", "GLASR*"],
@@ -595,12 +602,12 @@
             },
             "body": [["HAWKZ", "A120+|S270"], "LIINE"],
             "rwy": {
-                "16L": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
-                "16C": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
-                "16R": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
-                "34L": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
-                "34C": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
-                "34R": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
+                "KSEA16L": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
+                "KSEA16C": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
+                "KSEA16R": [["PIKEZ", "A120+|A150-|S250"], "COFAY", ["BREVE", "A100+|A110-|S250"], ["NETTZ", "A80+|S230"], ["KWEST", "A70+"], ["^VASHN", "A60|S210"], "#344"],
+                "KSEA34L": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "KSEA34C": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]],
+                "KSEA34R": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
             },
             "draw": [
                 ["LKV*", "BTG*", "HAWKZ*"],
@@ -623,12 +630,12 @@
             },
             "body": [],
             "rwy": {
-                "16L": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
-                "16C": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
-                "16R": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
-                "34L": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
-                "34C": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
-                "34R": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"]
+                "KSEA16L": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "KSEA16C": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "KSEA16R": [["JAWBN", "A120|S250"], "DIGGN", "ALKIA", "#070"],
+                "KSEA34L": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "KSEA34C": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"],
+                "KSEA34R": [["JAWBN", "A160+|S270"], "DIGGN", ["ALKIA", "A120|S250"], "#163"]
             },
             "draw": [
                 ["TOU*", "JAWBN*"],
@@ -651,12 +658,12 @@
             },
             "body": [["MARNR", "A120+|S270"]],
             "rwy": {
-                "16L": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
-                "16C": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
-                "16R": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
-                "34L": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
-                "34C": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
-                "34R": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"]
+                "KSEA16L": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "KSEA16C": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "KSEA16R": [["BOANE", "A110+|S250"], ["NEHOS", "A80+|S230"], ["GRIFY", "A60|S210"]],
+                "KSEA34L": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
+                "KSEA34C": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"],
+                "KSEA34R": [["PNELA", "A120+|S270"], ["VEGGN", "A110+|A150-|S250"], ["UNITT", "A100+|S230"], ["WUBET", "A80+"], ["SHIPZ", "A70|S210"], "EMMSS", "#164"]
             },
             "draw": [
                 ["BUHNR*", "MARNR*"],
@@ -678,12 +685,12 @@
             },
             "body": [],
             "rwy": {
-                "16L": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
-                "16C": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
-                "16R": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
-                "34L": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
-                "34C": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
-                "34R": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"]
+                "KSEA16L": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "KSEA16C": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "KSEA16R": [["OLM", "A170+|S270"], "LACEE", ["ARVAD", "A130|S250"], "FOURT", "#343"],
+                "KSEA34L": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "KSEA34C": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"],
+                "KSEA34R": [["OLM", "A130|S250"], "LACEE", "ARVAD", "FOURT", "#070"]
             },
             "draw": [
                 ["BTG*", "COUGA", "OLM*"],
@@ -697,7 +704,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.BANGR9.ARRIE",
+            "route": "KSEA16L.BANGR9.ARRIE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -730,7 +737,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.BANGR9.PANGL",
+            "route": "KSEA16L.BANGR9.PANGL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -763,7 +770,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB6.ERAVE",
+            "route": "KSEA16L.HAROB6.ERAVE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -796,7 +803,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB6.FEPOT",
+            "route": "KSEA16L.HAROB6.FEPOT",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -829,7 +836,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB6.HISKU",
+            "route": "KSEA16L.HAROB6.HISKU",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -862,7 +869,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.HAROB6.HQM",
+            "route": "KSEA16L.HAROB6.HQM",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -895,7 +902,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.SUMMA1.BKE",
+            "route": "KSEA16L.SUMMA1.BKE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -928,7 +935,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA.SUMMA1.LKV",
+            "route": "KSEA16L.SUMMA1.LKV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -961,7 +968,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "PDT.CHINS2.KSEA",
+            "route": "PDT.CHINS2.KSEA16R",
             "altitude": [18000, 36000],
             "speed": 320,
             "method": "random",
@@ -994,7 +1001,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "MLP.GLASR1.KSEA",
+            "route": "MLP.GLASR1.KSEA16R",
             "altitude": [18000, 36000],
             "speed": 320,
             "method": "random",
@@ -1027,7 +1034,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "LMT.HAWKZ6.KSEA",
+            "route": "LMT.HAWKZ6.KSEA16R",
             "altitude": [24000, 36000],
             "speed": 320,
             "method": "random",
@@ -1060,7 +1067,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "YVR.MARNR7.KSEA",
+            "route": "YVR.MARNR7.KSEA16R",
             "altitude": [18000, 34000],
             "speed": 320,
             "method": "random",

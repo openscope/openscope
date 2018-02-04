@@ -153,14 +153,6 @@ export default class AirportModel {
          */
         this.maps = {};
 
-        // TODO: may need to refactor when implementing Airways
-        /**
-         * @property airways
-         * @type {object}
-         * @default {}
-         */
-        this.airways = {};
-
         /**
          * @property restricted_areas
          * @type {array}
@@ -215,7 +207,6 @@ export default class AirportModel {
             speed: 10,
             angle: 0
         };
-
 
         /**
          * @property ctr_radius
@@ -364,7 +355,6 @@ export default class AirportModel {
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
-        this.airways = _get(data, 'airways', {});
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);

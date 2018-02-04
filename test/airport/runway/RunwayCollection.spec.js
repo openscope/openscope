@@ -41,7 +41,7 @@ ava('.findRunwayModelByName() returns null when passed an invalid runway name', 
     const collection = new RunwayCollection(RUNWAY_LIST_MOCK, airportPositionFixtureKLAS);
     const result = collection.findRunwayModelByName();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.findRunwayModelByName() returns a RunwayModel when passed a valid runway name', (t) => {

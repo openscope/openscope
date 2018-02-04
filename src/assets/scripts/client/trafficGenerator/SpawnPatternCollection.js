@@ -84,7 +84,7 @@ export default class SpawnPatternCollection extends BaseCollection {
         _forEach(this._items, (spawnPatternModel) => {
             spawnPatternModel.reset();
 
-            ModelSourceFactory.returnModelToPool(spawnPatternModel);
+            // ModelSourceFactory.returnModelToPool(spawnPatternModel);
         });
 
         this._items = [];
@@ -164,11 +164,12 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     _buildSpawnPatternModels(spawnPatterns, navigationLibrary) {
         _forEach(spawnPatterns, (spawnPattern) => {
-            const spawnPatternModel = ModelSourceFactory.getModelSourceForType(
-                'SpawnPatternModel',
-                spawnPattern,
-                navigationLibrary
-            );
+            const spawnPatternModel = new SpawnPatternModel(spawnPattern, navigationLibrary);
+            // const spawnPatternModel = ModelSourceFactory.getModelSourceForType(
+            //     'SpawnPatternModel',
+            //     spawnPattern,
+            //     navigationLibrary
+            // );
 
             this.addItem(spawnPatternModel);
         });

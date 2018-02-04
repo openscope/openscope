@@ -3,9 +3,21 @@ import sinon from 'sinon';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
+// mocks
 const nextHeadingDegreesMock = 180;
+
+// fixtures
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
@@ -16,13 +28,14 @@ ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) =>
     t.true(aircraftModel.pilot._mcp.heading === 3.141592653589793);
 });
 
-ava('.maintainHeading() returns to the correct flightPhase after a hold', (t) => {
+ava('.maintainHeading() calls .exitHold()', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
-    t.true(aircraftModel.pilot._fms.currentPhase === 'CRUISE');
+    t.true(exitHoldSpy.calledWithExactly());
 });
 
 ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {
