@@ -4,7 +4,7 @@ import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import {
-    airportControllerFixture,
+    createAirportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
@@ -25,7 +25,7 @@ let navigationLibraryFixture;
 
 ava.beforeEach(() => {
     navigationLibraryFixture = createNavigationLibraryFixture();
-    airportControllerFixture();
+    createAirportControllerFixture();
 });
 
 ava.afterEach(() => {

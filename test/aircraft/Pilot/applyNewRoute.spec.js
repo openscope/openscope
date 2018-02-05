@@ -1,23 +1,21 @@
 import ava from 'ava';
-import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
-
-// fixtures
-let navigationLibraryFixture;
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
 ava.beforeEach(() => {
-    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('.replaceFlightPlanWithNewRoute() returns an error when passed an invalid route', (t) => {
@@ -28,14 +26,14 @@ ava('.replaceFlightPlanWithNewRoute() returns an error when passed an invalid ro
             say: 'that route is invalid'
         }
     ];
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
     const result = pilot.replaceFlightPlanWithNewRoute('a..b.c.d');
 
     t.true(_isEqual(result, expectedResult));
 });
 
 ava('.replaceFlightPlanWithNewRoute() removes an existing route and replaces it with a new one', (t) => {
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
 
     pilot.replaceFlightPlanWithNewRoute('COWBY..BIKKR..DAG');
 
@@ -50,7 +48,7 @@ ava('.replaceFlightPlanWithNewRoute() returns a success message when finished su
             say: 'rerouting as requested'
         }
     ];
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
     const result = pilot.replaceFlightPlanWithNewRoute('COWBY..BIKKR..DAG');
 
     t.true(_isEqual(result, expectedResult));

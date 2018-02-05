@@ -1,29 +1,30 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
 const invalidRouteString = 'A..B.C.D';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const amendRouteString = 'HITME..HOLDM..BIKKR';
 
-let navigationLibraryFixture;
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
 });
 
 function buildPilotWithComplexRoute() {
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
+
     pilot.replaceFlightPlanWithNewRoute(complexRouteString);
 
     return pilot;

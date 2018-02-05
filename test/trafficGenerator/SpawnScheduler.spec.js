@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/SpawnScheduler';
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
 import {
-    airportControllerFixture,
+    createAirportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
@@ -18,7 +18,7 @@ let navigationLibraryFixture;
 
 ava.beforeEach(() => {
     navigationLibraryFixture = createNavigationLibraryFixture();
-    airportControllerFixture();
+    createAirportControllerFixture();
     spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture);
     aircraftControllerStub = {
         createAircraftWithSpawnPatternModel: sinon.stub(),

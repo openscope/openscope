@@ -3,6 +3,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import {
     INVALID_INDEX,
@@ -23,10 +24,9 @@ export default class LegModel {
     /**
      * @for LegModel
      * @constructor
-     * @param navigationLibrary {NavigationLibrary}
      * @param routeString {string}
      */
-    constructor(navigationLibrary, routeString) {
+    constructor(routeString) {
         /**
          * Reference to an instance of a `AirwayModel` object (if this is an airway leg)
          *
@@ -102,7 +102,7 @@ export default class LegModel {
          */
         this._waypointCollection = [];
 
-        this.init(navigationLibrary, routeString);
+        this.init(routeString);
     }
 
     /**
@@ -228,19 +228,18 @@ export default class LegModel {
      *
      * @for LegModel
      * @method init
-     * @param navigationLibrary {NavigationLibrary}
      * @param routeString {string}
      * @chainable
      */
-    init(navigationLibrary, routeString) {
+    init(routeString) {
         this._routeString = routeString;
 
         const [entryOrFixName, airwayOrProcedureName, exit] = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         this._ensureRouteStringIsSingleSegment(routeString);
-        this._legType = this._determineLegType(airwayOrProcedureName, navigationLibrary);
-        this._airwayModel = navigationLibrary.getAirway(airwayOrProcedureName);
-        this._procedureModel = navigationLibrary.getProcedure(airwayOrProcedureName);
+        this._legType = this._determineLegType(airwayOrProcedureName);
+        this._airwayModel = NavigationLibrary.getAirway(airwayOrProcedureName);
+        this._procedureModel = NavigationLibrary.getProcedure(airwayOrProcedureName);
         this._waypointCollection = this._generateWaypointCollection(entryOrFixName, exit);
 
         return this;
@@ -272,19 +271,18 @@ export default class LegModel {
      * @for LegModel
      * @method _determineLegType
      * @param airwayOrProcedureName {string}
-     * @param navigationLibrary {NavigationLibrary}
      * @return {string} property of `LEG_TYPE` enum
      */
-    _determineLegType(airwayOrProcedureName, navigationLibrary) {
+    _determineLegType(airwayOrProcedureName) {
         if (this._routeString.indexOf('.') === INVALID_NUMBER) {
             return LEG_TYPE.DIRECT;
         }
 
-        if (navigationLibrary.hasAirway(airwayOrProcedureName)) {
+        if (NavigationLibrary.hasAirway(airwayOrProcedureName)) {
             return LEG_TYPE.AIRWAY;
         }
 
-        if (navigationLibrary.hasProcedure(airwayOrProcedureName)) {
+        if (NavigationLibrary.hasProcedure(airwayOrProcedureName)) {
             return LEG_TYPE.PROCEDURE;
         }
 

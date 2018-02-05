@@ -20,6 +20,7 @@ export const fixCollectionFixture = FixCollection.addItems(FIX_LIST_MOCK, airpor
 // changes to be made to the navigation library, it is wiser to call this function
 // in `ava.beforeEach()`in order to generate a fresh fixture for each and every test
 export function createNavigationLibraryFixture() {
+    NavigationLibrary.reset();
     NavigationLibrary.init(AIRPORT_JSON_KLAS_MOCK);
 }
 

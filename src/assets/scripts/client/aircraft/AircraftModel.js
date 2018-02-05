@@ -93,9 +93,8 @@ export default class AircraftModel {
      * @for AircraftModel
      * @constructor
      * @param options {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(options = {}, navigationLibrary) {
+    constructor(options = {}) {
         /**
          * Unique id
          *
@@ -432,11 +431,11 @@ export default class AircraftModel {
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
         this.parse(options);
-        this.initFms(options, navigationLibrary);
+        this.initFms(options);
 
         this.mcp = new ModeController();
         this.model = new AircraftTypeDefinitionModel(options.model);
-        this.pilot = new Pilot(this.fms, this.mcp, navigationLibrary);
+        this.pilot = new Pilot(this.fms, this.mcp);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
@@ -549,10 +548,10 @@ export default class AircraftModel {
         this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
-    initFms(data, navigationLibrary) {
+    initFms(data) {
         const airport = AirportController.airport_get();
         // const initialRunway = airport.getActiveRunwayForCategory(this.category);
-        this.fms = new Fms(data, navigationLibrary);
+        this.fms = new Fms(data);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.setFlightPhase(FLIGHT_PHASE.APRON);
@@ -1451,8 +1450,6 @@ export default class AircraftModel {
                 const vnavSpeed = this._calculateTargetedSpeedVnav();
 
                 return this._calculateLegalSpeed(vnavSpeed);
-
-                break;
             }
 
             default:
@@ -1515,8 +1512,6 @@ export default class AircraftModel {
 
             case MCP_MODE.ALTITUDE.VNAV: {
                 return this._calculateTargetedAltitudeVnav();
-
-                break;
             }
 
             default:
@@ -2169,7 +2164,7 @@ export default class AircraftModel {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
+            speedChange = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
