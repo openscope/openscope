@@ -1,12 +1,9 @@
-import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
-import _isObject from 'lodash/isObject';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 // import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
     isWithinAirspace,
-    calculateDistanceToBoundary,
-    bearingToPoint
+    calculateDistanceToBoundary
 } from '../math/flightMath';
 import { nm } from '../utilities/unitConverters';
 import { isEmptyObject } from '../utilities/validatorUtilities';
@@ -128,17 +125,16 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
  *
  * @function _preSpawn
  * @param spawnPatternJson
- * @param navigationLibrary
  * @param airport
  * @return {array<object>}
  */
-const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
+const _preSpawn = (spawnPatternJson, airport) => {
     // distance between each arriving aircraft, in nm
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
-    const routeModel = new RouteModel(navigationLibrary, spawnPatternJson.route);
+    const routeModel = new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
-    // calculate nubmer of offsets
+    // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
     const spawnPositions = _calculateSpawnPositions(waypointModelList, spawnOffsets, airport);
@@ -158,21 +154,20 @@ const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
  * for their first arrival aircraft.
  *
  * @function preSpawn
- * @param spawnPatternJson
- * @param navigationLibrary
- * @param currentAirport
+ * @param spawnPatternJson {object}
+ * @param currentAirport {AirportModel}
  * @return {array<object>}
  */
-export const buildPreSpawnAircraft = (spawnPatternJson, navigationLibrary, currentAirport) => {
+export const buildPreSpawnAircraft = (spawnPatternJson, currentAirport) => {
     if (isEmptyObject(spawnPatternJson)) {
         // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
     }
 
-    if (_isNil(navigationLibrary) || _isNil(currentAirport)) {
+    if (_isNil(currentAirport)) {
         // eslint-disable-next-line max-len
-        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected navigationLibrary and currentAirport to be defined');
+        throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected currentAirport to be defined');
     }
 
-    return _preSpawn(spawnPatternJson, navigationLibrary, currentAirport);
+    return _preSpawn(spawnPatternJson, currentAirport);
 };
