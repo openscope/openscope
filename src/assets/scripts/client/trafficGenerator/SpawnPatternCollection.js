@@ -152,7 +152,6 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @for SpawnPatternCollection
      * @method _buildSpawnPatternModels
      * @param spawnPatterns {array<object>}
-     * @param navigationLibrary {NavigationLibrary}
      * @private
      */
     _buildSpawnPatternModels(spawnPatterns) {

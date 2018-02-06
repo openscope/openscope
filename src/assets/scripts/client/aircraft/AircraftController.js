@@ -83,7 +83,7 @@ export default class AircraftController {
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
         if (!_isObject(airlineController)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+            throw new TypeError('Invalid parameters. Expected airlineCollection to be defined');
         }
 
         /**

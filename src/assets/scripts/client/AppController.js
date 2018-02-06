@@ -168,11 +168,11 @@ export default class AppController {
 
         UiController.init(this.$element);
 
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
-        this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.navigationLibrary, this.scopeModel);
+        this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
         this.tutorialView = new TutorialView(this.$element);
-        this.aircraftCommander = new AircraftCommander(this.navigationLibrary, this.aircraftController.onRequestToChangeTransponderCode);
+        this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
         this.gameClockView = new GameClockView(this.$element);
 
@@ -280,7 +280,7 @@ export default class AppController {
         this.spawnScheduler = null;
 
         NavigationLibrary.init(nextAirportJson);
-        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary);
+        this.spawnPatternCollection.init(nextAirportJson);
         this.spawnScheduler = new SpawnScheduler(
             this.spawnPatternCollection,
             this.aircraftController

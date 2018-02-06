@@ -4,6 +4,7 @@ import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
@@ -13,7 +14,7 @@ import {
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
-import { PROCEDURE_TYPE } from '../constants/routeConstants';
+// import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { round } from '../math/core';
 import {
     radio_runway,
@@ -71,9 +72,8 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(navigationLibrary, onChangeTransponderCode) {
+    constructor(onChangeTransponderCode) {
         this._eventBus = EventBus;
-        this._navigationLibrary = navigationLibrary;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -330,7 +330,7 @@ export default class AircraftCommander {
         const turnDirection = data[0];
         const legLength = data[1];
         const fixName = data[2];
-        const fixModel = this._navigationLibrary.findFixByName(fixName);
+        const fixModel = NavigationLibrary.findFixByName(fixName);
 
         if (!fixModel) {
             return [false, `unable to hold at unknown fix ${fixName}`];
