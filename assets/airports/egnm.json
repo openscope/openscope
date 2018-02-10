@@ -466,7 +466,7 @@
             "icao": "DOPEK2X",
             "name": "Dopek Two Xray",
             "rwy": {
-                "EGNM14": []            
+                "EGNM14": []
             },
             "body": ["_ILBF2DME", ["_GAM327036", "A30+"], ["_GAM327032", "A35+"], ["_GAM327029", "A70"], "_GAM327019", "_GAM327015", "_GAM327014", "_GAM327POL118"],
             "exitPoints": {
@@ -530,7 +530,7 @@
             },
             "draw": [
                 ["_ILF0.5DME", "_ILF2.1DME", "_ILF3.5DME", "_POL053012", "_POL053011", "_POL053010", "_LBA272012", "NELSA"]
-            ]   
+            ]
         },
         "POL2X": {
             "icao": "POL2X",
@@ -552,7 +552,7 @@
             "origin": "EGNM",
             "destination": "",
             "category": "departure",
-            "route": "EGNM.DOPEK2W.DOPEK",
+            "route": "EGNM32.DOPEK2W.DOPEK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -568,7 +568,7 @@
             "origin": "EGNM",
             "destination": "",
             "category": "departure",
-            "route": "EGNM.LAMIX2W.LAMIX",
+            "route": "EGNM32.LAMIX2W.LAMIX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -584,7 +584,7 @@
             "origin": "EGNM",
             "destination": "",
             "category": "departure",
-            "route": "EGNM.NELSA3W.NELSA",
+            "route": "EGNM32.NELSA3W.NELSA",
             "altitude": "",
             "speed": "",
             "method": "random",
