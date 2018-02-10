@@ -3,12 +3,15 @@
     "name": "Jet2.com",
     "callsign": {
         "name": "Channex",
-        "length": 3
+        "length": 3,
+        "alpha": true
     },
     "fleets": {
         "default": [
-            ["B733", 29],
-            ["B738", 21],
+            ["A321", 1],
+            ["A332", 1],
+            ["B733", 19],
+            ["B738", 46],
             ["B752", 11]
         ]
     }

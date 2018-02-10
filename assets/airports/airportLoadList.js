@@ -123,13 +123,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: true
         },
-        // {
-        //     icao: 'egnm',
-        //     level: 'beginner',
-        //     name: 'Leeds Bradford International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'egnm',
+            level: 'beginner',
+            name: 'Leeds Bradford Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'eham',
         //     level: 'medium',
