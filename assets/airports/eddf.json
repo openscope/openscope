@@ -803,7 +803,7 @@
                 "MARUN": ["MARUN"]
             },
             "draw": [
-                ["DF158", "DF159", "DF168", "TUKRU", "MTR", "TOBAK", "APROX"]
+                ["DF158", "DF159", "DF168", "TUKRU", "MTR", "TOBAK", "APROX", "MARUN"]
             ]
         },
         "MARUN4F": {
@@ -877,7 +877,7 @@
                 "MARUN": ["MARUN"]
             },
             "draw": [
-                ["DF197", "DF156", "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA"]
+                ["DF197", "DF156", "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA", "MARUN"]
             ]
         },
         "MARUN6G": {
@@ -923,7 +923,7 @@
             },
             "draw": [
                 ["DF135", "DF165", "DF166"],
-                ["DF134", "DF162", "DF166", "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA"]
+                ["DF134", "DF162", "DF166", "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA", "MARUN"]
             ]
         },
         "MARUN9D": {
@@ -1010,7 +1010,7 @@
                 "NOMBO": ["NOMBO"]
             },
             "draw": [
-                ["DF158", "DF159", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"]
+                ["DF158", "DF159", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
             ]
         },
         "NOMBO9F": {
@@ -1334,7 +1334,7 @@
             },
             "draw": [
                 ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI"]
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "ROTEN"]
             ]
         },
         "SOBRA1L": {
@@ -1380,7 +1380,7 @@
             },
             "draw": [
                 ["DF135", "DF142"],
-                ["DF134", "DF141", "DF163", "DF201", "DONAB"]
+                ["DF134", "DF141", "DF163", "DF201", "DONAB", "SOBRA"]
             ]
         },
         "SOBRA6D": {
@@ -2480,7 +2480,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "TAMEB..GAPLA..DEMAB..SOLVU..KERAX.KERAX25N.EDDF25R",
-            "altitude": 24000,
+            "altitude": 13000,
             "speed": 280,
             "method": "random",
             "rate": 5,
@@ -2506,7 +2506,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "KOKEB..LESMO..TUNIV..KERAX.KERAX25N.EDDF25R",
-            "altitude": 21000,
+            "altitude": 13000,
             "speed": 250,
             "method": "random",
             "rate": 3,
@@ -2524,7 +2524,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "TALAL..ERMEL..PSA.PSA25N.EDDF25R",
-            "altitude": 27000,
+            "altitude": 13000,
             "speed": 280,
             "method": "random",
             "rate": 5,
@@ -2558,7 +2558,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "IBAGA..EKPUT..LEPSA..PSA.PSA25N.EDDF25R",
-            "altitude": 24000,
+            "altitude": 13000,
             "speed": 250,
             "method": "random",
             "rate": 2,
@@ -2579,7 +2579,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "LIPMI..COL..ROLIS.ROLIS25N.EDDF25R",
-            "altitude": 30000,
+            "altitude": 13000,
             "speed": 300,
             "method": "random",
             "rate": 5,
@@ -2606,7 +2606,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "IDOVI..EMGOD..ROLIS.ROLIS25N.EDDF25R",
-            "altitude": 18000,
+            "altitude": 13000,
             "speed": 280,
             "method": "random",
             "rate": 1,
@@ -2622,7 +2622,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "SPI..PESOV..TOBOP..NIVNU..RASVO..PIPEP..UNOKO.UNOKO25N.EDDF25R",
-            "altitude": 30000,
+            "altitude": 13000,
             "speed": 300,
             "method": "random",
             "rate": 3,
@@ -2641,7 +2641,7 @@
             "destination": "EDDF",
             "category": "arrival",
             "route": "ADUSU..NIVNU..RASVO..PIPEP..UNOKO.UNOKO25N.EDDF25R",
-            "altitude": 27000,
+            "altitude": 13000,
             "speed": 300,
             "method": "random",
             "rate": 3,
@@ -3759,8 +3759,8 @@
             [49.143330500, 10.212950100, 49.144199600, 10.212984300],
             [49.144199600, 10.212984300, 49.145066300, 10.213087500],
             [49.145066300, 10.213087500, 49.145928400, 10.213259600],
-            [49.145928400, 10.213259600, 49.146783400, 10.213500000],
-            [49.146783400, 10.213500000, 49.147629200, 10.213808200],
+            [49.145928400, 10.213259600, 49.146783400, 10.213000000],
+            [49.146783400, 10.213000000, 49.147629200, 10.213808200],
             [49.147629200, 10.213808200, 49.148463500, 10.214183400],
             [49.148463500, 10.214183400, 49.149283800, 10.214624500],
             [49.149283800, 10.214624500, 49.150088000, 10.215130400],
