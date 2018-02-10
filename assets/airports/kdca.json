@@ -87,28 +87,25 @@
         }
     ],
     "fixes": {
-        "AML"  : ["N38d56m04.80", "W077d28m00.00"],
-        "BAL"  : ["N39d10m18.00", "W076d39m42.00"],
-        "DCA"  : ["N38d51m34.20", "W077d02m11.40"],
-        "DQO"  : ["N39d40m42.00", "W075d36m24.00"],
-        "EMI"  : ["N39d29m42.00", "W076d58m42.00"],
-        "ESL"  : ["N39d13m31.80", "W078d59m22.20"],
-        "GSO"  : ["N36d02m42.00", "W079d58m36.00"],
-        "GVE"  : ["N38d00m49.20", "W078d09m10.80"],
-        "HVQ"  : ["N38d21m00.00", "W081d46m12.00"],
-        "LDN"  : ["N38d51m15.60", "W078d12m19.80"],
-        "LRP"  : ["N40d07m12.00", "W076d17m30.00"],
-        "LYH"  : ["N37d15m18.00", "W079d14m12.00"],
-        "MOL"  : ["N37d54m01.80", "W079d06m25.00"],
-        "MXE"  : ["N39d55m06.00", "W075d40m12.00"],
-        "PSB"  : ["N40d55m00.00", "W077d59m36.00"],
-        "RIC"  : ["N37d30m06.00", "W077d19m12.00"],
-        "SBV"  : ["N36d40m30.00", "W079d00m54.00"],
+        "_DCA07005DME": [38.89977639771, -76.9430492448],
+        "_DCA07010DME": [38.93997783928, -76.84949308756],
+        "_DCA18505DME": [38.7762902145, -77.02903643272],
+        "_DCA18510DME": [38.6930787698, -77.02159010928],
+        "_DCA32805DME": [38.92232122317, -77.10671587096],
+        "_DCA32810DME": [38.98509966444, -77.17705534923],
+        "_1004ADAXE332": [38.87321, -77.04007],
+        "_15152LEAVY207": [38.83523, -77.01812],
+        "_RWY040.5DME": [38.86175132081, -77.02871923968],
+        "_RWY150.5DME": [38.84248674836, -77.02512995271],
+        "_RWY190.5DME": [38.83241516888, -77.03592685316],
+        "_RWY330.5DME": [38.86847826535, -77.05037876452],
         "ADAXE": ["N38d54m02.61", "W077d04m05.22"],
         "AGARD": ["N39d02m36.89", "W076d04m11.14"],
         "ALEEX": ["N38d59m02.29", "W077d09m30.51"],
         "ALWYZ": ["N38d59m00.66", "W077d39m16.54"],
+        "AML"  : ["N38d56m04.80", "W077d28m00.00"],
         "BAAAM": ["N38d49m55.01", "W077d07m03.26"],
+        "BAL"  : ["N39d10m18.00", "W076d39m42.00"],
         "BBONE": ["N38d37m30.12", "W078d49m25.81"],
         "BEBLE": ["N38d54m55.81", "W077d06m26.92"],
         "BELAY": ["N39d35m15.67", "W076d18m02.00"],
@@ -137,19 +134,23 @@
         "CUKLI": ["N38d59m10.33", "W077d16m34.81"],
         "DAILY": ["N38d33m37.83", "W076d43m31.05"],
         "DANOO": ["N38d04m27.24", "W078d15m08.96"],
+        "DCA"  : ["N38d51m34.20", "W077d02m11.40"],
         "DEALE": ["N38d47m51.91", "W076d32m00.34"],
         "DEBZZ": ["N38d05m13.91", "W080d15m18.05"],
         "DILNN": ["N38d16m20.05", "W079d43m52.31"],
         "DMKRT": ["N38d42m34.33", "W077d13m24.61"],
         "DOCTR": ["N39d00m35.58", "W076d24m50.75"],
         "DOGUE": ["N39d02m30.96", "W077d05m56.51"],
+        "DQO"  : ["N39d40m42.00", "W075d36m24.00"],
         "DRRON": ["N39d16m22.12", "W079d33m35.86"],
         "DRUZZ": ["N39d09m48.28", "W078d21m28.71"],
         "DUDDD": ["N38d53m20.08", "W077d34m47.64"],
         "EDDGY": ["N38d48m21.71", "W076d46m53.29"],
         "EDDWD": ["N38d58m34.80", "W077d01m38.25"],
         "ELAPP": ["N37d53m40.21", "W077d21m10.46"],
+        "EMI"  : ["N39d29m42.00", "W076d58m42.00"],
         "EPICS": ["N37d47m12.26", "W077d15m41.98"],
+        "ESL"  : ["N39d13m31.80", "W078d59m22.20"],
         "EYESS": ["N38d58m18.75", "W076d53m48.84"],
         "FELTY": ["N38d46m46.15", "W076d56m40.79"],
         "FERGI": ["N38d59m12.16", "W077d10m50.18"],
@@ -165,7 +166,9 @@
         "GILFF": ["N38d21m44.86", "W077d26m05.38"],
         "GINYA": ["N38d56m33.05", "W077d40m48.26"],
         "GLANC": ["N37d26m27.01", "W079d03m37.65"],
+        "GSO"  : ["N36d02m42.00", "W079d58m36.00"],
         "GUCER": ["N39d01m46.95", "W076d56m53.83"],
+        "GVE"  : ["N38d00m49.20", "W078d09m10.80"],
         "HAFNR": ["N38d23m50.46", "W077d33m58.95"],
         "HALLL": ["N38d31m07.19", "W077d00m33.68"],
         "HAMME": ["N38d42m29.69", "W079d14m39.39"],
@@ -176,7 +179,8 @@
         "HONNR": ["N39d14m46.59", "W079d14m08.91"],
         "HORTO": ["N39d07m04.50", "W077d27m49.30"],
         "HOYAS": ["N38d20m12.69", "W077d12m52.30"],
-        "IRONS": ["N38d31m51.96", "W077d06m21.94"], 
+        "HVQ"  : ["N38d21m00.00", "W081d46m12.00"],
+        "IRONS": ["N38d31m51.96", "W077d06m21.94"],
         "JARHD": ["N38d29m59.72", "W078d51m08.60"],
         "JDUBB": ["N38d17m59.41", "W077d38m59.76"],
         "JERES": ["N39d38m34.40", "W077d27m18.20"],
@@ -186,9 +190,12 @@
         "KSETT": ["N37d45m55.35", "W077d23m34.29"],
         "LAFLN": ["N38d47m27.40", "W075d30m47.72"],
         "LBOLT": ["N38d44m13.13", "W077d15m01.42"],
+        "LDN"  : ["N38d51m15.60", "W078d12m19.80"],
         "LEAVY": ["N38d48m19.33", "W077d01m50.09"],
         "LETZZ": ["N38d54m42.36", "W077d27m02.40"],
+        "LRP"  : ["N40d07m12.00", "W076d17m30.00"],
         "LURAY": ["N38d35m54.94", "W078d34m00.23"],
+        "LYH"  : ["N37d15m18.00", "W079d14m12.00"],
         "MAULS": ["N37d52m49.36", "W079d19m49.19"],
         "MCNAB": ["N38d33m06.13", "W076d50m27.69"],
         "MCRAY": ["N39d32m17.69", "W077d51m38.07"],
@@ -197,7 +204,9 @@
         "MELTN": ["N37d12m09.22", "W078d34m44.33"],
         "MITEY": ["N38d37m19.36", "W076d55m47.27"],
         "MOEJO": ["N38d34m32.69", "W077d06m51.34"],
+        "MOL"  : ["N37d54m01.80", "W079d06m25.00"],
         "MOTBE": ["N38d45m06.25", "W076d55m01.47"],
+        "MXE"  : ["N39d55m06.00", "W075d40m12.00"],
         "NAYES": ["N39d08m01.02", "W077d13m15.81"],
         "NEVVR": ["N39d04m13.29", "W077d59m30.17"],
         "NUGGY": ["N39d44m34.56", "W076d00m22.21"],
@@ -214,15 +223,18 @@
         "PLDGE": ["N39d09m51.33", "W078d21m58.72"],
         "POMYK": ["N37d52m50.94", "W080d50m20.64"],
         "POOCH": ["N38d27m18.56", "W077d40m31.56"],
+        "PSB"  : ["N40d55m00.00", "W077d59m36.00"],
         "RAMAY": ["N38d57m38.57", "W078d12m59.01"],
         "RANJR": ["N38d28m02.97", "W079d02m20.08"],
         "REBLL": ["N38d50m42.79", "W077d53m08.73"],
+        "RIC"  : ["N37d30m06.00", "W077d19m12.00"],
         "RIDGY": ["N38d56m34.71", "W075d47m23.33"],
         "RIISE": ["N39d00m33.66", "W076d39m41.13"],
         "RLLLL": ["N38d50m55.11", "W077d18m20.23"],
         "ROAST": ["N39d57m23.71", "W076d26m01.01"],
         "RRSIN": ["N36d57m07.34", "W079d03m32.54"],
         "SAMMO": ["N38d44m39.30", "W077d03m39.43"],
+        "SBV"  : ["N36d40m30.00", "W079d00m54.00"],
         "SCORN": ["N37d27m59.80", "W078d31m54.33"],
         "SCRAM": ["N38d22m16.20", "W077d47m54.77"],
         "SEALZ": ["N38d25m23.56", "W079d17m26.16"],
@@ -254,19 +266,7 @@
         "WEWIL": ["N39d06m05.98", "W078d06m51.76"],
         "WOOLY": ["N39d20m19.18", "W077d02m11.17"],
         "WYNGS": ["N38d56m55.04", "W077d51m07.02"],
-        "YUCKK": ["N38d47m56.31", "W076d42m28.91"],
-        "_INTADAXE332": [38.87321, -77.04007],
-        "_RWY040.5DME": [38.86175132081, -77.02871923968],
-        "_INTLEAVY207": [38.83523, -77.01812],
-        "_RWY150.5DME": [38.84248674836, -77.02512995271],
-        "_RWY190.5DME": [38.83241516888, -77.03592685316],
-        "_RWY330.5DME": [38.86847826535, -77.05037876452],
-        "_DCA32805DME": [38.92232122317, -77.10671587096],
-        "_DCA32810DME": [38.98509966444, -77.17705534923],
-        "_DCA07005DME": [38.89977639771, -76.9430492448],
-        "_DCA07010DME": [38.93997783928, -76.84949308756],
-        "_DCA18505DME": [38.7762902145, -77.02903643272],
-        "_DCA18510DME": [38.6930787698, -77.02159010928]
+        "YUCKK": ["N38d47m56.31", "W076d42m28.91"]
     },
     "restricted": [
         {
@@ -1027,7 +1027,7 @@
             ],
             "ils": [true, false]
         },
-        {   
+        {
             "name": ["4", "22"],
             "end": [
                 ["N38d50m28.0544", "W077d02m29.2371", "11.4ft"],
@@ -1049,9 +1049,9 @@
             "icao": "BOOCK2",
             "name": "Boock Two",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"],
-                "KDCA4":  [["_RWY040.5DME", "A05+"], "#070", "MCNAB"],
-                "KDCA15": ["_INTLEAVY207", "LEAVY", ["FIMBI", "S230-"], "MCNAB"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"],
+                "KDCA4": [["_RWY040.5DME", "A05+"], "#070", "MCNAB"],
+                "KDCA15": ["_15152LEAVY207", "LEAVY", ["FIMBI", "S230-"], "MCNAB"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MCNAB"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "GUCER"]
             },
@@ -1060,8 +1060,8 @@
                 "COLIN": ["COLIN"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE"],
-                ["_INTLEAVY207", "LEAVY", "FIMBI", "MCNAB", "BOOCK", "COLIN*"],
+                ["_1004ADAXE332", "ADAXE"],
+                ["_15152LEAVY207", "LEAVY", "FIMBI", "MCNAB", "BOOCK", "COLIN*"],
                 ["_RWY190.5DME", "FIMBI"],
                 ["_RWY330.5DME", "ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "GUCER", "BOOCK"]
             ]
@@ -1070,18 +1070,18 @@
             "icao": "CLTCH1",
             "name": "Clutch One",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL"]
             },
-            "body": ["BUTRZ", "CLTCH"],
+            "body": ["BUTRZ", "CLTCH", "KERRK"],
             "exitPoints": {
-                "FLASK": ["KERRK", "TEEMS", "FLASK"],
-                "MAULS": ["KERRK", "MAULS"]
+                "FLASK": ["TEEMS", "FLASK"],
+                "MAULS": ["MAULS"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL", "BUTRZ"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "BRUTL", "BUTRZ"],
                 ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "BUTRZ", "CLTCH", "KERRK", "MAULS*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"],
@@ -1092,11 +1092,11 @@
             "icao": "DOCTR3",
             "name": "Doctor Three",
             "rwy": {
-                "1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"],
-                "4":  [["_RWY040.5DME", "A05+"], "#070", "RIISE"],
-                "15": ["_INTLEAVY207", "LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
-                "19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
-                "33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"]
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"],
+                "KDCA4": [["_RWY040.5DME", "A05+"], "#070", "RIISE"],
+                "KDCA15": ["_15152LEAVY207", "LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
+                "KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
+                "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"]
             },
             "body": [
                 ["DOCTR"]
@@ -1106,8 +1106,8 @@
                 "DQO": ["DQO"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "RIISE", "DOCTR", "AGARD*"],
-                ["_INTLEAVY207", "LEAVY", "FIMBI", "MOTBE", "GDYUP", "HMBGR", "DOCTR", "DQO*"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "RIISE", "DOCTR", "AGARD*"],
+                ["_15152LEAVY207", "LEAVY", "FIMBI", "MOTBE", "GDYUP", "HMBGR", "DOCTR", "DQO*"],
                 ["_RWY190.5DME", "FIMBI"],
                 ["_RWY330.5DME", "ADAXE"]
             ]
@@ -1116,7 +1116,7 @@
             "icao": "HORTO2",
             "name": "Horto Two",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "RLLLL"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "RLLLL"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
@@ -1129,7 +1129,7 @@
                 "JERES": ["JERES"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "HORTO", "JERES*"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "HORTO", "JERES*"],
                 ["_RWY150.5DME", "CAPVC", "GAITE", "LBOLT", "RLLLL", "HORTO", "BUFFR*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"]
@@ -1139,7 +1139,7 @@
             "icao": "JDUBB1",
             "name": "Jaydubb One",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]]
@@ -1152,7 +1152,7 @@
                 "SBV": ["CASLY", "MELTN", "SBV"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "HAFNR"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "HAFNR"],
                 ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "HAFNR", "JDUBB", "TYPNZ", "SCORN", "RRSIN", "GSO*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"],
@@ -1180,6 +1180,7 @@
                 "COLIN": ["COLIN"],
                 "CSN": ["CSN"],
                 "DAILY": ["DAILY"],
+                "DCA": ["DCA"],
                 "DOCTR": ["DOCTR"],
                 "EMI": ["EMI"],
                 "FLUKY": ["FLUKY"],
@@ -1202,44 +1203,45 @@
                 "WOOLY": ["WOOLY"]
             },
             "draw": [
-                ["DCA", "AGARD*"],
-                ["DCA", "AML*"],
-                ["DCA", "BOOCK*"],
-                ["DCA", "BUFFR*"],
-                ["DCA", "CLTCH*"],
-                ["DCA", "COLIN*"],
-                ["DCA", "CSN*"],
-                ["DCA", "DAILY*"],
-                ["DCA", "DOCTR*"],
-                ["DCA", "EMI*"],
-                ["DCA", "FLUKY*"],
-                ["DCA", "GINYA*"],
-                ["DCA", "GVE*"],
-                ["DCA", "HAFNR*"],
-                ["DCA", "HORTO*"],
-                ["DCA", "JDUBB*"],
-                ["DCA", "JERES*"],
-                ["DCA", "LDN*"],
-                ["DCA", "MCRAY*"],
-                ["DCA", "MOL*"],
-                ["DCA", "OTTTO*"],
-                ["DCA", "PALEO*"],
-                ["DCA", "PAUKI*"],
-                ["DCA", "RAMAY*"],
-                ["DCA", "SCRAM*"],
-                ["DCA", "SOOKI*"],
-                ["DCA", "SWANN*"],
-                ["DCA", "WOOLY*"],
-                ["DCA", "_DCA32805DME", "_DCA32810DME"],
-                ["DCA", "_DCA07005DME", "_DCA07010DME"],
-                ["DCA", "_DCA18505DME", "_DCA18510DME"]
+                ["AGARD*"],
+                ["AML*"],
+                ["BOOCK*"],
+                ["BUFFR*"],
+                ["CLTCH*"],
+                ["COLIN*"],
+                ["CSN*"],
+                ["DAILY*"],
+                ["DCA*"],
+                ["DOCTR*"],
+                ["EMI*"],
+                ["FLUKY*"],
+                ["GINYA*"],
+                ["GVE*"],
+                ["HAFNR*"],
+                ["HORTO*"],
+                ["JDUBB*"],
+                ["JERES*"],
+                ["LDN*"],
+                ["MCRAY*"],
+                ["MOL*"],
+                ["OTTTO*"],
+                ["PALEO*"],
+                ["PAUKI*"],
+                ["RAMAY*"],
+                ["SCRAM*"],
+                ["SOOKI*"],
+                ["SWANN*"],
+                ["WOOLY*"],
+                ["_DCA32805DME", "_DCA32810DME"],
+                ["_DCA07005DME", "_DCA07010DME"],
+                ["_DCA18505DME", "_DCA18510DME"]
             ]
         },
         "REBLL3": {
             "icao": "REBLL3",
             "name": "Rebel Three",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "TEZER"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "TEZER"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"]
@@ -1251,7 +1253,7 @@
                 "OTTTO": ["OTTTO"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"],
                 ["_RWY150.5DME", "CAPVC"],
                 ["_RWY190.5DME", "CAPVC", "GAITE", "LBOLT", "TEZER", "REBLL", "OTTTO*"],
                 ["_RWY330.5DME", "ADAXE"]
@@ -1261,7 +1263,7 @@
             "icao": "SCRAM3",
             "name": "Scram Three",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"]
@@ -1273,7 +1275,7 @@
                 "LYH": ["DANOO", "WALCE", "GLANC", "LYH"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "POOCH"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "POOCH"],
                 ["_RWY150.5DME", "CAPVC", "GAITE", "DMKRT", "POOCH", "SCRAM", "DANOO", "WALCE", "GLANC", "LYH*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"]
@@ -1283,9 +1285,9 @@
             "icao": "SOOKI3",
             "name": "Sooki Three",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"],
-                "KDCA4":  [["_RWY040.5DME", "A05+"], "#070", "PHERB"],
-                "KDCA15": ["_INTLEAVY207", "LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"],
+                "KDCA4": [["_RWY040.5DME", "A05+"], "#070", "PHERB"],
+                "KDCA15": ["_15152LEAVY207", "LEAVY", ["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"]
             },
@@ -1296,8 +1298,8 @@
                 "SWANN": ["SWANN"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "PHERB", "SOOKI"],
-                ["_INTLEAVY207", "LEAVY", "FIMBI", "MOTBE", "GDYUP", "RIISE", "SOOKI", "SWANN*"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "ALEEX", "DOGUE", "PHERB", "SOOKI"],
+                ["_15152LEAVY207", "LEAVY", "FIMBI", "MOTBE", "GDYUP", "RIISE", "SOOKI", "SWANN*"],
                 ["_RWY190.5DME", "FIMBI"],
                 ["_RWY330.5DME", "ADAXE"]
             ]
@@ -1306,7 +1308,7 @@
             "icao": "WYNGS3",
             "name": "Wings Three",
             "rwy": {
-                "KDCA1":  ["_INTADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
+                "KDCA1": ["_1004ADAXE332", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "GINYA"],
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "GINYA"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
@@ -1318,7 +1320,7 @@
                 "RAMAY": ["RAMAY"]
             },
             "draw": [
-                ["_INTADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "WYNGS"],
+                ["_1004ADAXE332", "ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "WYNGS"],
                 ["_RWY150.5DME", "CAPVC", "GAITE", "LBOLT", "GINYA", "WYNGS", "RAMAY*"],
                 ["_RWY190.5DME", "CAPVC"],
                 ["_RWY330.5DME", "ADAXE"]
@@ -1329,11 +1331,11 @@
         "CAPSS2": {
             "icao": "CAPSS2",
             "name": "Caps Two",
-            "entryPoints": {    
+            "entryPoints": {
                 "THHMP": ["THHMP"],
-                "WAVES": [["WAVES", "A220-|A210+|S280"], ["KSETT", "A170+"], ["ELAPP", "A200-|A140+|S280"]]
+                "WAVES": [["WAVES", "A210+|A220-|S280"], ["KSETT", "A170+"], ["ELAPP", "A140+|A200-|S280"]]
             },
-            "body": [["BULII", "A160-|A130+"], ["CAPSS", "A130-|A100+"]],
+            "body": [["BULII", "A130+|A160-"], ["CAPSS", "A100+|A130-"]],
             "rwy": {
                 "KDCA1": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"],
                 "KDCA4": [["HOYAS", "A90"], "HALLL", "^KATRN", "#006"],
@@ -1391,7 +1393,7 @@
             "icao": "FRDMM3",
             "name": "Freedom Three",
             "entryPoints": {
-                "BUCKO": [["BUCKO", "A310"], ["DRRON", "A310-|A270+"], ["HONNR", "A280-|A240+|S280"], ["BRVRY", "A260-|A220+"], ["COURG", "A230-|A200+|S280"], ["PLDGE", "A170-|A150+|S280"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], ["FORGT", "A110+|S250"], ["SEPII", "A100+|S250"]]
+                "BUCKO": [["BUCKO", "A310"], ["DRRON", "A270+|A310-"], ["HONNR", "A240+|A280-|S280"], ["BRVRY", "A220+|A260-"], ["COURG", "A200+|A230-|S280"], ["PLDGE", "A150+|A170-|S280"], ["WEWIL", "A140+"], ["NEVVR", "A120+"], ["FORGT", "A110+|S250"], ["SEPII", "A100+|S250"]]
             },
             "body": [["ALWYZ", "A100-"]],
             "rwy": {
@@ -1473,9 +1475,9 @@
             },
             "body": ["TIKEE", "GILFF", "^HIGPO", "#090"],
             "rwy": {
-                "KDCA1": [""],
-                "KDCA4": [""],
-                "KDCA33": [""]
+                "KDCA1": [],
+                "KDCA4": [],
+                "KDCA33": []
             },
             "draw": [
                 ["BBONE*", "LURAY", "TIKEE"],
@@ -1490,7 +1492,7 @@
                 "BKW": ["BKW", "POMYK", "DEBZZ"],
                 "HVQ": ["HVQ", "FIMPA"]
             },
-            "body": ["DILNN", "SEALZ", ["RANJR", "A280-|A240+|S280"], ["JARHD", "A260-|A220+"], ["PJAAE", "A230-|A210+"], ["USAAY", "A210-|A170+|S280"], ["WEEDU", "A190-|A160+"], ["SUPRT", "A170-|A140+|S280"], ["OOURR", "A130-|S250"], ["TRUPS", "A110|S250"]],
+            "body": ["DILNN", "SEALZ", ["RANJR", "A240+|A280-|S280"], ["JARHD", "A220+|A260-"], ["PJAAE", "A210+|A230-"], ["USAAY", "A170+|A210-|S280"], ["WEEDU", "A160+|A190-"], ["SUPRT", "A140+|A170-|S280"], ["OOURR", "A130-|S250"], ["TRUPS", "A110|S250"]],
             "rwy": {
                 "KDCA1": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
                 "KDCA4": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
@@ -1511,7 +1513,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.BOOCK2.COLIN",
+            "route": "KDCA1.BOOCK2.COLIN",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1528,7 +1530,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.CLTCH1.FLASK",
+            "route": "KDCA1.CLTCH1.FLASK",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1543,7 +1545,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.CLTCH1.MAULS",
+            "route": "KDCA1.CLTCH1.MAULS",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1559,7 +1561,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.DOCTR3.AGARD",
+            "route": "KDCA1.DOCTR3.AGARD",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1574,7 +1576,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.DOCTR3.DQO",
+            "route": "KDCA1.DOCTR3.DQO",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1588,7 +1590,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.HORTO2.BUFFR",
+            "route": "KDCA1.HORTO2.BUFFR",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1609,7 +1611,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.HORTO2.JERES",
+            "route": "KDCA1.HORTO2.JERES",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1626,7 +1628,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.JDUBB1.GSO",
+            "route": "KDCA1.JDUBB1.GSO",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1644,7 +1646,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.JDUBB1.SBV",
+            "route": "KDCA1.JDUBB1.SBV",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1659,7 +1661,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.REBLL3.OTTTO..CAPOE..HAMME",
+            "route": "KDCA1.REBLL3.OTTTO..CAPOE..HAMME",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1678,7 +1680,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.SCRAM3.LYH",
+            "route": "KDCA1.SCRAM3.LYH",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1693,7 +1695,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.SOOKI3.SWANN",
+            "route": "KDCA1.SOOKI3.SWANN",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1713,7 +1715,7 @@
             "origin": "KDCA",
             "destination": "",
             "category": "departure",
-            "route": "KDCA.WYNGS3.RAMAY..BENSH",
+            "route": "KDCA1.WYNGS3.RAMAY..BENSH",
             "altitude": 0,
             "speed": 0,
             "method": "random",
@@ -1733,7 +1735,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "WAVES.CAPSS2.KDCA",
+            "route": "WAVES.CAPSS2.KDCA1",
             "altitude": [21000, 22000],
             "speed": 280,
             "method": "random",
@@ -1753,7 +1755,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "MXE.CLIPR1.KDCA",
+            "route": "MXE.CLIPR1.KDCA1",
             "altitude": 13000,
             "speed": 250,
             "method": "random",
@@ -1773,7 +1775,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "LAFLN.DEALE2.KDCA",
+            "route": "LAFLN.DEALE2.KDCA1",
             "altitude": 28000,
             "speed": 300,
             "method": "random",
@@ -1789,7 +1791,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "BUCKO.FRDMM3.KDCA",
+            "route": "BUCKO.FRDMM3.KDCA1",
             "altitude": 31000,
             "speed": 300,
             "method": "random",
@@ -1813,7 +1815,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "RIC.IRONS7.KDCA",
+            "route": "RIC.IRONS7.KDCA1",
             "altitude": 20000,
             "speed": 300,
             "method": "random",
@@ -1826,7 +1828,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "PSB.SKILS3.KDCA",
+            "route": "PSB.SKILS3.KDCA1",
             "altitude": 30000,
             "speed": 300,
             "method": "random",
@@ -1843,7 +1845,7 @@
             "origin": "",
             "destination": "KDCA",
             "category": "arrival",
-            "route": "BKW.TRUPS3.KDCA",
+            "route": "BKW.TRUPS3.KDCA1",
             "altitude": 30000,
             "speed": 300,
             "method": "random",
