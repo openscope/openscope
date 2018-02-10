@@ -1098,9 +1098,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MOTBE", "GDYUP", "HMBGR"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "RIISE"]
             },
-            "body": [
-                ["DOCTR"]
-            ],
+            "body": ["DOCTR"],
             "exitPoints": {
                 "AGARD": ["AGARD"],
                 "DQO": ["DQO"]
@@ -1121,9 +1119,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "RLLLL"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
             },
-            "body": [
-                ["HORTO"]
-            ],
+            "body": ["HORTO"],
             "exitPoints": {
                 "BUFFR": ["BUFFR"],
                 "JERES": ["JERES"]
@@ -1144,9 +1140,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]]
             },
-            "body": [
-                ["HAFNR", "JDUBB"]
-            ],
+            "body": ["HAFNR", "JDUBB"],
             "exitPoints": {
                 "GSO": ["TYPNZ", "SCORN", "RRSIN", "GSO"],
                 "SBV": ["CASLY", "MELTN", "SBV"]
@@ -1246,9 +1240,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "TEZER"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD"]
             },
-            "body": [
-                ["REBLL"]
-            ],
+            "body": ["REBLL"],
             "exitPoints": {
                 "OTTTO": ["OTTTO"]
             },
@@ -1268,9 +1260,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI"]
             },
-            "body": [
-                ["POOCH", "SCRAM"]
-            ],
+            "body": ["POOCH", "SCRAM"],
             "exitPoints": {
                 "LYH": ["DANOO", "WALCE", "GLANC", "LYH"]
             },
@@ -1291,9 +1281,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], ["FIMBI", "S230-"], "MOTBE", "GDYUP", "RIISE"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "ALEEX", ["DOGUE", "S250-"], "PHERB"]
             },
-            "body": [
-                ["SOOKI"]
-            ],
+            "body": ["SOOKI"],
             "exitPoints": {
                 "SWANN": ["SWANN"]
             },
@@ -1313,9 +1301,7 @@
                 "KDCA19": [["_RWY190.5DME", "A05+"], "CAPVC", "GAITE", "LBOLT", "GINYA"],
                 "KDCA33": [["_RWY330.5DME", "A05+"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE"]
             },
-            "body": [
-                ["WYNGS"]
-            ],
+            "body": ["WYNGS"],
             "exitPoints": {
                 "RAMAY": ["RAMAY"]
             },
