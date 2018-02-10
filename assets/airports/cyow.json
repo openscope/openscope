@@ -923,7 +923,7 @@
             ]
         }
     ],
-    "arrivalRunway": "25",
+    "arrivalRunway": "32",
     "departureRunway": "25",
     "fixes": {
         "ADVOS": ["N45d20.19", "W075d23.90"],
@@ -1698,12 +1698,12 @@
             "icao": "CYOW4",
             "name": "Ottawa Four",
             "rwy": {
-                "04": ["#039"],
-                "07": ["#071"],
-                "14": ["#140"],
-                "22": ["#219"],
-                "25": ["#251"],
-                "32": ["#320"]
+                "CYOW04": ["#039"],
+                "CYOW07": ["#071"],
+                "CYOW14": ["#140"],
+                "CYOW22": ["#219"],
+                "CYOW25": ["#251"],
+                "CYOW32": ["#320"]
             },
             "exitPoints": {
                 "APLOV": ["APLOV"],
@@ -1737,10 +1737,10 @@
             },
             "body": [["KANIK", "A230-"]],
             "rwy": {
-                "07": [["LANRK", "A100-"], ["VISOL", "A30+"], "#071"],
-                "14": [["LANRK", "A160-"], ["VISOL", "A50+|S210-"], ["SEBEG", "A50"], ["MEGNO", "A35+"], "OMTUN", "#320"],
-                "25": [["LANRK", "A160-"], "VISOL", "ULAGU", ["BOREG", "A50|S230-"], ["ADVOS", "A30+|S210-"], "KAREB", "#084"],
-                "32": [["LANRK", "A160-"], "VISOL", "ULAGU", ["DEMKO", "A50+|S210-"], ["VOLAG", "A30+"], "DUKTI", "#140"]
+                "CYOW07": [["LANRK", "A100-"], ["VISOL", "A30+"], "#071"],
+                "CYOW14": [["LANRK", "A160-"], ["VISOL", "A50+|S210-"], ["SEBEG", "A50"], ["MEGNO", "A35+"], "OMTUN", "#320"],
+                "CYOW25": [["LANRK", "A160-"], "VISOL", "ULAGU", ["BOREG", "A50|S230-"], ["ADVOS", "A30+|S210-"], "KAREB", "#084"],
+                "CYOW32": [["LANRK", "A160-"], "VISOL", "ULAGU", ["DEMKO", "A50+|S210-"], ["VOLAG", "A30+"], "DUKTI", "#140"]
             },
             "draw": [
                 ["MIVOK*", "KANIK"],
@@ -1759,10 +1759,10 @@
             },
             "body": [],
             "rwy": {
-                "07": [["CYRIL", "A120-"], ["CAVUR", "A75+|S230-"], ["AMAGI", "A50+|S210-"], ["NOVUX", "A50"], ["TILOG", "A30+"], "EBNAP", "#247"],
-                "14": [["CYRIL", "A120-"], "CAVUR", "LITRI", ["APMUP", "A50|S210-"], "MERKO", ["ILOGI", "A35+"], "PETLU", "#320"],
-                "25": [["CYRIL", "A120-"], ["TEXEN", "A50|S230-"], ["ADVOS", "A30+|S210-"], "KAREB", "#084"],
-                "32": [["CYRIL", "A80-"], ["TEXEN", "A30+"], "#320"]
+                "CYOW07": [["CYRIL", "A120-"], ["CAVUR", "A75+|S230-"], ["AMAGI", "A50+|S210-"], ["NOVUX", "A50"], ["TILOG", "A30+"], "EBNAP", "#247"],
+                "CYOW14": [["CYRIL", "A120-"], "CAVUR", "LITRI", ["APMUP", "A50|S210-"], "MERKO", ["ILOGI", "A35+"], "PETLU", "#320"],
+                "CYOW25": [["CYRIL", "A120-"], ["TEXEN", "A50|S230-"], ["ADVOS", "A30+|S210-"], "KAREB", "#084"],
+                "CYOW32": [["CYRIL", "A80-"], ["TEXEN", "A30+"], "#320"]
             },
             "draw": [
                 ["ART*", "CYRIL"],
@@ -1780,10 +1780,10 @@
             },
             "body": [],
             "rwy": {
-                "07": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30+"], "VINRA", "#251"],
-                "14": [["ALIDO", "A100-"], "DUNUM", ["RAFNO", "A30+"]],
-                "25": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "MERKO", ["REVAL", "A50|S210-"], ["XOLTI", "A30+"], "IGTAD", "#072"],
-                "32": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "MERKO", ["ILUBO", "A50|S210-"], ["WATTO", "A30+"], "TIDUL", "#141"]
+                "CYOW07": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30+"], "VINRA", "#251"],
+                "CYOW14": [["ALIDO", "A100-"], "DUNUM", ["RAFNO", "A30+"]],
+                "CYOW25": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "MERKO", ["REVAL", "A50|S210-"], ["XOLTI", "A30+"], "IGTAD", "#072"],
+                "CYOW32": [["ALIDO", "A160-"], ["DUNUM", "A130-"], "MERKO", ["ILUBO", "A50|S210-"], ["WATTO", "A30+"], "TIDUL", "#141"]
             },
             "draw": [
                 ["BEMOG", "ALIDO", "DUNUM", "RAFNO"],
@@ -1800,10 +1800,10 @@
             },
             "body": [],
             "rwy": {
-                "07": [["ONDOB", "A200-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30+"], "VINRA", "#251"],
-                "14": [["ONDOB", "A100-"], ["RAFNO", "A30+"]],
-                "25": [["ONDOB", "A200-"], ["GABEV", "A130-"], "MERKO", ["REVAL", "A50|S210-"], ["XOLTI", "A30+"], "IGTAD", "#072"],
-                "32": [["ONDOB", "A200-"], ["GABEV", "A130-"], "MERKO", ["ILUBO", "A50|S210-"], ["WATTO", "A30+"], "TIDUL", "#141"]
+                "CYOW07": [["ONDOB", "A200-"], "GABEV", ["KEMLU", "A50|S210-"], "SENNZ", ["MODON", "A30+"], "VINRA", "#251"],
+                "CYOW14": [["ONDOB", "A100-"], ["RAFNO", "A30+"]],
+                "CYOW25": [["ONDOB", "A200-"], ["GABEV", "A130-"], "MERKO", ["REVAL", "A50|S210-"], ["XOLTI", "A30+"], "IGTAD", "#072"],
+                "CYOW32": [["ONDOB", "A200-"], ["GABEV", "A130-"], "MERKO", ["ILUBO", "A50|S210-"], ["WATTO", "A30+"], "TIDUL", "#141"]
             },
             "draw": [
                 ["SMARE", "TOXIP", "ONDOB", "RAFNO"],
@@ -1822,10 +1822,10 @@
             },
             "body": ["ALSET"],
             "rwy": {
-                "07": [["THURO", "A160-"], "URLAG", ["ADVOS", "A130-"], "AMAGI", ["NOVUX", "A50|S210-"], ["TILOG", "A30+"], "EBNAP", "#247"],
-                "14": [["THURO", "A160-"], ["XOLTI", "A50+|S230-"], ["ONBAB", "A50"], ["ILOGI", "A35+|S210-"], "PETLU", "#320"],
-                "25": [["THURO", "A100-"], ["TEFLY", "A30+"]],
-                "32": [["THURO", "A120-"], ["URLAG", "A50|S230-"], "ADVOS", ["WATTO", "A30+|S210-"], "TIDUL", "#141"]
+                "CYOW07": [["THURO", "A160-"], "URLAG", ["ADVOS", "A130-"], "AMAGI", ["NOVUX", "A50|S210-"], ["TILOG", "A30+"], "EBNAP", "#247"],
+                "CYOW14": [["THURO", "A160-"], ["XOLTI", "A50+|S230-"], ["ONBAB", "A50"], ["ILOGI", "A35+|S210-"], "PETLU", "#320"],
+                "CYOW25": [["THURO", "A100-"], ["TEFLY", "A30+"]],
+                "CYOW32": [["THURO", "A120-"], ["URLAG", "A50|S230-"], "ADVOS", ["WATTO", "A30+|S210-"], "TIDUL", "#141"]
             },
             "draw": [
                 ["VILRO*", "YUL", "ALSET"],
@@ -1842,7 +1842,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.APLOV",
+            "route": "CYOW25.CYOW4.APLOV",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1861,7 +1861,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.AVVON",
+            "route": "CYOW25.CYOW4.AVVON",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1880,7 +1880,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.IKLAX..REEDO",
+            "route": "CYOW25.CYOW4.IKLAX..REEDO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1899,7 +1899,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.KODEX",
+            "route": "CYOW25.CYOW4.KODEX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1918,7 +1918,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.LETAK",
+            "route": "CYOW25.CYOW4.LETAK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1937,7 +1937,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.OLIGO",
+            "route": "CYOW25.CYOW4.OLIGO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1956,7 +1956,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.RADEN",
+            "route": "CYOW25.CYOW4.RADEN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1975,7 +1975,7 @@
             "origin": "CYOW",
             "destination": "",
             "category": "departure",
-            "route": "CYOW.CYOW4.TUKIR",
+            "route": "CYOW25.CYOW4.TUKIR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1994,7 +1994,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "MIVOK.CAPTL4.CYOW",
+            "route": "MIVOK.CAPTL4.CYOW32",
             "altitude": [23000, 27000],
             "speed": 300,
             "method": "cyclic",
@@ -2011,7 +2011,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "ELSUB.CAPTL4.CYOW",
+            "route": "ELSUB.CAPTL4.CYOW32",
             "altitude": [24000, 25000],
             "speed": 300,
             "method": "cyclic",
@@ -2028,7 +2028,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "ART.DEANS8.CYOW",
+            "route": "ART.DEANS8.CYOW32",
             "altitude": [18000, 24000],
             "speed": 300,
             "method": "cyclic",
@@ -2043,7 +2043,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "BUGSY.DEANS8.CYOW",
+            "route": "BUGSY.DEANS8.CYOW32",
             "altitude": [18000, 21000],
             "speed": 300,
             "method": "cyclic",
@@ -2056,7 +2056,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "SMARE.MEECH1.CYOW",
+            "route": "SMARE.MEECH1.CYOW32",
             "altitude": [21000, 24000],
             "speed": 300,
             "method": "cyclic",
@@ -2070,7 +2070,7 @@
             "origin": "",
             "destination": "CYOW",
             "category": "arrival",
-            "route": "CATOG.RIVER2.CYOW",
+            "route": "CATOG.RIVER2.CYOW32",
             "altitude": [28000, 30000],
             "speed": 300,
             "method": "cyclic",
