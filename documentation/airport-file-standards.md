@@ -13,7 +13,7 @@ If you have not contributed before, please note that we will need to add you to 
 
 ## Standard Requirements
 ### Terrain GeoJSON File
-Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See the Reference Materials for a step-by-step guide on how to generate terrain usin qGIS.
+Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/airport-modeling](https://github.com/openscope/airport-modeling) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See the Reference Materials for a step-by-step guide on how to generate terrain using qGIS.
 
 ### Polygonal Airspace Boundary
 An airspace boundary must be defined with GPS coordinates. Previously, we allowed just a "airspace center" and "airspace radius", but now there must be a defined edge to the airspace.
