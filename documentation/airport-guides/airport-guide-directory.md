@@ -11,6 +11,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KELP - El Paso International Airport](kelp.md)
 - [KJAX - Jacksonville International Airport](kjax.md)
 - [KLAS - McCarran International Airport](klas.md)
+- [KMCI - Kansas City International Airport](kmci.md)
 - [KPDX - Portland International Airport](kpdx.md)
 - [KSDF - Louisville International Airport](ksdf.md)
 - [KSEA - Seattle–Tacoma International Airport](ksea.md)

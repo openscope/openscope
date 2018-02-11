@@ -269,6 +269,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'kmci',
+            level: 'beginner',
+            name: 'Kansas City International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kmia',
         //     level: 'hard',
