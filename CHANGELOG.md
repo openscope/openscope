@@ -14,6 +14,7 @@
 
 ### Bugfixes
 - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
+- Restore functionality of non-procedural descents to airspace ceiling [#879](https://github.com/openscope/openscope/issues/879)
 
 
 
