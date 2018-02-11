@@ -266,10 +266,7 @@
         "DOTEX": ["N51d12m01", "E021d51m44"],
         "VENES": ["N51d08m56", "E021d54m38"],
         "NATEV": ["N50d52m08", "E022d10m16"],
-        "ASLUX": ["N52d19m14", "E022d09m38"],
-        "ABERO": ["N52d13m40", "E023d12m32"],
-        "ASLUX": ["N52d19m14", "E022d09m38"],
-        "ETUBO": ["N52d28m09", "E022d57m45"]
+        "ASLUX": ["N52d19m14", "E022d09m38"]
     },
     "restricted": [
         {
@@ -737,7 +734,7 @@
 
             ],
             "ils": [true, false]
-        }
+        },
         {
             "name": ["15", "33"],
             "name_offset": [[0, 0], [0, 0]],
@@ -747,10 +744,10 @@
 
             ],
             "ils": [false, true]
-        },
+        }
     ],
     "sids": {
-        "BAMSO 4A": {
+        "BAMSO4A": {
             "icao": "BAMSO 4A",
             "name": "Bamso Four Alpha",
             "rwy": {
@@ -764,7 +761,7 @@
                 ["WA601", "WA698", "BAMSO*"]
             ]
         },
-        "BAMSO 5D": {
+        "BAMSO5D": {
             "icao": "BAMSO 5D",
             "name": "Bamso Five Delta",
             "rwy": {
@@ -778,7 +775,7 @@
                 ["WA401", "WA404", "WA657", "WA698", "BAMSO*"]
             ]
         },
-        "BAMSO 5G": {
+        "BAMSO5G": {
             "icao": "BAMSO 5G",
             "name": "Bamso Five Golf",
             "rwy": {
@@ -792,9 +789,9 @@
                 ["WA901", "WA931", "WA932", "WA791", "BITVA", "WA571", "BAMSO*"]
             ]
         },
-        "BAMSO 5K": {
+        "BAMSO5K": {
             "icao": "BAMSO 5K",
-            "name": "Bamso",
+            "name": "Bamso Five Kilo",
             "rwy": {
                 "EPWA33": []
             },
@@ -806,7 +803,7 @@
                 ["WA801", "WA803", "WA791", "BITVA", "WA571", "BAMSO*"]
             ]
         },
-        "OLILA 5A": {
+        "OLILA5A": {
             "icao": "OLILA 5A",
             "name": "Olila Five Alpha",
             "rwy": {
@@ -820,7 +817,7 @@
                 ["WA601", "DOPOX", "TISEX", "INSON", "WA663", "OLILA*"]
             ]
         },
-        "OLILA 5D": {
+        "OLILA5D": {
             "icao": "OLILA 5D",
             "name": "Olila Five Delta",
             "rwy": {
@@ -834,7 +831,7 @@
                 ["WA401", "WA404", "DOPOX", "TISEX", "INSON", "OLILA*"]
             ]
         },
-        "OLILA 5G": {
+        "OLILA5G": {
             "icao": "OLILA 5G",
             "name": "Olila Five Golf",
             "rwy": {
@@ -848,7 +845,7 @@
                 ["WA901", "WA931", "WA932", "WA791", "INRAS", "RODEV", "OLILA*"]
             ]
         },
-        "OLILA 5K": {
+        "OLILA5K": {
             "icao": "OLILA 5K",
             "name": "Olila Five Kilo",
             "rwy": {
@@ -862,7 +859,7 @@
                 ["WA801", "WA803", "WA791", "INRAS", "RODEV", "OLILA*"]
             ]
         },
-        "LOLSI 5A": {
+        "LOLSI5A": {
             "icao": "LOLSI 5A",
             "name": "Lolsi Five Alpha",
             "rwy": {
@@ -876,7 +873,7 @@
                 ["WA606", "GILAL", "WA664", "LOLSI*"]
             ]
         },
-        "LOLSI 6D": {
+        "LOLSI6D": {
             "icao": "LOLSI 6D",
             "name": "Lolsi Six Delta",
             "rwy": {
@@ -890,7 +887,7 @@
                 ["WA401", "WA402", "GILAL", "LOLSI*"]
             ]
         },
-        "LOLSI 6G": {
+        "LOLSI6G": {
             "icao": "LOLSI 6G",
             "name": "Lolsi Six Golf",
             "rwy": {
@@ -904,7 +901,7 @@
                 ["WA901", "WA902", "WA903", "MAKUS", "LOLSI*"]
             ]
         },
-        "LOLSI 5K": {
+        "LOLSI5K": {
             "icao": "LOLSI 5K",
             "name": "Lolsi Five Kilo",
             "rwy": {
@@ -918,7 +915,7 @@
                 ["WA801", "WA802", "MAKUS", "LOLSI*"]
             ]
         },
-        "SOXER 5A": {
+        "SOXER5A": {
             "icao": "SOXER 5A",
             "name": "Soxer Five Alpha",
             "rwy": {
@@ -929,10 +926,10 @@
                 "SOXER": []
             },
             "draw": [
-                ["WA606" "GILAL", "WA666", "SOXER*"]
+                ["WA606", "GILAL", "WA666", "SOXER*"]
             ]
         },
-        "SOXER 6D": {
+        "SOXER6D": {
             "icao": "SOXER 6D",
             "name": "Soxer Six Delta",
             "rwy": {
@@ -946,7 +943,7 @@
                 ["WA401", "WA402", "GILAL", "SOXER*"]
             ]
         },
-        "SOXER 6G": {
+        "SOXER6G": {
             "icao": "SOXER 6G",
             "name": "Soxer Six Golf",
             "rwy": {
@@ -960,7 +957,7 @@
                 ["WA901", "WA902", "WA903", "MAKUS", "SOXER*"]
             ]
         },
-        "SOXER 5K": {
+        "SOXER5K": {
             "icao": "SOXER 5K",
             "name": "Soxer Five Kilo",
             "rwy": {
@@ -974,7 +971,7 @@
                 ["WA801", "WA802", "MAKUS", "SOXER"]
             ]
         },
-        "EVINA 4A": {
+        "EVINA4A": {
             "icao": "EVINA 4A",
             "name": "Evina Four Alpha",
             "rwy": {
@@ -988,7 +985,7 @@
                 ["WA606", "NITKI", "NIPUS", "EVINA*"]
             ]
         },
-        "EVINA 5D": {
+        "EVINA5D": {
             "icao": "EVINA 5D",
             "name": "Evina Five Delta",
             "rwy": {
@@ -1002,7 +999,7 @@
                 ["WA401", "WA402", "NITKI", "NIPUS", "EVINA*"]
             ]
         },
-        "EVINA 6G": {
+        "EVINA6G": {
             "icao": "EVINA 6G",
             "name": "Evina Six Golf",
             "rwy": {
@@ -1016,7 +1013,7 @@
                 ["WA901", "WA921", "EVDEX", "NIPUS", "EVINA*"]
             ]
         },
-        "EVINA 4K": {
+        "EVINA4K": {
             "icao": "EVINA 4K",
             "name": "Evina Four Kilo",
             "rwy": {
@@ -1030,7 +1027,7 @@
                 ["WA801", "WA802", "EVDEX", "NIPUS", "EVINA*"]
             ]
         },
-        "XIMBA 4A": {
+        "XIMBA4A": {
             "icao": "XIMBA 4A",
             "name": "Ximba Four Alpha",
             "rwy": {
@@ -1044,7 +1041,7 @@
                 ["WA604", "XIMBA*"]
             ]
         },
-        "XIMBA 6D": {
+        "XIMBA6D": {
             "icao": "XIMBA 6D",
             "name": "Ximba Six Delta",
             "rwy": {
@@ -1058,7 +1055,7 @@
                 ["WA401", "WA403", "XIMBA*"]
             ]
         },
-        "XIMBA 6G": {
+        "XIMBA6G": {
             "icao": "XIMBA 6G",
             "name": "Ximba Six Golf",
             "rwy": {
@@ -1072,7 +1069,7 @@
                 ["WA901", "WA921", "EVDEX", "XENOM", "TISTA", "XIMBA*"]
             ]
         },
-        "XIMBA 4K": {
+        "XIMBA4K": {
             "icao": "XIMBA 4K",
             "name": "Ximba Four Kilo",
             "rwy": {
@@ -1088,7 +1085,7 @@
         }
     },
     "stars": {
-        "BIMPA 5N" : {
+        "BIMPA5N" : {
             "icao": "BIMPA 5N",
             "name": "Bimpa Five November",
             "rwy": {
@@ -1102,7 +1099,7 @@
                 ["BIMPA*", "WA444", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "BIMPA 3P" : {
+        "BIMPA3P" : {
             "icao": "BIMPA 3P",
             "name": "Bimpa Three Papa",
             "rwy": {
@@ -1116,7 +1113,7 @@
                 ["BIMPA*", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "BIMPA 4V" : {
+        "BIMPA4V" : {
             "icao": "BIMPA 4V",
             "name": "Bimpa Four Victor",
             "rwy": {
@@ -1130,7 +1127,7 @@
                 ["BIMPA*", "GOMSA", "WA507", "WA709", "WA532", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "BIMPA 4U" : {
+        "BIMPA4U" : {
             "icao": "BIMPA 4U",
             "name": "Bimpa Four Uniform",
             "rwy": {
@@ -1141,10 +1138,10 @@
                 "BIMPA": []
             },
             "draw": [
-                ["BIMPA*", "GOMSA", "WA507", "LAVMO", "UMTIX", "OTMUL", "NEGEN", "BARBA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
+                ["BIMPA*", "GOMSA", "WA507", "LAVMO", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         },
-        "SORIX 5N" : {
+        "SORIX5N" : {
             "icao": "SORIX 5N",
             "name": "Sorix Five November",
             "rwy": {
@@ -1158,7 +1155,7 @@
                 ["SORIX*", "IRDOM", "OLDIM", "ELGAD", "SOPAM", "RUNIN", "MIGVI", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "SORIX 3P" : {
+        "SORIX3P" : {
             "icao": "SORIX 3P",
             "name": "Sorix Three Papa",
             "rwy": {
@@ -1172,7 +1169,7 @@
                 ["SORIX*", "INREN", "WA448", "LUGEL", "AMLAS", "RILSU", "MARUP", "LUXIB", "NANOM", "RONIR", "WA618", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "SORIX 4V" : {
+        "SORIX4V" : {
             "icao": "SORIX 4V",
             "name": "Sorix Four Victor",
             "rwy": {
@@ -1186,7 +1183,7 @@
                 ["SORIX*", "DINRI", "WA508", "TINBU", "REBSO", "DINVA", "ODRIM", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "SORIX 4U" : {
+        "SORIX4U" : {
             "icao": "SORIX 4U",
             "name": "Sorix Four Uniform",
             "rwy": {
@@ -1200,7 +1197,7 @@
                 ["SORIX*", "DINRI", "WA508", "TINBU", "REBSO", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         },
-        "NEPOX 4N" : {
+        "NEPOX4N" : {
             "icao": "NEPOX 4N",
             "name": "Nepox Four November",
             "rwy": {
@@ -1214,7 +1211,7 @@
                 ["NEPOX*","INPAL","DETOR","EMKEN","TOSLU","XIMPU","NIMIS","REMDI","AGESI","TABET","INLUT","WA413","WA412","WA411","GOSIT","FAP11"]
             ]
         },
-        "NEPOX 3P" : {
+        "NEPOX3P" : {
             "icao": "NEPOX 3P",
             "name": "Nepox Three Papa",
             "rwy": {
@@ -1228,7 +1225,7 @@
                 ["NEPOX*","INPAL","DETOR","EMKEN","WA468","NEDNA","SUBEG","ELGEL","GIMKU","WA617","WA616","WA614","OSNUT","FAF15"]
             ]
         },
-        "NEPOX 4V" : {
+        "NEPOX4V" : {
             "icao": "NEPOX 4V",
             "name": "Nepox Four Victor",
             "rwy": {
@@ -1242,7 +1239,7 @@
                 ["NEPOX*","WA704","SUPID","ROPUX","UNDES","ODMEK","TIGTU","RIKNO","WA732","WA731","WA729","TEBRU","FAF29"]
             ]
         },
-        "NEPOX 4U" : {
+        "NEPOX4U" : {
             "icao": "NEPOX 4U",
             "name": "Nepox Four Uniform",
             "rwy": {
@@ -1256,7 +1253,7 @@
                 ["NEPOX*","WA573","WA594","IPSIM","PISEN","BEXON","ADINI","SISLU","LEMBU","NUTSO","WA537","WA536","WA534","WA533","ERLEG","FAP33"]
             ]
         },
-        "LIMVI 4N" : {
+        "LIMVI4N" : {
             "icao": "LIMVI 4N",
             "name": "Limvi Four November",
             "rwy": {
@@ -1270,7 +1267,7 @@
               ["LIMVI*", "WA442", "EMKEN", "TOSLU", "XIMPU", "NIMIS", "REMDI", "AGESI", "TABET", "INLUT", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "LIMVI 3P" : {
+        "LIMVI3P" : {
             "icao": "LIMVI 3P",
             "name": "Limvi Three Papa",
             "rwy": {
@@ -1281,10 +1278,10 @@
                 "LIMVI": []
             },
             "draw": [
-                ["LIMVI*"," WA442", "EMKEN", "WA468", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
+                ["LIMVI*","WA442", "EMKEN", "WA468", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "LIMVI 4V" : {
+        "LIMVI4V" : {
             "icao": "LIMVI 4V",
             "name": "Limvi Four Victor",
             "rwy": {
@@ -1298,7 +1295,7 @@
                 ["LIMVI*", "WA511", "WA512", "SUPID", "ROPUX", "UNDES", "ODMEK", "TIGTU", "RIKNO", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "LIMVI 4U" : {
+        "LIMVI4U" : {
             "icao": "LIMVI 4U",
             "name": "Limvi Four Uniform",
             "rwy": {
@@ -1312,7 +1309,7 @@
                 ["LIMVI*", "RILET", "DETOR", "WA594", "IPSIM", "PISEN", "BEXON", "ADINI", "SISLU", "LEMBU", "NUTSO", "WA537", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         },
-        "LOGDA 4N" : {
+        "LOGDA4N" : {
             "icao": "LOGDA 4N",
             "name": "Logda Four November",
             "rwy": {
@@ -1326,7 +1323,7 @@
                 ["LOGDA*", "GIPUL", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "LOGDA 3P" : {
+        "LOGDA3P" : {
             "icao": "LOGDA 3P",
             "name": "Logda Three Papa",
             "rwy": {
@@ -1340,7 +1337,7 @@
                 ["LOGDA*", "GIPUL", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "LOGDA 4V" : {
+        "LOGDA4V" : {
             "icao": "LOGDA 4V",
             "name": "Logda Four Victor",
             "rwy": {
@@ -1354,7 +1351,7 @@
                 ["LOGDA*", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "LOGDA 4U" : {
+        "LOGDA4U" : {
             "icao": "LOGDA 4U",
             "name": "Logda Four Uniform",
             "rwy": {
@@ -1368,7 +1365,7 @@
                 ["LOGDA*", "WA593", "INSEX", "WA564", "XEMRO", "PIVIP", "UMTIX", "OTMUL", "NEGEN", "BARNA", "WA536", "WA534", "WA533", "ERLEG", "FAP33"]
             ]
         },
-        "AGAVA 4N" : {
+        "AGAVA4N" : {
             "icao": "AGAVA 4N",
             "name": "Agava Four November",
             "rwy": {
@@ -1382,7 +1379,7 @@
                 ["AGAVA*", "ELKIR", "AMSOS", "ESINI", "BEMRA", "OLOKU", "SOSIN", "BASEK", "LUGEL", "PIBAR", "REDSA", "WA414", "WA413", "WA412", "WA411", "GOSIT", "FAP11"]
             ]
         },
-        "AGAVA 3P" : {
+        "AGAVA3P" : {
             "icao": "AGAVA 3P",
             "name": "Agava Three Papa",
             "rwy": {
@@ -1396,7 +1393,7 @@
                 ["AGAVA*", "ELKIR", "AMSOS", "ESINI", "BEMRA", "WA452", "NEDNA", "SUBEG", "ELGEL", "GIMKU", "WA617", "WA616", "WA614", "OSNUT", "FAF15"]
             ]
         },
-        "AGAVA 4V" : {
+        "AGAVA4V" : {
             "icao": "AGAVA 4V",
             "name": "Agava Four Victor",
             "rwy": {
@@ -1410,7 +1407,7 @@
                 ["AGAVA", "ELKIR", "AMSOS", "WA593", "INSEX", "KUVAM", "OSTET", "SOROT", "WA531", "ABAPA", "MAPIX", "KUMUT", "ENIMO", "WA733", "WA732", "WA731", "WA729", "TEBRU", "FAF29"]
             ]
         },
-        "AGAVA 4U" : {
+        "AGAVA4U" : {
             "icao": "AGAVA 4U",
             "name": "Agava Four Uniform",
             "rwy": {
@@ -1430,11 +1427,10 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.BAMSO.BAMSO",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.BAMSO4A.BAMSO",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
             "rate": 3,
             "airlines": [
                 ["afl", 2],
@@ -1453,11 +1449,76 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.OLILA.OLILA",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.BAMSO5D.BAMSO",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["cca/long", 1],
+                ["bru", 1],
+                ["fin", 2],
+                ["lot", 38],
+                ["lot/long", 2],
+                ["srn", 2],
+                ["aui", 2],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.BAMSO5G.BAMSO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["cca/long", 1],
+                ["bru", 1],
+                ["fin", 2],
+                ["lot", 38],
+                ["lot/long", 2],
+                ["srn", 2],
+                ["aui", 2],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.BAMSO5K.BAMSO",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["cca/long", 1],
+                ["bru", 1],
+                ["fin", 2],
+                ["lot", 38],
+                ["lot/long", 2],
+                ["srn", 2],
+                ["aui", 2],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.OLILA5A.OLILA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["ein", 1],
@@ -1476,11 +1537,76 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.LOLSI.LOLSI",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.OLILA5D.OLILA",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 5,
+            "airlines": [
+                ["ein", 1],
+                ["rou", 1],
+                ["lot", 38],
+                ["lot/long", 16],
+                ["nax", 1],
+                ["ryr", 2],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.OLILA5G.OLILA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ein", 1],
+                ["rou", 1],
+                ["lot", 38],
+                ["lot/long", 16],
+                ["nax", 1],
+                ["ryr", 2],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.OLILA5K.OLILA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["ein", 1],
+                ["rou", 1],
+                ["lot", 38],
+                ["lot/long", 16],
+                ["nax", 1],
+                ["ryr", 2],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.LOLSI5A.LOLSI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["lot", 38],
@@ -1496,11 +1622,67 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.SOXER.SOXER",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.LOLSI6D.LOLSI",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 5,
+            "airlines": [
+                ["lot", 38],
+                ["dlh", 2],
+                ["nax", 1],
+                ["ibk", 1],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 5]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.LOLSI6G.LOLSI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["lot", 38],
+                ["dlh", 2],
+                ["nax", 1],
+                ["ibk", 1],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 5]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.LOLSI5K.LOLSI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["lot", 38],
+                ["dlh", 2],
+                ["nax", 1],
+                ["ibk", 1],
+                ["sas", 1],
+                ["srn", 1],
+                ["wzz", 5]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.SOXER5A.SOXER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["afr", 3],
@@ -1529,11 +1711,106 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.EVINA.EVINA",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.SOXER6D.SOXER",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 5,
+            "airlines": [
+                ["afr", 3],
+                ["baw", 2],
+                ["bel", 3],
+                ["ewg", 2],
+                ["klm", 3],
+                ["lot", 38],
+                ["dlh", 3],
+                ["ryr", 2],
+                ["srn", 1],
+                ["swr", 2],
+                ["tap", 2],
+                ["vlg", 1],
+                ["wzz", 6],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["cnd", 1],
+                ["ent", 2],
+                ["lbt", 1],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.SOXER6G.SOXER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["afr", 3],
+                ["baw", 2],
+                ["bel", 3],
+                ["ewg", 2],
+                ["klm", 3],
+                ["lot", 38],
+                ["dlh", 3],
+                ["ryr", 2],
+                ["srn", 1],
+                ["swr", 2],
+                ["tap", 2],
+                ["vlg", 1],
+                ["wzz", 6],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["cnd", 1],
+                ["ent", 2],
+                ["lbt", 1],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.SOXER5K.SOXER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["afr", 3],
+                ["baw", 2],
+                ["bel", 3],
+                ["ewg", 2],
+                ["klm", 3],
+                ["lot", 38],
+                ["dlh", 3],
+                ["ryr", 2],
+                ["srn", 1],
+                ["swr", 2],
+                ["tap", 2],
+                ["vlg", 1],
+                ["wzz", 6],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["cnd", 1],
+                ["ent", 2],
+                ["lbt", 1],
+                ["tvs", 6]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.EVINA4A.EVINA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["adr", 1],
@@ -1556,11 +1833,172 @@
             "origin": "EPWA",
             "destination": "",
             "category": "departure",
-            "route": "EPWA.XIMBA.XIMBA",
-            "altitude": null,
-            "speed": null,
+            "route": "EPWA.EVINA5D.EVINA",
+            "altitude": "",
+            "speed": "",
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 5,
+            "airlines": [
+                ["adr", 1],
+                ["aza", 1],
+                ["aua", 3],
+                ["csa", 1],
+                ["lot", 38],
+                ["dlh", 2],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["amc", 1],
+                ["elb", 1],
+                ["ent", 3],
+                ["llc", 1],
+                ["tvl", 1],
+                ["tvs", 12]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.EVINA6G.EVINA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["adr", 1],
+                ["aza", 1],
+                ["aua", 3],
+                ["csa", 1],
+                ["lot", 38],
+                ["dlh", 2],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["amc", 1],
+                ["elb", 1],
+                ["ent", 3],
+                ["llc", 1],
+                ["tvl", 1],
+                ["tvs", 12]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.EVINA4K.EVINA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["adr", 1],
+                ["aza", 1],
+                ["aua", 3],
+                ["csa", 1],
+                ["lot", 38],
+                ["dlh", 2],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["amc", 1],
+                ["elb", 1],
+                ["ent", 3],
+                ["llc", 1],
+                ["tvl", 1],
+                ["tvs", 12]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.XIMBA4A.XIMBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["lot", 38],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["aui", 1],
+                ["lzb", 1],
+                ["cai", 1],
+                ["ent", 1],
+                ["pgt", 2],
+                ["sxs", 1],
+                ["tvs", 2],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.XIMBA6D.XIMBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["lot", 38],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["aui", 1],
+                ["lzb", 1],
+                ["cai", 1],
+                ["ent", 1],
+                ["pgt", 2],
+                ["sxs", 1],
+                ["tvs", 2],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.XIMBA6G.XIMBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["lot", 38],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["aui", 1],
+                ["lzb", 1],
+                ["cai", 1],
+                ["ent", 1],
+                ["pgt", 2],
+                ["sxs", 1],
+                ["tvs", 2],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "EPWA",
+            "destination": "",
+            "category": "departure",
+            "route": "EPWA.XIMBA4K.XIMBA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["aee", 1],
@@ -1585,11 +2023,10 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "BIMPA.BIMPA.EPWA",
+            "route": "BIMPA.BIMPA5N.EPWA",
             "altitude": [22000, 19000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
             "rate": 6,
             "airlines": [
                 ["ein", 1],
@@ -1613,11 +2050,91 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "SORIX.SORIX.EPWA",
+            "route": "BIMPA.BIMPA3P.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["ein", 1],
+                ["baw", 2],
+                ["afr", 3],
+                ["bel", 2],
+                ["ewg", 2],
+                ["klm", 2],
+                ["lot", 52],
+                ["wzz", 5],
+                ["cnd", 1],
+                ["tvs", 2],
+                ["srn", 1],
+                ["ibk", 1],
+                ["pgt", 1],
+                ["tvs", 1],
+                ["tfl", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "BIMPA.BIMPA4V.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["ein", 1],
+                ["baw", 2],
+                ["afr", 3],
+                ["bel", 2],
+                ["ewg", 2],
+                ["klm", 2],
+                ["lot", 52],
+                ["wzz", 5],
+                ["cnd", 1],
+                ["tvs", 2],
+                ["srn", 1],
+                ["ibk", 1],
+                ["pgt", 1],
+                ["tvs", 1],
+                ["tfl", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "BIMPA.BIMPA4U.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["ein", 1],
+                ["baw", 2],
+                ["afr", 3],
+                ["bel", 2],
+                ["ewg", 2],
+                ["klm", 2],
+                ["lot", 52],
+                ["wzz", 5],
+                ["cnd", 1],
+                ["tvs", 2],
+                ["srn", 1],
+                ["ibk", 1],
+                ["pgt", 1],
+                ["tvs", 1],
+                ["tfl", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "SORIX.SORIX5N.EPWA",
             "altitude": [22000, 21000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
             "rate": 5,
             "airlines": [
                 ["rou/long", 1],
@@ -1638,11 +2155,82 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "NEPOX.NEPOX.EPWA",
+            "route": "SORIX.SORIX3P.EPWA",
+            "altitude": [22000, 21000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["rou/long", 1],
+                ["ryr", 2],
+                ["lot", 29],
+                ["lot/long", 12],
+                ["nax", 2],
+                ["sas", 2],
+                ["srn", 1],
+                ["bel", 1],
+                ["klm", 1],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "SORIX.SORIX4V.EPWA",
+            "altitude": [22000, 21000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["rou/long", 1],
+                ["ryr", 2],
+                ["lot", 29],
+                ["lot/long", 12],
+                ["nax", 2],
+                ["sas", 2],
+                ["srn", 1],
+                ["bel", 1],
+                ["klm", 1],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "SORIX.SORIX4U.EPWA",
+            "altitude": [22000, 21000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["rou/long", 1],
+                ["ryr", 2],
+                ["lot", 29],
+                ["lot/long", 12],
+                ["nax", 2],
+                ["sas", 2],
+                ["srn", 1],
+                ["bel", 1],
+                ["klm", 1],
+                ["ibk", 1],
+                ["wzz", 6],
+                ["wow", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "NEPOX.NEPOX4N.EPWA",
             "altitude": [22000, 19000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
             "rate": 3,
             "airlines": [
                 ["afl", 2],
@@ -1662,11 +2250,79 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "LIMVI.LIMVI.EPWA",
+            "route": "NEPOX.NEPOX3P.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["bru", 1],
+                ["fin", 4],
+                ["lot", 25],
+                ["lot/long", 6],
+                ["srn", 1],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "NEPOX.NEPOX4V.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["bru", 1],
+                ["fin", 4],
+                ["lot", 25],
+                ["lot/long", 6],
+                ["srn", 1],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "NEPOX.NEPOX4U.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["afl", 2],
+                ["bti", 1],
+                ["bru", 1],
+                ["fin", 4],
+                ["lot", 25],
+                ["lot/long", 6],
+                ["srn", 1],
+                ["bcs/long", 1],
+                ["fdx/long", 1],
+                ["tay/long", 1],
+                ["ups/long", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LIMVI.LIMVI4N.EPWA",
             "altitude": [18000, 15000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
             "rate": 4,
             "airlines": [
                 ["adr", 1],
@@ -1688,11 +2344,85 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "LOGDA.LOGDA.EPWA",
+            "route": "LIMVI.LIMVI3P.EPWA",
+            "altitude": [18000, 15000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["adr", 1],
+                ["aui", 3],
+                ["lot", 35],
+                ["thy", 1],
+                ["wzz", 2],
+                ["cai", 1],
+                ["ent", 2],
+                ["lbt", 2],
+                ["tvs", 4],
+                ["asl", 1],
+                ["srn", 1],
+                ["lzb", 1],
+                ["elb", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LIMVI.LIMVI4V.EPWA",
+            "altitude": [18000, 15000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["adr", 1],
+                ["aui", 3],
+                ["lot", 35],
+                ["thy", 1],
+                ["wzz", 2],
+                ["cai", 1],
+                ["ent", 2],
+                ["lbt", 2],
+                ["tvs", 4],
+                ["asl", 1],
+                ["srn", 1],
+                ["lzb", 1],
+                ["elb", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LIMVI.LIMVI4U.EPWA",
+            "altitude": [18000, 15000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["adr", 1],
+                ["aui", 3],
+                ["lot", 35],
+                ["thy", 1],
+                ["wzz", 2],
+                ["cai", 1],
+                ["ent", 2],
+                ["lbt", 2],
+                ["tvs", 4],
+                ["asl", 1],
+                ["srn", 1],
+                ["lzb", 1],
+                ["elb", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LOGDA.LOGDA4N.EPWA",
             "altitude": [22000, 19000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
             "rate": 6,
             "airlines": [
                 ["aee", 1],
@@ -1716,11 +2446,181 @@
             "origin": "",
             "destination": "EPWA",
             "category": "arrival",
-            "route": "AGAVA.AGAVA.EPWA",
+            "route": "LOGDA.LOGDA3P.EPWA",
             "altitude": [22000, 19000],
             "speed": 280,
             "method": "random",
-            "entrail": [10, 22],
+            "rate": 6,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["aza", 1],
+                ["ely", 1],
+                ["uae/long", 1],
+                ["lot", 45],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["wzz", 5],
+                ["ent", 4],
+                ["llc", 1],
+                ["sxs", 1],
+                ["tvs", 12],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LOGDA.LOGDA4V.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["aza", 1],
+                ["ely", 1],
+                ["uae/long", 1],
+                ["lot", 45],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["wzz", 5],
+                ["ent", 4],
+                ["llc", 1],
+                ["sxs", 1],
+                ["tvs", 12],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "LOGDA.LOGDA4U.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+                ["aee", 1],
+                ["asl", 1],
+                ["aza", 1],
+                ["ely", 1],
+                ["uae/long", 1],
+                ["lot", 45],
+                ["qtr/long", 1],
+                ["srn", 1],
+                ["thy", 1],
+                ["wzz", 5],
+                ["ent", 4],
+                ["llc", 1],
+                ["sxs", 1],
+                ["tvs", 12],
+                ["twi", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "AGAVA.AGAVA4N.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aua", 3],
+                ["ewg", 2],
+                ["fin", 2],
+                ["klm", 3],
+                ["csa", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["ryr", 2],
+                ["lot", 42],
+                ["tap", 2],
+                ["vlg", 1],
+                ["dlh", 7],
+                ["srn", 1],
+                ["swr", 2],
+                ["wzz", 5],
+                ["amc", 1],
+                ["lzb", 1],
+                ["pgt", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "AGAVA.AGAVA3P.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aua", 3],
+                ["ewg", 2],
+                ["fin", 2],
+                ["klm", 3],
+                ["csa", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["ryr", 2],
+                ["lot", 42],
+                ["tap", 2],
+                ["vlg", 1],
+                ["dlh", 7],
+                ["srn", 1],
+                ["swr", 2],
+                ["wzz", 5],
+                ["amc", 1],
+                ["lzb", 1],
+                ["pgt", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "AGAVA.AGAVA4V.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["aua", 3],
+                ["ewg", 2],
+                ["fin", 2],
+                ["klm", 3],
+                ["csa", 1],
+                ["ely", 1],
+                ["uae", 1],
+                ["ryr", 2],
+                ["lot", 42],
+                ["tap", 2],
+                ["vlg", 1],
+                ["dlh", 7],
+                ["srn", 1],
+                ["swr", 2],
+                ["wzz", 5],
+                ["amc", 1],
+                ["lzb", 1],
+                ["pgt", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EPWA",
+            "category": "arrival",
+            "route": "AGAVA.AGAVA4U.EPWA",
+            "altitude": [22000, 19000],
+            "speed": 280,
+            "method": "random",
             "rate": 5,
             "airlines": [
                 ["aua", 3],
