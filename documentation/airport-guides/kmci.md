@@ -1,6 +1,6 @@
 ### About this facility
 Kansas City Combined TRACON and ATCT (KC/MCI), Kansas City, Missouri, USA
-212,618 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+213,727 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
 This level 9 combined TRACON/ATCT facility controls 19 airfields around Kansas City, 5 of which have control towers. Since this is a combined facility, the TRACON and ATC Tower are co-located at Kansas City International Airport (KMCI).
 
@@ -30,35 +30,35 @@ J - ?
 
 #### KMCI (Primary Airport)
 Kansas City International  
-135,880 annual operations
+125,158 annual operations
 
 Originally Mid-Continent Airport, Kansas City International is located 15 miles Northwest of Downtown Kansas City. The airport three runways consisting of two parallel north/south runways
 and a crossing east/west runway. Runway 19R/1L is the main parallel runway as it is the longest. Simultaneous approaches are permitted for the parallel runways.
 
 #### KMKC
 Charles B. Wheeler Downtown  
-71,235 annual operations  
+82,174 annual operations  
 11.9nm Southeast of KMCI
 
 Located extremely close to Downtown Kansas City, the FAA regarded it as "the most dangerous major airport in the country" in the 60's. The airport was later replaced by KMCI in 1972 but it continues to be used primarily for general and corporate aviation.
 
 #### KIXD
 New Century Aircenter  
-54,767 annual operations  
+59,223 annual operations  
 29.2nm South of KMCI
 
 New Century Aircenter, formerly known as Naval Air Station Olathe, Flatley Field and Johnson County Industrial Airport, is a joint civil-military general aviation airport located 4 miles southwest of Olathe.
 
 #### KOJC
 Johnson County Executive  
-52,099 annual operations  
+39,039 annual operations  
 27nm South of KMCI
 
 Located 4 miles southeast of Olathe, Johnson County Executive Airport was built as a Naval Auxiliary field for use in World War II. It is now used mainly for general and corporate aviation.
 
 #### KSTJ
 Rosecrans Memorial  
-18,611 annual operations  
+21,859 annual operations  
 29.9nm Northwest of KMCI
 
 Surrounded by an oxbow lake, Rosecrans Memorial Airport is a joint civil-military airport located 3 miles northwest of St. Joseph. It is primarily used by the Missouri Air National Guard as well as some general aviation.
