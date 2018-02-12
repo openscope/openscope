@@ -2,10 +2,10 @@
 Boston TRACON (A90), Merrimack, New Hampshire, USA
 658,524 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
-Located almost 40 miles Northwest of KBOS, this consolidated approach control facility is one of six large TRACON's in the United States. It controls a large portion of the states of Massachusetts and New Hampshire
+Located almost 40 miles Northwest of KBOS, this consolidated approach control facility is one of six large TRACONs in the United States. It controls a large portion of the states of Massachusetts and New Hampshire.
 
 ### Airspace
-Due to it's sheer size, the A90 TRACON is divided into two areas; Boston and Manchester. However, only the Boston area is available in the sim; It extends 40nm around KBOS up to 14,000ft. Class B airspace exists with a ceiling of 7,000ft over the Boston metropolitan area.
+Due to its sheer size, the A90 TRACON is divided into two areas; Boston and Manchester. However, only the Boston area is available in the sim; It extends 40nm around KBOS up to 14,000ft. Class B airspace exists with a ceiling of 7,000ft over the Boston metropolitan area.
 
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft must still be manually vectored to the final approach course.
@@ -64,3 +64,7 @@ Lawrence Municipal Airport
 21.9nm North of KBOS
 
 Located beside Lake Cochichewick, Lawrence Airport is a small municipal airfield used for general and private aviation.
+
+### Additional Resources
+[Charts](https://skyvector.com/airport/BOS/General-Edward-Lawrence-Logan-International-Airport)
+[VATSIM SOP](https://drive.google.com/open?id=14AdGHxsK7iCnDpZMXnl9J9dUV6kaG9aG)
