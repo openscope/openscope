@@ -1,0 +1,13 @@
+{
+    "icao": "skv",
+    "name": "Sky Regional Airlines",
+    "callsign": {
+        "name": "Maple",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["E170", 25]
+        ]
+    }
+}
