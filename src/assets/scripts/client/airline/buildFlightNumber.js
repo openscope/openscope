@@ -48,7 +48,11 @@ export function buildFlightNumber(callsignFormats) {
                 flightNumber += _generateRandomLetter();
                 break;
             default:
-                flightNumber += chosenFormat[i];
+                if (i === 0 && chosenFormat[i].charAt(0) === '0') {
+                    console.warn('Callsign cannot start with 0!');
+                } else {
+                    flightNumber += chosenFormat[i];
+                }
         }
     }
 
