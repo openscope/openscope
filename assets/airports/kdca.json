@@ -15,8 +15,8 @@
     "rr_center": ["N38d51m05.20", "W077d02m15.80"],
     "has_terrain": true,
     "wind": {
-        "angle": 217,
-        "speed": 3
+        "angle": 0,
+        "speed": 0
     },
     "arrivalRunway": "1",
     "departureRunway": "1",
