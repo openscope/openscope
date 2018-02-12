@@ -92,7 +92,7 @@ ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (
 
 ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR', (t) => {
     const mcp = new ModeController();
-    const bottomAltitudeMock = Infinity;
+    const bottomAltitudeMock = -1;
     const airspaceCeilingMock = 12000;
     const currentAltitudeMock = 21000;
     const currentHeadingMock = Math.PI;
@@ -116,7 +116,7 @@ ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR
 
 ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR already below airspace ceiling', (t) => {
     const mcp = new ModeController();
-    const bottomAltitudeMock = Infinity;
+    const bottomAltitudeMock = -1;
     const airspaceCeilingMock = 12000;
     const currentAltitudeMock = 9000;
     const currentHeadingMock = Math.PI;
