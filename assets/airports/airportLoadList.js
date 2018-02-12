@@ -32,7 +32,18 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      * }
      * ```
      * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
-     * - `AIRPORT_DIFFICULTY` is the difficulty level (one of: easy, beginner, medium, hard)
+     * - `AIRPORT_DIFFICULTY` is the difficulty level based on the traffic volume (in Aircraft per Hour):
+     *    +----------+------------------------+
+     *    |   Level  |     Traffic Volume     |
+     *    +----------+------------------------+
+     *    | Beginner |    Less than 20 AcpH   |
+     *    +----------+------------------------+
+     *    |   Easy   | Between 20 and 40 AcpH |
+     *    +----------+------------------------+
+     *    |  Medium  | Between 40 and 60 AcpH |
+     *    +----------+------------------------+
+     *    |   Hard   |    More than 60 AcpH   |
+     *    +----------+------------------------+
      * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
      * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
      * - `IS_WORK_IN_PROGRESS` is either `true` or `false`, based on whether the airport is old
