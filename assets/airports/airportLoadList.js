@@ -113,13 +113,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'eggw',
-        //     level: 'medium',
-        //     name: 'London Luton Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'eggw',
+            level: 'medium',
+            name: 'London Luton Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'egkk',
         //     level: 'easy',
