@@ -1,6 +1,6 @@
 ### About this facility
 Raleigh-Durham Combined TRACON and ATCT (RDU), Morrisville, North Carolina, USA
-243,301 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+257,412 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
 This level 9 combined TRACON/ATCT facility controls a number of airfields in Greater Raleigh. Since this is a combined facility, the TRACON and ATC Tower are co-located at Raleigh-Durham International Airport (KRDU).
 
@@ -25,7 +25,7 @@ Y - West Feeder      (unavailable)
 
 #### KRDU (Primary Airport)
 Raleigh-Durham International  
-191,348 annual operations
+203,174 annual operations
 
 Located between the cities of Raleigh and Durham, RDU is the main airport in the area. Originally built as an Air Force base, its old runways are still visible on the southeast side of the airport. It now has three runways, two of which are parallel (5L/R - 23L/R). Simultaneous approaches are permitted into these runways although it is rarely necessary due to the low amounts of traffic. 
 
