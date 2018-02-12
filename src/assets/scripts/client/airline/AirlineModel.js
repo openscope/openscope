@@ -7,7 +7,7 @@ import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
-import { flightNumberBuilder } from './flightNumberBuilder';
+import { buildFlightNumber } from './buildFlightNumber';
 import { INVALID_INDEX } from '../constants/globalConstants';
 import { isEmptyObject } from '../utilities/validatorUtilities';
 import { DEFAULT_CALLSIGN_FORMAT } from '../constants/airlineConstants';
@@ -206,11 +206,7 @@ export default class AirlineModel extends BaseModel {
      * @return flightNumber {string}
     */
     generateFlightNumber() {
-        const flightNumber = flightNumberBuilder(this.flightNumberGeneration.callsignFormats);
-
-        if (this.activeFlightNumbers.indexOf(flightNumber) !== -1) {
-            return this.generateFlightNumber();
-        }
+        const flightNumber = buildFlightNumber(this.flightNumberGeneration.callsignFormats);
 
         return flightNumber;
     }
