@@ -16,7 +16,7 @@
     "has_terrain": true,
     "wind": {
         "angle": 217,
-        "speed": 9
+        "speed": 3
     },
     "arrivalRunway": "1",
     "departureRunway": "1",
@@ -193,6 +193,7 @@
         "LDN"  : ["N38d51m15.60", "W078d12m19.80"],
         "LEAVY": ["N38d48m19.33", "W077d01m50.09"],
         "LETZZ": ["N38d54m42.36", "W077d27m02.40"],
+        "LLBEE": ["N38d35m07.25", "W078d25m35.44"],
         "LRP"  : ["N40d07m12.00", "W076d17m30.00"],
         "LURAY": ["N38d35m54.94", "W078d34m00.23"],
         "LYH"  : ["N37d15m18.00", "W079d14m12.00"],
@@ -406,6 +407,7 @@
                 ["N38d54m08", "W077d03m01"],
                 ["N38d54m08", "W077d00m13"],
                 ["N38d53m35", "W076d59m56"],
+                ["N38d52m59", "W077d00m24"],
                 ["N38d52m56", "W077d01m12"],
                 ["N38d53m15", "W077d01m12"],
                 ["N38d53m16", "W077d02m01"],
@@ -1340,9 +1342,9 @@
             "icao": "CLIPR1",
             "name": "Clipper One",
             "entryPoints": {
-                "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", ["TRISH", "A120"]]
+                "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", "TRISH"]
             },
-            "body": ["CLIPR", ["BAL", "A100|S250"], "EYESS"],
+            "body": ["CLIPR", ["BAL", "S250"], "EYESS"],
             "rwy": {
                 "KDCA1": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#185"],
                 "KDCA19": ["EDDWD", "MEGGS", "^NAYES", "#325"]
@@ -1361,12 +1363,12 @@
             },
             "body": [["BILIT", "A110"], ["DEALE", "A100|S280"]],
             "rwy": {
-                "KDCA1": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"],
-                "KDCA4": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"],
-                "KDCA15": ["EDDGY", "THANE", "MEGGS"],
-                "KDCA19": ["EDDGY", "THANE", "MEGGS"],
-                "KDCA22": ["EDDGY", "THANE", "MEGGS"],
-                "KDCA33": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY"]
+                "KDCA1": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY", "#185"],
+                "KDCA4": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY", "#185"],
+                "KDCA15": ["EDDGY", "THANE", "MEGGS", "#325"],
+                "KDCA19": ["EDDGY", "THANE", "MEGGS", "#325"],
+                "KDCA22": ["EDDGY", "THANE", "MEGGS", "#325"],
+                "KDCA33": [["YUCKK", "A100"], ["TIRZA", "A80-"], ["HITEK", "A70"], "^MITEY", "#185"]
             },
             "draw": [
                 ["LAFLN*", "BILIT", "DEALE"],
@@ -1385,9 +1387,9 @@
             "rwy": {
                 "KDCA1": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
                 "KDCA4": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"],
-                "KDCA15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
-                "KDCA19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
-                "KDCA22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI", "#146"],
+                "KDCA15": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
+                "KDCA19": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
+                "KDCA22": [["FRDMM", "A80|S240"], "STAND", "TGTHR", "FERGI"],
                 "KDCA33": [["LETZZ", "A80"], ["RLLLL", "A60|S250"], "VCTRY", "^HEROO", "#187"]
             },
             "draw": [
@@ -1459,7 +1461,7 @@
                 "ESL": [["ESL", "A190"], "BBONE", "LURAY"],
                 "SEALZ": ["SEALZ"]
             },
-            "body": ["TIKEE", "GILFF", "^HIGPO", "#090"],
+            "body": ["LLBEE", "TIKEE", "GILFF", "^HIGPO", "#090"],
             "rwy": {
                 "KDCA1": [],
                 "KDCA4": [],
@@ -1651,7 +1653,7 @@
             "altitude": 0,
             "speed": 0,
             "method": "random",
-            "rate": 2.04,
+            "rate": 3.04,
             "airlines": [
                 ["aal", 5],
                 ["asa", 1],
@@ -1705,7 +1707,7 @@
             "altitude": 0,
             "speed": 0,
             "method": "random",
-            "rate": 2.31,
+            "rate": 3.31,
             "airlines": [
                 ["aal", 4],
                 ["dal", 1],
@@ -1725,7 +1727,7 @@
             "altitude": [21000, 22000],
             "speed": 280,
             "method": "random",
-            "rate": 5.50,
+            "rate": 6.50,
             "airlines": [
                 ["aal", 15],
                 ["dal", 6],
@@ -1745,7 +1747,7 @@
             "altitude": 13000,
             "speed": 250,
             "method": "random",
-            "rate": 3.02,
+            "rate": 4.02,
             "airlines": [
                 ["aal", 6],
                 ["asq", 2],
@@ -1781,10 +1783,10 @@
             "altitude": 31000,
             "speed": 300,
             "method": "random",
-            "rate": 4.88,
+            "rate": 5.88,
             "airlines": [
                 ["aal", 3],
-                ["asa", 1],
+                ["asa", 2],
                 ["asq", 2],
                 ["dal", 6],
                 ["fft", 3],
@@ -1793,8 +1795,7 @@
                 ["rpa", 11],
                 ["skw", 3],
                 ["swa", 10],
-                ["ual", 4],
-                ["vrd", 1]
+                ["ual", 4]
             ]
         },
         {
@@ -1835,7 +1836,7 @@
             "altitude": 30000,
             "speed": 300,
             "method": "random",
-            "rate": 2.57,
+            "rate": 3.57,
             "airlines": [
                 ["aal", 5],
                 ["ash", 1],
