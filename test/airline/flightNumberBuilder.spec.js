@@ -1,25 +1,32 @@
 import ava from 'ava';
-import { flightNumberBuilder } from '../../src/assets/scripts/client/airline/flightNumberBuilder';
+import { buildFlightNumber } from '../../src/assets/scripts/client/airline/buildFlightNumber';
 
-ava('.flightNumberBuilder() creates a callsign made up of numbers only if callsign format is [\'###\'] ', (t) => {
+ava('.buildFlightNumber() creates a callsign made up of random numbers only if callsign format is [\'###\'] ', (t) => {
     const callsignFormat = ['###'];
-    const result = flightNumberBuilder(callsignFormat);
+    const result = buildFlightNumber(callsignFormat);
 
     t.true(!isNaN(result));
 });
 
-ava('.flightNumberBuilder() creates a callsign made up of lowercase letters only if callsign format is [\'AAA\'] ', (t) => {
-    const upperAlphabeticalRegex = /^[a-z]+$/;
-    const callsignFormat = ['AAA'];
-    const result = flightNumberBuilder(callsignFormat);
+ava('.buildFlightNumber() creates a callsign made up of random lowercase letters only if callsign format is [\'@@@\'] ', (t) => {
+    const lowerAlphabeticalRegex = /^[a-z]+$/;
+    const callsignFormat = ['@@@'];
+    const result = buildFlightNumber(callsignFormat);
 
-    t.true(upperAlphabeticalRegex.test(result));
+    t.true(lowerAlphabeticalRegex.test(result));
 });
 
-ava('.flightNumberBuilder() creates a callsign made up of one number and one lowercase letter if callsign format is [\'#A\'] ', (t) => {
+ava('.buildFlightNumber() creates a callsign made up of one random number and one random lowercase letter if callsign format is [\'#@\'] ', (t) => {
     const regex = /^[1-9]{1}[a-z]/;
-    const callsignFormat = ['#A'];
-    const result = flightNumberBuilder(callsignFormat);
+    const callsignFormat = ['#@'];
+    const result = buildFlightNumber(callsignFormat);
 
     t.true(regex.test(result));
+});
+
+ava('.buildFlightNumber() returns callsignFormat as is if the format does not contain @ or #', (t) => {
+    const callsignFormat = ['4EVR', '8AE'];
+    const result = buildFlightNumber(callsignFormat);
+
+    t.true(result === callsignFormat[0]);
 });
