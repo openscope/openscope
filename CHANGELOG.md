@@ -7,7 +7,6 @@
 - Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
 - Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
 - Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
-- Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
 
 
 
@@ -25,6 +24,7 @@
 - Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 - Convert `NavigationLibrary` to a singleton [#529](http://github.com/openscope/openscope/issues/529)
 - Remove nonfunctional airports from load list broken by feature/809 [#881](http://github.com/openscope/openscope/issues/881)
+- Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
 
 
 
