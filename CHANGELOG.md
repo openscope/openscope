@@ -14,13 +14,14 @@
 
 ### Bugfixes
 - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
-- Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
+
 
 
 
 
 ### Enhancements & Refactors
 - Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
+- Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 
 
 
