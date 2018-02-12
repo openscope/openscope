@@ -1,6 +1,6 @@
 ### About this facility
 Portland TRACON (P80), Portland, Oregon, USA
-314,796 annual operations in 2016 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
+316,542 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
 The P80 TRACON provides approach control service to over twenty public/municipal airports, as well as a myriad of active private airports/airstrips
 
@@ -24,27 +24,27 @@ S - south approach  (unavailable)
 
 #### KPDX (Primary Airport)
 Portland International  
-227,709 annual operations
+263,980 annual operations
 
 PDX is the main airport of the P80 TRACON as well as the largest airport in Oregon. The airport has two parallel runways (10-28) and runway 3-21 which crosses 10R-28L. The two parallel runways are used for both departures and arrivals in low traffic. Tipically, the north runway will be used for aircraft departing to or arriving from the North, while the south runway is used for aircraft departing to or arriving from the South and East.
 
 #### KHIO
 Portland-Hillsboro Airport  
-170,466 annual operations  
+214,243 annual operations  
 15.2nm Southwest of KPDX
 
 Oregon's second busiest airport and a hub for most GA operations. Over half of the airport's traffic are GA flight training. It is also home of the The Oregon International Air Show.
 
 #### KTTD
 Portland-Troutdale Airport  
-105,020 annual operations  
+121,049 annual operations  
 8.6nm East of KPDX
 
 Troutdale Airport serves as a base for one FBO, flight schools, and aircraft repair and maintenance facilities. It is also a popular base for scenic aerial tours of the Columbia River Gorge and recreational flying. Operations at times may be limited or restricted as Portland International Airport take-off and approach paths cross directly above Troutdale Airport.
 
 #### KUAO
 Aurora State Airport  
-73,895 annual operations  
+64,046 annual operations  
 21.8nm South of KPDX
 
 Aurora State Airport/Wes Lematta Field is a small GA Airport with a new control tower built in 2015. Moslty used for flight training as well as some business operations.
