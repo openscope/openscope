@@ -21,6 +21,7 @@
 
 ### Enhancements & Refactors
 - Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
+- Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 
 
 
