@@ -8,7 +8,7 @@ This level 9 combined TRACON/ATCT facility controls a number of airfields in Gre
 The RDU TRACON airspace encompasses a large area around Great Raleigh extending from the surface up to 12,000 feet. Class C airspace exists with tops of 4,400 feet over the Raleigh and Durham areas.
 
 ### Instrument Procedures
-Although departing aircraft must be vectored to their initial fixes, the STAR's are very automated, taking a lot off weight off the controllers. Arrivals must still be vectored to their final approach course.
+Although departing aircraft must be vectored to their initial fixes, the STARs are very automated, taking a lot of weight off the controllers. Arrivals must still be vectored to their final approach course.
 
 ### Sectors Available in OpenScope
 ```
@@ -34,7 +34,7 @@ Raleigh Executive Jetport
 63,000 annual operations  
 23.4nm Southwest of KMCI
 
-Officially called "Raleigh Exec: The Raleigh Executive Jetport @ Sanford-Lee County", the airfield specializes in corporate and recreational flights into the Research Triangle Region
+Officially called "Raleigh Exec: The Raleigh Executive Jetport @ Sanford-Lee County", the airfield specializes in corporate and recreational flights into the Research Triangle Region.
 
 #### KLHZ
 Triangle North Executive  
@@ -44,4 +44,5 @@ Triangle North Executive
 Also known as Franklin County Airport, Triangle North Executive is used primarily for private and general aviation.
 
 ### Additional Resources
+[KRDU Charts](https://skyvector.com/airport/RDU/Raleigh-Durham-International-Airport)
 [VATSIM SOP](https://vzdc.org/downloads/sops/RDU.pdf)

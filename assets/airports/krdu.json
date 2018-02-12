@@ -582,9 +582,9 @@
             "icao": "BLOGS1",
             "name": "Blogs One",
             "entryPoints": {
+                "ILM": ["ILM", "TILTZ"],
                 "ISO": ["ISO", "TILTZ"],
-                "TYI": ["TYI", "ARELE"],
-                "ILM": ["ILM", "TILTZ"]
+                "TYI": ["TYI", "ARELE"]
             },
             "body": [["BLOGS", "A110+|A120-|S250"], ["CABED", "A80+|A90-"]],
             "rwy": {
@@ -604,9 +604,9 @@
             "icao": "BRADE5",
             "name": "Brady Five",
             "entryPoints": {
+                "ILM": ["ILM", "TILTZ"],
                 "ISO": ["ISO", "TILTZ"],
-                "TYI": ["TYI"],
-                "ILM": ["ILM", "TILTZ"]
+                "TYI": ["TYI"]
             },
             "body": ["BRADE", "WENDI", "RDU"],
             "rwy": {
