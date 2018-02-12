@@ -664,39 +664,14 @@
                 ["SPYSD", "BRODI", "BECHH", "SCITU"]
             ]
         },
-        "ORW7": {
-            "icao": "ORW7",
-            "name": "Norwich Seven",
-            "entryPoints": {
-                "CCC": ["CCC", "ORW", "OUTTT"],
-                "HTO": ["HTO"],
-                "JFK": ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT"]
-            },
-            "body": ["PVD", "KRANN"],
-            "rwy": {
-                "KBOS4L": [],
-                "KBOS4R": [],
-                "KBOS15R": [],
-                "KBOS22L": [],
-                "KBOS22R": [],
-                "KBOS27": [],
-                "KBOS32": [],
-                "KBOS33L": []
-            },
-            "draw": [
-                ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT", "PVD", "KRANN"],
-                ["CCC", "ORW", "OUTTT"],
-                ["HTO", "PVD"]
-            ]
-        },
         "OOSHN5": {
             "icao": "OOSHN5",
             "name": "Ocean Five",
             "entryPoints": {
                 "AJJAY": [["AJJAY", "A290+"], "SUFFI", ["NIKKO", "A110+"]],
+                "ENE": [["ENE", "A240+"], ["NIKKO", "A110+"]],
                 "FERNZ": ["FERNZ", ["LONEY", "A110+"], "RODEE"],
                 "FEXXX": ["FEXXX", "FOSTY", "IYANA", "KLEBB", ["SOBAH", "A150+"], ["LONEY", "A110+"], "RODEE"],
-                "ENE": [["ENE", "A240+"], ["NIKKO", "A110+"]],
                 "MERIT": ["MERIT", "FOSTY", "IYANA", "KLEBB", ["SOBAH", "A150+"], ["LONEY", "A110+"], "RODEE"],
                 "PROVI": ["PROVI", "IYANA", "KLEBB", ["SOBAH", "A150+"], ["LONEY", "A110+"], "RODEE"],
                 "RIFLE": ["RIFLE", "KYSKY", "CUTOX", "CUJKE", "FERNZ", ["LONEY", "A110+"], "RODEE"]
@@ -725,13 +700,38 @@
                 ["OOSHN", "PUDJJ", "AYBEE"]
             ]
         },
+        "ORW7": {
+            "icao": "ORW7",
+            "name": "Norwich Seven",
+            "entryPoints": {
+                "CCC": ["CCC", "ORW", "OUTTT"],
+                "HTO": ["HTO"],
+                "JFK": ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT"]
+            },
+            "body": ["PVD", "KRANN"],
+            "rwy": {
+                "KBOS4L": [],
+                "KBOS4R": [],
+                "KBOS15R": [],
+                "KBOS22L": [],
+                "KBOS22R": [],
+                "KBOS27": [],
+                "KBOS32": [],
+                "KBOS33L": []
+            },
+            "draw": [
+                ["JFK", "GPOLE", "NEWES", "BAWLL", "RAALF", "ORW", "OUTTT", "PVD", "KRANN"],
+                ["CCC", "ORW", "OUTTT"],
+                ["HTO", "PVD"]
+            ]
+        },
         "ROBUC3": {
             "icao": "ROBUC3",
             "name": "Rowbuck Three",
             "entryPoints": {
-                "RUIZE": [],
                 "JFK": ["JFK", "NEWES", ["FEXXX", "A230"]],
-                "MERIT": ["MERIT"]
+                "MERIT": ["MERIT"],
+                "RUIZE": []
             },
             "body": [["RUIZE", "A210+|A230-"], ["AWLIN", "A170+"], ["BANKI", "A160+"], ["ROBUC", "A120+|A190-|S260"], ["PROVI", "A110+"], "JOODY"],
             "rwy": {
