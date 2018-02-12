@@ -11,7 +11,6 @@ The T75 airspace encompasses a large area extending 40nm from St. Louis Lambert 
 Most of the procedures are RNAV and contain both speed and altitude restrictions, taking a lot of weight off the controllers. Arriving aircraft must still be vectored to their final approach course.
 
 ### Sectors Available in OpenScope
-_To be completed. Currently still in search of information on T75 sectorization._
 ```
 F - Final  (default)
 N - North Arrival  (unavailable)
