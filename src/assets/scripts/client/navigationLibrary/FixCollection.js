@@ -2,8 +2,9 @@ import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-import modelSourceFactory from '../../base/ModelSource/ModelSourceFactory';
-import BaseCollection from '../../base/BaseCollection';
+// FIXME: Fix and start using the model source factory again!
+// import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
+import BaseCollection from '../base/BaseCollection';
 import FixModel from './FixModel';
 
 /**
@@ -94,11 +95,28 @@ class FixCollection extends BaseCollection {
         const fixModel = this.findFixByName(fixName);
 
         if (!fixModel) {
-            // error
             return null;
         }
 
         return fixModel.relativePosition;
+    }
+
+    /**
+     * Return the position model for the specified fix, if that fix exists
+     *
+     * @for FixCollection
+     * @method getPositionModelForFixName
+     * @param fixName {string}
+     * @return {StaticPositionModel}
+     */
+    getPositionModelForFixName(fixName) {
+        const fixModel = this.findFixByName(fixName);
+
+        if (!fixModel) {
+            return null;
+        }
+
+        return fixModel.positionModel;
     }
 
     /**
@@ -130,7 +148,8 @@ class FixCollection extends BaseCollection {
      */
     _buildFixModelsFromList(fixList, referencePosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
+            const fixModel = new FixModel(fixName, fixCoordinates, referencePosition);
+            // const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
 
             this.addFixToCollection(fixModel);
         });
@@ -144,7 +163,7 @@ class FixCollection extends BaseCollection {
     _resetFixModels() {
         _forEach(this._items, (fixModel) => {
             fixModel.reset();
-            modelSourceFactory.returnModelToPool(fixModel);
+            // modelSourceFactory.returnModelToPool(fixModel);
         });
     }
 }

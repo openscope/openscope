@@ -46,6 +46,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      * @final
      */
     return [
+        {
+            icao: 'cyow',
+            level: 'easy',
+            name: 'Ottawa Macdonald-Cartier International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'ebbr',
         //     level: 'easy',
@@ -116,13 +123,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: true
         },
-        // {
-        //     icao: 'egnm',
-        //     level: 'beginner',
-        //     name: 'Leeds Bradford International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'egnm',
+            level: 'beginner',
+            name: 'Leeds Bradford Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'eham',
         //     level: 'medium',
@@ -262,6 +269,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
+        {
+            icao: 'kmci',
+            level: 'beginner',
+            name: 'Kansas City International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kmia',
         //     level: 'hard',

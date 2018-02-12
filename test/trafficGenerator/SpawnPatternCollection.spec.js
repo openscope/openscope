@@ -6,14 +6,19 @@ import {
     airportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
+// fixtures
+let navigationLibraryFixture;
+
 ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
     airportControllerFixture();
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     resetAirportControllerFixture();
 });
 

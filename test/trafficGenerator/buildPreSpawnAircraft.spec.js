@@ -2,11 +2,21 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
-
 import { buildPreSpawnAircraft } from '../../src/assets/scripts/client/trafficGenerator/buildPreSpawnAircraft';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { airportModelFixture } from '../fixtures/airportFixtures';
 import { ARRIVAL_PATTERN_MOCK } from './_mocks/spawnPatternMocks';
+
+// fixtures
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => buildPreSpawnAircraft());

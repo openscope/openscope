@@ -1,6 +1,8 @@
 In order to help you learn the details of each particular airspace, an "airport guide" is available for each of the airports in the game.
 
+- [CYOW - Ottawa Macdonald–Cartier International Airport](cyow.md)
 - [EDDH - Hamburg Airport](eddh.md)
+- [EGNM - Leeds Bradford Airport](egnm.md)
 - [EIDW - Dublin Airport](eidw.md)
 - [KABQ - Albuquerque International Sunport](kabq.md)
 - [KATL - Hartsfield–Jackson Atlanta International Airport](katl.md)
@@ -9,6 +11,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KELP - El Paso International Airport](kelp.md)
 - [KJAX - Jacksonville International Airport](kjax.md)
 - [KLAS - McCarran International Airport](klas.md)
+- [KMCI - Kansas City International Airport](kmci.md)
 - [KPDX - Portland International Airport](kpdx.md)
 - [KSDF - Louisville International Airport](ksdf.md)
 - [KSEA - Seattle–Tacoma International Airport](ksea.md)

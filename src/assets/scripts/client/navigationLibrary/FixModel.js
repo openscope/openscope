@@ -1,9 +1,9 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import _get from 'lodash/get';
-import BaseModel from '../../base/BaseModel';
-import StaticPositionModel from '../../base/StaticPositionModel';
-import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
-import { INVALID_NUMBER } from '../../constants/globalConstants';
+import BaseModel from '../base/BaseModel';
+import StaticPositionModel from '../base/StaticPositionModel';
+import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
+import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
  * Defines a navigational `FixModel`
@@ -116,46 +116,5 @@ export default class FixModel extends BaseModel {
      */
     clonePosition() {
         return _cloneDeep(this._positionModel);
-    }
-
-    /**
-     * Build a new `WaypointModel` from the current instance.
-     *
-     * This method provides a way to create a `WaypointModel` with the current
-     * properties of a `FixModel` instance.
-     *
-     * This is used by `LegModel` when building a flight plan from `routeString`. A `directRouteString`
-     * will result in finding a `FixModel`. From that `FixModel` we need to be able to create a
-     * `WaypointModel` that the Fms can consume.
-     *
-     * There is a method of the same name in the `StandardRouteWaypointModel` that does this same thing
-     * but will be used only for `procedureRouteStrings`.
-     *
-     * @for FixModel
-     * @method toWaypointModel
-     * @param isHold {boolean}
-     * @param holdProps {object}
-     * @return {WaypointModel}
-     */
-    toWaypointModel(isHold = false, holdProps = {}) {
-        const waypointProps = {
-            name: this.name,
-            positionModel: this.clonePosition(),
-            altitudeMaximum: INVALID_NUMBER,
-            altitudeMinimum: INVALID_NUMBER,
-            speedMaximum: INVALID_NUMBER,
-            speedMinimum: INVALID_NUMBER
-        };
-
-        // TODO: Move these default behaviors to a constants file
-        if (isHold) {
-            waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
-            waypointProps.isHold = true;
-            waypointProps.legLength = _get(holdProps, 'legLength', '1min');
-            waypointProps.timer = -999;
-            waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
-        }
-
-        return new WaypointModel(waypointProps);
     }
 }

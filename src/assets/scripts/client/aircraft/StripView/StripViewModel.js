@@ -658,7 +658,7 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Update class properties with new values from the `AircraftModel`
+     * Update instance properties with new values from the `AircraftModel`
      *
      * This method should only be run after `_shouldUpdate()` returns true
      * This method will only update the mutable properties of `StripViewModel`

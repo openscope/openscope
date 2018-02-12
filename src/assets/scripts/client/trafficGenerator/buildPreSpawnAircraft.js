@@ -1,8 +1,8 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
-import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
+import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
+// import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
     isWithinAirspace,
     calculateDistanceToBoundary,
@@ -31,18 +31,20 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
 
         // for each fix ahead
         for (let j = 1; j < waypointModelList.length; j++) {
-            const nextWaypoint = waypointModelList[j];
+            const previousWaypointModel = waypointModelList[j - 1];
+            const nextWaypointModel = waypointModelList[j];
+            const distanceToNextWaypoint = previousWaypointModel.calculateDistanceToWaypoint(nextWaypointModel);
 
-            if (nextWaypoint.distanceFromPreviousWaypoint > spawnOffset) {   // if point before next fix
-                const previousFixPosition = waypointModelList[j - 1].positionModel;
-                const heading = previousFixPosition.bearingToPosition(nextWaypoint.positionModel);
-                const positionModel = previousFixPosition.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
+            if (distanceToNextWaypoint > spawnOffset) {   // if point before next fix
+                // const previousFixPosition = previousWaypointModel.positionModel;
+                const heading = previousWaypointModel.calculateBearingToWaypoint(nextWaypointModel);
+                const spawnPositionModel = previousWaypointModel.positionModel.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
 
                 // TODO: this looks like it should be a model object
                 const preSpawnHeadingAndPosition = {
                     heading,
-                    positionModel,
-                    nextFix: nextWaypoint.name
+                    positionModel: spawnPositionModel,
+                    nextFix: nextWaypointModel.name
                 };
 
                 spawnPositions.push(preSpawnHeadingAndPosition);
@@ -51,7 +53,7 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
             }
 
             // if point beyond next fix subtract distance from spawnOffset and continue
-            spawnOffset -= nextWaypoint.distanceFromPreviousWaypoint;
+            spawnOffset -= distanceToNextWaypoint;
         }
     }
 
@@ -95,62 +97,29 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
     // already an expectation that aircraft must have two waypoints, so this
     // should not be a problem here.
     for (let i = 1; i < waypointModelList.length; i++) {
-        const waypoint = waypointModelList[i];
+        const waypointModel = waypointModelList[i];
         const previousWaypoint = waypointModelList[i - 1];
 
-        if (waypoint.isVector || previousWaypoint.isVector) {
+        if (waypointModel.isVectorWaypoint || previousWaypoint.isVectorWaypoint) {
             continue;
         }
 
-        const waypointPosition = waypoint.relativePosition;
-        const previousPosition = waypoint.relativePosition;
-
-        if (isWithinAirspace(airport, waypointPosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+        if (isWithinAirspace(airport, waypointModel.relativePosition)) {
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, waypointModel.relativePosition));
             totalDistance += distanceFromClosestFixToAirspaceBoundary;
 
             break;
         }
 
-        // this will only work for `StandardRouteWaypointModel` objects.
-        // #_buildWaypointModelListFromRoute may also return `FixModels`, in
-        // which case this line will return `NaN`.
-        totalDistance += waypoint.distanceFromPreviousWaypoint;
+        const distanceBetweenWaypoints = previousWaypoint.positionModel.distanceToPosition(waypointModel.positionModel);
+
+        totalDistance += distanceBetweenWaypoints;
     }
 
     return {
         totalDistance,
         distanceFromClosestFixToAirspaceBoundary
     };
-};
-
-/**
- *
- *
- * @function _buildWaypointModelListFromRoute
- * @return {array}
- * @private
- */
-const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, airport) => {
-    const formattedRoute = routeStringFormatHelper(spawnPatternJson.route);
-
-    if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
-        const initialWaypoint = navigationLibrary.findFixByName(formattedRoute[0]);
-        const nextWaypoint = navigationLibrary.findFixByName(formattedRoute[1]);
-
-        return [initialWaypoint, nextWaypoint];
-    }
-
-    const activeRouteModel = new RouteModel(spawnPatternJson.route);
-    const isPreSpawn = true;
-    const waypointModelList = navigationLibrary.findWaypointModelsForStar(
-        activeRouteModel.procedure,
-        activeRouteModel.entry,
-        airport.arrivalRunwayModel.name,
-        isPreSpawn
-    );
-
-    return waypointModelList;
 };
 
 /**
@@ -166,7 +135,8 @@ const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, a
 const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     // distance between each arriving aircraft, in nm
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
-    const waypointModelList = _buildWaypointModelListFromRoute(spawnPatternJson, navigationLibrary, airport);
+    const routeModel = new RouteModel(navigationLibrary, spawnPatternJson.route);
+    const waypointModelList = routeModel.waypoints;
     const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);

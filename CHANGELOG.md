@@ -1,18 +1,26 @@
-## 5.8.0 (January 1, 2018)
+## 6.0.0 (March 1, 2018)
 ---
+### Major
+- Major reconfiguration of FMS and navigation-related components of the sim [#809](https://github.com/openscope/openscope/issues/809)
+
 ### New Features
+- Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
+- Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
+- Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
 
 
 
 
 
 ### Bugfixes
+- Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
 
 
 
 
 
 ### Enhancements & Refactors
+- Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
 
 
 

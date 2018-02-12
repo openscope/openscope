@@ -5,9 +5,19 @@ import _isArray from 'lodash/isArray';
 import _isObject from 'lodash/isObject';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
+// fixtures
+let navigationLibraryFixture;
+
+ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    navigationLibraryFixture.reset();
+});
 
 ava('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);

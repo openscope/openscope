@@ -7,7 +7,7 @@ import {
     airportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
@@ -20,11 +20,16 @@ import {
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
+// fixtures
+let navigationLibraryFixture;
+
 ava.beforeEach(() => {
+    navigationLibraryFixture = createNavigationLibraryFixture();
     airportControllerFixture();
 });
 
 ava.afterEach(() => {
+    navigationLibraryFixture.reset();
     resetAirportControllerFixture();
 });
 
@@ -184,51 +189,22 @@ ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in mil
     t.true(result === expectedResult);
 });
 
-ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
+ava('._intializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
+    model._intializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
-ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
+ava('._intializePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expectedHeadingResult = 4.436187691083426;
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    model._intializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
-});
-
-ava('._generateWaypointListForRoute() does not throw when a route has a single entry and rwy waypoint', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-
-    t.notThrows(
-        () => model._generateWaypointListForRoute(ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK.route, navigationLibraryFixture)
-    );
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a procedure route string that contains only an entry and a rwy', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 2);
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a direct routes string', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_ROUTE_STRING_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 2);
-});
-
-ava('._generateWaypointListForRoute() returns a list of Waypoints when passed a procedure route string', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._generateWaypointListForRoute(ARRIVAL_PATTERN_MOCK.route, navigationLibraryFixture);
-
-    t.true(result.length === 9);
 });

@@ -97,28 +97,6 @@ export const FLIGHT_PHASE = {
 };
 
 /**
- * @property WAYPOINT_NAV_MODE
- * @type {Object}
- * @final
- */
-export const WAYPOINT_NAV_MODE = {
-    FIX: 'fix',
-    HEADING: 'heading',
-    HOLD: 'hold',
-    RWY: 'rwy'
-};
-
-/**
- * @property PROCEDURE_TYPE
- * @type {Object}
- * @final
- */
-export const PROCEDURE_TYPE = {
-    SID: 'SID',
-    STAR: 'STAR'
-};
-
-/**
  * Enumerations for various performance constants
  *
  * @property PERFORMANCE
