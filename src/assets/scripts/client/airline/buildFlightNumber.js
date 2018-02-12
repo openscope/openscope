@@ -6,51 +6,51 @@ const NUMERIC = '0123456789';
 /**
  * This picks a random number. If it is the first value within the callsign (ie. i === 0), then it picks a
  * number between 1 and 9. Otherwise, it picks a number between 0 and 9.
- * @function _generateNumericValue
+ * @function _generateRandomDigit
  * @param i {number}
  * @return NUMERIC {string}
 */
-const _generateNumericValue = (i) => {
+function _generateRandomDigit(i) {
     if (i === 0) {
         return choose(NUMERIC.substr(1));
     }
 
     return choose(NUMERIC);
-};
+}
 
 /**
  * This function picks a random letter and returns it.
- * @function _generateAlphaValue
+ * @function _generateRandomLetter
  * @return ALPHA {string}
 */
-const _generateAlphaValue = () => {
+function _generateRandomLetter() {
     return choose(ALPHA);
-};
+}
 
 /**
  * Accepts a list of callsign formats, which are defined in the airline files. It randomly selects one of these
  * formats and generates a callsign based off this format.
  *
- * @function flightNumberBuilder
+ * @function buildFlightNumber
  * @param callsignFormats {array}
  * @return {string}
 */
-export const flightNumberBuilder = (callsignFormats) => {
+export function buildFlightNumber(callsignFormats) {
     let flightNumber = '';
     const chosenFormat = choose(callsignFormats);
 
     for (let i = 0; i < chosenFormat.length; i++) {
         switch (chosenFormat[i]) {
             case '#':
-                flightNumber += _generateNumericValue(i);
+                flightNumber += _generateRandomDigit(i);
                 break;
-            case 'A':
-                flightNumber += _generateAlphaValue();
+            case '@':
+                flightNumber += _generateRandomLetter();
                 break;
             default:
-                console.warn(`${this.icao} has an incorrect callsign format, it should only contain 'A' or '#'`);
+                flightNumber += chosenFormat[i];
         }
     }
 
     return flightNumber;
-};
+}
