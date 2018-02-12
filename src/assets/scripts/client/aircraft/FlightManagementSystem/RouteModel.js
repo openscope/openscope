@@ -10,7 +10,6 @@ import _reduce from 'lodash/reduce';
 import _without from 'lodash/without';
 import LegModel from './LegModel';
 import BaseModel from '../../base/BaseModel';
-import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import AirportController from '../../airport/AirportController';
 import {
     INVALID_INDEX,
@@ -36,15 +35,10 @@ export default class RouteModel extends BaseModel {
     /**
      * @for RouteModel
      * @constructor
-     * @param navigationLibrary {NavigationLibrary}
      * @param routeString {string}
      */
-    constructor(navigationLibrary, routeString) {
+    constructor(routeString) {
         super();
-
-        if (!(navigationLibrary instanceof NavigationLibrary)) {
-            throw new TypeError(`Expected valid navigationLibrary, but received ${typeof navigationLibrary}`);
-        }
 
         /**
          * Array of `LegModel`s on the route
@@ -55,16 +49,6 @@ export default class RouteModel extends BaseModel {
          * @private
          */
         this._legCollection = [];
-
-        /**
-         * Local reference to NavigationLibrary
-         *
-         * @for RouteModel
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Array of `LegModel`s that have been passed (or skipped)
@@ -689,7 +673,7 @@ export default class RouteModel extends BaseModel {
         let starLegModel;
 
         try {
-            starLegModel = new LegModel(this._navigationLibrary, routeString);
+            starLegModel = new LegModel(routeString);
         } catch (error) {
             console.error(error);
 
@@ -726,7 +710,7 @@ export default class RouteModel extends BaseModel {
         let sidLegModel;
 
         try {
-            sidLegModel = new LegModel(this._navigationLibrary, routeString);
+            sidLegModel = new LegModel(routeString);
         } catch (error) {
             console.error(error);
 
@@ -999,7 +983,7 @@ export default class RouteModel extends BaseModel {
         const airwayName = convergentLegModel.getAirwayName();
         const exitFixName = convergentLegModel.getExitFixName();
         const amendedAirwayRouteString = `${entryFixName}.${airwayName}.${exitFixName}`;
-        const amendedAirwayLeg = new LegModel(this._navigationLibrary, amendedAirwayRouteString);
+        const amendedAirwayLeg = new LegModel(amendedAirwayRouteString);
 
         return amendedAirwayLeg;
     }
@@ -1009,7 +993,7 @@ export default class RouteModel extends BaseModel {
         const airwayName = divergentLeg.getAirwayName();
         const entryFixName = divergentLeg.getEntryFixName();
         const amendedAirwayRouteString = `${entryFixName}.${airwayName}.${exitFixName}`;
-        const amendedAirwayLeg = new LegModel(this._navigationLibrary, amendedAirwayRouteString);
+        const amendedAirwayLeg = new LegModel(amendedAirwayRouteString);
 
         return amendedAirwayLeg;
     }
@@ -1105,7 +1089,7 @@ export default class RouteModel extends BaseModel {
         const procedureIcao = convergentLegModel.getProcedureIcao();
         const exitFixName = convergentLegModel.getExitFixName();
         const amendedStarRouteString = `${entryFixName}.${procedureIcao}.${exitFixName}`;
-        const amendedStarLeg = new LegModel(this._navigationLibrary, amendedStarRouteString);
+        const amendedStarLeg = new LegModel(amendedStarRouteString);
 
         return amendedStarLeg;
     }
@@ -1115,7 +1099,7 @@ export default class RouteModel extends BaseModel {
         const procedureIcao = divergentLegModel.getProcedureIcao();
         const entryFixName = divergentLegModel.getEntryFixName();
         const amendedStarRouteString = `${entryFixName}.${procedureIcao}.${exitFixName}`;
-        const amendedStarLeg = new LegModel(this._navigationLibrary, amendedStarRouteString);
+        const amendedStarLeg = new LegModel(amendedStarRouteString);
 
         return amendedStarLeg;
     }
@@ -1134,7 +1118,7 @@ export default class RouteModel extends BaseModel {
     // named '_SASCO330005', and thus the conversion to LegModel will fail
     // TODO: Also add support for preserving waypoint data (restrictions, hold instructions, etc)
     _createLegModelsFromWaypointModels(waypointModels) {
-        return _map(waypointModels, (waypointModel) => new LegModel(this._navigationLibrary, waypointModel._name));
+        return _map(waypointModels, (waypointModel) => new LegModel(waypointModel._name));
     }
 
     /**
@@ -1250,7 +1234,7 @@ export default class RouteModel extends BaseModel {
     _generateLegsFromRouteString(routeString) {
         const segments = this._divideRouteStringIntoSegments(routeString);
         const legs = _map(segments, (segmentRouteString) => {
-            return new LegModel(this._navigationLibrary, segmentRouteString);
+            return new LegModel(segmentRouteString);
         });
 
         return legs;

@@ -5,22 +5,22 @@ import _isArray from 'lodash/isArray';
 import _isObject from 'lodash/isObject';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
-// fixtures
-let navigationLibraryFixture;
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 90000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = true;
@@ -46,7 +46,7 @@ ava('.maintainAltitude() returns early responding that they are unable to mainta
 });
 
 ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altitude to the correct value', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
@@ -64,7 +64,7 @@ ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altit
 });
 
 ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedite is true', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
@@ -82,7 +82,7 @@ ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedi
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is false', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
@@ -103,7 +103,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is true', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 19000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
@@ -121,7 +121,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
 });
 
 ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
     const altitudeMock = 7000;

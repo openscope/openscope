@@ -6,12 +6,12 @@ import AirportModel from '../../../src/assets/scripts/client/airport/AirportMode
 import AirwayModel from '../../../src/assets/scripts/client/navigationLibrary/AirwayModel';
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureModel';
-// import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+// import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
-// import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
-// import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-// import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import {
     LEG_TYPE,
     PROCEDURE_TYPE
@@ -32,20 +32,16 @@ const sidRouteStringMock = 'KLAS25R.BOACH6.TNP';
 const shortSidRouteStringMock = 'KLAS07R.TRALR6.MLF';
 const starRouteStringMock = 'DAG.KEPEC3.KLAS19R';
 
-let navigationLibrary;
-
 ava.beforeEach(() => {
-    navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibrary.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when instantiated with invalid parameters', (t) => {
     t.throws(() => new LegModel());
-    t.throws(() => new LegModel(directRouteStringMock));
-    t.throws(() => new LegModel(directRouteStringMock, navigationLibrary));
 });
 
 ava('throws when instantiated with route string that should be two separate legs', (t) => {
@@ -54,26 +50,26 @@ ava('throws when instantiated with route string that should be two separate legs
     const doubleProcedureRouteString = 'KLAS25R.COWBY6.DRK.TYSSN4.KLAS25R';
     const directThenProcedureRouteString = 'PXR..DAG.KEPEC1.KLAS';
 
-    t.throws(() => new LegModel(navigationLibrary, procedureThenDirectRouteString));
-    t.throws(() => new LegModel(navigationLibrary, doubleDirectRouteString));
-    t.throws(() => new LegModel(navigationLibrary, doubleProcedureRouteString));
-    t.throws(() => new LegModel(navigationLibrary, directThenProcedureRouteString));
+    t.throws(() => new LegModel(procedureThenDirectRouteString));
+    t.throws(() => new LegModel(doubleDirectRouteString));
+    t.throws(() => new LegModel(doubleProcedureRouteString));
+    t.throws(() => new LegModel(directThenProcedureRouteString));
 });
 
 ava('throws when instantiated with airway route string with airway not defined in navigation library', (t) => {
     const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
 
-    t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
+    t.throws(() => new LegModel(routeStringWithInvalidProcedure));
 });
 
 ava('throws when instantiated with procedure route string with procedure not defined in navigation library', (t) => {
     const routeStringWithInvalidProcedure = 'KLAS25R.BOACH0.TNP';
 
-    t.throws(() => new LegModel(navigationLibrary, routeStringWithInvalidProcedure));
+    t.throws(() => new LegModel(routeStringWithInvalidProcedure));
 });
 
 ava('instantiates correctly when given a single airway leg\'s route string', (t) => {
-    const model = new LegModel(navigationLibrary, airwayRouteStringMock);
+    const model = new LegModel(airwayRouteStringMock);
 
     t.true(model._airwayModel instanceof AirwayModel);
     t.true(model._legType === LEG_TYPE.AIRWAY);
@@ -83,7 +79,7 @@ ava('instantiates correctly when given a single airway leg\'s route string', (t)
 });
 
 ava('instantiates correctly when given a single direct leg\'s route string', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
 
     t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.DIRECT);
@@ -93,7 +89,7 @@ ava('instantiates correctly when given a single direct leg\'s route string', (t)
 });
 
 ava('instantiates correctly when given a single SID leg\'s route string', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
@@ -104,7 +100,7 @@ ava('instantiates correctly when given a single SID leg\'s route string', (t) =>
 });
 
 ava('instantiates correctly when given a single STAR leg\'s route string', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
 
     t.true(!model._airwayModel);
     t.true(model._legType === LEG_TYPE.PROCEDURE);
@@ -115,7 +111,7 @@ ava('instantiates correctly when given a single STAR leg\'s route string', (t) =
 });
 
 ava('#currentWaypoint throws when #_waypointCollection is empty', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     model.skipAllWaypointsInLeg();
 
@@ -123,7 +119,7 @@ ava('#currentWaypoint throws when #_waypointCollection is empty', (t) => {
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const expectedResult = model._waypointCollection[0];
     const result = model.currentWaypoint;
 
@@ -131,67 +127,67 @@ ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
 });
 
 ava('#isAirwayLeg returns false when this is not an airway leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.false(model.isAirwayLeg);
 });
 
 ava('#isAirwayLeg returns true when this is an airway leg', (t) => {
-    const model = new LegModel(navigationLibrary, airwayRouteStringMock);
+    const model = new LegModel(airwayRouteStringMock);
 
     t.true(model.isAirwayLeg);
 });
 
 ava('#isDirectLeg returns false when this is not a direct leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.false(model.isDirectLeg);
 });
 
 ava('#isDirectLeg returns true when this is a direct leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
 
     t.true(model.isDirectLeg);
 });
 
 ava('#isProcedureLeg returns false when this is not a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
 
     t.false(model.isProcedureLeg);
 });
 
 ava('#isProcedureLeg returns true when this is a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.true(model.isProcedureLeg);
 });
 
 ava('#isSidLeg returns false when this is not a SID procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
 
     t.false(model.isSidLeg);
 });
 
 ava('#isSidLeg returns true when this is a SID procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.true(model.isSidLeg);
 });
 
 ava('#isStarLeg returns false when this is not a SID procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.false(model.isStarLeg);
 });
 
 ava('#isStarLeg returns true when this is a SID procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
 
     t.true(model.isStarLeg);
 });
 
 ava('#legType returns value of #_legType', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const legTypeMock = 'type-o-da-leg';
 
     model._legType = legTypeMock;
@@ -200,7 +196,7 @@ ava('#legType returns value of #_legType', (t) => {
 });
 
 ava('#nextWaypoint returns the second element of #_waypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const nextWaypointModel = model._waypointCollection[1];
     const result = model.nextWaypoint;
 
@@ -208,14 +204,14 @@ ava('#nextWaypoint returns the second element of #_waypointCollection', (t) => {
 });
 
 ava('#routeString returns the value of #_routeString', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const result = model.routeString;
 
     t.deepEqual(result, sidRouteStringMock);
 });
 
 ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const result = model.waypoints;
     const expectedWaypointNames = ['RBELL', 'ROPPR', 'RODDD', 'BOACH', 'ZELMA', 'JOTNU', 'TNP'];
     const waypointNames = _map(result, (waypointModel) => waypointModel.name);
@@ -225,7 +221,7 @@ ava('#waypoints returns an array containing all `WaypointModel`s', (t) => {
 });
 
 ava('.activateHoldForWaypointName() returns early when the specified waypoint does not exist in the route', (t) => {
-    const model = new LegModel(navigationLibrary, 'KEPEC');
+    const model = new LegModel('KEPEC');
     const waypointModel = model._waypointCollection[0];
     const setHoldParametersAndActivateHoldSpy = sinon.spy(waypointModel, 'setHoldParametersAndActivateHold');
     const holdParametersMock = { turnDirection: 'left' };
@@ -236,7 +232,7 @@ ava('.activateHoldForWaypointName() returns early when the specified waypoint do
 });
 
 ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() with the appropriate arguments', (t) => {
-    const model = new LegModel(navigationLibrary, 'KEPEC');
+    const model = new LegModel('KEPEC');
     const waypointModel = model._waypointCollection[0];
     const setHoldParametersAndActivateHoldSpy = sinon.spy(waypointModel, 'setHoldParametersAndActivateHold');
     const holdParametersMock = { turnDirection: 'left' };
@@ -247,7 +243,7 @@ ava('.activateHoldForWaypointName() calls .setHoldParametersAndActivateHold() wi
 });
 
 ava('.getAllWaypointModelsAfterWaypointName() returns an array of all waypoint models after and excluding the specified one', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const lastExcludedWaypoint = 'BOACH';
     const result = model.getAllWaypointModelsAfterWaypointName(lastExcludedWaypoint);
     const expectedRemainingFixNames = ['ZELMA', 'JOTNU', 'TNP'];
@@ -257,35 +253,35 @@ ava('.getAllWaypointModelsAfterWaypointName() returns an array of all waypoint m
 });
 
 ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const result = model.getArrivalRunwayAirportIcao();
 
     t.true(!result);
 });
 
 ava('.getArrivalRunwayAirportIcao() returns the first four characters of the STAR exit name', (t) => {
-    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const model = new LegModel('DAG.KEPEC3.KLAS19R');
     const result = model.getArrivalRunwayAirportIcao();
 
     t.true(result === 'klas');
 });
 
 ava('.getArrivalRunwayName() returns null when this is not a STAR leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const result = model.getArrivalRunwayName();
 
     t.true(!result);
 });
 
 ava('.getArrivalRunwayName() returns the all but first four characters of the STAR exit name', (t) => {
-    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const model = new LegModel('DAG.KEPEC3.KLAS19R');
     const result = model.getArrivalRunwayName();
 
     t.true(result === '19R');
 });
 
 ava('.getBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
     const expectedResult = -1;
     const result = model.getBottomAltitude();
 
@@ -293,7 +289,7 @@ ava('.getBottomAltitude() returns -1 when leg is not a procedure leg', (t) => {
 });
 
 ava('.getBottomAltitude() returns -1 when procedure leg does not have a bottom altitude', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS19L.COWBY6.DRK');
+    const model = new LegModel('KLAS19L.COWBY6.DRK');
     const expectedResult = -1;
     const result = model.getBottomAltitude();
 
@@ -301,7 +297,7 @@ ava('.getBottomAltitude() returns -1 when procedure leg does not have a bottom a
 });
 
 ava('.getBottomAltitude() returns the correct bottom altitude when leg is a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const expectedResult = 8000;
     const result = model.getBottomAltitude();
 
@@ -309,42 +305,42 @@ ava('.getBottomAltitude() returns the correct bottom altitude when leg is a proc
 });
 
 ava('.getDepartureRunwayAirportIcao() returns null when this is not a SID leg', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const result = model.getDepartureRunwayAirportIcao();
 
     t.true(!result);
 });
 
 ava('.getDepartureRunwayAirportIcao() returns the first four characters of the SID entry name', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const result = model.getDepartureRunwayAirportIcao();
 
     t.true(result === 'klas');
 });
 
 ava('.getDepartureRunwayName() returns null when this is not a SID leg', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const result = model.getDepartureRunwayName();
 
     t.true(!result);
 });
 
 ava('.getDepartureRunwayName() returns the all but first four characters of the SID entry name', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const result = model.getDepartureRunwayName();
 
     t.true(result === '25R');
 });
 
 ava('.getProcedureIcao() returns undefined when this is not a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
     const result = model.getProcedureIcao();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getProcedureIcao() returns the ICAO identifier of the ProcedureModel in use by this leg', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const expectedResult = 'BOACH6';
     const result = model.getProcedureIcao();
 
@@ -352,14 +348,14 @@ ava('.getProcedureIcao() returns the ICAO identifier of the ProcedureModel in us
 });
 
 ava('.getProcedureName() returns undefined when this is not a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
     const result = model.getProcedureName();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getProcedureName() returns the name of the ProcedureModel in use by this leg', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const expectedResult = 'Boach Six';
     const result = model.getProcedureName();
 
@@ -367,7 +363,7 @@ ava('.getProcedureName() returns the name of the ProcedureModel in use by this l
 });
 
 ava('.getRouteStringWithoutAirports() returns #_routeString when neither a SID or STAR leg', (t) => {
-    const model = new LegModel(navigationLibrary, 'BOACH');
+    const model = new LegModel('BOACH');
     const expectedResult = model._routeString;
     const result = model.getRouteStringWithoutAirports();
 
@@ -375,7 +371,7 @@ ava('.getRouteStringWithoutAirports() returns #_routeString when neither a SID o
 });
 
 ava('.getRouteStringWithoutAirports() returns route string without airport for SID leg', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const expectedResult = 'BOACH6.TNP';
     const result = model.getRouteStringWithoutAirports();
 
@@ -383,7 +379,7 @@ ava('.getRouteStringWithoutAirports() returns route string without airport for S
 });
 
 ava('.getRouteStringWithoutAirports() returns route string without airport for SID leg', (t) => {
-    const model = new LegModel(navigationLibrary, 'DAG.KEPEC3.KLAS19R');
+    const model = new LegModel('DAG.KEPEC3.KLAS19R');
     const expectedResult = 'DAG.KEPEC3';
     const result = model.getRouteStringWithoutAirports();
 
@@ -391,14 +387,14 @@ ava('.getRouteStringWithoutAirports() returns route string without airport for S
 });
 
 ava('.hasWaypointName() throws when the not provided with a waypoint name', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.throws(() => model.hasWaypointName());
     t.throws(() => model.hasWaypointName(''));
 });
 
 ava('.getTopAltitude() returns -1 when leg is not a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
     const expectedResult = -1;
     const result = model.getTopAltitude();
 
@@ -406,7 +402,7 @@ ava('.getTopAltitude() returns -1 when leg is not a procedure leg', (t) => {
 });
 
 ava('.getTopAltitude() returns -1 when procedure leg does not have a top altitude', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS19L.COWBY6.DRK');
+    const model = new LegModel('KLAS19L.COWBY6.DRK');
     const expectedResult = -1;
     const result = model.getTopAltitude();
 
@@ -414,7 +410,7 @@ ava('.getTopAltitude() returns -1 when procedure leg does not have a top altitud
 });
 
 ava('.getTopAltitude() returns the correct top altitude when leg is a procedure leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const expectedResult = 7000;
     const result = model.getTopAltitude();
 
@@ -422,7 +418,7 @@ ava('.getTopAltitude() returns the correct top altitude when leg is a procedure 
 });
 
 ava('.hasNextWaypoint() returns false when #_waypointCollection has less than two elements', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     model._waypointCollection = [model._waypointCollection[0]];
 
@@ -433,7 +429,7 @@ ava('.hasNextWaypoint() returns false when #_waypointCollection has less than tw
 });
 
 ava('.hasNextWaypoint() returns true when #_waypointCollection has at least two elements', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const result = model.hasNextWaypoint();
 
     t.true(model._waypointCollection.length > 1);
@@ -441,19 +437,19 @@ ava('.hasNextWaypoint() returns true when #_waypointCollection has at least two 
 });
 
 ava('.hasWaypointName() returns false when the specified waypoint does not exist in the #waypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.false(model.hasWaypointName('ABC'));
 });
 
 ava('.hasWaypointName() returns true when the specified waypoint exists within the #waypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.true(model.hasWaypointName('BOACH'));
 });
 
 ava('.moveToNextWaypoint() moves #currentWaypoint into the #_previousWaypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     t.true(model._previousWaypointCollection.length === 0);
     t.true(model._waypointCollection.length === 7);
@@ -465,7 +461,7 @@ ava('.moveToNextWaypoint() moves #currentWaypoint into the #_previousWaypointCol
 });
 
 ava('.skipAllWaypointsInLeg() moves entire #_waypointCollection into the #_previousWaypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const oldWaypointCollection = model._waypointCollection;
 
     t.true(model._previousWaypointCollection.length === 0);
@@ -478,7 +474,7 @@ ava('.skipAllWaypointsInLeg() moves entire #_waypointCollection into the #_previ
 });
 
 ava('.skipToWaypointName() returns false early when the specified waypoint is not in the leg', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const fixNotInLeg = 'ABCDE';
     const oldCurrentWaypointName = model.currentWaypoint.name;
     const result = model.skipToWaypointName(fixNotInLeg);
@@ -489,7 +485,7 @@ ava('.skipToWaypointName() returns false early when the specified waypoint is no
 });
 
 ava('.skipToWaypointName() moves all waypoints before the specified waypoint to the #_previousWaypointCollection', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const expectedPreviousFixNames = ['RBELL', 'ROPPR', 'RODDD'];
     const expectedRemainingFixNames = ['BOACH', 'ZELMA', 'JOTNU', 'TNP'];
     const result = model.skipToWaypointName('BOACH');
@@ -502,7 +498,7 @@ ava('.skipToWaypointName() moves all waypoints before the specified waypoint to 
 });
 
 ava('.reset() calls ._resetWaypointCollection()', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const resetWaypointCollectionSpy = sinon.spy(model, '_resetWaypointCollection');
 
     model.reset();
@@ -511,7 +507,7 @@ ava('.reset() calls ._resetWaypointCollection()', (t) => {
 });
 
 ava('.reset() resets to default all properties', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
 
     model.reset();
 
@@ -524,8 +520,8 @@ ava('.reset() resets to default all properties', (t) => {
 });
 
 ava('.updateSidLegForDepartureRunwayModel() returns early when this is not a SID leg', (t) => {
-    const starLegModel = new LegModel(navigationLibrary, starRouteStringMock);
-    const directLegModel = new LegModel(navigationLibrary, directRouteStringMock);
+    const starLegModel = new LegModel(starRouteStringMock);
+    const directLegModel = new LegModel(directRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const runwayModel = airport.getRunway('01L');
     const starLegGenerateWaypointCollectionSpy = sinon.spy(starLegModel, '_generateWaypointCollection');
@@ -539,7 +535,7 @@ ava('.updateSidLegForDepartureRunwayModel() returns early when this is not a SID
 });
 
 ava('.updateSidLegForDepartureRunwayModel() returns early when the specified runway is already the one in use', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const currentRunwayModel = airport.getRunway('25R');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -550,7 +546,7 @@ ava('.updateSidLegForDepartureRunwayModel() returns early when the specified run
 });
 
 ava('.updateSidLegForDepartureRunwayModel() returns early when the SID is not valid for the specified runway', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const illegalRunwayModel = airport.getRunway('01R');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -561,7 +557,7 @@ ava('.updateSidLegForDepartureRunwayModel() returns early when the SID is not va
 });
 
 ava('.updateSidLegForDepartureRunwayModel() regenerates #_waypointCollection IAW the new departure runway', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const runwayModel = airport.getRunway('01L');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -576,8 +572,8 @@ ava('.updateSidLegForDepartureRunwayModel() regenerates #_waypointCollection IAW
 });
 
 ava('.updateStarLegForArrivalRunwayModel() returns early when this is not a STAR leg', (t) => {
-    const sidLegModel = new LegModel(navigationLibrary, sidRouteStringMock);
-    const directLegModel = new LegModel(navigationLibrary, directRouteStringMock);
+    const sidLegModel = new LegModel(sidRouteStringMock);
+    const directLegModel = new LegModel(directRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const runwayModel = airport.getRunway('01L');
     const sidLegGenerateWaypointCollectionSpy = sinon.spy(sidLegModel, '_generateWaypointCollection');
@@ -591,7 +587,7 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when this is not a STAR
 });
 
 ava('.updateStarLegForArrivalRunwayModel() returns early when the specified runway is already the one in use', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const currentRunwayModel = airport.getRunway('19R');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -602,7 +598,7 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the specified runw
 });
 
 ava('.updateStarLegForArrivalRunwayModel() returns early when the STAR is not valid for the specified runway', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const illegalRunwayModel = airport.getRunway('01R');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -613,7 +609,7 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the STAR is not va
 });
 
 ava('.updateStarLegForArrivalRunwayModel() regenerates #_waypointCollection IAW the new departure runway', (t) => {
-    const model = new LegModel(navigationLibrary, starRouteStringMock);
+    const model = new LegModel(starRouteStringMock);
     const airport = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const runwayModel = airport.getRunway('01L');
     const generateWaypointCollectionSpy = sinon.spy(model, '_generateWaypointCollection');
@@ -630,7 +626,7 @@ ava('.updateStarLegForArrivalRunwayModel() regenerates #_waypointCollection IAW 
 });
 
 ava('._findIndexOfWaypointName() returns -1 when no waypoint in the #waypointCollection has the specified name', (t) => {
-    const model = new LegModel(navigationLibrary, sidRouteStringMock);
+    const model = new LegModel(sidRouteStringMock);
     const expectedResult = -1;
     const result = model._findIndexOfWaypointName('thisFixIsNotInTheRoute');
 
@@ -638,7 +634,7 @@ ava('._findIndexOfWaypointName() returns -1 when no waypoint in the #waypointCol
 });
 
 ava('._findIndexOfWaypointName() returns the index of the WaypointModel in the #waypointCollection with the specified name', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const expectedResult = 3;
     const result = model._findIndexOfWaypointName('BOACH');
 
@@ -646,7 +642,7 @@ ava('._findIndexOfWaypointName() returns the index of the WaypointModel in the #
 });
 
 ava('._resetWaypointCollection() calls .skipAllWaypointsInLeg()', (t) => {
-    const model = new LegModel(navigationLibrary, shortSidRouteStringMock);
+    const model = new LegModel(shortSidRouteStringMock);
     const skipAllWaypointsInLegSpy = sinon.spy(model, 'skipAllWaypointsInLeg');
 
     model._resetWaypointCollection();
@@ -655,7 +651,7 @@ ava('._resetWaypointCollection() calls .skipAllWaypointsInLeg()', (t) => {
 });
 
 ava('._resetWaypointCollection() calls .reset() method of all waypoints', (t) => {
-    const model = new LegModel(navigationLibrary, shortSidRouteStringMock);
+    const model = new LegModel(shortSidRouteStringMock);
 
     model.skipAllWaypointsInLeg();
 
@@ -674,13 +670,13 @@ ava('._resetWaypointCollection() calls .reset() method of all waypoints', (t) =>
 });
 
 ava('._verifyAirwayAndEntryAndExitAreValid() throws when #_airwayModel is null', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
 
     t.throws(() => model._verifyAirwayAndEntryAndExitAreValid('entryName', 'exitName'));
 });
 
 ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified entry is not on the airway', (t) => {
-    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const model = new LegModel('CHRLT.V394.LAS');
     const invalidEntryName = 'invalidEntry';
     const validExitName = 'SUVIE';
 
@@ -688,7 +684,7 @@ ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified entry is 
 });
 
 ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified exit is not on the airway', (t) => {
-    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const model = new LegModel('CHRLT.V394.LAS');
     const validEntryName = 'DISBE';
     const invalidExitName = 'invalidExit';
 
@@ -696,7 +692,7 @@ ava('._verifyAirwayAndEntryAndExitAreValid() throws when the specified exit is n
 });
 
 ava('._verifyAirwayAndEntryAndExitAreValid() does not throw when the specified entry and exit are both on the airway', (t) => {
-    const model = new LegModel(navigationLibrary, 'CHRLT.V394.LAS');
+    const model = new LegModel('CHRLT.V394.LAS');
     const validEntryName = 'DISBE';
     const validExitName = 'SUVIE';
 
@@ -704,13 +700,13 @@ ava('._verifyAirwayAndEntryAndExitAreValid() does not throw when the specified e
 });
 
 ava('._verifyProcedureAndEntryAndExitAreValid() throws when #_procedureModel is null', (t) => {
-    const model = new LegModel(navigationLibrary, directRouteStringMock);
+    const model = new LegModel(directRouteStringMock);
 
     t.throws(() => model._verifyProcedureAndEntryAndExitAreValid('entryName', 'exitName'));
 });
 
 ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified entry is not valid for the procedure', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const invalidEntryName = 'invalidEntry';
     const validExitName = 'HEC';
 
@@ -718,7 +714,7 @@ ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified entry 
 });
 
 ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified exit is not valid for the procedure', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const validEntryName = 'KLAS25L';
     const invalidExitName = 'invalidExit';
 
@@ -726,7 +722,7 @@ ava('._verifyProcedureAndEntryAndExitAreValid() throws when the specified exit i
 });
 
 ava('._verifyProcedureAndEntryAndExitAreValid() does not throw when the specified entry and exit are valid for the procedure', (t) => {
-    const model = new LegModel(navigationLibrary, 'KLAS25R.BOACH6.TNP');
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
     const validEntryName = 'KLAS25L';
     const validExitName = 'HEC';
 

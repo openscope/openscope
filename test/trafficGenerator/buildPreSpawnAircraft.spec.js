@@ -3,19 +3,19 @@ import ava from 'ava';
 import _isArray from 'lodash/isArray';
 import _map from 'lodash/map';
 import { buildPreSpawnAircraft } from '../../src/assets/scripts/client/trafficGenerator/buildPreSpawnAircraft';
-import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../fixtures/navigationLibraryFixtures';
 import { airportModelFixture } from '../fixtures/airportFixtures';
 import { ARRIVAL_PATTERN_MOCK } from './_mocks/spawnPatternMocks';
 
-// fixtures
-let navigationLibraryFixture;
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when passed invalid parameters', (t) => {
@@ -23,15 +23,14 @@ ava('throws when passed invalid parameters', (t) => {
     t.throws(() => buildPreSpawnAircraft({}));
     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, null));
     t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, null, airportModelFixture));
-    t.throws(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, null));
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportModelFixture));
+    t.notThrows(() => buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture));
 });
 
 ava('returns an array of objects with correct keys', (t) => {
-    const results = buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportModelFixture);
+    const results = buildPreSpawnAircraft(ARRIVAL_PATTERN_MOCK, airportModelFixture);
 
     t.true(_isArray(results));
 

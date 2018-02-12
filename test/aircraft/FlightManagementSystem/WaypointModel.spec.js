@@ -3,6 +3,10 @@ import sinon from 'sinon';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures'
 import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_HOLD_PARAMETERS } from '../../../src/assets/scripts/client/constants/waypointConstants';
@@ -10,11 +14,11 @@ import { DEFAULT_HOLD_PARAMETERS } from '../../../src/assets/scripts/client/cons
 let navigationLibrary;
 
 ava.beforeEach(() => {
-    navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibrary.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when instantiated without parameters', (t) => {

@@ -14,7 +14,6 @@ import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator
 import { tau } from '../math/circle';
 // import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import {
@@ -91,10 +90,9 @@ export default class SpawnPatternModel extends BaseModel {
      * @constructor
      * @for SpawnPatternModel
      * @param spawnPatternJson {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
     // istanbul ignore next
-    constructor(spawnPatternJson, navigationLibrary) {
+    constructor(spawnPatternJson) {
         super('spawnPatternModel');
 
         /**
@@ -410,7 +408,7 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this._uptime = INVALID_NUMBER;
 
-        this.init(spawnPatternJson, navigationLibrary);
+        this.init(spawnPatternJson);
     }
 
     /**
@@ -449,7 +447,7 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Fascade to access relative position
+     * Facade to access relative position
      *
      * @for SpawnPatternModel
      * @property relativePosition
@@ -470,16 +468,11 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @method init
      * @param spawnPatternJson {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    init(spawnPatternJson, navigationLibrary) {
+    init(spawnPatternJson) {
         // We return early here if the object is empty because we pre-hydrate objects in the `ModelSourcePool`
         if (_isEmpty(spawnPatternJson)) {
             return;
-        }
-
-        if (isEmptyObject(navigationLibrary)) {
-            throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
         // TODO: this is a temporary development check. this should be removed before merging in to develop
@@ -495,7 +488,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = spawnPatternJson.method;
         this.rate = spawnPatternJson.rate;
 
-        this._routeModel = new RouteModel(navigationLibrary, spawnPatternJson.route);
+        this._routeModel = new RouteModel(spawnPatternJson.route);
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
         this._positionModel = this._generateSelfReferencedAirportPositionModel();
@@ -503,11 +496,11 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
-        this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary);
+        this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson);
 
         this._calculateSurgePatternInitialDelayValues(spawnPatternJson);
         this._setCyclePeriodAndOffset(spawnPatternJson);
-        this._intializePositionAndHeadingForArrival(spawnPatternJson);
+        this._initializePositionAndHeadingForArrival(spawnPatternJson);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
     }
 
@@ -968,9 +961,8 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @method _buildPreSpawnAircraft
      * @param spawnPatternJson {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary) {
+    _buildPreSpawnAircraft(spawnPatternJson) {
         if (this._isDeparture()) {
             // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
@@ -982,7 +974,6 @@ export default class SpawnPatternModel extends BaseModel {
 
         const preSpawnArrivalAircraftList = buildPreSpawnAircraft(
             spawnPatternJson,
-            navigationLibrary,
             AirportController.current
         );
 
@@ -995,11 +986,11 @@ export default class SpawnPatternModel extends BaseModel {
      * Sets `position` and `heading` properties.
      *
      * @for SpawnPatternModel
-     * @method _intializePositionAndHeadingForArrival
+     * @method _initializePositionAndHeadingForArrival
      * @param spawnPatternJson {object}
      * @private
      */
-    _intializePositionAndHeadingForArrival(spawnPatternJson) {
+    _initializePositionAndHeadingForArrival(spawnPatternJson) {
         if (spawnPatternJson.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }

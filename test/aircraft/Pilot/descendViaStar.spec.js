@@ -4,13 +4,13 @@ import {
     createFmsArrivalFixture,
     createModeControllerFixture
 } from '../../fixtures/aircraftFixtures';
-import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
-// Fixtures
-let navigationLibraryFixture;
 let pilot;
 
-// Mocks
 const successResponseMock = [true, 'descend via STAR'];
 const failureResponseMock = [false, 'unable to descend via STAR'];
 const initialAltitudeMock = 18000;
@@ -18,18 +18,20 @@ const nextAltitudeMock = 5000;
 const invalidAltitudeMock = 'threeve';
 
 ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+
     const modeControllerFixture = createModeControllerFixture();
     const fmsArrivalFixture = createFmsArrivalFixture();
-    navigationLibraryFixture = createNavigationLibraryFixture();
-    pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture = null;
     pilot = null;
+
+    resetNavigationLibraryFixture();
 });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {

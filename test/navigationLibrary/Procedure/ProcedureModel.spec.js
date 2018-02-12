@@ -2,13 +2,15 @@ import ava from 'ava';
 import _every from 'lodash/every';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import ProcedureModel from '../../../src/assets/scripts/client/navigationLibrary/ProcedureModel';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import {
     SID_MOCK,
     STAR_MOCK
 } from './_mocks/procedureMocks';
-import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/routeConstants';
 
 // mocks
@@ -17,15 +19,12 @@ const invalidExitMock = 'blahblahblah';
 const validBoachEntryMock = 'KLAS07R';
 const validBoachExitMock = 'TNP';
 
-// fixtures
-let navigationLibrary;
-
 ava.beforeEach(() => {
-    navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibrary.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when instantiated without parameters', (t) => {

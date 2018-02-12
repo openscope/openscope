@@ -4,10 +4,13 @@ import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import {
-    airportControllerFixture,
+    createAirportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { createNavigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../fixtures/navigationLibraryFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
@@ -20,16 +23,13 @@ import {
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
-// fixtures
-let navigationLibraryFixture;
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
-    airportControllerFixture();
+    createNavigationLibraryFixture();
+    createAirportControllerFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
     resetAirportControllerFixture();
 });
 
@@ -44,25 +44,24 @@ ava('does not throw when called without parameters', (t) => {
 ava('.init() throws when called with invalid parameters', (t) => {
     const model = new SpawnPatternModel();
 
-    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK));
-    t.notThrows(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
+    t.notThrows(() => model.init());
 });
 
 ava('does not throw when called with valid parameters', (t) => {
-    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture));
-    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture));
-    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
-    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture));
+    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK));
+    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_ROUTE_STRING_MOCK));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK));
 });
 
 ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
-    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
 ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     const result = model.altitude;
     const expectedResult = _round(result, -3);
 
@@ -71,7 +70,7 @@ ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) =>
 
 ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
     const cycleStartTimeMock = 42;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     model.cycleStartTime = cycleStartTimeMock;
 
     model.cycleStart(33);
@@ -81,7 +80,7 @@ ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
 
 ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
     const cycleStartTimeMock = 42;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     model.offset = 0;
     model.cycleStartTime = INVALID_NUMBER;
 
@@ -91,7 +90,7 @@ ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
 });
 
 ava('.getNextDelayValue() returns a random number between minimumDelay and maximumDelay', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     model._minimumDelay = 0;
     model._maximumDelay = 3;
 
@@ -101,7 +100,7 @@ ava('.getNextDelayValue() returns a random number between minimumDelay and maxim
 });
 
 ava('.getNextDelayValue() calls ._calculateRandomDelayPeriod() if SPAWN_METHOD.RANDOM', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     const _calculateRandomDelayPeriodSpy = sinon.spy(model, '_calculateRandomDelayPeriod');
     model.method = 'random';
 
@@ -112,7 +111,7 @@ ava('.getNextDelayValue() calls ._calculateRandomDelayPeriod() if SPAWN_METHOD.R
 
 ava('.getNextDelayValue() calls ._calculateNextCyclicDelayPeriod() if SPAWN_METHOD.CYCLIC', (t) => {
     const gameTimeMock = 42;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK);
     const _calculateNextCyclicDelayPeriodSpy = sinon.spy(model, '_calculateNextCyclicDelayPeriod');
 
     model.getNextDelayValue(gameTimeMock);
@@ -122,7 +121,7 @@ ava('.getNextDelayValue() calls ._calculateNextCyclicDelayPeriod() if SPAWN_METH
 
 ava('.getNextDelayValue() calls ._calculateNextSurgeDelayPeriod() if SPAWN_METHOD.SURGE', (t) => {
     const gameTimeMock = 42;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     const _calculateNextSurgeDelayPeriodSpy = sinon.spy(model, '_calculateNextSurgeDelayPeriod');
     model.method = 'surge';
 
@@ -133,7 +132,7 @@ ava('.getNextDelayValue() calls ._calculateNextSurgeDelayPeriod() if SPAWN_METHO
 
 ava('.getNextDelayValue() calls ._calculateNextWaveDelayPeriod() if SPAWN_METHOD.WAVE', (t) => {
     const gameTimeMock = 42;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK);
     const _calculateNextWaveDelayPeriodSpy = sinon.spy(model, '_calculateNextWaveDelayPeriod');
 
     model.getNextDelayValue(gameTimeMock);
@@ -143,7 +142,7 @@ ava('.getNextDelayValue() calls ._calculateNextWaveDelayPeriod() if SPAWN_METHOD
 
 ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => {
     const gameTimeMock = 0;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK);
     const result = model._calculateNextCyclicDelayPeriod(gameTimeMock);
 
     t.true(result === 360);
@@ -151,7 +150,7 @@ ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => 
 
 ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     const gameTimeMock = 3320;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK);
     const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
 
     // t.true(result === 360);
@@ -161,7 +160,7 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an ar
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = [10000, 20000];
-    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture);
+    const model = new SpawnPatternModel(arrivalMock);
 
     model._setMinMaxAltitude(altitudeMock);
 
@@ -173,7 +172,7 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a num
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = 23000;
-    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture);
+    const model = new SpawnPatternModel(arrivalMock);
 
     model._setMinMaxAltitude(altitudeMock);
 
@@ -183,27 +182,27 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a num
 
 ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
     const expectedResult = 360;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
     const result = model._calculateMaximumDelayFromSpawnRate();
 
     t.true(result === expectedResult);
 });
 
-ava('._intializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
-    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
+ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
+    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
-    model._intializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
+    model._initializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
-ava('._intializePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
+ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expectedHeadingResult = 4.436187691083426;
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
 
-    model._intializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
+    model._initializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));

@@ -1,34 +1,34 @@
 import ava from 'ava';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
-import NavigationLibrary from '../../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import { AIRPORT_JSON_KLAS_MOCK } from '../../airport/_mocks/airportJsonMock';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
-// fixture
-let navigationLibraryFixture;
 let aircraftModel;
-
-// mocks
 const cruiseSpeedMock = 460;
 const unattainableSpeedMock = 530;
 
 ava.beforeEach(() => {
-    navigationLibraryFixture = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
-    aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    createNavigationLibraryFixture();
+
+    aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
+
     aircraftModel = null;
 });
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
     const expectedResult = [
         true,
         {
@@ -44,7 +44,7 @@ ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
 });
 
 ava('.maintainSpeed() returns early with a warning when assigned an unreachable speed', (t) => {
-    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture, navigationLibraryFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
     const expectedResult = [
         false,
         {

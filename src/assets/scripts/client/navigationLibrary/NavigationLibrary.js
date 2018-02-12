@@ -17,13 +17,13 @@ import { degreesToRadians } from '../utilities/unitConverters';
  *
  * @class NavigationLibrary
  */
-export default class NavigationLibrary {
+class NavigationLibrary {
     /**
      * @constructor
      * @for NavigationLibrary
      * @param airportJson {object}
      */
-    constructor(airportJson) {
+    constructor() {
         this._airwayCollection = {};
 
         // /**
@@ -54,8 +54,6 @@ export default class NavigationLibrary {
          * @default null
          */
         this._referencePosition = null;
-
-        this.init(airportJson);
     }
 
     get hasSids() {
@@ -128,7 +126,7 @@ export default class NavigationLibrary {
     _initializeAirwayCollection(airways) {
         _forEach(airways, (fixNames, airwayName) => {
             if (airwayName in this._airwayCollection) {
-                throw new TypeError(`Expected single defintiion for "${airwayName}" airway, but received multiple`);
+                throw new TypeError(`Expected single definition for "${airwayName}" airway, but received multiple`);
             }
 
             this._airwayCollection[airwayName] = new AirwayModel(airwayName, fixNames, this);
@@ -360,9 +358,7 @@ export default class NavigationLibrary {
      */
     _showConsoleWarningForUndefinedFixes() {
         const allFixNames = this._getAllFixNamesInUse();
-        const missingFixes = allFixNames.filter((fix) =>
-            !FixCollection.findFixByName(fix)
-        );
+        const missingFixes = allFixNames.filter((fix) => !FixCollection.findFixByName(fix));
 
         if (missingFixes.length < 1) {
             return;
@@ -386,5 +382,6 @@ export default class NavigationLibrary {
 
         return uniqueFixNames.sort();
     }
-
 }
+
+export default new NavigationLibrary();
