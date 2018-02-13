@@ -1851,8 +1851,8 @@
             "destination": "EGCC",
             "category": "arrival",
             "route": "WELIN.UT420.TNT.DAYNE2A.EGCC23R",
-            "altitude": 22000,
-            "speed": 280,
+            "altitude": 8000,
+            "speed": 250,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1867,9 +1867,9 @@
             "destination": "EGCC",
             "category": "arrival",
             "route": "LESTA.DAYNE1B.EGCC23R",
-            "altitude": 21000,
-            "speed": 300,
-            "method": "cyclic",
+            "altitude": 10000,
+            "speed": 250,
+            "method": "random",
             "rate": 3,
             "airlines": [
                 ["aua/short", 1],
