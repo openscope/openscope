@@ -1,8 +1,9 @@
 import { choose } from '../utilities/generalUtilities';
+import { DEFAULT_CALLSIGN_FORMAT } from '../constants/airlineConstants';
 
 const ALPHA = 'abcdefghijklmnopqrstuvwxyz';
 const NUMERIC = '0123456789';
-const defaultCallsignFormats = ['###'];
+const defaultCallsignFormats = [DEFAULT_CALLSIGN_FORMAT];
 
 /**
  * This picks a random number. If it is the first value within the callsign (ie. i === 0), then it picks a
