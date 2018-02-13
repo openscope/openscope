@@ -101,7 +101,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
         {
             icao: 'egcc',
-            level: 'hard',
+            level: 'easy',
             name: 'Manchester Airport',
             premium: false,
             wip: false
