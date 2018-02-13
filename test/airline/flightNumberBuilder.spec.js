@@ -17,7 +17,7 @@ ava('.buildFlightNumber() creates a callsign made up of random lowercase letters
 });
 
 ava('.buildFlightNumber() creates a callsign made up of one random number and one random lowercase letter if callsign format is [\'#@\'] ', (t) => {
-    const regex = /^[0-9]{1}[a-z]/;
+    const regex = /[1-9]/;
     const callsignFormat = ['#@'];
     const result = buildFlightNumber(callsignFormat);
 
@@ -28,7 +28,7 @@ ava('.buildFlightNumber() returns callsignFormat as is if the format does not co
     const callsignFormat = ['4EVR', '8AE'];
     const result = buildFlightNumber(callsignFormat);
 
-    t.true(result === callsignFormat[0]);
+    t.true(callsignFormat.includes(result));
 });
 
 ava('.buildFlightNumber() does not allow 0 to be at the start of a callsign, returns a three digit callsign', (t) => {

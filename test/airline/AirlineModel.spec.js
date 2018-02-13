@@ -114,6 +114,14 @@ ava('._transformFleetNamesToLowerCase() transforms each type in fleet to lowerca
     t.true(model.fleets.default[0][[0]] === 'a319');
 });
 
+ava('.generateFlightNumber() returns a valid callsign when called', (t) => {
+    const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
+    const result = model.generateFlightNumber();
+    const regex = /[^A-Z]/;
+
+    t.true(regex.test(result) && result.charAt(0) !== 0);
+});
+
 ava('._isActiveFlightNumber() returns false if a given flightNumber is not present in activeFlightNumbers', (t) => {
     const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
 
