@@ -75,6 +75,34 @@ Scottish Control (MACC West)
 Scottish Control (MACC East, FL195-)
 ```
 
+### Other aerodromes of interest
+The videomap includes the positions of various aerodromes within the Manchester Area Control Zone, including:
+* Manchester (_'Ringway'_) International Airport (EGCC)
+* Liverpool John Lennon Airport (EGGP)
+* Hawarden Airport (EGNR)
+* Blackpool Airport (EGNH)
+* Warton Aerodrome (EGNO)
+* Barrow Walney Island Airport (EGNL)
+
+Isle of Man Ronaldsway Airport is also on the videomap, however, it is outside the Manchester Area Control Zone.
+
+##### Liverpool John Lennon Airport, EGGP
+Liverpool John Lennon Airport is an international airport which serves Liverpool. In 2001, the airport was named after a founding member of the band The Beatles, John Lennon, 21 years after his death. The airport is relatively small, and only serves 5 airlines including budget airlines FlyBe, Ryanair, EasyJet and Wizz Air.
+
+Runway 09/27, Asphalt, 2285m
+
+##### Hawarden Airport (Maes Awyr Penarlâg), EGNR
+Hawarden Airport is a small airport located near Hawarden in Flintshire, Wales. It is close to the border between England and Wales; 6km southwest of Chester. The airport has no scheduled commerical flights, however, an Airbus factory which produces aircraft wings is located here.
+
+Runway 03/21, Asphalt, 1255m
+Runway 08/26, Asphalt, 1837m
+
+##### Blackpool Airport, EGNH
+Blackpool Airport is an airport located just outside the English seaside town of Blackpool. Over the years, Blackpool Airport has been struggling quite a lot; it closed in 2014 due to financial struggles and reopened in 2015. Today, the airport has no commercial air services as Citywing Airlines ceased operations in March 2017. However, the airport does serve helicopters, with one of the main operators being Babcock which operates services to various gas fields.
+
+Runway 10/28, Asphalt, 1869m
+Runway 13/31, Asphalt, 998m
+
 ### Restricted Airspace
 ##### EG R311 Capenhurst
 **Description**: A circle, 2 nm radius centred at 531550N 0025708W
