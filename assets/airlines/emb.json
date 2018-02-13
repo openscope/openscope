@@ -5,8 +5,8 @@
         "name": "Embraer",
         "callsignFormats": [
             "####",
-            "###A",
-            "##AA"
+            "###@",
+            "##@@"
         ]
     },
     "fleets": {

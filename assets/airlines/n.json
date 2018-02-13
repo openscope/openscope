@@ -3,7 +3,7 @@
     "name": "General Aviation",
     "callsign": {
         "callsignFormats": [
-            "###AA"
+            "###@@"
         ]
     },
     "fleets": {

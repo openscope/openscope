@@ -4,7 +4,9 @@
     "callsign": {
         "name": "Cargolux",
         "callsignFormats": [
-            "###"
+            "###",
+            "##@@",
+            "###@"
         ]
     },
     "fleets": {

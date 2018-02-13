@@ -4,7 +4,7 @@
     "callsign": {
         "name": "Tuiair",
         "callsignFormats": [
-            "##AA",
+            "##@@",
             "###"
         ]
     },

@@ -4,8 +4,8 @@
     "callsign": {
         "name": "Channex",
         "callsignFormats": [
-            "###A",
-            "##AA",
+            "###@",
+            "##@@",
             "###"
         ]
     },
