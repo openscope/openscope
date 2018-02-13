@@ -2,6 +2,7 @@ import { choose } from '../utilities/generalUtilities';
 
 const ALPHA = 'abcdefghijklmnopqrstuvwxyz';
 const NUMERIC = '0123456789';
+const defaultCallsignFormats = ['###'];
 
 /**
  * This picks a random number. If it is the first value within the callsign (ie. i === 0), then it picks a
@@ -28,6 +29,31 @@ function _generateRandomLetter() {
 }
 
 /**
+ * This function takes a list of callsignFormats, validates them (ie. ensures that no callsignFormat has a leading 0)
+ * then returns a list of validated callsignFormats or the default callsignFormat if there are no valid callsignFormats
+ * @function _validateCallsignFormats
+ * @param callsignFormat {Array}
+ * @return validatedFormats {Array}
+*/
+function _validateCallsignFormats(callsignFormats) {
+    const validatedFormats = [];
+
+    for (let i = 0; i < callsignFormats.length; i++) {
+        if (callsignFormats[i].charAt(0) === '0') {
+            console.warn(`Format ${callsignFormats[i]} is invalid as it has a leading zero!`);
+        } else {
+            validatedFormats.push(callsignFormats[i]);
+        }
+    }
+
+    if (validatedFormats.length === 0) {
+        return defaultCallsignFormats;
+    }
+
+    return validatedFormats;
+}
+
+/**
  * Accepts a list of callsign formats, which are defined in the airline files. It randomly selects one of these
  * formats and generates a callsign based off this format.
  *
@@ -37,7 +63,9 @@ function _generateRandomLetter() {
 */
 export function buildFlightNumber(callsignFormats) {
     let flightNumber = '';
-    const chosenFormat = choose(callsignFormats);
+
+    const validatedFormats = _validateCallsignFormats(callsignFormats);
+    const chosenFormat = choose(validatedFormats);
 
     for (let i = 0; i < chosenFormat.length; i++) {
         switch (chosenFormat[i]) {
@@ -48,11 +76,7 @@ export function buildFlightNumber(callsignFormats) {
                 flightNumber += _generateRandomLetter();
                 break;
             default:
-                if (i === 0 && chosenFormat[i].charAt(0) === '0') {
-                    console.warn('Callsign cannot start with 0!');
-                } else {
-                    flightNumber += chosenFormat[i];
-                }
+                flightNumber += chosenFormat[i];
         }
     }
 

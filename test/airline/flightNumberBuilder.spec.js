@@ -31,9 +31,9 @@ ava('.buildFlightNumber() returns callsignFormat as is if the format does not co
     t.true(result === callsignFormat[0]);
 });
 
-ava('.buildFlightNumber() does not allow 0 to be at the start of a callsign', (t) => {
-    const callsignFormat = ['0##'];
+ava('.buildFlightNumber() does not allow 0 to be at the start of a callsign, returns a three digit callsign', (t) => {
+    const callsignFormat = ['0##', '00@@'];
     const result = buildFlightNumber(callsignFormat);
 
-    t.true(result.charAt(0) !== '0');
+    t.true(!isNaN(result));
 });
