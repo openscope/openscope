@@ -95,8 +95,8 @@
         "_TNT329056": [53.83990932552, -2.50864104563],
         "_WAL081002": [53.39808849718, -3.07974067065],
         "_WAL081016": [53.4404524646, -2.69625976161],
+        "_WAL081033": [53.48806876111, -2.22896490061],
         "_WAL081042": [53.5158528981, -1.98209966223],
-        "_WAL082033": [53.47513099565, -2.22551664779],
         "_WAL184005": [53.30879942659, -3.14004951571],
         "_XOBRO119008": [53.40945968107, -2.22430290606],
         "ABEVI": ["N54d42m27", "W002d46m29"],
@@ -112,6 +112,8 @@
         "ASMIM": ["N53d26m46", "W002d39m11"],
         "ASNIP": ["N53d28m43", "W002d54m26"],
         "BABGU": ["N54d16m39", "W005d16m25"],
+        "BABRA": ["N53d37m39", "W003d56m43"],
+        "BAGSO": ["N53d40m48", "W005d30m00"],
         "BAMEP": ["N53d52m42", "W002d16m09"],
         "BARTN": ["N53d28m14", "W002d25m41"],
         "BATLI": ["N53d38m45", "W001d21m37"],
@@ -119,13 +121,14 @@
         "BEDFO": ["N52d13m30", "W000d33m48"],
         "BEGAM": ["N54d09m25", "W002d07m15"],
         "BEKMO": ["N52d59m10", "E002d37m10"],
+        "BEL" : ["N54d39m40.12", "W006d13m47.67"],
         "BELOX": ["N53d53m16", "W003d29m23"],
         "BERUL": ["N52d40m16", "W003d31m13"],
-        "BIG"  : ["N51d19m51.15", "E000d02m05.32"],
+        "BIG" : ["N51d19m51.15", "E000d02m05.32"],
         "BINTI": ["N54d33m45", "W001d59m45"],
         "BODSO": ["N53d03m08", "E002d05m41"],
         "BOLBI": ["N53d28m00", "W001d48m45"],
-        "BPK"  : ["N51d44m59.05", "W000d06m24.25"],
+        "BPK" : ["N51d44m59.05", "W000d06m24.25"],
         "BUKUT": ["N52d45m30", "E002d48m02"],
         "BURNI": ["N53d43m38", "W002d31m04"],
         "BUZAD": ["N51d56m32", "W000d33m08"],
@@ -139,10 +142,10 @@
         "DALEY": ["N53d40m08", "W002d20m57"],
         "DANDI": ["N53d41m04", "W003d56m58"],
         "DAYNE": ["N53d14m19", "W002d01m45"],
-        "DCS"  : ["N54d43m18.88", "W003d20m26.30"],
+        "DCS" : ["N54d43m18.88", "W003d20m26.30"],
         "DENBY": ["N53d31m13", "W001d57m40"],
         "DESIG": ["N53d31m38", "W001d53m34"],
-        "DET"  : ["N51d18m14.41", "W000d35m50.19"],
+        "DET" : ["N51d18m14.41", "W000d35m50.19"],
         "DIBAL": ["N52d47m50", "E002d30m00"],
         "DIGBI": ["N55d11m06", "W001d03m01"],
         "DIGMA": ["N53d39m00", "W003d37m24"],
@@ -150,7 +153,9 @@
         "DOBEM": ["N51d52m11", "W002d55m45"],
         "DOLAS": ["N52d58m43", "E001d00m03"],
         "DOMIG": ["N53d32m11.72", "W001d53m03.47"],
-        "DTY"  : ["N52d10m48.51", "W001d06m49.64"],
+        "DTY" : ["N52d10m48.51", "W001d06m49.64"],
+        "DUB" : ["N53d29m57.8", "W006d18m25.6"],
+        "DUFFY": ["N54d30m53", "W005d51m39"],
         "EBOTO": ["N52d21m33", "W000d41m40"],
         "EDUXO": ["N53d24m24", "W001d13m01"],
         "EKLAD": ["N53d15m14", "W002d49m29"],
@@ -172,19 +177,20 @@
         "GIPLO": ["N53d31m31", "W000d47m23"],
         "GIRLI": ["N54d42m41", "W001d48m11"],
         "GOLES": ["N53d36m29", "W001d05m00"],
-        "GOW"  : ["N55d52m13.81", "W004d26m44.61"],
-        "GWC"  : ["N50d51m18.78", "W000d45m24.25"],
+        "GOW" : ["N55d52m13.81", "W004d26m44.61"],
+        "GUNTU": ["N53d35m37", "W003d09m54"],
+        "GWC" : ["N50d51m18.78", "W000d45m24.25"],
         "HALIF": ["N53d44m06", "W001d34m50"],
         "HEIDI": ["N52d06m44", "W000d37m24"],
         "HEMEL": ["N51d48m20", "W000d25m10"],
-        "HON"  : ["N52d21m24.04", "W001d39m49.41"],
+        "HON" : ["N52d21m24.04", "W001d39m49.41"],
         "IBRAR": ["N53d31m54", "W003d41m11"],
         "IDEXA": ["N53d28m14", "W005d09m51"],
         "IDKOL": ["N54d05m43", "W001d59m45"],
         "IDOVO": ["N52d13m26", "W003d33m04"],
         "INKOB": ["N53d52m16", "W004d24m14"],
         "INPUT": ["N55d18m18", "E004d39m05"],
-        "IOM"  : ["N54d04m00.72", "W004d45m48.51"],
+        "IOM" : ["N54d04m00.72", "W004d45m48.51"],
         "IPNOX": ["N54d13m40", "W002d42m22"],
         "IPSET": ["N54d31m06", "W005d27m09"],
         "IPSIR": ["N54d04m54", "W001d56m57"],
@@ -197,7 +203,7 @@
         "KUBAX": ["N52d56m34", "E002d57m13"],
         "KUXEM": ["N53d15m11", "W002d40m47"],
         "LAKEY": ["N54d14m20", "W002d58m52"],
-        "LAM"  : ["N51d38m45.69", "E000d09m06.13"],
+        "LAM" : ["N51d38m45.69", "E000d09m06.13"],
         "LAMIX": ["N53d18m29", "W000d40m56"],
         "LAMSO": ["N52d43m58", "E002d59m40"],
         "LEGRO": ["N53d19m35", "E001d30m46"],
@@ -215,8 +221,8 @@
         "MAKUX": ["N53d58m30", "W004d52m28"],
         "MALUD": ["N53d24m48", "W003d36m30"],
         "MAMUL": ["N53d25m05", "W001d16m48"],
-        "MCT"  : ["N53d21m25.29", "W002d15m44.24"],
-        "MID"  : ["N51d03m14.23", "W000d37m30.01"],
+        "MCT" : ["N53d21m25.29", "W002d15m44.24"],
+        "MID" : ["N51d03m14.23", "W000d37m30.01"],
         "MIMVA": ["N53d06m03", "E003d18m13"],
         "MIRSI": ["N53d32m17", "W002d42m42"],
         "MITSO": ["N53d39m07", "W000d53m38"],
@@ -237,20 +243,22 @@
         "NUGRA": ["N53d01m46", "W002d18m14"],
         "OBOXA": ["N54d10m36", "W001d54m20"],
         "OBUNI": ["N53d54m40", "W002d44m33"],
+        "OGTUG": ["N53d40m12", "W005d08m50"],
         "OKAMA": ["N53d10m15", "E002d46m22"],
         "OKTEM": ["N52d43m10", "W003d11m15"],
         "OLNEY": ["N52d07m40", "W000d44m03"],
         "OLPOP": ["N54d05m32", "W002d32m08"],
         "OSNAP": ["N53d25m12.22", "W001d54m21.40"],
         "OTBED": ["N53d17m17", "E000d01m55"],
-        "OTR"  : ["N53d41m53.57", "W000d06m13.45"],
+        "OTR" : ["N53d41m53.57", "W000d06m13.45"],
         "PEDIG": ["N52d44m48", "W001d43m10"],
         "PENIL": ["N53d36m57", "W003d39m49"],
         "PEPEG": ["N54d01m06", "W004d31m05"],
         "PEPOD": ["N54d16m16", "W005d34m09"],
         "PIPIN": ["N52d36m36", "W000d56m30"],
-        "POL"  : ["N53d44m37.56", "W002d06m11.98"],
+        "POL" : ["N53d44m37.56", "W002d06m11.98"],
         "POTON": ["N52d05m04", "W000d25m38"],
+        "RAMOX": ["N53d39m37", "W004d50m22"],
         "RAPUM": ["N54d55m18", "W001d52m58"],
         "RAVLO": ["N52d55m01", "E003d08m54"],
         "REMSI": ["N53d57m37", "W003d49m32"],
@@ -275,12 +283,15 @@
         "SETEL": ["N54d00m45", "W002d26m09"],
         "SHAPP": ["N54d30m00", "W002d37m38"],
         "SIVBU": ["N53d27m55", "W000d34m44"],
+        "SLYDA": ["N54d12m04", "W005d05m15"],
         "SONEX": ["N53d29m53", "W002d10m21"],
         "SONOL": ["N53d00m05", "E002d30m00"],
+        "SOPAX": ["N53d38m49", "W004d27m08"],
         "SOSIM": ["N53d48m56", "W004d30m30"],
         "STAFA": ["N52d51m41", "W002d14m35"],
         "SUPEL": ["N53d13m40", "E000d35m28"],
         "TABLY": ["N53d16m19", "W002d27m02"],
+        "TADAL": ["N53d35m14", "W003d01m35"],
         "TELBA": ["N52d39m52", "W002d19m07"],
         "TENSO": ["N53d36m02", "W002d12m27"],
         "TIGER": ["N51d04m02", "E000d26m22"],
@@ -290,11 +301,12 @@
         "TINVA": ["N53d32m57.59", "W002d04m49.54"],
         "TIPIL": ["N53d10m00", "W001d44m23"],
         "TIPTA": ["N54d48m13", "W001d36m41"],
-        "TNT"  : ["N53d03m14.23", "W001d40m11.89"],
+        "TNT" : ["N53d03m14.23", "W001d40m11.89"],
         "TOLSA": ["N53d07m37", "E003d06m29"],
         "ULSAX": ["N53d35m54", "W001d57m00"],
         "UMBEL": ["N54d01m44", "W000d29m07"],
         "UNBIG": ["N51d44m27", "W003d35m02"],
+        "UNDUX": ["N53d38m30", "W004d18m39"],
         "UNIGO": ["N53d33m40", "W001d33m39"],
         "UPTON": ["N53d35m13", "W001d18m03"],
         "UTUXA": ["N53d00m30", "W002d13m13"],
@@ -304,10 +316,10 @@
         "VAPID": ["N51d15m14", "W001d02m42"],
         "VEGUS": ["N53d24m01", "W000d21m11"],
         "VOLFI": ["N53d20m35", "W003d21m51"],
-        "WAL"  : ["N53d23m30.97", "W003d08m04.06"],
+        "WAL" : ["N53d23m30.97", "W003d08m04.06"],
         "WELIN": ["N52d14m50", "W000d51m08"],
         "WOBUN": ["N52d01m10", "W000d44m00"],
-        "WOD"  : ["N51d27m10.02", "W000d52m43.68"],
+        "WOD" : ["N51d27m10.02", "W000d52m43.68"],
         "XAPOS": ["N53d17m29", "W001d37m51"],
         "XOBRO": ["N53d28m17", "W002d25m18"],
         "XUMAT": ["N53d27m57", "W002d28m23"]
@@ -968,7 +980,9 @@
         }
     ],
     "airways": {
+        "L10": ["LAM", "BPK", "BUZAD", "WOBUN", "DTY", "HON", "WAL", "PENIL", "CASEL", "KELLY", "IOM", "SLYDA", "RINGA", "DUFFY", "BEL"],
         "L46": ["NALAX", "LIBSO", "MITSO", "RIMTO", "HALIF", "GETNO", "REMSI"],
+        "L70": ["DESIG", "KOLID", "TADAL", "GUNTU", "PENIL", "BABRA", "GIGTO", "UNDUX", "SOPAX", "RAMOX", "OGTUG", "BAGSO"],
         "L602": ["MIMVA", "TOLSA", "OKAMA", "EMLON", "LEGRO", "NALAX", "OTR", "UMBEL", "RIKUD", "NATEB"],
         "L603": ["LAMSO", "BUKUT", "DIBAL", "ENITO", "DOLAS", "AMVEL", "ROGAG", "LAMIX", "EDUXO", "MAMUL", "ELNOD", "DESIG", "TENSO", "BELOX", "REMSI", "IOM", "PEPOD", "LISBO"],
         "L612": ["GOW", "FENIK", "LUSIV", "NAVSO", "BEBNI", "DCS", "LAKEY", "VAMEB", "OBUNI", "CALDA", "CROFT", "BARTN", "LOVEL", "LISTO", "HON", "IXURA", "EMKUK", "COWLY", "WOD", "MID"],
@@ -1314,12 +1328,12 @@
             "rwy": {
                 "EGCC23R": []
             },
-            "body": ["^_MCT231003", ["_MCT294007", "A25+"], "_MCT302008", "XUMAT", ["_WAL082033", "A50"]],
+            "body": ["^_MCT231003", ["_MCT294007", "A25+"], "_MCT302008", "XUMAT", ["_WAL081033", "A50"]],
             "exitPoints": {
                 "SONEX": [["SONEX", "A50"]]
             },
             "draw": [
-                ["_MCT231003", "_MCT294007", "_MCT302008", "XUMAT", "_WAL082033", "SONEX"]
+                ["_MCT231003", "_MCT294007", "_MCT302008", "XUMAT", "_WAL081033", "SONEX"]
             ]
         },
         "SONEX1Y": {
@@ -1328,12 +1342,12 @@
             "rwy": {
                 "EGCC23L": []
             },
-            "body": ["^_MCT2313.2", ["_MCT294007", "A25+"], "_MCT302008", "XUMAT", ["_WAL082033", "A50"]],
+            "body": ["^_MCT2313.2", ["_MCT294007", "A25+"], "_MCT302008", "XUMAT", ["_WAL081033", "A50"]],
             "exitPoints": {
                 "SONEX": [["SONEX", "A50"]]
             },
             "draw": [
-                ["_MCT2313.2", "_MCT231006", "_MCT294007", "_MCT302008", "XUMAT", "_WAL082033", "SONEX"]
+                ["_MCT2313.2", "_MCT231006", "_MCT294007", "_MCT302008", "XUMAT", "_WAL081033", "SONEX"]
             ]
         }
     },
@@ -1651,8 +1665,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.M146.IPSET",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1669,8 +1683,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.KUXEM1Y.KUXEM.P17.NOKIN.N862.DOBEM",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -1687,8 +1701,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.LISTO2Y.LISTO.L612.HON.UN859.KIDLI",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -1702,8 +1716,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.POL1Y.POL.UP17.DIGBI",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 1.5,
             "airlines": [
@@ -1720,8 +1734,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.SANBA1Y.SANBA.UN859.CPT",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1741,8 +1755,8 @@
             "destination": "",
             "category": "departure",
             "route": "EGCC23L.SONEX1Y.SONEX.L975.DESIG.L603.LAMSO",
-            "altitude": 0,
-            "speed": 0,
+            "altitude": "",
+            "speed": "",
             "method": "random",
             "rate": 3,
             "airlines": [
@@ -1763,6 +1777,34 @@
                 ["sia/a350", 1],
                 ["tcx", 5],
                 ["thy", 2]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC23L.EKLAD1Y.EKLAD.Y53.WAL.L10.PENIL.L70.BAGSO..DUB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["ein/short", 5],
+                ["ryr", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "DUB.L975.MALUD.MIRSI2B.EGCC23R",
+            "altitude": 24000,
+            "speed": 300,
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["ein/short", 5],
+                ["ryr", 5]
             ]
         },
         {
@@ -1842,7 +1884,6 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["ein/short", 8],
                 ["ryr", 31]
             ]
         },
