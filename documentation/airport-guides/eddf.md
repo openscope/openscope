@@ -70,7 +70,7 @@ Transitions with the suffix 07N/25N are used to sequence aircraft for arrival on
 ```
 Langen Radar (Departure)
 Langen Radar (North Approach)
-Langen Radar (North Approach)
+Langen Radar (South Approach)
 Frankfurt Director
 ```
 
