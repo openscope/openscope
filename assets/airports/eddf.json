@@ -1776,6 +1776,62 @@
         }
     },
     "stars": {
+        "ASPAT2E": {
+            "icao": "ASPAT2E",
+            "name": "Aspat Two Echo",
+            "entryPoints": {
+                "ASPAT": ["ASPAT"]
+            },
+            "body": ["GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "rwy": {
+                "EDDF07R": []
+            },
+            "draw": [
+                ["ASPAT", "GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
+            ]
+        },
+        "ASPAT2W": {
+            "icao": "ASPAT2W",
+            "name": "Aspat Two Whiskey",
+            "entryPoints": {
+                "ASPAT": ["ASPAT"]
+            },
+            "body": ["GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "rwy": {
+                "EDDF25L": []
+            },
+            "draw": [
+                ["ASPAT", "GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
+            ]
+        },
+        "EMPAX2E": {
+            "icao": "EMPAX2E",
+            "name": "Empax Two Echo",
+            "entryPoints": {
+                "EMPAX": ["EMPAX"]
+            },
+            "body": ["NELLI", "KOVAN", "XIBGI", "XINLA", ["XOPMO", "S280-"], ["ADNIS", "S280-"], "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "rwy": {
+                "EDDF07R": []
+            },
+            "draw": [
+                ["EMPAX", "NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
+            ]
+        },
+        "EMPAX2W": {
+            "icao": "EMPAX2W",
+            "name": "Empax Two Whiskey",
+            "entryPoints": {
+                "EMPAX": ["EMPAX"]
+            },
+            "body": ["NELLI", "KOVAN", "XIBGI", "XINLA", ["XOPMO", "S280-"], ["ADNIS", "S280-"], "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "rwy": {
+                "EDDF25L": []
+            },
+            "draw": [
+                ["EMPAX", "NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
+            ]
+        },
         "KERAX07N": {
             "icao": "KERAX07N",
             "name": "Kerax Zero Seven North Transition",
@@ -1928,6 +1984,34 @@
             },
             "draw": [
                 ["KERAX", "GED", "MTR"]
+            ]
+        },
+        "PETIX2E": {
+            "icao": "PETIX2E",
+            "name": "Petix Two Echo",
+            "entryPoints": {
+                "PETIX": ["PETIX"]
+            },
+            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "rwy": {
+                "EDDF07R": []
+            },
+            "draw": [
+                ["PETIX", "ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
+            ]
+        },
+        "PETIX2W": {
+            "icao": "PETIX2W",
+            "name": "Petix Two Whiskey",
+            "entryPoints": {
+                "PETIX": ["PETIX"]
+            },
+            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "rwy": {
+                "EDDF25L": []
+            },
+            "draw": [
+                ["PETIX", "ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
             ]
         },
         "PSA07N": {
