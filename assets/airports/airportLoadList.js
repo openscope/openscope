@@ -274,13 +274,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'klax',
-        //     level: 'medium',
-        //     name: 'Los Angeles International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+         {
+             icao: 'klax',
+             level: 'medium',
+             name: 'Los Angeles International Airport',
+             premium: false,
+             wip: true
+         },
         {
             icao: 'kmci',
             level: 'beginner',
