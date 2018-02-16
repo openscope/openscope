@@ -2005,7 +2005,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["ryr", 10],
                 ["wzz/a320", 30],
@@ -2028,7 +2028,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 3,
             "airlines": [
                 ["ryr", 10],
                 ["wzz/a320", 30],
@@ -2048,7 +2048,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["ryr", 10],
                 ["ezy/a319", 37],
@@ -2084,7 +2084,7 @@
             "altitude": 28000,
             "speed": 250,
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["ezy/a319", 37],
                 ["ezy/a320", 20],
@@ -2101,7 +2101,7 @@
             "altitude": 26000,
             "speed": 300,
             "method": "random",
-            "rate": 1,
+            "rate": 2,
             "airlines": [
                 ["ezy/a319", 37],
                 ["ezy/a320", 20],
