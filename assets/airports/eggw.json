@@ -1,8 +1,8 @@
 {
     "radio": {
         "twr": "Luton Tower",
-        "app": "Essex Radar",
-        "dep": "Essex Radar"
+        "app": "London Control",
+        "dep": "London Control"
     },
     "icao": "EGGW",
     "iata": "LTN",
@@ -525,26 +525,55 @@
         "_RWY2602DME": [51.86810760066, -0.40629222833],
         "_RWY261.8DME": [51.86892, -0.40171],
         "ABBOT": ["N52d00m58", "E000d35m58"],
+        "ABKIM": ["N50d50m43", "W001d58m58"],
+        "ABSAV": ["N50d38m29", "W001d10m29"],
+        "ADMEX": ["N52d21m39", "W001d27m45"],
+        "AKUPA": ["N52d29m12", "W001d05m28"],
+        "ALESO": ["N50d34m32", "E001d13m32"],
+        "ARTOV": ["N51d54m19", "E001d25m33"],
         "ASKEY": ["N52d00m50", "W000d03m10"],
+        "ASPEN": ["N50d17m34", "W001d48m20"],
         "AVANT": ["N50d49m12", "W000d56m18"],
         "BANVA": ["N50d32m42", "E000d45m12"],
         "BARMI": ["N52d28m42", "E002d34m14"],
         "BEDEK": ["N51d22m15", "W001d33m31"],
         "BEGTO": ["N50d45m45", "W001d14m08"],
+        "BEVUP": ["N50d48m00", "W002d14m20"],
+        "BIG"  : ["N51d19m51.15", "E000d02m05.32"],
         "BKY"  : ["N51d59m23.17", "E000d03m42.87"],
         "BNN"  : ["N51d43m34.19", "W000d32m59.10"],
         "BOMBO": ["N51d59m44", "W000d23m47"],
         "BPK"  : ["N51d44m59.05", "W000d06m24.25"],
+        "BRAIN": ["N51d48m40", "E000d39m06"],
+        "BRASO": ["N51d41m07", "E000d41m00"],
+        "BRIPO": ["N50d42m27", "W002d45m00"],
         "BUSTA": ["N52d05m34", "E000d04m04"],
+        "BUZAD": ["N51d56m32", "W000d33m08"],
         "CASEY": ["N52d00m31", "E000d34m59"],
         "CLIPY": ["N52d00m03", "W001d05m09"],
         "CLN"  : ["N51d50m54.50", "E001d08m51.32"],
+        "COWLY": ["N51d36m58", "W001d03m54"],
         "CPT"  : ["N51d29m29.66", "W001d13m10.89"],
+        "DAGGA": ["N51d49m19", "E000d47m39"],
+        "DAWLY": ["N50d34m27", "W003d27m50"],
         "DET"  : ["N51d18m14.41", "E000d35m50.19"],
+        "DIKVU": ["N51d17m47", "E000d19m02"],
         "DITOB": ["N52d17m01", "E001d49m27"],
+        "DOMUT": ["N50d15m43", "W001d40m09"],
         "DTY"  : ["N52d10m48.51", "W001d06m49.64"],
+        "DVR"  : ["N51d09m45.44", "E001d21m32.72"],
+        "ELVOS": ["N52d42m01", "W001d18m25"],
+        "EMKAD": ["N51d14m50", "E000d42m34"],
+        "EMKUK": ["N51d58m37", "W001d21m15"],
+        "ETVAX": ["N50d58m07", "E000d35m56"],
+        "EVTES": ["N51d04m55", "W001d12m57"],
+        "EXARO": ["N51d00m03", "W001d22m50"],
+        "FINCH": ["N51d33m36", "W000d10m59"],
         "FINMA": ["N51d59m47", "W001d03m13"],
         "GIBSO": ["N50d44m59", "W002d31m07"],
+        "GILDA": ["N51d36m06", "E000d35m01"],
+        "GOGSI": ["N51d17m27", "W001d00m02"],
+        "GOXUL": ["N51d21m32", "W000d10m33"],
         "GWE16": ["N51d46m22.04", "W000d15m46.78"],
         "GWE19": ["N51d45m40.56", "W000d11m04.88"],
         "GWE37": ["N51d42m59.91", "E000d16m58.25"],
@@ -552,34 +581,67 @@
         "GWS06": ["N51d47m05.83", "W000d29m28.41"],
         "GWS12": ["N51d46m56.85", "W000d19m44.38"],
         "HAZEL": ["N51d00m19", "W000d59m04"],
+        "HEMEL": ["N51d48m20", "W000d25m10"],
         "HEN"  : ["N51d45m35.07", "W000d47m25.05"],
         "HON"  : ["N52d21m24.04", "W001d39m49.41"],
         "IDESI": ["N51d53m52", "E001d53m08"],
+        "JACKO": ["N51d44m09", "E001d25m36"],
+        "KAPEX": ["N50d40m30", "W001d51m00"],
         "KATHY": ["N50d31m14", "W001d20m00"],
         "KENET": ["N51d31m14", "W001d27m18"],
+        "KONAN": ["N51d07m51", "E002d00m00"],
         "LAPRA": ["N52d07m07", "E001d12m36"],
+        "LELNA": ["N49d58m57", "W002d06m23"],
         "LISTO": ["N53d08m36", "W002d11m57"],
+        "LIVSU": ["N51d41m49", "E000d50m58"],
         "LOGAN": ["N51d44m51", "E001d36m43"],
         "LOREL": ["N52d00m50", "W000d03m10"],
+        "LAM"  : ["N51d38m45.69", "E000d09m06.13"],
         "LUT"  : ["N51d53m40.68", "W000d15m09.18"],
-        "MATCH": ["N51d46m45.20", "E000d15m00.00"],
+        "MANGO": ["N51d41m34", "E000d47m26"],
+        "MARUK": ["N50d14m47", "W002d04m20"],
+        "MATCH": ["N51d46m45", "E000d15m00"],
         "MAY"  : ["N51d01m01.86", "E000d06m58.04"],
         "MCT"  : ["N53d21m25.29", "W002d15m44.24"],
         "MEGEL": ["N52d20m58", "E002d04m25"],
         "MID"  : ["N51d03m14.23", "W000d37m30.01"],
+        "MIMBI": ["N51d32m57", "W001d41m36"],
+        "NEDUL": ["N50d39m58", "W001d32m52"],
         "NEPNA": ["N51d29m58.33", "E000d26m56.55"],
         "NIGIT": ["N51d18m47", "W001d10m15"],
+        "NORRY": ["N51d28m47", "W001d07m24"],
+        "NUBRI": ["N51d20m17", "W001d13m56"],
         "OCK"  : ["N51d18m18.17", "W000d26m49.86"],
         "OLNEY": ["N52d07m40", "W000d44m03"],
+        "ORTAC": ["N49d59m57", "W002d00m18"],
         "PEDIG": ["N52d44m48", "W001d43m10"],
+        "PEPIS": ["N51d11m48", "W001d14m37"],
+        "REDFA": ["N52d06m53", "E002d29m17"],
         "RODNI": ["N51d42m57", "W000d51m42"],
         "ROGBI": ["N52d17m47", "W001d20m06"],
+        "ROTNO": ["N50d51m26", "E000d46m41"],
+        "SABER": ["N51d42m14", "E000d56m58"],
+        "SAM"  : ["N50d57m18.90", "W001d20m42.20"],
+        "SILVA": ["N51d50m51", "W001d00m19"],
+        "SIRGO": ["N51d37m46", "E000d38m47"],
+        "TABEN": ["N51d21m49", "W001d10m22"],
         "TABIS": ["N52d00m32", "E000d26m44"],
         "TELTU": ["N50d48m40", "W000d45m18"],
+        "THRED": ["N50d29m55", "W001d39m50"],
+        "TIGER": ["N51d04m02", "E000d26m22"],
+        "TIMPO": ["N52d33m32", "W001d09m50"],
+        "TNT"  : ["N53d03m14.23", "W001d40m11.89"],
+        "TOTRI": ["N51d46m30", "E000d11m48"],
+        "TRIPO": ["N51d42m47", "E001d04m58"],
+        "UMTUM": ["N51d12m27", "E001d01m03"],
         "UNDUG": ["N50d47m24", "E000d25m30"],
         "VATON": ["N51d26m04", "W000d20m56"],
+        "VEXEN": ["N50d08m22", "W001d49m34"],
         "WCO"  : ["N51d51m10.51", "W000d57m44.67"],
-        "WOD"  : ["N51d27m10.02", "W000d52m43.68"]
+        "WELIN": ["N52d14m50", "W000d51m08"],
+        "WESUL": ["N51d40m15", "E000d29m09"],
+        "WOD"  : ["N51d27m10.02", "W000d52m43.68"],
+        "XAMAN": ["N51d47m05", "E002d13m27"]
     },
     "restricted": [
         {
@@ -1284,7 +1346,16 @@
         }
     ],
     "airways": {
-
+        "L6": ["DVR", "DET"],
+        "L9": ["KONAN", "DVR", "UMTUM", "EMKAD", "DIKVU", "BIG", "GOXUL", "NORRY", "CPT", "KENET"],
+        "Q295": ["CPT", "BPK", "TOTRI", "MATCH", "BRAIN", "DAGGA", "CLN"],
+        "UL620": ["SAM", "MID", "GILDA", "SIRGO", "MANGO", "CLN", "ARTOV", "REDFA"],
+        "Y321": ["EXARO", "PEPIS", "NUBRI", "CPT", "EMKUK", "ADMEX"],
+        "Q41": ["ORTAC", "ASPEN", "THRED", "NEDUL", "SAM", "PEPIS", "TABEN", "NORRY", "COWLY", "SILVA"],
+        "N621": ["LELNA", "MARUK", "KAPEX", "SAM", "EVTES", "GOGSI"],
+        "T420": ["ALESO", "ROTNO", "ETVAX", "TIGER", "BIG", "FINCH", "HEMEL", "BUZAD", "OLNEY", "WELIN", "AKUPA", "TIMPO", "ELVOS", "TNT"],
+        "L980": ["ORTAC", "VEXEN", "DOMUT", "KATHY", "ABSAV", "AVANT", "MID", "LAM", "WESUL", "BRASO", "MANGO", "LIVSU", "SABER", "TRIPO", "JACKO", "LOGAN", "XAMAN"],
+        "L620": ["DAWLY", "BRIPO", "GIBSO", "BEVUP", "ABKIM", "SAM", "HAZEL", "MID", "CLN", "ARTOV", "REDFA"]
     },
     "sids": {
         "CPT3B": {
@@ -1357,20 +1428,6 @@
                 ["_RWY261.8DME", "_BNN033007", "_BPK285010", "_BPK285006", "_BPK285003", "BPK", "_BPK098007", "_DET335028", "NEPNA", "DET"]
             ]
         },
-        "MATCH2Y": {
-            "icao": "MATCH2Y",
-            "name": "Match Two Yankee",
-            "rwy": {
-                "EGGW26": []
-            },
-            "body": [["_RWY2602DME", "A10+|A40-"], ["GWS01", "A10+|A40-|S220-"], ["GWS06", "A30+|A40-|S220-"], ["GWS12", "A30+|A40-|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"]],
-            "exitPoints": {
-                "MATCH": [["MATCH", "A50"]]
-            },
-            "draw": [
-                ["_RWY2602DME", "GWS01", "GWS06", "GWS12", "GWE16", "GWE19", "BPK", "MATCH"]
-            ]
-        },
         "MATCH1C": {
             "icao": "MATCH1C",
             "name": "Match One Charlie",
@@ -1397,6 +1454,20 @@
             },
             "draw": [
                 ["_RWY261.8DME", "_BNN033007", "_BPK285010", "_BPK285006", "_BPK285003", "BPK", "_BPK083007", "MATCH"]
+            ]
+        },
+        "MATCH2Y": {
+            "icao": "MATCH2Y",
+            "name": "Match Two Yankee",
+            "rwy": {
+                "EGGW26": []
+            },
+            "body": [["_RWY2602DME", "A10+|A40-"], ["GWS01", "A10+|A40-|S220-"], ["GWS06", "A30+|A40-|S220-"], ["GWS12", "A30+|A40-|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"]],
+            "exitPoints": {
+                "MATCH": [["MATCH", "A50"]]
+            },
+            "draw": [
+                ["_RWY2602DME", "GWS01", "GWS06", "GWS12", "GWE16", "GWE19", "BPK", "MATCH"]
             ]
         },
         "OLNEY1B": {
@@ -1433,9 +1504,9 @@
             "icao": "ABBOT1C",
             "name": "Abbot One Charlie",
             "entryPoints": {
-                "IDESI": ["IDESI"]
+                "IDESI": [["IDESI", "A180"]]
             },
-            "body": [["LAPRA", "S250-"], ["@ABBOT", "S220-"]],
+            "body": [["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1463,7 +1534,7 @@
             "icao": "ABBOT1E",
             "name": "Abbot One Echo",
             "entryPoints": {
-                "DET": ["DET"]
+                "DET": [["DET", "A170-"]]
             },
             "body": [["_DET001032", "S250-"], ["@ABBOT", "S220-"]],
             "rwy": {
@@ -1474,13 +1545,28 @@
                 ["DET", "ABBOT"]
             ]
         },
+        "ABBOT2B": {
+            "icao": "ABBOT2B",
+            "name": "Abbot Two Bravo",
+            "entryPoints": {
+                "BARMI": [["BARMI", "A260"]]
+            },
+            "body": [["MEGEL", "A220"], "DITOB", ["LAPRA", "A120|S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
+            "rwy": {
+                "EGGW08": [],
+                "EGGW26": []
+            },
+            "draw": [
+                ["BARMI", "MEGEL", "DITOB", "LAPRA", "ABBOT"]
+            ]
+        },
         "ASKEY1B": {
             "icao": "ASKEY1B",
             "name": "Askey One Bravo",
             "entryPoints": {
-                "KATHY": ["KATHY"]
+                "KATHY": [["KATHY", "A170-"]]
             },
-            "body": ["HAZEL", "WOD", "WCO", "BOMBO", "LOREL", "BKY", "^BUSTA", "LOREL"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "LOREL", "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1525,7 +1611,7 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", "AVANT", "MID", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["BEGTO", ["AVANT", "A190"], "MID", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1540,7 +1626,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": ["CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": [["CLIPY", "150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1553,7 +1639,7 @@
             "icao": "ASKEY2L",
             "name": "Askey Two Lima",
             "entryPoints": {
-                "KENET": ["KENET"]
+                "KENET": [["KENET", "A170-"]]
             },
             "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
@@ -1568,7 +1654,7 @@
             "icao": "ASKEY2S",
             "name": "Askey Two Sierra",
             "entryPoints": {
-                "BEDEK": ["BEDEK"]
+                "BEDEK": [["BEDEK", "A180"]]
             },
             "body": ["NIGIT", "OCK", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
@@ -1585,7 +1671,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", "ROGBI", "CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1598,7 +1684,7 @@
             "icao": "ASKEY4C",
             "name": "Askey Four Charlie",
             "entryPoints": {
-                "AVANT": ["AVANT"]
+                "AVANT": [["AVANT", "A190"]]
             },
             "body": ["OCK", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
@@ -1615,7 +1701,7 @@
             "entryPoints": {
                 "BANVA": ["BANVA"]
             },
-            "body": ["UNDUG", "MAY", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1645,7 +1731,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", "ROGBI", "CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1658,9 +1744,9 @@
             "icao": "CASEY1C",
             "name": "Casey One Charlie",
             "entryPoints": {
-                "IDESI": ["IDESI"]
+                "IDESI": [["IDESI", "A180"]]
             },
-            "body": [["LAPRA", "S250-"], ["@CASEY", "S220-"]],
+            "body": [["LAPRA", "A120|S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1688,7 +1774,7 @@
             "icao": "CASEY1E",
             "name": "Casey One Echo",
             "entryPoints": {
-                "DET": ["DET"]
+                "DET": [["DET", "A170-"]]
             },
             "body": [["_DET001032", "S250-"], ["@CASEY", "S220-"]],
             "rwy": {
@@ -1703,9 +1789,9 @@
             "icao": "CASEY2B",
             "name": "Casey Two Bravo",
             "entryPoints": {
-                "BARMI": ["BARMI"]
+                "BARMI": [["BARMI", "A260"]]
             },
-            "body": ["MEGEL", "DITOB", ["LAPRA", "S250-"], ["@CASEY", "S220-"]],
+            "body": [["MEGEL", "A220"], "DITOB", ["LAPRA", "A120|S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1718,9 +1804,9 @@
             "icao": "LOREL1B",
             "name": "Lorel One Bravo",
             "entryPoints": {
-                "KATHY": ["KATHY"]
+                "KATHY": [["KATHY", "A170-"]]
             },
-            "body": ["HAZEL", "WOD", "WCO", "BOMBO", "LOREL", "BKY", "^BUSTA", "LOREL"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "LOREL", "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1765,7 +1851,7 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", "AVANT", "MID", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["BEGTO", ["AVANT", "A190"], "MID", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1780,7 +1866,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": ["CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1793,7 +1879,7 @@
             "icao": "LOREL2L",
             "name": "Lorel Two Lima",
             "entryPoints": {
-                "KENET": ["KENET"]
+                "KENET": [["KENET", "A170-"]]
             },
             "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
@@ -1808,7 +1894,7 @@
             "icao": "LOREL2S",
             "name": "Lorel Two Sierra",
             "entryPoints": {
-                "BEDEK": ["BEDEK"]
+                "BEDEK": [["BEDEK", "A180"]]
             },
             "body": ["NIGIT", "OCK", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
@@ -1825,7 +1911,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", "ROGBI", "CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1838,7 +1924,7 @@
             "icao": "LOREL4C",
             "name": "Lorel Four Charlie",
             "entryPoints": {
-                "AVANT": ["AVANT"]
+                "AVANT": [["AVANT", "A190"]]
             },
             "body": ["OCK", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
@@ -1855,7 +1941,7 @@
             "entryPoints": {
                 "BANVA": ["BANVA"]
             },
-            "body": ["UNDUG", "MAY", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1885,7 +1971,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", "ROGBI", "CLIPY", "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1898,7 +1984,7 @@
             "icao": "TELTU1L",
             "name": "Teltu One Lima",
             "entryPoints": {
-                "TELTU": ["TELTU"]
+                "TELTU": [["TELTU", "A190"]]
             },
             "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["LOREL", "S220-"]],
             "rwy": {
@@ -1910,6 +1996,188 @@
             ]
         }
     },
+    "spawnPatterns": [
+        {
+            "origin": "EGGW",
+            "destination": "",
+            "category": "departure",
+            "route": "EGGW26.DET2Y.DET.L6.DVR.L9.KONAN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ryr", 10],
+                ["wzz/a320", 30],
+                ["wzz/a321", 9],
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["vlg/a320", 3],
+                ["bms/b734", 2],
+                ["bms/b738", 1],
+                ["ely/b738", 1],
+                ["mnb/a306", 1]
+            ]
+        },
+        {
+            "origin": "EGGW",
+            "destination": "",
+            "category": "departure",
+            "route": "EGGW26.MATCH2Y.MATCH.Q295.CLN.UL620.REDFA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ryr", 10],
+                ["wzz/a320", 30],
+                ["wzz/a321", 9],
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["mnb/a306", 1],
+                ["vlg/a320", 3]
+            ]
+        },
+        {
+            "origin": "EGGW",
+            "destination": "",
+            "category": "departure",
+            "route": "EGGW26.CPT3B.CPT.Y321.PEPIS.Q41.SAM.N621.LELNA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ryr", 10],
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["vlg/a320", 3],
+                ["mnb/a306", 1],
+                ["tom/b738", 1]
+            ]
+        },
+        {
+            "origin": "EGGW",
+            "destination": "",
+            "category": "departure",
+            "route": "EGGW26.OLNEY1B.OLNEY.T420.TNT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ryr", 10],
+                ["wzz/a321", 9],
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "XAMAN.L980.LOGAN.ABBOT1D.EGGW26",
+            "altitude": 28000,
+            "speed": 250,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["vlg/a320", 3],
+                ["mnb/a306", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "BARMI.ABBOT2B.EGGW26",
+            "altitude": 26000,
+            "speed": 300,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["wzz/a320", 30],
+                ["wzz/a321", 9],
+                ["ryr", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "ORTAC.L980.AVANT.LOREL4C.EGGW26",
+            "altitude": 19000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["ezy/a20n", 5],
+                ["vlg/a320", 3],
+                ["ryr", 10],
+                ["tom/b738", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "BANVA.LOREL4Q.EGGW26",
+            "altitude": 22000,
+            "speed": 300,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["wzz/a320", 30],
+                ["wzz/a321", 9],
+                ["ryr", 10],
+                ["mnb/a306", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "IDESI.ABBOT1C.EGGW26",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["wzz/a320", 30],
+                ["wzz/a321", 9],
+                ["ryr", 10],
+                ["mnb/a306", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGGW",
+            "category": "arrival",
+            "route": "DAWLY.L620.GIBSO.LOREL2D.EGGW26",
+            "altitude": 30000,
+            "speed": 300,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ryr", 10],
+                ["ezy/a319", 37],
+                ["ezy/a320", 20],
+                ["vlg/a320", 3]
+            ]
+        }
+    ],
     "maps": {
         "base": [
             ["N51d52m19.25", "W000d23m00.91", "N51d52m37.36", "W000d21m16.15"],
