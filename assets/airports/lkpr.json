@@ -15,11 +15,11 @@
     "rr_center": ["N50d05.8", "E14d15.9"],
     "has_terrain": false,
     "wind": {
-        "angle": 60,
-        "speed": 8
+        "angle": 260,
+        "speed": 3
     },
-    "arrivalRunway": "06",
-    "departureRunway": "06",
+    "arrivalRunway": "24",
+    "departureRunway": "24",
     "airspace": [
         {
             "floor": 0,
@@ -198,45 +198,39 @@
         "GOSEK": ["N49d37.0", "E14d06.1"],
         "KENOK": ["N49d51.4", "E14d45.6"],
         "KUVIX": ["N50d06.3", "E13d56.0"],
-        "L": ["N50d07m11.74", "E14d17m11.75"],
+        "L"    : ["N50d07m11.74", "E14d17m11.75"],
         "LOMKI": ["N49d54.6", "E13d14.5"],
-        "OKL": ["N50d05.8", "E14d15.9"],
+        "OKL"  : ["N50d05.8", "E14d15.9"],
         "RATEV": ["N50d07m03.32", "E14d35m12.65"],
         "SOMIS": ["N50d08.6", "E13d57.3"],
         "UTORO": ["N50d16.6","E14d33.1"],
         "VENOX": ["N50d33.3","E14d08.0"],
-        "VLM": ["N49d42.3", "E15d04.0"],
-        "VOZ": ["N49d31.9", "E14d52.5"]
+        "VLM"  : ["N49d42.3", "E15d04.0"],
+        "VOZ"  : ["N49d31.9", "E14d52.5"]
     },
     "runways": [
         {
             "name":        ["06", "24"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [
                 ["N50d06m06.61", "E14d13m34.68"],
                 ["N50d06m57.42", "E14d16m24.12"]
             ],
-            "length":      3.715,
             "ils":         [true, true]
         },
         {
             "name":        ["12", "30"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [
                 ["N50d06m28.84", "E14d14m43.32"],
                 ["N50d05m25.68", "E14d16m54.02"]
             ],
-            "length":      3.250,
             "ils":         [true, true]
         },
         {
             "name":        ["04", "22"],
-            "name_offset": [[0, 0], [0, 0]],
             "end": [
                 ["N50d05m15.77", "E14d16m00.06"],
                 ["N50d06m10.50", "E14d17m04.00"]
             ],
-            "length":      2.120,
             "ils":         [false, false]
         }
     ],
