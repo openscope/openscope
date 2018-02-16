@@ -384,7 +384,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'lszh',
             level: 'medium',
-            name: 'Zurich Airport',
+            name: 'Zürich Airport',
             premium: false,
             wip: false
         },
