@@ -2,19 +2,19 @@
     "icao": "cfe",
     "name": "BA CityFlyer",
     "callsign": {
-        "name": "CityFlyer",
+        "name": "Flyer",
         "callsignFormats": [
             "####",
-            "###A",
-            "##AA",
-            "##A",
-            "#AA"
+            "###@",
+            "##@@",
+            "##@",
+            "#@@"
         ]
     },
     "fleets": {
         "default": [
             ["E170", 6],
-            ["E190", 14]
+            ["E190", 15]
         ]
     }
 }

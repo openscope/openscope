@@ -4,9 +4,9 @@
     "callsign": {
         "name": "Sunexpress",
         "callsignFormats": [
-            "#AA",
-            "##A",
-            "#A"
+            "#@@",
+            "##@",
+            "#@"
         ]
     },
     "fleets": {
