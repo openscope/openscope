@@ -310,7 +310,8 @@
                 "30" : [["PR511","A50+|S250-"],"PR512",["PR914","S220-"],"PR915","ARVEG"],
                 "06" : [["PR707","A50+|S220-"],"BAROX"],
                 "12" : ["PR707",["PR956","S220-"],["PR954","A40+"],"SOMIS"]
-            }
+            },
+            "draw":[[]]
         },
         "GOSEK": {
             "icao": "GOSEK",
@@ -325,7 +326,8 @@
                 "30" : ["PR901", "PR902", "PR903", "PR904","KENOK"],
                 "06" : ["PR718",["PR719","A40+|S220-"],"PR521","AKEVA"],
                 "12" : [["PR953","S220-"],["PR954","A40+"],"SOMIS"]
-            }
+            },
+            "draw":[[]]
         },
         "VLM": {
             "icao": "VLM",
@@ -340,7 +342,8 @@
                 "30" : ["PR904", "KENOK"],
                 "06" : ["PR721","PR722","PR723",["PR523","A40+|S220-"],"AKEVA"],
                 "12" : ["PR950","PR951",["PR952","A40+|S220-"],"EVEMI"]
-            }
+            },
+            "draw":[[]]
         },
         "GOLOP": {
             "icao": "GOLOP",
@@ -355,142 +358,14 @@
                 "30" : ["BAGRU", ["PR914","S220-"], "PR915", "ARVEG"],
                 "06" : ["PR711","PR712",["PR513","A40+|S220-"],"KUVIX"],
                 "12" : [["PR957","S220-"],["PR958","A40+"],"EVEMI"]
-            }
+            },
+            "draw":[[]]
         }
     },
     "spawnPatterns": [
-        {
-            "origin": "lkpr",
-            "destination": "",
-            "category": "departure",
-            "route": "LKPR.BALTU.BALTU",
-            "altitude": "",
-            "speed": "",
-            "method" : "random",
-            "rate": 10,
-            "airlines": [
-                ["TVS", 20],
-                ["CSA", 20],
-                ["EZY", 10],
-                ["RYR",10],
-                ["AFR",4],
-                ["AUA",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW",4],
-                ["DLH",4],
-                ["SWR",4],
-                ["KLM",2],
-                ["KLC",2],
-                ["SAS",2],
-                ["LOT",2],
-                ["TAP",2],
-                ["EIN",2],
-                ["IBE",2],
-                ["SAS",1],
-                ["EIN",1],
-                ["CES",1],
-                ["UAE",1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "lkpr",
-            "category": "arrival",
-            "route": "LOMKI091.LOMKI.LKPR",
-            "altitude": 12000,
-            "speed": 320,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["TVS", 16],
-                ["CSA", 16],
-                ["EZY", 12],
-                ["RYR",8],
-                ["AFR",4],
-                ["AZA",4],
-                ["BAW",4],
-                ["DLH",4],
-                ["SWR",4],
-                ["KLM",2],
-                ["KLC",2],
-                ["TAP",2],
-                ["IBE",2],
-                ["EIN",1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "lkpr",
-            "category": "arrival",
-            "route": "GOSEK000.GOSEK.LKPR",
-            "altitude": 14000,
-            "speed": 320,
-            "method": "random",
-            "rate": 7,
-            "airlines": [
-                ["TVS", 16],
-                ["CSA", 16],
-                ["EZY", 12],
-                ["AUA",4],
-                ["AZA",4],
-                ["DLH",4],
-                ["SAS",2],
-                ["LOT",2],
-                ["TAP",2],
-                ["IBE",2],
-                ["SAS",1],
-                ["CES",1],
-                ["UAE",1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "lkpr",
-            "category": "arrival",
-            "route": "VLM000.VLM.LKPR",
-            "altitude": 12000,
-            "speed": 320,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["TVS", 20],
-                ["CSA", 20],
-                ["EZY", 10],
-                ["AUA",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["TAP",2],
-                ["UAE",1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "lkpr",
-            "category": "arrival",
-            "route": "GOLOP000.GOLOP.LKPR",
-            "altitude": 14000,
-            "speed": 320,
-            "method": "random",
-            "rate": 7,
-            "airlines": [
-                ["TVS", 20],
-                ["CSA", 20],
-                ["EZY", 10],
-                ["RYR",5],
-                ["AFL",4],
-                ["BAW",4],
-                ["DLH",4],
-                ["SWR",4],
-                ["KLM",2],
-                ["KLC",2],
-                ["SAS",2],
-                ["LOT",2],
-                ["SAS",1],
-                ["EIN",1],
-                ["CES",1],
-                ["UAE",1]
-            ]
-        }
-    ]
+        
+    ],
+    "maps": {
+        "base": []
+    }
 }
