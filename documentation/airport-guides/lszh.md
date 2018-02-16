@@ -8,7 +8,7 @@ Located at Dübendorf Air Base (close to Zurich), besides the LSAZ FIR, the Skyg
 The airspace encompasses a large area around Zurich up to FL190. It includes a fairly large shelf to the East with a floor of FL100. The airspace below it, is used by the ARFA sector which controls EDNY and LSZR. Zurich airspace also includes some German territory to the North which is heavily used for approaches to runways 14 and 16. During the German curfew period runways 28 or 34 must be used which reduces the capacity of the airport.
 
 ### Instrument Procedures
-LSZH offers several departure procedures, however the DEGES and VEBIT departures are the most commonly used. Arrivals follow their STAR's to either GIPOL or AMIKI, where aircraft must be vectored to their final approach course.
+LSZH offers several departure procedures, however the DEGES and VEBIT departures are the most commonly used. Arrivals follow their STARs to either GIPOL or AMIKI, where aircraft must be vectored to their final approach course.
 
 ### Sectors Available in OpenScope
 ```
@@ -47,7 +47,7 @@ Friedrichshafen Airport is a minor international airport 1.9 miles (3 km) north 
 Militärflugplatz Emmen (Emmen Military Air Base)  
 25nm to the south of LSZH  
 
-The airfield of Emmen is used primarily for military use and is operated by the Swiss Air Force as training and alternate airfield for jet and propeller aircraft as well as the ADS95 RUAG Ranger UAV. This means that no jet aircraft squadron is stationed in Emmen, but the airfield is still used as a training and alternate air base. The air base is, at both end of the runway, equipped with retractable arresting gear devices (used by the F/A-18 and in case of a problem by the F-5). Next to the aerodrome serves the following military uses
+The airfield of Emmen is used primarily for military use and is operated by the Swiss Air Force as training and alternate airfield for jet and propeller aircraft as well as the ADS95 RUAG Ranger UAV. This means that no jet aircraft squadron is stationed in Emmen, but the airfield is still used as a training and alternate air base. The air base is, at both end of the runway, equipped with retractable arresting gear devices (used by the F/A-18 and in case of a problem by the F-5).
 
 
 #### LSMD
@@ -57,7 +57,5 @@ Militärflugplatz Dübendorf (Dübendorf Military Air Base)
 Today Dübendorf AFB is the home of Lufttransportstaffel 3 and Lufttransportstaffel 4 (Air Transport squadron 3 and 4) with Eurocopter EC635, Eurocopter AS332 Super Puma, Eurocopter AS532 Cougar, De Havilland Canada Twin Otter, Beechcraft 1900 and Beechcraft Super King Air. Dübendorf is, together with Locarno AFB, the home base of the PC-7 Team and the Superpuma/cougar Displayteam. Other Swiss military aircraft such as the Pilatus PC-6 Turbo-Porter and Pilatus PC-9 are often seen in Dübendorf.
 
 ### Additional Resources
-VATSIM Charts (http://www.vacc.ch/en/airports_and_charts/)  
-Jeppesen Charts (http://vau.aero/navdb/chart/LSZH.pdf)  
+VATSIM Charts (http://www.vacc.ch/en/airports_and_charts/)
 IVAO Operating Manual (http://ivao.ch/downloads/public/documents/LSZH_OM.pdf)
-
