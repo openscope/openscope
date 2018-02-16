@@ -115,7 +115,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'eggw',
-            level: 'medium',
+            level: 'easy',
             name: 'London Luton Airport',
             premium: false,
             wip: true
