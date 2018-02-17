@@ -3,11 +3,16 @@
     "name": "Norwegian Air International",
     "callsign": {
         "name": "Nortrans",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "##@@",
+            "###",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 69]
+            ["B738", 70]
         ]
     }
 }

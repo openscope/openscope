@@ -3,11 +3,13 @@
     "name": "Icelandair",
     "callsign": {
         "name": "Iceair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B752", 27],
+            ["B752", 26],
             ["B753", 1],
             ["B763", 4]
         ]
