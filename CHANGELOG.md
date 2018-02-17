@@ -32,6 +32,7 @@
 - Customisation of callsign formats [#866](https://github.com/openscope/openscope/issues/866)
 - Overhaul of Frankfurt Am Main International Airport (Germany) [#199](https://github.com/openscope/openscope/issues/199)
 - Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
+- Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
 
 
 
