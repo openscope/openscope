@@ -50,5 +50,5 @@ Aurora State Airport
 Aurora State Airport/Wes Lematta Field is a small GA Airport with a new control tower built in 2015. Mostly used for flight training as well as some business operations.
 
 ### Additional Resources
-[KPDX Charts](https://skyvector.com/airport/PDX/Portland-International-Airport)
+[KPDX Charts](https://skyvector.com/airport/PDX/Portland-International-Airport)  
 [IVAO SOP](http://www.ivaous.org/fdr/SOPs/ZSE/PDXSOP.pdf)
