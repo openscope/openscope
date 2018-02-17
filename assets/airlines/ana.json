@@ -3,7 +3,9 @@
     "name": "All Nippon Airways",
     "callsign": {
         "name": "All Nippon",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

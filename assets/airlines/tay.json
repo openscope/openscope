@@ -3,7 +3,9 @@
     "name": "TNT Airways",
     "callsign": {
         "name": "Quality",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

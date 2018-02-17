@@ -3,7 +3,9 @@
     "name": "SunExpress Deutschland",
     "callsign": {
         "name": "Sunrise",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "long": [

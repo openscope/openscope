@@ -2,9 +2,9 @@
     "icao": "n",
     "name": "General Aviation",
     "callsign": {
-        "name": "November",
-        "length": 5,
-        "alpha": true
+        "callsignFormats": [
+            "###@@"
+        ]
     },
     "fleets": {
         "cessna": [

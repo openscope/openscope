@@ -1,10 +1,12 @@
 export const AIRLINE_DEFINITION_MOCK = {
     name: 'American Airlines',
     icao: 'AAL',
-    callsign: {
-        name: 'American',
-        length: 3
-    },
+    callsignFormats: [
+        '##@@',
+        '###',
+        '##',
+        '#'
+    ],
     fleets: {
         '90long': [
             ['DC10', 57],
@@ -43,10 +45,12 @@ export const AIRLINE_DEFINITION_MOCK = {
 export const AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK = {
     name: 'American Airlines',
     icao: 'aal',
-    callsign: {
-        name: 'American',
-        length: 3
-    },
+    callsignFormats: [
+        '##@@',
+        '###',
+        '##',
+        '#'
+    ],
     fleets: {
         default: [
             ['A319', 125],

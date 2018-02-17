@@ -7,6 +7,8 @@
 - Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
 - Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
 - Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
+- Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
+- Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
 
 
 
@@ -14,6 +16,7 @@
 
 ### Bugfixes
 - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
+- Restore functionality of non-procedural descents to airspace ceiling [#879](https://github.com/openscope/openscope/issues/879)
 
 
 
@@ -23,7 +26,19 @@
 - Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
 - Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 - Convert `NavigationLibrary` to a singleton [#529](http://github.com/openscope/openscope/issues/529)
+<<<<<<< HEAD
 - Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
+=======
+- Remove nonfunctional airports from load list broken by feature/809 [#881](http://github.com/openscope/openscope/issues/881)
+- Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
+- Overhaul of Manchester International Airport (England, United Kingdom)[#854](https://github.com/openscope/openscope/issues/854)
+- Customisation of callsign formats [#866](https://github.com/openscope/openscope/issues/866)
+- Overhaul of Frankfurt Am Main International Airport (Germany) [#199](https://github.com/openscope/openscope/issues/199)
+- Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
+- Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
+- Updates KPDX to AIRAC 1802 [#851](https://github.com/openscope/openscope/issues/851)
+
+>>>>>>> develop
 
 
 

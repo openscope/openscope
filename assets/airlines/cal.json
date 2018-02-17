@@ -3,7 +3,9 @@
     "name": "China Airlines",
     "callsign": {
         "name": "Dynasty",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

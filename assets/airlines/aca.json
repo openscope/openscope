@@ -3,7 +3,9 @@
     "name": "Air Canada",
     "callsign": {
         "name": "Air Canada",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

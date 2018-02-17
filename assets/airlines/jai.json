@@ -3,7 +3,9 @@
     "name": "Jet Airways",
     "callsign": {
         "name": "JET AIRWAYS",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

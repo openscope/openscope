@@ -1,0 +1,14 @@
+{
+    "icao": "fcb",
+    "name": "Cobalt Air",
+    "callsign": {
+        "name": "Apollo",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2],
+            ["A320", 5]
+        ]
+    }
+}

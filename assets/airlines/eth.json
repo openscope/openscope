@@ -3,7 +3,9 @@
     "name": "Ethiopian Airlines",
     "callsign": {
         "name": "Ethiopian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

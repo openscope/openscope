@@ -3,7 +3,9 @@
     "name": "Virgin America",
     "callsign": {
         "name": "Redwood",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

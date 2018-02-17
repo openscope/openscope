@@ -3,7 +3,9 @@
     "name": "Gol Linhas Aereas",
     "callsign": {
         "name": "Gol",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

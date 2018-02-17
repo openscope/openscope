@@ -3,7 +3,9 @@
     "name": "Azul Linhas Aereas",
     "callsign": {
         "name": "Azul",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

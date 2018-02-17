@@ -3,7 +3,9 @@
     "name": "Transavia Holland",
     "callsign": {
         "name": "Transavia",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

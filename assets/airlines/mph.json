@@ -3,7 +3,9 @@
     "name": "Martinair",
     "callsign": {
         "name": "Martinair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

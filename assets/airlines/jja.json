@@ -3,7 +3,9 @@
     "name": "Jeju Air",
     "callsign": {
         "name": "Jeju Air",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

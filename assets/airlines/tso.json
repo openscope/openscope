@@ -3,7 +3,9 @@
     "name": "Transoviet Airlines",
     "callsign": {
         "name": "Transoviet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

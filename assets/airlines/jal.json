@@ -3,8 +3,9 @@
     "name": "Japan Airlines",
     "callsign": {
         "name": "Japanair",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

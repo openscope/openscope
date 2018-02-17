@@ -3,7 +3,9 @@
     "name": "Jestar Asia Airways",
     "callsign": {
         "name": "Jetstar Asia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

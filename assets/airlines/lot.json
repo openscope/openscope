@@ -3,7 +3,9 @@
     "name": "LOT",
     "callsign": {
         "name": "Lot",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

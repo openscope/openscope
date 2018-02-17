@@ -3,7 +3,9 @@
     "name": "Transavia France",
     "callsign": {
         "name": "France Soleil",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

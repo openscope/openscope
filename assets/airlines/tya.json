@@ -3,7 +3,9 @@
     "name": "NordStar",
     "callsign": {
         "name": "Taimyr",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
