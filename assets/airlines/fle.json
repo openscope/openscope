@@ -3,7 +3,9 @@
     "name": "Flair Airlines",
     "callsign": {
         "name": "Flair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

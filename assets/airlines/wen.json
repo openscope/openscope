@@ -3,7 +3,10 @@
     "name": "WestJet Encore",
     "callsign": {
         "name": "Encore",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
