@@ -793,7 +793,7 @@
                 ["dlh/short", 9],
                 ["edw/short", 10],
                 ["ewg/short", 9],
-                ["ezy", 3],
+                ["ezy", 4],
                 ["fin/short", 3],
                 ["gwi", 2],
                 ["klm", 5],
@@ -837,7 +837,7 @@
                 ["edw/short", 18],
                 ["ely", 5],
                 ["ewg/short", 2],
-                ["ezy", 3],
+                ["ezy", 5],
                 ["gsw", 8],
                 ["lzb", 2],
                 ["hb/fastGA", 1],
@@ -857,6 +857,7 @@
             "method": "random",
             "rate": 1.19207,
             "airlines": [
+                ["cpa", 4],
                 ["edw/long", 8],
                 ["etd/long", 5],
                 ["oma/long", 5],
@@ -881,12 +882,11 @@
                 ["afl", 5],
                 ["aua", 18],
                 ["aui", 5],
-                ["cpa", 4],
                 ["dlh/short", 13],
                 ["edw/short", 5],
                 ["ewg/short", 10],
                 ["ezy", 5],
-                ["gwi", 4],
+                ["gwi", 1],
                 ["hb/fastGA", 4],
                 ["swr/short", 55]
             ]
@@ -923,7 +923,7 @@
                 ["edw/short", 5],
                 ["ewg/short", 10],
                 ["ezy", 5],
-                ["gwi", 4],
+                ["gwi", 1],
                 ["hb/fastGA", 4],
                 ["swr/short", 55]
             ]
@@ -1035,7 +1035,7 @@
             "rate": 3.105,
             "airlines": [
                 ["edw/short", 25],
-                ["ezy", 1],
+                ["ezy", 3],
                 ["gsw", 6],
                 ["hb/fastGA", 2],
                 ["swr/short", 51],
@@ -1296,7 +1296,7 @@
                 ["edw/short", 5],
                 ["ewg/short", 10],
                 ["ezy", 5],
-                ["gwi", 4],
+                ["gwi", 1],
                 ["swr/short", 80]
             ]
         },
@@ -1331,7 +1331,7 @@
                 ["ewg/short", 12],
                 ["ezy", 3],
                 ["fin/short", 3],
-                ["gwi", 2],
+                ["gwi", 1],
                 ["klm", 5],
                 ["lot", 2],
                 ["hb/fastGA", 2],
