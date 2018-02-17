@@ -3,7 +3,9 @@
     "name": "Norwegian Air Shuttle ASA",
     "callsign": {
         "name": "Nor Shuttle",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

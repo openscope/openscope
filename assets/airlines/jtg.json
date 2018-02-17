@@ -3,7 +3,9 @@
     "name": "Jet Time",
     "callsign": {
         "name": "Jettime",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

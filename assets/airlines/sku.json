@@ -3,7 +3,9 @@
     "name": "Sky Airline",
     "callsign": {
         "name": "Aerosky",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

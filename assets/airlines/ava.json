@@ -3,7 +3,9 @@
     "name": "Avianca",
     "callsign": {
         "name": "AVA",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

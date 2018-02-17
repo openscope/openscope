@@ -3,7 +3,9 @@
     "name": "Aer Lingus",
     "callsign": {
         "name": "Shamrock",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

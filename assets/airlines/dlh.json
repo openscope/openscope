@@ -3,7 +3,9 @@
     "name": "Deutsche Lufthansa",
     "callsign": {
         "name": "Lufthansa",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Vueling",
     "callsign": {
         "name": "Vueling",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

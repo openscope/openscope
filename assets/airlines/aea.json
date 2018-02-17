@@ -3,7 +3,9 @@
     "name": "Air Europa",
     "callsign": {
         "name": "Europa",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

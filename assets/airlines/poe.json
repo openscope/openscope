@@ -3,7 +3,9 @@
     "name": "Porter Airlines",
     "callsign": {
         "name": "Porter",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

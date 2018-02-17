@@ -3,8 +3,10 @@
     "name": "TUI Airways",
     "callsign": {
         "name": "Tuiair",
-        "length": 3,
-        "alpha": true
+        "callsignFormats": [
+            "##@@",
+            "###"
+        ]
     },
     "fleets": {
         "long": [

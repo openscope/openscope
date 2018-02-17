@@ -3,7 +3,9 @@
     "name": "Austrian Airlines",
     "callsign": {
         "name": "Austrian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

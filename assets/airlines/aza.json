@@ -3,7 +3,9 @@
     "name": "Alitalia",
     "callsign": {
         "name": "Alitalia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

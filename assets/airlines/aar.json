@@ -3,7 +3,9 @@
     "name": "Asiana Airlines",
     "callsign": {
         "name": "Asiana",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

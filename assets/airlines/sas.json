@@ -3,7 +3,9 @@
     "name": "Scandinavian Airlines",
     "callsign": {
         "name": "Scandinavian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

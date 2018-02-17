@@ -3,7 +3,9 @@
     "name": "Tigerair",
     "callsign": {
         "name": "Go Cat",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

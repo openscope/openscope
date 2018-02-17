@@ -3,7 +3,9 @@
     "name": "Royal Jordanian",
     "callsign": {
         "name": "Jordanian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

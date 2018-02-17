@@ -3,8 +3,11 @@
     "name": "Jet2.com",
     "callsign": {
         "name": "Channex",
-        "length": 4,
-        "alpha": true
+        "callsignFormats": [
+            "###@",
+            "##@@",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
