@@ -309,13 +309,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'kpdx',
-        //     level: 'easy',
-        //     name: 'Portland International Airport',
-        //     premium: false,
-        //     wip: false
-        // },
+        {
+            icao: 'kpdx',
+            level: 'easy',
+            name: 'Portland International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kphx',
         //     level: 'easy',
