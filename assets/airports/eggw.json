@@ -1364,7 +1364,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": ["_RWY261.8DME", "_BNN033007", "_HEN076010", "_BNN3444.2", ["HEN", "A50"], "RODNI"],
+            "body": ["_RWY261.8DME", "_BNN033007", "_HEN076010", ["_BNN3444.2", "A30+"], ["HEN", "A50"], "RODNI"],
             "exitPoints": {
                 "CPT": [["CPT", "A50"]]
             },
@@ -1392,7 +1392,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": [["_RWY2602DME", "A10+|A40-"], ["GWS01", "A10+|A40-|S220-"], ["GWS06", "A30+|A40-|S220-"], ["GWS12", "A30+|A40-|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"], ["GWE37", "A50"], ["NEPNA", "A50"]],
+            "body": [["_RWY2602DME", "A10+"], ["GWS01", "A10+|S220-"], ["GWS06", "A30+|S220-"], ["GWS12", "A30+|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"], ["GWE37", "A50"], ["NEPNA", "A50"]],
             "exitPoints": {
                 "DET": [["DET", "A50"]]
             },
@@ -1406,7 +1406,7 @@
             "rwy": {
                 "EGGW08": []
             },
-            "body": ["LUT", "_RWY0810DME", ["_BPK337006", "A40+|A50-"], ["_BPK357003", "A50"], "BPK", ["_BPK098007", "A50"], "_DET335028", "NEPNA"],
+            "body": ["LUT", "_RWY0810DME", ["_BPK337006", "A40+"], ["_BPK357003", "A50"], "BPK", ["_BPK098007", "A50"], "_DET335028", "NEPNA"],
             "exitPoints": {
                 "DET": [["DET", "A50"]]
             },
@@ -1420,7 +1420,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": ["_RWY261.8DME", "_BNN033007", ["_BPK285010", "A30+|A40-"], ["_BPK285006", "A40-|S250-"], ["_BPK285003", "A50"], "BPK", ["_BPK098007", "A50"], "_DET335028", "NEPNA"],
+            "body": ["_RWY261.8DME", "_BNN033007", ["_BPK285010", "A30+"], ["_BPK285006", "A40-|S250-"], ["_BPK285003", "A50"], "BPK", ["_BPK098007", "A50"], "_DET335028", "NEPNA"],
             "exitPoints": {
                 "DET": [["DET", "A50"]]
             },
@@ -1448,7 +1448,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": ["_RWY261.8DME", "_BNN033007", ["_BPK285010", "A30+|A40-"], ["_BPK285006", "A40-|S250-"], ["_BPK285003", "A50"], "BPK", ["_BPK083007", "A50"]],
+            "body": [["_RWY261.8DME", "A10+"], "_BNN033007", ["_BPK285010", "A30+"], ["_BPK285006", "A40-|S250-"], ["_BPK285003", "A50"], "BPK", ["_BPK083007", "A50"]],
             "exitPoints": {
                 "MATCH": [["MATCH", "A50"]]
             },
@@ -1462,7 +1462,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": [["_RWY2602DME", "A10+|A40-"], ["GWS01", "A10+|A40-|S220-"], ["GWS06", "A30+|A40-|S220-"], ["GWS12", "A30+|A40-|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"]],
+            "body": [["_RWY2602DME", "A10+"], ["GWS01", "A10+|S220-"], ["GWS06", "A30+|S220-"], ["GWS12", "A30+|S220-"], ["GWE16", "A40-|S250-"], ["GWE19", "A50"], ["BPK", "A50"]],
             "exitPoints": {
                 "MATCH": [["MATCH", "A50"]]
             },
@@ -1476,7 +1476,7 @@
             "rwy": {
                 "EGGW26": []
             },
-            "body": ["_RWY261.8DME", "^_BNN033007", "^_BNN0054.2", ["_BNN345006", "A40+|A50-"], ["_BNN345009", "A50"], ["_BNN345015", "A60"]],
+            "body": [["_RWY261.8DME", "A10+"], "^_BNN033007", "^_BNN0054.2", ["_BNN345006", "A40+"], ["_BNN345009", "A50"], ["_BNN345015", "A60"]],
             "exitPoints": {
                 "OLNEY": [["OLNEY", "A60"]]
             },
@@ -1490,7 +1490,7 @@
             "rwy": {
                 "EGGW08": []
             },
-            "body": ["^_ILTN0742.6", ["_BPK316015", "A35+|A60-"], ["_BPK316021", "A60"]],
+            "body": ["^_ILTN0742.6", ["_BPK316015", "A35+"], ["_BPK316021", "A60"]],
             "exitPoints": {
                 "OLNEY": [["OLNEY", "A60"]]
             },
@@ -1536,7 +1536,7 @@
             "entryPoints": {
                 "DET": [["DET", "A170-"]]
             },
-            "body": [["_DET001032", "S250-"], ["@ABBOT", "S220-"]],
+            "body": [["_DET001032", "S250-"], "@ABBOT"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1566,13 +1566,13 @@
             "entryPoints": {
                 "KATHY": [["KATHY", "A170-"]]
             },
-            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "LOREL", "BKY", "^BUSTA", "LOREL"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["KATHY", "HAZEL", "WOD", "WCO", "BOMBO", "BKY", "BUSTA", "LOREL"]
+                ["KATHY", "HAZEL", "WOD", "WCO", "BOMBO", "BKY", "BUSTA", "ASKEY"]
             ]
         },
         "ASKEY1K": {
@@ -1581,7 +1581,7 @@
             "entryPoints": {
                 "DTY": ["DTY"]
             },
-            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1596,7 +1596,7 @@
             "entryPoints": {
                 "ABBOT": ["ABBOT"]
             },
-            "body": ["TABIS", "BUSTA", "ASKEY"],
+            "body": ["TABIS", "BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1611,13 +1611,13 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", ["AVANT", "A190"], "MID", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["GIBSO", "BEGTO", "AVANT", "MID", "OCK", "VATON", "_BKY206016", "BKY", "BUSTA", "LOREL"]
+                ["GIBSO", "BEGTO", "AVANT", "OCK", "VATON", "_BKY206016", "BKY", "BUSTA", "ASKEY"]
             ]
         },
         "ASKEY2H": {
@@ -1626,7 +1626,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": [["CLIPY", "150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1641,7 +1641,7 @@
             "entryPoints": {
                 "KENET": [["KENET", "A170-"]]
             },
-            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1656,13 +1656,13 @@
             "entryPoints": {
                 "BEDEK": [["BEDEK", "A180"]]
             },
-            "body": ["NIGIT", "OCK", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["NIGIT", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["BEDEK", "NIGIT", "OCK", "_BKY206016", "BKY", "BUSTA", "ASKEY"]
+                ["BEDEK", "NIGIT", "OCK", "VATON", "_BKY206016", "BKY", "BUSTA", "ASKEY"]
             ]
         },
         "ASKEY3G": {
@@ -1671,7 +1671,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1686,13 +1686,13 @@
             "entryPoints": {
                 "AVANT": [["AVANT", "A190"]]
             },
-            "body": ["OCK", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["AVANT", "OCK", "_BKY206016", "BKY", "BUSTA", "ASKEY"]
+                ["AVANT", "OCK", "VATON", "_BKY206016", "BKY", "BUSTA", "ASKEY"]
             ]
         },
         "ASKEY4Q": {
@@ -1701,7 +1701,7 @@
             "entryPoints": {
                 "BANVA": ["BANVA"]
             },
-            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1716,7 +1716,7 @@
             "entryPoints": {
                 "WCO": ["WCO"]
             },
-            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1731,7 +1731,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1776,7 +1776,7 @@
             "entryPoints": {
                 "DET": [["DET", "A170-"]]
             },
-            "body": [["_DET001032", "S250-"], ["@CASEY", "S220-"]],
+            "body": [["_DET001032", "S250-"], "@CASEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1806,7 +1806,7 @@
             "entryPoints": {
                 "KATHY": [["KATHY", "A170-"]]
             },
-            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "LOREL", "BKY", "^BUSTA", "LOREL"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1821,7 +1821,7 @@
             "entryPoints": {
                 "DTY": ["DTY"]
             },
-            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1836,7 +1836,7 @@
             "entryPoints": {
                 "ABBOT": ["ABBOT"]
             },
-            "body": ["TABIS", "BUSTA", "LOREL"],
+            "body": ["TABIS", "BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1851,13 +1851,13 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", ["AVANT", "A190"], "MID", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["GIBSO", "BEGTO", "AVANT", "MID", "OCK", "VATON", "BPK", "BKY", "BUSTA", "LOREL"]
+                ["GIBSO", "BEGTO", "AVANT", "OCK", "VATON", "BPK", "BKY", "BUSTA", "LOREL"]
             ]
         },
         "LOREL2H": {
@@ -1866,7 +1866,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1881,7 +1881,7 @@
             "entryPoints": {
                 "KENET": [["KENET", "A170-"]]
             },
-            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1896,13 +1896,13 @@
             "entryPoints": {
                 "BEDEK": [["BEDEK", "A180"]]
             },
-            "body": ["NIGIT", "OCK", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["NIGIT", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["BEDEK", "NIGIT", "OCK", "BPK", "BKY", "BUSTA", "LOREL"]
+                ["BEDEK", "NIGIT", "OCK", "VATON", "BPK", "BKY", "BUSTA", "LOREL"]
             ]
         },
         "LOREL3G": {
@@ -1911,7 +1911,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1926,13 +1926,13 @@
             "entryPoints": {
                 "AVANT": [["AVANT", "A190"]]
             },
-            "body": ["OCK", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
             },
             "draw": [
-                ["AVANT", "OCK", "BPK", "BKY", "BUSTA", "LOREL"]
+                ["AVANT", "OCK", "VATON", "BPK", "BKY", "BUSTA", "LOREL"]
             ]
         },
         "LOREL4Q": {
@@ -1956,7 +1956,7 @@
             "entryPoints": {
                 "WCO": ["WCO"]
             },
-            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1971,7 +1971,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1986,7 +1986,7 @@
             "entryPoints": {
                 "TELTU": [["TELTU", "A190"]]
             },
-            "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["LOREL", "S220-"]],
+            "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["@LOREL", "S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
