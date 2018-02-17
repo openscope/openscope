@@ -101,9 +101,9 @@ Every dash on an extended centreline represents one (1) nautical mile, with each
 All sector splits of the LTMA are drawn on too.
 
 ### Additional Resources
-[NATS London TMA Diagram](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)
-[NATS Aerodrome Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html)
-[VATSIM UK (Luton)](https://vatsim.uk/eggw/)
-[VATSIM UK Luton Cribsheet](https://vatsim.uk/download/info/?downloadID=00116)
-[VATSIM UK Luton Virtual Manual of Air Traffic Services](https://vatsim.uk/download/info/?downloadID=00119)
+[NATS London TMA Diagram](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)  
+[NATS Aerodrome Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html)  
+[VATSIM UK (Luton)](https://vatsim.uk/eggw/)  
+[VATSIM UK Luton Cribsheet](https://vatsim.uk/download/info/?downloadID=00116)  
+[VATSIM UK Luton Virtual Manual of Air Traffic Services](https://vatsim.uk/download/info/?downloadID=00119)  
 [History of London's Airports (YouTube)](https://youtu.be/AbAal7jIWQ4)
