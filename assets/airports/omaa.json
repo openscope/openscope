@@ -1,30 +1,30 @@
 {
     "radio": {
         "twr": "Abu Dhabi Tower",
-        "app": "Abu Dhabi Arrivals",
+        "app": "Abu Dhabi Radar",
         "dep": "Abu Dhabi Radar"
     },
     "icao": "OMAA",
     "iata": "AUH",
     "magnetic_north": 2,
     "ctr_radius": 80,
-    "ctr_ceiling": 19500,
+    "ctr_ceiling": 21000,
     "initial_alt": 4000,
     "position": ["N24d25m59.00", "E054d39m04.00", "83ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N24d25m59.00", "E054d39m04.00"],
     "has_terrain": false,
     "wind": {
-        "angle": 220,
+        "angle": 315,
         "speed": 9
     },
     "arrivalRunway": "31L",
     "departureRunway": "31L",
     "airspace": [
         {
-            "floor":             0,
-            "ceiling":         21000,
-            "airspace_class":    "D",
+            "floor": 0,
+            "ceiling": 21000,
+            "airspace_class": "D",
             "poly": [
                 ["N24d58m00.00", "E054d12m00.00"],
                 ["N24d56m41.00", "E054d28m50.00"],
@@ -42,513 +42,1218 @@
         }
     ],
     "fixes": {
-        "NITVU": ["N24d25m08.27", "E054d40m23.68"],
-        "ADV"  : ["N24d25m08.27", "E054d40m23.68"],
-        "AA400": ["N24d26m39.80", "E054d38m06.70"],
-        "AA402": ["N24d18m41.20", "E054d42m11.90"],
-        "AA403": ["N24d18m43.80", "E054d39m44.30"],
-        "AA404": ["N24d21m43.80", "E054d45m03.40"],
-        "AA405": ["N24d20m43.80", "E054d48m15.70"],
-        "AA406": ["N24d27m32.60", "E054d52m56.90"],
-        "AA407": ["N24d22m17.40", "E054d44m16.10"],
-        "AA411": ["N24d21m00.00", "E054d46m05.00"],
-        "AA412": ["N24d21m51.00", "E054d46m49.00"],
-        "AA413": ["N24d19m47.90", "E054d47m47.20"],
-        "AA414": ["N24d17m38.50", "E054d51m03.60"],
-        "AA415": ["N24d25m53.20", "E054d41m08.40"],
-        "AA416": ["N24d28m12.70", "E054d37m51.70"],
-        "AA417": ["N24d26m17.00", "E054d50m19.00"],
-        "AA418": ["N24d41m22.00", "E054d48m51.00"],
-        "AA419": ["N24d49m11.00", "E054d32m38.00"],
-        "AA422": ["N24d29m53.00", "E054d38m20.00"],
-        "AA423": ["N24d36m17.00", "E054d43m45.00"],
-        "AA425": ["N24d39m12.00", "E054d52m04.00"],
-        "AA426": ["N24d33m42.00", "E054d47m24.00"],
-        "AA431": ["N24d31m21.00", "E054d31m31.00"],
-        "AA432": ["N24d32m12.00", "E054d32m14.00"],
-        "AA441": ["N24d36m55.00", "E054d36m13.00"],
-        "AA442": ["N24d30m02.00", "E054d45m55.00"],
-        "AA443": ["N24d16m23.00", "E054d42m00.00"],
-        "AA444": ["N24d21m27.00", "E054d34m50.00"],
-        "AA446": ["N24d32m12.00", "E054d53m28.00"],
-        "AA447": ["N24d46m34.00", "E054d33m13.00"],
-        "AA452": ["N24d29m19.00", "E054d23m44.00"],
-        "AA462": ["N24d25m18.20", "E054d40m01.80"],
-        "AA464": ["N24d30m24.20", "E054d32m50.20"],
-        "AA470": ["N24d30m47.90", "E054d29m50.30"],
-        "AA471": ["N24d33m36.50", "E054d34m02.20"],
-        "AA473": ["N24d32m38.20", "E054d30m51.60"],
-        "AA474": ["N24d35m51.60", "E054d30m11.80"],
-        "AA475": ["N24d32m10.50", "E054d30m19.80"],
-        "AA476": ["N24d34m12.80", "E054d39m06.10"],
-        "AA497": ["N24d35m52.60", "E054d25m05.90"],
-        "AA499": ["N24d36m56.30", "E054d23m06.40"],
-        "AA501": ["N24d30m57.40", "E054d33m59.40"],
-        "AA502": ["N24d27m54.30", "E054d38m17.70"],
-        "AA504": ["N24d23m30.50", "E054d44m29.10"],
-        "AA505": ["N24d22m24.30", "E054d46m02.30"],
-        "AA508": ["N24d21m33.30", "E054d48m15.90"],
-        "AA509": ["N24d27m35.90", "E054d52m59.20"],
-        "AA510": ["N24d31m05.70", "E054d36m12.90"],
-        "AA513": ["N24d21m00.40", "E054d48m00.90"],
-        "AA514": ["N24d18m20.20", "E054d51m37.50"],
-        "AA515": ["N24d19m35.00", "E054d44m19.10"],
-        "AA516": ["N24d18m36.50", "E054d39m53.10"],
-        "AA560": ["N24d25m30.10", "E054d43m13.70"],
-        "AA562": ["N24d26m32.60", "E054d40m12.80"],
-        "AA564": ["N24d31m36.00", "E054d33m04.90"],
-        "AA565": ["N24d32m11.10", "E054d29m55.90"],
-        "AA570": ["N24d26m32.80", "E054d28m23.20"],
-        "AA571": ["N24d34m41.30", "E054d35m32.90"],
-        "AA572": ["N24d34m25.40", "E054d38m46.10"],
-        "AA573": ["N24d33m57.50", "E054d31m01.60"],
-        "AA574": ["N24d36m55.00", "E054d30m23.60"],
-        "AA575": ["N24d33m28.30", "E054d30m27.50"],
-        "AA576": ["N24d35m09.00", "E054d27m50.80"],
-        "AA750": ["N24d47m45.00", "E054d34m28.00"],
-        "AA751": ["N24d43m26.00", "E054d39m17.00"],
-        "AA801": ["N24d27m00.00", "E054d25m38.00"],
-        "AA804": ["N24d42m29.00", "E054d08m38.00"],
-        "AA816": ["N24d43m23.00", "E054d53m11.00"],
-        "AA831": ["N24d07m13.00", "E054d58m21.00"],
-        "AA841": ["N24d14m13.00", "E055d04m14.00"],
-        "AA901": ["N24d29m32.00", "E054d19m43.50"],
-        "AA976": ["N24d28m58.50", "E054d30m51.60"],
-        "AA977": ["N24d32m03.20", "E054d26m32.30"],
-        "AA978": ["N24d36m37.50", "E054d37m20.30"],
-        "AA979": ["N24d30m30.50", "E054d43m34.30"],
-        "AA984": ["N24d16m41.60", "E054d49m16.60"],
-        "AA985": ["N24d35m21.80", "E054d37m02.20"],
-        "AA987": ["N24d31m39.30", "E054d36m53.40"],
-        "AA988": ["N24d28m10.90", "E054d30m57.50"],
-        "AA989": ["N24d31m54.10", "E054d41m39.30"],
-        "AA990": ["N24d32m17.70", "E054d36m56.20"],
-        "AA991": ["N24d21m58.80", "E054d53m12.70"],
-        "AA996": ["N24d25m29.60", "E054d48m14.90"],
-        "AA997": ["N24d25m43.90", "E054d48m51.60"],
-        "AA998": ["N24d21m31.80", "E054d41m27.80"],
-        "AA999": ["N24d21m10.30", "E054d41m01.20"],
-        "ASKIN": ["N24d20m41.90", "E054d35m16.20"],
-        "ATUDO": ["N24d17m08.00", "E054d34m32.00"],
-        "BOMOS": ["N24d18m59.30", "E054d49m02.70"],
-        "BOMUP": ["N24d29m04.70", "E054d34m42.40"],
-        "BOXAK": ["N24d45m36.00", "E054d00m32.00"],
-        "DASLA": ["N24d37m47.00", "E053d32m48.00"],
-        "DASNU": ["N24d24m53.90", "E054d53m39.30"],
-        "DEBOD": ["N24d43m33.00", "E054d44m44.00"],
-        "DENBO": ["N24d35m34.00", "E054d48m46.00"],
-        "EGLIR": ["N24d23m18.70", "E054d42m49.90"],
-        "EGMEL": ["N24d26m07.50", "E054d28m52.10"],
-        "EGVOS": ["N24d18m50.20", "E054d51m05.00"],
-        "EMATI": ["N24d23m31.00", "E054d55m05.00"],
-        "EMERU": ["N24d48m29.00", "E055d03m03.00"],
-        "IMLAD": ["N24d16m01.50", "E054d54m56.20"],
-        "KANIP": ["N24d10m40.00", "E055d20m42.00"],
-        "KODAS": ["N24d21m56.50", "E054d33m46.60"],
-        "LAGRU": ["N24d30m09.30", "E054d35m07.40"],
-        "LOPAX": ["N24d25m33.00", "E055d02m49.00"],
-        "LOSUR": ["N24d15m06.00", "E054d54m19.40"],
-        "LOVIM": ["N24d29m44.70", "E054d33m53.90"],
-        "MIADA": ["N24d51m12.00", "E054d57m36.00"],
-        "NAMKU": ["N24d40m54.90", "E054d12m40.40"],
-        "NAMSI": ["N24d37m31.00", "E054d56m48.00"],
-        "NIBAX": ["N24d57m48.00", "E054d14m37.00"],
-        "NOBTO": ["N23d55m25.00", "E055d18m40.00"],
-        "NODVI": ["N24d34m40.40", "E054d28m46.00"],
-        "NORPU": ["N24d29m16.70", "E054d45m54.60"],
-        "OBTOL": ["N24d36m21.90", "E054d24m24.40"],
-        "ODBAS": ["N24d31m03.90", "E054d51m06.80"],
-        "PARED": ["N24d04m32.00", "E055d02m59.00"],
-        "PATUB": ["N24d39m14.30", "E054d34m46.10"],
-        "RADSO": ["N24d22m03.80", "E054d44m43.30"],
-        "RAKNI": ["N24d15m53.00", "E055d11m08.00"],
-        "RALDA": ["N24d33m07.10", "E054d29m07.80"],
-        "ROVOS": ["N24d18m25.00", "E055d21m43.00"],
-        "RUDON": ["N24d24m06.40", "E054d43m38.70"],
-        "SENSU": ["N24d18m12.60", "E054d50m01.80"],
-        "SOBER": ["N24d39m42.00", "E054d30m32.00"],
-        "SUTVA": ["N24d12m50.00", "E054d48m37.00"],
-        "TANGA": ["N24d55m56.00", "E054d38m29.00"],
-        "TORSO": ["N24d31m11.00", "E054d22m46.00"],
-        "TOXIG": ["N24d32m00.00", "E053d55m02.00"],
-        "TULIL": ["N24d33m21.00", "E053d57m58.00"],
-        "VEDEX": ["N24d34m02.00", "E054d27m42.00"],
-        "VEGIT": ["N24d28m49.00", "E055d06m55.00"],
-        "__31L": ["N24d25m18.12", "E054d40m01.86"],
-        "__13R": ["N24d26m39.88", "N054d38m06.67"],
-        "__31R": ["N24d26m32.64", "E054d40m12.76"],
-        "__13L": ["N24d27m54.29", "E054d38m17.71"]
+        "AA400": ["N24d26m39.8", "E054d38m06.7"],
+        "AA402": ["N24d18m41.2", "E054d42m11.9"],
+        "AA403": ["N24d18m43.8", "E054d39m44.3"],
+        "AA404": ["N24d21m43.8", "E054d45m03.4"],
+        "AA405": ["N24d20m43.8", "E054d48m15.7"],
+        "AA406": ["N24d27m32.6", "E054d52m56.9"],
+        "AA408": ["N24d37m57.8", "E054d24m06.6"],
+        "AA409": ["N24d35m29.9", "E054d27m34.3"],
+        "AA413": ["N24d19m47.9", "E054d47m47.2"],
+        "AA414": ["N24d17m38.5", "E054d51m03.6"],
+        "AA415": ["N24d25m53.2", "E054d41m08.4"],
+        "AA416": ["N24d28m12.7", "E054d37m51.7"],
+        "AA420": ["N24d15m44.4", "E054d55m23.3"],
+        "AA421": ["N24d18m13.1", "E054d51m56.7"],
+        "AA428": ["N24d37m06.1", "E054d23m22.7"],
+        "AA429": ["N24d34m38.6", "E054d26m50.7"],
+        "AA430": ["N24d14m53.3", "E054d54m39.4"],
+        "AA432": ["N24d32m12.0", "E054d32m14.0"],
+        "AA433": ["N24d17m18.7", "E054d51m15.8"],
+        "AA441": ["N24d36m55.0", "E054d36m13.0"],
+        "AA442": ["N24d30m02.0", "E054d45m55.0"],
+        "AA462": ["N24d25m18.2", "E054d40m01.8"],
+        "AA464": ["N24d30m24.2", "E054d32m50.2"],
+        "AA470": ["N24d30m47.9", "E054d29m50.3"],
+        "AA471": ["N24d33m36.5", "E054d34m02.2"],
+        "AA473": ["N24d32m38.2", "E054d30m51.6"],
+        "AA474": ["N24d35m51.6", "E054d30m11.8"],
+        "AA475": ["N24d32m10.5", "E054d30m19.8"],
+        "AA476": ["N24d34m12.8", "E054d39m06.1"],
+        "AA497": ["N24d35m52.6", "E054d25m05.9"],
+        "AA502": ["N24d27m54.3", "E054d38m17.7"],
+        "AA505": ["N24d22m24.3", "E054d46m02.3"],
+        "AA508": ["N24d21m33.3", "E054d48m15.9"],
+        "AA509": ["N24d27m35.9", "E054d52m59.2"],
+        "AA510": ["N24d31m05.7", "E054d36m12.9"],
+        "AA513": ["N24d21m00.4", "E054d48m00.9"],
+        "AA514": ["N24d18m20.2", "E054d51m37.5"],
+        "AA515": ["N24d19m35.0", "E054d44m19.1"],
+        "AA516": ["N24d18m36.5", "E054d39m53.1"],
+        "AA519": ["N24d09m25.2", "E054d53m24.8"],
+        "AA520": ["N24d10m17.6", "E055d01m05.1"],
+        "AA524": ["N24d18m11.3", "E055d00m51.7"],
+        "AA526": ["N24d11m09.0", "E055d01m48.7"],
+        "AA529": ["N24d35m02.0", "E054d54m15.2"],
+        "AA530": ["N24d28m42.5", "E054d21m10.5"],
+        "AA560": ["N24d25m30.1", "E054d43m13.7"],
+        "AA562": ["N24d26m32.6", "E054d40m12.8"],
+        "AA564": ["N24d31m36.0", "E054d33m04.9"],
+        "AA565": ["N24d32m11.1", "E054d29m55.9"],
+        "AA568": ["N24d42m51.8", "E054d17m09.6"],
+        "AA570": ["N24d26m32.8", "E054d28m23.2"],
+        "AA571": ["N24d34m41.3", "E054d35m32.9"],
+        "AA572": ["N24d34m25.4", "E054d38m46.1"],
+        "AA573": ["N24d33m57.5", "E054d31m01.6"],
+        "AA574": ["N24d36m55.0", "E054d30m23.6"],
+        "AA575": ["N24d33m28.3", "E054d30m27.5"],
+        "AA576": ["N24d35m09.0", "E054d27m50.8"],
+        "AA583": ["N24d42m01.0", "E054d16m26.5"],
+        "AA817": ["N24d07m55.3", "E055d15m03.2"],
+        "AA820": ["N24d31m27.2", "E054d31m21.3"],
+        "AA822": ["N24d31m44.6", "E054d21m29.7"],
+        "AA823": ["N24d31m42.3", "E054d03m17.3"],
+        "AA824": ["N24d46m05.8", "E054d34m35.8"],
+        "AA826": ["N24d34m15.4", "E054d06m13.6"],
+        "AA827": ["N24d33m15.8", "E054d49m07.3"],
+        "AA832": ["N24d24m07.0", "E054d38m45.9"],
+        "AA834": ["N24d22m00.0", "E054d54m43.3"],
+        "AA836": ["N24d24m07.5", "E054d54m41.5"],
+        "AA839": ["N24d15m26.5", "E054d53m53.1"],
+        "AA842": ["N24d24m19.6", "E054d50m20.0"],
+        "AA901": ["N24d29m32.0", "E054d19m43.5"],
+        "AA976": ["N24d28m58.5", "E054d30m51.6"],
+        "AA977": ["N24d32m03.2", "E054d26m32.3"],
+        "AA978": ["N24d36m37.5", "E054d37m20.3"],
+        "AA979": ["N24d30m30.5", "E054d43m34.3"],
+        "AA984": ["N24d16m41.6", "E054d49m16.6"],
+        "AA985": ["N24d35m21.8", "E054d37m02.2"],
+        "AA987": ["N24d31m39.3", "E054d36m53.4"],
+        "AA988": ["N24d28m10.9", "E054d30m57.5"],
+        "AA989": ["N24d31m54.1", "E054d41m39.3"],
+        "AA990": ["N24d32m17.7", "E054d36m56.2"],
+        "AA991": ["N24d21m58.8", "E054d53m12.7"],
+        "AA996": ["N24d25m29.6", "E054d48m14.9"],
+        "AA997": ["N24d25m43.9", "E054d48m51.6"],
+        "AA998": ["N24d21m31.8", "E054d41m27.8"],
+        "AA999": ["N24d21m10.3", "E054d41m01.2"],
+        "ALSOV": ["N24d18m55.0", "E055d02m35.7"],
+        "ASKIN": ["N24d20m41.9", "E054d35m16.2"],
+        "ATUDO": ["N24d17m08.0", "E054d34m32.0"],
+        "BOMOS": ["N24d18m59.3", "E054d49m02.7"],
+        "BOMUP": ["N24d29m04.7", "E054d34m42.4"],
+        "BOSEV": ["N24d50m13.3", "E054d04m48.8"],
+        "BOSIG": ["N24d06m20.3", "E054d57m43.5"],
+        "DASNU": ["N24d24m53.9", "E054d53m39.3"],
+        "DAXIB": ["N24d54m46.5", "E054d09m01.1"],
+        "DEGVO": ["N24d35m06.9", "E054d19m09.9"],
+        "EGLIR": ["N24d23m18.7", "E054d42m49.9"],
+        "EGSUP": ["N24d21m55.0", "E054d21m39.3"],
+        "EGVOS": ["N24d18m50.2", "E054d51m05.0"],
+        "ELOVU": ["N24d57m21.3", "E054d20m17.5"],
+        "EMATI": ["N24d23m31.0", "E054d55m05.0"],
+        "EMERU": ["N24d48m29.0", "E055d03m03.0"],
+        "EMOSU": ["N24d19m46.4", "E054d47m48.4"],
+        "GEXOD": ["N24d23m37.0", "E055d04m45.0"],
+        "GIDOB": ["N24d44m45.3", "E053d59m52.6"],
+        "GISVU": ["N24d15m06.2", "E055d05m10.6"],
+        "IMLAD": ["N24d16m01.5", "E054d54m56.2"],
+        "IMSIG": ["N24d39m33.6", "E054d19m54.7"],
+        "IMTUP": ["N24d19m22.3", "E055d03m45.3"],
+        "ITKOV": ["N24d17m18.3", "E054d51m16.3"],
+        "ITLIV": ["N24d45m05.3", "E054d49m21.7"],
+        "ITREN": ["N24d12m22.8", "E054d58m10.1"],
+        "ITUGO": ["N24d30m58.0", "E054d42m55.3"],
+        "IVEPO": ["N24d34m46.6", "E054d35m45.7"],
+        "KANIP": ["N24d10m40.0", "E055d20m42.0"],
+        "KITOX": ["N24d21m41.5", "E055d11m03.5"],
+        "KODAS": ["N24d21m56.5", "E054d33m46.6"],
+        "LAGRU": ["N24d30m09.3", "E054d35m07.4"],
+        "LAGVU": ["N24d29m05.7", "E054d05m22.8"],
+        "LONUP": ["N24d36m08.8", "E054d46m04.3"],
+        "LORID": ["N24d55m52.5", "E054d39m04.1"],
+        "LORUP": ["N24d25m03.6", "E055d00m02.4"],
+        "LOSID": ["N24d40m14.6", "E054d29m47.8"],
+        "LOSOV": ["N24d22m55.7", "E054d45m18.1"],
+        "LOSUR": ["N24d15m06.0", "E054d54m19.4"],
+        "LOVIM": ["N24d29m44.7", "E054d33m53.9"],
+        "LOXIX": ["N24d21m16.3", "E054d56m32.7"],
+        "LUBUS": ["N24d44m12.4", "E054d26m30.3"],
+        "MEKRI": ["N24d31m22.8", "E053d55m00.0"],
+        "MEPDO": ["N24d31m35.0", "E054d26m58.3"],
+        "MERPU": ["N24d03m15.3", "E055d02m02.0"],
+        "MUNPA": ["N24d37m06.7", "E054d55m36.6"],
+        "MURSU": ["N24d48m20.3", "E054d40m11.6"],
+        "MUSUL": ["N24d40m47.8", "E054d15m03.0"],
+        "MUTOP": ["N24d46m27.3", "E054d35m45.2"],
+        "MUVUM": ["N24d38m02.7", "E054d37m45.0"],
+        "NAMKU": ["N24d40m54.9", "E054d12m40.4"],
+        "NOBTO": ["N23d55m25.0", "E055d18m40.0"],
+        "NODVI": ["N24d34m40.4", "E054d28m46.0"],
+        "NORPU": ["N24d29m16.7", "E054d45m54.6"],
+        "OBMUK": ["N24d44m03.1", "E054d29m30.4"],
+        "OBTOL": ["N24d36m21.9", "E054d24m24.4"],
+        "OBVIK": ["N24d26m03.4", "E054d31m54.1"],
+        "ODBAS": ["N24d31m03.9", "E054d51m06.8"],
+        "ORDAK": ["N24d40m24.8", "E054d20m38.1"],
+        "ORGAD": ["N24d35m36.8", "E054d19m55.9"],
+        "ORMED": ["N24d25m10.5", "E054d31m21.4"],
+        "ORNEL": ["N24d03m11.7", "E055d19m42.1"],
+        "ORPEP": ["N24d32m01.4", "E054d11m34.6"],
+        "OTUTU": ["N24d28m04.6", "E054d20m08.0"],
+        "OVOLA": ["N24d42m14.2", "E054d25m12.5"],
+        "PATAM": ["N24d29m47.6", "E054d55m31.7"],
+        "PATUB": ["N24d39m14.3", "E054d34m46.1"],
+        "PAXIK": ["N24d38m53.9", "E054d13m48.7"],
+        "PEGEB": ["N24d19m21.4", "E054d57m18.3"],
+        "PEGUM": ["N24d13m14.2", "E054d58m53.7"],
+        "PEKAX": ["N24d34m55.6", "E054d10m28.0"],
+        "PUVUT": ["N24d07m13.0", "E054d58m21.0"],
+        "PUXUT": ["N24d38m13.1", "E054d21m47.5"],
+        "RADSO": ["N24d22m03.8", "E054d44m43.3"],
+        "RALDA": ["N24d33m07.1", "E054d29m07.8"],
+        "RESIG": ["N24d31m32.2", "E054d33m10.4"],
+        "REXIG": ["N24d00m12.5", "E055d08m30.5"],
+        "RIBUV": ["N24d43m07.7", "E054d32m55.1"],
+        "RIDIB": ["N24d32m28.8", "E054d52m38.9"],
+        "RIGIP": ["N24d46m01.6", "E054d19m49.8"],
+        "ROVOS": ["N24d18m25.0", "E055d21m43.0"],
+        "RUDON": ["N24d24m06.4", "E054d43m38.7"],
+        "RUKOS": ["N24d23m24.7", "E054d30m18.8"],
+        "SENSU": ["N24d18m12.6", "E054d50m01.8"],
+        "SISUG": ["N24d28m09.0", "E054d49m52.9"],
+        "SIVOV": ["N24d32m02.3", "E054d23m29.5"],
+        "SOBER": ["N24d39m42.0", "E054d30m32.0"],
+        "SODEL": ["N24d39m10.2", "E054d29m33.0"],
+        "SOKOV": ["N24d32m11.6", "E054d30m18.9"],
+        "TADBU": ["N24d37m11.3", "E054d34m08.7"],
+        "TAPTO": ["N24d12m30.0", "E054d49m05.9"],
+        "TOMDO": ["N24d49m59.7", "E054d23m11.2"],
+        "TONKI": ["N24d26m45.1", "E054d48m51.2"],
+        "TULON": ["N24d55m11.4", "E054d47m39.1"],
+        "TUMEX": ["N24d30m41.0", "E054d41m32.0"],
+        "UKILI": ["N24d38m15.5", "E053d56m36.4"],
+        "UKPAP": ["N24d37m01.8", "E054d52m36.8"],
+        "ULALA": ["N24d24m32.4", "E054d51m19.9"],
+        "VEDEX": ["N24d34m02.0", "E054d27m42.0"],
+        "VEGIR": ["N24d11m48.3", "E054d46m36.4"],
+        "VUTOK": ["N24d33m04.6", "E054d16m26.1"]
     },
     "runways": [
         {
-            "name": ["31L", "13R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N24d25m18.12", "E054d40m01.86", "83ft"], ["N24d26m39.88", "N054d38m06.67", "78ft"]],
-            "length": 4.106,
+            "name": ["13L", "31R"],
+            "end": [
+                ["242754.29N 0543817.71E", "62ft"], 
+                ["242632.64N 0544012.76E", "72ft"]
+            ],
             "ils": [true, true]
         },
         {
-            "name": ["31R", "13L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N24d26m32.64", "E054d40m12.76", "72ft"], ["N24d27m54.29", "E054d38m17.71", "62ft"]],
-            "length": 4.100,
+            "name": ["13R", "31L"],
+            "end": [
+                ["242639.88N 0543806.67E", "78ft"], 
+                ["242518.12N 0544001.86E", "83ft"]
+            ],
             "ils": [true, true]
         }
     ],
     "sids": {
-        "ATUDO": {
-            "icao": "ATUDO",
-            "name": "Atudo",
-            "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+        "ATUDO3F": {
+            "icao": "ATUDO3F",
+            "name": "Atudo Three Foxtrot",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
-                "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
-                "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]],
-                "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]]
+                "OMAA13L": []
+            },
+            "body": [["AA836", "A40+|S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-|S230-"], ["LONUP", "A90+|S250-"], "AA832"],
+            "exitPoints": {
+                "ATUDO": [["ATUDO", "A120+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA417"],
-                ["__31R", "AA412", "AA417"],
-                ["__13R", "AA431", "AA441", "AA442", "ATUDO"],
-                ["__13L", "AA432", "AA441", "AA442", "ATUDO"],
-                ["AA417", "NAMSI", "AA418", "ATUDO"]
+                ["AA836", "PATAM", "UKPAP", "LONUP", "AA832", "ATUDO"]
             ]
         },
-        "EMERU": {
-            "icao": "EMERU",
-            "name": "Emeru",
-            "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+        "ATUDO3G": {
+            "icao": "ATUDO3G",
+            "name": "Atudo Three Golf",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
-                "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
-                "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]],
-                "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]]
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["PEGEB", "S230-"], ["AA842", "A70-"], "AA832"],
+            "exitPoints": {
+                "ATUDO": [["ATUDO", "A120+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA417"],
-                ["__31R", "AA412", "AA417"],
-                ["AA417", "NAMSI", "AA418", "EMERU"],
-                ["__13R", "AA431", "AA441", "AA442", "NAMSI", "EMERU"],
-                ["__13L", "AA432", "AA441", "AA442", "NAMSI", "EMERU"]
+                ["ITKOV", "AA839", "PEGEB", "AA842", "AA832", "ATUDO"]
             ]
         },
-        "KANIP": {
-            "icao": "KANIP",
-            "name": "Kanip",
-            "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+        "ATUDO3K": {
+            "icao": "ATUDO3K",
+            "name": "Atudo Three Kilo",
             "rwy": {
-                "13L": ["__31R", ["EGVOS", "S250-"], ["KANIP", "A110+"]],
-                "13R": ["__31L", ["SENSU", "S250-"], ["KANIP", "A110+"]],
-                "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]],
-                "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]]
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["OBMUK", "A75+"], ["AA824", "A90-|S230-"], "MURSU", ["ITLIV", "A110+|S250-"], ["LONUP", "A120+"]],
+            "exitPoints": {
+                "ATUDO": ["ATUDO"]
             },
             "draw": [
-                ["__31R", "EGVOS", "KANIP"],
-                ["__31L", "SENSU", "KANIP"],
-                ["__13R", "AA431", "AA441", "AA442", "EMATI", "KANIP"],
-                ["__13L", "AA432", "AA441", "AA442", "EMATI", "KANIP"]
+                ["AA820", "OBTOL", "OBMUK", "AA824", "MURSU", "ITLIV", "LONUP", "ATUDO"]
             ]
         },
-        "MIADA": {
-            "icao": "MIADA",
-            "name": "Miada",
-            "suffix": {"13L":"2F", "13R":"2G"},
+        "ATUDO3P": {
+            "icao": "ATUDO3P",
+            "name": "Atudo Three Papa",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["MIADA", "A90-"]],
-                "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "MIADA"]
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+"], ["MURSU", "A90-"], ["ITLIV", "A90+|S230-"], ["LONUP", "A100+"]],
+            "exitPoints": {
+                "ATUDO": [["ATUDO", "A120+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA417"],
-                ["__31R", "AA412", "AA417"],
-                ["AA417", "NAMSI", "MIADA"]
+                ["TADBU", "MURSU", "ITLIV", "LONUP", "ATUDO"]
             ]
         },
-        "NIBAX": {
-            "icao": "NIBAX",
-            "name": "Nibax",
-            "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+        "BOSEV1F": {
+            "icao": "BOSEV1F",
+            "name": "Bosev Foxtrot",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
-                "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
-                "31L": ["__13R", ["AA431", "A23+|S230-"], "NIBAX"],
-                "31R": ["__13L", ["AA432", "A22+|S230-"], "NIBAX"]
+                "OMAA13L": []
+            },
+            "body": [["ULALA", "S230-"], ["AA834", "A45+|A70-"], ["ITKOV", "A60+"], ["VEGIR", "S230-"], ["RUKOS", "A70-"], ["EGSUP", "A90+"], ["MUSUL", "A130+"]],
+            "exitPoints": {
+                "BOSEV": [["BOSEV", "A150+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA417"],
-                ["__31R", "AA412", "AA417"],
-                ["AA417", "NAMSI", "NIBAX"],
-                ["__13R", "AA431", "NIBAX"],
-                ["__13L", "AA432", "NIBAX"]
+                ["ULALA", "AA834", "ITKOV", "VEGIR", "RUKOS", "EGSUP", "MUSUL", "BOSEV"]
             ]
         },
-        "TOXIG": {
-            "icao": "TOXIG",
-            "name": "Toxig",
-            "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+        "BOSEV1G": {
+            "icao": "BOSEV1G",
+            "name": "Bosev One Golf",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S230-"], ["AA443", "S230-"], "AA444"],
-                "13R": ["__31L", ["AA411", "A21+"], ["AA443", "S230-"], "AA444"],
-                "31L": ["__13R", ["VEDEX", "A36+|S230-"], "TOXIG"],
-                "31R": ["__13L", ["NODVI", "A34+|S230-"], "TOXIG"]
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["VEGIR", "S230-"], ["RUKOS", "A70-"], ["EGSUP", "A90+"], ["MUSUL", "A130+"]],
+            "exitPoints": {
+                "BOSEV": [["BOSEV", "A150+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA443"],
-                ["__31R", "AA412", "AA443"],
-                ["AA443", "AA444", "TOXIG"],
-                ["__13R", "VEDEX", "TOXIG"],
-                ["__13L", "NODVI", "TOXIG"]
+                ["ITKOV", "VEGIR", "RUKOS", "EGSUP", "MUSUL", "BOSEV"]
             ]
         },
-        "TULIL": {
-            "icao": "TULIL",
-            "name": "Tutil",
-            "suffix": {"13L":"1X", "13R":"1Y"},
+        "BOSEV1K": {
+            "icao": "BOSEV1K",
+            "name": "Bosev One Kilo",
             "rwy": {
-                "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"],
-                "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"]
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["PUXUT", "A90-|S250-"]],
+            "exitPoints": {
+                "BOSEV": [["BOSEV", "A100+"]]
             },
             "draw": [
-                ["__31L", "AA411", "AA417"],
-                ["__31R", "AA412", "AA417"],
-                ["AA417", "NAMSI", "AA418", "TULIL", "TOXIG"]
+                ["AA820", "OBTOL", "PUXUT", "BOSEV"]
+            ]
+        },
+        "BOSEV1P": {
+            "icao": "BOSEV1P",
+            "name": "Bosev One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["LOSID", "A50+"]],
+            "exitPoints": {
+                "BOSEV": [["BOSEV", "A100+"]]
+            },
+            "draw": [
+                ["TADBU", "LOSID", "BOSEV"]
+            ]
+        },
+        "DAXIB1F": {
+            "icao": "DAXIB1F",
+            "name": "Daxib One Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": [["AA836", "A40+|S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], ["ITLIV", "A95+"], ["MURSU", "A120+"]],
+            "exitPoints": {
+                "DAXIB": [["DAXIB", "A150+"]]
+            },
+            "draw": [
+                ["AA836", "PATAM", "UKPAP", "ITLIV", "MURSU", "DAXIB"]
+            ]
+        },
+        "DAXIB1G": {
+            "icao": "DAXIB1G",
+            "name": "Daxib One Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["PEGEB", "S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], ["ITLIV", "A95+"], ["MURSU", "A120+"]],
+            "exitPoints": {
+                "DAXIB": [["DAXIB", "A150+"]]
+            },
+            "draw": [
+                ["ITKOV", "AA839", "PEGEB", "PATAM", "UKPAP", "ITLIV", "MURSU", "DAXIB"]
+            ]
+        },
+        "DAXIB1K": {
+            "icao": "DAXIB1K",
+            "name": "Daxib One Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["PUXUT", "A90-|S250-"]],
+            "exitPoints": {
+                "DAXIB": [["DAXIB", "A100+"]]
+            },
+            "draw": [
+                ["AA820", "OBTOL", "PUXUT", "DAXIB"]
+            ]
+        },
+        "DAXIB1P": {
+            "icao": "DAXIB1P",
+            "name": "Daxib One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["LOSID", "A50+"]],
+            "exitPoints": {
+                "DAXIB": [["DAXIB", "A100+"]]
+            },
+            "draw": [
+                ["TADBU", "LOSID", "DAXIB"]
+            ]
+        },
+        "KANIP1N": {
+            "icao": "KANIP1N",
+            "name": "Kanip One November",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+"], ["MURSU", "A90-"], ["ITLIV", "A90+|S230-"], ["LONUP", "A100+"], ["AA827", "A110+"], ["IMTUP", "A150+"]],
+            "exitPoints": {
+                "KANIP": ["KANIP"]
+            },
+            "draw": [
+                ["TADBU", "MURSU", "ITLIV", "LONUP", "AA827", "IMTUP", "KANIP"]
+            ]
+        },
+        "KANIP1U": {
+            "icao": "KANIP1U",
+            "name": "Kanip One Uniform",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["OBMUK", "A75+"], ["AA824", "A90-|S230-"], "MURSU", ["ITLIV", "A110+|S250-"], ["LONUP", "A120+"], ["IMTUP", "A150+"]],
+            "exitPoints": {
+                "KANIP": ["KANIP"]
+            },
+            "draw": [
+                ["AA820", "OBTOL", "OBMUK", "AA824", "MURSU", "ITLIV", "LONUP", "IMTUP", "KANIP"]
+            ]
+        },
+        "KANIP3F": {
+            "icao": "KANIP3F",
+            "name": "Kanip Three Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": ["ULALA", ["AA834", "A45+|A70-|S230-"]],
+            "exitPoints": {
+                "KANIP": [["KANIP", "A110+"]]
+            },
+            "draw": [
+                ["ULALA", "AA834", "KANIP"]
+            ]
+        },
+        "KANIP3G": {
+            "icao": "KANIP3G",
+            "name": "Kanip Three Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["ITREN", "A70-|S230-"]],
+            "exitPoints": {
+                "KANIP": [["KANIP", "A110+"]]
+            },
+            "draw": [
+                ["ITKOV", "AA839", "ITREN", "KANIP"]
+            ]
+        },
+        "KANIP3K": {
+            "icao": "KANIP3K",
+            "name": "Kanip Three Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": [["AA820", "S220-"], ["AA441", "A44+|S220-"], "AA442", "EMATI", ["IMTUP", "A150+"]],
+            "exitPoints": {
+                "KANIP": ["KANIP"]
+            },
+            "draw": [
+                ["AA820", "AA441", "AA442", "EMATI", "IMTUP", "KANIP"]
+            ]
+        },
+        "KANIP3P": {
+            "icao": "KANIP3P",
+            "name": "Kanip Three Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["AA432", "A22+|S220-"], ["AA441", "A40+|S220-"], "AA442", "EMATI", ["IMTUP", "A150+"]],
+            "exitPoints": {
+                "KANIP": ["KANIP"]
+            },
+            "draw": [
+                ["AA432", "AA441", "AA442", "EMATI", "IMTUP", "KANIP"]
+            ]
+        },
+        "LORID1F": {
+            "icao": "LORID1F",
+            "name": "Lorid One Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": [["AA836", "A40+|S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], "ITLIV", "MURSU"],
+            "exitPoints": {
+                "LORID": ["LORID"]
+            },
+            "draw": [
+                ["AA836", "PATAM", "UKPAP", "ITLIV", "MURSU", "LORID"]
+            ]
+        },
+        "LORID1G": {
+            "icao": "LORID1G",
+            "name": "Lorid One Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["PEGEB", "S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], "ITLIV", "MURSU"],
+            "exitPoints": {
+                "LORID": ["LORID"]
+            },
+            "draw": [
+                ["ITKOV", "AA839", "PEGEB", "PATAM", "UKPAP", "ITLIV", "MURSU", "LORID"]
+            ]
+        },
+        "LORID1K": {
+            "icao": "LORID1K",
+            "name": "Lorid One Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["OBMUK", "A75+"], ["AA824", "A90-|S230-"], "MURSU"],
+            "exitPoints": {
+                "LORID": ["LORID"]
+            },
+            "draw": [
+                ["AA820", "OBTOL", "OBMUK", "AA824", "MURSU", "LORID"]
+            ]
+        },
+        "LORID1P": {
+            "icao": "LORID1P",
+            "name": "Lorid One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["MURSU", "A90-"]],
+            "exitPoints": {
+                "LORID": ["LORID"]
+            },
+            "draw": [
+                ["TADBU", "MURSU", "LORID"]
+            ]
+        },
+        "MEKRI1F": {
+            "icao": "MEKRI1F",
+            "name": "Mekri One Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": [["ULALA", "S230-"], ["AA834", "A45+|A70-"], ["ITKOV", "A60+"], ["VEGIR", "S230-"], ["RUKOS", "A70-"], ["EGSUP", "A90+"], ["LAGVU", "A110+"]],
+            "exitPoints": {
+                "MEKRI": ["MEKRI"]
+            },
+            "draw": [
+                ["ULALA", "AA834", "ITKOV", "VEGIR", "RUKOS", "EGSUP", "LAGVU", "MEKRI"]
+            ]
+        },
+        "MEKRI1G": {
+            "icao": "MEKRI1G",
+            "name": "Mekri One Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["VEGIR", "S230-"], ["RUKOS", "A70-"], ["EGSUP", "A90+"], ["LAGVU", "A110+"]],
+            "exitPoints": {
+                "MEKRI": ["MEKRI"]
+            },
+            "draw": [
+                ["ITKOV", "VEGIR", "RUKOS", "EGSUP", "LAGVU", "MEKRI"]
+            ]
+        },
+        "MEKRI1K": {
+            "icao": "MEKRI1K",
+            "name": "Mekri One Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["MEPDO", "A40+|S250-"], ["AA822", "A70-"], "ORPEP", ["AA823", "A100-"]],
+            "exitPoints": {
+                "MEKRI": [["MEKRI", "A110+"]]
+            },
+            "draw": [
+                ["AA820", "MEPDO", "AA822", "ORPEP", "AA823", "MEKRI"]
+            ]
+        },
+        "MEKRI1P": {
+            "icao": "MEKRI1P",
+            "name": "Mekri One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["LOSID", "A50+"], ["PUXUT", "A90-"], ["AA826", "A100-"]],
+            "exitPoints": {
+                "MEKRI": [["MEKRI", "A110+"]]
+            },
+            "draw": [
+                ["TADBU", "LOSID", "PUXUT", "AA826", "MEKRI"]
+            ]
+        },
+        "ORNEL1F": {
+            "icao": "ORNEL1F",
+            "name": "Ornel One Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": ["ULALA", ["AA834", "A45+|A70-|S230-"]],
+            "exitPoints": {
+                "ORNEL": [["ORNEL", "A110+"]]
+            },
+            "draw": [
+                ["ULALA", "AA834", "ORNEL"]
+            ]
+        },
+        "ORNEL1G": {
+            "icao": "ORNEL1G",
+            "name": "Ornel One Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["ITREN", "A70-|S230-"]],
+            "exitPoints": {
+                "ORNEL": [["ORNEL", "A110+"]]
+            },
+            "draw": [
+                ["ITKOV", "AA839", "ITREN", "ORNEL"]
+            ]
+        },
+        "ORNEL1K": {
+            "icao": "ORNEL1K",
+            "name": "Ornel One Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["OBMUK", "A75+"], ["AA824", "A90-|S230-"], "MURSU", ["ITLIV", "A110+|S250-"], ["LONUP", "A120+"], ["IMTUP", "A150+"], "AA817"],
+            "exitPoints": {
+                "ORNEL": ["ORNEL"]
+            },
+            "draw": [
+                ["AA820", "OBTOL", "OBMUK", "AA824", "MURSU", "ITLIV", "LONUP", "IMTUP", "AA817", "ORNEL"]
+            ]
+        },
+        "ORNEL1P": {
+            "icao": "ORNEL1P",
+            "name": "Ornel One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["MURSU", "A90-"], ["ITLIV", "A90+|S230-"], ["LONUP", "A100+"], ["AA827", "A110+"], ["IMTUP", "A150+"], "AA817"],
+            "exitPoints": {
+                "ORNEL": ["ORNEL"]
+            },
+            "draw": [
+                ["TADBU", "MURSU", "ITLIV", "LONUP", "AA827", "IMTUP", "AA817", "ORNEL"]
+            ]
+        },
+        "TULON1F": {
+            "icao": "TULON1F",
+            "name": "Tulon One Foxtrot",
+            "rwy": {
+                "OMAA13L": []
+            },
+            "body": [["AA836", "A40+|S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], ["ITLIV", "A95+"]],
+            "exitPoints": {
+                "TULON": [["TULON", "A120+"]]
+            },
+            "draw": [
+                ["AA836", "PATAM", "UKPAP", "ITLIV", "MURSU", "LORID"]
+            ]
+        },
+        "TULON1G": {
+            "icao": "TULON1G",
+            "name": "Tulon One Golf",
+            "rwy": {
+                "OMAA13R": []
+            },
+            "body": [["ITKOV", "A40+"], ["AA839", "A50+|S230-"], ["PEGEB", "S230-"], ["PATAM", "A50+|A70-"], ["UKPAP", "A80-"], ["ITLIV", "A95+"]],
+            "exitPoints": {
+                "TULON": [["TULON", "A120+"]]
+            },
+            "draw": [
+                ["ITKOV", "AA839", "PEGEB", "PATAM", "UKPAP", "ITLIV", "TULON"]
+            ]
+        },
+        "TULON1K": {
+            "icao": "TULON1K",
+            "name": "Tulon One Kilo",
+            "rwy": {
+                "OMAA31L": []
+            },
+            "body": ["AA820", ["OBTOL", "A50+"], ["OBMUK", "A75+"], ["AA824", "A90-|S230-"], "MURSU"],
+            "exitPoints": {
+                "TULON": [["TULON", "A120+"]]
+            },
+            "draw": [
+                ["AA820", "OBTOL", "OBMUK", "AA824", "MURSU", "TULON"]
+            ]
+        },
+        "TULON1P": {
+            "icao": "TULON1P",
+            "name": "Tulon One Papa",
+            "rwy": {
+                "OMAA31R": []
+            },
+            "body": [["TADBU", "A35+|S230-"], ["MURSU", "A90-"]],
+            "exitPoints": {
+                "TULON": [["TULON", "A120+"]]
+            },
+            "draw": [
+                ["TADBU", "MURSU", "TULON"]
             ]
         }
     },
     "stars": {
-        "ATUDO_STAR": {
-            "icao": "ATUDO",
-            "name": "Atudo",
-            "suffix": {"13L":"3B", "13R":"3B", "31L":"3D", "31R":"3D"},
+        "ATUDO2A": {
+            "icao": "ATUDO2A",
+            "name": "Atudo Two Alpha",
             "entryPoints": {
-                "ATUDO": [["ATUDO", "A120|S250-"]]
+                "ATUDO": [["ATUDO", "A120+|S250-"]]
             },
+            "body": ["TUMEX", "IVEPO", ["SODEL", "S230-"], "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
             "rwy": {
-                "13L": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-                "13R": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-                "31L": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-                "31R": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+                "OMAA13L": [],
+                "OMAA13R": []
             },
             "draw": [
-                ["ATUDO", "NORPU", "SOBER"],
-                ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-                ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-                ["ATUDO", "AA422", "AA423", "ODBAS"],
-                ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-                ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+                ["ATUDO", "TUMEX", "IVEPO", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
             ]
         },
-        "BOXAK": {
-            "icao": "BOXAK",
-            "name": "Boxak",
-            "suffix": {"13L":"3A", "13R":"1B", "31L":"3C", "31R":"3D"},
+        "ATUDO2C": {
+            "icao": "ATUDO2C",
+            "name": "Atudo Two Charlie",
             "entryPoints": {
-                "BOXAK": [["BOXAK", "A130-|A60|S250-"]]
+                "ATUDO": [["ATUDO", "A120+|S250-"]]
             },
+            "body": ["ITUGO", ["TONKI", "S230-"], "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"],
             "rwy": {
-                "13L": [["AA804", "A60"], "NAMKU", ["OBTOL", "A30|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-                "13R": ["AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30"], "VEDEX", ["AA475", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-                "31L": [["AA801", "A50"], ["ASKIN", "A30"], ["AA403", "S210-"], ["AA402", "A28"], ["EGLIR", "A11"]],
-                "31R": [["AA801", "A50"], ["ASKIN", "A30"], ["AA516", "S210-"], ["AA515", "A28"], ["RUDON", "A13"]]
+                "OMAA31L": [],
+                "OMAA31R": []
             },
             "draw": [
-                ["BOXAK", "AA804", "NAMKU", "OBTOL", "AA576", "NODVI", "AA575", "AA564", "LAGRU"],
-                ["BOXAK", "AA801", "ADV", "OBTOL", "VEDEX", "AA464", "BOMUP"],
-                ["BOXAK", "AA801", "ASKIN", "AA403", "AA402", "EGLIR"],
-                ["BOXAK", "AA801", "ASKIN", "AA516", "AA515", "RUDON"]
+                ["ATUDO", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
             ]
         },
-        "MIADA_STAR": {
-            "icao": "MIADA",
-            "name": "Miada",
-            "suffix": {"13L":"3A", "13R":"3A", "31L":"3D", "31R":"3D"},
+        "ATUDO4B": {
+            "icao": "ATUDO4B",
+            "name": "Atudo Four Bravo",
             "entryPoints": {
-                "MIADA": [["MIADA", "A80-|A60|S250-"]]
+                "ATUDO": [["ATUDO", "A120+|S250-"]]
             },
+            "body": ["TUMEX", "IVEPO", ["SODEL", "S230-"]],
             "rwy": {
-                "13L": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-                "13R": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-                "31L": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-                "31R": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+                "OMAA13L": [],
+                "OMAA13R": []
             },
             "draw": [
-                ["MIADA", "AA751", "SOBER"],
-                ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-                ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-                ["MIADA", "AA816", "DENBO", "ODBAS"],
-                ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-                ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+                ["ATUDO", "TUMEX", "IVEPO", "SODEL"]
             ]
         },
-        "NOBTO": {
-            "icao": "NOBTO",
-            "name": "Nobto",
-            "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+        "ATUDO4D": {
+            "icao": "ATUDO4D",
+            "name": "Atudo Four Delta",
             "entryPoints": {
-                "NOBTO": [["NOBTO", "A130-|A100|S250-"]]
+                "ATUDO": [["ATUDO", "A120+|S250-"]]
             },
+            "body": ["ITUGO", ["TONKI", "S230-"], "LOXIX"],
             "rwy": {
-                "13L": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["AA570", "A30|S210-"], ["AA565", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-                "13R": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["EGMEL", "A30|S210-"], ["AA470", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-                "31L": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-                "31R": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], ["AA514", "A30"], "EGVOS", ["AA513", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+                "OMAA31L": [],
+                "OMAA31R": []
             },
             "draw": [
-                ["NOBTO", "PARED", "SUTVA", "NITVU", "KODAS"],
-                ["KODAS", "AA570", "AA565", "AA564", "LAGRU"],
-                ["KODAS", "EGMEL", "AA470", "AA464", "BOMUP"],
-                ["PARED", "LOSUR"],
-                ["LOSUR", "SENSU", "AA413", "AA404", "EGLIR"],
-                ["LOSUR", "AA514", "EGVOS", "AA513", "AA505", "RUDON"]
+                ["ATUDO", "ITUGO", "TONKI", "LOXIX"]
             ]
         },
-        "ROVOS": {
-            "icao": "ROVOS",
-            "name": "Rovos",
-            "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+        "ELOVU1B": {
+            "icao": "ELOVU1B",
+            "name": "Elovu One Bravo",
             "entryPoints": {
-                "ROVOS": [["ROVOS", "A130-|S250-"]]
+                "ELOVU": [["ELOVU", "A110|S250-"]]
             },
+            "body": ["MUTOP", ["RIBUV", "S230-"], "SODEL"],
             "rwy": {
-                "13L": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["AA572", "A30|S210"], ["AA571", "A28"], ["LAGRU", "A12"]],
-                "13R": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["SOBER", "A30"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-                "31L": ["RAKNI", ["AA841", "A50"], ["IMLAD", "A30"], ["AA414", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-                "31R": [["VEGIT", "A70|S230-"], ["AA425", "A60"], "AA426", ["ODBAS", "A50"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+                "OMAA13L": [],
+                "OMAA13R": []
             },
             "draw": [
-                ["ROVOS", "EMATI", "NORPU"],
-                ["NORPU", "SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-                ["NORPU", "AA572", "AA571", "LAGRU"],
-                ["ROVOS", "RAKNI", "IMLAD", "AA414", "SENSU", "AA413", "AA404", "EGLIR"],
-                ["ROVOS", "VEGIT", "AA425", "AA426", "ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+                ["EVOLU", "MUTOP", "RIBUV", "SODEL"]
             ]
         },
-        "TANGA": {
-            "icao": "TANGA",
-            "name": "Tanga",
-            "suffix": {"13L":"3A", "13R":"3A", "31L":"2K", "31R":"2P"},
+        "ELOVU1D": {
+            "icao": "ELOVU1D",
+            "name": "Elovu One Delta",
             "entryPoints": {
-                "TANGA": [["TANGA", "A130-|S250-"]]
+                "ELOVU": [["ELOVU", "A150-|S250-"]]
             },
+            "body": ["MUVUM", "ITUGO", ["TONKI", "S230-"], "LOXIX"],
             "rwy": {
-                "13L": ["AA750", ["SOBER", "A30|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-                "13R": ["AA750", ["SOBER", "A30|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-                "31L": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-                "31R": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+                "OMAA31L": [],
+                "OMAA31R": []
             },
             "draw": [
-                ["TANGA", "AA750", "SOBER"],
-                ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-                ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-                ["TANGA", "DEBOD", "DENBO", "ODBAS"],
-                ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-                ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+                ["ATUDO", "MUVUM", "ITUGO", "TONKI", "LOXIX"]
+            ]
+        },
+        "ELOVU2A": {
+            "icao": "ELOVU2A",
+            "name": "Elovu Two Alpha",
+            "entryPoints": {
+                "ELOVU": [["ELOVU", "A110|S250-"]]
+            },
+            "body": ["MUTOP", ["RIBUV", "S230-"], "SODEL", "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["EVOLU", "MUTOP", "RIBUV", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "ELOVU2C": {
+            "icao": "ELOVU2C",
+            "name": "Elovu Two Charlie",
+            "entryPoints": {
+                "ELOVU": [["ELOVU", "A150-|S250-"]]
+            },
+            "body": ["MUVUM", "ITUGO", ["TONKI", "S230-"], "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["ATUDO", "MUVUM", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+            ]
+        },
+        "EMERU1B": {
+            "icao": "EMERU1B",
+            "name": "Emeru One Bravo",
+            "entryPoints": {
+                "EMERU": [["EMERU", "A160-|S250-"]]
+            },
+            "body": ["MUNPA", "RIDIB", "SISUG", "TUMEX", "IVEPO", ["SODEL", "S230-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["EMERU", "MUNPA", "RIDIB", "SISUG", "TUMEX", "IVEPO", "SODEL"]
+            ]
+        },
+        "EMERU1D": {
+            "icao": "EMERU1D",
+            "name": "Emeru One Delta",
+            "entryPoints": {
+                "EMERU": [["EMERU", "A160-|S250-"]]
+            },
+            "body": ["AA529", ["TONKI", "S230-"], "LOXIX"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["EMERU", "AA529", "TONKI", "LOXIX"]
+            ]
+        },
+        "EMERU2A": {
+            "icao": "EMERU2A",
+            "name": "Emeru Two Alpha",
+            "entryPoints": {
+                "EMERU": [["EMERU", "A160-|S250-"]]
+            },
+            "body": ["MUNPA", "RIDIB", "SISUG", "TUMEX", "IVEPO", "SODEL", "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["EMERU", "MUNPA", "RIDIB", "SISUG", "TUMEX", "IVEPO", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "EMERU2C": {
+            "icao": "EMERU2C",
+            "name": "Emeru Two Charlie",
+            "entryPoints": {
+                "EMERU": [["EMERU", "A160-|S250-"]]
+            },
+            "body": ["AA529", ["TONKI", "S230-"], "LOXIX", "AA524", ["GISVU", "S210-"], "AA526", ["PEGUM", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["EMERU", "AA529", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+            ]
+        },
+        "GIDOB1B": {
+            "icao": "GIDOB1B",
+            "name": "Gidob One Bravo",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A120-|S250-"]]
+            },
+            "body": ["TOMDO", ["RIBUV", "S230-"], "SODEL"],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["GIDOB", "TOMDO", "RIBUV", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "GIDOB1D": {
+            "icao": "GIDOB1D",
+            "name": "Gidob One Delta",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A150-|S250-"]]
+            },
+            "body": ["ORGAD", "VEDEX", "ITUGO", ["TONKI", "S230-"], "LOXIX"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["GIDOB", "ORGAD", "VEDEX", "ITUGO", "TONKI", "LOXIX"]
+            ]
+        },
+        "GIDOB1M": {
+            "icao": "GIDOB1M",
+            "name": "Gidob One Mike",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A150-|S250-"]]
+            },
+            "body": ["ORGAD", ["ORMED", "S230-"], "TAPTO"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["GIDOB", "ORGAD", "ORMED", "TAPTO"]
+            ]
+        },
+        "GIDOB2A": {
+            "icao": "GIDOB2A",
+            "name": "Gidob Two Alpha",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A120-|S250-"]]
+            },
+            "body": ["TOMDO", "RIBUV", "SODEL", "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["GIDOB", "TOMDO", "RIBUV", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "GIDOB2C": {
+            "icao": "GIDOB2C",
+            "name": "Gidob Two Charlie",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A150-|S250-"]]
+            },
+            "body": ["ORGAD", "VEDEX", "ITUGO", ["TONKI", "S230-"], "LOXIX", "AA524", ["GISVU", "S210-"], "AA526", ["PEGUM", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["GIDOB", "ORGAD", "VEDEX", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+            ]
+        },
+        "GIDOB2J": {
+            "icao": "GIDOB2J",
+            "name": "Gidob Two Juliett",
+            "entryPoints": {
+                "GIDOB": [["GIDOB", "A150-|S250-"]]
+            },
+            "body": ["ORGAD", ["ORMED", "S230-"], "TAPTO", "AA519", ["BOSIG", "S210-"], "AA520", ["ITREN", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["GIDOB", "ORGAD", "ORMED", "TAPTO", "AA519", "BOSIG", "AA520", "ITREN"]
+            ]
+        },
+        "NOBTO2H": {
+            "icao": "NOBTO2H",
+            "name": "Nobto Two Hotel",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A150-|S250-"]]
+            },
+            "body": ["REXIG", "PUVUT", "SISUG", "TUMEX", "IVEPO", ["SODEL", "S230-"], "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "PUVUT", "SISUG", "TUMEX", "IVEPO", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "NOBTO2J": {
+            "icao": "NOBTO2J",
+            "name": "Nobto Two Juliett",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A100+|A130-|S250-"]]
+            },
+            "body": [["REXIG", "S230-"], "KITOX", ["GEXOD", "S230-"], "LORUP", "LOXIX", "AA524", ["GISVU", "S210-"], "AA526", ["PEGUM", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "KITOX", "GEXOD", "LORUP", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+            ]
+        },
+        "NOBTO4B": {
+            "icao": "NOBTO4B",
+            "name": "Nobto Four Bravo",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A150-|S250-"]]
+            },
+            "body": ["REXIG", "PUVUT", "OBVIK", ["SIVOV", "S230-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "PUVUT", "OBVIK", "SIVOV"]
+            ]
+        },
+        "NOBTO4D": {
+            "icao": "NOBTO4D",
+            "name": "Nobto Four Delta",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A100+|A130-|S250-"]]
+            },
+            "body": [["REXIG", "S230-"], "MERPU"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "MERPU"]
+            ]
+        },
+        "NOBTO5A": {
+            "icao": "NOBTO5A",
+            "name": "Nobto Five Alpha",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A150-|S250-"]]
+            },
+            "body": ["REXIG", "PUVUT", "OBVIK", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "PUVUT", "OBVIK", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"]
+            ]
+        },
+        "NOBTO5C": {
+            "icao": "NOBTO5C",
+            "name": "Nobto Five Charlie",
+            "entryPoints": {
+                "NOBTO": [["NOBTO", "A100+|A130-|S250-"]]
+            },
+            "body": [["REXIG", "S230-"], "MERPU", ["BOSIG", "S210-"], "AA520", ["ITREN", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["NOBTO", "REXIG", "MERPU", "BOSIG", "AA520", "ITREN"]
+            ]
+        },
+        "ROVOS2H": {
+            "icao": "ROVOS2H",
+            "name": "Rovos Two Hotel",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A150-|S250-"]]
+            },
+            "body": ["PUVUT", "OBVIK", ["SIVOV", "S230-"], "DEGVO", ["PAXIK", "S210-"], "AA583", "IMSIG"],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["ROVOS", "PUVUT", "OBVIK", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"]
+            ]
+        },
+        "ROVOS2J": {
+            "icao": "ROVOS2J",
+            "name": "Rovos Two Juliett",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A100+|A130-|S250-"]]
+            },
+            "body": ["MERPU", ["BOSIG", "S210-"], "AA520", ["ITREN", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["ROVOS", "MERPU", "BOSIG", "AA520", "ITREN"]
+            ]
+        },
+        "ROVOS4B": {
+            "icao": "ROVOS4B",
+            "name": "Rovos Four Bravo",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A150-|S250-"]]
+            },
+            "body": ["KITOX", "GEXOD", "LORUP", "SISUG", "TUMEX", "IVEPO", ["SODEL", "S230-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["ROVOS", "KITOX", "GEXOD", "LORUP", "SISUG", "TUMEX", "IVEPO", "SODEL"]
+            ]
+        },
+        "ROVOS4D": {
+            "icao": "ROVOS4D",
+            "name": "Rovos Four Delta",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A100+|A130-|S250-"]]
+            },
+            "body": ["KITOX", ["GEXOD", "S230-"], "LORUP", "LOXIX"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["ROVOS", "KITOX", "GEXOD", "LORUP", "LOXIX"]
+            ]
+        },
+        "ROVOS5A": {
+            "icao": "ROVOS5A",
+            "name": "Rovos Five Alpha",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A150-|S250-"]]
+            },
+            "body": ["KITOX", "GEXOD", "LORUP", "SISUG", "TUMEX", "IVEPO", ["SODEL", "S230-"], "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["ROVOS", "KITOX", "GEXOD", "LORUP", "SISUG", "TUMEX", "IVEPO", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+            ]
+        },
+        "ROVOS5C": {
+            "icao": "ROVOS5C",
+            "name": "Rovos Five Charlie",
+            "entryPoints": {
+                "ROVOS": [["ROVOS", "A100+|A130-|S250-"]]
+            },
+            "body": ["KITOX", ["GEXOD", "S230-"], "LORUP", "LOXIX", "AA524", ["GISVU", "S210-"], "AA526", ["PEGUM", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["ROVOS", "KITOX", "GEXOD", "LORUP", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+            ]
+        },
+        "UKILI1B": {
+            "icao": "UKILI1B",
+            "name": "Ukili One Bravo",
+            "entryPoints": {
+                "UKILI": [["UKILI", "A120-|S250-"]]
+            },
+            "body": ["PEKAX", ["OTUTU", "S230-"], "SIVOV"],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["ROVOS", "PUVUT", "OBVIK", "SIVOV"]
+            ]
+        },
+        "UKILI1D": {
+            "icao": "UKILI1D",
+            "name": "Ukili One Delta",
+            "entryPoints": {
+                "UKILI": [["UKILI", "A150-|S250-"]]
+            },
+            "body": ["ORPEP", "AA530", ["ORMED", "S230-"], "TAPTO"],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["UKILI", "ORPEP", "AA530", "ORMED", "TAPTO"]
+            ]
+        },
+        "UKILI2A": {
+            "icao": "UKILI2A",
+            "name": "Ukili Two Alpha",
+            "entryPoints": {
+                "UKILI": [["UKILI", "A120-|S250-"]]
+            },
+            "body": ["PEKAX", ["OTUTU", "S230-"], "SIVOV", "DEGVO", ["PAXIK", "S210-"], "AA583", "IMSIG"],
+            "rwy": {
+                "OMAA13L": [],
+                "OMAA13R": []
+            },
+            "draw": [
+                ["ROVOS", "PUVUT", "OBVIK", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"]
+            ]
+        },
+        "UKILI2C": {
+            "icao": "UKILI2C",
+            "name": "Ukili Two Charlie",
+            "entryPoints": {
+                "UKILI": [["UKILI", "A150-|S250-"]]
+            },
+            "body": ["ORPEP", "AA530", ["ORMED", "S230-"], "TAPTO", "AA519", ["BOSIG", "S210-"], "AA520", ["ITREN", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["UKILI", "ORPEP", "AA530", "ORMED", "TAPTO", "AA519", "BOSIG", "AA520", "ITREN"]
+            ]
+        },
+        "UKILI2J": {
+            "icao": "UKILI2J",
+            "name": "Ukili Two Juliett",
+            "entryPoints": {
+                "UKILI": [["UKILI", "A150-|S250-"]]
+            },
+            "body": ["ORGAD", "VEDEX", "ITUGO", ["TONKI", "S230-"], "LOXIX", "AA524", ["GISVU", "S210-"], "AA526", ["PEGUM", "S210-"]],
+            "rwy": {
+                "OMAA31L": [],
+                "OMAA31R": []
+            },
+            "draw": [
+                ["UKILI", "ORGAD", "VEDEX", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
             ]
         }
     },
-    "departures": {
-        "airlines": [
-            ["aic",  1],
-            ["axb",  5],
-            ["aza",  3],
-            ["baw",  2],
-            ["etd", 94],
-            ["jai", 11],
-            ["klm",  2],
-            ["thy",  2]
-        ],
-        "destinations": [
-            "ATUDO", "EMERU", "KANIP", "MIADA", "NIBAX", "TOXIG", "TULIL"
-        ],
-        "type": "random",
-        "offset": 0,
-        "frequency": 50
-    },
-    "arrivals": [
-        {
-            "type":         "cyclic",
-            "route":    "TANGA.TANGA.OMAA",
-            "frequency": 8,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["etd", 94],
-                ["jai", 11],
-                ["klm",  2],
-                ["thy",  2]
-            ]
-        },
-        {
-            "type":         "cyclic",
-            "route":    "ROVOS.ROVOS.OMAA",
-            "frequency": 10,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["aic",  1],
-                ["axb",  5],
-                ["etd", 94],
-                ["jai", 11]
-            ]
-        },
-        {
-            "type":         "cyclic",
-            "route":    "NOBTO.NOBTO.OMAA",
-            "frequency": 7,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["aic",  1],
-                ["axb",  5],
-                ["etd", 94],
-                ["jai", 11]
-            ]
-        },
-        {
-            "type":         "cyclic",
-            "route":    "MIADA.MIADA_STAR.OMAA",
-            "frequency": 12,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["aic",  1],
-                ["axb",  5],
-                ["aza",  3],
-                ["etd", 94],
-                ["jai", 11],
-                ["klm",  2],
-                ["thy",  2]
-            ]
-        },
-        {
-            "type":         "cyclic",
-            "route":    "BOXAK.BOXAK.OMAA",
-            "frequency": 7,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["aza",  3],
-                ["etd", 94],
-                ["baw",  2]
-            ]
-        },
-        {
-            "type":         "cyclic",
-            "route":    "ATUDO.ATUDO_STAR.OMAA",
-            "frequency": 10,
-            "altitude": 13000,
-            "speed":        330,
-            "offset":        2,
-            "airlines": [
-                ["aic",  1],
-                ["axb",  5],
-                ["etd", 94],
-                ["jai", 11]
-            ]
-        }
+    "spawnPatterns": [
+        
     ]
 }
