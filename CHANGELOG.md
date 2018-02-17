@@ -8,6 +8,7 @@
 - Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
 - Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
 - Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
+- Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
 
 
 
