@@ -43,6 +43,57 @@ Luton Director
 Luton Fire
 ```
 
+### Other aerodromes of interest
+##### London Heathrow, EGLL
+London Heathrow Airport is a major international airport serving London. It is the second busiest airport in the world by **international** passenger traffic. It is the busiest in Europe and only has two parallel west-east runways. The airport has 4 terminals which are all served by 3 London Underground Stations. In October 2016, the UK Government approved a third runway at Heathrow, which is likely to run west-east too, positioned towards the north-west of the airfield.
+
+75,711,130 passengers handled in 2015-16
+474,963 aircraft movements in 2015-16
+
+09L/27R 3,902m, Grooved asphalt
+09R/27L 3,660m, Grooved asphalt
+
+##### London Gatwick, EGKK
+London Gatwick Airport is a major international airport 47.5km south of Central London. It is the second-busiest airport by passenger traffic in the United Kingdom. The airport uses single-runway operations despite having two runways; the proximity of the runways prohibits the usage of dual-runway operations. The airport is mainly used by low-cost and holiday airlines such as easyJet, Norwegian Air Shuttle, Thomas Cook and TUI. Gatwick has tried to lobby for a third runway,however a 40 year agreement not to build one was made in 1979 with the local council. Another runway would allow Gatwick to handle more passengers than Heathrow does today.
+
+45,561,700 passengers handled in 2016-17
+285,969 aircraft movements in 2016-17
+
+08L/26R 2,565m, Asphalt
+08R/26L 3,375m, Asphalt (primary operational runway) 
+
+##### London City Airport, EGLC
+London City Airport is an international airport located in the Royal Docks near Canary Wharf. It has an extremely short runway; Short Takeoff and Landing operations are in use. The airport was officially opened by Queen Elizabeth II in November 1987. The airport is mainly used by business travellers due to its proximity to the finanical district; various business airlines such as British Airways, Lufthansa and KLM operate flights to London City. British Airways operates a flagship route from London City, BA1, from London City to Shannon to New York with an A318.
+
+4,538,813 passengers handled in 2015-16
+85,169 aircraft movements in 2015-16
+
+09/27 1,508m, Asphalt
+
+##### London Stansted Airport, EGSS
+London Stansted Airport is an international airport located at Stansted Mountfitchet, Essex. It is 48km northeast of Central London. The airport servers over 170 destinations across Europe and is a base for many low-cost airlines, most notably Ryanair. The airport is owned by the Manchester Airports Group, which operates Manchester Airport and East Midlands Airport. The airport is a focus city for easyJet, Jet2.com, Ryaniar, Thomas Cock and TUI.
+
+24,320,071 passengers handled in 2015-16
+180,430 aircraft movements in 2015-16
+
+04/22 3,049m, Grooved asphalt
+
+##### London Southend Airport, EGMC
+London Southend Airport is an international airport 68km from Central London. The airport serves very few airlines, however it has been increasing passenger numbers over the years. British low-cost carriers Flybe and easyJet have been one of the reasons behind this increase in passenger numbers as they have been starting new routes from Southend recently.
+
+05/23 1,856m, Asphalt
+
+##### London Farnborough Airport, EGLF
+Farnborough Airport is a business and general aviation airport in Hampshire. The airfield is the home of the Farnborough Airshow which is held every two years.
+
+06/2 2,440m, Asphalt
+
+##### London Biggin Hill Airport, EGKB
+Biggin Hill Airport is a general aviation airport 22km south-east of Central London. It was formerly an RAF station. Radar air traffic control services are given by Thames Radar at the LTCC and VFR ATC are provided by the airport itself. There are no commercial air services to or from Biggin Hill; all requests for such commercial services have been rejected by the council and no scheduled nor fare-paying passenger services are permitted to operate here.
+
+03/21 1,820m, Tarmac
+
+
 ### Videomap
 Provided with the videomap is a generic videomap for the London Terminal Manoeuvring Area. The extended centrelines and runways of all major airports (Heathrow, Gatwick, Stansted, Luton and City) are displayed, along with the positions of important VORs. CTAs and ATZs of all the major airports are displayed too.
 
@@ -50,3 +101,9 @@ Every dash on an extended centreline represents one (1) nautical mile, with each
 All sector splits of the LTMA are drawn on too.
 
 ### Additional Resources
+[NATS London TMA Diagram](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)
+[NATS Aerodrome Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html)
+[VATSIM UK (Luton)](https://vatsim.uk/eggw/)
+[VATSIM UK Luton Cribsheet](https://vatsim.uk/download/info/?downloadID=00116)
+[VATSIM UK Luton Virtual Manual of Air Traffic Services](https://vatsim.uk/download/info/?downloadID=00119)
+[History of London's Airports (YouTube)](https://youtu.be/AbAal7jIWQ4)
