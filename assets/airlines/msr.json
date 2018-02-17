@@ -1,0 +1,19 @@
+{
+    "icao": "msr",
+    "name": "EgyptAir",
+    "callsign": {
+        "name": "Egyptair",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3],
+            ["A321", 4],
+            ["A332", 6],
+            ["A333", 4],
+            ["B738", 20],
+            ["B772", 2],
+            ["B77W", 6]
+        ]
+    }
+}

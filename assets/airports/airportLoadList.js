@@ -71,13 +71,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'eddf',
-        //     level: 'hard',
-        //     name: 'Frankfurt Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'eddf',
+            level: 'hard',
+            name: 'Flughafen Frankfurt am Main',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'eddh',
             level: 'beginner',

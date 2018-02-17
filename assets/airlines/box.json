@@ -1,0 +1,13 @@
+{
+    "icao": "box",
+    "name": "AeroLogic",
+    "callsign": {
+        "name": "German Cargo",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B772", 10]
+        ]
+    }
+}
