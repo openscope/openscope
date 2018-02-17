@@ -177,34 +177,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         // {
-        //     icao: 'eidw',
-        //     level: 'medium',
-        //     name: 'Dublin Airport',
-        //     premium: false,
-        //     wip: false
-        // },
-        // {
-        //     icao: 'einn',
-        //     level: 'beginner',
-        //     name: 'Shannon Airport',
-        //     premium: false,
-        //     wip: false
-        // },
-        // {
-        //     icao: 'ekch',
-        //     level: 'medium',
-        //     name: 'Copenhagen Kastrup Airport',
-        //     premium: false,
-        //     wip: true
-        // },
-        // {
-        //     icao: 'engm',
-        //     level: 'easy',
-        //     name: 'Oslo Gardermoen International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
-        // {
         //     icao: 'espa',
         //     level: 'easy',
         //     name: 'Luleå Airport',

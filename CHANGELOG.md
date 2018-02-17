@@ -26,9 +26,6 @@
 - Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
 - Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
 - Convert `NavigationLibrary` to a singleton [#529](http://github.com/openscope/openscope/issues/529)
-<<<<<<< HEAD
-- Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
-=======
 - Remove nonfunctional airports from load list broken by feature/809 [#881](http://github.com/openscope/openscope/issues/881)
 - Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
 - Overhaul of Manchester International Airport (England, United Kingdom)[#854](https://github.com/openscope/openscope/issues/854)
@@ -37,8 +34,8 @@
 - Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
 - Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
 - Updates KPDX to AIRAC 1802 [#851](https://github.com/openscope/openscope/issues/851)
+- Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
 
->>>>>>> develop
 
 
 
