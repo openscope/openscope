@@ -234,16 +234,16 @@
         {
             "name": ["13L", "31R"],
             "end": [
-                ["242754.29N 0543817.71E", "62ft"], 
-                ["242632.64N 0544012.76E", "72ft"]
+                ["N24d27m54.29", "E054d38m17.71", "62ft"], 
+                ["N24d26m32.64", "E054d40m12.76", "72ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["13R", "31L"],
             "end": [
-                ["242639.88N 0543806.67E", "78ft"], 
-                ["242518.12N 0544001.86E", "83ft"]
+                ["N24d26m39.88", "E054d38m06.67", "78ft"], 
+                ["N24d25m18.12", "E054d40m01.86", "83ft"]
             ],
             "ils": [true, true]
         }
@@ -799,7 +799,7 @@
                 "OMAA13R": []
             },
             "draw": [
-                ["EVOLU", "MUTOP", "RIBUV", "SODEL"]
+                ["ELOVU", "MUTOP", "RIBUV", "SODEL"]
             ]
         },
         "ELOVU1D": {
@@ -814,7 +814,7 @@
                 "OMAA31R": []
             },
             "draw": [
-                ["ATUDO", "MUVUM", "ITUGO", "TONKI", "LOXIX"]
+                ["ELOVU", "MUVUM", "ITUGO", "TONKI", "LOXIX"]
             ]
         },
         "ELOVU2A": {
@@ -829,7 +829,7 @@
                 "OMAA13R": []
             },
             "draw": [
-                ["EVOLU", "MUTOP", "RIBUV", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
+                ["ELOVU", "MUTOP", "RIBUV", "SODEL", "OVOLA", "RIGIP", "AA568", "ORDAK"]
             ]
         },
         "ELOVU2C": {
@@ -844,7 +844,7 @@
                 "OMAA31R": []
             },
             "draw": [
-                ["ATUDO", "MUVUM", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
+                ["ELOVU", "MUVUM", "ITUGO", "TONKI", "LOXIX", "AA524", "GISVU", "AA526", "PEGUM"]
             ]
         },
         "EMERU1B": {
@@ -1219,7 +1219,7 @@
                 "OMAA13R": []
             },
             "draw": [
-                ["ROVOS", "PUVUT", "OBVIK", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"]
+                ["UKILI", "PEKAX", "OTUTU", "SIVOV", "DEGVO", "PAXIK", "AA583", "IMSIG"]
             ]
         },
         "UKILI2C": {
@@ -1253,7 +1253,9 @@
             ]
         }
     },
-    "spawnPatterns": [
-        
-    ]
+    "maps": {
+        "base": [
+            
+        ]
+    }
 }
