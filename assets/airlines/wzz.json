@@ -3,8 +3,13 @@
     "name": "Wizz Air",
     "callsign": {
         "name": "Wizzair",
-        "length": 4,
-        "alpha": true
+        "callsignFormats": [
+            "##@@",
+            "###@",
+            "##@",
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,11 @@
     "name": "Blue Air",
     "callsign": {
         "name": "Blue Messenger",
-        "length": 3
+        "callsignFormats": [
+            "#@",
+            "###",
+            "##@@"
+        ]
     },
     "fleets": {
         "default": [
