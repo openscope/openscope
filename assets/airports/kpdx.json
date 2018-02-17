@@ -592,7 +592,7 @@
             "method": "random",
             "rate": 2,
             "airlines": [
-               ["asa", 32],
+                ["asa", 32],
                 ["cpz", 4],
                 ["dal", 20],
                 ["fdx", 3],

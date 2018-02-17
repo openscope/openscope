@@ -2,7 +2,7 @@
 Portland TRACON (P80), Portland, Oregon, USA
 316,542 annual operations in 2017 ([FAA ATADS](https://aspm.faa.gov/opsnet/sys/Tracon.asp))
 
-The P80 TRACON provides approach control service to over twenty public/municipal airports, as well as a myriad of active private airports/airstrips
+The P80 TRACON provides approach control service to over twenty public/municipal airports, as well as a myriad of active private airports/airstrips.
 
 ### Airspace
 The Portland TRACON airspace includes a thirty-five mile radius around PDX, and extends from the surface up to 15,000 feet.
@@ -26,7 +26,7 @@ S - south approach  (unavailable)
 Portland International  
 263,980 annual operations
 
-PDX is the main airport of the P80 TRACON as well as the largest airport in Oregon. The airport has two parallel runways (10-28) and runway 3-21 which crosses 10R-28L. The two parallel runways are used for both departures and arrivals in low traffic. Tipically, the north runway will be used for aircraft departing to or arriving from the North, while the south runway is used for aircraft departing to or arriving from the South and East.
+PDX is the main airport of the P80 TRACON as well as the largest airport in Oregon. The airport has two parallel runways (10-28) and runway 3-21 which crosses 10R-28L. The two parallel runways are used for both departures and arrivals in low traffic. Typically, the north runway will be used for aircraft departing to or arriving from the North, while the south runway is used for aircraft departing to or arriving from the South and East.
 
 #### KHIO
 Portland-Hillsboro Airport  
@@ -47,7 +47,7 @@ Aurora State Airport
 64,046 annual operations  
 21.8nm South of KPDX
 
-Aurora State Airport/Wes Lematta Field is a small GA Airport with a new control tower built in 2015. Moslty used for flight training as well as some business operations.
+Aurora State Airport/Wes Lematta Field is a small GA Airport with a new control tower built in 2015. Mostly used for flight training as well as some business operations.
 
 ### Additional Resources
 _Add links to relevant videos, files, etc here_
