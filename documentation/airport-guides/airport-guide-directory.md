@@ -17,6 +17,6 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [KSEA - Seattle–Tacoma International Airport](ksea.md)
 - [KSTL - St. Louis Lambert International Airport](kstl.md)
 - [KTUS - Tucson International Airport](ktus.md)
-- [LSZH - Zurich Airport](lszh.md)
+- [LSZH - Zürich Airport](lszh.md)
 - [MDSD - Las Américas International Airport](mdsd.md)
 - [SAEZ - Ministro Pistarini International Airport](saez.md)
