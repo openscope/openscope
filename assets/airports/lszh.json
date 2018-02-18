@@ -1131,7 +1131,7 @@
             "airlines": [
                 ["afr/short", 11],
                 ["baw/short", 14],
-                ["baw/b767", 4]
+                ["baw/b767", 4],
                 ["cfe", 9],
                 ["ein/short", 7],
                 ["ewg/short", 2],
