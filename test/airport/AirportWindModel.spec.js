@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import AirportWindModel from '../../src/assets/scripts/client/airport/AirportWindModel';
 import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 
-const windMock = Object.assign({}, AIRPORT_JSON_KLAS_MOCK.wind;
+const windMock = Object.assign({}, AIRPORT_JSON_KLAS_MOCK.wind);
 
 ava('throws when instantiated with invalid data', (t) => {
     t.throws(() => new AirportWindModel());
