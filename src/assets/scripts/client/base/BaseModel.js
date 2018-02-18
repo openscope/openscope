@@ -39,7 +39,7 @@ export default class BaseModel {
     /**
      * Destory the current instance.
      *
-     * When implemented by the inheriting class, this method should un-set all class properties
+     * When implemented by the inheriting class, this method should un-set all instance properties
      * and remove any handlers.
      *
      * @for BaseModel

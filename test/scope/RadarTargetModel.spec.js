@@ -22,7 +22,7 @@ ava('initializes correctly when called to instantiate with correct parameters', 
     t.true(model._hasSuppressedDataBlock === false);
     t.true(model._interimAltitude === INVALID_NUMBER);
     t.true(model._isUnderOurControl === true);
-    t.true(model._routeString === 'DAG.KEPEC3.KLAS');
+    t.true(model._routeString === 'DAG.KEPEC3.KLAS07R');
     t.true(model._scratchPadText === 'LAS');
     t.true(model._theme === THEME.DEFAULT);
 });

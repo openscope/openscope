@@ -1,16 +1,21 @@
 import ava from 'ava';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import { fmsArrivalFixture } from '../../fixtures/aircraftFixtures';
+import { createNavigationLibraryFixture, resetNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
 let pilot;
+
 ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+
     const modeController = new ModeController();
-    pilot = new Pilot(modeController, fmsArrivalFixture);
+    pilot = new Pilot(fmsArrivalFixture, modeController);
 });
 
 ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+
     pilot = null;
 });
 

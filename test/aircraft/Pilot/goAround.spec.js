@@ -1,17 +1,28 @@
 import ava from 'ava';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
 const headingMock = 3.141592653589793;
 const speedMock = 190;
 const airportElevationMock = 11;
 
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
+
 ava('.goAround() sets the correct Mcp modes and values', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
 
     pilot.goAround(headingMock, speedMock, airportElevationMock);
 
@@ -31,7 +42,7 @@ ava('.goAround() returns a success message', (t) => {
             say: 'go around, fly present heading, maintain one thousand one hundred'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
     const result = pilot.goAround(headingMock, speedMock, airportElevationMock);
 
     t.deepEqual(result, expectedResult);

@@ -53,9 +53,9 @@
         }
     ],
     "fixes": {
-        "_RWY11294GADSN268": ["N38.18880", "W85.77804"],
-        "_RWY17R348RRROE333": ["N38.21339", "W85.75886"],
-        "_RWY35L168LEENE183": ["N38.14838", "W85.73555"],
+        "_RWY29GADSN268": ["N38.18880", "W85.77804"],
+        "_RWY35LRRROE333": ["N38.21339", "W85.75886"],
+        "_RWY17RLEENE183": ["N38.14838", "W85.73555"],
         "ALENN": ["N37.95973677162147", "W87.66478728675004"],
         "ALOMY": ["N38.08306786840786", "W86.10184478176800"],
         "APALO": ["N38.00573973623054", "W86.85976409333988"],
@@ -377,9 +377,9 @@
             "name": "Apalo Three",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE", "ALOMY"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "BUHBA", "ALOMY"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE", "ALOMY"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "BUHBA", "ALOMY"],
                 "35R": ["GRIPZ", "SLATY", "BUHBA", "ALOMY"]
             },
             "body": ["DOWNS"],
@@ -387,9 +387,9 @@
                 "APALO": ["APALO"]
             },
             "draw": [
-                ["_RWY35L168LEENE183", "LEENE", "ONMEE", "DOWNS", "APALO*"],
-                ["_RWY17R348RRROE333", "RRROE", "BUHBA", "ALOMY", "DOWNS"],
-                ["_RWY11294GADSN268", "GADSN", "LUUKE", "ALOMY"],
+                ["_RWY17RLEENE183", "LEENE", "ONMEE", "DOWNS", "APALO*"],
+                ["_RWY35LRRROE333", "RRROE", "BUHBA", "ALOMY", "DOWNS"],
+                ["_RWY29GADSN268", "GADSN", "LUUKE", "ALOMY"],
                 ["DROPA", "DIIME", "ONMEE"],
                 ["GRIPZ", "SLATY", "BUHBA"]
             ]
@@ -399,9 +399,9 @@
             "name": "Cargo Two",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE", "DOCKE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE", "DOCKE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "BUHBA"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE", "DOCKE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "BUHBA"],
                 "35R": ["GRIPZ", "SLATY", "BUHBA"]
             },
             "body": [],
@@ -419,9 +419,9 @@
             "name": "Fedra Three",
             "rwy": {
                 "17L": ["DROPA"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "PKAGE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "LUUKE", "IAMUR", "FADDR"],
-                "35L": ["_RWY17R348RRROE333", "RRROE", "LLAWS", "GLDIE"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "PKAGE"],
+                "29": ["_RWY29GADSN268", "GADSN", "LUUKE", "IAMUR", "FADDR"],
+                "35L": ["_RWY35LRRROE333", "RRROE", "LLAWS", "GLDIE"],
                 "35R": ["GRIPZ", "BAALK", "SIXMI", "GLDIE"]
             },
             "body": ["FRATE", "FEDRA"],
@@ -443,9 +443,9 @@
             "name": "Strep Three",
             "rwy": {
                 "17L": ["DROPA", "DIIME", "ONMEE", "CANBE"],
-                "17R": ["_RWY35L168LEENE183", "LEENE", "ONMEE", "CANBE"],
-                "29": ["_RWY11294GADSN268", "GADSN", "CANBE"],
-                "35L": ["_RWY17R348RRROE333", "RRROE"],
+                "17R": ["_RWY17RLEENE183", "LEENE", "ONMEE", "CANBE"],
+                "29": ["_RWY29GADSN268", "GADSN", "CANBE"],
+                "35L": ["_RWY35LRRROE333", "RRROE"],
                 "35R": ["GRIPZ", "YAGRR"]
             },
             "body": [],

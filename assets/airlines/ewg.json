@@ -3,7 +3,10 @@
     "name": "Eurowings",
     "callsign": {
         "name": "Eurowings",
-        "length": 4
+        "callsignFormats": [
+            "####",
+            "##@@"
+        ]
     },
     "fleets": {
         "default": [

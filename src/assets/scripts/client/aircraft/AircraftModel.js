@@ -93,9 +93,8 @@ export default class AircraftModel {
      * @for AircraftModel
      * @constructor
      * @param options {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(options = {}, navigationLibrary) {
+    constructor(options = {}) {
         /**
          * Unique id
          *
@@ -105,15 +104,6 @@ export default class AircraftModel {
          * @type {string}
          */
         this.id = _uniqueId('aircraft-');
-
-        /**
-         * Reference to the `NavigationLibrary`
-         *
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Aircraft Position
@@ -445,7 +435,7 @@ export default class AircraftModel {
 
         this.mcp = new ModeController();
         this.model = new AircraftTypeDefinitionModel(options.model);
-        this.pilot = new Pilot(this.mcp, this.fms);
+        this.pilot = new Pilot(this.fms, this.mcp);
 
         // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
@@ -560,8 +550,8 @@ export default class AircraftModel {
 
     initFms(data) {
         const airport = AirportController.airport_get();
-        const initialRunway = airport.getActiveRunwayForCategory(this.category);
-        this.fms = new Fms(data, initialRunway, this.model, this._navigationLibrary);
+        // const initialRunway = airport.getActiveRunwayForCategory(this.category);
+        this.fms = new Fms(data);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.setFlightPhase(FLIGHT_PHASE.APRON);
@@ -571,10 +561,6 @@ export default class AircraftModel {
             return;
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             throw new Error('Invalid #category found in AircraftModel');
-        }
-
-        if (data.nextFix) {
-            this.fms.skipToWaypoint(data.nextFix);
         }
     }
 
@@ -613,7 +599,7 @@ export default class AircraftModel {
             flightPlanAltitude,
             arrivalAirportId: this.destination.toUpperCase(),
             departureAirportId: this.origin.toUpperCase(),
-            flightPlan: this.fms.getFlightPlanRouteStringWithSpaces()
+            flightPlan: this.fms.getFullRouteStringWithoutAirportsWithSpaces()
         };
     }
 
@@ -706,7 +692,7 @@ export default class AircraftModel {
      */
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
-        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        // flightnumber and visa versa. this needs to be ironed out first before making an instance property.
         return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
@@ -953,10 +939,17 @@ export default class AircraftModel {
      * @method isOnGround
      */
     isOnGround() {
+        let airportModel = this.fms.departureAirportModel;
+        let runwayModel = this.fms.departureRunwayModel;
+
+        if (this.isArrival()) {
+            airportModel = this.fms.arrivalAirportModel;
+            runwayModel = this.fms.arrivalRunwayModel;
+        }
+
         const errorAllowanceInFeet = 5;
-        const airport = AirportController.airport_get();
-        const nearRunwayAltitude = abs(this.altitude - this.fms.currentRunway.elevation) < errorAllowanceInFeet;
-        const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
+        const nearRunwayAltitude = abs(this.altitude - runwayModel.elevation) < errorAllowanceInFeet;
+        const nearAirportAltitude = abs(this.altitude - airportModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }
@@ -1258,9 +1251,6 @@ export default class AircraftModel {
             case FLIGHT_PHASE.CRUISE:
                 break;
 
-            case FLIGHT_PHASE.HOLD:
-                break;
-
             case FLIGHT_PHASE.DESCENT:
                 break;
 
@@ -1326,12 +1316,6 @@ export default class AircraftModel {
     updateFlightPhase() {
         const runwayModel = this.fms.departureRunwayModel;
 
-        if (this._shouldEnterHoldingPattern()) {
-            this.setFlightPhase(FLIGHT_PHASE.HOLD);
-
-            return;
-        }
-
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
                 const elapsed = TimeKeeper.accumulatedDeltaTime - this.taxi_start;
@@ -1360,9 +1344,6 @@ export default class AircraftModel {
                     this.setFlightPhase(FLIGHT_PHASE.CRUISE);
                 }
 
-                break;
-
-            case FLIGHT_PHASE.HOLD:
                 break;
 
             case FLIGHT_PHASE.CRUISE:
@@ -1405,12 +1386,6 @@ export default class AircraftModel {
      */
     _calculateTargetedHeading() {
         if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
-            return;
-        }
-
-        if (this.flightPhase === FLIGHT_PHASE.HOLD) {
-            this.updateTargetHeadingForHold();
-
             return;
         }
 
@@ -1474,8 +1449,6 @@ export default class AircraftModel {
                 const vnavSpeed = this._calculateTargetedSpeedVnav();
 
                 return this._calculateLegalSpeed(vnavSpeed);
-
-                break;
             }
 
             default:
@@ -1538,8 +1511,6 @@ export default class AircraftModel {
 
             case MCP_MODE.ALTITUDE.VNAV: {
                 return this._calculateTargetedAltitudeVnav();
-
-                break;
             }
 
             default:
@@ -1678,8 +1649,12 @@ export default class AircraftModel {
             return new Error('Unable to utilize LNAV, because there are no waypoints in the FMS');
         }
 
-        if (this.fms.currentWaypoint.isVector) {
-            return this.fms.currentWaypoint.vector;
+        if (this.fms.currentWaypoint.isVectorWaypoint) {
+            return this.fms.currentWaypoint.getVector();
+        }
+
+        if (this.fms.currentWaypoint.isHoldWaypoint) {
+            return this._calculateTargetedHeadingHold();
         }
 
         const waypointPosition = this.fms.currentWaypoint.positionModel;
@@ -1703,7 +1678,7 @@ export default class AircraftModel {
                 return headingToWaypoint;
             }
 
-            this.fms.nextWaypoint();
+            this.fms.moveToNextWaypoint();
         }
 
         return headingToWaypoint;
@@ -1713,19 +1688,21 @@ export default class AircraftModel {
      * This will sets up and prepares the aircraft to hold
      *
      * @for AircraftModel
-     * @method updateTargetHeadingForHold
+     * @method _calculateTargetedHeadingHold
      */
-    updateTargetHeadingForHold() {
-        const invalidTimerValue = -999;
-        const { hold } = this.fms.currentWaypoint;
-        const outboundHeading = radians_normalize(hold.inboundHeading + Math.PI);
-        const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
-        const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
-        const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
+    _calculateTargetedHeadingHold() {
+        const currentWaypoint = this.fms.currentWaypoint;
+        const holdParameters = currentWaypoint.holdParameters;
+        const waypointRelativePosition = currentWaypoint.relativePosition;
+        const outboundHeading = radians_normalize(holdParameters.inboundHeading + Math.PI);
+        const offset = getOffset(this, waypointRelativePosition, holdParameters.inboundHeading);
+        const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
+        const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
+        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
-        const isTimerSet = hold.timer !== invalidTimerValue;
-        const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
+        const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
+        const isTimerExpired = isTimerSet && gameTime > holdParameters.timer;
 
         if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
@@ -1740,22 +1717,21 @@ export default class AircraftModel {
         let nextTargetHeading = outboundHeading;
 
         if (this.heading === outboundHeading && !isTimerSet) {
-            // set timer
-            this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;
+            currentWaypoint.setHoldTimer(gameTime + holdLegDurationInSeconds);
         }
 
         if (isTimerExpired) {
             nextTargetHeading = bearingToHoldFix;
 
             if (isPastFix) {
-                this.fms.currentWaypoint.timer = invalidTimerValue;
+                currentWaypoint.resetHoldTimer();
                 nextTargetHeading = outboundHeading;
             }
         }
 
-        // turn direction is defaulted to `right` by the AircraftCommandParser
-        this.target.turn = hold.dirTurns;
-        this.target.heading = nextTargetHeading;
+        this.target.turn = holdParameters.turnDirection;
+
+        return nextTargetHeading;
 
         // TODO: add distance based hold
     }
@@ -2027,7 +2003,7 @@ export default class AircraftModel {
         //     offsetGameTime
         // ];
 
-        // FIXME: whats the difference here between the if and else blocks? why are we looking for a 0 length?
+        // TODO: whats the difference here between the if and else blocks? why are we looking for a 0 length?
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.relativePositionHistory.length === 0) {
@@ -2187,7 +2163,7 @@ export default class AircraftModel {
                 speedChange *= PERFORMANCE.DECELERATION_FACTOR_DUE_TO_GROUND_BRAKING;
             }
         } else if (this.speed < this.target.speed) {
-            speedChange  = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
+            speedChange = this.model.rate.accelerate * TimeKeeper.getDeltaTimeForGameStateAndTimewarp() / 2;
             speedChange *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
@@ -2394,40 +2370,10 @@ export default class AircraftModel {
     }
 
     /**
-     * Encapsulation of boolean logic used to determine when the `#flightPhase` should be
-     * changed to `HOLD`
-     *
-     * @method _shouldEnterHoldingPattern
-     * @return {boolean}
-     * @private
-     */
-    _shouldEnterHoldingPattern() {
-        if (!this.fms.currentWaypoint.isHold) {
-            return false;
-        }
-
-        const distanceToHoldPosition = this.positionModel.distanceToPosition(this.fms.currentWaypoint.positionModel);
-        const maximumAcceptableDistance = 3;    // in nm
-        const shouldEnterHold = distanceToHoldPosition <= maximumAcceptableDistance;
-
-        return shouldEnterHold;
-    }
-
-    /**
-     * @for AircraftModel
-     * @method updateAuto
-     */
-    updateAuto() {}
-
-    /**
      * @for AircraftModel
      * @method update
      */
     update() {
-        if (prop.aircraft.auto.enabled) {
-            this.updateAuto();
-        }
-
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();

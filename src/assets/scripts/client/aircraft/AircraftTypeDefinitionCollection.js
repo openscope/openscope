@@ -53,7 +53,7 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
-     * Initializes class properties.
+     * Initializes instance properties.
      *
      * @for AircraftTypeDefinitionCollection
      * @method init

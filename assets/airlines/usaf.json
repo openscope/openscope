@@ -3,7 +3,9 @@
     "name": "United States Air Force",
     "callsign": {
         "name": "Air Force",
-        "length": 5
+        "callsignFormats": [
+            "#"
+        ]
     },
     "fleets": {
         "default": [

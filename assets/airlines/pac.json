@@ -3,7 +3,9 @@
     "name": "Polar Air Cargo",
     "callsign": {
         "name": "Polar Tiger",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

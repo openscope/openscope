@@ -151,7 +151,7 @@ class GameController {
     }
 
     /**
-     * Destroy class properties
+     * Destroy instance properties
      *
      * @for GameController
      * @method destroy

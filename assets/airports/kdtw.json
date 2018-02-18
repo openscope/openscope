@@ -653,9 +653,9 @@
                 ["LFD", "RANDL"]
             ]
         },
-        "POLAR5": {
-            "icao": "POLAR5",
-            "name": "Polar Five",
+        "POLAR6": {
+            "icao": "POLAR6",
+            "name": "Polar Six",
             "entryPoints": {
                 "BAE": ["BAE", "ZIPPE", "PURNY", "MUNKY", "BUTRR"],
                 "GRB": ["GRB", "KKAYY", "NOBAC", "PURNY", "MUNKY", "BUTRR"],
@@ -1224,7 +1224,7 @@
             "origin": "",
             "destination": "KDTW",
             "category": "arrival",
-            "route": "BAE.POLAR5.KDTW",
+            "route": "BAE.POLAR6.KDTW",
             "altitude": [11000, 12000],
             "speed": 320,
             "method": "random",

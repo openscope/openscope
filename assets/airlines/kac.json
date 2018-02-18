@@ -3,7 +3,9 @@
     "name": "Kuwait Airways",
     "callsign": {
         "name": "Kuwaiti",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [

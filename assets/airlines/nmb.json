@@ -1,0 +1,16 @@
+{
+    "icao": "nmb",
+    "name": "Air Namibia",
+    "callsign": {
+        "name": "Namibia",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 4],
+            ["A332", 2],
+            ["E135", 3],
+            ["E145", 1]
+        ]
+    }
+}

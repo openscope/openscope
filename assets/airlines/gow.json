@@ -2,8 +2,10 @@
     "icao": "gow",
     "name": "GoAir",
     "callsign": {
-        "name": "GO AIR",
-        "length": 3
+        "name": "Go Air",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

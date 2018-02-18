@@ -1,3 +1,66 @@
+## 6.0.0 (March 1, 2018)
+---
+### Major
+- Major reconfiguration of FMS and navigation-related components of the sim [#809](https://github.com/openscope/openscope/issues/809)
+
+### New Features
+- Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
+- Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
+- Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
+- Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
+- Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
+
+
+
+
+
+### Bugfixes
+- Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
+- Restore functionality of non-procedural descents to airspace ceiling [#879](https://github.com/openscope/openscope/issues/879)
+
+
+
+
+
+### Enhancements & Refactors
+- Updates documentation on airport file standards [#840](https://github.com/openscope/openscope/issues/840)
+- Set new standards for airport difficulty levels [#655](https://github.com/openscope/openscope/issues/655)
+- Convert `NavigationLibrary` to a singleton [#529](http://github.com/openscope/openscope/issues/529)
+- Remove nonfunctional airports from load list broken by feature/809 [#881](http://github.com/openscope/openscope/issues/881)
+- Overhaul of Ronald Reagan Washington National Airport (DC, USA) [#216](https://github.com/openscope/openscope/issues/216)
+- Overhaul of Manchester International Airport (England, United Kingdom)[#854](https://github.com/openscope/openscope/issues/854)
+- Customisation of callsign formats [#866](https://github.com/openscope/openscope/issues/866)
+- Overhaul of Frankfurt Am Main International Airport (Germany) [#199](https://github.com/openscope/openscope/issues/199)
+- Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
+- Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
+- Updates KPDX to AIRAC 1802 [#851](https://github.com/openscope/openscope/issues/851)
+
+
+
+
+
+
+## 5.7.0 (December 1, 2017)
+---
+### Bugfixes
+- Add empty video maps to WIP airports to keep them from crashing [#831](https://github.com/openscope/openscope/issues/831)
+
+### Enhancements & Refactors
+- Add restricted and prohibited areas to KSEA [#823](https://github.com/openscope/openscope/issues/823)
+- Updates KSTL to AIRAC 1712 [#825](https://github.com/openscope/openscope/issues/825)
+- Updates KDTW to AIRAC 1712 [#821](https://github.com/openscope/openscope/issues/821)
+- Updates EDDH (Hamburg Airport, Germnay) [#829](https://github.com/openscope/openscope/issues/829)
+- Updates documentation on airport format [#833](https://github.com/openscope/openscope/issues/833)
+- Updates KLAS (McCarran International Airport, NV) [#485](https://github.com/openscope/openscope/issues/485)
+- Removed Monarch Airlines and Airberlin [#801](https://github.com/openscope/openscope/issues/801) and [#802](https://github.com/openscope/openscope/issues/802)
+
+
+## 5.6.1 (November 1, 2017)
+---
+### Hotfix
+- Fix severe canvas bug for airports with runways that don't draw extended centerlines [#814](https://github.com/openscope/openscope/issues/814)
+
+
 ## 5.6.0 (November 1, 2017)
 ---
 ### New Features
@@ -7,14 +70,11 @@
 - Splits canvas into STATIC and DYNAMIC canvases, only drawing updates when there are updates to draw. [#236](https://github.com/openscope/openscope/issues/236)
     - Moves CanvasController arrow functions to bound class methods
 
-
-
 ### Bugfixes
 - Fix bug where aircraft cleared twice for ILS won't join glideslope [#667](https://github.com/openscope/openscope/issues/667)
 - Fix bug of aircraft descending via STAR to '0' altitude [#567](https://github.com/openscope/openscope/issues/567)
 - `sid` command no longer sets the aircraft's destination property [#787](https://github.com/openscope/openscope/issues/787)
-
-
+- Ensure aircraft future path is drawn only when directed by settings menu [#812](https://github.com/openscope/openscope/issues/812)
 
 ### Enhancements & Refactors
 - Deprecated the `rate` command [#755](https://github.com/openscope/openscope/issues/755)
@@ -32,7 +92,6 @@
 - Adds `CanvasStageModel` class and abstracts canvas dimensions, pan, zoom, and unit translation methods to this new singleton [#726](https://github.com/openscope/openscope/issues/726)
 - Updates KPDX (Portland International Airport, OR) [#650](https://github.com/openscope/openscope/issues/650)
 - Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment [#791](https://github.com/openscope/openscope/issues/791)
-
 
 
 ## 5.5.1 (October 1, 2017)

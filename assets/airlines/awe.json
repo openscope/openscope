@@ -3,7 +3,9 @@
     "name": "US Airways",
     "callsign": {
         "name": "Cactus",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

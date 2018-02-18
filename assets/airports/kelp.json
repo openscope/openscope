@@ -247,8 +247,8 @@
         }
     ],
     "fixes": {
-        "_RWY26L04.08DME": ["N31.79686138833", "W106.28363875965"],
-        "_RWY2204.98DME": ["N31.87602837455", "W106.2954583306"],
+        "_RWY8R04.08DME": ["N31.79686138833", "W106.28363875965"],
+        "_RWY404.98DME": ["N31.87602837455", "W106.2954583306"],
         "AGOPE": ["N31.76191781722702", "W106.17400359651187"],
         "AGUAS": ["N31.89609786220663", "W106.26766204378340"],
         "AKADE": ["N31.72209304615386", "W106.31792449495845"],
@@ -538,7 +538,7 @@
             "icao": "ATKNN5",
             "name": "Atkin Five",
             "rwy": {
-                "8R": [["^_RWY26L04.08DME", "A60+"], ["JAPOD", "S220-"]],
+                "8R": [["^_RWY8R04.08DME", "A60+"], ["JAPOD", "S220-"]],
                 "22": ["BIVKE"],
                 "26L": ["BIVKE"]
             },
@@ -550,7 +550,7 @@
                 "SLNNK": [["JEBSU", "A130+"], ["FEPOX", "A150+"], "BOATY", "SLNNK"]
             },
             "draw": [
-                ["_RWY26L04.08DME", "JAPOD", "ATKNN"],
+                ["_RWY8R04.08DME", "JAPOD", "ATKNN"],
                 ["BIVKE", "ATKNN", "JEBSU", "FEPOX", "RUTER", "GREBE*"],
                 ["ATKNN", "HAVID", "ALIBY", "NOCHI*"],
                 ["FEPOX", "BOATY", "SLNNK*"],
@@ -561,7 +561,7 @@
             "icao": "JCOXX2",
             "name": "Jaycox Two",
             "rwy": {
-                "4": [["^_RWY2204.98DME", "A65+|S230-"]]
+                "4": [["^_RWY404.98DME", "A65+|S230-"]]
             },
             "body": ["JCOXX"],
             "exitPoints": {
@@ -571,7 +571,7 @@
                 "TELKE": [["MRQEZ", "A130+"], "TELKE"]
             },
             "draw": [
-                ["_RWY2204.98DME", "JCOXX", "SNTRS", "RUTER", "BOATY"],
+                ["_RWY404.98DME", "JCOXX", "SNTRS", "RUTER", "BOATY"],
                 ["JCOXX", "MRQEZ", "HBACK*"],
                 ["MRQEZ", "TELKE*"],
                 ["SLNNK*"],

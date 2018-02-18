@@ -92,7 +92,7 @@ export default class RunwayCollection extends BaseCollection {
     }
 
     /**
-     * Tear down the instance and destroy any class property values
+     * Tear down the instance and destroy any instance property values
      *
      * @for RunwayCollection
      * @method destroy

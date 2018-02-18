@@ -1,24 +1,36 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
 const invalidRouteString = 'A..B.C.D';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const amendRouteString = 'HITME..HOLDM..BIKKR';
 
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
+
 function buildPilotWithComplexRoute() {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    pilot.applyNewRoute(complexRouteString);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
+
+    pilot.replaceFlightPlanWithNewRoute(complexRouteString);
 
     return pilot;
 }
 
-ava('.applyPartialRouteAmendment() returns an error with passed an invalid routeString', (t) => {
+ava.skip('.applyPartialRouteAmendment() returns an error with passed an invalid routeString', (t) => {
     const expectedResult = [false, 'requested route of "A..B.C.D" is invalid'];
     const pilot = buildPilotWithComplexRoute();
     const result = pilot.applyPartialRouteAmendment(invalidRouteString);
@@ -26,7 +38,7 @@ ava('.applyPartialRouteAmendment() returns an error with passed an invalid route
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.applyPartialRouteAmendment() returns an error with passed a routeString without a shared waypoint', (t) => {
+ava.skip('.applyPartialRouteAmendment() returns an error with passed a routeString without a shared waypoint', (t) => {
     const expectedResult = [false, 'requested route of "HITME..HOLDM" is invalid, it must contain a Waypoint in the current route'];
     const pilot = buildPilotWithComplexRoute();
     const result = pilot.applyPartialRouteAmendment('HITME..HOLDM');
@@ -34,7 +46,7 @@ ava('.applyPartialRouteAmendment() returns an error with passed a routeString wi
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a hold', (t) => {
+ava.skip('.applyPartialRouteAmendment() returns to the correct flightPhase after a hold', (t) => {
     const pilot = buildPilotWithComplexRoute();
     pilot._fms.setFlightPhase('HOLD');
 
@@ -43,7 +55,7 @@ ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a ho
     t.true(pilot._fms.currentPhase === 'CRUISE');
 });
 
-ava('.applyPartialRouteAmendment() returns a success message when complete', (t) => {
+ava.skip('.applyPartialRouteAmendment() returns a success message when complete', (t) => {
     const expectedResult = [
         true,
         {

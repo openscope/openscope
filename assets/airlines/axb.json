@@ -2,8 +2,10 @@
     "icao": "axb",
     "name": "Air India Express",
     "callsign": {
-        "name": "EXPRESS INDIA",
-        "length": 3
+        "name": "Express India",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

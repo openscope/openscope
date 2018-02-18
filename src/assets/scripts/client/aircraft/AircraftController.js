@@ -9,6 +9,7 @@ import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
@@ -71,9 +72,9 @@ export default class AircraftController {
      * @for AircraftController
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
-     * @param navigationLibrary {NavigationLibrary}
+     * @param scopeModel {ScopeModel}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
@@ -81,8 +82,8 @@ export default class AircraftController {
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        if (!_isObject(airlineController)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection to be defined');
         }
 
         /**
@@ -94,16 +95,6 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
-
-        /**
-         * Reference to a `NavigationLibrary` instance
-         *
-         * @property _navigationLibrary
-         * @type NavigationLibrary
-         * @default navigationLibrary
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Local reference to static `EventBus` class
@@ -605,7 +596,7 @@ export default class AircraftController {
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
+        const aircraftModel = new AircraftModel(initializationProps);
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
@@ -660,7 +651,7 @@ export default class AircraftController {
             positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
-            route: spawnPatternModel.routeString,
+            routeString: spawnPatternModel.routeString,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };

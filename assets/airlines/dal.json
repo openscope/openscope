@@ -3,7 +3,9 @@
     "name": "Delta Air Lines",
     "callsign": {
         "name": "Delta",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "90long": [

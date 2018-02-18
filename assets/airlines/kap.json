@@ -3,7 +3,9 @@
     "name": "Cape Air",
     "callsign": {
         "name": "Care",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "micronesia": [

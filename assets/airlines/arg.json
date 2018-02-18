@@ -3,7 +3,9 @@
     "name": "Aerolíneas Argentinas",
     "callsign": {
         "name": "Argentina",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "long": [

@@ -43,7 +43,7 @@ ava('.setCurrentPosition() returns early when passed an invalid coordinate', (t)
 
     model.setCurrentPosition([]);
 
-    t.true(model._positionModel === null);
+    t.true(!model._positionModel);
 });
 
 ava('.buildAirportAirspace() returns early when passed a null or undefined argument', (t) => {
@@ -52,7 +52,7 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
 
     model.buildAirportAirspace();
 
-    t.true(model.airspace === null);
+    t.true(!model.airspace);
 });
 
 ava('.buildAirportMaps() returns early when passed a null or undefined argument', (t) => {
@@ -61,7 +61,7 @@ ava('.buildAirportMaps() returns early when passed a null or undefined argument'
 
     model.buildAirportMaps();
 
-    t.true(model.maps === null);
+    t.true(!model.maps);
 });
 
 ava('.buildRestrictedAreas() returns early when passed a null or undefined argument', (t) => {
@@ -70,7 +70,7 @@ ava('.buildRestrictedAreas() returns early when passed a null or undefined argum
 
     model.buildRestrictedAreas();
 
-    t.true(model.restricted_areas === null);
+    t.true(!model.restricted_areas);
 });
 
 ava('.set() calls .load() when #lodaed is false', (t) => {
@@ -115,7 +115,7 @@ ava('.getRunwayByName() returns null when passed an invalid runwayname', (t) => 
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     const result = model.getRunway();
 
-    t.true(result === null);
+    t.true(!result);
 });
 
 ava('.getActiveRunwayForCategory() returns the correct RunwayModel for departure', (t) => {

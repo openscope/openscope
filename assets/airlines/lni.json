@@ -3,7 +3,9 @@
     "name": "Lion Air",
     "callsign": {
         "name": "Lion Inter",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

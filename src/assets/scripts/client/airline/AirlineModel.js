@@ -7,9 +7,10 @@ import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
+import { buildFlightNumber } from './buildFlightNumber';
 import { INVALID_INDEX } from '../constants/globalConstants';
-import { choose } from '../utilities/generalUtilities';
 import { isEmptyObject } from '../utilities/validatorUtilities';
+import { DEFAULT_CALLSIGN_FORMAT } from '../constants/airlineConstants';
 
 /**
  * An aircraft operating agency
@@ -30,7 +31,7 @@ export default class AirlineModel extends BaseModel {
     constructor(airlineDefinition) {
         super();
 
-       if (isEmptyObject(airlineDefinition)) {
+        if (isEmptyObject(airlineDefinition)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
         }
@@ -68,26 +69,15 @@ export default class AirlineModel extends BaseModel {
          */
         this.flightNumberGeneration = {
             /**
-             * Length of callsign
+             * Array of callsign formats
              *
              * @memberof flightNumberGeneration
-             * @property length
-             * @type {number}
-             * @default 3
-             */
-            length: 3,
+             * @property callsignFormats
+             * @type {Array}
+             * @default ['###']
+            */
 
-            /**
-             * Whether to use alphabetical characters
-             *
-             * Used to generate a North American style registration number, minus the `N`
-             *
-             * @memberof flightNumberGeneration
-             * @property alphaNumeric
-             * @type {boolean}
-             * @default false
-             */
-            alphaNumeric: false
+            callsignFormats: [DEFAULT_CALLSIGN_FORMAT]
         };
 
         /**
@@ -161,8 +151,7 @@ export default class AirlineModel extends BaseModel {
         // TODO: these _get() lines are likely redundant and could be removed only after proper testing
         this.icao = _get(airlineDefinition, 'icao', this.icao).toLowerCase();
         this.radioName = _get(airlineDefinition, 'callsign.name', this.radioName);
-        this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
-        this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
+        this.flightNumberGeneration.callsignFormats = _get(airlineDefinition, 'callsign.callsignFormats', this.flightNumberGeneration.callsignFormats); // eslint-disable-line max-len
         this.fleets = _get(airlineDefinition, 'fleets');
 
         this._transformFleetNamesToLowerCase();
@@ -207,7 +196,7 @@ export default class AirlineModel extends BaseModel {
 
     // TODO: the logic here can be simplified.
     /**
-     * Create a flight number/identifier
+     * Creates a flight number/identifier
      *
      * This method should only be called from the `AircraftController` so the controller
      * can guarantee unique `flightNumbers` across all `AirlineModels`.
@@ -215,33 +204,9 @@ export default class AirlineModel extends BaseModel {
      * @for AirlineModel
      * @method generateFlightNumber
      * @return flightNumber {string}
-     */
+    */
     generateFlightNumber() {
-        let flightNumber = '';
-        let list = '0123456789';
-
-        // Start with a number other than zero
-        flightNumber += choose(list.substr(1));
-
-        if (!this.flightNumberGeneration.alphaNumeric) {
-            for (let i = 1; i < this.flightNumberGeneration.length; i++) {
-                flightNumber += choose(list);
-            }
-
-            return flightNumber;
-        }
-
-        // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
-        for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
-            flightNumber += choose(list);
-        }
-
-        list = 'abcdefghijklmnopqrstuvwxyz';
-
-        // the end of an `N` style registration: `N322WT`
-        for (let i = 0; i < 2; i++) {
-            flightNumber += choose(list);
-        }
+        const flightNumber = buildFlightNumber(this.flightNumberGeneration.callsignFormats);
 
         return flightNumber;
     }
