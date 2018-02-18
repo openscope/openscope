@@ -20,7 +20,7 @@ export default class AirportWindModel {
      */
     constructor(initialAirportWind) {
         /**
-         *
+         * Current wind angle
          *
          * @property angle
          * @type {number}
@@ -29,7 +29,7 @@ export default class AirportWindModel {
         this.angle = -9999;
 
         /**
-         *
+         * Current wind speed in knots
          *
          * @property speed
          * @type {number}
@@ -52,7 +52,7 @@ export default class AirportWindModel {
      */
     _init(initialAirportWind) {
         if (_isNil(initialAirportWind)) {
-            throw new Error('Invalid wind data provided to AirportWindModel. Epected and object with keys `angle` and `speed`.');
+            throw new Error('Invalid wind data provided to AirportWindModel. Expected and object with keys `angle` and `speed`.');
         }
 
         this.speed = initialAirportWind.speed;
@@ -107,7 +107,7 @@ export default class AirportWindModel {
     }
 
     /**
-     * Actual math function to find the wind on a bell curve.
+     * Calculate next wind on a bell curve.
      *
      * @for AirportWindModel
      * @method calculateNextWind
@@ -120,6 +120,7 @@ export default class AirportWindModel {
         if (this.speed < 2) {
             this.speed = 5;
         }
+
         if (this.angle === 0) {
             this.angle = 180;
         }

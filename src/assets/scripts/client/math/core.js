@@ -240,7 +240,7 @@ export function generateRandomOctalWithLength(length = 1) {
     }
 
     return leftPad(value.join(''), length);
-};
+}
 
 /**
  * Generates a random number, on an (approximate) bell curve.
@@ -249,12 +249,12 @@ export function generateRandomOctalWithLength(length = 1) {
  * Note the maximum number it can produce is just below 2 times the `average` parameter,
  * and it cannot produce negative numbers. Use _clamp if 2 * average is too high.
  *
- * @function calcutateNormalDistributedNumber
+ * @function calculateNormalDistributedNumber
  * @param average {Number}
  * @return {Number}
  */
 export function calculateNormalDistributedNumber(average) {
-    // This gets the average of eight (psuedo)random numbers, which makes it a rough bell curve.
+    // This gets the average of eight (pseudo)random numbers, which makes it a rough bell curve.
     // This means that the average would be around 0.5, so we only divide by four instead of eight (making the average about 1).
     const initialNumber = ((Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) / 4);
 
