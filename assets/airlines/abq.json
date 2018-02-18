@@ -1,0 +1,17 @@
+{
+    "icao": "abq",
+    "name": "AirBlue",
+    "callsign": {
+        "name": "Air Blue",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3],
+            ["A321", 7]
+        ],
+        "a320": [
+            ["A320", 3]
+        ]
+    }
+}

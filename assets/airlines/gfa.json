@@ -1,0 +1,26 @@
+{
+    "icao": "gfa",
+    "name": "Gulf Air",
+    "callsign": {
+        "name": "Gulf Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 16],
+            ["A321", 6],
+            ["A332", 6]
+        ],
+        "a320": [
+            ["A320", 16]
+        ],
+        "a321": [
+            ["A321", 6]
+        ],
+        "a332": [
+            ["A332", 6]
+        ]
+    }
+}
