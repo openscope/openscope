@@ -5,10 +5,10 @@ Oslo TMA, Røyken, Norway
 The Oslo TMA is one of three sectors of the Oslo Kontrollsentral (ATCC), responsible for all airspace in Eastern Norway. The Oslo ATCC is located 30km from Oslo and 65km Southwest of Oslo Gardemoen Airport (ENGM).
 
 ### Airspace
-the Oslo TMA consists of Class C airspace (equivalent to American class B airspace) which covers a large area on top of Akershus County and the Oslo metropolitan area up to FL215. it also includes a small shelf to the South with a floor of FL115; below this, the airspace is ceded to the Tarris TMA.
+The Oslo TMA consists of Class C airspace (equivalent to American class B airspace) which covers a large area on top of Akershus County and the Oslo metropolitan area up to FL215. It also includes a small shelf to the South with a floor of FL115; below this, the airspace is ceded to the Tarris TMA.
 
 ### Instrument Procedures
-The procedures are quite modern for a European airport. All SID's and STAR's are RNAV and include both altitude and speed restrictions. Oslo was also the first airport in the world to adopt a point merge system, minimizing conflicts between departing and arriving aircraft as well as reducing fuel consumption. Once within the point merge arches, aircraft can be given shortucts or vectors to join the ILS approach.
+The procedures are quite modern for a European airport. All SIDs and STARs are RNAV and include both altitude and speed restrictions, although descent clearances are given by ATC. Oslo was also the first airport in the world to adopt a point merge system, minimizing conflicts between departing and arriving aircraft as well as reducing fuel consumption. Once within the point merge arches, aircraft can be given shortucts or vectors to join the ILS approach.
 
 ### Sectors Available in OpenScope
 ```
@@ -24,7 +24,7 @@ W - West Radar  (unavailable)
 Oslo Gardermoen Airport  
 237,618 annual operations
 
-located 35km Northeast of Oslo, Gardermoen is the main international airport in Norway and the second busiest in Scandinavia. The airport has two parallel runways (01-19) used simultaneously; Usually 01L is used for departures while 01R is used for arrivals.
+Located 35km Northeast of Oslo, Gardermoen is the main international airport in Norway and the second busiest in Scandinavia. The airport has two parallel runways (01-19) used simultaneously; usually 01L is used for departures while 01R is used for arrivals.
 
 #### ENTO
 Torp Sandefjord Airport  
