@@ -601,17 +601,13 @@ export default class StripViewModel extends BaseModel {
     /**
      * Handler for a double-click on an AircraftStripView
      *
-     * Initiates a two-step event process, though undesired, is necessary.
-     * We don't (and shouldn't) have access to the `AircraftController` or the
-     * `CanvasController` from within this class. A double click will trigger
-     * event listeners in both of those classes
+     * Initiates the process of centering a single aircraft in the middle of the view
      *
-     * This method will prevent event bubbling so a click
-     * doesn't cause the `stripView` to close
+     * This method should prevent event bubbling so a click doesn't cause the `stripView` to close
      *
      * @for AircraftStripView
      * @method _onDoubleClick
-     * @param  event {jquery event}
+     * @param  event {Event}
      * @private
      */
     _onDoubleClick(event) {

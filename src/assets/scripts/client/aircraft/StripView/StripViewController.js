@@ -16,7 +16,7 @@ import { SELECTORS } from '../../constants/selectors';
 const CID_UPPER_BOUND = 999;
 
 /**
- * Controll modifications of the `$stripViewList` and coordinate
+ * Control modifications of the `$stripViewList` and coordinate
  * management of the `StripViewCollection`. Also responsible for
  * creating new `StripViewModel` instances.
  *
@@ -28,6 +28,8 @@ export default class StripViewController {
      */
     constructor() {
         /**
+         * Collection class used to manage instances of `StripViewModel`s
+         *
          * @property _collection
          * @type {StripViewCollection}
          * @default null
@@ -122,15 +124,11 @@ export default class StripViewController {
      */
     update(aircraftList) {
         // TODO: this should probably work the other way; loop through list items and find an aircraft.
-        // We need a proper `AircraftCollection` for that to be feasable
+        // We need a proper `AircraftCollection` for that to work
         for (let i = 0; i < aircraftList.length; i++) {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            // TODO: this should be looked at again
-            // an aircraft strip is created on instantiation, which works for departures where a strip
-            // is shown immediately. For arrivals, this does not work so well. We need to `$.detach() the
-            // strip and re-add it to the list so it is at the end of the list.
             if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
                 this._addViewToStripList(stripViewModel);
             }
@@ -236,6 +234,9 @@ export default class StripViewController {
 
     /**
      * Add `StripViewModel` to the `$stripViewList`
+     *
+     * This adds a given `stripViewModel` into the DOM as a
+     * child of `$stripViewList`
      *
      * @for StripViewController
      * @method _addViewToStripList
