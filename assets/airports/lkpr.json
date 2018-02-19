@@ -127,7 +127,11 @@
         }
     ],
     "fixes": {
-        "_GOLOP000": ["N50d50.0", "E14d29.0"],
+        "_RWY06": ["N50d06m57.42", "E14d16m24.12"],
+        "_RWY12": ["N50d05m25.68", "E14d16m54.02"],
+        "_RWY24": ["N50d06m06.61", "E14d13m34.68"],
+        "_RWY30": ["N50d06m28.84", "E14d14m43.32"],
+        "GOLOP000": ["N50d50.0", "E14d29.0"],
         "_GOSEK000": ["N49d25.0", "E14d06.0"],
         "_LOMKI091": ["N49d55.0", "E12d55.0"],
         "_VLM000": ["N49d38.4", "E15d10.8"],
@@ -136,7 +140,10 @@
         "PR404": ["N49d40m02.98", "E14d32m41.81"],
         "PR405": ["N50d11m57.78", "E13d50m31.95"],
         "PR406": ["N50d18m36.63", "E13d55m59.77"],
+        "PR407": ["N50d20.61", "E14d02.47"],
         "PR409": ["N50d33m47.47", "E14d47m01.93"],
+        "PR411": ["N49d58.52", "E14d15.86"],
+        "PR412": ["N49d42.91", "E14d43.40"],
         "PR511": ["N49d54m02.32", "E13d28m55.38"],
         "PR512": ["N50d04m38.03", "E13d50m24.45"],
         "PR513": ["N50d10m58.18", "E14d11m23.04"],
@@ -146,12 +153,18 @@
         "PR521": ["N50d00.7", "E14d13.8"],
         "PR522": ["N49d49.0", "E14d50.6"],
         "PR523": ["N50d03.1", "E14d21.8"],
+        "PR619": ["N50d08.64", "E14d22.04"],
+        "PR621": ["N50d21.96", "E14d08.40"],
+        "PR622": ["N50d24.37", "E14d05.91"],
+        "PR625": ["N50d10.32", "E14d27.68"],
         "PR626": ["N49d59m09.31", "E14d29m49.09"],
+        "PR627": ["N49d36.89", "E14d40.44"],
         "PR631": ["N50d11m12.65", "E14d30m40.40"],
         "PR632": ["N50d24m32.94", "E14d17m03.43"],
         "PR633": ["N50d13m05.31", "E14d37m01.03"],
         "PR634": ["N50d16m55.43", "E14d50m03.55"],
         "PR635": ["N49d59m06.31", "E14d39m38.94"],
+        "PR637": ["N50d15.68", "E14d45.81"],
         "PR707": ["N49d53.9", "E13d33.4"],
         "PR711": ["N50d23.2", "E14d38.4"],
         "PR712": ["N50d17.0", "E14d31.5"],
@@ -160,12 +173,17 @@
         "PR721": ["N49d45.7", "E14d57.2"],
         "PR722": ["N49d51.7", "E14d53.4"],
         "PR723": ["N50d04.2", "E14d45.6"],
+        "PR807": ["N49d51.84", "E14d16.33"],
+        "PR808": ["N49d41.54", "E14d37.30"],
         "PR813": ["N50d11m50.08", "E14d03m35.81"],
         "PR814": ["N50d07m23.07", "E13d58m25.68"],
         "PR815": ["N50d13m49.78", "E13d59m25.84"],
         "PR816": ["N50d21m05.62", "E13d58m53.88"],
         "PR817": ["N49d58m06.00", "E13d58m51.00"],
+        "PR818": ["N50d22.48", "E14d10.26"],
         "PR819": ["N50d25m55.18", "E14d39m15.96"],
+        "PR854": ["N49d57.37", "E14d08.31"],
+        "PR855": ["N49d54.44", "E13d52.98"],
         "PR856": ["N50d07m34.46", "E14d39m32.11"],
         "PR858": ["N50d20m13.63", "E14d30m27.42"],
         "PR860": ["N49d57m20.79", "E14d33m31.40"],
@@ -190,7 +208,12 @@
         "BAGRU": ["N50d25.9", "E14d20.2"],
         "BALTU": ["N50d05.4", "E13d19.36"],
         "BAROX": ["N49d56.9", "E13d43.3"],
+        "BEKVI": ["N50d04.40", "E14d43.34"],
+        "BODAL": ["N49d27.8", "E15d47.0"],
+        "DEKOV": ["N50d53.83", "E14d12.98"],
         "DOBEN": ["N49d46.4", "E13d33.7"],
+        "DONAD": ["N50d04.85", "E13d00.00"],
+        "DOPOV": ["N50d04.85", "E13d07.51"],
         "ERASU": ["N50d16m07.51", "E14d28m41.31"],
         "ESINU": ["N50d13.7", "E13d41.2"],
         "EVEMI": ["N50d16.6", "E14d06.6"],
@@ -199,12 +222,19 @@
         "KENOK": ["N49d51.4", "E14d45.6"],
         "KUVIX": ["N50d06.3", "E13d56.0"],
         "L"    : ["N50d07m11.74", "E14d17m11.75"],
+        "LETNA": ["N50d05.52", "E14d25.33"],
         "LOMKI": ["N49d54.6", "E13d14.5"],
+        "NELPA": ["N49d16.88", "E14d57.37"],
+        "NIRGO": ["N49d19.86", "E13d07.93"],
+        "OKG"  : ["N50d03.54", "E12d24.20"],
         "OKL"  : ["N50d05.8", "E14d15.9"],
+        "PISAM": ["N48d53.57", "E15d23.23"],
         "RATEV": ["N50d07m03.32", "E14d35m12.65"],
+        "RAK"  : ["N50d05.82", "E13d41.44"],
         "SOMIS": ["N50d08.6", "E13d57.3"],
-        "UTORO": ["N50d16.6","E14d33.1"],
-        "VENOX": ["N50d33.3","E14d08.0"],
+        "TOMTI": ["N50d57.18", "E15d17.60"],
+        "UTORO": ["N50d16.6", "E14d33.1"],
+        "VENOX": ["N50d33.3", "E14d08.0"],
         "VLM"  : ["N49d42.3", "E15d04.0"],
         "VOZ"  : ["N49d31.9", "E14d52.5"]
     },
@@ -234,82 +264,436 @@
             "ils":         [false, false]
         }
     ],
+    "airways": {
+        "L984": ["BEKVI", "LETNA", "OKL", "RAK", "BALTU", "DOPOV", "DONAD", "OKG"],
+        "T136": ["DOBEN", "NIRGO"],
+        "P733": ["ARTUP", "TOMTI"],
+        "Y621": ["VENOX", "DEKOV"],
+        "Z21" : ["VOZ", "NELPA", "PISAM"]
+    },
     "sids":{
-        "BALTU": {
-            "icao": "BALTU",
-            "name": "Baltu",
-            "suffix": {"24":"3A","30":"3B","06":"4E","12":"3H"},
+        "ARTUP2H": {
+            "icao": "ARTUP2H",
+            "name": "Artup Two Hotel",
             "rwy": {
-                "24" : ["PR402","PR405","BALTU"],
-                "30" : ["PR815","BALTU"],
-                "06" : ["PR631","PR632","ESINU","BALTU"],
-                "12" : ["PR626","PR856",["UTORO","A140+"],["PR858","A140+"],["ESINU","A140+"],["BALTU","A140+"]]
+                "12" :["_RWY12"]
             },
-            "draw":[["PR402","PR405","BALTU"],["PR815","BALTU"],["PR631","PR632","ESINU","BALTU"],["PR626","PR856","UTORO","PR858","ESINU","BALTU"]]
+            "body": ["PR860", "PR861"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["PR860", "PR861", "ARTUP"]]
         },
-        "DOBEN": {
-            "icao": "DOBEN",
-            "name": "Doben",
-            "suffix": {"24":"3A","30":"3B","06":"4E","12":"3H"},
+        "ARTUP2M": {
+            "icao": "ARTUP2M",
+            "name": "Artup Two Mike",
             "rwy": {
-                "24" : ["PR402","DOBEN"],
-                "30" : ["PR813","PR814","PR817","DOBEN"],
-                "06" : ["PR631","PR632","ESINU","DOBEN"],
-                "12" : ["PR626","PR856","UTORO","PR858","ESINU","DOBEN"]
+                "24" :["_RWY24"]
             },
-            "draw":[["PR402","DOBEN"],["PR813","PR814","PR817","DOBEN"],["PR631","PR632","ESINU","DOBEN"],["PR626","PR856","UTORO","PR858","ESINU","DOBEN"]]
+            "body": ["_RWY24", "PR407", "PR409"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["_RWY24", "PR407", "PR409", "ARTUP"]]
         },
-        "VENOX": {
-            "icao": "VENOX",
-            "name": "Venox",
-            "suffix": {"24":"2A","30":"2B","06":"2E","12":"2H"},
+        "ARTUP2N": {
+            "icao": "ARTUP2N",
+            "name": "Artup Two November",
             "rwy": {
-                "24" : ["PR402","PR405","VENOX"],
-                "30" : ["PR815","PR816","VENOX"],
-                "06" : ["PR631","VENOX"],
-                "12" : ["PR626","PR856","UTORO","PR858","VENOX"]
+                "30" :["_RWY30"]
             },
-            "draw":[["PR402","PR405","VENOX"],["PR815","PR816","VENOX"],["PR631","VENOX"],["PR626","PR856","UTORO","PR858","VENOX"]]
+            "body": ["_RWY30", "PR818", "PR819"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["_RWY30", "PR818", "PR819", "ARTUP"]]
         },
-        "ARTUP": {
-            "icao": "ARTUP",
-            "name": "Artup",
-            "suffix": {"24":"2A","30":"2B","06":"2E","12":"2H"},
+        "ARTUP3A": {
+            "icao": "ARTUP3A",
+            "name": "Artup Three Alpha",
             "rwy": {
-                "24" : ["PR402","PR405","PR406","BAGRU","PR409","ARTUP"],
-                "30" : ["PR815","PR816","PR819","ARTUP"],
-                "06" : ["PR634","ARTUP"],
-                "12" : ["PR860","PR861","ARTUP"]
+                "24" :["_RWY24"]
             },
-            "draw":[["PR402","PR405","PR406","BAGRU","PR409","ARTUP"],["PR815","PR816","PR819","ARTUP"],["PR634","ARTUP"],["PR860","PR861","ARTUP"]]
+            "body": ["PR402", "PR405", "PR406", "PR409"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["PR402", "PR405", "PR406", "PR409", "ARTUP"]]
         },
-        "VOZ": {
-            "icao": "VOZ",
-            "name": "Vozice",
-            "suffix": {"24":"2A","30":"2B","06":"2E","12":"2H"},
+        "ARTUP3B": {
+            "icao": "ARTUP3B",
+            "name": "Artup Three Bravo",
             "rwy": {
-                "24" : ["PR402","PR403","PR404","VOZ"],
-                "30" : ["PR813","PR814","PR403","PR404","VOZ"],
-                "06" : ["PR633","PR635","VOZ"],
-                "12" : ["PR626","VOZ"]
+                "30" :["_RWY30"]
             },
-            "draw":[["PR402","PR403","PR404","VOZ"],["PR813","PR814","PR403","PR404","VOZ"],["PR633","PR635","VOZ"],["PR626","VOZ"]]
+            "body": ["PR815", "PR816", "PR819"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["PR815", "PR816", "PR819", "ARTUP"]]
+        },
+        "ARTUP3E": {
+            "icao": "ARTUP3E",
+            "name": "Artup Three Echo",
+            "rwy": {
+                "06" :["_RWY06"]
+            },
+            "body": ["PR637"],
+            "exitPoints": {
+                "ARTUP": ["ARTUP"]
+            },
+            "draw": [["PR637", "ARTUP"]]
+        },
+        "BALTU3A": {
+            "icao": "BALTU3A",
+            "name": "Baltu Three Alpha",
+            "rwy": {
+                "24" : ["_RWY24"]
+            },
+            "body": ["PR402", "PR405"],
+            "exitPoints": {
+                "BALTU": ["BALTU"]
+            },
+            "draw":[["PR402", "PR405", "BALTU"]]
+        },
+        "BALTU3B": {
+            "icao": "BALTU3B",
+            "name": "Baltu Three Bravo",
+            "rwy": {
+                "30" : ["_RWY30"]
+            },
+            "body": ["PR815"],
+            "exitPoints": {
+                "BALTU": ["BALTU"]
+            },
+            "draw":[["PR815", "BALTU"]]
+        },
+        "BALTU3D": {
+            "icao": "BALTU3D",
+            "name": "Baltu Three Delta",
+            "rwy": {
+                "06" : ["_RWY06"]
+            },
+            "body": ["PR619", "PR621", "ESINU"],
+            "exitPoints": {
+                "BALTU": ["BALTU"]
+            },
+            "draw":[["PR619", "PR621", "ESINU", "BALTU"]]
+        },
+        "BALTU3H": {
+            "icao": "BALTU3H",
+            "name": "Baltu Three Hotel",
+            "rwy": {
+                "12" : ["_RWY12"]
+            },
+            "body": ["PR626", "PR856", "PR858", "ESINU"],
+            "exitPoints": {
+                "BALTU": ["BALTU"]
+            },
+            "draw":[["PR626", "PR856", "PR858", "ESINU", "BALTU"]]
+        },
+        "BALTU5E": {
+            "icao": "BALTU5E",
+            "name": "Baltu Five Echo",
+            "rwy": {
+                "06" : ["_RWY06"]
+            },
+            "body": ["PR631", "PR632", "ESINU"],
+            "exitPoints": {
+                "BALTU": ["BALTU"]
+            },
+            "draw":[["PR631", "PR632", "ESINU", "BALTU"]]
+        },
+        "DOBEN2G": {
+            "icao": "DOBEN2G",
+            "name": "Doben Two Golf",
+            "rwy": {
+                "12" : ["_RWY12"]
+            },
+            "body": ["_RWY12", "PR854", "PR855"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["_RWY12", "PR855", "DOBEN"]]
+        },
+        "DOBEN3A": {
+            "icao": "DOBEN3A",
+            "name": "Doben Three Alpha",
+            "rwy": {
+                "24" : ["_RWY24"]
+            },
+            "body": ["PR402"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["PR402", "DOBEN"]]
+        },
+        "DOBEN3B": {
+            "icao": "DOBEN3B",
+            "name": "Doben Three Bravo",
+            "rwy": {
+                "30" : ["_RWY30"]
+            },
+            "body": ["PR813", "PR814", "PR817"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["PR813", "PR814", "PR817", "DOBEN"]]
+        },
+        "DOBEN3D": {
+            "icao": "DOBEN3D",
+            "name": "Doben Three Delta",
+            "rwy": {
+                "06" : ["_RWY06"]
+            },
+            "body": ["PR619", "PR621", "ESINU"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["PR619", "PR621", "ESINU", "DOBEN"]]
+        },
+        "DOBEN3H": {
+            "icao": "DOBEN3H",
+            "name": "Doben Three Hotel",
+            "rwy": {
+                "12" : ["_RWY12"]
+            },
+            "body": ["PR626", "PR856", "PR858", "ESINU"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["PR626", "PR856", "PR858", "ESINU", "DOBEN"]]
+        },
+        "DOBEN5E": {
+            "icao": "DOBEN5E",
+            "name": "Doben Five Echo",
+            "rwy": {
+                "06" : ["_RWY06"]
+            },
+            "body": ["PR631", "PR632", "ESINU"],
+            "exitPoints": {
+                "DOBEN": ["DOBEN"]
+            },
+            "draw":[["PR631", "PR632", "ESINU", "DOBEN"]]
+        },
+        "VENOX2B": {
+            "icao": "VENOX2B",
+            "name": "Venox Two Bravo",
+            "rwy": {
+                "30": ["_RWY30"]
+            },
+            "body": ["PR815", "PR816"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["PR815", "PR816", "VENOX"]]
+        },
+        "VENOX2H": {
+            "icao": "VENOX2H",
+            "name": "Venox Two Hotel",
+            "rwy": {
+                "12" : ["_RWY12"]
+            },
+            "body": ["PR407"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["_RWY24", "PR407", "VENOX"]]
+        },
+        "VENOX2M": {
+            "icao": "VENOX2M",
+            "name": "Venox Two Mike",
+            "rwy": {
+                "24" : ["_RWY24"]
+            },
+            "body": ["PR407"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["_RWY24", "PR407", "VENOX"]]
+        },
+        "VENOX2N": {
+            "icao": "VENOX2N",
+            "name": "Venox Two November",
+            "rwy": {
+                "30": ["_RWY30"]
+            },
+            "body": ["PR818"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["_rwy30", "PR818", "VENOX"]]
+        },
+        "VENOX3A": {
+            "icao": "VENOX3A",
+            "name": "Venox Three Alpha",
+            "rwy": {
+                "24": ["_RWY24"]
+            },
+            "body": ["PR402", "PR405", "PR406"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["PR402", "PR405", "PR406", "VENOX"]]
+        },
+        "VENOX3E": {
+            "icao": "VENOX3E",
+            "name": "Venox Three Echo",
+            "rwy": {
+                "06": ["_RWY06"]
+            },
+            "body": ["PR631", "PR632"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["PR631", "PR632", "VENOX"]]
+        },
+        "VENOX4D": {
+            "icao": "VENOX4D",
+            "name": "Venox Four Delta",
+            "rwy": {
+                "06": ["_RWY06"]
+            },
+            "body": ["PR619", "PR621", "PR622"],
+            "exitPoints": {
+                "VENOX": ["VENOX"]
+            },
+            "draw": [["PR619", "PR621", "PR622", "VENOX"]]
+        },
+        "VOZ2A": {
+            "icao": "VOZ2A",
+            "name": "Voz Two Alpha",
+            "rwy": {
+                "24": ["_RWY24"]
+            },
+            "body": ["PR402", "PR403", "PR404"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["PR402", "PR403", "PR404", "VOZ"]]
+        },
+        "VOZ2B": {
+            "icao": "VOZ2B",
+            "name": "Voz Two Bravo",
+            "rwy": {
+                "30": ["_RWY30"]
+            },
+            "body": ["PR813", "PR814", "PR403", "PR404"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["PR813", "PR814", "PR403", "PR404", "VOZ"]]
+        },
+        "VOZ2D": {
+            "icao": "VOZ2D",
+            "name": "Voz Two Delta",
+            "rwy": {
+                "06": ["_RWY06"]
+            },
+            "body": ["PR625", "PR626", "PR627"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["PR625", "PR626", "PR627", "VOZ"]]
+        },
+        "VOZ2E": {
+            "icao": "VOZ2E",
+            "name": "Voz Two Echo",
+            "rwy": {
+                "06": ["_RWY06"]
+            },
+            "body": ["PR633", "PR635"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["PR633", "PR635", "VOZ"]]
+        },
+        "VOZ2K": {
+            "icao": "VOZ2K",
+            "name": "Voz Two Kilo",
+            "rwy": {
+                "12": ["_RWY12"]
+            },
+            "body": ["PR626", "PR627"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["PR626", "PR627", "VOZ"]]
+        },
+        "VOZ2M": {
+            "icao": "VOZ2M",
+            "name": "Voz Two Mike",
+            "rwy": {
+                "24": ["_RWY24"]
+            },
+            "body": ["PR411", "PR412"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["_RWY24", "PR411", "PR412", "VOZ"]]
+        },
+        "VOZ2N": {
+            "icao": "VOZ2N",
+            "name": "Voz Two November",
+            "rwy": {
+                "30": ["_RWY30"]
+            },
+            "body": ["PR807", "PR808"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["_RWY30", "PR807", "PR808", "VOZ"]]
+        },
+        "VOZ2Q": {
+            "icao": "VOZ2Q",
+            "name": "Voz Two Quibec",
+            "rwy": {
+                "12": ["_RWY12"]
+            },
+            "body": ["PR411", "PR412"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["_RWY12", "PR411", "PR412", "VOZ"]]
+        },
+        "VOZ3G": {
+            "icao": "VOZ3G",
+            "name": "Voz Three Golf",
+            "rwy": {
+                "12": ["_RWY12"]
+            },
+            "body": ["PR411", "PR404"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["_RWY12", "PR411", "PR404", "VOZ"]]
+        },
+        "VOZ3H": {
+            "icao": "VOZ3H",
+            "name": "Voz Three Hotel",
+            "rwy": {
+                "12": ["_RWY12"]
+            },
+            "body": ["PR626", "PR412"],
+            "exitPoints": {
+                "VOZ": ["VOZ"]
+            },
+            "draw": [["_RWY12", "PR626", "PR412", "VOZ"]]
         }
     },
     "stars": {
-        "LOMKI": {
-            "icao": "LOMKI",
-            "name": "Lomki",
+        "GOLOP": {
+            "icao": "GOLOP",
+            "name": "Golop",
             "entryPoints" :{
-                "LOMKI091" : [["_LOMKI091","A60+|S250-"]]
+                "GOLOP000" : [["GOLOP000", "A55+|S250-"]]
             },
-            "body": [["LOMKI","A55+|S250-"]],
-            "suffix": {"24":"5S","30":"6R","06":"5T","12":"5P"},
+            "body": [["GOLOP", "A50+|S250-"]],
             "rwy": {
-                "24" : [["PR511","A50+|S250-"],"PR512",["PR513","S220-|A40+"],"ERASU"],
-                "30" : [["PR511","A50+|S250-"],"PR512",["PR914","S220-"],"PR915","ARVEG"],
-                "06" : [["PR707","A50+|S220-"],"BAROX"],
-                "12" : ["PR707",["PR956","S220-"],["PR954","A40+"],"SOMIS"]
+                "24" : ["PR516",["PR517", "A40+|S220-"],"PR518", "ERASU"],
+                "30" : ["BAGRU", ["PR914", "S220-"], "PR915", "ARVEG"],
+                "06" : ["PR711", "PR712",["PR513", "A40+|S220-"],"KUVIX"],
+                "12" : [["PR957", "S220-"],["PR958", "A40+"],"EVEMI"]
             },
             "draw":[[]]
         },
@@ -317,15 +701,29 @@
             "icao": "GOSEK",
             "name": "Gosek",
             "entryPoints" :{
-                "GOSEK000" : [["_GOSEK000","A55+|S250-"]]
+                "GOSEK000" : [["_GOSEK000", "A55+|S250-"]]
             },
-            "body": [["GOSEK","A50+|S250-"]],
-            "suffix": {"24":"3S","30":"4R","06":"3T","12":"3P"},
+            "body": [["GOSEK", "A50+|S250-"]],
             "rwy": {
-                "24" : ["PR521",["PR523","A40+|S220-"],"RATEV"],
-                "30" : ["PR901", "PR902", "PR903", "PR904","KENOK"],
-                "06" : ["PR718",["PR719","A40+|S220-"],"PR521","AKEVA"],
-                "12" : [["PR953","S220-"],["PR954","A40+"],"SOMIS"]
+                "24" : ["PR521",["PR523", "A40+|S220-"],"RATEV"],
+                "30" : ["PR901", "PR902", "PR903", "PR904", "KENOK"],
+                "06" : ["PR718",["PR719", "A40+|S220-"],"PR521", "AKEVA"],
+                "12" : [["PR953", "S220-"],["PR954", "A40+"],"SOMIS"]
+            },
+            "draw":[[]]
+        },
+        "LOMKI": {
+            "icao": "LOMKI",
+            "name": "Lomki",
+            "entryPoints" :{
+                "LOMKI091" : [["_LOMKI091", "A60+|S250-"]]
+            },
+            "body": [["LOMKI", "A55+|S250-"]],
+            "rwy": {
+                "24" : [["PR511", "A50+|S250-"],"PR512",["PR513", "S220-|A40+"],"ERASU"],
+                "30" : [["PR511", "A50+|S250-"],"PR512",["PR914", "S220-"],"PR915", "ARVEG"],
+                "06" : [["PR707", "A50+|S220-"],"BAROX"],
+                "12" : ["PR707",["PR956", "S220-"],["PR954", "A40+"],"SOMIS"]
             },
             "draw":[[]]
         },
@@ -333,37 +731,223 @@
             "icao": "VLM",
             "name": "Vlasim",
             "entryPoints" :{
-                "VLM000" : [["_VLM000","A55+|S250-"]]
+                "VLM000" : [["_VLM000", "A55+|S250-"]]
             },
-            "body": [["VLM","A50+|S250-"]],
-            "suffix": {"24":"3S","30":"2R","06":"2T","12":"2P"},
+            "body": [["VLM", "A50+|S250-"]],
             "rwy": {
-                "24" : ["PR522",["PR523","A40+|S220-"],"RATEV"],
+                "24" : ["PR522",["PR523", "A40+|S220-"],"RATEV"],
                 "30" : ["PR904", "KENOK"],
-                "06" : ["PR721","PR722","PR723",["PR523","A40+|S220-"],"AKEVA"],
-                "12" : ["PR950","PR951",["PR952","A40+|S220-"],"EVEMI"]
-            },
-            "draw":[[]]
-        },
-        "GOLOP": {
-            "icao": "GOLOP",
-            "name": "Golop",
-            "entryPoints" :{
-                "GOLOP000" : [["_GOLOP000","A55+|S250-"]]
-            },
-            "body": [["GOLOP","A50+|S250-"]],
-            "suffix": {"24":"2S","30":"3R","06":"2T","12":"2P"},
-            "rwy": {
-                "24" : ["PR516",["PR517","A40+|S220-"],"PR518","ERASU"],
-                "30" : ["BAGRU", ["PR914","S220-"], "PR915", "ARVEG"],
-                "06" : ["PR711","PR712",["PR513","A40+|S220-"],"KUVIX"],
-                "12" : [["PR957","S220-"],["PR958","A40+"],"EVEMI"]
+                "06" : ["PR721", "PR722", "PR723",["PR523", "A40+|S220-"],"AKEVA"],
+                "12" : ["PR950", "PR951",["PR952", "A40+|S220-"],"EVEMI"]
             },
             "draw":[[]]
         }
     },
     "spawnPatterns": [
-        
+        {
+            "origin": "LKPR",
+            "destination": "",
+            "category": "departure",
+            "route": "24.ARTUP3A.ARTUP.P733.TOMTI",
+            "altitude": "",
+            "speed": "",
+            "method" : "random",
+            "rate": 2,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        },
+        {
+            "origin": "LKPR",
+            "destination": "",
+            "category": "departure",
+            "route": "24.BALTU3A.BALTU.L984.OKG",
+            "altitude": "",
+            "speed": "",
+            "method" : "random",
+            "rate": 2,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        },
+        {
+            "origin": "LKPR",
+            "destination": "",
+            "category": "departure",
+            "route": "24.DOBEN3A.DOBEN.T136.NIRGO",
+            "altitude": "",
+            "speed": "",
+            "method" : "random",
+            "rate": 2,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        },
+        {
+            "origin": "LKPR",
+            "destination": "",
+            "category": "departure",
+            "route": "24.VENOX3A.VENOX.Y621.DEKOV",
+            "altitude": "",
+            "speed": "",
+            "method" : "random",
+            "rate": 2,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        },
+        {
+            "origin": "LKPR",
+            "destination": "",
+            "category": "departure",
+            "route": "24.VOZ2A.VOZ.Z21.PISAM",
+            "altitude": "",
+            "speed": "",
+            "method" : "random",
+            "rate": 2,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LKPR",
+            "category": "arrival",
+            "route": "GOLOP000.GOLOP.24",
+            "altitude": "14000",
+            "speed": "320",
+            "method" : "random",
+            "rate": 20,
+            "airlines": [
+                ["TVS", 20],
+                ["CSA", 20],
+                ["EZY", 10],
+                ["RYR",10],
+                ["AFR",4],
+                ["AUA",4],
+                ["AZA",4],
+                ["AFL",4],
+                ["BAW",4],
+                ["DLH",4],
+                ["SWR",4],
+                ["KLM",2],
+                ["KLC",2],
+                ["SAS",2],
+                ["LOT",2],
+                ["TAP",2],
+                ["EIN",2],
+                ["IBE",2],
+                ["SAS",1],
+                ["EIN",1],
+                ["CES",1],
+                ["UAE",1]
+            ]
+        }
     ],
     "maps": {
         "base": []
