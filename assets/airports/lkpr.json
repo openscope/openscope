@@ -682,6 +682,18 @@
         }
     },
     "stars": {
+        "GOLOP2S": {
+            "icao": "GOLOP2S",
+            "name": "Golop Two Sierra",
+            "entryPoints": {
+                "GOLOPENTRY": [["GOLOP000", "A55+"]]
+            },
+            "body": [["GOLOP", "A50+|S250-"], "PR516", ["PR517", "A40+|S220-"], "PR518"],
+            "rwy": {
+                "LKPR24": ["ERASU"]
+            },
+            "draw": [[]]
+        },
         "GOLOP": {
             "icao": "GOLOP",
             "name": "Golop",
@@ -816,7 +828,7 @@
             "origin": "LKPR",
             "destination": "",
             "category": "departure",
-            "route": "LKPRLKPR24.DOBEN3A.DOBEN.T136.NIRGO",
+            "route": "LKPR24.DOBEN3A.DOBEN.T136.NIRGO",
             "altitude": "",
             "speed": "",
             "method" : "random",
@@ -918,9 +930,9 @@
             "origin": "",
             "destination": "LKPR",
             "category": "arrival",
-            "route": "GOLOP000.GOLOP.LKPR24",
+            "route": "GOLOPENTRY.GOLOP2S.LKPR24",
             "altitude": "14000",
-            "speed": "320",
+            "speed": "250",
             "method" : "random",
             "rate": 20,
             "airlines": [
