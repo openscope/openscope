@@ -205,6 +205,7 @@
         "AKEVA": ["N49d57.3", "E14d02.6"],
         "ARTUP": ["N50d41.1", "E14d54.3"],
         "ARVEG": ["N49d59.9", "E14d41.0"],
+        "ASTEL": ["N50d51.87", "E14d51.63"],
         "BAGRU": ["N50d25.9", "E14d20.2"],
         "BALTU": ["N50d05.4", "E13d19.36"],
         "BAROX": ["N49d56.9", "E13d43.3"],
@@ -269,7 +270,8 @@
         "T136": ["DOBEN", "NIRGO"],
         "P733": ["ARTUP", "TOMTI"],
         "Y621": ["VENOX", "DEKOV"],
-        "Z21" : ["VOZ", "NELPA", "PISAM"]
+        "Z21" : ["VOZ", "NELPA", "PISAM"],
+        "P861": ["ASTEL", "GOLOP"]
     },
     "sids":{
         "ARTUP2H": {
@@ -686,73 +688,13 @@
             "icao": "GOLOP2S",
             "name": "Golop Two Sierra",
             "entryPoints": {
-                "GOLOPENTRY": [["GOLOP000", "A55+"]]
+                "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": [["GOLOP", "A50+|S250-"], "PR516", ["PR517", "A40+|S220-"], "PR518"],
+            "body": ["PR516", ["PR517", "S220-"], "PR518", "ERASU", "#061"],
             "rwy": {
-                "LKPR24": ["ERASU"]
+                "LKPR24": []
             },
-            "draw": [[]]
-        },
-        "GOLOP": {
-            "icao": "GOLOP",
-            "name": "Golop",
-            "entryPoints" :{
-                "GOLOP000" : [["GOLOP000", "A55+|S250-"]]
-            },
-            "body": [["GOLOP", "A50+|S250-"]],
-            "rwy": {
-                "LKPR24" : ["PR516",["PR517", "A40+|S220-"],"PR518", "ERASU"],
-                "LKPR30" : ["BAGRU", ["PR914", "S220-"], "PR915", "ARVEG"],
-                "LKPR06" : ["PR711", "PR712",["PR513", "A40+|S220-"],"KUVIX"],
-                "LKPR12" : [["PR957", "S220-"],["PR958", "A40+"],"EVEMI"]
-            },
-            "draw":[[]]
-        },
-        "GOSEK": {
-            "icao": "GOSEK",
-            "name": "Gosek",
-            "entryPoints" :{
-                "GOSEK000" : [["_GOSEK000", "A55+|S250-"]]
-            },
-            "body": [["GOSEK", "A50+|S250-"]],
-            "rwy": {
-                "LKPR24" : ["PR521",["PR523", "A40+|S220-"],"RATEV"],
-                "LKPR30" : ["PR901", "PR902", "PR903", "PR904", "KENOK"],
-                "LKPR06" : ["PR718",["PR719", "A40+|S220-"],"PR521", "AKEVA"],
-                "LKPR12" : [["PR953", "S220-"],["PR954", "A40+"],"SOMIS"]
-            },
-            "draw":[[]]
-        },
-        "LOMKI": {
-            "icao": "LOMKI",
-            "name": "Lomki",
-            "entryPoints" :{
-                "LOMKI091" : [["_LOMKI091", "A60+|S250-"]]
-            },
-            "body": [["LOMKI", "A55+|S250-"]],
-            "rwy": {
-                "LKPR24" : [["PR511", "A50+|S250-"],"PR512",["PR513", "S220-|A40+"],"ERASU"],
-                "LKPR30" : [["PR511", "A50+|S250-"],"PR512",["PR914", "S220-"],"PR915", "ARVEG"],
-                "LKPR06" : [["PR707", "A50+|S220-"],"BAROX"],
-                "LKPR12" : ["PR707",["PR956", "S220-"],["PR954", "A40+"],"SOMIS"]
-            },
-            "draw":[[]]
-        },
-        "VLM": {
-            "icao": "VLM",
-            "name": "Vlasim",
-            "entryPoints" :{
-                "VLM000" : [["_VLM000", "A55+|S250-"]]
-            },
-            "body": [["VLM", "A50+|S250-"]],
-            "rwy": {
-                "LKPR24" : ["PR522",["PR523", "A40+|S220-"],"RATEV"],
-                "LKPR30" : ["PR904", "KENOK"],
-                "LKPR06" : ["PR721", "PR722", "PR723",["PR523", "A40+|S220-"],"AKEVA"],
-                "LKPR12" : ["PR950", "PR951",["PR952", "A40+|S220-"],"EVEMI"]
-            },
-            "draw":[[]]
+            "draw": [["GOLOP", "PR516", "PR517", "PR518", "ERASU"]]
         }
     },
     "spawnPatterns": [
@@ -930,9 +872,9 @@
             "origin": "",
             "destination": "LKPR",
             "category": "arrival",
-            "route": "GOLOPENTRY.GOLOP2S.LKPR24",
+            "route": "ASTEL.P861.GOLOP.GOLOP2S.LKPR24",
             "altitude": "14000",
-            "speed": "250",
+            "speed": "320",
             "method" : "random",
             "rate": 20,
             "airlines": [
