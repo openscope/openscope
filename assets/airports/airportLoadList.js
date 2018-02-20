@@ -406,7 +406,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Vaclav Havel International Airport',
             premium: false,
             wip: true
-        // },
+        },
         // {
         //     icao: 'loww',
         //     level: 'medium',
