@@ -293,6 +293,8 @@ export default class AircraftController {
     }
 
     /**
+     * Returns whether the specified aircraft model is in an area where they are controllable
+     *
      * @for AircraftController
      * @method isAircraftVisible
      * @param aircraft {AircraftModel}
