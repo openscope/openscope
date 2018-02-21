@@ -24,7 +24,7 @@ import {
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
-const DEFAULT_CTR_RADIUS_NM = 80;
+const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
 
@@ -211,9 +211,9 @@ export default class AirportModel {
         /**
          * @property ctr_radius
          * @type {nunmber}
-         * @default DEFAULT_CTR_RADIUS_NM
+         * @default DEFAULT_CTR_RADIUS_KM
          */
-        this.ctr_radius = DEFAULT_CTR_RADIUS_NM;
+        this.ctr_radius = DEFAULT_CTR_RADIUS_KM;
 
         /**
          * @property ctr_ceiling
@@ -355,7 +355,7 @@ export default class AirportModel {
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
-        this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
+        this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');

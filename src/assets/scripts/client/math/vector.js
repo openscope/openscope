@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
 import { sin, cos, abs, clamp } from './core';
