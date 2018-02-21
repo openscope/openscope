@@ -557,48 +557,60 @@ export default class AircraftCommander {
     }
 
     /**
+     * Taxi to the specified destination. Currently only supports taxiing to runways.
+     *
+     * If no runway is specified, the aircraft will taxi to their expected departure runway, stored
+     * in Fms.departureRunwayModel. And if a runway is requested but doesn't exist, an error is returned.
+     *
      * @for AircraftCommander
      * @method runTaxi
-     * @param data
+     * @param {AircraftModel} aircraftModel
+     * @param {string} data
      * @return {array}   [success of operation, readback]
      */
-    runTaxi(aircraft, data) {
-        if (aircraft.isAirborne()) {
+    runTaxi(aircraftModel, data) {
+        if (aircraftModel.isAirborne()) {
             return [false, 'unable to taxi, we\'re already airborne'];
         }
-        let taxiDestination = data[0];
-        const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
-        const flightPhase = aircraft.flightPhase;
+
         const airportModel = AirportController.airport_get();
-        const previousRunwayModel = aircraft.fms.departureRunwayModel;
+        const requestedRunwayName = data[0];
+        const taxiStartTime = TimeKeeper.accumulatedDeltaTime;
+        let nextRunwayModel = aircraftModel.fms.departureRunwayModel;
 
-        // Set the runway to taxi to
-        if (!taxiDestination) {
-            taxiDestination = airportModel.departureRunwayModel.name;
+        if (requestedRunwayName) {
+            nextRunwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());
+
+            if (!nextRunwayModel) {
+                const readback = {};
+                readback.log = `unable to find Runway ${requestedRunwayName.toUpperCase()} on our charts`;
+                readback.say = `unable to find Runway ${radio_runway(requestedRunwayName.name)} on our charts`;
+
+                return [false, readback];
+            }
         }
 
-        const nextRunwayModel = airportModel.getRunway(taxiDestination.toUpperCase());
-
-        if (!nextRunwayModel) {
-            return [false, `unable to find Runway ${taxiDestination.toUpperCase()} on our charts`];
+        if (!aircraftModel.fms.isRunwayModelValidForSid(nextRunwayModel)) {
+            aircraftModel.pilot.cancelDepartureClearance(aircraftModel);
         }
 
-        if (!aircraft.fms.isRunwayModelValidForSid(nextRunwayModel)) {
-            aircraft.pilot.cancelDepartureClearance(aircraft);
-        }
+        // remove aircraft from previous runway's queue
+        aircraftModel.fms.departureRunwayModel.removeAircraftFromQueue(aircraftModel.id);
 
-        const readback = aircraft.pilot.taxiToRunway(nextRunwayModel, isDeparture, flightPhase);
-        aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
+        const flightPhase = aircraftModel.flightPhase;
+        const readback = aircraftModel.pilot.taxiToRunway(nextRunwayModel, aircraftModel.isDeparture(), flightPhase);
+        aircraftModel.taxi_start = taxiStartTime;
 
-        nextRunwayModel.addAircraftToQueue(aircraft.id);
-        previousRunwayModel.removeAircraftFromQueue(aircraft.id);
-        aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
+        // add aircraft to new runway's queue
+        aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
 
+
+        aircraftModel.setFlightPhase(FLIGHT_PHASE.TAXI);
         GameController.game_timeout(
             this._changeFromTaxiToWaiting,
-            aircraft.taxi_time,
+            aircraftModel.taxi_time,
             null,
-            [aircraft]
+            [aircraftModel]
         );
 
         return readback;
@@ -634,10 +646,10 @@ export default class AircraftCommander {
         const readback = {};
 
         if (!isInQueue) {
-            return [false, 'unable to take off, we\'re completely lost'];
+            return [false, 'unable to take off, we\'re not at any runway'];
         }
 
-        if (!aircraft.isOnGround()) {
+        if (aircraft.isAirborne()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
 

@@ -1036,6 +1036,7 @@ export default class AircraftModel {
             this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
+    // TODO: The function description and what it actually does do not match
     /**
      * Returns whether the aircraft is currently taking off
      *

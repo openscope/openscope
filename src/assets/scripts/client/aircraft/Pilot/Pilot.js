@@ -926,16 +926,16 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (flightPhase === FLIGHT_PHASE.TAXI) {
-            return [false, 'already taxiing'];
+        if (!isDeparture) {
+            return [false, 'unable to taxi, we are not a departure'];
         }
 
-        if (flightPhase === FLIGHT_PHASE.WAITING) {
-            return [false, 'already taxiied and waiting in runway queue'];
-        }
+        if (flightPhase === FLIGHT_PHASE.TAKEOFF) {
+            const readback = {};
+            readback.log = `we are already taking off on Runway ${taxiDestination.name}`;
+            readback.say = `we are already taking off on Runway ${radio_runway(taxiDestination.name)}`;
 
-        if (!isDeparture || flightPhase !== FLIGHT_PHASE.APRON) {
-            return [false, 'unable to taxi'];
+            return [false, readback];
         }
 
         this._fms.setDepartureRunway(taxiDestination);
