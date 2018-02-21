@@ -72,7 +72,6 @@ export const IDS = {
     CLOCK: 'clock',
     COMMAND: 'command',
     LOADING: 'loading',
-    LOADING_INDICATOR: 'loadingIndicator',
     LOG: 'log',
     NAVAIDS_CANVAS: 'navaids-canvas',
     PAUSED: 'paused',
