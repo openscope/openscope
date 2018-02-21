@@ -267,10 +267,11 @@ export default class AircraftCommandParser {
         }
 
         const isHeadingCommand = aircraftCommandModel.name === 'heading';
+        const isHelpCommand = aircraftCommandModel.name === 'help';
         const isNoArgumentCommand = aircraftCommandModel.args.length === 0;
         const isLeftTurn = commandOrArg === 'l';
 
-        return isHeadingCommand && isNoArgumentCommand && isLeftTurn;
+        return (isHeadingCommand && isNoArgumentCommand && isLeftTurn) || isHelpCommand;
     }
 
     /**
