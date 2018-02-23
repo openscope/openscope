@@ -96,6 +96,20 @@ export const ARRIVAL_PATTERN_MOCK = {
     ]
 };
 
+export const ARRIVAL_PATTERN_MOCK_ALL_STRINGS = {
+    origin: '',
+    destination: 'KLAS',
+    category: 'arrival',
+    route: 'BETHL.GRNPA1.KLAS07R',
+    altitude: '36000',
+    speed: '320',
+    method: 'random',
+    rate: '10',
+    airlines: [
+        ['wja', 7]
+    ]
+};
+
 export const ARRIVAL_PATTERN_ROUTE_STRING_MOCK = Object.assign(
     {},
     ARRIVAL_PATTERN_MOCK,
