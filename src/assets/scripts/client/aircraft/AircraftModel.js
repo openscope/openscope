@@ -1,5 +1,6 @@
 import _defaultTo from 'lodash/defaultTo';
 import _filter from 'lodash/filter';
+import _findIndex from 'lodash/findIndex';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -858,14 +859,13 @@ export default class AircraftModel {
      * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
      *
      * @for AircraftModel
-     * @method isBeyondDecelerationPoint
+     * @method isBeyondDecelerationPointForWaypointModel
+     * @param waypointModel {WaypointModel} the waypoint with a speed restriction
      * @return {boolean}
      */
-    isBeyondDecelerationPoint() {
-        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
-
+    isBeyondDecelerationPointForWaypointModel(waypointModel) {
         if (_isNil(waypointModel)) {
-            return;
+            return false;
         }
 
         const waypointSpeed = waypointModel.speedMaximum;
@@ -878,19 +878,18 @@ export default class AircraftModel {
         return decelerationTime > timeUntilWaypoint;
     }
 
-    // TODO: Refactor all this logic into the Fms - #656
     /**
      * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
      *
      * @for AircraftModel
-     * @method shouldStartDescent
+     * @method isBeyondTopOfDescentForWaypointModel
      * @return {boolean}
      */
-    shouldStartDescent() {
+    isBeyondTopOfDescentForWaypointModel() {
         const currentAltitude = this.altitude;
         const altitudeRestrictedWaypoints = this.fms.getAltitudeRestrictedWaypoints();
         const waypointsWithRelevantCeiling = _filter(altitudeRestrictedWaypoints,
-            (waypoint) => waypoint.hasMaximumAltitudeBelow(currentAltitude));
+            (waypoint) => waypoint.hasMaximumAltitudeAtOrBelow(currentAltitude));
 
         if (_isEmpty(altitudeRestrictedWaypoints)) {
             return;
@@ -1808,32 +1807,29 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnav() {
-        const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+        const nextAltitudeMaximumWaypoint = this.fms.getNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
+        const nextAltitudeMinimumWaypoint = this.fms.getNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
+        const maximumAltitudeExists = !_isNil(nextAltitudeMaximumWaypoint);
+        const minimumAltitudeExists = !_isNil(nextAltitudeMinimumWaypoint);
 
-        switch (this.flightPhase) {
-            case FLIGHT_PHASE.TAKEOFF:
-            case FLIGHT_PHASE.CLIMB:
-                if (_isNil(hardRestrictedWaypointModel)) {
-                    return;
-                }
+        if (!maximumAltitudeExists && !minimumAltitudeExists) {
+            return this.mcp.altitude;
+        }
 
-                return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
+        if (maximumAltitudeExists && minimumAltitudeExists) {
+            const waypoints = this.fms.waypoints;
+            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
+            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
 
-            case FLIGHT_PHASE.CRUISE: {
-                if (!this.shouldStartDescent()) {
-                    return;
-                }
-
-                // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
-                // will enter the below block because the flight phase will have become 'DESCENT'.
-                return this._calculateTargetedAltitudeVnavDescent();
+            if (indexOfMax < indexOfMin) {
+                return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
             }
 
-            case FLIGHT_PHASE.DESCENT:
-                return this._calculateTargetedAltitudeVnavDescent();
-
-            default:
-                return;
+            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
+        } else if (maximumAltitudeExists) {
+            return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
+        } else if (minimumAltitudeExists) {
+            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
         }
     }
 
@@ -1842,21 +1838,13 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavClimb
-     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @param waypointWithMinimumAltitudeRestriction {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel) {
-        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
-        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== INVALID_NUMBER;
+    _calculateTargetedAltitudeVnavClimb(waypointWithMinimumAltitudeRestriction) {
+        const waypointMinimumAltitude = waypointWithMinimumAltitudeRestriction.altitudeMinimum;
 
-        // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMaximum;
-        }
-
-        return Math.min(waypointAltitude, this.mcp.altitude);
+        return Math.min(waypointMinimumAltitude, this.mcp.altitude);
     }
 
     /**
@@ -1866,24 +1854,14 @@ export default class AircraftModel {
      * @method _calculateTargetedAltitudeVnavDescent
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavDescent() {
-        // TODO: This could be improved by making the descent at the exact rate needed to reach
-        // the altitude at the same time as reaching the fix. At this point, the problem is that
-        // while we DO know the descent rate and descent angle to shoot for, we don't know the
-        // length of time before the next update, so we can't accurately estimate the altitude to
-        // target in the current iteration.
+    _calculateTargetedAltitudeVnavDescent(waypointWithMaximumAltitudeRestriction) {
+        const waypointMaximumAltitude = waypointWithMaximumAltitudeRestriction.altitudeMaximum;
 
-        const nextRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
-
-        if (_isNil(nextRestrictedWaypoint)) {
-            return this.mcp.altitude;
+        if (!this.isBeyondTopOfDescentForWaypointModel(waypointWithMaximumAltitudeRestriction)) {
+            return;
         }
 
-        if (nextRestrictedWaypoint.altitudeMinimum === INVALID_NUMBER) {
-            return nextRestrictedWaypoint.altitudeMaximum;
-        }
-
-        return nextRestrictedWaypoint.altitudeMinimum;
+        return Math.min(waypointMaximumAltitude, this.mcp.altitude);
     }
 
     /**
@@ -1947,16 +1925,29 @@ export default class AircraftModel {
      * @return {number} speed, in knots
      */
     _calculateTargetedSpeedVnav() {
-        const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+        const nextSpeedMaximumWaypoint = this.fms.getNextWaypointWithMaximumSpeedAtOrBelow(this.speed);
+        const nextSpeedMinimumWaypoint = this.fms.getNextWaypointWithMinimumSpeedAtOrAbove(this.speed);
+        const maximumSpeedExists = !_isNil(nextSpeedMaximumWaypoint);
+        const minimumSpeedExists = !_isNil(nextSpeedMinimumWaypoint);
 
-        if (_isNil(hardRestrictedWaypointModel)) {
-            return;
+        if (!maximumSpeedExists && !minimumSpeedExists) {
+            return this.mcp.speed;
         }
 
-        if (hardRestrictedWaypointModel.speedMaximum > this.speed) {
-            return this._calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel);
-        } else if (hardRestrictedWaypointModel.speedMaximum < this.speed) {
-            return this._calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel);
+        if (maximumSpeedExists && minimumSpeedExists) {
+            const waypoints = this.fms.waypoints;
+            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMaximumWaypoint.name);
+            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMinimumWaypoint.name);
+
+            if (indexOfMax < indexOfMin) {
+                return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
+            }
+
+            return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
+        } else if (maximumSpeedExists) {
+            return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
+        } else if (minimumSpeedExists) {
+            return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
         }
     }
 
@@ -1965,21 +1956,13 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedSpeedVnavAcceleration
-     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @param waypointWithMinimumSpeedRestriction {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel) {
-        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
-        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== INVALID_NUMBER;
+    _calculateTargetedSpeedVnavAcceleration(waypointWithMinimumSpeedRestriction) {
+        const waypointMinimumSpeed = waypointWithMinimumSpeedRestriction.speedMinimum;
 
-        // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-            waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
-        }
-
-        return Math.min(waypointSpeed, this.mcp.speed);
+        return Math.min(waypointMinimumSpeed, this.mcp.speed);
     }
 
     /**
@@ -1990,23 +1973,14 @@ export default class AircraftModel {
      * @param hardRestrictedWaypointModel {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel) {
-        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+    _calculateTargetedSpeedVnavDeceleration(waypointWithMaximumSpeedRestriction) {
+        const waypointMaximumSpeed = waypointWithMaximumSpeedRestriction.speedMaximum;
 
-        if (!this.isBeyondDecelerationPoint()) {
+        if (!this.isBeyondDecelerationPointForWaypointModel(waypointWithMaximumSpeedRestriction)) {
             return;
         }
 
-        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== INVALID_NUMBER;
-
-        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-            waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
-        }
-
-        return Math.min(waypointSpeed, this.mcp.speed);
+        return Math.min(waypointMaximumSpeed, this.mcp.speed);
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 

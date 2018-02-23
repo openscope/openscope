@@ -50,15 +50,41 @@ export default class WaypointModel {
     }
 
     /**
+     * Returns whether this waypoint has a value for #altitudeMaximum
+     *
+     * @for WaypointModel
+     * @property hasAltiudeMaximumRestriction
+     * @type {boolean}
+     */
+    get hasAltiudeMaximumRestriction() {
+        return this.altitudeMaximum !== INVALID_NUMBER;
+    }
+
+    /**
+     * Returns whether this waypoint has a value for #altitudeMinimum
+     *
+     * @for WaypointModel
+     * @property hasAltiudeMinimumRestriction
+     * @type {boolean}
+     */
+    get hasAltiudeMinimumRestriction() {
+        return this.altitudeMinimum !== INVALID_NUMBER;
+    }
+
+    /**
+     * Returns whether this waypoint has an altitude restriction of any kind
+     *
      * @for WaypointModel
      * @property hasAltitudeRestriction
      * @type {boolean}
      */
     get hasAltitudeRestriction() {
-        return this.altitudeMaximum !== INVALID_NUMBER || this.altitudeMinimum !== INVALID_NUMBER;
+        return this.hasAltiudeMaximumRestriction || this.hasAltiudeMinimumRestriction;
     }
 
     /**
+     * Returns whether this waypoint has a restriction of any kind
+     *
      * @for WaypointModel
      * @property hasRestriction
      * @type {boolean}
@@ -68,12 +94,36 @@ export default class WaypointModel {
     }
 
     /**
+     * Returns whether this waypoint has a value for #speedMaximum
+     *
+     * @for WaypointModel
+     * @property hasSpeedMaximumRestriction
+     * @type {boolean}
+     */
+    get hasSpeedMaximumRestriction() {
+        return this.speedMaximum !== INVALID_NUMBER;
+    }
+
+    /**
+     * Returns whether this waypoint has a value for #speedMinimum
+     *
+     * @for WaypointModel
+     * @property hasSpeedMinimumRestriction
+     * @type {boolean}
+     */
+    get hasSpeedMinimumRestriction() {
+        return this.speedMinimum !== INVALID_NUMBER;
+    }
+
+    /**
+     * Returns whether this waypoint has a speed restriction of any kind
+     *
      * @for WaypointModel
      * @property hasSpeedRestriction
      * @type {boolean}
      */
     get hasSpeedRestriction() {
-        return this.speedMaximum !== INVALID_NUMBER || this.speedMinimum !== INVALID_NUMBER;
+        return this.hasSpeedMaximumRestriction || this.hasSpeedMinimumRestriction;
     }
 
     /**
@@ -95,7 +145,11 @@ export default class WaypointModel {
     }
 
     /**
-     * Returns whether `this` is a fly-over waypoint
+     * Returns whether this waypoint is a fly-over waypoint
+     *
+     * Fly-over waypoints are waypoints that aircraft may not begin the turn to their
+     * next fix until they fully pass this waypoint
+     *
      * @for WaypointModel
      * @property isFlyOverWaypoint
      * @return {boolean}
@@ -105,7 +159,7 @@ export default class WaypointModel {
     }
 
     /**
-    * Returns whether `this` is a hold waypoint
+    * Returns whether this waypoint includes an activated holding pattern
     *
     * @for WaypointModel
     * @property isHoldWaypoint
@@ -116,7 +170,9 @@ export default class WaypointModel {
     }
 
     /**
-    * Returns whether `this` is a vector waypoint
+    * Returns whether this waypoint is a vector waypoint
+    *
+    * Vector waypoints are simply an instruction to fly a particular heading
     *
     * @for WaypointModel
     * @property isVector
@@ -157,7 +213,7 @@ export default class WaypointModel {
     }
 
     /**
-     * Fascade to access relative position
+     * Facade to access relative position
      *
      * @for WaypointModel
      * @property relativePosition
@@ -355,29 +411,51 @@ export default class WaypointModel {
     }
 
     /**
-     * Check for a maximum altitude restriction below the given altitude
+     * Check for a maximum altitude restriction at or below the given altitude
      *
      * @for WaypointModel
-     * @method hasMaximumAltitudeBelow
+     * @method hasMaximumAltitudeAtOrBelow
      * @param altitude {number} in feet
      * @return {boolean}
      */
-    hasMaximumAltitudeBelow(altitude) {
-        return this.altitudeMaximum !== INVALID_NUMBER
-            && this.altitudeMaximum < altitude;
+    hasMaximumAltitudeAtOrBelow(altitude) {
+        return this.altitudeMaximum !== INVALID_NUMBER && this.altitudeMaximum <= altitude;
     }
 
     /**
-     * Check for a minimum altitude restriction above the given altitude
+     * Check for a minimum altitude restriction at or above the given altitude
      *
      * @for WaypointModel
-     * @method hasMinimumAltitudeAbove
+     * @method hasMinimumAltitudeAtOrAbove
      * @param altitude {number} in feet
      * @return {boolean}
      */
-    hasMinimumAltitudeAbove(altitude) {
-        return this.altitudeMinimum !== INVALID_NUMBER
-            && this.altitudeMinimum > altitude;
+    hasMinimumAltitudeAtOrAbove(altitude) {
+        return this.altitudeMinimum !== INVALID_NUMBER && this.altitudeMinimum >= altitude;
+    }
+
+    /**
+     * Check for a maximum speed restriction at or below the given speed
+     *
+     * @for WaypointModel
+     * @method hasMaximumSpeedAtOrBelow
+     * @param speed {number} in knots
+     * @return {boolean}
+     */
+    hasMaximumSpeedAtOrBelow(speed) {
+        return this.speedMaximum !== INVALID_NUMBER && this.speedMaximum <= speed;
+    }
+
+    /**
+     * Check for a minimum speed restriction at or above the given speed
+     *
+     * @for WaypointModel
+     * @method hasMinimumSpeedAtOrAbove
+     * @param speed {number} in knots
+     * @return {boolean}
+     */
+    hasMinimumSpeedAtOrAbove(speed) {
+        return this.speedMinimum !== INVALID_NUMBER && this.speedMinimum >= speed;
     }
 
     /**

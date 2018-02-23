@@ -516,67 +516,67 @@ export default class Fms {
     }
 
     /**
-     * Return the next waypoint having an #altitudeMaximum of less than the specified value
+     * Return the next waypoint having an #altitudeMaximum equal to or less than the specified value
      *
      * This is helpful to see only future waypoints for which a particular altitude is
      * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
      * will need to adjust altitude for, even if they are many waypoints in the future.
      *
      * @for Fms
-     * @method getNextWaypointWithMaximumAltitudeBelow
+     * @method getNextWaypointWithMaximumAltitudeAtOrBelow
      * @param altitude {number}
      * @return {WaypointModel}
      */
-    getNextWaypointWithMaximumAltitudeBelow(altitude) {
-        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumAltitudeBelow(altitude));
+    getNextWaypointWithMaximumAltitudeAtOrBelow(altitude) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumAltitudeAtOrBelow(altitude));
     }
 
     /**
-     * Return the next waypoint having an #altitudeMinimum greater than the specified value
+     * Return the next waypoint having an #altitudeMinimum equal to or greater than the specified value
      *
      * This is helpful to see only future waypoints for which a particular altitude is
      * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
      * will need to adjust altitude for, even if they are many waypoints in the future.
      *
      * @for Fms
-     * @method getNextWaypointWithMinimumAltitudeAbove
+     * @method getNextWaypointWithMinimumAltitudeAtOrAbove
      * @param altitude {number}
      * @return {WaypointModel}
      */
-    getNextWaypointWithMinimumAltitudeAbove(altitude) {
-        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAbove(altitude));
+    getNextWaypointWithMinimumAltitudeAtOrAbove(altitude) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAtOrAbove(altitude));
     }
 
     /**
-     * Return the next waypoint having a #speedMaximum of less than the specified value
+     * Return the next waypoint having a #speedMaximum equal to or less than the specified value
      *
      * This is helpful to see only future waypoints for which a particular speed is
      * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
      * will need to adjust speed for, even if they are many waypoints in the future.
      *
      * @for Fms
-     * @method getNextWaypointWithMaximumSpeedBelow
+     * @method getNextWaypointWithMaximumSpeedAtOrBelow
      * @param speed {number}
      * @return {WaypointModel}
      */
-    getNextWaypointWithMaximumSpeedBelow(speed) {
-        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumSpeedBelow(speed));
+    getNextWaypointWithMaximumSpeedAtOrBelow(speed) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumSpeedAtOrBelow(speed));
     }
 
     /**
-     * Return the next waypoint having a #speedMinimum greater than the specified value
+     * Return the next waypoint having a #speedMinimum equal to or greater than the specified value
      *
      * This is helpful to see only future waypoints for which a particular speed is
      * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
      * will need to adjust speed for, even if they are many waypoints in the future.
      *
      * @for Fms
-     * @method getNextWaypointWithMinimumSpeedAbove
+     * @method getNextWaypointWithMinimumSpeedAtOrAbove
      * @param speed {number}
      * @return {WaypointModel}
      */
-    getNextWaypointWithMinimumSpeedAbove(speed) {
-        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumSpeedAbove(speed));
+    getNextWaypointWithMinimumSpeedAtOrAbove(speed) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumSpeedAtOrAbove(speed));
     }
 
     /**
