@@ -1,3 +1,4 @@
+import _find from 'lodash/find';
 import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
@@ -512,6 +513,70 @@ export default class Fms {
     */
     getFullRouteStringWithoutAirportsWithSpaces() {
         return this._routeModel.getFullRouteStringWithoutAirportsWithSpaces();
+    }
+
+    /**
+     * Return the next waypoint having an #altitudeMaximum of less than the specified value
+     *
+     * This is helpful to see only future waypoints for which a particular altitude is
+     * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
+     * will need to adjust altitude for, even if they are many waypoints in the future.
+     *
+     * @for Fms
+     * @method getNextWaypointWithMaximumAltitudeBelow
+     * @param altitude {number}
+     * @return {WaypointModel}
+     */
+    getNextWaypointWithMaximumAltitudeBelow(altitude) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumAltitudeBelow(altitude));
+    }
+
+    /**
+     * Return the next waypoint having an #altitudeMinimum greater than the specified value
+     *
+     * This is helpful to see only future waypoints for which a particular altitude is
+     * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
+     * will need to adjust altitude for, even if they are many waypoints in the future.
+     *
+     * @for Fms
+     * @method getNextWaypointWithMinimumAltitudeAbove
+     * @param altitude {number}
+     * @return {WaypointModel}
+     */
+    getNextWaypointWithMinimumAltitudeAbove(altitude) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAbove(altitude));
+    }
+
+    /**
+     * Return the next waypoint having a #speedMaximum of less than the specified value
+     *
+     * This is helpful to see only future waypoints for which a particular speed is
+     * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
+     * will need to adjust speed for, even if they are many waypoints in the future.
+     *
+     * @for Fms
+     * @method getNextWaypointWithMaximumSpeedBelow
+     * @param speed {number}
+     * @return {WaypointModel}
+     */
+    getNextWaypointWithMaximumSpeedBelow(speed) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMaximumSpeedBelow(speed));
+    }
+
+    /**
+     * Return the next waypoint having a #speedMinimum greater than the specified value
+     *
+     * This is helpful to see only future waypoints for which a particular speed is
+     * considered NOT to be compliant. This allows us to focus which waypoints the aircraft
+     * will need to adjust speed for, even if they are many waypoints in the future.
+     *
+     * @for Fms
+     * @method getNextWaypointWithMinimumSpeedAbove
+     * @param speed {number}
+     * @return {WaypointModel}
+     */
+    getNextWaypointWithMinimumSpeedAbove(speed) {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumSpeedAbove(speed));
     }
 
     /**

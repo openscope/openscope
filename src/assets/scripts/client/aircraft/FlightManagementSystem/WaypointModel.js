@@ -35,10 +35,10 @@ export default class WaypointModel {
             throw new TypeError(`Expected valid data to create WaypointModel but received ${data}`);
         }
 
-        this.altitudeMaximum = -1;
-        this.altitudeMinimum = -1;
-        this.speedMaximum = -1;
-        this.speedMinimum = -1;
+        this.altitudeMaximum = INVALID_NUMBER;
+        this.altitudeMinimum = INVALID_NUMBER;
+        this.speedMaximum = INVALID_NUMBER;
+        this.speedMinimum = INVALID_NUMBER;
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -211,10 +211,10 @@ export default class WaypointModel {
      * @chainable
      */
     reset() {
-        this.altitudeMaximum = -1;
-        this.altitudeMinimum = -1;
-        this.speedMaximum = -1;
-        this.speedMinimum = -1;
+        this.altitudeMaximum = INVALID_NUMBER;
+        this.altitudeMinimum = INVALID_NUMBER;
+        this.speedMaximum = INVALID_NUMBER;
+        this.speedMinimum = INVALID_NUMBER;
         this._holdParameters = Object.assign({}, DEFAULT_HOLD_PARAMETERS);
         this._isFlyOverWaypoint = false;
         this._isHoldWaypoint = false;
@@ -446,11 +446,11 @@ export default class WaypointModel {
     _applyAltitudeRestriction(restriction) {
         const altitude = parseInt(restriction, 10) * 100;
 
-        if (restriction.indexOf('+') !== -1) {
+        if (restriction.indexOf('+') !== INVALID_INDEX) {
             this.altitudeMinimum = altitude;
 
             return;
-        } else if (restriction.indexOf('-') !== -1) {
+        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.altitudeMaximum = altitude;
 
             return;
@@ -499,11 +499,11 @@ export default class WaypointModel {
     _applySpeedRestriction(restriction) {
         const speed = parseInt(restriction, 10);
 
-        if (restriction.indexOf('+') !== -1) {
+        if (restriction.indexOf('+') !== INVALID_INDEX) {
             this.speedMinimum = speed;
 
             return;
-        } else if (restriction.indexOf('-') !== -1) {
+        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.speedMaximum = speed;
 
             return;
