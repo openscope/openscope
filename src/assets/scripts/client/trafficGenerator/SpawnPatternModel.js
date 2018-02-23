@@ -12,14 +12,16 @@ import StaticPositionModel from '../base/StaticPositionModel';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { tau } from '../math/circle';
-// import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
-import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
+import {
+    convertMinutesToSeconds,
+    DECIMAL_RADIX
+} from '../utilities/unitConverters';
 
 // TODO: this may need to live somewhere else
 /**
@@ -486,7 +488,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this.method = spawnPatternJson.method;
-        this.rate = spawnPatternJson.rate;
+        this.rate = parseInt(spawnPatternJson.rate, DECIMAL_RADIX);
 
         this._routeModel = new RouteModel(spawnPatternJson.route);
         this.cycleStartTime = 0;
@@ -697,14 +699,14 @@ export default class SpawnPatternModel extends BaseModel {
         if (_isArray(altitude)) {
             const [min, max] = altitude;
 
-            this._minimumAltitude = min;
-            this._maximumAltitude = max;
+            this._minimumAltitude = parseInt(min, DECIMAL_RADIX);
+            this._maximumAltitude = parseInt(max, DECIMAL_RADIX);
 
             return;
         }
 
-        this._minimumAltitude = altitude;
-        this._maximumAltitude = altitude;
+        this._minimumAltitude = parseInt(altitude, DECIMAL_RADIX);
+        this._maximumAltitude = parseInt(altitude, DECIMAL_RADIX);
     }
 
     /**
@@ -905,7 +907,7 @@ export default class SpawnPatternModel extends BaseModel {
             return 0;
         }
 
-        return spawnPatternJson.speed;
+        return parseInt(spawnPatternJson.speed, DECIMAL_RADIX);
     }
 
     /**
