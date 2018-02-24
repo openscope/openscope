@@ -706,11 +706,9 @@ export default class RouteModel extends BaseModel {
     /**
      * Replace the arrival procedure leg with a new one (if it exists in the route)
      *
-     * // FIXME: Is this really what we want to do here?
-     * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` with a arrival
-     * procedure cannot be found, then we create a new `LegModel` and place it
-     * at the end of the `#legCollection`.
+     * Create a new STAR leg from the specified route string. If a STAR leg already
+     * exists, replace that leg with the new one. Else, add the new one at the end
+     * of the #_legCollection.
      *
      * @for RouteModel
      * @method replaceArrivalProcedure
@@ -743,11 +741,9 @@ export default class RouteModel extends BaseModel {
     /**
      * Replace the departure procedure leg with a new one (if it exists in the route)
      *
-     * // FIXME: Is this really what we want to do here?
-     * This method does not remove any `LegModel`s. It instead finds and updates a
-     * `LegModel` with a new routeString. If a `LegModel` with a departure
-     * procedure cannot be found, then we create a new `LegModel` and place it
-     * at the beginning of the `#legCollection`.
+     * Create a new SID leg from the specified route string. If a SID leg already
+     * exists, replace that leg with the new one. Else, add the new one at the
+     * beginning of the #_legCollection.
      *
      * @for RouteModel
      * @method replaceDepartureProcedure
