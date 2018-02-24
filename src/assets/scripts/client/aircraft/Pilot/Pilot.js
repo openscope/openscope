@@ -479,7 +479,6 @@ export default class Pilot {
         return [true, 'descend via STAR'];
     }
 
-    // FIXME: This will need to do stuff
     /**
     * Arm the exit of the holding pattern
     *
@@ -487,9 +486,15 @@ export default class Pilot {
     * @method exitHold
     */
     exitHold() {
-        if (!this._fms.currentWaypoint.isHoldWaypoint) {
-            return;
+        const currentWaypoint = this._fms.currentWaypoint;
+
+        if (!currentWaypoint.isHoldWaypoint) {
+            return [false, 'not currently holding'];
         }
+
+        currentWaypoint.deactivateHold();
+
+        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName}`];
     }
 
     /**
