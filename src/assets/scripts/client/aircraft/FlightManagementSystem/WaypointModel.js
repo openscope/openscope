@@ -183,21 +183,13 @@ export default class WaypointModel {
     }
 
     /**
-     * Returns the name of the waypoint
+     * Returns the value of #_name
      *
-     * Will return `RNAV` if the waypoint is a specific point in space
-     * and not a named fixed. These waypoints are prefixed with a
-     * `_` symbol.
-     *
+     * @for WaypointModel
      * @property name
      * @type {string}
-     * @return {string}
      */
     get name() {
-        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== INVALID_INDEX) {
-            return RNAV_WAYPOINT_DISPLAY_NAME;
-        }
-
         return this._name;
     }
 
@@ -389,6 +381,23 @@ export default class WaypointModel {
      */
     deactivateHold() {
         this._isHoldWaypoint = false;
+    }
+
+    /**
+     * Returns the name of the waypoint, amended for display to user
+     *
+     * Will return `[RNAV]` for waypoints prefixed with an underscore
+     *
+     * @for WaypointModel
+     * @property name
+     * @type {string}
+     */
+    getDisplayName() {
+        if (this._name.indexOf(RNAV_WAYPOINT_PREFIX) !== INVALID_INDEX) {
+            return RNAV_WAYPOINT_DISPLAY_NAME;
+        }
+
+        return this._name;
     }
 
     /**

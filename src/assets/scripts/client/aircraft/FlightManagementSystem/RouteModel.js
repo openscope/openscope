@@ -1200,13 +1200,9 @@ export default class RouteModel extends BaseModel {
         return remainingLegWaypointsAsLegs;
     }
 
-    // FIXME: Shouldn't be accessing #_name from a different class like this!
-    // Doing it anyway for now, because using #name will not work right with RNAV
-    // waypoints, since #name returns 'RNAV' instead of the name, such as a fix
-    // named '_SASCO330005', and thus the conversion to LegModel will fail
     // TODO: Also add support for preserving waypoint data (restrictions, hold instructions, etc)
     _createLegModelsFromWaypointModels(waypointModels) {
-        return _map(waypointModels, (waypointModel) => new LegModel(waypointModel._name));
+        return _map(waypointModels, (waypointModel) => new LegModel(waypointModel.name));
     }
 
     /**

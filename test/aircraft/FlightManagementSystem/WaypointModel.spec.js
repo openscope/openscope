@@ -553,9 +553,9 @@ ava('#isVectorWaypoint returns true when #_isVectorWaypoint is true', (t) => {
     t.true(result);
 });
 
-ava('#name returns "RNAV" for fixes with names prefixed with underscore', (t) => {
+ava('#name returns value of #_name for fixes with names prefixed with underscore', (t) => {
     const model = new WaypointModel('_NAPSE068');
-    const expectedResult = 'RNAV';
+    const expectedResult = '_NAPSE068';
     const result = model.name;
 
     t.true(result === expectedResult);
@@ -650,6 +650,22 @@ ava('.deactivateHold() sets #_isHoldWaypoint to false', (t) => {
     model.deactivateHold();
 
     t.false(model._isHoldWaypoint);
+});
+
+ava('.getDisplayName() returns "[RNAV]" for fixes with names prefixed with underscore', (t) => {
+    const model = new WaypointModel('_NAPSE068');
+    const expectedResult = '[RNAV]';
+    const result = model.getDisplayName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getDisplayName() returns value of #_name for fixes with names not prefixed with underscore', (t) => {
+    const model = new WaypointModel('BOACH');
+    const expectedResult = 'BOACH';
+    const result = model.getDisplayName();
+
+    t.true(result === expectedResult);
 });
 
 ava('.getVector() returns undefined if waypoint is not a vector waypoint', (t) => {
