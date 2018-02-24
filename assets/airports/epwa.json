@@ -755,7 +755,7 @@
             "rwy": {
                 "EPWA11": []
             },
-            "body": [["WA602", "A15+|S210-"], "WA607", "WA698" "BAMSO"],
+            "body": [["WA602", "A15+|S210-"], "WA607", "WA698", "BAMSO"],
             "exitPoints": {
                 "BAMSO": []
             },
