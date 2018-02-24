@@ -1175,7 +1175,19 @@ ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated
     t.deepEqual(result, expectedResult);
 });
 
-ava.todo('._overwriteRouteBetweenWaypointNames()');
+ava('._overwriteRouteBetweenWaypointNames() adjusts divergent/convergent legs and replaces middle content correctly', (t) => {
+    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.TRALR6.BCE.J11.DRK');
+    const otherModel = new RouteModel(navigationLibraryFixture, 'BCE..NAVHO');
+    const expectedResult = [true, { log: 'rerouting to: KLAS07R TRALR6 BCE NAVHO J11 DRK', say: 'rerouting as requested' }];
+    const result = primaryModel._overwriteRouteBetweenWaypointNames('BCE', 'NAVHO', otherModel);
+
+    t.deepEqual(result, expectedResult);
+    t.true(primaryModel._legCollection.length === 4);
+    t.true(primaryModel._legCollection[0].routeString === 'KLAS07R.TRALR6.BCE');
+    t.true(primaryModel._legCollection[1].routeString === 'BCE');
+    t.true(primaryModel._legCollection[2].routeString === 'NAVHO');
+    t.true(primaryModel._legCollection[3].routeString === 'NAVHO.J11.DRK');
+});
 
 ava('._prependRouteModelEndingAtWaypointName() throws when leg type is not airway/direct/SID/STAR', (t) => {
     const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
