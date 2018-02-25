@@ -3,7 +3,9 @@
     "name": "RusLine",
     "callsign": {
         "name": "Rusline",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

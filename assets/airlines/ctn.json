@@ -3,7 +3,9 @@
     "name": "Croatia Airlines",
     "callsign": {
         "name": "Croatia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

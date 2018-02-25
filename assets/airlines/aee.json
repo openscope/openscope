@@ -3,7 +3,9 @@
     "name": "Aegean Airlines",
     "callsign": {
         "name": "Aegean",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

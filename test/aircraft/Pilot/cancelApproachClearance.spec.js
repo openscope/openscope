@@ -1,15 +1,27 @@
 import ava from 'ava';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 
 const approachTypeMock = 'ils';
 const runwayModelMock = airportModelFixture.getRunway('19L');
 const speedMock = 190;
 
+
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
+
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.cancelApproachClearance(aircraftModel);
     const expectedResult = [false, 'we have no approach clearance to cancel!'];
 
@@ -21,7 +33,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     const nextHeadingDegreesMock = 250;
     const shouldExpediteDescentMock = false;
     const shouldUseSoftCeilingMock = false;
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     aircraftModel.pilot.maintainAltitude(
         nextAltitudeMock,
@@ -44,7 +56,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
 });
 
 ava('.cancelApproachClearance() returns a success message when finished', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const expectedResult = [
         true,
         'cancel approach clearance, fly present heading, maintain last assigned altitude and speed'
@@ -58,7 +70,7 @@ ava('.cancelApproachClearance() returns a success message when finished', (t) =>
 });
 
 ava('.cancelApproachClearance() sets #hasApproachClearance to false', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     aircraftModel.pilot.hasApproachClearance = true;
 

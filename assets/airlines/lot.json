@@ -2,8 +2,15 @@
     "icao": "lot",
     "name": "LOT Polish Airlines",
     "callsign": {
+<<<<<<< HEAD
         "name": "LOT",
         "length": 3
+=======
+        "name": "Lot",
+        "callsignFormats": [
+            "###"
+        ]
+>>>>>>> develop
     },
     "fleets": {
         "default": [

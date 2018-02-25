@@ -3,7 +3,9 @@
     "name": "ASL Airlines Belgium",
     "callsign": {
         "name": "Quality",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

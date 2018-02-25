@@ -4,12 +4,17 @@ import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import { speech_say } from '../speech';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import {
+    FLIGHT_PHASE,
+    FLIGHT_CATEGORY
+} from '../constants/aircraftConstants';
+import { EVENT } from '../constants/eventNames';
+// import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { round } from '../math/core';
 import {
     radio_runway,
@@ -17,12 +22,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import {
-    FLIGHT_PHASE,
-    FLIGHT_CATEGORY,
-    PROCEDURE_TYPE
-} from '../constants/aircraftConstants';
-import { EVENT } from '../constants/eventNames';
+import { radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  * Enum of commands and thier corresponding function.
@@ -72,9 +72,8 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(navigationLibrary, onChangeTransponderCode) {
+    constructor(onChangeTransponderCode) {
         this._eventBus = EventBus;
-        this._navigationLibrary = navigationLibrary;
         this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
@@ -252,7 +251,7 @@ export default class AircraftCommander {
         const incremental = data[2];
         const readback = aircraft.pilot.maintainHeading(aircraft, heading, direction, incremental);
 
-        if (direction === null) {
+        if (!direction) {
             direction = '';
         }
 
@@ -317,7 +316,7 @@ export default class AircraftCommander {
      * Setup the Fms to enter a holding pattern,
      *
      * Can be used to hold at:
-     * - A Waypoint in the current flight plan: which will be made the currentWaypoint via `fms.skipToWaypoint()`
+     * - A Waypoint in the current flight plan: which will be made the currentWaypoint via `fms.skipToWaypointName()`
      * - A Fix not in the flight plan: a new `LegModel` will be created and prepended thus making it the currentWaypoint
      * - The current position: a new `LegModel` will be created and prepended thus making it the currentWaypoint
      *
@@ -330,17 +329,20 @@ export default class AircraftCommander {
     runHold(aircraft, data) {
         const turnDirection = data[0];
         const legLength = data[1];
-        const holdFix = data[2];
-        const fixModel = this._navigationLibrary.findFixByName(holdFix);
-        let holdPosition = aircraft.positionModel;
-        let inboundHeading = aircraft.heading;
+        const fixName = data[2];
+        const fixModel = NavigationLibrary.findFixByName(fixName);
 
-        if (fixModel) {
-            holdPosition = fixModel.relativePosition;
-            inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
+        if (!fixModel) {
+            return [false, `unable to hold at unknown fix ${fixName}`];
         }
 
-        return aircraft.pilot.initiateHoldingPattern(inboundHeading, turnDirection, legLength, holdFix, holdPosition);
+        const holdParameters = {
+            turnDirection,
+            legLength,
+            inboundHeading: fixModel.positionModel.bearingFromPosition(aircraft.positionModel)
+        };
+
+        return aircraft.pilot.initiateHoldingPattern(fixName, holdParameters);
     }
 
     /**
@@ -387,42 +389,9 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const sidId = data[0];
-        const runwayModel = aircraft.fms.departureRunwayModel;
         const airportModel = AirportController.airport_get();
 
-        if (this._navigationLibrary.isSuffixRoute(sidId, PROCEDURE_TYPE.SID)) {
-            return this._runSIDforSuffix(aircraft, airportModel, sidId);
-        }
-
-        const response = aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
-
-        if (!response[0]) {
-            return response;
-        }
-
-        return response;
-    }
-
-    /**
-     * Used only for suffix routes.
-     *
-     * Suffix routes apply to a specific runway.
-     * This method will find and pass on the correct `RunwayModel`
-     * to the `Pilot`.
-     *
-     * @for AircraftCommander
-     * @method _runSIDforSuffix
-     * @param  aircraft {AircraftModel}
-     * @param airportModel {AirportModel}
-     * @param sidId {strig}
-     * @return {array}  [success of operation, readback]
-     */
-    _runSIDforSuffix(aircraft, airportModel, sidId) {
-        const routeModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
-        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.SID);
-        const runwayModel = airportModel.getRunway(runwayName);
-
-        return aircraft.pilot.applyDepartureProcedure(sidId, runwayModel, airportModel.icao);
+        return aircraft.pilot.applyDepartureProcedure(sidId, airportModel.icao);
     }
 
     /**
@@ -433,38 +402,9 @@ export default class AircraftCommander {
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
-        // TODO: why are we passing this if we already have it?
-        const runwayModel = aircraft.fms.arrivalRunwayModel;
         const airportModel = AirportController.airport_get();
 
-        if (this._navigationLibrary.isSuffixRoute(routeString, PROCEDURE_TYPE.STAR)) {
-            return this._runSTARforSuffix(aircraft, airportModel, routeString);
-        }
-
-        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
-    }
-
-    /**
-     * Used only for suffix routes.
-     *
-     * Suffix routes apply to a specific runway.
-     * This method will find and pass on the correct `RunwayModel`
-     * to the `Pilot`.
-     *
-     * @for AircraftCommander
-     * @method _runSTARforSuffix
-     * @param aircraft {AircraftModel}
-     * @param airportModel {AirportModel}
-     * @param routeString {string}
-     * @return {array}  [success of operation, readback]
-     */
-    _runSTARforSuffix(aircraft, airportModel, routeString) {
-        const routeStringModel = new RouteModel(routeString);
-        const routeModel = this._navigationLibrary.starCollection.findRouteByIcao(routeStringModel.procedure);
-        const runwayName = routeModel.getSuffixSegmentName(PROCEDURE_TYPE.STAR);
-        const runwayModel = airportModel.getRunway(runwayName);
-
-        return aircraft.pilot.applyArrivalProcedure(routeString, runwayModel, airportModel.name);
+        return aircraft.pilot.applyArrivalProcedure(routeString, airportModel.name);
     }
 
     /**
@@ -507,7 +447,7 @@ export default class AircraftCommander {
     runReroute(aircraft, data) {
         // TODO: is this .toUpperCase() necessary??
         const routeString = data[0].toUpperCase();
-        const readback = aircraft.pilot.applyNewRoute(routeString, aircraft.initialRunwayAssignment);
+        const readback = aircraft.pilot.replaceFlightPlanWithNewRoute(routeString);
 
         // Only change to LNAV mode if the route was applied successfully, else
         // continue with the previous instructions (whether a heading, etc)

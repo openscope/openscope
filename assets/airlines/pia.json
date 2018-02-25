@@ -1,0 +1,23 @@
+{
+    "icao": "pia",
+    "name": "Pakistan International Airlines",
+    "callsign": {
+        "name": "Pakistan",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 11],
+            ["AT45", 3],
+            ["AT72", 6],
+            ["B772", 6],
+            ["B77L", 2],
+            ["B77W", 4]
+        ],
+        "long": [
+            ["B772", 6],
+            ["B77L", 2],
+            ["B77W", 4]
+        ]
+    }
+}

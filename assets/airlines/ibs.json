@@ -3,7 +3,9 @@
     "name": "Iberia Express",
     "callsign": {
         "name": "Iberexpress",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

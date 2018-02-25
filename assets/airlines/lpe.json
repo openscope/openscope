@@ -3,7 +3,9 @@
     "name": "LATAM Airlines Perú",
     "callsign": {
         "name": "LAN Peru",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "long": [

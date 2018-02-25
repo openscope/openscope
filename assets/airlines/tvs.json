@@ -3,7 +3,9 @@
     "name": "Travel Service",
     "callsign": {
         "name": "SKYTRAVEL",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

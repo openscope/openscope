@@ -3,7 +3,9 @@
     "name": "Bulgaria Air",
     "callsign": {
         "name": "Flying Bulgaria",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

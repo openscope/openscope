@@ -3,7 +3,9 @@
     "name": "Cathay Pacific",
     "callsign": {
         "name": "Cathay",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

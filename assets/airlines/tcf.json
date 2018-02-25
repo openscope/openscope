@@ -3,7 +3,9 @@
     "name": "Shuttle America",
     "callsign": {
         "name": "Mercury",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

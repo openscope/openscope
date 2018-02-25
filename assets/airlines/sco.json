@@ -3,7 +3,9 @@
     "name": "Scoot",
     "callsign": {
         "name": "Scooter",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

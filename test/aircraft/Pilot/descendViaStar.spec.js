@@ -4,11 +4,13 @@ import {
     createFmsArrivalFixture,
     createModeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
-// Fixtures
-let pilot = null;
+let pilot;
 
-// Mocks
 const successResponseMock = [true, 'descend via STAR'];
 const failureResponseMock = [false, 'unable to descend via STAR'];
 const initialAltitudeMock = 18000;
@@ -16,9 +18,11 @@ const nextAltitudeMock = 5000;
 const invalidAltitudeMock = 'threeve';
 
 ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+
     const modeControllerFixture = createModeControllerFixture();
     const fmsArrivalFixture = createFmsArrivalFixture();
-    pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
 
     pilot._mcp.setAltitudeFieldValue(initialAltitudeMock);
     pilot._mcp.setAltitudeHold();
@@ -26,18 +30,21 @@ ava.beforeEach(() => {
 
 ava.afterEach(() => {
     pilot = null;
+
+    resetNavigationLibraryFixture();
 });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
+    const expectedResponse = [false, 'unable to descend to bottom altitude of threeve'];
     const response = pilot.descendViaStar(invalidAltitudeMock);
 
-    t.deepEqual(response, failureResponseMock);
+    t.deepEqual(response, expectedResponse);
     t.true(pilot._mcp.altitude === initialAltitudeMock);
 });
 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS has no bottom altitude', (t) => {
     // replace route with one that will have NO altitude restrictions whatsoever
-    pilot.applyNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
+    pilot.replaceFlightPlanWithNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
 
     const response = pilot.descendViaStar();
 
@@ -47,7 +54,7 @@ ava('.descendViaStar() returns early when no bottom altitude param provided and 
 
 ava('.descendViaStar() returns early when no bottom altitude param provided and FMS bottom altitude is invalid', (t) => {
     // replace route with one that will have NO altitude restrictions whatsoever
-    pilot.applyNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
+    pilot.replaceFlightPlanWithNewRoute('DAG..MISEN..CLARR..SKEBR..KEPEC..IPUMY..NIPZO..SUNST');
 
     pilot._fms.waypoints[2].altitudeMaximum = invalidAltitudeMock;
 

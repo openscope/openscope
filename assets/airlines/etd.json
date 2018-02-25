@@ -2,15 +2,22 @@
     "icao": "etd",
     "name": "Etihad Airways",
     "callsign": {
-        "name": "ETIHAD",
-        "length": 3,
-        "alpha": false
+        "name": "Etihad",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["A319", 2],
             ["A320", 23],
-            ["A321", 10]
+            ["A321", 10],
+            ["A332", 21],
+            ["A333", 6],
+            ["A346", 7],
+            ["A388", 6],
+            ["B772", 5],
+            ["B77W", 25]
         ],
         "long": [
             ["A332", 21],

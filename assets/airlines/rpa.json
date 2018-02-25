@@ -3,7 +3,9 @@
     "name": "Republic Airlines",
     "callsign": {
         "name": "Brickyard",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Air Baltic",
     "callsign": {
         "name": "Air Baltic",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

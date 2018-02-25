@@ -2,8 +2,10 @@
     "icao": "aic",
     "name": "Air India",
     "callsign": {
-        "name": "AIRINDIA",
-        "length": 3
+        "name": "Air India",
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

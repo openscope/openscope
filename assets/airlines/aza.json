@@ -3,7 +3,9 @@
     "name": "Alitalia Linee Aeree Italiane",
     "callsign": {
         "name": "Alitalia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

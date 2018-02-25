@@ -3,14 +3,17 @@
     "name": "Virgin Atlantic Airways",
     "callsign": {
         "name": "Virgin",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
+            ["A332", 3],
             ["A333", 10],
-            ["A346", 11],
-            ["B744",  9],
-            ["B789", 11]
+            ["A346", 8],
+            ["B744", 8],
+            ["B789", 15]
         ]
     }
 }

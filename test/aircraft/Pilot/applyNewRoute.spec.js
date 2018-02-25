@@ -1,18 +1,24 @@
 import ava from 'ava';
-import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
-
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 
-const invalidRouteString = 'a..b.c.d';
-const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
-const runwayMock = '19L';
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
 
-ava('.applyNewRoute() returns an error when passed an invalid route', (t) => {
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
+
+ava('.replaceFlightPlanWithNewRoute() returns an error when passed an invalid route', (t) => {
     const expectedResult = [
         false,
         {
@@ -20,39 +26,30 @@ ava('.applyNewRoute() returns an error when passed an invalid route', (t) => {
             say: 'that route is invalid'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.applyNewRoute(invalidRouteString, runwayMock);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
+    const result = pilot.replaceFlightPlanWithNewRoute('a..b.c.d');
 
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.applyNewRoute() calls fms._destroyLegCollection()', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const _destroyLegCollectionSpy = sinon.spy(pilot._fms, '_destroyLegCollection');
+ava('.replaceFlightPlanWithNewRoute() removes an existing route and replaces it with a new one', (t) => {
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
 
-    pilot.applyNewRoute(complexRouteString, runwayMock);
+    pilot.replaceFlightPlanWithNewRoute('COWBY..BIKKR..DAG');
 
-    t.true(_destroyLegCollectionSpy.calledOnce);
+    t.true(pilot._fms.currentWaypoint.name === 'COWBY');
 });
 
-ava('.applyNewRoute() removes an existing route and replaces it with a new one', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-
-    pilot.applyNewRoute(complexRouteString, runwayMock);
-
-    t.true(pilot._fms.currentWaypoint.name === 'cowby');
-});
-
-ava('.applyNewRoute() returns a success message when finished successfully', (t) => {
+ava('.replaceFlightPlanWithNewRoute() returns a success message when finished successfully', (t) => {
     const expectedResult = [
         true,
         {
-            log: 'rerouting to: cowby..bikkr..dag.kepec3.klas',
+            log: 'rerouting to: COWBY BIKKR DAG',
             say: 'rerouting as requested'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.applyNewRoute(complexRouteString, runwayMock);
+    const pilot = new Pilot(fmsArrivalFixture, modeControllerFixture);
+    const result = pilot.replaceFlightPlanWithNewRoute('COWBY..BIKKR..DAG');
 
     t.true(_isEqual(result, expectedResult));
 });

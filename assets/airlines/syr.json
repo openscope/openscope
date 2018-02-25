@@ -3,7 +3,9 @@
     "name": "SyrianAir",
     "callsign": {
         "name": "Syrianair",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

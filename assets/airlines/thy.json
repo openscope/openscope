@@ -3,7 +3,9 @@
     "name": "Turkish Airlines",
     "callsign": {
         "name": "Turkish",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

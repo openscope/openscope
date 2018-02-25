@@ -3,7 +3,9 @@
     "name": "KLM Cityhopper",
     "callsign": {
         "name": "KLM",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

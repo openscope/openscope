@@ -3,8 +3,11 @@
     "name": "Embraer",
     "callsign": {
         "name": "Embraer",
-        "length": 5,
-        "alpha": true
+        "callsignFormats": [
+            "####",
+            "###@",
+            "##@@"
+        ]
     },
     "fleets": {
         "default": [

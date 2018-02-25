@@ -5,16 +5,19 @@ import {
     fmsDepartureFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
-// let pilot = null;
-// ava.beforeEach(() => {
-//     pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-// });
-//
-// ava.afterEach(() => {
-//     pilot = null;
-// });
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
 
 ava('.climbViaSID() returns error response if #flightPlanAltitude has not been set', (t) => {
     const expectedResult = [
@@ -24,7 +27,7 @@ ava('.climbViaSID() returns error response if #flightPlanAltitude has not been s
             say: 'unable to climb via SID, no altitude assigned'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const pilot = new Pilot(fmsDepartureFixture, modeControllerFixture);
     const previousFlightPlanAltitude = pilot._fms.flightPlanAltitude;
     pilot._fms.flightPlanAltitude = INVALID_NUMBER;
 
@@ -36,7 +39,7 @@ ava('.climbViaSID() returns error response if #flightPlanAltitude has not been s
 });
 
 ava('.climbViaSID() calls ._mcp.setAltitudeFieldValue() and ._mcp.setAltitudeVnav()', (t) => {
-    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const pilot = new Pilot(fmsDepartureFixture, modeControllerFixture);
     const setAltitudeFieldValueSpy = sinon.spy(pilot._mcp, 'setAltitudeFieldValue');
     const setAltitudeVnavSpy = sinon.spy(pilot._mcp, 'setAltitudeVnav');
 
@@ -54,7 +57,7 @@ ava('.climbViaSID() returns success response when successful', (t) => {
             say: 'climb via SID'
         }
     ];
-    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const pilot = new Pilot(fmsDepartureFixture, modeControllerFixture);
     const result = pilot.climbViaSid();
 
     t.deepEqual(result, expectedResult);

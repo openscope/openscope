@@ -3,7 +3,9 @@
     "name": "Aeroflot",
     "callsign": {
         "name": "Aeroflot",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

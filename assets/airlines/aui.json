@@ -3,7 +3,9 @@
     "name": "Ukraine International Airline",
     "callsign": {
         "name": "Ukraine International",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
