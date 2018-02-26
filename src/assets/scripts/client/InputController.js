@@ -198,6 +198,29 @@ export default class InputController {
     }
 
     /**
+     * De-selects any selected aircraft
+     *
+     * This clears the current aircraft callsign from the command input
+     * and de-selects an active aircraft's:
+     * - flight strip
+     * - radar target
+     *
+     * @for InputController
+     * @method deselectAircraft
+     */
+    deselectAircraft() {
+        // TODO: Refactor out the prop
+        // using `prop` here so CanvasController knows which aircraft is selected
+        prop.input.callsign = '';
+        prop.input.command = '';
+        this.input.callsign = '';
+        this.input.command = '';
+        this.$commandInput.val('');
+
+        this._eventBus.trigger(EVENT.DESELECT_ACTIVE_STRIP_VIEW, {});
+    }
+
+    /**
      * @for InputController
      * @method onMouseScrollHandler
      * @param event {jquery Event}
@@ -240,9 +263,6 @@ export default class InputController {
      */
     onMouseUpHandler(event) {
         this.input.isMouseDown = false;
-
-        // TODO: Do something with this event or stop collecting it; it causes lint errors
-        return event;
     }
 
     /**
@@ -275,7 +295,7 @@ export default class InputController {
             ]);
 
             if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
-                this.selectAircraft();
+                this.deselectAircraft();
             } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
                 const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
                 this.input.command = newCommandValue;
@@ -315,14 +335,14 @@ export default class InputController {
      */
     selectAircraft = (aircraftModel) => {
         if (!aircraftModel) {
-            // TODO: Refactor out the prop
-            // using `prop` here so CanvasController knows which aircraft is selected
-            prop.input.callsign = '';
-            prop.input.command = '';
-            this.input.callsign = '';
-            this.input.command = '';
-            this.$commandInput.val('');
-            this._eventBus.trigger(EVENT.DESELECT_ACTIVE_STRIP_VIEW, {});
+            return this.deselectAircraft();
+        }
+
+        if (!aircraftModel.inside_ctr) {
+            const isWarning = true;
+            const message = `No response from: ${aircraftModel.callsign}, they are outside controlled airspace`
+
+            UiController.ui_log(message, isWarning);
 
             return;
         }
@@ -465,7 +485,7 @@ export default class InputController {
                 if (!_includes(currentCommandInputValue, this.input.callsign) ||
                     currentCommandInputValue.trim() === this.input.callsign
                 ) {
-                    this.selectAircraft();
+                    this.deselectAircraft();
 
                     return;
                 }
@@ -594,7 +614,7 @@ export default class InputController {
             response = this.processScopeCommand();
         }
 
-        this.selectAircraft();
+        this.deselectAircraft();
 
         return response;
     }

@@ -9,6 +9,7 @@
 - Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
 - Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
 - Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
+- Allows selection of only aircraft within controlled airspace [#818](https://github.com/openscope/openscope/issues/818)
 
 
 
