@@ -58,7 +58,6 @@ export default class InputController {
         this.input.history = [];
         this.input.history_item = null;
         this.input.click = [0, 0];
-        this.input.positions = '';
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -155,7 +154,6 @@ export default class InputController {
         this.input.history = [];
         this.input.history_item = null;
         this.input.click = [0, 0];
-        this.input.positions = '';
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -176,7 +174,6 @@ export default class InputController {
         this.input.history = [];
         this.input.history_item = null;
         this.input.click = [0, 0];
-        this.input.positions = '';
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
@@ -273,50 +270,28 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
-        // TODO: This should use a switch on `event.which` instead of `if/else if`
-        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PRESS) {
-            CanvasStageModel.zoomReset();
-        } else if (event.which === MOUSE_EVENT_CODE.RIGHT_PRESS) {
-            // Record mouse down position for panning
-            this._mouseDownScreenPosition = [
-                event.pageX - CanvasStageModel._panX,
-                event.pageY - CanvasStageModel._panY
-            ];
-            this.input.isMouseDown = true;
-        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
-            // Aircraft label selection
-            let currentMousePosition = [event.pageX, -event.pageY];
-            currentMousePosition[0] -= CanvasStageModel.width / 2;
-            currentMousePosition[1] += CanvasStageModel.height / 2;
+        switch (event.which) {
+            case MOUSE_EVENT_CODE.MIDDLE_PRESS:
+                CanvasStageModel.zoomReset();
 
-            const [aircraftModel, distanceFromPosition] = this._aircraftController.aircraft_get_nearest([
-                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0] - CanvasStageModel._panX),
-                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[1] + CanvasStageModel._panY)
-            ]);
+                break;
+            case MOUSE_EVENT_CODE.RIGHT_PRESS:
+                const mousePositionX = event.pageX - CanvasStageModel._panX;
+                const mousePositionY = event.pageY - CanvasStageModel._panY;
+                // Record mouse down position for panning
+                this._mouseDownScreenPosition = [
+                    mousePositionX,
+                    mousePositionY
+                ];
+                this.input.isMouseDown = true;
 
-            if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
-                this.deselectAircraft();
-            } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
-                const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
-                this.input.command = newCommandValue;
+                break;
+            case MOUSE_EVENT_CODE.LEFT_PRESS:
+                this._onLeftMouseButtonPress(event);
 
-                this.$commandInput.val(newCommandValue);
-                this.processCommand();
-            } else if (aircraftModel) {
-                this.selectAircraft(aircraftModel);
-            }
-
-            currentMousePosition = [
-                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[0]),
-                CanvasStageModel.translatePixelsToKilometers(currentMousePosition[1])
-            ];
-
-            currentMousePosition[0] = parseFloat(currentMousePosition[0].toFixed(2));
-            currentMousePosition[1] = parseFloat(currentMousePosition[1].toFixed(2));
-            // TODO: what the is this?!
-            this.input.positions += `[${currentMousePosition.join(',')}]`;
-
-            return false;
+                break;
+            default:
+                break;
         }
     }
 
@@ -626,10 +601,6 @@ export default class InputController {
      * @method processAircraftCommand
      */
     processAircraftCommand() {
-        //     this.input.history.unshift(this.input.callsign);
-        //     this.$commandInput.val('');
-        //     this.input.command = '';
-
         let aircraftCommandParser;
         // this could use $commandInput.val() as an alternative
         const userCommand = this.input.command.trim().toLowerCase();
@@ -780,5 +751,56 @@ export default class InputController {
         const aircraft = this._aircraftController.aircraft.list[match];
 
         return this._aircraftCommander.runCommands(aircraft, aircraftCommandParser.args);
+    }
+
+    /**
+     * Facade for `_aircraftController.aircraft_get_nearest()`
+     *
+     * Accepts current mouse position in canvas coordinates x, y
+     *
+     * @for InputController
+     * @method _findClosestAircraftAndDistanceToMousePosition
+     * @param x {number}
+     * @param y {number}
+     * @returns [aircraftModel, number]
+     * @private
+     */
+    _findClosestAircraftAndDistanceToMousePosition(x, y) {
+        return this._aircraftController.aircraft_get_nearest([
+            CanvasStageModel.translatePixelsToKilometers(x - CanvasStageModel._panX),
+            CanvasStageModel.translatePixelsToKilometers(y + CanvasStageModel._panY)
+        ]);
+    }
+
+    /**
+     * Logic that happens when a user clicks on the `left` mouse button
+     *
+     * TODO: this method is a first step at simplification. there is still
+     * more work to do here, but this at least gets us moving in
+     * the right direction
+     *
+     * @for InputController
+     * @method _onLeftMouseButtonPress
+     * @param event {jquery Event}
+     * @private
+     */
+    _onLeftMouseButtonPress(event) {
+        const currentMousePosition = CanvasStageModel.translateMousePositionToCanvasPosition(event.pageX, event.pageY);
+        const [aircraftModel, distanceFromPosition] = this._findClosestAircraftAndDistanceToMousePosition(
+            currentMousePosition.x,
+            currentMousePosition.y
+        );
+
+        if (distanceFromPosition > CanvasStageModel.translatePixelsToKilometers(50)) {
+            this.deselectAircraft();
+        } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+            const newCommandValue = `${this.$commandInput.val()} ${aircraftModel.callsign}`;
+            this.input.command = newCommandValue;
+            this.$commandInput.val(newCommandValue);
+
+            this.processCommand();
+        } else if (aircraftModel) {
+            this.selectAircraft(aircraftModel);
+        }
     }
 }
