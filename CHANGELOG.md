@@ -39,6 +39,8 @@
 - Refactors `StripView` classes to not use `$.show()` and `$.hide()` [#837](https://github.com/openscope/openscope/issues/837)
     - updates css to use `flexbox` instead of the clever `translateY()` tricks.
     - Removes loading indicator and simplifies `LoadingView` [#885](https://github.com/openscope/openscope/issues/885)
+- Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
+
 
 
 

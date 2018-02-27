@@ -176,13 +176,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'engm',
-        //     level: 'easy',
-        //     name: 'Oslo Gardermoen International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'engm',
+            level: 'easy',
+            name: 'Oslo Gardermoen International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'espa',
         //     level: 'easy',
