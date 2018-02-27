@@ -1,15 +1,16 @@
 {
-    "icao": "poe",
-    "name": "Porter Airlines",
+    "icao": "wen",
+    "name": "WestJet Encore",
     "callsign": {
-        "name": "Porter",
+        "name": "Encore",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["DH8D", 29]
+            ["DH8D", 43]
         ]
     }
 }
