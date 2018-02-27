@@ -24,7 +24,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_OUTSIDE_RANGE
      */
-    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_OUTSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Radius of the history dots, in kilometers

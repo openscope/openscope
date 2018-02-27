@@ -841,25 +841,16 @@ export default class CanvasController {
     _drawSingleRadarTarget(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
         const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
+        let fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
 
         if (!aircraftModel.isVisible()) {
             return;
         }
 
-        // Trailling
-        let trailling_length = this.theme.RADAR_TARGET.HISTORY_LENGTH;
-        const dpr = window.devicePixelRatio || 1;
-
-        if (dpr > 1) {
-            trailling_length *= round(dpr);
-        }
-
         cc.save();
 
-        let fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
-
         if (!aircraftModel.inside_ctr) {
-            fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
+            fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
         }
 
         cc.fillStyle = fillStyle;
@@ -884,11 +875,11 @@ export default class CanvasController {
 
         cc.restore();
 
-        if (positionHistory.length > trailling_length) {
+        if (positionHistory.length > this.theme.RADAR_TARGET.HISTORY_LENGTH) {
             // TODO: This slice is being reassigned to the aircraft, which doesn't really
             // make sense as a canvas controller job. This should be done elsewhere.
             aircraftModel.relativePositionHistory = positionHistory.slice(
-                positionHistory.length - trailling_length,
+                positionHistory.length - this.theme.RADAR_TARGET.HISTORY_LENGTH,
                 positionHistory.length
             );
         }
