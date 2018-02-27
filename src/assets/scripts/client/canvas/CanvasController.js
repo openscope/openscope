@@ -2154,8 +2154,8 @@ export default class CanvasController {
     /**
      * Center a point in the view
      *
-     * Used only for centering aircraft, this accepts
-     * the x,y of an aircrafts relativePosition
+     * Used only for centering view on an aircraft position using
+     * the x, y of an aircraft's `relativePosition`
      *
      * @for CanvasController
      * @method _onCenterPointInView
@@ -2166,7 +2166,7 @@ export default class CanvasController {
         CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
         CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
 
-        this._markShallowRender();
+        this._markDeepRender();
     }
 
     /**

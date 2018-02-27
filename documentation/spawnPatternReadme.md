@@ -67,7 +67,7 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
   - Prepend a three digit heading with `#` to _fly that heading until given further instructions_
 
 #### altitude (* _for arrivals_)
-Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft
+Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft. This should be a _number_ (eg. `18000`), _not a string_ (eg `"18000"`).
 
 * Should be a number in MSL altitude.
 * Should always have a shape of either:
@@ -75,7 +75,7 @@ Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn 
   - an array of `[MIN_ALTITUDE, MAX_ALTITUDE]`
 
 #### speed (* _for arrivals_)
-speed an aircraft spawns at expressed in knots
+Speed an aircraft spawns at, expressed in knots of indicated airspeed. This should be a _number_ (eg. `320`), _not a string_ (eg `"320"`).
 
 #### method*
 Defines the method used to calculate delay between aircraft spawns.
@@ -85,4 +85,4 @@ Defines the method used to calculate delay between aircraft spawns.
 *See [spawnPatternMethodReadme.md](documentation/spawnPatternMethodReadme.md) for more information*
 
 #### rate*
-Rate at which aircraft spawn expressed in ACPH (aircraft per hour).
+Rate at which aircraft spawn expressed in ACPH (aircraft per hour). This should be a _number_ (eg. `15`), _not a string_ (eg `"15"`).

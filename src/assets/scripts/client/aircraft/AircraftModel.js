@@ -100,20 +100,25 @@ export default class AircraftModel {
          *
          * Useful for debugging
          *
+         * @for AircraftModel
          * @property id
          * @type {string}
          */
         this.id = _uniqueId('aircraft-');
 
         /**
-         * Aircraft Position
+         * Aircraft's DynamicPositionModel
          *
+         * @for AircraftModel
          * @property positionModel
          * @type {DynamicPositionModel|null}
          */
         this.positionModel = null;
 
         /**
+         * AircraftTypeDefinitionModel for the type of aircraft being flown
+         *
+         * @for AircraftModel
          * @property model
          * @type {AircraftTypeDefinitionModel|null}
          * @default null
@@ -130,6 +135,9 @@ export default class AircraftModel {
         this.airlineId = '';
 
         /**
+         * Airline's radio callsign (eg. 'American')
+         *
+         * @for AircraftModel
          * @property airlineCallsign
          * @type {string}
          * @default ''
@@ -139,6 +147,7 @@ export default class AircraftModel {
         /**
          * Flight Number ONLY (eg. '551')
          *
+         * @for AircraftModel
          * @property flightNumber
          * @type {string}
          * @default ''
@@ -150,6 +159,7 @@ export default class AircraftModel {
          *
          * Initially generated and assined on instantiation by the `AircraftController`
          *
+         * @for AircraftModel
          * @property transponderCode
          * @type {number}
          * @default 1200
@@ -157,8 +167,9 @@ export default class AircraftModel {
         this.transponderCode = 1200;
 
         /**
-         * Magnetic Heading
+         * Magnetic heading the aircraft is facing
          *
+         * @for AircraftModel
          * @property heading
          * @type {number}
          * @default 0
@@ -168,6 +179,7 @@ export default class AircraftModel {
         /**
          * Altitude, ft MSL
          *
+         * @for AircraftModel
          * @property altitude
          * @type {number}
          * @default 0
@@ -186,6 +198,7 @@ export default class AircraftModel {
         /**
          * Groundspeed (GS), knots
          *
+         * @for AircraftModel
          * @property groundSpeed
          * @type {number}
          * @default 0
@@ -193,6 +206,9 @@ export default class AircraftModel {
         this.groundSpeed = 0;
 
         /**
+         * Azimuth of movement across the ground, in radians
+         *
+         * @for AircraftModel
          * @property groundTrack
          * @type {number}
          * @default 0
@@ -202,24 +218,29 @@ export default class AircraftModel {
         /**
          * Game time takeoff occurred
          *
+         * @for AircraftModel
          * @property takeoffTime
          * @type {number}
          * @default 0
          */
         this.takeoffTime = 0;
 
+        // TODO: This value is never actually updated; it should update or be removed
         /**
          * Distance laterally from the approach path
          *
+         * @for AircraftModel
          * @property approachOffset
          * @type {number}
          * @default 0
          */
         this.approachOffset = 0;
 
+        // TODO: This value is never actually updated; it should update or be removed
         /**
          * Distance longitudinally from the threshold
          *
+         * @for AircraftModel
          * @property approachDistance
          * @type {number}
          * @default 0
@@ -227,8 +248,9 @@ export default class AircraftModel {
         this.approachDistance = 0;
 
         /**
-         * Angle from airport center to aircraft
+         * Azimuth from airport center to aircraft, in radians
          *
+         * @for AircraftModel
          * @property radial
          * @type {number}
          * @default 0
@@ -236,8 +258,9 @@ export default class AircraftModel {
         this.radial = 0;
 
         /**
-         * Distance from the airport
+         * Distance from the airport, in km
          *
+         * @for AircraftModel
          * @property distance
          * @type {number}
          * @default 0
@@ -249,6 +272,7 @@ export default class AircraftModel {
          *
          * This will only be populated for dpearture aircraft
          *
+         * @for AircraftModel
          * @property origin
          * @type {string}
          * @default ''
@@ -260,6 +284,7 @@ export default class AircraftModel {
          *
          * This will only be populated for arrivals
          *
+         * @for AircraftModel
          * @property destination
          * @type {string}
          * @default ''
@@ -269,6 +294,7 @@ export default class AircraftModel {
         /**
          * Indicator of descent/level/climb (-1, 0, or 1)
          *
+         * @for AircraftModel
          * @property trend
          * @type {number}
          * @default 0
@@ -278,6 +304,7 @@ export default class AircraftModel {
         /**
          * Array of previous positions
          *
+         * @for AircraftModel
          * @property history
          * @type <array<array<number>>>
          * @default []
@@ -285,6 +312,7 @@ export default class AircraftModel {
         this.history = [];
 
         /**
+         * @for AircraftModel
          * @property restricted
          * @type {object}
          * @default { list: [] }
@@ -292,6 +320,7 @@ export default class AircraftModel {
         this.restricted = { list: [] };
 
         /**
+         * @for AircraftModel
          * @property notice
          * @type {boolean}
          * @default false
@@ -299,6 +328,7 @@ export default class AircraftModel {
         this.notice = false;
 
         /**
+         * @for AircraftModel
          * @property warning
          * @type {boolean}
          * @default false
@@ -309,6 +339,7 @@ export default class AircraftModel {
         /**
          * Whether aircraft has crashed
          *
+         * @for AircraftModel
          * @property hit
          * @type {boolean}
          * @default false
@@ -318,6 +349,7 @@ export default class AircraftModel {
         /**
          * Game time an aircraft starts the taxi
          *
+         * @for AircraftModel
          * @property taxi_start
          * @type {number}
          * @default 0
@@ -328,6 +360,7 @@ export default class AircraftModel {
          * Time spent taxiing to the runway. *NOTE* this should be INCREASED
          * to around 60 once the taxi vs LUAW issue is resolved (#406)
          *
+         * @for AircraftModel
          * @property taxi_time
          * @type {number}
          * @default 3
@@ -337,6 +370,7 @@ export default class AircraftModel {
         /**
          * Either IFR or VFR (Instrument/Visual Flight Rules)
          *
+         * @for AircraftModel
          * @property rules
          * @type {FLIGHT_RULES}
          * @default FLIGHT_RULES.IFR
@@ -346,6 +380,7 @@ export default class AircraftModel {
         /**
          * Inside ATC Airspace
          *
+         * @for AircraftModel
          * @property inside_ctr
          * @type {boolean}
          * @default false
@@ -355,6 +390,7 @@ export default class AircraftModel {
         /**
          * List of aircraft that MAY be in conflict (bounding box)
          *
+         * @for AircraftModel
          * @property conflicts
          * @type {object}
          * @default {}
@@ -362,6 +398,7 @@ export default class AircraftModel {
         this.conflicts = {};
 
         /**
+         * @for AircraftModel
          * @property terrain_ranges
          * @type {boolean}
          * @default false
@@ -376,6 +413,7 @@ export default class AircraftModel {
          * account for the time it takes to make a turn from one leg to the next
          * in a holding pattern.
          *
+         * @for AircraftModel
          * @property _isEstablishedOnHoldingPattern
          * @type {boolean}
          * @default false
@@ -389,6 +427,7 @@ export default class AircraftModel {
          * This tells the `AircraftController` that this instance is safe to remove.
          * This property should only be changed via the `.setIsRemovable()` method.
          *
+         * @for AircraftModel
          * @property isRemovable
          * @type {boolean}
          * @default false

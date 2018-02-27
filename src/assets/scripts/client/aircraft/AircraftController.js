@@ -182,7 +182,7 @@ export default class AircraftController {
      */
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -198,7 +198,7 @@ export default class AircraftController {
      */
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -293,13 +293,18 @@ export default class AircraftController {
     }
 
     /**
+     * Returns whether the specified aircraft model is in an area where they are controllable
+     *
      * @for AircraftController
-     * @method aircraft_visible
+     * @method isAircraftVisible
      * @param aircraft {AircraftModel}
      * @param factor {number}
+     * @returns {boolean}
      */
-    aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
+    isAircraftVisible(aircraft, factor = 1) {
+        const visibleDistance = AirportController.airport_get().ctr_radius * factor;
+
+        return aircraft.distance < visibleDistance;
     }
 
     /**
@@ -404,7 +409,7 @@ export default class AircraftController {
             }
 
             // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
+            if (!this.isAircraftVisible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
                 this.aircraft_remove(aircraft);
                 i -= 1;
             }
@@ -798,11 +803,11 @@ export default class AircraftController {
      * then trigger another event for the `CanvasController`.
      *
      * @for AircraftController
-     * @method _onStripDoubleClickhandler
+     * @method _onStripDoubleClickHandler
      * @param callsign {string}
      * @private
      */
-    _onStripDoubleClickhandler = (callsign) => {
+    _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 

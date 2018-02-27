@@ -9,6 +9,7 @@
 - Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
 - Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
 - Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
+- Add Halifax Stanfield International Airport (CYHZ) [#106](https://github.com/openscope/openscope/issues/106)
 
 
 
@@ -17,6 +18,7 @@
 ### Bugfixes
 - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing (https://github.com/openscope/openscope/issues/864)
 - Restore functionality of non-procedural descents to airspace ceiling [#879](https://github.com/openscope/openscope/issues/879)
+- Ensure number-type variables defined in spawn patterns are cast to numbers if provided as strings [#895](https://github.com/openscope/openscope/issues/895)
 
 
 
@@ -34,6 +36,9 @@
 - Updates KBOS to AIRAC 1802 [#842](https://github.com/openscope/openscope/issues/842)
 - Updates KSTL to AIRAC 1802 [#844](https://github.com/openscope/openscope/issues/844)
 - Updates KPDX to AIRAC 1802 [#851](https://github.com/openscope/openscope/issues/851)
+- Refactors `StripView` classes to not use `$.show()` and `$.hide()` [#837](https://github.com/openscope/openscope/issues/837)
+    - updates css to use `flexbox` instead of the clever `translateY()` tricks.
+    - Removes loading indicator and simplifies `LoadingView` [#885](https://github.com/openscope/openscope/issues/885)
 - Updates ENGM (Oslo Airport, Norway) [#796](https://github.com/openscope/openscope/issues/796)
 
 
