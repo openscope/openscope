@@ -3,7 +3,9 @@
     "name": "Flydubai",
     "callsign": {
         "name": "Sky Dubai",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

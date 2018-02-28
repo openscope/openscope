@@ -4,6 +4,7 @@ import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import RouteModel from './RouteModel';
 import AirportController from '../../airport/AirportController';
+import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import RunwayModel from '../../airport/runway/RunwayModel';
 import {
     FLIGHT_CATEGORY,
@@ -56,9 +57,8 @@ export default class Fms {
     /**
      * @constructor
      * @param aircraftInitProps {object}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftInitProps, navigationLibrary) {
+    constructor(aircraftInitProps) {
         if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
             throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
@@ -128,19 +128,7 @@ export default class Fms {
          */
         this._routeModel = null;
 
-        /**
-        * Instance of the `NavigationLibrary`
-        *
-        * provides access to the aiport SIDs, STARs and Fixes via collection objects and fascade methods.
-        * used for route building
-        *
-        * @property _navigationLibrary
-        * @type {NavigationLibrary}
-        * @private
-        */
-        this._navigationLibrary = null;
-
-        this.init(aircraftInitProps, navigationLibrary);
+        this.init(aircraftInitProps);
     }
 
     /**
@@ -264,10 +252,9 @@ export default class Fms {
      * @for Fms
      * @method init
      * @param aircraftInitProps {object}
-     * @param navigationLibrary {NavigationLibrary}
      * @chainable
      */
-    init(aircraftInitProps, navigationLibrary) {
+    init(aircraftInitProps) {
         const {
             altitude,
             category,
@@ -278,8 +265,7 @@ export default class Fms {
             routeString
         } = aircraftInitProps;
 
-        this._navigationLibrary = navigationLibrary;
-        this._routeModel = new RouteModel(this._navigationLibrary, routeString);
+        this._routeModel = new RouteModel(routeString);
 
         this._verifyRouteContainsMultipleWaypoints();
         this._initializeFlightPhaseForCategory(category);
@@ -308,7 +294,6 @@ export default class Fms {
         this.departureRunwayModel = null;
         this.flightPlanAltitude = INVALID_NUMBER;
         this._routeModel = null;
-        this._navigationLibrary = null;
 
         return this;
     }
@@ -485,7 +470,7 @@ export default class Fms {
         let nextRouteModel;
 
         try {
-            nextRouteModel = new RouteModel(this._navigationLibrary, routeString);
+            nextRouteModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
@@ -687,7 +672,7 @@ export default class Fms {
 
         const procedureId = routeStringElements[1];
 
-        if (!this._navigationLibrary.hasProcedure(procedureId)) {
+        if (!NavigationLibrary.hasProcedure(procedureId)) {
             return [false, `unknown procedure "${procedureId}"`];
         }
 
@@ -719,7 +704,7 @@ export default class Fms {
 
         const procedureId = routeStringElements[1];
 
-        if (!this._navigationLibrary.hasProcedure(procedureId)) {
+        if (!NavigationLibrary.hasProcedure(procedureId)) {
             return [false, `unknown procedure "${procedureId}"`];
         }
 
@@ -754,7 +739,7 @@ export default class Fms {
         let nextRouteModel;
 
         try {
-            nextRouteModel = new RouteModel(this._navigationLibrary, routeString);
+            nextRouteModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
@@ -864,7 +849,6 @@ export default class Fms {
     //         waypointProps.name,
     //         this.currentRunwayName,
     //         this.currentPhase,
-    //         this._navigationLibrary,
     //         waypointProps
     //     );
     //

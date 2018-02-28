@@ -7,13 +7,16 @@ import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSys
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 // import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     // ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
-    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
     // DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_DIRECT_ROUTE_STRING_MOCK,
-    AIRCRAFT_DEFINITION_MOCK
+    // AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 import {
     FLIGHT_CATEGORY,
@@ -38,35 +41,24 @@ const fullRouteStringMock = 'KLAS07R.COWBY6.DRK..OAL..MLF..TNP.KEPEC3.KLAS07R';
 const directOnlyRouteStringMock = 'TNP..BIKKR..OAL..MLF..PGS..DRK';
 // const isComplexRoute = true;
 
-// fixtures
-let navigationLibraryFixture;
-
 // helper functions
 function buildFmsForAircraftInApronPhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock);
 }
 function buildFmsForAircraftInCruisePhaseWithRouteString(routeString) {
     const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { routeString });
 
-    return new Fms(aircraftPropsMock, navigationLibraryFixture);
+    return new Fms(aircraftPropsMock);
 }
 
-ava.before(() => {
-    // sinon.stub(global.console, 'error', () => {});
-});
-
-ava.after(() => {
-    // global.console.error.restore();
-});
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture = null;
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when called without proper parameters', (t) => {
@@ -560,12 +552,12 @@ ava('.moveToNextWaypoint() calls #_routeModel.moveToNextWaypoint()', (t) => {
 
 ava('.replaceArrivalProcedure() returns early when passed a wrong-length route string', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
+    // const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
     const expectedResponse = [false, 'arrival procedure format not understood'];
     const responseForSingleElement = fms.replaceArrivalProcedure('KEPEC3');
     const responseForDoubleElement = fms.replaceArrivalProcedure('KEPEC3.KLAS07R');
 
-    t.true(navigationLibraryHasProcedureSpy.notCalled);
+    // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
     t.deepEqual(responseForDoubleElement, expectedResponse);
 });
@@ -605,12 +597,12 @@ ava('.replaceArrivalProcedure() calls ._updateArrivalRunwayFromRoute() when the 
 
 ava('.replaceDepartureProcedure() returns early when passed a wrong-length route string', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
+    // const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
     const expectedResponse = [false, 'departure procedure format not understood'];
     const responseForSingleElement = fms.replaceDepartureProcedure('BOACH6');
     const responseForDoubleElement = fms.replaceDepartureProcedure('KLAS07R.BOACH6');
 
-    t.true(navigationLibraryHasProcedureSpy.notCalled);
+    // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
     t.deepEqual(responseForDoubleElement, expectedResponse);
 });

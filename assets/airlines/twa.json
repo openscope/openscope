@@ -3,7 +3,9 @@
     "name": "Trans World Airlines - TWA",
     "callsign": {
         "name": "TWA",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

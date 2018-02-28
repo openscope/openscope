@@ -37,7 +37,7 @@ export default class Pilot {
      * @param modeController {ModeController}
      * @param fms {Fms}
      */
-    constructor(fms, modeController, navigationLibrary) {
+    constructor(fms, modeController) {
         if (!(fms instanceof Fms)) {
             throw new TypeError(`Expected fms to an instance of Fms but received ${typeof fms}`);
         }
@@ -45,11 +45,6 @@ export default class Pilot {
         if (!(modeController instanceof ModeController)) {
             throw new TypeError('Expected modeController to an instance of ' +
                 `ModeController, but received ${typeof modeController}`);
-        }
-
-        if (!(navigationLibrary instanceof NavigationLibrary)) {
-            throw new TypeError('Expected modeController to an instance of ' +
-                `ModeController, but received ${typeof navigationLibrary}`);
         }
 
         /**
@@ -67,14 +62,6 @@ export default class Pilot {
          * @private
          */
         this._mcp = modeController;
-
-        /**
-         * @for Pilot
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Whether the aircraft has received a clearance to conduct an approach to a runway
@@ -306,7 +293,7 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(procedureId, airportIcao) {
-        const procedureModel = this._navigationLibrary.getProcedure(procedureId);
+        const procedureModel = NavigationLibrary.getProcedure(procedureId);
 
         if (_isNil(procedureModel)) {
             return [false, 'SID name not understood'];

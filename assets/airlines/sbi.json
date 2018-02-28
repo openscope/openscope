@@ -3,7 +3,9 @@
     "name": "S7 Airlines",
     "callsign": {
         "name": "Siberia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

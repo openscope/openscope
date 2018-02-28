@@ -1,0 +1,15 @@
+{
+    "icao": "cao",
+    "name": "Air China Cargo",
+    "callsign": {
+        "name": "Air China Freight",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B744", 3],
+            ["B752", 2],
+            ["B772", 8]
+        ]
+    }
+}

@@ -3,7 +3,9 @@
     "name": "El Al Israel Airlines",
     "callsign": {
         "name": "El Al",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Tunisair",
     "callsign": {
         "name": "Tunair",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "long": [

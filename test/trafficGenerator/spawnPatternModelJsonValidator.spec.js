@@ -1,5 +1,4 @@
 import ava from 'ava';
-
 import { spawnPatternModelJsonValidator } from '../../src/assets/scripts/client/trafficGenerator/spawnPatternModelJsonValidator';
 import {
     ARRIVAL_PATTERN_MOCK,

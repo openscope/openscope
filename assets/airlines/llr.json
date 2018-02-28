@@ -3,7 +3,9 @@
     "name": "Air India Regional",
     "callsign": {
         "name": "ALLIED",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

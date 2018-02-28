@@ -3,7 +3,9 @@
     "name": "Binter Canarias",
     "callsign": {
         "name": "Binter",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

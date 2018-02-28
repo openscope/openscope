@@ -3,7 +3,9 @@
     "name": "Pan American World Airways",
     "callsign": {
         "name": "PanAm",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

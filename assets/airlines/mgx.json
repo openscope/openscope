@@ -1,0 +1,14 @@
+{
+    "icao": "mgx",
+    "name": "Montenegro Airlines",
+    "callsign": {
+        "name": "Montenegro",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["E195", 3],
+            ["F100", 2]
+        ]
+    }
+}

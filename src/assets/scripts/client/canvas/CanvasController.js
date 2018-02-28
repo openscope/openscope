@@ -7,6 +7,7 @@ import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
 import { tau } from '../math/circle';
 import {
@@ -51,10 +52,9 @@ export default class CanvasController {
      * @constructor
      * @param $element {JQuery|HTML Element}
      * @param aircraftController {AircraftController}
-     * @param navigationLibrary {NavigationLibrary}
      * @param scopeModel {ScopeModel}
      */
-    constructor($element, aircraftController, navigationLibrary, scopeModel) {
+    constructor($element, aircraftController, scopeModel) {
         /**
          * Reference to the `window` object
          *
@@ -79,13 +79,6 @@ export default class CanvasController {
          * @private
          */
         this._aircraftController = aircraftController;
-
-        /**
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * @property _scopeModel
@@ -664,8 +657,8 @@ export default class CanvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        for (let i = 0; i < this._navigationLibrary.realFixes.length; i++) {
-            const fixModel = this._navigationLibrary.realFixes[i];
+        for (let i = 0; i < NavigationLibrary.realFixes.length; i++) {
+            const fixModel = NavigationLibrary.realFixes[i];
 
             this._drawSingleFixAndLabel(cc, fixModel);
         }
@@ -686,7 +679,7 @@ export default class CanvasController {
         }
 
         const textAtPoint = [];
-        const { sidLines } = this._navigationLibrary;
+        const { sidLines } = NavigationLibrary;
         let mostRecentFixName = '';
 
         cc.save();
@@ -720,7 +713,7 @@ export default class CanvasController {
 
                     // TODO: this is duplicated in the if block above. need to consolidate
                     mostRecentFixName = fixList[k].replace('*', '');
-                    const fixPosition = this._navigationLibrary.getFixRelativePosition(mostRecentFixName);
+                    const fixPosition = NavigationLibrary.getFixRelativePosition(mostRecentFixName);
 
                     if (!fixPosition) {
                         console.warn(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
@@ -759,7 +752,7 @@ export default class CanvasController {
         // draw SID labels
         for (const j in textAtPoint) {
             const textItemsToPrint = textAtPoint[j];
-            const fixPosition = this._navigationLibrary.getFixRelativePosition(j);
+            const fixPosition = NavigationLibrary.getFixRelativePosition(j);
             const fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
 
             for (let k = 0; k < textItemsToPrint.length; k++) {
@@ -2161,8 +2154,8 @@ export default class CanvasController {
     /**
      * Center a point in the view
      *
-     * Used only for centering aircraft, this accepts
-     * the x,y of an aircrafts relativePosition
+     * Used only for centering view on an aircraft position using
+     * the x, y of an aircraft's `relativePosition`
      *
      * @for CanvasController
      * @method _onCenterPointInView
@@ -2173,7 +2166,7 @@ export default class CanvasController {
         CanvasStageModel._panX = 0 - round(CanvasStageModel.translateKilometersToPixels(x));
         CanvasStageModel._panY = round(CanvasStageModel.translateKilometersToPixels(y));
 
-        this._markShallowRender();
+        this._markDeepRender();
     }
 
     /**

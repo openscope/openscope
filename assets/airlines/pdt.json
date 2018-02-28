@@ -3,7 +3,9 @@
     "name": "Piedmont Airlines",
     "callsign": {
         "name": "piedmont",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

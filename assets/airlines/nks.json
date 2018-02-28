@@ -3,7 +3,9 @@
     "name": "Spirit Airlines",
     "callsign": {
         "name": "Spirit",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

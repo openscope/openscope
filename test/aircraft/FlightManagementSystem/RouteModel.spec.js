@@ -8,10 +8,12 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import RouteModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/RouteModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import AirportModel from '../../../src/assets/scripts/client/airport/AirportModel';
-import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
 import { createAirportModelFixture } from '../../fixtures/airportFixtures';
 
-// mocks
 const complexRouteStringMock = 'KLAS07R.BOACH6.TNP..OAL..MLF..PGS.TYSSN4.KLAS07R';
 const singleFixRouteStringMock = 'DVC';
 const singleDirectSegmentRouteStringMock = 'OAL..MLF';
@@ -21,77 +23,67 @@ const singleStarProcedureSegmentRouteStringMock = 'TNP.KEPEC3.KLAS07R';
 const multiProcedureSegmentRouteStringMock = 'KLAS07R.BOACH6.TNP.KEPEC3.KLAS07R';
 const nightmareRouteStringMock = 'TNP.KEPEC3.KLAS07R.BOACH6.TNP..OAL..PGS.TYSSN4.KLAS07R.BOACH6.TNP..GUP..IGM';
 
-// fixtures
-let navigationLibraryFixture;
-
 ava.beforeEach(() => {
-    navigationLibraryFixture = createNavigationLibraryFixture();
+    createNavigationLibraryFixture();
 });
 
 ava.afterEach(() => {
-    navigationLibraryFixture.reset();
+    resetNavigationLibraryFixture();
 });
 
 ava('throws when instantiated without valid parameters', (t) => {
     t.throws(() => new RouteModel());
-    t.throws(() => new RouteModel(navigationLibraryFixture));
-    t.throws(() => new RouteModel(complexRouteStringMock, navigationLibraryFixture));
-    t.throws(() => new RouteModel(navigationLibraryFixture, 3));
+    t.throws(() => new RouteModel(false));
 });
 
 ava('throws when instantiated with route string containing spaces', (t) => {
-    t.throws(() => new RouteModel(navigationLibraryFixture, 'KLAS07R BOACH6 TNP'));
+    t.throws(() => new RouteModel('KLAS07R BOACH6 TNP'));
 });
 
 ava('does not throw when instantiated with valid parameters', (t) => {
-    t.notThrows(() => new RouteModel(navigationLibraryFixture, complexRouteStringMock));
+    t.notThrows(() => new RouteModel(complexRouteStringMock));
 });
 
 ava('instantiates correctly when provided valid single-fix route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 1);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('instantiates correctly when provided valid single-segment direct route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const model = new RouteModel(singleDirectSegmentRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 2);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('instantiates correctly when provided valid single-segment procedural route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 1);
     t.true(model._legCollection[0]._waypointCollection.length === 8);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('instantiates correctly when provided valid multi-segment direct route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, multiDirectSegmentRouteStringMock);
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 3);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('instantiates correctly when provided valid multi-segment procedural route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, multiProcedureSegmentRouteStringMock);
+    const model = new RouteModel(multiProcedureSegmentRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 2);
     t.true(model._legCollection[0]._waypointCollection.length === 8);
     t.true(model._legCollection[1]._waypointCollection.length === 13);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('instantiates correctly when provided valid multi-segment mixed route string', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
 
     t.true(_isArray(model._legCollection));
     t.true(model._legCollection.length === 4);
@@ -99,11 +91,10 @@ ava('instantiates correctly when provided valid multi-segment mixed route string
     t.true(model._legCollection[1]._waypointCollection.length === 1);
     t.true(model._legCollection[2]._waypointCollection.length === 1);
     t.true(model._legCollection[3]._waypointCollection.length === 6);
-    t.true(model._navigationLibrary === navigationLibraryFixture);
 });
 
 ava('#currentLeg throws when #_legCollection does not contain at least one leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
 
     model._legCollection = [];
 
@@ -111,7 +102,7 @@ ava('#currentLeg throws when #_legCollection does not contain at least one leg',
 });
 
 ava('#currentLeg returns the first element of the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.currentLeg;
 
     t.true(result instanceof LegModel);
@@ -119,7 +110,7 @@ ava('#currentLeg returns the first element of the #_legCollection', (t) => {
 });
 
 ava('#currentWaypoint returns the #currentWaypoint on the #currentLeg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const expectedResult = model.currentLeg.currentWaypoint;
     const result = model.currentWaypoint;
 
@@ -127,14 +118,14 @@ ava('#currentWaypoint returns the #currentWaypoint on the #currentLeg', (t) => {
 });
 
 ava('#nextLeg returns null when there are no more legs after the current leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.nextLeg;
 
     t.true(!result);
 });
 
 ava('#nextLeg returns the second element of the #_legCollection when it exists', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const model = new RouteModel(singleDirectSegmentRouteStringMock);
     const result = model.nextLeg;
 
     t.true(result instanceof LegModel);
@@ -142,14 +133,14 @@ ava('#nextLeg returns the second element of the #_legCollection when it exists',
 });
 
 ava('#nextWaypoint returns null when there are no more waypoints after the current waypoint', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.nextWaypoint;
 
     t.true(!result);
 });
 
 ava('#nextWaypoint returns next waypoint of the current leg when the current leg has another waypoint', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
     const result = model.nextWaypoint;
 
     t.true(result instanceof WaypointModel);
@@ -157,7 +148,7 @@ ava('#nextWaypoint returns next waypoint of the current leg when the current leg
 });
 
 ava('#nextWaypoint returns the first waypoint of the next leg when a nextLeg exists and the current leg does not contain more waypoints', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('PRINO');
 
@@ -168,7 +159,7 @@ ava('#nextWaypoint returns the first waypoint of the next leg when a nextLeg exi
 });
 
 ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
     const result = model.waypoints;
     const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'ZELMA',
         'JOTNU', 'TNP', 'OAL', 'MLF', 'PGS', 'CEJAY', 'KADDY', 'TYSSN', 'SUZSI', 'PRINO'
@@ -180,8 +171,8 @@ ava('#waypoints returns an array containing the `WaypointModel`s of all legs', (
 });
 
 ava('.absorbRouteModel() returns no-continuity message when routes have no common fixes', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..CRESO..BLD');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('BOACH..CRESO..BLD');
     const expectedResult = [false, 'routes do not have continuity!'];
     const result = primaryModel.absorbRouteModel(otherModel);
 
@@ -189,8 +180,8 @@ ava('.absorbRouteModel() returns no-continuity message when routes have no commo
 });
 
 ava('.absorbRouteModel() calls ._overwriteRouteBetweenWaypointNames() when provided route has two points of continuity with this route', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY..TOMIS..LEMNZ..LOOSN');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'MDDOG..JEBBB..BESSY..LEMNZ');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY..TOMIS..LEMNZ..LOOSN');
+    const otherModel = new RouteModel('MDDOG..JEBBB..BESSY..LEMNZ');
     const primaryModelOverwriteRouteBetweenWaypointNamesSpy = sinon.spy(primaryModel, '_overwriteRouteBetweenWaypointNames');
     const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR MDDOG JEBBB BESSY LEMNZ LOOSN', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
@@ -200,8 +191,8 @@ ava('.absorbRouteModel() calls ._overwriteRouteBetweenWaypointNames() when provi
 });
 
 ava('.absorbRouteModel() calls ._prependRouteModelEndingAtWaypointName() when provided route ends on a waypoint on this route', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
+    const primaryModel = new RouteModel('CHRLT.V394.LAS');
+    const otherModel = new RouteModel('GFS..WHIGG..CLARR');
     const primaryModelPrependRouteModelEndingAtWaypointNameSpy = sinon.spy(primaryModel, '_prependRouteModelEndingAtWaypointName');
     const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
@@ -211,8 +202,8 @@ ava('.absorbRouteModel() calls ._prependRouteModelEndingAtWaypointName() when pr
 });
 
 ava('.absorbRouteModel() calls ._appendRouteModelBeginningAtWaypointName() when provided route that begins on a waypoint on this route', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
+    const primaryModel = new RouteModel('DAG.V394.LAS');
+    const otherModel = new RouteModel('CLARR..TRREY..SOSOY');
     const primaryModelAppendRouteModelBeginningAtWaypointNameSpy = sinon.spy(primaryModel, '_appendRouteModelBeginningAtWaypointName');
     const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel.absorbRouteModel(otherModel);
@@ -222,7 +213,7 @@ ava('.absorbRouteModel() calls ._appendRouteModelBeginningAtWaypointName() when 
 });
 
 ava('.activateHoldForWaypointName() returns early when the specified waypoint does not exist in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG..KEPEC');
+    const model = new RouteModel('DAG..KEPEC');
     const legModel1 = model._legCollection[0];
     const legModel2 = model._legCollection[1];
     const activateHoldForWaypointNameSpy1 = sinon.spy(legModel1, 'activateHoldForWaypointName');
@@ -236,7 +227,7 @@ ava('.activateHoldForWaypointName() returns early when the specified waypoint do
 });
 
 ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName() with the appropriate arguments on the appropriate leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG..KEPEC');
+    const model = new RouteModel('DAG..KEPEC');
     const legModel1 = model._legCollection[0];
     const legModel2 = model._legCollection[1];
     const activateHoldForWaypointNameSpy1 = sinon.spy(legModel1, 'activateHoldForWaypointName');
@@ -250,7 +241,7 @@ ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName()
 });
 
 ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'JESJI..BAKRR');
+    const model = new RouteModel('JESJI..BAKRR');
     const expectedResult = 1.3415936051582544;
     const result = model.calculateSpawnHeading();
 
@@ -258,7 +249,7 @@ ava('.calculateSpawnHeading() returns bearing between route\'s first and second 
 });
 
 ava('._createLegModelsFromWaypointModels() returns an array of LegModels matching the specified array of WaypointModels', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R');
 
     model.skipToWaypointName('KIMME');
 
@@ -272,7 +263,7 @@ ava('._createLegModelsFromWaypointModels() returns an array of LegModels matchin
 });
 
 ava('.getAltitudeRestrictedWaypoints() returns an array of WaypointModels that have altitude restrictions', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.getAltitudeRestrictedWaypoints();
     const expectedWaypointNames = ['BAKRR', 'MINEY', 'BOACH'];
     const waypointNames = result.map((waypoint) => waypoint.name);
@@ -283,7 +274,7 @@ ava('.getAltitudeRestrictedWaypoints() returns an array of WaypointModels that h
 });
 
 ava('.getArrivalRunwayAirportIcao() returns null if there is no STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getArrivalRunwayAirportIcao();
 
@@ -291,7 +282,7 @@ ava('.getArrivalRunwayAirportIcao() returns null if there is no STAR leg', (t) =
 });
 
 ava('.getArrivalRunwayAirportIcao() returns the appropriate runway\'s airport\'s ICAO identifier', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R');
     const expectedResult = 'klas';
     const result = model.getArrivalRunwayAirportIcao();
 
@@ -299,7 +290,7 @@ ava('.getArrivalRunwayAirportIcao() returns the appropriate runway\'s airport\'s
 });
 
 ava('.getArrivalRunwayAirportModel() returns null when there is no STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getArrivalRunwayAirportModel();
 
@@ -307,7 +298,7 @@ ava('.getArrivalRunwayAirportModel() returns null when there is no STAR leg', (t
 });
 
 ava('.getArrivalRunwayAirportModel() returns the appropriate runway\'s AirportModel', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R');
     const expectedAirportIcao = 'klas';
     const result = model.getArrivalRunwayAirportModel();
 
@@ -316,7 +307,7 @@ ava('.getArrivalRunwayAirportModel() returns the appropriate runway\'s AirportMo
 });
 
 ava('.getArrivalRunwayName() returns null when there is no STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getArrivalRunwayName();
 
@@ -324,7 +315,7 @@ ava('.getArrivalRunwayName() returns null when there is no STAR leg', (t) => {
 });
 
 ava('.getArrivalRunwayName() returns the appropriate runway name', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R');
     const expectedResult = '07R';
     const result = model.getArrivalRunwayName();
 
@@ -332,7 +323,7 @@ ava('.getArrivalRunwayName() returns the appropriate runway name', (t) => {
 });
 
 ava('.getArrivalRunwayModel() returns null when there is no STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getArrivalRunwayModel();
 
@@ -340,7 +331,7 @@ ava('.getArrivalRunwayModel() returns null when there is no STAR leg', (t) => {
 });
 
 ava('.getArrivalRunwayModel() returns the appropriate RunwayModel', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R');
     const expectedRunwayName = '07R';
     const result = model.getArrivalRunwayModel();
 
@@ -348,7 +339,7 @@ ava('.getArrivalRunwayModel() returns the appropriate RunwayModel', (t) => {
 });
 
 ava('.getBottomAltitude() returns -1 when there is no bottom altitude in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const model = new RouteModel(singleDirectSegmentRouteStringMock);
     const expectedResult = -1;
     const result = model.getBottomAltitude();
 
@@ -356,7 +347,7 @@ ava('.getBottomAltitude() returns -1 when there is no bottom altitude in the rou
 });
 
 ava('.getBottomAltitude() returns the lowest #altitudeMinimum of any LegModel in the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R..DRK.ZIMBO1.KLAS07R');
+    const model = new RouteModel('TNP.KEPEC3.KLAS07R..DRK.ZIMBO1.KLAS07R');
     const expectedResult = 6000;
     const result = model.getBottomAltitude();
 
@@ -364,7 +355,7 @@ ava('.getBottomAltitude() returns the lowest #altitudeMinimum of any LegModel in
 });
 
 ava('.getDepartureRunwayAirportIcao() returns null if there is no SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getDepartureRunwayAirportIcao();
 
@@ -372,7 +363,7 @@ ava('.getDepartureRunwayAirportIcao() returns null if there is no SID leg', (t) 
 });
 
 ava('.getDepartureRunwayAirportIcao() returns the appropriate runway\'s airport\'s ICAO identifier', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const model = new RouteModel('KLAS07R.BOACH6.TNP');
     const expectedResult = 'klas';
     const result = model.getDepartureRunwayAirportIcao();
 
@@ -380,7 +371,7 @@ ava('.getDepartureRunwayAirportIcao() returns the appropriate runway\'s airport\
 });
 
 ava('.getDepartureRunwayAirportModel() returns null when there is no SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getDepartureRunwayAirportModel();
 
@@ -388,7 +379,7 @@ ava('.getDepartureRunwayAirportModel() returns null when there is no SID leg', (
 });
 
 ava('.getDepartureRunwayAirportModel() returns the appropriate runway\'s AirportModel', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const model = new RouteModel('KLAS07R.BOACH6.TNP');
     const expectedAirportIcao = 'klas';
     const result = model.getDepartureRunwayAirportModel();
 
@@ -397,7 +388,7 @@ ava('.getDepartureRunwayAirportModel() returns the appropriate runway\'s Airport
 });
 
 ava('.getDepartureRunwayName() returns null when there is no SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getDepartureRunwayName();
 
@@ -405,7 +396,7 @@ ava('.getDepartureRunwayName() returns null when there is no SID leg', (t) => {
 });
 
 ava('.getDepartureRunwayName() returns the appropriate runway name', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const model = new RouteModel('KLAS07R.BOACH6.TNP');
     const expectedResult = '07R';
     const result = model.getDepartureRunwayName();
 
@@ -413,7 +404,7 @@ ava('.getDepartureRunwayName() returns the appropriate runway name', (t) => {
 });
 
 ava('.getDepartureRunwayModel() returns null when there is no SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const expectedResult = null;
     const result = model.getDepartureRunwayModel();
 
@@ -421,7 +412,7 @@ ava('.getDepartureRunwayModel() returns null when there is no SID leg', (t) => {
 });
 
 ava('.getDepartureRunwayModel() returns the appropriate RunwayModel', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const model = new RouteModel('KLAS07R.BOACH6.TNP');
     const expectedRunwayName = '07R';
     const result = model.getDepartureRunwayModel();
 
@@ -429,7 +420,7 @@ ava('.getDepartureRunwayModel() returns the appropriate RunwayModel', (t) => {
 });
 
 ava('.getFullRouteString() returns a route string for the entire route, including past legs, in dot notation', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -439,7 +430,7 @@ ava('.getFullRouteString() returns a route string for the entire route, includin
 });
 
 ava('.getFullRouteStringWithoutAirportsWithSpaces() returns the full route string, with airports removed, with spaces', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -450,7 +441,7 @@ ava('.getFullRouteStringWithoutAirportsWithSpaces() returns the full route strin
 });
 
 ava('.getFullRouteStringWithSpaces() returns a route string for the entire route, including past legs, separated by spaces', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -461,7 +452,7 @@ ava('.getFullRouteStringWithSpaces() returns a route string for the entire route
 });
 
 ava('.getRouteString() returns a route string for the remaining legs only, in dot notation', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -471,7 +462,7 @@ ava('.getRouteString() returns a route string for the remaining legs only, in do
 });
 
 ava('.getRouteStringWithSpaces() returns a route string for the remaining legs only, separated by spaces', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -481,63 +472,63 @@ ava('.getRouteStringWithSpaces() returns a route string for the remaining legs o
 });
 
 ava('.getSidIcao() returns undefined when there is no SID leg in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const result = model.getSidIcao();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getSidIcao() returns the ICAO identifier for the SID procedure in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
     const result = model.getSidIcao();
 
     t.true(result === 'BOACH6');
 });
 
 ava('.getSidName() returns undefined when there is no SID leg in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const result = model.getSidName();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getSidName() returns the spoken name of the SID procedure in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
     const result = model.getSidName();
 
     t.true(result === 'Boach Six');
 });
 
 ava('.getStarIcao() returns undefined when there is no STAR leg in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.getStarIcao();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getStarIcao() returns the ICAO identifier for the STAR procedure in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
     const result = model.getStarIcao();
 
     t.true(result === 'TYSSN4');
 });
 
 ava('.getStarName() returns undefined when there is no STAR leg in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.getStarName();
 
     t.true(typeof result === 'undefined');
 });
 
 ava('.getStarName() returns the spoken name of the STAR procedure in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
     const result = model.getStarName();
 
     t.true(result === 'Tyson Four');
 });
 
 ava('.getTopAltitude() returns -1 when there is no top altitude in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleDirectSegmentRouteStringMock);
+    const model = new RouteModel(singleDirectSegmentRouteStringMock);
     const expectedResult = -1;
     const result = model.getTopAltitude();
 
@@ -545,7 +536,7 @@ ava('.getTopAltitude() returns -1 when there is no top altitude in the route', (
 });
 
 ava('.getTopAltitude() returns the highest #altitudeMaximum of any LegModel in the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS25R.BOACH6.HEC..KLAS25R.SHEAD9.KENNO');
+    const model = new RouteModel('KLAS25R.BOACH6.HEC..KLAS25R.SHEAD9.KENNO');
     const expectedResult = 11000;
     const result = model.getTopAltitude();
 
@@ -553,56 +544,56 @@ ava('.getTopAltitude() returns the highest #altitudeMaximum of any LegModel in t
 });
 
 ava('.hasNextLeg() returns false when the current leg is the last in the #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.hasNextLeg();
 
     t.false(result);
 });
 
 ava('.hasNextLeg() returns true when there is a leg in the #_legCollection after the current leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
     const result = model.hasNextLeg();
 
     t.true(result);
 });
 
 ava('.hasNextWaypoint() returns false when we are at the last waypoint of the last leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.hasNextWaypoint();
 
     t.false(result);
 });
 
 ava('.hasNextWaypoint() returns true when the current leg contains more waypoints', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.hasNextWaypoint();
 
     t.true(result);
 });
 
 ava('.hasNextWaypoint() returns true when we are at the last waypoint of a leg that is not the last leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, multiDirectSegmentRouteStringMock);
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
     const result = model.hasNextWaypoint();
 
     t.true(result);
 });
 
 ava('.hasWaypointName() returns false when the specified waypoint is not in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC');
+    const model = new RouteModel('DVC');
     const result = model.hasWaypointName('MLF');
 
     t.false(result);
 });
 
 ava('.hasWaypointName() returns true when the specified waypoint is in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const result = model.hasWaypointName('ZELMA');
 
     t.true(result);
 });
 
 ava('.moveToNextWaypoint() calls #currentLeg.moveToNextWaypoint() when the current leg contains more waypoints', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const currentLegMoveToNextWaypointSpy = sinon.spy(model.currentLeg, 'moveToNextWaypoint');
 
     model.moveToNextWaypoint();
@@ -611,7 +602,7 @@ ava('.moveToNextWaypoint() calls #currentLeg.moveToNextWaypoint() when the curre
 });
 
 ava('.moveToNextWaypoint() calls .moveToNextLeg() when the current leg is at its last waypoint', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, multiDirectSegmentRouteStringMock);
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
     const moveToNextLegSpy = sinon.spy(model, 'moveToNextLeg');
 
     model.moveToNextWaypoint();
@@ -620,7 +611,7 @@ ava('.moveToNextWaypoint() calls .moveToNextLeg() when the current leg is at its
 });
 
 ava('.replaceArrivalProcedure() returns false when route string does not yield a valid leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.replaceArrivalProcedure('gobbledeegook');
 
     t.false(result);
@@ -628,7 +619,7 @@ ava('.replaceArrivalProcedure() returns false when route string does not yield a
 });
 
 ava('.replaceArrivalProcedure() appends specified STAR leg as the new last leg when no STAR leg previously existed', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.replaceArrivalProcedure(singleStarProcedureSegmentRouteStringMock);
 
     t.true(result);
@@ -636,7 +627,7 @@ ava('.replaceArrivalProcedure() appends specified STAR leg as the new last leg w
 });
 
 ava('.replaceArrivalProcedure() replaces STAR leg with a new one when the route already has a STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const differentStarRouteStringMock = 'TNP.KEPEC3.KLAS25L';
     const result = model.replaceArrivalProcedure(differentStarRouteStringMock);
 
@@ -645,7 +636,7 @@ ava('.replaceArrivalProcedure() replaces STAR leg with a new one when the route 
 });
 
 ava('.replaceDepartureProcedure() returns false when route string does not yield a valid leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.replaceDepartureProcedure('gobbledeegook');
 
     t.false(result);
@@ -653,7 +644,7 @@ ava('.replaceDepartureProcedure() returns false when route string does not yield
 });
 
 ava('.replaceDepartureProcedure() appends specified SID leg as the new first leg when no SID leg previously existed', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleFixRouteStringMock);
+    const model = new RouteModel(singleFixRouteStringMock);
     const result = model.replaceDepartureProcedure(singleSidProcedureSegmentRouteStringMock);
 
     t.true(result);
@@ -661,7 +652,7 @@ ava('.replaceDepartureProcedure() appends specified SID leg as the new first leg
 });
 
 ava('.replaceDepartureProcedure() replaces SID leg with a new one when the route already has a SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const differentSidRouteStringMock = 'KLAS25L.BOACH6.TNP';
     const result = model.replaceDepartureProcedure(differentSidRouteStringMock);
 
@@ -670,7 +661,7 @@ ava('.replaceDepartureProcedure() replaces SID leg with a new one when the route
 });
 
 ava('.moveToNextLeg() returns early when we are at the last leg in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleSidProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
 
     model.moveToNextLeg();
 
@@ -679,7 +670,7 @@ ava('.moveToNextLeg() returns early when we are at the last leg in the route', (
 });
 
 ava('.moveToNextLeg() moves the #currentLeg from the #_legCollection to the #_previousLegCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'OAL..TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('OAL..TNP.KEPEC3.KLAS07R');
 
     t.true(model._previousLegCollection.length === 0);
     t.true(model._legCollection.length === 2);
@@ -693,7 +684,7 @@ ava('.moveToNextLeg() moves the #currentLeg from the #_legCollection to the #_pr
 });
 
 ava('.skipToWaypointName() returns false when the specified waypoint is not in the route', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const result = model.skipToWaypointName('gobbledeegook');
 
     t.false(result);
@@ -701,7 +692,7 @@ ava('.skipToWaypointName() returns false when the specified waypoint is not in t
 });
 
 ava('.skipToWaypointName() calls #currentLeg.skipToWaypointName() when current leg contains the specified waypoint', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, singleStarProcedureSegmentRouteStringMock);
+    const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const currentLegSkipToWaypointNameSpy = sinon.spy(model.currentLeg, 'skipToWaypointName');
     const waypointNameToSkipTo = 'KEPEC';
 
@@ -711,7 +702,7 @@ ava('.skipToWaypointName() calls #currentLeg.skipToWaypointName() when current l
 });
 
 ava('.skipToWaypointName() moves appropriate legs/waypoints to previous collections when specified waypoint exists in a future leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'OAL..TNP.KEPEC3.KLAS07R');
+    const model = new RouteModel('OAL..TNP.KEPEC3.KLAS07R');
 
     model.skipToWaypointName('KEPEC');
 
@@ -724,7 +715,7 @@ ava('.skipToWaypointName() moves appropriate legs/waypoints to previous collecti
 });
 
 ava('.updateSidLegForDepartureRunwayModel() returns early when the route contains no SID leg to update', (t) => {
-    const routeModel = new RouteModel(navigationLibraryFixture, 'OAL..TNP');
+    const routeModel = new RouteModel('OAL..TNP');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
@@ -736,7 +727,7 @@ ava('.updateSidLegForDepartureRunwayModel() returns early when the route contain
 });
 
 ava('.updateSidLegForDepartureRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the SID leg', (t) => {
-    const routeModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.TNP');
+    const routeModel = new RouteModel('KLAS07R.BOACH6.TNP');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
@@ -748,7 +739,7 @@ ava('.updateSidLegForDepartureRunwayModel() calls LegModel.updateStarLegForArriv
 });
 
 ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains no STAR leg to update', (t) => {
-    const routeModel = new RouteModel(navigationLibraryFixture, 'OAL..TNP');
+    const routeModel = new RouteModel('OAL..TNP');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
@@ -760,7 +751,7 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains
 });
 
 ava('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the STAR leg', (t) => {
-    const routeModel = new RouteModel(navigationLibraryFixture, 'TNP.KEPEC3.KLAS07R');
+    const routeModel = new RouteModel('TNP.KEPEC3.KLAS07R');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
@@ -772,7 +763,7 @@ ava('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArriva
 });
 
 ava('.reset() clears #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, complexRouteStringMock);
+    const model = new RouteModel(complexRouteStringMock);
 
     model.reset();
 
@@ -781,8 +772,8 @@ ava('.reset() clears #_legCollection', (t) => {
 });
 
 ava('._appendRouteModelBeginningAtWaypointName() throws when leg type is not airway/direct/SID/STAR', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'SKEBR..CRESO..BLD');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('SKEBR..CRESO..BLD');
 
     primaryModel._legCollection[1]._legType = 'nonsensical';
 
@@ -790,8 +781,8 @@ ava('._appendRouteModelBeginningAtWaypointName() throws when leg type is not air
 });
 
 ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfAirwayLeg() when divergent leg is airway leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
+    const primaryModel = new RouteModel('DAG.V394.LAS');
+    const otherModel = new RouteModel('CLARR..TRREY..SOSOY');
     const primaryModelAppendRouteModelOutOfAirwayLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfAirwayLeg');
     const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('CLARR', otherModel);
@@ -801,8 +792,8 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfAi
 });
 
 ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfDirectLeg() when divergent leg is direct leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'SKEBR..CRESO..BLD');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('SKEBR..CRESO..BLD');
     const primaryModelAppendRouteModelOutOfDirectLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfDirectLeg');
     const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR CRESO BLD', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('SKEBR', otherModel);
@@ -812,8 +803,8 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfDi
 });
 
 ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfSidLeg() when divergent leg is SID leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..SKEBR..TARRK');
+    const primaryModel = new RouteModel('KLAS07R.BOACH6.HEC');
+    const otherModel = new RouteModel('BOACH..SKEBR..TARRK');
     const primaryModelAppendRouteModelOutOfSidLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfSidLeg');
     const expectedResult = [true, { log: 'rerouting to: JESJI BAKRR MINEY HITME BOACH SKEBR TARRK', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('BOACH', otherModel);
@@ -823,8 +814,8 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfSi
 });
 
 ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfStarLeg() when divergent leg is STAR leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'LUXOR..WINDS..CRESO');
+    const primaryModel = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('LUXOR..WINDS..CRESO');
     const primaryModelAppendRouteModelOutOfStarLegSpy = sinon.spy(primaryModel, '_appendRouteModelOutOfStarLeg');
     const expectedResult = [true, { log: 'rerouting to: DVC BETHL HOLDM KSINO LUXOR WINDS CRESO', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelBeginningAtWaypointName('LUXOR', otherModel);
@@ -834,8 +825,8 @@ ava('._appendRouteModelBeginningAtWaypointName() calls ._appendRouteModelOutOfSt
 });
 
 ava('._appendRouteModelOutOfAirwayLeg() correctly places RouteModel and adjusts airway exit', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'CLARR..TRREY..SOSOY');
+    const primaryModel = new RouteModel('DAG.V394.LAS');
+    const otherModel = new RouteModel('CLARR..TRREY..SOSOY');
     const expectedResult = [true, { log: 'rerouting to: DAG V394 CLARR TRREY SOSOY', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfAirwayLeg('CLARR', otherModel);
 
@@ -848,8 +839,8 @@ ava('._appendRouteModelOutOfAirwayLeg() correctly places RouteModel and adjusts 
 });
 
 ava('._appendRouteModelOutOfDirectLeg() correctly places RouteModel', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'SKEBR..CRESO..BLD');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('SKEBR..CRESO..BLD');
     const expectedResult = [true, { log: 'rerouting to: CLARR SKEBR CRESO BLD', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfDirectLeg('SKEBR', otherModel);
 
@@ -862,8 +853,8 @@ ava('._appendRouteModelOutOfDirectLeg() correctly places RouteModel', (t) => {
 });
 
 ava('._appendRouteModelOutOfSidLeg() correctly places RouteModel and explodes remaining SID waypoints into legs', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..SKEBR..TARRK');
+    const primaryModel = new RouteModel('KLAS07R.BOACH6.HEC');
+    const otherModel = new RouteModel('BOACH..SKEBR..TARRK');
     const expectedResult = [true, { log: 'rerouting to: JESJI BAKRR MINEY HITME BOACH SKEBR TARRK', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfSidLeg('BOACH', otherModel);
 
@@ -879,8 +870,8 @@ ava('._appendRouteModelOutOfSidLeg() correctly places RouteModel and explodes re
 });
 
 ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and changes STAR exit when divergent fix is a valid exit', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'BCE.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'DUBLX..PRINO..RELIN');
+    const primaryModel = new RouteModel('BCE.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('DUBLX..PRINO..RELIN');
     const expectedResult = [true, { log: 'rerouting to: BCE GRNPA1 DUBLX PRINO RELIN', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfStarLeg('DUBLX', otherModel);
 
@@ -893,8 +884,8 @@ ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and changes ST
 });
 
 ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and explodes remaining STAR waypoints into legs', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'LUXOR..WINDS..CRESO');
+    const primaryModel = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('LUXOR..WINDS..CRESO');
     const expectedResult = [true, { log: 'rerouting to: DVC BETHL HOLDM KSINO LUXOR WINDS CRESO', say: 'rerouting as requested' }];
     const result = primaryModel._appendRouteModelOutOfStarLeg('LUXOR', otherModel);
 
@@ -912,7 +903,7 @@ ava('._appendRouteModelOutOfStarLeg() correctly places RouteModel and explodes r
 ava.todo('._combineRouteStrings()');
 
 ava('._createAmendedAirwayLegUsingDifferentEntryName() returns a new LegModel with the same airway and exit, with new specified entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
+    const model = new RouteModel('CHRLT.V394.LAS');
     const nextEntryFixName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedAirwayLegUsingDifferentEntryName(nextEntryFixName, legIndex);
@@ -922,7 +913,7 @@ ava('._createAmendedAirwayLegUsingDifferentEntryName() returns a new LegModel wi
 });
 
 ava('._createAmendedAirwayLegUsingDifferentExitName() returns a new LegModel with same airway and entry, with new specified exit', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
+    const model = new RouteModel('DAG.V394.LAS');
     const nextExitFixName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedAirwayLegUsingDifferentExitName(nextExitFixName, legIndex);
@@ -932,7 +923,7 @@ ava('._createAmendedAirwayLegUsingDifferentExitName() returns a new LegModel wit
 });
 
 ava('._createAmendedConvergentLeg() throws when leg is not an airway/direct/SID/STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
+    const model = new RouteModel('DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
 
@@ -942,7 +933,7 @@ ava('._createAmendedConvergentLeg() throws when leg is not an airway/direct/SID/
 });
 
 ava('._createAmendedConvergentLeg() calls ._createAmendedAirwayLegUsingDifferentEntryName() when leg is an airway leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
+    const model = new RouteModel('CHRLT.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const expectedResult = [model._createAmendedAirwayLegUsingDifferentEntryName(waypointName, legIndex)];
@@ -954,7 +945,7 @@ ava('._createAmendedConvergentLeg() calls ._createAmendedAirwayLegUsingDifferent
 });
 
 ava('._createAmendedConvergentLeg() returns an empty array when leg is a direct leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'CLARR');
+    const model = new RouteModel('CLARR');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
@@ -963,7 +954,7 @@ ava('._createAmendedConvergentLeg() returns an empty array when leg is a direct 
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypointName() when leg is a SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'HITME';
     const legIndex = 0;
     const expectedResult = model._createLegsFromSidWaypointsAfterWaypointName(waypointName, legIndex);
@@ -975,7 +966,7 @@ ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypo
 });
 
 ava('._createAmendedConvergentLeg() calls ._createAmendedStarLegUsingDifferentEntryName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'BETHL';
     const legIndex = 0;
     const expectedResult = [model._createAmendedStarLegUsingDifferentEntryName(waypointName, legIndex)];
@@ -987,7 +978,7 @@ ava('._createAmendedConvergentLeg() calls ._createAmendedStarLegUsingDifferentEn
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromStarWaypointsAfterWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'FRAWG';
     const legIndex = 0;
     const expectedResult = model._createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex);
@@ -999,7 +990,7 @@ ava('._createAmendedConvergentLeg() calls ._createLegsFromStarWaypointsAfterWayp
 });
 
 ava('._createAmendedDivergentLeg() throws when leg is not an airway/direct/SID/STAR leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
+    const model = new RouteModel('DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
 
@@ -1009,7 +1000,7 @@ ava('._createAmendedDivergentLeg() throws when leg is not an airway/direct/SID/S
 });
 
 ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentExitName() when leg is an airway leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DAG.V394.LAS');
+    const model = new RouteModel('DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const expectedResult = [model._createAmendedAirwayLegUsingDifferentExitName(waypointName, legIndex)];
@@ -1021,7 +1012,7 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentE
 });
 
 ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'CLARR');
+    const model = new RouteModel('CLARR');
     const waypointName = 'CLARR';
     const legIndex = 0;
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
@@ -1030,7 +1021,7 @@ ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct l
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypointName() when leg is a SID leg', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'BOACH';
     const legIndex = 0;
     const expectedResult = model._createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex);
@@ -1042,7 +1033,7 @@ ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypo
 });
 
 ava('._createAmendedDivergentLeg() calls ._createAmendedStarLegUsingDifferentExitName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'BCE.GRNPA1.KLAS07R');
+    const model = new RouteModel('BCE.GRNPA1.KLAS07R');
     const waypointName = 'DUBLX';
     const legIndex = 0;
     const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
@@ -1054,7 +1045,7 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedStarLegUsingDifferentExi
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromStarWaypointsBeforeWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'LUXOR';
     const legIndex = 0;
     const expectedResult = model._createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex);
@@ -1068,7 +1059,7 @@ ava('._createAmendedDivergentLeg() calls ._createLegsFromStarWaypointsBeforeWayp
 ava.todo('._createAmendedDivergentLeg()');
 
 ava('._createLegsFromSidWaypointsAfterWaypointName() returns an array of LegModels, one for each WaypointModel in the SID, after the specified one', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const nextEntryFixName = 'HITME';
     const legIndex = 0;
     const result = model._createLegsFromSidWaypointsAfterWaypointName(nextEntryFixName, legIndex);
@@ -1080,7 +1071,7 @@ ava('._createLegsFromSidWaypointsAfterWaypointName() returns an array of LegMode
 });
 
 ava('._createLegsFromSidWaypointsBeforeWaypointName() returns an array of LegModels, one for each WaypointModel in the SID, before the specified one', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const nextExitFixName = 'BOACH';
     const legIndex = 0;
     const result = model._createLegsFromSidWaypointsBeforeWaypointName(nextExitFixName, legIndex);
@@ -1092,7 +1083,7 @@ ava('._createLegsFromSidWaypointsBeforeWaypointName() returns an array of LegMod
 });
 
 ava('._createLegsFromStarWaypointsAfterWaypointName() returns an array of LegModels, one for each WaypointModel in the STAR, after the specified one', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const nextEntryFixName = 'FRAWG';
     const legIndex = 0;
     const result = model._createLegsFromStarWaypointsAfterWaypointName(nextEntryFixName, legIndex);
@@ -1104,7 +1095,7 @@ ava('._createLegsFromStarWaypointsAfterWaypointName() returns an array of LegMod
 });
 
 ava('._createLegsFromStarWaypointsBeforeWaypointName() returns an array of LegModels, one for each WaypointModel in the STAR, before the specified one', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const nextExitFixName = 'LUXOR';
     const legIndex = 0;
     const result = model._createLegsFromStarWaypointsBeforeWaypointName(nextExitFixName, legIndex);
@@ -1116,7 +1107,7 @@ ava('._createLegsFromStarWaypointsBeforeWaypointName() returns an array of LegMo
 });
 
 ava('._createAmendedStarLegUsingDifferentEntryName() returns a new LegModel with the same STAR and exit, with new specified entry', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const nextEntryFixName = 'BETHL';
     const legIndex = 0;
     const result = model._createAmendedStarLegUsingDifferentEntryName(nextEntryFixName, legIndex);
@@ -1126,7 +1117,7 @@ ava('._createAmendedStarLegUsingDifferentEntryName() returns a new LegModel with
 });
 
 ava('._createAmendedStarLegUsingDifferentExitName returns a new LegModel with the same STAR and entry, with new specified exit', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, 'BCE.GRNPA1.KLAS07R');
+    const model = new RouteModel('BCE.GRNPA1.KLAS07R');
     const nextExitFixName = 'DUBLX';
     const legIndex = 0;
     const result = model._createAmendedStarLegUsingDifferentExitName(nextExitFixName, legIndex);
@@ -1150,7 +1141,7 @@ ava.todo('._findStarLegIndex()');
 ava.todo('._generateLegsFromRouteString()');
 
 ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated with #_legCollection', (t) => {
-    const model = new RouteModel(navigationLibraryFixture, nightmareRouteStringMock);
+    const model = new RouteModel(nightmareRouteStringMock);
 
     model.skipToWaypointName('GUP');
 
@@ -1166,8 +1157,8 @@ ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated
 ava.todo('._overwriteRouteBetweenWaypointNames()');
 
 ava('._prependRouteModelEndingAtWaypointName() throws when leg type is not airway/direct/SID/STAR', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..MDDOG');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('BOACH..MDDOG');
 
     primaryModel._legCollection[2]._legType = 'nonsensical';
 
@@ -1175,8 +1166,8 @@ ava('._prependRouteModelEndingAtWaypointName() throws when leg type is not airwa
 });
 
 ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoAirwayLeg() when convergent leg is airway leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
+    const primaryModel = new RouteModel('CHRLT.V394.LAS');
+    const otherModel = new RouteModel('GFS..WHIGG..CLARR');
     const primaryModelPrependRouteModelIntoAirwayLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoAirwayLeg');
     const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('CLARR', otherModel);
@@ -1186,8 +1177,8 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoAirw
 });
 
 ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoDirectLeg() when convergent leg is direct leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..MDDOG');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('BOACH..MDDOG');
     const primaryModelPrependRouteModelIntoDirectLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoDirectLeg');
     const expectedResult = [true, { log: 'rerouting to: BOACH MDDOG IPUMY', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('MDDOG', otherModel);
@@ -1197,8 +1188,8 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoDire
 });
 
 ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoSidLeg() when convergent leg is SID leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'IPUMY..HITME');
+    const primaryModel = new RouteModel('KLAS07R.BOACH6.HEC');
+    const otherModel = new RouteModel('IPUMY..HITME');
     const primaryModelPrependRouteModelIntoSidLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoSidLeg');
     const expectedResult = [true, { log: 'rerouting to: IPUMY HITME BOACH HEC', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('HITME', otherModel);
@@ -1208,8 +1199,8 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoSidL
 });
 
 ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoStarLeg() when convergent leg is STAR leg', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'GUP..PGA..BETHL');
+    const primaryModel = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('GUP..PGA..BETHL');
     const primaryModelPrependRouteModelIntoStarLegSpy = sinon.spy(primaryModel, '_prependRouteModelIntoStarLeg');
     const expectedResult = [true, { log: 'rerouting to: GUP PGA BETHL GRNPA1 KLAS07R', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelEndingAtWaypointName('BETHL', otherModel);
@@ -1219,8 +1210,8 @@ ava('._prependRouteModelEndingAtWaypointName() calls ._prependRouteModelIntoStar
 });
 
 ava('._prependRouteModelIntoAirwayLeg() correctly places RouteModel and adjusts airway entry', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CHRLT.V394.LAS');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'GFS..WHIGG..CLARR');
+    const primaryModel = new RouteModel('CHRLT.V394.LAS');
+    const otherModel = new RouteModel('GFS..WHIGG..CLARR');
     const expectedResult = [true, { log: 'rerouting to: GFS WHIGG CLARR V394 LAS', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoAirwayLeg('CLARR', otherModel);
 
@@ -1233,8 +1224,8 @@ ava('._prependRouteModelIntoAirwayLeg() correctly places RouteModel and adjusts 
 });
 
 ava('._prependRouteModelIntoDirectLeg() correctly places RouteModel', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'CLARR..SKEBR..MDDOG..IPUMY');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BOACH..MDDOG');
+    const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');
+    const otherModel = new RouteModel('BOACH..MDDOG');
     const expectedResult = [true, { log: 'rerouting to: BOACH MDDOG IPUMY', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoDirectLeg('MDDOG', otherModel);
 
@@ -1246,8 +1237,8 @@ ava('._prependRouteModelIntoDirectLeg() correctly places RouteModel', (t) => {
 });
 
 ava('._prependRouteModelIntoSidLeg() correctly places RouteModel and explodes remaining SID waypoints into legs', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.BOACH6.HEC');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'IPUMY..HITME');
+    const primaryModel = new RouteModel('KLAS07R.BOACH6.HEC');
+    const otherModel = new RouteModel('IPUMY..HITME');
     const expectedResult = [true, { log: 'rerouting to: IPUMY HITME BOACH HEC', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoSidLeg('HITME', otherModel);
 
@@ -1260,8 +1251,8 @@ ava('._prependRouteModelIntoSidLeg() correctly places RouteModel and explodes re
 });
 
 ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and changes STAR entry when route ends at an entry', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'GUP..PGA..BETHL');
+    const primaryModel = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('GUP..PGA..BETHL');
     const expectedResult = [true, { log: 'rerouting to: GUP PGA BETHL GRNPA1 KLAS07R', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoStarLeg('BETHL', otherModel);
 
@@ -1274,8 +1265,8 @@ ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and changes ST
 });
 
 ava('._prependRouteModelIntoStarLeg() correctly places RouteModel and explodes remaining STAR waypoints into legs', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'DVC.GRNPA1.KLAS07R');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'PGA..FRAWG');
+    const primaryModel = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const otherModel = new RouteModel('PGA..FRAWG');
     const expectedResult = [true, { log: 'rerouting to: PGA FRAWG TRROP LEMNZ', say: 'rerouting as requested' }];
     const result = primaryModel._prependRouteModelIntoStarLeg('FRAWG', otherModel);
 

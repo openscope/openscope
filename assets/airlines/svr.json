@@ -3,7 +3,9 @@
     "name": "Ural Airlines",
     "callsign": {
         "name": "Ural",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

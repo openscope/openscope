@@ -3,7 +3,9 @@
     "name": "Dragonair",
     "callsign": {
         "name": "Dragon",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

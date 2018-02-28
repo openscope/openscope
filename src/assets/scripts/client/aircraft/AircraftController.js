@@ -9,6 +9,7 @@ import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
@@ -71,9 +72,9 @@ export default class AircraftController {
      * @for AircraftController
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
-     * @param navigationLibrary {NavigationLibrary}
+     * @param scopeModel {ScopeModel}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
@@ -81,8 +82,8 @@ export default class AircraftController {
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        if (!_isObject(airlineController)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection to be defined');
         }
 
         /**
@@ -94,16 +95,6 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
-
-        /**
-         * Reference to a `NavigationLibrary` instance
-         *
-         * @property _navigationLibrary
-         * @type NavigationLibrary
-         * @default navigationLibrary
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Local reference to static `EventBus` class
@@ -191,7 +182,7 @@ export default class AircraftController {
      */
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -207,7 +198,7 @@ export default class AircraftController {
      */
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -302,13 +293,18 @@ export default class AircraftController {
     }
 
     /**
+     * Returns whether the specified aircraft model is in an area where they are controllable
+     *
      * @for AircraftController
-     * @method aircraft_visible
+     * @method isAircraftVisible
      * @param aircraft {AircraftModel}
      * @param factor {number}
+     * @returns {boolean}
      */
-    aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
+    isAircraftVisible(aircraft, factor = 1) {
+        const visibleDistance = AirportController.airport_get().ctr_radius * factor;
+
+        return aircraft.distance < visibleDistance;
     }
 
     /**
@@ -413,7 +409,7 @@ export default class AircraftController {
             }
 
             // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
+            if (!this.isAircraftVisible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
                 this.aircraft_remove(aircraft);
                 i -= 1;
             }
@@ -605,7 +601,7 @@ export default class AircraftController {
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
+        const aircraftModel = new AircraftModel(initializationProps);
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
@@ -807,11 +803,11 @@ export default class AircraftController {
      * then trigger another event for the `CanvasController`.
      *
      * @for AircraftController
-     * @method _onStripDoubleClickhandler
+     * @method _onStripDoubleClickHandler
      * @param callsign {string}
      * @private
      */
-    _onStripDoubleClickhandler = (callsign) => {
+    _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 

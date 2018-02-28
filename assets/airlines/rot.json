@@ -3,7 +3,9 @@
     "name": "TAROM Romanian Air Transport",
     "callsign": {
         "name": "Tarom",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

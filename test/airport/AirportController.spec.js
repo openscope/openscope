@@ -1,6 +1,4 @@
 import ava from 'ava';
-import sinon from 'sinon';
-
 import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 import { AIRPORT_LOAD_LIST_MOCK } from '../airport/_mocks/airportLoadListMocks';

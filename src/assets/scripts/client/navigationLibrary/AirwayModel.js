@@ -1,12 +1,12 @@
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
-import _some from 'lodash/some';
+import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
 export default class AirwayModel {
-    constructor(icao, fixNames, navigationLibrary) {
+    constructor(icao, fixNames) {
         if (_isEmpty(icao)) {
             throw new TypeError('Expected airway to have a non-empty name, but no airway name was given');
         }
@@ -19,9 +19,7 @@ export default class AirwayModel {
 
         this._icao = '';
 
-        this._navigationLibrary = null;
-
-        this.init(icao, fixNames, navigationLibrary);
+        this.init(icao, fixNames);
     }
 
     /**
@@ -41,10 +39,9 @@ export default class AirwayModel {
 
     // ------------------------------ LIFECYCLE ------------------------------
 
-    init(icao, fixNames, navigationLibrary) {
+    init(icao, fixNames) {
         this._fixNameCollection = fixNames;
         this._icao = icao;
-        this._navigationLibrary = navigationLibrary;
 
         this._verifyFixNamesExistInNavigationLibrary(fixNames);
 
@@ -54,14 +51,13 @@ export default class AirwayModel {
     reset() {
         this._fixNameCollection = [];
         this._icao = '';
-        this._navigationLibrary = null;
 
         return this;
     }
 
     _verifyFixNamesExistInNavigationLibrary(fixNames) {
         _forEach(fixNames, (fixName) => {
-            if (!this._navigationLibrary.hasFixName(fixName)) {
+            if (!NavigationLibrary.hasFixName(fixName)) {
                 throw new TypeError(`Expected to find fix "${fixName}" for ` +
                     `airway "${this._icao}", but it is not a defined fix!`
                 );

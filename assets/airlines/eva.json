@@ -3,8 +3,9 @@
     "name": "EVA Air",
     "callsign": {
         "name": "EVA",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

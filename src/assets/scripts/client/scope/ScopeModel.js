@@ -28,16 +28,6 @@ export default class ScopeModel {
          */
         this._eventBus = EventBus;
 
-        /**
-         * Local reference to the navigation library
-         *
-         * @for ScopeModel
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = NavigationLibrary;
-
         // TODO: Use this!
         /**
          * Collection of all sectors being controlled by this scope

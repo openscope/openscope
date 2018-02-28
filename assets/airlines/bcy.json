@@ -3,11 +3,16 @@
     "name": "CityJet",
     "callsign": {
         "name": "City-Ireland",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["RJ85", 18]
+            ["RJ85", 15]
+        ],
+        "SAS": [
+            ["CRJ9", 21]
         ]
     }
 }
