@@ -350,7 +350,7 @@
             "icao": "BATHA1E",
             "name": "Batha One Echo",
             "rwy": {
-                "OTHH34R": [["^ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", "BAT"]
+                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", "BAT"]
             },
             "body":[],
             "exitPoints": {
@@ -406,7 +406,7 @@
             "icao": "BUNDU1E",
             "name": "Bundu One Echo",
             "rwy": {
-                "OTHH34R": [["^ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"]
+                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"]
             },
             "body":[],
             "exitPoints": {
@@ -448,7 +448,7 @@
             "icao": "NAMLA1E",
             "name": "Namla One Echo",
             "rwy": {
-                "OTHH34R": [["^ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"]
+                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"]
             },
             "body":[],
             "exitPoints": {
@@ -616,7 +616,7 @@
             "icao": "SALWA1E",
             "name": "Salwa One Echo",
             "rwy": {
-                "OTHH34R": [["ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["OBVER", "A40"], ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]]
+                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["OBVER", "A40"], ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]]
             },
             "body":[],
             "exitPoints": {
@@ -884,7 +884,7 @@
                 ["qtr", 98],
                 ["ira", 2]
             ]
-        }, 
+        },
         {
             "origin": "OTHH",
             "destination": "",
