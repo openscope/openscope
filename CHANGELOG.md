@@ -11,18 +11,10 @@
 - [#785](https://github.com/openscope/openscope/issues/785) - Add Pittsburgh International Airport (KPIT)
 - [#106](https://github.com/openscope/openscope/issues/106) - Add Halifax Stanfield International Airport (CYHZ)
 
-
-
-
-
 ### Bugfixes
 - [#864](https://github.com/openscope/openscope/issues/864) - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing
 - [#879](https://github.com/openscope/openscope/issues/879) - Restore functionality of non-procedural descents to airspace ceiling
 - [#895](https://github.com/openscope/openscope/issues/895) - Ensure number-type variables defined in spawn patterns are cast to numbers if provided as strings
-
-
-
-
 
 ### Enhancements & Refactors
 - [#840](https://github.com/openscope/openscope/issues/840) - Updates documentation on airport file standards
@@ -41,9 +33,6 @@
     - [#885](https://github.com/openscope/openscope/issues/885) - Removes loading indicator and simplifies `LoadingView`
 - [#796](https://github.com/openscope/openscope/issues/796) - Updates ENGM (Oslo Airport, Norway)
 - [#723](https://github.com/openscope/openscope/issues/723) - Add contribution guidelines document
-
-
-
 
 
 ## 5.7.0 (December 1, 2017)
