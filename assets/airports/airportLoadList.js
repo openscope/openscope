@@ -211,13 +211,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
-        // {
-        //     icao: 'kbos',
-        //     level: 'hard',
-        //     name: 'Boston Logan International Airport',
-        //     premium: false,
-        //     wip: false
-        // },
+        {
+            icao: 'kbos',
+            level: 'hard',
+            name: 'Boston Logan International Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'kdca',
             level: 'easy',
@@ -379,13 +379,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
-        // {
-        //     icao: 'kstl',
-        //     level: 'medium',
-        //     name: 'St. Louis Lambert International Airport',
-        //     premium: false,
-        //     wip: false
-        // },
+        {
+            icao: 'kstl',
+            level: 'medium',
+            name: 'St. Louis Lambert International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'ktpa',
         //     level: 'easy',
