@@ -1,3 +1,23 @@
+## 6.1.0 (April 1, 2018)
+---
+### New Features
+
+
+
+
+
+### Bugfixes
+
+
+
+
+
+### Enhancements & Refactors
+
+
+
+
+
 ## 6.0.0 (March 1, 2018)
 ---
 ### Major
