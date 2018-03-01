@@ -114,12 +114,11 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
         "SUMMA1": {
             "icao": "SUMMA1",
             "name": "Summa One",
-            "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
             "rwy": {
-                "16L": ["NEVJO"],
-                "16R": ["NEVJO"],
-                "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-                "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+                "KSEA16L": ["NEVJO"],
+                "KSEA16R": ["NEVJO"],
+                "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+                "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
             },
             "exitPoints": {
                 "BKE": ["SUMMA", "BKE"],
@@ -138,7 +137,6 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
         "CHINS2": {
             "icao": "CHINS2",
             "name": "Chins Two",
-            "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
             "entryPoints": {
                 "CHINS": [],
                 "IMB": ["IMB", "SUNED", "YKM"],
@@ -147,10 +145,10 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
             },
             "body": ["CHINS"],
             "rwy": {
-                "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-                "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-                "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+                "KSEA16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+                "KSEA34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+                "KSEA34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
             },
             "draw": [
                 ["IMB*", "SUNED*", "YKM"],
@@ -455,12 +453,11 @@ _All properties in this section are required for each route definition_
     "SUMMA1": {
         "icao": "SUMMA1",
         "name": "Summa One",
-        "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
         "rwy": {
-            "16L": ["NEVJO"],
-            "16R": ["NEVJO"],
-            "34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
-            "34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
+            "KSEA16L": ["NEVJO"],
+            "KSEA16R": ["NEVJO"],
+            "KSEA34L": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"],
+            "KSEA34R": [["NEZUG", "A40+"], "^_NEZUG070PAE139", "_SUMMA326017"]
         },
         "exitPoints": {
             "BKE": ["SUMMA", "BKE"],
@@ -485,7 +482,6 @@ SID is an acronym for _Standard Instrument Departure_.
 }
 ```
 - **name** - spoken name of the route used for read backs.
-- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific departing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
 - **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.
@@ -503,7 +499,6 @@ _All properties in this section are required for each route definition_
     "CHINS2": {
         "icao": "CHINS2",
         "name": "Chins Two",
-        "suffix": {"16L":"", "16R":"", "34L":"", "34R":""},
         "entryPoints": {
             "CHINS": [],
             "IMB": ["IMB", "SUNED", "YKM"],
@@ -512,10 +507,10 @@ _All properties in this section are required for each route definition_
         },
         "body": ["CHINS"],
         "rwy": {
-            "16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-            "16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
-            "34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
-            "34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
+            "KSEA16L": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "KSEA16R": [["RADDY", "A160+|S270"], ["HUMPP", "A150-"], ["AUBRN", "A120|S250"], "#343"],
+            "KSEA34L": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"],
+            "KSEA34R": [["RADDY", "A120|S250"], "HUMPP", "AUBRN", "#250"]
         },
         "draw": [
             ["IMB*", "SUNED*", "YKM"],
@@ -534,7 +529,6 @@ STAR is an acronym for _Standard Terminal Arrival Route_.
 }
 ```
 - **name** - spoken name of the route used for read backs.
-- **suffix** - (object) For applicable airports, a number and letter "suffix" are used to indicate the version of the procedure that applies to a specific landing runway. A "key" must be present for all runways, and their values set to the appropriate suffix or an empty string: `""`.
 - **entryPoints** - (2d array of strings) considered the `Entry`. Each key corresponds to a route transition that can be used to enter the route.
 - **body** - (2d array of strings) fix names for the `Body` segment.
 - **rwy** - (2d array of strings) considered the `Exit`. Each key corresponds to a runway that is usable from this route

@@ -3,7 +3,9 @@
     "name": "Hawaiian Airlines",
     "callsign": {
         "name": "Hawaiian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

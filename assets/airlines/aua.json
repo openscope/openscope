@@ -3,13 +3,17 @@
     "name": "Austrian Airlines",
     "callsign": {
         "name": "Austrian",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["A319", 7],
             ["A320", 16],
             ["A321", 6],
+            ["B763", 6],
+            ["B77L", 5],
             ["DH8D", 18],
             ["E190", 6],
             ["F70", 6],
@@ -18,6 +22,11 @@
         "long": [
             ["B763", 6],
             ["B77L", 5]
+        ],
+        "short": [
+            ["A319", 7],
+            ["A320", 16],
+            ["A321", 6]
         ]
     }
 }

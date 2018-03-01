@@ -3,7 +3,9 @@
     "name": "AeroMexico",
     "callsign": {
         "name": "AeroMexico",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "90long": [

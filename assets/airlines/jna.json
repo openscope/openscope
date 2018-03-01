@@ -3,7 +3,9 @@
     "name": "Jin Air",
     "callsign": {
         "name": "Jin Air",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

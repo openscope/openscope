@@ -3,7 +3,9 @@
     "name": "Interjet",
     "callsign": {
         "name": "InterJet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

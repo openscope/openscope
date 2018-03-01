@@ -3,7 +3,9 @@
     "name": "AirAsia India",
     "callsign": {
         "name": "ARIYA",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

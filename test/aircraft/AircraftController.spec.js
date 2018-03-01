@@ -4,10 +4,19 @@ import ava from 'ava';
 // import AircraftController from '../../src/assets/scripts/client/aircraft/AircraftController';
 // import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
 // import { airlineControllerFixture } from '../fixtures/airlineFixtures';
-// import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../fixtures/navigationLibraryFixtures';
 // import { spawnPatternModelArrivalFixture } from '../fixtures/trafficGeneratorFixtures';
-//
-// global.prop = {};
+
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
 
 ava.todo('Tests not available for AircraftController due to $ import');
 

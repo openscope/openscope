@@ -3,8 +3,9 @@
     "name": "LATAM Airlines Brasil",
     "callsign": {
         "name": "TAM",
-        "length": 3,
-        "alpha": false
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

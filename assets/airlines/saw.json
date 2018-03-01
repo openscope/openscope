@@ -3,7 +3,9 @@
     "name": "Cham Wings Airlines",
     "callsign": {
         "name": "Shamwing",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Corendon Dutch Airlines",
     "callsign": {
         "name": "Dutch Corendon",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

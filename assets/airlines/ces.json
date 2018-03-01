@@ -3,7 +3,9 @@
     "name": "China Eastern Airlines",
     "callsign": {
         "name": "China Eastern",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

@@ -3,7 +3,9 @@
     "name": "Vistara",
     "callsign": {
         "name": "VISTARA",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

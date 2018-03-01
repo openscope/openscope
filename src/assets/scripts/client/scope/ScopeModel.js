@@ -1,10 +1,10 @@
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
+import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
-import RadarTargetCollection from './RadarTargetCollection';
 import { EVENT } from '../constants/eventNames';
-import { DECIMAL_RADIX } from '../constants/globalConstants';
+import { DECIMAL_RADIX } from '../utilities/unitConverters';
 import { THEME } from '../constants/themes';
 
 /**
@@ -27,16 +27,6 @@ export default class ScopeModel {
          * @private
          */
         this._eventBus = EventBus;
-
-        /**
-         * Local reference to the navigation library
-         *
-         * @for ScopeModel
-         * @property _navigationLibrary
-         * @type {NavigationLibrary}
-         * @private
-         */
-        this._navigationLibrary = NavigationLibrary;
 
         // TODO: Use this!
         /**

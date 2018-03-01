@@ -3,15 +3,26 @@
     "name": "Norwegian Air Shuttle ASA",
     "callsign": {
         "name": "Nor Shuttle",
-        "length": 4
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B738", 90]
+            ["B738", 117],
+            ["B788", 8],
+            ["B789", 18]
+        ],
+        "short": [
+            ["B38M", 6],
+            ["B738", 117]
         ],
         "long": [
-            ["B788", 8 ],
-            ["B789", 2]
+            ["B788", 8],
+            ["B789", 18]
         ]
     }
 }

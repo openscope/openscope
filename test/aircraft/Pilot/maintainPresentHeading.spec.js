@@ -1,12 +1,23 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
-import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../../fixtures/navigationLibraryFixtures';
+import { ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK } from '../_mocks/aircraftMocks';
+
+ava.beforeEach(() => {
+    createNavigationLibraryFixture();
+});
+
+ava.afterEach(() => {
+    resetNavigationLibraryFixture();
+});
 
 ava('.maintainPresentHeading() sets the #mcp with the correct modes and values', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
@@ -22,7 +33,7 @@ ava('.maintainPresentHeading() returns a success message when finished', (t) => 
             say: 'fly present heading'
         }
     ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
     t.deepEqual(result, expectedResult);
@@ -33,7 +44,7 @@ ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
     const runwayModelMock = airportModelFixture.getRunway('19L');
     const altitudeMock = 7000;
     const headingMock = 3.839724354387525; // 220 in degrees
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
     aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);

@@ -3,7 +3,9 @@
     "name": "China Southern Airlines",
     "callsign": {
         "name": "China Southern",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

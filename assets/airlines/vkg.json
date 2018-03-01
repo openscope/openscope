@@ -3,7 +3,9 @@
     "name": "Thomas Cook Airlines Scandinavia",
     "callsign": {
         "name": "Viking",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

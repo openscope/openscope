@@ -3,7 +3,9 @@
     "name": "Adria Airways",
     "callsign": {
         "name": "Adria",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

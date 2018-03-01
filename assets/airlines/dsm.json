@@ -3,7 +3,9 @@
     "name": "LATAM Airlines Argentina",
     "callsign": {
         "name": "Lanar",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "long": [
