@@ -3,6 +3,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/openscope/openscope/badge.svg?branch=develop)](https://coveralls.io/github/openscope/openscope?branch=develop)
 [![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![Backers on Open Collective](https://opencollective.com/openscope/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/openscope/sponsors/badge.svg)](#sponsors) 
 
 ## OpenScope Air Traffic Control Simulator
 
@@ -50,6 +52,19 @@ We do not use forks. Instead, we add to add all contributors to the openScope or
 We use the [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) for managing branches.  If you would like to contribute, you will be expected to use appropriate branch names based on this methodology (and we can help if you have questions).
 
 Don't know Javascript?  That's cool, we're always looking for beta testers and/or airport contributors.  If you would like to add a new airport, or help update existing airports, please read the [Airport Documentation](https://github.com/openscope/openscope/wiki/Airport.json) to get up to speed on what is expected in that file.
+
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="graphs/contributors"><img src="https://opencollective.com/openscope/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/openscope)]
+
+<a href="https://opencollective.com/openscope#backers" target="_blank"><img src="https://opencollective.com/openscope/backers.svg?width=890"></a>
 
 
 ## License
