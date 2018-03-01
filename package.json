@@ -7,7 +7,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build --prod",
+    "postinstall": "gulp build --prod && opencollective postinstall",
     "test": "nyc --require babel-core/register ava --concurrency=5",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
@@ -83,6 +83,7 @@
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
     "mkdirp": "^0.5.1",
+    "opencollective": "^1.0.3",
     "raf": "^3.3.0"
   },
   "devDependencies": {
@@ -133,5 +134,10 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "yargs": "^6.6.0"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/openscope",
+    "logo": "https://opencollective.com/openscope/logo.txt"
   }
 }
