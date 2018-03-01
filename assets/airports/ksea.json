@@ -519,9 +519,9 @@
         }
     },
     "stars": {
-        "CHINS2": {
-            "icao": "CHINS2",
-            "name": "Chins Two",
+        "CHINS3": {
+            "icao": "CHINS3",
+            "name": "Chins Three",
             "entryPoints": {
                 "CHINS": [],
                 "IMB": ["IMB", "SUNED", "YKM"],
@@ -619,9 +619,9 @@
                 ["LIINE", "FOOTT", "GOALZ", "SONDR"]
             ]
         },
-        "JAWBN5": {
-            "icao": "JAWBN5",
-            "name": "Jawbone Five",
+        "JAWBN6": {
+            "icao": "JAWBN6",
+            "name": "Jawbone Six",
             "entryPoints": {
                 "JAWBN": [],
                 "TOU": ["TOU"],
@@ -968,7 +968,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "PDT.CHINS2.KSEA16R",
+            "route": "PDT.CHINS3.KSEA16R",
             "altitude": [18000, 36000],
             "speed": 320,
             "method": "random",
