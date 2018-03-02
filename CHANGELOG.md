@@ -15,6 +15,7 @@
 - [#864](https://github.com/openscope/openscope/issues/864) - Resolve console.warning() is not a function (when drawing SIDs), by removing the -ing
 - [#879](https://github.com/openscope/openscope/issues/879) - Restore functionality of non-procedural descents to airspace ceiling
 - [#895](https://github.com/openscope/openscope/issues/895) - Ensure number-type variables defined in spawn patterns are cast to numbers if provided as strings
+- [906](https://github.com/openscope/openscope/issues/906) - Updates `StripViewController` to remove a flight strip once an aircraft has left controlled airspace
 
 ### Enhancements & Refactors
 - [#840](https://github.com/openscope/openscope/issues/840) - Updates documentation on airport file standards

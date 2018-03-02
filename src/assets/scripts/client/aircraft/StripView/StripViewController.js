@@ -129,12 +129,30 @@ export default class StripViewController {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
+            // we end up here when an aircraft is outside controlled airspace
+            // but not yet removed from the view
+            if (typeof stripViewModel === 'undefined') {
+                return;
+            }
+
             if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
                 this._addViewToStripList(stripViewModel);
+
+                return;
+            }
+
+            // an aircraft is exiting controlled airspace but the aircraft strip
+            // is still in the DOM. this where the strip gets removed from the DOM
+            if (!aircraftModel.inside_ctr && aircraftModel.isRemovable) {
+                this.removeStripView(aircraftModel);
+
+                return;
             }
 
             if (aircraftModel.inside_ctr) {
                 stripViewModel.update(aircraftModel);
+
+                return;
             }
         }
     }
@@ -223,8 +241,11 @@ export default class StripViewController {
     removeStripView(aircraftModel) {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
+        // returning without error here because this method could be called
+        // by aircraft that have left controlled airspace but may not yet
+        // be removed from the view
         if (!stripViewModel) {
-            throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
+            return;
         }
 
         this._removeCidFromUse(stripViewModel.cid);

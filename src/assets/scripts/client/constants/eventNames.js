@@ -2,7 +2,7 @@
  * Enum containing all triggerable events triggered via the `EventBus`
  *
  * Before adding an event, every effort should be made to communicate
- * accross classes with direct imports. Events are available but can
+ * across classes with direct imports. Events are available but can
  * be harder to debug and follow. Use with caution.
  *
  * @property EVENT
