@@ -652,6 +652,9 @@ export default class AircraftModel {
     crossBoundary(inbound) {
         this.inside_ctr = inbound;
 
+        // this provides a quick exit when physics are being calculated for future
+        // aircraft math. this prevents mutating the state of an aircraft when
+        // calculating future flight paths.
         if (this.projected) {
             return;
         }
@@ -663,7 +666,6 @@ export default class AircraftModel {
             return;
         }
 
-        // leaving airspace
         this.onAirspaceExit();
     }
 
@@ -672,37 +674,54 @@ export default class AircraftModel {
      * @method onAirspaceExit
      */
     onAirspaceExit() {
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            return this.arrivalExit();
-        }
-
         this.setIsRemovable();
 
-        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
-            this.radioCall(
-                'leaving radar coverage without proper clearance',
-                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
-                true
-            );
-            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.arrivalExit();
 
             return;
         }
 
-        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+        this.departureExit();
     }
 
     /**
-     * An arriving aircraft is exiting the airpsace
+     * Called when an arriving aircraft is about to exit controlled airspace
+     *
+     * Encapsulates logic to perform when an aircraft leaves controlled airspace
      *
      * @for AircraftModel
      * @method arrivalExit
      */
     arrivalExit() {
-        this.setIsRemovable();
-        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
+        const radioMessage = 'leaving radar coverage as arrival';
+
+        this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
         GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+    }
+
+    /**
+     * Called when an arriving aircraft is about to exit controlled airspace
+     *
+     * Encapsulates logic to perform when an aircraft leaves controlled airspace
+     *
+     * @for AircraftModel
+     * @method departureExit
+     */
+    departureExit() {
+        let radioMessage = 'switching to center, good day';
+
+        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
+            radioMessage = 'leaving radar coverage without proper clearance';
+
+            this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+
+            return;
+        }
+
+        this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
     }
 
     /**
@@ -1104,6 +1123,7 @@ export default class AircraftModel {
         this.altitude = runwayModel.elevation;
     }
 
+    // TODO: this method should be looked at and made less gross
     /**
      * @for AircraftModel
      * @method radioCall
@@ -1124,8 +1144,6 @@ export default class AircraftModel {
         if (sectorType) {
             call += AirportController.airport_get().radio[sectorType];
         }
-
-        // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
         const logMessage = (callsign) => `${AirportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
@@ -2045,7 +2063,7 @@ export default class AircraftModel {
 
         // TODO: whats the difference here between the if and else blocks? why are we looking for a 0 length?
         // TODO: abstract to AircraftPositionHistory class
-        // Trailling
+        // Trailing
         if (this.relativePositionHistory.length === 0) {
             this.relativePositionHistory.push([
                 this.positionModel.relativePosition[0],

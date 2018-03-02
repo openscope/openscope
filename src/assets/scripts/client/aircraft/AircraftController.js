@@ -330,7 +330,6 @@ export default class AircraftController {
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
-        this.removeStripView(aircraftModel);
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
@@ -346,6 +345,7 @@ export default class AircraftController {
     aircraft_update() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraft = this.aircraft.list[i];
+
             aircraft.update();
             aircraft.updateWarning();
 
@@ -377,40 +377,42 @@ export default class AircraftController {
         }
 
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            const aircraft = this.aircraft.list[i];
+            const aircraftModel = this.aircraft.list[i];
 
             // TODO: these next 3 logic blocks could use some cleaning/abstraction
-            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
+            // TODO: this might already be happening in AircraftModel.crossBoundary()
+            if (aircraftModel.category === FLIGHT_CATEGORY.ARRIVAL && aircraftModel.isStopped()) {
                 // TODO: move this to the GAME_EVENTS constant
                 // TODO: move this out of the aircraft model
-                aircraft.scoreWind('landed');
+                aircraftModel.scoreWind('landed');
 
-                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
+                UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
                 speech_say([
-                    { type: 'callsign', content: aircraft },
+                    { type: 'callsign', content: aircraftModel },
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
                 GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                aircraft.setIsRemovable();
-                this.aircraft_remove(aircraft);
+                aircraftModel.setIsRemovable();
+                this.aircraft_remove(aircraftModel);
 
                 continue;
             }
 
-            if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
-                aircraft.setIsRemovable();
+            if (aircraftModel.hit && aircraftModel.isOnGround()) {
+                UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
+                aircraftModel.setIsRemovable();
 
                 speech_say([
-                    { type: 'callsign', content: aircraft },
+                    { type: 'callsign', content: aircraftModel },
                     { type: 'text', content: ', radar contact lost' }
                 ]);
             }
 
             // Clean up the screen from aircraft that are too far
-            if (!this.isAircraftVisible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
-                this.aircraft_remove(aircraft);
+            if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.inside_ctr && aircraftModel.isRemovable) {
+                this.aircraft_remove(aircraftModel);
+
                 i -= 1;
             }
         }
