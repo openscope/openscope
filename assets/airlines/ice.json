@@ -2,14 +2,14 @@
     "icao": "ice",
     "name": "Icelandair",
     "callsign": {
-        "name": "Iceair",
+        "name": "Ice Air",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["B752", 26],
+            ["B752", 27],
             ["B753", 1],
             ["B763", 4]
         ]

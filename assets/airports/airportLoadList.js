@@ -371,7 +371,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Seattle-Tacoma International Airport',
             premium: false,
             wip: false
-        // },
+        },
         // {
         //     icao: 'ksfo',
         //     level: 'medium',
@@ -413,6 +413,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Vienna International Airport',
         //     premium: false,
         //     wip: true
+        // },
+        {
+            icao: 'lszh',
+            level: 'medium',
+            name: 'Zürich Airport',
+            premium: false,
+            wip: false
         // },
         // {
         //     icao: 'ltba',

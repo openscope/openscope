@@ -4,7 +4,10 @@
     "callsign": {
         "name": "Lufthansa",
         "callsignFormats": [
-            "###"
+            "####",
+            "###",
+            "##@",
+            "#@@"
         ]
     },
     "fleets": {
