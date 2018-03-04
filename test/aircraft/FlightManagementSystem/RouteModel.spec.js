@@ -974,6 +974,16 @@ ava('._createAmendedConvergentLeg() returns an empty array when leg is a direct 
     t.deepEqual(result, []);
 });
 
+ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent waypoint is the SID leg\'s first fix', (t) => {
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
+    const waypointName = 'JESJI';
+    const legIndex = 0;
+    const expectedResult = [model._legCollection[legIndex]];
+    const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'HITME';
@@ -983,6 +993,16 @@ ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypo
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
 
     t.true(createLegsFromSidWaypointsAfterWaypointNameSpy.calledWithExactly(waypointName, legIndex));
+    t.deepEqual(result, expectedResult);
+});
+
+ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent waypoint is the STAR leg\'s first fix', (t) => {
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const waypointName = 'DVC';
+    const legIndex = 0;
+    const expectedResult = [model._legCollection[legIndex]];
+    const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+
     t.deepEqual(result, expectedResult);
 });
 
@@ -1041,6 +1061,16 @@ ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct l
     t.deepEqual(result, []);
 });
 
+ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent waypoint is the SID leg\'s last fix', (t) => {
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
+    const waypointName = 'HEC';
+    const legIndex = 0;
+    const expectedResult = [model._legCollection[legIndex]];
+    const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'BOACH';
@@ -1050,6 +1080,16 @@ ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypo
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
 
     t.true(createLegsFromSidWaypointsBeforeWaypointNameSpy.calledWithExactly(waypointName, legIndex));
+    t.deepEqual(result, expectedResult);
+});
+
+ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent waypoint is the STAR leg\'s last fix', (t) => {
+    const model = new RouteModel('BCE.GRNPA1.KLAS07R');
+    const waypointName = 'LEMNZ';
+    const legIndex = 0;
+    const expectedResult = [model._legCollection[legIndex]];
+    const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+
     t.deepEqual(result, expectedResult);
 });
 
@@ -1176,8 +1216,8 @@ ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated
 });
 
 ava('._overwriteRouteBetweenWaypointNames() adjusts divergent/convergent legs and replaces middle content correctly', (t) => {
-    const primaryModel = new RouteModel(navigationLibraryFixture, 'KLAS07R.TRALR6.BCE.J11.DRK');
-    const otherModel = new RouteModel(navigationLibraryFixture, 'BCE..NAVHO');
+    const primaryModel = new RouteModel('KLAS07R.TRALR6.BCE.J11.DRK');
+    const otherModel = new RouteModel('BCE..NAVHO');
     const expectedResult = [true, { log: 'rerouting to: KLAS07R TRALR6 BCE NAVHO J11 DRK', say: 'rerouting as requested' }];
     const result = primaryModel._overwriteRouteBetweenWaypointNames('BCE', 'NAVHO', otherModel);
 
