@@ -876,24 +876,37 @@ export default class RouteModel extends BaseModel {
 
     // ------------------------------ PRIVATE ------------------------------
 
-    _appendRouteModelBeginningAtWaypointName(waypointName, routeModel) {
-        const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(waypointName);
+    /**
+     * Append a provided route model into this RouteModel
+     *
+     * This method only serves to call the method that contains the appropriate logic
+     * based on the type of leg in which the divergent waypoint resides, since this
+     * heavily weighs in to how the merging of the routes should be done.
+     *
+     * @for RouteModel
+     * @method _appendRouteModelBeginningAtWaypointName
+     * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
+     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @return {array} [success of operation, readback]
+     */
+    _appendRouteModelBeginningAtWaypointName(divergentWaypointName, routeModel) {
+        const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const divergentLeg = this._legCollection[indexOfDivergentLeg];
 
         if (divergentLeg.isAirwayLeg) {
-            return this._appendRouteModelOutOfAirwayLeg(waypointName, routeModel);
+            return this._appendRouteModelOutOfAirwayLeg(divergentWaypointName, routeModel);
         }
 
         if (divergentLeg.isDirectLeg) {
-            return this._appendRouteModelOutOfDirectLeg(waypointName, routeModel);
+            return this._appendRouteModelOutOfDirectLeg(divergentWaypointName, routeModel);
         }
 
         if (divergentLeg.isSidLeg) {
-            return this._appendRouteModelOutOfSidLeg(waypointName, routeModel);
+            return this._appendRouteModelOutOfSidLeg(divergentWaypointName, routeModel);
         }
 
         if (divergentLeg.isStarLeg) {
-            return this._appendRouteModelOutOfStarLeg(waypointName, routeModel);
+            return this._appendRouteModelOutOfStarLeg(divergentWaypointName, routeModel);
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
@@ -901,6 +914,17 @@ export default class RouteModel extends BaseModel {
         );
     }
 
+    /**
+     * Append a provided route model into this RouteModel when the divergent waypoint is in an airway leg
+     *
+     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     *
+     * @for RouteModel
+     * @method _appendRouteModelOutOfAirwayLeg
+     * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
+     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @return {array} [success of operation, readback]
+     */
     _appendRouteModelOutOfAirwayLeg(divergentWaypointName, routeModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const amendedAirwayLeg = this._createAmendedAirwayLegUsingDifferentExitName(
@@ -923,6 +947,17 @@ export default class RouteModel extends BaseModel {
         return [true, readback];
     }
 
+    /**
+     * Append a provided route model into this RouteModel when the divergent waypoint is in a direct leg
+     *
+     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     *
+     * @for RouteModel
+     * @method _appendRouteModelOutOfDirectLeg
+     * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
+     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @return {array} [success of operation, readback]
+     */
     _appendRouteModelOutOfDirectLeg(divergentWaypointName, routeModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
 
@@ -936,6 +971,17 @@ export default class RouteModel extends BaseModel {
         return [true, readback];
     }
 
+    /**
+     * Append a provided route model into this RouteModel when the divergent waypoint is in a SID leg
+     *
+     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     *
+     * @for RouteModel
+     * @method _appendRouteModelOutOfSidLeg
+     * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
+     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @return {array} [success of operation, readback]
+     */
     _appendRouteModelOutOfSidLeg(divergentWaypointName, routeModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const remainingLegWaypointsAsLegs = this._createLegsFromSidWaypointsBeforeWaypointName(
@@ -958,6 +1004,17 @@ export default class RouteModel extends BaseModel {
         return [true, readback];
     }
 
+    /**
+     * Append a provided route model into this RouteModel when the divergent waypoint is in a STAR leg
+     *
+     * This should only ever be called by `._appendRouteModelBeginningAtWaypointName()`
+     *
+     * @for RouteModel
+     * @method _appendRouteModelOutOfSidLeg
+     * @param divergentWaypointName {string} name of waypoint at which the two routes have continuity
+     * @param routeModel {RouteModel} the RouteModel to be absorbed into this
+     * @return {array} [success of operation, readback]
+     */
     _appendRouteModelOutOfStarLeg(divergentWaypointName, routeModel) {
         const indexOfDivergentLeg = this._findIndexOfLegContainingWaypointName(divergentWaypointName);
         const divergentLegModel = this._legCollection[indexOfDivergentLeg];
@@ -1038,9 +1095,15 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Create an airway leg based on the provided one, except with the new specified entry
      *
+     * NOTE: this assumes the entry fix provided has already been verified as valid for this airway
      *
-     * Note: this assumes the entry fix provided has already been verified as valid for this airway
+     * @for RouteModel
+     * @method _createAmendedAirwayLegUsingDifferentEntryName
+     * @param entryFixName {string} name of airway entry to use for the new airway leg
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {LegModel}
      */
     _createAmendedAirwayLegUsingDifferentEntryName(entryFixName, legIndex) {
         const convergentLegModel = this._legCollection[legIndex];
@@ -1052,6 +1115,17 @@ export default class RouteModel extends BaseModel {
         return amendedAirwayLeg;
     }
 
+    /**
+     * Create an airway leg based on the provided one, except with the new specified exit
+     *
+     * NOTE: this assumes the exit fix provided has already been verified as valid for this airway
+     *
+     * @for RouteModel
+     * @method _createAmendedAirwayLegUsingDifferentExitName
+     * @param exitFixName {string} name of airway exit to use for the new airway leg
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {LegModel}
+     */
     _createAmendedAirwayLegUsingDifferentExitName(exitFixName, legIndex) {
         const divergentLeg = this._legCollection[legIndex];
         const airwayName = divergentLeg.getAirwayName();
@@ -1063,12 +1137,12 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Amend the leg in #_legCollection at which a provided RouteModel converges with this model, such
-     * that the leg in #_legCollection ends at the point of convergence.
+     * Amend the leg from #_legCollection at which a provided RouteModel converges with this model, such
+     * that the amended leg begins at the point of convergence.
      *
      * @for RouteModel
      * @method _createAmendedConvergentLeg
-     * @param indexOfConvergentLegModel {number} index of leg where provided RouteModel intersects this RouteModel
+     * @param indexOfConvergentLegModel {number} index of leg which intersects with the provided RouteModel
      * @param endWaypointName {string} name of the waypoint within that leg at which the routes converge
      * @return {array<LegModel>}
      */
@@ -1110,6 +1184,16 @@ export default class RouteModel extends BaseModel {
         throw new TypeError(`Expected known leg type, but received type "${convergentLegModel.legType}"`);
     }
 
+    /**
+     * Amend the leg from #_legCollection at which a provided RouteModel diverges from this model, such
+     * that the amended leg ends at the point of divergence.
+     *
+     * @for RouteModel
+     * @method _createAmendedDivergentLeg
+     * @param indexOfDivergentLegModel {number} index of leg which intersects with the provided RouteModel
+     * @param startWaypointName {string} name of the waypoint within that leg at which the routes diverge
+     * @return {array<LegModel>}
+     */
     _createAmendedDivergentLeg(indexOfDivergentLegModel, startWaypointName) {
         const divergentLegModel = this._legCollection[indexOfDivergentLegModel];
 
@@ -1148,6 +1232,15 @@ export default class RouteModel extends BaseModel {
         throw new TypeError(`Expected known leg type, but received type "${divergentLegModel.legType}"`);
     }
 
+    /**
+     * Accept a SID leg, and explode it into direct legs, including only waypoints before the specified one
+     *
+     * @for RouteModel
+     * @method _createLegsFromSidWaypointsBeforeWaypointName
+     * @param waypointName {string} name of waypoint where we begin to discard waypoints
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {array<LegModel>}
+     */
     _createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex) {
         const divergentLeg = this._legCollection[legIndex];
         const waypointModels = divergentLeg.getAllWaypointModelsBeforeWaypointName(waypointName);
@@ -1156,6 +1249,15 @@ export default class RouteModel extends BaseModel {
         return remainingLegWaypointsAsLegs;
     }
 
+    /**
+     * Accept a STAR leg, and explode it into direct legs, including only waypoints after the specified one
+     *
+     * @for RouteModel
+     * @method _createLegsFromStarWaypointsAfterWaypointName
+     * @param waypointName {string} name of waypoint after which we begin to keep waypoints
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {array<LegModel>}
+     */
     _createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex) {
         const convergentLegModel = this._legCollection[legIndex];
         const waypointModels = convergentLegModel.getAllWaypointModelsAfterWaypointName(waypointName);
@@ -1164,6 +1266,15 @@ export default class RouteModel extends BaseModel {
         return remainingLegWaypointsAsLegs;
     }
 
+    /**
+     * Accept a STAR leg, and explode it into direct legs, including only waypoints before the specified one
+     *
+     * @for RouteModel
+     * @method _createLegsFromStarWaypointsBeforeWaypointName
+     * @param waypointName {string} name of waypoint where we begin to discard waypoints
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {array<LegModel>}
+     */
     _createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex) {
         const divergentLegModel = this._legCollection[legIndex];
         const waypointModels = divergentLegModel.getAllWaypointModelsBeforeWaypointName(waypointName);
@@ -1172,6 +1283,15 @@ export default class RouteModel extends BaseModel {
         return remainingLegWaypointsAsLegs;
     }
 
+    /**
+     * Return a STAR leg based on the provided leg, except with the new specified entry
+     *
+     * @for RouteModel
+     * @method _createAmendedStarLegUsingDifferentEntryName
+     * @param entryFixName {string} name of STAR entry to use for the new STAR leg
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {LegModel}
+     */
     _createAmendedStarLegUsingDifferentEntryName(entryFixName, legIndex) {
         const convergentLegModel = this._legCollection[legIndex];
         const procedureIcao = convergentLegModel.getProcedureIcao();
@@ -1182,6 +1302,15 @@ export default class RouteModel extends BaseModel {
         return amendedStarLeg;
     }
 
+    /**
+     * Return a STAR leg based on the provided leg, except with the new specified exit
+     *
+     * @for RouteModel
+     * @method _createAmendedStarLegUsingDifferentExitName
+     * @param exitFixName {string} name of STAR exit to use for the new STAR leg
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {LegModel}
+     */
     _createAmendedStarLegUsingDifferentExitName(exitFixName, legIndex) {
         const divergentLegModel = this._legCollection[legIndex];
         const procedureIcao = divergentLegModel.getProcedureIcao();
@@ -1192,6 +1321,15 @@ export default class RouteModel extends BaseModel {
         return amendedStarLeg;
     }
 
+    /**
+     * Accept a SID leg, and explode it into direct legs, including only waypoints after the specified one
+     *
+     * @for RouteModel
+     * @method _createLegsFromSidWaypointsAfterWaypointName
+     * @param waypointName {string} name of waypoint where we begin to keep waypoints
+     * @param legIndex {number} index of leg in the #_legCollection
+     * @return {array<LegModel>}
+     */
     _createLegsFromSidWaypointsAfterWaypointName(waypointName, legIndex) {
         const convergentLeg = this._legCollection[legIndex];
         const waypointModels = convergentLeg.getAllWaypointModelsAfterWaypointName(waypointName);
@@ -1201,6 +1339,14 @@ export default class RouteModel extends BaseModel {
     }
 
     // TODO: Also add support for preserving waypoint data (restrictions, hold instructions, etc)
+    /**
+     * Return an array of direct LegModels, one for each of the proided WaypointModels
+     *
+     * @for RouteModel
+     * @method _createLegModelsFromWaypointModels
+     * @param waypointModels {array<WaypointModel>} waypoint models to convert to direct legs
+     * @return {array<LegModel>}
+     */
     _createLegModelsFromWaypointModels(waypointModels) {
         return _map(waypointModels, (waypointModel) => new LegModel(waypointModel.name));
     }
@@ -1338,6 +1484,22 @@ export default class RouteModel extends BaseModel {
         ];
     }
 
+    /**
+     * Remove portions of the route between the specified waypoint names, and insert the provided RouteModel
+     *
+     * This will also result in amending (or exploding into direct legs) any leg with which
+     * the provided RouteModel intersects in the middle. For example, if the provided RouteModel
+     * intersects an airway leg at a waypoint somewhere other than the entry or exit of that airway
+     * leg, this method will change the entry/exit of the airway leg such that it aligns with the
+     * provided RouteModel.
+     *
+     * @for RouteModel
+     * @method _overwriteRouteBetweenWaypointNames
+     * @param startWaypointName {string}
+     * @param endWaypointName {string}
+     * @param routeModel {RouteModel}
+     * @return {array} [success of operation, readback]
+     */
     _overwriteRouteBetweenWaypointNames(startWaypointName, endWaypointName, routeModel) {
         const legCollection = this._legCollection.slice(0);
         const indexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
@@ -1373,28 +1535,28 @@ export default class RouteModel extends BaseModel {
      * heavily weighs in to how the merging of the routes should be done.
      *
      * @for RouteModel
-     * @method _prependRouteModelIntoStarLeg
+     * @method _prependRouteModelEndingAtWaypointName
      * @param convergentWaypointName {string} name of waypoint at which the two routes have continuity
      * @param routeModel {RouteModel} the RouteModel to be absorbed into this
      */
-    _prependRouteModelEndingAtWaypointName(waypointName, routeModel) {
-        const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(waypointName);
+    _prependRouteModelEndingAtWaypointName(convergentWaypointName, routeModel) {
+        const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(convergentWaypointName);
         const convergentLegModel = this._legCollection[indexOfConvergentLegModel];
 
         if (convergentLegModel.isAirwayLeg) {
-            return this._prependRouteModelIntoAirwayLeg(waypointName, routeModel);
+            return this._prependRouteModelIntoAirwayLeg(convergentWaypointName, routeModel);
         }
 
         if (convergentLegModel.isDirectLeg) {
-            return this._prependRouteModelIntoDirectLeg(waypointName, routeModel);
+            return this._prependRouteModelIntoDirectLeg(convergentWaypointName, routeModel);
         }
 
         if (convergentLegModel.isSidLeg) {
-            return this._prependRouteModelIntoSidLeg(waypointName, routeModel);
+            return this._prependRouteModelIntoSidLeg(convergentWaypointName, routeModel);
         }
 
         if (convergentLegModel.isStarLeg) {
-            return this._prependRouteModelIntoStarLeg(waypointName, routeModel);
+            return this._prependRouteModelIntoStarLeg(convergentWaypointName, routeModel);
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
