@@ -309,15 +309,8 @@ export default class InputController {
      * @param aircraftModel {AircraftModel}
      */
     selectAircraft = (aircraftModel) => {
-        if (!aircraftModel) {
-            return this.deselectAircraft();
-        }
-
-        if (!aircraftModel.inside_ctr) {
-            const isWarning = true;
-            const message = `No response from: ${aircraftModel.callsign}, they are outside controlled airspace`
-
-            UiController.ui_log(message, isWarning);
+        if (!aircraftModel || !aircraftModel.inside_ctr) {
+            this.deselectAircraft();
 
             return;
         }

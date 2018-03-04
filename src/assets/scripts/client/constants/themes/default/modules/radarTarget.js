@@ -15,7 +15,7 @@ export const RADAR_TARGET_THEME = {
      * @memberof RADAR_TARGET_THEME
      * @property HISTORY_DOT_INSIDE_RANGE
      */
-    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE,
+    HISTORY_DOT_INSIDE_RANGE: COLOR.WHITE_05,
 
     /**
      * Color of the dots behind the aircraft, showing where it has been

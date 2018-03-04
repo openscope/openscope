@@ -849,7 +849,7 @@ export default class CanvasController {
 
         cc.save();
 
-        if (!aircraftModel.inside_ctr) {
+        if (aircraftModel.inside_ctr) {
             fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
         }
 

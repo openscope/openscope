@@ -180,7 +180,7 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_OUT_OF_RANGE
      */
-    TEXT_OUT_OF_RANGE: COLOR.WHITE_05,
+    TEXT_OUT_OF_RANGE: COLOR.WHITE,
 
     /**
      * Color of text used in the data block
