@@ -1,13 +1,7 @@
 ## 6.1.0 (April 1, 2018)
 ---
 ### New Features
-- Add Ottawa Macdonald–Cartier International Airport (Canada) [#108](https://github.com/openscope/openscope/issues/108)
-- Add Leeds Bradford Airport (England, United Kingdom) [#265](https://github.com/openscope/openscope/issues/265)
-- Add Kansas City Int'l (KMCI) [#816](https://github.com/openscope/openscope/issues/816)
-- Add Raleigh-Durham Int'l (KRDU) [#819](https://github.com/openscope/openscope/issues/819)
-- Add Pittsburgh International Airport (KPIT) [#785](https://github.com/openscope/openscope/issues/785)
-- Allows selection of only aircraft within controlled airspace [#818](https://github.com/openscope/openscope/issues/818)
-
+- [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
 
 
 
