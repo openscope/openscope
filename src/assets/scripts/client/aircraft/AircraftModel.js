@@ -951,6 +951,7 @@ export default class AircraftModel {
         // return isAlignedWithCourse && isOnCourseHeading;
     }
 
+    // TODO: the logic here should be moved to the `AirportModel`
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
      *
@@ -964,7 +965,8 @@ export default class AircraftModel {
         let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
 
-        if (!_isNil(airport.perimeter)) {    // polygonal airspace boundary
+        // polygonal airspace boundary
+        if (!_isNil(airport.perimeter)) {
             withinAirspaceLateralBoundaries = point_in_area(this.positionModel.relativePosition, airport.perimeter);
         }
 

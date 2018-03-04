@@ -1,7 +1,7 @@
 ## 6.1.0 (April 1, 2018)
 ---
 ### New Features
-
+- [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
 
 
 
