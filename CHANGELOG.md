@@ -2,6 +2,7 @@
 ### New Features
 - [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
 - [#444](https://github.com/openscope/openscope/issues/444) - Adds option button to toggle video map display
+- [#884](https://github.com/openscope/openscope/issues/884) - Add airline files for non-US registration callsigns
 
 
 
