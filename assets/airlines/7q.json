@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "7q",
+    "name": "General Aviation Malawi",
     "callsign": {
-        "name": "November",
+        "name": "Seven Quebec",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

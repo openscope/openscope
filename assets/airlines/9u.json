@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "9u",
+    "name": "General Aviation Burundi",
     "callsign": {
-        "name": "November",
+        "name": "Niner Uniform",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

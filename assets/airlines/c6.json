@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "c6",
+    "name": "General Aviation Bahamas",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Six",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

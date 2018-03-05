@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "7t",
+    "name": "General Aviation Algeria",
     "callsign": {
-        "name": "November",
+        "name": "Seven Tango",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

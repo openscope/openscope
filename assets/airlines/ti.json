@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ti",
+    "name": "General Aviation Costa Rica",
     "callsign": {
-        "name": "November",
+        "name": "Tango India",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

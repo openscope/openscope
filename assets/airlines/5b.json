@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "5b",
+    "name": "General Aviation Cyprus",
     "callsign": {
-        "name": "November",
+        "name": "Five Bravo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "4x",
+    "name": "General Aviation Israel",
     "callsign": {
-        "name": "November",
+        "name": "Four Xray",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "cp",
+    "name": "General Aviation Bolivia",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Papa",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####"
         ]
     },
     "fleets": {

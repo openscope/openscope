@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "tz",
+    "name": "General Aviation Mali",
     "callsign": {
-        "name": "November",
+        "name": "Tango Zulu",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

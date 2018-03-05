@@ -1,11 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ex",
+    "name": "General Aviation Kyrgyzstan",
     "callsign": {
-        "name": "November",
+        "name": "Echo Xray",
         "callsignFormats": [
-            "###@@",
-            "####@",
+            "###",
             "#####"
         ]
     },

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "zj",
+    "name": "General Aviation Jersey",
     "callsign": {
-        "name": "November",
+        "name": "Zulu Juliet",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

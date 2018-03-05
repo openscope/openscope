@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "hc",
+    "name": "General Aviation Ecuador",
     "callsign": {
-        "name": "November",
+        "name": "Hotel Charlie",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

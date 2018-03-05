@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "lz",
+    "name": "General Aviation Bulgaria",
     "callsign": {
-        "name": "November",
+        "name": "Lima Zulu",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "hi",
+    "name": "General Aviation Dominica",
     "callsign": {
-        "name": "November",
+        "name": "Hotel India",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "###@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "e5",
+    "name": "General Aviation Cook Islands",
     "callsign": {
-        "name": "November",
+        "name": "Echo Five",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

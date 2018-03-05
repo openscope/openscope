@@ -1,11 +1,9 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "uk",
+    "name": "General Aviation Uzbekistan",
     "callsign": {
-        "name": "November",
+        "name": "Uniform Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
             "#####"
         ]
     },

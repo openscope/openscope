@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ph",
+    "name": "General Aviation Netherlands",
     "callsign": {
-        "name": "November",
+        "name": "Papa Hotel",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

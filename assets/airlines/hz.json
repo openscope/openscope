@@ -1,12 +1,15 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "hz",
+    "name": "General Aviation Saudi Arabia",
     "callsign": {
-        "name": "November",
+        "name": "Hotel Zulu",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@",
+            "@@#",
+            "@@##",
+            "@@@#",
+            "@@@##",
+            "@@@@"
         ]
     },
     "fleets": {

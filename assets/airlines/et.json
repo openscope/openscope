@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "et",
+    "name": "General Aviation Ethiopia",
     "callsign": {
-        "name": "November",
+        "name": "Echo Tanga",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

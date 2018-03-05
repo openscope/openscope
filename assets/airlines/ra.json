@@ -1,11 +1,9 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ra",
+    "name": "General Aviation Russian Federation",
     "callsign": {
-        "name": "November",
+        "name": "Romeo Alpha",
         "callsignFormats": [
-            "###@@",
-            "####@",
             "#####"
         ]
     },

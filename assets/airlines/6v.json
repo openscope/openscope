@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "6v",
+    "name": "General Aviation Senegal",
     "callsign": {
-        "name": "November",
+        "name": "Six Victor",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

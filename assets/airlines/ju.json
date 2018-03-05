@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ju",
+    "name": "General Aviation Mongolia",
     "callsign": {
-        "name": "November",
+        "name": "Juliet Uniform",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####"
         ]
     },
     "fleets": {

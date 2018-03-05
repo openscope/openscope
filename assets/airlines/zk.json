@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "zk",
+    "name": "General Aviation New Zealand",
     "callsign": {
-        "name": "November",
+        "name": "Zulu Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

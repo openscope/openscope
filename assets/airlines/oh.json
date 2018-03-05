@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "oh",
+    "name": "General Aviation Finland",
     "callsign": {
-        "name": "November",
+        "name": "Oscar Hotel",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "a6",
+    "name": "General Aviation United Arab Emirates",
     "callsign": {
-        "name": "November",
+        "name": "Alpha Six",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

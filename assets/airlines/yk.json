@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "yk",
+    "name": "General Aviation Syria",
     "callsign": {
-        "name": "November",
+        "name": "Yankee Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

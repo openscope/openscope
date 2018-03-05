@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "c3",
+    "name": "General Aviation Andorra",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Three",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

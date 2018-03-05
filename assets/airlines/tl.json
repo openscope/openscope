@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "tl",
+    "name": "General Aviation Central African Republic",
     "callsign": {
-        "name": "November",
+        "name": "Tango Lima",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

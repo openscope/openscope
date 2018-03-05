@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "v2",
+    "name": "General Aviation Antigua and Barbuda",
     "callsign": {
-        "name": "November",
+        "name": "Victor Two",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "t7",
+    "name": "General Aviation San Marino",
     "callsign": {
-        "name": "November",
+        "name": "Tango Seven",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

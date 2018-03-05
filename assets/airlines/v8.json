@@ -1,12 +1,12 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "v8",
+    "name": "General Aviation Brunei",
     "callsign": {
-        "name": "November",
+        "name": "Victor Eight",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@",
+            "@@#",
+            "###"
         ]
     },
     "fleets": {

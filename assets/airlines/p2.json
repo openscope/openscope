@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "p2",
+    "name": "General Aviation Papua New Guinea",
     "callsign": {
-        "name": "November",
+        "name": "Papa Two",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####@@"
         ]
     },
     "fleets": {

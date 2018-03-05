@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "e4",
+    "name": "General Aviation Palestine",
     "callsign": {
-        "name": "November",
+        "name": "Echo Four",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

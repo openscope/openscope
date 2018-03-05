@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "5w",
+    "name": "General Aviation Samoa",
     "callsign": {
-        "name": "November",
+        "name": "Five Whiskey",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

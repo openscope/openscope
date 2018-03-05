@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "tg",
+    "name": "General Aviation Guatemala",
     "callsign": {
-        "name": "November",
+        "name": "Tango Golf",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

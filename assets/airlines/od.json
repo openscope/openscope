@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "od",
+    "name": "General Aviation Lebanon",
     "callsign": {
-        "name": "November",
+        "name": "Oscar Delta",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

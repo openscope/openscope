@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "t9",
+    "name": "General Aviation Bosnia and Herzegovina",
     "callsign": {
-        "name": "November",
+        "name": "Tango Niner",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

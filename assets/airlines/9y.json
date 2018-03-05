@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "9y",
+    "name": "General Aviation Trinidad and Tobago",
     "callsign": {
-        "name": "November",
+        "name": "Niner Yankee",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

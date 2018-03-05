@@ -1,12 +1,12 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "b",
+    "name": "General Aviation China",
     "callsign": {
-        "name": "November",
+        "name": "Bravo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "#####",
+            "####",
+            "##@@"
         ]
     },
     "fleets": {

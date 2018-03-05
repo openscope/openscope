@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "j8",
+    "name": "General Aviation Saint Vincent and the Grenadines",
     "callsign": {
-        "name": "November",
+        "name": "Juliet Eight",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

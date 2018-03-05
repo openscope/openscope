@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ez",
+    "name": "General Aviation Turkmenistan",
     "callsign": {
-        "name": "November",
+        "name": "Echo Zulu",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@###"
         ]
     },
     "fleets": {

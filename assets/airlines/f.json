@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "f",
+    "name": "General Aviation France",
     "callsign": {
-        "name": "November",
+        "name": "Foxtrot",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "hl",
+    "name": "General Aviation South Korea",
     "callsign": {
-        "name": "November",
+        "name": "Hotel Lima",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####"
         ]
     },
     "fleets": {

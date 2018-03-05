@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "s7",
+    "name": "General Aviation Seychelles",
     "callsign": {
-        "name": "November",
+        "name": "Sierra Seven",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

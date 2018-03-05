@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "g",
+    "name": "General Aviation United Kingdom",
     "callsign": {
-        "name": "November",
+        "name": "Golf",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@@"
         ]
     },
     "fleets": {

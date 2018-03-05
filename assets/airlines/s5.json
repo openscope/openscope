@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "s5",
+    "name": "General Aviation Slovenia",
     "callsign": {
-        "name": "November",
+        "name": "Sierra Five",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

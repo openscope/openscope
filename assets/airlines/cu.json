@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "cu",
+    "name": "General Aviation Cuba",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Uniform",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@####"
         ]
     },
     "fleets": {

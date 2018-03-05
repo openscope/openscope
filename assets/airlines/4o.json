@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "4o",
+    "name": "General Aviation Montenegro",
     "callsign": {
-        "name": "November",
+        "name": "Four Oscar",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

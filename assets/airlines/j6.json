@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "j6",
+    "name": "General Aviation Saint Lucia",
     "callsign": {
-        "name": "November",
+        "name": "Juliet Six",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

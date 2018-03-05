@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "cx",
+    "name": "General Aviation Uruguay",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Xray",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

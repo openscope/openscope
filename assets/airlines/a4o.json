@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "a4o",
+    "name": "General Aviation Oman",
     "callsign": {
-        "name": "November",
+        "name": "Alpha Four Oscar",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@"
         ]
     },
     "fleets": {

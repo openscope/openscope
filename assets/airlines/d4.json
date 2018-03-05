@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "d4",
+    "name": "General Aviation Cape Verde",
     "callsign": {
-        "name": "November",
+        "name": "Delta Four",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

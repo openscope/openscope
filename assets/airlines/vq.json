@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "vq",
+    "name": "General Aviation British Overseas Territories",
     "callsign": {
-        "name": "November",
+        "name": "Victor Quebec",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

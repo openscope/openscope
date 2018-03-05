@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "yl",
+    "name": "General Aviation Latvia",
     "callsign": {
-        "name": "November",
+        "name": "Yankee Lima",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,12 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ja",
+    "name": "General Aviation Japen",
     "callsign": {
-        "name": "November",
+        "name": "Juliet Alpha",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####",
+            "###@",
+            "##@@"
         ]
     },
     "fleets": {

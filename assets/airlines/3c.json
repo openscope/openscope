@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "3c",
+    "name": "General Aviation Equatorial Guinea",
     "callsign": {
-        "name": "November",
+        "name": "Three Charlie",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

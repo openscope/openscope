@@ -1,11 +1,9 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ey",
+    "name": "General Aviation Tajikistan",
     "callsign": {
-        "name": "November",
+        "name": "Echo Yankee",
         "callsignFormats": [
-            "###@@",
-            "####@",
             "#####"
         ]
     },

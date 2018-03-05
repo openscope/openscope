@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "hp",
+    "name": "General Aviation Panama",
     "callsign": {
-        "name": "November",
+        "name": "Hotel Papa",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####@@"
         ]
     },
     "fleets": {

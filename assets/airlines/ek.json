@@ -1,11 +1,9 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "ek",
+    "name": "General Aviation Armenia",
     "callsign": {
-        "name": "November",
+        "name": "Echo Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
             "#####"
         ]
     },

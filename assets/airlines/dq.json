@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "dq",
+    "name": "General Aviation Fiji Islands",
     "callsign": {
-        "name": "November",
+        "name": "Delta Quebec",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

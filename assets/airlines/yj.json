@@ -1,12 +1,11 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "yj",
+    "name": "General Aviation Vanuatu",
     "callsign": {
-        "name": "November",
+        "name": "Yankee Juliet",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@#",
+            "@@##"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "vn",
+    "name": "General Aviation Vietnam",
     "callsign": {
-        "name": "November",
+        "name": "Victor November",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####"
         ]
     },
     "fleets": {

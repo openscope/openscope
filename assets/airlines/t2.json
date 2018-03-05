@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "t2",
+    "name": "General Aviation Tuvalu",
     "callsign": {
-        "name": "November",
+        "name": "Tango Two",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

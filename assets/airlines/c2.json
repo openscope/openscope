@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "c2",
+    "name": "General Aviation Nauru",
     "callsign": {
-        "name": "November",
+        "name": "Charlie Two",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "zp",
+    "name": "General Aviation Paraguay",
     "callsign": {
-        "name": "November",
+        "name": "Zulu Papa",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "3b",
+    "name": "General Aviation Mauritius",
     "callsign": {
-        "name": "November",
+        "name": "Three Bravo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

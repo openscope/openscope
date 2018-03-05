@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "s9",
+    "name": "General Aviation Sao Tome and Principe",
     "callsign": {
-        "name": "November",
+        "name": "Sierra Niner",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

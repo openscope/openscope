@@ -1,12 +1,13 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "4k",
+    "name": "General Aviation Azerbaijan",
     "callsign": {
-        "name": "November",
+        "name": "Four Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "#####",
+            "@@#",
+            "@@##",
+            "@@###"
         ]
     },
     "fleets": {

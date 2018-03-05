@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "z3",
+    "name": "General Aviation Macedonia",
     "callsign": {
-        "name": "November",
+        "name": "Zulu Three",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

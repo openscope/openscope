@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "j5",
+    "name": "General Aviation Guinea Bissau",
     "callsign": {
-        "name": "November",
+        "name": "Juliet Five",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

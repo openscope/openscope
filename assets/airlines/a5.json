@@ -1,12 +1,10 @@
 {
-    "icao": "n",
-    "name": "General Aviation USA",
+    "icao": "a5",
+    "name": "General Aviation Bhutan",
     "callsign": {
-        "name": "November",
+        "name": "Alpha Five",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {
