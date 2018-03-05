@@ -1,4 +1,5 @@
 import _has from 'lodash/has';
+import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
@@ -227,7 +228,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
-        return aircraft.pilot.clearedAsFiled();
+        return aircraft.pilot.clearedAsFiled(aircraft);
     }
 
     /**
@@ -326,7 +327,19 @@ export default class AircraftCommander {
      */
     runExpectArrivalRunway(aircraft, data) {
         const airportModel = AirportController.airport_get();
-        const runwayModel = airportModel.getRunway(data[0]);
+        const runwayName = data[0];
+        const runwayModel = airportModel.getRunway(runwayName);
+
+        if (_isNil(runwayModel)) {
+            const oldRunwayModel = aircraft.fms.arrivalRunwayModel;
+            const readback = {};
+            readback.log = `unable to find Runway ${runwayName} on our charts, ` +
+                `expecting Runway ${oldRunwayModel.name} instead`;
+            readback.say = `unable to find Runway ${radio_runway(runwayName)} on our ` +
+                `charts, expecting Runway ${oldRunwayModel.getRadioName()} instead`;
+
+            return [false, readback];
+        }
 
         return aircraft.pilot.setArrivalRunway(aircraft, runwayModel);
     }
@@ -562,19 +575,23 @@ export default class AircraftCommander {
             taxiDestination = airport.departureRunwayModel.name;
         }
 
-        const runway = AirportController.airport_get().getRunway(taxiDestination.toUpperCase());
+        const runwayModel = AirportController.airport_get().getRunway(taxiDestination.toUpperCase());
 
-        if (!runway) {
-            return [false, `no runway ${taxiDestination.toUpperCase()}`];
+        if (!runwayModel) {
+            return [false, `unable to find Runway ${taxiDestination.toUpperCase()} on our charts`];
         }
 
-        const readback = aircraft.pilot.taxiToRunway(runway, isDeparture, flightPhase);
+        if (!aircraft.fms.isRunwayModelValidForSid(runwayModel)) {
+            aircraft.pilot.cancelDepartureClearance(aircraft);
+        }
+
+        const readback = aircraft.pilot.taxiToRunway(runwayModel, isDeparture, flightPhase);
 
         // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.fms.departureRunwayModel = runway;
+        aircraft.fms.departureRunwayModel = runwayModel;
         aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
-        runway.addAircraftToQueue(aircraft.id);
+        runwayModel.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         GameController.game_timeout(

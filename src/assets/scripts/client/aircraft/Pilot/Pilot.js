@@ -374,6 +374,24 @@ export default class Pilot {
     }
 
     /**
+     * Cancel departure clearance
+     *
+     * @for Pilot
+     * @method cancelDepartureClearance
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, response]
+     */
+    cancelDepartureClearance(aircraftModel) {
+        if (aircraftModel.isAirborne()) {
+            return;
+        }
+
+        this.hasDepartureClearance = false;
+
+        return [true, 'roger, understand IFR clearance is cancelled, standing by'];
+    }
+
+    /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
      * @for Pilot
@@ -381,7 +399,20 @@ export default class Pilot {
      * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
      * @return {Array}                  [success of operation, readback]
      */
-    clearedAsFiled() {
+    clearedAsFiled(aircraft) {
+        const fms = aircraft.fms;
+        const departureRunwayModel = fms.departureRunwayModel;
+
+        if (!aircraft.fms.isRunwayModelValidForSid(departureRunwayModel)) {
+            const readback = {};
+            readback.log = `according to our charts, Runway ${departureRunwayModel.name} ` +
+                `is not valid for the ${fms._routeModel.getSidIcao()} departure`;
+            readback.say = `according to our charts, Runway ${departureRunwayModel.getRadioName()} ` +
+                `is not valid for the ${fms._routeModel.getSidName()} departure`;
+
+            return [false, readback];
+        }
+
         this.hasDepartureClearance = true;
 
         const readback = {};
@@ -796,13 +827,7 @@ export default class Pilot {
             return [false, 'unable to accept arrival runway assignment until airborne'];
         }
 
-        if (_isNil(runwayModel)) {
-            return [false, 'unable to find that runway on our charts'];
-        }
-
-        aircraft.fms.setArrivalRunway(runwayModel);
-
-        return [true, `expecting Runway ${runwayModel.name}`];
+        return this._fms.setArrivalRunway(runwayModel);
     }
 
     /**

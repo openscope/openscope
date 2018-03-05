@@ -738,7 +738,7 @@ ava('.updateSidLegForDepartureRunwayModel() calls LegModel.updateStarLegForArriv
     t.true(sidLegUpdateSidRunwaySpy.calledWithExactly(nextRunwayModel));
 });
 
-ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains no STAR leg to update', (t) => {
+ava.skip('.updateStarLegForArrivalRunwayModel() returns early when the route contains no STAR leg to update', (t) => {
     const routeModel = new RouteModel('OAL..TNP');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
@@ -750,7 +750,7 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains
     t.true(starLegUpdateSidRunwaySpy.notCalled);
 });
 
-ava('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the STAR leg', (t) => {
+ava.skip('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the STAR leg', (t) => {
     const routeModel = new RouteModel('TNP.KEPEC3.KLAS07R');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
