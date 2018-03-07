@@ -26,13 +26,17 @@
             "ceiling": 245,
             "airspace_class": "D",
             "poly": [
-                ["N25d55m22.21", "E051d44m18.38"],
-                ["N25d37m05.47", "E051d56m07.62"],
-                ["N25d08m14.67", "E051d57m21.08"],
-                ["N24d52m39.25", "E051d55m24.00"],
-                ["N24d49m14.11", "E051d47m28.03"],
-                ["N24d48m43.41", "E051d29m16.47"],
-                ["N25d28m11.84", "E051d09m37.13"],
+                ["N26d17m03.00", "E051d04m42.00"],
+                ["N25d27m22.11", "E052d49m38.29"],
+                ["N24d47m49.83", "E052d20m03.45"],
+                ["N24d42m49.43", "E051d42m06.47"],
+                ["N24d38m55.53", "E051d38m51.31"],
+                ["N24d30m12.49", "E051d36m47.35"],
+                ["N24d25m36.38", "E051d34m59.98"],
+                ["N24d25m23.02", "E050d59m05.53"],
+                ["N24d45m00.00", "E050d49m00.00"],
+                ["N25d15m46.16", "E050d38m52.56"],
+                ["N25d39m54.00", "E050d50m18.00"],
                 ["N26d17m03.00", "E051d04m42.00"]
             ]
         }
@@ -976,7 +980,7 @@
             "route": "MEKRI..KUMSI..MEKMA..KUPSA..AFNAN.AFNAN1E.OTHH34R",
             "rate": 7.25,
             "altitude": [22000, 27000],
-            "speed": 290,
+            "speed": 280,
             "airlines": [
                 ["qtr", 834],
                 ["clx", 11],
@@ -999,7 +1003,7 @@
             "route": "LADBO..RASBO..DATRI..EMEXA..LADEM..AFNAN.AFNAN1W.OTHH34L",
             "rate": 1.5,
             "altitude": [22000, 27000],
-            "speed": 290,
+            "speed": 280,
             "airlines": [
                 ["qtr", 97],
                 ["eth/long", 3]
@@ -1013,7 +1017,7 @@
             "route": "ASTAD..TOTIS..RASDI..VELAM..GOMTO..LUBAK..LABOV..BAYAN.BAYAN1W.OTHH34L",
             "rate": 6.25,
             "altitude": [22000, 27000],
-            "speed": 290,
+            "speed": 280,
             "airlines": [
                 ["baw/long", 1],
                 ["qtr", 75],
@@ -1035,7 +1039,7 @@
             "route": "ROSAN..DASOS..RABLA..VEDED..VELAM..GOMTO..LUBAK..LABOV..BAYAN.BAYAN1W.OTHH34L",
             "rate": 2.5,
             "altitude": [22000, 27000],
-            "speed": 290,
+            "speed": 280,
             "airlines": [
                 ["qtr", 195],
                 ["ira", 5]
@@ -1049,7 +1053,7 @@
             "route": "HSA..SALWA..ULIKA..GINTO.GINTO1W.OTHH34L",
             "rate": 1,
             "altitude": [22000, 27000],
-            "speed": 290,
+            "speed": 280,
             "airlines": [
                 ["qtr", 100]
             ]
