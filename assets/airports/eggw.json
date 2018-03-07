@@ -1,16 +1,16 @@
 {
     "radio": {
         "twr": "Luton Tower",
-        "app": "London Control",
+        "app": "Essex Radar",
         "dep": "London Control"
     },
     "icao": "EGGW",
     "iata": "LTN",
     "magnetic_north": -0.27,
     "ctr_radius": 90,
-    "ctr_ceiling": 28500,
+    "ctr_ceiling": 19500,
     "initial_alt": 5000,
-    "position": ["N51d52m29", "W000d22m06", "152ft"],
+    "position": ["N51d52m29", "W000d22m06", "526ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N51d52m29", "W000d22m06"],
     "has_terrain": true,
@@ -22,7 +22,7 @@
         {
             "floor": 0,
             "ceiling": 195,
-            "airspace_class": "A",
+            "airspace_class": "B",
             "poly": [
                 ["N51d59m04", "E001d23m02"],
                 ["N51d52m22", "E001d26m35"],
@@ -514,7 +514,8 @@
         "_BPK316021": [51.99948100597, -0.50184242348],
         "_BPK337006": [51.84149785856, -0.17031185322],
         "_BPK357003": [51.79959493126, -0.11120132382],
-        "_DET001032": [51.83666154257, 0.601788545],
+        "_DET000032": [51.83666777999, 0.59908047815],
+        "_DET001032": [51.83656547404, 0.6141246143],
         "_DET335028": [51.72005, 0.28559],
         "_HEN076010": [51.80074922247, -0.53021056015],
         "_HEN077017": [51.82432094259, -0.34601581363],
@@ -899,7 +900,7 @@
             ]
         },
         {
-            "name": "EG R159",
+            "name": "EG R104",
             "height": "2400ft",
             "coordinates": [
                 [51.423312900, -1.023611100],
@@ -1347,15 +1348,15 @@
     ],
     "airways": {
         "L6": ["DVR", "DET"],
+        "L620": ["DAWLY", "BRIPO", "GIBSO", "BEVUP", "ABKIM", "SAM", "HAZEL", "MID", "CLN", "ARTOV", "REDFA"],
         "L9": ["KONAN", "DVR", "UMTUM", "EMKAD", "DIKVU", "BIG", "GOXUL", "NORRY", "CPT", "KENET"],
-        "Q295": ["CPT", "BPK", "TOTRI", "MATCH", "BRAIN", "DAGGA", "CLN"],
-        "UL620": ["SAM", "MID", "GILDA", "SIRGO", "MANGO", "CLN", "ARTOV", "REDFA"],
-        "Y321": ["EXARO", "PEPIS", "NUBRI", "CPT", "EMKUK", "ADMEX"],
-        "Q41": ["ORTAC", "ASPEN", "THRED", "NEDUL", "SAM", "PEPIS", "TABEN", "NORRY", "COWLY", "SILVA"],
-        "N621": ["LELNA", "MARUK", "KAPEX", "SAM", "EVTES", "GOGSI"],
-        "T420": ["ALESO", "ROTNO", "ETVAX", "TIGER", "BIG", "FINCH", "HEMEL", "BUZAD", "OLNEY", "WELIN", "AKUPA", "TIMPO", "ELVOS", "TNT"],
         "L980": ["ORTAC", "VEXEN", "DOMUT", "KATHY", "ABSAV", "AVANT", "MID", "LAM", "WESUL", "BRASO", "MANGO", "LIVSU", "SABER", "TRIPO", "JACKO", "LOGAN", "XAMAN"],
-        "L620": ["DAWLY", "BRIPO", "GIBSO", "BEVUP", "ABKIM", "SAM", "HAZEL", "MID", "CLN", "ARTOV", "REDFA"]
+        "N621": ["LELNA", "MARUK", "KAPEX", "SAM", "EVTES", "GOGSI"],
+        "Q295": ["CPT", "BPK", "TOTRI", "MATCH", "BRAIN", "DAGGA", "CLN"],
+        "Q41": ["ORTAC", "ASPEN", "THRED", "NEDUL", "SAM", "PEPIS", "TABEN", "NORRY", "COWLY", "SILVA"],
+        "T420": ["ALESO", "ROTNO", "ETVAX", "TIGER", "BIG", "FINCH", "HEMEL", "BUZAD", "OLNEY", "WELIN", "AKUPA", "TIMPO", "ELVOS", "TNT"],
+        "UL620": ["SAM", "MID", "GILDA", "SIRGO", "MANGO", "CLN", "ARTOV", "REDFA"],
+        "Y321": ["EXARO", "PEPIS", "NUBRI", "CPT", "EMKUK", "ADMEX"]
     },
     "sids": {
         "CPT3B": {
@@ -1776,7 +1777,7 @@
             "entryPoints": {
                 "DET": [["DET", "A170-"]]
             },
-            "body": [["_DET001032", "S250-"], "@CASEY"],
+            "body": [["_DET360032", "S250-"], "@CASEY"],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1986,7 +1987,7 @@
             "entryPoints": {
                 "TELTU": [["TELTU", "A190"]]
             },
-            "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["@LOREL", "S220-"]],
+            "body": ["VATON", ["BPK", "S250-"], ["BKY", "S220-"], ["^BUSTA", "S220-"], ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
