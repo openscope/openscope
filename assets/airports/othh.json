@@ -2425,8 +2425,9 @@
             "method": "random",
             "rate": 3,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["qtr", 85],
-                ["clx", 3],
+                ["clx", 2],
                 ["fdb", 4],
                 ["uae", 5],
                 ["etd", 3]
@@ -2442,8 +2443,9 @@
             "method": "random",
             "rate": 1,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["qtr", 98],
-                ["ira", 2]
+                ["ira", 1]
             ]
         },
         {
@@ -2456,7 +2458,8 @@
             "method": "random",
             "rate": 1.5,
             "airlines": [
-                ["qtr", 98],
+                ["a7/fastGA", 1],
+                ["qtr", 97],
                 ["eth/long", 2]
             ]
         },
@@ -2470,6 +2473,7 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["qtr", 80],
                 ["axb", 5],
                 ["igo", 6],
@@ -2487,6 +2491,7 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["qtr", 85],
                 ["igo", 5],
                 ["jai/short", 5],
@@ -2504,7 +2509,8 @@
             "method": "random",
             "rate": 1,
             "airlines": [
-                ["qtr", 100]
+                ["a7/fastGA", 1],
+                ["qtr", 250]
             ]
         },
         {
@@ -2515,8 +2521,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 6.25,
+            "rate": 7,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["baw/long", 1],
                 ["qtr", 75],
                 ["kkk", 2],
@@ -2539,7 +2546,8 @@
             "altitude": [22000, 27000],
             "speed": 280,
             "airlines": [
-                ["qtr", 834],
+                ["a7/fastGA", 5],
+                ["qtr", 829],
                 ["clx", 11],
                 ["fdb", 16],
                 ["uae", 20],
@@ -2572,10 +2580,11 @@
             "category": "arrival",
             "method": "random",
             "route": "ASTAD..TOTIS..RASDI..VELAM..GOMTO..LUBAK..LABOV..BAYAN.BAYAN1W.OTHH34L",
-            "rate": 6.25,
+            "rate": 7.0,
             "altitude": [22000, 27000],
             "speed": 280,
             "airlines": [
+                ["a7/fastGA", 1],
                 ["baw/long", 1],
                 ["qtr", 75],
                 ["kkk", 2],
@@ -2598,7 +2607,8 @@
             "altitude": [22000, 27000],
             "speed": 280,
             "airlines": [
-                ["qtr", 195],
+                ["a7/fastGA", 2],
+                ["qtr", 193],
                 ["ira", 5]
             ]
         },
@@ -2612,7 +2622,8 @@
             "altitude": [22000, 27000],
             "speed": 280,
             "airlines": [
-                ["qtr", 100]
+                ["qtr", 100],
+                ["a7/fastGA", 5]
             ]
         }
     ],
