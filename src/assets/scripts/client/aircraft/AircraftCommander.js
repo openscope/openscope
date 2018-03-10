@@ -331,12 +331,12 @@ export default class AircraftCommander {
         const runwayModel = airportModel.getRunway(runwayName);
 
         if (_isNil(runwayModel)) {
-            const oldRunwayModel = aircraft.fms.arrivalRunwayModel;
+            const previousRunwayModel = aircraft.fms.arrivalRunwayModel;
             const readback = {};
             readback.log = `unable to find Runway ${runwayName} on our charts, ` +
-                `expecting Runway ${oldRunwayModel.name} instead`;
+                `expecting Runway ${previousRunwayModel.name} instead`;
             readback.say = `unable to find Runway ${radio_runway(runwayName)} on our ` +
-                `charts, expecting Runway ${oldRunwayModel.getRadioName()} instead`;
+                `charts, expecting Runway ${previousRunwayModel.getRadioName()} instead`;
 
             return [false, readback];
         }
@@ -586,11 +586,9 @@ export default class AircraftCommander {
         }
 
         const readback = aircraft.pilot.taxiToRunway(runwayModel, isDeparture, flightPhase);
-
-        // TODO: this may need to live in a method on the aircraft somewhere
-        aircraft.fms.departureRunwayModel = runwayModel;
         aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
+        aircraft.fms.setDepartureRunway(runwayModel);
         runwayModel.addAircraftToQueue(aircraft.id);
         aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 

@@ -445,9 +445,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS07L": [],
                 "KLAS07R": [],
                 "KLAS19L": [],
-                "KLAS19R": [],
-                "KLAS25L": [],
-                "KLAS25R": []
+                "KLAS19R": []
             },
             "draw": [[]]
         }

@@ -839,7 +839,6 @@ export default class RouteModel extends BaseModel {
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
 
-    // FIXME: Test
     /**
     * Ensure the STAR leg has the specified arrival runway as the exit point
     *
@@ -859,17 +858,16 @@ export default class RouteModel extends BaseModel {
         const starLegModel = this._legCollection[starLegIndex];
 
         if (!starLegModel.procedureHasExit(nextExitName)) {
-            const procedureModelIcao = starLegModel.getProcedureIcao();
-            const procedureModelName = starLegModel.getProcedureName();
+            const procedureIcao = starLegModel.getProcedureIcao();
+            const procedureName = starLegModel.getProcedureName();
             const readback = {};
-            readback.log = `unable, Runway ${runwayModel.name} is not valid for the ${procedureModelIcao} arrival`;
-            readback.say = `unable, Runway ${runwayModel.name} is not valid for the ${procedureModelName} arrival`;
+            readback.log = `unable, Runway ${runwayModel.name} is not valid for the ${procedureIcao} arrival`;
+            readback.say = `unable, Runway ${runwayModel.getRadioName()} is not valid for the ${procedureName} arrival`;
 
             return [false, readback];
         }
 
         const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
-
         this._legCollection[starLegIndex] = amendedStarLegModel;
 
         this.skipToWaypointName(originalCurrentWaypointName);

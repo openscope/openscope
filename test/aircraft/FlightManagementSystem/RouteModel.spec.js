@@ -738,28 +738,49 @@ ava('.updateSidLegForDepartureRunwayModel() calls LegModel.updateStarLegForArriv
     t.true(sidLegUpdateSidRunwaySpy.calledWithExactly(nextRunwayModel));
 });
 
-ava.skip('.updateStarLegForArrivalRunwayModel() returns early when the route contains no STAR leg to update', (t) => {
+ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains no STAR leg to update', (t) => {
     const routeModel = new RouteModel('OAL..TNP');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
-    const starLegUpdateSidRunwaySpy = sinon.spy(routeModel._legCollection[0], 'updateStarLegForArrivalRunwayModel');
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
 
-    routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
-    t.true(starLegUpdateSidRunwaySpy.notCalled);
+    t.true(createAmendedStarLegSpy.notCalled);
+    t.true(typeof result === 'undefined');
 });
 
-ava.skip('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the STAR leg', (t) => {
+ava('.updateStarLegForArrivalRunwayModel() returns an unable response when the runway is not valid for the current STAR', (t) => {
+    const routeModel = new RouteModel('DRK.ZIMBO1.KLAS07R');
+    const airportModel = createAirportModelFixture();
+    const nextRunwayName = '25L';
+    const nextRunwayModel = airportModel.getRunway(nextRunwayName);
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
+    const expectedResult = [false, {
+        log: 'unable, Runway 25L is not valid for the ZIMBO1 arrival',
+        say: 'unable, Runway two five left is not valid for the Zimbo One arrival'
+    }];
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+
+    t.true(createAmendedStarLegSpy.notCalled);
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.updateStarLegForArrivalRunwayModel() replaces the STAR leg with a newly created one using the correct parameters', (t) => {
     const routeModel = new RouteModel('TNP.KEPEC3.KLAS07R');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
-    const starLegUpdateSidRunwaySpy = sinon.spy(routeModel._legCollection[0], 'updateStarLegForArrivalRunwayModel');
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
+    const expectedResult = [true, {
+        log: 'expecting Runway 25L',
+        say: 'expecting Runway two five left'
+    }];
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
-    routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
-
-    t.true(starLegUpdateSidRunwaySpy.calledWithExactly(nextRunwayModel));
+    t.true(createAmendedStarLegSpy.calledWithExactly('KLAS25L', 0));
+    t.deepEqual(result, expectedResult);
 });
 
 ava('.reset() clears #_legCollection', (t) => {

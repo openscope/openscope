@@ -63,7 +63,7 @@ export default class AircraftCommandParser {
      * @for AircraftCommandParser
      * @param rawCommandWithArgs {string}  string present in the `$commandInput` when the user pressed `enter`
      */
-    constructor(rawCommandWithArgs) {
+    constructor(rawCommandWithArgs = '') {
         if (!_isString(rawCommandWithArgs)) {
             // istanbul ignore next
             // eslint-disable-next-line max-len
@@ -277,15 +277,15 @@ export default class AircraftCommandParser {
     _validateCommandArguments() {
         const validatedCommandList = _map(this.commandList, (command) => {
             if (typeof command === 'undefined') {
-                return;
+                return null;
             }
 
-            const hasError = command.validateArgs();
+            const errorMessage = command.validateArgs();
 
-            if (hasError) {
+            if (errorMessage) {
                 // we only return here so all the errors can be thrown at once
                 // from within the calling method
-                return hasError;
+                return errorMessage;
             }
 
             command.parseArgs();

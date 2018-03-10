@@ -400,15 +400,14 @@ export default class Pilot {
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(aircraft) {
-        const fms = aircraft.fms;
-        const departureRunwayModel = fms.departureRunwayModel;
+        const departureRunwayModel = aircraft.fms.departureRunwayModel;
 
         if (!aircraft.fms.isRunwayModelValidForSid(departureRunwayModel)) {
             const readback = {};
             readback.log = `according to our charts, Runway ${departureRunwayModel.name} ` +
-                `is not valid for the ${fms._routeModel.getSidIcao()} departure`;
+                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
             readback.say = `according to our charts, Runway ${departureRunwayModel.getRadioName()} ` +
-                `is not valid for the ${fms._routeModel.getSidName()} departure`;
+                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
 
             return [false, readback];
         }

@@ -25,10 +25,6 @@ const buildCommandList = (...args) => {
     return commandString.split(' ');
 };
 
-ava('throws when called without parameters', t => {
-    t.throws(() => new AircraftCommandParser());
-});
-
 ava('throws when called with an invalid command', (t) => {
     t.throws(() => new AircraftCommandParser(['threeve']));
     t.throws(() => new AircraftCommandParser(false));
@@ -40,6 +36,10 @@ ava('throws when called with invalid arguments', (t) => {
     const commandStringMock = buildCommandString(TAKEOFF_MOCK, 'threeve');
 
     t.throws(() => new AircraftCommandParser(commandStringMock));
+});
+
+ava('does not throw when called without parameters', t => {
+    t.notThrows(() => new AircraftCommandParser());
 });
 
 ava('#args returns one item when a system command is present', t => {

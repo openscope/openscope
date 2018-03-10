@@ -299,7 +299,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #arrivalAirportModel
+     * Initialize `#arrivalAirportModel`
      *
      * @for Fms
      * @method _initializeArrivalAirport
@@ -315,7 +315,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #arrivalRunwayModel
+     * Initialize `#arrivalRunwayModel`
      *
      * @for Fms
      * @method _initializeArrivalRunway
@@ -338,7 +338,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #departureAirportModel
+     * Initialize `#departureAirportModel`
      *
      * @for Fms
      * @method _initializeDepartureAirport
@@ -354,7 +354,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #departureRunwayModel
+     * Initialize `#departureRunwayModel`
      *
      * @for Fms
      * @method _initializeDepartureRunway
@@ -377,7 +377,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #currentPhase as appropriate based on the spawn category
+     * Initialize `#currentPhase` as appropriate based on the spawn category
      *
      * @for Fms
      * @method _initializeFlightPhaseForCategory
@@ -398,7 +398,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #flightPlanAltitude
+     * Initialize `#flightPlanAltitude`
      *
      * @for Fms
      * @method _initializeFlightPlanAltitude
@@ -637,7 +637,11 @@ export default class Fms {
     }
 
     /**
-     * Facade for #_routeModel.isRunwayModelValidForSid()
+     * Facade for `#_routeModel.isRunwayModelValidForSid()`
+     *
+     * Other classes will not have access to the `#_routeModel`, but can use this
+     * facade to determine whether or not a given runway assignment is allowable,
+     * given the departure procedure in the `#_routeModel`.
      *
      * @for Fms
      * @method isRunwayModelValidForSid
@@ -649,7 +653,11 @@ export default class Fms {
     }
 
     /**
-     * Facade for #_routeModel.isRunwayModelValidForStar()
+     * Facade for `#_routeModel.isRunwayModelValidForStar()`
+     *
+     * Other classes will not have access to the `#_routeModel`, but can use this
+     * facade to determine whether or not a given runway assignment is allowable,
+     * given the arrival procedure in the `#_routeModel`.
      *
      * @for Fms
      * @method isRunwayModelValidForStar
@@ -788,7 +796,7 @@ export default class Fms {
     }
 
     /**
-    * Verify and then set the value of #arrivalRunwayModel
+    * Verify and then set the value of `#arrivalRunwayModel`
     *
     * @for Fms
     * @method setArrivalRunway
@@ -828,7 +836,7 @@ export default class Fms {
     }
 
     /**
-     * Verify and then set the value of #departureRunwayModel
+     * Verify and then set the value of `#departureRunwayModel`
      *
      * @for Fms
      * @method setDepartureRunway
