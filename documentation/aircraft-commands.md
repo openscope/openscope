@@ -9,6 +9,7 @@
 - [Taxi](#taxi)
 
 [Arrival Commands](#arrival-commands)
+- [Expect Runway](#expect-runway)
 - [Descend via STAR](#descend-via-star)
 - [Land](#land)
 
@@ -94,6 +95,17 @@ _Syntax -_ `AAL123 taxi [Runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
+
+### Expect Runway
+_Aliases -_ `e`
+
+_Information -_ Informs the aircraft of the runway they should expect for
+landing. This is useful in cases where their route is sensitive to their
+runway assignment. In cases where their STAR says to follow a different series
+of waypoints dependent upon their runway, we can use this command to have an
+aircraft follow the desired branch of the STAR toward the desired runway.
+
+_Syntax -_ `AAL123 e 26r`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
