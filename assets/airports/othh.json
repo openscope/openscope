@@ -46,6 +46,14 @@
         "_RWY34R": ["N25d15m19.65", "E051d37m36.41"],
         "_RWY16R": ["N25d17m27.52", "E051d35m23.07"],
         "_RWY34L": ["N25d15m19.32", "E051d36m19.56"],
+        "_RWY16LDOH140": [25.209625, 51.646978],
+        "_DOH140010": [25.12200693611, 51.72808847842],
+        "_RWY16R01DME": [25.23984782769, 51.61227078559],
+        "_DOH355007.5": [25.37473687485, 51.59757222347],
+        "_RWY34R01DME": [25.31162204234, 51.60203866562],
+        "_RWY34L01DME": [25.30649617802, 51.58290043962],
+        "MUXOP": ["N25d30.02", "E51d35.80"],
+        "LOXUL": ["N25d3.09", "E51d46.68"],
         "SOGAN": ["N26d39.25", "E51d54.13"],
         "TOSTA": ["N26d27.77", "E50d49.21"],
         "ITOKO": ["N26d37.70", "E50d44.27"],
@@ -2026,6 +2034,62 @@
             },
             "draw": [
                 ["_RWY34R", "BUDEB", "XABAB", "NOSBI", "BUBEN", "BUNDU*"]
+            ]
+        },
+        "LOXUL1C": {
+            "icao": "LOXUL1C",
+            "name": "Loxul One Charlie",
+            "rwy": {
+                "OTHH16R": ["^_RWY16R01DME", "^_RWY16LDOH140", "_DOH140010", ["LOXUL", "A30"]]
+            },
+            "body":[],
+            "exitPoints": {
+                "LOXUL": []
+            },
+            "draw": [
+                ["_RWY34L", "_RWY16R01DME", "_RWY16LDOH140", "_DOH140010", "LOXUL*"]
+            ]
+        },
+        "LOXUL1M": {
+            "icao": "LOXUL1M",
+            "name": "Loxul One Mike",
+            "rwy": {
+                "OTHH16L": ["^_RWY16LDOH140", ["_DOH140010", "A30"], ["LOXUL", "A30"]]
+            },
+            "body":[],
+            "exitPoints": {
+                "LOXUL": []
+            },
+            "draw": [
+                ["_RWY34R", "_RWY16LDOH140", "_DOH140010", "LOXUL*"]
+            ]
+        },
+        "MUXOP1E": {
+            "icao": "MUXOP1E",
+            "name": "Muxop One Echo",
+            "rwy": {
+                "OTHH34R": ["^_RWY34R01DME", "_DOH355007.5", ["MUXOP", "A30"]]
+            },
+            "body":[],
+            "exitPoints": {
+                "MUXOP": []
+            },
+            "draw": [
+                ["_RWY16L", "_RWY34R01DME", "_DOH355007.5", "MUXOP*"]
+            ]
+        },
+        "MUXOP1W": {
+            "icao": "MUXOP1W",
+            "name": "Muxop One Whiskey",
+            "rwy": {
+                "OTHH34L": ["^_RWY34L01DME", "_DOH355007.5", ["MUXOP", "A30"]]
+            },
+            "body":[],
+            "exitPoints": {
+                "MUXOP": []
+            },
+            "draw": [
+                ["_RWY16R", "_RWY34L01DME", "_DOH355007.5", "MUXOP*"]
             ]
         },
         "NAMLA1C": {
