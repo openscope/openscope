@@ -4,12 +4,15 @@
     "callsign": {
         "name": "Cedar Jet",
         "callsignFormats": [
-            "##@",
-            "#@@"
+            "###"
         ]
     },
     "fleets": {
         "default": [
+            ["A320", 13],
+            ["A332", 5]
+        ],
+        "short": [
             ["A320", 13]
         ],
         "long": [

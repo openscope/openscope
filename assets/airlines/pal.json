@@ -3,17 +3,27 @@
     "name": "Philippine Airlines",
     "callsign": {
         "name": "PHILIPPINE",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 10],
-            ["A321", 24]
+            ["A320", 9],
+            ["A321", 25],
+            ["A333", 15],
+            ["A343", 6],
+            ["B77W", 10]
         ],
         "long": [
             ["A333", 15],
             ["A343", 6],
             ["B77W", 10]
+        ],
+        "short": [
+            ["A320", 9],
+            ["A321", 25]
         ]
     }
 }

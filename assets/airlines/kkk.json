@@ -3,14 +3,16 @@
     "name": "AtlasGlobal",
     "callsign": {
         "name": "Atlas Jet",
-        "length": 3,
-        "alpha": true
+        "callsignFormats": [
+            "####",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
             ["A319", 1],
-            ["A320", 5],
-            ["A321", 16],
+            ["A320", 3],
+            ["A321", 15],
             ["B738", 1]
         ]
     }

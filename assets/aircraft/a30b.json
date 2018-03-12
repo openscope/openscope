@@ -1,6 +1,6 @@
 {
-    "name": "Airbus A300-600",
-    "icao": "A306",
+    "name": "Airbus A300B",
+    "icao": "A30B",
     "engines": {
         "number": 2,
         "type": "J"
@@ -25,10 +25,10 @@
     "speed":{
         "min":     110,
         "landing": 125,
-        "cruise":  472,
+        "cruise":  457,
         "cruiseM": null,
-        "max":     484,
-        "maxM":    0.82
+        "max":     496,
+        "maxM":    0.84
     },
     "capability": {
         "ils": true,
