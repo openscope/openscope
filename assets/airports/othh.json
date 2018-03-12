@@ -2036,6 +2036,20 @@
                 ["_RWY34R", "BUDEB", "XABAB", "NOSBI", "BUBEN", "BUNDU*"]
             ]
         },
+        "BUNDU1W": {
+            "icao": "BUNDU1W",
+            "name": "Bundu One Whiskey",
+            "rwy": {
+                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", "IVIBO", ["LABOV", "A40"], ["GOBLU", "A50+"], ["BUNDU", "A60-"]]
+            },
+            "body":[],
+            "exitPoints": {
+                "BUNDU": []
+            },
+            "draw": [
+                ["_RWY16R", "GETAM", "ENELI", "KOBEN", "GIBIN", "IVIBO", "LABOV", "GOBLU", "BUNDU*"]
+            ]
+        },
         "LOXUL1C": {
             "icao": "LOXUL1C",
             "name": "Loxul One Charlie",
