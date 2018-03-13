@@ -2658,7 +2658,7 @@
             "method": "random",
             "route": "MEKRI.P899.KUPSA.Q215.AFNAN.AFNAN1E.OTHH34R",
             "rate": 7.25,
-            "altitude": [22000, 27000],
+            "altitude": [30000, 33000],
             "speed": 280,
             "airlines": [
                 ["a7/fastGA", 5],
@@ -2682,7 +2682,7 @@
             "method": "random",
             "route": "SOMAL.UL564.DATRI.L564.LADEM.T112.AFNAN.AFNAN1E.OTHH34R",
             "rate": 1.5,
-            "altitude": [22000, 27000],
+            "altitude": [30000, 37000],
             "speed": 280,
             "airlines": [
                 ["eth/long", 3],
@@ -2696,8 +2696,8 @@
             "method": "random",
             "route": "KOBOK.UL438.ASTAD.N318.VELAM.Z225.BAYAN.BAYAN1W.OTHH34L",
             "rate": 7.0,
-            "altitude": [22000, 27000],
-            "speed": 280,
+            "altitude": [30000, 34000],
+            "speed": 270,
             "airlines": [
                 ["a7/fastGA", 1],
                 ["baw/long", 1],
@@ -2719,8 +2719,8 @@
             "method": "random",
             "route": "ROSAN.UR659.VEDED.R659.VELAM.Z225.BAYAN.BAYAN1W.OTHH34L",
             "rate": 2.5,
-            "altitude": [22000, 27000],
-            "speed": 280,
+            "altitude": [30000, 31000],
+            "speed": 270,
             "airlines": [
                 ["a7/fastGA", 2],
                 ["ira", 5],
@@ -2734,7 +2734,7 @@
             "method": "random",
             "route": "HSA.UM430.SALWA.M430.GINTO.GINTO1W.OTHH34L",
             "rate": 1,
-            "altitude": [22000, 27000],
+            "altitude": 30000,
             "speed": 280,
             "airlines": [
                 ["a7/fastGA", 5],
