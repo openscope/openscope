@@ -978,56 +978,70 @@ ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent w
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'JESJI';
     const legIndex = 0;
-    const expectedResult = [model._legCollection[legIndex]];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'HEC'];
+    const waypointNames = _map(result[0].waypoints, (waypointModel) => waypointModel.name);
 
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'HITME';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromSidWaypointsAfterWaypointName(waypointName, legIndex);
     const createLegsFromSidWaypointsAfterWaypointNameSpy = sinon.spy(model, '_createLegsFromSidWaypointsAfterWaypointName');
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
+    const expectedWaypointNames = ['BOACH', 'HEC'];
 
     t.true(createLegsFromSidWaypointsAfterWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent waypoint is the STAR leg\'s first fix', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'DVC';
     const legIndex = 0;
-    const expectedResult = [model._legCollection[legIndex]];
+    const expectedWaypointNames = ['DVC', 'BETHL', 'HOLDM', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createAmendedStarLegUsingDifferentEntryName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'BETHL';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedStarLegUsingDifferentEntryName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentEntryNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentEntryName');
+    const expectedWaypointNames = ['BETHL', 'HOLDM', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedStarLegUsingDifferentEntryNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromStarWaypointsAfterWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'FRAWG';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex);
     const createLegsFromStarWaypointsAfterWaypointNameSpy = sinon.spy(model, '_createLegsFromStarWaypointsAfterWaypointName');
+    const expectedWaypointNames = ['TRROP', 'LEMNZ'];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromStarWaypointsAfterWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() throws when leg is not an airway/direct/SID/STAR leg', (t) => {
@@ -1044,12 +1058,15 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentE
     const model = new RouteModel('DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedAirwayLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedAirwayLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedAirwayLegUsingDifferentExitName');
+    const expectedWaypointNames = ['DAG', 'DISBE', 'CHRLT', 'CLARR'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedAirwayLegUsingDifferentExitNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct leg', (t) => {
@@ -1065,59 +1082,76 @@ ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent way
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'HEC';
     const legIndex = 0;
-    const expectedResult = [model._legCollection[legIndex]];
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'HEC'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'BOACH';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex);
     const createLegsFromSidWaypointsBeforeWaypointNameSpy = sinon.spy(model, '_createLegsFromSidWaypointsBeforeWaypointName');
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromSidWaypointsBeforeWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent waypoint is the STAR leg\'s last fix', (t) => {
     const model = new RouteModel('BCE.GRNPA1.KLAS07R');
     const waypointName = 'LEMNZ';
     const legIndex = 0;
-    const expectedResult = [model._legCollection[legIndex]];
+    // const expectedResult = [model._legCollection[legIndex]];
+    const expectedWaypointNames = ['BCE', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createAmendedStarLegUsingDifferentExitName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('BCE.GRNPA1.KLAS07R');
     const waypointName = 'DUBLX';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
+    // const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentExitName');
+    const expectedWaypointNames = ['BCE', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedStarLegUsingDifferentExitNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromStarWaypointsBeforeWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'LUXOR';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex);
     const createLegsFromStarWaypointsBeforeWaypointNameSpy = sinon.spy(model, '_createLegsFromStarWaypointsBeforeWaypointName');
+    const expectedWaypointNames = ['DVC', 'BETHL', 'HOLDM', 'KSINO'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromStarWaypointsBeforeWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
-
-ava.todo('._createAmendedDivergentLeg()');
 
 ava('._createLegsFromSidWaypointsAfterWaypointName() returns an array of LegModels, one for each WaypointModel in the SID, after the specified one', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
