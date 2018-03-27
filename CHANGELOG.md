@@ -9,6 +9,7 @@
 
 
 ### Bugfixes
+- [#918](https://github.com/openscope/openscope/issues/918) - Fix failed load by verifying "last airport" in loadList before attempting to use it
 
 
 
