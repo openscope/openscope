@@ -21,6 +21,8 @@
 - [#856](https://github.com/openscope/openscope/issues/856) - Overhaul of Doha Hamad International Airport (OTHH)
 - [#246](https://github.com/openscope/openscope/issues/246) - Overhaul OMAA (Abu Dhabi)
 - [#908](https://github.com/openscope/openscope/issues/908) - Updates KSEA to AIRAC 1804
+- [#928](https://github.com/openscope/openscope/issues/928) - Updates KPDX to AIRAC 1804
+
 
 
 
