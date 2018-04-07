@@ -21,6 +21,7 @@ The procedure's suffix indicates the assigned runway: C stands for runway 16R, E
 
 ### Sectors Available in OpenScope
 The sim features a combination of these sectors:
+
 |     Callsign     | Primary Frequency |
 |:----------------:|:-----------------:|
 |   Doha Radar     |    121.100 MHz    |
