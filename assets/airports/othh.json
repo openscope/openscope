@@ -13,7 +13,7 @@
     "position": ["N25d16m28.43", "E051d36m30.16", "13.0ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N25d16m28.43", "E051d36m30.16"],
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 300,
         "speed": 11
@@ -56,6 +56,7 @@
         "AK"   : ["N25d37.81", "E51d30.44"],
         "ALD"  : ["N25d5.56", "E51d19.55"],
         "ALKAG": ["N25d40m42.91", "E051d34m48.24"],
+        "ALNAK": ["N25d50.89", "E51d34.03"],
         "ALSEM": ["N25d27m03.45", "E052d43m22.04"],
         "ALTOM": ["N26d22.50", "E51d56.65"],
         "ALVEN": ["N25d54m18.19", "E051d53m15.30"],
@@ -225,12 +226,182 @@
         "VEDED": ["N26d05m58.26", "E051d46m27.90"],
         "VEKEL": ["N26d19.48", "E53d57.63"],
         "VELAM": ["N25d54m26.12", "E051d43m47.13"],
+        "VUTAN": ["N25d50.26", "E51d52.31"],
         "VUVAN": ["N24d54m15.69", "E051d44m45.27"],
         "WK"   : ["N25d10.88", "E51d36.00"],
         "XABAB": ["N25d06m41.77", "E051d58m23.88"],
         "XALTO": ["N24d59m24.78", "E052d03m30.62"]
     },
     "restricted": [
+        {
+            "name": "OTD-1",
+            "height": "27000ft",
+            "coordinates": [
+                ["N24d36", "E050d55"],
+                ["N24d54", "E050d55"],
+                ["N24d54", "E051d04"],
+                ["N24d36", "E051d04"]
+            ]
+        },
+        {
+            "name": "OTD-2",
+            "height": "27000ft",
+            "coordinates": [
+                ["N24d36m06", "E050d55m07"],
+                ["N24d29m49", "E051d04m08"],
+                ["N24d29m50", "E051d11m28"],
+                ["N24d35m56", "E051d12m17"]
+            ]
+        },
+        {
+            "name": "OTD-17",
+            "height": "45000ft",
+            "coordinates": [
+                ["N25d25m50", "E050d45m00"],
+                ["N25d25m00", "E050d37m00"],
+                ["N25d07m00", "E050d40m00"],
+                ["N24d45m00", "E050d49m00"],
+                ["N24d45m50", "E050d51m40"],
+                ["N25d07m00", "E050d46m00"]
+            ]
+        },
+        {
+            "name": "OTD-26",
+            "height": "3500ft",
+            "coordinates": [
+                [25.583588300, 50.866666700],
+                [25.583472400, 50.871516800],
+                [25.583125100, 50.876353200],
+                [25.582547400, 50.881162000],
+                [25.581741000, 50.885929800],
+                [25.580708400, 50.890643100],
+                [25.579452700, 50.895288600],
+                [25.577977600, 50.899853100],
+                [25.576287600, 50.904324100],
+                [25.574387500, 50.908689100],
+                [25.572283000, 50.912935800],
+                [25.569980400, 50.917052800],
+                [25.567486200, 50.921028700],
+                [25.564807800, 50.924852700],
+                [25.561952800, 50.928514600],
+                [25.558929500, 50.932004400],
+                [25.555746400, 50.935312900],
+                [25.552412500, 50.938431400],
+                [25.548937200, 50.941351700],
+                [25.545330000, 50.944066200],
+                [25.541601200, 50.946568000],
+                [25.537760800, 50.948850500],
+                [25.533819300, 50.950908000],
+                [25.529787700, 50.952735200],
+                [25.525676600, 50.954327700],
+                [25.521497200, 50.955681300],
+                [25.517260700, 50.956792800],
+                [25.512978400, 50.957659300],
+                [25.508661700, 50.958278900],
+                [25.504322200, 50.958649800],
+                [25.499971200, 50.958771400],
+                [25.495620500, 50.958643200],
+                [25.491281300, 50.958265700],
+                [25.486965400, 50.957639800],
+                [25.482684100, 50.956767000],
+                [25.478449000, 50.955649600],
+                [25.474271200, 50.954290500],
+                [25.470162000, 50.952692800],
+                [25.466132400, 50.950860900],
+                [25.462193300, 50.948799200],
+                [25.458355400, 50.946513100],
+                [25.454629100, 50.944008300],
+                [25.451024800, 50.941291400],
+                [25.447552300, 50.938369300],
+                [25.444221400, 50.935249800],
+                [25.441041200, 50.931940900],
+                [25.438020800, 50.928451400],
+                [25.435168800, 50.924790600],
+                [25.432493300, 50.920968300],
+                [25.430001800, 50.916994700],
+                [25.427701800, 50.912880800],
+                [25.425599900, 50.908637600],
+                [25.423702100, 50.904276900],
+                [25.422014100, 50.899810600],
+                [25.420540900, 50.895251100],
+                [25.419286800, 50.890611300],
+                [25.418255600, 50.885904000],
+                [25.417450300, 50.881142300],
+                [25.416873300, 50.876339900],
+                [25.416526500, 50.871510100],
+                [25.416410700, 50.866666700],
+                [25.416526500, 50.861823200],
+                [25.416873300, 50.856993400],
+                [25.417450300, 50.852191000],
+                [25.418255600, 50.847429400],
+                [25.419286800, 50.842722000],
+                [25.420540900, 50.838082200],
+                [25.422014100, 50.833522700],
+                [25.423702100, 50.829056400],
+                [25.425599900, 50.824695700],
+                [25.427701900, 50.820452500],
+                [25.430001900, 50.816338600],
+                [25.432493200, 50.812365100],
+                [25.435168800, 50.808542700],
+                [25.438020800, 50.804881900],
+                [25.441041200, 50.801392400],
+                [25.444221400, 50.798083500],
+                [25.447552300, 50.794964000],
+                [25.451024800, 50.792041900],
+                [25.454629200, 50.789325000],
+                [25.458355400, 50.786820200],
+                [25.462193300, 50.784534100],
+                [25.466132400, 50.782472400],
+                [25.470162000, 50.780640500],
+                [25.474271200, 50.779042900],
+                [25.478449000, 50.777683700],
+                [25.482684200, 50.776566300],
+                [25.486965400, 50.775693600],
+                [25.491281300, 50.775067600],
+                [25.495620500, 50.774690100],
+                [25.499971200, 50.774562000],
+                [25.504322200, 50.774683500],
+                [25.508661700, 50.775054500],
+                [25.512978400, 50.775674000],
+                [25.517260700, 50.776540600],
+                [25.521497200, 50.777652000],
+                [25.525676600, 50.779005700],
+                [25.529787700, 50.780598100],
+                [25.533819300, 50.782425400],
+                [25.537760800, 50.784482900],
+                [25.541601200, 50.786765400],
+                [25.545330000, 50.789267100],
+                [25.548937100, 50.791981600],
+                [25.552412500, 50.794902000],
+                [25.555746300, 50.798020400],
+                [25.558929500, 50.801328900],
+                [25.561952800, 50.804818700],
+                [25.564807800, 50.808480600],
+                [25.567486200, 50.812304700],
+                [25.569980400, 50.816280500],
+                [25.572283000, 50.820397500],
+                [25.574387500, 50.824644300],
+                [25.576287600, 50.829009200],
+                [25.577977600, 50.833480200],
+                [25.579452700, 50.838044800],
+                [25.580708400, 50.842690200],
+                [25.581741000, 50.847403500],
+                [25.582547400, 50.852171300],
+                [25.583125100, 50.856980200],
+                [25.583472400, 50.861816500],
+                [25.583588300, 50.866666700]
+            ]
+        },
+        {
+            "name": "OTD-29",
+            "height": "500ft",
+            "coordinates": [
+                ["N25d08m30", "E051d22m00"],
+                ["N25d09m30", "E051d23m30"],
+                ["N25d11m00", "E051d22m00"],
+                ["N25d10m30", "E051d20m30"]
+            ]
+        },
         {
             "name": "OTP-43",
             "height": "Infinity",
@@ -1805,25 +1976,26 @@
         }
     ],
     "airways": {
-        "B415": ["KUPSA", "BUNDU", "ASNAX", "EGPOG", "UKILI"],
-        "L305": ["ALSEM", "ASTOG", "PURLI", "GODKI"],
+        "B415": ["DOH", "KUPSA", "BUNDU", "ASNAX", "EGPOG", "UKILI"],
+        "L305": ["DOH", "ORMAL", "ENANO", "ALSEM", "ASTOG", "PURLI", "GODKI"],
         "L438": ["KOBOK", "MOGAS", "ITOKO", "TOSTA", "ASTAD"],
         "L564": ["MIGMA", "KUTNA", "SOMAL", "BAT", "DENSI", "DATRI", "EMEXA", "LADEM", "DOH"],
         "M430": ["HSA", "SALWA", "ULIKA", "GINTO", "LAGNO", "DOH"],
-        "N300": ["ELOBI", "NAMLA", "MIBRU", "RUGIS", "KAXOB", "GIDOB"],
-        "N318": ["ASTAD", "TOTIS", "RASDI", "VELAM"],
-        "P430": ["ALVEN", "BONAN", "RAMKI", "ALTOM"],
+        "M444": ["DOH", "EMISA", "PATOM", "DENVO"],
+        "N300": ["DOH", "ELOBI", "NAMLA", "MIBRU", "RUGIS", "KAXOB", "GIDOB"],
+        "N318": ["ASTAD", "TOTIS", "RASDI", "VELAM", "VUTAN", "RESAR", "ALSEM", "OVONA"],
+        "P430": ["DOH", "BAYAN", "KAPAX", "VUTAN", "ALVEN", "BONAN", "RAMKI", "ALTOM"],
         "P899": ["UMIBU", "MEKRI", "KUMSI", "MEKMA", "KUPSA"],
         "Q215": ["KUPSA", "AFNAN"],
-        "R659": ["SOGAN", "ROSAN", "DASOS", "RABLA", "VEDED", "VELAM"],
+        "R659": ["SOGAN", "ROSAN", "DASOS", "RABLA", "VEDED", "VELAM", "EMISA", "DOH"],
         "T112": ["LADEM", "AFNAN"],
-        "T444": ["PATOM", "DENVO", "BAH", "ELOSO", "DESBU"],
+        "T444": ["DENVO", "BAH", "ELOSO", "DESBU"],
         "T800": ["DOH", "PATIS", "DASUT", "VEKEL", "MIRIT"],
         "UL438": ["KOBOK", "MOGAS", "ITOKO", "TOSTA", "ASTAD"],
         "UL564": ["MIGMA", "KUTNA", "SOMAL", "BAT", "DENSI", "DATRI", "EMEXA", "LADEM", "DOH"],
-        "UM430": ["HSA", "SALWA", "ULIKA", "GINTO", "LAGNO", "DOH"],
-        "UR659": ["SOGAN", "ROSAN", "DASOS", "RABLA", "VEDED", "VELAM"],
-        "UT444": ["PATOM", "DENVO", "BAH", "ELOSO", "DESBU"],
+        "UM430": ["HSA", "SALWA", "ULIKA", "GINTO", "LAGNO", "DOH", "BOVIP", "TOSNA"],
+        "UR659": ["SOGAN", "ROSAN", "DASOS", "RABLA", "VEDED", "VELAM", "EMISA", "DOH"],
+        "UT444": ["DENVO", "BAH", "ELOSO", "DESBU"],
         "UT800": ["DOH", "PATIS", "DASUT", "VEKEL", "MIRIT"],
         "Z225": ["VELAM", "GOMTO", "LUBAK", "LABOV", "BAYAN"]
     },
@@ -1832,9 +2004,9 @@
             "icao": "ALSEM1C",
             "name": "Alsem One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", "NOVLA", ["GOBLU", "A50"], ["ALSEM", "A60-"]]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", "NOVLA", ["GOBLU", "A50"], ["ALSEM", "A60-"]],
             "exitPoints": {
                 "ALSEM": []
             },
@@ -1846,9 +2018,9 @@
             "icao": "ALSEM1E",
             "name": "Alsem One Echo",
             "rwy": {
-                "OTHH34R": [["SOKEN", "A25+"], ["DEMBO", "A40"], ["UKILA", "A60+"], ["LABOV", "A70"], "ALSEM"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["SOKEN", "A25+"], ["DEMBO", "A40"], ["UKILA", "A60+"], ["LABOV", "A70"], "ALSEM"],
             "exitPoints": {
                 "ALSEM": []
             },
@@ -1860,9 +2032,9 @@
             "icao": "ALSEM1M",
             "name": "Alsem One Mike",
             "rwy": {
-                "OTHH16L": ["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "ALSEM"]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "ALSEM"],
             "exitPoints": {
                 "ALSEM": []
             },
@@ -1874,9 +2046,9 @@
             "icao": "ALSEM1W",
             "name": "Alsem One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", "TABKI", ["LUBAK", "A40"], ["ULELO", "A50+"], ["ALSEM", "A60-"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", ["TABKI", "A30"], ["LUBAK", "A40"], ["ULELO", "A50+"], ["ALSEM", "A60-"]],
             "exitPoints": {
                 "ALSEM": []
             },
@@ -1888,23 +2060,23 @@
             "icao": "ALVEN1C",
             "name": "Alven One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBOM", "ALVEN"]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40|S250-"], ["SODER", "S250-"], "MUSAN", "ENELI", ["TUKEN", "A40"], ["ALKAG", "A50+"], ["DEBIL", "A60"], ["ALVEN", "A60"]],
             "exitPoints": {
                 "ALVEN": []
             },
             "draw": [
-                ["_RWY34L", "OBVER", "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBOM", "ALVEN*"]
+                ["_RWY34L", "OBVER", "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "ALVEN*"]
             ]
         },
         "ALVEN1E": {
             "icao": "ALVEN1E",
             "name": "Alven One Echo",
             "rwy": {
-                "OTHH34R": [["SOKEN", "A25+"], ["DEMBO", "A40"], ["GIBIN", "A50+"], ["ITSET", "A70"], "ALVEN"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["SOKEN", "A25+"], ["DEMBO", "A40"], ["GIBIN", "A50+"], ["ITSET", "A70"], "ALVEN"],
             "exitPoints": {
                 "ALVEN": []
             },
@@ -1916,9 +2088,9 @@
             "icao": "ALVEN1M",
             "name": "Alven One Mike",
             "rwy": {
-                "OTHH16L": ["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "SITAL", "ALVEN"]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "SITAL", "ALVEN"],
             "exitPoints": {
                 "ALVEN": []
             },
@@ -1930,9 +2102,9 @@
             "icao": "ALVEN1W",
             "name": "Alven One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "DEBIL", "VATEK", ["NABKI", "A40"], ["ALVEN", "A60-"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "DEBIL", ["VATEK", "A30"], ["NABKI", "A40"], ["ALVEN", "A60-"]],
             "exitPoints": {
                 "ALVEN": []
             },
@@ -1944,9 +2116,9 @@
             "icao": "BATHA1C",
             "name": "Batha One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40+"], "LADEM", ["EMEXA", "A50+"], ["SOLAL", "A60+"], ["TONBI", "A70"], "DENSI", "BAT"]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40+"], "LADEM", ["EMEXA", "A50+"], ["SOLAL", "A60+"], ["TONBI", "A70"], "DENSI", "BAT"],
             "exitPoints": {
                 "BAT": []
             },
@@ -1958,23 +2130,23 @@
             "icao": "BATHA1E",
             "name": "Batha One Echo",
             "rwy": {
-                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", "BAT"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["LADEM", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", ["BAT", "A60"]],
             "exitPoints": {
                 "BAT": []
             },
             "draw": [
-                ["_RWY16L", "ELEDA", "MEBTI", "BOSUP", "MUXED", "EMEXA", "SOLAL", "DENSI", "BAT*"]
+                ["_RWY16L", "ELEDA", "MEBTI", "BOSUP", "MUXED", "LADEM", "EMEXA", "SOLAL", "DENSI", "BAT*"]
             ]
         },
         "BATHA1M": {
             "icao": "BATHA1M",
             "name": "Batha One Mike",
             "rwy": {
-                "OTHH16L": [["BUDEB", "A30"], "LAGMA", "VUVAN", "IMRED", ["TONBI", "A40"], "UKPUX", ["IVAVA", "A50+"], "DENSI", ["BAT", "A60-"]]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":[["BUDEB", "A30"], "LAGMA", "VUVAN", ["IMRED", "A30"], ["TONBI", "A40"], ["UKPUX", "A40"], ["IVAVA", "A50+"], "DENSI", ["BAT", "A60-"]],
             "exitPoints": {
                 "BAT": []
             },
@@ -1986,9 +2158,9 @@
             "icao": "BATHA1W",
             "name": "Batha One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], ["DASIB", "A40+"], ["LAGNO", "A60+"], ["EMUMO", "A70"], "ORBIV", "TONBI", "DENSI", "BAT"]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], ["DASIB", "A40+"], ["LAGNO", "A60+"], ["EMUMO", "A70"], "ORBIV", "TONBI", "DENSI", "BAT"],
             "exitPoints": {
                 "BAT": []
             },
@@ -2000,9 +2172,9 @@
             "icao": "BUNDU1C",
             "name": "Bundu One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "NAKAB", "XALTO", ["ASTOP", "A50"], ["BUNDU", "A60-"]]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40"], "NAKAB", ["XALTO", "A40"], ["ASTOP", "A50"], ["BUNDU", "A60-"]],
             "exitPoints": {
                 "BUNDU": []
             },
@@ -2014,9 +2186,9 @@
             "icao": "BUNDU1E",
             "name": "Bundu One Echo",
             "rwy": {
-                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"],
             "exitPoints": {
                 "BUNDU": []
             },
@@ -2028,9 +2200,9 @@
             "icao": "BUNDU1M",
             "name": "Bundu One Mike",
             "rwy": {
-                "OTHH16L": [["BUDEB", "A30+"], ["XABAB", "A50+"], ["NOSBI", "A60+"], ["BUBEN", "A70"], "BUNDU"]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":[["BUDEB", "A30+"], ["XABAB", "A50+"], ["NOSBI", "A60+"], ["BUBEN", "A70"], "BUNDU"],
             "exitPoints": {
                 "BUNDU": []
             },
@@ -2042,9 +2214,9 @@
             "icao": "BUNDU1W",
             "name": "Bundu One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", "IVIBO", ["LABOV", "A40"], ["GOBLU", "A50+"], ["BUNDU", "A60-"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", ["IVIBO", "A30"], ["LABOV", "A40"], ["GOBLU", "A50+"], ["BUNDU", "A60-"]],
             "exitPoints": {
                 "BUNDU": []
             },
@@ -2056,9 +2228,9 @@
             "icao": "LOXUL1C",
             "name": "Loxul One Charlie",
             "rwy": {
-                "OTHH16R": ["^_RWY16R01DME", "^_RWY16LDOH140", "_DOH140010", ["LOXUL", "A30"]]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":["^_RWY16R01DME", "^_RWY16LDOH140", "_DOH140010", ["LOXUL", "A30"]],
             "exitPoints": {
                 "LOXUL": []
             },
@@ -2070,9 +2242,9 @@
             "icao": "LOXUL1M",
             "name": "Loxul One Mike",
             "rwy": {
-                "OTHH16L": ["^_RWY16LDOH140", ["_DOH140010", "A30"], ["LOXUL", "A30"]]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":["^_RWY16LDOH140", ["_DOH140010", "A30"], ["LOXUL", "A30"]],
             "exitPoints": {
                 "LOXUL": []
             },
@@ -2084,9 +2256,9 @@
             "icao": "MUXOP1E",
             "name": "Muxop One Echo",
             "rwy": {
-                "OTHH34R": ["^_RWY34R01DME", "_DOH355007.5", ["MUXOP", "A30"]]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":["^_RWY34R01DME", "_DOH355007.5", ["MUXOP", "A30"]],
             "exitPoints": {
                 "MUXOP": []
             },
@@ -2098,9 +2270,9 @@
             "icao": "MUXOP1W",
             "name": "Muxop One Whiskey",
             "rwy": {
-                "OTHH34L": ["^_RWY34L01DME", "_DOH355007.5", ["MUXOP", "A30"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":["^_RWY34L01DME", "_DOH355007.5", ["MUXOP", "A30"]],
             "exitPoints": {
                 "MUXOP": []
             },
@@ -2112,9 +2284,9 @@
             "icao": "NAMLA1C",
             "name": "Namla One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "NAKAB", "XALTO", ["ASTOP", "A50"], ["NAMLA", "A60-"]]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40"], "NAKAB", ["XALTO", "A40"], ["ASTOP", "A50"], ["NAMLA", "A60-"]],
             "exitPoints": {
                 "NAMLA": []
             },
@@ -2126,9 +2298,9 @@
             "icao": "NAMLA1E",
             "name": "Namla One Echo",
             "rwy": {
-                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"],
             "exitPoints": {
                 "NAMLA": []
             },
@@ -2140,9 +2312,9 @@
             "icao": "NAMLA1M",
             "name": "Namla One Mike",
             "rwy": {
-                "OTHH16L": ["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "NAMLA"]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "NAMLA"],
             "exitPoints": {
                 "NAMLA": []
             },
@@ -2154,9 +2326,9 @@
             "icao": "NAMLA1W",
             "name": "Namla One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", "IVIBO", ["LABOV", "A40"], ["GOBLU", "A50+"], ["NAMLA", "A60-"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", ["IVIBO", "A30"], ["LABOV", "A40"], ["GOBLU", "A50+"], ["NAMLA", "A60-"]],
             "exitPoints": {
                 "NAMLA": []
             },
@@ -2168,9 +2340,9 @@
             "icao": "PATIS1C",
             "name": "Patis One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", ["NOVLA", "A40"], ["GOBLU", "A50"], ["OTINO", "A50"], ["PATIS", "A60-"]]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", ["NOVLA", "A40"], ["GOBLU", "A50"], ["OTINO", "A50"], ["PATIS", "A60-"]],
             "exitPoints": {
                 "PATIS": []
             },
@@ -2182,9 +2354,9 @@
             "icao": "PATIS1E",
             "name": "Patis One Echo",
             "rwy": {
-                "OTHH34R": [["SOKEN", "A25+"], ["DEMBO", "A40"], ["UKILA", "A60+"], ["LABOV", "A70"], "PATIS"]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["SOKEN", "A25+"], ["DEMBO", "A40"], ["UKILA", "A60+"], ["LABOV", "A70"], "PATIS"],
             "exitPoints": {
                 "PATIS": []
             },
@@ -2196,9 +2368,9 @@
             "icao": "PATIS1M",
             "name": "Patis One Mike",
             "rwy": {
-                "OTHH16L": ["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "PATIS"]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":["TORKO", ["PASAV", "A40+"], ["DEBOM", "A50+"], ["PEGEM", "A60+"], ["GOBLU", "A70"], "PATIS"],
             "exitPoints": {
                 "PATIS": []
             },
@@ -2210,9 +2382,9 @@
             "icao": "PATIS1W",
             "name": "Patis One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", ["TANLA", "A30"], ["KEDEN", "A50-"], ["PATIS", "A60-"]]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A30"], "GIBIN", ["TANLA", "A30"], ["KEDEN", "A50-"], ["PATIS", "A60-"]],
             "exitPoints": {
                 "PATIS": []
             },
@@ -2224,65 +2396,65 @@
             "icao": "PATOM1C",
             "name": "Patom One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40"], "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "LABNO", "PATOM"]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40|S250-"], ["SODER", "S250-"], "MUSAN", "ENELI", ["TUKEN", "A40"], ["ALKAG", "A50+"], ["DEBIL", "A60+"], ["ALNAK", "A70"], "PATOM"],
             "exitPoints": {
                 "PATOM": []
             },
             "draw": [
-                ["_RWY34L", "OBVER", "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "LABNO", "PATOM*"]
+                ["_RWY34L", "OBVER", "SODER", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "ALNAK", "PATOM*"]
             ]
         },
         "PATOM1E": {
             "icao": "PATOM1E",
             "name": "Patom One Echo",
             "rwy": {
-                "OTHH34R": [["SOKEN", "A25+"], ["DEMBO", "A40"], "DEBIL", ["LABNO", "A50+"], ["PATOM", "A60-"]]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["SOKEN", "A25+"], ["DEMBO", "A40"], ["DEBIL", "A40"], ["ALNAK", "A50+"], ["PATOM", "A60-"]],
             "exitPoints": {
                 "PATOM": []
             },
             "draw": [
-                ["_RWY16L", "SOKEN", "DEMBO", "DEBIL", "LABNO", "PATOM*"]
+                ["_RWY16L", "SOKEN", "DEMBO", "DEBIL", "ALNAK", "PATOM*"]
             ]
         },
         "PATOM1M": {
             "icao": "PATOM1M",
             "name": "Patom One Mike",
             "rwy": {
-                "OTHH16L": [["BUDEB", "A30"], "LAGMA", "VUVAN", "BONEL", "MUSAN", "ENELI", "TUKEN", "ALKAG", ["DEBIL", "A40"], ["LABNO", "A50"], ["PATOM", "A60-"]]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":[["BUDEB", "A30"], "LAGMA", "VUVAN", "BONEL", "MUSAN", "ENELI", "TUKEN", "ALKAG", ["DEBIL", "A40"], ["ALNAK", "A50"], ["PATOM", "A60-"]],
             "exitPoints": {
                 "PATOM": []
             },
             "draw": [
-                ["_RWY34R", "BUDEB", "LAGMA", "VUVAN", "BONEL", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "LABNO", "PATOM*"]
+                ["_RWY34R", "BUDEB", "LAGMA", "VUVAN", "BONEL", "MUSAN", "ENELI", "TUKEN", "ALKAG", "DEBIL", "ALNAK", "PATOM*"]
             ]
         },
         "PATOM1W": {
             "icao": "PATOM1W",
             "name": "Patom One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], "ENELI", ["KOBEN", "A50+"], ["DEBIL", "A60+"], ["LABNO", "A70"], "PATOM"]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], "ENELI", ["KOBEN", "A50+"], ["DEBIL", "A60+"], ["ALNAK", "A70"], "PATOM"],
             "exitPoints": {
                 "PATOM": []
             },
             "draw": [
-                ["_RWY16R", "GETAM", "ENELI", "KOBEN", "DEBIL", "LABNO", "PATOM*"]
+                ["_RWY16R", "GETAM", "ENELI", "KOBEN", "DEBIL", "ALNAK", "PATOM*"]
             ]
         },
         "SALWA1C": {
             "icao": "SALWA1C",
             "name": "Salwa One Charlie",
             "rwy": {
-                "OTHH16R": [["OBVER", "A40+"], "SODER", ["BOXED", "A50+"], ["DEBKO", "A60+"], ["DEKTO", "A70"], "SALWA"]
+                "OTHH16R": []
             },
-            "body":[],
+            "body":[["OBVER", "A40+|S250-"], "SODER", ["BOXED", "A50+"], ["DEBKO", "A60+"], ["DEKTO", "A70"], "SALWA"],
             "exitPoints": {
                 "SALWA": []
             },
@@ -2294,9 +2466,9 @@
             "icao": "SALWA1E",
             "name": "Salwa One Echo",
             "rwy": {
-                "OTHH34R": [["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["OBVER", "A40"], ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]]
+                "OTHH34R": []
             },
-            "body":[],
+            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], "MUXED", "OBVER", ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]],
             "exitPoints": {
                 "SALWA": []
             },
@@ -2308,9 +2480,9 @@
             "icao": "SALWA1M",
             "name": "Salwa One Mike",
             "rwy": {
-                "OTHH16L": [["BUDEB", "A30"], "LAGMA", "VUVAN", "BONEL", "MUSAN", "EGSUN", ["BUDAS", "A30"], ["DASIB", "A40+"], ["EGSAL", "A50+"], "ASNOS", ["SALWA", "A60-"]]
+                "OTHH16L": []
             },
-            "body":[],
+            "body":[["BUDEB", "A30"], "LAGMA", "VUVAN", "BONEL", "MUSAN", "EGSUN", ["BUDAS", "A30"], ["DASIB", "A40+"], ["EGSAL", "A50+"], "ASNOS", ["SALWA", "A60-"]],
             "exitPoints": {
                 "SALWA": []
             },
@@ -2322,9 +2494,9 @@
             "icao": "SALWA1W",
             "name": "Salwa One Whiskey",
             "rwy": {
-                "OTHH34L": [["GETAM", "A25+"], ["DASIB", "A40+"], ["EGSAL", "A50+"], ["ASNOS", "A70"], "SALWA"]
+                "OTHH34L": []
             },
-            "body":[],
+            "body":[["GETAM", "A25+"], ["DASIB", "A40+"], ["EGSAL", "A50+"], ["ASNOS", "A70"], "SALWA"],
             "exitPoints": {
                 "SALWA": []
             },
@@ -2338,11 +2510,11 @@
             "icao": "AFNAN1C",
             "name": "Afnan One Charlie",
             "entryPoints": {
-                "AFNAN": [["AFNAN", "A120-"]]
+                "AFNAN": []
             },
-            "body": [],
+            "body": [["AFNAN", "A120-"], "SIDMU", ["EGNUG", "A80+"], "DATMO", ["TANDO", "A50+|A220-"], ["GOLSI", "S180-"]],
             "rwy": {
-                "OTHH16R": ["SIDMU", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|A220-"], ["GOLSI", "S180-"]]
+                "OTHH16R": []
             },
             "draw": [
                 ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
@@ -2355,11 +2527,11 @@
             "icao": "AFNAN1E",
             "name": "Afnan One Echo",
             "entryPoints": {
-                "AFNAN": [["AFNAN", "A120-"]]
+                "AFNAN": []
             },
-            "body": [],
+            "body": [["AFNAN", "A120-"], ["MUVEX", "A80+"], ["LOVAN", "A80-|S220-"], ["MUXED", "A50+|S220-"], ["LAGMA", "S180-"]],
             "rwy": {
-                "OTHH34R": [["MUVEX", "A80"], ["LOVAN", "A80-"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
+                "OTHH34R": []
             },
             "draw": [
                 ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
@@ -2372,11 +2544,11 @@
             "icao": "AFNAN1M",
             "name": "Afnan One Mike",
             "entryPoints": {
-                "AFNAN": [["AFNAN", "A120-"]]
+                "AFNAN": []
             },
-            "body": [],
+            "body": [["AFNAN", "A120-"], "SIDMU", ["EGNUG", "A80+"], ["IVANI", "A50+|S220-"], ["TOVAN", "S180-"]],
             "rwy": {
-                "OTHH16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]]
+                "OTHH16L": []
             },
             "draw": [
                 ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
@@ -2389,11 +2561,11 @@
             "icao": "AFNAN1W",
             "name": "Afnan One Whiskey",
             "entryPoints": {
-                "AFNAN": [["AFNAN", "A120-"]]
+                "AFNAN": []
             },
-            "body": [],
+            "body": [["AFNAN", "A120-"], "MUVEX", ["LOVAN", "A80+"], ["PUXEL", "A60+|S220-"], ["DANIK", "A50+"], ["IMKAT", "S180-"]],
             "rwy": {
-                "OTHH34L": ["MUVEX", ["LOVAN", "A80"], ["PUXEL", "A60|S220-"], ["DANIK", "A50"], ["IMKAT", "S180-"]]
+                "OTHH34L": []
             },
             "draw": [
                 ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
@@ -2406,11 +2578,11 @@
             "icao": "BAYAN1C",
             "name": "Bayan One Charlie",
             "entryPoints": {
-                "BAYAN": [["BAYAN", "A120-"]]
+                "BAYAN": []
             },
-            "body": [],
+            "body": [["BAYAN", "A120-"], "ASTIM", ["EGNUG", "A80+"], ["DATMO", "A80+"], ["TANDO", "A50+|S220-"], ["GOLSI", "S180-"]],
             "rwy": {
-                "OTHH16R": ["ASTIM", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]]
+                "OTHH16R": []
             },
             "draw": [
                 ["BAYAN", "ASTIM", "EGNUG"],
@@ -2422,11 +2594,11 @@
             "icao": "BAYAN1E",
             "name": "Bayan One Echo",
             "entryPoints": {
-                "BAYAN": [["BAYAN", "A120-"]]
+                "BAYAN": []
             },
-            "body": [],
+            "body": [["BAYAN", "A120-"], "EGNUG", ["SIDMU", "A80+"], ["MUXED", "A50+|S220-"], ["LAGMA", "S180-"]],
             "rwy": {
-                "OTHH34R": ["EGNUG", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
+                "OTHH34R": []
             },
             "draw": [
                 ["BAYAN", "ASTIM", "EGNUG"],
@@ -2438,11 +2610,11 @@
             "icao": "BAYAN1M",
             "name": "Bayan One Mike",
             "entryPoints": {
-                "BAYAN": [["BAYAN", "A120-"]]
+                "BAYAN": []
             },
-            "body": [],
+            "body": [["BAYAN", "A120-"], "ASTIM", ["EGNUG", "A80+"], ["IVANI", "A50+|S220-"], ["TOVAN", "S180-"]],
             "rwy": {
-                "OTHH16L": ["ASTIM", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]]
+                "OTHH16L": []
             },
             "draw": [
                 ["BAYAN", "ASTIM", "EGNUG"],
@@ -2454,11 +2626,11 @@
             "icao": "BAYAN1W",
             "name": "Bayan One Whiskey",
             "entryPoints": {
-                "BAYAN": [["BAYAN", "A120-"]]
+                "BAYAN": []
             },
-            "body": [],
+            "body": [["BAYAN", "A120-"], "EGNUG", ["OTIDA", "A80+"], ["DANIK", "A50+|S220-"], ["IMKAT", "S180-"]],
             "rwy": {
-                "OTHH34L": ["EGNUG", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]]
+                "OTHH34L": []
             },
             "draw": [
                 ["BAYAN", "ASTIM", "EGNUG"],
@@ -2470,11 +2642,11 @@
             "icao": "GINTO1C",
             "name": "Ginto One Charlie",
             "entryPoints": {
-                "GINTO": [["GINTO", "A120-"], "LAGNO"]
+                "GINTO": []
             },
-            "body": [],
+            "body": [["GINTO", "A120-"], "LAGNO", ["DATMO", "A80+"], ["TANDO", "A50+|S220-"], ["GOLSI", "S180-"]],
             "rwy": {
-                "OTHH16R": [["DATMO", "A80"], ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]]
+                "OTHH16R": []
             },
             "draw": [
                 ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
@@ -2486,11 +2658,11 @@
             "icao": "GINTO1E",
             "name": "Ginto One Echo",
             "entryPoints": {
-                "GINTO": [["GINTO", "A120-"], "LAGNO"]
+                "GINTO": []
             },
-            "body": [],
+            "body": [["GINTO", "A120-"], "LAGNO", ["SIDMU", "A80+"], ["MUXED", "A50+|S220-"], ["LAGMA", "S180"]],
             "rwy": {
-                "OTHH34R": [["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180"]]
+                "OTHH34R": []
             },
             "draw": [
                 ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
@@ -2502,11 +2674,11 @@
             "icao": "GINTO1M",
             "name": "Ginto One Mike",
             "entryPoints": {
-                "GINTO": [["GINTO", "A120-"], "LAGNO"]
+                "GINTO": []
             },
-            "body": [],
+            "body": [["GINTO", "A120-"], "LAGNO", ["DATMO", "A80+"], "PUTAN", ["IVANI", "A50+|S220-"], ["TOVAN", "S180-"]],
             "rwy": {
-                "OTHH16L": [["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]]
+                "OTHH16L": []
             },
             "draw": [
                 ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
@@ -2518,11 +2690,11 @@
             "icao": "GINTO1W",
             "name": "Ginto One Whiskey",
             "entryPoints": {
-                "GINTO": [["GINTO", "A120-"], "LAGNO"]
+                "GINTO": []
             },
-            "body": [],
+            "body": [["GINTO", "A120-"], "LAGNO", "MUSAN", ["OTIDA", "A80+"], ["DANIK", "A50+|S220-"], ["IMKAT", "S180-"]],
             "rwy": {
-                "OTHH34L": ["MUSAN", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]]
+                "OTHH34L": []
             },
             "draw": [
                 ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
@@ -2634,7 +2806,7 @@
             "origin": "OTHH",
             "destination": "",
             "category": "departure",
-            "route": "OTHH34R.PATOM1E.PATOM.UT444.DESBU",
+            "route": "OTHH34R.PATOM1E.PATOM.M444.DENVO.UT444.DESBU",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -3045,7 +3217,6 @@
             ["N24d32m19.58", "E051d26m04.01", "N24d30m12.49", "E051d36m47.35"],
             ["N24d40m10.37", "E051d27m54.91", "N24d32m19.58", "E051d26m04.01"],
             ["N24d42m32.42", "E051d26m19.67", "N24d40m10.37", "E051d27m54.91"],
-
             [25.9359060463, 51.33259880209, 25.94399945898, 51.33028962628],
             [25.95209280979, 51.3279800662, 25.96018609254, 51.32567009515],
             [25.96827935742, 51.32335992828, 25.97637257624, 51.32104944465],
@@ -3062,7 +3233,6 @@
             [26.1463195193, 51.27245594334, 26.15441172795, 51.27013848713],
             [26.16250389712, 51.26782074079, 26.17059600485, 51.26550261011],
             [26.17868808888, 51.26318425677, 26.1867801115, 51.26086551908],
-
             ["N26d4.09", "E53d56.84", "N25d38.06", "E55d20.00"],
             ["N26d4.09", "E53d56.84", "N25d49.08", "E53d5.97"],
             ["N25d49.08", "E53d5.97", "N23d58.27", "E51d43.02"],
@@ -3120,20 +3290,15 @@
             ["N27d5.21", "E50d54.88", "N27d11.02", "E50d49.50"],
             ["N27d11.02", "E50d49.50", "N27d15.91", "E50d46.86"],
             ["N27d15.91", "E50d46.86", "N27d23.18", "E50d41.53"],
-
             [25.05646533136, 52.01163773826, 25.04397809113, 51.98776350719],
             [25.04397809113, 52.01163649281, 25.05646533136, 51.98776226174],
-
             [25.27445414336, 51.0830366862, 25.26196705938, 51.05912012149],
             [25.26196707685, 51.08303544509, 25.27445412153, 51.05911885558],
-
             [25.49679851822, 51.82559186273, 25.48431164731, 51.80163157336],
             [25.48431163859, 51.82559064334, 25.4967985095, 51.80163035398],
-
             ["N25d38.10", "E51d30.09", "N25d37.44", "E51d30.70"],
             ["N25d16.44", "E51d33.57", "N25d14.51", "E51d34.41"],
             ["N25d7.94", "E51d18.53", "N25d6.05", "E51d19.36"],
-
             [25.29731656461, 51.54934673776, 25.30508857946, 51.54596144937],
             [25.31286051583, 51.54257574976, 25.32063234251, 51.53918955211],
             [25.32840413561, 51.53580306784, 25.33617578783, 51.53241599872],
@@ -3143,7 +3308,6 @@
             [25.39057514883, 51.50869496521, 25.39834617097, 51.50530459445],
             [25.40611708373, 51.50191372553, 25.41388788715, 51.49852235842],
             [25.42165862612, 51.49513061776, 25.42942928706, 51.49173846569],
-
             [25.21851590382, 51.58364673447, 25.21074325629, 51.58702811981],
             [25.20297054353, 51.59040913188, 25.19519772064, 51.59378964609],
             [25.1874248637, 51.59716987386, 25.17965185173, 51.60054947921],
@@ -3153,12 +3317,10 @@
             [25.12523864252, 51.62419545112, 25.1174650076, 51.62757179528],
             [25.10969124864, 51.63094760396, 25.1019174553, 51.63432312634],
             [25.0941435202, 51.63769806419, 25.08636955067, 51.64107271574],
-
             [25.34867102776, 51.51707495384, 25.3547662518, 51.53420698892],
             [25.42638143919, 51.48316718532, 25.43247664559, 51.5003101721],
             [25.16105781543, 51.59875492083, 25.16715300462, 51.61586073565],
             [25.08332168219, 51.63252542832, 25.08941690479, 51.64962043543],
-
             [25.1556181291, 51.29860287664, 25.1633795533, 51.29519185859],
             [25.17114089833, 51.29178042953, 25.17890214657, 51.28836854094],
             [25.18666334721, 51.28495632788, 25.19442440576, 51.28154353066],
@@ -3168,7 +3330,6 @@
             [25.24874960643, 51.25764244654, 25.25650999814, 51.25422626352],
             [25.26427031104, 51.25080966933, 25.27203054517, 51.24739266397],
             [25.27979068289, 51.24397519894, 25.28755074191, 51.24055732271],
-
             [25.07754767924, 51.33289067929, 25.06978561262, 51.33629779866],
             [25.06202348031, 51.33970454521, 25.05426126845, 51.34311088093],
             [25.04649894549, 51.34651671925, 25.03873654291, 51.34992214678],
@@ -3178,12 +3339,10 @@
             [24.98439739712, 51.37374837408, 24.97663432121, 51.37715041851],
             [24.96887113389, 51.38055196567, 24.96110791203, 51.38395322672],
             [24.9533445787, 51.38735399053, 24.94558116541, 51.3907543437],
-
             [25.20687168171, 51.2661725376, 25.2130204225, 51.28326157439],
             [25.28447607715, 51.23200762418, 25.29062482724, 51.2491074883],
             [25.02013682188, 51.34820037336, 25.02628566383, 51.36526348727],
             [24.9425065081, 51.38222833598, 24.94865538725, 51.39928075141],
-
             ["N24d13.24", "E51d26.66", "N24d12.55", "E51d27.27"],
             ["N24d31.43", "E52d20.02", "N24d29.89", "E52d20.22"],
             ["N24d46.98", "E52d33.41", "N24d46.68", "E52d33.79"],
