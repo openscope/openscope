@@ -1836,7 +1836,7 @@
             "rwy": {
                 "OTHH16R": []
             },
-            "body":[["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", "NOVLA", ["GOBLU", "A50"], ["ALSEM", "A60-"]],
+            "body":[["OBVER", "A40"], "NAKAB", "LUDOS", "NOSBI", ["NOVLA", "A40"], ["GOBLU", "A50"], ["ALSEM", "A60-"]],
             "exitPoints": {
                 "ALSEM": []
             },
@@ -2410,7 +2410,7 @@
             "entryPoints": {
                 "BAYAN": []
             },
-            "body": [["BAYAN", "A120-"], "ASTIM", ["EGNUG", "A80+"], ["DATMO", "A80+"], ["TANDO", "A50+|S220-"], ["GOLSI", "S180-"]],
+            "body": [["BAYAN", "A120-"], "ASTIM", ["EGNUG", "A80+"], "DATMO", ["TANDO", "A50+|S220-"], ["GOLSI", "S180-"]],
             "rwy": {
                 "OTHH16R": []
             },
