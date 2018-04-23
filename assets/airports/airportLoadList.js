@@ -420,7 +420,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Zürich Airport',
             premium: false,
             wip: false
-        // },
+        },
         // {
         //     icao: 'ltba',
         //     level: 'hard',
@@ -637,6 +637,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Shanghai Pudong International Airport',
         //     premium: false,
         //     wip: true
+        {
+            icao: 'zae-d66',
+            level: 'hard',
+            name: 'Aero ARTCC: Sector 66',
+            premium: false,
+            wip: false
         }
     ];
 })();
