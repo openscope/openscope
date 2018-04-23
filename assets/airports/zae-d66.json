@@ -1147,7 +1147,7 @@
             "origin": "",
             "destination": "",
             "category": "overflight",
-            "route": "ATL..IGB.J52.SQS..MLU..STAGE.J4.EIC",
+            "route": "ATL..IGB..STAGE.J4.EIC",
             "altitude": "22000",
             "speed": "340",
             "method": "random",
