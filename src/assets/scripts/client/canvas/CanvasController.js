@@ -1568,8 +1568,14 @@ export default class CanvasController {
      */
     _drawRangeRings(cc) {
         const airportModel = AirportController.airport_get();
-        const rangeRingRadius = km(airportModel.rr_radius_nm);
+        const rangeRingSettings = airportModel.rangeRings;
 
+        if (rangeRingSettings.enabled === false) {
+            return;
+        }
+        
+        const rangeRingRadius = km(airportModel.rangeRings.radius_nm);
+        
         cc.linewidth = 1;
         cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
 
@@ -1843,7 +1849,7 @@ export default class CanvasController {
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = CanvasStageModel.scale / 15;
+        cc.lineWidth = Math.max(1, CanvasStageModel.scale / 15);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);

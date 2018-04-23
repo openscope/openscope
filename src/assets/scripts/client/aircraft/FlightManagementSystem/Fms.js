@@ -387,6 +387,7 @@ export default class Fms {
     _initializeFlightPhaseForCategory(category) {
         switch (category) {
             case FLIGHT_CATEGORY.ARRIVAL:
+            case FLIGHT_CATEGORY.OVERFLIGHT:
                 return this.setFlightPhase(FLIGHT_PHASE.CRUISE);
 
             case FLIGHT_CATEGORY.DEPARTURE:
