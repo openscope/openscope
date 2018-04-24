@@ -19,7 +19,7 @@
         "speed": 8
     },
     "arrivalRunway": "18L",
-    "departureRunway": "18R",
+    "departureRunway": "18L",
     "airspace": [
         {
             "floor": 0,
@@ -855,7 +855,306 @@
         }
     },
     "spawnPatterns": [
-        
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.BNGLE4.DJB",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.2,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.CHCLL4.IIU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.4,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.GIPLE6.HVQ",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.HAGOL4.DQN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.3,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.JBNCH5.MIE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.KENLN4.HYK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.LOVEY6.AXC",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.LOVEY6.CADIZ",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.ROCKT8.AHTIY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "KCVG",
+            "destination": "",
+            "category": "departure",
+            "route": "KCVG18L.SILKS4.TRFWA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.1,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "COLNS.GAVNN4.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 2.9,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "ELANR.CEGRM5.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1.2,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "JOT.CEGRM5.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.6,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "VXV.JAKIE4.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.9,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "CUBIM.JAKIE4.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.7,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "DOLLI.JAKIE4.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.5,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "ENL.SARGO3.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.7,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "PXV.SARGO3.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 1.1,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "APE.TIGRR2.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.9,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KCVG",
+            "category": "arrival",
+            "route": "FWA.DEBAR5.KCVG18L",
+            "altitude": 18000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0.4,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
+        }
     ],
     "maps": {
         "base": [
