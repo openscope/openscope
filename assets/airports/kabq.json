@@ -181,7 +181,7 @@
                 ["N35d01m20.09", "W106d37m50.17", "5305ft"],
                 ["N35d02m30.27", "W106d36m25.46", "5316ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, false]
         },
         {
             "name": ["8", "26"],
@@ -189,7 +189,7 @@
                 ["N35d02m39.67", "W106d37m17.72", "5312ft"],
                 ["N35d02m38.63", "W106d34m31.89", "5355ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, false]
         },
         {
             "name": ["12", "30"],
@@ -209,23 +209,6 @@
         }
     ],
     "sids": {
-        "ADYOS3": {
-            "icao": "ADYOS3",
-            "name": "Adios Three",
-            "rwy": {
-                "KABQ21": [["ASTAH", "A90-"], "LVSTA"],
-                "KABQ26": ["ABQ"]
-            },
-            "body": ["ADYOS"],
-            "exitPoints": {
-                "GUP": ["BABYY", "BUSLE", "GUP"],
-                "ZUN": ["PNYON", "ZUN"]
-            },
-            "draw": [
-                ["ASTAH", "LVSTA", "ADYOS", "BABYY", "BUSLE", "GUP*"],
-                ["ABQ", "ADYOS", "PNYON", "ZUN*"]
-            ]
-        },
         "ABQ3": {
             "icao": "ABQ3",
             "name": "Albuquerque Three",
@@ -267,6 +250,23 @@
                 ["TCC*"],
                 ["TXO*"],
                 ["ZUN*"]
+            ]
+        },
+        "ADYOS3": {
+            "icao": "ADYOS3",
+            "name": "Adios Three",
+            "rwy": {
+                "KABQ21": [["ASTAH", "A90-"], "LVSTA"],
+                "KABQ26": ["ABQ"]
+            },
+            "body": ["ADYOS"],
+            "exitPoints": {
+                "GUP": ["BABYY", "BUSLE", "GUP"],
+                "ZUN": ["PNYON", "ZUN"]
+            },
+            "draw": [
+                ["ASTAH", "LVSTA", "ADYOS", "BABYY", "BUSLE", "GUP*"],
+                ["ABQ", "ADYOS", "PNYON", "ZUN*"]
             ]
         },
         "ATOMK3": {
@@ -598,8 +598,8 @@
             "name": "Meera Two",
             "entryPoints": {
                 "CME": ["CME", "CNX"],
-                "TXO": ["TXO"],
-                "TCC": ["TCC", "ACH"]
+                "TCC": ["TCC", "ACH"],
+                "TXO": ["TXO"]
             },
             "body": [["MIERA", "S300-"], "ABQ"],
             "rwy": {
