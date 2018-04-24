@@ -3,7 +3,8 @@ Abu Dhabi International Airport is located in the United Arab Emirates, serving 
 
 ### Statistics
 25,964,178 passengers in 2015-2016
-984,388 aircraft movements in 2015-2016
+207,486 aircraft movements in 2015-2016
+984,388 tonnes of cargo handled in 2015-2016
 
 ### Sheikh Zayed Air Navigation Center
 The Sheikh Zayed Air Navigation Center is located next to Abu Dhabi Airport. The center is where the UAE's General Civil Aviation Authority bases the majority of its operations including providing Air Traffic Services. Here is where communications are based alongside various units such as approach control and en-route control. The center was opened in 2009, named after Sheikh Zayed, the driving force behind the formation of the United Arab Emirates.
