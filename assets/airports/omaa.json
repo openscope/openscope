@@ -2034,7 +2034,7 @@
             "entryPoints": {
                 "GIDOB": [["GIDOB", "A120-|S250-"]]
             },
-            "body": ["TOMDO", "RIBUV", "SODEL", "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
+            "body": ["TOMDO", ["RIBUV", "S230-"], "SODEL", "OVOLA", ["RIGIP", "S210-"], "AA568", ["ORDAK", "S210-"]],
             "rwy": {
                 "OMAA13L": [],
                 "OMAA13R": []
@@ -2139,7 +2139,7 @@
             "entryPoints": {
                 "NOBTO": [["NOBTO", "A150-|S250-"]]
             },
-            "body": ["REXIG", "PUVUT", "OBVIK", ["SIVOV", "S230-"], "DEGVO", ["PAXIK", "S210-   "], "AA583", "IMSIG"],
+            "body": ["REXIG", "PUVUT", "OBVIK", ["SIVOV", "S230-"], "DEGVO", ["PAXIK", "S210-"], "AA583", "IMSIG"],
             "rwy": {
                 "OMAA13L": [],
                 "OMAA13R": []
