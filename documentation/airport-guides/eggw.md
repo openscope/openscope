@@ -1,5 +1,5 @@
 ### About the London Terminal Manoeuvring Area
-The London TMA is the airspace surrounding much of London's main airports of Heathrow, Stansted, Luton, City and Southend. The London TMA is operated by NATS, the main Air Navigation Service Provider in the UK. The area is controlled from Swanwick; a small town located near Nottingham in the North of England.
+The London TMA is the airspace surrounding much of London's major airports of Heathrow, Gatwick, Stansted, Luton, City and Southend. The London TMA is operated by NATS, the main Air Navigation Service Provider in the UK. The area is controlled from Swanwick; a small town located near Nottingham in the North of England.
 
 The LTMA is part of the London Terminal Control Centre, which handles traffic below FL245 flying to and from any of London's airports.
 
@@ -13,7 +13,10 @@ London Luton Airport is an international airport 29 miles north of Central Londo
 
 ### Airspace
 All of the airspace controlled by "London Control" is listed in the eAIP for the United Kingdom.
-[This diagram](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html) from NATS may be useful to you so that you can understand the divisions within the London TMA.
+Chart ENR 6.2.1.11 [from the NATS page](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html) from NATS may be useful to you so that you can understand the divisions within the London TMA.
+
+In OpenScope, only the North London Terminal Control Zone is available to control, considering the size of the London TMA.
+File 'TC North 2016_09.pdf' from within [this zip file from VATSIM UK](https://vatsim.uk/download/info/?downloadID=00200) may be of use to visualise TC North.
 
 ### Standard Operating Procedures
 ##### Continuous Descent Approaches
@@ -40,7 +43,6 @@ London Control
 Essex Radar
 Luton Radar
 Luton Director
-Luton Fire
 ```
 
 ### Other aerodromes of interest
@@ -71,7 +73,7 @@ London City Airport is an international airport located in the Royal Docks near 
 09/27 1,508m, Asphalt
 
 ##### London Stansted Airport, EGSS
-London Stansted Airport is an international airport located at Stansted Mountfitchet, Essex. It is 48km northeast of Central London. The airport servers over 170 destinations across Europe and is a base for many low-cost airlines, most notably Ryanair. The airport is owned by the Manchester Airports Group, which operates Manchester Airport and East Midlands Airport. The airport is a focus city for easyJet, Jet2.com, Ryaniar, Thomas Cock and TUI.
+London Stansted Airport is an international airport located at Stansted Mountfitchet, Essex. It is 48km northeast of Central London. The airport servers over 170 destinations across Europe and is a base for many low-cost airlines, most notably Ryanair. The airport is owned by the Manchester Airports Group, which operates Manchester Airport and East Midlands Airport. The airport is a focus city for easyJet, Jet2.com, Ryanair, Thomas Cock and TUI. The airport is not too distant from Luton itself, so these airports have common STARs.
 
 24,320,071 passengers handled in 2015-16
 180,430 aircraft movements in 2015-16
@@ -95,7 +97,7 @@ Biggin Hill Airport is a general aviation airport 22km south-east of Central Lon
 
 
 ### Videomap
-Provided with the videomap is a generic videomap for the London Terminal Manoeuvring Area. The extended centrelines and runways of all major airports (Heathrow, Gatwick, Stansted, Luton and City) are displayed, along with the positions of important VORs. CTAs and ATZs of all the major airports are displayed too.
+Provided with the videomap is a generic videomap for the London Terminal Manoeuvring Area. The extended centrelines and runways of all major airports (Heathrow, Gatwick, Stansted, Luton and City), Biggin Hill and Farnborough are displayed, along with the positions of important VORs. CTAs and ATZs of all the major airports are displayed too.
 
 Every dash on an extended centreline represents one (1) nautical mile, with each small 'T' representing four (4) miles.
 All sector splits of the LTMA are drawn on too.
