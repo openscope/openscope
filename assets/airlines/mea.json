@@ -3,12 +3,17 @@
     "name": "Middle East Airlines",
     "callsign": {
         "name": "Cedar Jet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["A320", 13],
             ["A332", 5]
+        ],
+        "short": [
+            ["A320", 13]
         ],
         "long": [
             ["A332", 5]

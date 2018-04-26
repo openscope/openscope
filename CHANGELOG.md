@@ -1,4 +1,4 @@
-## 6.1.0 (April 1, 2018)
+## 6.1.0 (May 1, 2018)
 ---
 ### New Features
 - [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
@@ -18,6 +18,7 @@
 
 ### Enhancements & Refactors
 - [#910](https://github.com/openscope/openscope/issues/910) - Reactivate KBOS and KSTL
+- [#856](https://github.com/openscope/openscope/issues/856) - Overhaul of Doha Hamad International Airport (OTHH)
 
 
 

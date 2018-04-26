@@ -1,6 +1,6 @@
 {
-    "name": "Airbus A300-600",
-    "icao": "A306",
+    "name": "Airbus A350-1000",
+    "icao": "A35K",
     "engines": {
         "number": 2,
         "type": "J"
@@ -8,27 +8,27 @@
     "weightclass": "H",
     "category": {
         "srs": 3,
-        "lahso": 7,
-        "recat": "C"
+        "lahso": 9,
+        "recat": "B"
     },
     "ceiling": 41000,
     "rate": {
-        "climb":      3200,
+        "climb":      3500,
         "descent":    2000,
-        "accelerate": 8,
+        "accelerate": 6,
         "decelerate": 4
     },
     "runway": {
-        "takeoff": 2.700,
-        "landing": 1.536
+        "takeoff": 3.200,
+        "landing": 2.300
     },
     "speed":{
-        "min":     110,
-        "landing": 125,
-        "cruise":  472,
+        "min":     125,
+        "landing": 140,
+        "cruise":  487,
         "cruiseM": null,
-        "max":     484,
-        "maxM":    0.82
+        "max":     510,
+        "maxM":    0.89
     },
     "capability": {
         "ils": true,
