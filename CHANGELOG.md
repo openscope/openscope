@@ -19,6 +19,7 @@
 ### Enhancements & Refactors
 - [#910](https://github.com/openscope/openscope/issues/910) - Reactivate KBOS and KSTL
 - [#856](https://github.com/openscope/openscope/issues/856) - Overhaul of Doha Hamad International Airport (OTHH)
+- [#246](https://github.com/openscope/openscope/issues/246) - Overhaul OMAA (Abu Dhabi)
 
 
 
