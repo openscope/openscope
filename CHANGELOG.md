@@ -23,6 +23,7 @@
 - [#908](https://github.com/openscope/openscope/issues/908) - Updates KSEA to AIRAC 1804
 - [#928](https://github.com/openscope/openscope/issues/928) - Updates KPDX to AIRAC 1804
 - [#923](https://github.com/openscope/openscope/issues/923) - Overhaul of KABQ
+- [#931](https://github.com/openscope/openscope/issues/931) - Updates KDCA to AIRAC 1804
 
 
 
