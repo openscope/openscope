@@ -441,7 +441,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Abu Dhabi International Airport',
             premium: false,
             wip: false
-        // },
+        },
         // {
         //     icao: 'omdb',
         //     level: 'hard',
