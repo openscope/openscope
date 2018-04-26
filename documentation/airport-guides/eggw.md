@@ -1,5 +1,5 @@
 ### About the London Terminal Manoeuvring Area
-The London TMA is the airspace surrounding much of London's major airports of Heathrow, Gatwick, Stansted, Luton, City and Southend. The London TMA is operated by NATS, the main Air Navigation Service Provider in the UK. The area is controlled from Swanwick; a small town located near Nottingham in the North of England.
+The London TMA is the airspace surrounding London's major airports of Heathrow, Gatwick, Stansted, Luton, City and Southend. It is operated by NATS, the main Air Navigation Service Provider in the UK. The area is controlled from Swanwick; a small town located near Nottingham in the North of England.
 
 The LTMA is part of the London Terminal Control Centre, which handles traffic below FL245 flying to and from any of London's airports.
 
@@ -73,7 +73,7 @@ London City Airport is an international airport located in the Royal Docks near 
 09/27 1,508m, Asphalt
 
 ##### London Stansted Airport, EGSS
-London Stansted Airport is an international airport located at Stansted Mountfitchet, Essex. It is 48km northeast of Central London. The airport servers over 170 destinations across Europe and is a base for many low-cost airlines, most notably Ryanair. The airport is owned by the Manchester Airports Group, which operates Manchester Airport and East Midlands Airport. The airport is a focus city for easyJet, Jet2.com, Ryanair, Thomas Cock and TUI. The airport is not too distant from Luton itself, so these airports have common STARs.
+London Stansted Airport is an international airport located at Stansted Mountfitchet, Essex. It is 48km northeast of Central London. Stansted serves over 170 destinations across Europe and is a base for many low-cost airlines, most notably Ryanair. The airport is owned by the Manchester Airports Group, which operates Manchester Airport and East Midlands Airport. London Stansted is a focus city for easyJet, Jet2.com, Ryanair, Thomas Cock and TUI. Due to its proximity with London Luton Airport, these airports have common STARs.
 
 24,320,071 passengers handled in 2015-16
 180,430 aircraft movements in 2015-16
@@ -103,7 +103,7 @@ Every dash on an extended centreline represents one (1) nautical mile, with each
 All sector splits of the LTMA are drawn on too.
 
 ### Additional Resources
-[NATS London TMA Diagram](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)  
+[NATS London TMA Diagram (chart ENR 6.2.1.11)](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html)  
 [NATS Aerodrome Charts](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=6&Itemid=13.html)  
 [VATSIM UK (Luton)](https://vatsim.uk/eggw/)  
 [VATSIM UK Luton Cribsheet](https://vatsim.uk/download/info/?downloadID=00116)  
