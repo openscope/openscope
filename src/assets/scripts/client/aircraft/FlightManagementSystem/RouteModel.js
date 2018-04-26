@@ -820,7 +820,6 @@ export default class RouteModel extends BaseModel {
         return this.currentLeg.skipToWaypointName(waypointName);
     }
 
-    // FIXME: Presume I will need to do the same thing here as with .updateStarLegForArrivalRunwayModel() ?
     /**
      * Ensure the SID leg has the specified departure runway as the entry point
      *
