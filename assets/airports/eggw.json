@@ -1511,7 +1511,7 @@
             "entryPoints": {
                 "LOGAN": ["LOGAN"]
             },
-            "body": [["CLN", "S250-"], "@ABBOT"],
+            "body": [["CLN", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1526,7 +1526,7 @@
             "entryPoints": {
                 "DET": [["DET", "A170-"]]
             },
-            "body": [["_DET001032", "S250-"], "@ABBOT"],
+            "body": [["_DET001032", "S250-"], ["@ABBOT", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1556,7 +1556,7 @@
             "entryPoints": {
                 "KATHY": [["KATHY", "A170-"]]
             },
-            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1571,7 +1571,7 @@
             "entryPoints": {
                 "DTY": ["DTY"]
             },
-            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1586,7 +1586,7 @@
             "entryPoints": {
                 "ABBOT": ["ABBOT"]
             },
-            "body": ["TABIS", "BUSTA", "@ASKEY"],
+            "body": ["TABIS", "BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1601,7 +1601,7 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1616,7 +1616,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1631,7 +1631,7 @@
             "entryPoints": {
                 "KENET": [["KENET", "A170-"]]
             },
-            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1646,7 +1646,7 @@
             "entryPoints": {
                 "BEDEK": [["BEDEK", "A180"]]
             },
-            "body": ["NIGIT", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["NIGIT", "OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1661,7 +1661,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1676,7 +1676,7 @@
             "entryPoints": {
                 "AVANT": [["AVANT", "A190"]]
             },
-            "body": ["OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["OCK", "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1691,7 +1691,7 @@
             "entryPoints": {
                 "BANVA": ["BANVA"]
             },
-            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["_BKY206016", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1706,7 +1706,7 @@
             "entryPoints": {
                 "WCO": ["WCO"]
             },
-            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1721,7 +1721,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@ASKEY"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@ASKEY", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1751,7 +1751,7 @@
             "entryPoints": {
                 "LOGAN": ["LOGAN"]
             },
-            "body": [["CLN", "S250-"], "@CASEY"],
+            "body": [["CLN", "S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1766,7 +1766,7 @@
             "entryPoints": {
                 "DET": [["DET", "A170-"]]
             },
-            "body": [["_DET360032", "S250-"], "@CASEY"],
+            "body": [["_DET360032", "S250-"], ["@CASEY", "A80+|A140-|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1796,7 +1796,7 @@
             "entryPoints": {
                 "KATHY": [["KATHY", "A170-"]]
             },
-            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1811,7 +1811,7 @@
             "entryPoints": {
                 "DTY": ["DTY"]
             },
-            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1826,7 +1826,7 @@
             "entryPoints": {
                 "ABBOT": ["ABBOT"]
             },
-            "body": ["TABIS", "BUSTA", "@LOREL"],
+            "body": ["TABIS", "BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1841,7 +1841,7 @@
             "entryPoints": {
                 "GIBSO": ["GIBSO"]
             },
-            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["BEGTO", ["AVANT", "A190"], "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1856,7 +1856,7 @@
             "entryPoints": {
                 "HON": ["HON"]
             },
-            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": [["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1871,7 +1871,7 @@
             "entryPoints": {
                 "KENET": [["KENET", "A170-"]]
             },
-            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["WCO", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1886,7 +1886,7 @@
             "entryPoints": {
                 "BEDEK": [["BEDEK", "A180"]]
             },
-            "body": ["NIGIT", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["NIGIT", "OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1901,7 +1901,7 @@
             "entryPoints": {
                 "MCT": ["MCT"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1916,7 +1916,7 @@
             "entryPoints": {
                 "AVANT": [["AVANT", "A190"]]
             },
-            "body": ["OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["OCK", "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1931,7 +1931,7 @@
             "entryPoints": {
                 "BANVA": ["BANVA"]
             },
-            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", "LOREL"],
+            "body": ["UNDUG", ["MAY", "A200"], "VATON", ["BPK", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1946,7 +1946,7 @@
             "entryPoints": {
                 "WCO": ["WCO"]
             },
-            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": [["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
@@ -1961,7 +1961,7 @@
             "entryPoints": {
                 "LISTO": ["LISTO"]
             },
-            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", "@LOREL"],
+            "body": ["PEDIG", ["ROGBI", "A200"], ["CLIPY", "A150"], "FINMA", ["BOMBO", "S250-"], "BKY", "^BUSTA", ["@LOREL", "A70|S220-"]],
             "rwy": {
                 "EGGW08": [],
                 "EGGW26": []
