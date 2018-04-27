@@ -26,8 +26,8 @@
 - [#928](https://github.com/openscope/openscope/issues/928) - Minor updates to KPDX
 - [#923](https://github.com/openscope/openscope/issues/923) - Overhaul of KABQ
 - [#931](https://github.com/openscope/openscope/issues/931) - Minor updates to KDCA
-    - [#927](https://github.com/openscope/openscope/issues/927) - Fix aircraft flying in restricted airspace
 - [#241](https://github.com/openscope/openscope/issues/241) - Overhaul of London Luton Airport (England, United Kingdom)
+- [#927](https://github.com/openscope/openscope/issues/927) - Fix climb rates for CRJs
 
 
 
