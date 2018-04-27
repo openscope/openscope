@@ -1,4 +1,5 @@
 import _isNil from 'lodash/isNil';
+import _random from 'lodash/random';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
 // import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
@@ -15,15 +16,13 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
  * @function _calculateSpawnPositions
  * @param waypointModelList {array<StandardWaypointModel>}
  * @param spawnOffsets {array}
- * @return spawnPositions {array}
+ * @return spawnPositions {array<number>} distances along route, in nm
  */
 const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
     const spawnPositions = [];
 
     // for each new aircraft
     for (let i = 0; i < spawnOffsets.length; i++) {
-        // TODO: Are these spawn offsets in nm or km? If not nm, the position generated below
-        // will be wrong because it expects nautical miles.
         let spawnOffset = spawnOffsets[i];
 
         // for each fix ahead
@@ -58,20 +57,52 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
 };
 
 /**
- * Calculate distance(s) from center where an aircraft should exist onload or airport change
+ * Calculate distances along spawn pattern route at which to prespawn aircraft
+ *
+ * To randomize the spawn locations, the interval between aircraft will vary, but should
+ * average out to exactly the `entrailDistance`. The exception is if the `entrailDistance`
+ * is less than the `smallestIntervalNm` defined below. In that case, aircraft will be
+ * spawned at exactly the `entrailDistance` with no variation due to their proximity.
+ * 
+ * NOTE: Provided there is at least `smallestIntervalNm` distance between them, an aircraft
+ * will always be spawned right along the airspace boundary, and another at the first fix.
+ *
+ * For example, with `smallestIntervalNm = 15`:
+ *   - If requesting 8MIT, will spawn exactly 8MIT
+ *   - If requesting 30MIT, will spawn each a/c 15MIT-45MIT of the previous arrival
  *
  * @function _assembleSpawnOffsets
  * @param entrailDistance {number}
  * @param totalDistance {number}
- * @return spawnOffsets {array<number>}
+ * @return spawnOffsets {array<number>} distances along route, in nm
  */
 const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
-    const spawnOffsets = [];
+    const offsetClosestToAirspace = totalDistance - 3;
+    let smallestIntervalNm = 15;
+    const largestIntervalNm = entrailDistance + (entrailDistance - smallestIntervalNm);
+
+    // if requesting less than `smallestIntervalNm`, spawn all AT `entrailDistance`
+    if (smallestIntervalNm > largestIntervalNm) {
+        smallestIntervalNm = largestIntervalNm;
+    }
+
+    const spawnOffsets = [offsetClosestToAirspace];
+    let offset = offsetClosestToAirspace;
 
     // distance between successive arrivals in nm
-    for (let i = entrailDistance; i < totalDistance; i += entrailDistance) {
-        spawnOffsets.push(i);
+    while (offset > smallestIntervalNm) {
+        const interval = _random(smallestIntervalNm, largestIntervalNm, true);
+        offset -= interval;
+
+        if (offset < smallestIntervalNm) {
+            break;
+        }
+
+        spawnOffsets.push(offset);
     }
+
+    // spawn an aircraft at the first fix of the route
+    spawnOffsets.push(0);
 
     return spawnOffsets;
 };
@@ -102,13 +133,13 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
         }
 
         if (isWithinAirspace(airport, waypointModel.relativePosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, waypointModel.relativePosition));
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousWaypoint.relativePosition));
             totalDistance += distanceFromClosestFixToAirspaceBoundary;
 
             break;
         }
 
-        const distanceBetweenWaypoints = previousWaypoint.positionModel.distanceToPosition(waypointModel.positionModel);
+        const distanceBetweenWaypoints = previousWaypoint.calculateDistanceToWaypoint(waypointModel);
 
         totalDistance += distanceBetweenWaypoints;
     }

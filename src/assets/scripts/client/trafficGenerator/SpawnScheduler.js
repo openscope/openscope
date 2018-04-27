@@ -73,9 +73,11 @@ class SpawnScheduler {
             spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
 
+            const isAirborneFlight = spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
+                || spawnPatternModel.category === FLIGHT_CATEGORY.OVERFLIGHT;
+
             // TODO: abstract this to a class method on the `SpawnPatternModel`
-            if (spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL
-                && spawnPatternModel.preSpawnAircraftList.length > 0) {
+            if (isAirborneFlight && spawnPatternModel.preSpawnAircraftList.length > 0) {
                 this.aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });
