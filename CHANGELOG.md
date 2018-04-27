@@ -11,6 +11,7 @@
 
 ### Bugfixes
 - [#918](https://github.com/openscope/openscope/issues/918) - Fix failed load by verifying "last airport" in loadList before attempting to use it
+- [#939](https://github.com/openscope/openscope/issues/939) - Fix airline fleet detection logic that was erroring during spawn of properly declared patterns
 
 
 

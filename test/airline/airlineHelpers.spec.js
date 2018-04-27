@@ -7,7 +7,7 @@ import {
 } from '../../src/assets/scripts/client/airline/airlineHelpers';
 
 const AIRLINE_LIST_WITH_SEPERATOR_MOCK = [
-    ['aca/long', 4]
+    ['a7/fastGA', 4]
 ];
 
 const AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK = [
@@ -21,8 +21,6 @@ ava('.airlineNameAndFleetHelper() throws when called with an invalid parameter',
     t.throws(() => airlineNameAndFleetHelper(''));
     t.throws(() => airlineNameAndFleetHelper(42));
     t.throws(() => airlineNameAndFleetHelper(false));
-
-    t.notThrows(() => airlineNameAndFleetHelper([]));
 });
 
 ava('.airlineNameAndFleetHelper() returns an object with two keys: name and fleet when an empty string is passed', t => {
@@ -45,8 +43,8 @@ ava('.airlineNameAndFleetHelper() returns an object with two keys: name and flee
     const result = airlineNameAndFleetHelper(AIRLINE_LIST_WITH_SEPERATOR_MOCK[0]);
 
     t.true(typeof result === 'object');
-    t.true(result.name === 'aca');
-    t.true(result.fleet === 'long');
+    t.true(result.name === 'a7');
+    t.true(result.fleet === 'fastGA');
 });
 
 ava('.airlineNameAndFleetHelper() returns name lowercase when it receives uppercase', t => {
@@ -88,6 +86,6 @@ ava('.randomAirlineSelectionHelper() returns an object with two keys: name and f
     const result = randomAirlineSelectionHelper(AIRLINE_LIST_WITH_SEPERATOR_MOCK);
 
     t.true(typeof result === 'object');
-    t.true(result.name === 'aca');
-    t.true(result.fleet === 'long');
+    t.true(result.name === 'a7');
+    t.true(result.fleet === 'fastGA');
 });
