@@ -16,7 +16,7 @@
     "has_terrain": false,
     "wind": {
         "angle": 20,
-        "speed": 16
+        "speed": 7
     },
     "arrivalRunway": "05",
     "departureRunway": "35L",
@@ -534,46 +534,131 @@
         }
     ],
     "fixes": {
-        "_RWY2304DME"  : [40.93147148007, 28.73625351527],
-        "BEBEG": ["N41d03.91", "E029d59.00"],
-        "ELKEP": ["N41d16.82", "E028d50.50"],
-        "EMPOP": ["N41d14.88", "E029d02.34"],
-        "ERSEN": ["N40d51.93", "E030d39.97"],
-        "ERTAS": ["N41d27.68", "E029d08.80"],
-        "KUBAP": ["N41d06.07", "E029d51.51"],
-        "LIVSO": ["N41d14.07", "E029d23.42"],
-        "MAKOL": ["N42d10.23", "E029d08.57"],
-        "MOPIN": ["N41d27.89", "E029d42.63"],
-        "PEMET": ["N41d18.71", "E029d04.27"],
-        "ROBLO": ["N41d01.65", "E028d40.65"],
-        "SOMEP": ["N41d10.61", "E028d40.11"],
-        "TEMGO": ["N41d09.98", "E029d20.79"],
-        "UBEXA": ["N41d17.24", "E029d12.12"],
-        "YASEN": ["N41d11.93", "E029d30.97"],
-        "BKZ"  : ["N41d07m37.1", "E029d08m34.4"],
-        "IST"  : ["N40d57m41.3", "E028d48m38.5"],
+        "_BKZ283015.5": [41.1844261711, 28.80944900927],
+        "_CEK083016": [41.04084334523, 28.87805752052],
+        "_CRL103021": [41.07284760558, 28.38932789252],
+        "_CRL103022.5": [41.06711055328, 28.42150011225],
+        "_CRL110037.5": [40.93644673496, 28.71362195819],
+        "_EKI080055.5": [41.10484724794, 28.63136717339],
+        "_ERTAS204018.5": [41.17956142391, 28.98005553202],
+        "_IST024009": [41.098469422, 28.89165110595],
+        "_IST051004.5": [41.00856434412, 28.88780117553],
+        "_IST144005": [40.89408465544, 28.87544571826],
+        "_IST145005": [40.89323721184, 28.87388365811],
+        "_IST146005": [40.89241045975, 28.87230210979],
+        "_IST147005": [40.89160471904, 28.87070166436],
+        "_IST148005": [40.89082022908, 28.86908278111],
+        "_IST149005": [40.89005716771, 28.86744580059],
+        "_IST150005": [40.88931589128, 28.86579146611],
+        "_IST151005": [40.8885965339, 28.86412005702],
+        "_IST152005": [40.88789938427, 28.8624322186],
+        "_IST153005": [40.88722461715, 28.8607283496],
+        "_IST154005": [40.88657248304, 28.85900905605],
+        "_IST155005": [40.88594320297, 28.85727490208],
+        "_IST156005": [40.88533692423, 28.8555262675],
+        "_IST157005": [40.884753909, 28.85376388529],
+        "_IST158005": [40.8841942783, 28.85198809803],
+        "_IST159005": [40.88365826214, 28.85019960926],
+        "_IST160005": [40.88314598637, 28.84839881267],
+        "_IST161005": [40.8826576598, 28.84658641575],
+        "_IST162005": [40.88219340015, 28.84476282923],
+        "_IST163005": [40.88175339427, 28.84292876052],
+        "_IST164005": [40.88133777819, 28.84108476218],
+        "_IST165005": [40.88094664521, 28.83923121478],
+        "_IST166005": [40.88058016959, 28.83736891374],
+        "_IST167005": [40.88023845961, 28.83549839881],
+        "_IST168005": [40.87992159827, 28.83362009274],
+        "_IST169005": [40.87962970076, 28.83173463416],
+        "_IST170005": [40.8793628799, 28.82984273057],
+        "_IST171005": [40.87912120785, 28.82794487755],
+        "_IST172005": [40.87890476658, 28.82604169427],
+        "_IST173005": [40.87871362653, 28.82413378351],
+        "_IST174005": [40.87854783499, 28.82222157114],
+        "_IST175005": [40.87840746674, 28.82030588719],
+        "_IST176005": [40.87829255716, 28.81838721575],
+        "_IST177005": [40.87820314124, 28.81646609047],
+        "_IST178005": [40.87813925348, 28.81454321615],
+        "_IST179005": [40.87810091194, 28.81261911683],
+        "_IST180005": [40.87808813026, 28.81069439989],
+        "_IST181005": [40.8781009118, 28.80876978319],
+        "_IST182005": [40.87813925319, 28.80684568386],
+        "_IST183005": [40.8782031408, 28.80492280953],
+        "_IST184005": [40.87829255657, 28.80300168422],
+        "_IST185005": [40.878407466, 28.80108301275],
+        "_IST186005": [40.87854783411, 28.79916732877],
+        "_IST187005": [40.87871362551, 28.79725511635],
+        "_IST188005": [40.87890476541, 28.79534720554],
+        "_IST189005": [40.87912121832, 28.79344392444],
+        "_IST190005": [40.87936289149, 28.79154607193],
+        "_IST191005": [40.87962971345, 28.78965416891],
+        "_IST192005": [40.87992159655, 28.7877688068],
+        "_IST193005": [40.88023845775, 28.78589050065],
+        "_IST194005": [40.88058018549, 28.78401989131],
+        "_IST195005": [40.88094666214, 28.78215759103],
+        "_IST196005": [40.88133777594, 28.78030413699],
+        "_IST197005": [40.8817534132, 28.77846004695],
+        "_IST198005": [40.88219339766, 28.77662606973],
+        "_IST199005": [40.88265765719, 28.77480248309],
+        "_IST200005": [40.88314598364, 28.77299008604],
+        "_IST201005": [40.88365825931, 28.77118928932],
+        "_IST202005": [40.88419427536, 28.76940080042],
+        "_IST203005": [40.88475390596, 28.76762501302],
+        "_IST204005": [40.88533692108, 28.76586263067],
+        "_IST205005": [40.88594319973, 28.76411399594],
+        "_IST206005": [40.88657247971, 28.76237984182],
+        "_IST207005": [40.88722461373, 28.76066054811],
+        "_IST208005": [40.88789938076, 28.75895667895],
+        "_IST209005": [40.88859653031, 28.75726884036],
+        "_IST210005": [40.88931588762, 28.75559743111],
+        "_IST211005": [40.89005716398, 28.75394309646],
+        "_IST212005": [40.89082022528, 28.75230611577],
+        "_IST213005": [40.89160471518, 28.75068723234],
+        "_IST214005": [40.89241049107, 28.74908671805],
+        "_IST215005": [40.89323720787, 28.74750523822],
+        "_IST216005": [40.89408465142, 28.74594317789],
+        "_IST217005": [40.89495256462, 28.74440099258],
+        "_IST218005": [40.89584061281, 28.74287925381],
+        "_IST219005": [40.89674856546, 28.74137833278],
+        "_IST220005": [40.8976761878, 28.73989860288],
+        "_IST221005": [40.89862304559, 28.73844073445],
+        "_IST222005": [40.89958897476, 28.73700495708],
+        "_IST223005": [40.90057364195, 28.73559175181],
+        "_IST224005": [40.90157672215, 28.73420156693],
+        "_IST225005": [40.90259790526, 28.73283481325],
+        "_IST226005": [40.90363688368, 28.73149188476],
+        "_IST227005": [40.90469330766, 28.73017321505],
+        "_IST228005": [40.90576689948, 28.72887913413],
+        "_IST229005": [40.9068572455, 28.72761012244],
+        "_IST230005": [40.90796411547, 28.7263664317],
+        "_IST231005": [40.90908702727, 28.72514858586],
+        "_IST232005": [40.9102257816, 28.72395678407],
+        "_IST233005": [40.91137994537, 28.72279146667],
+        "_IST234005": [40.91254921728, 28.72165292363],
+        "_IST235005": [40.91373319178, 28.72054153633],
+        "_IST236005": [40.91493149265, 28.71945764167],
+        "_IST237005": [40.91614380708, 28.7184015089],
+        "_IST238005": [40.91736978805, 28.7173734308],
+        "_IST239005": [40.9186089039, 28.71637383758],
+        "_IST240005": [40.91986090561, 28.71540291363],
+        "_IST241005": [40.92112550713, 28.71446087509],
+        "_IST242005": [40.92240212451, 28.71354814685],
+        "_IST243005": [40.92369043036, 28.71266494702],
+        "_IST244005": [40.92499004926, 28.7118115209],
+        "_IST245005": [40.92630065354, 28.71098807549],
+        "_IST254008.5": [40.92239851208, 28.63099698785],
+        "_IST267009": [40.95347793468, 28.61299288373],
+        "_IST309006": [41.02425019052, 28.70786110811],
+        "_IST309014.5": [41.11302767618, 28.5618467047],
+        "_IST356007": [41.0779208768, 28.79989226437],
+        "_RWY05": ["N40d57m58.55", "E028d48m40.75"],
+        "_RWY17L": ["N40d59m46.89", "E028d48m30.69"],
+        "_RWY17R": ["N40d59m46.88", "E028d48m21.71"],
+        "_RWY23": ["N40d58m39.95", "E028d50m10.16"],
+        "_RWY2304DME": [40.93147148007, 28.73625351527],
+        "_RWY35L": ["N40d58m09.66", "E028d48m25.12"],
+        "_RWY35R": ["N40d58m10.04", "E028d48m34.09"],
         "ABLEM": ["N40d51.94", "E028d27.87"],
         "AYFER": ["N41d29.21", "E028d37.06"],
-        "BAVUL": ["N40d51.79", "E029d32.79"],
-        "BEDEL": ["N40d50.03", "E027d30.13"],
-        "BRY"  : ["N40d15.75", "E029d35.64"],
-        "DEKEK": ["N40d20.06", "E029d19.39"],
-        "EDASA": ["N39d27.60", "E030d07.47"],
-        "EKDAM": ["N40d26.09", "E029d37.04"],
-        "ERLEB": ["N41d07.26", "E028d33.28"],
-        "GELBU": ["N40d56.12", "E027d08.45"],
-        "GEVLA": ["N40d59.43", "E028d20.24"],
-        "GOLDO": ["N40d52.93", "E026d14.97"],
-        "IBLAL": ["N41d58.93", "E028d00.07"],
-        "KOTEV": ["N41d28.74", "E027d50.03"],
-        "MARMA": ["N40d31.63", "E027d38.93"],
-        "OKBAL": ["N40d49.98", "E027d56.49"],
-        "PIMAV": ["N40d24.04", "E029d57.22"],
-        "RIMBO": ["N41d22.86", "E028d33.14"],
-        "TOPLU": ["N41d28.72", "E028d10.39"],
-        "TUDBU": ["N41d58.00", "E027d46.62"],
-        "ULPER": ["N40d41.75", "E029d39.15"],
-        "VADEN": ["N42d03.93", "E027d12.97"],
         "BA010": [41.079714, 28.805192],
         "BA012": [41.279758, 28.797167],
         "BA013": [41.272289, 28.880706],
@@ -674,12 +759,52 @@
         "BA879": [41.299075, 28.930628],
         "BA880": [41.349089, 28.928970],
         "BA881": [41.399106, 28.927309],
-        "_RWY05": ["N40d57m58.55", "E028d48m40.75"],
-        "_RWY23": ["N40d58m39.95", "E028d50m10.16"],
-        "_RWY17L": ["N40d59m46.89", "E028d48m30.69"],
-        "_RWY35R": ["N40d58m10.04", "E028d48m34.09"],
-        "_RWY17R": ["N40d59m46.88", "E028d48m21.71"],
-        "_RWY35L": ["N40d58m09.66", "E028d48m25.12"]
+        "BAVUL": ["N40d51.79", "E029d32.79"],
+        "BEBEG": ["N41d03.91", "E029d59.00"],
+        "BEDEL": ["N40d50.03", "E027d30.13"],
+        "BIG"  : ["N40d17.06", "E027d21.93"],
+        "BKZ"  : ["N41d07m37.1", "E029d08m34.4"],
+        "BRY"  : ["N40d15.75", "E029d35.64"],
+        "CEK"  : ["N41d00.39", "E028d31.72"],
+        "CRL"  : ["N41d09m8.00", "E027d56m18.00"],
+        "DEKEK": ["N40d20.06", "E029d19.39"],
+        "DENIZ": ["N40d50.15", "E028d01.57"],
+        "EDASA": ["N39d27.60", "E030d07.47"],
+        "EKDAM": ["N40d26.09", "E029d37.04"],
+        "EKI"  : ["N40d57.06", "E027d25.57"],
+        "ELKEP": ["N41d16.82", "E028d50.50"],
+        "EMPOP": ["N41d14.88", "E029d02.34"],
+        "ERLEB": ["N41d07.26", "E028d33.28"],
+        "ERSEN": ["N40d51.93", "E030d39.97"],
+        "ERTAS": ["N41d27.68", "E029d08.80"],
+        "FENER": ["N41d17.18","E028d21.47"],
+        "GAYEM": ["N41d02.75", "E029d37.80"],
+        "GELBU": ["N40d56.12", "E027d08.45"],
+        "GEVLA": ["N40d59.43", "E028d20.24"],
+        "GOLDO": ["N40d52.93", "E026d14.97"],
+        "IBLAL": ["N41d58.93", "E028d00.07"],
+        "IST"  : ["N40d57m41.3", "E028d48m38.5"],
+        "KOTEV": ["N41d28.74", "E027d50.03"],
+        "KUBAP": ["N41d06.07", "E029d51.51"],
+        "LIVSO": ["N41d14.07", "E029d23.42"],
+        "MAKOL": ["N42d10.23", "E029d08.57"],
+        "MARMA": ["N40d31.63", "E027d38.93"],
+        "MOPIN": ["N41d27.89", "E029d42.63"],
+        "OKBAL": ["N40d49.98", "E027d56.49"],
+        "PEMET": ["N41d18.71", "E029d04.27"],
+        "PIMAV": ["N40d24.04", "E029d57.22"],
+        "RIMBO": ["N41d22.86", "E028d33.14"],
+        "ROBLO": ["N41d01.65", "E028d40.65"],
+        "SIVLI": ["N40d59.05", "E027d48.28"],
+        "SOMEP": ["N41d10.61", "E028d40.11"],
+        "TEMGO": ["N41d09.98", "E029d20.79"],
+        "TOPLU": ["N41d28.72", "E028d10.39"],
+        "TUDBU": ["N41d58.00", "E027d46.62"],
+        "UBEXA": ["N41d17.24", "E029d12.12"],
+        "ULPER": ["N40d41.75", "E029d39.15"],
+        "VADEN": ["N42d03.93", "E027d12.97"],
+        "YAA"  : ["N40d28.50", "E029d12.45"],
+        "YASEN": ["N41d11.93", "E029d30.97"]
     },
     "runways": [
         {
@@ -708,7 +833,2124 @@
         }
     ],
     "sids": {
-
+        "BIG1D": {
+            "icao": "BIG1D",
+            "name": "Biga One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_EKI080055.5", "SIVLI", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_EKI080055.5", "SIVLI", "BIG*"]
+            ]
+        },
+        "BIG1K": {
+            "icao": "BIG1K",
+            "name": "Biga One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_EKI080055.5", "SIVLI", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_EKI080055.5", "SIVLI", "BIG*"]
+            ]
+        },
+        "BIG1M": {
+            "icao": "BIG1M",
+            "name": "Biga One Mike",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "CEK", "SIVLI", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "SIVLI", "BIG*"]
+            ]
+        },
+        "BIG1N": {
+            "icao": "BIG1N",
+            "name": "Biga One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "CEK", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "BIG*"]
+            ]
+        },
+        "BIG2G": {
+            "icao": "BIG2G",
+            "name": "Biga Two Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "_IST254008.5", "DENIZ", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY23", "_IST245005", "_IST254008.5", "DENIZ", "BIG*"]
+            ]
+        },
+        "BIG2S": {
+            "icao": "BIG2S",
+            "name": "Biga Two Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "_IST254008.5", "DENIZ", "BIG"],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "_IST254008.5", "DENIZ", "BIG*"],
+                ["_RWY35L", "_IST177005", "_IST254008.5", "DENIZ", "BIG"]
+            ]
+        },
+        "CRL1D": {
+            "icao": "CRL1D",
+            "name": "Corlu One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_CRL103021", "CRL"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_CRL103021", "CRL*"]
+            ]
+        },
+        "CRL1K": {
+            "icao": "CRL1K",
+            "name": "Corlu One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_CRL103021", "CRL"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_CRL103021", "CRL*"]
+            ]
+        },
+        "CRL1N": {
+            "icao": "CRL1N",
+            "name": "Corlu One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "CEK", "CRL"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "CRL*"]
+            ]
+        },
+        "CRL2G": {
+            "icao": "CRL2G",
+            "name": "Corlu Two Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "_CRL103022.5", "CRL"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "_CRL103022.5", "CRL*"]
+            ]
+        },
+        "CRL2S": {
+            "icao": "CRL2S",
+            "name": "Corlu Two Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "_CRL110037.5", "CRL"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "_CRL110037.5", "CRL*"],
+                ["_RWY35L", "_IST177005", "_CRL110037.5", "CRL"]
+            ]
+        },
+        "EDASA1E": {
+            "icao": "EDASA1E",
+            "name": "Edasa One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BA042", ["BA043", "A50"], "BA051", ["BA052", "A130-"], "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1N": {
+            "icao": "EDASA1N",
+            "name": "Edasa One November",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA*"]
+            ]
+        },
+        "EDASA1P": {
+            "icao": "EDASA1P",
+            "name": "Edasa One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "EDASA*"]
+            ]
+        },
+        "EDASA1Q": {
+            "icao": "EDASA1Q",
+            "name": "Edasa One Quebec",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+            ]
+        },
+        "EDASA1R": {
+            "icao": "EDASA1R",
+            "name": "Edasa One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1S": {
+            "icao": "EDASA1S",
+            "name": "Edasa One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1T": {
+            "icao": "EDASA1T",
+            "name": "Edasa One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1U": {
+            "icao": "EDASA1U",
+            "name": "Edasa One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1V": {
+            "icao": "EDASA1V",
+            "name": "Edasa One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1X": {
+            "icao": "EDASA1X",
+            "name": "Edasa One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA042", ["BA043", "A50"], "BA051", ["BA052", "A130-"], "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+            ]
+        },
+        "EDASA1Y": {
+            "icao": "EDASA1Y",
+            "name": "Edasa One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+            ]
+        },
+        "EDASA1Z": {
+            "icao": "EDASA1Z",
+            "name": "Edasa One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+            ]
+        },
+        "EKI1D": {
+            "icao": "EKI1D",
+            "name": "EKI One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_EKI080055.5", "EKI"],
+            "exitPoints": {
+                "EKI": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_EKI080055.5", "EKI*"]
+            ]
+        },
+        "EKI1K": {
+            "icao": "EKI1K",
+            "name": "EKI One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_EKI080055.5", "EKI"],
+            "exitPoints": {
+                "EKI": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_EKI080055.5", "EKI*"]
+            ]
+        },
+        "EKI1N": {
+            "icao": "EKI1N",
+            "name": "Tekirdag One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "CEK", "EKI"],
+            "exitPoints": {
+                "EKI": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "EKI*"]
+            ]
+        },
+        "EKI2G": {
+            "icao": "EKI2G",
+            "name": "Tekirdag Two Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "_IST267009", "EKI"],
+            "exitPoints": {
+                "EKI": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "_IST267009", "EKI*"]
+            ]
+        },
+        "EKI2S": {
+            "icao": "EKI2S",
+            "name": "Tekirdag Two Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "_IST267009", "EKI"],
+            "exitPoints": {
+                "EKI": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST267009", "EKI*"],
+                ["_RWY35L", "_IST267009", "EKI"]
+            ]
+        },
+        "ERSEN1P": {
+            "icao": "ERSEN1P",
+            "name": "Ersen One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1R": {
+            "icao": "ERSEN1R",
+            "name": "Ersen One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1S": {
+            "icao": "ERSEN1S",
+            "name": "Ersen One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1T": {
+            "icao": "ERSEN1T",
+            "name": "Ersen One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1U": {
+            "icao": "ERSEN1U",
+            "name": "Ersen One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1V": {
+            "icao": "ERSEN1V",
+            "name": "Ersen One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA060", "A70-"], "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1Y": {
+            "icao": "ERSEN1Y",
+            "name": "Ersen One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERSEN1Z": {
+            "icao": "ERSEN1Z",
+            "name": "Ersen One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
+            "exitPoints": {
+                "ERSEN": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+            ]
+        },
+        "ERTAS1D": {
+            "icao": "ERTAS1D",
+            "name": "Ertas One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "BKZ", "ERTAS*"]
+            ]
+        },
+        "ERTAS1G": {
+            "icao": "ERTAS1G",
+            "name": "Ertas One Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "BKZ", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "BKZ", "ERTAS*"]
+            ]
+        },
+        "ERTAS1J": {
+            "icao": "ERTAS1J",
+            "name": "Ertas One Juliet",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "CEK", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "CEK", "ERTAS*"]
+            ]
+        },
+        "ERTAS1K": {
+            "icao": "ERTAS1K",
+            "name": "Ertas One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "BKZ", "ERTAS*"]
+            ]
+        },
+        "ERTAS1L": {
+            "icao": "ERTAS1L",
+            "name": "Ertas One Lima",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_ERTAS204018.5", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_ERTAS204018.5", "ERTAS*"]
+            ]
+        },
+        "ERTAS1M": {
+            "icao": "ERTAS1M",
+            "name": "Ertas One Mike",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "_IST024009", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_IST024009", "ERTAS*"]
+            ]
+        },
+        "ERTAS1N": {
+            "icao": "ERTAS1N",
+            "name": "Ertas One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "BKZ", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "BKZ", "ERTAS*"]
+            ]
+        },
+        "ERTAS1S": {
+            "icao": "ERTAS1S",
+            "name": "Ertas One Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "CEK", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "CEK", "ERTAS*"],
+                ["_RWY35L", "_IST177005", "CEK", "ERTAS"]
+            ]
+        },
+        "ERTAS1T": {
+            "icao": "ERTAS1T",
+            "name": "Ertas One Tango",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "BKZ", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "BKZ", "ERTAS*"],
+                ["_RWY35L", "_IST177005", "BKZ", "ERTAS"]
+            ]
+        },
+        "ERTAS1U": {
+            "icao": "ERTAS1U",
+            "name": "Ertas One Uniform",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_ERTAS204018.5", "ERTAS"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_ERTAS204018.5", "ERTAS*"]
+            ]
+        },
+        "FENER1D": {
+            "icao": "FENER1D",
+            "name": "Fener One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_BKZ283015.5", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_BKZ283015.5", "FENER*"]
+            ]
+        },
+        "FENER1K": {
+            "icao": "FENER1K",
+            "name": "Fener One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_BKZ283015.5", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_BKZ283015.5", "FENER*"]
+            ]
+        },
+        "FENER1L": {
+            "icao": "FENER1L",
+            "name": "Fener One Lima",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "_IST309014.5", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "_IST309014.5", "FENER*"]
+            ]
+        },
+        "FENER1N": {
+            "icao": "FENER1N",
+            "name": "Fener One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "_IST309006", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "_IST309006", "FENER*"]
+            ]
+        },
+        "FENER1U": {
+            "icao": "FENER1U",
+            "name": "Fener One Uniform",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "_IST309014.5", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "_IST309014.5", "FENER*"]
+            ]
+        },
+        "FENER2H": {
+            "icao": "FENER2H",
+            "name": "Fener Two Hotel",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "CEK", "FENER"],
+            "exitPoints": {
+                "CRL": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "CEK", "FENER*"]
+            ]
+        },
+        "FENER2S": {
+            "icao": "FENER2S",
+            "name": "Fener Two Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "CEK", "FENER"],
+            "exitPoints": {
+                "FENER": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "CEK", "FENER*"],
+                ["_RWY35L", "_IST177005", "CEK", "FENER"]
+            ]
+        },
+        "GAYEM1D": {
+            "icao": "GAYEM1D",
+            "name": "Gayem One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "GAYEM"],
+            "exitPoints": {
+                "GAYEM": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "BKZ", "GAYEM*"]
+            ]
+        },
+        "GAYEM1G": {
+            "icao": "GAYEM1G",
+            "name": "Gayem One Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "BKZ", "GAYEM"],
+            "exitPoints": {
+                "GAYEM": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "BKZ", "GAYEM*"]
+            ]
+        },
+        "GAYEM1K": {
+            "icao": "GAYEM1K",
+            "name": "Gayem One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "GAYEM"],
+            "exitPoints": {
+                "GAYEM": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "BKZ", "GAYEM*"]
+            ]
+        },
+        "GAYEM1N": {
+            "icao": "GAYEM1N",
+            "name": "Gayem One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "BKZ", "GAYEM"],
+            "exitPoints": {
+                "GAYEM": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "BKZ", "GAYEM*"]
+            ]
+        },
+        "GAYEM1S": {
+            "icao": "GAYEM1S",
+            "name": "Gayem One Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "BKZ", "GAYEM"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "BKZ", "GAYEM*"],
+                ["_RWY35L", "_IST177005", "BKZ", "GAYEM"]
+            ]
+        },
+        "GOLDO1E": {
+            "icao": "GOLDO1E",
+            "name": "Goldo One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BA042", ["BA043", "A50"], "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1P": {
+            "icao": "GOLDO1P",
+            "name": "Goldo One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BA024", ["ERLEB", "A80-"], "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1R": {
+            "icao": "GOLDO1R",
+            "name": "Goldo One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1S": {
+            "icao": "GOLDO1S",
+            "name": "Goldo One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1T": {
+            "icao": "GOLDO1T",
+            "name": "Goldo One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1U": {
+            "icao": "GOLDO1U",
+            "name": "Goldo One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1V": {
+            "icao": "GOLDO1V",
+            "name": "Goldo One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": ["BA061", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY05", "BA061", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1X": {
+            "icao": "GOLDO1X",
+            "name": "Goldo One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA042", ["BA043", "A50"], "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1Y": {
+            "icao": "GOLDO1Y",
+            "name": "Goldo One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["ERLEB", "A80-"], "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "GOLDO1Z": {
+            "icao": "GOLDO1Z",
+            "name": "Goldo One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["ERLEB", "A80-"], "OKBAL", "BEDEL", "GELBU", "GOLDO"],
+            "exitPoints": {
+                "GOLDO": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+            ]
+        },
+        "IBLAL1E": {
+            "icao": "IBLAL1E",
+            "name": "Iblal One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA040", "BA012", "AYFER", "IBLAL*"]
+            ]
+        },
+        "IBLAL1P": {
+            "icao": "IBLAL1P",
+            "name": "Iblal One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BA013", ["AYFER", "A130-"], "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BA013", "AYFER", "IBLAL*"]
+            ]
+        },
+        "IBLAL1R": {
+            "icao": "IBLAL1R",
+            "name": "Iblal One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+            ]
+        },
+        "IBLAL1S": {
+            "icao": "IBLAL1S",
+            "name": "Iblal One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+            ]
+        },
+        "IBLAL1T": {
+            "icao": "IBLAL1T",
+            "name": "Iblal One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+            ]
+        },
+        "IBLAL1U": {
+            "icao": "IBLAL1U",
+            "name": "Iblal One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+            ]
+        },
+        "IBLAL1V": {
+            "icao": "IBLAL1V",
+            "name": "Iblal One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": ["BA061", "ABLEM", ["GEVLA", "A100-"], "TOPLU", "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+            ]
+        },
+        "IBLAL1X": {
+            "icao": "IBLAL1X",
+            "name": "Iblal One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA040", "A40-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA040", "BA012", "AYFER", "IBLAL*"]
+            ]
+        },
+        "IBLAL1Y": {
+            "icao": "IBLAL1Y",
+            "name": "Iblal One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA012", "AYFER", "IBLAL*"]
+            ]
+        },
+        "IBLAL1Z": {
+            "icao": "IBLAL1Z",
+            "name": "Iblal One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
+            "exitPoints": {
+                "IBLAL": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA012", "AYFER", "IBLAL*"]
+            ]
+        },
+        "MAKOL1E": {
+            "icao": "MAKOL1E",
+            "name": "Makol One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1P": {
+            "icao": "MAKOL1P",
+            "name": "Makol One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "EMPOP", "PEMET", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "EMPOP", "PEMET", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1R": {
+            "icao": "MAKOL1R",
+            "name": "Makol One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1S": {
+            "icao": "MAKOL1S",
+            "name": "Makol One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1T": {
+            "icao": "MAKOL1T",
+            "name": "Makol One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1U": {
+            "icao": "MAKOL1U",
+            "name": "Makol One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1V": {
+            "icao": "MAKOL1V",
+            "name": "Makol One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA060", "A70-"], "SOMEP", "ELKEP", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1X": {
+            "icao": "MAKOL1X",
+            "name": "Makol One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1Y": {
+            "icao": "MAKOL1Y",
+            "name": "Makol One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA045", "A90-"], "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA045", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MAKOL1Z": {
+            "icao": "MAKOL1Z",
+            "name": "Makol One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA045", "A90-"], "ERTAS", "MAKOL"],
+            "exitPoints": {
+                "MAKOL": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA045", "ERTAS", "MAKOL*"]
+            ]
+        },
+        "MARMA1E": {
+            "icao": "MARMA1E",
+            "name": "Marma One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BA042", ["BA043", "A50"], "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1P": {
+            "icao": "MARMA1P",
+            "name": "Marma One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BA024", ["ERLEB", "A80-"], "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1R": {
+            "icao": "MARMA1R",
+            "name": "Marma One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1S": {
+            "icao": "MARMA1S",
+            "name": "Marma One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1T": {
+            "icao": "MARMA1T",
+            "name": "Marma One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1U": {
+            "icao": "MARMA1U",
+            "name": "Marma One Uniform",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1V": {
+            "icao": "MARMA1V",
+            "name": "Marma One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": ["BA061", "ABLEM", "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY05", "BA061", "ABLEM", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1X": {
+            "icao": "MARMA1X",
+            "name": "Marma One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA042", ["BA043", "A50"], "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1Y": {
+            "icao": "MARMA1Y",
+            "name": "Marma One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["ERLEB", "A80-"], "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MARMA1Z": {
+            "icao": "MARMA1Z",
+            "name": "Marma One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["ERLEB", "A80-"], "OKBAL", "MARMA"],
+            "exitPoints": {
+                "MARMA": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "MARMA*"]
+            ]
+        },
+        "MOPIN1A": {
+            "icao": "MOPIN1A",
+            "name": "Mopin One Alpha",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "BKZ", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "BKZ", "MOPIN*"],
+                ["_RWY35L", "_IST177005", "BKZ", "MOPIN"]
+            ]
+        },
+        "MOPIN1B": {
+            "icao": "MOPIN1B",
+            "name": "Mopin One Bravo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "BKZ", "MOPIN*"]
+            ]
+        },
+        "MOPIN1D": {
+            "icao": "MOPIN1D",
+            "name": "Mopin One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "BKZ", "MOPIN*"]
+            ]
+        },
+        "MOPIN1E": {
+            "icao": "MOPIN1E",
+            "name": "Mopin One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MOPIN*"]
+            ]
+        },
+        "MOPIN1G": {
+            "icao": "MOPIN1G",
+            "name": "Mopin One Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["^_IST245005", "A14+"], "BKZ", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "BKZ", "MOPIN*"]
+            ]
+        },
+        "MOPIN1N": {
+            "icao": "MOPIN1N",
+            "name": "Mopin One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "BKZ", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "BKZ", "MOPIN*"]
+            ]
+        },
+        "MOPIN1P": {
+            "icao": "MOPIN1P",
+            "name": "Mopin One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BKZ", "TEMGO", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BKZ", "TEMGO", "MOPIN*"]
+            ]
+        },
+        "MOPIN1R": {
+            "icao": "MOPIN1R",
+            "name": "Mopin One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "LIVSO", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN*"]
+            ]
+        },
+        "MOPIN1S": {
+            "icao": "MOPIN1S",
+            "name": "Mopin One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA020", "S240"], ["BA021", "A80-"], "BA022", "LIVSO", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN*"]
+            ]
+        },
+        "MOPIN1T": {
+            "icao": "MOPIN1T",
+            "name": "Mopin One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "UBEXA", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+            ]
+        },
+        "MOPIN1U": {
+            "icao": "MOPIN1U",
+            "name": "Mopin One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA030", "S240"], ["ROBLO", "A70-"], "SOMEP", "ELKEP", "UBEXA", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+            ]
+        },
+        "MOPIN1V": {
+            "icao": "MOPIN1V",
+            "name": "Mopin One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA060", "A70-"], "SOMEP", "ELKEP", "UBEXA", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+            ]
+        },
+        "MOPIN1X": {
+            "icao": "MOPIN1X",
+            "name": "Mopin One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MOPIN*"]
+            ]
+        },
+        "MOPIN1Y": {
+            "icao": "MOPIN1Y",
+            "name": "Mopin One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BKZ", "TEMGO", "MOPIN*"]
+            ]
+        },
+        "MOPIN1Z": {
+            "icao": "MOPIN1Z",
+            "name": "Mopin One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "MOPIN"],
+            "exitPoints": {
+                "MOPIN": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BKZ", "TEMGO", "MOPIN*"]
+            ]
+        },
+        "PIMAV1E": {
+            "icao": "PIMAV1E",
+            "name": "Pimav One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BA042", ["BA043", "A50"], "BA051", ["BA052", "A130-"], "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1N": {
+            "icao": "PIMAV1N",
+            "name": "Pimav One November",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV*"]
+            ]
+        },
+        "PIMAV1P": {
+            "icao": "PIMAV1P",
+            "name": "Pimav One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+            ]
+        },
+        "PIMAV1Q": {
+            "icao": "PIMAV1Q",
+            "name": "Pimav One Quebec",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV*"]
+            ]
+        },
+        "PIMAV1R": {
+            "icao": "PIMAV1R",
+            "name": "Pimav One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1S": {
+            "icao": "PIMAV1S",
+            "name": "Pimav One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1T": {
+            "icao": "PIMAV1T",
+            "name": "Pimav One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1U": {
+            "icao": "PIMAV1U",
+            "name": "Pimav One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1V": {
+            "icao": "PIMAV1V",
+            "name": "Pimav One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1X": {
+            "icao": "PIMAV1X",
+            "name": "Pimav One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BA042", ["BA043", "A50"], "BA051", ["BA052", "A130-"], "BA063", "DEKEK", "BA065", "PIMAV"],
+            "exitPoints": {
+                "EDASA": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV*"]
+            ]
+        },
+        "PIMAV1Y": {
+            "icao": "PIMAV1Y",
+            "name": "Pimav One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+            ]
+        },
+        "PIMAV1Z": {
+            "icao": "PIMAV1Z",
+            "name": "Pimav One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], "BKZ", ["BA044", "A120-"], "BAVUL", "ULPER", "PIMAV"],
+            "exitPoints": {
+                "PIMAV": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+            ]
+        },
+        "TUDBU1E": {
+            "icao": "TUDBU1E",
+            "name": "Tudbu One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA041", "A40-"], ["RIMBO", "A130-"], "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA041", "RIMBO", "TUDBU*"]
+            ]
+        },
+        "TUDBU1P": {
+            "icao": "TUDBU1P",
+            "name": "Tudbu One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BA024", ["RIMBO", "A130-"], "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BA024", "RIMBO", "TUDBU*"]
+            ]
+        },
+        "TUDBU1R": {
+            "icao": "TUDBU1R",
+            "name": "Tudbu One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+            ]
+        },
+        "TUDBU1S": {
+            "icao": "TUDBU1S",
+            "name": "Tudbu One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+            ]
+        },
+        "TUDBU1T": {
+            "icao": "TUDBU1T",
+            "name": "Tudbu One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+            ]
+        },
+        "TUDBU1U": {
+            "icao": "TUDBU1U",
+            "name": "Tudbu One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "TOPLU", "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+            ]
+        },
+        "TUDBU1V": {
+            "icao": "TUDBU1V",
+            "name": "Tudbu One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": ["BA061", "ABLEM", ["GEVLA", "A100-"], "TOPLU", "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+            ]
+        },
+        "TUDBU1X": {
+            "icao": "TUDBU1X",
+            "name": "Tudbu One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA041", "A40-"], ["RIMBO", "A130-"], "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA041", "RIMBO", "TUDBU*"]
+            ]
+        },
+        "TUDBU1Y": {
+            "icao": "TUDBU1Y",
+            "name": "Tudbu One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "RIMBO", "TUDBU*"]
+            ]
+        },
+        "TUDBU1Z": {
+            "icao": "TUDBU1Z",
+            "name": "Tudbu One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "TUDBU"],
+            "exitPoints": {
+                "TUDBU": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "RIMBO", "TUDBU*"]
+            ]
+        },
+        "VADEN1E": {
+            "icao": "VADEN1E",
+            "name": "Vaden One Echo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A16+|S240-"], ["BA041", "A40-"], ["RIMBO", "A130-"], "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "BA041", "RIMBO", "VADEN*"]
+            ]
+        },
+        "VADEN1P": {
+            "icao": "VADEN1P",
+            "name": "Vaden One Papa",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["BA035", "A16+|S220"], "BA024", ["RIMBO", "A130-"], "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY23", "BA035", "BA024", "RIMBO", "VADEN*"]
+            ]
+        },
+        "VADEN1R": {
+            "icao": "VADEN1R",
+            "name": "Vaden One Romeo",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "KOTEV", "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+            ]
+        },
+        "VADEN1S": {
+            "icao": "VADEN1S",
+            "name": "Vaden One Sierra",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "KOTEV", "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+            ]
+        },
+        "VADEN1T": {
+            "icao": "VADEN1T",
+            "name": "Vaden One Tango",
+            "rwy": {
+                "LTBA17L": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "KOTEV", "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+            ]
+        },
+        "VADEN1U": {
+            "icao": "VADEN1U",
+            "name": "Vaden One Uniform",
+            "rwy": {
+                "LTBA17R": []
+            },
+            "body": [["BA015", "A14+|S220"], "ABLEM", ["GEVLA", "A100-"], "KOTEV", "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+            ]
+        },
+        "VADEN1V": {
+            "icao": "VADEN1V",
+            "name": "Vaden One Victor",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": ["BA061", "ABLEM", ["GEVLA", "A100-"], "KOTEV", "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+            ]
+        },
+        "VADEN1X": {
+            "icao": "VADEN1X",
+            "name": "Vaden One Xray",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["BA041", "A40-"], ["RIMBO", "A130-"], "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "BA041", "RIMBO", "VADEN*"]
+            ]
+        },
+        "VADEN1Y": {
+            "icao": "VADEN1Y",
+            "name": "Vaden One Yankee",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY17R", "BA010", "RIMBO", "VADEN*"]
+            ]
+        },
+        "VADEN1Z": {
+            "icao": "VADEN1Z",
+            "name": "Vaden One Zulu",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "VADEN"],
+            "exitPoints": {
+                "VADEN": []
+            },
+            "draw": [
+                ["_RWY17L", "BA010", "RIMBO", "VADEN*"]
+            ]
+        },
+        "YAA1D": {
+            "icao": "YAA1D",
+            "name": "Yalova One Delta",
+            "rwy": {
+                "LTBA35L": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "YAA"],
+            "exitPoints": {
+                "YAA": []
+            },
+            "draw": [
+                ["_RWY17R", "_IST356007", "BKZ", "YAA*"]
+            ]
+        },
+        "YAA1K": {
+            "icao": "YAA1K",
+            "name": "Yalova One Kilo",
+            "rwy": {
+                "LTBA35R": []
+            },
+            "body": [["^_IST356007", "A16+"], "BKZ", "YAA"],
+            "exitPoints": {
+                "YAA": []
+            },
+            "draw": [
+                ["_RWY17L", "_IST356007", "BKZ", "YAA*"]
+            ]
+        },
+        "YAA1N": {
+            "icao": "YAA1N",
+            "name": "Yalova One November",
+            "rwy": {
+                "LTBA05": []
+            },
+            "body": [["^_IST051004.5", "A10+"], "BKZ", "YAA"],
+            "exitPoints": {
+                "YAA": []
+            },
+            "draw": [
+                ["_RWY23", "_IST051004.5", "BKZ", "YAA*"]
+            ]
+        },
+        "YAA2G": {
+            "icao": "YAA2G",
+            "name": "Yalova Two Golf",
+            "rwy": {
+                "LTBA23": []
+            },
+            "body": [["_IST245005", "A14+"], "^_IST215005", "^_IST212005", "^_IST209005", "^_IST206005", "^_IST203005", "^_IST200005", "^_IST197005", "^_IST194005", "^_IST191005", "^_IST188005", "^_IST185005", "^_IST182005",  "^_IST179005", "^_IST176005", "^_IST173005", "^_IST170005", "^_IST167005", "^_IST164005", "_IST144005", "YAA"],
+            "exitPoints": {
+                "YAA": []
+            },
+            "draw": [
+                ["_RWY05", "_IST245005", "_IST245005", "_IST244005", "_IST243005", "_IST242005", "_IST241005", "_IST240005", "_IST239005", "_IST238005", "_IST237005", "_IST236005", "_IST235005", "_IST234005", "_IST233005", "_IST232005", "_IST231005", "_IST230005", "_IST229005", "_IST228005", "_IST227005", "_IST226005", "_IST225005", "_IST224005", "_IST223005", "_IST222005", "_IST221005", "_IST220005", "_IST219005", "_IST218005", "_IST217005", "_IST216005", "_IST215005", "_IST214005",  "_IST213005", "_IST212005", "_IST211005", "_IST210005", "_IST209005", "_IST208005", "_IST207005", "_IST206005", "_IST205005", "_IST204005", "_IST203005", "_IST202005", "_IST201005", "_IST200005", "_IST199005", "_IST198005", "_IST197005", "_IST196005", "_IST195005", "_IST194005", "_IST193005", "_IST192005", "_IST191005", "_IST190005", "_IST189005", "_IST188005", "_IST187005", "_IST186005", "_IST185005", "_IST184005", "_IST183005", "_IST182005", "_IST181005", "_IST180005",  "_IST179005", "_IST178005", "_IST177005", "_IST176005", "_IST175005", "_IST174005", "_IST173005", "_IST172005", "_IST171005", "_IST170005", "_IST169005", "_IST168005", "_IST167005", "_IST166005", "_IST165005", "_IST164005", "_IST163005", "_IST162005", "_IST161005", "_IST160005", "_IST159005", "_IST158005", "_IST157005", "_IST156005", "_IST155005", "_IST154005", "_IST153005", "_IST152005", "_IST151005", "_IST150005", "_IST149005", "_IST148005", "_IST147005", "_IST146005",  "_IST145005", "_IST144005", "YAA*"]
+            ]
+        },
+        "YAA2S": {
+            "icao": "YAA2S",
+            "name": "Yalova Two Sierra",
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "body": [["^_IST177005", "A14+"], "YAA"],
+            "exitPoints": {
+                "ERTAS": []
+            },
+            "draw": [
+                ["_RWY35R", "_IST177005", "YAA*"],
+                ["_RWY35L", "_IST177005", "YAA"]
+            ]
+        }
     },
     "stars": {
 
