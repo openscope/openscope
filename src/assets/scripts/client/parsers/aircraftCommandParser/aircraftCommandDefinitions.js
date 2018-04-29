@@ -159,10 +159,14 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    land: {
+    ils: {
         validate: singleArgumentValidator,
         // TODO: split this out to custom parser once the null value is defined
         parse: (args) => [null, args[0]]
+    },
+    land: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
     },
     moveDataBlock: {
         validate: singleArgumentValidator,

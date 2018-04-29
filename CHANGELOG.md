@@ -14,6 +14,7 @@
 - [#939](https://github.com/openscope/openscope/issues/939) - Fix airline fleet detection logic that was erroring during spawn of properly declared patterns
 - [#899](https://github.com/openscope/openscope/issues/899) - Fix improper merging of routes when divergent waypoint is not in the middle of the leg
 - [#940](https://github.com/openscope/openscope/issues/940) - Fixes British Airways fleets; re-adds 'short' fleet and removes historic fleet
+- [#947](https://github.com/openscope/openscope/issues/947) - Fix lack of red response for 'land' and update documentation
 
 
 
