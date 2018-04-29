@@ -1088,10 +1088,22 @@ export default class RouteModel extends BaseModel {
         }
 
         if (convergentLegModel.isSidLeg) {
+            const firstWaypointName = _first(convergentLegModel.waypoints).name;
+
+            if (firstWaypointName === endWaypointName) {
+                return [convergentLegModel];
+            }
+
             return this._createLegsFromSidWaypointsAfterWaypointName(endWaypointName, indexOfConvergentLegModel);
         }
 
         if (convergentLegModel.isStarLeg) {
+            const firstWaypointName = _first(convergentLegModel.waypoints).name;
+
+            if (firstWaypointName === endWaypointName) {
+                return [convergentLegModel];
+            }
+
             if (convergentLegModel.procedureHasEntry(endWaypointName)) {
                 return [this._createAmendedStarLegUsingDifferentEntryName(endWaypointName, indexOfConvergentLegModel)];
             }
@@ -1114,10 +1126,22 @@ export default class RouteModel extends BaseModel {
         }
 
         if (divergentLegModel.isSidLeg) {
+            const endingWaypointName = _last(divergentLegModel.waypoints).name;
+
+            if (endingWaypointName === startWaypointName) {
+                return [divergentLegModel];
+            }
+
             return this._createLegsFromSidWaypointsBeforeWaypointName(startWaypointName, indexOfDivergentLegModel);
         }
 
         if (divergentLegModel.isStarLeg) {
+            const endingWaypointName = _last(divergentLegModel.waypoints).name;
+
+            if (endingWaypointName === startWaypointName) {
+                return [divergentLegModel];
+            }
+
             if (divergentLegModel.procedureHasExit(startWaypointName)) {
                 return [this._createAmendedStarLegUsingDifferentExitName(startWaypointName, indexOfDivergentLegModel)];
             }
@@ -1323,25 +1347,16 @@ export default class RouteModel extends BaseModel {
     }
 
     _overwriteRouteBetweenWaypointNames(startWaypointName, endWaypointName, routeModel) {
-        const initialIndexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
-        const initialIndexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(endWaypointName);
-
-        // this must happen first; Array.splice() is mutating the #_legCollection
-        const endingLegCollection = this._legCollection.splice(initialIndexOfConvergentLegModel);
-
-        this._legCollection.splice(initialIndexOfDivergentLegModel + 1);
-
-        const beginningLegCollection = this._legCollection;
-
-        this._legCollection = [
-            ...beginningLegCollection,
-            ...endingLegCollection
-        ];
-
+        const legCollection = this._legCollection.slice(0);
         const indexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(endWaypointName);
         const amendedDivergentLegModels = this._createAmendedDivergentLeg(indexOfDivergentLegModel, startWaypointName);
         const amendedConvergentLegModels = this._createAmendedConvergentLeg(indexOfConvergentLegModel, endWaypointName);
+        const endingLegCollection = legCollection.splice(indexOfConvergentLegModel + 1);
+
+        legCollection.splice(indexOfDivergentLegModel);
+
+        const beginningLegCollection = legCollection;
 
         this._legCollection = [
             ...beginningLegCollection,
