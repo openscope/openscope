@@ -22,11 +22,12 @@
 - [#910](https://github.com/openscope/openscope/issues/910) - Reactivate KBOS and KSTL
 - [#856](https://github.com/openscope/openscope/issues/856) - Overhaul of Doha Hamad International Airport (OTHH)
 - [#246](https://github.com/openscope/openscope/issues/246) - Overhaul OMAA (Abu Dhabi)
-- [#908](https://github.com/openscope/openscope/issues/908) - Updates KSEA to AIRAC 1804
-- [#928](https://github.com/openscope/openscope/issues/928) - Updates KPDX to AIRAC 1804
+- [#908](https://github.com/openscope/openscope/issues/908) - Minor updates to KSEA
+- [#928](https://github.com/openscope/openscope/issues/928) - Minor updates to KPDX
 - [#923](https://github.com/openscope/openscope/issues/923) - Overhaul of KABQ
-- [#931](https://github.com/openscope/openscope/issues/931) - Updates KDCA to AIRAC 1804
+- [#931](https://github.com/openscope/openscope/issues/931) - Minor updates to KDCA
 - [#241](https://github.com/openscope/openscope/issues/241) - Overhaul of London Luton Airport (England, United Kingdom)
+- [#927](https://github.com/openscope/openscope/issues/927) - Fix climb rates for CRJs
 
 
 
