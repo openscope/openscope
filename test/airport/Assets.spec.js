@@ -20,7 +20,6 @@ ava('All airport JSON files contain valid JSON data', (t) => {
             JSON.parse(airportJson);
         } catch (e) {
             erroringFileNames.push(fileName);
-
             console.error(e);
         }
 

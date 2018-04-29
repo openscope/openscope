@@ -28,6 +28,7 @@
 - [#931](https://github.com/openscope/openscope/issues/931) - Minor updates to KDCA
 - [#241](https://github.com/openscope/openscope/issues/241) - Overhaul of London Luton Airport (England, United Kingdom)
 - [#927](https://github.com/openscope/openscope/issues/927) - Fix climb rates for CRJs
+- [#677](https://github.com/openscope/openscope/issues/677) - Add test which ensures all airport JSONs contain valid JSON data (helpful for airport developers)
 
 
 
