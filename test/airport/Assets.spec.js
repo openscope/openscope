@@ -1,23 +1,29 @@
 import ava from 'ava';
 import fs from 'fs';
 import path from 'path';
+import _forEach from 'lodash/forEach';
 
-const AirportAssetsPath = path.join(__dirname, '..', '..', 'assets', 'airports');
-const error = [];
-const files = fs.readdirSync(AirportAssetsPath);
+const airportAssetsPath = path.join(__dirname, '..', '..', 'assets', 'airports');
+const erroringFileNames = [];
+const fileNames = fs.readdirSync(airportAssetsPath);
 
-ava('Airport JSON  file does not throw', (t) => {
-    files.forEach((file) => {
-        if (file.indexOf('.json') !== -1) {
-            const PathFile = AirportAssetsPath.concat('/', file);
-            const AirportJson = fs.readFileSync(PathFile, 'utf-8');
-            t.notThrows(() => JSON.parse(AirportJson));
-            try {
-                JSON.parse(AirportJson);
-            } catch (e) {
-                error.push(file);
-            }
+ava('All airport JSON files contain valid JSON data', (t) => {
+    _forEach(fileNames, (fileName) => {
+        if (fileName.indexOf('.json') === -1) {
+            return;
         }
+
+        const filePath = airportAssetsPath.concat('/', fileName);
+        const airportJson = fs.readFileSync(filePath, 'utf-8');
+
+        try {
+            JSON.parse(airportJson);
+        } catch (e) {
+            erroringFileNames.push(fileName);
+
+            console.error(e);
+        }
+
+        t.deepEqual(erroringFileNames, []);
     });
-    console.log('There is Error in : ' + error);
 });
