@@ -681,16 +681,26 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
-     * @method runLanding
+     * @method runIls
      * @param aircraft {AircraftModel}
      * @param data {array}
      */
-    runLanding(aircraft, data) {
+    runIls(aircraft, data) {
         const approachType = 'ils';
         const runwayName = data[1].toUpperCase();
         const runway = AirportController.airport_get().getRunway(runwayName);
 
         return aircraft.pilot.conductInstrumentApproach(approachType, runway);
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runLand
+     * @param aircraft {AircraftModel}
+     * @param data {array}
+     */
+    runLand() {
+        return [false, 'the "land" command has been deprecated, please use "i" / "ils" instead'];
     }
 
     /**

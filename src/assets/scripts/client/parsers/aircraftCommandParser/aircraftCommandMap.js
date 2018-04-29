@@ -94,9 +94,14 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runHold',
         isSystemCommand: false
     },
-    land: {
+    ils: {
         aliases: ['*', 'i', 'ils'],
-        functionName: 'runLanding',
+        functionName: 'runIls',
+        isSystemCommand: false
+    },
+    land: {
+        aliases: ['land', 'l'],
+        functionName: 'runLand',
         isSystemCommand: false
     },
     moveDataBlock: {

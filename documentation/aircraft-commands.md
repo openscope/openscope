@@ -118,16 +118,17 @@ receiving further instructions from ATC.
 
 _Syntax -_ `AAL123 dvs`
 
-### Land
-_Aliases -_ `ils` / `i` / `land` / `l`
+### ILS
+_Aliases -_ `ils` / `i`
 
 _Shortkey -_ `numpad *`
 
-_Information -_ This command clears the aircraft to land on a runway. The
-aircraft's strip on the right will show either "intercept" if it's still
-trying to intercept the localizer. Once established, it will show "on ILS"
-and the aircraft will automatically fly down the runway centerline, descend,
-and land.
+_Information -_ This command clears for an ILS approach to a runway. The
+aircraft will continue on its assigned heading until intercepting the localizer,
+and then automatically follow the runway centerline inbound, descending along
+the glideslope and land.
+
+Note: This replaces the old `land` / `l` command.
 
 _Syntax -_ `AAL123 i [rwy]`
 
