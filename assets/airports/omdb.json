@@ -2,7 +2,7 @@
     "radio": {
         "twr": "Dubai Tower",
         "app": "Dubai Arrivals",
-        "dep": "Delhi Departures"
+        "dep": "Dubai Departures"
     },
     "icao": "OMDB",
     "iata": "DXB",
@@ -10,23 +10,53 @@
     "ctr_radius": 80,
     "ctr_ceiling": 19500,
     "initial_alt": 4000,
-    "position": ["N25d15m10.00", "E055d21m52.00", "62ft"],
+    "position": ["N25d15m10", "E055d21m52", "62ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N25d15m10.00", "E055d21m52.00"],
+    "rr_center": ["N25d15m10", "E055d21m52"],
     "has_terrain": false,
     "wind": {
-        "angle": 210,
+        "angle": 315,
         "speed": 9
     },
     "arrivalRunway": "30L",
-    "departureRunway": "30L",
+    "departureRunway": "30R",
     "airspace": [
         {
-            "floor":             0,
-            "ceiling":         21000,
-            "airspace_class":    "D",
-            "poly":
-            [
+            "floor": 0,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N24d47m02", "E055d05m56"],
+                ["N24d55m00", "E054d50m00"],
+                ["N24d57m00", "E054d24m46"],
+                ["N25d07m13", "E054d31m30"],
+                ["N25d20m24", "E054d32m12"],
+                ["N25d28m14", "E054d39m04"],
+                ["N25d26m59", "E054d43m48"],
+                ["N25d44m53", "E054d58m18"],
+                ["N25d41m35", "E055d08m42"],
+                ["N25d41m35", "E055d08m42"],
+                ["N25d38m00", "E055d20m00"],
+                ["N25d55m00", "E055d38m05"],
+                ["N25d23m00", "E056d10m00"],
+                ["N25d10m14", "E056d06m56"],
+                ["N24d47m30", "E056d01m30"],
+                ["N24d46m18", "E055d59m39"],
+                ["N24d35m00", "E055d50m00"],
+                ["N24d35m00", "E055d27m00"],
+                ["N24d34m53", "E055d24m21"],
+                ["N24d40m30", "E055d14m30"],
+                ["N24d45m20", "E055d04m50"]
+            ]
+        }
+    ],
+    "_airspace": [
+        {
+            "name": "DUBAI CONTROL AREA (I)",
+            "floor": 15,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
                 ["N25d55m00", "E055d38m05"],
                 ["N25d28m00", "E055d45m00"],
                 ["N25d19m00", "E055d53m00"],
@@ -36,458 +66,906 @@
                 ["N25d06m00", "E055d18m40"],
                 ["N25d02m55", "E055d11m50"],
                 ["N25d05m00", "E054d45m00"],
-                ["N25d20m00", "E054d45m00"],
-                ["N25d43m13", "E055d03m34"],
+                ["N25d07m13", "E054d31m30"],
+                ["N25d20m24", "E054d32m12"],
+                ["N25d28m14", "E054d39m04"],
+                ["N25d23m55", "E054d55m22"],
+                ["N25d41m35", "E055d08m42"],
                 ["N25d38m00", "E055d20m00"],
                 ["N25d55m00", "E055d38m05"]
             ]
-        }
+        },
+        {
+            "name": "DUBAI CONTROL AREA (II)",
+            "floor": 25,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d20m00", "E056d06m00"],
+                ["N25d23m00", "E056d10m00"],
+                ["N25d10m14", "E056d06m56"],
+                ["N25d08m12", "E055d59m18"],
+                ["N25d01m41", "E055d57m00"],
+                ["N24d47m30", "E055d59m27"],
+                ["N24d47m30", "E055d50m00"],
+                ["N24d53m35", "E055d44m42"],
+                ["N25d19m00", "E055d53m00"],
+                ["N25d20m00", "E056d06m00"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (III)",
+            "floor": 45,
+            "ceiling": 95,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d10m14", "E056d06m56"],
+                ["N24d47m30", "E056d01m30"],
+                ["N24d46m18", "E055d59m39"],
+                ["N25d01m41", "E055d57m00"],
+                ["N25d08m12", "E055d59m18"],
+                ["N25d10m14", "E056d06m56"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (IV)",
+            "floor": 65,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d28m00", "E055d45m00"],
+                ["N25d23m00", "E056d10m00"],
+                ["N25d20m00", "E056d06m00"],
+                ["N25d19m00", "E055d53m00"],
+                ["N25d28m00", "E055d45m00"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (V)",
+            "floor": 55,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d05m00", "E054d45m00"],
+                ["N25d02m55", "E055d11m50"],
+                ["N24d56m30", "E055d11m55"],
+                ["N24d47m02", "E055d05m56"],
+                ["N24d55m00", "E054d50m00"],
+                ["N24d57m00", "E054d24m46"],
+                ["N25d07m13", "E054d31m30"],
+                ["N25d05m00", "E054d45m00"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (V)",
+            "floor": 15,
+            "ceiling": 55,
+            "airspace_class": "D",
+            "poly": [
+                ["N25d05m00", "E054d45m00"],
+                ["N25d02m55", "E055d11m50"],
+                ["N24d56m30", "E055d11m55"],
+                ["N24d47m02", "E055d05m56"],
+                ["N24d55m00", "E054d50m00"],
+                ["N24d57m00", "E054d24m46"],
+                ["N25d07m13", "E054d31m30"],
+                ["N25d05m00", "E054d45m00"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VI)",
+            "floor": 55,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N24d59m25", "E055d11m53"],
+                ["N24d46m42", "E055d34m48"],
+                ["N24d35m00", "E055d27m00"],
+                ["N24d34m53", "E055d24m21"],
+                ["N24d40m30", "E055d14m30"],
+                ["N24d45m20", "E055d04m50"],
+                ["N24d47m02", "E055d05m56"],
+                ["N24d56m30", "E055d11m55"],
+                ["N24d59m25", "E055d11m53"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VI)",
+            "floor": 15,
+            "ceiling": 55,
+            "airspace_class": "D",
+            "poly": [
+                ["N24d59m25", "E055d11m53"],
+                ["N24d46m42", "E055d34m48"],
+                ["N24d35m00", "E055d27m00"],
+                ["N24d34m53", "E055d24m21"],
+                ["N24d40m30", "E055d14m30"],
+                ["N24d45m20", "E055d04m50"],
+                ["N24d47m02", "E055d05m56"],
+                ["N24d56m30", "E055d11m55"],
+                ["N24d59m25", "E055d11m53"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VII)",
+            "floor": 55,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N24d53m35", "E055d44m42"],
+                ["N24d47m30", "E055d50m00"],
+                ["N24d35m00", "E055d50m00"],
+                ["N24d35m00", "E055d27m00"],
+                ["N24d46m42", "E055d34m48"],
+                ["N24d49m09", "E055d30m23"],
+                ["N24d53m35", "E055d44m42"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VII)",
+            "floor": 30,
+            "ceiling": 55,
+            "airspace_class": "D",
+            "poly": [
+                ["N24d53m35", "E055d44m42"],
+                ["N24d47m30", "E055d50m00"],
+                ["N24d35m00", "E055d50m00"],
+                ["N24d35m00", "E055d27m00"],
+                ["N24d46m42", "E055d34m48"],
+                ["N24d49m09", "E055d30m23"],
+                ["N24d53m35", "E055d44m42"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VIII)",
+            "floor": 55,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d06m00", "E055d27m50"],
+                ["N25d00m40", "E055d38m30"],
+                ["N24d53m35", "E055d44m42"],
+                ["N24d49m09", "E055d30m23"],
+                ["N24d59m25", "E055d11m53"],
+                ["N25d02m55", "E055d11m50"],
+                ["N25d06m00", "E055d18m40"],
+                ["N25d06m00", "E055d27m50"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (VIII)",
+            "floor": 15,
+            "ceiling": 55,
+            "airspace_class": "D",
+            "poly": [
+                ["N25d06m00", "E055d27m50"],
+                ["N25d00m40", "E055d38m30"],
+                ["N24d53m35", "E055d44m42"],
+                ["N24d49m09", "E055d30m23"],
+                ["N24d59m25", "E055d11m53"],
+                ["N25d02m55", "E055d11m50"],
+                ["N25d06m00", "E055d18m40"],
+                ["N25d06m00", "E055d27m50"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (IX)",
+            "floor": 55,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N24d47m30", "E055d57m00"],
+                ["N24d44m38", "E055d50m00"],
+                ["N24d47m30", "E055d50m00"],
+                ["N24d47m30", "E055d57m00"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (X)",
+            "floor": 15,
+            "ceiling": 85,
+            "airspace_class": "C",
+            "poly": [
+                ["N25d41m35", "E055d08m42"],
+                ["N25d23m55", "E054d55m22"],
+                ["N25d26m59", "E054d43m48"],
+                ["N25d44m53", "E054d58m18"],
+                ["N25d41m35", "E055d08m42"]
+            ]
+        },
+        {
+            "name": "DUBAI CONTROL AREA (XI)",
+            "floor": 95,
+            "ceiling": 155,
+            "airspace_class": "C",
+            "poly": [
+                ["N24d46m18", "E055d59m39"],
+                ["N24d40m01", "E055d50m00"],
+                ["N24d44m38", "E055d50m00"],
+                ["N24d47m30", "E055d57m00"],
+                ["N24d47m30", "E055d59m27"],
+                ["N24d46m18", "E055d59m39"]
+            ]
+        }        
     ],
     "fixes": {
-        "_12L":   ["N25d15m52.66", "E055d21m01.52"],
-        "_12R":   ["N25d15m10.21", "E055d21m51.75"],
-        "_30R":   ["N25d14m51.75", "E055d22m51.35"],
-        "_30L" :  ["N25d14m09.31", "E055d23m41.57"],
-        "ASTES":  ["N25d12m08.00", "E055d27m43.00"],
-        "DB453":  ["N25d04m18.00", "E055d41m61.00"],
-        "LUBAP":  ["N24d56m61.00", "E055d48m06.00"],
-        "ANVIX":  ["N24d46m91.00", "E055d56m26.00"],
-        "DB423":  ["N25d13m86.00", "E055d33m06.00"],
-        "ATBID":  ["N25d15m01.00", "E055d39m18.00"],
-        "DANED":  ["N25d19m01.00", "E055d40m45.00"],
-        "DB457":  ["N25d27m40.00", "E055d41m83.00"],
-        "VEBUL":  ["N25d35m86.00", "E055d34m75.00"],
-        "DAVMO":  ["N25d51m45.00", "E055d38m99.00"],
-        "DB451":  ["N25d08m40.00", "E055d24m94.00"],
-        "DB452":  ["N25d08m58.00", "E055d19m58.00"],
-        "DB454":  ["N25d09m93.00", "E055d14m26.00"],
-        "MEBVA":  ["N25d12m13.00", "E055d05m50.00"],
-        "GINLA":  ["N25d08m44.00", "E054d55m63.00"],
-        "LOTEN":  ["N25d01m18.00", "E054d56m46.00"],
-        "MIADA":  ["N24d51m20.00", "E054d57m60.00"],
-        "EMOVA":  ["N25d14m61.00", "E054d55m63.00"],
-        "MUVLA":  ["N25d17m26.00", "E054d45m00.00"],
-        "ALVAV":  ["N25d19m13.00", "E055d02m21.00"],
-        "NADIL":  ["N25d22m86.00", "E054d47m28.00"],
-        "RIKET":  ["N25d18m98.00", "E056d01m99.00"],
-        "SITAT":  ["N25d11m08.00", "E054d45m00.00"],
-        "EMUNI":  ["N25d18m01.00", "E055d17m14.00"],
-        "DEMTO":  ["N25d13m93.00", "E055d10m33.00"],
-        "DB554":  ["N25d08m63.00", "E055d17m13.00"],
-        "ITUBA":  ["N25d08m74.00", "E055d28m01.00"],
-        "GOBGI":  ["N25d02m61.00", "E055d40m31.00"],
-        "ENEDO":  ["N24d55m18.00", "E055d47m88.00"],
-        "DB555":  ["N25d25m63.00", "E055d12m48.00"],
-        "DB557":  ["N25d31m73.00", "E055d17m14.00"],
-        "DATAL":  ["N25d17m06.00", "E055d11m05.00"],
-        "DB550":  ["N25d20m93.00", "E055d11m86.00"],
-        "DB558":  ["N25d25m24.00", "E055d17m56.00"],
-        "DB559":  ["N25d30m21.00", "E055d21m38.00"],
-        "KUMDA":  ["N25d32m44.00", "E055d34m11.00"],
-        "DEDNU":  ["N25d22m03.00", "E055d46m01.00"],
-        "BUBIN":  ["N24d57m70.00", "E056d06m70.00"],
-        "GIRMI":  ["N25d02m68.00", "E055d57m50.00"],
-        "MESGA":  ["N25d06m30.00", "E055d46m61.00"],
-        "TALVI":  ["N25d18m21.00", "E055d25m21.00"],
-        "DB421":  ["N25d21m13.00", "E055d19m99.00"],
-        "DB420":  ["N25d23m23.00", "E055d16m23.00"],
-        "ALNET":  ["N25d25m31.00", "E055d12m45.00"],
-        "SOGAP":  ["N25d27m40.00", "E055d08m68.00"],
-        "DB417":  ["N25d29m50.00", "E055d04m91.00"],
-        "DB416":  ["N25d31m58.00", "E055d01m13.00"],
-        "DB414":  ["N25d28m15.00", "E054d58m83.00"],
-        "DB413":  ["N25d26m06.00", "E055d02m61.00"],
-        "REREK":  ["N25d23m98.00", "E055d06m38.00"],
-        "UKRIM":  ["N25d22m06.00", "E055d09m82.00"],
-        "DB612":  ["N25d19m05.00", "E055d15m28.00"],
-        "DESDI":  ["N25d36m04.00", "E054d42m49.00"],
-        "RULAM":  ["N25d30m94.00", "E054d53m75.00"],
-        "IVUTI":  ["N25d35m43.00", "E055d03m73.00"],
-        "DB429":  ["N25d33m34.00", "E055d07m50.00"],
-        "TULOM":  ["N25d31m24.00", "E055d11m28.00"],
-        "DB427":  ["N25d29m16.00", "E055d15m04.00"],
-        "DB426":  ["N25d27m08.00", "E055d18m81.00"],
-        "DB425":  ["N25d24m98.00", "E055d22m58.00"],
-        "MUXAL":  ["N24d59m75.00", "E054d54m30.00"],
-        "ODLAL":  ["N25d24m71.00", "E054d56m55.00"],
-        "PUVAL":  ["N25d35m96.00", "E055d42m96.00"],
-        "SIGDI":  ["N25d25m06.00", "E055d41m36.00"],
-        "GESET":  ["N25d20m88.00", "E055d38m05.00"],
-        "DB518":  ["N25d09m38.00", "E055d50m66.00"],
-        "DB517":  ["N25d11m48.00", "E055d46m91.00"],
-        "VUTON":  ["N25d13m56.00", "E055d43m15.00"],
-        "DB515":  ["N25d15m66.00", "E055d39m38.00"],
-        "DB514":  ["N25d18m28.00", "E055d34m68.00"],
-        "DB513":  ["N25d14m43.00", "E055d32m08.00"],
-        "GIRGO":  ["N25d11m81.00", "E055d36m79.00"],
-        "VELAR":  ["N25d09m71.00", "E055d40m54.00"],
-        "DB509":  ["N25d07m63.00", "E055d44m31.00"],
-        "DB508":  ["N25d05m53.00", "E055d48m06.00"],
-        "DB507":  ["N25d03m43.00", "E055d51m83.00"],
-        "DB506":  ["N24d59m83.00", "E055d49m39.00"],
-        "DB505":  ["N25d01m93.00", "E055d45m64.00"],
-        "DB504":  ["N25d04m03.00", "E055d41m88.00"],
-        "ULDOT":  ["N25d06m11.00", "E055d38m13.00"],
-        "SEDPO":  ["N25d08m49.00", "E055d33m87.00"],
-        "MODUS":  ["N25d11m09.00", "E055d29m19.00"],
-        "GITBO":  ["N25d34m21.00", "E054d56m36.00"],
-        "ULASO":  ["N25d19m03.00", "E055d23m74.00"],
-        "DB519":  ["N25d16m90.00", "E055d27m63.00"],
-        "ORPAT":  ["N24d52m73.00", "E055d00m96.00"],
-        "SOBOB":  ["N24d40m27.00", "E055d23m45.00"],
-        "ODBEV":  ["N24d41m79.00", "E055d31m27.00"],
-        "LOROT":  ["N24d52m34.00", "E055d49m28.00"],
-        "GEPAN":  ["N24d55m79.00", "E055d53m28.00"],
-        "ITMOX":  ["N25d00m00.00", "E055d59m26.00"],
-        "EGTUP":  ["N25d25m88.00", "E055d28m56.00"],
-        "LOVOL":  ["N25d08m65.00", "E055d34m03.00"],
-        "DB756":  ["N25d11m71.00", "E055d28m52.00"],
-        "PEDOV":  ["N25d21m34.00", "E055d10m70.00"],
-        "PUTGA":  ["N25d18m29.00", "E055d16m22.00"]
+        "ALNET": ["N25d25m19.1", "E055d12m27.2"],
+        "ANVIX": ["N24d46m55.0", "E055d56m16.0"],
+        "ASTES": ["N25d12m04.6", "E055d27m25.7"],
+        "DATOB": ["N25d30m53.0", "E054d46m56.9"],
+        "DAVMO": ["N25d51m27.0", "E055d39m00.0"],
+        "DB400": ["N25d20m52.5", "E054d53m56.2"],
+        "DB401": ["N25d18m45.9", "E054d57m39.6"],
+        "DB402": ["N25d16m03.9", "E055d02m25.0"],
+        "DB403": ["N25d19m53.6", "E055d05m02.8"],
+        "DB406": ["N25d17m28.1", "E055d26m34.5"],
+        "DB407": ["N25d14m11.8", "E055d19m29.9"],
+        "DB408": ["N25d16m10.0", "E055d11m36.0"],
+        "DB409": ["N25d02m56.9", "E054d44m36.0"],
+        "DB410": ["N25d12m39.7", "E054d56m54.4"],
+        "DB413": ["N25d26m04.0", "E055d02m36.8"],
+        "DB414": ["N25d28m09.1", "E054d58m50.4"],
+        "DB416": ["N25d31m34.7", "E055d01m08.4"],
+        "DB420": ["N25d23m13.5", "E055d16m13.7"],
+        "DB421": ["N25d21m08.1", "E055d19m59.8"],
+        "DB423": ["N25d13m52.0", "E055d33m04.4"],
+        "DB425": ["N25d24m59.1", "E055d22m35.3"],
+        "DB426": ["N25d27m04.7", "E055d18m49.1"],
+        "DB427": ["N25d29m10.0", "E055d15m02.8"],
+        "DB429": ["N25d33m20.7", "E055d07m30.3"],
+        "DB451": ["N25d08m23.8", "E055d24m57.4"],
+        "DB460": ["N25d08m59.2", "E055d18m09.6"],
+        "DB461": ["N25d13m21.2", "E055d00m33.2"],
+        "DB462": ["N25d11m49.1", "E055d36m47.7"],
+        "DB463": ["N25d10m50.7", "E054d58m31.2"],
+        "DB464": ["N25d21m18.1", "E055d45m42.7"],
+        "DB465": ["N25d10m02.1", "E055d13m54.4"],
+        "DB466": ["N25d14m12.0", "E055d06m29.2"],
+        "DB467": ["N25d12m08.0", "E055d05m30.0"],
+        "DB504": ["N25d04m01.7", "E055d41m53.5"],
+        "DB505": ["N25d01m55.8", "E055d45m38.8"],
+        "DB506": ["N24d59m50.0", "E055d49m24.0"],
+        "DB507": ["N25d03m25.5", "E055d51m49.5"],
+        "DB508": ["N25d05m31.6", "E055d48m04.3"],
+        "DB513": ["N25d14m26.2", "E055d32m05.5"],
+        "DB514": ["N25d18m17.3", "E055d34m40.9"],
+        "DB515": ["N25d15m40.2", "E055d39m23.2"],
+        "DB517": ["N25d11m28.5", "E055d46m54.5"],
+        "DB518": ["N25d09m22.5", "E055d50m40.0"],
+        "DB520": ["N25d03m38.9", "E055d57m41.7"],
+        "DB522": ["N25d02m31.0", "E055d35m42.0"],
+        "DB523": ["N25d00m26.0", "E055d39m28.0"],
+        "DB524": ["N24d58m20.0", "E055d43m13.0"],
+        "DB525": ["N24d56m14.0", "E055d46m58.0"],
+        "DB526": ["N25d22m18.0", "E055d26m56.3"],
+        "DB527": ["N25d13m49.7", "E055d15m36.0"],
+        "DB528": ["N25d09m21.9", "E055d23m30.2"],
+        "DB529": ["N25d27m38.5", "E055d11m55.0"],
+        "DB530": ["N25d16m15.0", "E055d28m49.9"],
+        "DB531": ["N25d21m39.0", "E055d07m23.4"],
+        "DB532": ["N25d11m08.7", "E055d25m35.7"],
+        "DB570": ["N25d17m43.9", "E055d17m41.0"],
+        "DB571": ["N25d06m27.7", "E055d19m54.9"],
+        "DB572": ["N25d04m23.1", "E055d24m57.2"],
+        "DB573": ["N25d20m33.3", "E055d12m36.7"],
+        "DB574": ["N25d17m30.2", "E055d09m05.3"],
+        "DB575": ["N25d13m39.0", "E055d10m52.0"],
+        "DB576": ["N25d23m52.8", "E055d17m49.8"],
+        "DB578": ["N25d07m57.7", "E055d35m14.8"],
+        "DB579": ["N25d11m44.0", "E055d46m09.3"],
+        "DB580": ["N25d15m14.3", "E055d56m20.0"],
+        "DB581": ["N25d08m26.4", "E055d16m13.1"],
+        "DB601": ["N25d19m17.0", "E055d14m52.4"],
+        "DB611": ["N25d14m34.3", "E055d23m22.8"],
+        "DB612": ["N25d19m03.2", "E055d15m17.3"],
+        "DB614": ["N25d14m09.3", "E055d23m41.6"],
+        "DB655": ["N25d05m30.7", "E055d32m44.3"],
+        "DB657": ["N25d19m58.8", "E055d13m10.5"],
+        "DB658": ["N25d20m19.4", "E055d12m33.1"],
+        "DB701": ["N25d10m50.1", "E055d29m40.3"],
+        "DB707": ["N25d15m56.9", "E055d20m27.5"],
+        "DB713": ["N25d10m49.9", "E055d29m40.7"],
+        "DB755": ["N25d16m04.5", "E055d20m40.1"],
+        "DB756": ["N25d24m57.6", "E055d11m19.7"],
+        "DB759": ["N25d10m04.7", "E055d31m28.2"],
+        "DB780": ["N25d09m44.2", "E055d32m05.2"],
+        "EGNOT": ["N25d19m55.7", "E055d05m33.2"],
+        "EMOPO": ["N25d17m09.8", "E054d56m54.4"],
+        "GEPAN": ["N24d55m48.0", "E055d53m17.0"],
+        "GIBUR": ["N25d16m59.1", "E054d50m46.1"],
+        "GINLA": ["N25d08m27.0", "E054d55m38.0"],
+        "GIRGO": ["N25d11m49.1", "E055d36m47.7"],
+        "GIVLI": ["N25d27m24.2", "E055d41m50.1"],
+        "IMPED": ["N24d58m24.5", "E056d04m06.2"],
+        "IVATU": ["N25d14m49.7", "E054d53m50.4"],
+        "IVILI": ["N25d16m48.5", "E054d44m47.0"],
+        "IVURO": ["N25d19m40.0", "E056d09m15.0"],
+        "IVUTI": ["N25d35m25.8", "E055d03m43.9"],
+        "KEBOG": ["N25d33m14.8", "E055d27m47.4"],
+        "KIXOG": ["N25d24m09.3", "E054d43m07.8"],
+        "KUNPI": ["N25d34m39.7", "E055d22m50.5"],
+        "KUPOR": ["N25d29m00.6", "E055d24m50.0"],
+        "KURUX": ["N25d40m05.8", "E055d27m05.1"],
+        "KUTLI": ["N24d51m51.3", "E054d56m18.0"],
+        "LOPAP": ["N25d11m52.1", "E054d45m53.5"],
+        "LOPUV": ["N24d50m31.1", "E055d50m56.8"],
+        "LORID": ["N24d55m52.5", "E054d39m04.1"],
+        "LOVOK": ["N25d32m46.1", "E055d02m02.2"],
+        "LOVOL": ["N25d08m39.0", "E055d34m02.0"],
+        "LUBAP": ["N24d56m36.7", "E055d48m03.5"],
+        "MEPKU": ["N25d26m46.3", "E054d57m31.0"],
+        "MIROT": ["N25d06m08.8", "E054d30m48.8"],
+        "MIVUR": ["N25d29m44.9", "E055d41m56.1"],
+        "MODUS": ["N25d11m06.0", "E055d29m11.7"],
+        "NABIX": ["N25d12m41.1", "E054d31m47.3"],
+        "ODLAL": ["N25d24m43.5", "E054d56m32.5"],
+        "ORGUR": ["N25d06m12.9", "E054d47m09.5"],
+        "ORLAD": ["N25d20m54.0", "E054d54m30.3"],
+        "OVADI": ["N25d22m00.5", "E055d36m06.8"],
+        "PASEV": ["N25d29m29.5", "E055d04m54.8"],
+        "PATID": ["N25d21m23.7", "E055d19m35.4"],
+        "PEBUS": ["N25d09m17.8", "E054d49m34.6"],
+        "PEDOV": ["N25d21m20.6", "E055d10m42.1"],
+        "PUVAL": ["N25d35m58.0", "E055d42m58.0"],
+        "RAPMO": ["N24d56m30.1", "E055d41m55.1"],
+        "RARPI": ["N25d06m43.0", "E055d28m11.0"],
+        "REREK": ["N25d23m58.6", "E055d06m23.1"],
+        "RIDAP": ["N25d25m53.7", "E054d37m01.2"],
+        "RIDEV": ["N25d07m37.6", "E055d44m18.9"],
+        "SEDPO": ["N25d08m29.9", "E055d33m52.3"],
+        "SENPA": ["N25d19m59.6", "E054d32m10.5"],
+        "SERSA": ["N25d19m45.0", "E055d31m18.0"],
+        "SOGAP": ["N25d27m24.3", "E055d08m41.2"],
+        "SOLIL": ["N25d22m35.6", "E055d00m17.4"],
+        "TALTU": ["N25d10m30.7", "E055d38m30.1"],
+        "TUKAK": ["N25d04m37.0", "E055d31m57.0"],
+        "TULOM": ["N25d31m15.4", "E055d11m16.5"],
+        "UKRER": ["N25d32m22.7", "E055d29m39.7"],
+        "UKRIM": ["N25d22m04.0", "E055d09m49.8"],
+        "ULADO": ["N25d01m12.0", "E055d33m13.1"],
+        "ULDOT": ["N25d06m07.5", "E055d38m08.0"],
+        "VAXAB": ["N25d25m34.9", "E055d41m35.7"],
+        "VEBUL": ["N25d35m51.8", "E055d34m45.1"],
+        "VELAR": ["N25d09m43.5", "E055d40m33.3"],
+        "VUTEB": ["N25d36m44.6", "E054d51m49.4"],
+        "VUTON": ["N25d13m34.4", "E055d43m08.9"],
+        "VUVUT": ["N25d22m25.3", "E055d56m25.3"],
+        "XARTA": ["N25d01m33.1", "E054d55m38.0"]
     },
-
     "runways": [
         {
             "name": ["12L", "30R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N25d15m52.66", "E055d21m01.52", "11.2ft"], ["N25d14m51.75", "E055d22m51.35", "32.3ft"]],
-            "length": 4.300,
+            "end": [
+                ["N25d15m52.66", "E055d21m01.52", "11.2ft"], 
+                ["N25d14m51.75", "E055d22m51.35", "32.3ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["12R", "30L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N25d15m10.21", "E055d21m51.75", "10.9ft"], ["N25d14m09.31", "E055d23m41.57", "59.8ft"]],
-            "length": 4.447,
+            "end": [
+                ["N25d15m10.21", "E055d21m51.75", "10.9ft"], 
+                ["N25d14m09.31", "E055d23m41.57", "59.8ft"]
+            ],
             "ils": [true, true]
         }
     ],
     "sids": {
-        "ANVIX": {
-            "icao": "ANVIX",
-            "name": "ANVIX",
-            "suffix": {"12L":"1G", "30R":"2F", "12R": "1G", "30L":"2F"},
+        "ANVIX4G": {
+            "icao": "ANVIX4G",
+            "name": "Anvix Four Golf",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB453", "LUBAP"],
-                "12R": ["_30L", "ASTES", "DB453", "LUBAP"],
-                "30R": ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO"],
-                "30L": ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO"]
+                "OMDB12L": [],
+                "OMDB12R": []
             },
-            "body": [],
+            "body": ["ASTES", "LUBAP", "LOPUV"],
             "exitPoints": {
-                "ANVIX": ["ANVIX"]
+                "ANVIX": [["ANVIX", "A100+"]]
             },
             "draw": [
-                ["_30L", "ASTES", "DB453", "LUBAP", "ANVIX"],
-                ["_30R","ASTES", "DB453", "LUBAP", "ANVIX"],
-                ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"],
-                ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"]
+                ["ASTES", "LUBAP", "LOPUV", "ANVIX"]
             ]
         },
-        "DAVMO": {
-            "icao": "DAVMO",
-            "name": "DAVMO",
-            "suffix": {"12L":"1G", "30R":"1F", "12R":"1G", "30L":"1F"},
+        "ANVIX5F": {
+            "icao": "ANVIX5F",
+            "name": "Anvix Five Foxtrot",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL"],
-                "12R": ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL"],
-                "30R": ["_12L","EMUNI", "DB555", "DB557"],
-                "30L": ["_12R","EMUNI", "DB555", "DB557"]
+                "OMDB30L": [],
+                "OMDB30R": []
             },
-            "body": [],
+            "body": ["DB570", ["DB575", "A50-|A40+|S220-"], ["DB581", "A60+"], ["DB571", "A75+"], "DB572", ["ULADO", "A90"], "RAPMO", "LOPUV"],
+            "exitPoints": {
+                "ANVIX": [["ANVIX", "A100+"]]
+            },
+            "draw": [
+                ["DB570", "DB575", "DB581", "DB571", "DB572", "ULADO", "RAPMO", "LOPUV", "ANVIX"]
+            ]
+        },
+        "DAVMO2F": {
+            "icao": "DAVMO2F",
+            "name": "Davmo Two Foxtrot",
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "body": ["DB570", ["DB576", "A30+|S220-"], ["KUNPI", "A70-"], "KURUX"],
+            "exitPoints": {
+                "DAVMO": [["DAVMO", "A120+"]]
+            },
+            "draw": [
+                ["DB570", "DB576", "KUNPI", "KURUX", "DAVMO"]
+            ]
+        },
+        "DAVMO2G": {
+            "icao": "DAVMO2G",
+            "name": "Davmo Two Golf",
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "body": ["ASTES", ["DB462", "A40+|S220-"], ["DB464", "A70"], "GIVLI", ["VEBUL", "A110+"]],
             "exitPoints": {
                 "DAVMO": ["DAVMO"]
             },
             "draw": [
-                ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
-                ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
-                ["_12L", "EMUNI", "DB555", "DB557", "DAVMO"],
-                ["_12R", "EMUNI", "DB555", "DB557", "DAVMO"]
+                ["ASTES", "DB462", "DB464", "GIVLI", "VEBUL", "DAVMO"]
             ]
         },
-        "MIADA": {
-            "icao": "MIADA",
-            "name": "MIADA",
-            "suffix": {"12L":"5G", "30R":"6F", "12R":"5G", "30L":"6F"},
+        "IVURO2F": {
+            "icao": "IVURO2F",
+            "name": "Ivuro Two Foxtrot",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "30R": ["_12L", "EMUNI", "DEMTO"],
-                "30L": ["_12R", "EMUNI", "DEMTO"]
+                "OMDB30L": [],
+                "OMDB30R": []
             },
-            "body": ["GINLA", "LOTEN"],
+            "body": ["DB570", ["DB575", "A50-|A40+|S220-"], ["DB581", "A60+"], ["DB571", "A75+"], ["DB572", "A90+"], ["DB578", "A110"], ["DB579", "A120"], ["DB580", "A130+"]],
             "exitPoints": {
-                "MIADA": ["MIADA"]
+                "IVURO": ["IVURO"]
             },
             "draw": [
-                ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
-                ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
-                ["_12L", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"],
-                ["_12R", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"]
+                ["DB570", "DB575", "DB581", "DB571", "DB572", "DB578", "DB579", "DB580", "IVURO"]
             ]
         },
-        "MUVLA": {
-            "icao": "MUVLA",
-            "name": "MUVLA",
-            "suffix": {"12L":"2G", "30R":"2F", "12R":"2G", "30L":"2F"},
+        "IVURO2G": {
+            "icao": "IVURO2G",
+            "name": "Ivuro Two Golf",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "30R": ["_12L", "EMUNI", "DATAL"],
-                "30L": ["_12R", "EMUNI", "DATAL"]
+                "OMDB12L": [],
+                "OMDB12R": []
             },
-            "body": ["EMOVA"],
+            "body": ["ASTES", ["DB462", "A40+|S220-"], ["DB464", "A70"], "VUVUT"],
             "exitPoints": {
-                "MUVLA": ["MUVLA"]
+                "IVURO": [["IVURO", "A100+"]]
             },
             "draw": [
-                ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
-                ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
-                ["_12L", "EMUNI", "DATAL", "EMOVA", "MUVLA"],
-                ["_12R", "EMUNI", "DATAL", "EMOVA", "MUVLA"]
+                ["ASTES", "DB462", "DB464", "VUVUT", "IVURO"]
             ]
         },
-        "NADIL": {
-            "icao": "NADIL",
-            "name": "NADIL",
-            "suffix": {"12L":"1G", "30R":"2F", "12R":"1G", "30L":"2F"},
+        "KUTLI2F": {
+            "icao": "KUTLI2F",
+            "name": "Kutli Two Foxtrot",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454"],
-                "30R": ["_12L", "EMUNI", "DB550"],
-                "30L": ["_12R", "EMUNI", "DB550"]
+                "OMDB30L": [],
+                "OMDB30R": []
             },
-            "body": ["ALVAV"],
+            "body": ["DB570", ["DB575", "A50-|A40+|S220-"], ["DB467", "A70+"], "GINLA", ["XARTA", "A130+"]],
             "exitPoints": {
-                "NADIL": ["NADIL"]
+                "KUTLI": [["KUTLI", "A160+"]]
             },
             "draw": [
-                ["_30R", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
-                ["_30L", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
-                ["_12L", "EMUNI", "DB550", "ALVAV", "NADIL"],
-                ["_12R", "EMUNI", "DB550", "ALVAV", "NADIL"]
+                ["DB570", "DB575", "DB467", "GINLA", "XARTA", "KUTLI"]
             ]
         },
-        "RIKET": {
-            "icao": "RIKET",
-            "name": "RIKET",
-            "suffix": {"12L":"3G", "30R":"4F", "12R":"3G", "30L":"4F"},
+        "KUTLI2G": {
+            "icao": "KUTLI2G",
+            "name": "Kutli Two Golf",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB423", "ATBID"],
-                "12R": ["_30L", "ASTES", "DB423", "ATBID"],
-                "30R": ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU"],
-                "30L": ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU"]
+                "OMDB12L": [],
+                "OMDB12R": []
             },
-            "body": [],
+            "body": ["ASTES", ["DB451", "S220-"], ["DB460", "A40+"], "DB465", ["DB467", "A70+"], "GINLA", ["XARTA", "A130+"]],
             "exitPoints": {
-                "RIKET": ["RIKET"]
+                "KUTLI": [["KUTLI", "A160+"]]
             },
             "draw": [
-                ["_30R", "ASTES", "DB423", "ATBID", "RIKET"],
-                ["_30L", "ASTES", "DB423", "ATBID", "RIKET"],
-                ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"],
-                ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"]
+                ["ASTES", "DB451", "DB460", "DB465", "DB467", "GINLA", "XARTA", "KUTLI"]
             ]
         },
-        "SITAT": {
-            "icao": "SITAT",
-            "name": "SITAT",
-            "suffix": {"12L":"2G", "30R":"3F", "12R":"2G", "30L":"3F"},
+        "MIROT1F": {
+            "icao": "MIROT1F",
+            "name": "Mirot One Foxtrot",
             "rwy": {
-                "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA"],
-                "30R": ["_12L", "EMUNI", "DEMTO"],
-                "30L": ["_12R", "EMUNI", "DEMTO"]
+                "OMDB30L": [],
+                "OMDB30R": []
             },
-            "body": ["GINLA"],
+            "body": ["DB570", ["DB575", "A50-|A40+|S220-"], "DB410", "LOPAP"],
             "exitPoints": {
-                "SITAT": ["SITAT"]
+                "MIROT": ["MIROT"]
             },
             "draw": [
-                ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
-                ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
-                ["_12L", "EMUNI", "DEMTO", "GINLA", "SITAT"],
-                ["_12R", "EMUNI", "DEMTO", "GINLA", "SITAT"]
+                ["DB570", "DB575", "DB410", "LOPAP", "MIROT"]
+            ]
+        },
+        "MIROT1G": {
+            "icao": "MIROT1G",
+            "name": "Mirot One Golf",
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "body": ["ASTES", ["DB451", "S220-"], ["DB460", "A40+"], "DB465", ["DB467", "A70+"], "DB463", "LOPAP"],
+            "exitPoints": {
+                "MIROT": ["MIROT"]
+            },
+            "draw": [
+                ["ASTES", "DB451", "DB460", "DB465", "DB467", "DB463", "LOPAP", "MIROT"]
+            ]
+        },
+        "NABIX1F": {
+            "icao": "NABIX1F",
+            "name": "Nabix One Foxtrot",
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "body": ["DB570", ["DB575", "A50-|A40+|S220-"], "DB410", "LOPAP"],
+            "exitPoints": {
+                "NABIX": ["NABIX"]
+            },
+            "draw": [
+                ["DB570", "DB575", "DB410", "LOPAP", "NABIX"]
+            ]
+        },
+        "NABIX1G": {
+            "icao": "NABIX1G",
+            "name": "Nabix One Golf",
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "body": ["ASTES", ["DB451", "S220-"], ["DB460", "A40+"], "DB465", ["DB467", "A70+"], "DB463", "LOPAP"],
+            "exitPoints": {
+                "NABIX": ["NABIX"]
+            },
+            "draw": [
+                ["ASTES", "DB451", "DB460", "DB465", "DB467", "DB463", "LOPAP", "NABIX"]
+            ]
+        },
+        "RIDAP1F": {
+            "icao": "RIDAP1F",
+            "name": "Ridap 1 Foxtrot",
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "body": ["DB570", ["DB573", "S220-"], "ORLAD", "KIXOG"],
+            "exitPoints": {
+                "RIDAP": ["RIDAP"]
+            },
+            "draw": [
+                ["DB570", "DB573", "ORLAD", "KIXOG", "RIDAP"]
+            ]
+        },
+        "RIDAP1G": {
+            "icao": "RIDAP1G",
+            "name": "Ridap One Golf",
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "body": ["ASTES", ["DB451", "S220-"], ["DB460", "A40+"], "DB465", ["DB466", "A70+"], "ORLAD", "KIXOG"],
+            "exitPoints": {
+                "RIDAP": ["RIDAP"]
+            },
+            "draw": [
+                ["ASTES", "DB451", "DB460", "DB465", "DB466", "ORLAD", "KIXOG", "RIDAP"]
+            ]
+        },
+        "SENPA1F": {
+            "icao": "SENPA1F",
+            "name": "Senpa One Foxtrot",
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "body": ["DB570", ["DB574", "S220-"], "EMOPO", "GIBUR", "IVILI"],
+            "exitPoints": {
+                "SENPA": ["SENPA"]
+            },
+            "draw": [
+                ["DB570", "DB574", "EMOPO", "GIBUR", "IVILI", "SENPA"]
+            ]
+        },
+        "SENPA1G": {
+            "icao": "SENPA1G",
+            "name": "Senpa One Golf",
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "body": ["ASTES", ["DB451", "S220-"], ["DB460", "A40+"], "DB465", ["DB467", "A70+"], "DB461", "IVATU", "IVILI"],
+            "exitPoints": {
+                "SENPA": ["SENPA"]
+            },
+            "draw": [
+                ["ASTES", "DB451", "DB460", "DB465", "DB467", "DB461", "IVATU", "IVILI", "SENPA"]
+            ]
+        },
+        "VUVUT2F": {
+            "icao": "VUVUT2F",
+            "name": "Vuvut Two Foxtrot",
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "body": ["DB570", ["DB576", "A30+|S220-"], "KUPOR", ["UKRER", "A70"], ["VAXAB", "A100+"], "VUVUT"],
+            "exitPoints": {
+                "IVURO": ["IVURO"]
+            },
+            "draw": [
+                ["DB570", "DB576", "KUPOR", "UKRER", "VAXAB", "VUVUT", "IVURO"]
             ]
         }
     },
-    "stars": {},
-    "spawnPatterns": [
-        {
-            "origin": "omdb",
-            "destination": "",
-            "category": "departure",
-            "route": "OMDB.ANVIX.ANVIX",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "offset": 0,
-            "rate": 13,
-            "airlines": [
-                ["uae",     139],
-                ["thy",       2],
-                ["swr",       2],
-                ["ups",       8],
-                ["vir",       1],
-                ["qfa/dubai", 6]
+    "stars": {
+        "DATOB2B": {
+            "icao": "DATOB2B",
+            "name": "Datob Two Bravo",
+            "entryPoints": {
+                "DATOB": [["DATOB", "A100-|S230-"]]
+            },
+            "body": [["DB400", "A80-"], ["DB401", "A60-"], ["DB402", "S210-"], "DB403", ["SOLIL", "S185-"], "ODLAL", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["DATOB", "DB400", "DB401", "DB402", "DB403", "SOLIL", "ODLAL", "DB413", "REREK"]
             ]
         },
-        {
-            "origin": "omdb",
-            "destination": "",
-            "category": "departure",
-            "route": "OMDB.DAVMO.DAVMO",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "offset": 0,
-            "rate": 12,
-            "airlines": [
-                ["fdb",      98],
-                ["fdx",       8],
-                ["igo",       9],
-                ["jai",       4],
-                ["klm",       1],
-                ["kal",       1],
-                ["dlh",       1],
-                ["nax",       3],
-                ["sej",      10],
-                ["tui",       1]
+        "DATOB2C": {
+            "icao": "DATOB2C",
+            "name": "Datob Two Charlie",
+            "entryPoints": {
+                "DATOB": [["DATOB", "A120-|S230"]]
+            },
+            "body": [["MEPKU", "A110-|S230"], ["DB531", "A80+"], ["PATID", "A70+"], ["DB530", "A60-|S210"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["DATOB", "MEPKU", "DB531", "PATID", "DB530", "DB513", "GIRGO", "VELAR", "RIDEV", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT"]
             ]
         },
-        {
-            "origin": "omdb",
-            "destination": "",
-            "category": "departure",
-            "route": "OMDB.RIKET.RIKET",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "offset": 0,
-            "rate": 10,
-            "airlines": [
-                ["afl",       1],
-                ["aca",       1],
-                ["cca",       2],
-                ["afr",       2],
-                ["aic",       9],
-                ["axb",      11],
-                ["baw",       1],
-                ["cpa",       2],
-                ["ces",       2],
-                ["csn",       4]
+        "DATOB3D": {
+            "icao": "DATOB3D",
+            "name": "Datob Three Delta",
+            "entryPoints": {
+                "DATOB": [["DATOB", "A120-|S230"]]
+            },
+            "body": [["MEPKU", "A110-|S230"], ["DB531", "A80+"], ["DB527", "A80+"], ["DB528", "A60-|S210"], "RARPI", "TUKAK", "DB522", "DB523", ["DB524", "S185"], "DB525", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["DATOB", "MEPKU", "DB531", "DB527", "DB528", "RARPI", "TUKAK", "DB522", "DB523", "DB524", "DB525", "DB506", "DB505", "DB504", "ULDOT"]
             ]
         },
-        {
-            "origin": "",
-            "destination": "omdb",
-            "category": "arrival",
-            "method":         "cyclic",
-            "route":        "BUBIN..GIRMI..DB518..DB517..VUTON..DB515..DB514..DB513..GIRGO..VELAR..DB509..DB508..DB507..DB506..DB505..DB504..ULDOT..SEDPO..MODUS",
-            "rate":     15,
-            "altitude":        12000,
-            "speed":        320,
-            "offset":        2,
-            "airlines": [
-                ["cca",       2],
-                ["aic",       9],
-                ["axb",      11],
-                ["cpa",       2],
-                ["ces",       2],
-                ["csn",       4],
-                ["uae",      98],
-                ["fdb",      46],
-                ["fdx",       3],
-                ["igo",       9],
-                ["jai",       4],
-                ["kal",       1],
-                ["sej",      10],
-                ["ups",       2],
-                ["qfa/dubai", 6]
+        "IMPED2B": {
+            "icao": "IMPED2B",
+            "name": "Imped Two Bravo",
+            "entryPoints": {
+                "IMPED": [["IMPED", "A120-|S230-"]]
+            },
+            "body": [["DB520", "A110-|S230-"], "DB518", ["DB517", "A100-"], ["DB423", "A80+"], ["DB407", "A60-|S210-"], "DB408", "DB403", ["SOLIL", "S185-"], "ODLAL", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["IMPED", "DB520", "DB518", "DB517", "DB423", "DB407", "DB408", "DB403", "SOLIL", "ODLAL", "DB413", "REREK"]
             ]
         },
-        {
-            "origin": "",
-            "destination": "omdb",
-            "category": "arrival",
-            "method":         "cyclic",
-            "route":        "DESDI..RULAM..IVUTI..DB429..TULOM..DB427..DB426..DB425..DB421..DB420..ALNET..SOGAP..DB417..DB416..DB414..DB413..REREK..UKRIM..DB612",
-            "rate":     30,
-            "altitude":        12000,
-            "speed":        320,
-            "offset":        2,
-            "airlines": [
-                ["afl",       1],
-                ["aca",       1],
-                ["afr",       1],
-                ["baw",       1],
-                ["uae",      34],
-                ["fdb",      37],
-                ["fdx",       2],
-                ["klm",       1],
-                ["dlh",       1],
-                ["nax",       3],
-                ["tui",       1],
-                ["thy",       2],
-                ["swr",       2],
-                ["ups",       2],
-                ["vir",       1],
-                ["qfa/dubai", 6]
+        "IMPED2C": {
+            "icao": "IMPED2C",
+            "name": "Imped Two Charlie",
+            "entryPoints": {
+                "IMPED": [["IMPED", "A120-|S230"]]
+            },
+            "body": [["DB520", "A110-|S230"], ["DB518", "A100-"], "DB517", ["VUTON", "A80-"], ["DB515", "S210"], ["DB514", "A60-"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["IMPED", "DB520", "DB518", "DB517", "VUTON", "DB515", "DB514", "DB513", "GIRGO", "VELAR", "RIDEV", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT"]
             ]
         },
-        {
-            "origin": "",
-            "destination": "omdb",
-            "category": "arrival",
-            "method":         "cyclic",
-            "route":        "MIADA..MUXAL..EMOVA..ODLAL..DB414..DB413..REREK..PEDOV..PUTGA",
-            "rate":     25,
-            "altitude":        12000,
-            "speed":        320,
-            "offset":        2,
-            "airlines": [
-                ["aic",       9],
-                ["axb",      11],
-                ["uae",      98],
-                ["fdb",      46],
-                ["fdx",       3],
-                ["igo",       9],
-                ["jai",       4],
-                ["kal",       1],
-                ["sej",      10],
-                ["ups",       2],
-                ["qfa/dubai", 6]
+        "IMPED2E": {
+            "icao": "IMPED2E",
+            "name": "Imped Two Echo",
+            "entryPoints": {
+                "IMPED": [["IMPED", "A120-|S230-"]]
+            },
+            "body": [["DB520", "A110-|S230-"], "DB518", ["DB517", "A100-"], ["DB423", "A80+"], ["DB406", "A70-|S210-"], ["DB421", "A60-"], "DB420", "ALNET", "SOGAP", ["PASEV", "S185-"], "DB416", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["IMPED", "DB520", "DB518", "DB517", "DB423", "DB406", "DB421", "DB420", "ALNET", "SOGAP", "PASEV", "DB416", "DB414", "DB413", "REREK"]
             ]
         },
-        {
-            "origin": "",
-            "destination": "omdb",
-            "category": "arrival",
-            "method":         "cyclic",
-            "route":        "PUVAL..KUMDA..EGTUP..ULASO..DB519..DB513..GIRGO..VELAR..DB509..DB508..DB507..DB506..DB505..DB504..ULDOT..LOVOL..DB756",
-            "rate":     20,
-            "altitude":        12000,
-            "speed":        320,
-            "offset":        2,
-            "airlines": [
-                ["aic",       9],
-                ["axb",      11],
-                ["uae",      80],
-                ["fdb",      24],
-                ["fdx",       5],
-                ["igo",       9],
-                ["jai",       4],
-                ["kal",       1],
-                ["sej",      10],
-                ["afl",       1],
-                ["cca",       2],
-                ["cpa",       2],
-                ["ces",       2],
-                ["csn",       4],
-                ["ups",       3],
-                ["qfa/dubai", 6]
+        "LORID2B": {
+            "icao": "LORID2B",
+            "name": "Lorid Two Bravo",
+            "entryPoints": {
+                "LORID": [["LORID", "A160-|S230-"]]
+            },
+            "body": [["DB409", "A90-"], "ORGUR", "PEBUS", ["DB410", "A60-"], ["DB402", "S210-"], "DB403", ["SOLIL", "S185-"], "ODLAL", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["LORID", "DB409", "ORGUR", "PEBUS", "DB410", "DB402", "DB403", "SOLIL", "ODLAL", "DB413", "REREK"]
+            ]
+        },
+        "LORID2C": {
+            "icao": "LORID2C",
+            "name": "Lorid Two Charlie",
+            "entryPoints": {
+                "LORID": [["LORID", "A160-|S230"]]
+            },
+            "body": ["ORGUR", ["PEBUS", "A110-|A100+"], ["EMOPO", "A90"], ["DB531", "A80+"], ["PATID", "A70+"], ["DB530", "A60-|S210"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["LORID", "ORGUR", "PEBUS", "EMOPO", "DB531", "PATID", "DB530", "DB513", "GIRGO", "VELAR", "RIDEV", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "LORID3D": {
+            "icao": "LORID3D",
+            "name": "Lorid Three Delta",
+            "entryPoints": {
+                "LORID": [["LORID", "A160-|S230"]]
+            },
+            "body": ["ORGUR", ["PEBUS", "A110-|A100+"], ["EMOPO", "A90"], ["DB531", "A80+"], ["DB527", "A80+"], ["DB528", "A60-|S210"], "RARPI", "TUKAK", "DB522", "DB523", ["DB524", "S185"], "DB525", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["LORID", "ORGUR", "PEBUS", "EMOPO", "DB531", "DB527", "DB528", "RARPI", "TUKAK", "DB522", "DB523", "DB524", "DB525", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "PUVAL1D": {
+            "icao": "PUVAL1D",
+            "name": "Puval One Delta",
+            "entryPoints": {
+                "PUVAL": [["PUVAL", "A110-|S230"]]
+            },
+            "body": ["KEBOG", ["KUPOR", "A80+"], ["PATID", "A70+"], ["DB532", "A60-|S210"], "RARPI", "TUKAK", "DB522", "DB523", ["DB524", "S185"], "DB525", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["PUVAL", "KEBOG", "KUPOR", "PATID", "DB532", "RARPI", "TUKAK", "DB522", "DB523", "DB524", "DB525", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "PUVAL1E": {
+            "icao": "PUVAL1E",
+            "name": "Puval One Echo",
+            "entryPoints": {
+                "PUVAL": [["PUVAL", "A110-|S230-"]]
+            },
+            "body": ["MIVUR", "OVADI", "SERSA", ["DB406", "A70-"], ["DB407", "A60-|S210-"], "DB408", "DB403", ["SOLIL", "S185-"], "ODLAL", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["PUVAL", "MIVUR", "OVADI", "SERSA", "DB406", "DB407", "DB408", "DB403", "SOLIL", "ODLAL", "DB413", "REREK"]
+            ]
+        },
+        "PUVAL4B": {
+            "icao": "PUVAL4B",
+            "name": "Puval Four Bravo",
+            "entryPoints": {
+                "PUVAL": [["PUVAL", "A110-|S230-"]]
+            },
+            "body": ["MIVUR", "OVADI", ["SERSA", "S210-"], ["DB421", "A60-"], "DB420", "ALNET", "SOGAP", ["PASEV", "S185-"], "DB416", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["PUVAL", "MIVUR", "OVADI", "SERSA", "DB421", "DB420", "ALNET", "SOGAP", "PASEV", "DB416", "DB414", "DB413", "REREK"]
+            ]
+        },
+        "PUVAL4C": {
+            "icao": "PUVAL4C",
+            "name": "Puval Four Charlie",
+            "entryPoints": {
+                "PUVAL": [["PUVAL", "A110-|S230"]]
+            },
+            "body": ["KEBOG", ["KUPOR", "A80+"], "DB526", ["DB530", "A60-|S210"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["PUVAL", "KEBOG", "KUPOR", "DB526", "DB530", "DB513", "GIRGO", "VELAR", "RIDEV", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "VUTEB2B": {
+            "icao": "VUTEB2B",
+            "name": "Vuteb Two Bravo",
+            "entryPoints": {
+                "VUTEB": [["VUTEB", "A120-|S230-"]]
+            },
+            "body": [["IVUTI", "A100-|S230-"], "DB429", "TULOM", ["DB427", "A70-"], ["DB426", "S210-"], "DB425", ["DB421", "A60-"], "DB420", "ALNET", "SOGAP", ["PASEV", "S185-"], "DB416", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["VUTEB", "IVUTI", "DB429", "TULOM", "DB427", "DB426", "DB425", "DB421", "DB420", "ALNET", "SOGAP", "PASEV", "DB416", "DB414", "DB413", "REREK"]
+            ]
+        },
+        "VUTEB2C": {
+            "icao": "VUTEB2C",
+            "name": "Vuteb Two Charlie",
+            "entryPoints": {
+                "VUTEB": [["VUTEB", "A120-|S230"]]
+            },
+            "body": [["LOVOK", "A110-|S230"], ["DB529", "A80+"], ["PATID", "A70+"], ["DB530", "A60-|S210"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["VUTEB", "LOVOK", "DB529", "PATID", "DB530", "DB513", "GIRGO", "VELAR", "RIDEV", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "VUTEB2D": {
+            "icao": "VUTEB2D",
+            "name": "Vuteb Two Delta",
+            "entryPoints": {
+                "VUTEB": [["VUTEB", "A120-|S230"]]
+            },
+            "body": [["LOVOK", "A110-|S230"], ["DB529", "A80+"], ["PATID", "A70+"], ["DB532", "A60-|S210"], "RARPI", "TUKAK", "DB522", "DB523", ["DB524", "S185"], "DB525", "DB506", "DB505", "DB504", "ULDOT"],
+            "rwy": {
+                "OMDB30L": [],
+                "OMDB30R": []
+            },
+            "draw": [
+                ["VUTEB", "LOVOK", "DB529", "PATID", "DB532", "RARPI", "TUKAK", "DB522", "DB523", "DB524", "DB525", "DB506", "DB505", "DB504", "ULDOT"]
+            ]
+        },
+        "VUTEB2E": {
+            "icao": "VUTEB2E",
+            "name": "Vuteb Two Echo",
+            "entryPoints": {
+                "VUTEB": [["VUTEB", "A100-|S230-"]]
+            },
+            "body": [["DB400", "A80-"], ["DB401", "A60-"], ["DB402", "S210-"], "DB403", ["SOLIL", "S185-"], "ODLAL", "DB414", "DB413", "REREK"],
+            "rwy": {
+                "OMDB12L": [],
+                "OMDB12R": []
+            },
+            "draw": [
+                ["VUTEB", "DB400", "DB401", "DB402", "DB403", "SOLIL", "ODLAL", "DB413", "REREK"]
             ]
         }
+    },
+    "spawnPatterns": [
+        
     ],
     "maps": {
         "base": []
