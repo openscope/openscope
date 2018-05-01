@@ -9,6 +9,7 @@
 - [Taxi](#taxi)
 
 [Arrival Commands](#arrival-commands)
+- [Expect Runway](#expect-runway)
 - [Descend via STAR](#descend-via-star)
 - [Land](#land)
 
@@ -95,6 +96,17 @@ _Syntax -_ `AAL123 taxi [Runway]`
 # Arrival Commands
 These commands are only used by arrival aircraft.
 
+### Expect Runway
+_Aliases -_ `e`
+
+_Information -_ Informs the aircraft of the runway they should expect for
+landing. This is useful in cases where their route is sensitive to their
+runway assignment. In cases where their STAR says to follow a different series
+of waypoints dependent upon their runway, we can use this command to have an
+aircraft follow the desired branch of the STAR toward the desired runway.
+
+_Syntax -_ `AAL123 e 26r`
+
 ### Descend via STAR
 _Aliases -_ `dvs`
 
@@ -106,16 +118,17 @@ receiving further instructions from ATC.
 
 _Syntax -_ `AAL123 dvs`
 
-### Land
-_Aliases -_ `ils` / `i` / `land` / `l`
+### ILS
+_Aliases -_ `ils` / `i`
 
 _Shortkey -_ `numpad *`
 
-_Information -_ This command clears the aircraft to land on a runway. The
-aircraft's strip on the right will show either "intercept" if it's still
-trying to intercept the localizer. Once established, it will show "on ILS"
-and the aircraft will automatically fly down the runway centerline, descend,
-and land.
+_Information -_ This command clears for an ILS approach to a runway. The
+aircraft will continue on its assigned heading until intercepting the localizer,
+and then automatically follow the runway centerline inbound, descending along
+the glideslope and land.
+
+Note: This replaces the old `land` / `l` command.
 
 _Syntax -_ `AAL123 i [rwy]`
 

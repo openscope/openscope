@@ -391,13 +391,14 @@
         }
     },
     "stars": {
-        "HELNS5": {
-            "icao": "HELNS5",
-            "name": "Helens Five",
+        "HELNS6": {
+            "icao": "HELNS6",
+            "name": "Helens Six",
             "entryPoints": {
-                "SEA": ["SEA", "BUWZO"]
+                "BUWZO": [],
+                "SEA": ["SEA"]
             },
-            "body": ["HELNS", ["KRATR", "A120|S300-"], "BTG"],
+            "body": ["BUWZO", "HELNS", ["KRATR", "A100+|S300-"], ["BTG", "A70+"]],
             "rwy": {
                 "KPDX10L": ["#280"],
                 "KPDX10R": ["#280"],
@@ -457,14 +458,17 @@
                 ["HYKER", "BATYL"]
             ]
         },
-        "MOXEE6": {
-            "icao": "MOXEE6",
-            "name": "Moxee Six",
+        "OCITY1": {
+            "icao": "OCITY1",
+            "name": "Oh City One",
             "entryPoints": {
-                "LMT": ["LMT"],
-                "OED": ["OED"]
+                "LMT": ["LMT", "MOXEE", "PORTL"],
+                "MOXEE": ["MOXEE", "PORTL"],
+                "OED": ["OED", "MOXEE", "PORTL"],
+                "PORTL": ["PORTL"],
+                "VANTZ": []
             },
-            "body": ["MOXEE", "PORTL", "VANTZ", "OCITY"],
+            "body": [["VANTZ", "S250-"], ["OCITY", "A70+"]],
             "rwy": {
                 "KPDX10L": ["#280"],
                 "KPDX10R": ["#280"],

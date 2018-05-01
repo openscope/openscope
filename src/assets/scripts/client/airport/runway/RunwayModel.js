@@ -15,6 +15,7 @@ import {
     calculateCrosswindAngle,
     getOffset
 } from '../../math/flightMath';
+import { radio_runway } from '../../utilities/radioUtilities';
 import {
     km,
     km_ft,
@@ -252,6 +253,19 @@ export default class RunwayModel extends BaseModel {
 
         // TODO: this logic could be abstracted to a helper.
         return this.elevation + (rise * km_ft(distance));
+    }
+
+    /**
+     * Return the spoken name of the runway, spelled out into words
+     *
+     * Ex: "two six left"
+     *
+     * @for RunwayModel
+     * @method getRadioName
+     * @return {string}
+     */
+    getRadioName() {
+        return radio_runway(this.name);
     }
 
     /**

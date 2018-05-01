@@ -1,0 +1,27 @@
+{
+    "icao": "edw",
+    "name": "Edelweiss Air",
+    "callsign": {
+        "name": "Edelweiss",
+        "callsignFormats": [
+            "###",
+            "###@",
+            "##",
+            "##@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 8],
+            ["A333", 2],
+            ["A343", 2]
+        ],
+        "long": [
+            ["A333", 2],
+            ["A343", 2]
+        ],
+        "short": [
+            ["A320", 8]
+        ]
+    }
+}

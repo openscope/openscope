@@ -374,6 +374,24 @@ export default class Pilot {
     }
 
     /**
+     * Cancel departure clearance
+     *
+     * @for Pilot
+     * @method cancelDepartureClearance
+     * @param aircraftModel {AircraftModel}
+     * @return {array} [success of operation, response]
+     */
+    cancelDepartureClearance(aircraftModel) {
+        if (aircraftModel.isAirborne()) {
+            return;
+        }
+
+        this.hasDepartureClearance = false;
+
+        return [true, 'roger, understand IFR clearance is cancelled, standing by'];
+    }
+
+    /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
      * @for Pilot
@@ -381,7 +399,19 @@ export default class Pilot {
      * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
      * @return {Array}                  [success of operation, readback]
      */
-    clearedAsFiled() {
+    clearedAsFiled(aircraft) {
+        const departureRunwayModel = aircraft.fms.departureRunwayModel;
+
+        if (!aircraft.fms.isRunwayModelValidForSid(departureRunwayModel)) {
+            const readback = {};
+            readback.log = `according to our charts, Runway ${departureRunwayModel.name} ` +
+                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
+            readback.say = `according to our charts, Runway ${departureRunwayModel.getRadioName()} ` +
+                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
+
+            return [false, readback];
+        }
+
         this.hasDepartureClearance = true;
 
         const readback = {};
@@ -780,6 +810,23 @@ export default class Pilot {
     sayTargetedSpeed() {
         // TODO: How do we handle the cases where aircraft are using VNAV speed?
         return [true, this._mcp.speed];
+    }
+
+    /**
+     * Set the arrival runway to the specified runway model
+     *
+     * @for Pilot
+     * @method setArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param runwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    setArrivalRunway(aircraft, runwayModel) {
+        if (aircraft.isOnGround()) {
+            return [false, 'unable to accept arrival runway assignment until airborne'];
+        }
+
+        return this._fms.setArrivalRunway(runwayModel);
     }
 
     /**

@@ -18,7 +18,7 @@
         "angle": 90,
         "speed": 8
     },
-    "arrivalRunway": "8",
+    "arrivalRunway": "3",
     "departureRunway": "8",
     "airspace": [
         {
@@ -181,7 +181,7 @@
                 ["N35d01m20.09", "W106d37m50.17", "5305ft"],
                 ["N35d02m30.27", "W106d36m25.46", "5316ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, false]
         },
         {
             "name": ["8", "26"],
@@ -189,7 +189,7 @@
                 ["N35d02m39.67", "W106d37m17.72", "5312ft"],
                 ["N35d02m38.63", "W106d34m31.89", "5355ft"]
             ],
-            "ils": [true, true]
+            "ils": [true, false]
         },
         {
             "name": ["12", "30"],
@@ -209,33 +209,16 @@
         }
     ],
     "sids": {
-        "ADYOS3": {
-            "icao": "ADYOS3",
-            "name": "Adios Three",
-            "rwy": {
-                "21": [["ASTAH", "A90-"], "LVSTA"],
-                "26": ["ABQ"]
-            },
-            "body": ["ADYOS"],
-            "exitPoints": {
-                "GUP": ["BABYY", "BUSLE", "GUP"],
-                "ZUN": ["PNYON", "ZUN"]
-            },
-            "draw": [
-                ["ASTAH", "LVSTA", "ADYOS", "BABYY", "BUSLE", "GUP*"],
-                ["ABQ", "ADYOS", "PNYON", "ZUN*"]
-            ]
-        },
         "ABQ3": {
             "icao": "ABQ3",
             "name": "Albuquerque Three",
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "body": [],
             "exitPoints": {
@@ -269,12 +252,29 @@
                 ["ZUN*"]
             ]
         },
+        "ADYOS3": {
+            "icao": "ADYOS3",
+            "name": "Adios Three",
+            "rwy": {
+                "KABQ21": [["ASTAH", "A90-"], "LVSTA"],
+                "KABQ26": ["ABQ"]
+            },
+            "body": ["ADYOS"],
+            "exitPoints": {
+                "GUP": ["BABYY", "BUSLE", "GUP"],
+                "ZUN": ["PNYON", "ZUN"]
+            },
+            "draw": [
+                ["ASTAH", "LVSTA", "ADYOS", "BABYY", "BUSLE", "GUP*"],
+                ["ABQ", "ADYOS", "PNYON", "ZUN*"]
+            ]
+        },
         "ATOMK3": {
             "icao": "ATOMK3",
-            "name": "Atomkay Three",
+            "name": "Atomic Three",
             "rwy": {
-                "21": [],
-                "26": []
+                "KABQ21": [],
+                "KABQ26": []
             },
             "body": [["FOXRR", "A80+"], ["TYWEB", "A100+"], ["TKILA", "A115+|S250-"], "FIREY"],
             "exitPoints": {
@@ -288,8 +288,8 @@
             "icao": "BOSQE3",
             "name": "Boskay Three",
             "rwy": {
-                "21": [],
-                "26": []
+                "KABQ21": [],
+                "KABQ26": []
             },
             "body": [["JETOK", "A90-"], ["BOSQE", "A100+"]],
             "exitPoints": {
@@ -307,8 +307,8 @@
             "icao": "DOOKK3",
             "name": "Dook Three",
             "rwy": {
-                "21": [],
-                "26": []
+                "KABQ21": [],
+                "KABQ26": []
             },
             "body": [["JETOK", "A90-|S250-"], ["BIYEN", "A110+"], ["DOOKK", "A115+"]],
             "exitPoints": {
@@ -326,8 +326,8 @@
             "icao": "FYSTA3",
             "name": "Fiesta Three",
             "rwy": {
-                "21": [["^_RWY2101.27DME", "A62+"]],
-                "26": [["^_RWY2603.22DME", "A75+"]]
+                "KABQ21": [["^_RWY2101.27DME", "A62+"]],
+                "KABQ26": [["^_RWY2603.22DME", "A75+"]]
             },
             "body": [["BLUUN", "A110+"], ["BURQI", "A120+|S250-"], ["FYSTA", "A140+"]],
             "exitPoints": {
@@ -344,8 +344,8 @@
             "icao": "GRZZZ3",
             "name": "Grass Three",
             "rwy": {
-                "3": [],
-                "8": [["^TYILR", "S230-"]]
+                "KABQ3": [],
+                "KABQ8": [["^TYILR", "S230-"]]
             },
             "body": ["ROWHO", "GRZZZ", "DNIDE"],
             "exitPoints": {
@@ -361,8 +361,8 @@
             "icao": "JEMEZ3",
             "name": "Jemes Three",
             "rwy": {
-                "3": [["^_RWY302.32DME", "A69+"]],
-                "8": [["^TYILR", "S230-"]]
+                "KABQ3": [["^_RWY302.32DME", "A69+"]],
+                "KABQ8": [["^TYILR", "S230-"]]
             },
             "body": [["GRREN", "A120+|S250-"], "FIREY"],
             "exitPoints": {
@@ -378,12 +378,12 @@
             "icao": "LARGO3",
             "name": "Largo Three",
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "body": ["ABQ"],
             "exitPoints": {
@@ -401,8 +401,8 @@
             "icao": "MNZNO3",
             "name": "Manzano Three",
             "rwy": {
-                "3": [["^_RWY301DME", "A60+|S220-"]],
-                "8": []
+                "KABQ3": [["^_RWY301DME", "A60+|S220-"]],
+                "KABQ8": []
             },
             "body": ["DLSOL", ["YUGLU", "A90-"], "CIANE", ["MNZNO", "A115+|S250-"]],
             "exitPoints": {
@@ -430,8 +430,8 @@
             "icao": "RDRNR3",
             "name": "Road Runner Three",
             "rwy": {
-                "3": [["^_RWY301DME", "A60+"]],
-                "8": [["^TYILR", "S230-"]]
+                "KABQ3": [["^_RWY301DME", "A60+"]],
+                "KABQ8": [["^TYILR", "S230-"]]
             },
             "body": [["RDRNR", "A100+"], ["SPEDY", "A120+"]],
             "exitPoints": {
@@ -456,10 +456,10 @@
             },
             "body": [["COLTR", "A140+|A180-"], ["YYLEE", "A110+|S250"]],
             "rwy": {
-                "3": ["CYOTE", ["TNTOE", "A100|S210"], "PLNET"],
-                "8": ["CYOTE", ["TNTOE", "A100|S210"], "ACMIE"],
-                "21": [["TACOH", "A100|S210"]],
-                "26": [["TACOH", "A100|S210"]]
+                "KABQ3": ["CYOTE", ["TNTOE", "A100|S210"], "^PLNET", "#213"],
+                "KABQ8": ["CYOTE", ["TNTOE", "A100|S210"], "^ACMIE", "#256"],
+                "KABQ21": [["TACOH", "A100|S210"]],
+                "KABQ26": [["TACOH", "A100|S210"]]
             },
             "draw": [
                 ["RECKN", "ZATOX", "SNEWP", "COLTR", "YYLEE", "TACOH"],
@@ -475,14 +475,14 @@
                 "GUP": ["GUP"],
                 "TANER": ["TANER"]
             },
-            "body": ["CURLY", "ABQ"],
+            "body": [["CURLY", "S300-"], "ABQ"],
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "draw": [
                 ["GUP", "CURLY", "ABQ"],
@@ -496,14 +496,14 @@
                 "ESPAN": ["ESPAN"],
                 "FTI": ["FTI"]
             },
-            "body": ["FLYBY", "FRIHO", "ABQ"],
+            "body": ["FLYBY", ["FRIHO", "S300-"], "ABQ"],
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "draw": [
                 ["FTI", "FLYBY", "FRIHO", "ABQ"],
@@ -519,10 +519,10 @@
             },
             "body": [["KRKEE", "A210+|A280-|S270"], ["ELRRA", "A140+|A180-"], ["XMRKS", "A110+|S250"]],
             "rwy": {
-                "3": [["SHWNA", "A90+"], ["BIBQU", "A80+|S210"]],
-                "8": [["AMRRA", "A100+"], ["UNCIR", "A80+|S210"]],
-                "21": [["AMRRA", "A100+"], ["FOXRR", "A100|S210"]],
-                "26": [["STIKI", "A100|S210"], ["BRNDO", "A90+"]]
+                "KABQ3": [["SHWNA", "A90+"], ["BIBQU", "A80+|S210"]],
+                "KABQ8": [["AMRRA", "A100+"], ["UNCIR", "A80+|S210"]],
+                "KABQ21": [["AMRRA", "A100+"], ["FOXRR", "A100|S210"]],
+                "KABQ26": [["STIKI", "A100|S210"], ["BRNDO", "A90+"]]
             },
             "draw": [
                 ["CABNO", "KRKEE", "ELRRA", "XMRKS", "SHWNA", "BIBQU"],
@@ -539,14 +539,14 @@
                 "SJN": ["SJN"],
                 "ZUN": ["ZUN"]
             },
-            "body": ["IRULY", "LAVAN", "ABQ"],
+            "body": ["IRULY", ["LAVAN", "S300-"], "ABQ"],
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "draw": [
                 ["SJN", "IRULY", "LAVAN", "ABQ"],
@@ -563,10 +563,10 @@
             },
             "body": ["LOWBO", ["JOKLO", "A140+|A180-|S250"], "ITUNE"],
             "rwy": {
-                "3": [["MUSCC", "A90+|A120-"], ["DWNLD", "A90+|A110-"], ["CMSTR", "A90|S210"]],
-                "8": [["MUSCC", "A90+|A120-"], ["DWNLD", "A90+|A110-"], ["CMSTR", "A90|S210"]],
-                "21": [["SDUNX", "A90+|A105-"], ["PASEO", "A90+|A100-"], ["NODME", "A90|S210"]],
-                "26": [["SDUNX", "A90+|A105-"], ["PASEO", "A90+|A100-"], ["NODME", "A90|S210"]]
+                "KABQ3": [["MUSCC", "A90+|A120-"], ["DWNLD", "A90+|A110-"], ["CMSTR", "A90|S210"]],
+                "KABQ8": [["MUSCC", "A90+|A120-"], ["DWNLD", "A90+|A110-"], ["CMSTR", "A90|S210"]],
+                "KABQ21": [["SDUNX", "A90+|A105-"], ["PASEO", "A90+|A100-"], ["NODME", "A90|S210"]],
+                "KABQ26": [["SDUNX", "A90+|A105-"], ["PASEO", "A90+|A100-"], ["NODME", "A90|S210"]]
             },
             "draw": [
                 ["BRMLY", "JMUZE", "HIKKR", "LOWBO", "JOKLO", "ITUNE", "MUSCC", "DWNLD", "CMSTR"],
@@ -583,10 +583,10 @@
             },
             "body": [["LZZRD", "A140+|A180-|S250"], ["MKYON", "A130+|A150-"]],
             "rwy": {
-                "3": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
-                "8": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
-                "21": ["SOPPA", ["PILLA", "A100|S210"]],
-                "26": ["SOPPA", ["PILLA", "A100|S210"]]
+                "KABQ3": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
+                "KABQ8": [["HAPEE", "A110+|A130-"], ["COMRO", "A100|S210"]],
+                "KABQ21": ["SOPPA", ["PILLA", "A100|S210"]],
+                "KABQ26": ["SOPPA", ["PILLA", "A100|S210"]]
             },
             "draw": [
                 ["CME", "LOKKE", "JETOS", "BOBYY", "HAKOR", "LZZRD", "MKYON", "HAPEE", "COMRO"],
@@ -598,17 +598,17 @@
             "name": "Meera Two",
             "entryPoints": {
                 "CME": ["CME", "CNX"],
-                "TXO": ["TXO"],
-                "TCC": ["TCC", "ACH"]
+                "TCC": ["TCC", "ACH"],
+                "TXO": ["TXO"]
             },
-            "body": ["MIERA", "ABQ"],
+            "body": [["MIERA", "S300-"], "ABQ"],
             "rwy": {
-                "3": [],
-                "8": [],
-                "12": [],
-                "21": [],
-                "26": [],
-                "30": []
+                "KABQ3": [],
+                "KABQ8": [],
+                "KABQ12": [],
+                "KABQ21": [],
+                "KABQ26": [],
+                "KABQ30": []
             },
             "draw": [
                 ["TXO", "MIERA", "ABQ"],
@@ -626,10 +626,10 @@
             },
             "body": ["SNDIA", ["VLCNO", "A140+|A160-|S250"], ["ASIDE", "A100+|A110-|S250"]],
             "rwy": {
-                "3": [["CRSTN", "A90|S210"]],
-                "8": [["CRSTN", "A90|S210"]],
-                "21": [["CADAT", "A90|S210-"]],
-                "26": [["CADAT", "A90|S210-"]]
+                "KABQ3": [["CRSTN", "A90|S210"]],
+                "KABQ8": [["CRSTN", "A90|S210"]],
+                "KABQ21": [["CADAT", "A90|S210-"]],
+                "KABQ26": [["CADAT", "A90|S210-"]]
             },
             "draw": [
                 ["TAMEY", "FITEE", "SNDIA", "VLCNO", "ASIDE", "CRSTN"],
@@ -643,11 +643,11 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.GRZZZ3.FTI",
+            "route": "KABQ8.GRZZZ3.FTI",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 1,
             "airlines": [
                 ["ash", 7],
                 ["asq", 3],
@@ -666,7 +666,7 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.JEMEZ3.JEMEZ",
+            "route": "KABQ8.JEMEZ3.JEMEZ..RSK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -689,11 +689,11 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.MNZNO3.CME",
+            "route": "KABQ8.MNZNO3.CME",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 0.5,
             "airlines": [
                 ["aal", 3],
                 ["aay", 1],
@@ -711,7 +711,7 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.MNZNO3.TXO",
+            "route": "KABQ8.MNZNO3.TXO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -736,11 +736,11 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.RDRNR3.ZUN",
+            "route": "KABQ8.RDRNR3.ZUN",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4,
+            "rate": 2.5,
             "airlines": [
                 ["aay", 1],
                 ["ash", 7],
@@ -758,11 +758,11 @@
             "origin": "kabq",
             "destination": "",
             "category": "departure",
-            "route": "KABQ.RDRNR3.GUP",
+            "route": "KABQ8.RDRNR3.GUP",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 0.5,
             "airlines": [
                 ["aay", 1],
                 ["ash", 7],
@@ -780,11 +780,11 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "RECKN.COLTR3.KABQ",
-            "altitude": [32000, 42000],
-            "speed": 350,
+            "route": "TCC.COLTR3.KABQ3",
+            "altitude": [34000, 42000],
+            "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.5,
             "airlines": [
                 ["aal", 3],
                 ["ash", 7],
@@ -804,11 +804,35 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "CABNO.KRKEE3.KABQ",
-            "altitude": [29000, 33000],
-            "speed": 350,
+            "route": "RECKN.COLTR3.KABQ3",
+            "altitude": [32000, 38000],
+            "speed": 320,
             "method": "random",
-            "rate": 4,
+            "rate": 1.5,
+            "airlines": [
+                ["aal", 3],
+                ["ash", 7],
+                ["asq", 3],
+                ["cpz", 3],
+                ["dal", 3],
+                ["eny", 2],
+                ["fdx", 1],
+                ["n/fastGA", 22],
+                ["rpa", 1],
+                ["skw", 8],
+                ["swa", 37],
+                ["ups", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kabq",
+            "category": "arrival",
+            "route": "CABNO.KRKEE3.KABQ3",
+            "altitude": [29000, 33000],
+            "speed": 320,
+            "method": "random",
+            "rate": 2.3,
             "airlines": [
                 ["ash", 7],
                 ["asq", 3],
@@ -824,11 +848,11 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "GUP.LOWBO3.KABQ",
+            "route": "GUP.LOWBO3.KABQ3",
             "altitude": [29000, 33000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
-            "rate": 3,
+            "rate": 0.7,
             "airlines": [
                 ["aay", 1],
                 ["ash", 7],
@@ -845,11 +869,32 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "CME.LZZRD3.KABQ",
+            "route": "ROSEI.LOWBO3.KABQ3",
+            "altitude": [31000, 35000],
+            "speed": 320,
+            "method": "random",
+            "rate": 0.8,
+            "airlines": [
+                ["aay", 1],
+                ["ash", 7],
+                ["asq", 3],
+                ["cpz", 3],
+                ["eny", 2],
+                ["n/fastGA", 22],
+                ["rpa", 1],
+                ["skw", 8],
+                ["swa", 37]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kabq",
+            "category": "arrival",
+            "route": "CME.LZZRD3.KABQ3",
             "altitude": [28000, 40000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
-            "rate": 2,
+            "rate": 0.7,
             "airlines": [
                 ["ash", 7],
                 ["asq", 3],
@@ -865,11 +910,35 @@
             "origin": "",
             "destination": "kabq",
             "category": "arrival",
-            "route": "DATME.SNDIA3.KABQ",
+            "route": "DATME.SNDIA3.KABQ3",
             "altitude": [28000, 36000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
-            "rate": 3,
+            "rate": 1.2,
+            "airlines": [
+                ["asa", 1],
+                ["ash", 7],
+                ["asq", 3],
+                ["cpz", 3],
+                ["dal", 3],
+                ["eny", 2],
+                ["jbu", 4],
+                ["n/fastGA", 22],
+                ["rpa", 1],
+                ["skw", 8],
+                ["swa", 37],
+                ["ual", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "kabq",
+            "category": "arrival",
+            "route": "TAMEY.SNDIA3.KABQ3",
+            "altitude": [28000, 34000],
+            "speed": 320,
+            "method": "random",
+            "rate": 0.5,
             "airlines": [
                 ["asa", 1],
                 ["ash", 7],

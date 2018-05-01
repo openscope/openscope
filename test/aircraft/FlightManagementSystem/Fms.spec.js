@@ -249,9 +249,10 @@ ava('._initializeArrivalRunway() returns early when #arrivalAirportModel is null
 
 ava('._initializeArrivalRunway() sets #arrivalRunwayModel to arrival airport\'s standard arrival runway when unable to deduce arrival runway from route', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(directOnlyRouteStringMock);
+    const expectedResult = [true, { log: 'expect Runway 25L', say: 'expect Runway two five left' }];
     const result = fms._initializeArrivalRunway();
 
-    t.true(typeof result === 'undefined');
+    t.deepEqual(result, expectedResult);
     t.deepEqual(fms.arrivalRunwayModel, fms.arrivalAirportModel.arrivalRunwayModel);
 });
 

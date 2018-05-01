@@ -299,7 +299,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #arrivalAirportModel
+     * Initialize `#arrivalAirportModel`
      *
      * @for Fms
      * @method _initializeArrivalAirport
@@ -315,7 +315,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #arrivalRunwayModel
+     * Initialize `#arrivalRunwayModel`
      *
      * @for Fms
      * @method _initializeArrivalRunway
@@ -338,7 +338,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #departureAirportModel
+     * Initialize `#departureAirportModel`
      *
      * @for Fms
      * @method _initializeDepartureAirport
@@ -354,7 +354,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #departureRunwayModel
+     * Initialize `#departureRunwayModel`
      *
      * @for Fms
      * @method _initializeDepartureRunway
@@ -377,7 +377,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #currentPhase as appropriate based on the spawn category
+     * Initialize `#currentPhase` as appropriate based on the spawn category
      *
      * @for Fms
      * @method _initializeFlightPhaseForCategory
@@ -398,7 +398,7 @@ export default class Fms {
     }
 
     /**
-     * Initialize #flightPlanAltitude
+     * Initialize `#flightPlanAltitude`
      *
      * @for Fms
      * @method _initializeFlightPlanAltitude
@@ -637,6 +637,38 @@ export default class Fms {
     }
 
     /**
+     * Facade for `#_routeModel.isRunwayModelValidForSid()`
+     *
+     * Other classes will not have access to the `#_routeModel`, but can use this
+     * facade to determine whether or not a given runway assignment is allowable,
+     * given the departure procedure in the `#_routeModel`.
+     *
+     * @for Fms
+     * @method isRunwayModelValidForSid
+     * @param runwayModel {RunwayModel}
+     * @return {boolean}
+     */
+    isRunwayModelValidForSid(runwayModel) {
+        return this._routeModel.isRunwayModelValidForSid(runwayModel);
+    }
+
+    /**
+     * Facade for `#_routeModel.isRunwayModelValidForStar()`
+     *
+     * Other classes will not have access to the `#_routeModel`, but can use this
+     * facade to determine whether or not a given runway assignment is allowable,
+     * given the arrival procedure in the `#_routeModel`.
+     *
+     * @for Fms
+     * @method isRunwayModelValidForStar
+     * @param runwayModel {RunwayModel}
+     * @return {boolean}
+     */
+    isRunwayModelValidForStar(runwayModel) {
+        return this._routeModel.isRunwayModelValidForStar(runwayModel);
+    }
+
+    /**
     * Move to the next possible waypoint
     *
     * This could be the next waypoint in the current leg,
@@ -764,28 +796,47 @@ export default class Fms {
     }
 
     /**
-    * Verify and then set the value of #arrivalRunwayModel
+    * Verify and then set the value of `#arrivalRunwayModel`
     *
     * @for Fms
     * @method setArrivalRunway
-    * @param runwayModel {RunwayModel}
+    * @param nextRunwayModel {RunwayModel}
+    * @return {array} [success of operation, response]
     */
-    setArrivalRunway(runwayModel) {
-        if (!(runwayModel instanceof RunwayModel)) {
-            throw new TypeError(`Expected instance of RunwayModel, but received ${runwayModel}`);
+    setArrivalRunway(nextRunwayModel) {
+        const currentArrivalRunway = this.arrivalRunwayModel;
+
+        if (!(nextRunwayModel instanceof RunwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${nextRunwayModel}`);
         }
 
-        if (this.arrivalRunwayModel && this.arrivalRunwayModel.name === runwayModel.name) {
-            return;
+        if (currentArrivalRunway && currentArrivalRunway.name === nextRunwayModel.name) {
+            const readback = {};
+            readback.log = `expect Runway ${nextRunwayModel.name}`;
+            readback.say = `expect Runway ${nextRunwayModel.getRadioName()}`;
+
+            return [true, readback];
         }
 
-        this.arrivalRunwayModel = runwayModel;
+        if (!this.isRunwayModelValidForStar(nextRunwayModel)) {
+            const readback = {};
+            readback.log = `according to our charts, Runway ${nextRunwayModel.name} is ` +
+                `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
+                `Runway ${currentArrivalRunway.name} instead`;
+            readback.say = `according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
+                `is not valid for the  ${this._routeModel.getStarName()} arrival, expecting ` +
+                `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
-        this._routeModel.updateStarLegForArrivalRunwayModel(runwayModel);
+            return [false, readback];
+        }
+
+        this.arrivalRunwayModel = nextRunwayModel;
+
+        return this._routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
     }
 
     /**
-     * Verify and then set the value of #departureRunwayModel
+     * Verify and then set the value of `#departureRunwayModel`
      *
      * @for Fms
      * @method setDepartureRunway
