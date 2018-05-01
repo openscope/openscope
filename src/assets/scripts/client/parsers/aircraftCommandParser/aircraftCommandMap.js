@@ -100,7 +100,7 @@ export const AIRCRAFT_COMMAND_MAP = {
         isSystemCommand: false
     },
     land: {
-        aliases: ['land', 'l'],
+        aliases: ['land'],
         functionName: 'runLand',
         isSystemCommand: false
     },
