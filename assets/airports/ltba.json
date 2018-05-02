@@ -657,6 +657,23 @@
         "_RWY2304DME": [40.93147148007, 28.73625351527],
         "_RWY35L": ["N40d58m09.66", "E028d48m25.12"],
         "_RWY35R": ["N40d58m10.04", "E028d48m34.09"],
+        "ENESU": ["N41d28.52", "E027d19.83"],
+        "ERKAL": ["N40d59.20", "E029d58.78"],
+        "KOFUN": ["N41d03.55", "E028d59.28"],
+        "PAZAR": ["N41d17.93", "E029d59.97"],
+        "IMREN": ["N40d45.93", "E028d22.97"],
+        "SADIK": ["N40d40.72", "E028d49.07"],
+        "ERMAN": ["N40d47.68", "E028d48.90"],
+        "ATCOS": ["N40d53.18", "E028d38.35"],
+        "FATIH": ["N41d13.68", "E028d47.97"],
+        "VURAL": ["N41d05.68", "E028d48.28"],
+        "ULMAR": ["N41d12.67", "E027d11.22"],
+        "UNSAV": ["N41d28.70", "E028d47.38"],
+        "VATOM": ["N40d59.14", "E029d06.44"],
+        "TURKO": ["N40d38.97", "E027d35.20"],
+        "UNTUT": ["N41d35.55", "E028d41.01"],
+        "TETSA": ["N41d44.77", "E028d46.75"],
+        "ZEMBA": ["N40d57.02", "E027d51.43"],
         "ABLEM": ["N40d51.94", "E028d27.87"],
         "AYFER": ["N41d29.21", "E028d37.06"],
         "BA010": [41.079714, 28.805192],
@@ -2953,7 +2970,907 @@
         }
     },
     "stars": {
-
+        "BIG1A": {
+            "icao": "BIG1A",
+            "name": "Biga One Alpha",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", "MARMA", ["DENIZ", "S250-"], "IMREN", "SADIK", "ERMAN"],
+            "rwy": {
+                "LTBA35L": [],
+                "LTBA35R": []
+            },
+            "draw": [
+                ["BIG*", "MARMA", "DENIZ", "IMREN", "SADIK", "ERMAN"]
+            ]
+        },
+        "BIG1B": {
+            "icao": "BIG1B",
+            "name": "Biga One Bravo",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", "MARMA", ["DENIZ", "S220"], "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["BIG*", "MARMA", "DENIZ", "IMREN", "ATCOS"]
+            ]
+        },
+        "BIG1C": {
+            "icao": "BIG1C",
+            "name": "Biga One Charlie",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", ["CEK", "S220"], "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["BIG*", "CEK", "FATIH"]
+            ]
+        },
+        "BIG1F": {
+            "icao": "BIG1F",
+            "name": "Biga One Foxtrott",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", ["IMREN", "S250-"], "ATCOS", "IST", "VURAL", "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["BIG*", "IMREN", "ATCOS", "IST", "VURAL", "FATIH"]
+            ]
+        },
+        "BIG1Y": {
+            "icao": "BIG1Y",
+            "name": "Biga One Yankee",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", "MARMA", "DENIZ", ["CEK", "S250-"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["BIG*", "MARMA", "DENIZ", "CEK", "BKZ"]
+            ]
+        },
+        "BIG1Z": {
+            "icao": "BIG1Z",
+            "name": "Biga One Zulu",
+            "entryPoints": {
+                "BIG": []
+            },
+            "body": ["BIG", "MARMA", "DENIZ", "IST", "KOFUN"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["BIG*", "MARMA", "DENIZ", "IST", "KOFUN"]
+            ]
+        },
+        "DEKEK1A": {
+            "icao": "DEKEK1A",
+            "name": "Dekek One Alpha",
+            "entryPoints": {
+                "DEKEK": []
+            },
+            "body": ["DEKEK", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["DEKEK*", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+            ]
+        },
+        "DEKEK1B": {
+            "icao": "DEKEK1B",
+            "name": "Dekek One Bravo",
+            "entryPoints": {
+                "DEKEK": []
+            },
+            "body": ["DEKEK", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["DEKEK*", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "DEKEK1D": {
+            "icao": "DEKEK1D",
+            "name": "Dekek One Delta",
+            "entryPoints": {
+                "DEKEK": []
+            },
+            "body": ["DEKEK", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["DEKEK*", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+            ]
+        },
+        "EKI1A": {
+            "icao": "EKI1A",
+            "name": "Tekirdag One Alpha",
+            "entryPoints": {
+                "EKI": []
+            },
+            "body": ["EKI", ["DENIZ", "S250-"], "IMREN", "SADIK", "ERMAN"],
+            "rwy": {
+                "LTBA35L": [],
+                "LTBA35R": []
+            },
+            "draw": [
+                ["EKI*", "DENIZ", "IMREN", "SADIK", "ERMAN"]
+            ]
+        },
+        "EKI1B": {
+            "icao": "EKI1B",
+            "name": "Tekirdag One Bravo",
+            "entryPoints": {
+                "EKI": []
+            },
+            "body": ["EKI", ["DENIZ", "S220"], "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["EKI*", "DENIZ", "IMREN", "ATCOS"]
+            ]
+        },
+        "EKI1C": {
+            "icao": "EKI1C",
+            "name": "Tekirdag One Charlie",
+            "entryPoints": {
+                "EKI": []
+            },
+            "body": ["EKI", ["CEK", "S220"], "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["EKI*", "CEK", "FATIH"]
+            ]
+        },
+        "EKI1Y": {
+            "icao": "EKI1Y",
+            "name": "Tekirdag One Yankee",
+            "entryPoints": {
+                "EKI": []
+            },
+            "body": ["EKI", ["CEK", "S250-"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["EKI*", "CEK", "BKZ"]
+            ]
+        },
+        "ENESU1A": {
+            "icao": "ENESU1A",
+            "name": "Enesu One Alpha",
+            "entryPoints": {
+                "ENUSU": []
+            },
+            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["ENESU*", "CRL", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+            ]
+        },
+        "ENESU1B": {
+            "icao": "ENESU1B",
+            "name": "Enesu One Bravo",
+            "entryPoints": {
+                "ENUSU": []
+            },
+            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["ENESU*", "CRL", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+            ]
+        },
+        "ENESU1C": {
+            "icao": "ENESU1C",
+            "name": "Enesu One Charlie",
+            "entryPoints": {
+                "ENUSU": []
+            },
+            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["ENESU*", "CRL", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+            ]
+        },
+        "ENESU1D": {
+            "icao": "ENESU1D",
+            "name": "Enesu One Delta",
+            "entryPoints": {
+                "ENUSU": []
+            },
+            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["ENESU*", "CRL", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+            ]
+        },
+        "ERKAL1A": {
+            "icao": "ERKAL1A",
+            "name": "Erkal One Alpha",
+            "entryPoints": {
+                "ERKAL": []
+            },
+            "body": ["ERKAL", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["ERKAL*", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+            ]
+        },
+        "ERKAL1B": {
+            "icao": "ERKAL1B",
+            "name": "Erkal One Bravo",
+            "entryPoints": {
+                "ERKAL": []
+            },
+            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["ERKAL*", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "ERKAL1D": {
+            "icao": "ERKAL1D",
+            "name": "Erkal One Delta",
+            "entryPoints": {
+                "ERKAL": []
+            },
+            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["ERKAL*", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+            ]
+        },
+        "GAYEM1A": {
+            "icao": "GAYEM1A",
+            "name": "Gayem One Alpha",
+            "entryPoints": {
+                "GAYEM": []
+            },
+            "body": [["GAYEM", "S250-"], "BKZ", "IST", "ERMAN"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["GAYEM*", "BKZ", "IST", "ERMAN"]
+            ]
+        },
+        "GAYEM1B": {
+            "icao": "GAYEM1B",
+            "name": "Gayem One Bravo",
+            "entryPoints": {
+                "GAYEM": []
+            },
+            "body": [["GAYEM", "S250-"], "BKZ", "IST", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["GAYEM*", "BKZ", "IST", "ATCOS"]
+            ]
+        },
+        "GAYEM1C": {
+            "icao": "GAYEM1C",
+            "name": "Gayem One Charlie",
+            "entryPoints": {
+                "GAYEM": []
+            },
+            "body": [["GAYEM", "S250-"], "SADIK", "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["GAYEM*", "SADIK", "IMREN", "ATCOS"]
+            ]
+        },
+        "GAYEM1E": {
+            "icao": "GAYEM1E",
+            "name": "Gayem One Echo",
+            "entryPoints": {
+                "GAYEM": []
+            },
+            "body": [["GAYEM", "S220"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["GAYEM*", "BKZ"]
+            ]
+        },
+        "GAYEM1F": {
+            "icao": "GAYEM1F",
+            "name": "Gayem One Foxtrott",
+            "entryPoints": {
+                "GAYEM": []
+            },
+            "body": [["GAYEM", "S250-"], "BKZ", "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["GAYEM*", "BKZ", "FATIH"]
+            ]
+        },
+        "GELBU1A": {
+            "icao": "GELBU1A",
+            "name": "Gelbu One Alpha",
+            "entryPoints": {
+                "GELBU": []
+            },
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["GELBU*", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+            ]
+        },
+        "GELBU1B": {
+            "icao": "GELBU1B",
+            "name": "Gelbu One Bravo",
+            "entryPoints": {
+                "GELBU": []
+            },
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["GELBU*", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+            ]
+        },
+        "GELBU1C": {
+            "icao": "GELBU1C",
+            "name": "Gelbu One Charlie",
+            "entryPoints": {
+                "GELBU": []
+            },
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["GELBU*", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+            ]
+        },
+        "GELBU1D": {
+            "icao": "GELBU1D",
+            "name": "Gelbu One Delta",
+            "entryPoints": {
+                "GELBU": []
+            },
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["GELBU*", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+            ]
+        },
+        "PAZAR1A": {
+            "icao": "PAZAR1A",
+            "name": "Pazar One Alpha",
+            "entryPoints": {
+                "PAZAR": []
+            },
+            "body": ["PAZAR", "BA046", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["PAZAR*", "BA046", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+            ]
+        },
+        "PAZAR1B": {
+            "icao": "PAZAR1B",
+            "name": "Pazar One Bravo",
+            "entryPoints": {
+                "PAZAR": []
+            },
+            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["PAZAR*", "BA046", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "PAZAR1D": {
+            "icao": "PAZAR1D",
+            "name": "Pazar One Delta",
+            "entryPoints": {
+                "PAZAR": []
+            },
+            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["PAZAR*", "BA046", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+            ]
+        },
+        "PIMAV1A": {
+            "icao": "PIMAV1A",
+            "name": "Pimav One Alpha",
+            "entryPoints": {
+                "PIMAV": []
+            },
+            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["PIMAV*", "EKDAM", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+            ]
+        },
+        "PIMAV1B": {
+            "icao": "PIMAV1B",
+            "name": "Pimav One Bravo",
+            "entryPoints": {
+                "PIMAV": []
+            },
+            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["PIMAV*", "EKDAM", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "PIMAV1D": {
+            "icao": "PIMAV1D",
+            "name": "Pimav One Delta",
+            "entryPoints": {
+                "PIMAV": []
+            },
+            "body": ["PIMAV", "EKDAM", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["PIMAV*", "EKDAM", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+            ]
+        },
+        "TETSA1A": {
+            "icao": "TETSA1A",
+            "name": "Tetsa One Alpha",
+            "entryPoints": {
+                "TETSA": []
+            },
+            "body": [["TETSA", "S250-"], ["UNTUT", "A190+"], "RIMBO", "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["TETSA*", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+            ]
+        },
+        "TETSA1B": {
+            "icao": "TETSA1B",
+            "name": "Tetsa One Bravo",
+            "entryPoints": {
+                "TETSA": []
+            },
+            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["TETSA*", "UNTUT", "BA612", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+            ]
+        },
+        "TETSA1C": {
+            "icao": "TETSA1C",
+            "name": "Tetsa One Charlie",
+            "entryPoints": {
+                "TETSA": []
+            },
+            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["TETSA*", "UNTUT", "BA612", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+            ]
+        },
+        "TETSA1D": {
+            "icao": "TETSA1D",
+            "name": "Tetsa One Delta",
+            "entryPoints": {
+                "TETSA": []
+            },
+            "body": [["TETSA", "|S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["TETSA*", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+            ]
+        },
+        "TURKO1A": {
+            "icao": "TURKO1A",
+            "name": "Turko One Alpha",
+            "entryPoints": {
+                "TURKO": []
+            },
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["TURKO*", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+            ]
+        },
+        "TURKO1B": {
+            "icao": "TURKO1B",
+            "name": "Turko One Bravo",
+            "entryPoints": {
+                "TURKO": []
+            },
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["TURKO*", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+            ]
+        },
+        "TURKO1C": {
+            "icao": "TURKO1C",
+            "name": "Turko One Charlie",
+            "entryPoints": {
+                "TURKO": []
+            },
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["TURKO*", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+            ]
+        },
+        "TURKO1D": {
+            "icao": "TURKO1D",
+            "name": "Turko One Delta",
+            "entryPoints": {
+                "TURKO": []
+            },
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["TURKO*", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+            ]
+        },
+        "ULMAR1A": {
+            "icao": "ULMAR1A",
+            "name": "Ulmar One Alpha",
+            "entryPoints": {
+                "ULMAR": []
+            },
+            "body": ["ULMAR", ["CRL", "S250-"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["ULMAR*", "CRL", "BKZ"]
+            ]
+        },
+        "ULMAR1B": {
+            "icao": "ULMAR1B",
+            "name": "Ulmar One Bravo",
+            "entryPoints": {
+                "ULMAR": []
+            },
+            "body": ["ULMAR", ["CRL", "S250-"], "FATIH"],
+            "rwy": {
+                "LTBA17R": [],
+                "LTBA17L": []
+            },
+            "draw": [
+                ["ULMAR*", "CRL", "FATIH"]
+            ]
+        },
+        "UNSAV1A": {
+            "icao": "UNSAV1A",
+            "name": "Unsav One Alpha",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "CEK", "IMREN", "SADIK", "ERMAN"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["UNSAV*", "CEK", "IMREN", "SADIK", "ERMAN"]
+            ]
+        },
+        "UNSAV1B": {
+            "icao": "UNSAV1B",
+            "name": "Unsav One Bravo",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "FATIH", "VURAL", "IST", "ERMAN"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["UNSAV*", "FATIH", "VURAL", "IST", "ERMAN"]
+            ]
+        },
+        "UNSAV1C": {
+            "icao": "UNSAV1C",
+            "name": "Unsav One Charlie",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "BKZ", "IST", "ERMAN"],
+            "rwy": {
+                "LTBA35R": [],
+                "LTBA35L": []
+            },
+            "draw": [
+                ["UNSAV*", "BKZ", "IST", "ERMAN"]
+            ]
+        },
+        "UNSAV1E": {
+            "icao": "UNSAV1E",
+            "name": "Unsav One Echo",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "CEK", "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["UNSAV*", "CEK", "IMREN", "ATCOS"]
+            ]
+        },
+        "UNSAV1F": {
+            "icao": "UNSAV1F",
+            "name": "Unsav One Foxtrott",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "FATIH", "VURAL", "IST", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["UNSAV*", "FATIH", "VURAL", "IST", "ATCOS"]
+            ]
+        },
+        "UNSAV1G": {
+            "icao": "UNSAV1G",
+            "name": "Unsav One Golf",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S220"], "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["UNSAV*", "FATIH"]
+            ]
+        },
+        "UNSAV1H": {
+            "icao": "UNSAV1H",
+            "name": "Unsav One Hotel",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "FATIH", "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["UNSAV*", "FATIH", "BKZ"]
+            ]
+        },
+        "UNSAV1J": {
+            "icao": "UNSAV1J",
+            "name": "Unsav One Juliet",
+            "entryPoints": {
+                "UNSAV": []
+            },
+            "body": [["UNSAV", "S250-"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["UNSAV*", "BKZ"]
+            ]
+        },
+        "YAA1A": {
+            "icao": "YAA1A",
+            "name": "Yalova One Alpha",
+            "entryPoints": {
+                "YAA": []
+            },
+            "body": [["YAA", "S250-"], "SADIK", "ERMAN"],
+            "rwy": {
+                "LTBA35L": [],
+                "LTBA35R": []
+            },
+            "draw": [
+                ["YAA*", "SADIK", "ERMAN"]
+            ]
+        },
+        "YAA1B": {
+            "icao": "YAA1B",
+            "name": "Yalova One Bravo",
+            "entryPoints": {
+                "YAA": []
+            },
+            "body": [["YAA", "S250-"], "SADIK", "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["YAA*", "SADIK", "IMREN", "ATCOS"]
+            ]
+        },
+        "YAA1R": {
+            "icao": "YAA1R",
+            "name": "Yalova One Romeo",
+            "entryPoints": {
+                "YAA": []
+            },
+            "body": [["YAA", "S250-"], "BKZ", "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["YAA*", "BKZ", "FATIH"]
+            ]
+        },
+        "YAA1T": {
+            "icao": "YAA1T",
+            "name": "Yalova One Tango",
+            "entryPoints": {
+                "YAA": []
+            },
+            "body": [["YAA", "S250-"], "BKZ"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": [],
+                "LTBA23": []
+            },
+            "draw": [
+                ["YAA*", "BKZ"]
+            ]
+        },
+        "YASEN1A": {
+            "icao": "YASEN1A",
+            "name": "Yalova One Alpha",
+            "entryPoints": {
+                "YASEN": []
+            },
+            "body": [["YASEN", "S250-"], "BKZ", "IST", "ERMAN"],
+            "rwy": {
+                "LTBA35L": [],
+                "LTBA35R": []
+            },
+            "draw": [
+                ["YASEN*", "BKZ", "IST", "ERMAN"]
+            ]
+        },
+        "YASEN1B": {
+            "icao": "YASEN1B",
+            "name": "Yalova One Bravo",
+            "entryPoints": {
+                "YASEN": []
+            },
+            "body": [["YASEN", "S250-"], "BKZ", "IST", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["YASEN*", "BKZ", "IST", "ATCOS"]
+            ]
+        },
+        "YASEN1C": {
+            "icao": "YASEN1C",
+            "name": "Yalova One Charlie",
+            "entryPoints": {
+                "YASEN": []
+            },
+            "body": [["YASEN", "S250-"], "BKZ", "SADIK", "IMREN", "ATCOS"],
+            "rwy": {
+                "LTBA05": []
+            },
+            "draw": [
+                ["YASEN*", "BKZ", "SADIK", "IMREN", "ATCOS"]
+            ]
+        },
+        "YASEN1E": {
+            "icao": "YASEN1E",
+            "name": "Yalova One Echo",
+            "entryPoints": {
+                "YASEN": []
+            },
+            "body": [["YASEN", "S220"], "BKZ"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["YASEN*", "BKZ"]
+            ]
+        },
+        "YASEN1F": {
+            "icao": "YASEN1F",
+            "name": "Yalova One Foxtrott",
+            "entryPoints": {
+                "YASEN": []
+            },
+            "body": [["YASEN", "S250-"], "BKZ", "FATIH"],
+            "rwy": {
+                "LTBA17L": [],
+                "LTBA17R": []
+            },
+            "draw": [
+                ["YASEN*", "BKZ", "FATIH"]
+            ]
+        }
     },
     "spawnPatterns": [
 
