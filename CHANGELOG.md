@@ -17,6 +17,11 @@
 
 
 
+# 6.1.1 (May 1, 2018)
+### Hotfix
+- [#950](https://github.com/openscope/openscope/issues/950) - Fix left turn command `t l ###`
+
+
 # 6.1.0 (May 1, 2018)
 ### New Features
 - [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
