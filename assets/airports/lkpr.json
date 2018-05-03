@@ -702,11 +702,23 @@
             "entryPoints": {
                 "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
             },
-            "body": ["PR516", ["PR517", "S220-|A35+|A20-"], "PR518", "ERASU", "#061"],
+            "body": ["PR516", ["PR517", "S220-|A35-|A20+"], "PR518", "ERASU", "#061"],
             "rwy": {
                 "LKPR24": []
             },
             "draw": [["GOLOP", "PR516", "PR517", "PR518", "ERASU"]]
+        },
+        "GOLOP2T": {
+            "icao": "GOLOP2T",
+            "name": "Golop Two Tango",
+            "entryPoints": {
+                "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
+            },
+            "body": [["PR711", "A95-|A65+"], ["PR712", "S220-|A35-|A20+"], ["PR513", "S220-|A35-|A25+"], "KUVIX", "#241"],
+            "rwy": {
+                "LKPR24": []
+            },
+            "draw": [["GOLOP", "PR711", "PR712", "PR513", "KUVIX"]]
         },
         "LOMKI6S": {
             "icao": "LOMKI6S",
@@ -720,6 +732,18 @@
             },
             "draw": [["LOMKI", "PR511", "PR512", "PR513", "ERASU"]]
         },
+        "LOMKI6T": {
+            "icao": "LOMKI6T",
+            "name": "Lomki Six Tango",
+            "entryPoints": {
+                "LOMKI": [["LOMKI", "A165-|A95+|S250-"]]
+            },
+            "body": [["PR707", "A95-|A75+"], ["BAROX", "A95-|A35+|S220-"], "#061"],
+            "rwy": {
+                "LKPR24": []
+            },
+            "draw": [["LOMKI", "PR707", "BAROX"]]
+        },
         "GOSEK3S": {
             "icao": "GOSEK3S",
             "name": "Gosek Three Sierra",
@@ -732,6 +756,18 @@
             },
             "draw": [["GOSEK", "PR521", "PR523", "RATEV"]]
         },
+        "GOSEK3T": {
+            "icao": "GOSEK3T",
+            "name": "Gosek Three Tango",
+            "entryPoints": {
+                "GOSEK": [["GOSEK", "A95-|A75+"]]
+            },
+            "body": [["PR718", "A35+|A95-"], ["PR719", "A35+|A95-"], ["PR521", "A35-|S220-"], ["AKEVA", "A35-|S220-"], ["#241", "A35-|S220-"]],
+            "rwy": {
+                "LKPR24": []
+            },
+            "draw": [["GOSEK", "PR718", "PR719", "PR521", "AKEVA"]]
+        },
         "VLM2S": {
             "icao": "VLM2S",
             "name": "Vicor Lima Mike Two Sierra",
@@ -743,6 +779,18 @@
                 "LKPR24": []
             },
             "draw": [["VLM", "PR522", "PR523", "RATEV"]]
+        },
+        "VLM3T": {
+            "icao": "VLM3T",
+            "name": "Vicor Lima Mike Three Tango",
+            "entryPoints": {
+                "VLM":  [["VLM", "A165-|A95+|S250-"]]
+            },
+            "body": [["PR721", "A95-|A75+"], ["PR722", "A95-|A65+"], ["PR723", "A45-|A25+"], ["PR523", "A35-|S220-"], ["PR521", "A35-|S220-"], ["AKEVA", "A35-|S220-"], ["#241", "A35-|S220-"]],
+            "rwy": {
+                "LKPR24": []
+            },
+            "draw": [["VLM", "PR721", "PR722", "PR723", "PR523", "PR521", "AKEVA"]]
         }
     },
     "spawnPatterns": [
