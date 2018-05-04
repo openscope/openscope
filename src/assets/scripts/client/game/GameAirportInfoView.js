@@ -1,5 +1,6 @@
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 
@@ -66,13 +67,14 @@ export default class GameAirportInfoView {
     _render() {
         const $element = this.$element;
         const airport = this.airport;
+        console.log('airport in _render ' + airport);
         let information = '';
 
-        information = `WIND  | ${this._windFormat(airport.wind)}`;
-        information += `ALTIM | ${airport.icao} ${this._altimeter(airport.wind.speed)}\n`;
-        information += `ELEV  | ${airport.icao} ${airport.elevation}`;
+        information = `WIND  | ${this._windFormat(airport.wind)}<br />`;
+        information += `ALTIM | ${airport.icao} ${this._altimeter(airport.wind.speed)}<br />`;
+        information += `ELEV  | ${airport.icao} ${this._elevation(airport)}`;
 
-        $element.text(information);
+        $element.html(information);
 
         return this;
     }
@@ -88,6 +90,7 @@ export default class GameAirportInfoView {
         const speed = wind.speed;
         const angle = wind.angle;
         let newAngle = '';
+        let newSpeed = '';
         let gustSpeed = 0;
 
         if (angle === 0) {
@@ -103,7 +106,14 @@ export default class GameAirportInfoView {
         // Creates a fake "gusting" speed
         gustSpeed = Math.round(speed + (speed * Math.random()));
 
-        return `${newAngle}${String(speed)}G${String(gustSpeed)}`;
+        if (speed < 10) {
+            newSpeed = `0${String(speed)}`;
+        }
+        if (gustSpeed < 10) {
+            gustSpeed = `0${String(gustSpeed)}`;
+        }
+
+        return `${newAngle}${newSpeed}G${gustSpeed}`;
     }
 
     /**
@@ -115,5 +125,19 @@ export default class GameAirportInfoView {
      */
     _altimeter(windSpeed) {
         return 2992 + Math.round((windSpeed * Math.random()) / 200);
+    }
+
+    /**
+     * Finds the airport's field elevation
+     *
+     * @for GameAirportInfoView
+     * @method _elevation
+     * @private
+     */
+    _elevation(airport) {
+        console.log('airport in _elevation is ' + airport);
+        const activeRunway = airport.runways[0];
+
+        return Math.round(activeRunway.end[0][2].);
     }
 }

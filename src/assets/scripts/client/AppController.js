@@ -151,6 +151,10 @@ export default class AppController {
         this.contentQueue = new ContentQueue(this.loadingView);
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
+        // This needs to load before initializing the AirportController, or it won't register the
+        // event handler in time and won't load until the user loads a new airport.
+        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
+
         // IMPORTANT:
         // The order in which the following classes are instantiated is extremely important. Changing
         // this order could break a lot of things. This interdependency is something we should
@@ -175,7 +179,6 @@ export default class AppController {
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
-        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
