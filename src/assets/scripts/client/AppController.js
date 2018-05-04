@@ -6,6 +6,7 @@ import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
 import CanvasController from './canvas/CanvasController';
 import ContentQueue from './contentQueue/ContentQueue';
+import GameAirportInfoView from './game/GameAirportInfoView';
 import GameClockView from './game/GameClockView';
 import GameController from './game/GameController';
 import InputController from './InputController';
@@ -170,6 +171,7 @@ export default class AppController {
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
+        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
