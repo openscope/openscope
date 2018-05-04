@@ -66,6 +66,7 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
+    AIRPORT_INFO: 'airport-info',
     AIRPORT_LIST_NOTES: 'airport-list-notes',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
