@@ -25,7 +25,7 @@ export default class GameAirportInfoView {
      * @for GameAirportInfoView
      * @method update
      */
-    update(airport) {
+    update = (airport) => {
         this.airport = airport;
 
         return this._render();
@@ -40,6 +40,8 @@ export default class GameAirportInfoView {
         this.$element = null;
         this.airport = null;
 
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.update);
+
         return this;
     }
 
@@ -51,7 +53,7 @@ export default class GameAirportInfoView {
     _init($element, icao) {
         this.$element = $element.find(SELECTORS.DOM_SELECTORS.AIRPORT_INFO);
         this.airport = AirportController.airport_get(icao);
-        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.update(data));
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.update);
 
         return this;
     }
