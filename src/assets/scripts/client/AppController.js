@@ -146,11 +146,7 @@ export default class AppController {
         // in a different class and the window methods should disappear.
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
-        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
-
-        // This needs to load before initializing the AirportController, or it won't register the
-        // event handler in time and won't load until the user loads a new airport.
-        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
+        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);       
 
         // IMPORTANT:
         // The order in which the following classes are instantiated is extremely important. Changing
@@ -176,6 +172,7 @@ export default class AppController {
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.gameClockView = new GameClockView(this.$element);
+        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
 
         this.updateViewControls();
     }

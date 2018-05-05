@@ -51,10 +51,12 @@ export default class GameAirportInfoView {
      * @method _init
      * @private
      */
-    _init($element, icao) {
+    _init($element) {
         this.$element = $element.find(SELECTORS.DOM_SELECTORS.AIRPORT_INFO);
-        this.airport = AirportController.airport_get(icao);
+        this.airport = AirportController.current;
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.update);
+
+        // this._render();
 
         return this;
     }
@@ -67,12 +69,13 @@ export default class GameAirportInfoView {
     _render() {
         const $element = this.$element;
         const airport = this.airport;
-        console.log('airport in _render ' + airport);
         let information = '';
 
-        information = `WIND  | ${this._windFormat(airport.wind)}<br />`;
+        information = `WIND &nbsp;| ${this._windFormat(airport.wind)}<br />`;
         information += `ALTIM | ${airport.icao} ${this._altimeter(airport.wind.speed)}<br />`;
-        information += `ELEV  | ${airport.icao} ${this._elevation(airport)}`;
+        // airport -> departure runway -> first endpoint -> altitude
+        // TODO: add an easier way to access runway attributes
+        information += `ELEV &nbsp;| ${airport.icao} ${airport.runways[0].end[0][2]}`;
 
         $element.html(information);
 
@@ -124,20 +127,6 @@ export default class GameAirportInfoView {
      * @private
      */
     _altimeter(windSpeed) {
-        return 2992 + Math.round((windSpeed * Math.random()) / 200);
-    }
-
-    /**
-     * Finds the airport's field elevation
-     *
-     * @for GameAirportInfoView
-     * @method _elevation
-     * @private
-     */
-    _elevation(airport) {
-        console.log('airport in _elevation is ' + airport);
-        const activeRunway = airport.runways[0];
-
-        return Math.round(activeRunway.end[0][2].);
+        return 2992 + Math.round(windSpeed * Math.random());
     }
 }
