@@ -66,7 +66,31 @@ ava('.disable() does not change #isEnabled when #isEnabled is false', (t) => {
     t.false(mcp.isEnabled);
 });
 
-ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR which ends still above the airspace ceiling', (t) => {
+    const mcp = new ModeController();
+    const bottomAltitudeMock = 15000;
+    const airspaceCeilingMock = 12000;
+    const currentAltitudeMock = 21000;
+    const currentHeadingMock = Math.PI;
+    const currentSpeedMock = 290;
+
+    mcp.initializeForAirborneFlight(
+        bottomAltitudeMock,
+        airspaceCeilingMock,
+        currentAltitudeMock,
+        currentHeadingMock,
+        currentSpeedMock
+    );
+
+    t.true(mcp.altitude === airspaceCeilingMock);
+    t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.VNAV);
+    t.true(mcp.heading === currentHeadingMock);
+    t.true(mcp.headingMode === MCP_MODE.HEADING.LNAV);
+    t.true(mcp.speed === currentSpeedMock);
+    t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
+});
+
+ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR which ends below the airspace ceiling', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = 6000;
     const airspaceCeilingMock = 12000;
@@ -90,7 +114,7 @@ ava('.initializeForAirborneFlight() sets MCP for arrival descending via STAR', (
     t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
 });
 
-ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival descending from above airspace ceiling (not via STAR)', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = -1;
     const airspaceCeilingMock = 12000;
@@ -114,7 +138,7 @@ ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR
     t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
 });
 
-ava('.initializeForAirborneFlight() sets MCP for arrival not descending via STAR already below airspace ceiling', (t) => {
+ava('.initializeForAirborneFlight() sets MCP for arrival spawning below airspace ceiling ', (t) => {
     const mcp = new ModeController();
     const bottomAltitudeMock = -1;
     const airspaceCeilingMock = 12000;
