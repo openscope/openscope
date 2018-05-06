@@ -456,9 +456,13 @@
                 "LUCKK": ["LUCKK"]
             },
             "draw": [
-                ["SNUFY", "SLAWW", "RIGGZ", "RIVTT", "BANNG"],
+                ["_RWY26LSNUFY288", "SNUFY", "SLAWW", "RIGGZ", "RIVTT", "BANNG"],
+                ["_RWY28WLSON249", "WLSON", "ZALLE", "BANNG", "LUCKK*"],
                 ["SKNNR", "GRITZ", "HYZMN", "BANNG"],
-                ["FUTBL", "ZALLE", "BANNG", "LUCKK*"]
+                ["_RWY09LGRITZ115", "GRITZ"],
+                ["_RWY09RGRITZ111", "GRITZ"],
+                ["_RWY26RSNUFY287", "SNUFY"],
+                ["_RWY10GRITZ105", "GRITZ"]
             ]
         },
         "CUTTN2": {
@@ -482,7 +486,7 @@
             },
             "draw": [
                 ["HRSHL", "KLEGG", "COBBB", "CUTTN", "HANKO*"],
-                ["HYZMN", "TYRNN", "CUTTN"],
+                ["GRITZ", "HYZMN", "TYRNN", "CUTTN"],
                 ["SNUFY", "BDODD", "CUTTN"],
                 ["SLAWW", "WESEK", "CUTTN"],
                 ["WLSON", "SOTRE", "CUTTN"]
@@ -508,11 +512,11 @@
                 "IRQ": ["IRQ"]
             },
             "draw": [
+                ["FUTBL", "WLSON", "ZALLE", "TYRNN"],
                 ["RONII", "IGEBE", "GAIRY", "IRQ*"],
                 ["ZELAN", "SMOGG", "GAIRY"],
                 ["LIDAS", "ERWIN", "GAIRY"],
                 ["GRITZ", "DDUBB", "GAIRY"],
-                ["ZALLE", "TYRNN"],
                 ["GGOLF", "GAIRY"]
             ]
         },
@@ -645,8 +649,8 @@
             },
             "body": ["PADGT"],
             "exitPoints": {
-                "SMTTH": ["COLVN", "SMTTH"],
-                "RAFTN": ["RAFTN"]
+                "RAFTN": ["RAFTN"],
+                "SMTTH": ["COLVN", "SMTTH"]
             },
             "draw": [
                 ["PICKT", "RONII", "HOYYT", "GRABA", "PADGT", "RAFTN*"],
@@ -826,8 +830,8 @@
             },
             "body": ["VARNM"],
             "exitPoints": {
-                "RESPE": ["RESPE"],
-                "GLAZR": ["GLAZR"]
+                "GLAZR": ["GLAZR"],
+                "RESPE": ["RESPE"]
             },
             "draw": [
                 ["HOYYT", "VARNM", "GLAZR*"],
@@ -892,7 +896,7 @@
             "rwy": {
                 "KATL27R": []
             },
-            "body": ["CPARK", "MPASS", ["ZELAN", "A60+|S250"]],
+            "body": ["^CPARK", "MPASS", ["ZELAN", "A60+|S250"]],
             "exitPoints": {
                 "BOBBD": ["SMKEY", "HUCHH", "BOBBD"],
                 "EMAHH": ["WURLD", "PENCL", "LEDRR", "EMAHH"],
@@ -925,11 +929,11 @@
             },
             "body": [],
             "rwy": {
-                "KATL8L": [["CHPPR", "A130|S250"], "MRCHH", ["^JAGRR", "A90"], "#180"],
-                "KATL8R": [["CHPPR", "A130|S250"], "MRCHH", ["^JAGRR", "A90"], "#180"],
-                "KATL9L": [["CHPPR", "A130|S250"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
-                "KATL9R": [["CHPPR", "A130|S250"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
-                "KATL10": [["CHPPR", "A130|S250"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
+                "KATL8L": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
+                "KATL8R": [["CHPPR", "A130"], "MRCHH", ["^JAGRR", "A90"], "#180"],
+                "KATL9L": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["RYENN", "A70+"], ["AAKAY", "A60+"]],
+                "KATL9R": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["ANDIY", "A70+"], ["DFINS", "A60+"]],
+                "KATL10": [["CHPPR", "A130"], "MRCHH", ["BSHOP", "A90"], ["NAVVY", "A80+"], ["^DROYD", "A80"], "#180"],
                 "KATL26L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
                 "KATL26R": [["CHPPR", "A130"], "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "^KEAVY", "#095"],
                 "KATL27L": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"],
@@ -937,7 +941,15 @@
                 "KATL28": [["CHPPR", "A130"], "MRCHH", "HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
-                []
+                ["LEMKE*", "CHPPR", "MRCHH", "HIDRO", "RAIIN", "KLOWD", "SWEPT", "KYMMY", "KEAVY"],
+                ["HIDRO", "EAGYL", "SHURT", "FOGER", "HITTT", "YURII"],
+                ["RUTTH*", "JCKEE", "OWNNS", "CHPPR"],
+                ["MRCHH", "BSHOP", "NAVVY", "DROYD"],
+                ["MTHEW*", "MGRIF", "BBABE"],
+                ["NAVVY", "RYENN", "AAKAY"],
+                ["NAVVY", "ANDIY", "DFINS"],
+                ["BBABE*", "LEMKE"],
+                ["MRCHH", "JAGRR"]
             ]
         },
         "GLAVN1": {
@@ -962,7 +974,12 @@
                 "KATL28": ["HOGGG", "EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
-                []
+                ["MGRIF*", "DENST", "AAARN", "GLAVN", "STHRN", "HOGGG", "RAIIN"],
+                ["STHRN", "YABBA", "NAVVY", "LARII", "JAAJJ"],
+                ["RUSSA*", "RUTTH", "JKSON"],
+                ["JKSON*", "MADDX", "GLAVN"],
+                ["NAVVY", "GPEAT", "PEARI"],
+                ["HOGGG", "EAGYL"]
             ]
         },
         "GNDLF2": {
@@ -989,7 +1006,16 @@
                 "KATL10": []
             },
             "draw": [
-                []
+                ["DRSDN*", "SMAWG", "GNDLF", "HALRR", "SHULR", "JNGLE", "QUBIT"],
+                ["ORRKK*", "MORDR", "RAETH", "NZGUL", "SMAWG"],
+                ["FRDDO*", "BLLBO", "BGGNS", "SMAWG"],
+                ["GOLLM*", "ROHUN", "AZZOG", "SMAWG"],
+                ["KHMYA*", "CNDLR", "FNLEY", "SMAWG"],
+                ["ENNTT*", "GONDR", "SMAWG"],
+                ["STRDR*", "GIMLY", "AZZOG"],
+                ["BEORN*", "STRDR"],
+                ["COOUP*", "KHMYA"],
+                ["SHYRE*", "FRDDO"]
             ]
         },
         "HOBTT2": {
@@ -1016,7 +1042,18 @@
                 "KATL28": ["EAGYL", "SHURT", "FOGER", "HITTT", "^YURII", "#095"]
             },
             "draw": [
-                []
+                ["SMAWG", "HOBTT", "ENSLL", "RAIIN"],
+                ["ENSLL", "EAGYL"],
+                ["BEORN*"],
+                ["COOUP*"],
+                ["DRSDN*"],
+                ["ENNTT*"],
+                ["FRDDO*"],
+                ["GOLLM*"],
+                ["KHMYA*"],
+                ["ORRKK*"],
+                ["SHYRE*"],
+                ["STRDR*"]
             ]
         },
         "JJEDI2": {
@@ -1040,7 +1077,13 @@
                 "KATL28": []
             },
             "draw": [
-                []
+                ["LAYUH*", "FLKNN", "CHWEE", "JJEDI", "DAFII", "GRHAM", "POOBA"],
+                ["HOTHH*", "LLNDO", "XWNNG", "BBFET", "JJEDI"],
+                ["LARZZ*", "NEWHP", "DTSTR", "WOKIE", "JJEDI"],
+                ["EEWOK*", "LAYUH"],
+                ["MELNM*", "LAYUH"],
+                ["SKWKR*", "LAYUH"],
+                ["TYFTR*", "NEWHP"]
             ]
         },
         "LGC4": {
@@ -1067,10 +1110,11 @@
                 "KATL28": []
             },
             "draw": [
-                ["MGM", "YARBE", "TIMMY", "LGC", "HONIE", "TIROE", "ATL"],
-                ["CTY", "WYATT", "GOONS", "CLEAV", "LGC"],
-                ["GCV", "PAYTN", "IVLUH", "OBXAY", "LGC"],
-                ["MEI", "CACEE", "MOBEE", "YARBE"]
+                ["MGM*", "YARBE", "TIMMY", "LGC", "HONIE", "TIROE", "ATL"],
+                ["CTY*", "WYATT", "GOONS", "CLEAV", "LGC"],
+                ["GCV*", "PAYTN", "IVLUH", "OBXAY", "LGC"],
+                ["MEI*", "CACEE", "MOBEE", "YARBE"],
+                ["SZW*", "WYATT"]
             ]
         },
         "ONDRE1": {
@@ -1090,14 +1134,23 @@
                 "KATL9L": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
                 "KATL9R": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
                 "KATL10": [["ONDRE", "A130"], "SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"],
-                "KATL26L": [["ONDRE", "A130|S250"], "SMELY", ["^VOLTS", "A90"], "#175"],
-                "KATL26R": [["ONDRE", "A130|S250"], "SMELY", ["^VOLTS", "A90"], "#175"],
-                "KATL27L": [["ONDRE", "A130|S250"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
-                "KATL27R": [["ONDRE", "A130|S250"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
-                "KATL28": [["ONDRE", "A130|S250"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
+                "KATL26L": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
+                "KATL26R": [["ONDRE", "A130"], "SMELY", ["^VOLTS", "A90"], "#175"],
+                "KATL27L": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["SLVAA", "A70+"], ["ROMMM", "A60+"]],
+                "KATL27R": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["YOUYU", "A70+"], ["MMCAP", "A60+"]],
+                "KATL28": [["ONDRE", "A130"], "SMELY", ["ANVAL", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
             },
             "draw": [
-                []
+                ["STRWY*", "ONDRE", "SMELY", "ANVAL", "POSEY", "BLUFF"],
+                ["SMELY", "GAASS", "KLOWD", "KUNFU", "TRAPE", "SNEVE"],
+                ["SMELY", "FRYES", "SHURT", "REMAC", "DACTL", "STUMP"],
+                ["PUPDG*", "ALADY", "WEALL", "KNOWW", "STRWY"],
+                ["HIGGI*", "ZPPLN", "STRWY"],
+                ["HLRRY*", "ADEIN", "PUPDG"],
+                ["KTRYN*", "THERZ", "PUPDG"],
+                ["POSEY", "YOUYU", "MMCAP"],
+                ["POSEY", "SLVAA", "ROMMM"],
+                ["SMELY", "VOLTS"]
             ]
         },
         "OZZZI1": {
@@ -1124,7 +1177,14 @@
                 "KATL28": [["CALLA", "A90"], ["POSEY", "A80+"], ["^BLUFF", "A80"], "#180"]
             },
             "draw": [
-                []
+                ["FLASK*", "YEOLD", "SCHUL", "TDUNN", "WLLSN", "MHONY"],
+                ["WINNG*", "OZZZI", "HAARY", "KILRR", "GAASS"],
+                ["HAARY", "CALLA", "POSEY", "JIRRI", "BOYKN"],
+                ["DGESS*", "BTTIS", "DNIKK", "WINNG"],
+                ["MHONY*", "TEDGE", "GBAKE", "WINNG"],
+                ["LEAVI*", "RMOON", "DGESS"],
+                ["POSEY", "ZELOW", "HAINZ"],
+                ["KILRR", "FRYES"]
             ]
         },
         "RMG5": {
@@ -1149,10 +1209,9 @@
                 "KATL28": []
             },
             "draw": [
-                ["RMG", "ERLIN", "DALAS", "ATL"],
-                ["BWG", "DRAKK", "NEUTO", "RMG"],
-                ["MEM", "DEVAC", "CALCO", "RMG"],
-                ["BNA", "DRAKK"]
+                ["BWG*", "DRAKK", "NEUTO", "RMG", "ERLIN", "DALAS", "ATL"],
+                ["MEM*", "DEVAC", "CALCO", "RMG"],
+                ["BNA*", "DRAKK"]
             ]
         },
         "SINCA6": {
@@ -1179,10 +1238,11 @@
                 "KATL28": []
             },
             "draw": [
-                ["CRG", "RDNEK", "CHESN", "BAXLY", "DBN", "RIPPI", "SINCA"],
-                ["IRQ", "BEYLO", "SINCA", "CANUK", "HUSKY", "ATL"],
-                ["VQQ", "CHESN"],
-                ["AMG", "DBN"]
+                ["IRQ*", "BEYLO", "SINCA", "CANUK", "HUSKY", "ATL"],
+                ["CRG*", "RDNEK", "CHESN", "BAXLY", "DBN"],
+                ["DBN*", "RIPPI", "SINCA"],
+                ["VQQ*", "CHESN"],
+                ["AMG*", "DBN"]
             ]
         },
         "SITTH2": {
@@ -1192,7 +1252,7 @@
                 "EEWOK": ["EEWOK", "LAYUH"],
                 "HOTHH": ["HOTHH", "LLNDO", "AATAT"],
                 "LARZZ": [["LARZZ", "A240+"], "NEWHP", "FORCC"],
-                "LAYUH": ["LAYUH", ["FLKNN", "A140+|S280"], ["CHWEE", "A110+|S250"]],
+                "LAYUH": ["LAYUH"],
                 "MELNM": ["MELNM", "LAYUH"],
                 "SKWKR": ["SKWKR", "LAYUH"],
                 "TYFTR": ["TYFTR", "NEWHP", "FORCC"]
@@ -1206,7 +1266,16 @@
                 "KATL10": ["FRYES", "SHURT", "REMAC", "DACTL", "^STUMP", "#275"]
             },
             "draw": [
-                []
+                ["LAYUH*", "SITTH", "TIZZY", "GAASS"],
+                ["NEWHP", "FORCC", "SITTH"],
+                ["LLNDO", "AATAT", "SITTH"],
+                ["TIZZY", "FRYES"],
+                ["EEWOK*"],
+                ["HOTHH*"],
+                ["LARZZ*"],
+                ["MELNM*"],
+                ["SKWKR*"],
+                ["TYFTR*"]
             ]
         },
         "WHINZ4": {
@@ -1231,9 +1300,9 @@
                 "KATL28": []
             },
             "draw": [
-                ["SOT", "ODF", "RUBIE", "WHINZ", "VICTU"],
-                ["MOL", "FLASK", "AVERY", "BEBAD"],
-                ["SPA", "ODF"]
+                ["SOT*", "ODF", "RUBIE", "WHINZ", "VICTU"],
+                ["MOL*", "FLASK", "AVERY", "BEBAD", "ODF"],
+                ["SPA*", "ODF"]
             ]
         }
     },

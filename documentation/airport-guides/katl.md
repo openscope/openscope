@@ -66,6 +66,7 @@ ATL has 5 parallel runways, the newest one (10/28) opened in 2006. Normally, the
 | VARNM2 | VRSTY2 |  | GLAVN1 |        |        |
 +--------+--------+  +--------+--------+--------+
 ```
+In openScope, KATL is running a west configuration, meaning that runways 26L, 27R and 28 are used for departures, while arrivals use runways 26R, 27L and 28.
 
 #### KPDK
 DeKalb–Peachtree Airport  
