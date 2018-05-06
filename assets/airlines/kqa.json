@@ -1,0 +1,23 @@
+{
+    "icao": "kqa",
+    "name": "Kenya Airways",
+    "callsign": {
+        "name": "Kenya",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 2],
+            ["B737", 2],
+            ["B738", 8],
+            ["B77W", 3],
+            ["B788", 9],
+            ["E190", 15]
+        ],
+        "b738": [
+            ["B738", 8]
+        ]
+    }
+}

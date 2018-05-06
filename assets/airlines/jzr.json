@@ -1,20 +1,18 @@
 {
-    "icao": "igo",
-    "name": "IndiGo",
+    "icao": "jzr",
+    "name": "Jazeera Airways",
     "callsign": {
-        "name": "Ifly",
+        "name": "Jazeera",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A20N", 32],
-            ["A320", 124],
-            ["AT76", 6]
+            ["A320", 8]
         ],
         "a320": [
-            ["A320", 124]
+            ["A320", 8]
         ]
     }
 }

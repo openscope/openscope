@@ -1,0 +1,21 @@
+{
+    "icao": "ceb",
+    "name": "Cebu Pacific",
+    "callsign": {
+        "name": "Cebu Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 36],
+            ["A321", 3],
+            ["A333", 8],
+            ["AT72", 17]
+        ],
+        "a333": [
+            ["A333", 8]
+        ]
+    }
+}

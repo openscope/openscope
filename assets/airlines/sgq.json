@@ -1,20 +1,18 @@
 {
-    "icao": "igo",
-    "name": "IndiGo",
+    "icao": "sgq",
+    "name": "SaudiGulf Airlines",
     "callsign": {
-        "name": "Ifly",
+        "name": "Saudi Gold",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A20N", 32],
-            ["A320", 124],
-            ["AT76", 6]
+            ["A320", 4]
         ],
         "a320": [
-            ["A320", 124]
+            ["A320", 4]
         ]
     }
 }
