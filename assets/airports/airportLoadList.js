@@ -113,13 +113,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'eggw',
-        //     level: 'medium',
-        //     name: 'London Luton Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'eggw',
+            level: 'easy',
+            name: 'London Luton Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'egkk',
         //     level: 'easy',
@@ -197,13 +197,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'kabq',
-        //     level: 'easy',
-        //     name: 'Albuquerque International Sunport',
-        //     premium: false,
-        //     wip: false
-        // },
+        {
+            icao: 'kabq',
+            level: 'beginner',
+            name: 'Albuquerque International Sunport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'katl',
         //     level: 'hard',
@@ -427,6 +427,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Atatürk International Airport',
             premium: false,
             wip: false
+        },
         // },
         // {
         //     icao: 'mdsd',
@@ -435,13 +436,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
-        // {
-        //     icao: 'omaa',
-        //     level: 'medium',
-        //     name: 'Abu Dhabi International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'omaa',
+            level: 'easy',
+            name: 'Abu Dhabi International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'omdb',
         //     level: 'hard',
@@ -456,12 +457,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'othh',
-        //     level: 'hard',
-        //     name: 'Doha Hamad International Airport',
-        //     premium: false,
-        //     wip: true
+        {
+            icao: 'othh',
+            level: 'easy',
+            name: 'Doha Hamad International Airport',
+            premium: false,
+            wip: false
         // },
         // {
         //     icao: 'panc',

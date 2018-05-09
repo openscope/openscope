@@ -639,6 +639,54 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
+     * Returns whether the specified runway is valid for this route's SID leg (if it has one)
+     *
+     * If there is no SID, there is no issue with changing runways, so we would treat this as "valid"
+     *
+     * @for RouteModel
+     * @method isRunwayModelValidForSid
+     * @param runwayModel {RunwayModel}
+     * @return {boolean}
+     */
+    isRunwayModelValidForSid(runwayModel) {
+        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._legCollection[sidLegIndex];
+
+        if (!sidLegModel) {
+            return true;
+        }
+
+        const departureAirportIcao = this.getDepartureRunwayAirportIcao().toUpperCase();
+        const entryName = `${departureAirportIcao}${runwayModel.name}`;
+
+        return sidLegModel.procedureHasEntry(entryName);
+    }
+
+    /**
+     * Returns whether the specified runway is valid for this route's STAR leg (if it has one)
+     *
+     * If there is no STAR, there is no issue with changing runways, so we would treat this as "valid"
+     *
+     * @for RouteModel
+     * @method isRunwayModelValidForStar
+     * @param runwayModel {RunwayModel}
+     * @return {boolean}
+     */
+    isRunwayModelValidForStar(runwayModel) {
+        const starLegIndex = this._findStarLegIndex();
+        const starLegModel = this._legCollection[starLegIndex];
+
+        if (!starLegModel) {
+            return true;
+        }
+
+        const arrivalAirportIcao = this.getArrivalRunwayAirportIcao().toUpperCase();
+        const exitName = `${arrivalAirportIcao}${runwayModel.name}`;
+
+        return starLegModel.procedureHasExit(exitName);
+    }
+
+    /**
      * Skip ahead to the next waypoint
      *
      * If there are no more waypoints in the `#currentLeg`, this will also cause
@@ -785,7 +833,6 @@ export default class RouteModel extends BaseModel {
         }
 
         const sidLegIndex = this._findSidLegIndex();
-
         const sidLegModel = this._legCollection[sidLegIndex];
 
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
@@ -797,17 +844,38 @@ export default class RouteModel extends BaseModel {
     * @for RouteModel
     * @method updateStarLegForArrivalRunwayModel
     * @param runwayModel {RunwayModel}
+    * @return {array} [success of operation, response]
     */
     updateStarLegForArrivalRunwayModel(runwayModel) {
         if (!this.hasStarLeg()) {
             return;
         }
 
+        const originalCurrentWaypointName = this.currentWaypoint.name;
+        const nextExitName = `${this.getArrivalRunwayAirportIcao().toUpperCase()}${runwayModel.name}`;
         const starLegIndex = this._findStarLegIndex();
-
         const starLegModel = this._legCollection[starLegIndex];
 
-        starLegModel.updateStarLegForArrivalRunwayModel(runwayModel);
+        if (!starLegModel.procedureHasExit(nextExitName)) {
+            const procedureIcao = starLegModel.getProcedureIcao();
+            const procedureName = starLegModel.getProcedureName();
+            const readback = {};
+            readback.log = `unable, Runway ${runwayModel.name} is not valid for the ${procedureIcao} arrival`;
+            readback.say = `unable, Runway ${runwayModel.getRadioName()} is not valid for the ${procedureName} arrival`;
+
+            return [false, readback];
+        }
+
+        const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
+        this._legCollection[starLegIndex] = amendedStarLegModel;
+
+        this.skipToWaypointName(originalCurrentWaypointName);
+
+        const readback = {};
+        readback.log = `expecting Runway ${runwayModel.name}`;
+        readback.say = `expecting Runway ${runwayModel.getRadioName()}`;
+
+        return [true, readback];
     }
 
     // ------------------------------ PRIVATE ------------------------------
@@ -1020,10 +1088,22 @@ export default class RouteModel extends BaseModel {
         }
 
         if (convergentLegModel.isSidLeg) {
+            const firstWaypointName = _first(convergentLegModel.waypoints).name;
+
+            if (firstWaypointName === endWaypointName) {
+                return [convergentLegModel];
+            }
+
             return this._createLegsFromSidWaypointsAfterWaypointName(endWaypointName, indexOfConvergentLegModel);
         }
 
         if (convergentLegModel.isStarLeg) {
+            const firstWaypointName = _first(convergentLegModel.waypoints).name;
+
+            if (firstWaypointName === endWaypointName) {
+                return [convergentLegModel];
+            }
+
             if (convergentLegModel.procedureHasEntry(endWaypointName)) {
                 return [this._createAmendedStarLegUsingDifferentEntryName(endWaypointName, indexOfConvergentLegModel)];
             }
@@ -1046,10 +1126,22 @@ export default class RouteModel extends BaseModel {
         }
 
         if (divergentLegModel.isSidLeg) {
+            const endingWaypointName = _last(divergentLegModel.waypoints).name;
+
+            if (endingWaypointName === startWaypointName) {
+                return [divergentLegModel];
+            }
+
             return this._createLegsFromSidWaypointsBeforeWaypointName(startWaypointName, indexOfDivergentLegModel);
         }
 
         if (divergentLegModel.isStarLeg) {
+            const endingWaypointName = _last(divergentLegModel.waypoints).name;
+
+            if (endingWaypointName === startWaypointName) {
+                return [divergentLegModel];
+            }
+
             if (divergentLegModel.procedureHasExit(startWaypointName)) {
                 return [this._createAmendedStarLegUsingDifferentExitName(startWaypointName, indexOfDivergentLegModel)];
             }
@@ -1255,25 +1347,16 @@ export default class RouteModel extends BaseModel {
     }
 
     _overwriteRouteBetweenWaypointNames(startWaypointName, endWaypointName, routeModel) {
-        const initialIndexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
-        const initialIndexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(endWaypointName);
-
-        // this must happen first; Array.splice() is mutating the #_legCollection
-        const endingLegCollection = this._legCollection.splice(initialIndexOfConvergentLegModel);
-
-        this._legCollection.splice(initialIndexOfDivergentLegModel + 1);
-
-        const beginningLegCollection = this._legCollection;
-
-        this._legCollection = [
-            ...beginningLegCollection,
-            ...endingLegCollection
-        ];
-
+        const legCollection = this._legCollection.slice(0);
         const indexOfDivergentLegModel = this._findIndexOfLegContainingWaypointName(startWaypointName);
         const indexOfConvergentLegModel = this._findIndexOfLegContainingWaypointName(endWaypointName);
         const amendedDivergentLegModels = this._createAmendedDivergentLeg(indexOfDivergentLegModel, startWaypointName);
         const amendedConvergentLegModels = this._createAmendedConvergentLeg(indexOfConvergentLegModel, endWaypointName);
+        const endingLegCollection = legCollection.splice(indexOfConvergentLegModel + 1);
+
+        legCollection.splice(indexOfDivergentLegModel);
+
+        const beginningLegCollection = legCollection;
 
         this._legCollection = [
             ...beginningLegCollection,

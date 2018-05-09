@@ -1,29 +1,60 @@
-## 6.1.0 (April 1, 2018)
----
+# 6.2.0 (June 1, 2018)
 ### New Features
-- [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
-- [#838](https://github.com/openscope/openscope/issues/838) - Add Zürich Airport (LSZH)
 
 
 
 
 
 ### Bugfixes
-- [#918](https://github.com/openscope/openscope/issues/918) - Fix failed load by verifying "last airport" in loadList before attempting to use it
 
 
 
 
 
 ### Enhancements & Refactors
+- [#956](https://github.com/openscope/openscope/issues/956) - updated 'descend via STAR' documentation to change mentioning SID to STAR
+
+
+
+
+
+# 6.1.2 (May 2, 2018)
+### Hotfix
+- [#953](https://github.com/openscope/openscope/issues/953) - Fix aircraft not descending into airspace when airspace ceiling is below STAR bottom altitude
+
+
+# 6.1.1 (May 1, 2018)
+### Hotfix
+- [#950](https://github.com/openscope/openscope/issues/950) - Fix left turn command `t l ###`
+
+
+# 6.1.0 (May 1, 2018)
+### New Features
+- [#818](https://github.com/openscope/openscope/issues/818) - Allows selection of only aircraft within controlled airspace
+- [#838](https://github.com/openscope/openscope/issues/838) - Add Zürich Airport (LSZH)
+- [#24](https://github.com/openscope/openscope/issues/24) - Add command to inform arrivals of assigned landing runway
+
+### Bugfixes
+- [#918](https://github.com/openscope/openscope/issues/918) - Fix failed load by verifying "last airport" in loadList before attempting to use it
+- [#939](https://github.com/openscope/openscope/issues/939) - Fix airline fleet detection logic that was erroring during spawn of properly declared patterns
+- [#899](https://github.com/openscope/openscope/issues/899) - Fix improper merging of routes when divergent waypoint is not in the middle of the leg
+- [#940](https://github.com/openscope/openscope/issues/940) - Fixes British Airways fleets; re-adds 'short' fleet and removes historic fleet
+- [#947](https://github.com/openscope/openscope/issues/947) - Fix lack of red response for 'land' and update documentation
+
+### Enhancements & Refactors
 - [#910](https://github.com/openscope/openscope/issues/910) - Reactivate KBOS and KSTL
+- [#856](https://github.com/openscope/openscope/issues/856) - Overhaul of Doha Hamad International Airport (OTHH)
+- [#246](https://github.com/openscope/openscope/issues/246) - Overhaul OMAA (Abu Dhabi)
+- [#908](https://github.com/openscope/openscope/issues/908) - Minor updates to KSEA
+- [#928](https://github.com/openscope/openscope/issues/928) - Minor updates to KPDX
+- [#923](https://github.com/openscope/openscope/issues/923) - Overhaul of KABQ
+- [#931](https://github.com/openscope/openscope/issues/931) - Minor updates to KDCA
+- [#241](https://github.com/openscope/openscope/issues/241) - Overhaul of London Luton Airport (England, United Kingdom)
+- [#927](https://github.com/openscope/openscope/issues/927) - Fix climb rates for CRJs
+- [#677](https://github.com/openscope/openscope/issues/677) - Add test which ensures all airport JSONs contain valid JSON data (helpful for airport developers)
 
 
-
-
-
-## 6.0.0 (March 1, 2018)
----
+# 6.0.0 (March 1, 2018)
 ### Major
 - [#809](https://github.com/openscope/openscope/issues/809) - Major reconfiguration of FMS and navigation-related components of the sim
 
@@ -59,8 +90,7 @@
 - [#723](https://github.com/openscope/openscope/issues/723) - Add contribution guidelines document
 
 
-## 5.7.0 (December 1, 2017)
----
+# 5.7.0 (December 1, 2017)
 ### Bugfixes
 - [#831](https://github.com/openscope/openscope/issues/831) - Add empty video maps to WIP airports to keep them from crashing
 
@@ -74,14 +104,12 @@
 - [#801](https://github.com/openscope/openscope/issues/801) & [#802](https://github.com/openscope/openscope/issues/802) - Removed Monarch Airlines and Airberlin
 
 
-## 5.6.1 (November 1, 2017)
----
+# 5.6.1 (November 1, 2017)
 ### Hotfix
 - [#814](https://github.com/openscope/openscope/issues/814) - Fix severe canvas bug for airports with runways that don't draw extended centerlines
 
 
-## 5.6.0 (November 1, 2017)
----
+# 5.6.0 (November 1, 2017)
 ### New Features
 - [#647](https://github.com/openscope/openscope/issues/647) - Add Tampa Intl. (KTPA)
 - [#107](https://github.com/openscope/openscope/issues/107) - Add Theodore Francis Green Memorial State Airport (Providence, US)
@@ -113,15 +141,13 @@
 - [#791](https://github.com/openscope/openscope/issues/791) - Adds useful error message and tests for case when airport file has procedure with improperly defined `draw` segment
 
 
-## 5.5.1 (October 1, 2017)
----
+# 5.5.1 (October 1, 2017)
 ### Hotfix
 - [#709](https://github.com/openscope/openscope/issues/709) & [#744](https://github.com/openscope/openscope/issues/744) - Checks if the airport in localStorage exists before loading it
 - [#710](https://github.com/openscope/openscope/issues/710) & [#744](https://github.com/openscope/openscope/issues/744) - Updates `.eslint` rules to ignore unused `event` and `error` parameters
 
 
-## 5.5.0 (October 1, 2017)
----
+# 5.5.0 (October 1, 2017)
 ### New Features
 - [#641](https://github.com/openscope/openscope/issues/641) - Add `sa`, `saa`, `sh`, `sah`, `ss`, `sas` commands
 - [#14](https://github.com/openscope/openscope/issues/14) - Add toggleable scope command bar, and lays foundation for the Scope, its commands, and its collections of radar targets.
@@ -164,14 +190,12 @@
 - [#326](https://github.com/openscope/openscope/issues/326) - Checks if an aircraft can reach assigned altitude/speed
 
 
-## 5.4.1 (September 2, 2017)
----
+# 5.4.1 (September 2, 2017)
 ### Hotfix
 - [#327](https://github.com/openscope/openscope/issues/327) - Fix WIP airports which fail to load due to improper procedure formatting
 
 
-## 5.4.0 (September 1, 2017)
----
+# 5.4.0 (September 1, 2017)
 ### New Features
 - [#327](https://github.com/openscope/openscope/issues/327) - Add Albuquerque Sunport (KABQ)
 - [#541](https://github.com/openscope/openscope/issues/541) - Add Hartsfield–Jackson Atlanta Intl. (KATL)
@@ -205,8 +229,7 @@
 - [#660](https://github.com/openscope/openscope/issues/660) - Lower spawn altitude for arrivals into MDSD so they can descend in time
 
 
-## 5.3.0 (August 1, 2017)
----
+# 5.3.0 (August 1, 2017)
 ### Features
 - [#288](https://github.com/openscope/openscope/issues/288) - New airport: MDSD (Las Américas International Airport, Dominican Republic)
     - Includes Terrain and Video map
@@ -232,14 +255,12 @@
 - [#599](https://github.com/openscope/openscope/issues/599) - Deprecates `gulp server` task and adds `nodemon` package
 
 
-## 5.2.1 (July 1, 2017)
----
+# 5.2.1 (July 1, 2017)
 ### Hotfix
 - [#549](https://github.com/openscope/openscope/issues/549) - Ensure previously specified directions of turn are not preserved when a new heading instruction is given
 
 
-## 5.2.0 (July 1, 2017)
----
+# 5.2.0 (July 1, 2017)
 ### Features
 - [#310](https://github.com/openscope/openscope/issues/310) - Add capability for vectors in route strings
 - [#138](https://github.com/openscope/openscope/issues/138) - Adds more context to the Model classes by adding an optional input paramater
@@ -292,14 +313,12 @@
 - [#546](https://github.com/openscope/openscope/issues/546) - Make flight strips show appropriate altitude values
 
 
-## 5.1.1 (May 12, 2017)
----
+# 5.1.1 (May 12, 2017)
 ### Hotfix
 - [#458](https://github.com/openscope/openscope/issues/458) - Fixes or removes from load list all airports that fail to load
 
 
-## 5.1.0 (May 1, 2017)
----
+# 5.1.0 (May 1, 2017)
 ### Features
 - [#316](https://github.com/openscope/openscope/issues/316) - adds [deployment-checklist](tools/documentation/deployment-checklist.md) document
 - [#184](https://github.com/openscope/openscope/issues/184) - Updates the airport-format.md file
@@ -319,14 +338,12 @@
 - [#410](https://github.com/openscope/openscope/issues/410) - Fix strip update crash for arrivals on vectors
 
 
-## 5.0.1 (April 24, 2017)
----
+# 5.0.1 (April 24, 2017)
 ### Hotfix
 - [#359](https://github.com/openscope/openscope/issues/359) - Updates `AircraftStripView` to display departure procedures with the correct `NAME.EXIT` shape
 
 
-## 5.0.0 (April 21, 2017)
----
+# 5.0.0 (April 21, 2017)
 ### Major
 - [#139](https://github.com/openscope/openscope/issues/139) - Refactors FMS
     - This represents a ground-up, from scratch, re-build of the flight management system with new classes: `Fms`, `LegModel`, and `WaypointModel`
@@ -371,20 +388,17 @@
 - [#338](https://github.com/openscope/openscope/issues/338) - Fix mispronunciation of grouped numbers '820' as 'eight-twenty-zero'
 
 
-## 4.1.2 (February 20, 2017)
----
+# 4.1.2 (February 20, 2017)
 ### Hotfix
 - [#252](https://github.com/openscope/openscope/issues/252) - Updates `static.json` to not use ssl
 
 
-## 4.1.1 (February 20, 2017)
----
+# 4.1.1 (February 20, 2017)
 ### Hotfix
 - [#249](https://github.com/openscope/openscope/issues/249) - Restores spawning of GA aircraft at EDDT
 
 
-## 4.1.0 (February 20, 2017)
----
+# 4.1.0 (February 20, 2017)
 ### Major
 - [#154](https://github.com/openscope/openscope/issues/154) - Removes GitHub Pages specific files and moves hosting out of GitHub Pages.
 - [#230](https://github.com/openscope/openscope/issues/230) - Updates build process to:
@@ -418,8 +432,7 @@
 - [#148](https://github.com/openscope/openscope/issues/148) - Fixes internal fms error that was breaking the game when issuing holds over present position
 
 
-## 4.0.1 (January 29, 2017)
----
+# 4.0.1 (January 29, 2017)
 ### Features
 - [#170](https://github.com/openscope/openscope/issues/170) - Adds Openscope favicon
 
@@ -431,8 +444,7 @@
 - [#173](https://github.com/openscope/openscope/issues/173) - Updates `wmkk` StandardRoute definition to include at least one fixname
 
 
-## 4.0.0 (January 26, 2017)
----
+# 4.0.0 (January 26, 2017)
 ### Major
 - [n8rzz/atc#220](https://github.com/n8rzz/atc/issues/220) - Restructures `src` files into `client` and `server` folders.
 - [n8rzz/atc#184](https://github.com/n8rzz/atc/issues/184) - Updates Node to version 7.0.0
@@ -459,8 +471,7 @@
     - Originally reported in [zlsa/atc#730](https://github.com/zlsa/atc/issues/730) & [zlsa/atc#768](https://github.com/zlsa/atc/issues/768)
 
 
-## 3.2.1 (January 2, 2017)
----
+# 3.2.1 (January 2, 2017)
 ### Bugfixes
 - [n8rzz/atc#206](https://github.com/n8rzz/atc/issues/206) - Restores behavior of aircraft flying present heading after completing all legs in their flightplan
     - Originally reported in [zlsa/atc#767](https://github.com/zlsa/atc/issues/767)
@@ -472,8 +483,7 @@
     - Originally reported in [zlsa/atc#734](https://github.com/zlsa/atc/issues/734)
 
 
-## 3.2.0 (December 20, 2016)
----
+# 3.2.0 (December 20, 2016)
 ### Major
 * [n8rzz/atc#53](https://github.com/n8rzz/atc/issues/53) - Integrates `sidCollection` and `starCollection` with `RouteModel` within `AircraftInstanceModel`
     - Creates getters for `currentLeg` and `currentWaypoint`
@@ -518,8 +528,7 @@
     - Originally reported in [zlsa/atc#706](https://github.com/zlsa/atc/issues/706)
 
 
-## 3.1.0 (November 20, 2016)
----
+# 3.1.0 (November 20, 2016)
 ### Major
 - [n8rzz/atc#18](https://github.com/n8rzz/atc/issues/18) - Adds `FixModel` and static class `FixCollection` for reasoning about airport fixes
 - [n8rzz/atc#19](https://github.com/n8rzz/atc/issues/19) - Adds `StandardRoute` classes reasoning about SIDs and STARs

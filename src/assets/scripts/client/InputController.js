@@ -406,7 +406,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
+                this.$commandInput.val(`${currentCommandInputValue} * `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
@@ -609,7 +609,7 @@ export default class InputController {
             throw error;
         }
 
-        if (aircraftCommandParser.command !== 'transmit') {
+        if (aircraftCommandParser.command !== PARSED_COMMAND_NAME.TRANSMIT) {
             return this.processSystemCommand(aircraftCommandParser);
         }
 
