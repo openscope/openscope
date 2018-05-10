@@ -180,23 +180,23 @@ export const GAME_OPTION_VALUES = [
         onChangeEventHandler: null,
         optionList: [
             {
-                label: '1sec',
+                displayLabel: '1sec',
                 value: 1
             },
             {
-                label: '2sec',
+                displayLabel: '2sec',
                 value: 2
             },
             {
-                label: '3sec',
+                displayLabel: '3sec',
                 value: 3
             },
             {
-                label: '4.5sec',
+                displayLabel: '4.5sec',
                 value: 4.5
             },
             {
-                label: '5sec',
+                displayLabel: '5sec',
                 value: 5
             }
         ]
