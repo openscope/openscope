@@ -13,10 +13,10 @@
     "position": ["N50d05.8", "E14d15.9", "1247ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N50d05.8", "E14d15.9"],
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
-        "angle": 260,
-        "speed": 5
+        "angle": 270,
+        "speed": 3
     },
     "arrivalRunway": "24",
     "departureRunway": "24",
