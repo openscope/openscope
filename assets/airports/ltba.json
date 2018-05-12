@@ -657,24 +657,14 @@
         "_RWY2304DME": [40.93147148007, 28.73625351527],
         "_RWY35L": ["N40d58m09.66", "E028d48m25.12"],
         "_RWY35R": ["N40d58m10.04", "E028d48m34.09"],
-        "ENESU": ["N41d28.52", "E027d19.83"],
-        "ERKAL": ["N40d59.20", "E029d58.78"],
-        "KOFUN": ["N41d03.55", "E028d59.28"],
-        "PAZAR": ["N41d17.93", "E029d59.97"],
-        "IMREN": ["N40d45.93", "E028d22.97"],
-        "SADIK": ["N40d40.72", "E028d49.07"],
-        "ERMAN": ["N40d47.68", "E028d48.90"],
-        "ATCOS": ["N40d53.18", "E028d38.35"],
-        "FATIH": ["N41d13.68", "E028d47.97"],
-        "VURAL": ["N41d05.68", "E028d48.28"],
-        "ULMAR": ["N41d12.67", "E027d11.22"],
-        "UNSAV": ["N41d28.70", "E028d47.38"],
-        "VATOM": ["N40d59.14", "E029d06.44"],
-        "TURKO": ["N40d38.97", "E027d35.20"],
-        "UNTUT": ["N41d35.55", "E028d41.01"],
-        "TETSA": ["N41d44.77", "E028d46.75"],
-        "ZEMBA": ["N40d57.02", "E027d51.43"],
         "ABLEM": ["N40d51.94", "E028d27.87"],
+        "ALX"  : ["N40d51.24", "E25d57.40"],
+        "AMANI": ["N39d19m56", "E026d29m58"],
+        "APROB": ["N43d58.40", "E25d0.15"],
+        "ARPEM": ["N41d52.82", "E31d56.88"],
+        "ASKOS": ["N40d38.28", "E24d16.22"],
+        "ATCOS": ["N40d53.18", "E028d38.35"],
+        "ATNOP": ["N42d3.14", "E34d51.50"],
         "AYFER": ["N41d29.21", "E028d37.06"],
         "BA010": [41.079714, 28.805192],
         "BA012": [41.279758, 28.797167],
@@ -776,52 +766,111 @@
         "BA879": [41.299075, 28.930628],
         "BA880": [41.349089, 28.928970],
         "BA881": [41.399106, 28.927309],
+        "BAG"  : ["N40d4.20", "E32d48.63"],
         "BAVUL": ["N40d51.79", "E029d32.79"],
         "BEBEG": ["N41d03.91", "E029d59.00"],
         "BEDEL": ["N40d50.03", "E027d30.13"],
+        "BGS"  : ["N42d35.23", "E27d32.28"],
         "BIG"  : ["N40d17.06", "E027d21.93"],
         "BKZ"  : ["N41d07m37.1", "E029d08m34.4"],
         "BRY"  : ["N40d15.75", "E029d35.64"],
+        "BUK"  : ["N40d14m30", "E033d06m17"],
         "CEK"  : ["N41d00.39", "E028d31.72"],
         "CRL"  : ["N41d09m8.00", "E027d56m18.00"],
         "DEKEK": ["N40d20.06", "E029d19.39"],
         "DENIZ": ["N40d50.15", "E028d01.57"],
+        "DINEN": ["N42d29.99", "E25d59.53"],
+        "DUGLA": ["N39d29.94", "E27d13.47"],
         "EDASA": ["N39d27.60", "E030d07.47"],
         "EKDAM": ["N40d26.09", "E029d37.04"],
         "EKI"  : ["N40d57.06", "E027d25.57"],
+        "EKMEL": ["N40d22.60", "E30d10.96"],
+        "ELGOV": ["N40d35.67", "E28d1.05"],
         "ELKEP": ["N41d16.82", "E028d50.50"],
         "EMPOP": ["N41d14.88", "E029d02.34"],
+        "ENESU": ["N41d28.52", "E027d19.83"],
+        "ERKAL": ["N40d59.20", "E029d58.78"],
         "ERLEB": ["N41d07.26", "E028d33.28"],
+        "ERMAN": ["N40d47.68", "E028d48.90"],
         "ERSEN": ["N40d51.93", "E030d39.97"],
         "ERTAS": ["N41d27.68", "E029d08.80"],
+        "ETUBA": ["N42d48.87", "E26d35.76"],
+        "FATIH": ["N41d13.68", "E028d47.97"],
         "FENER": ["N41d17.18","E028d21.47"],
+        "GAKSU": ["N42d11.35", "E33d48.85"],
         "GAYEM": ["N41d02.75", "E029d37.80"],
         "GELBU": ["N40d56.12", "E027d08.45"],
         "GEVLA": ["N40d59.43", "E028d20.24"],
+        "GOBIT": ["N39d46.57", "E33d53.22"],
+        "GOL"  : ["N43d5.70", "E24d13.24"],
         "GOLDO": ["N40d52.93", "E026d14.97"],
         "IBLAL": ["N41d58.93", "E028d00.07"],
+        "IDILO": ["N40d47.43", "E25d26.36"],
+        "IMREN": ["N40d45.93", "E028d22.97"],
         "IST"  : ["N40d57m41.3", "E028d48m38.5"],
+        "KEPIR": ["N38d10.12", "E24d39.43"],
+        "KFK"  : ["N38d48m14", "E030d32m48"],
+        "KOFUN": ["N41d03.55", "E028d59.28"],
         "KOTEV": ["N41d28.74", "E027d50.03"],
+        "KRO"  : ["N37d59.65", "E24d29.70"],
         "KUBAP": ["N41d06.07", "E029d51.51"],
+        "KUBER": ["N39d49.93", "E33d36.63"],
         "LIVSO": ["N41d14.07", "E029d23.42"],
+        "LSV"  : ["N39d13.88", "E26d25.51"],
+        "LUKOV": ["N43d17.08", "E23d48.37"],
         "MAKOL": ["N42d10.23", "E029d08.57"],
         "MARMA": ["N40d31.63", "E027d38.93"],
+        "MISRO": ["N39d57m10", "E029d48m04"],
         "MOPIN": ["N41d27.89", "E029d42.63"],
+        "NEVAL": ["N40d48.94", "E25d6.51"],
+        "NUMSO": ["N40d55m22", "E030d20m43"],
         "OKBAL": ["N40d49.98", "E027d56.49"],
+        "OLIDA": ["N38d25.10", "E24d53.47"],
+        "OSTEX": ["N42d9.57", "E26d57.36"],
+        "OTKOT": ["N42d6.68", "E34d25.97"],
+        "PAZAR": ["N41d17.93", "E029d59.97"],
         "PEMET": ["N41d18.71", "E029d04.27"],
+        "PEREN": ["N40d35.80", "E23d58.07"],
+        "PETAR": ["N40d10.27", "E32d4.88"],
         "PIMAV": ["N40d24.04", "E029d57.22"],
+        "PINDO": ["N40d28.85", "E20d57.35"],
+        "REVDA": ["N43d44.00", "E29d8.60"],
         "RIMBO": ["N41d22.86", "E028d33.14"],
         "ROBLO": ["N41d01.65", "E028d40.65"],
+        "RORKI": ["N43d5.77", "E29d8.60"],
+        "SADIK": ["N40d40.72", "E028d49.07"],
+        "SALGO": ["N40d28m26", "E032d11m58"],
+        "SIN"  : ["N42d1.34", "E35d4.61"],
         "SIVLI": ["N40d59.05", "E027d48.28"],
         "SOMEP": ["N41d10.61", "E028d40.11"],
+        "SOSUS": ["N40d44.65", "E25d4.40"],
+        "SUDES": ["N39d46m10", "E026d53m36"],
+        "SULTA": ["N40d02m44", "E029d44m23"],
+        "SUTIS": ["N40d42.11", "E24d44.91"],
         "TEMGO": ["N41d09.98", "E029d20.79"],
+        "TETSA": ["N41d44.77", "E028d46.75"],
+        "TEVNI": ["N41d35.48", "E30d21.83"],
+        "TOKER": ["N40d18.80", "E30d46.33"],
         "TOPLU": ["N41d28.72", "E028d10.39"],
         "TUDBU": ["N41d58.00", "E027d46.62"],
+        "TURKO": ["N40d38.97", "E027d35.20"],
         "UBEXA": ["N41d17.24", "E029d12.12"],
+        "ULMAR": ["N41d12.67", "E027d11.22"],
+        "ULMIP": ["N41d39.14", "E30d41.22"],
         "ULPER": ["N40d41.75", "E029d39.15"],
+        "UMRUN": ["N40d11.17", "E31d52.68"],
+        "UNSAV": ["N41d28.70", "E028d47.38"],
+        "UNTUT": ["N41d35.55", "E028d41.01"],
+        "UPAMA": ["N43d37.58", "E25d25.10"],
+        "UVUDA": ["N42d13.52", "E27d48.22"],
         "VADEN": ["N42d03.93", "E027d12.97"],
+        "VATOM": ["N40d59.14", "E029d06.44"],
+        "VIKBI": ["N44d15.51", "E24d39.35"],
+        "VURAL": ["N41d05.68", "E028d48.28"],
         "YAA"  : ["N40d28.50", "E029d12.45"],
-        "YASEN": ["N41d11.93", "E029d30.97"]
+        "YASEN": ["N41d11.93", "E029d30.97"],
+        "YAVRU": ["N40d34m56", "E031d49m58"],
+        "ZEMBA": ["N40d57.02", "E027d51.43"]
     },
     "runways": [
         {
@@ -849,6 +898,23 @@
             "ils": [false, true]
         }
     ],
+    "airways": {
+        "G8": ["AMANI", "SUDES", "BIG", "ELGOV", "IST", "YAA", "EKDAM", "PIMAV", "EKMEL", "TOKER", "UMRUN", "PETAR", "BAG", "KUBER", "GOBIT"],
+        "L615": ["VADEN", "BKZ", "GAYEM", "ERKAL", "NUMSO", "ERSEN", "YAVRU", "SALGO", "BUK"],
+        "N600": ["MAKOL", "RORKI", "REVDA"],
+        "N644": ["MOPIN", "TEVNI", "ULMIP", "ARPEM", "GAKSU", "OTKOT", "ATNOP", "SIN"],
+        "P727": ["IST", "FENER", "IBLAL", "UVUDA", "BGS"],
+        "Q26": ["RIMBO", "TUDBU", "ETUBA", "UPAMA", "APROB", "VIKBI"],
+        "UG8": ["AMANI", "SUDES", "BIG", "ELGOV", "IST", "YAA", "EKDAM", "PIMAV", "EKMEL", "TOKER", "UMRUN", "PETAR", "BAG", "KUBER", "GOBIT"],
+        "UM603": ["IST", "EKI", "GELBU", "GOLDO", "ALX", "IDILO", "SOSUS", "SUTIS", "ASKOS", "PEREN"],
+        "UN604": ["KRO", "KEPIR", "OLIDA", "LSV", "AMANI", "SUDES", "BIG", "BKZ", "ERTAS", "MAKOL"],
+        "UN644": ["MOPIN", "TEVNI", "ULMIP", "ARPEM", "GAKSU", "OTKOT", "ATNOP", "SIN"],
+        "UN79": ["GOLDO", "NEVAL", "PINDO"],
+        "UW715": ["BKZ", "BRY", "SULTA", "MISRO", "EDASA", "KFK"],
+        "Y255": ["MARMA", "BIG"],
+        "Y371": ["MARMA", "DUGLA"],
+        "Y520": ["VADEN", "OSTEX", "DINEN", "GOL", "LUKOV"]
+    },
     "sids": {
         "BIG1D": {
             "icao": "BIG1D",
@@ -3094,8 +3160,8 @@
             },
             "body": ["DEKEK", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["DEKEK*", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
@@ -3210,8 +3276,8 @@
             },
             "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["ENESU*", "CRL", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
@@ -3254,8 +3320,8 @@
             },
             "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["ERKAL*", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
@@ -3269,8 +3335,8 @@
             },
             "body": [["GAYEM", "S250-"], "BKZ", "IST", "ERMAN"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["GAYEM*", "BKZ", "IST", "ERMAN"]
@@ -3384,8 +3450,8 @@
             },
             "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["GELBU*", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
@@ -3428,8 +3494,8 @@
             },
             "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["PAZAR*", "BA046", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
@@ -3472,8 +3538,8 @@
             },
             "body": ["PIMAV", "EKDAM", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["PIMAV*", "EKDAM", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
@@ -3587,8 +3653,8 @@
             },
             "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["TURKO*", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
@@ -3616,8 +3682,8 @@
             },
             "body": ["ULMAR", ["CRL", "S250-"], "FATIH"],
             "rwy": {
-                "LTBA17R": [],
-                "LTBA17L": []
+                "LTBA17L": [],
+                "LTBA17R": []
             },
             "draw": [
                 ["ULMAR*", "CRL", "FATIH"]
@@ -3631,8 +3697,8 @@
             },
             "body": [["UNSAV", "S250-"], "CEK", "IMREN", "SADIK", "ERMAN"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["UNSAV*", "CEK", "IMREN", "SADIK", "ERMAN"]
@@ -3646,8 +3712,8 @@
             },
             "body": [["UNSAV", "S250-"], "FATIH", "VURAL", "IST", "ERMAN"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["UNSAV*", "FATIH", "VURAL", "IST", "ERMAN"]
@@ -3661,8 +3727,8 @@
             },
             "body": [["UNSAV", "S250-"], "BKZ", "IST", "ERMAN"],
             "rwy": {
-                "LTBA35R": [],
-                "LTBA35L": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["UNSAV*", "BKZ", "IST", "ERMAN"]
@@ -3873,7 +3939,282 @@
         }
     },
     "spawnPatterns": [
-
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.EDASA1Y.EDASA.UW715.KFK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 7.644114809,
+            "airlines": [
+                ["aaw/short", 23],
+                ["brq", 6],
+                ["kkk", 80],
+                ["laa/a332", 9],
+                ["lwa", 12],
+                ["mea", 28],
+                ["mnb", 20],
+                ["ohy/short", 135],
+                ["rja/short", 26],
+                ["sva/long", 70],
+                ["tc/fastGA", 30],
+                ["thy/short", 1103],
+                ["thy/long", 249],
+                ["thy/cargo", 18],
+                ["twi", 2]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.ERSEN1Y.ERSEN.L615.BUK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.388326097,
+            "airlines": [
+                ["abq", 1],
+                ["iaw/short", 17],
+                ["kkk", 1],
+                ["mnb/a306", 1],
+                ["tc/fastGA", 2],
+                ["thy/short", 63],
+                ["thy/long", 7]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.GOLDO1Y.GOLDO.UN79.NEVAL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.215629522,
+            "airlines": [
+                ["dah/b738", 35],
+                ["ohy/short", 2],
+                ["ram/b738", 6],
+                ["tar/ltba", 20],
+                ["tc/fastGA", 1],
+                ["thy/short", 410],
+                ["thy/long", 95],
+                ["thy/cargo", 7]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.GOLDO1Y.GOLDO.UM603.SUTIS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.215629522,
+            "airlines": [
+                ["dah/b738", 35],
+                ["ohy/short", 2],
+                ["ram/b738", 6],
+                ["tar/ltba", 20],
+                ["tc/fastGA", 1],
+                ["thy/short", 410],
+                ["thy/long", 95],
+                ["thy/cargo", 7]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.IBLAL1Y.IBLAL.P727.BGS",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.988060781,
+            "airlines": [
+                ["kkk", 15],
+                ["mnb", 3],
+                ["sdm/a319", 4],
+                ["tc/fastGA", 8],
+                ["thy/short", 244],
+                ["thy/long", 173],
+                ["thy/cargo", 24]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.MAKOL1Y.MAKOL.N600.RORKI",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1.523757839,
+            "airlines": [
+                ["aui/short", 59],
+                ["bru/ltba", 9],
+                ["kkk", 16],
+                ["lot/short", 9],
+                ["mld", 12],
+                ["ohy/short", 13],
+                ["rot/a318", 25],
+                ["thy/short", 160],
+                ["thy/long", 54],
+                ["ujx", 4]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.MARMA1Y.MARMA.Y255.BIG.UN604.LSV",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.438977328,
+            "airlines": [
+                ["aee/a319", 14],
+                ["aee/oal", 24],
+                ["kkk", 2],
+                ["ohy/short", 9],
+                ["thy/short", 28],
+                ["thy/long", 27]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.MARMA1Y.MARMA.Y371.DUGLA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2.135793536,
+            "airlines": [
+                ["kkk", 22],
+                ["mnb", 2],
+                ["msr/short", 28],
+                ["pgt", 68],
+                ["thy/short", 316],
+                ["thy/long", 69],
+                ["thy/cargo", 1]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.MOPIN1Y.MOPIN.N644.ARPEM.UN644.GAKSU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 4.001447178,
+            "airlines": [
+                ["aar/a333", 8],
+                ["afl/short", 56],
+                ["ahy", 32],
+                ["crk/cargo", 5],
+                ["kal/a332", 8],
+                ["kkk", 3],
+                ["kmf/b737", 6],
+                ["kzr/a32x", 28],
+                ["ohy/short", 21],
+                ["pbd", 14],
+                ["sia/b772", 10],
+                ["thy/short", 454],
+                ["thy/long", 225],
+                ["thy/cargo", 34],
+                ["tua/ltba", 24],
+                ["uzb", 18],
+                ["vsv", 2]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.PIMAV1Y.PIMAV.G8.TOKER.UG8.KUBER",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.824891462,
+            "airlines": [
+                ["afg/b734", 2],
+                ["etd/ltba", 14],
+                ["gfa/a320", 18],
+                ["iaw/short", 13],
+                ["ira/a320", 6],
+                ["irc/a320", 4],
+                ["irm/ltba", 23],
+                ["jzr", 14],
+                ["kac/b77w", 14],
+                ["kis/a321", 10],
+                ["kkk", 73],
+                ["ohy/short", 51],
+                ["qtr/ltba", 20],
+                ["qtr/cargo", 6],
+                ["smr/b739", 4],
+                ["tbn/a310", 13],
+                ["tbz/a320", 7],
+                ["tbz/md83", 1],
+                ["tc/fastGA", 2],
+                ["thy/short", 794],
+                ["thy/long", 249],
+                ["thy/cargo", 18],
+                ["twi", 2],
+                ["uae/b77w", 22]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.TUDBU1Y.TUDBU.Q26.UPAMA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3.07483731,
+            "airlines": [
+                ["kkk", 44],
+                ["klm/short", 14],
+                ["mnb", 25],
+                ["ohy/short", 21],
+                ["tc/fastGA", 1],
+                ["thy/short", 530],
+                ["thy/long", 83],
+                ["thy/cargo", 11]
+            ]
+        },
+        {
+            "origin": "LTBA",
+            "destination": "",
+            "category": "departure",
+            "route": "LTBA35L.VADEN1Y.VADEN.Y520.DINEN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5.567606652,
+            "airlines": [
+                ["afr/a320", 8],
+                ["ahy", 1],
+                ["baw/a320", 25],
+                ["bcs", 2],
+                ["dlh/a32x", 42],
+                ["fdx/a306", 1],
+                ["gec", 8],
+                ["kkk", 16],
+                ["tay", 1],
+                ["tc/fastGA", 2],
+                ["thy/short", 901],
+                ["thy/long", 264],
+                ["thy/cargo", 45],
+                ["ukl", 2],
+                ["ups", 2]
+            ]
+        }
     ],
     "maps": {
         "base": [
