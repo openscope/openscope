@@ -1,0 +1,20 @@
+{
+    "icao": "laa",
+    "name": "Libyan Airlines",
+    "callsign": {
+        "name": "Libyan",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3],
+            ["A332", 3],
+            ["CRJ9", 2]
+        ],
+        "a332": [
+            ["A332", 3]
+        ]
+    }
+}

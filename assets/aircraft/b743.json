@@ -1,0 +1,37 @@
+{
+    "name": "Boeing 747-300",
+    "icao": "B743",
+    "engines": {
+        "number": 4,
+        "type": "J"
+    },
+    "weightclass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 10,
+        "recat": "B"
+    },
+    "ceiling": 45000,
+    "rate": {
+        "climb":      2000,
+        "descent":    2500,
+        "accelerate": 4,
+        "decelerate": 2
+    },
+    "runway": {
+        "takeoff": 3.300,
+        "landing": 2.200
+    },
+    "speed":{
+        "min":     135,
+        "landing": 150,
+        "cruise":  510,
+        "cruiseM": 0.84,
+        "max":     538,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

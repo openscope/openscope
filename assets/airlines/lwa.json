@@ -1,0 +1,15 @@
+{
+    "icao": "lwa",
+    "name": "Libyan Wings",
+    "callsign": {
+        "name": "Libyan Wings",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 2]
+        ]
+    }
+}

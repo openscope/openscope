@@ -2,21 +2,25 @@
     "icao": "sdm",
     "name": "Rossiya Airlines",
     "callsign": {
-        "name": "Russia",
+        "name": "Rossiya",
         "callsignFormats": [
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 27],
-            ["A320", 5 ],
-            ["B738", 15]
+            ["A319", 26],
+            ["A320", 4],
+            ["B738", 16],
+            ["B744", 9],
+            ["B773", 6]
         ],
         "long": [
-            ["B744", 3 ],
-            ["B77L", 2 ],
-            ["B773", 1]
+            ["B744", 9],
+            ["B773", 6]
+        ],
+        "A319": [
+            ["A319", 26]
         ]
     }
 }

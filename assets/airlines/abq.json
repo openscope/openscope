@@ -3,7 +3,9 @@
     "name": "AirBlue",
     "callsign": {
         "name": "Air Blue",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

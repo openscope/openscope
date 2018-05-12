@@ -1,0 +1,15 @@
+{
+    "icao": "jzr",
+    "name": "Jazeera Airways",
+    "callsign": {
+        "name": "Jazeera",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 8]
+        ]
+    }
+}

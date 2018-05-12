@@ -1,0 +1,30 @@
+{
+    "icao": "crk",
+    "name": "Hong Kong Airlines",
+    "callsign": {
+        "name": "Bauhinia",
+        "callsignFormats": [
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 11],
+            ["A332", 13],
+            ["A333", 10],
+            ["A359", 4]
+        ],
+        "short": [
+            ["A320", 11]
+        ],
+        "long": [
+            ["A332", 11],
+            ["A333", 10],
+            ["A359", 4]
+        ],
+        "cargo": [
+            ["A332", 2]
+        ]
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "icao": "twi",
+    "name": "Tailwind Airlines",
+    "callsign": {
+        "name": "Tailwind",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B734", 5]
+        ]
+    }
+}

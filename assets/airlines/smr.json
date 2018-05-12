@@ -1,0 +1,21 @@
+{
+    "icao": "smr",
+    "name": "Somon Air",
+    "callsign": {
+        "name": "Somon Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 2],
+            ["B738", 2],
+            ["B739", 2],
+            ["B788", 1]
+        ],
+        "b739": [
+            ["B739", 2]
+        ]
+    }
+}
