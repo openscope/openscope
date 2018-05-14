@@ -2,6 +2,7 @@
     "icao": "n",
     "name": "General Aviation",
     "callsign": {
+        "name": "November"
         "callsignFormats": [
             "###@@"
         ]
