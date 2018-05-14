@@ -6,7 +6,7 @@
 
 
 ### Bugfixes
-
+- [#968](https://github.com/openscope/openscope/issues/968) - fixed N-numbered GA aircraft having callsign "default" if voice is on
 
 
 
@@ -21,6 +21,7 @@
 # 6.1.2 (May 2, 2018)
 ### Hotfix
 - [#953](https://github.com/openscope/openscope/issues/953) - Fix aircraft not descending into airspace when airspace ceiling is below STAR bottom altitude
+
 
 
 # 6.1.1 (May 1, 2018)
