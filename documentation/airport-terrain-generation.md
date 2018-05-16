@@ -1,190 +1,185 @@
-Initial setup
-=============
+# Terrain Generation
 
-Install QGIS from http://www.qgis.org/en/site/forusers/download.html.
+## Introduction
+###### This guide will show you how to generate a terrain file for any airport in openScope. This is mainly done using QGIS, a free and open source Geographic Information System. The process can be quite tedious and often frustrating, so if you get stuck somewhere, you can talk to us on [Slack](http://slack.openscope.co/), where we will be happy to help you!
 
-Create a directory for working in, for this documentation it will be
-referred to as ~/projects/openscope-terrain/ but it can be any
-directory on your computer.
+## Initial setup
 
-Menu items are written like this:
-Project->Save
+#### 1. Install QGIS version 2.18 from the [QGIS website](http://www.qgis.org/en/site/forusers/download.html)
+*Note: QGIS version 3 is not compatible with the Zonal Statistics plugin.*
 
-The above means click the Project Menu, then click the Save item in
-it.
+#### 2. Install Zonal Statistics plugin
+* Open QGIS and navigate to `Plugins->Manage and install plugins...`
+* Search for `Zonal statistics plugin` and enable plugin
 
-One plugin needs to be enabled, the following instructions
-demonstrate the interactions for a dialog box which are specified
-indented under the menu item, like this:
+#### 3. Create a folder to dump all your files into.
+* The folder should be named after the airport's ICAO code, e.g. `~/KSEA/`
+*Note: Throughout this guide it will be referred to as `~/terrain/`*
 
-Plugins->Manage and install plugins...
-  Search for 'Zonal statistics plugin'
-  Ensure the plugin is checked in the middle pane
-  Click Close
+#### 4. Obtain elevation data
+* Go to [this site](http://viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm) and download all the tiles which cover your airport and its surrounding area
+* Extract the zip files into a new folder `~/terrain/DEM/`
+
+#### 5. Obtain airspace coordinates
+* Copy all the coordinates within the airspace key of your airport file
+* Convert the coordinates to the right format using [this web app](https://jakcharvat.github.io/polygonConverter/) *(Thanks @jakcharvat for this wonderful tool!)*
+* Copy the output and paste it on a new file.
+* Save the file as `~/terrain/airspace.csv/`
+
+## QGIS
+
+#### 1. Build Raster
+* Go to `Raster->Miscellaneous->Build Virtual Raster(Catalog)...`
+* Check `Choose input directory instead of files`
+* For input directory select `~/terrain/DEM/`
+* Check `Recurse subdirectories`
+* For Output file select `~/terrain/dem.vrt`
+* Check `Load into canvas when finished`
+* Click `OK`
+
+*Note: After it completes, click `OK` on the popups and `Close` on the Build Virtual Raster window*.
+
+#### 2. Import Airspace
+* In QGIS, go to `Layer->Add Layer->Add Delimited Text Layer...`
+* For `File Name` browse `~/terrain/airspace.csv/`
+* For `File Format` check `Custom Delimiters`
+* For `Geometry Definition` check `Well Known Text (WKT)`
+* Click `OK`
 
 
-Getting elevation data
-======================
+* Go to `Vector->Geometry Tools->Polygons to Lines...`
+* Input layer: `airspace`
+* Click `Run`
+* On the Layers Panel, Rename `Lines from polygons` to `perimeter`
 
-Go to this site and download the tile(s) which cover your airport
-http://viewfinderpanoramas.org/Coverage%20map%20viewfinderpanoramas_org3.htm
+#### 3. Trim Raster
+* Go to `Vector->Geoprocessing Tools->Fixed distance buffer`
+* Input layer: `airspace`
+* Distance: `0.005`
+* Click `Run`
 
-Extract the zip file into ~/projects/openscope-terrain/DEM/
 
-Open QGIS
+* Go to `Processing->Toolbox`
+* Search for `Clip raster by mask layer`
+* Input layer: `dem`
+* Mask Layer: `Buffer`
+* Click `Run`
 
-Raster->Miscellaneous->Build Virtual Raster(Catalog)
-  Check 'Choose Input Directory instead of files'
-  For input directory select ~/projects/openscope-terrain/DEM/
-  Check 'Recurse subdirectories'
-  For Output file select ~/projects/openscope-terrain/dem.vrt
-  Make sure 'Load into canvas when finished' is checked
-  Click OK
+*Note: QGIS may seem frozen while the algirthm is run, but it is still running. Try not clicking anywhere on the prograam to ensure it does not crash.*
 
-After it completes (there may be some warnings) click Ok on the popups
-and close on Build Virtual Raster
+* Go to `Vector->Geometry Tools->Polygons to Lines`
+* Input layer: `Buffer`
+* Click `Run`
 
-### More information on this data source
 
-http://www.viewfinderpanoramas.org/dem3.html
+* On the Layers Panel, Rename `Polygons to Lines` layer to `clipping`
+* Remove `Buffer` layer
 
-### Alternate sources
+#### 4. Build Contours
 
-https://earthexplorer.usgs.gov/
-https://gdex.cr.usgs.gov/gdex/
+* Go to `Raster->Extraction->Contour...`
+* Input: `Clipped (mask)`
+* Output: `~/terrain/contours.shp/`
+* Interval between contour lines: `304.8` *(1000ft in meters)*
+* Click `OK`
 
-QGIS
-====
+*Note: After it completes, click `OK` on the popups and `Close` on the Contour window*.
 
-Getting the control area perimeter
-----------------------------------
+* Go to `Vector->Geometry Tools->Simplify geometries`
+* Input layer: `contours`
+* Tolerance: `0.002`
+* Click `Run`
 
-TODO: Give instructions for creating a new perimeter
 
-or
+* On the Layers Panel, remove `contours` layer
+* Rename `Simplified` layer to `contours`
 
-Import an existing perimeter
-Copy the airspace:poly: key from the existing airport and 
-paste it into a new file called ~/projects/openscope-terrain/airport.csv
-Edit airport.csv so it reads something like
-POLYGON((-121.69999940 47.83333330,-121.97603665
-47.95335007,-121.96666670 48.30000000))
-copy the first entry to the end as the last entry to close the polygon
-Note the latitude and longitude are reversed in order compared to the
-definition in the airport file and S/W entries are replaced with a
-minus (-), coordinates also need to be in decimal degrees.
+#### 5. Process Contours
 
-Layer->Add Layer->Delimited text layer...
-  Browse to ~/projects/openscope-terrain/airport.csv
-  Check custom delimiters
-  Uncheck first record has field names
-  Select Well Known Text (WKT)
-  Click OK
+* Go to `Vector->Data Management Tools->Merge Vector Layers`
+* Layers to Merge: `perimeter` & `contours`
+* Click `Run`
 
-Vector->Geometry Tools->Polygons to Lines
-  Input layer 'airport'
-  Click Run
 
-Rename layer 'Lines from Polygons' to 'perimeter'
+* In the Processing Toolbox, seach for `Polygonize` tool
+* Input: `Merged`
+* Click `Run`
 
-Trimming the DEM/Raster
------------------------
 
-Vector->Geoprocessing tools->Fixed distance buffer
-  Input layer: airport
-  Distance: 0.005
-  Click Run
+* Go to `Vector->Geoprocessing Tools->Clip`
+* Input: `Polygons from Lines`
+* Clip: `airspace`
+* Click `Run`
 
-Open the Processing Toolbox (Processing->Toolbox) if it is not yet
-Search for 'Clip raster by mask layer'
-Processing Toolbox: GDAL/OGR->[GDAL] Extraction->Clip raster by mask layer:
-  Input layer: 'dem'
-  Mask Layer: 'Buffer'
-  Click Run
 
-Vector->Geometry Tools->Polygons to Lines
-  Input layer 'Buffer'
-  Run
+* In the Layers Panel, Remove `Polygons from Lines` layer
+* Go to `Vector->Geoprocessing tools->Eliminate Sliver Polygons`
+* Input layer: `Clipped`
+* Selection attribute: `area`  *(Note: May require changing input layer to `airspace` and back to `Clipped`)*
+* Comparison: `<=`
+* Value: `0.00005`
+* Merge selection: `Largest common boundary`
+* Click `Run`
 
-Rename 'Polygons to Lines' to 'clipping'
-Remove Buffer layer
+#### 6. Prepare for Export
 
-Building the contours
-----------------------------
+* Go to `Raster->Zonal statistics->Zonal statistics`
+* Raster Layer: `Clipped (mask)`
+* Polygon layer: `Cleaned`
+* Statistics to calculate: `mean`
+* Click `OK`
 
-Raster->Extraction->Contour:
-  Input: Clipped (mask)
-  Output: project/contours.shp
-  Interval between contour lines: 304.8
-  Click OK, wait for processing, OK, OK, Close
 
-Vector->Geometry tools->Simplify geometries
-  Input layer: contours
-  Tolerance: 0.002
-  Click Run
+* In the Layers Panel, select `Cleaned` layer
+* Go to `Layer->Toggle Editing`
+* Go to `View->Select->Select by Expression...`
+* Expression: `"mean" < 304.8`
+* Click `Select`
+* Click `Close`
+* Go to `Edit->Delete selected`
 
-Remove contours layer
-Rename Simplified layer to contours
 
-Vector->Data Management Tools->Merge Vector Layers
-  Layers to Merge: perimeter, contours
-  Click Run
+* Open `Field Calculator` *(Button with an Abacus at the top of the screen)*
+* Check `Create virtual field`
+* Output field name: `elevation`
+* Output field type: `Decimal number (real)`
+* Expresion: `floor("mean" / 304.8) * 304.8`
+* Click `OK`
 
-Processing Toolbox: QGIS geoalgorithms->Vector geometry tools->Polygonize
-  Input: Merged
-  Click Run
 
-Vector->Geoprocessing tools->Clip
-  Input: Polygons from Lines
-  Clip: airport
-  Click Run
+* Go to `Layer->Save Layer Edits`
+* Go to `Layer->Toggle Editing`
 
-Remove layer 'Polygons from Lines'
+#### 7. Export Terrain
 
-Vector->Geoprocessing tools->Eliminate Sliver Polygons
-  Input layer: Clipped
-  Selection attribute: area (May require changing input layer to
-  airport and back)
-  Comparison: <=
-  Value: 0.00005
-  Merge selection with: Largest common boundary
-  Click Run
+* Go to `Layer->Save As...`
+* Format: `GeoJSON`
+* File Name: `~/terrain/icao.geojson/` where `icao` is the ICAO code of your airport, e.g. `KSEA.geojson`
+* CRS: `EPSG:4326, WGS 84`
+* Fields to export: `elevation`
+* Coordinate precision: `10`
+* Click `OK`
 
-Raster->Zonal statistics->Zonal statistics
-  Raster Layer: Clipped (mask)
-  Polygon layer: Cleaned
-  Statistics to calculate: mean
-  Click OK
 
-Select layer Cleaned in Layers Panel on the bottom left
+* Go to `Project->Save As...`
+* Save as `~/terrain/icao.qgs/` where `icao` is the ICAO code of your airport, e.g. `KSEA.qgs`
+* Exit QGIS
+* Delete `DEM` folder from `~/terrain/`
 
-Layer->Toggle Editing
 
-View->Select->Select by expression:
-  Expression: "mean" < 304.8
-  Click Select
-  Click Close
+## Final Steps
 
-Edit->Delete selected
+* Go to the [Airport Modelling Repo](https://github.com/openscope/airport-modeling/tree/master/airports)
+* Click `Upload Files`
+* Drag `~/terrain/` folder into the page.
+* Add a simple commit title
+* Check `Commit directly to the `master` branch`
+* Click `Commit changes`
+ 
 
-Layer->Properties->Fields
-Click Field Calculator
-  Check 'Create virtual field'
-  field name: elevation
-  Type: Decimal
-  Expresion: floor("mean" / 304.8) * 304.8
-  Click OK, OK
+* Copy the `~/terrain/icao.geojson` file into `~/openscope/assets/airports/terrain/`
+* In the airport file, ensure `has_terrain` is set to `true`
 
-Layer->Save layer edits
-Layer->Toggle Editing
-
-Layer->Save As...
-  Format: GeoJSON
-  File Name: ~/projects/openscope-terrain/icao.geojson
-  CRS: EPSG: 4326
-  Fields to export: deselect all, check elevation
-  Coordinate precision: 10
-  Click OK
-
-You are done, copy the ~/projects/openscope-terrain/icao.geojson file
-into openscope/assets/airports/terrain/ and enjoy.
+# Congratulations!
+###### If you've made it this far, you have successfully generated a terrain file for openScope. Give yourself a break now, you deserve it!
+###### If you're having any problems while following this guide, you can talk to us on [Slack](http://slack.openscope.co/), where we will be happy to help you!
