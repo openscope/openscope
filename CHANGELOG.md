@@ -14,6 +14,7 @@
 ### Enhancements & Refactors
 - [#956](https://github.com/openscope/openscope/issues/956) - updated 'descend via STAR' documentation to change mentioning SID to STAR
 - [#782](https://github.com/openscope/openscope/issues/782) - Overhaul of KATL
+- [#961](https://github.com/openscope/openscope/issues/961) - updated climb and descent rates using Eurocontrol data
 
 
 
