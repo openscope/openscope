@@ -13,8 +13,8 @@
     },
     "ceiling": 39500,
     "rate": {
-        "climb":      3000,
-        "descent":    1670,
+        "climb":      1000,
+        "descent":    1500,
         "accelerate": 5,
         "decelerate": 2
     },
