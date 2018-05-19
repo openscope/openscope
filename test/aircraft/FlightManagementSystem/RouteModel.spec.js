@@ -109,6 +109,14 @@ ava('#currentLeg returns the first element of the #_legCollection', (t) => {
     t.true(result.routeString === singleFixRouteStringMock);
 });
 
+ava('#legCollection returns the entire #_legCollection', (t) => {
+    const model = new RouteModel(singleFixRouteStringMock);
+    const expectedResult = model._legCollection;
+    const result = model.legCollection;
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('#currentWaypoint returns the #currentWaypoint on the #currentLeg', (t) => {
     const model = new RouteModel(singleFixRouteStringMock);
     const expectedResult = model.currentLeg.currentWaypoint;

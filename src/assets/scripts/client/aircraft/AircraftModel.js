@@ -1807,8 +1807,8 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnav() {
-        const nextAltitudeMaximumWaypoint = this.fms.getNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
-        const nextAltitudeMinimumWaypoint = this.fms.getNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
+        const nextAltitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
+        const nextAltitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
         const maximumAltitudeExists = !_isNil(nextAltitudeMaximumWaypoint);
         const minimumAltitudeExists = !_isNil(nextAltitudeMinimumWaypoint);
 
@@ -1925,16 +1925,16 @@ export default class AircraftModel {
      * @return {number} speed, in knots
      */
     _calculateTargetedSpeedVnav() {
-        const nextSpeedMaximumWaypoint = this.fms.getNextWaypointWithMaximumSpeedAtOrBelow(this.speed);
-        const nextSpeedMinimumWaypoint = this.fms.getNextWaypointWithMinimumSpeedAtOrAbove(this.speed);
-        const maximumSpeedExists = !_isNil(nextSpeedMaximumWaypoint);
-        const minimumSpeedExists = !_isNil(nextSpeedMinimumWaypoint);
+        const nextSpeedMaximumWaypoint = this.fms.findNextWaypointWithMaximumSpeedAtOrBelow(this.speed);
+        const nextSpeedMinimumWaypoint = this.fms.findNextWaypointWithMinimumSpeedAtOrAbove(this.speed);
+        const hasMaximumSpeed = !_isNil(nextSpeedMaximumWaypoint);
+        const hasMinimumSpeed = !_isNil(nextSpeedMinimumWaypoint);
 
-        if (!maximumSpeedExists && !minimumSpeedExists) {
+        if (!hasMaximumSpeed && !hasMinimumSpeed) {
             return this.mcp.speed;
         }
 
-        if (maximumSpeedExists && minimumSpeedExists) {
+        if (hasMaximumSpeed && hasMinimumSpeed) {
             const waypoints = this.fms.waypoints;
             const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMaximumWaypoint.name);
             const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMinimumWaypoint.name);
@@ -1944,9 +1944,9 @@ export default class AircraftModel {
             }
 
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
-        } else if (maximumSpeedExists) {
+        } else if (hasMaximumSpeed) {
             return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
-        } else if (minimumSpeedExists) {
+        } else if (hasMinimumSpeed) {
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
         }
     }
