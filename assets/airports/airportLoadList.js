@@ -423,7 +423,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'ltba',
-            level: 'medium',
+            level: 'hard',
             name: 'Atatürk International Airport',
             premium: false,
             wip: false
