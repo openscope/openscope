@@ -317,7 +317,7 @@ ava('.cancelApproachClearance() sets #hasApproachClearance to false', (t) => {
     t.false(aircraftModel.pilot.hasApproachClearance);
 });
 
-ava.only('.clearedAsFiled() grants pilot departure clearance and returns the correct response strings', (t) => {
+ava('.clearedAsFiled() grants pilot departure clearance and returns the correct response strings', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const result = aircraftModel.pilot.clearedAsFiled(aircraftModel);
 
@@ -328,15 +328,6 @@ ava.only('.clearedAsFiled() grants pilot departure clearance and returns the cor
     t.true(result[1].say === 'cleared to destination as filed');
     t.true(aircraftModel.pilot.hasDepartureClearance === true);
 });
-
-// let pilot = null;
-// ava.beforeEach(() => {
-//     pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
-// });
-//
-// ava.afterEach(() => {
-//     pilot = null;
-// });
 
 ava('.climbViaSID() returns error response if #flightPlanAltitude has not been set', (t) => {
     const expectedResult = [
