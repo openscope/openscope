@@ -11,6 +11,7 @@ import _without from 'lodash/without';
 import LegModel from './LegModel';
 import BaseModel from '../../base/BaseModel';
 import AirportController from '../../airport/AirportController';
+import RunwayModel from '../../airport/runway/RunwayModel';
 import {
     INVALID_INDEX,
     INVALID_NUMBER,
@@ -661,6 +662,10 @@ export default class RouteModel extends BaseModel {
      * @return {boolean}
      */
     isRunwayModelValidForSid(runwayModel) {
+        if (!(runwayModel instanceof RunwayModel)) {
+            return false;
+        }
+
         const sidLegIndex = this._findSidLegIndex();
         const sidLegModel = this._legCollection[sidLegIndex];
 
@@ -685,6 +690,10 @@ export default class RouteModel extends BaseModel {
      * @return {boolean}
      */
     isRunwayModelValidForStar(runwayModel) {
+        if (!(runwayModel instanceof RunwayModel)) {
+            return false;
+        }
+
         const starLegIndex = this._findStarLegIndex();
         const starLegModel = this._legCollection[starLegIndex];
 

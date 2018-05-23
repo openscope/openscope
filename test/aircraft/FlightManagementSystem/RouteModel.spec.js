@@ -600,6 +600,86 @@ ava('.hasWaypointName() returns true when the specified waypoint is in the route
     t.true(result);
 });
 
+ava('.isRunwayModelValidForSid() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const expectedResult = false;
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the flight plan does not contain a SID', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const expectedResult = true;
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForSid() returns false if the specified runway exists and is not valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const expectedResult = false;
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the specified runway exists and is valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const expectedResult = true;
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForStar() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const expectedResult = false;
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the flight plan does not contain a STAR', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const expectedResult = true;
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForStar() returns false if the specified runway exists and is not valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const expectedResult = false;
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the specified runway exists and is valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const expectedResult = true;
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result === expectedResult);
+});
+
 ava('.moveToNextWaypoint() calls #currentLeg.moveToNextWaypoint() when the current leg contains more waypoints', (t) => {
     const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const currentLegMoveToNextWaypointSpy = sinon.spy(model.currentLeg, 'moveToNextWaypoint');

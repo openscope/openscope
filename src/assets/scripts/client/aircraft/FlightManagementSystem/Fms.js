@@ -889,7 +889,7 @@ export default class Fms {
                 `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
                 `Runway ${currentArrivalRunway.name} instead`;
             readback.say = `according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
-                `is not valid for the  ${this._routeModel.getStarName()} arrival, expecting ` +
+                `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
                 `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
             return [false, readback];
