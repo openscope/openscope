@@ -769,7 +769,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_EKI080055.5", "SIVLI", "BIG*"]
+                ["_RWY17R", "_IST356007", "_EKI080055.5", "SIVLI", "BIG"]
             ]
         },
         "BIG1K": {
@@ -783,7 +783,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_EKI080055.5", "SIVLI", "BIG*"]
+                ["_RWY17L", "_IST356007", "_EKI080055.5", "SIVLI", "BIG"]
             ]
         },
         "BIG1M": {
@@ -797,7 +797,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "SIVLI", "BIG*"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "SIVLI", "BIG"]
             ]
         },
         "BIG1N": {
@@ -811,7 +811,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "BIG*"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "BIG"]
             ]
         },
         "BIG2G": {
@@ -825,7 +825,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY23", "_IST245005", "_IST254008.5", "DENIZ", "BIG*"]
+                ["_RWY23", "_IST245005", "_IST254008.5", "DENIZ", "BIG"]
             ]
         },
         "BIG2S": {
@@ -840,7 +840,7 @@
                 "BIG": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "_IST254008.5", "DENIZ", "BIG*"],
+                ["_RWY35R", "_IST177005", "_IST254008.5", "DENIZ", "BIG"],
                 ["_RWY35L", "_IST177005", "_IST254008.5", "DENIZ", "BIG"]
             ]
         },
@@ -855,7 +855,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_CRL103021", "CRL*"]
+                ["_RWY17R", "_IST356007", "_CRL103021", "CRL"]
             ]
         },
         "CRL1K": {
@@ -869,7 +869,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_CRL103021", "CRL*"]
+                ["_RWY17L", "_IST356007", "_CRL103021", "CRL"]
             ]
         },
         "CRL1N": {
@@ -883,7 +883,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "CRL*"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "CRL"]
             ]
         },
         "CRL2G": {
@@ -897,7 +897,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "_CRL103022.5", "CRL*"]
+                ["_RWY05", "_IST245005", "_CRL103022.5", "CRL"]
             ]
         },
         "CRL2S": {
@@ -912,7 +912,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "_CRL110037.5", "CRL*"],
+                ["_RWY35R", "_IST177005", "_CRL110037.5", "CRL"],
                 ["_RWY35L", "_IST177005", "_CRL110037.5", "CRL"]
             ]
         },
@@ -927,7 +927,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1N": {
@@ -941,7 +941,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA*"]
+                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA"]
             ]
         },
         "EDASA1P": {
@@ -955,7 +955,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "EDASA*"]
+                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "EDASA"]
             ]
         },
         "EDASA1Q": {
@@ -969,7 +969,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"]
             ]
         },
         "EDASA1R": {
@@ -983,7 +983,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1S": {
@@ -997,7 +997,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1T": {
@@ -1011,7 +1011,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1U": {
@@ -1025,7 +1025,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1V": {
@@ -1039,7 +1039,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1X": {
@@ -1053,7 +1053,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA*"]
+                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1Y": {
@@ -1067,7 +1067,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"]
             ]
         },
         "EDASA1Z": {
@@ -1081,7 +1081,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA*"]
+                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"]
             ]
         },
         "EKI1D": {
@@ -1095,7 +1095,7 @@
                 "EKI": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_EKI080055.5", "EKI*"]
+                ["_RWY17R", "_IST356007", "_EKI080055.5", "EKI"]
             ]
         },
         "EKI1K": {
@@ -1109,7 +1109,7 @@
                 "EKI": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_EKI080055.5", "EKI*"]
+                ["_RWY17L", "_IST356007", "_EKI080055.5", "EKI"]
             ]
         },
         "EKI1N": {
@@ -1123,7 +1123,7 @@
                 "EKI": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "EKI*"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "EKI"]
             ]
         },
         "EKI2G": {
@@ -1137,7 +1137,7 @@
                 "EKI": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "_IST267009", "EKI*"]
+                ["_RWY05", "_IST245005", "_IST267009", "EKI"]
             ]
         },
         "EKI2S": {
@@ -1152,7 +1152,7 @@
                 "EKI": []
             },
             "draw": [
-                ["_RWY35R", "_IST267009", "EKI*"],
+                ["_RWY35R", "_IST267009", "EKI"],
                 ["_RWY35L", "_IST267009", "EKI"]
             ]
         },
@@ -1167,7 +1167,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+                ["_RWY23", "BA035", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1R": {
@@ -1181,7 +1181,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN*"]
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1S": {
@@ -1195,7 +1195,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN*"]
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "BA046", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1T": {
@@ -1209,7 +1209,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1U": {
@@ -1223,7 +1223,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1V": {
@@ -1237,7 +1237,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN*"]
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "BA046", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1Y": {
@@ -1251,7 +1251,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+                ["_RWY17R", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1Z": {
@@ -1265,7 +1265,7 @@
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN*"]
+                ["_RWY17L", "BA010", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"]
             ]
         },
         "ERTAS1D": {
@@ -1279,7 +1279,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "BKZ", "ERTAS*"]
+                ["_RWY17R", "_IST356007", "BKZ", "ERTAS"]
             ]
         },
         "ERTAS1G": {
@@ -1293,7 +1293,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "BKZ", "ERTAS*"]
+                ["_RWY05", "_IST245005", "BKZ", "ERTAS"]
             ]
         },
         "ERTAS1J": {
@@ -1307,7 +1307,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "CEK", "ERTAS*"]
+                ["_RWY05", "_IST245005", "CEK", "ERTAS"]
             ]
         },
         "ERTAS1K": {
@@ -1321,7 +1321,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "BKZ", "ERTAS*"]
+                ["_RWY17L", "_IST356007", "BKZ", "ERTAS"]
             ]
         },
         "ERTAS1L": {
@@ -1335,7 +1335,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_ERTAS204018.5", "ERTAS*"]
+                ["_RWY17L", "_IST356007", "_ERTAS204018.5", "ERTAS"]
             ]
         },
         "ERTAS1M": {
@@ -1349,7 +1349,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_IST024009", "ERTAS*"]
+                ["_RWY23", "_IST051004.5", "_IST024009", "ERTAS"]
             ]
         },
         "ERTAS1N": {
@@ -1363,7 +1363,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "BKZ", "ERTAS*"]
+                ["_RWY23", "_IST051004.5", "BKZ", "ERTAS"]
             ]
         },
         "ERTAS1S": {
@@ -1378,7 +1378,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "CEK", "ERTAS*"],
+                ["_RWY35R", "_IST177005", "CEK", "ERTAS"],
                 ["_RWY35L", "_IST177005", "CEK", "ERTAS"]
             ]
         },
@@ -1394,7 +1394,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "ERTAS*"],
+                ["_RWY35R", "_IST177005", "BKZ", "ERTAS"],
                 ["_RWY35L", "_IST177005", "BKZ", "ERTAS"]
             ]
         },
@@ -1409,7 +1409,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_ERTAS204018.5", "ERTAS*"]
+                ["_RWY17R", "_IST356007", "_ERTAS204018.5", "ERTAS"]
             ]
         },
         "FENER1D": {
@@ -1423,7 +1423,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_BKZ283015.5", "FENER*"]
+                ["_RWY17R", "_IST356007", "_BKZ283015.5", "FENER"]
             ]
         },
         "FENER1K": {
@@ -1437,7 +1437,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_BKZ283015.5", "FENER*"]
+                ["_RWY17L", "_IST356007", "_BKZ283015.5", "FENER"]
             ]
         },
         "FENER1L": {
@@ -1451,7 +1451,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "_IST309014.5", "FENER*"]
+                ["_RWY17L", "_IST356007", "_IST309014.5", "FENER"]
             ]
         },
         "FENER1N": {
@@ -1465,7 +1465,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_IST309006", "FENER*"]
+                ["_RWY23", "_IST051004.5", "_IST309006", "FENER"]
             ]
         },
         "FENER1U": {
@@ -1479,7 +1479,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "_IST309014.5", "FENER*"]
+                ["_RWY17R", "_IST356007", "_IST309014.5", "FENER"]
             ]
         },
         "FENER2H": {
@@ -1493,7 +1493,7 @@
                 "CRL": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "CEK", "FENER*"]
+                ["_RWY05", "_IST245005", "CEK", "FENER"]
             ]
         },
         "FENER2S": {
@@ -1508,7 +1508,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "CEK", "FENER*"],
+                ["_RWY35R", "_IST177005", "CEK", "FENER"],
                 ["_RWY35L", "_IST177005", "CEK", "FENER"]
             ]
         },
@@ -1523,7 +1523,7 @@
                 "GAYEM": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "BKZ", "GAYEM*"]
+                ["_RWY17R", "_IST356007", "BKZ", "GAYEM"]
             ]
         },
         "GAYEM1G": {
@@ -1537,7 +1537,7 @@
                 "GAYEM": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "BKZ", "GAYEM*"]
+                ["_RWY05", "_IST245005", "BKZ", "GAYEM"]
             ]
         },
         "GAYEM1K": {
@@ -1551,7 +1551,7 @@
                 "GAYEM": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "BKZ", "GAYEM*"]
+                ["_RWY17L", "_IST356007", "BKZ", "GAYEM"]
             ]
         },
         "GAYEM1N": {
@@ -1565,7 +1565,7 @@
                 "GAYEM": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "BKZ", "GAYEM*"]
+                ["_RWY23", "_IST051004.5", "BKZ", "GAYEM"]
             ]
         },
         "GAYEM1S": {
@@ -1580,7 +1580,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "GAYEM*"],
+                ["_RWY35R", "_IST177005", "BKZ", "GAYEM"],
                 ["_RWY35L", "_IST177005", "BKZ", "GAYEM"]
             ]
         },
@@ -1595,7 +1595,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1P": {
@@ -1609,7 +1609,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1R": {
@@ -1623,7 +1623,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1S": {
@@ -1637,7 +1637,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1T": {
@@ -1651,7 +1651,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1U": {
@@ -1665,7 +1665,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1V": {
@@ -1679,7 +1679,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY05", "BA061", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY05", "BA061", "ABLEM", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1X": {
@@ -1693,7 +1693,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1Y": {
@@ -1707,7 +1707,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "GOLDO1Z": {
@@ -1721,7 +1721,7 @@
                 "GOLDO": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO*"]
+                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "BEDEL", "GELBU", "GOLDO"]
             ]
         },
         "IBLAL1E": {
@@ -1735,7 +1735,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA012", "AYFER", "IBLAL*"]
+                ["_RWY17L", "BA010", "BA040", "BA012", "AYFER", "IBLAL"]
             ]
         },
         "IBLAL1P": {
@@ -1749,7 +1749,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BA013", "AYFER", "IBLAL*"]
+                ["_RWY23", "BA035", "BA013", "AYFER", "IBLAL"]
             ]
         },
         "IBLAL1R": {
@@ -1763,7 +1763,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL"]
             ]
         },
         "IBLAL1S": {
@@ -1777,7 +1777,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL"]
             ]
         },
         "IBLAL1T": {
@@ -1791,7 +1791,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL"]
             ]
         },
         "IBLAL1U": {
@@ -1805,7 +1805,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "IBLAL"]
             ]
         },
         "IBLAL1V": {
@@ -1819,7 +1819,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "IBLAL*"]
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "IBLAL"]
             ]
         },
         "IBLAL1X": {
@@ -1833,7 +1833,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA040", "BA012", "AYFER", "IBLAL*"]
+                ["_RWY17R", "BA010", "BA040", "BA012", "AYFER", "IBLAL"]
             ]
         },
         "IBLAL1Y": {
@@ -1847,7 +1847,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA012", "AYFER", "IBLAL*"]
+                ["_RWY17R", "BA010", "BA012", "AYFER", "IBLAL"]
             ]
         },
         "IBLAL1Z": {
@@ -1861,7 +1861,7 @@
                 "IBLAL": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA012", "AYFER", "IBLAL*"]
+                ["_RWY17L", "BA010", "BA012", "AYFER", "IBLAL"]
             ]
         },
         "MAKOL1E": {
@@ -1875,7 +1875,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MAKOL*"]
+                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1P": {
@@ -1889,7 +1889,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY23", "BA035", "EMPOP", "PEMET", "ERTAS", "MAKOL*"]
+                ["_RWY23", "BA035", "EMPOP", "PEMET", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1R": {
@@ -1903,7 +1903,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL*"]
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1S": {
@@ -1917,7 +1917,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL*"]
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1T": {
@@ -1931,7 +1931,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1U": {
@@ -1945,7 +1945,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1V": {
@@ -1959,7 +1959,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "ERTAS", "MAKOL*"]
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1X": {
@@ -1973,7 +1973,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MAKOL*"]
+                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1Y": {
@@ -1987,7 +1987,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA045", "ERTAS", "MAKOL*"]
+                ["_RWY17R", "BA010", "BA045", "ERTAS", "MAKOL"]
             ]
         },
         "MAKOL1Z": {
@@ -2001,7 +2001,7 @@
                 "MAKOL": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA045", "ERTAS", "MAKOL*"]
+                ["_RWY17L", "BA010", "BA045", "ERTAS", "MAKOL"]
             ]
         },
         "MARMA1E": {
@@ -2015,7 +2015,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "MARMA*"]
+                ["_RWY17L", "BA010", "BA042", "BA043", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1P": {
@@ -2029,7 +2029,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "MARMA*"]
+                ["_RWY23", "BA035", "BA024", "ERLEB", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1R": {
@@ -2043,7 +2043,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1S": {
@@ -2057,7 +2057,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+                ["_RWY35L", "BA015", "ABLEM", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1T": {
@@ -2071,7 +2071,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1U": {
@@ -2085,7 +2085,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA*"]
+                ["_RWY35R", "BA015", "ABLEM", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1V": {
@@ -2099,7 +2099,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY05", "BA061", "ABLEM", "OKBAL", "MARMA*"]
+                ["_RWY05", "BA061", "ABLEM", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1X": {
@@ -2113,7 +2113,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "MARMA*"]
+                ["_RWY17R", "BA010", "BA042", "BA043", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1Y": {
@@ -2127,7 +2127,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "MARMA*"]
+                ["_RWY17R", "BA010", "ERLEB", "OKBAL", "MARMA"]
             ]
         },
         "MARMA1Z": {
@@ -2141,7 +2141,7 @@
                 "MARMA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "MARMA*"]
+                ["_RWY17L", "BA010", "ERLEB", "OKBAL", "MARMA"]
             ]
         },
         "MOPIN1A": {
@@ -2156,7 +2156,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "MOPIN*"],
+                ["_RWY35R", "_IST177005", "BKZ", "MOPIN"],
                 ["_RWY35L", "_IST177005", "BKZ", "MOPIN"]
             ]
         },
@@ -2171,7 +2171,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "BKZ", "MOPIN*"]
+                ["_RWY17L", "_IST356007", "BKZ", "MOPIN"]
             ]
         },
         "MOPIN1D": {
@@ -2185,7 +2185,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "BKZ", "MOPIN*"]
+                ["_RWY17R", "_IST356007", "BKZ", "MOPIN"]
             ]
         },
         "MOPIN1E": {
@@ -2199,7 +2199,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MOPIN*"]
+                ["_RWY17L", "BA010", "BA040", "BA047", "ERTAS", "MOPIN"]
             ]
         },
         "MOPIN1G": {
@@ -2213,7 +2213,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "BKZ", "MOPIN*"]
+                ["_RWY05", "_IST245005", "BKZ", "MOPIN"]
             ]
         },
         "MOPIN1N": {
@@ -2227,7 +2227,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "BKZ", "MOPIN*"]
+                ["_RWY23", "_IST051004.5", "BKZ", "MOPIN"]
             ]
         },
         "MOPIN1P": {
@@ -2241,7 +2241,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BKZ", "TEMGO", "MOPIN*"]
+                ["_RWY23", "BA035", "BKZ", "TEMGO", "MOPIN"]
             ]
         },
         "MOPIN1R": {
@@ -2255,7 +2255,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN*"]
+                ["_RWY35R", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN"]
             ]
         },
         "MOPIN1S": {
@@ -2269,7 +2269,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN*"]
+                ["_RWY35L", "BA015", "BA020", "BA021", "BA022", "LIVSO", "MOPIN"]
             ]
         },
         "MOPIN1T": {
@@ -2283,7 +2283,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+                ["_RWY35R", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN"]
             ]
         },
         "MOPIN1U": {
@@ -2297,7 +2297,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+                ["_RWY35L", "BA015", "BA030", "ROBLO", "SOMEP", "ELKEP", "UBEXA", "MOPIN"]
             ]
         },
         "MOPIN1V": {
@@ -2311,7 +2311,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "MOPIN*"]
+                ["_RWY05", "_RWY2304DME", "BA060", "SOMEP", "ELKEP", "UBEXA", "MOPIN"]
             ]
         },
         "MOPIN1X": {
@@ -2325,7 +2325,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MOPIN*"]
+                ["_RWY17R", "BA010", "BA040", "BA047", "ERTAS", "MOPIN"]
             ]
         },
         "MOPIN1Y": {
@@ -2339,7 +2339,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BKZ", "TEMGO", "MOPIN*"]
+                ["_RWY17R", "BA010", "BKZ", "TEMGO", "MOPIN"]
             ]
         },
         "MOPIN1Z": {
@@ -2353,7 +2353,7 @@
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BKZ", "TEMGO", "MOPIN*"]
+                ["_RWY17L", "BA010", "BKZ", "TEMGO", "MOPIN"]
             ]
         },
         "PIMAV1E": {
@@ -2367,7 +2367,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY17L", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1N": {
@@ -2381,7 +2381,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV*"]
+                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV"]
             ]
         },
         "PIMAV1P": {
@@ -2395,7 +2395,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+                ["_RWY23", "BA035", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV"]
             ]
         },
         "PIMAV1Q": {
@@ -2409,7 +2409,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV*"]
+                ["_RWY17R", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "PIMAV"]
             ]
         },
         "PIMAV1R": {
@@ -2423,7 +2423,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1S": {
@@ -2437,7 +2437,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1T": {
@@ -2451,7 +2451,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1U": {
@@ -2465,7 +2465,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1V": {
@@ -2479,7 +2479,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1X": {
@@ -2493,7 +2493,7 @@
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV*"]
+                ["_RWY17R", "BA010", "BA042", "BA043", "BA051", "BA052", "BA063", "DEKEK", "BA065", "PIMAV"]
             ]
         },
         "PIMAV1Y": {
@@ -2507,7 +2507,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+                ["_RWY17R", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV"]
             ]
         },
         "PIMAV1Z": {
@@ -2521,7 +2521,7 @@
                 "PIMAV": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV*"]
+                ["_RWY17L", "BA010", "BKZ", "BA044", "BAVUL", "ULPER", "PIMAV"]
             ]
         },
         "TUDBU1E": {
@@ -2535,7 +2535,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA041", "RIMBO", "TUDBU*"]
+                ["_RWY17L", "BA010", "BA041", "RIMBO", "TUDBU"]
             ]
         },
         "TUDBU1P": {
@@ -2549,7 +2549,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BA024", "RIMBO", "TUDBU*"]
+                ["_RWY23", "BA035", "BA024", "RIMBO", "TUDBU"]
             ]
         },
         "TUDBU1R": {
@@ -2563,7 +2563,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU"]
             ]
         },
         "TUDBU1S": {
@@ -2577,7 +2577,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU"]
             ]
         },
         "TUDBU1T": {
@@ -2591,7 +2591,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU"]
             ]
         },
         "TUDBU1U": {
@@ -2605,7 +2605,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "TOPLU", "TUDBU"]
             ]
         },
         "TUDBU1V": {
@@ -2619,7 +2619,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "TUDBU*"]
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "TOPLU", "TUDBU"]
             ]
         },
         "TUDBU1X": {
@@ -2633,7 +2633,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA041", "RIMBO", "TUDBU*"]
+                ["_RWY17R", "BA010", "BA041", "RIMBO", "TUDBU"]
             ]
         },
         "TUDBU1Y": {
@@ -2647,7 +2647,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "RIMBO", "TUDBU*"]
+                ["_RWY17R", "BA010", "RIMBO", "TUDBU"]
             ]
         },
         "TUDBU1Z": {
@@ -2661,7 +2661,7 @@
                 "TUDBU": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "RIMBO", "TUDBU*"]
+                ["_RWY17L", "BA010", "RIMBO", "TUDBU"]
             ]
         },
         "VADEN1E": {
@@ -2675,7 +2675,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA041", "RIMBO", "VADEN*"]
+                ["_RWY17L", "BA010", "BA041", "RIMBO", "VADEN"]
             ]
         },
         "VADEN1P": {
@@ -2689,7 +2689,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BA024", "RIMBO", "VADEN*"]
+                ["_RWY23", "BA035", "BA024", "RIMBO", "VADEN"]
             ]
         },
         "VADEN1R": {
@@ -2703,7 +2703,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN"]
             ]
         },
         "VADEN1S": {
@@ -2717,7 +2717,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN"]
             ]
         },
         "VADEN1T": {
@@ -2731,7 +2731,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+                ["_RWY35R", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN"]
             ]
         },
         "VADEN1U": {
@@ -2745,7 +2745,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+                ["_RWY35L", "BA015", "ABLEM", "GEVLA", "KOTEV", "VADEN"]
             ]
         },
         "VADEN1V": {
@@ -2759,7 +2759,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY05", "BA061", "ABLEM", "GEVLA", "KOTEV", "VADEN*"]
+                ["_RWY05", "BA061", "ABLEM", "GEVLA", "KOTEV", "VADEN"]
             ]
         },
         "VADEN1X": {
@@ -2773,7 +2773,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "BA041", "RIMBO", "VADEN*"]
+                ["_RWY17R", "BA010", "BA041", "RIMBO", "VADEN"]
             ]
         },
         "VADEN1Y": {
@@ -2787,7 +2787,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY17R", "BA010", "RIMBO", "VADEN*"]
+                ["_RWY17R", "BA010", "RIMBO", "VADEN"]
             ]
         },
         "VADEN1Z": {
@@ -2801,7 +2801,7 @@
                 "VADEN": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "RIMBO", "VADEN*"]
+                ["_RWY17L", "BA010", "RIMBO", "VADEN"]
             ]
         },
         "YAA1D": {
@@ -2815,7 +2815,7 @@
                 "YAA": []
             },
             "draw": [
-                ["_RWY17R", "_IST356007", "BKZ", "YAA*"]
+                ["_RWY17R", "_IST356007", "BKZ", "YAA"]
             ]
         },
         "YAA1K": {
@@ -2829,7 +2829,7 @@
                 "YAA": []
             },
             "draw": [
-                ["_RWY17L", "_IST356007", "BKZ", "YAA*"]
+                ["_RWY17L", "_IST356007", "BKZ", "YAA"]
             ]
         },
         "YAA1N": {
@@ -2843,7 +2843,7 @@
                 "YAA": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "BKZ", "YAA*"]
+                ["_RWY23", "_IST051004.5", "BKZ", "YAA"]
             ]
         },
         "YAA2G": {
@@ -2857,7 +2857,7 @@
                 "YAA": []
             },
             "draw": [
-                ["_RWY05", "_IST245005", "_IST245005", "_IST244005", "_IST243005", "_IST242005", "_IST241005", "_IST240005", "_IST239005", "_IST238005", "_IST237005", "_IST236005", "_IST235005", "_IST234005", "_IST233005", "_IST232005", "_IST231005", "_IST230005", "_IST229005", "_IST228005", "_IST227005", "_IST226005", "_IST225005", "_IST224005", "_IST223005", "_IST222005", "_IST221005", "_IST220005", "_IST219005", "_IST218005", "_IST217005", "_IST216005", "_IST215005", "_IST214005",  "_IST213005", "_IST212005", "_IST211005", "_IST210005", "_IST209005", "_IST208005", "_IST207005", "_IST206005", "_IST205005", "_IST204005", "_IST203005", "_IST202005", "_IST201005", "_IST200005", "_IST199005", "_IST198005", "_IST197005", "_IST196005", "_IST195005", "_IST194005", "_IST193005", "_IST192005", "_IST191005", "_IST190005", "_IST189005", "_IST188005", "_IST187005", "_IST186005", "_IST185005", "_IST184005", "_IST183005", "_IST182005", "_IST181005", "_IST180005",  "_IST179005", "_IST178005", "_IST177005", "_IST176005", "_IST175005", "_IST174005", "_IST173005", "_IST172005", "_IST171005", "_IST170005", "_IST169005", "_IST168005", "_IST167005", "_IST166005", "_IST165005", "_IST164005", "_IST163005", "_IST162005", "_IST161005", "_IST160005", "_IST159005", "_IST158005", "_IST157005", "_IST156005", "_IST155005", "_IST154005", "_IST153005", "_IST152005", "_IST151005", "_IST150005", "_IST149005", "_IST148005", "_IST147005", "_IST146005",  "_IST145005", "_IST144005", "YAA*"]
+                ["_RWY05", "_IST245005", "_IST245005", "_IST244005", "_IST243005", "_IST242005", "_IST241005", "_IST240005", "_IST239005", "_IST238005", "_IST237005", "_IST236005", "_IST235005", "_IST234005", "_IST233005", "_IST232005", "_IST231005", "_IST230005", "_IST229005", "_IST228005", "_IST227005", "_IST226005", "_IST225005", "_IST224005", "_IST223005", "_IST222005", "_IST221005", "_IST220005", "_IST219005", "_IST218005", "_IST217005", "_IST216005", "_IST215005", "_IST214005",  "_IST213005", "_IST212005", "_IST211005", "_IST210005", "_IST209005", "_IST208005", "_IST207005", "_IST206005", "_IST205005", "_IST204005", "_IST203005", "_IST202005", "_IST201005", "_IST200005", "_IST199005", "_IST198005", "_IST197005", "_IST196005", "_IST195005", "_IST194005", "_IST193005", "_IST192005", "_IST191005", "_IST190005", "_IST189005", "_IST188005", "_IST187005", "_IST186005", "_IST185005", "_IST184005", "_IST183005", "_IST182005", "_IST181005", "_IST180005",  "_IST179005", "_IST178005", "_IST177005", "_IST176005", "_IST175005", "_IST174005", "_IST173005", "_IST172005", "_IST171005", "_IST170005", "_IST169005", "_IST168005", "_IST167005", "_IST166005", "_IST165005", "_IST164005", "_IST163005", "_IST162005", "_IST161005", "_IST160005", "_IST159005", "_IST158005", "_IST157005", "_IST156005", "_IST155005", "_IST154005", "_IST153005", "_IST152005", "_IST151005", "_IST150005", "_IST149005", "_IST148005", "_IST147005", "_IST146005",  "_IST145005", "_IST144005", "YAA"]
             ]
         },
         "YAA2S": {
@@ -2872,7 +2872,7 @@
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "YAA*"],
+                ["_RWY35R", "_IST177005", "YAA"],
                 ["_RWY35L", "_IST177005", "YAA"]
             ]
         }
@@ -2890,7 +2890,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["BIG*", "MARMA", "DENIZ", "IMREN", "SADIK", "ERMAN"]
+                ["BIG", "MARMA", "DENIZ", "IMREN", "SADIK", "ERMAN"]
             ]
         },
         "BIG1B": {
@@ -2904,7 +2904,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["BIG*", "MARMA", "DENIZ", "IMREN", "ATCOS"]
+                ["BIG", "MARMA", "DENIZ", "IMREN", "ATCOS"]
             ]
         },
         "BIG1C": {
@@ -2919,7 +2919,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["BIG*", "CEK", "FATIH"]
+                ["BIG", "CEK", "FATIH"]
             ]
         },
         "BIG1F": {
@@ -2934,7 +2934,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["BIG*", "IMREN", "ATCOS", "IST", "VURAL", "FATIH"]
+                ["BIG", "IMREN", "ATCOS", "IST", "VURAL", "FATIH"]
             ]
         },
         "BIG1Y": {
@@ -2948,7 +2948,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["BIG*", "MARMA", "DENIZ", "CEK", "BKZ"]
+                ["BIG", "MARMA", "DENIZ", "CEK", "BKZ"]
             ]
         },
         "BIG1Z": {
@@ -2962,7 +2962,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["BIG*", "MARMA", "DENIZ", "IST", "KOFUN"]
+                ["BIG", "MARMA", "DENIZ", "IST", "KOFUN"]
             ]
         },
         "DEKEK1A": {
@@ -2976,7 +2976,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["DEKEK*", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+                ["DEKEK", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
             ]
         },
         "DEKEK1B": {
@@ -2991,7 +2991,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["DEKEK*", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+                ["DEKEK", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
             ]
         },
         "DEKEK1D": {
@@ -3006,7 +3006,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["DEKEK*", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+                ["DEKEK", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
             ]
         },
         "EKI1A": {
@@ -3021,7 +3021,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["EKI*", "DENIZ", "IMREN", "SADIK", "ERMAN"]
+                ["EKI", "DENIZ", "IMREN", "SADIK", "ERMAN"]
             ]
         },
         "EKI1B": {
@@ -3035,7 +3035,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["EKI*", "DENIZ", "IMREN", "ATCOS"]
+                ["EKI", "DENIZ", "IMREN", "ATCOS"]
             ]
         },
         "EKI1C": {
@@ -3050,7 +3050,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["EKI*", "CEK", "FATIH"]
+                ["EKI", "CEK", "FATIH"]
             ]
         },
         "EKI1Y": {
@@ -3064,7 +3064,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["EKI*", "CEK", "BKZ"]
+                ["EKI", "CEK", "BKZ"]
             ]
         },
         "ENESU1A": {
@@ -3078,7 +3078,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["ENESU*", "CRL", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+                ["ENESU", "CRL", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
             ]
         },
         "ENESU1B": {
@@ -3093,7 +3093,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["ENESU*", "CRL", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+                ["ENESU", "CRL", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
             ]
         },
         "ENESU1C": {
@@ -3107,7 +3107,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["ENESU*", "CRL", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+                ["ENESU", "CRL", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
             ]
         },
         "ENESU1D": {
@@ -3122,7 +3122,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["ENESU*", "CRL", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+                ["ENESU", "CRL", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
             ]
         },
         "ERKAL1A": {
@@ -3136,7 +3136,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["ERKAL*", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+                ["ERKAL", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
             ]
         },
         "ERKAL1B": {
@@ -3151,7 +3151,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["ERKAL*", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+                ["ERKAL", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
             ]
         },
         "ERKAL1D": {
@@ -3166,7 +3166,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["ERKAL*", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+                ["ERKAL", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
             ]
         },
         "GAYEM1A": {
@@ -3181,7 +3181,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["GAYEM*", "BKZ", "IST", "ERMAN"]
+                ["GAYEM", "BKZ", "IST", "ERMAN"]
             ]
         },
         "GAYEM1B": {
@@ -3195,7 +3195,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["GAYEM*", "BKZ", "IST", "ATCOS"]
+                ["GAYEM", "BKZ", "IST", "ATCOS"]
             ]
         },
         "GAYEM1C": {
@@ -3209,7 +3209,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["GAYEM*", "SADIK", "IMREN", "ATCOS"]
+                ["GAYEM", "SADIK", "IMREN", "ATCOS"]
             ]
         },
         "GAYEM1E": {
@@ -3223,7 +3223,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["GAYEM*", "BKZ"]
+                ["GAYEM", "BKZ"]
             ]
         },
         "GAYEM1F": {
@@ -3238,7 +3238,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["GAYEM*", "BKZ", "FATIH"]
+                ["GAYEM", "BKZ", "FATIH"]
             ]
         },
         "GELBU1A": {
@@ -3252,7 +3252,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["GELBU*", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+                ["GELBU", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
             ]
         },
         "GELBU1B": {
@@ -3267,7 +3267,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["GELBU*", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+                ["GELBU", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
             ]
         },
         "GELBU1C": {
@@ -3281,7 +3281,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["GELBU*", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+                ["GELBU", "EKI", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
             ]
         },
         "GELBU1D": {
@@ -3296,7 +3296,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["GELBU*", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+                ["GELBU", "EKI", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
             ]
         },
         "PAZAR1A": {
@@ -3310,7 +3310,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["PAZAR*", "BA046", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+                ["PAZAR", "BA046", "GAYEM", "BA044", "VATOM", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
             ]
         },
         "PAZAR1B": {
@@ -3325,7 +3325,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["PAZAR*", "BA046", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+                ["PAZAR", "BA046", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
             ]
         },
         "PAZAR1D": {
@@ -3340,7 +3340,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["PAZAR*", "BA046", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+                ["PAZAR", "BA046", "GAYEM", "BA044", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
             ]
         },
         "PIMAV1A": {
@@ -3354,7 +3354,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["PIMAV*", "EKDAM", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
+                ["PIMAV", "EKDAM", "YAA", "BA580", "BA581", "BA582", "BA583", "BA584", "BA585", "BA586", "BA587", "BA588"]
             ]
         },
         "PIMAV1B": {
@@ -3369,7 +3369,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["PIMAV*", "EKDAM", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+                ["PIMAV", "EKDAM", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
             ]
         },
         "PIMAV1D": {
@@ -3384,7 +3384,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["PIMAV*", "EKDAM", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
+                ["PIMAV", "EKDAM", "YAA", "VATOM", "BA570", "BA571", "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"]
             ]
         },
         "TETSA1A": {
@@ -3398,7 +3398,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["TETSA*", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+                ["TETSA", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
             ]
         },
         "TETSA1B": {
@@ -3413,7 +3413,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["TETSA*", "UNTUT", "BA612", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+                ["TETSA", "UNTUT", "BA612", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
             ]
         },
         "TETSA1C": {
@@ -3427,7 +3427,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["TETSA*", "UNTUT", "BA612", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+                ["TETSA", "UNTUT", "BA612", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
             ]
         },
         "TETSA1D": {
@@ -3441,7 +3441,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["TETSA*", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+                ["TETSA", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
             ]
         },
         "TURKO1A": {
@@ -3455,7 +3455,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["TURKO*", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
+                ["TURKO", "ZEMBA", "BA611", "BA612", "ERLEB", "BA791", "BA792", "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"]
             ]
         },
         "TURKO1B": {
@@ -3470,7 +3470,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["TURKO*", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
+                ["TURKO", "ZEMBA", "BA613", "GEVLA", "CEK", "BA623", "BA646", "BA647", "BA648", "BA649", "BA650", "BA651"]
             ]
         },
         "TURKO1C": {
@@ -3484,7 +3484,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["TURKO*", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+                ["TURKO", "ZEMBA", "BA613", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
             ]
         },
         "TURKO1D": {
@@ -3499,7 +3499,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["TURKO*", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
+                ["TURKO", "ZEMBA", "BA611", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
             ]
         },
         "ULMAR1A": {
@@ -3513,7 +3513,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["ULMAR*", "CRL", "BKZ"]
+                ["ULMAR", "CRL", "BKZ"]
             ]
         },
         "ULMAR1B": {
@@ -3528,7 +3528,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["ULMAR*", "CRL", "FATIH"]
+                ["ULMAR", "CRL", "FATIH"]
             ]
         },
         "UNSAV1A": {
@@ -3543,7 +3543,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["UNSAV*", "CEK", "IMREN", "SADIK", "ERMAN"]
+                ["UNSAV", "CEK", "IMREN", "SADIK", "ERMAN"]
             ]
         },
         "UNSAV1B": {
@@ -3558,7 +3558,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["UNSAV*", "FATIH", "VURAL", "IST", "ERMAN"]
+                ["UNSAV", "FATIH", "VURAL", "IST", "ERMAN"]
             ]
         },
         "UNSAV1C": {
@@ -3573,7 +3573,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["UNSAV*", "BKZ", "IST", "ERMAN"]
+                ["UNSAV", "BKZ", "IST", "ERMAN"]
             ]
         },
         "UNSAV1E": {
@@ -3587,7 +3587,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["UNSAV*", "CEK", "IMREN", "ATCOS"]
+                ["UNSAV", "CEK", "IMREN", "ATCOS"]
             ]
         },
         "UNSAV1F": {
@@ -3601,7 +3601,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["UNSAV*", "FATIH", "VURAL", "IST", "ATCOS"]
+                ["UNSAV", "FATIH", "VURAL", "IST", "ATCOS"]
             ]
         },
         "UNSAV1G": {
@@ -3616,7 +3616,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["UNSAV*", "FATIH"]
+                ["UNSAV", "FATIH"]
             ]
         },
         "UNSAV1H": {
@@ -3630,7 +3630,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["UNSAV*", "FATIH", "BKZ"]
+                ["UNSAV", "FATIH", "BKZ"]
             ]
         },
         "UNSAV1J": {
@@ -3644,7 +3644,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["UNSAV*", "BKZ"]
+                ["UNSAV", "BKZ"]
             ]
         },
         "YAA1A": {
@@ -3659,7 +3659,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["YAA*", "SADIK", "ERMAN"]
+                ["YAA", "SADIK", "ERMAN"]
             ]
         },
         "YAA1B": {
@@ -3673,7 +3673,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["YAA*", "SADIK", "IMREN", "ATCOS"]
+                ["YAA", "SADIK", "IMREN", "ATCOS"]
             ]
         },
         "YAA1R": {
@@ -3688,7 +3688,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["YAA*", "BKZ", "FATIH"]
+                ["YAA", "BKZ", "FATIH"]
             ]
         },
         "YAA1T": {
@@ -3704,7 +3704,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["YAA*", "BKZ"]
+                ["YAA", "BKZ"]
             ]
         },
         "YASEN1A": {
@@ -3719,7 +3719,7 @@
                 "LTBA35R": []
             },
             "draw": [
-                ["YASEN*", "BKZ", "IST", "ERMAN"]
+                ["YASEN", "BKZ", "IST", "ERMAN"]
             ]
         },
         "YASEN1B": {
@@ -3733,7 +3733,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["YASEN*", "BKZ", "IST", "ATCOS"]
+                ["YASEN", "BKZ", "IST", "ATCOS"]
             ]
         },
         "YASEN1C": {
@@ -3747,7 +3747,7 @@
                 "LTBA05": []
             },
             "draw": [
-                ["YASEN*", "BKZ", "SADIK", "IMREN", "ATCOS"]
+                ["YASEN", "BKZ", "SADIK", "IMREN", "ATCOS"]
             ]
         },
         "YASEN1E": {
@@ -3761,7 +3761,7 @@
                 "LTBA23": []
             },
             "draw": [
-                ["YASEN*", "BKZ"]
+                ["YASEN", "BKZ"]
             ]
         },
         "YASEN1F": {
@@ -3776,7 +3776,7 @@
                 "LTBA17R": []
             },
             "draw": [
-                ["YASEN*", "BKZ", "FATIH"]
+                ["YASEN", "BKZ", "FATIH"]
             ]
         }
     },
