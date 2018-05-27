@@ -1,6 +1,6 @@
 {
     "icao": "hda",
-    "name": "Dragonair",
+    "name": "Cathay Dragon",
     "callsign": {
         "name": "Dragon",
         "callsignFormats": [
@@ -11,7 +11,7 @@
         "default": [
             ["A320", 15],
             ["A321", 8 ],
-            ["A333", 18]
+            ["A333", 24]
         ]
     }
 }
