@@ -1,9 +1,13 @@
 {
     "icao": "fdy",
-    "name": "Southern Airways Express",
+    "name": "Sun Air Express",
     "callsign": {
         "name": "Friendly",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
     },
     "fleets": {
         "default": [
