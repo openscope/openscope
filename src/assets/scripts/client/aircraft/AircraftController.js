@@ -9,7 +9,6 @@ import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
-import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import StripViewController from './StripView/StripViewController';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
@@ -19,7 +18,6 @@ import {
     generateRandomOctalWithLength
 } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
 import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
@@ -145,6 +143,14 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
+
+        /**
+         * Instance of the `StripViewController`
+         *
+         * @property _stripViewController
+         * @type {StripViewController}
+         * @private
+         */
         this._stripViewController = new StripViewController();
 
         return this.init()
@@ -341,9 +347,9 @@ export default class AircraftController {
      * any other methods called from within
      *
      * @for AircraftController
-     * @method aircraft_update
+     * @method update
      */
-    aircraft_update() {
+    update() {
         if (this.aircraft.list.length === 0) {
             return;
         }
@@ -362,6 +368,11 @@ export default class AircraftController {
 
             this._updateAircraftConflicts(aircraftModel, i);
             this._updateAircraftVisibility(aircraftModel);
+
+            if (aircraftModel.isFlightStripRemovable) {
+                console.log('+++', aircraftModel.callsign);
+                this._stripViewController.removeStripView(aircraftModel);
+            }
         }
     }
 
@@ -807,7 +818,7 @@ export default class AircraftController {
      */
     _updateAircraftVisibility(aircraftModel) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
-        if (aircraftModel.category === FLIGHT_CATEGORY.ARRIVAL && aircraftModel.isStopped()) {
+        if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
             // TODO: move this to the GAME_EVENTS constant
             // TODO: move this out of the aircraft model
             aircraftModel.scoreWind('landed');
