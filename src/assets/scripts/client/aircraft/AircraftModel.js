@@ -672,25 +672,19 @@ export default class AircraftModel {
      * @method onAirspaceExit
      */
     onAirspaceExit() {
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (this.isArrival()) {
             return this.arrivalExit();
         }
 
         this.setIsRemovable();
 
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
-            this.radioCall(
-                'leaving radar coverage without proper clearance',
-                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
-                true
-            );
-            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+            this._onAirspaceExitWithoutClearance();
 
             return;
         }
 
-        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+        this._onAirspaceExitWithClearance();
     }
 
     /**
@@ -917,6 +911,11 @@ export default class AircraftModel {
         return this.fms.isDeparture();
     }
 
+    /**
+     * @for AircraftModel
+     * @method isArrival
+     * @returns booelan
+     */
     isArrival() {
         return this.fms.isArrival();
     }
@@ -2067,13 +2066,6 @@ export default class AircraftModel {
 
         this.distance = vlen(this.positionModel.relativePosition);
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
-
-        // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
-
-        if (isInsideAirspace !== this.inside_ctr) {
-            this.crossBoundary(isInsideAirspace);
-        }
     }
 
     /**
@@ -2110,7 +2102,8 @@ export default class AircraftModel {
     }
 
     /**
-     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     * This updates the Altitude for the instance of the aircraft by checking the difference
+     * between current Altitude and requested Altitude
      *
      * @for AircraftModel
      * @method updateAltitudePhysics
@@ -2430,6 +2423,7 @@ export default class AircraftModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
+        this._updateAircraftVisibility();
     }
 
     /**
@@ -2481,5 +2475,40 @@ export default class AircraftModel {
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithClearance
+     * @private
+     */
+    _onAirspaceExitWithClearance() {
+        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithoutClearance
+     * @private
+     */
+    _onAirspaceExitWithoutClearance() {
+        this.radioCall('leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+        GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _updateAircraftVisibility
+     * @private
+     */
+    _updateAircraftVisibility() {
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
+
+        if (isInsideAirspace === this.inside_ctr) {
+            return;
+        }
+
+        this.crossBoundary(isInsideAirspace);
     }
 }

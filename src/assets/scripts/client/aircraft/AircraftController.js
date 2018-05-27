@@ -344,75 +344,24 @@ export default class AircraftController {
      * @method aircraft_update
      */
     aircraft_update() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-            aircraft.update();
-            aircraft.updateWarning();
-
-            if (aircraft.isTaxiing()) {
-                continue;
-            }
-
-            // TODO: this section eats up a lot of resources when there are more than 30 aircraft and we
-            //       don't check for taxiing aircraft
-            for (let j = i + 1; j < this.aircraft.list.length; j++) {
-                const otherAircraft = this.aircraft.list[j];
-
-                if (aircraft.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
-                    continue;
-                }
-
-                // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
-                // no violation can occur in this case.
-                // Variation of:
-                // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.relativePosition[0] - otherAircraft.relativePosition[0]);
-                const dy = abs(aircraft.relativePosition[1] - otherAircraft.relativePosition[1]);
-                const boundingBoxLength = km(8);
-
-                if (dx < boundingBoxLength && dy < boundingBoxLength) {
-                    this.addConflict(aircraft, otherAircraft);
-                }
-            }
+        if (this.aircraft.list.length === 0) {
+            return;
         }
 
-        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            const aircraft = this.aircraft.list[i];
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            const aircraftModel = this.aircraft.list[i];
 
-            // TODO: these next 3 logic blocks could use some cleaning/abstraction
-            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
-                // TODO: move this to the GAME_EVENTS constant
-                // TODO: move this out of the aircraft model
-                aircraft.scoreWind('landed');
+            aircraftModel.update();
+            aircraftModel.updateWarning();
 
-                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', switching to ground, good day' }
-                ]);
-
-                GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                aircraft.setIsRemovable();
-                this.aircraft_remove(aircraft);
-
+            // TODO: conflict checking eats up a lot of resources when there are more than
+            //       30 aircraft, exit early if we're still taxiing
+            if (aircraftModel.isTaxiing()) {
                 continue;
             }
 
-            if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
-                aircraft.setIsRemovable();
-
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', radar contact lost' }
-                ]);
-            }
-
-            // Clean up the screen from aircraft that are too far
-            if (!this.isAircraftVisible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
-                this.aircraft_remove(aircraft);
-                i -= 1;
-            }
+            this._updateAircraftConflicts(aircraftModel, i);
+            this._updateAircraftVisibility(aircraftModel);
         }
     }
 
@@ -813,4 +762,82 @@ export default class AircraftController {
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
     };
+
+    /**
+     * Given an `aircraftModel` check against each other aircraft fro conflicts
+     * after physics (current position) have been updated
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @param {number} currentUpdateIndex
+     * @private
+     */
+    _updateAircraftConflicts(aircraftModel, currentUpdateIndex) {
+        for (let j = currentUpdateIndex + 1; j < this.aircraft.list.length; j++) {
+            const otherAircraft = this.aircraft.list[j];
+
+            if (aircraftModel.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
+                continue;
+            }
+
+            // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
+            // no violation can occur in this case.
+            // Variation of:
+            // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+            const dx = abs(aircraftModel.relativePosition[0] - otherAircraft.relativePosition[0]);
+            const dy = abs(aircraftModel.relativePosition[1] - otherAircraft.relativePosition[1]);
+            const boundingBoxLength = km(8);
+
+            if (dx < boundingBoxLength && dy < boundingBoxLength) {
+                this.addConflict(aircraftModel, otherAircraft);
+            }
+        }
+    }
+
+    /**
+     * Determine if an `aircraftModel` has exited controlled airspace then notify
+     * user and score event
+     *
+     * TODO: This method needs to include some logic currently happeing in `AircraftModel`
+     *       used to remove a departing aricraft
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @private
+     */
+    _updateAircraftVisibility(aircraftModel) {
+        // TODO: these next 3 logic blocks could use some cleaning/abstraction
+        if (aircraftModel.category === FLIGHT_CATEGORY.ARRIVAL && aircraftModel.isStopped()) {
+            // TODO: move this to the GAME_EVENTS constant
+            // TODO: move this out of the aircraft model
+            aircraftModel.scoreWind('landed');
+
+            UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
+            speech_say([
+                { type: 'callsign', content: aircraftModel },
+                { type: 'text', content: ', switching to ground, good day' }
+            ]);
+
+            GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+            aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
+
+            return;
+        }
+
+        if (aircraftModel.hit && aircraftModel.isOnGround()) {
+            UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
+            aircraftModel.setIsRemovable();
+
+            speech_say([
+                { type: 'callsign', content: aircraftModel },
+                { type: 'text', content: ', radar contact lost' }
+            ]);
+        }
+
+        // Clean up the screen from aircraft that are too far
+        if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.inside_ctr && aircraftModel.isRemovable) {
+            this.aircraft_remove(aircraftModel);
+        }
+    }
 }
