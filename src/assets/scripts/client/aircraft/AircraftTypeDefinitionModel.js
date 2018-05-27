@@ -49,6 +49,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
          */
         this.icao = '';
 
+        this.typeCode = '';
+
         /**
          * Icao identifier that includes a weightClass
          * designation when `Heavy` or `Super`
@@ -152,6 +154,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     init(aircraftTypeDefinition) {
         this.name = aircraftTypeDefinition.name;
         this.icao = aircraftTypeDefinition.icao.toLowerCase();
+        this.typeCode = aircraftTypeDefinition.typeCode ? aircraftTypeDefinition.typeCode.toUpperCase() : '';
         this.engines = aircraftTypeDefinition.engines;
         this.weightClass = aircraftTypeDefinition.weightClass;
         this.category = aircraftTypeDefinition.category;
@@ -229,7 +232,11 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @return {Boolean}
      */
     isAbleToMaintainSpeed(speed) {
-        return speed >= this.speed.min && speed <= this.speed.max;
+        return speed >= this.speed.threshold && speed <= this.speed.iasCruise;
+    }
+
+    isTurbojet() {
+        return this.typeCode[2] === 'J';
     }
 
     /**
