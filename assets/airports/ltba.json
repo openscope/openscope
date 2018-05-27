@@ -3789,7 +3789,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.644114809,
+            "rate": 7.60137807521,
             "airlines": [
                 ["aaw/short", 23],
                 ["brq", 6],
@@ -3816,7 +3816,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.388326097,
+            "rate": 0.38615504261,
             "airlines": [
                 ["abq", 1],
                 ["iaw/short", 17],
@@ -3835,7 +3835,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.215629522,
+            "rate": 0.21442398000,
             "airlines": [
                 ["dah/b738", 35],
                 ["ohy/short", 2],
@@ -3855,7 +3855,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.215629522,
+            "rate": 2.20324237562,
             "airlines": [
                 ["dah/b738", 35],
                 ["ohy/short", 2],
@@ -3875,7 +3875,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.988060781,
+            "rate": 1.97694592644,
             "airlines": [
                 ["kkk", 15],
                 ["mnb", 3],
@@ -3894,7 +3894,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.523757839,
+            "rate": 1.51523881034,
             "airlines": [
                 ["aui/short", 59],
                 ["bru/ltba", 9],
@@ -3916,7 +3916,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.438977328,
+            "rate": 0.43652309259,
             "airlines": [
                 ["aee/a319", 14],
                 ["aee/oal", 24],
@@ -3934,7 +3934,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.135793536,
+            "rate": 2.12385273683,
             "airlines": [
                 ["kkk", 22],
                 ["mnb", 2],
@@ -3953,7 +3953,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 4.001447178,
+            "rate": 3.97907587837,
             "airlines": [
                 ["aar/a333", 8],
                 ["afl/short", 56],
@@ -3982,7 +3982,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5.824891462,
+            "rate": 5.79232564608,
             "airlines": [
                 ["afg/b734", 2],
                 ["etd/ltba", 14],
@@ -4018,7 +4018,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.07483731,
+            "rate": 3.05764650284,
             "airlines": [
                 ["kkk", 44],
                 ["klm/short", 14],
@@ -4038,7 +4038,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5.567606652,
+            "rate": 5.53647926456,
             "airlines": [
                 ["afr/a320", 8],
                 ["ahy", 1],
@@ -4063,7 +4063,7 @@
             "category": "arrival",
             "method": "random",
             "route": "SOMGU.UL610.DEKEK.DEKEK1A.LTBA05",
-            "rate": 7.644114809,
+            "rate": 7.60137807521,
             "altitude": [31000, 32000],
             "speed": 290,
             "airlines": [
@@ -4090,7 +4090,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ADORU.L614.ENESU.ENESU1A.LTBA05",
-            "rate": 5.315252370,
+            "rate": 5.28553584543,
             "altitude": [28000, 29000],
             "speed": 280,
             "airlines": [
@@ -4121,7 +4121,7 @@
             "category": "arrival",
             "method": "random",
             "route": "RILEX.L867.ENESU.ENESU1A.LTBA05",
-            "rate": 5.315252370,
+            "rate": 5.28553584543,
             "altitude": [26000, 27000],
             "speed": 280,
             "airlines": [
@@ -4152,7 +4152,7 @@
             "category": "arrival",
             "method": "random",
             "route": "YAVRU.UL615.ERKAL.ERKAL1A.LTBA05",
-            "rate": 0.388326097,
+            "rate": 0.38615504261,
             "altitude": [31000, 33000],
             "speed": 290,
             "airlines": [
@@ -4171,7 +4171,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ALX.UM603.GELBU.GELBU1A.LTBA05",
-            "rate": 2.215629522,
+            "rate": 2.20324237562,
             "altitude": [27000, 30000],
             "speed": 290,
             "airlines": [
@@ -4191,7 +4191,7 @@
             "category": "arrival",
             "method": "random",
             "route": "INB.UW702.PAZAR.PAZAR1A.LTBA05",
-            "rate": 4.001447178,
+            "rate": 3.97907587837,
             "altitude": [31000, 39000],
             "speed": 290,
             "airlines": [
@@ -4220,7 +4220,7 @@
             "category": "arrival",
             "method": "random",
             "route": "TOKER.G8.PIMAV.PIMAV1A.LTBA05",
-            "rate": 5.824891462,
+            "rate": 5.79232564608,
             "altitude": [26000, 27000],
             "speed": 290,
             "airlines": [
@@ -4256,7 +4256,7 @@
             "category": "arrival",
             "method": "random",
             "route": "RIXEN.N616.TETSA.TETSA1A.LTBA05",
-            "rate": 1.523757839,
+            "rate": 1.51523881034,
             "altitude": [23000, 26000],
             "speed": 250,
             "airlines": [
@@ -4278,7 +4278,7 @@
             "category": "arrival",
             "method": "random",
             "route": "AMANI.UN604.BIG.Y146.TURKO.TURKO1A.LTBA05",
-            "rate": 0.438977328,
+            "rate": 0.43652309259,
             "altitude": [35000, 37000],
             "speed": 290,
             "airlines": [
@@ -4296,7 +4296,7 @@
             "category": "arrival",
             "method": "random",
             "route": "DUGLA.UN618.BIG.Y146.TURKO.TURKO1A.LTBA05",
-            "rate": 2.135793536,
+            "rate": 2.12385273683,
             "altitude": [32000, 34000],
             "speed": 290,
             "airlines": [

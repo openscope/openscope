@@ -5,7 +5,7 @@ The airport was originally named *Yeşilköy Airport*. In the 1980s, it was rena
 #### Statistics
 * **Total passengers**: *63,727,448* (2017)
 * **International passengers**: *44,277,101* (2017)
-* **Aircraft movements**: *466,396* (2016)
+* **Aircraft movements**: *460,777* (2017)
 * **Cargo**: *790,744 tonnes* (2017)
 
 
