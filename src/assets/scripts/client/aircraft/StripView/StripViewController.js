@@ -143,11 +143,11 @@ export default class StripViewController {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
+            if (aircraftModel.isControllable && !stripViewModel.insideCenter) {
                 this._addViewToStripList(stripViewModel);
             }
 
-            if (aircraftModel.inside_ctr) {
+            if (aircraftModel.isControllable) {
                 stripViewModel.update(aircraftModel);
             }
         }
@@ -166,7 +166,7 @@ export default class StripViewController {
 
         this._collection.addItem(stripViewModel);
 
-        if (aircraftModel.isDeparture() || aircraftModel.inside_ctr) {
+        if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
             this._addViewToStripList(stripViewModel);
         }
     }

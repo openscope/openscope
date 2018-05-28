@@ -735,7 +735,7 @@ export default class AircraftController {
      * @private
      */
     _onSelectAircraftStrip = (aircraftModel) => {
-        if (!aircraftModel.inside_ctr) {
+        if (!aircraftModel.isControllable) {
             return;
         }
 
@@ -849,7 +849,7 @@ export default class AircraftController {
         }
 
         // Clean up the screen from aircraft that are too far
-        if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.inside_ctr && aircraftModel.isRemovable) {
+        if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
             this.aircraft_remove(aircraftModel);
         }
     }

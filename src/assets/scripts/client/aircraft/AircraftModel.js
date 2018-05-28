@@ -377,16 +377,16 @@ export default class AircraftModel {
          */
         this.rules = FLIGHT_RULES.IFR;
 
-        // TODO: this should be renamed to `#_isControllable`
         /**
-         * Inside ATC Airspace
+         * Flag for if an aircraft is within controlled airspace, thus
+         * making an aircraft _controllable_
          *
          * @for AircraftModel
-         * @property inside_ctr
+         * @property isControllable
          * @type {boolean}
          * @default false
          */
-        this.inside_ctr = false;
+        this.isControllable = false;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -540,16 +540,6 @@ export default class AircraftModel {
      */
     get relativePosition() {
         return this.positionModel.relativePosition;
-    }
-
-    // TODO: temporary getter to allow for easier transition to `#isControllable` property
-    get isControllable() {
-        return this.inside_ctr;
-    }
-
-    // TODO: temporary setter to allow for easier transition to `#isControllable` property
-    set isControllable(value) {
-        this.inside_ctr = value;
     }
 
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
