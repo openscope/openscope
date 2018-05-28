@@ -2,14 +2,15 @@
     "icao": "klc",
     "name": "KLM Cityhopper",
     "callsign": {
-        "name": "KLM",
+        "name": "City",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["E190", 30 ]
+            ["E170", 17],
+            ["E190", 32]
         ]
     }
 }
