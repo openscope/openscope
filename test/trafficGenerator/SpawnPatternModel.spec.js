@@ -18,7 +18,8 @@ import {
     ARRIVAL_PATTERN_MOCK_ALL_STRINGS,
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK,
-    ARRIVAL_PATTERN_ROUTE_STRING_MOCK
+    ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
+    ARRIVAL_PATTERN_FLOAT_RATE_MOCK
 } from './_mocks/spawnPatternMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
@@ -61,6 +62,12 @@ ava('initializes correctly when spawn pattern definition uses string type for nu
     t.true(model._maximumAltitude === 36000);
     t.true(model.speed === 320);
     t.true(model.rate === 10);
+});
+
+ava('initializes correctly when rate is passed as a float', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_FLOAT_RATE_MOCK);
+
+    t.true(model.rate === 3.3);
 });
 
 ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {

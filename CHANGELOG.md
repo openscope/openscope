@@ -9,6 +9,7 @@
 
 ### Bugfixes
 - [#968](https://github.com/openscope/openscope/issues/968) - Fixed N-numbered GA aircraft having callsign "default" if voice is on
+- [#907](https://github.com/openscope/openscope/issues/907) - Updates `SpawnPatternModel` to handle integer or float values for `#rate`
 
 
 
