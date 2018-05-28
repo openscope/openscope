@@ -354,6 +354,7 @@ export default class AircraftController {
             return;
         }
 
+        // TODO: this is getting better, but still needs more simplification
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraftModel = this.aircraft.list[i];
 
@@ -369,8 +370,9 @@ export default class AircraftController {
             this._updateAircraftConflicts(aircraftModel, i);
             this._updateAircraftVisibility(aircraftModel);
 
-            if (aircraftModel.isFlightStripRemovable) {
-                console.log('+++', aircraftModel.callsign);
+            // `#isFlightStripRemovable` will be true even when there is no corresponding
+            // `StripView` for and `aircraftModel`
+            if (aircraftModel.isFlightStripRemovable && this._stripViewController.hasStripViewModel(aircraftModel)) {
                 this._stripViewController.removeStripView(aircraftModel);
             }
         }

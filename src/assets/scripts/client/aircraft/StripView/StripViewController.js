@@ -111,6 +111,20 @@ export default class StripViewController {
     }
 
     /**
+     * Provides a way to check if a `StripViewModel` exists for a given `AircraftModel`
+     *
+     * @for StripViewController
+     * @method hasStripViewModel
+     * @param aircraftModel {AircraftModel}
+     * @returns {booelan}
+     */
+    hasStripViewModel(aircraftModel) {
+        const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        return typeof stripViewModel !== 'undefined';
+    }
+
+    /**
      * Update each `StripViewModel` with new aricraft data
      *
      * The `StripViewModel` provides an early out when
@@ -224,8 +238,12 @@ export default class StripViewController {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripViewModel) {
+            console.warn(
+                `Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist.` +
+                'This is likely not a fatal problem, but if you are seeing this, please let somebody know.'
+            );
+
             return;
-            // throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
         }
 
         this._removeCidFromUse(stripViewModel.cid);
