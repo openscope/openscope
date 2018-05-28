@@ -68,24 +68,22 @@ ava('.getViewModel() includes an altitude that has not been rounded to the neare
     t.true(result === 77.77123456700001);
 });
 
-// FIXME
-ava.skip('.updateTarget() causes arrivals to descend when the STAR includes only AT or ABOVE altitude restrictions', (t) => {
+ava('.updateTarget() causes arrivals to descend when the STAR includes only AT or ABOVE altitude restrictions', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.positionModel = NavigationLibrary.findFixByName('LEMNZ').positionModel;
 
     model.groundSpeed = 320;
     model.updateTarget();
 
-    t.true(model.target.altitude === 17000);
+    t.true(model.target.altitude === 7000);
 });
 
-// FIXME
-ava.skip('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
+ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     model.positionModel = NavigationLibrary.findFixByName('MISEN').positionModel;
 
     model.groundSpeed = 320;
     model.updateTarget();
 
-    t.true(model.target.altitude === 24000);
+    t.true(model.target.altitude === 8000);
 });

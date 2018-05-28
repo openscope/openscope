@@ -397,7 +397,7 @@ ava('.applyPartialRouteAmendment() returns error message without throwing when p
     t.true(absorbRouteModelSpy.notCalled);
 });
 
-ava('.applyPartialRouteAmendment() calls fms._routeModel.absorbRouteModel() when provided routestring is properly formatted', (t) => {
+ava('.applyPartialRouteAmendment() calls #_routeModel.absorbRouteModel() when provided routestring is properly formatted', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('TNP..BIKKR..OAL..MLF..PGS..DRK');
     const routeStringToApply = 'BIKKR..PGS';
     const absorbRouteModelSpy = sinon.spy(fms._routeModel, 'absorbRouteModel');
