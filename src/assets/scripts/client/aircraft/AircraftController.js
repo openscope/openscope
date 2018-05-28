@@ -832,6 +832,7 @@ export default class AircraftController {
             ]);
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+            aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
             this.aircraft_remove(aircraftModel);
 
@@ -840,6 +841,7 @@ export default class AircraftController {
 
         if (aircraftModel.hit && aircraftModel.isOnGround()) {
             UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
+            aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
 
             speech_say([

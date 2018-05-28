@@ -2469,9 +2469,11 @@ export default class AircraftModel {
         delete this.conflicts[conflictingAircraft.callsign];
     }
 
+    // TODO: needs better name
     /**
-     *
-     *
+     * @for AircraftModel
+     * @method _contactAircraftAfterControllabilityChange
+     * @private
      */
     _contactAircraftAfterControllabilityChange() {
         // Crossing into the center
