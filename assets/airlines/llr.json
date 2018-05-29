@@ -1,17 +1,16 @@
 {
     "icao": "llr",
-    "name": "Air India Regional",
+    "name": "Alliance Air",
     "callsign": {
-        "name": "ALLIED",
+        "name": "Allied",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["AT43", 1 ],
-            ["AT76", 7 ],
-            ["CRJ7", 3 ]
+            ["AT43", 3],
+            ["AT76", 14]
         ]
     }
 }
