@@ -6,16 +6,17 @@
 
 
 ### Bugfixes
-- [#968](https://github.com/openscope/openscope/issues/968) - fixed N-numbered GA aircraft having callsign "default" if voice is on
+- [#968](https://github.com/openscope/openscope/issues/968) - Fixed N-numbered GA aircraft having callsign "default" if voice is on
 
 
 
 
 
 ### Enhancements & Refactors
-- [#956](https://github.com/openscope/openscope/issues/956) - updated 'descend via STAR' documentation to change mentioning SID to STAR
+- [#956](https://github.com/openscope/openscope/issues/956) - Updated 'descend via STAR' documentation to change mentioning SID to STAR
 - [#782](https://github.com/openscope/openscope/issues/782) - Overhaul of KATL
-- [#961](https://github.com/openscope/openscope/issues/961) - updated climb and descent rates using Eurocontrol data
+- [#961](https://github.com/openscope/openscope/issues/961) - Updated climb and descent rates using Eurocontrol data
+- [#874](https://github.com/openscope/openscope/issues/874) - Continue and clean up following FMS / Route refactor
 
 
 
