@@ -21,6 +21,10 @@ The Czech civil aviation history started at Prague Kbely Airport in 1919, but it
 
 [Source](https://en.wikipedia.org/wiki/V%C3%A1clav_Havel_Airport_Prague)
 
+### Airspace
+
+The airspace is mainly a circle with a radius of 35nm situated around the Václav Havel Airport with two extended pieces of the airspace
+
 ### Standard Operations
 
 ###### Runway usage
