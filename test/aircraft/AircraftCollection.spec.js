@@ -39,3 +39,6 @@ ava('.remove() decreases the `#_items` length by 1', (t) => {
 
     t.true(collection.length === 0);
 });
+
+ava.todo('.findAircraftByCallsign() ');
+ava.todo('.findAircraftNearPosition() ');
