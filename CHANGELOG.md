@@ -1,7 +1,7 @@
 # 6.2.0 (June 1, 2018)
 ### New Features
 
-
+- [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
 
 
 
