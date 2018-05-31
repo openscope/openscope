@@ -6,11 +6,11 @@ Mezinárodní letiště Václava Havla Praha (Václav Havel Airport Prague) (ICA
 - Ryanair (ICAO: RYR, callsign: RYANAIR)
 - Wizz Air (ICAO: WZZ, callsign: WIZZAIR),
 
-A focus city for: 
+And a focus city for: 
 - easyJet (ICAO: EZY, callsign: EASY)
 - Vueling (ICAO: VLG, callsign: VUELING)
 
-And serving the capital city and most of the area west of Prague. In the east it is helped by Brno Tuřany (LKTB), Pardubice Airport (LKPD) and Ostrava Mošnov (LKMT). It is located 7NM (13 km) to the North-West of the city centre. 
+It serves the capital city and most of the area west of Prague. In the east it is helped by Brno Tuřany (LKTB), Pardubice Airport (LKPD) and Ostrava Mošnov (LKMT). It is located 7NM (13 km) to the North-West of the city centre. 
 
 The Czech civil aviation history started at Prague Kbely Airport in 1918, but it's capacity was insufficient by the mid 1930s the Czech government decided to build a new airport in Prague-Ruzyně. Throughout the years, the airport went through many developmental changes, mainly the construction of runways 04/22, 06/24 and 12/30. 
 
