@@ -1571,7 +1571,7 @@
             "altitude": "14000",
             "speed": "320",
             "method" : "random",
-            "rate": 6,
+            "rate": 7,
             "airlines": [
                 ["TVS", 20],
                 ["CSA", 20],
@@ -1626,7 +1626,7 @@
             "altitude": "14000",
             "speed": "320",
             "method" : "random",
-            "rate": 6,
+            "rate": 7,
             "airlines": [
                 ["TVS", 20],
                 ["CSA", 20],
