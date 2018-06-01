@@ -12,7 +12,7 @@ And a focus city for:
 
 It serves the capital city and most of the area west of Prague. In the east it is helped by Brno Tuřany (LKTB), Pardubice Airport (LKPD) and Ostrava Mošnov (LKMT). It is located 7NM (13 km) to the North-West of the city centre. 
 
-The Czech civil aviation history started at Prague Kbely Airport in 1918, but it's capacity was insufficient by the mid 1930s the Czech government decided to build a new airport in Prague-Ruzyně. Throughout the years, the airport went through many developmental changes, mainly the construction of runways 04/22, 06/24 and 12/30. 
+The Czech civil aviation history started at Prague Kbely Airport in 1918, but as its capacity was insufficient by the mid-1930s, the Czech government decided to build a new airport in Prague-Ruzyně. Throughout the years, the airport went through many developmental changes, mainly the construction of runways 04/22, 06/24 and 12/30.
 
 ### Statistics
 
@@ -29,9 +29,17 @@ The airspace is mainly a circle with a radius of 35nm situated around the Václa
 
 ###### Runway usage
 
-The Václav Havel Airport is very specific with it's runway usage. RWY04/22 is permanently out of operation and serves as a taxiway for oversized aircraft such as the Antonov AN-225. It is also for this reason not at all included in openScope. RWY24 is the only runway approved for ILS CAT II/III operations, runways 06, 12 and 30 are ILS CAT I certified. 
+The Václav Havel Airport is very specific with its runway usage. RWY04/22 is permanently out of operation and serves as a taxiway for oversized aircraft such as the Antonov AN-225. It is also for this reason not at all included in openScope. RWY24 is the only runway approved for ILS CAT II/III operations, runways 06, 12 and 30 are ILS CAT I certified. 
 
-The monopoly in CAT III certification and winds coming mostly from the west mean RWY24 is the preffered RWY and is used for approximately 80% of all operations. RWY12 is the second most commonly used runway and RWYs 06 and 30 are used very seldom. RWYs 06/24 and 12/30 are <b>never</b> used simultaneously. 
+The monopoly in CAT III certification and winds coming mostly from the west mean RWY24 is the preferred RWY and is used for approximately 80% of all operations. RWY12 is the second most commonly used runway and RWYs 06 and 30 are used very seldom. RWYs 06/24 and 12/30 are **never** used simultaneously. 
+
+Accordind to the [IAP](http://lis.rlp.cz/ais_data/www_main_control/frm_en_aip.htm):
+
+> RWY in use will be determined in following order:
+RWY 24
+RWY 06
+RWY 30
+RWY 12
 
 ### Instrument Procedures
 
@@ -41,26 +49,21 @@ A maximum speed of 250kts should be maintained below FL100, however it is common
 
 ###### Arrivals
 
-There are established STAR procedures with speed and altitude restrictions, however aircraft are often vectored for the approach to the runway in use. 
+There are established STAR procedures with speed restrictions, however aircraft are often vectored for the approach to the runway in use. 
 
-### Airports of interest
-
-##### LKPR
-Mezinárodní letiště Václava Havla Praha
-148,283 aircraft movement in 2017
+### Other airports of interest
 
 ##### LKVO
 Letiště Vodochody
 
-Vodochody Airport is a small GA airport located 9NM to the North-East of LKPR. It has one runway, 10/28, with a length of 8202ft and an emergency strip at a length of 4593ft. There are no designed SIDs for this airport, all traffic is IFR and vectored out of the airport. 
+Vodochody Airport is a small GA airport located 9NM to the North-East of LKPR. It has one runway, 10/28, with a length of 8202ft and an emergency strip at a length of 4593ft. There are no designed SIDs for this airport, all traffic is vectored out of the airport. 
 
 ##### LKKB
 Letiště Praha-Kbely
 
-Prague Kbely Airport is a military airport located 11NM to the East of LKPR. It was built as the first international airport in the Czech Republic in 1918, however it was soon understood that it's capacity is much smaller then neccessary and all commercial air traffic was moved to the Václav Havel Airport by the late 1930s. It has one runway, 06/24, with a length of 6824ft. 
+Prague Kbely Airport is a military airport located 11nm to the East of LKPR. It was built as the first international airport in the Czech Republic in 1918, however, it was soon understood that its capacity is much smaller then necessary and all commercial air traffic was moved to the Václav Havel Airport by the late 1930s. It has one runway, 06/24, with a length of 6824ft.
 
 ### Useful Additional Resources
 
 [VATSIM Charts](https://www.vacc-cz.org/en/airports/lkpr)
 [SkyVector Airport Info](https://skyvector.com/airport/LKPR/Praha-Ruzyne-Airport)
-[Jeppesen Charts](http://vau.aero/navdb/chart/LKPR.pdf)

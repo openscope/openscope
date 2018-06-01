@@ -188,6 +188,7 @@
         "PR902": ["N49d55.8", "E14d24.0"],
         "PR903": ["N49d43.9", "E14d48.1"],
         "PR904": ["N49d47.9", "E14d52.8"],
+        "PR913": ["N49d51.99", "E14d31.67"],
         "PR914": ["N50d08.4", "E14d23.7"],
         "PR915": ["N50d03.3", "E14d34.2"],
         "PR950": ["N49d50.8", "E14d52.6"],
@@ -798,11 +799,11 @@
             "icao": "ARTUP2H",
             "name": "Artup Two Hotel",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": []
             },
-            "body": [["PR860", "A95-|A35+"], "PR861"],
+            "body": ["PR860", "PR861"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
             "draw": [["PR860", "PR861", "ARTUP"]]
         },
@@ -810,23 +811,23 @@
             "icao": "ARTUP2M",
             "name": "Artup Two Mike",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": [["_RWY24", "A17+"]]
             },
-            "body": [["_RWY24", "A17"], ["PR407", "A95-|A35+"], ["PR409", "A140+"]],
+            "body": ["PR407", "BAGRU", "PR409"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
-            "draw": [["_RWY24", "PR407", "PR409", "ARTUP"]]
+            "draw": [["_RWY24", "PR407", "BAGRU", "PR409", "ARTUP"]]
         },
         "ARTUP2N": {
             "icao": "ARTUP2N",
             "name": "Artup Two November",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": [["_RWY30", "A17+"]]
             },
-            "body": [["_RWY30", "A17"], ["PR818", "A35-|A25+"], ["PR819", "A95-|A65+"]],
+            "body": ["PR818", "PR819"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
             "draw": [["_RWY30", "PR818", "PR819", "ARTUP"]]
         },
@@ -834,23 +835,23 @@
             "icao": "ARTUP3A",
             "name": "Artup Three Alpha",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": []
             },
-            "body": [["PR402", "A35-|A25+"], ["PR405", "A95-|A35+"], "PR406", ["PR409", "A140+"]],
+            "body": ["PR402", "PR405", "PR406", "PR407", "BAGRU", "PR409"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
-            "draw": [["PR402", "PR405", "PR406", "PR409", "ARTUP"]]
+            "draw": [["PR402", "PR405", "PR406", "PR407", "BAGRU", "PR409", "ARTUP"]]
         },
         "ARTUP3B": {
             "icao": "ARTUP3B",
             "name": "Artup Three Bravo",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": []
             },
-            "body": [["PR815", "A35+|A95-"], "PR816", ["PR819", "A95-|A65+"]],
+            "body": ["PR815", "PR816", "PR818", "PR819"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
             "draw": [["PR815", "PR816", "PR819", "ARTUP"]]
         },
@@ -858,11 +859,11 @@
             "icao": "ARTUP3E",
             "name": "Artup Three Echo",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR637", "A35-|A25+"]],
+            "body": ["PR637"],
             "exitPoints": {
-                "ARTUP": [["ARTUP", "A95+"]]
+                "ARTUP": ["ARTUP"]
             },
             "draw": [["PR637", "ARTUP"]]
         },
@@ -870,59 +871,59 @@
             "icao": "BALTU3A",
             "name": "Baltu Three Alpha",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": []
             },
-            "body": [["PR402", "A35-|A25+"], ["PR405", "A95-|A35+"]],
+            "body": ["PR402", "PR405"],
             "exitPoints": {
-                "BALTU": [["BALTU", "A95-"]]
+                "BALTU": ["BALTU"]
             },
-            "draw":[["PR402", "PR405", "BALTU"]]
+            "draw": [["PR402", "PR405", "BALTU"]]
         },
         "BALTU3B": {
             "icao": "BALTU3B",
             "name": "Baltu Three Bravo",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": []
             },
-            "body": [["PR815", "A35+|A95-"]],
+            "body": ["PR815"],
             "exitPoints": {
-                "BALTU": [["BALTU", "A95-"]]
+                "BALTU": ["BALTU"]
             },
-            "draw":[["PR815", "BALTU"]]
+            "draw": [["PR815", "BALTU"]]
         },
         "BALTU3D": {
             "icao": "BALTU3D",
             "name": "Baltu Three Delta",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR619", "A35-"], ["PR621", "A35-|A25+"], ["ESINU", "A95-|A65+"]],
+            "body": ["PR619", "PR621", "ESINU"],
             "exitPoints": {
-                "BALTU": [["BALTU", "A95-"]]
+                "BALTU": ["BALTU"]
             },
-            "draw":[["PR619", "PR621", "ESINU", "BALTU"]]
+            "draw": [["PR619", "PR621", "ESINU", "BALTU"]]
         },
         "BALTU3H": {
             "icao": "BALTU3H",
             "name": "Baltu Three Hotel",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": []
             },
-            "body": [["PR626", "A35-|A25+"], "PR856", "PR858", ["ESINU", "A140+"]],
+            "body": ["PR626", "PR856", "UTORO", "PR858", "ESINU"],
             "exitPoints": {
-                "BALTU": [["BALTU", "A140+"]]
+                "BALTU": ["BALTU"]
             },
-            "draw":[["PR626", "PR856", "PR858", "ESINU", "BALTU"]]
+            "draw": [["PR626", "PR856", "PR858", "ESINU", "BALTU"]]
         },
         "BALTU5E": {
             "icao": "BALTU5E",
             "name": "Baltu Five Echo",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR631", "A35-|A25+"], ["PR632", "A95-|A65+"], ["ESINU", "A95-|A65+"]],
+            "body": ["PR631", "PR632", "PR621", "ESINU"],
             "exitPoints": {
-                "BALTU": [["BALTU", "A95-"]]
+                "BALTU": ["BALTU"]
             },
             "draw": [["PR631", "PR632", "ESINU", "BALTU"]]
         },
@@ -930,23 +931,23 @@
             "icao": "DOBEN2G",
             "name": "Doben Two Golf",
             "rwy": {
-                "LKPR12" : [["_RWY12", "A17"]]
+                "LKPR12" : [["_RWY12", "A17+"]]
             },
-            "body": [["_RWY12", "A17"], ["PR854", "A35+|A95-"], "PR855"],
+            "body": ["PR854", "PR855"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A95-|A75+"]]
+                "DOBEN": ["DOBEN"]
             },
-            "draw":[["_RWY12", "PR855", "DOBEN"]]
+            "draw": [["_RWY12", "PR855", "DOBEN"]]
         },
         "DOBEN3A": {
             "icao": "DOBEN3A",
             "name": "Doben Three Alpha",
             "rwy": {
-                "LKPR24" : [["_RWY24", "A17"]]
+                "LKPR24" : []
             },
-            "body": [["PR402", "A35-|A25+"]],
+            "body": ["PR402"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A95-|A75+"]]
+                "DOBEN": ["DOBEN"]
             },
             "draw":[["PR402", "DOBEN"]]
         },
@@ -954,45 +955,45 @@
             "icao": "DOBEN3B",
             "name": "Doben Three Bravo",
             "rwy": {
-                "LKPR30" : [["_RWY30", "A17"]]
+                "LKPR30" : []
             },
-            "body": [["PR813", "A35-|A25+"], "PR814", ["PR817", "A95-|A35+"]],
+            "body": [["PR813", "S230-"],  "PR814", "PR817"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A95-|A75+"]]
+                "DOBEN": ["DOBEN"]
             },
-            "draw":[["PR813", "PR814", "PR817", "DOBEN"]]
+            "draw": [["PR813", "PR814", "PR817", "DOBEN"]]
         },
         "DOBEN3D": {
             "icao": "DOBEN3D",
             "name": "Doben Three Delta",
             "rwy": {
-                "LKPR06" : [["_RWY06", "A17"]]
+                "LKPR06" : []
             },
-            "body": [["PR619", "A35-"], ["PR621", "A35-|A25+"], ["ESINU", "A95-|A65+"]],
+            "body": ["PR619", "PR621", "ESINU"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A95-|A75+"]]
+                "DOBEN": ["DOBEN"]
             },
-            "draw":[["PR619", "PR621", "ESINU", "DOBEN"]]
+            "draw": [["PR619", "PR621", "ESINU", "DOBEN"]]
         },
         "DOBEN3H": {
             "icao": "DOBEN3H",
             "name": "Doben Three Hotel",
             "rwy": {
-                "LKPR12" : [["_RWY12", "A17"]]
+                "LKPR12" : []
             },
-            "body": [["PR626", "A35-|A25+"], "PR856", "PR858", ["ESINU", "A140+"]],
+            "body": ["PR626", "PR856", "UTORO", "PR858", "ESINU"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A140+"]]
+                "DOBEN": ["DOBEN"]
             },
-            "draw":[["PR626", "PR856", "PR858", "ESINU", "DOBEN"]]
+            "draw": [["PR626", "PR856", "PR858", "ESINU", "DOBEN"]]
         },
         "DOBEN5E": {
             "icao": "DOBEN5E",
             "name": "Doben Five Echo",
             "rwy": {
-                "LKPR06" : [["_RWY06", "A17"]]
+                "LKPR06" : []
             },
-            "body": [["PR631", "A35-|A25+"], ["PR632", "A95-|A65+"], ["ESINU", "A95-|A65+"]],
+            "body": ["PR631", "PR632", "PR621", "ESINU"],
             "exitPoints": {
                 "DOBEN": [["DOBEN", "A95-|A75+"]]
             },
@@ -1002,11 +1003,11 @@
             "icao": "VENOX2B",
             "name": "Venox Two Bravo",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": []
             },
-            "body": [["PR815", "A95-|A35+"], "PR816"],
+            "body": ["PR815", "PR816"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["PR815", "PR816", "VENOX"]]
         },
@@ -1014,11 +1015,11 @@
             "icao": "VENOX2H",
             "name": "Venox Two Hotel",
             "rwy": {
-                "LKPR12" : [["_RWY12", "A17"]]
+                "LKPR12" : []
             },
-            "body": [["PR626", "A35-|A25+"], "PR856", "PR858"],
+            "body": ["PR626", "PR856", "UTORO", "PR858"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A140+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["_RWY12", "PR626", "PR856", "PR858", "VENOX"]]
         },
@@ -1026,11 +1027,11 @@
             "icao": "VENOX2M",
             "name": "Venox Two Mike",
             "rwy": {
-                "LKPR24" : [["_RWY24", "A17"]]
+                "LKPR24" : [["_RWY24", "A17+"]]
             },
-            "body": [["PR407", "A35+|A95-"]],
+            "body": ["PR407"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["_RWY24", "PR407", "VENOX"]]
         },
@@ -1038,23 +1039,23 @@
             "icao": "VENOX2N",
             "name": "Venox Two November",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": [["_RWY30", "A17+"]]
             },
-            "body": [["PR818", "A35-|A25+"]],
+            "body": ["PR818"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
-            "draw": [["_rwy30", "PR818", "VENOX"]]
+            "draw": [["_RWY30", "PR818", "VENOX"]]
         },
         "VENOX3A": {
             "icao": "VENOX3A",
             "name": "Venox Three Alpha",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": []
             },
-            "body": [["PR402", "A35-|A25+"], ["PR405", "A95-|A35+"], "PR406"],
+            "body": ["PR402", "PR405", "PR406"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["PR402", "PR405", "PR406", "VENOX"]]
         },
@@ -1062,11 +1063,11 @@
             "icao": "VENOX3E",
             "name": "Venox Three Echo",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR631", "A35-|A25+"], ["PR632", "A95-|A65+"]],
+            "body": ["PR631", "PR632"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["PR631", "PR632", "VENOX"]]
         },
@@ -1074,131 +1075,131 @@
             "icao": "VENOX4D",
             "name": "Venox Four Delta",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR619", "A35-"], ["PR621", "A35-|A25+"], ["PR622", "A95-|A65+"]],
+            "body": ["PR619", "PR621", "PR622"],
             "exitPoints": {
-                "VENOX": [["VENOX", "A165-|A95+"]]
+                "VENOX": ["VENOX"]
             },
             "draw": [["PR619", "PR621", "PR622", "VENOX"]]
         },
         "VOZ2A": {
             "icao": "VOZ2A",
-            "name": "Voz Two Alpha",
+            "name": "Vozice Two Alpha",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": []
             },
-            "body": [["PR402", "A35-|A25+"], ["PR403", "A95-|A35+"], ["PR404", "A95-|A75+"]],
+            "body": ["PR402", "PR403", "PR404"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["PR402", "PR403", "PR404", "VOZ"]]
         },
         "VOZ2B": {
             "icao": "VOZ2B",
-            "name": "Voz Two Bravo",
+            "name": "Vozice Two Bravo",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": []
             },
-            "body": [["PR813", "A35-|A25+"], "PR814", ["PR403", "A95-|A35+"], ["PR404", "A95-|A75+"]],
+            "body": [["PR813", "S230-"], "PR814", "PR403", "PR404"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["PR813", "PR814", "PR403", "PR404", "VOZ"]]
         },
         "VOZ2D": {
             "icao": "VOZ2D",
-            "name": "Voz Two Delta",
+            "name": "Vozice Two Delta",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR625", "A35-"], ["PR626", "A35-|A25+"], ["PR627", "A165-|A95+"]],
+            "body": ["PR625", "PR626", "PR627"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["PR625", "PR626", "PR627", "VOZ"]]
         },
         "VOZ2E": {
             "icao": "VOZ2E",
-            "name": "Voz Two Echo",
+            "name": "Vozice Two Echo",
             "rwy": {
-                "LKPR06": [["_RWY06", "A17"]]
+                "LKPR06": []
             },
-            "body": [["PR633", "A35-|A25+"], ["PR635", "A45-|A25+"]],
+            "body": ["PR633", "PR635"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["PR633", "PR635", "VOZ"]]
         },
         "VOZ2K": {
             "icao": "VOZ2K",
-            "name": "Voz Two Kilo",
+            "name": "Vozice Two Kilo",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": []
             },
-            "body": [["PR626", "A35-|A25+"], ["PR627", "A165-|A95+"]],
+            "body": ["PR626", "PR627"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["PR626", "PR627", "VOZ"]]
         },
         "VOZ2M": {
             "icao": "VOZ2M",
-            "name": "Voz Two Mike",
+            "name": "Vozice Two Mike",
             "rwy": {
-                "LKPR24": [["_RWY24", "A17"]]
+                "LKPR24": [["_RWY24", "A17+"]]
             },
-            "body": [["PR411", "A35-|A25+"], ["PR412", "A95-|A75+"]],
+            "body": ["PR411", "PR412"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["_RWY24", "PR411", "PR412", "VOZ"]]
         },
         "VOZ2N": {
             "icao": "VOZ2N",
-            "name": "Voz Two November",
+            "name": "Vozice Two November",
             "rwy": {
-                "LKPR30": [["_RWY30", "A17"]]
+                "LKPR30": [["_RWY30", "A17+"]]
             },
-            "body": [["PR807", "A95-|A35+"], ["PR808", "A95-|A75+"]],
+            "body": ["PR807", "PR808"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["_RWY30", "PR807", "PR808", "VOZ"]]
         },
         "VOZ2Q": {
             "icao": "VOZ2Q",
-            "name": "Voz Two Quibec",
+            "name": "Vozice Two Quebec",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": [["_RWY12", "A17+"]]
             },
-            "body": [["PR411", "A35-|A25+"], ["PR412", "A95-|A75+"]],
+            "body": ["PR411", "PR412"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["_RWY12", "PR411", "PR412", "VOZ"]]
         },
         "VOZ3G": {
             "icao": "VOZ3G",
-            "name": "Voz Three Golf",
+            "name": "Vozice Three Golf",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": [["_RWY12", "A17+"]]
             },
-            "body": [["PR411", "A35-|A25+"], ["PR404", "A95-|A75+"], ["PR627", "A165-|A95+"]],
+            "body": ["PR411", "PR404", "PR627"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
-            "draw": [["_RWY12", "PR411", "PR404", "VOZ"]]
+            "draw": [["_RWY12", "PR411", "PR404", "PR627", "VOZ"]]
         },
         "VOZ3H": {
             "icao": "VOZ3H",
-            "name": "Voz Three Hotel",
+            "name": "Vozice Three Hotel",
             "rwy": {
-                "LKPR12": [["_RWY12", "A17"]]
+                "LKPR12": []
             },
-            "body": [["PR626", "A35-|A25+"], ["PR412", "A95-|A75+"]],
+            "body": ["PR626", "PR412"],
             "exitPoints": {
-                "VOZ": [["VOZ", "A165-|A95+"]]
+                "VOZ": ["VOZ"]
             },
             "draw": [["_RWY12", "PR626", "PR412", "VOZ"]]
         }
@@ -1208,9 +1209,9 @@
             "icao": "GOLOP2P",
             "name": "Golop Two Papa",
             "entryPoints": {
-                "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
+                "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": [["PR957", "A35-|A25+"], ["PR958", "S220-|A35-|A20+"], ["EVEMI", "S220-|A35-|A20+"], "#303"],
+            "body": [["PR957", "S220-"], "PR958", "EVEMI", "#303"],
             "rwy": {
                 "LKPR12": []
             },
@@ -1220,9 +1221,9 @@
             "icao": "GOLOP2S",
             "name": "Golop Two Sierra",
             "entryPoints": {
-                "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
+                "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": ["PR516", ["PR517", "S220-|A35-|A20+"], "PR518", "ERASU", "#061"],
+            "body": ["PR516", "PR517", "PR518", "ERASU", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1232,9 +1233,9 @@
             "icao": "GOLOP2T",
             "name": "Golop Two Tango",
             "entryPoints": {
-                "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
+                "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": [["PR711", "A95-|A65+"], ["PR712", "S220-|A35-|A20+"], ["PR513", "S220-|A35-|A25+"], "KUVIX", "#241"],
+            "body": ["PR711", "PR712", ["PR513", "S220-"], "KUVIX", "#241"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1244,9 +1245,9 @@
             "icao": "GOLOP3R",
             "name": "Golop Three Romeo",
             "entryPoints": {
-                "GOLOP": [["GOLOP", "A165-|A95+|S250-"]]
+                "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": [["BAGRU", "A95-|A65+"], ["PR914", "S220-|A35-|A20+"], ["PR915", "S220-|A35-|A25+"], ["ARVEG", "S220-|A35-|A25+"], "#123"],
+            "body": ["BAGRU", ["PR914", "S220-"], "PR915", "ARVEG", "#123"],
             "rwy": {
                 "LKPR30": []
             },
@@ -1256,9 +1257,9 @@
             "icao": "GOSEK3S",
             "name": "Gosek Three Sierra",
             "entryPoints": {
-                "GOSEK": [["GOSEK", "A165-|A95+|S250-"]]
+                "GOSEK": [["GOSEK", "S250-"]]
             },
-            "body": [["PR521", "A35-|S220-"], ["PR523", "A35-|S220-"], ["RATEV", "A35-|S220-"], "#061"],
+            "body": ["PR521", ["PR523", "S220-"], ["RATEV", "S220-"], "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1268,9 +1269,9 @@
             "icao": "GOSEK3T",
             "name": "Gosek Three Tango",
             "entryPoints": {
-                "GOSEK": [["GOSEK", "A165-|A95+|S250-"]]
+                "GOSEK": ["GOSEK"]
             },
-            "body": [["PR718", "A35+|A95-"], ["PR719", "A35+|A95-"], ["PR521", "A35-|S220-"], ["AKEVA", "A35-|S220-"], "#241"],
+            "body": ["PR718", ["PR719", "S220-"], "PR521", "AKEVA", "#241"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1280,9 +1281,9 @@
             "icao": "GOSEK4P",
             "name": "Gosek Four Papa",
             "entryPoints": {
-                "GOSEK": [["GOSEK", "A165-|A95+|S250-"]]
+                "GOSEK": [["GOSEK", "S250-"]]
             },
-            "body": [["PR953", "A35-|A25+"], ["PR954", "S220-|A35-|A25+"], ["SOMIS", "S220-|A35-|A25+"], "#303"],
+            "body": [["PR953", "S220-"], "PR954", "SOMIS", "#303"],
             "rwy": {
                 "LKPR12": []
             },
@@ -1292,9 +1293,9 @@
             "icao": "GOSEK4R",
             "name": "Gosek Four Romeo",
             "entryPoints": {
-                "GOSEK": [["GOSEK", "A165-|A95+|S250-"]]
+                "GOSEK": [["GOSEK", "S250-"]]
             },
-            "body": [["PR901", "A35+|A95-"], ["PR902", "A35+|A95-"], ["PR903", "A35+|A95-"], ["PR904", "A35+|A95-"], ["KENOK", "S220-|A35-|A25+"], "#123"],
+            "body": ["PR901", "PR902", "PR913", "PR903", "PR904", ["KENOK", "S220-"], "@KENOK"],
             "rwy": {
                 "LKPR30": []
             },
@@ -1304,9 +1305,9 @@
             "icao": "LOMKI5P",
             "name": "Lomki Five Papa",
             "entryPoints": {
-                "LOMKI": [["LOMKI", "A165-|A95+|S250-"]]
+                "LOMKI": [["LOMKI", "S250-"]]
             },
-            "body": [["PR707", "A95-|A75+"], ["PR956", "A95-|A35+"], ["PR954", "A35-|A25+|S220-"], ["SOMIS", "A35-|A25+|S220-"], "#303"],
+            "body": ["PR707", ["PR956", "S220-"], "PR954", "SOMIS", "#303"],
             "rwy": {
                 "LKPR12": []
             },
@@ -1316,9 +1317,9 @@
             "icao": "LOMKI6S",
             "name": "Lomki Six Sierra",
             "entryPoints": {
-                "LOMKI": [["LOMKI", "A165-|A95+|S250-"]]
+                "LOMKI": ["LOMKI"]
             },
-            "body": [["PR511", "A95-|A75+"], ["PR512", "A95-|A35+"], ["PR513", "A35-|S220-"], "ERASU", "#061"],
+            "body": [["PR511", "S250-"], "PR512", "PR513", "ERASU", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1328,9 +1329,9 @@
             "icao": "LOMKI6T",
             "name": "Lomki Six Tango",
             "entryPoints": {
-                "LOMKI": [["LOMKI", "A165-|A95+|S250-"]]
+                "LOMKI": ["LOMKI"]
             },
-            "body": [["PR707", "A95-|A75+"], ["BAROX", "A95-|A35+|S220-"], "#061"],
+            "body": [["PR707", "S220-"], "BAROX", "@BAROX"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1340,9 +1341,9 @@
             "icao": "LOMKI7R",
             "name": "Lomki Seven Romeo",
             "entryPoints": {
-                "LOMKI": [["LOMKI", "A165-|A95+|S250-"]]
+                "LOMKI": ["LOMKI"]
             },
-            "body": [["PR511", "A95-|A75+"], ["PR512", "A95-|A35+"], ["PR914", "S220-|A35-|A20+"], ["PR915", "S220-|A35-|A25+"], ["ARVEG", "S220-|A35-|A25+"], "#123"],
+            "body": [["PR511", "S250-"], "PR512", "PR914", "PR915", "ARVEG", "#123"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1350,11 +1351,11 @@
         },
         "VLM2S": {
             "icao": "VLM2S",
-            "name": "Vicor Lima Mike Two Sierra",
+            "name": "Vlasim Two Sierra",
             "entryPoints": {
-                "VLM": [["VLM", "A165-|A95+|S250-"]]
+                "VLM": ["VLM"]
             },
-            "body": [["PR522", "A95-|A75+"], ["PR523", "A35-|S220-"], ["RATEV", "A35|S220-"], "#061"],
+            "body": [["PR522", "S250-"], "PR523", "RATEV", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1362,11 +1363,11 @@
         },
         "VLM3T": {
             "icao": "VLM3T",
-            "name": "Vicor Lima Mike Three Tango",
+            "name": "Vlasim Three Tango",
             "entryPoints": {
-                "VLM":  [["VLM", "A165-|A95+|S250-"]]
+                "VLM": ["VLM"]
             },
-            "body": [["PR721", "A95-|A75+"], ["PR722", "A95-|A65+"], ["PR723", "A45-|A25+"], ["PR523", "A35-|S220-"], ["PR521", "A35-|S220-"], ["AKEVA", "A35-|S220-"], "#241"],
+            "body": ["PR721", ["PR722", "S250-"], "PR723", "PR523", "PR521", "AKEVA", "#241"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1374,11 +1375,11 @@
         },
         "VLM3P": {
             "icao": "VLM3P",
-            "name": "Vicor Lima Mike Three Papa",
+            "name": "Vlasim Three Papa",
             "entryPoints": {
-                "VLM":  [["VLM", "A165-|A95+|S250-"]]
+                "VLM":  ["VLM"]
             },
-            "body": [["PR950", "A95-|A75+"], ["PR951", "A95-|A65+"], ["PR952", "A35-|A20+"], ["PR958", "A35-|A25+|S220-"], ["EVEMI", "A35-|A25+|S220-"], "#303"],
+            "body": [["PR950", "S250-"], "PR951", ["PR952", "S220-"], "PR958", "EVEMI", "#303"],
             "rwy": {
                 "LKPR12": []
             },
@@ -1386,11 +1387,11 @@
         },
         "VLM3R": {
             "icao": "VLM3R",
-            "name": "Vicor Lima Mike Three Romeo",
+            "name": "Vlasim Three Romeo",
             "entryPoints": {
-                "VLM":  [["VLM", "A165-|A95+|S250-"]]
+                "VLM": ["VLM"]
             },
-            "body": [["PR904", "A35+|A95-"], ["KENOK", "S220-|A35-|A25+"], "#123"],
+            "body": ["PR904", ["KENOK", "S220-"], "@KENOK"],
             "rwy": {
                 "LKPR30": []
             },
@@ -1411,24 +1412,24 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1444,24 +1445,24 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1477,24 +1478,24 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1510,24 +1511,24 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1543,24 +1544,24 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1576,19 +1577,19 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",5],
-                ["AFL",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["SAS/short",3],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 5],
+                ["AFL", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["SAS/short", 3],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1604,18 +1605,18 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["RYR",10],
-                ["AFR/short",4],
-                ["AZA",4],
-                ["BAW/short",4],
-                ["SWR/short",4],
-                ["EIN/short",3],
-                ["KLM/short",2],
+                ["RYR", 10],
+                ["AFR/short", 4],
+                ["AZA", 4],
+                ["BAW/short", 4],
+                ["SWR/short", 4],
+                ["EIN/short", 3],
+                ["KLM/short", 2],
                 ["KLM/embraers", 2],
-                ["DLH/cityline",2],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["TAP/airbusShort",2],
-                ["IBE",2]
+                ["TAP/airbusShort", 2],
+                ["IBE", 2]
             ]
         },
         {
@@ -1631,16 +1632,16 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["SAS/short",3],
-                ["DLH/cityline",2],
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["SAS/short", 3],
+                ["DLH/cityline", 2],
                 ["DLH/short", 2],
-                ["LOT",2],
-                ["TAP/airbusShort",2],
-                ["IBE",2],
-                ["CES",1],
-                ["UAE/a380",1]
+                ["LOT", 2],
+                ["TAP/airbusShort", 2],
+                ["IBE", 2],
+                ["CES", 1],
+                ["UAE/a380", 1]
             ]
         },
         {
@@ -1656,11 +1657,11 @@
                 ["TVS", 20],
                 ["CSA", 20],
                 ["EZY", 10],
-                ["AUA/short",4],
-                ["AZA",4],
-                ["AFL",4],
-                ["TAP/airbusShort",2],
-                ["UAE/a380",1]
+                ["AUA/short", 4],
+                ["AZA", 4],
+                ["AFL", 4],
+                ["TAP/airbusShort", 2],
+                ["UAE/a380", 1]
             ]
         }
     ],
@@ -1668,126 +1669,126 @@
         "base": [
             ["N50d06m06.61", "E14d13m34.68", "N50d06m57.42", "E14d16m24.12"],
             ["N50d06m28.84", "E14d14m43.32", "N50d05m25.68", "E14d16m54.02"],
-            [50.098319705702856,14.214568667120087,50.09480331101374,14.202838183631846],
-            [50.09128690574266,14.191108564715625,50.08777048981482,14.179379810257071],
-            [50.084254087783606,14.167651902301625,50.08073769964541,14.155924840680164],
-            [50.07722130076016,14.144198643066943,50.073704891048095,14.132473309351358],
-            [50.07018849506974,14.12074882157927,50.06667208821579,14.109025197398893],
-            [50.07421069578419,14.103537328741483,50.05913269942939,14.114509647853897],
-            [50.06315569501415,14.097302418882402,50.059639290851884,14.08558050367811],
-            [50.05612287564928,14.073859451675578,50.05260647397601,14.062139244920875],
-            [50.04909000379337,14.050419942626077,50.045573579783266,14.038701461624754],
-            [50.042057169264226,14.026983825394302,50.0385406901127,14.015267093195254],
-            [50.035024281622455,14.003551164069766,50.03150788653805,13.99183607926802],
-            [50.039046534664784,13.986352201682783,50.02396846557562,13.997316570029394],
-            [50.02799148010966,13.980121856525821,50.02447508688496,13.968408477916174],
-            [50.020958682231104,13.956695961087707,50.017442266068436,13.944984305930467],
-            [50.01392578095087,13.93327355382853,50.01040936619659,13.921563603858989],
-            [50.00689288252659,13.909854556570647,50.00337646913507,13.898146311145359],
-            [49.9998599867465,13.886438968114483,49.99634357455133,13.874732426677694],
-            [50.003882250830465,13.86925249115897,49.988804105077016,13.88020891153022],
-            [49.99282717531344,13.863026728037951,49.98931076426318,13.851321889931311],
-            [49.98579428393242,13.839617953733425,49.98227787362518,13.827914818592046],
-            [49.97876145146136,13.81621254350981,49.97524498454702,13.804511152092937],
-            [49.97172856291137,13.792810579117718,49.96821207187505,13.781110907278572],
-            [49.964695568613465,13.769412095103657,49.961179077827566,13.75771412457925],
-            [49.96871779373127,13.75223816124438,49.953639560594596,13.763186613939643],
-            [49.95766265688765,13.74601695408792,49.95414616642046,13.734320684135376],
-            [49.950629663558274,13.72262527329338,49.94711317300913,13.710930703548604],
-            [49.94359675213627,13.699236933301172,49.94008026157321,13.68754406302228],
-            [49.936563758445374,13.675852051301042,49.93304726746797,13.66416088012443],
-            [49.929530763960784,13.652470567142776,49.92601427252285,13.64078109442965],
-            [49.93355303851689,13.635309130018326,49.918474720844706,13.646249640212474],
-            [50.119469981561984,14.285099705551069,50.12298997814645,14.296833592982626],
-            [50.126509989255084,14.30856832882894,50.130029990330854,14.320303931083435],
-            [50.13354998138094,14.332040399910316,50.13706998704131,14.343777717598343],
-            [50.14058998279759,14.355515902114119,50.144109968657055,14.367254953621895],
-            [50.147629887247,14.378994913940682,50.15114987793759,14.390735682049451],
-            [50.143613337921856,14.396238878753813,50.15868565403184,14.385229119543736],
-            [50.154669883564665,14.402477299633242,50.158189879501954,14.414219784746791],
-            [50.16170986575656,14.425963137554728,50.1652297849469,14.437707399898333],
-            [50.16874977645182,14.449452470712687,50.172269758524074,14.46119840955419],
-            [50.175789673655885,14.472945258365243,50.17930957922782,14.48469297562479],
-            [50.18282955737162,14.496441501835385,50.18634946881979,14.508190938361906],
-            [50.178812968508446,14.513698157565278,50.19388518127726,14.502680270358013],
-            [50.18986937083716,14.519941243758279,50.19338928811543,14.531692400252702],
-            [50.19690925361145,14.543444384068835,50.200429177100204,14.555197260956659],
-            [50.20394914881014,14.566950965502814,50.2074690785911,14.57870556341293],
-            [50.21098905668209,14.5904609892561,50.21450896836989,14.602217326604679],
-            [50.218028870969945,14.613974533951206,50.22154876461108,14.625732611372644],
-            [50.21401229701063,14.631243837862481,50.22908445319694,14.620217961772799],
-            [50.22506867388365,14.637491541159315,50.22858857431919,14.649251341278399],
-            [50.23210846592495,14.661012011895398,50.235628373285664,14.672773535300873],
-            [50.23914827193829,14.684535929462196,50.24266816189011,14.696299194545002],
-            [50.246188067720375,14.708063312839975,50.24970796497154,14.719828302314621],
-            [50.253227853650884,14.731594163134744,50.256747758332146,14.743360877591169],
-            [50.24921132351081,14.748876119596556,50.264283384370415,14.737842109899097],
-            [50.260267654563364,14.755128463651499,50.26378756687837,14.766896903632988],
-            [50.26730744630387,14.778666233352252,50.27082734186017,14.79043641729849],
-            [50.27434725366019,14.802207455564192,50.277867157224634,14.813979366143851],
-            [50.281387052560596,14.825752149203781,50.28490693971168,14.837525804883796],
-            [50.28842684323531,14.849300315474961,50.291946738695984,14.861075698945356],
-            [50.28441034812901,14.866595002695373,50.299482317692885,14.855552856525899],
-            [50.11301263354584,14.235017969225522,50.11801413266954,14.22466817215662],
-            [50.123015623510085,14.214317292183193,50.12801710617752,14.20396532913027],
-            [50.13301861161082,14.193612318862014,50.13802010908874,14.183258225158264],
-            [50.14302159867661,14.172903047791408,50.14802311130368,14.162546822625623],
-            [50.15302461625844,14.15218951344021,50.158026113606205,14.141831120007229],
-            [50.16466724240779,14.149645484906413,50.15138339230048,14.134021101906084],
-            [50.16302760344243,14.131471642133928,50.168029085862585,14.121111079627486],
-            [50.17303059177968,14.110749468351665,50.1780320904986,14.100386772085375],
-            [50.18303358208459,14.090022990600112,50.18803506663314,14.079658123702664],
-            [50.19303651119915,14.069292132525868,50.19803798192033,14.058925094185533],
-            [50.20303947672082,14.048557005947416,50.20804090104778,14.038187756797907],
-            [50.214681998926544,14.046010231902322,50.20139824397745,14.030369566321598],
-            [50.21304238258745,14.027817495949005,50.21804385772183,14.0174461485931],
-            [50.223045293424455,14.007073675742477,50.228046755870956,13.996700154606076],
-            [50.233048179102596,13.986325507609129,50.2380495962061,13.975949773209308],
-            [50.24305104038245,13.965572990003121,50.24805247638973,13.955195116386863],
-            [50.253053875816896,13.94481611875687,50.25805526950048,13.934436032949325],
-            [50.26469633177813,13.942266650876206,50.25141265220221,13.926609697511315],
-            [50.263056657566274,13.924054858805043,50.2680580708656,13.913672632185849],
-            [50.27305944801285,13.903289280812887,50.2780608505479,13.892904876539667],
-            [50.28306224787456,13.882519383179377,50.28806364005808,13.87213280050135],
-            [50.29306502719399,13.861745128310371,50.29806644011402,13.851356402467804],
-            [50.303067848204876,13.840966586750827,50.30806925153166,13.830575680928193],
-            [50.314710235402096,13.838414553182824,50.30142665318988,13.822741220456825],
-            [50.31307065018996,13.820183684804379,50.31807204427538,13.809790598183728],
-            [50.32307343388356,13.799396420870577,50.3280748191101,13.789001152669108],
-            [50.333076200050655,13.77860479338344,50.33807760751082,13.768207378874314],
-            [50.34307901090364,13.757808872918185,50.3480804102941,13.747409275282918],
-            [50.35308180577783,13.737008585772191,50.358083197450476,13.726606804189633],
-            [50.364724151988646,13.73445385268581,50.351440647170165,13.71876413537196],
-            [50.08546734994825,14.292018662686601,50.080468053843845,14.302364055601624],
-            [50.07546874873004,14.312708367250755,50.07046946535656,14.323051633821306],
-            [50.065470141912066,14.333393783488813,50.06047083999387,14.34373488842531],
-            [50.05547152869018,14.354074912869487,50.05047223876195,14.364413893006121],
-            [50.04547293926091,14.374751793038929,50.040473630061975,14.385088613123884],
-            [50.03382949217248,14.377300314692356,50.04711618790339,14.392881219606602],
-            [50.03547431106981,14.395424353451606,50.030474949213584,14.405758975762458],
-            [50.02547564122609,14.416092593139435,50.020476323224706,14.426425131409513],
-            [50.01547702596111,14.436756626719374,50.01047771846436,14.447087043272198],
-            [50.005478400609405,14.457416381223425,50.00047903934428,14.467744602359266],
-            [49.9954797004619,14.478071783640779,49.99048031801719,14.488397848539252],
-            [49.9838361517361,14.480617565776205,49.99712292710746,14.496182385979756],
-            [49.985480988686724,14.498722909976477,49.98048161564257,14.50904685546676],
-            [49.97548229552581,14.519369797866188,49.970482931514475,14.529691624720012],
-            [49.965483589302266,14.540012412824506,49.96048420298182,14.550332085742896],
-            [49.955484805335836,14.56065068194115,49.95048542725139,14.5709682376738],
-            [49.945486070637,14.581284755460922,49.940486700506945,14.59160019488449],
-            [49.933842467879444,14.58382798312499,49.94712934233221,14.599376723955704],
-            [49.9354872877463,14.601914522363261,49.930487894153124,14.612227810104415],
-            [49.92548848873094,14.622540022343447,49.9204891023253,14.63285119526319],
-            [49.91548970390367,14.64316129306472,49.910490293341226,14.653470315901954],
-            [49.90549087054276,14.663778263963136,49.90049146639653,14.674085173465446],
-            [49.895492080843376,14.684391044637701,49.890492682804954,14.69469584164628],
-            [49.883848413312826,14.686931617828156,49.897135369895445,14.702464359154892],
-            [49.88549327215659,14.704999564644783,49.88049387979928,14.71530224984945],
-            [49.87549447467461,14.725603861460785,49.87049505665785,14.735904399632101],
-            [49.86549565665987,14.746203900579491,49.86049624361234,14.756502328502979],
-            [49.855496848403156,14.76679971958412,49.850497439957444,14.777096038022778],
-            [49.84549804916962,14.787391320000314,49.84049864495836,14.797685529716496],
-            [49.83385435172889,14.789929244482773,49.84714139928812,14.805446013201914],
+            [50.098319705702856, 14.214568667120087, 50.09480331101374, 14.202838183631846],
+            [50.09128690574266, 14.191108564715625, 50.08777048981482, 14.179379810257071],
+            [50.084254087783606, 14.167651902301625, 50.08073769964541, 14.155924840680164],
+            [50.07722130076016, 14.144198643066943, 50.073704891048095, 14.132473309351358],
+            [50.07018849506974, 14.12074882157927, 50.06667208821579, 14.109025197398893],
+            [50.07421069578419, 14.103537328741483, 50.05913269942939, 14.114509647853897],
+            [50.06315569501415, 14.097302418882402, 50.059639290851884, 14.08558050367811],
+            [50.05612287564928, 14.073859451675578, 50.05260647397601, 14.062139244920875],
+            [50.04909000379337, 14.050419942626077, 50.045573579783266, 14.038701461624754],
+            [50.042057169264226, 14.026983825394302, 50.0385406901127, 14.015267093195254],
+            [50.035024281622455, 14.003551164069766, 50.03150788653805, 13.99183607926802],
+            [50.039046534664784, 13.986352201682783, 50.02396846557562, 13.997316570029394],
+            [50.02799148010966, 13.980121856525821, 50.02447508688496, 13.968408477916174],
+            [50.020958682231104, 13.956695961087707, 50.017442266068436, 13.944984305930467],
+            [50.01392578095087, 13.93327355382853, 50.01040936619659, 13.921563603858989],
+            [50.00689288252659, 13.909854556570647, 50.00337646913507, 13.898146311145359],
+            [49.9998599867465, 13.886438968114483, 49.99634357455133, 13.874732426677694],
+            [50.003882250830465, 13.86925249115897, 49.988804105077016, 13.88020891153022],
+            [49.99282717531344, 13.863026728037951, 49.98931076426318, 13.851321889931311],
+            [49.98579428393242, 13.839617953733425, 49.98227787362518, 13.827914818592046],
+            [49.97876145146136, 13.81621254350981, 49.97524498454702, 13.804511152092937],
+            [49.97172856291137, 13.792810579117718, 49.96821207187505, 13.781110907278572],
+            [49.964695568613465, 13.769412095103657, 49.961179077827566, 13.75771412457925],
+            [49.96871779373127, 13.75223816124438, 49.953639560594596, 13.763186613939643],
+            [49.95766265688765, 13.74601695408792, 49.95414616642046, 13.734320684135376],
+            [49.950629663558274, 13.72262527329338, 49.94711317300913, 13.710930703548604],
+            [49.94359675213627, 13.699236933301172, 49.94008026157321, 13.68754406302228],
+            [49.936563758445374, 13.675852051301042, 49.93304726746797, 13.66416088012443],
+            [49.929530763960784, 13.652470567142776, 49.92601427252285, 13.64078109442965],
+            [49.93355303851689, 13.635309130018326, 49.918474720844706, 13.646249640212474],
+            [50.119469981561984, 14.285099705551069, 50.12298997814645, 14.296833592982626],
+            [50.126509989255084, 14.30856832882894, 50.130029990330854, 14.320303931083435],
+            [50.13354998138094, 14.332040399910316, 50.13706998704131, 14.343777717598343],
+            [50.14058998279759, 14.355515902114119, 50.144109968657055, 14.367254953621895],
+            [50.147629887247, 14.378994913940682, 50.15114987793759, 14.390735682049451],
+            [50.143613337921856, 14.396238878753813, 50.15868565403184, 14.385229119543736],
+            [50.154669883564665, 14.402477299633242, 50.158189879501954, 14.414219784746791],
+            [50.16170986575656, 14.425963137554728, 50.1652297849469, 14.437707399898333],
+            [50.16874977645182, 14.449452470712687, 50.172269758524074, 14.46119840955419],
+            [50.175789673655885, 14.472945258365243, 50.17930957922782, 14.48469297562479],
+            [50.18282955737162, 14.496441501835385, 50.18634946881979, 14.508190938361906],
+            [50.178812968508446, 14.513698157565278, 50.19388518127726, 14.502680270358013],
+            [50.18986937083716, 14.519941243758279, 50.19338928811543, 14.531692400252702],
+            [50.19690925361145, 14.543444384068835, 50.200429177100204, 14.555197260956659],
+            [50.20394914881014, 14.566950965502814, 50.2074690785911, 14.57870556341293],
+            [50.21098905668209, 14.5904609892561, 50.21450896836989, 14.602217326604679],
+            [50.218028870969945, 14.613974533951206, 50.22154876461108, 14.625732611372644],
+            [50.21401229701063, 14.631243837862481, 50.22908445319694, 14.620217961772799],
+            [50.22506867388365, 14.637491541159315, 50.22858857431919, 14.649251341278399],
+            [50.23210846592495, 14.661012011895398, 50.235628373285664, 14.672773535300873],
+            [50.23914827193829, 14.684535929462196, 50.24266816189011, 14.696299194545002],
+            [50.246188067720375, 14.708063312839975, 50.24970796497154, 14.719828302314621],
+            [50.253227853650884, 14.731594163134744, 50.256747758332146, 14.743360877591169],
+            [50.24921132351081, 14.748876119596556, 50.264283384370415, 14.737842109899097],
+            [50.260267654563364, 14.755128463651499, 50.26378756687837, 14.766896903632988],
+            [50.26730744630387, 14.778666233352252, 50.27082734186017, 14.79043641729849],
+            [50.27434725366019, 14.802207455564192, 50.277867157224634, 14.813979366143851],
+            [50.281387052560596, 14.825752149203781, 50.28490693971168, 14.837525804883796],
+            [50.28842684323531, 14.849300315474961, 50.291946738695984, 14.861075698945356],
+            [50.28441034812901, 14.866595002695373, 50.299482317692885, 14.855552856525899],
+            [50.11301263354584, 14.235017969225522, 50.11801413266954, 14.22466817215662],
+            [50.123015623510085, 14.214317292183193, 50.12801710617752, 14.20396532913027],
+            [50.13301861161082, 14.193612318862014, 50.13802010908874, 14.183258225158264],
+            [50.14302159867661, 14.172903047791408, 50.14802311130368, 14.162546822625623],
+            [50.15302461625844, 14.15218951344021, 50.158026113606205, 14.141831120007229],
+            [50.16466724240779, 14.149645484906413, 50.15138339230048, 14.134021101906084],
+            [50.16302760344243, 14.131471642133928, 50.168029085862585, 14.121111079627486],
+            [50.17303059177968, 14.110749468351665, 50.1780320904986, 14.100386772085375],
+            [50.18303358208459, 14.090022990600112, 50.18803506663314, 14.079658123702664],
+            [50.19303651119915, 14.069292132525868, 50.19803798192033, 14.058925094185533],
+            [50.20303947672082, 14.048557005947416, 50.20804090104778, 14.038187756797907],
+            [50.214681998926544, 14.046010231902322, 50.20139824397745, 14.030369566321598],
+            [50.21304238258745, 14.027817495949005, 50.21804385772183, 14.0174461485931],
+            [50.223045293424455, 14.007073675742477, 50.228046755870956, 13.996700154606076],
+            [50.233048179102596, 13.986325507609129, 50.2380495962061, 13.975949773209308],
+            [50.24305104038245, 13.965572990003121, 50.24805247638973, 13.955195116386863],
+            [50.253053875816896, 13.94481611875687, 50.25805526950048, 13.934436032949325],
+            [50.26469633177813, 13.942266650876206, 50.25141265220221, 13.926609697511315],
+            [50.263056657566274, 13.924054858805043, 50.2680580708656, 13.913672632185849],
+            [50.27305944801285, 13.903289280812887, 50.2780608505479, 13.892904876539667],
+            [50.28306224787456, 13.882519383179377, 50.28806364005808, 13.87213280050135],
+            [50.29306502719399, 13.861745128310371, 50.29806644011402, 13.851356402467804],
+            [50.303067848204876, 13.840966586750827, 50.30806925153166, 13.830575680928193],
+            [50.314710235402096, 13.838414553182824, 50.30142665318988, 13.822741220456825],
+            [50.31307065018996, 13.820183684804379, 50.31807204427538, 13.809790598183728],
+            [50.32307343388356, 13.799396420870577, 50.3280748191101, 13.789001152669108],
+            [50.333076200050655, 13.77860479338344, 50.33807760751082, 13.768207378874314],
+            [50.34307901090364, 13.757808872918185, 50.3480804102941, 13.747409275282918],
+            [50.35308180577783, 13.737008585772191, 50.358083197450476, 13.726606804189633],
+            [50.364724151988646, 13.73445385268581, 50.351440647170165, 13.71876413537196],
+            [50.08546734994825, 14.292018662686601, 50.080468053843845, 14.302364055601624],
+            [50.07546874873004, 14.312708367250755, 50.07046946535656, 14.323051633821306],
+            [50.065470141912066, 14.333393783488813, 50.06047083999387, 14.34373488842531],
+            [50.05547152869018, 14.354074912869487, 50.05047223876195, 14.364413893006121],
+            [50.04547293926091, 14.374751793038929, 50.040473630061975, 14.385088613123884],
+            [50.03382949217248, 14.377300314692356, 50.04711618790339, 14.392881219606602],
+            [50.03547431106981, 14.395424353451606, 50.030474949213584, 14.405758975762458],
+            [50.02547564122609, 14.416092593139435, 50.020476323224706, 14.426425131409513],
+            [50.01547702596111, 14.436756626719374, 50.01047771846436, 14.447087043272198],
+            [50.005478400609405, 14.457416381223425, 50.00047903934428, 14.467744602359266],
+            [49.9954797004619, 14.478071783640779, 49.99048031801719, 14.488397848539252],
+            [49.9838361517361, 14.480617565776205, 49.99712292710746, 14.496182385979756],
+            [49.985480988686724, 14.498722909976477, 49.98048161564257, 14.50904685546676],
+            [49.97548229552581, 14.519369797866188, 49.970482931514475, 14.529691624720012],
+            [49.965483589302266, 14.540012412824506, 49.96048420298182, 14.550332085742896],
+            [49.955484805335836, 14.56065068194115, 49.95048542725139, 14.5709682376738],
+            [49.945486070637, 14.581284755460922, 49.940486700506945, 14.59160019488449],
+            [49.933842467879444, 14.58382798312499, 49.94712934233221, 14.599376723955704],
+            [49.9354872877463, 14.601914522363261, 49.930487894153124, 14.612227810104415],
+            [49.92548848873094, 14.622540022343447, 49.9204891023253, 14.63285119526319],
+            [49.91548970390367, 14.64316129306472, 49.910490293341226, 14.653470315901954],
+            [49.90549087054276, 14.663778263963136, 49.90049146639653, 14.674085173465446],
+            [49.895492080843376, 14.684391044637701, 49.890492682804954, 14.69469584164628],
+            [49.883848413312826, 14.686931617828156, 49.897135369895445, 14.702464359154892],
+            [49.88549327215659, 14.704999564644783, 49.88049387979928, 14.71530224984945],
+            [49.87549447467461, 14.725603861460785, 49.87049505665785, 14.735904399632101],
+            [49.86549565665987, 14.746203900579491, 49.86049624361234, 14.756502328502979],
+            [49.855496848403156, 14.76679971958412, 49.850497439957444, 14.777096038022778],
+            [49.84549804916962, 14.787391320000314, 49.84049864495836, 14.797685529716496],
+            [49.83385435172889, 14.789929244482773, 49.84714139928812, 14.805446013201914],
             [50.100745600, 14.446666700, 50.100731900, 14.447481800],
             [50.100731900, 14.447481800, 50.100690600, 14.448294600],
             [50.100690600, 14.448294600, 50.100621900, 14.449102900],
