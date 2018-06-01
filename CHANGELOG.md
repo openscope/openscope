@@ -1,6 +1,6 @@
 # 6.2.0 (June 1, 2018)
 ### New Features
-
+- [#945](https://github.com/openscope/openscope/issues/945) - added an information panel with data about wind and elevation
 
 
 
