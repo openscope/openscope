@@ -149,7 +149,7 @@ export default class AppController {
         // in a different class and the window methods should disappear.
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
-        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);       
+        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
         // IMPORTANT:
         // The order in which the following classes are instantiated is extremely important. Changing
@@ -225,6 +225,7 @@ export default class AppController {
         GameController.complete();
         this.canvasController.canvas_complete();
         UiController.ui_complete();
+        this.gameAirportInfoView.initialLoad();
     }
 
     /**

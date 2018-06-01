@@ -1,6 +1,6 @@
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { radiansToDegrees } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { SELECTORS } from '../constants/selectors';
 
@@ -53,10 +53,8 @@ export default class GameAirportInfoView {
      */
     _init($element) {
         this.$element = $element.find(SELECTORS.DOM_SELECTORS.AIRPORT_INFO);
-        this.airport = AirportController.current;
+        this.airport = AirportController.airport_get();
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.update);
-
-        // this._render();
 
         return this;
     }
@@ -73,8 +71,6 @@ export default class GameAirportInfoView {
 
         information = `WIND &nbsp;| ${this._windFormat(airport.wind)}<br />`;
         information += `ALTIM | ${airport.icao} ${this._altimeter(airport.wind.speed)}<br />`;
-        // airport -> departure runway -> first endpoint -> altitude
-        // TODO: add an easier way to access runway attributes
         information += `ELEV &nbsp;| ${airport.icao} ${airport.runways[0].end[0][2]}`;
 
         $element.html(information);
@@ -127,6 +123,37 @@ export default class GameAirportInfoView {
      * @private
      */
     _altimeter(windSpeed) {
-        return 2992 + Math.round(windSpeed * Math.random());
+        return 2992 + Math.round(windSpeed * (Math.random() - 0.5));
+    }
+    /**
+     * Loads the initial view.
+     *
+     * We need to wait until AppController#complete is called,
+     * otherwise the airport will likely not be loaded, and we
+     * get `undefined` everywhere.
+     *
+     * A seperate render function is needed because the initial airport
+     * model is formatted differently than subsequently loaded models.
+     *
+     * nb: `this.airport` should have already been defined when
+     * GameAirportInfoView#init fires in AppController#setupChildren
+     *
+     * @for GameAirportInfoView
+     * @method initialLoad
+     */
+    initialLoad() {
+        const $element = this.$element;
+        const airport = this.airport;
+        const icao = airport.icao.toUpperCase();
+        const windAngle = Math.round(radiansToDegrees(airport.wind.angle));
+        let information = '';
+
+        information = `WIND &nbsp;| ${this._windFormat({ speed: airport.wind.speed, angle: windAngle })}<br />`;
+        information += `ALTIM | ${icao} ${this._altimeter(airport.wind.speed)}<br />`;
+        information += `ELEV &nbsp;| ${icao} ${airport.elevation}`;
+
+        $element.html(information);
+
+        return this;
     }
 }
