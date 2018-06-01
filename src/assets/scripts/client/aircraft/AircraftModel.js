@@ -477,8 +477,7 @@ export default class AircraftModel {
         this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.fms, this.mcp);
 
-        // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
-        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (options.category !== FLIGHT_CATEGORY.DEPARTURE) {
             const bottomAltitude = this.fms.getBottomAltitude();
             const airportModel = AirportController.airport_get();
             const airspaceCeiling = airportModel.maxAssignableAltitude;
@@ -599,7 +598,7 @@ export default class AircraftModel {
             this.speed = 0;
 
             return;
-        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
+        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
             throw new Error('Invalid #category found in AircraftModel');
         }
     }
@@ -911,13 +910,17 @@ export default class AircraftModel {
 
         return descentTime > timeUntilWaypoint;
     }
+    
+    isArrival() {
+        return this.fms.isArrival();
+    }
 
     isDeparture() {
         return this.fms.isDeparture();
     }
 
-    isArrival() {
-        return this.fms.isArrival();
+    isOverflight() {
+        return this.origin === '' && this.destination === '';
     }
 
     /**
@@ -981,6 +984,10 @@ export default class AircraftModel {
     isOnGround() {
         let airportModel = this.fms.departureAirportModel;
         let runwayModel = this.fms.departureRunwayModel;
+
+        if (this.isOverflight) {
+            return false;
+        }
 
         if (this.isArrival()) {
             airportModel = this.fms.arrivalAirportModel;
@@ -1701,7 +1708,8 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-        const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
+        const timeToCompleteTurn = calculateTurnInitiaionDistance(this, waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < timeToCompleteTurn;
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
         const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;

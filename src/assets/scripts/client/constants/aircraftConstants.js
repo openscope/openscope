@@ -5,7 +5,8 @@
  */
 export const FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
-    DEPARTURE: 'departure'
+    DEPARTURE: 'departure',
+    OVERFLIGHT: 'overflight'
 };
 
 /**

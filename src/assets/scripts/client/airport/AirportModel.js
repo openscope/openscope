@@ -230,18 +230,15 @@ export default class AirportModel {
         this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
 
         /**
-         * @property rr_radius_nm
-         * @type {nunmber}
+         * @property rangeRings
+         * @type {object}
          * @default 0
          */
-        this.rr_radius_nm = 0;
-
-        /**
-         * @property rr_center
-         * @type {nunmber}
-         * @default 0
-         */
-        this.rr_center = 0;
+        this.rangeRings = {
+            enabled: false,
+            radius_nm: 0,
+            center: [0, 0]
+        };
 
         this.parse(options);
     }
@@ -358,8 +355,7 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rr_radius_nm = _get(data, 'rr_radius_nm');
-        this.rr_center = _get(data, 'rr_center');
+        this.rangeRings = _get(data, 'rangeRings');
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();
@@ -412,7 +408,7 @@ export default class AirportModel {
                     vsub(
                         vertexPosition.relativePosition,
                         DynamicPositionModel.calculateRelativePosition(
-                            this.rr_center,
+                            this.rangeRings.center,
                             this._positionModel,
                             this.magneticNorth
                         )
@@ -612,6 +608,10 @@ export default class AirportModel {
 
         if (category === FLIGHT_CATEGORY.DEPARTURE) {
             return this.departureRunwayModel;
+        }
+
+        if (category === FLIGHT_CATEGORY.OVERFLIGHT) {
+            return;
         }
 
         console.warn('Did not expect a query for runway that applies to aircraft of category ' +
