@@ -33,7 +33,7 @@ The Václav Havel Airport is very specific with its runway usage. RWY04/22 is pe
 
 The monopoly in CAT III certification and winds coming mostly from the west mean RWY24 is the preferred RWY and is used for approximately 80% of all operations. RWY12 is the second most commonly used runway and RWYs 06 and 30 are used very seldom. RWYs 06/24 and 12/30 are **never** used simultaneously. 
 
-Accordind to the [IAP](http://lis.rlp.cz/ais_data/www_main_control/frm_en_aip.htm):
+According to the [IAP](http://lis.rlp.cz/ais_data/www_main_control/frm_en_aip.htm):
 
 > RWY in use will be determined in following order:
 RWY 24
