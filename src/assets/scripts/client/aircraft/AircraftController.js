@@ -380,16 +380,14 @@ export default class AircraftController {
     }
 
     /**
+     * @for AircraftController
      * @method findAircraftByCallsign
      * @param  {string} [callsign='']
      * @return {AircraftModel|null}
+     * @public
      */
     findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+        return this._collection.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -434,7 +432,7 @@ export default class AircraftController {
      * @return {AircraftModel|null}
      */
     debug(callsign = '') {
-        return this.findAircraftByCallsign(callsign);
+        return this._collection.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -788,7 +786,7 @@ export default class AircraftController {
      * @private
      */
     _onStripDoubleClickHandler = (callsign) => {
-        const { relativePosition } = this.findAircraftByCallsign(callsign);
+        const { relativePosition } = this._collection.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });

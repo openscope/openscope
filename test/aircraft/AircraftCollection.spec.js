@@ -40,5 +40,40 @@ ava('.remove() decreases the `#_items` length by 1', (t) => {
     t.true(collection.length === 0);
 });
 
-ava.todo('.findAircraftByCallsign() ');
+ava('.findAircraftByCallsign() returns null when no callsign is passed', (t) => {
+    const collection = new AircraftCollection();
+    const result = collection.findAircraftByCallsign();
+
+    t.falsy(result);
+});
+
+ava('.findAircraftByCallsign() returns null when an aircraftModel with the passed callsign cannot be found', (t) => {
+    const collection = new AircraftCollection();
+    const result = collection.findAircraftByCallsign(arrivalAircraftFixture.callsign);
+
+    t.falsy(result);
+});
+
+ava('.findAircraftByCallsign() returns an `AircraftModel` with the passed callsign', (t) => {
+    const collection = new AircraftCollection();
+    const callsignMock = arrivalAircraftFixture.callsign;
+
+    collection.add(arrivalAircraftFixture);
+
+    const result = collection.findAircraftByCallsign(callsignMock);
+
+    t.true(arrivalAircraftFixture.id === result.id);
+});
+
+ava('.findAircraftByCallsign() returns an `AircraftModel` when the passed callsign is UPPERCASE', (t) => {
+    const collection = new AircraftCollection();
+    const callsignMock = 'aAl432';
+
+    collection.add(arrivalAircraftFixture);
+
+    const result = collection.findAircraftByCallsign(callsignMock);
+
+    t.true(arrivalAircraftFixture.id === result.id);
+});
+
 ava.todo('.findAircraftNearPosition() ');

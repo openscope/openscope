@@ -64,8 +64,27 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
-     * Remove an instance from `#_items`
      *
+     *
+     * @for AircraftCollection
+     * @method findAircraftByCallsign
+     * @param {string} callsign
+     * @returns {AircraftModel|undefined}
+     * @public
+     */
+    findAircraftByCallsign(callsign = '') {
+        const foundAircraft = this._findByCallsign(callsign);
+
+        if (!foundAircraft) {
+            return null;
+        }
+
+        return foundAircraft;
+    }
+
+    /**
+     * Remove an instance from `#_items`
+     *r
      * @for AircraftCollection
      * @method remove
      */
@@ -75,6 +94,26 @@ export default class AircraftCollection extends BaseCollection {
         }
 
         this._items = this._items.filter((aircraftModel) => itemToRemove.id !== aircraftModel.id);
+    }
+
+    /**
+     *
+     *
+     * @for AircraftCollection
+     * @method _findByCallsign
+     * @param {string} callsign
+     * @return {AircraftModel} aircraftModel
+     * @private
+     */
+    _findByCallsign(callsign) {
+        if (callsign === '') {
+            return null;
+        }
+
+        const aircraftModel = this._items.filter((aircraftModel) => callsign.toLowerCase() === aircraftModel.callsign.toLowerCase());
+
+        // `filter` returns an array, we only ever want a single instance
+        return aircraftModel[0];
     }
 
     /**
