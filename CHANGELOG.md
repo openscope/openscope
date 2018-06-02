@@ -22,6 +22,7 @@
 - [#874](https://github.com/openscope/openscope/issues/874) - Continue and clean up following FMS / Route refactor
 - [#982](https://github.com/openscope/openscope/issues/982) - Remove empty .gitkeep file
 - [#916](https://github.com/openscope/openscope/issues/916) - Consolidates aircraft removal logics, renames AircraftModel#inside_ctr -> AircraftModel#isControllable, simplifies aircraft update logic in AircraftController
+- [#972](https://github.com/openscope/openscope/issues/972) - Updated airline fleets to newest data
 
 
 
