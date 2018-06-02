@@ -1,6 +1,7 @@
 # 6.2.0 (June 5, 2018)
 ### New Features
 - [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
+- [#444](https://github.com/openscope/openscope/issues/444) - Adds option button to toggle video map display
 
 
 

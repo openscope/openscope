@@ -175,14 +175,21 @@ export const EVENT = {
      * @property TOGGLE_SID_MAP
      * @type {string}
      */
-    TOGGLE_SID_MAP: 'should-toggle-sid-map',
+    TOGGLE_SID_MAP: 'toggle-sid-map',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_STAR_MAP
+     * @type {string}
+     */
+    TOGGLE_STAR_MAP: 'toggle-star-map',
 
     /**
      * @memberof EVENT
      * @property TOGGLE_TERRAIN
      * @type {string}
      */
-    TOGGLE_TERRAIN: 'should-toggle-terrain',
+    TOGGLE_TERRAIN: 'toggle-terrain',
 
     /**
      * Open/close the tutorial modal
@@ -192,6 +199,13 @@ export const EVENT = {
      * @type {string}
      */
     TOGGLE_TUTORIAL: 'toggle-tutorial',
+
+    /**
+     * @memberof EVENT
+     * @property TOGGLE_VIDEO_MAP
+     * @type {string}
+     */
+    TOGGLE_VIDEO_MAP: 'toggle-video-map',
 
     /**
      * A click has been registered in the unpause button shown within the
