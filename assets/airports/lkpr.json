@@ -784,15 +784,15 @@
     ],
     "airways": {
         "L984": ["BEKVI", "LETNA", "OKL", "RAK", "BALTU", "DOPOV", "DONAD", "OKG"],
-        "T136": ["DOBEN", "NIRGO"],
+        "M725": ["TABEM", "OKF", "LANUX"],
         "P733": ["ARTUP", "TOMTI"],
+        "P861": ["ASTEL", "GOLOP"],
+        "T136": ["DOBEN", "NIRGO"],
         "Y621": ["VENOX", "DEKOV"],
         "Z21" : ["VOZ", "NELPA", "PISAM"],
-        "P861": ["ASTEL", "GOLOP"],
         "Z35" : ["ODOMO", "LOMKI"],
         "Z39" : ["LALIN", "DOLUP", "IPDUL", "GOSEK"],
-        "Z401": ["VLM", "USUPA", "TABEM"],
-        "M725": ["TABEM", "OKF", "LANUX"]
+        "Z401": ["VLM", "USUPA", "TABEM"]
     },
     "sids":{
         "ARTUP2H": {
@@ -853,7 +853,7 @@
             "exitPoints": {
                 "ARTUP": ["ARTUP"]
             },
-            "draw": [["PR815", "PR816", "PR819", "ARTUP"]]
+            "draw": [["PR815", "PR816", "PR818", "PR819", "ARTUP"]]
         },
         "ARTUP3E": {
             "icao": "ARTUP3E",
@@ -913,7 +913,7 @@
             "exitPoints": {
                 "BALTU": ["BALTU"]
             },
-            "draw": [["PR626", "PR856", "PR858", "ESINU", "BALTU"]]
+            "draw": [["PR626", "PR856", "UTORO", "PR858", "ESINU", "BALTU"]]
         },
         "BALTU5E": {
             "icao": "BALTU5E",
@@ -925,7 +925,7 @@
             "exitPoints": {
                 "BALTU": ["BALTU"]
             },
-            "draw": [["PR631", "PR632", "ESINU", "BALTU"]]
+            "draw": [["PR631", "PR632", "PR621", "ESINU", "BALTU"]]
         },
         "DOBEN2G": {
             "icao": "DOBEN2G",
@@ -937,7 +937,7 @@
             "exitPoints": {
                 "DOBEN": ["DOBEN"]
             },
-            "draw": [["_RWY12", "PR855", "DOBEN"]]
+            "draw": [["PR854", "PR855", "DOBEN"]]
         },
         "DOBEN3A": {
             "icao": "DOBEN3A",
@@ -949,7 +949,7 @@
             "exitPoints": {
                 "DOBEN": ["DOBEN"]
             },
-            "draw":[["PR402", "DOBEN"]]
+            "draw": [["PR402", "DOBEN"]]
         },
         "DOBEN3B": {
             "icao": "DOBEN3B",
@@ -985,7 +985,7 @@
             "exitPoints": {
                 "DOBEN": ["DOBEN"]
             },
-            "draw": [["PR626", "PR856", "PR858", "ESINU", "DOBEN"]]
+            "draw": [["PR626", "PR856", "UTORO", "PR858", "ESINU", "DOBEN"]]
         },
         "DOBEN5E": {
             "icao": "DOBEN5E",
@@ -995,9 +995,9 @@
             },
             "body": ["PR631", "PR632", "PR621", "ESINU"],
             "exitPoints": {
-                "DOBEN": [["DOBEN", "A95-|A75+"]]
+                "DOBEN": ["DOBEN"]
             },
-            "draw":[["PR631", "PR632", "ESINU", "DOBEN"]]
+            "draw": [["PR631", "PR632", "PR621", "ESINU", "DOBEN"]]
         },
         "VENOX2B": {
             "icao": "VENOX2B",
@@ -1021,7 +1021,7 @@
             "exitPoints": {
                 "VENOX": ["VENOX"]
             },
-            "draw": [["_RWY12", "PR626", "PR856", "PR858", "VENOX"]]
+            "draw": [["PR626", "PR856", "UTORO", "PR858", "VENOX"]]
         },
         "VENOX2M": {
             "icao": "VENOX2M",
@@ -1201,7 +1201,7 @@
             "exitPoints": {
                 "VOZ": ["VOZ"]
             },
-            "draw": [["_RWY12", "PR626", "PR412", "VOZ"]]
+            "draw": [["PR626", "PR412", "VOZ"]]
         }
     },
     "stars": {
@@ -1223,7 +1223,7 @@
             "entryPoints": {
                 "GOLOP": [["GOLOP", "S250-"]]
             },
-            "body": ["PR516", "PR517", "PR518", "ERASU", "#061"],
+            "body": ["PR516", ["PR517", "S220-"], "PR518", "ERASU", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1269,7 +1269,7 @@
             "icao": "GOSEK3T",
             "name": "Gosek Three Tango",
             "entryPoints": {
-                "GOSEK": ["GOSEK"]
+                "GOSEK": [["GOSEK", "S250-"]]
             },
             "body": ["PR718", ["PR719", "S220-"], "PR521", "AKEVA", "#241"],
             "rwy": {
@@ -1295,11 +1295,11 @@
             "entryPoints": {
                 "GOSEK": [["GOSEK", "S250-"]]
             },
-            "body": ["PR901", "PR902", "PR913", "PR903", "PR904", ["KENOK", "S220-"], "@KENOK"],
+            "body": ["PR901", "PR902", "PR913", "PR903", "PR904", ["@KENOK", "S220-"]],
             "rwy": {
                 "LKPR30": []
             },
-            "draw": [["GOSEK", "PR953", "PR954", "SOMIS"]]
+            "draw": [["GOSEK", "PR901", "PR902", "PR913", "PR903", "PR904", "KENOK"]]
         },
         "LOMKI5P": {
             "icao": "LOMKI5P",
@@ -1319,7 +1319,7 @@
             "entryPoints": {
                 "LOMKI": ["LOMKI"]
             },
-            "body": [["PR511", "S250-"], "PR512", "PR513", "ERASU", "#061"],
+            "body": [["PR511", "S250-"], "PR512", ["PR513", "S220-"], "ERASU", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1329,9 +1329,9 @@
             "icao": "LOMKI6T",
             "name": "Lomki Six Tango",
             "entryPoints": {
-                "LOMKI": ["LOMKI"]
+                "LOMKI": [["LOMKI", "S250-"]]
             },
-            "body": [["PR707", "S220-"], "BAROX", "@BAROX"],
+            "body": [["PR707", "S220-"], "@BAROX"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1343,7 +1343,7 @@
             "entryPoints": {
                 "LOMKI": ["LOMKI"]
             },
-            "body": [["PR511", "S250-"], "PR512", "PR914", "PR915", "ARVEG", "#123"],
+            "body": [["PR511", "S250-"], "PR512", ["PR914", "S220-"], "PR915", "ARVEG", "#123"],
             "rwy": {
                 "LKPR06": []
             },
@@ -1355,7 +1355,7 @@
             "entryPoints": {
                 "VLM": ["VLM"]
             },
-            "body": [["PR522", "S250-"], "PR523", "RATEV", "#061"],
+            "body": [["PR522", "S250-"], ["PR523", "S220-"], "RATEV", "#061"],
             "rwy": {
                 "LKPR24": []
             },
@@ -1391,7 +1391,7 @@
             "entryPoints": {
                 "VLM": ["VLM"]
             },
-            "body": ["PR904", ["KENOK", "S220-"], "@KENOK"],
+            "body": ["PR904", ["@KENOK", "S220-"]],
             "rwy": {
                 "LKPR30": []
             },
