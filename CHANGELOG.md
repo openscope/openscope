@@ -17,6 +17,7 @@
 - [#782](https://github.com/openscope/openscope/issues/782) - Overhaul of KATL
 - [#961](https://github.com/openscope/openscope/issues/961) - Updated climb and descent rates using Eurocontrol data
 - [#874](https://github.com/openscope/openscope/issues/874) - Continue and clean up following FMS / Route refactor
+- [#982](https://github.com/openscope/openscope/issues/982) - Remove empty .gitkeep file
 
 
 
