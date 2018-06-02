@@ -2,15 +2,11 @@ sudo: false
 language: node_js
 node_js:
 - '7'
+- '8'
 git:
   depth: 3
 cache:
   directories:
-  - "$HOME/.npm"
-  - node_modules
-  - assets/aircraft
-  - assets/airlines
-  - assets/airports
   - assets/fonts
   - assets/images
 notifications:

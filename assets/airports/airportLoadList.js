@@ -400,13 +400,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
-        // {
-        //     icao: 'lkpr',
-        //     level: 'easy',
-        //     name: 'Vaclav Havel International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'lkpr',
+            level: 'easy',
+            name: 'Vaclav Havel International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'loww',
         //     level: 'medium',
