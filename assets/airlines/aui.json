@@ -1,6 +1,6 @@
 {
     "icao": "aui",
-    "name": "Ukraine International Airline",
+    "name": "Ukraine International Airlines",
     "callsign": {
         "name": "Ukraine International",
         "callsignFormats": [
@@ -9,14 +9,20 @@
     },
     "fleets": {
         "default": [
-            ["B733", 3],
-            ["B735", 6],
-            ["B738", 12],
+            ["B733", 2],
+            ["B735", 1],
+            ["B738", 26],
             ["B739", 4],
+            ["B763", 4],
+            ["B77L", 2],
             ["E190", 5]
         ],
         "long": [
-            ["B763", 4]
+            ["B763", 4],
+            ["B77L", 2]
+        ],
+        "b739": [
+            ["B739", 4]
         ]
     }
 }
