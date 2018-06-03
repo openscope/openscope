@@ -4,12 +4,14 @@
     "callsign": {
         "name": "Alaska",
         "callsignFormats": [
-            "###"
+            "####",
+            "###",
+            "##"
         ]
     },
     "fleets": {
         "default": [
-            ["A21N",  7],
+            ["A21N", 7],
             ["A319", 10],
             ["A320", 53],
             ["B737", 14],

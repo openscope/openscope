@@ -2,7 +2,7 @@
     "icao": "pal",
     "name": "Philippine Airlines",
     "callsign": {
-        "name": "PHILIPPINE",
+        "name": "Philippine",
         "callsignFormats": [
             "####",
             "###"
@@ -10,20 +10,20 @@
     },
     "fleets": {
         "default": [
-            ["A21N", 1 ],
+            ["A21N", 1],
             ["A320", 10],
             ["A321", 25],
             ["A333", 15],
-            ["A343", 5 ],
+            ["A343", 5],
             ["B77W", 10]
         ],
         "long": [
             ["A333", 15],
-            ["A343", 5 ],
+            ["A343", 5],
             ["B77W", 10]
         ],
         "short": [
-            ["A21N", 1 ],
+            ["A21N", 1],
             ["A320", 10],
             ["A321", 24]
         ]

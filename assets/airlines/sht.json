@@ -1,0 +1,19 @@
+{
+    "icao": "sht",
+    "name": "British Airways",
+    "callsign": {
+        "name": "Shuttle",
+        "callsignFormats": [
+            "##@",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A318", 1],
+            ["A319", 44],
+            ["A320", 67],
+            ["A321", 18]
+        ]
+    }
+}

@@ -4,18 +4,20 @@
     "callsign": {
         "name": "Allegiant",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },
     "fleets": {
-        "long": [
-            ["B752", 5]
-        ],
         "default": [
             ["A319", 31],
             ["A320", 41],
+            ["B752", 5],
             ["MD83", 34],
-            ["MD88", 4 ]
+            ["MD88", 4]
+        ],
+        "long": [
+            ["B752", 5]
         ]
     }
 }

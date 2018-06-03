@@ -2,14 +2,14 @@
     "icao": "pdt",
     "name": "Piedmont Airlines",
     "callsign": {
-        "name": "piedmont",
+        "name": "Piedmont",
         "callsignFormats": [
             "####"
         ]
     },
     "fleets": {
         "default": [
-            ["DH8C", 5 ],
+            ["DH8C", 5],
             ["E145", 46]
         ]
     }
