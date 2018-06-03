@@ -1,12 +1,15 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "hz",
+    "name": "General Aviation Saudi Arabia",
     "callsign": {
-        "name": "Tango November",
+        "name": "Hotel Zulu",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@",
+            "@@#",
+            "@@##",
+            "@@@#",
+            "@@@##",
+            "@@@@"
         ]
     },
     "fleets": {

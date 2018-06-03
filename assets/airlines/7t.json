@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "7t",
+    "name": "General Aviation Algeria",
     "callsign": {
-        "name": "Tango November",
+        "name": "Seven Tango",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "ew",
+    "name": "General Aviation Belarus",
     "callsign": {
-        "name": "Tango November",
+        "name": "Echo Whiskey",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "###@@"
         ]
     },
     "fleets": {

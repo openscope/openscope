@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "su",
+    "name": "General Aviation Egypt",
     "callsign": {
-        "name": "Tango November",
+        "name": "Sierra Uniform",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

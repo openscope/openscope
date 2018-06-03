@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "hl",
+    "name": "General Aviation South Korea",
     "callsign": {
-        "name": "Tango November",
+        "name": "Hotel Lima",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "####"
         ]
     },
     "fleets": {

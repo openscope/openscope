@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "vp",
+    "name": "General Aviation British Overseas Territories",
     "callsign": {
-        "name": "Tango November",
+        "name": "Victor Papa",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

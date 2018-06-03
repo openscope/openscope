@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "f",
+    "name": "General Aviation France",
     "callsign": {
-        "name": "Tango November",
+        "name": "Foxtrot",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@@"
         ]
     },
     "fleets": {

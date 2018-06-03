@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "d4",
+    "name": "General Aviation Cape Verde",
     "callsign": {
-        "name": "Tango November",
+        "name": "Delta Four",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

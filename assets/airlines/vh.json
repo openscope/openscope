@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "vh",
+    "name": "General Aviation Australia",
     "callsign": {
-        "name": "Tango November",
+        "name": "Victor Hotel",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

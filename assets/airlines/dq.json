@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "dq",
+    "name": "General Aviation Fiji Islands",
     "callsign": {
-        "name": "Tango November",
+        "name": "Delta Quebec",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {

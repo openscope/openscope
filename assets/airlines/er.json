@@ -1,11 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "er",
+    "name": "General Aviation Moldova",
     "callsign": {
-        "name": "Tango November",
+        "name": "Echo Romeo",
         "callsignFormats": [
-            "###@@",
-            "####@",
+            "@@@",
             "#####"
         ]
     },

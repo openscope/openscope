@@ -1,11 +1,9 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "uk",
+    "name": "General Aviation Uzbekistan",
     "callsign": {
-        "name": "Tango November",
+        "name": "Uniform Kilo",
         "callsignFormats": [
-            "###@@",
-            "####@",
             "#####"
         ]
     },

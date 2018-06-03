@@ -1,12 +1,10 @@
 {
-    "icao": "tn",
-    "name": "General Aviation Republic of Congo",
+    "icao": "9s",
+    "name": "General Aviation Democratic Republic of Congo",
     "callsign": {
-        "name": "Tango November",
+        "name": "Niner Sierra",
         "callsignFormats": [
-            "###@@",
-            "####@",
-            "#####"
+            "@@@"
         ]
     },
     "fleets": {
