@@ -777,7 +777,31 @@ export default class AircraftController {
     };
 
     /**
-     * Given an `aircraftModel` check against each other aircraft fro conflicts
+     * Encapsulates math and logic used to detrmine if a new `AircraftConflict` should
+     * be created for two specific aircraft
+     *
+     * Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
+     * no violation can occur in this case
+     * Variation of:
+     * http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+     *
+     * @for AircraftController
+     * @method _shouldAddNewConflict
+     * @param {AircraftModel} aircraftModel
+     * @param {AircraftModel} comparisonAircraftModel
+     * @return {boolean}
+     * @private
+     */
+    _shouldAddNewConflict(aircraftModel, comparisonAircraftModel) {
+        const boundingBoxLength = km(8);
+        const dx = abs(aircraftModel.relativePosition[0] - comparisonAircraftModel.relativePosition[0]);
+        const dy = abs(aircraftModel.relativePosition[1] - comparisonAircraftModel.relativePosition[1]);
+
+        return dx < boundingBoxLength && dy < boundingBoxLength;
+    }
+
+    /**
+     * Given an `aircraftModel` check against each other aircraft for conflicts
      * after physics (current position) have been updated
      *
      * @for AircraftController
@@ -787,22 +811,21 @@ export default class AircraftController {
      */
     _updateAircraftConflicts(aircraftModel, currentUpdateIndex) {
         for (let j = currentUpdateIndex + 1; j < this.aircraft.list.length; j++) {
-            const otherAircraft = this.aircraft.list[j];
+            const otherAircraftModel = this.aircraft.list[j];
 
-            if (aircraftModel.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
+            // TODO: though looking better, this logic still needs some work
+            if (otherAircraftModel.isTaxiing()) {
                 continue;
             }
 
-            // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
-            // no violation can occur in this case.
-            // Variation of:
-            // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-            const dx = abs(aircraftModel.relativePosition[0] - otherAircraft.relativePosition[0]);
-            const dy = abs(aircraftModel.relativePosition[1] - otherAircraft.relativePosition[1]);
-            const boundingBoxLength = km(8);
+            if (aircraftModel.hasConflictWithAircraftModel(otherAircraftModel)) {
+                aircraftModel.conflicts[otherAircraftModel.callsign].update();
 
-            if (dx < boundingBoxLength && dy < boundingBoxLength) {
-                this.addConflict(aircraftModel, otherAircraft);
+                continue;
+            }
+
+            if (this._shouldAddNewConflict(aircraftModel, otherAircraftModel)) {
+                this.addConflict(aircraftModel, otherAircraftModel);
             }
         }
     }

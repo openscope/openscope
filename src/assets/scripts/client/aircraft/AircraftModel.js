@@ -250,7 +250,7 @@ export default class AircraftModel {
 
         /**
          * Azimuth from airport center to aircraft, in radians
-         *
+         *G
          * @for AircraftModel
          * @property radial
          * @type {number}
@@ -2396,25 +2396,22 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method addConflict
      * @param {AircraftConflict} conflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     addConflict(conflict, conflictingAircraft) {
         this.conflicts[conflictingAircraft.callsign] = conflict;
     }
 
     /**
+     * Used to determine if a `conflictingAircraft` already exists within
+     *
      * @for AircraftModel
-     * @method checkConflict
-     * @param {Aircraft} conflictingAircraft
+     * @method hasConflictWithAircraftModel
+     * @param {AircraftModel} conflictingAircraft
+     * @returns {boolean}
      */
-    checkConflict(conflictingAircraft) {
-        if (this.conflicts[conflictingAircraft.callsign]) {
-            this.conflicts[conflictingAircraft.callsign].update();
-
-            return true;
-        }
-
-        return false;
+    hasConflictWithAircraftModel(conflictingAircraftModel) {
+        return conflictingAircraftModel.callsign in this.conflicts;
     }
 
     /**
@@ -2437,7 +2434,7 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method removeConflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
@@ -2523,7 +2520,6 @@ export default class AircraftModel {
 
         if (!nextControllableStatus) {
             this.setIsFlightStripRemovable();
-            console.log('+++ shouldRemoveStrip');
         }
     }
 }
