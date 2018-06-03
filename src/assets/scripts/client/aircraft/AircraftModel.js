@@ -250,7 +250,7 @@ export default class AircraftModel {
 
         /**
          * Azimuth from airport center to aircraft, in radians
-         *G
+         *
          * @for AircraftModel
          * @property radial
          * @type {number}
@@ -2403,7 +2403,8 @@ export default class AircraftModel {
     }
 
     /**
-     * Used to determine if a `conflictingAircraft` already exists within
+     * Used to determine if a `conflictingAircraft.callsign` already exists within
+     * the list of known conflicts for an aircaft
      *
      * @for AircraftModel
      * @method hasConflictWithAircraftModel
