@@ -3,7 +3,9 @@
     "name": "Air Astana",
     "callsign": {
         "name": "Astanaline",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
@@ -13,6 +15,10 @@
             ["B752", 5],
             ["B763", 3],
             ["E190", 9]
+        ],
+        "a32x": [
+            ["A320", 9],
+            ["A321", 5]
         ]
     }
 }
