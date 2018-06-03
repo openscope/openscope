@@ -18,11 +18,10 @@
 ### Enhancements & Refactors
 - [#956](https://github.com/openscope/openscope/issues/956) - Updated 'descend via STAR' documentation to change mentioning SID to STAR
 - [#782](https://github.com/openscope/openscope/issues/782) - Overhaul of KATL
-- [#916](https://github.com/openscope/openscope/issues/916) - consolidates aircraft removal logics, renames AircraftModel#inside_ctr -> AircraftModel#isControllable, simplifies aircraft update logic in AircraftController
 - [#961](https://github.com/openscope/openscope/issues/961) - Updated climb and descent rates using Eurocontrol data
 - [#874](https://github.com/openscope/openscope/issues/874) - Continue and clean up following FMS / Route refactor
 - [#982](https://github.com/openscope/openscope/issues/982) - Remove empty .gitkeep file
-- [#961](https://github.com/openscope/openscope/issues/961) - updated climb and descent rates using Eurocontrol data
+- [#916](https://github.com/openscope/openscope/issues/916) - Consolidates aircraft removal logics, renames AircraftModel#inside_ctr -> AircraftModel#isControllable, simplifies aircraft update logic in AircraftController
 
 
 
