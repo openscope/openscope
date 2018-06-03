@@ -21,6 +21,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     constructor(aircraftTypeDefinition) {
         super();
+
         if (isEmptyObject(aircraftTypeDefinition)) {
             throw new TypeError('Invalid parameter. Expected aircraftTypeDefinition to be an object');
         }

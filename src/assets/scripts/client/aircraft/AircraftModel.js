@@ -379,14 +379,15 @@ export default class AircraftModel {
         this.rules = FLIGHT_RULES.IFR;
 
         /**
-         * Inside ATC Airspace
+         * Flag for if an aircraft is within controlled airspace, thus
+         * making an aircraft _controllable_
          *
          * @for AircraftModel
-         * @property inside_ctr
+         * @property isControllable
          * @type {boolean}
          * @default false
          */
-        this.inside_ctr = false;
+        this.isControllable = false;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -421,6 +422,24 @@ export default class AircraftModel {
          * @private
          */
         this._isEstablishedOnHoldingPattern = false;
+
+        /**
+         * Flag used to determine if an aircraft can be removed from the sim.
+         *
+         * This tells the `AircraftController` that `AircraftStripView` associated with this
+         * instance is safe to remove. This property should only be changed via the
+         * `.setIsFlightStripRemovable()` method
+         *
+         * The `AircraftModel` will know when conditions are correct for the `StripView`
+         * to be removed, however, only the `AircraftController` has access to an aircraft's
+         * `StripView`.
+         *
+         * @for AircraftModel
+         * @property isRemovable
+         * @type {boolean}
+         * @default false
+         */
+        this.isFlightStripRemovable = false;
 
         /**
          * Flag used to determine if an aircraft can be removed from the sim.
@@ -585,7 +604,7 @@ export default class AircraftModel {
         this.target.speed = this.speed;
 
         // This assumes and arrival spawns outside the airspace
-        this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
+        this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
@@ -631,7 +650,7 @@ export default class AircraftModel {
 
         return {
             id: this.id,
-            insideCenter: this.inside_ctr,
+            insideCenter: this.isControllable,
             callsign: this.callsign,
             transponderCode: this.transponderCode,
             icaoWithWeightClass: this.model.icaoWithWeightClass,
@@ -644,66 +663,21 @@ export default class AircraftModel {
     }
 
     /**
-     * Called when the aircraft crosses the airspace boundary (ie, leaving our airspace)
-     *
-     * @for AircraftModel
-     * @method crossBoundary
-     * @param inbound {}
-     */
-    crossBoundary(inbound) {
-        this.inside_ctr = inbound;
-
-        if (this.projected) {
-            return;
-        }
-
-        // Crossing into the center
-        if (this.inside_ctr) {
-            this.callUp();
-
-            return;
-        }
-
-        // leaving airspace
-        this.onAirspaceExit();
-    }
-
-    /**
      * @for AircraftModel
      * @method onAirspaceExit
      */
     onAirspaceExit() {
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            return this.arrivalExit();
+        if (this.isArrival()) {
+            return this._onAirspaceExitForArrival();
         }
 
-        this.setIsRemovable();
-
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
-            this.radioCall(
-                'leaving radar coverage without proper clearance',
-                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
-                true
-            );
-            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+            this._onAirspaceExitWithoutClearance();
 
             return;
         }
 
-        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-    }
-
-    /**
-     * An arriving aircraft is exiting the airpsace
-     *
-     * @for AircraftModel
-     * @method arrivalExit
-     */
-    arrivalExit() {
-        this.setIsRemovable();
-        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+        this._onAirspaceExitWithClearance();
     }
 
     /**
@@ -916,6 +890,11 @@ export default class AircraftModel {
         return this.fms.isDeparture();
     }
 
+    /**
+     * @for AircraftModel
+     * @method isArrival
+     * @returns booelan
+     */
     isArrival() {
         return this.fms.isArrival();
     }
@@ -1056,9 +1035,21 @@ export default class AircraftModel {
     }
 
     /**
+     * Sets `#isFlightStripRemovable` to true
+     *
+     * Provides a single source of change for the value of `#isFlightStripRemovable`
+     *
+     * @for AircraftModel
+     * @method isFlightStripRemovable
+     */
+    setIsFlightStripRemovable() {
+        this.isFlightStripRemovable = true;
+    }
+
+    /**
      * Sets `#isRemovable` to true
      *
-     * Provides a single source to change the value of `#isRemovable`
+     * Provides a single source of change for the value of `#isRemovable`
      * This is evaluated by the `AircraftController` when determining
      * if an aircraft should be removed or not
      *
@@ -1152,7 +1143,7 @@ export default class AircraftModel {
         let alt_log;
         let alt_say;
 
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (this.isArrival()) {
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1177,7 +1168,7 @@ export default class AircraftModel {
             ]);
         }
 
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (this.isDeparture()) {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
                 { type: 'text', content: AirportController.airport_get().radio.twr },
@@ -2041,13 +2032,6 @@ export default class AircraftModel {
 
         this.distance = vlen(this.positionModel.relativePosition);
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
-
-        // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
-
-        if (isInsideAirspace !== this.inside_ctr) {
-            this.crossBoundary(isInsideAirspace);
-        }
     }
 
     /**
@@ -2084,7 +2068,8 @@ export default class AircraftModel {
     }
 
     /**
-     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     * This updates the Altitude for the instance of the aircraft by checking the difference
+     * between current Altitude and requested Altitude
      *
      * @for AircraftModel
      * @method updateAltitudePhysics
@@ -2404,31 +2389,30 @@ export default class AircraftModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
+        this._updateAircraftVisibility();
     }
 
     /**
      * @for AircraftModel
      * @method addConflict
      * @param {AircraftConflict} conflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     addConflict(conflict, conflictingAircraft) {
         this.conflicts[conflictingAircraft.callsign] = conflict;
     }
 
     /**
+     * Used to determine if a `conflictingAircraft.callsign` already exists within
+     * the list of known conflicts for an aircaft
+     *
      * @for AircraftModel
-     * @method checkConflict
-     * @param {Aircraft} conflictingAircraft
+     * @method hasConflictWithAircraftModel
+     * @param {AircraftModel} conflictingAircraft
+     * @returns {boolean}
      */
-    checkConflict(conflictingAircraft) {
-        if (this.conflicts[conflictingAircraft.callsign]) {
-            this.conflicts[conflictingAircraft.callsign].update();
-
-            return true;
-        }
-
-        return false;
+    hasConflictWithAircraftModel(conflictingAircraftModel) {
+        return conflictingAircraftModel.callsign in this.conflicts;
     }
 
     /**
@@ -2451,9 +2435,92 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method removeConflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
+    }
+
+    // TODO: needs better name
+    /**
+     * @for AircraftModel
+     * @method _contactAircraftAfterControllabilityChange
+     * @private
+     */
+    _contactAircraftAfterControllabilityChange() {
+        // Crossing into the center
+        if (this.isControllable) {
+            this.callUp();
+
+            return;
+        }
+
+        this.setIsRemovable();
+        // leaving airspace
+        this.onAirspaceExit();
+    }
+
+    /**
+     * An arriving aircraft is exiting the airpsace
+     *
+     * @for AircraftModel
+     * @method _onAirspaceExitForArrival
+     * @private
+     */
+    _onAirspaceExitForArrival() {
+        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
+        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithClearance
+     * @private
+     */
+    _onAirspaceExitWithClearance() {
+        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithoutClearance
+     * @private
+     */
+    _onAirspaceExitWithoutClearance() {
+        this.radioCall('leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+        GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _updateAircraftVisibility
+     * @private
+     */
+    _updateAircraftVisibility() {
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
+
+        if (isInsideAirspace === this.isControllable || this.projected) {
+            return;
+        }
+
+        this._updateControllableStatus(isInsideAirspace);
+        this._contactAircraftAfterControllabilityChange();
+    }
+
+    /**
+     * Updates the `#isControllable` property when an aircraft either
+     * enters or exits controlled airspace
+     *
+     * @for AircraftModel
+     * @method _updateControllableStatus
+     * @param {booelan} nextControllableStatus
+     */
+    _updateControllableStatus(nextControllableStatus) {
+        this.isControllable = nextControllableStatus;
+
+        if (!nextControllableStatus) {
+            this.setIsFlightStripRemovable();
+        }
     }
 }
