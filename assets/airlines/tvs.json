@@ -2,7 +2,7 @@
     "icao": "tvs",
     "name": "Travel Service",
     "callsign": {
-        "name": "SKYTRAVEL",
+        "name": "Skytravel",
         "callsignFormats": [
             "###"
         ]

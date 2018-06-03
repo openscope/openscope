@@ -21,7 +21,8 @@ import {
 } from '../../utilities/radioUtilities';
 import {
     degreesToRadians,
-    heading_to_string
+    heading_to_string,
+    radiansToDegrees
 } from '../../utilities/unitConverters';
 
 /**
@@ -478,7 +479,6 @@ export default class Pilot {
         return [true, 'descend via STAR'];
     }
 
-    // FIXME: This will need to do stuff
     /**
     * Arm the exit of the holding pattern
     *
@@ -486,9 +486,15 @@ export default class Pilot {
     * @method exitHold
     */
     exitHold() {
-        if (!this._fms.currentWaypoint.isHoldWaypoint) {
-            return;
+        const currentWaypoint = this._fms.currentWaypoint;
+
+        if (!currentWaypoint.isHoldWaypoint) {
+            return [false, 'not currently holding'];
         }
+
+        currentWaypoint.deactivateHold();
+
+        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName}`];
     }
 
     /**
@@ -780,14 +786,12 @@ export default class Pilot {
                 return [true, readback];
 
             case MCP_MODE.HEADING.LNAV: {
-                // the currentWaypoint does not contain any heading information, that can only be calculated
-                // from two waypoints.
-                // TODO: this block needs some work.
-                const heading = this._fms.currentWaypoint.heading;
-                const fixName = this._fms.currentWaypoint.name;
+                const waypoint = this._fms.currentWaypoint;
+                const waypointPosition = waypoint.positionModel;
+                const bearing = Math.round(radiansToDegrees(this.positionModel.bearingToPosition(waypointPosition)));
 
-                readback.log = `we're heading ${heading} toward ${fixName}`;
-                readback.say = `we're heading ${radio_heading(heading)} toward ${fixName}`;
+                readback.log = `our on-course heading to ${waypoint.getDisplayName()} is ${bearing}`;
+                readback.say = `our on-course heading to ${waypoint.getDisplayName()} is ${radio_heading(bearing)}`;
 
                 return [true, readback];
             }

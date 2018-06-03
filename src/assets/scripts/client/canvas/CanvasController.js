@@ -162,6 +162,15 @@ export default class CanvasController {
         this._shouldDrawSidMap = false;
 
         /**
+         * Flag used to determine if the star map should be displayed
+         *
+         * @property _shouldDrawStarMap
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawStarMap = false;
+
+        /**
          * Flag used to determine if terrain should be displayed
          *
          * @property _shouldDrawTerrain
@@ -169,6 +178,15 @@ export default class CanvasController {
          * @default true
          */
         this._shouldDrawTerrain = true;
+
+        /**
+         * Flag used to determine if the video map should be displayed
+         *
+         * @property _shouldDrawVideoMap
+         * @type {boolean}
+         * @default true
+         */
+        this._shouldDrawVideoMap = true;
 
         /**
          * has a console.warn been output for terrain?
@@ -218,8 +236,10 @@ export default class CanvasController {
         this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
         this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
+        this._onToggleStarMapHandler = this._onToggleStarMap.bind(this);
         this._onAirportChangeHandler = this._onAirportChange.bind(this);
         this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
+        this._onToggleVideoMapHandler = this._onToggleVideoMap.bind(this);
         this._onResizeHandler = this.canvas_resize.bind(this);
 
         this._setThemeHandler = this._setTheme.bind(this);
@@ -240,7 +260,9 @@ export default class CanvasController {
         this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
+        this._eventBus.on(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMapHandler);
         this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
+        this._eventBus.on(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
         window.addEventListener('resize', this._onResizeHandler);
@@ -262,7 +284,9 @@ export default class CanvasController {
         this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.off(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMapHandler);
         this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
+        this._eventBus.off(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
         window.removeEventListener('resize', this._onResizeHandler);
@@ -1836,7 +1860,7 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'maps')) {
+        if (!_has(airportModel, 'maps') || !this._shouldDrawVideoMap) {
             return;
         }
 
@@ -2094,16 +2118,50 @@ export default class CanvasController {
     }
 
     /**
+     * Toogle display of STAR routes
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleStarMap
+     * @private
+     */
+    _onToggleStarMap() {
+        console.log('+++', 'STAR maps are not yet implemented');
+        // this._shouldDrawStarMap = !this._shouldDrawStarMap;
+
+        // this._markDeepRender();
+    }
+
+    /**
      * Toogle current value of `#draw_terrain`
      *
      * This method will only be `trigger`ed by some other
      * class via the `EventBus`
+     *
      * @for CanvasController
      * @method _onToggleTerrain
      * @private
      */
     _onToggleTerrain() {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
+
+        this._markDeepRender();
+    }
+
+    /**
+     * Toogle display of video map
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleVideoMap
+     * @private
+     */
+    _onToggleVideoMap() {
+        this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
 
         this._markDeepRender();
     }
