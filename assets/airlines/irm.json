@@ -1,0 +1,24 @@
+{
+    "icao": "irm",
+    "name": "Mahan Air",
+    "callsign": {
+        "name": "Mahan Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 6],
+            ["A310", 8],
+            ["A343", 5],
+            ["A346", 7],
+            ["B743", 1],
+            ["RJ85", 4],
+            ["RJ1H", 6]
+        ],
+        "a310": [
+            ["A310", 8]
+        ]
+    }
+}
