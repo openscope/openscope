@@ -2,14 +2,14 @@
     "icao": "iad",
     "name": "AirAsia India",
     "callsign": {
-        "name": "ARIYA",
+        "name": "Red Knight",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 6 ]
+            ["A320", 18]
         ]
     }
 }

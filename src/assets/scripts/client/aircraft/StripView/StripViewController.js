@@ -111,6 +111,20 @@ export default class StripViewController {
     }
 
     /**
+     * Provides a way to check if a `StripViewModel` exists for a given `AircraftModel`
+     *
+     * @for StripViewController
+     * @method hasStripViewModel
+     * @param aircraftModel {AircraftModel}
+     * @returns {booelan}
+     */
+    hasStripViewModel(aircraftModel) {
+        const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        return typeof stripViewModel !== 'undefined';
+    }
+
+    /**
      * Update each `StripViewModel` with new aricraft data
      *
      * The `StripViewModel` provides an early out when
@@ -129,11 +143,11 @@ export default class StripViewController {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
+            if (aircraftModel.isControllable && !stripViewModel.insideCenter) {
                 this._addViewToStripList(stripViewModel);
             }
 
-            if (aircraftModel.inside_ctr) {
+            if (aircraftModel.isControllable) {
                 stripViewModel.update(aircraftModel);
             }
         }
@@ -152,7 +166,7 @@ export default class StripViewController {
 
         this._collection.addItem(stripViewModel);
 
-        if (aircraftModel.isDeparture() || aircraftModel.inside_ctr) {
+        if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
             this._addViewToStripList(stripViewModel);
         }
     }
@@ -224,7 +238,12 @@ export default class StripViewController {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripViewModel) {
-            throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
+            console.warn(
+                `Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist.` +
+                'This is likely not a fatal problem, but if you are seeing this, please let somebody know.'
+            );
+
+            return;
         }
 
         this._removeCidFromUse(stripViewModel.cid);

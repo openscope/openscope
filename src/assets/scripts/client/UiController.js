@@ -1,28 +1,15 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
-import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
 import AirportController from './airport/AirportController';
-import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import { round } from './math/core';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
-import { STORAGE_KEY } from './constants/storageKeys';
-
-/**
- * Value by which the current zoom level is either increased/decreased
- *
- * @property ZOOM_INCREMENT
- * @type {number}
- * @final
- */
-const ZOOM_INCREMENT = 0.9;
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -67,8 +54,10 @@ class UiController {
         this.$toggleLabels = null;
         this.$toggleRestrictedAreas = null;
         this.$toggleSids = null;
+        this.$toggleStars = null;
         this.$toggleTerrain = null;
         this.$toggleOptions = null;
+        this.$toggleVideoMap = null;
     }
 
     /**
@@ -97,8 +86,10 @@ class UiController {
         this.$toggleLabels = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS);
         this.$toggleRestrictedAreas = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS);
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
+        this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
+        this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
 
         return this.setupHandlers()
             .enable();
@@ -128,12 +119,14 @@ class UiController {
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.on('click', (event) => speech_toggle(event));
-        this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
-        this.$toggleLabels.on('click', (event) => this.canvas_labels_toggle(event));
-        this.$toggleRestrictedAreas.on('click', (event) => this.canvas_restricted_toggle(event));
-        this.$toggleSids.on('click', (event) => this.canvas_sids_toggle(event));
-        this.$toggleTerrain.on('click', (event) => this.canvas_terrain_toggle(event));
-        this.$toggleOptions.on('click', (event) => this.ui_options_toggle(event));
+        this.$switchAirport.on('click', (event) => this.onToggleAirportList(event));
+        this.$toggleLabels.on('click', (event) => this.onToggleLabels(event));
+        this.$toggleRestrictedAreas.on('click', (event) => this.onToggleRestrictedAreas(event));
+        this.$toggleSids.on('click', (event) => this.onToggleSids(event));
+        this.$toggleStars.on('click', (event) => this.onToggleStars(event));
+        this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
+        this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
+        this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
 
         return this;
     }
@@ -151,12 +144,12 @@ class UiController {
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
 
         this.$speechToggle.off('click', (event) => speech_toggle(event));
-        this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
-        this.$toggleLabels.off('click', (event) => this.canvas_labels_toggle(event));
-        this.$toggleRestrictedAreas.off('click', (event) => this.canvas_restricted_toggle(event));
-        this.$toggleSids.off('click', (event) => this.canvas_sids_toggle(event));
-        this.$toggleTerrain.off('click', (event) => this.canvas_terrain_toggle(event));
-        this.$toggleOptions.off('click', (event) => this.ui_options_toggle(event));
+        this.$switchAirport.off('click', (event) => this.onToggleAirportList(event));
+        this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
+        this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
+        this.$toggleSids.off('click', (event) => this.onToggleSids(event));
+        this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
+        this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
 
         return this.destroy();
     }
@@ -225,11 +218,11 @@ class UiController {
         // TODO: Currently this will always be false because _init() is failing to find
         // the options dialog by class name.
         if (this.isOptionsDialogOpen()) {
-            this.ui_options_toggle();
+            this.onToggleOptions();
         }
 
         if (this.isAirportSelectionDialogOpen()) {
-            this.ui_airport_toggle();
+            this.onToggleAirportList();
         }
     }
 
@@ -340,7 +333,7 @@ class UiController {
     onClickAirportListItemHandler(event) {
         if (event.data !== AirportController.airport_get().icao) {
             AirportController.airport_set(event.data);
-            this.ui_airport_close();
+            this._onClickCloseAirportDialog();
         }
     }
 
@@ -390,7 +383,7 @@ class UiController {
                 if (event.data !== AirportController.airport_get().icao) {
                     AirportController.airport_set(event.data);
 
-                    this.ui_airport_close();
+                    this._onClickCloseAirportDialog();
                 }
             });
 
@@ -511,9 +504,9 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_airport_open
+     * @method _onClickOpenAirportDialog
      */
-    ui_airport_open() {
+    _onClickOpenAirportDialog() {
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
         const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
@@ -531,31 +524,34 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_airport_close
+     * @method _onClickCloseAirportDialog
+     * @private
      */
-    ui_airport_close() {
+    _onClickCloseAirportDialog() {
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
     /**
      * @for UiController
-     * @method ui_airport_toggle
+     * @method onToggleAirportList
      */
-    ui_airport_toggle() {
+    onToggleAirportList() {
         if (this.$airportDialog.hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-            this.ui_airport_close();
-        } else {
-            this.ui_airport_open();
+            this._onClickCloseAirportDialog();
+
+            return;
         }
+
+        this._onClickOpenAirportDialog();
     }
 
     /**
      * @for UiController
-     * @method canvas_labels_toggle
+     * @method onToggleLabels
      * @param {jquery event}
      */
-    canvas_labels_toggle(event) {
+    onToggleLabels(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this._eventBus.trigger(EVENT.TOGGLE_LABELS);
@@ -563,9 +559,9 @@ class UiController {
 
     /**
      * @for UiController
-     * @method canvas_restricted_toggle
+     * @method onToggleRestrictedAreas
      */
-    canvas_restricted_toggle(event) {
+    onToggleRestrictedAreas(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL)
             .toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
 
@@ -574,10 +570,10 @@ class UiController {
 
     /**
      * @for UiController
-     * @method canvas_sids_toggle
+     * @method onToggleSids
      * @param event {jquery event}
      */
-    canvas_sids_toggle(event) {
+    onToggleSids(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
@@ -585,10 +581,21 @@ class UiController {
 
     /**
      * @for UiController
-     * @method canvas_terrain_toggle
+     * @method onToggleStars
      * @param event {jquery event}
      */
-    canvas_terrain_toggle(event) {
+    onToggleStars(event) {
+        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+        this._eventBus.trigger(EVENT.TOGGLE_STAR_MAP);
+    }
+
+    /**
+     * @for UiController
+     * @method onToggleTerrain
+     * @param event {jquery event}
+     */
+    onToggleTerrain(event) {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
@@ -596,9 +603,20 @@ class UiController {
 
     /**
      * @for UiController
-     * @method ui_options_toggle
+     * @method onToggleVideoMap
+     * @param event {jquery event}
      */
-    ui_options_toggle() {
+    onToggleVideoMap(event) {
+        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+        this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
+    }
+
+    /**
+     * @for UiController
+     * @method onToggleOptions
+     */
+    onToggleOptions() {
         const $optionsDialog = $(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
 
         if ($optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN)) {

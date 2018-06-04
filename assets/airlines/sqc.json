@@ -4,12 +4,12 @@
     "callsign": {
         "name": "Singcargo",
         "callsignFormats": [
-            "###"
+            "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B744", 11]
+            ["B744", 7]
         ]
     }
 }

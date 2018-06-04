@@ -4,13 +4,16 @@
     "callsign": {
         "name": "Lion Inter",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["B738", 31],
-            ["B739", 71]
+            ["A333", 3],
+            ["B38M", 9],
+            ["B738", 34],
+            ["B739", 66]
         ]
     }
 }

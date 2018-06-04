@@ -3,7 +3,9 @@
     "name": "Lufthansa Cargo",
     "callsign": {
         "name": "Lufthansa Cargo",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
