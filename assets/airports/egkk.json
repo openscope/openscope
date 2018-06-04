@@ -697,8 +697,8 @@
             },
             "body": ["AMDUT", "SFD", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["AMDUT*", "SFD", "WILLO"]
@@ -712,8 +712,8 @@
             },
             "body": ["ARNUN", "HASTY", "SFD", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["ARNUN*", "HASTY", "SFD"]
@@ -727,8 +727,8 @@
             },
             "body": ["OTMET", "SOKDU", "NEDUL", "ELDER", ["TELTU", "S250-"], ["^HOLLY", "S220-"], "_MID105022", ["@WILLO", "S220-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["OTMET*", "SOKDU", "NEDUL", "ELDER", "TELTU", "HOLLY", "_MID105022", "WILLO"]
@@ -742,8 +742,8 @@
             },
             "body": [["TELTU", "S250-"], ["SFD", "S220-"], ["@TIMBA", "S220-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["TELTU*", "SFD", "TIMBA"]
@@ -757,8 +757,8 @@
             },
             "body": ["GWC", "SFD", "@TIMBA"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["GWC*", "SFD"]
@@ -772,8 +772,8 @@
             },
             "body": ["MID", "MAY", "^_MAY110012", "^LARCK", "@TIMBA"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["MID*", "MAY", "_MAY110012"]
@@ -787,8 +787,8 @@
             },
             "body": ["ERING", "ABTUM", "ARNUN", ["KKE63", "S220-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["ERING*", "ABTUM", "ARNUN", "KKE63", "LARCK", "TIMBA"]
@@ -802,8 +802,8 @@
             },
             "body": ["TEBRA", "ABTUM", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["TEBRA*", "ABTUM"]
@@ -817,8 +817,8 @@
             },
             "body": ["NEVIL", "OSPOL", "ELDAX", "AMDUT", ["KKE64", "S250-"], ["@TIMBA", "S250-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["NEVIL*", "OSPOL", "ELDAX", "AMDUT", "KKE64", "TIMBA"]
@@ -832,8 +832,8 @@
             },
             "body": ["KONAN", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["KONAN*", "ARNUN"]
@@ -847,8 +847,8 @@
             },
             "body": ["KUNAV", "AMDUT", ["KKE64", "S250-"], ["@TIMBA", "S250-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["KUNAV*", "AMDUT"]
@@ -862,8 +862,8 @@
             },
             "body": ["VASUX", "DISVO", ["TELTU", "S250-"], ["^HOLLY", "S220-"], "_MID105022", ["@WILLO", "S220-"]],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["VASUX*", "DISVO", "TELTU"]
@@ -877,8 +877,8 @@
             },
             "body": ["KENET", "MID", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["KENET*", "MID", "HOLLY"]
@@ -892,8 +892,8 @@
             },
             "body": ["BEDEK", "NIGIT", "MID", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["BEDEK*", "NIGIT", "MID"]
@@ -907,8 +907,8 @@
             },
             "body": ["SAM", "GWC", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["SAM*", "GWC", "HOLLY"]
@@ -922,8 +922,8 @@
             },
             "body": ["KIDLI", "MID", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["KIDLI*", "MID"]
@@ -937,8 +937,8 @@
             },
             "body": ["BILNI", "KUMIL", "AVANT", "GWC", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["BILNI*", "KUMIL", "AVANT", "GWC"]
@@ -952,8 +952,8 @@
             },
             "body": ["DOMUT", "KATHY", "AVANT", "GWC", "^HOLLY", "_MID105022", "@WILLO"],
             "rwy": {
-                "08R": [],
-                "26L": []
+                "EGKK08R": [],
+                "EGKK26L": []
             },
             "draw": [
                 ["DOMUT*", "KATHY", "AVANT"]
