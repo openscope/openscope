@@ -235,7 +235,7 @@ export default class AppController {
     updatePre() {
         this.gameClockView.update();
         GameController.update_pre();
-        this.aircraftController.aircraft_update();
+        this.aircraftController.update();
     }
 
     /**

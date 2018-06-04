@@ -424,7 +424,6 @@ export const AIRPORT_JSON_KLAS_MOCK = {
             "body": [["KADDY", "A120|S250"], "TYSSN", ["SUZSI", "A100|S210"], ["PRINO", "A80"]],
             "rwy": {
                 "KLAS01L": [],
-                "KLAS01R": [],
                 "KLAS07L": [],
                 "KLAS07R": [],
                 "KLAS19L": [],

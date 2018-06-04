@@ -1,19 +1,22 @@
 {
     "icao": "tay",
-    "name": "TNT Airways",
+    "name": "ASL Airlines Belgium",
     "callsign": {
         "name": "Quality",
         "callsignFormats": [
-            "###"
+            "####",
+            "###@",
+            "###",
+            "##@",
+            "##"
         ]
     },
     "fleets": {
         "default": [
-            ["B733", 2 ],
-            ["B734", 12],
-            ["B752", 2 ],
-            ["B77L", 3 ],
-            ["B744", 4 ]
+            ["B733", 1],
+            ["B734", 19],
+            ["B744", 5],
+            ["B752", 3]
         ]
     }
 }

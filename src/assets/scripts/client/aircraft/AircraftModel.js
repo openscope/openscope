@@ -1,5 +1,6 @@
 import _defaultTo from 'lodash/defaultTo';
 import _filter from 'lodash/filter';
+import _findIndex from 'lodash/findIndex';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -378,14 +379,15 @@ export default class AircraftModel {
         this.rules = FLIGHT_RULES.IFR;
 
         /**
-         * Inside ATC Airspace
+         * Flag for if an aircraft is within controlled airspace, thus
+         * making an aircraft _controllable_
          *
          * @for AircraftModel
-         * @property inside_ctr
+         * @property isControllable
          * @type {boolean}
          * @default false
          */
-        this.inside_ctr = false;
+        this.isControllable = false;
 
         /**
          * List of aircraft that MAY be in conflict (bounding box)
@@ -420,6 +422,24 @@ export default class AircraftModel {
          * @private
          */
         this._isEstablishedOnHoldingPattern = false;
+
+        /**
+         * Flag used to determine if an aircraft can be removed from the sim.
+         *
+         * This tells the `AircraftController` that `AircraftStripView` associated with this
+         * instance is safe to remove. This property should only be changed via the
+         * `.setIsFlightStripRemovable()` method
+         *
+         * The `AircraftModel` will know when conditions are correct for the `StripView`
+         * to be removed, however, only the `AircraftController` has access to an aircraft's
+         * `StripView`.
+         *
+         * @for AircraftModel
+         * @property isRemovable
+         * @type {boolean}
+         * @default false
+         */
+        this.isFlightStripRemovable = false;
 
         /**
          * Flag used to determine if an aircraft can be removed from the sim.
@@ -584,7 +604,7 @@ export default class AircraftModel {
         this.target.speed = this.speed;
 
         // This assumes and arrival spawns outside the airspace
-        this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
+        this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
@@ -630,7 +650,7 @@ export default class AircraftModel {
 
         return {
             id: this.id,
-            insideCenter: this.inside_ctr,
+            insideCenter: this.isControllable,
             callsign: this.callsign,
             transponderCode: this.transponderCode,
             icaoWithWeightClass: this.model.icaoWithWeightClass,
@@ -643,66 +663,21 @@ export default class AircraftModel {
     }
 
     /**
-     * Called when the aircraft crosses the airspace boundary (ie, leaving our airspace)
-     *
-     * @for AircraftModel
-     * @method crossBoundary
-     * @param inbound {}
-     */
-    crossBoundary(inbound) {
-        this.inside_ctr = inbound;
-
-        if (this.projected) {
-            return;
-        }
-
-        // Crossing into the center
-        if (this.inside_ctr) {
-            this.callUp();
-
-            return;
-        }
-
-        // leaving airspace
-        this.onAirspaceExit();
-    }
-
-    /**
      * @for AircraftModel
      * @method onAirspaceExit
      */
     onAirspaceExit() {
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            return this.arrivalExit();
+        if (this.isArrival()) {
+            return this._onAirspaceExitForArrival();
         }
 
-        this.setIsRemovable();
-
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
-            this.radioCall(
-                'leaving radar coverage without proper clearance',
-                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
-                true
-            );
-            GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+            this._onAirspaceExitWithoutClearance();
 
             return;
         }
 
-        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-    }
-
-    /**
-     * An arriving aircraft is exiting the airpsace
-     *
-     * @for AircraftModel
-     * @method arrivalExit
-     */
-    arrivalExit() {
-        this.setIsRemovable();
-        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+        this._onAirspaceExitWithClearance();
     }
 
     /**
@@ -858,14 +833,13 @@ export default class AircraftModel {
      * Returns whether it is time to begin deceleration in order to comply with the posted speed restrictions
      *
      * @for AircraftModel
-     * @method isBeyondDecelerationPoint
+     * @method isBeyondDecelerationPointForWaypointModel
+     * @param waypointModel {WaypointModel} the waypoint with a speed restriction
      * @return {boolean}
      */
-    isBeyondDecelerationPoint() {
-        const waypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
-
+    isBeyondDecelerationPointForWaypointModel(waypointModel) {
         if (_isNil(waypointModel)) {
-            return;
+            return false;
         }
 
         const waypointSpeed = waypointModel.speedMaximum;
@@ -878,19 +852,18 @@ export default class AircraftModel {
         return decelerationTime > timeUntilWaypoint;
     }
 
-    // TODO: Refactor all this logic into the Fms - #656
     /**
      * Returns whether it is time to begin descent in order to comply with the posted altitude restrictions
      *
      * @for AircraftModel
-     * @method shouldStartDescent
+     * @method isBeyondTopOfDescentForWaypointModel
      * @return {boolean}
      */
-    shouldStartDescent() {
+    isBeyondTopOfDescentForWaypointModel() {
         const currentAltitude = this.altitude;
         const altitudeRestrictedWaypoints = this.fms.getAltitudeRestrictedWaypoints();
         const waypointsWithRelevantCeiling = _filter(altitudeRestrictedWaypoints,
-            (waypoint) => waypoint.hasMaximumAltitudeBelow(currentAltitude));
+            (waypoint) => waypoint.hasMaximumAltitudeAtOrBelow(currentAltitude));
 
         if (_isEmpty(altitudeRestrictedWaypoints)) {
             return;
@@ -917,6 +890,11 @@ export default class AircraftModel {
         return this.fms.isDeparture();
     }
 
+    /**
+     * @for AircraftModel
+     * @method isArrival
+     * @returns booelan
+     */
     isArrival() {
         return this.fms.isArrival();
     }
@@ -1057,9 +1035,21 @@ export default class AircraftModel {
     }
 
     /**
+     * Sets `#isFlightStripRemovable` to true
+     *
+     * Provides a single source of change for the value of `#isFlightStripRemovable`
+     *
+     * @for AircraftModel
+     * @method isFlightStripRemovable
+     */
+    setIsFlightStripRemovable() {
+        this.isFlightStripRemovable = true;
+    }
+
+    /**
      * Sets `#isRemovable` to true
      *
-     * Provides a single source to change the value of `#isRemovable`
+     * Provides a single source of change for the value of `#isRemovable`
      * This is evaluated by the `AircraftController` when determining
      * if an aircraft should be removed or not
      *
@@ -1153,7 +1143,7 @@ export default class AircraftModel {
         let alt_log;
         let alt_say;
 
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (this.isArrival()) {
             const altdiff = this.altitude - this.mcp.altitude;
             const alt = digits_decimal(this.altitude, -2);
 
@@ -1178,7 +1168,7 @@ export default class AircraftModel {
             ]);
         }
 
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (this.isDeparture()) {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
                 { type: 'text', content: AirportController.airport_get().radio.twr },
@@ -1808,32 +1798,29 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnav() {
-        const hardRestrictedWaypointModel = this.fms.nextHardAltitudeRestrictedWaypoint;
+        const nextAltitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
+        const nextAltitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
+        const maximumAltitudeExists = !_isNil(nextAltitudeMaximumWaypoint);
+        const minimumAltitudeExists = !_isNil(nextAltitudeMinimumWaypoint);
 
-        switch (this.flightPhase) {
-            case FLIGHT_PHASE.TAKEOFF:
-            case FLIGHT_PHASE.CLIMB:
-                if (_isNil(hardRestrictedWaypointModel)) {
-                    return;
-                }
+        if (!maximumAltitudeExists && !minimumAltitudeExists) {
+            return this.mcp.altitude;
+        }
 
-                return this._calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel);
+        if (maximumAltitudeExists && minimumAltitudeExists) {
+            const waypoints = this.fms.waypoints;
+            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
+            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
 
-            case FLIGHT_PHASE.CRUISE: {
-                if (!this.shouldStartDescent()) {
-                    return;
-                }
-
-                // Here we trigger the initial descent. Once vacating the filed cruise altitude, subsequent loops
-                // will enter the below block because the flight phase will have become 'DESCENT'.
-                return this._calculateTargetedAltitudeVnavDescent();
+            if (indexOfMax < indexOfMin) {
+                return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
             }
 
-            case FLIGHT_PHASE.DESCENT:
-                return this._calculateTargetedAltitudeVnavDescent();
-
-            default:
-                return;
+            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
+        } else if (maximumAltitudeExists) {
+            return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
+        } else if (minimumAltitudeExists) {
+            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
         }
     }
 
@@ -1842,21 +1829,13 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavClimb
-     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @param waypointWithMinimumAltitudeRestriction {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavClimb(hardRestrictedWaypointModel) {
-        let waypointAltitude = hardRestrictedWaypointModel.altitudeMaximum;
-        const softOrHardRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.altitudeMaximum !== INVALID_NUMBER;
+    _calculateTargetedAltitudeVnavClimb(waypointWithMinimumAltitudeRestriction) {
+        const waypointMinimumAltitude = waypointWithMinimumAltitudeRestriction.altitudeMinimum;
 
-        // NOTE: Currently does not cover any "AT/ABOVE", since we will already be climbing to top anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-            waypointAltitude = softOrHardRestrictedWaypoint.altitudeMaximum;
-        }
-
-        return Math.min(waypointAltitude, this.mcp.altitude);
+        return Math.min(waypointMinimumAltitude, this.mcp.altitude);
     }
 
     /**
@@ -1866,24 +1845,14 @@ export default class AircraftModel {
      * @method _calculateTargetedAltitudeVnavDescent
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavDescent() {
-        // TODO: This could be improved by making the descent at the exact rate needed to reach
-        // the altitude at the same time as reaching the fix. At this point, the problem is that
-        // while we DO know the descent rate and descent angle to shoot for, we don't know the
-        // length of time before the next update, so we can't accurately estimate the altitude to
-        // target in the current iteration.
+    _calculateTargetedAltitudeVnavDescent(waypointWithMaximumAltitudeRestriction) {
+        const waypointMaximumAltitude = waypointWithMaximumAltitudeRestriction.altitudeMaximum;
 
-        const nextRestrictedWaypoint = this.fms.nextAltitudeRestrictedWaypoint;
-
-        if (_isNil(nextRestrictedWaypoint)) {
-            return this.mcp.altitude;
+        if (!this.isBeyondTopOfDescentForWaypointModel(waypointWithMaximumAltitudeRestriction)) {
+            return;
         }
 
-        if (nextRestrictedWaypoint.altitudeMinimum === INVALID_NUMBER) {
-            return nextRestrictedWaypoint.altitudeMaximum;
-        }
-
-        return nextRestrictedWaypoint.altitudeMinimum;
+        return Math.min(waypointMaximumAltitude, this.mcp.altitude);
     }
 
     /**
@@ -1947,16 +1916,29 @@ export default class AircraftModel {
      * @return {number} speed, in knots
      */
     _calculateTargetedSpeedVnav() {
-        const hardRestrictedWaypointModel = this.fms.nextHardSpeedRestrictedWaypoint;
+        const nextSpeedMaximumWaypoint = this.fms.findNextWaypointWithMaximumSpeedAtOrBelow(this.speed);
+        const nextSpeedMinimumWaypoint = this.fms.findNextWaypointWithMinimumSpeedAtOrAbove(this.speed);
+        const hasMaximumSpeed = !_isNil(nextSpeedMaximumWaypoint);
+        const hasMinimumSpeed = !_isNil(nextSpeedMinimumWaypoint);
 
-        if (_isNil(hardRestrictedWaypointModel)) {
-            return;
+        if (!hasMaximumSpeed && !hasMinimumSpeed) {
+            return this.mcp.speed;
         }
 
-        if (hardRestrictedWaypointModel.speedMaximum > this.speed) {
-            return this._calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel);
-        } else if (hardRestrictedWaypointModel.speedMaximum < this.speed) {
-            return this._calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel);
+        if (hasMaximumSpeed && hasMinimumSpeed) {
+            const waypoints = this.fms.waypoints;
+            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMaximumWaypoint.name);
+            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextSpeedMinimumWaypoint.name);
+
+            if (indexOfMax < indexOfMin) {
+                return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
+            }
+
+            return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
+        } else if (hasMaximumSpeed) {
+            return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
+        } else if (hasMinimumSpeed) {
+            return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
         }
     }
 
@@ -1965,21 +1947,13 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedSpeedVnavAcceleration
-     * @param hardRestrictedWaypointModel {WaypointModel}
+     * @param waypointWithMinimumSpeedRestriction {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedSpeedVnavAcceleration(hardRestrictedWaypointModel) {
-        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
-        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrBelowRestriction = softOrHardRestrictedWaypoint.speedMaximum !== INVALID_NUMBER;
+    _calculateTargetedSpeedVnavAcceleration(waypointWithMinimumSpeedRestriction) {
+        const waypointMinimumSpeed = waypointWithMinimumSpeedRestriction.speedMinimum;
 
-        // NOTE: Currenly does not cover any "AT/ABOVE", since we will already be accelerating to high speed anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrBelowRestriction) {
-            waypointSpeed = softOrHardRestrictedWaypoint.speedMaximum;
-        }
-
-        return Math.min(waypointSpeed, this.mcp.speed);
+        return Math.min(waypointMinimumSpeed, this.mcp.speed);
     }
 
     /**
@@ -1990,23 +1964,14 @@ export default class AircraftModel {
      * @param hardRestrictedWaypointModel {WaypointModel}
      * @return {number}
      */
-    _calculateTargetedSpeedVnavDeceleration(hardRestrictedWaypointModel) {
-        let waypointSpeed = hardRestrictedWaypointModel.speedMaximum;
+    _calculateTargetedSpeedVnavDeceleration(waypointWithMaximumSpeedRestriction) {
+        const waypointMaximumSpeed = waypointWithMaximumSpeedRestriction.speedMaximum;
 
-        if (!this.isBeyondDecelerationPoint()) {
+        if (!this.isBeyondDecelerationPointForWaypointModel(waypointWithMaximumSpeedRestriction)) {
             return;
         }
 
-        const softOrHardRestrictedWaypoint = this.fms.nextSpeedRestrictedWaypoint;
-        const nextFixIsSoftlyRestricted = softOrHardRestrictedWaypoint.name !== hardRestrictedWaypointModel.name;
-        const nextFixIsAtOrAboveRestriction = softOrHardRestrictedWaypoint.speedMinimum !== INVALID_NUMBER;
-
-        // NOTE: Currently does not cover any "AT/BELOW", since we will already be descending to bottom anyway
-        if (nextFixIsSoftlyRestricted && nextFixIsAtOrAboveRestriction) {
-            waypointSpeed = softOrHardRestrictedWaypoint.speedMinimum;
-        }
-
-        return Math.min(waypointSpeed, this.mcp.speed);
+        return Math.min(waypointMaximumSpeed, this.mcp.speed);
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
@@ -2067,13 +2032,6 @@ export default class AircraftModel {
 
         this.distance = vlen(this.positionModel.relativePosition);
         this.radial = radians_normalize(vradial(this.positionModel.relativePosition));
-
-        // TODO: I am not sure what this has to do with aircraft Physics
-        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
-
-        if (isInsideAirspace !== this.inside_ctr) {
-            this.crossBoundary(isInsideAirspace);
-        }
     }
 
     /**
@@ -2110,7 +2068,8 @@ export default class AircraftModel {
     }
 
     /**
-     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     * This updates the Altitude for the instance of the aircraft by checking the difference
+     * between current Altitude and requested Altitude
      *
      * @for AircraftModel
      * @method updateAltitudePhysics
@@ -2430,31 +2389,30 @@ export default class AircraftModel {
         this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
+        this._updateAircraftVisibility();
     }
 
     /**
      * @for AircraftModel
      * @method addConflict
      * @param {AircraftConflict} conflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     addConflict(conflict, conflictingAircraft) {
         this.conflicts[conflictingAircraft.callsign] = conflict;
     }
 
     /**
+     * Used to determine if a `conflictingAircraft.callsign` already exists within
+     * the list of known conflicts for an aircaft
+     *
      * @for AircraftModel
-     * @method checkConflict
-     * @param {Aircraft} conflictingAircraft
+     * @method hasConflictWithAircraftModel
+     * @param {AircraftModel} conflictingAircraft
+     * @returns {boolean}
      */
-    checkConflict(conflictingAircraft) {
-        if (this.conflicts[conflictingAircraft.callsign]) {
-            this.conflicts[conflictingAircraft.callsign].update();
-
-            return true;
-        }
-
-        return false;
+    hasConflictWithAircraftModel(conflictingAircraftModel) {
+        return conflictingAircraftModel.callsign in this.conflicts;
     }
 
     /**
@@ -2477,9 +2435,92 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method removeConflict
-     * @param {Aircraft} conflictingAircraft
+     * @param {AircraftModel} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
+    }
+
+    // TODO: needs better name
+    /**
+     * @for AircraftModel
+     * @method _contactAircraftAfterControllabilityChange
+     * @private
+     */
+    _contactAircraftAfterControllabilityChange() {
+        // Crossing into the center
+        if (this.isControllable) {
+            this.callUp();
+
+            return;
+        }
+
+        this.setIsRemovable();
+        // leaving airspace
+        this.onAirspaceExit();
+    }
+
+    /**
+     * An arriving aircraft is exiting the airpsace
+     *
+     * @for AircraftModel
+     * @method _onAirspaceExitForArrival
+     * @private
+     */
+    _onAirspaceExitForArrival() {
+        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
+        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithClearance
+     * @private
+     */
+    _onAirspaceExitWithClearance() {
+        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _onAirspaceExitWithoutClearance
+     * @private
+     */
+    _onAirspaceExitWithoutClearance() {
+        this.radioCall('leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+        GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _updateAircraftVisibility
+     * @private
+     */
+    _updateAircraftVisibility() {
+        const isInsideAirspace = this.isInsideAirspace(AirportController.airport_get());
+
+        if (isInsideAirspace === this.isControllable || this.projected) {
+            return;
+        }
+
+        this._updateControllableStatus(isInsideAirspace);
+        this._contactAircraftAfterControllabilityChange();
+    }
+
+    /**
+     * Updates the `#isControllable` property when an aircraft either
+     * enters or exits controlled airspace
+     *
+     * @for AircraftModel
+     * @method _updateControllableStatus
+     * @param {booelan} nextControllableStatus
+     */
+    _updateControllableStatus(nextControllableStatus) {
+        this.isControllable = nextControllableStatus;
+
+        if (!nextControllableStatus) {
+            this.setIsFlightStripRemovable();
+        }
     }
 }

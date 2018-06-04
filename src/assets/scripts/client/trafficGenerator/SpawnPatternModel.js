@@ -488,7 +488,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this.method = spawnPatternJson.method;
-        this.rate = parseInt(spawnPatternJson.rate, DECIMAL_RADIX);
+        this.rate = parseFloat(spawnPatternJson.rate);
 
         this._routeModel = new RouteModel(spawnPatternJson.route);
         this.cycleStartTime = 0;

@@ -99,7 +99,7 @@ export const RNAV_WAYPOINT_PREFIX = '_';
 * @type {string}
 * @final
 */
-export const RNAV_WAYPOINT_DISPLAY_NAME = 'RNAV';
+export const RNAV_WAYPOINT_DISPLAY_NAME = '[RNAV]';
 
 /**
 * Character prefix indicating the subsequent value is a speed restriction
