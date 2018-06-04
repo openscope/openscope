@@ -6,8 +6,7 @@ import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
 import CanvasController from './canvas/CanvasController';
 import ContentQueue from './contentQueue/ContentQueue';
-import GameAirportInfoView from './game/GameAirportInfoView';
-import GameClockView from './game/GameClockView';
+import SimAirportInfoView from './info/SimAirportInfoView';
 import GameController from './game/GameController';
 import InputController from './InputController';
 import EventBus from './lib/EventBus';
@@ -171,8 +170,7 @@ export default class AppController {
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
-        this.gameClockView = new GameClockView(this.$element);
-        this.gameAirportInfoView = new GameAirportInfoView(this.$element);
+        this.simAirportInfoView = new SimAirportInfoView(this.$element);
 
         this.updateViewControls();
     }
@@ -220,7 +218,7 @@ export default class AppController {
         GameController.complete();
         this.canvasController.canvas_complete();
         UiController.ui_complete();
-        this.gameAirportInfoView.initialLoad();
+        this.simAirportInfoView.complete(AirportController.airport_get());
     }
 
     /**
@@ -228,7 +226,7 @@ export default class AppController {
      * @method updatePre
      */
     updatePre() {
-        this.gameClockView.update();
+        this.simAirportInfoView.update_clock();
         GameController.update_pre();
         this.aircraftController.update();
     }

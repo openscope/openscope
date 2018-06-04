@@ -1,29 +1,40 @@
 import TimeKeeper from '../engine/TimeKeeper';
 import { digits_integer } from '../utilities/radioUtilities';
-import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
 
 /**
  * Manages a clock that stays in sync with the current game time
- * @class GameClockView
+ * @class SimClockController
  */
-export default class GameClockView {
+export default class SimClockController {
     /**
-     * @for GameClockView
+     * @for SimClockController
      * @constructor
      */
-    constructor($element) {
-        this.$element = $element;
+    constructor() {
+        /**
+         * @for SimClockController
+         * @property startTime
+         * @type {Number}
+         * @default 0
+         */
         this.startTime = 0;
+
+        /**
+         * @for SimClockController
+         * @property time
+         * @type {Number}
+         * @default 0
+         */
         this.time = 0;
 
-        return this._init($element);
+        return this._init();
     }
 
     /**
      * Get current time in the user's time zone
      *
-     *  @for GameClockView
+     *  @for SimClockController
      * @property realWorldCurrentLocalTime
      * @return {number} ms since 01/01/1970, 00:00:00 (user's time zone)
      */
@@ -34,7 +45,7 @@ export default class GameClockView {
     /**
      * Get current zulu time in milliseconds
      *
-     * @for GameClockView
+     * @for SimClockController
      * @property realWorldCurrentZuluTime
      * @return utc {number} ms since 01/01/1970, 00:00:00 UTC
      */
@@ -46,12 +57,11 @@ export default class GameClockView {
     }
 
     /**
-     * @for GameClockView
+     * @for SimClockController
      * @method destroy
      * @chainable
      */
     destroy() {
-        this.$element = null;
         this.startTime = 0;
         this.time = 0;
 
@@ -61,7 +71,7 @@ export default class GameClockView {
     /**
      * Generates a string of the current game time in a human-readable format
      *
-     * @for GameClockView
+     * @for SimClockController
      * @method generateCurrentTimeValue
      * @return clockTime {string}   current game time formatted like '03:44:17'
      */
@@ -71,7 +81,7 @@ export default class GameClockView {
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
         const seconds = digits_integer(clockDate.getSeconds(), 2);
-        const clockTime = `${hours}:${minutes}:${seconds}`;
+        const clockTime = `${hours}${minutes}/${seconds}`;
 
         return clockTime;
     }
@@ -79,21 +89,21 @@ export default class GameClockView {
     /**
      * Re-calculates elapsed time and re-renders the view
      *
-     * @for GameClockView
+     * @for SimClockController
      * @method update
      */
     update() {
         this._recalculate();
-        this._render();
+
+        return this._render();
     }
 
     /**
-     * @for GameClockView
+     * @for SimClockController
      * @method _init
      * @private
      */
-    _init($element) {
-        this.$element = $element.find(SELECTORS.DOM_SELECTORS.CLOCK);
+    _init() {
         this.startTime = this.realWorldCurrentZuluTime;
 
         return this;
@@ -101,7 +111,7 @@ export default class GameClockView {
 
     /**
      * Updates the time stored in the clock
-     * @for GameClockView
+     * @for SimClockController
      * @method _tick
      * @private
      */
@@ -112,13 +122,13 @@ export default class GameClockView {
 
     /**
      * Updates the DOM with the new game time
-     * @for GameClockView
+     * @for SimClockController
      * @method _render
      * @private
      */
     _render() {
         const currentTimeValue = this.generateCurrentTimeValue();
 
-        this.$element.text(currentTimeValue);
+        return currentTimeValue;
     }
 }

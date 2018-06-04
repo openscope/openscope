@@ -83,7 +83,6 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
-    AIRPORT_INFO: 'airport-info',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
     CLOCK: 'clock',
