@@ -193,7 +193,7 @@
             "icao": "ADMAG2X",
             "name": "Admag Two X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S250-"], "KKE15", ["SUNAV", "A50"], ["ADMAG", "A60"]],
             "exitPoints": {
@@ -203,15 +203,28 @@
                 ["ADMAG"]
             ]
         },
-        "BIG": {
-            "icao": "BIG",
-            "name": "Biggin",
-            "suffix": {"08R":"2Z", "26L":"2X"},
+        "BIG2X": {
+            "icao": "BIG2X",
+            "name": "Biggin Two X-Ray",
             "rwy": {
-                "08R": [["KKE04", "A20+|S250-"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["^KKE23", "A60|S210-"], "_BIG112018", ["BIG", "A60|S210-"]],
-                "26L": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S230-"], ["KKE15", "S230-"], ["SUNAV", "A50|S230-"], ["^KKE38", "A60|S230-"], "_BIG112018", ["BIG", "A60|S230-"]]
+                "EGKK26L": []
             },
-            "body": [],
+            "body": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S230-"], ["KKE15", "S230-"], ["SUNAV", "A50|S230-"], ["^KKE38", "A60|S230-"], "_BIG112018", ["BIG", "A60|S230-"]],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["SUNAV", "KKE38", "_BIG112018"],
+                ["KKE23", "_BIG112018", "BIG"]
+            ]
+        },
+        "BIG2Z": {
+            "icao": "BIG2Z",
+            "name": "Biggin Two Zulu",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": [["KKE04", "A20+|S250-"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["^KKE23", "A60|S210-"], "_BIG112018", ["BIG", "A60|S210-"]],
             "exitPoints": {
                 "BIG": []
             },
@@ -224,7 +237,7 @@
             "icao": "BOGNA1X",
             "name": "Bogna One X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["KKW06", "A25+|S220-"], ["KKW08", "S220-"], ["KKS11", "A40+|S220-"], ["KKS17", "A50|S250-"], ["KKS20", "A60"], ["KKS25", "A60"], ["BOGNA", "A60"]],
             "exitPoints": {
@@ -234,15 +247,29 @@
                 ["KKW06", "KKW08", "KKS11", "KKS17", "KKS20", "KKS25", "BOGNA"]
             ]
         },
-        "CLN": {
-            "icao": "CLN",
-            "name": "Clacton",
-            "suffix": {"08R":"2Z", "26L":"4X"},
+        "CLN2Z": {
+            "icao": "CLN2Z",
+            "name": "Clacton Two Zulu",
             "rwy": {
-                "08R": [["KKE04", "A20+|S250-"], ["KKE10", "A30+"], ["KKE17", "A50"], ["KKE25", "A50"]],
-                "26L": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S250-"], "KKE15", ["SUNAV", "A50"], ["KKE42", "A50"]]
+                "EGKK08R": []
             },
-            "body": [["DET", "A50"], ["KKN52", "A60"], ["DAGGA", "A60"], ["CLN", "A60"]],
+            "body": [["KKE04", "A20+|S250-"], ["KKE10", "A30+"], ["KKE17", "A50"], ["KKE25", "A50"], ["DET", "A50"], ["KKN52", "A60"], ["DAGGA", "A60"], ["CLN", "A60"]],
+            "exitPoints": {
+                "CLN": []
+            },
+            "draw": [
+                ["KKW02", "_KKE09258003", "KKE09", "KKE11", "KKE15", "SUNAV", "KKE42"],
+                ["KKE04", "KKE10", "KKE17", "KKE25"],
+                ["CLN"]
+            ]
+        },
+        "CLN4X": {
+            "icao": "CLN4X",
+            "name": "Clacton Four X-Ray",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S250-"], "KKE15", ["SUNAV", "A50"], ["KKE42", "A50"], ["DET", "A50"], ["KKN52", "A60"], ["DAGGA", "A60"], ["CLN", "A60"]],
             "exitPoints": {
                 "CLN": []
             },
@@ -256,7 +283,7 @@
             "icao": "DAGGA1X",
             "name": "Dagga One X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["KKW04", "A20+|S220-"], ["KKS06", "A30+|S220-"], ["KKS09", "S250-"], ["KKS14", "A40+"], ["MAY", "A50"], ["KKS36", "A50"], ["DET", "A50"], ["DAGGA", "A50"], ["CLN", "A50"]],
             "exitPoints": {
@@ -270,7 +297,7 @@
             "icao": "HARDY1X",
             "name": "Hardy One X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["KKW06", "A25+|S220-"], ["KKW08", "S220-"], ["KKS11", "A40+|S220-"], ["KKS17", "A50|S250-"], ["KKS20", "A60"], ["KKS25", "A60"], ["BOGNA", "A60"], ["HARDY", "A60"]],
             "exitPoints": {
@@ -280,15 +307,13 @@
                 ["BOGNA", "HARDY"]
             ]
         },
-        "KENET": {
-            "icao": "KENET",
-            "name": "Kenet",
-            "suffix": {"08R":"1Z", "26L":"1X"},
+        "KENET1X": {
+            "icao": "KENET1X",
+            "name": "Kenet One X-Ray",
             "rwy": {
-                "08R": [["KKE05", "A25+|S220-"], ["KKN09", "A30|S220-"], ["KKW19", "A30|S250-"], ["KKW26", "A40"], ["KKW44", "A40"]],
-                "26L": [["KKW07", "A25+|S250-"], ["KKW09", "A30+"], ["MID", "A40"], ["KKW28", "A40"]]
+                "EGKK26L": []
             },
-            "body": [["KENET", "A40"]],
+            "body": [["KKW07", "A25+|S250-"], ["KKW09", "A30+"], ["MID", "A40"], ["KKW28", "A40"], ["KENET", "A40"]],
             "exitPoints": {
                 "KENET": []
             },
@@ -296,15 +321,42 @@
                 ["KKW28", "KENET"]
             ]
         },
-        "LAM": {
-            "icao": "LAM",
-            "name": "Lambourne",
-            "suffix": {"08R":"1Z", "26L":"2X"},
+        "KENET1Z": {
+            "icao": "KENET1Z",
+            "name": "Kenet One Zulu",
             "rwy": {
-                "08R": [["KKE02", "A20+|S250-"], ["KKE12", "A30+"]],
-                "26L": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S250-"], "KKE15"]
+                "EGKK08R": []
             },
-            "body": [["SUNAV", "A50"], ["KKE35", "A50"], ["KKN43", "A50"], ["KKN48", "A60"], ["LAM", "A60"]],
+            "body": [["KKE05", "A25+|S220-"], ["KKN09", "A30|S220-"], ["KKW19", "A30|S250-"], ["KKW26", "A40"], ["KKW44", "A40"], ["KENET", "A40"]],
+            "exitPoints": {
+                "KENET": []
+            },
+            "draw": [
+                ["KKW28", "KENET"]
+            ]
+        },
+        "LAM1Z": {
+            "icao": "LAM1Z",
+            "name": "Lambourne One Zulu",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": [["KKE02", "A20+|S250-"], ["KKE12", "A30+"], ["SUNAV", "A50"], ["KKE35", "A50"], ["KKN43", "A50"], ["KKN48", "A60"], ["LAM", "A60"]],
+            "exitPoints": {
+                "LAM": []
+            },
+            "draw": [
+                ["KKE02", "KKE12", "SUNAV", "KKE35"],
+                ["LAM"]
+            ]
+        },
+        "LAM2X": {
+            "icao": "LAM2X",
+            "name": "Lambourne Two X-Ray",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["^KKW02", "A15+|S220-"], "_KKE09258003", ["KKE09", "A32+|S220-"], ["KKE11", "A40-|S250-"], "KKE15", ["SUNAV", "A50"], ["KKE35", "A50"], ["KKN43", "A50"], ["KKN48", "A60"], ["LAM", "A60"]],
             "exitPoints": {
                 "LAM": []
             },
@@ -317,7 +369,7 @@
             "icao": "ODVIK2Z",
             "name": "Odvik Two Zulu",
             "rwy": {
-                "08R": []
+                "EGKK08R": []
             },
             "body": [["KKE04", "A20+|S250-"], ["KKE10", "A30+"], ["KKE17", "A50+"], ["ODVIK", "A60"]],
             "exitPoints": {
@@ -327,15 +379,13 @@
                 ["ODVIK"]
             ]
         },
-        "SAM": {
-            "icao": "SAM",
-            "name": "Southampton",
-            "suffix": {"08R":"3Z", "26L":"1X"},
+        "SAM1X": {
+            "icao": "SAM1X",
+            "name": "Southampton One X-Ray",
             "rwy": {
-                "08R": [["KKE05", "A25+|S220-"], ["KKN09", "A30|S220-"], ["KKW19", "A30|S250-"], ["KKW26", "A40"]],
-                "26L": [["KKW07", "A25+|S250-"], ["KKW09", "A30+"], ["MID", "A40"]]
+                "EGKK26L": []
             },
-            "body": [["SAM", "A40"]],
+            "body": [["KKW07", "A25+|S250-"], ["KKW09", "A30+"], ["MID", "A40"], ["SAM", "A40"]],
             "exitPoints": {
                 "SAM": []
             },
@@ -344,15 +394,43 @@
                 ["KKW09", "MID", "SAM"]
             ]
         },
-        "SFD": {
-            "icao": "SFD",
-            "name": "Seaford",
-            "suffix": {"08R":"4Z", "26L":"1X"},
+        "SAM3Z": {
+            "icao": "SAM3Z",
+            "name": "Southampton Three Zulu",
             "rwy": {
-                "08R": [["KKE03", "A20+|S220-"], ["KKS08", "A30+|S250-"], "KKS12", ["KKS16", "A50+"], ["KKS22", "A60"]],
-                "26L": [["KKW06", "A25+|S220-"], ["KKW10", "S220-"], ["KKW11", "S220-"], ["KKS13", "A40|S250-"], ["KKS19", "A50+"], ["KKS21", "A60"]]
+                "EGKK08R": []
             },
-            "body": [["SFD", "A60"]],
+            "body": [["KKE05", "A25+|S220-"], ["KKN09", "A30|S220-"], ["KKW19", "A30|S250-"], ["KKW26", "A40"], ["SAM", "A40"]],
+            "exitPoints": {
+                "SAM": []
+            },
+            "draw": [
+                ["KKE05", "KKN09", "KKW19", "KKW26", "SAM"],
+                ["KKW09", "MID", "SAM"]
+            ]
+        },
+        "SFD1X": {
+            "icao": "SFD1X",
+            "name": "Seaford One X-Ray",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["KKW06", "A25+|S220-"], ["KKW10", "S220-"], ["KKW11", "S220-"], ["KKS13", "A40|S250-"], ["KKS19", "A50+"], ["KKS21", "A60"], ["SFD", "A60"]],
+            "exitPoints": {
+                "SFD": []
+            },
+            "draw": [
+                ["KKE03", "KKS08", "KKS12", "KKS16", "KKS22", "SFD"],
+                ["KKW06", "KKW10", "KKW11", "KKS13", "KKS19", "KKS21", "SFD"]
+            ]
+        },
+        "SFD4Z": {
+            "icao": "SFD4Z",
+            "name": "Seaford4Z",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": [["KKE03", "A20+|S220-"], ["KKS08", "A30+|S250-"], "KKS12", ["KKS16", "A50+"], ["KKS22", "A60"], ["SFD", "A60"]],
             "exitPoints": {
                 "SFD": []
             },
@@ -365,7 +443,7 @@
             "icao": "TIGER1X",
             "name": "Tiger One X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["KKW04", "A20+|S220-"], ["KKS06", "A30+|S220-"], ["KKS09", "S250-"], ["KKS14", "A40+"], ["MAY", "A50"], ["KKS36", "A50"], ["LAM", "A50"]],
             "exitPoints": {
@@ -379,7 +457,7 @@
             "icao": "WIZAD1X",
             "name": "Wizad One X-Ray",
             "rwy": {
-                "26L": []
+                "EGKK26L": []
             },
             "body": [["KKW04", "A20+|S220-"], ["KKS06", "A30+|S220-"], ["KKS09", "S250-"], ["KKS14", "A40+"], ["MAY", "A50"], ["KKS33", "A60"], ["WIZAD", "A60"]],
             "exitPoints": {
