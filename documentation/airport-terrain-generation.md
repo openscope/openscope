@@ -183,3 +183,4 @@
 # Congratulations!
 ###### If you've made it this far, you have successfully generated a terrain file for openScope. Give yourself a break now, you deserve it!
 ###### If you're having any problems while following this guide, you can talk to us on [Slack](http://slack.openscope.co/), where we will be happy to help you!
+
