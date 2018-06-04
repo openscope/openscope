@@ -4,6 +4,7 @@
     "callsign": {
         "name": "Turkmenistan",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },
@@ -17,6 +18,10 @@
         ],
         "b738": [
             ["B738", 8]
+        ],
+        "ltba": [
+            ["B738", 8],
+            ["B772", 3]
         ]
     }
 }

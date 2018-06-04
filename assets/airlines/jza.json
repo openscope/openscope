@@ -3,16 +3,18 @@
     "name": "Jazz Aviation",
     "callsign": {
         "name": "Jazz",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["dh8a", 16],
-            ["dh8c", 28],
-            ["dh8d", 44],
-            ["crj2", 11],
-            ["crj7", 16],
-            ["crj9", 5]
+            ["DH8A", 16],
+            ["DH8C", 26],
+            ["DH8D", 44],
+            ["CRJ2", 10],
+            ["CRJ7", 15],
+            ["CRJ9", 6]
         ]
     }
 }

@@ -1,0 +1,21 @@
+{
+    "icao": "ldm",
+    "name": "LaudaMotion",
+    "callsign": {
+        "name": "Lauda Motion",
+        "callsignFormats": [
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 5],
+            ["A321", 3]
+        ],
+        "short": [
+            ["A320", 5],
+            ["A321", 3]
+        ]
+    }
+}
