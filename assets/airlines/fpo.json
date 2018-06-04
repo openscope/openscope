@@ -3,16 +3,20 @@
     "name": "ASL Airlines France",
     "callsign": {
         "name": "French Post",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B733", 6],
-            ["B737", 3]
+            ["B733", 5],
+            ["B734", 4],
+            ["B737", 6]
         ],
         "cargo": [
-            ["B733", 3],
-            ["B734", 3]
+            ["B733", 2],
+            ["B734", 4]
         ]
     }
 }

@@ -151,6 +151,8 @@ export const findHoldCommandByType = (type, args) => {
     return null;
 };
 
+// FIXME: This duplicates work being done with initializing WaypointModel._holdParameters
+//        We must determine how best to achieve this and remove the duplicated effort.
 /**
  * The `hold` command accepts arguments in any order thus, we use the `findHoldCommandByType` helper
  * method to do that for us. This provides an easy way tp find the correct argument, no matter the order,

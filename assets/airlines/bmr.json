@@ -1,0 +1,17 @@
+{
+    "icao": "bmr",
+    "name": "BMI Regional",
+    "callsign": {
+        "name": "Midland",
+        "callsignFormats": [
+            "##@@",
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E135", 4],
+            ["E145", 16]
+        ]
+    }
+}

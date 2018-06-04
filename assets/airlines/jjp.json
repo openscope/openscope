@@ -3,11 +3,14 @@
     "name": "Jetstar Japan",
     "callsign": {
         "name": "Orange Liner",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "##"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 20]
+            ["A320", 22]
         ]
     }
 }

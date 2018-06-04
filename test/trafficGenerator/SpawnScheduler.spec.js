@@ -3,18 +3,23 @@ import sinon from 'sinon';
 import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/SpawnScheduler';
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
 import {
-    airportControllerFixture,
+    createAirportControllerFixture,
     resetAirportControllerFixture
 } from '../fixtures/airportFixtures';
-import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import {
+    createNavigationLibraryFixture,
+    resetNavigationLibraryFixture
+} from '../fixtures/navigationLibraryFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from '../trafficGenerator/_mocks/spawnPatternMocks';
 
 let aircraftControllerStub;
 let spawnPatternCollectionFixture;
 
 ava.beforeEach(() => {
-    airportControllerFixture();
-    spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, navigationLibraryFixture);
+    createNavigationLibraryFixture();
+    createAirportControllerFixture();
+
+    spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
     aircraftControllerStub = {
         createAircraftWithSpawnPatternModel: sinon.stub(),
         createPreSpawnAircraftWithSpawnPatternModel: sinon.stub()
@@ -22,7 +27,9 @@ ava.beforeEach(() => {
 });
 
 ava.afterEach(() => {
+    resetNavigationLibraryFixture();
     resetAirportControllerFixture();
+
     spawnPatternCollectionFixture = null;
     aircraftControllerStub = null;
 });

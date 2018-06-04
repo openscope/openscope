@@ -3,11 +3,13 @@
     "name": "Spring Airlines",
     "callsign": {
         "name": "Air Spring",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320",    60]
+            ["A320", 78]
         ]
     }
 }

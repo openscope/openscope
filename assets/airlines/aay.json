@@ -3,17 +3,21 @@
     "name": "Allegiant Air",
     "callsign": {
         "name": "Allegiant",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
+        "default": [
+            ["A319", 31],
+            ["A320", 41],
+            ["B752", 5],
+            ["MD83", 34],
+            ["MD88", 4]
+        ],
         "long": [
             ["B752", 5]
-        ],
-        "default": [
-            ["A319", 15],
-            ["A320", 16],
-            ["MD83", 43],
-            ["MD88", 6 ]
         ]
     }
 }

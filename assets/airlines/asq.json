@@ -3,15 +3,16 @@
     "name": "ExpressJet",
     "callsign": {
         "name": "Acey",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["CRJ2", 55 ],
-            ["CRJ7", 41 ],
-            ["CRJ9", 28 ],
-            ["E135", 5  ],
-            ["E145", 179]
+            ["CRJ7", 42],
+            ["CRJ9", 3],
+            ["E135", 3],
+            ["E145", 114]
         ]
     }
 }

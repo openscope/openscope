@@ -3,12 +3,15 @@
     "name": "Endeavor Air",
     "callsign": {
         "name": "Endeavor",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["CRJ2", 44 ],
-            ["CRJ9", 81 ]
+            ["CRJ2", 47],
+            ["CRJ7", 3],
+            ["CRJ9", 106]
         ]
     }
 }

@@ -3,15 +3,21 @@
     "name": "UPS Airlines",
     "callsign": {
         "name": "UPS",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###",
+            "##",
+            "#"
+        ]
     },
     "fleets": {
         "default": [
             ["A306", 52],
             ["B744", 13],
+            ["B748", 5],
             ["B752", 75],
-            ["B763", 59],
-            ["MD11", 38]
+            ["B763", 62],
+            ["MD11", 37]
         ]
     }
 }

@@ -39,7 +39,7 @@ ava('.headingParser() returns an array of length 3 when passed new heading as th
     const result = headingParser(['042']);
 
     t.true(result.length === 3);
-    t.true(result[0] === null);
+    t.true(!result[0]);
     t.true(result[1] === 42);
     t.false(result[2]);
 });

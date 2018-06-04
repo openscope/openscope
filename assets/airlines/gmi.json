@@ -2,14 +2,18 @@
     "icao": "gmi",
     "name": "Germania",
     "callsign": {
-        "name": "GERMANIA",
-        "length": 3
+        "name": "Germania",
+        "callsignFormats": [
+            "####",
+            "###@",
+            "##@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["A319", 8 ],
-            ["A321", 4 ],
-            ["B737", 10 ]
+            ["A319", 19],
+            ["A321", 6],
+            ["B737", 10]
         ]
     }
 }

@@ -3,12 +3,14 @@
     "name": "GoJet Airlines",
     "callsign": {
         "name": "Lindbergh",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["CRJ7", 47 ],
-            ["CRJ9", 8 ]
+            ["CRJ7", 46],
+            ["CRJ9", 7]
         ]
     }
 }

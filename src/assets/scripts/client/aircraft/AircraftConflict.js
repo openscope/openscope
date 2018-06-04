@@ -114,7 +114,6 @@ export default class AircraftConflict {
 
         this._recalculateLateralAndVerticalDistances();
         this.checkCollision();
-        this.checkRunwayCollision();
 
         // Ignore aircraft below about 1000 feet
         const airportElevation = AirportController.airport_get().elevation;
@@ -165,36 +164,6 @@ export default class AircraftConflict {
             // If either are in a runway queue, remove them from it
             AirportController.removeAircraftFromAllRunwayQueues(this.aircraft[0]);
             AirportController.removeAircraftFromAllRunwayQueues(this.aircraft[1]);
-        }
-    }
-
-    /**
-     * Check for a potential head-on collision on a runway
-     */
-    checkRunwayCollision() {
-        // Check if the aircraft are on a potential collision course on the runway
-
-        // TODO: this logic block needs its own method.
-        // Check for the same runway, different ends and under about 6 miles
-        if (
-            (!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
-            (this.aircraft[0].fms.currentRunway !== null) &&
-            (this.aircraft[0].fms.currentRunway !== this.aircraft[1].fms.currentRunway) &&
-            (this.aircraft[1].fms.currentRunway.name === this.aircraft[0].fms.currentRunway.name) &&
-            (this.distance < 10)
-        ) {
-            if (!this.conflicts.runwayCollision) {
-                const isWarning = true;
-                this.conflicts.runwayCollision = true;
-
-                UiController.ui_log(
-                    `${this.aircraft[0].callsign} appears on a collision course with` +
-                    ` ${this.aircraft[1].callsign} on the same runway"`,
-                    isWarning
-                );
-            }
-        } else {
-            this.conflicts.runwayCollision = false;
         }
     }
 

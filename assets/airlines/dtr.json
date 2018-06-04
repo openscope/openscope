@@ -3,13 +3,16 @@
     "name": "Danish Air Transport",
     "callsign": {
         "name": "Danish",
-        "length": 2
+        "callsignFormats": [
+            "##"
+        ]
     },
     "fleets": {
         "default": [
             ["A320", 5],
             ["AT43", 2],
             ["AT72", 5],
+            ["MD82", 1],
             ["MD83", 1]
         ]
     }

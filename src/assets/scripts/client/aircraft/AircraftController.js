@@ -18,7 +18,6 @@ import {
     generateRandomOctalWithLength
 } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
 import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
@@ -71,9 +70,9 @@ export default class AircraftController {
      * @for AircraftController
      * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
-     * @param navigationLibrary {NavigationLibrary}
+     * @param scopeModel {ScopeModel}
      */
-    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary, scopeModel) {
+    constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
@@ -81,8 +80,8 @@ export default class AircraftController {
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        if (!_isObject(airlineController)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection to be defined');
         }
 
         /**
@@ -94,16 +93,6 @@ export default class AircraftController {
          * @private
          */
         this._airlineController = airlineController;
-
-        /**
-         * Reference to a `NavigationLibrary` instance
-         *
-         * @property _navigationLibrary
-         * @type NavigationLibrary
-         * @default navigationLibrary
-         * @private
-         */
-        this._navigationLibrary = navigationLibrary;
 
         /**
          * Local reference to static `EventBus` class
@@ -154,6 +143,14 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
+
+        /**
+         * Instance of the `StripViewController`
+         *
+         * @property _stripViewController
+         * @type {StripViewController}
+         * @private
+         */
         this._stripViewController = new StripViewController();
 
         return this.init()
@@ -191,7 +188,7 @@ export default class AircraftController {
      */
     enable() {
         this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.on(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -207,7 +204,7 @@ export default class AircraftController {
      */
     disable() {
         this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
-        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickhandler);
+        this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
         this._eventBus.off(EVENT.REMOVE_AIRCRAFT, this._onRemoveAircraftHandler);
@@ -302,13 +299,18 @@ export default class AircraftController {
     }
 
     /**
+     * Returns whether the specified aircraft model is in an area where they are controllable
+     *
      * @for AircraftController
-     * @method aircraft_visible
+     * @method isAircraftVisible
      * @param aircraft {AircraftModel}
      * @param factor {number}
+     * @returns {boolean}
      */
-    aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.relativePosition) < AirportController.airport_get().ctr_radius * factor;
+    isAircraftVisible(aircraft, factor = 1) {
+        const visibleDistance = AirportController.airport_get().ctr_radius * factor;
+
+        return aircraft.distance < visibleDistance;
     }
 
     /**
@@ -345,77 +347,33 @@ export default class AircraftController {
      * any other methods called from within
      *
      * @for AircraftController
-     * @method aircraft_update
+     * @method update
      */
-    aircraft_update() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-            aircraft.update();
-            aircraft.updateWarning();
-
-            if (aircraft.isTaxiing()) {
-                continue;
-            }
-
-            // TODO: this section eats up a lot of resources when there are more than 30 aircraft and we
-            //       don't check for taxiing aircraft
-            for (let j = i + 1; j < this.aircraft.list.length; j++) {
-                const otherAircraft = this.aircraft.list[j];
-
-                if (aircraft.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
-                    continue;
-                }
-
-                // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
-                // no violation can occur in this case.
-                // Variation of:
-                // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.relativePosition[0] - otherAircraft.relativePosition[0]);
-                const dy = abs(aircraft.relativePosition[1] - otherAircraft.relativePosition[1]);
-                const boundingBoxLength = km(8);
-
-                if (dx < boundingBoxLength && dy < boundingBoxLength) {
-                    this.addConflict(aircraft, otherAircraft);
-                }
-            }
+    update() {
+        if (this.aircraft.list.length === 0) {
+            return;
         }
 
-        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            const aircraft = this.aircraft.list[i];
+        // TODO: this is getting better, but still needs more simplification
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            const aircraftModel = this.aircraft.list[i];
 
-            // TODO: these next 3 logic blocks could use some cleaning/abstraction
-            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
-                // TODO: move this to the GAME_EVENTS constant
-                // TODO: move this out of the aircraft model
-                aircraft.scoreWind('landed');
+            aircraftModel.update();
+            aircraftModel.updateWarning();
 
-                UiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', switching to ground, good day' }
-                ]);
-
-                GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                aircraft.setIsRemovable();
-                this.aircraft_remove(aircraft);
-
+            // TODO: conflict checking eats up a lot of resources when there are more than
+            //       30 aircraft, exit early if we're still taxiing
+            if (aircraftModel.isTaxiing()) {
                 continue;
             }
 
-            if (aircraft.hit && aircraft.isOnGround()) {
-                UiController.ui_log(`Lost radar contact with ${aircraft.callsign}`, true);
-                aircraft.setIsRemovable();
+            this._updateAircraftConflicts(aircraftModel, i);
+            this._updateAircraftVisibility(aircraftModel);
 
-                speech_say([
-                    { type: 'callsign', content: aircraft },
-                    { type: 'text', content: ', radar contact lost' }
-                ]);
-            }
-
-            // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
-                this.aircraft_remove(aircraft);
-                i -= 1;
+            // `#isFlightStripRemovable` will be true even when there is no corresponding
+            // `StripView` for and `aircraftModel`
+            if (aircraftModel.isFlightStripRemovable && this._stripViewController.hasStripViewModel(aircraftModel)) {
+                this._stripViewController.removeStripView(aircraftModel);
             }
         }
     }
@@ -605,7 +563,7 @@ export default class AircraftController {
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftModel(initializationProps, this._navigationLibrary);
+        const aircraftModel = new AircraftModel(initializationProps);
 
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
@@ -660,7 +618,7 @@ export default class AircraftController {
             positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
-            route: spawnPatternModel.routeString,
+            routeString: spawnPatternModel.routeString,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
@@ -777,7 +735,7 @@ export default class AircraftController {
      * @private
      */
     _onSelectAircraftStrip = (aircraftModel) => {
-        if (!aircraftModel.inside_ctr) {
+        if (!aircraftModel.isControllable) {
             return;
         }
 
@@ -807,14 +765,117 @@ export default class AircraftController {
      * then trigger another event for the `CanvasController`.
      *
      * @for AircraftController
-     * @method _onStripDoubleClickhandler
+     * @method _onStripDoubleClickHandler
      * @param callsign {string}
      * @private
      */
-    _onStripDoubleClickhandler = (callsign) => {
+    _onStripDoubleClickHandler = (callsign) => {
         const { relativePosition } = this.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
     };
+
+    /**
+     * Encapsulates math and logic used to detrmine if a new `AircraftConflict` should
+     * be created for two specific aircraft
+     *
+     * Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
+     * no violation can occur in this case
+     * Variation of:
+     * http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+     *
+     * @for AircraftController
+     * @method _shouldAddNewConflict
+     * @param {AircraftModel} aircraftModel
+     * @param {AircraftModel} comparisonAircraftModel
+     * @return {boolean}
+     * @private
+     */
+    _shouldAddNewConflict(aircraftModel, comparisonAircraftModel) {
+        const boundingBoxLength = km(8);
+        const dx = abs(aircraftModel.relativePosition[0] - comparisonAircraftModel.relativePosition[0]);
+        const dy = abs(aircraftModel.relativePosition[1] - comparisonAircraftModel.relativePosition[1]);
+
+        return dx < boundingBoxLength && dy < boundingBoxLength;
+    }
+
+    /**
+     * Given an `aircraftModel` check against each other aircraft for conflicts
+     * after physics (current position) have been updated
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @param {number} currentUpdateIndex
+     * @private
+     */
+    _updateAircraftConflicts(aircraftModel, currentUpdateIndex) {
+        for (let j = currentUpdateIndex + 1; j < this.aircraft.list.length; j++) {
+            const otherAircraftModel = this.aircraft.list[j];
+
+            // TODO: though looking better, this logic still needs some work
+            if (otherAircraftModel.isTaxiing()) {
+                continue;
+            }
+
+            if (aircraftModel.hasConflictWithAircraftModel(otherAircraftModel)) {
+                aircraftModel.conflicts[otherAircraftModel.callsign].update();
+
+                continue;
+            }
+
+            if (this._shouldAddNewConflict(aircraftModel, otherAircraftModel)) {
+                this.addConflict(aircraftModel, otherAircraftModel);
+            }
+        }
+    }
+
+    /**
+     * Determine if an `aircraftModel` has exited controlled airspace then notify
+     * user and score event
+     *
+     * TODO: This method needs to include some logic currently happeing in `AircraftModel`
+     *       used to remove a departing aricraft
+     *
+     * @for AircraftController
+     * @param {AircraftModel} aircraftModel
+     * @private
+     */
+    _updateAircraftVisibility(aircraftModel) {
+        // TODO: these next 3 logic blocks could use some cleaning/abstraction
+        if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
+            // TODO: move this to the GAME_EVENTS constant
+            // TODO: move this out of the aircraft model
+            aircraftModel.scoreWind('landed');
+
+            UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
+            speech_say([
+                { type: 'callsign', content: aircraftModel },
+                { type: 'text', content: ', switching to ground, good day' }
+            ]);
+
+            GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
+            aircraftModel.setIsFlightStripRemovable();
+            aircraftModel.setIsRemovable();
+            this.aircraft_remove(aircraftModel);
+
+            return;
+        }
+
+        if (aircraftModel.hit && aircraftModel.isOnGround()) {
+            UiController.ui_log(`Lost radar contact with ${aircraftModel.callsign}`, true);
+            aircraftModel.setIsFlightStripRemovable();
+            aircraftModel.setIsRemovable();
+
+            speech_say([
+                { type: 'callsign', content: aircraftModel },
+                { type: 'text', content: ', radar contact lost' }
+            ]);
+        }
+
+        // Clean up the screen from aircraft that are too far
+        if (!this.isAircraftVisible(aircraftModel, 2) && !aircraftModel.isControllable && aircraftModel.isRemovable) {
+            this.aircraft_remove(aircraftModel);
+        }
+    }
 }

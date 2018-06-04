@@ -3,13 +3,17 @@
     "name": "Air Baltic",
     "callsign": {
         "name": "Air Baltic",
-        "length": 3
+        "callsignFormats": [
+            "###",
+            "##@",
+            "#@@"
+        ]
     },
     "fleets": {
         "default": [
-            ["B733", 7],
+            ["B733", 6],
             ["B735", 5],
-            ["A321", 20],
+            ["BCS3", 8],
             ["DH8D", 12]
         ]
     }

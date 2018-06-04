@@ -3,11 +3,14 @@
     "name": "Horizon Air",
     "callsign": {
         "name": "Horizon",
-        "length": 4
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [
-            ["DH8D", 52]
+            ["DH8D", 45],
+            ["E170", 14]
         ]
     }
 }

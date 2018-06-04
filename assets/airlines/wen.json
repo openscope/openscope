@@ -1,0 +1,16 @@
+{
+    "icao": "wen",
+    "name": "WestJet Encore",
+    "callsign": {
+        "name": "Encore",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DH8D", 46]
+        ]
+    }
+}

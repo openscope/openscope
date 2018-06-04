@@ -3,12 +3,15 @@
     "name": "Eastar Jet",
     "callsign": {
         "name": "Eastarjet",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B737",     3],
-            ["B738",    14]
+            ["B737", 1],
+            ["B738", 14],
+            ["B739", 2]
         ]
     }
 }

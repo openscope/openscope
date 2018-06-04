@@ -13,7 +13,7 @@ If you have not contributed before, please note that we will need to add you to 
 
 ## Standard Requirements
 ### Terrain GeoJSON File
-Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/other-files](https://github.com/openscope/other-files) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See the Reference Materials for a video demonstrating an example of the only way we've currently figured out to generate terrain. If you happen to know anybody who is handy with GIS software, we could sure use some help figuring out how to improve this process, because it is _definitely_ not the way the "pros" would do it.
+Even if it is empty, a terrain file must be included as part of the pull request. We ask that the qGIS files used in the generation of the terrain GeoJSON file also be uploaded to the [openscope/airport-modeling](https://github.com/openscope/airport-modeling) repository. This way, if an airspace boundary is changed, we can regenerate the terrain file in far less time. This takes a long time to generate, and is quite a pain, but there are people on slack who would be happy to do it for you. See the Reference Materials for a step-by-step guide on how to generate terrain using qGIS.
 
 ### Polygonal Airspace Boundary
 An airspace boundary must be defined with GPS coordinates. Previously, we allowed just a "airspace center" and "airspace radius", but now there must be a defined edge to the airspace.
@@ -29,7 +29,7 @@ The traffic level must be commensurate with real-world levels, with the arrival 
 A reference link shall be provided, validating the yearly traffic count, so the reviewer may confirm that the traffic level is appropriate.
 
 ### Base video map
-A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. Using qGIS (see reference materials) is the best way to do this.
+A "video map" must be provided with all airports. For most US airports, these are easily found by checking with the appropriate ARTCC within VATUSA on VATSIM. In many other countries, however, these are not available to the public. If the originals cannot be obtained, an appropriate and well-thought-out video map must be created. Using qGIS (see reference materials) is the best way to do this. If you need any help with the creation of a video map, feel free to reach out to us on Slack, where someone will be happy to help you out.
 
 ### Spacing
 To maintain uniformity in all airport files, only single spaces should be used.
@@ -64,6 +64,17 @@ To maintain uniformity in all airport files, all keys used in the file must be i
 - Spawn patterns should be in the exact form described in the Spawn Pattern Format Document (see Reference Materials).
     - Please note that spawnPatterns must include all keys, even those that are not used.
 
+### Airport Guide
+An airport guide must also be included as a way of providing some knowledge to users about the position they are controlling. The guide should contain the following pieces of information:
+- General details of the position (location and annual operations)
+- Extent and structure of the airspace (lateral and vertical limits)
+- Details on the instrument procedures of the primary airport
+- List of positions/sectors of the airspace
+- Some information on the different airports controlled by the position (location, annual operations, type of traffic)
+- Additional resources (relevant documents, videos, files, etc.)
+
+See reference materials for an example of an airport guide.
+
 ---
 
 ## Requirements for "Premium Airport" Designation
@@ -89,7 +100,8 @@ In general, in order to achieve "Premier Airport" status, the airport must be ac
 ---
 
 ## Further Reference Materials
-- [Terrain Generation Demo](https://youtu.be/tWky-8QWFWo)
+- [Terrain Generation Document](airport-terrain-generation.md)
 - [qGIS (for GPS-referenced modeling)](http://www.qgis.org/en/site/)
-- [Airport Format Document](./airport-format.html)
+- [Airport Format Document](airport-format.md)
 - [Spawn Pattern Format Document](spawnPatternReadme.md)
+- [Example Airport Guide for KSEA](airport-guides/ksea.md)

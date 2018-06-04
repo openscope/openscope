@@ -16,7 +16,7 @@ import { SELECTORS } from '../../constants/selectors';
 const CID_UPPER_BOUND = 999;
 
 /**
- * Controll modifications of the `$stripViewList` and coordinate
+ * Control modifications of the `$stripViewList` and coordinate
  * management of the `StripViewCollection`. Also responsible for
  * creating new `StripViewModel` instances.
  *
@@ -28,6 +28,8 @@ export default class StripViewController {
      */
     constructor() {
         /**
+         * Collection class used to manage instances of `StripViewModel`s
+         *
          * @property _collection
          * @type {StripViewCollection}
          * @default null
@@ -109,6 +111,20 @@ export default class StripViewController {
     }
 
     /**
+     * Provides a way to check if a `StripViewModel` exists for a given `AircraftModel`
+     *
+     * @for StripViewController
+     * @method hasStripViewModel
+     * @param aircraftModel {AircraftModel}
+     * @returns {booelan}
+     */
+    hasStripViewModel(aircraftModel) {
+        const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+
+        return typeof stripViewModel !== 'undefined';
+    }
+
+    /**
      * Update each `StripViewModel` with new aricraft data
      *
      * The `StripViewModel` provides an early out when
@@ -122,24 +138,17 @@ export default class StripViewController {
      */
     update(aircraftList) {
         // TODO: this should probably work the other way; loop through list items and find an aircraft.
-        // We need a proper `AircraftCollection` for that to be feasable
+        // We need a proper `AircraftCollection` for that to work
         for (let i = 0; i < aircraftList.length; i++) {
             const aircraftModel = aircraftList[i];
             const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            // TODO: this should be looked at again
-            // an aircraft strip is created on instantiation, which works for departures where a strip
-            // is shown immediately. For arrivals, this does not work so well. We need to `$.detach() the
-            // strip and re-add it to the list so it is at the end of the list.
-            if (aircraftModel.inside_ctr && !stripViewModel.insideCenter) {
-                stripViewModel.$element.detach();
+            if (aircraftModel.isControllable && !stripViewModel.insideCenter) {
                 this._addViewToStripList(stripViewModel);
             }
 
-            if (aircraftModel.inside_ctr) {
+            if (aircraftModel.isControllable) {
                 stripViewModel.update(aircraftModel);
-            } else {
-                stripViewModel.hide();
             }
         }
     }
@@ -156,7 +165,10 @@ export default class StripViewController {
         const stripViewModel = new StripViewModel(aircraftModel, stripViewCid);
 
         this._collection.addItem(stripViewModel);
-        this._addViewToStripList(stripViewModel);
+
+        if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
+            this._addViewToStripList(stripViewModel);
+        }
     }
 
     /**
@@ -226,7 +238,12 @@ export default class StripViewController {
         const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
         if (!stripViewModel) {
-            throw new TypeError(`Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist`);
+            console.warn(
+                `Attempted to remove a StripViewModel for ${aircraftModel.callsign} that does not exist.` +
+                'This is likely not a fatal problem, but if you are seeing this, please let somebody know.'
+            );
+
+            return;
         }
 
         this._removeCidFromUse(stripViewModel.cid);
@@ -237,6 +254,9 @@ export default class StripViewController {
     /**
      * Add `StripViewModel` to the `$stripViewList`
      *
+     * This adds a given `stripViewModel` into the DOM as a
+     * child of `$stripViewList`
+     *
      * @for StripViewController
      * @method _addViewToStripList
      * @param stripViewModel {StripViewModel}
@@ -244,7 +264,7 @@ export default class StripViewController {
      */
     _addViewToStripList(stripViewModel) {
         if (!(stripViewModel instanceof StripViewModel)) {
-            throw new TypeError(`Expected an instance of StripViewModel but reveiced ${typeof stripViewModel}`);
+            throw new TypeError(`Expected an instance of StripViewModel but received ${typeof stripViewModel}`);
         }
 
         const scrollPosition = this.$stripViewList.scrollTop();
@@ -253,7 +273,6 @@ export default class StripViewController {
         // shift scroll down one strip's height
         this.$stripViewList.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
-
 
     /**
      * Event handler for when a `StripViewModel` instance is clicked

@@ -1,15 +1,17 @@
 {
     "icao": "pwd",
-    "name": "Pan Am World Airways Dominicana",
+    "name": "PAWA Dominica",
     "callsign": {
         "name": "Pawa",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["DC93", 1],
-            ["MD82", 4],
-            ["MD83", 1],
+            ["DC93", 2],
+            ["MD82", 1],
+            ["MD83", 4],
             ["MD87", 1]
         ]
     }

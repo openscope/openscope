@@ -32,7 +32,7 @@ export default class AircraftCommandModel {
          * this gives us access to both the `validate` and `parse` methods
          * that belong to this command.
          *
-         * Storing this as a class property allows us to do the lookup once
+         * Storing this as an instance property allows us to do the lookup once
          * and then make it available to the rest of the class so it can
          * be referenced when needed.
          *
@@ -83,6 +83,10 @@ export default class AircraftCommandModel {
      * @return {string|undefined}
      */
     validateArgs() {
+        if (typeof this._commandDefinition === 'undefined') {
+            return;
+        }
+
         return this._commandDefinition.validate(this.args);
     }
 

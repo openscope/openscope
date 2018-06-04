@@ -1,0 +1,24 @@
+{
+    "icao": "kzr",
+    "name": "Air Astana",
+    "callsign": {
+        "name": "Astanaline",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 9],
+            ["A321", 5],
+            ["B752", 5],
+            ["B763", 3],
+            ["E190", 9]
+        ],
+        "a32x": [
+            ["A320", 9],
+            ["A321", 5]
+        ]
+    }
+}

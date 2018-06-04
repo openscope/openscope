@@ -3,7 +3,9 @@
     "name": "Air Serbia",
     "callsign": {
         "name": "Air Serbia",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

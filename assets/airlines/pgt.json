@@ -3,12 +3,18 @@
     "name": "Pegasus Airlines",
     "callsign": {
         "name": "Sun Turk",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 10],
-            ["B738", 58]
+            ["A20N", 18],
+            ["A320", 12],
+            ["B738", 44]
+        ],
+        "b738": [
+            ["B738", 44]
         ]
     }
 }

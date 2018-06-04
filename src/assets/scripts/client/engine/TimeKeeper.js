@@ -14,7 +14,7 @@ const SIMULATION_RATE_FOR_TRACK_PROJECTIONS = 5;
 /**
  * Singleton used to manage game time and the advancement of animation frames
  *
- * You will notice a large number of the class properties are private with exposed getters.
+ * You will notice a large number of the instance properties are private with exposed getters.
  * This is done to ensure that other classes are not able to modify the property values
  * of this class. TimeKeeping is an integral part of the app and must be able to keep accurate,
  * consistent time. Other classes can use these values but should never, directly, edit them.
@@ -91,7 +91,7 @@ class TimeKeeper {
          */
         this._frameStartTimestamp = 0;
 
-        // FIXME: not entirely sure what this is for
+        // TODO: not entirely sure what this is for
         /**
          *
          *

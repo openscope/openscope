@@ -3,11 +3,15 @@
     "name": "IndiGo",
     "callsign": {
         "name": "IFLY",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A320", 109]
+            ["AT76", 7],
+            ["A20N", 33],
+            ["A320", 124]
         ]
     }
 }

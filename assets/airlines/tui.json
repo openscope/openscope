@@ -3,13 +3,20 @@
     "name": "TUIfly",
     "callsign": {
         "name": "Tui Jet",
-        "length": 4,
-        "alpha": true
+        "callsignFormats": [
+            "##@@",
+            "###@",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B737", 4 ],
-            ["B738", 27]
+            ["B737", 3],
+            ["B738", 34]
+        ],
+        "short": [
+            ["B737", 3],
+            ["B738", 34]
         ]
     }
 }

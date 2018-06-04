@@ -54,6 +54,8 @@ export const CLASSNAMES = {
     TOGGLE_TERRAIN: 'toggle-terrain',
     TOGGLE_TUTORIAL: 'toggle-tutorial',
     TOGGLE_SIDS: 'toggle-sids',
+    TOGGLE_STARS: 'toggle-stars',
+    TOGGLE_VIDEO_MAP: 'toggle-video-map',
     WARN: 'warn',
     WARNING_BUTTON: 'warning-button'
 };
@@ -72,7 +74,6 @@ export const IDS = {
     CLOCK: 'clock',
     COMMAND: 'command',
     LOADING: 'loading',
-    LOADING_INDICATOR: 'loadingIndicator',
     LOG: 'log',
     NAVAIDS_CANVAS: 'navaids-canvas',
     PAUSED: 'paused',

@@ -3,16 +3,18 @@
     "name": "Air Koryo",
     "callsign": {
         "name": "Air Koryo",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["A148",    2],
-            ["IL62",    2],
-            ["IL76",    1],
-            ["T134",    1],
-            ["T154",    1],
-            ["T204",    2]
+            ["A148", 2],
+            ["IL62", 2],
+            ["IL76", 1],
+            ["T134", 1],
+            ["T154", 1],
+            ["T204", 2]
         ]
     }
 }

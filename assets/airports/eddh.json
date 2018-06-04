@@ -427,251 +427,688 @@
         }
     ],
     "sids": {
-        "AMLUH": {
-            "icao": "AMLUH",
-            "name": "Amluh",
-            "suffix": {"05":"8C", "15":"8D", "23":"9B", "33":"8G"},
+        "AMLUH8C": {
+            "icao": "AMLUH8C",
+            "name": "Amluh Eight Charlie",
             "rwy": {
-                "05": ["HOS", "DH151"],
-                "15": [["DH222", "A28+"]],
-                "23": ["^DH111", "DH108", "DH115"],
-                "33": ["DH250", "^DH251", "DH252", "HAM"]
+                "EDDH05": []
             },
-            "body": ["AMLUH"],
+            "body": ["HOS", "DH151", "AMLUH"],
             "exitPoints": {
                 "AMLUH": []
             },
             "draw": [
-                ["HOS", "DH151", "AMLUH*"],
-                ["DH251", "DH252", "HAM"],
-                ["DH208", "DH222"],
+                ["HOS", "DH151", "AMLUH"]
+            ]
+        },
+        "AMLUH8D": {
+            "icao": "AMLUH8D",
+            "name": "Amluh Eight Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["DH222", "A28+"], "AMLUH"],
+            "exitPoints": {
+                "AMLUH": []
+            },
+            "draw": [
+                ["AMLUH"]
+            ]
+        },
+        "AMLUH8G": {
+            "icao": "AMLUH8G",
+            "name": "Amluh Eight Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH250", "^DH251", "DH252", "HAM", "AMLUH"],
+            "exitPoints": {
+                "AMLUH": []
+            },
+            "draw": [
+                ["DH250", "DH251", "DH252", "HAM"],
+                ["AMLUH"]
+            ]
+        },
+        "AMLUH9B": {
+            "icao": "AMLUH9B",
+            "name": "Amluh Nine Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["^DH111", "DH108", "DH115", "AMLUH"],
+            "exitPoints": {
+                "AMLUH": []
+            },
+            "draw": [
                 ["DH111", "DH108", "DH115", "AMLUH"]
             ]
         },
-        "BASUM": {
-            "icao": "BASUM",
-            "name": "Basum",
-            "suffix": {"05":"1C", "15":"4D", "23":"3B", "33":"1G"},
+        "BASUM1C": {
+            "icao": "BASUM1C",
+            "name": "Basum One Charlie",
             "rwy": {
-                "05": ["DH150", "DH153", "LBV"],
-                "15": [["^DH202", "A20+"], "DH216", "DH221"],
-                "23": ["DH105", "DH117"],
-                "33": ["DH254", "LBV"]
+                "EDDH05": []
             },
-            "body": ["BASUM"],
+            "body": ["DH150", "DH153", "LBV", "BASUM"],
+            "exitPoints": {
+                "BASUM": []
+            },
+            "draw": [
+                ["LBV", "BASUM"]
+            ]
+        },
+        "BASUM1G": {
+            "icao": "BASUM1G",
+            "name": "Basum One Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH254", "LBV", "BASUM"],
+            "exitPoints": {
+                "BASUM": []
+            },
+            "draw": [
+                ["BASUM"]
+            ]
+        },
+        "BASUM3B": {
+            "icao": "BASUM3B",
+            "name": "Basum Three Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["DH105", "DH117", "BASUM"],
             "exitPoints": {
                 "BASUM": []
             },
             "draw": [
                 ["DH105", "DH117"],
-                ["LBV", "BASUM*"]
+                ["BASUM"]
             ]
         },
-        "EKERN": {
-            "icao": "EKERN",
-            "name": "Ekern",
-            "suffix": {"05":"8C", "15":"9D", "23":"8B", "33":"8G"},
+        "BASUM4D": {
+            "icao": "BASUM4D",
+            "name": "Basum Four Delta",
             "rwy": {
-                "05": ["HOS", "DH152"],
-                "15": [["^DH200", "A15+"], "DH201", "HAM"],
-                "23": ["^DH111", "DH102", "GT", "DH103"],
-                "33": ["DH250", "DH253", "DH103"]
+                "EDDH15": []
             },
-            "body": ["EKERN"],
+            "body": [["^DH202", "A20+"], "DH216", "DH221", "BASUM"],
+            "exitPoints": {
+                "BASUM": []
+            },
+            "draw": [
+                ["BASUM"]
+            ]
+        },
+        "EKERN8B": {
+            "icao": "EKERN8B",
+            "name": "Ekern Eight Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["^DH111", "DH102", "GT", "DH103", "EKERN"],
             "exitPoints": {
                 "EKERN": []
             },
             "draw": [
                 ["DH111", "DH102", "GT", "DH103"],
-                ["DH250", "DH253"],
-                ["DH200", "DH201", "HAM"],
-                ["HOS", "DH152", "EKERN*"]
+                ["EKERN"]
             ]
         },
-        "IDEKO": {
-            "icao": "IDEKO",
-            "name": "Ideko",
-            "suffix": {"05":"5C", "15":"6D", "23":"5B", "33":"4G"},
+        "EKERN8C": {
+            "icao": "EKERN8C",
+            "name": "Ekern Eight Charlie",
             "rwy": {
-                "05": ["DH150", "DH153", "LBV"],
-                "15": [["^DH202", "A20+"], "DH216", "DH220"],
-                "23": ["DH116"],
-                "33": ["DH254", "LBV"]
+                "EDDH05": []
             },
-            "body": ["IDEKO"],
+            "body": ["HOS", "DH152", "EKERN"],
+            "exitPoints": {
+                "EKERN": []
+            },
+            "draw": [
+                ["HOS", "DH152", "EKERN"]
+            ]
+        },
+        "EKERN8G": {
+            "icao": "EKERN8G",
+            "name": "Ekern Eight Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH250", "DH253", "DH103", "EKERN"],
+            "exitPoints": {
+                "EKERN": []
+            },
+            "draw": [
+                ["DH250", "DH253"],
+                ["EKERN"]
+            ]
+        },
+        "EKERN9D": {
+            "icao": "EKERN9D",
+            "name": "Ekern Nine Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["^DH200", "A15+"], "DH201", "HAM", "EKERN"],
+            "exitPoints": {
+                "EKERN": []
+            },
+            "draw": [
+                ["DH200", "DH201", "HAM"],
+                ["EKERN"]
+            ]
+        },
+        "IDEKO4G": {
+            "icao": "IDEKO4G",
+            "name": "Ideko Four Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH254", "LBV", "IDEKO"],
+            "exitPoints": {
+                "IDEKO": []
+            },
+            "draw": [
+                ["IDEKO"]
+            ]
+        },
+        "IDEKO5B": {
+            "icao": "IDEKO5B",
+            "name": "Ideko Five Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["DH116", "IDEKO"],
             "exitPoints": {
                 "IDEKO": []
             },
             "draw": [
                 ["DH111", "DH116"],
-                ["DH200", "DH202", "DH216"],
-                ["DH150", "DH153", "LBV", "IDEKO*"]
+                ["IDEKO"]
             ]
         },
-        "LBV": {
-            "icao": "LBV",
-            "name": "Elbe",
-            "suffix": {"05":"1C", "15":"1D", "23":"1B", "33":"1G"},
+        "IDEKO5C": {
+            "icao": "IDEKO5C",
+            "name": "Ideko Five Charlie",
             "rwy": {
-                "05": ["DH150", "DH153"],
-                "15": [["^DH202", "A20+"], "DH216", "DH217"],
-                "23": ["^DH111"],
-                "33": ["DH254"]
+                "EDDH05": []
             },
-            "body": ["LBV"],
+            "body": ["DH150", "DH153", "LBV", "IDEKO"],
+            "exitPoints": {
+                "IDEKO": []
+            },
+            "draw": [
+                ["DH150", "DH153", "LBV", "IDEKO"]
+            ]
+        },
+        "IDEKO6D": {
+            "icao": "IDEKO6D",
+            "name": "Ideko Six Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["^DH202", "A20+"], "DH216", "DH220", "IDEKO"],
+            "exitPoints": {
+                "IDEKO": []
+            },
+            "draw": [
+                ["DH200", "DH202", "DH216"],
+                ["IDEKO"]
+            ]
+        },
+        "LBV1B": {
+            "icao": "LBV1B",
+            "name": "Elbe One Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["^DH111", "LBV"],
             "exitPoints": {
                 "LBV": []
             },
             "draw": [
-                ["DH111", "LBV*"],
+                ["DH111", "LBV"]
+            ]
+        },
+        "LBV1C": {
+            "icao": "LBV1C",
+            "name": "Elbe One Charlie",
+            "rwy": {
+                "EDDH05": []
+            },
+            "body": ["DH150", "DH153", "LBV"],
+            "exitPoints": {
+                "LBV": []
+            },
+            "draw": [
+                ["LBV"]
+            ]
+        },
+        "LBV1D": {
+            "icao": "LBV1D",
+            "name": "Elbe One Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["^DH202", "A20+"], "DH216", "DH217", "LBV"],
+            "exitPoints": {
+                "LBV": []
+            },
+            "draw": [
                 ["DH216", "DH217", "LBV"]
             ]
         },
-        "LUB": {
-            "icao": "LUB",
-            "name": "Lübeck",
-            "suffix": {"05":"9C", "15":"9D", "23":"1B", "33":"9G"},
+        "LBV1G": {
+            "icao": "LBV1G",
+            "name": "Elbe One Golf",
             "rwy": {
-                "05": ["HOS"],
-                "15": [["^DH200", "A15+"], "DH201", "HAM"],
-                "23": ["^DH111", "DH102", "GT", "DH104"],
-                "33": ["DH250", "DH253"]
+                "EDDH33": []
             },
-            "body": ["LUB"],
+            "body": ["DH254", "LBV"],
+            "exitPoints": {
+                "LBV": []
+            },
+            "draw": [
+                ["LBV"]
+            ]
+        },
+        "LUB1B": {
+            "icao": "LUB1B",
+            "name": "Lübeck One Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["^DH111", "DH102", "GT", "DH104", "LUB"],
             "exitPoints": {
                 "LUB": []
             },
             "draw": [
-                ["HOS", "LUB*"],
-                ["GT", "DH104", "LUB"],
+                ["GT", "DH104", "LUB"]
+            ]
+        },
+        "LUB9C": {
+            "icao": "LUB9C",
+            "name": "Lübeck Nine Charlie",
+            "rwy": {
+                "EDDH05": []
+            },
+            "body": ["HOS", "LUB"],
+            "exitPoints": {
+                "LUB": []
+            },
+            "draw": [
+                ["HOS", "LUB"]
+            ]
+        },
+        "LUB9D": {
+            "icao": "LUB9D",
+            "name": "Lübeck Nine Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["^DH200", "A15+"], "DH201", "HAM", "LUB"],
+            "exitPoints": {
+                "LUB": []
+            },
+            "draw": [
                 ["HAM", "LUB"]
             ]
         },
-        "RAMAR": {
-            "icao": "RAMAR",
-            "name": "Ramar",
-            "suffix": {"05":"3C", "15":"3D", "23":"3B", "33":"3G"},
+        "LUB9G": {
+            "icao": "LUB9G",
+            "name": "Lübeck Nine Golf",
             "rwy": {
-                "05": ["HOS", "DH154"],
-                "15": [["^DH208", "A23+"], "DH209", "DH212"],
-                "23": ["^DH111", "DH102", "GT", "DH104", "DH110"],
-                "33": ["DH250", "DH253", "DH259"]
+                "EDDH33": []
             },
-            "body": ["LYE", "RAMAR"],
+            "body": ["DH250", "DH253", "LUB"],
+            "exitPoints": {
+                "LUB": []
+            },
+            "draw": [
+                ["LUB"]
+            ]
+        },
+        "RAMAR3B": {
+            "icao": "RAMAR3B",
+            "name": "Ramar Three Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["^DH111", "DH102", "GT", "DH104", "DH110", "LYE", "RAMAR"],
+            "exitPoints": {
+                "RAMAR": []
+            },
+            "draw": [
+                ["DH110", "LYE"],
+                ["RAMAR"]
+            ]
+        },
+        "RAMAR3C": {
+            "icao": "RAMAR3C",
+            "name": "Ramar Three Charlie",
+            "rwy": {
+                "EDDH05": []
+            },
+            "body": ["HOS", "DH154", "LYE", "RAMAR"],
             "exitPoints": {
                 "RAMAR": []
             },
             "draw": [
                 ["HOS", "DH154", "LYE"],
-                ["DH110", "LYE"],
-                ["DH253", "DH259"],
-                ["DH202", "DH208", "DH209", "DH212", "LYE", "RAMAR*"]
+                ["RAMAR"]
             ]
         },
-        "WSN": {
-            "icao": "WSN",
-            "name": "Weser",
-            "suffix": {"05":"2C", "15":"1D", "23":"1B", "33":"2G"},
+        "RAMAR3D": {
+            "icao": "RAMAR3D",
+            "name": "Ramar Three Delta",
             "rwy": {
-                "05": ["DH150", "DH153", "LBV"],
-                "15": [["^DH202", "A20+"], "DH216"],
-                "23": ["DH100"],
-                "33": ["DH254", "LBV"]
+                "EDDH15": []
             },
-            "body": ["WSN"],
+            "body": [["^DH208", "A23+"], "DH209", "DH212", "LYE", "RAMAR"],
+            "exitPoints": {
+                "RAMAR": []
+            },
+            "draw": [
+                ["DH202", "DH208", "DH209", "DH212", "LYE", "RAMAR"]
+            ]
+        },
+        "RAMAR3G": {
+            "icao": "RAMAR3G",
+            "name": "Ramar Three Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH250", "DH253", "DH259", "LYE", "RAMAR"],
+            "exitPoints": {
+                "RAMAR": []
+            },
+            "draw": [
+                ["DH253", "DH259"],
+                ["RAMAR"]
+            ]
+        },
+        "WSN1B": {
+            "icao": "WSN1B",
+            "name": "Weser One Bravo",
+            "rwy": {
+                "EDDH23": []
+            },
+            "body": ["DH100", "WSN"],
             "exitPoints": {
                 "WSN": []
             },
             "draw": [
-                ["LBV", "WSN*"],
-                ["DH100", "WSN"],
-                ["DH250", "DH254", "LBV"],
+                ["DH100", "WSN"]
+            ]
+        },
+        "WSN1D": {
+            "icao": "WSN1D",
+            "name": "Weser One Delta",
+            "rwy": {
+                "EDDH15": []
+            },
+            "body": [["^DH202", "A20+"], "DH216", "WSN"],
+            "exitPoints": {
+                "WSN": []
+            },
+            "draw": [
                 ["DH216", "WSN"]
+            ]
+        },
+        "WSN2C": {
+            "icao": "WSN2C",
+            "name": "Weser Two Charlie",
+            "rwy": {
+                "EDDH05": []
+            },
+            "body": ["DH150", "DH153", "LBV", "WSN"],
+            "exitPoints": {
+                "WSN": []
+            },
+            "draw": [
+                ["LBV", "WSN"]
+            ]
+        },
+        "WSN2G": {
+            "icao": "WSN2G",
+            "name": "Weser Two Golf",
+            "rwy": {
+                "EDDH33": []
+            },
+            "body": ["DH254", "LBV", "WSN"],
+            "exitPoints": {
+                "WSN": []
+            },
+            "draw": [
+                ["DH250", "DH254", "LBV"],
+                ["WSN"]
             ]
         }
     },
     "stars": {
-        "BOGMU": {
-            "icao": "BOGMU",
-            "name": "Bogmu",
-            "suffix": {"05":"05", "15":"15", "23":"23", "33":"33"},
+        "BOGMU05": {
+            "icao": "BOGMU05",
+            "name": "Bogmu Zero Five Transition",
             "entryPoints": {
                 "BOGMU": []
             },
-            "body": ["BOGMU"],
+            "body": ["BOGMU", ["DH225", "S220"], "DH226", "DH227", "DH228", "DH229", ["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
             "rwy": {
-                "05": [["DH225", "S220"], "DH226", "DH227", "DH228", "DH229", ["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
-                "15": [["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
-                "23": [["DH634", "S220"], ["DH635", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
-                "33": [["DH829", "S220"], ["DH830", "S220"], "DH831", "DH832", "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]]
+                "EDDH05": []
             },
             "draw": [
-                ["BOGMU*", "DH225", "DH226", "DH227", "DH228", "DH229", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"],
-                ["BOGMU*", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"],
-                ["BOGMU*", "DH634", "DH635", "DH655", "DH656", "DH657", "DH658", "PISAS"],
+                ["BOGMU*", "DH225", "DH226", "DH227", "DH228", "DH229", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"]
+            ]
+        },
+        "BOGMU15": {
+            "icao": "BOGMU15",
+            "name": "Bogmu One Five Transition",
+            "entryPoints": {
+                "BOGMU": []
+            },
+            "body": ["BOGMU", ["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
+            "rwy": {
+                "EDDH15": []
+            },
+            "draw": [
+                ["BOGMU*", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"]
+            ]
+        },
+        "BOGMU23": {
+            "icao": "BOGMU23",
+            "name": "Bogmu Two Three Transition",
+            "entryPoints": {
+                "BOGMU": []
+            },
+            "body": ["BOGMU", ["DH634", "S220"], ["DH635", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
+            "rwy": {
+                "EDDH23": []
+            },
+            "draw": [
+                ["BOGMU*", "DH634", "DH635", "DH655", "DH656", "DH657", "DH658", "PISAS"]
+            ]
+        },
+        "BOGMU33": {
+            "icao": "BOGMU33",
+            "name": "Bogmu Three Three Transition",
+            "entryPoints": {
+                "BOGMU": []
+            },
+            "body": ["BOGMU", ["DH829", "S220"], ["DH830", "S220"], "DH831", "DH832", "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]],
+            "rwy": {
+                "EDDH33": []
+            },
+            "draw": [
                 ["BOGMU*", "DH829", "DH830", "DH831", "DH832", "DH833", "DH834", "DH835", "DH854", "DH855", "DH856", "DH857", "DH858", "SOSAX"]
             ]
         },
-        "NOLGO": {
-            "icao": "NOLGO",
-            "name": "Nolgo",
-            "suffix": {"05":"05", "15":"15", "23":"23", "33":"33"},
+        "NOLGO05": {
+            "icao": "NOLGO05",
+            "name": "Nolgo Zero Five Transition",
             "entryPoints": {
                 "NOLGO": []
             },
-            "body": ["NOLGO"],
+            "body": ["NOLGO", ["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
             "rwy": {
-                "05": [["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
-                "15": [["DH406", "S220"], "DH407", "DH408", "DH409", ["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
-                "23": [["DH611", "S220"], "DH612", "DH613", "DH614", ["DH615", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
-                "33": [["DH832", "S220"], "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]]
+                "EDDH05": []
             },
             "draw": [
-                ["NOLGO*", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"],
-                ["NOLGO*", "DH406", "DH407", "DH408", "DH409", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"],
-                ["NOLGO*", "DH611", "DH612", "DH613", "DH614", "DH615", "DH655", "DH656", "DH657", "DH658", "PISAS"],
+                ["NOLGO*", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"]
+            ]
+        },
+        "NOLGO15": {
+            "icao": "NOLGO15",
+            "name": "Nolgo One Five Transition",
+            "entryPoints": {
+                "NOLGO": []
+            },
+            "body": ["NOLGO", ["DH406", "S220"], "DH407", "DH408", "DH409", ["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
+            "rwy": {
+                "EDDH15": []
+            },
+            "draw": [
+                ["NOLGO*", "DH406", "DH407", "DH408", "DH409", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"]
+            ]
+        },
+        "NOLGO23": {
+            "icao": "NOLGO23",
+            "name": "Nolgo Two Three Transition",
+            "entryPoints": {
+                "NOLGO": []
+            },
+            "body": ["NOLGO", ["DH611", "S220"], "DH612", "DH613", "DH614", ["DH615", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
+            "rwy": {
+                "EDDH23": []
+            },
+            "draw": [
+                ["NOLGO*", "DH611", "DH612", "DH613", "DH614", "DH615", "DH655", "DH656", "DH657", "DH658", "PISAS"]
+            ]
+        },
+        "NOLGO33": {
+            "icao": "NOLGO33",
+            "name": "Nolgo Three Three Transition",
+            "entryPoints": {
+                "NOLGO": []
+            },
+            "body": ["NOLGO", ["DH832", "S220"], "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]],
+            "rwy": {
+                "EDDH33": []
+            },
+            "draw": [
                 ["NOLGO*", "DH832", "DH833", "DH834", "DH835", "DH854", "DH855", "DH856", "DH857", "DH858", "SOSAX"]
             ]
         },
-        "RARUP": {
-            "icao": "RARUP",
-            "name": "Rarup",
-            "suffix": {"05":"05", "15":"15", "23":"23", "33":"33"},
+        "RARUP05": {
+            "icao": "RARUP05",
+            "name": "Rarup Zero Five Transition",
             "entryPoints": {
                 "RARUP": []
             },
-            "body": ["RARUP"],
+            "body": ["RARUP", ["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
             "rwy": {
-                "05": [["DH230", "S220"], "DH231", "DH232", "DH233", "DH234", ["DH235", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
-                "15": [["DH417", "S220"], ["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
-                "23": [["DH600", "S220"], ["DH611", "S220"], "DH612", "DH613", "DH614", ["DH615", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
-                "33": [["DH829", "S220"], ["DH830", "S220"], "DH831", "DH832", "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]]
+                "EDDH05": []
             },
             "draw": [
-                ["RARUP*", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"],
-                ["RARUP*", "DH417", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"],
-                ["RARUP*", "DH600", "DH611", "DH612", "DH613", "DH614", "DH615", "DH655", "DH656", "DH657", "DH658", "PISAS"],
+                ["RARUP*", "DH230", "DH231", "DH232", "DH233", "DH234", "DH235", "DH255", "DH256", "DH257", "DH258", "ANEXI"]
+            ]
+        },
+        "RARUP15": {
+            "icao": "RARUP15",
+            "name": "Rarup One Five Transition",
+            "entryPoints": {
+                "RARUP": []
+            },
+            "body": ["RARUP", ["DH417", "S220"], ["DH412", "S220"], "DH413", "DH414", ["DH416", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
+            "rwy": {
+                "EDDH15": []
+            },
+            "draw": [
+                ["RARUP*", "DH417", "DH412", "DH413", "DH414", "DH416", "DH455", "DH456", "DH457", "DH458", "DEVOD"]
+            ]
+        },
+        "RARUP23": {
+            "icao": "RARUP23",
+            "name": "Rarup Two Three Transition",
+            "entryPoints": {
+                "RARUP": []
+            },
+            "body": ["RARUP", ["DH600", "S220"], ["DH611", "S220"], "DH612", "DH613", "DH614", ["DH615", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
+            "rwy": {
+                "EDDH23": []
+            },
+            "draw": [
+                ["RARUP*", "DH600", "DH611", "DH612", "DH613", "DH614", "DH615", "DH655", "DH656", "DH657", "DH658", "PISAS"]
+            ]
+        },
+        "RARUP33": {
+            "icao": "RARUP33",
+            "name": "Rarup Three Three Transition",
+            "entryPoints": {
+                "RARUP": []
+            },
+            "body": ["RARUP", ["DH829", "S220"], ["DH830", "S220"], "DH831", "DH832", "DH833", "DH834", ["DH835", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]],
+            "rwy": {
+                "EDDH33": []
+            },
+            "draw": [
                 ["RARUP*", "DH829", "DH830", "DH831", "DH832", "DH833", "DH834", "DH835", "DH854", "DH855", "DH856", "DH857", "DH858", "SOSAX"]
             ]
         },
-        "RIBSO": {
-            "icao": "RIBSO",
-            "name": "Ribso",
-            "suffix": {"05":"05", "15":"15", "23":"23", "33":"33"},
+        "RIBSO05": {
+            "icao": "RIBSO05",
+            "name": "Ribso Zero Five Transition",
             "entryPoints": {
                 "RIBSO": []
             },
-            "body": ["RIBSO"],
+            "body": ["RIBSO", ["DH210", "S220"], "DH211", ["DH213", "S220"], "DH214", ["DH215", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
             "rwy": {
-                "05": [["DH210", "S220"], "DH211", ["DH213", "S220"], "DH214", ["DH215", "S220"], "DH255", "DH256", "DH257", "DH258", ["ANEXI", "S170+"]],
-                "15": [["DH434", "S220"], ["DH435", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
-                "23": ["DH620", ["DH633", "S220"], "DH634", ["DH635", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
-                "33": [["DH804", "S220"], "DH805", "DH806", "DH807", "DH808", "DH809", "DH810", "DH811", "DH812", "DH813", "DH814", ["DH815", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]]
+                "EDDH05": []
             },
             "draw": [
-                ["RIBSO*", "DH210", "DH211", "DH213", "DH214", "DH215", "DH255", "DH256", "DH257", "DH258", "ANEXI"],
-                ["RIBSO*", "DH434", "DH435", "DH455", "DH456", "DH457", "DH458", "DEVOD"],
-                ["RIBSO*", "DH620", "DH633", "DH634", "DH635", "DH655", "DH656", "DH657", "DH658", "PISAS"],
+                ["RIBSO*", "DH210", "DH211", "DH213", "DH214", "DH215", "DH255", "DH256", "DH257", "DH258", "ANEXI"]
+            ]
+        },
+        "RIBSO15": {
+            "icao": "RIBSO15",
+            "name": "Ribso One Five Transition",
+            "entryPoints": {
+                "RIBSO": []
+            },
+            "body": ["RIBSO", ["DH434", "S220"], ["DH435", "S220"], "DH455", "DH456", "DH457", "DH458", ["DEVOD", "S170+"]],
+            "rwy": {
+                "EDDH15": []
+            },
+            "draw": [
+                ["RIBSO*", "DH434", "DH435", "DH455", "DH456", "DH457", "DH458", "DEVOD"]
+            ]
+        },
+        "RIBSO23": {
+            "icao": "RIBSO23",
+            "name": "Ribso Two Three Transition",
+            "entryPoints": {
+                "RIBSO": []
+            },
+            "body": ["RIBSO", "DH620", ["DH633", "S220"], "DH634", ["DH635", "S220"], "DH655", "DH656", "DH657", "DH658", ["PISAS", "S170+"]],
+            "rwy": {
+                "EDDH23": []
+            },
+            "draw": [
+                ["RIBSO*", "DH620", "DH633", "DH634", "DH635", "DH655", "DH656", "DH657", "DH658", "PISAS"]
+            ]
+        },
+        "RIBSO33": {
+            "icao": "RIBSO33",
+            "name": "Ribso Three Three Transition",
+            "entryPoints": {
+                "RIBSO": []
+            },
+            "body": ["RIBSO", ["DH804", "S220"], "DH805", "DH806", "DH807", "DH808", "DH809", "DH810", "DH811", "DH812", "DH813", "DH814", ["DH815", "S220"], "DH854", "DH855", "DH856", "DH857", "DH858", ["SOSAX", "S170+"]],
+            "rwy": {
+                "EDDH33": []
+            },
+            "draw": [
                 ["RIBSO*", "DH804", "DH805", "DH806", "DH807", "DH808", "DH809", "DH810", "DH811", "DH812", "DH813", "DH814", "DH815", "DH854", "DH855", "DH856", "DH857", "DH858", "SOSAX"]
             ]
         }
@@ -681,7 +1118,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.AMLUH.AMLUH..DENIX..ULSEN..HLZ..POVEL",
+            "route": "EDDH33.AMLUH8G.AMLUH..DENIX..ULSEN..HLZ..POVEL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -693,7 +1130,7 @@
                 ["ezy", 9],
                 ["gwi", 12],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3]
             ]
@@ -702,7 +1139,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.BASUM.BASUM..OSN",
+            "route": "EDDH33.BASUM1G.BASUM..OSN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -722,7 +1159,7 @@
                 ["ibe", 1],
                 ["klm", 6],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3],
                 ["tap", 2]
@@ -732,7 +1169,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.EKERN.EKERN..TUGDU..ALASA..ALS",
+            "route": "EDDH33.EKERN8G.EKERN..TUGDU..ALASA..ALS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -752,7 +1189,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.IDEKO.IDEKO..TIMEN..ROBEG..PIROT..LARBU..WRB",
+            "route": "EDDH33.IDEKO4G.IDEKO..TIMEN..ROBEG..PIROT..LARBU..WRB",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -765,7 +1202,7 @@
                 ["gmi", 3],
                 ["gwi", 12],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3]
             ]
@@ -774,7 +1211,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.LUB.LUB..TOSPA..AMICH..PIBUL..MEGAR..GESKA",
+            "route": "EDDH33.LUB9G.LUB..TOSPA..AMICH..PIBUL..MEGAR..GESKA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -792,7 +1229,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.RAMAR.RAMAR..NUSGU..LASLU..PITEN..BIRMO..RATMO",
+            "route": "EDDH33.RAMAR3G.RAMAR..NUSGU..LASLU..PITEN..BIRMO..RATMO",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -815,7 +1252,7 @@
             "origin": "EDDH",
             "destination": "",
             "category": "departure",
-            "route": "EDDH.WSN.WSN..REVLA..AVESA..DOTOB..DOBAK..EEL",
+            "route": "EDDH33.WSN2G.WSN..REVLA..AVESA..DOTOB..DOBAK..EEL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -835,7 +1272,7 @@
                 ["ibe", 1],
                 ["klm", 6],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3],
                 ["tap", 2],
@@ -846,8 +1283,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "GOLMI..MAXEL..MARIP..BAGOS..KUXOD..MIC..BOGMU.BOGMU.EDDH",
-            "altitude": 18000,
+            "route": "GOLMI..MAXEL..MARIP..BAGOS..KUXOD..MIC..BOGMU.BOGMU23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 1.5,
@@ -864,8 +1301,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "PEXAM..NORTA..DLE..MADOR..AGATI..NOLGO.NOLGO.EDDH",
-            "altitude": 18000,
+            "route": "PEXAM..NORTA..DLE..MADOR..AGATI..NOLGO.NOLGO23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 1,
@@ -876,7 +1313,7 @@
                 ["ezy", 9],
                 ["gwi", 12],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3]
             ]
@@ -885,8 +1322,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "SOGMA..ERNUD..GURLO..BUMIL..ABMAL..RARUP.RARUP.EDDH",
-            "altitude": 18000,
+            "route": "SOGMA..ERNUD..GURLO..BUMIL..ABMAL..RARUP.RARUP23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 1.5,
@@ -908,8 +1345,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "EEL..NDO..RIBSO.RIBSO.EDDH",
-            "altitude": 18000,
+            "route": "EEL..NDO..RIBSO.RIBSO23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 2,
@@ -928,7 +1365,7 @@
                 ["ibe", 1],
                 ["klm", 6],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3],
                 ["tap", 2]
@@ -938,8 +1375,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "OSN..NDO..RIBSO.RIBSO.EDDH",
-            "altitude": 18000,
+            "route": "OSN..NDO..RIBSO.RIBSO23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 2.5,
@@ -958,7 +1395,7 @@
                 ["ibe", 1],
                 ["klm", 6],
                 ["n/fastGA", 5],
-                ["nly", 5],
+                ["ldm", 4],
                 ["ryr", 13],
                 ["swr", 3],
                 ["tap", 2]
@@ -968,8 +1405,8 @@
             "origin": "",
             "destination": "EDDH",
             "category": "arrival",
-            "route": "BAVTA..LUTIR..MEBUS..OSTOR..RIBSO.RIBSO.EDDH",
-            "altitude": 18000,
+            "route": "BAVTA..LUTIR..MEBUS..OSTOR..RIBSO.RIBSO23.EDDH23",
+            "altitude": 10000,
             "speed": 320,
             "method": "random",
             "rate": 1,

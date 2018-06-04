@@ -3,13 +3,13 @@
     "name": "Jet Time",
     "callsign": {
         "name": "Jettime",
-        "length": 4
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["AT72", 13],
-            ["B733", 6],
-            ["B737", 3]
+            ["B737", 5]
         ]
     }
 }
