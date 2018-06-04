@@ -28,16 +28,33 @@
 			"poly": [
 				[30.652483, -98.323436],
 				[30.702350, -96.799667],
-				[29.956612, -98.232063],
-				[29.769661, -96.614271]
+				[29.956612, -96.232063],
+				[29.769661, -98.614271]
 			]
 		}
 	],
 	"fixes": {
+		"ABI"  : ["N32d24.67", "W99d40.91"],
+		"ACT"  : ["N31d39.74", "W97d16.15"],
 		"AEROZ": ["N30d42.22", "W98d51.83"],
+		"AGJ"  : ["N31d11.13", "W98d8.51"],
 		"AMUSE": ["N30d27.38", "W98d17.65"],
+		"BNDIA": ["N29d38.65", "W98d27.67"],
+		"CLL"  : ["N30d36.30", "W96d25.24"],
+		"CWK"  : ["N30d22.71", "W97d31.79"],
 		"ELOEL": ["N30d54.32", "W97d55.24"],
+		"FORSS": ["N31d10.33", "W98d4.66"],
+		"GARDS": ["N30°3.12", "W97d56.80"],
+		"ILEXY": ["N30d21.16", "W97d4.76"],
+		"JAYJO": ["N30d20.23", "W96d48.91"],
+		"JCT"  : ["N30d35.88", "W99d49.05"],
+		"KLNGR": ["N31d13.41", "W98d2.33"],
+		"LLO"  : ["N30d47.78", "W98d47.24"],
+		"NAVYS": ["N31d23.29", "W96d18.81"],
+		"SAT"  : ["N29d38.64", "W98d27.68"],
 		"SJT"  : ["N31d22.49", "W100d27.30"],
+		"STV"  : ["N30d12.40", "W98d42.34"],
+		"TNV"  : ["N30d17.31", "W96d3.49"],
 		"WLMRT": ["N30d44.45", "W97d51.56"]
 	},
 	"runways":[
@@ -90,7 +107,94 @@
 				"KAUS17R": ["CWK"],
 				"KAUS35L": ["CWK"],
 				"KAUS35R": ["CWK"]
-			}
+			},
+			"exitPoints": {
+				"ABI": ["LLO", "ABI"],
+				"AGJ": ["AGJ"],
+				"JCT": ["JCT"],
+				"LLO": ["LLO"],
+				"SJT": ["LLO", "SJT"],
+				"SAT": ["SAT"],
+				"STV": ["AMUSE", "STV"]
+			},
+			"draw": [
+				["CWK", "AGJ*"],
+				["CWK", "LLO*"],
+				["LLO", "ABI*"],
+				["CWK", "JCT*"],
+				["LLO", "SJT*"],
+				["CWK", "SAT*"],
+				["CWK", "AMUSE", "STV*"]
+			]
+		},
+		"BNDIA2": {
+			"icao": "BNDIA2",
+			"name": "Ben Dia Two",
+			"rwy": {
+				"KAUS17L": [["GARDS", "A50+"]],
+				"KAUS17R": [["GARDS", "A50+"]],
+				"KAUS35L": [["GARDS", "A50+"]],
+				"KAUS35R": [["GARDS", "A50+"]]
+			},
+			"exitPoints": {
+				"BNDIA": ["BNDIA"]
+			},
+			"draw": [
+				["GARDS", "BNDIA"]
+			]
+		},
+		"CWK6": {
+			"icao": "CWK6",
+			"name": "Centex Six",
+			"rwy": {
+				"KAUS17L": [["CWK", "A40+"]],
+				"KAUS17R": [["CWK", "A40+"]],
+				"KAUS35L": [["CWK", "A40+"]],
+				"KAUS35R": [["CWK", "A40+"]]
+			},
+			"exitPoints": {
+				"CLL": ["ILEXY", "CLL"],
+				"ILEXY": ["ILEXY"],
+				"JAYJO": ["JAYJO"],
+				"TNV": ["TNV"],
+				"NAVYS": ["NAVYS"],
+				"ACT": ["ACT"]
+			},
+			"draw": [
+				["CWK", "ILEXY*"],
+				["ILEXY", "CLL*"],
+				["CWK", "JAYJO*"],
+				["CWK", "TNV*"],
+				["CWK", "NAVYS"],
+				["CWK", "ACT*"]
+			]
+		},
+		"ELOEL2": {
+			"icao": "ELOEL2",
+			"name": "Eloel Two",
+			"rwy": {
+				"KAUS17L": [["WLMRT", "A50+"]],
+				"KAUS17R": [["WLMRT", "A50+"]],
+				"KAUS35L": [["WLMRT", "A50+"]],
+				"KAUS35R": [["WLMRT", "A50+"]]
+			},
+			"body": ["ELOEL"],
+			"exitPoints": {
+				"ABI": [["FORSS", "A105+"], ["ABI", "A180+"]],
+				"FORSS": [["FORSS", "A105+"]],
+				"KLNGR": [["KLNGR", "A105+"]]
+			},
+			"draw": [
+				["WLMRT", "ELOEL"],
+				["ELOEL", "FORSS*"],
+				["FORSS", "ABI*"],
+				["ELOEL", "KLNGR*"]
+			]
+		}
+	}
+	"stars": {
+		"DXEEE1": {
+		
 		}
 	}
 }
