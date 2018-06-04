@@ -9,15 +9,88 @@
     "magnetic_north": 4.1,
     "ctr_radius": 80,
     "ctr_ceiling": 17000,
-    "initial_alt": 7000,
-    "position": ["N30.195105", "W97.666406", "3962ft"],
+    "initial_alt": 4000,
+    "position": ["N30.195105", "W97.666406", "542ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N30.195105", "W97.666406"],
-    "has_terrain": true,
+    "has_terrain": false,
     "wind": {
-        "angle": 165,
+        "angle": 170,
         "speed": 7
     },
     "arrivalRunway": "17L",
     "departureRunway": "17R",
+	"airspace": [
+		{
+			"floor": 0,
+			"ceiling": 150,
+			"airspace_class": "C",
+			"poly": [
+				[30.652483, -98.323436],
+				[30.702350, -96.799667],
+				[29.956612, -98.232063],
+				[29.769661, -96.614271]
+			]
+		}
+	],
+	"fixes": {
+		"AEROZ": ["N30d42.22", "W98d51.83"],
+		"AMUSE": ["N30d27.38", "W98d17.65"],
+		"ELOEL": ["N30d54.32", "W97d55.24"],
+		"SJT"  : ["N31d22.49", "W100d27.30"],
+		"WLMRT": ["N30d44.45", "W97d51.56"]
+	},
+	"runways":[
+		{
+			"name": ["17R", "35L"],
+			"end": [
+				["N30d12.82", "W97d40.76", "541ft"],
+				["N30d10.80", "W97d40.71", "487ft"]
+			],
+			"ils": [true, true],
+			"ils_distance": [25, 25],
+			"glidescope": [3.00, 3.00],
+			"loc_maxDist": [28, 28]
+		},
+		{
+			"name": ["17L", "35R"],
+			"end": [
+				["N30d12.23", "W97d39.47"],
+				["N30d10.75", "W97d39.43"]
+			],
+			"ils": [true, true],
+			"ils_distance": [25, 25],
+			"glidescope": [3.00, 3.00],
+			"loc_maxDist": [28, 28]
+		}
+	],
+	"sids": {
+		"AEROZ1": {
+			"icao": "AEROZ1",
+			"name": "Aeroz One",
+			"rwy": {
+				"KAUS17L": [["AMUSE", "A50+"]],
+				"KAUS17R": [["AMUSE", "A50+"]],
+				"KAUS35L": [["AMUSE", "A50+"]],
+				"KAUS35R": [["AMUSE", "A50+"]]
+			},
+			"body": ["AEROZ"],
+			"exitPoints": {
+				"SJT": ["SJT"]
+			},
+			"draw": [
+				["AMUSE", "AEROZ", "SJT*"]
+			]
+		},
+		"AUS5": {
+			"icao": "AUS5",
+			"name": "Austin Five",
+			"rwy": {
+				"KAUS17L": ["CWK"],
+				"KAUS17R": ["CWK"],
+				"KAUS35L": ["CWK"],
+				"KAUS35R": ["CWK"]
+			}
+		}
+	}
 }
