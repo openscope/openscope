@@ -18,8 +18,8 @@
         "angle": 170,
         "speed": 7
     },
-    "arrivalRunway": "17L",
-    "departureRunway": "17R",
+    "arrivalRunway": "17R",
+    "departureRunway": "17L",
 	"airspace": [
 		{
 			"floor": 0,
@@ -213,65 +213,134 @@
 			]
 		}
 	},
-	"stars": {
-		"DXEEE1": {
-			"icao": "DXEEE1",
-			"name": "Dixie One",
-			"entryPoints": {
-				"DXEEE": [],
-				"HFMAN": ["HFMAN", "GYTON", "DOBBY", ["THELM", "A200+|S280"], "VIDAA", ["PUDDY", "A140+"], ["ORINT", "A120+"]],
-				"HOOLR": ["HOOLR", "NILEE", ["SKEWT", "A200+|S280"], "VIDAA", ["PUDDY", "A140+"], ["ORINT", "A120+"]]
-			},
-			"body": [["DXEEE", "A100+|A140-|S250"], "BAAAB", ["SMILN", "A120-"]],
-			"rwy": {
-				"KAUS17L": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "SNOTT", "#355"],
-				"KAUS17R": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "SNOTT", "#355"],
-				"KAUS35L": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"],
-				"KAUS35R": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"]
-			},
-			"draw": [
-				["HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT"],
-				["HOOLR*", "NILEE", "SKEWT", "VIDAA"],
-				["ORINT", "DXEEE*", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU"],
-				["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
-			]
-		}
-	},
-	"spawnPatterns": [
-		{
-			"origin": "KAUS",
-			"destination": "",
-			"category": "departure",
-			"route": "KAUS.AUS5.SAT",
-			"altitude": "",
-			"speed": "",
-			"method": "random",
-			"rate": 9,
-			"airlines": [
-				["ual", 4],
-				["swa", 4],
-				["n/cessna", 1]
-			]
-		},
-		{
-			"origin": "",
-			"destination": "KAUS",
-			"category": "arrival",
-			"route": "HFMAN.DXEEE1.KAUS",
-			"altitude": [18000, 36000],
-			"speed": 320,
-			"method": "random",
-			"rate": 15,
-			"airlines": [
-				["swa", 1],
-				["jbu", 3],
-				["skw", 2]
-			]
-		}
-	],
-	"maps": {
-		"base": [
-			[30.444235, -97.632942, 30.471254, -97.648104]
-		]
-	}
+  "stars": {
+    "DXEEE1": {
+      "icao": "DXEEE1",
+      "name": "Dixie One",
+      "entryPoints": {
+        "DXEEE": [ ],
+        "HFMAN": [
+          "HFMAN",
+          "GYTON",
+          "DOBBY",
+          [ "THELM", "A200+|S280" ],
+          "VIDAA",
+          [ "PUDDY", "A140+" ],
+          [ "ORINT", "A120+" ]
+        ],
+        "HOOLR": [
+          "HOOLR",
+          "NILEE",
+          [ "SKEWT", "A200+|S280" ],
+          "VIDAA",
+          [ "PUDDY", "A140+" ],
+          [ "ORINT", "A120+" ]
+        ]
+      },
+      "body": [
+        [ "DXEEE", "A100+|A140-|S250" ],
+        "BAAAB",
+        [ "SMILN", "A120-" ]
+      ],
+      "rwy": {
+        "KAUS17L": [
+          [ "PLANX", "A80+" ],
+          "DBORD",
+          [ "TRPPN", "A60|S210" ],
+          "SNOTT",
+          "#355"
+        ],
+        "KAUS17R": [
+          [ "PLANX", "A80+" ],
+          "DBORD",
+          [ "TRPPN", "A60|S210" ],
+          "SNOTT",
+          "#355"
+        ],
+        "KAUS35L": [
+          "FAACE",
+          [ "LIPSS", "A40|S210" ],
+          "STNSN",
+          "TATAU",
+          "#175"
+        ],
+        "KAUS35R": [
+          "FAACE",
+          [ "LIPSS", "A40|S210" ],
+          "STNSN",
+          "TATAU",
+          "#175"
+        ]
+      },
+      "draw": [
+        [ "HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT" ],
+        [ "HOOLR*", "NILEE", "SKEWT", "VIDAA" ],
+        [ "ORINT", "DXEEE*", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU" ],
+        [ "SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT" ]
+      ]
+    }
+  },
+  "spawnPatterns": [
+    {
+      "origin": "KAUS",
+      "destination": "",
+      "category": "departure",
+      "route": "KAUS17L.BNDIA2.BNDIA",
+      "altitude": "",
+      "speed": "",
+      "method": "random",
+      "rate": 0.18,
+      "airlines": [
+        [ "swa", 10 ],
+        [ "fdx", 1 ],
+        [ "n/fastGA", 1 ]
+      ]
+    },
+    {
+      "origin": "KAUS",
+      "destination": "",
+      "category": "departure",
+      "route": "KAUS17L.ELOEL2.KLNGR",
+      "altitude": "",
+      "speed": "",
+      "method": "random",
+      "rate": 0.04,
+      "airlines": [
+        [ "baw/b789", 1 ]
+      ]
+    },
+    {
+      "origin": "",
+      "destination": "KAUS",
+      "category": "arrival",
+      "route": "HFMAN.DXEEE1.KAUS17R",
+      "altitude": [ 18000, 36000 ],
+      "speed": 320,
+      "method": "random",
+      "rate": 0.18,
+      "airlines": [
+        [ "amx/short", 1 ],
+        [ "n/fastGA", 3 ]
+      ]
+    },
+    {
+      "origin": "",
+      "destination": "KAUS",
+      "category": "arrival",
+      "route": "HOOLR.DXEEE1.KAUS17R",
+      "altitude": [ 18000, 36000 ],
+      "speed": 320,
+      "method": "random",
+      "rate": 0.06,
+      "airlines": [
+        [ "swa", 5 ],
+        [ "n/fastGA", 1 ]
+      ]
+    }
+  ],
+  "maps": {
+    "base": [
+      [ ]
+    ]
+  }
 }
