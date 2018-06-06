@@ -212,7 +212,7 @@
 				["ELOEL", "KLNGR*"]
 			]
 		}
-	}
+	},
 	"stars": {
 		"DXEEE1": {
 			"icao": "DXEEE1",
@@ -228,7 +228,7 @@
 				"KAUS17R": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "SNOTT", "#355"],
 				"KAUS35L": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"],
 				"KAUS35R": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"]
-			}
+			},
 			"draw": [
 				["HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT"],
 				["HOOLR*", "NILEE", "SKEWT", "VIDAA"],
@@ -236,5 +236,42 @@
 				["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
 			]
 		}
+	},
+	"spawnPatterns": [
+		{
+			"origin": "KAUS",
+			"destination": "",
+			"category": "departure",
+			"route": "KAUS.AUS5.SAT",
+			"altitude": "",
+			"speed": "",
+			"method": "random",
+			"rate": 9,
+			"airlines": [
+				["ual", 4],
+				["swa", 4],
+				["n/cessna", 1]
+			]
+		},
+		{
+			"origin": "",
+			"destination": "KAUS",
+			"category": "arrival",
+			"route": "HFMAN.DXEEE1.KAUS",
+			"altitude": [18000, 36000],
+			"speed": 320,
+			"method": "random",
+			"rate": 15,
+			"airlines": [
+				["swa", 1],
+				["jbu", 3],
+				["skw", 2]
+			]
+		}
+	],
+	"maps": {
+		"base": [
+			[30.444235, -97.632942, 30.471254, -97.648104]
+		]
 	}
 }
