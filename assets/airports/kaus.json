@@ -38,10 +38,12 @@
 		"ACT"  : ["N31d39.74", "W97d16.15"],
 		"AEROZ": ["N30d42.22", "W98d51.83"],
 		"AGJ"  : ["N31d11.13", "W98d8.51"],
-		"AMUSE": ["N30d27.38", "W98d17.65"],
+    "AMUSE": ["N30d27.38", "W98d17.65"],
+    "ASHRR": ["N30d19.07", "W96d30.47"],
 		"BAAAB": ["N30d9.51", "W98d10.35"],
 		"BNDIA": ["N29d38.65", "W98d27.67"],
-		"CLL"  : ["N30d36.30", "W96d25.24"],
+    "CLL"  : ["N30d36.30", "W96d25.24"],
+    "CRP"  : ["N27d54.22", "W97d26.69"],
 		"CWK"  : ["N30d22.71", "W97d31.79"],
 		"DBORD": ["N30d8.79", "W97d51.31"],
 		"DOBBY": ["N28d59.03", "W98d34.71"],
@@ -51,20 +53,26 @@
 		"FORSS": ["N31d10.33", "W98d4.66"],
 		"GARDS": ["N30°3.12", "W97d56.80"],
 		"GYTON": ["N28d12.20", "W99d2.86"],
-		"HFMAN": ["N27d55.63", "W99d13.14"],
+    "HFMAN": ["N27d55.63", "W99d13.14"],
+    "HOOKK": ["N30d21.60", "W97d12.18"],
 		"HOOLR": ["N28d55.82", "W98d18.10"],
 		"ILEXY": ["N30d21.16", "W97d4.76"],
 		"JAYJO": ["N30d20.23", "W96d48.91"],
 		"JCT"  : ["N30d35.88", "W99d49.05"],
 		"KLNGR": ["N31d13.41", "W98d2.33"],
 		"LIPSS": ["N30d7.77", "W97d49.69"],
-		"LLO"  : ["N30d47.78", "W98d47.24"],
+    "LLO"  : ["N30d47.78", "W98d47.24"],
+    "MUCKY": ["N30d25.12", "W98d51.91"],
+    "MUNCH": ["N30d34.59", "W97d17.68"],
 		"NAVYS": ["N31d23.29", "W96d18.81"],
 		"NILEE": ["N29d5.38", "W98d21.53"],
-		"ORINT": ["N29d56.24", "W98d13.61"],
+    "ORINT": ["N29d56.24", "W98d13.61"],
+    "PAYDA": ["N30d17.46", "W98d12.29"],
+    "PALMS": ["N29d12.81", "W97d24.81"],
 		"PLANX": ["N30d10.79", "W97d58.61"],
 		"PUDDY": ["N29d47.76", "W98d15.19"],
-		"SAT"  : ["N29d38.64", "W98d27.68"],
+    "SAT"  : ["N29d38.64", "W98d27.68"],
+    "SAYBR": ["N30d58.40", "W97d2.81"],
 		"SJT"  : ["N31d22.49", "W100d27.30"],
 		"SKEWT": ["N29d25.83", "W98d21.27"],
 		"SMILN": ["N30d12.33", "W98d4.29"],
@@ -76,7 +84,8 @@
 		"TNV"  : ["N30d17.31", "W96d3.49"],
 		"TRPPN": ["N30d9.43", "W97d46.12"],
 		"VIDAA": ["N29d34.38", "W98d21.17"],
-		"WLMRT": ["N30d44.45", "W97d51.56"]
+    "WLMRT": ["N30d44.45", "W97d51.56"],
+    "ZENZI": ["N30d17.31", "W96d3.50"]
 	},
 	"runways":[
 		{
@@ -186,32 +195,109 @@
 				["ILEXY", "CLL*"],
 				["CWK", "JAYJO*"],
 				["CWK", "TNV*"],
-				["CWK", "NAVYS"],
+				["CWK", "NAVYS*"],
 				["CWK", "ACT*"]
 			]
 		},
-		"ELOEL2": {
-			"icao": "ELOEL2",
-			"name": "Eloel Two",
-			"rwy": {
-				"KAUS17L": [["WLMRT", "A50+"]],
-				"KAUS17R": [["WLMRT", "A50+"]],
-				"KAUS35L": [["WLMRT", "A50+"]],
-				"KAUS35R": [["WLMRT", "A50+"]]
-			},
-			"body": ["ELOEL"],
-			"exitPoints": {
-				"ABI": [["FORSS", "A105+"], ["ABI", "A180+"]],
-				"FORSS": [["FORSS", "A105+"]],
-				"KLNGR": [["KLNGR", "A105+"]]
-			},
-			"draw": [
-				["WLMRT", "ELOEL"],
-				["ELOEL", "FORSS*"],
-				["FORSS", "ABI*"],
-				["ELOEL", "KLNGR*"]
-			]
-		}
+    "ELOEL2": {
+      "icao": "ELOEL2",
+      "name": "Eloel Two",
+      "rwy": {
+        "KAUS17L": [ [ "WLMRT", "A50+" ] ],
+        "KAUS17R": [ [ "WLMRT", "A50+" ] ],
+        "KAUS35L": [ [ "WLMRT", "A50+" ] ],
+        "KAUS35R": [ [ "WLMRT", "A50+" ] ]
+      },
+      "body": [ "ELOEL" ],
+      "exitPoints": {
+        "ABI": [
+          [ "FORSS", "A105+" ],
+          [ "ABI", "A180+" ]
+        ],
+        "FORSS": [ [ "FORSS", "A105+" ] ],
+        "KLNGR": [ [ "KLNGR", "A105+" ] ]
+      },
+      "draw": [
+        [ "WLMRT", "ELOEL" ],
+        [ "ELOEL", "FORSS*" ],
+        [ "FORSS", "ABI*" ],
+        [ "ELOEL", "KLNGR*" ]
+      ]
+    },
+    "ILEXY2": {
+      "icao": "ILEXY2",
+      "name": "Ilexy Two",
+      "rwy": {
+        "KAUS17L": [ [ "HOOKK", "A50+" ] ],
+        "KAUS17R": [ [ "HOOKK", "A50+" ] ],
+        "KAUS35L": [ [ "HOOKK", "A50+" ] ],
+        "KAUS35R": [ [ "HOOKK", "A50+" ] ]
+      },
+      "body": [ "ILEXY" ],
+      "exitPoints": {
+        "ILEXY": [ ],
+        "JAYJO": [ [ "JAYJO", "A89+" ] ],
+        "ZENZI": [
+          [ "JAYJO", "A89+" ],
+          [ "ASHRR", "A120+" ],
+          [ "ZENZI", "A180+" ]
+        ]
+      },
+      "draw": [
+        [ "HOOKK", "ILEXY*" ],
+        [ "ILEXY", "JAYJO*" ],
+        [ "JAYJO", "ASHRR", "ZENZI*" ]
+      ]
+    },
+    "MUCKY2": {
+      "icao": "MUCKY2",
+      "name": "Mucky Two",
+      "rwy": {
+        "KAUS17L": [ [ "PAYDA", "A50+" ] ],
+        "KAUS17R": [ [ "PAYDA", "A50+" ] ],
+        "KAUS35L": [ [ "PAYDA", "A50+" ] ],
+        "KAUS35R": [ [ "PAYDA", "A50+" ] ]
+      },
+      "exitPoints": {
+        "MUCKY": [ "MUCKY" ]
+      },
+      "draw": [
+        [ "PAYDA", "MUCKY*" ]
+      ]
+    },
+    "PALMS2": {
+      "icao": "PALMS2",
+      "name": "Palms Two",
+      "rwy": {
+        "KAUS17L": [ "CWK" ],
+        "KAUS17R": [ "CWK" ],
+        "KAUS35L": [ "CWK" ],
+        "KAUS35R": [ "CWK" ]
+      },
+      "body": [ [ "PALMS", "A50+" ] ],
+      "exitPoints": {
+        "CRP": [ "CRP" ]
+      },
+      "draw": [
+        [ "CWK", "PALMS", "CRP*" ]
+      ]
+    },
+    "SAYBR2": {
+      "icao": "SAYBR2",
+      "name": "Sabre Two",
+      "rwy": {
+        "KAUS17L": [ [ "MUNCH", "A50+" ] ],
+        "KAUS17R": [ [ "MUNCH", "A50+" ] ],
+        "KAUS35L": [ [ "MUNCH", "A50+" ] ],
+        "KAUS35R": [ [ "MUNCH", "A50+" ] ]
+      },
+      "endPoints": {
+        "SAYBR": [ "SAYBR" ]
+      },
+      "draw": [
+        [ "MUNCH", "SAYBR*" ]
+      ]
+    }
 	},
   "stars": {
     "DXEEE1": {
@@ -289,7 +375,7 @@
       "altitude": "",
       "speed": "",
       "method": "random",
-      "rate": 0.18,
+      "rate": 1.8,
       "airlines": [
         [ "swa", 10 ],
         [ "fdx", 1 ],
@@ -304,7 +390,7 @@
       "altitude": "",
       "speed": "",
       "method": "random",
-      "rate": 0.04,
+      "rate": 0.4,
       "airlines": [
         [ "baw/b789", 1 ]
       ]
@@ -317,7 +403,7 @@
       "altitude": [ 18000, 36000 ],
       "speed": 320,
       "method": "random",
-      "rate": 0.18,
+      "rate": 1.8,
       "airlines": [
         [ "amx/short", 1 ],
         [ "n/fastGA", 3 ]
@@ -331,7 +417,7 @@
       "altitude": [ 18000, 36000 ],
       "speed": 320,
       "method": "random",
-      "rate": 0.06,
+      "rate": 0.6,
       "airlines": [
         [ "swa", 5 ],
         [ "n/fastGA", 1 ]
