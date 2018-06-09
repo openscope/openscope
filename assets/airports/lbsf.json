@@ -1,0 +1,741 @@
+
+{
+    "radio": {
+        "twr": "Sofia Tower",
+        "app": "Sofia Approach",
+        "dep": "Sofia Control"
+    },
+    "icao": "LBSF",
+    "iata": "SOF",
+    "magnetic_north": 3,
+    "ctr_radius": 180,
+    "ctr_ceiling": 24500,
+    "initial_alt": 6000,
+    "position": ["N42d41m42.00", "E23d24m30.00", "1742ft"],
+    "rr_radius_nm": 5,
+    "rr_center": ["N42d41m42.00", "E23d24m30.00"],
+    "has_terrain": true,
+    "wind": {
+        "angle": 90,
+        "speed": 10
+    },
+    "arrivalRunway": "09",
+    "departureRunway": "09",
+    "airspace": [
+        {
+            "floor": 20,
+            "ceiling": 245,
+            "airspace_class": "C",
+            "poly": [
+                ["N42d53m00.00","E22d38m48.00"],
+                ["N42d58m30.00","E22d47m07.00"],
+                ["N42d58m39.00","E22d47m49.00"],
+                ["N43d01m41.00","E22d54m15.00"],
+                ["N43d04m48.00","E22d55m06.00"],
+                ["N43d08m14.00","E22d59m38.00"],
+                ["N43d12m07.00","E22d59m30.00"],
+                ["N43d14m06.00","E22d53m35.00"],
+                ["N43d19m42.00","E22d49m46.00"],
+                ["N43d28m19.00","E22d32m18.00"],
+                ["N43d33m30.00","E22d29m54.00"],
+                ["N43d34m00.00","E22d29m18.00"],
+                ["N43d28m43.00","E22d47m39.00"],
+                ["N43d23m32.00","E23d05m28.00"],
+                ["N43d19m42.00","E23d18m46.00"],
+                ["N43d09m04.00","E23d48m28.00"],
+                ["N43d05m43.00","E24d13m14.00"],
+                ["N42d42m18.00","E24d09m48.00"],
+                ["N42d39m37.00","E24d07m46.00"],
+                ["N42d31m40.00","E24d01m46.00"],
+                ["N42d22m33.00","E24d22m16.00"],
+                ["N42d14m03.00","E24d15m21.00"],
+                ["N42d18m49.00","E24d04m41.00"],
+                ["N42d18m33.00","E23d54m25.00"],
+                ["N42d16m12.00","E22d41m30.00"],
+                ["N42d52m56.00","E22d38m06.00"]
+            ]
+        }
+    ],
+
+    "restricted": [
+    ],
+    "fixes": {
+
+        "_RWY2709DME": ["N42d41m23.40", "E23d50m49.51"],
+        "_RWY0902DME": ["N42d41m55.21", "E23d18m32.57"],
+        "ADORU":       ["N41d52m18.00","E26d34m05.00"],
+        "ADVER":       ["N43d25m19.00","E22d59m12.00"],
+        "BAKLO":       ["N42d32m34.00","E26d29m31.00"],
+        "BAVGA":       ["N42d35m38.00","E22d39m53.00"],
+        "BENGO":       ["N42d43m20.00","E22d58m00.00"],
+        "BOBVO":       ["N43d23m31.00","E23d05m27.00"],
+
+        "DEDIN":       ["N42d35m39.00","E24d04m45.00"],
+        "DILVO":       ["N42d18m36.00","E23d56m12.00"],
+        "DINEN":       ["N42d29m58.00","E25d59m31.00"],
+        "DOLAP":       ["N43d22m27.00","E22d46m05.00"],
+        "DOTAM":       ["N42d21m24.00","E23d24m24.00"],
+        "EDIKA":       ["N42d16m36.00","E22d52m42.00"],
+        "ERDOM":       ["N43d31m02.00","E23d17m21.00"],
+        "ETIDA":       ["N43d41m08.00","E22d25m04.00"],
+        "EVIVI":       ["N41d24m10.00","E23d27m20.00"],
+        "GAPVO":       ["N42d40m54.00","E24d08m44.00"],
+        "GASRU":       ["N42d15m03.00","E26d05m57.00"],
+        "GINAM":       ["N43d18m30.00","E21d22m34.00"],
+        "GODEK":       ["N43d07m36.00","E22d59m21.00"],
+        "INBOL":       ["N43d28m14.00","E23d48m14.00"],
+        "LARAT": ["N42d30m06.00","E23d52m15.00"],
+        "LEMDO": ["N42d48m02.00","E23d03m56.00"],
+        "LETNI": ["N42d05m48.00","E22d36m20.00"],
+        "LEVTA": ["N44d35m21.00","E26d24m34.00"],
+        "LOMOS": ["N43d49m59.00","E23d15m00.00"],
+        "LUKOV": ["N43d17m04.00","E23d48m21.00"],
+        "LUXUV": ["N42d43m03.00","E23d03m24.00"],
+        "MAGUP": ["N42d42m25.00","E23d14m05.00"],
+        "MOREK": ["N42d17m30.00","E23d19m09.00"],
+        "NAPET": ["N42d17m17.00","E23d00m20.00"],
+        "NIKTI": ["N41d32m47.00","E24d07m18.00"],
+        "NISVA": ["N42d58m22.00","E22d47m50.00"],
+        "OGOTA": ["N43d12m51.00","E23d19m36.00"],
+        "OKANA": ["N42d50m47.00","E22d29m35.00"],
+        "OKLOP": ["N44d10m59.00","E21d19m53.00"],
+        "OMENO": ["N42d17m48.00","E23d28m53.00"],
+        "OSTOV": ["N43d46m59.00","E23d48m00.00"],
+        "OTKOK": ["N41d59m57.00","E24d00m44.00"],
+        "PENEV": ["N43d01m54.00","E23d48m33.00"],
+        "PIDOR": ["N42d35m38.00","E23d39m21.00"],
+        "RAMAP": ["N43d25m06.00","E20d53m27.00"],
+        "RESLA": ["N43d19m41.00","E23d18m46.00"],
+        "RILEX": ["N41d58m15.00","E26d45m59.00"],
+        "RODIP": ["N41d25m14.00","E24d42m03.00"],
+        "ROVAM": ["N43d09m03.00","E23d48m28.00"],
+        "ROVDO": ["N41d59m44.00","E25d26m24.00"],
+        "RUMEN": ["N42d18m17.00","E24d18m47.00"],
+        "SF403": ["N42d43m39.00","E22d52m36.00"],
+        "SF404": ["N42d43m57.00","E22d47m11.00"],
+        "SF405": ["N42d48m56.00","E22d47m41.00"],
+        "SF406": ["N42d48m38.00","E22d53m06.00"],
+        "SF407": ["N42d48m20.00","E22d58m31.00"],
+        "SF409": ["N42d47m28.00","E23d13m49.00"],
+        "SF410": ["N42d52m27.00","E23d14m22.00"],
+        "SF411": ["N42d52m49.00","E23d07m51.00"],
+        "SF412": ["N42d53m21.00","E22d58m42.00"],
+        "SF416": ["N42d46m49.00","E23d24m39.00"],
+        "SF417": ["N42d46m24.00","E23d31m29.00"],
+        "SF420": ["N42d38m57.00","E22d46m41.00"],
+        "SF421": ["N42d38m40.00","E22d52m05.00"],
+        "SF423": ["N42d37m59.00","E23d04m15.00"],
+        "SF424": ["N42d34m46.00","E23d07m29.00"],
+        "SF425": ["N42d31m34.00","E23d10m43.00"],
+        "SF429": ["N42d37m35.00","E23d11m00.00"],
+        "SF430": ["N42d36m51.00","E23d23m33.00"],
+        "SF434": ["N42d35m02.00","E23d52m50.00"],
+        "SF450": ["N42d41m13.00","E23d34m10.00"],
+        "SF502": ["N42d51m26.00","E23d31m25.00"],
+        "SF503": ["N42d48m52.00","E23d51m11.00"],
+        "SF504": ["N42d57m22.00","E24d06m56.00"],
+        "SF505": ["N42d40m04.00","E23d52m35.00"],
+        "SF506": ["N42d30m16.00","E23d48m53.00"],
+        "SF507": ["N42d31m20.00","E23d31m55.00"],
+        "SF603": ["N42d40m03.00","E23d52m59.00"],
+        "SF604": ["N42d39m42.00","E23d58m23.00"],
+        "SF605": ["N42d34m43.00","E23d57m47.00"],
+        "SF606": ["N42d35m04.00","E23d52m24.00"],
+        "SF607": ["N42d35m29.00","E23d45m39.00"],
+        "SF609": ["N42d36m20.00","E23d32m10.00"],
+        "SF610": ["N42d36m34.00","E23d28m07.00"],
+        "SF611": ["N42d36m58.00","E23d21m42.00"],
+        "SF612": ["N42d43m03.00","E23d12m08.00"],
+        "SF622": ["N42d45m27.00","E23d46m49.00"],
+        "SF623": ["N42d50m26.00","E23d47m24.00"],
+        "SF630": ["N42d30m56.00","E23d38m21.00"],
+        "SF631": ["N42d29m34.00","E23d59m42.00"],
+        "SF640": ["N42d27m00.00","E23d28m23.00"],
+        "SF701": ["N42d50m50.00","E23d19m49.00"],
+        "SF702": ["N42d46m53.00","E23d36m47.00"],
+        "SF704": ["N42d44m04.00","E23d31m47.00"],
+        "SF705": ["N42d30m50.00","E23d39m41.00"],
+        "SF706": ["N42d46m00.00","E23d16m04.00"],
+        "SF707": ["N42d46m09.00","E23d05m42.00"],
+        "SOSEK": ["N43d46m49.00","E20d57m19.00"],
+        "TIMUR": ["N43d41m20.00","E24d14m21.00"],
+        "TODRO": ["N42d55m13.00","E23d21m45.00"],
+        "UMPIT": ["N42d46m46.00","E24d10m27.00"],
+        "USALI": ["N42d18m06.00","E23d38m44.00"],
+        "UTEKA": ["N43d54m43.00","E22d23m31.00"],
+        "VANET": ["N42d17m40.00","E23d24m37.00"],
+        "VELBA": ["N41d58m00.00","E22d52m59.00"],
+        "XANEX": ["N43d07m37.00","E24d58m49.00"]
+    },
+    "airways": {
+
+    },
+    "runways": [
+        {
+            "name": ["09", "27"],
+            "end": [
+                ["N42d41m51.00","E23d23m58.00", "1739ft"],
+                ["N42d41m42.00","E23d26m22.00", "1745ft"]
+            ],
+            "ils": [true, true],
+            "ils_distance": [30, 30],
+            "loc_maxDist": [28, 28],
+            "glideslope": [3.00, 3.00]
+        }
+    ],
+    "sids": {
+        "DEDIN1T": {
+            "icao": "DEDIN1T",
+            "name": "DEDIN ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF702", "A100+"], "BLO", "DEDIN"],
+            "exitPoints": {
+                "DEDIN": ["DEDIN"]
+            },
+            "draw": [
+                ["SF701", "SF702", "BLO", "DEDIN"]
+            ]
+        },
+        "DEDIN1S": {
+            "icao": "DEDIN1S",
+            "name": "DEDIN ONE SIERRA",
+            "rwy": {
+                "LBSF09": ["SF505"]
+            },
+            "body": [],
+            "exitPoints": {
+                "DEDIN": ["DEDIN"]
+            },
+            "draw": [
+                ["SF502", "DEDIN"]
+            ]
+        },
+        "DILVO1T": {
+            "icao": "DILVO1T",
+            "name": "DILVO ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF504", "A100-"], "SF705"],
+            "exitPoints": {
+                "DILVO": ["DILVO"]
+            },
+            "draw": [
+                ["SF701", "SF504", "SF705", "DILVO"]
+            ]
+        },
+        "DILVO1S": {
+            "icao": "DILVO1S",
+            "name": "DILVO ONE SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF506", "A100-"]],
+            "exitPoints": {
+                "DILVO": ["DILVO"]
+            },
+            "draw": [
+                ["SF502", "DILVO"]
+            ]
+        },
+        "GAPVO1T": {
+            "icao": "GAPVO1T",
+            "name": "GAPVO ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF702", "A100+"], "BLO"],
+            "exitPoints": {
+                "GAPVO": ["GAPVO"]
+            },
+            "draw": [
+                ["SF701", "SF702",  "BLO", "GAPVO"]
+            ]
+        },
+        "GODEK2S": {
+            "icao": "GODEK2S",
+            "name": "GODEK TWO SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF502", "A100-"]],
+            "exitPoints": {
+                "GODEK": ["GODEK"]
+            },
+            "draw": [
+                ["SF502", "GODEK"]
+            ]
+        },
+        "GODEK1T": {
+            "icao": "GODEK2S",
+            "name": "GODEK ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701"],
+            "exitPoints": {
+                "GODEK": ["GODEK"]
+            },
+            "draw": [
+                ["SF502", "GODEK"]
+            ]
+        },
+        "GOL1T": {
+            "icao": "GOL1T",
+            "name": "GOLYAMA ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701"],
+            "exitPoints": {
+                "GOL": ["GOL"]
+            },
+            "draw": [
+                ["SF701", "GOL"]
+            ]
+        },
+        "GOL2S": {
+            "icao": "GOL2S",
+            "name": "GOLYAMA TWO SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF503", "A100-"]],
+            "exitPoints": {
+                "GOL": ["GOL"]
+            },
+            "draw": [
+                ["SF503", "GOL"]
+            ]
+        },
+        "NAPET1T": {
+            "icao": "NAPET1T",
+            "name": "NAPET ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF706", ["SF507", "A70-"]],
+            "exitPoints": {
+                "NAPET": ["NAPET"]
+            },
+            "draw": [
+                ["SF706", "SF507", "NAPET"]
+            ]
+        },
+        "NAPET1S": {
+            "icao": "NAPET1S",
+            "name": "NAPET ONE SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF507", "A100-"]],
+            "exitPoints": {
+                "NAPET": ["NAPET"]
+            },
+            "draw": [
+                ["SF507", "NAPET"]
+            ]
+        },
+        "OGOTA1T": {
+            "icao": "OGOTA1T",
+            "name": "OGOTA ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF501"],
+            "exitPoints": {
+                "OGOTA": ["OGOTA"]
+            },
+            "draw": [
+                ["SF501", "OGOTA"]
+            ]
+        },
+        "OGOTA2S": {
+            "icao": "OGOTA2S",
+            "name": "OGOTA TWO SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF502", "A100-"]],
+            "exitPoints": {
+                "OGOTA": ["OGOTA"]
+            },
+            "draw": [
+                ["SF502", "OGOTA"]
+            ]
+        },
+        "OMENO1T": {
+            "icao": "OMENO1T",
+            "name": "OMENO ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF704", "A100+"], "SF705"],
+            "exitPoints": {
+                "OMENO": ["OMENO"]
+            },
+            "draw": [
+                ["SF701", "SF704", "SF705", "OMENO"]
+            ]
+        },
+        "OMENO1S": {
+            "icao": "OMENO1S",
+            "name": "OMENO ONE SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF507", "A100-"]],
+            "exitPoints": {
+                "OMENO": ["OMENO"]
+            },
+            "draw": [
+                ["SF507", "OMENO"]
+            ]
+        },
+        "RUMEN1T": {
+            "icao": "RUMEN1T",
+            "name": "RUMEN ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF704", "A100+"], "SF705"],
+            "exitPoints": {
+                "RUMEN": ["RUMEN"]
+            },
+            "draw": [
+                ["SF701", "SF704", "SF705", "RUMEN"]
+            ]
+        },
+        "RUMEN1S": {
+            "icao": "RUMEN1S",
+            "name": "RUMEN ONE SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF506", "A100-"]],
+            "exitPoints": {
+                "RUMEN": ["RUMEN"]
+            },
+            "draw": [
+                ["SF506", "RUMEN"]
+            ]
+        },
+        "UMPIT1T": {
+            "icao": "UMPIT1T",
+            "name": "UMPIT ONE TANGO",
+            "rwy": {
+                "LBSF27": [["_RWY0902DME", "A23+|S205-"]]
+            },
+            "body": ["SF701", ["SF702", "A100+"], "BLO"],
+            "exitPoints": {
+                "UMPIT": ["UMPIT"]
+            },
+            "draw": [
+                ["SF701", "SF702", "BLO", "UMPIT"]
+            ]
+        },
+        "UMPIT2S": {
+            "icao": "UMPIT2S",
+            "name": "UMPIT TWO SIERRA",
+            "rwy": {
+                "LBSF09": [["_RWY2709DME", "A45+|S230-"]]
+            },
+            "body": [["SF503", "A100-"]],
+            "exitPoints": {
+                "UMPIT": ["UMPIT"]
+            },
+            "draw": [
+                ["SF503", "UMPIT"]
+            ]
+        }
+    },
+    "stars": {
+        "DEDIN2D" : {
+            "icao": "DEDIN2D",
+            "name": "DEDIN TWO DELTA",
+            "entryPoints": {
+                "DEDIN": ["DEDIN"]
+            },
+            "body": ["SF434", ["SF430", "A120+"], ["SF429", "A96+"], ["SF423", "A80+"], ["XIMRI", "S210-"], "SF421", "SF420", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["DEDIN", "SF434", "SF430", "SF429", "SF423", "XIMRI", "SF421", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "DEDIN2H" : {
+            "icao": "DEDIN2H",
+            "name": "DEDIN TWO HOTEL",
+            "entryPoints": {
+                "DEDIN": ["DEDIN"]
+            },
+            "body": ["SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["DEDIN", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "GAPVO2D" : {
+            "icao": "GAPVO2D",
+            "name": "GAPVO TWO DELTA",
+            "entryPoints": {
+                "GAPVO": ["GAPVO"]
+            },
+            "body": ["LANGI", "SF417", ["SF416", "A120+"], "SF409", ["LEMDO", "S210-"], "SF407", "SF406", "SF405", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["GAPVO", "LANGI", "SF417", "SF416", "SF409", "LEMDO", "SF407", "SF406", "SF405", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "GAPVO2H" : {
+            "icao": "GAPVO2H",
+            "name": "GAPVO TWO HOTEL",
+            "entryPoints": {
+                "GAPVO": ["GAPVO"]
+            },
+            "body": [["SF604", "A82+"], ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["GAPVO", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "GOL2D" : {
+            "icao": "GOL2D",
+            "name": "GOL TWO DELTA",
+            "entryPoints": {
+                "GOL": ["GOL"]
+            },
+            "body": ["SF417", ["SF416", "A120+"], "SF409", ["LEMDO", "S210-"], "SF407", "SF406", "SF405", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["GOL", "SF417", "SF416", "SF409", "LEMDO", "SF407", "SF406", "SF405", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "GOL2H" : {
+            "icao": "GOL2H",
+            "name": "GOL TWO HOTEL",
+            "entryPoints": {
+                "GOL": ["GOL"]
+            },
+            "body": ["SF623", ["SF622", "S210-"], "ETRIL", "LANGI", "SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["GOL", "SF623", "SF622", "ETRIL", "LANGI", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "MOREK2D" : {
+            "icao": "MOREK2D",
+            "name": "MOREK TWO DELTA",
+            "entryPoints": {
+                "MOREK": ["MOREK"]
+            },
+            "body": [["SF425", "A120+"], ["SF424", "A96+"], ["SF423", "A80+"], ["XIMRI", "S210-"], "SF421", "SF420", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["MOREK", "SF425", "SF424", "SF423", "XIMRI", "SF421", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "MOREK2H" : {
+            "icao": "MOREK2H",
+            "name": "MOREK TWO HOTEL",
+            "entryPoints": {
+                "MOREK": ["MOREK"]
+            },
+            "body": ["SF640", "SF609", ["ARKIR", "S210-"], "SF607", "SF606", "SF605", "SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["MOREK", "SF640", "SF609", "ARKIR", "SF607", "SF606", "SF605", "SF604", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "NISVA1K" : {
+            "icao": "NISVA1K",
+            "name": "NISVA ONE KILO",
+            "entryPoints": {
+                "NISVA": ["NISVA"]
+            },
+            "body": ["SF612", ["SF611","A96+"], ["SF610", "A80+"], ["SF609", "A70+"], ["ARKIR", "S210-|A60+"]],
+            "rwy": {
+                "LBSF27": [["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["NISVA", "SF612", "SF611", "SF610", "SF609", "ARKIR", "BAGIP", "TUTPO"]
+            ]
+        },
+        "NISVA2D" : {
+            "icao": "NISVA2D",
+            "name": "NISVA TWO DELTA",
+            "entryPoints": {
+                "NISVA": ["NISVA"]
+            },
+            "body": ["SF412", "SF411", ["SF410","S210-"], "SF409", ["LEMDO", "S210-"], "SF407", "SF406", "SF405", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["NISVA", "SF412", "SF411", "SF410", "SF409", "LEMDO", "SF407", "SF406", "SF405", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "NISVA2H" : {
+            "icao": "NISVA2H",
+            "name": "NISVA TWO HOTEL",
+            "entryPoints": {
+                "NISVA": ["NISVA"]
+            },
+            "body": ["SF612", ["SF611","A96+"], "SF610", "SF609", ["ARKIR", "S210-"], "SF607", "SF606", "SF605", "SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["NISVA", "SF612", "SF611", "SF610", "SF609", "ARKIR", "SF607", "SF606", "SF605", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "RUMEN2D" : {
+            "icao": "RUMEN2D",
+            "name": "RUMEN TWO DELTA",
+            "entryPoints": {
+                "RUMEN": ["RUMEN"]
+            },
+            "body": ["SF434", ["SF430", "A120+"], ["SF429", "A96+"], ["SF423", "A80+"], ["XIMRI", "S210-"], "SF421", "SF420", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["RUMEN", "SF434", "SF430", "SF429", "SF423", "XIMRI", "SF421", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "RUMEN2H" : {
+            "icao": "RUMEN2H",
+            "name": "RUMEN TWO HOTEL",
+            "entryPoints": {
+                "RUMEN": ["RUMEN"]
+            },
+            "body": [["SF631", "S250-"], ["SF630", "S210-"], ["ARKIR", "S210-"], "SF607", "SF606", "SF605", "SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["RUMEN", "SF631", "SF630", "ARKIR", "SF607", "SF606", "SF605", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "UMPIT2D" : {
+            "icao": "UMPIT2D",
+            "name": "UMPIT TWO DELTA",
+            "entryPoints": {
+                "UMPIT": ["UMPIT"]
+            },
+            "body": ["LANGI", "SF417", ["SF416", "A120+"], "SF409", ["LEMDO", "S210-"], "SF407", "SF406", "SF405", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["UMPIT", "LANGI", "SF417", "SF416", "SF409", "LEMDO", "SF407", "SF406", "SF405", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "UMPIT2H" : {
+            "icao": "UMPIT2H",
+            "name": "UMPIT TWO HOTEL",
+            "entryPoints": {
+                "UMPIT": ["UMPIT"]
+            },
+            "body": [["SF604", "A82+"], ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["UMPIT", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        },
+        "VANET2D" : {
+            "icao": "VANET2D",
+            "name": "VANET TWO DELTA",
+            "entryPoints": {
+                "VANET": ["VANET"]
+            },
+            "body": [["SF425", "A120+"], ["SF424", "A96+"], ["SF423", "A80+"], ["XIMRI", "S210-"], "SF421", "SF420", ["SF404", "A70+"], "SF403"],
+            "rwy": {
+                "LBSF09": ["BENGO", ["LUXUV","A60+"], ["MAGUP", "A41"]]
+            },
+            "draw": [
+                ["VANET", "SF425", "SF424", "SF423", "XIMRI", "SF421", "SF404", "SF403", "BENGO", "LUXUV", "MAGUP"]
+            ]
+        },
+        "VANET2H" : {
+            "icao": "VANET2H",
+            "name": "VANET TWO HOTEL",
+            "entryPoints": {
+                "VANET": ["VANET"]
+            },
+            "body": ["SF640", "SF609", ["ARKIR", "S210-"], "SF607", "SF606", "SF605", "SF604", ["SF603", "A80+"]],
+            "rwy": {
+                "LBSF27": [["RUBIV", "A60+"], ["BAGIP","A41+"], ["TUTPO", "A36"]]
+            },
+            "draw": [
+                ["VANET", "SF640", "SF609", "ARKIR", "SF607", "SF606", "SF605", "SF604", "SF603", "RUBIV", "BAGIP", "TUTPO"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "LBSF",
+            "destination": "",
+            "category": "departure",
+            "route": "LBSF09.OGOTA2S.OGOTA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+               ["rot", 5],
+               ["ryr", 4],
+               ["baw", 1],
+               ["afr", 1],
+               ["klm", 1],
+               ["dlh", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LBSF",
+            "category": "arrival",
+            "route": "NISVA.NISVA2D.LBSF09",
+            "altitude": [20000, 30000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 60,
+            "airlines": [
+                ["rot", 5],
+                ["ryr", 4],
+                ["dlh", 3],
+                ["klm", 2],
+                ["asl", 1],
+                ["afr", 2],
+                ["baw", 1],
+                ["ewg", 1],
+                ["lot", 1],
+                ["swr", 1]
+            ]
+        }
+    ],
+    "maps": {
+        "base": [
+
+        ]
+    }
+}

@@ -400,6 +400,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+        {
+            icao: 'lbsf',
+            level: 'medium',
+            name: 'Sofia Airport',
+            premium: false,
+            wip: true
+        },
         // {
         //     icao: 'ktpa',
         //     level: 'easy',
