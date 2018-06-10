@@ -294,7 +294,7 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(routeString, airportIcao) {
-        const [successful, response] = this._fms.replaceDepartueProcedure(routeString);
+        const [successful, response] = this._fms.replaceDepartureProcedure(routeString);
 
         if (!successful) {
             return [false, response];
