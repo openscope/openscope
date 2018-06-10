@@ -373,7 +373,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runSID(aircraft, data) {
-        const routeString = data[0];
+        const routeString = data[0].toUpperCase();
         const airportModel = AirportController.airport_get();
 
         return aircraft.pilot.applyDepartureProcedure(routeString, airportModel.icao);
@@ -386,7 +386,7 @@ export default class AircraftCommander {
      * @return {array}   [success of operation, readback]
      */
     runSTAR(aircraft, data) {
-        const routeString = data[0];
+        const routeString = data[0].toUpperCase();
         const airportModel = AirportController.airport_get();
 
         return aircraft.pilot.applyArrivalProcedure(routeString, airportModel.name);
