@@ -293,37 +293,17 @@ export default class Pilot {
      * @param airportIcao {string}          airport icao identifier
      * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, airportIcao) {
-        const procedureModel = NavigationLibrary.getProcedure(procedureId);
+    applyDepartureProcedure(routeString, airportIcao) {
+        const [successful, response] = this._fms.replaceDepartueProcedure(routeString);
 
-        if (_isNil(procedureModel)) {
-            return [false, 'SID name not understood'];
+        if (!successful) {
+            return [false, response];
         }
 
-        if (!runwayModel) {
-            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-        }
-
-        const exitName = procedureModel.getRandomExitPoint();
-        const routeString = `${runwayModel.name}.${procedureId}.${exitName}`;
-
-        if (!procedureModel.hasEntry(runwayModel.name)) {
-            return [
-                false,
-                `unable, the ${procedureModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${runwayModel.name.toUpperCase()}`
-            ];
-        }
-
-        this.hasDepartureClearance = true;
-
-        this._mcp.setAltitudeVnav();
-        this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeString);
-
+        // Build readback
         const readback = {};
-        readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
-        readback.say = `cleared to destination via the ${procedureModel.name} departure, then as filed`;
+        readback.log = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
+        readback.say = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
 
         return [true, readback];
     }
