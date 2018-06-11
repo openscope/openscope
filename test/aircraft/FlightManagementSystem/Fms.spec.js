@@ -624,11 +624,11 @@ ava('.replaceDepartureProcedure() returns early when passed a wrong-length route
     // const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
     const expectedResponse = [false, 'departure procedure format not understood'];
     const responseForSingleElement = fms.replaceDepartureProcedure('BOACH6');
-    const responseForDoubleElement = fms.replaceDepartureProcedure('KLAS07R.BOACH6');
+    //const responseForDoubleElement = fms.replaceDepartureProcedure('KLAS07R.BOACH6');
 
     // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
-    t.deepEqual(responseForDoubleElement, expectedResponse);
+    //t.deepEqual(responseForDoubleElement, expectedResponse);
 });
 
 ava('.replaceDepartureProcedure() returns early when the specified procedure does not exist', (t) => {
@@ -654,14 +654,16 @@ ava('.replaceDepartureProcedure() does not call ._updateDepartureRunwayFromRoute
     t.deepEqual(responseForInvalidProcedure, expectedResponse);
 });
 
-ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() when the departure procedure is applied successfully', (t) => {
+ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() and updates route when the departure procedure is applied successfully', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const expectedResponse = [true, ''];
-    const response = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
+    const proposedRoute = 'KLAS07R.BOACH6.TNP'
+    const response = fms.replaceDepartureProcedure(proposedRoute);
 
     t.true(updateDepartureRunwayFromRouteSpy.calledWithExactly());
     t.deepEqual(response, expectedResponse);
+    t.true(proposedRoute + fullRouteStringMock.substring(18) === fms.getRouteString())
 });
 
 ava('.replaceFlightPlanWithNewRoute() returns failure response and does not modify route when proposed route is not valid', (t) => {
