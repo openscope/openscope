@@ -1,5 +1,6 @@
 # 6.3.0 (July 1, 2018)
 ### New Features
+- [#272](https://github.com/openscope/openscope/issues/272) - Add Cincinnati/Northern Kentucky International Airport (KCVG)
 
 
 
