@@ -1,8 +1,8 @@
 {
     "icao": "klm",
-    "name": "KLM Royal Dutch Airlines",
+    "name": "Koninklijke Luchtvaart Maatschappij",
     "callsign": {
-        "name": "Koninklijke Luchtvaart Maatschappij",
+        "name": "KLM",
         "callsignFormats": [
             "####",
             "###",
