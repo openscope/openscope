@@ -391,12 +391,12 @@
             "rwy": {
                 "EGKK26L": []
             },
-            "body": [["^_RWY26LIWW02.3DME", "A15+|A40-|S220-"], "_DET259033", ["_DET259031", "A32+|A40-|S220-"], ["_DET259029", "A40-|S220-"], ["NEXOX", "A50"], ["^_DET277033", "A60"], ["DET", "A50"], ["_DET014005", "A60"], "DAGGA", ["CLN", "A60"]],
+            "body": [["^_RWY26LIWW02.3DME", "A15+|A40-|S220-"], "_DET259033", ["_DET259031", "A32+|A40-|S220-"], ["_DET259029", "A40-|S220-"], ["NEXOX", "A50"], ["^_DVR277033", "A60"], ["DET", "A50"], ["_DET014005", "A60"], "DAGGA", ["CLN", "A60"]],
             "exitPoints": {
                 "CLN": []
             },
             "draw": [
-                ["_RWY26LIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_DET277033", "DET", "_DET014005", "DAGGA", "CLN"]
+                ["_RWY26LIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_DVR277033", "DET", "_DET014005", "DAGGA", "CLN"]
             ]
         },
         "DAGGA1X": {
