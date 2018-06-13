@@ -68,6 +68,7 @@
         "CEBET": ["N36d58.84", "W76d55.91"],
         "CHS"  : ["N32d53.66", "W80d02.27"],
         "CLB"  : ["N34d06.38", "W77d57.68"],
+        "COUPN": ["N36d42.85", "W77d00.73"],
         "CRE"  : ["N33d48.83", "W78d43.47"],
         "DAN"  : ["N36d34.13", "W79d20.20"],
         "DEMVE": ["N36d31.52", "W77d42.06"],
@@ -272,16 +273,16 @@
         }
     ],
     "sids": {
-        "BEXGO2": {
-            "icao": "BEXGO2",
-            "name": "Bexgo Two",
+        "BEXGO3": {
+            "icao": "BEXGO3",
+            "name": "Bexgo Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["AIMHI", "BEXGO"],
             "exitPoints": {
@@ -291,16 +292,16 @@
                 ["AIMHI", "BEXGO", "LVL*"]
             ]
         },
-        "BLUUE4": {
-            "icao": "BLUUE4",
-            "name": "Blue Devil Four",
+        "BLUUE5": {
+            "icao": "BLUUE5",
+            "name": "Blue Devil Five",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["RDU", "JAYRR"],
             "exitPoints": {
@@ -312,16 +313,16 @@
                 ["JAYRR", "GSO*"]
             ]
         },
-        "FAY3": {
-            "icao": "FAY3",
-            "name": "Fayetteville Three",
+        "FAY4": {
+            "icao": "FAY4",
+            "name": "Fayetteville Four",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["RDU", "EVIGY", "FAY"],
             "exitPoints": {
@@ -336,16 +337,16 @@
                 ["FLO*"]
             ]
         },
-        "HOOKZ2": {
-            "icao": "HOOKZ2",
-            "name": "Hooks Two",
+        "HOOKZ3": {
+            "icao": "HOOKZ3",
+            "name": "Hooks Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["FITON", "HOOKZ"],
             "exitPoints": {
@@ -355,16 +356,16 @@
                 ["FITON", "HOOKZ", "FAY*"]
             ]
         },
-        "HURIC2": {
-            "icao": "HURIC2",
-            "name": "Huric Two",
+        "HURIC3": {
+            "icao": "HURIC3",
+            "name": "Huric Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["STRMY", "HURIC"],
             "exitPoints": {
@@ -393,16 +394,16 @@
                 ["LWOOD", "OPUSS", "PSK*"]
             ]
         },
-        "OXFRD2": {
-            "icao": "OXFRD2",
-            "name": "Oxford Two",
+        "OXFRD3": {
+            "icao": "OXFRD3",
+            "name": "Oxford Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["PEAVY", "OXFRD", "HARVY", "CARML"],
             "exitPoints": {
@@ -412,14 +413,14 @@
                 ["PEAVY", "OXFRD", "HARVY", "CARML", "FAK*"]
             ]
         },
-        "PACK7": {
-            "icao": "PACK7",
-            "name": "Pack Seven",
+        "PACK8": {
+            "icao": "PACK8",
+            "name": "Pack Eight",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"]
             },
             "body": ["RDU", "LIB"],
             "exitPoints": {
@@ -431,9 +432,9 @@
                 ["LIB", "SHPRD*"]
             ]
         },
-        "RDU8": {
-            "icao": "RDU8",
-            "name": "Raleigh Eight",
+        "RDU9": {
+            "icao": "RDU9",
+            "name": "Raleigh Nine",
             "rwy": {
                 "KRDU5L": ["#054"],
                 "KRDU5R": ["#054"],
@@ -468,16 +469,16 @@
                 ["TYI*"]
             ]
         },
-        "ROZBO2": {
-            "icao": "ROZBO2",
-            "name": "Rozbo Two",
+        "ROZBO3": {
+            "icao": "ROZBO3",
+            "name": "Rozbo Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["EAGER", "ROZBO"],
             "exitPoints": {
@@ -491,14 +492,14 @@
                 ["ROZBO", "ILM*"]
             ]
         },
-        "SHPRD2": {
-            "icao": "SHPRD2",
-            "name": "Shepherd Two",
+        "SHPRD3": {
+            "icao": "SHPRD3",
+            "name": "Shepherd Three",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"]
             },
             "body": ["CATAR", "WLFFF"],
             "exitPoints": {
@@ -508,16 +509,16 @@
                 ["CATAR", "WLFFF", "SHPRD*"]
             ]
         },
-        "TARL9": {
-            "icao": "TARL9",
-            "name": "Tar Heel Nine",
+        "TARL1": {
+            "icao": "TARL1",
+            "name": "Tar Heel One",
             "rwy": {
-                "KRDU5L": ["#052"],
-                "KRDU5R": ["#052"],
-                "KRDU14": ["#142"],
-                "KRDU23L": ["#232"],
-                "KRDU23R": ["#232"],
-                "KRDU32": ["#322"]
+                "KRDU5L": ["#054"],
+                "KRDU5R": ["#054"],
+                "KRDU14": ["#144"],
+                "KRDU23L": ["#234"],
+                "KRDU23R": ["#234"],
+                "KRDU32": ["#324"]
             },
             "body": ["RDU", "ROZBO"],
             "exitPoints": {
@@ -531,9 +532,9 @@
         }
     },
     "stars": {
-        "ALDAN1": {
-            "icao": "ALDAN1",
-            "name": "Aldan One",
+        "ALDAN2": {
+            "icao": "ALDAN2",
+            "name": "Aldan Two",
             "entryPoints": {
                 "HAFNR": ["HAFNR", "MELTN"],
                 "KPASS": ["KPASS", "ROBLS", "TABER"],
@@ -541,10 +542,10 @@
             },
             "body": [["SBV", "A170-|S280"], "FRAZI", ["FAVKO", "A100+|A120-"], ["ALDAN", "A100+|A120-"]],
             "rwy": {
-                "KRDU5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
-                "KRDU5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "JEMMY", "#232"],
-                "KRDU23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"], "#151"],
-                "KRDU23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["BUTTS", "A60"]]
+                "KRDU5L": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "^JEMMY", "#234"],
+                "KRDU5R": ["FOBAT", "BILLA", ["BLNKR", "A80|S210"], "GABLR", "HEAVE", "^JEMMY", "#234"],
+                "KRDU23L": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["^BUTTS", "A60"], "#153"],
+                "KRDU23R": [["GAZER", "A80+|A90-"], ["HARSH", "A80|S210"], ["^BUTTS", "A60"]]
             },
             "draw": [
                 ["KPASS*", "ROBLS", "TABER", "SBV", "FRAZI", "FAVKO", "ALDAN", "GAZER", "HARSH", "BUTTS"],
@@ -553,9 +554,9 @@
                 ["ROA*", "TIVAE", "SBV"]
             ]
         },
-        "ARGAL5": {
-            "icao": "ARGAL5",
-            "name": "Argal Five",
+        "ARGAL6": {
+            "icao": "ARGAL6",
+            "name": "Argal Six",
             "entryPoints": {
                 "FKN": ["FKN"],
                 "HPW": ["HPW"],
@@ -578,9 +579,9 @@
                 ["SWL*", "CCV"]
             ]
         },
-        "BLOGS1": {
-            "icao": "BLOGS1",
-            "name": "Blogs One",
+        "BLOGS2": {
+            "icao": "BLOGS2",
+            "name": "Blogs Two",
             "entryPoints": {
                 "ILM": ["ILM", "TILTZ"],
                 "ISO": ["ISO", "TILTZ"],
@@ -588,10 +589,10 @@
             },
             "body": [["BLOGS", "A110+|A120-|S250"], ["CABED", "A80+|A90-"]],
             "rwy": {
-                "KRDU5L": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
-                "KRDU5R": [["ORLAC", "A80|S210"], "TIIME", "STINT", "TOYER", "#232"],
-                "KRDU23L": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"],
-                "KRDU23R": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "UNCUT", "#052"]
+                "KRDU5L": [["ORLAC", "A80|S210"], "TIIME", "STINT", "^TOYER", "#234"],
+                "KRDU5R": [["ORLAC", "A80|S210"], "TIIME", "STINT", "^TOYER", "#234"],
+                "KRDU23L": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "^UNCUT", "#054"],
+                "KRDU23R": [["AGOLE", "A80+"], "SULIE", ["TIBIA", "A60|S210"], "^UNCUT", "#054"]
             },
             "draw": [
                 ["ISO*", "TILTZ", "BLOGS", "CABED", "AGOLE", "SULIE", "TIBIA", "UNCUT"],
@@ -600,9 +601,9 @@
                 ["ILM*", "TILTZ"]
             ]
         },
-        "BRADE5": {
-            "icao": "BRADE5",
-            "name": "Brady Five",
+        "BRADE6": {
+            "icao": "BRADE6",
+            "name": "Brady Six",
             "entryPoints": {
                 "ILM": ["ILM", "TILTZ"],
                 "ISO": ["ISO", "TILTZ"],
@@ -623,9 +624,9 @@
                 ["TYI*", "BRADE"]
             ]
         },
-        "BUZZY6": {
-            "icao": "BUZZY6",
-            "name": "Buzzy Six",
+        "BUZZY7": {
+            "icao": "BUZZY7",
+            "name": "Buzzy Seven",
             "entryPoints": {
                 "CAE": []
             },
@@ -642,27 +643,27 @@
                 ["CAE*", "TENNI", "SDZ", "BUZZY", "RDU"]
             ]
         },
-        "KAROO1": {
-            "icao": "KAROO1",
-            "name": "Karoo One",
+        "KAROO2": {
+            "icao": "KAROO2",
+            "name": "Karoo Two",
             "entryPoints": {
-                "FKN": ["FKN", "GOLLI", "DUFFI"],
+                "COUPN": ["COUPN", "GOLLI", "DUFFI"],
                 "HPW": ["HPW", "PILOE", "AGUYA", "DEMVE"],
                 "SBY": ["SBY", "JAMIE", "BOGPE", ["CEBET", "A220+|A230-"], ["DOYAS", "A170+|A230-"]],
                 "SWL": ["SWL", "JAMIE", "BOGPE", ["CEBET", "A220+|A230-"], ["DOYAS", "A170+|A230-"]]
             },
             "body": [["ARGAL", "A100+|A150-"], ["KAROO", "A80+|A120-"]],
             "rwy": {
-                "KRDU5L": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
-                "KRDU5R": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "TOYER", "#232"],
+                "KRDU5L": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "^TOYER", "#234"],
+                "KRDU5R": ["MUFLY", ["NEWIE", "A80|S210"], "OCHRE", "STINT", "^TOYER", "#234"],
                 "KRDU23L": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]],
                 "KRDU23R": [["LEASA", "A60+|A80-"], ["PAINS", "A60|S230"]]
             },
             "draw": [
-                ["FKN*", "DUFFI", "MEYER", "ARGAL", "RDU"],
-                ["SBY*", "CCV", "DRIVE", "FKN"],
-                ["HPW*", "DUFFI"],
-                ["SWL*", "CCV"]
+                ["COUPN*", "GOLLI", "DUFFI", "ARGAL"],
+                ["HPW*", "PILOE", "AGUYA", "DEMVE"],
+                ["SBY*", "JAMIE", "BOGPE", "CEBET", "DOYAS"],
+                ["SWL*", "JAMIE"]
             ]
         },
         "MALNR3": {
@@ -690,9 +691,9 @@
                 ["TREAL*", "JURDI"]
             ]
         },
-        "SBV4": {
-            "icao": "SBV4",
-            "name": "South Boston Four",
+        "SBV5": {
+            "icao": "SBV5",
+            "name": "South Boston Five",
             "entryPoints": {
                 "GVE": ["GVE"],
                 "PSK": ["PSK", "TABER"],
@@ -719,7 +720,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.BEXGO2.LVL",
+            "route": "KRDU23L.BEXGO3.LVL",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -749,7 +750,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.HOOKZ2.FAY",
+            "route": "KRDU23L.HOOKZ3.FAY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -778,7 +779,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.HURIC2.TYI",
+            "route": "KRDU23L.HURIC3.TYI",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -836,7 +837,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.OXFRD2.FAK",
+            "route": "KRDU23L.OXFRD3.FAK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -866,7 +867,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.ROZBO2.CHS",
+            "route": "KRDU23L.ROZBO3.CHS",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -895,7 +896,7 @@
             "origin": "KRDU",
             "destination": "",
             "category": "departure",
-            "route": "KRDU23L.SHPRD2.SHPRD",
+            "route": "KRDU23L.SHPRD3.SHPRD",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -925,7 +926,7 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "ROA.ALDAN1.KRDU23R",
+            "route": "ROA.ALDAN2.KRDU23R",
             "altitude": [25000, 31000],
             "speed": 320,
             "method": "random",
@@ -953,7 +954,7 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "ILM.BLOGS1.KRDU23R",
+            "route": "ILM.BLOGS2.KRDU23R",
             "altitude": [30000, 36000],
             "speed": 320,
             "method": "random",
@@ -981,7 +982,7 @@
             "origin": "",
             "destination": "KRDU",
             "category": "arrival",
-            "route": "HPW.KAROO1.KRDU23R",
+            "route": "HPW.KAROO2.KRDU23R",
             "altitude": [28000, 34000],
             "speed": 320,
             "method": "random",
