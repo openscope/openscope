@@ -2383,7 +2383,7 @@
             "entryPoints": {
                 "IMPED": [["IMPED", "A120-|S230"]]
             },
-            "body": [["DB520", "A110-|S230"], ["DB518", "A100-"], "DB517", ["VUTON", "A80-"], ["DB515", "S230"], ["DB514", "A60-"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "body": [["DB520", "A110-|S230"], ["DB518", "A100-"], "DB517", ["VUTON", "A80-"], ["DB515", "S210"], ["DB514", "A60-"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
             "rwy": {
                 "OMDB30L": [],
                 "OMDB30R": []
@@ -2398,7 +2398,7 @@
             "entryPoints": {
                 "IMPED": [["IMPED", "A120-|S230"]]
             },
-            "body": [["DB520", "A110-|S230"], "DB518", ["DB517", "A100-"], ["DB423", "A80+"], ["DB406", "A70-|S210"], ["DB421", "A60-"], "DB420", "ALNET", "SOGAP", ["PASEV", "S185"], "DB416", "DB414", "DB413", "REREK"],
+            "body": [["DB520", "A110-|S230"], "DB518", ["DB517", "A100-"], ["DB423", "A80+"], ["DB407", "A60-|S210"], "DB408", "DB403", ["SOLIL", "S185"], "ODLAL", "DB414", "DB413", "REREK"],
             "rwy": {
                 "OMDB12L": [],
                 "OMDB12R": []
@@ -2428,7 +2428,7 @@
             "entryPoints": {
                 "LORID": [["LORID", "A160-|S230"]]
             },
-            "body": ["ORGUR", "PEBUS", "EMOPO", "DB531", ["PATID", "S210"], "DB530", "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
+            "body": ["ORGUR", "PEBUS", "EMOPO", ["DB531", "A80+"], ["PATID", "A70+|S210"], ["DB530", "A70-"], "DB513", "GIRGO", "VELAR", "RIDEV", ["DB508", "S185"], "DB507", "DB506", "DB505", "DB504", "ULDOT"],
             "rwy": {
                 "OMDB30L": [],
                 "OMDB30R": []

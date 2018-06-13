@@ -9,7 +9,7 @@ Dubai International Airport is the world's busiest airport by international pass
 Sources: [Dubai Airports](http://www.dubaiairports.ae/corporate/media-centre/factsheets-list/detail/dubai-airports), [ACI](https://en.wikipedia.org/wiki/Dubai_International_Airport#cite_note-ACI-3)
 
 ### Dubai Air Navigation Services
-Dubai Air Navigation Services is the air navigation services provider for Dubai Airports, Al Minhad Air Base and some of the airports in the North of the UAE, based in Terminal 1 of Dubai International. dans is well-respected in the industry due to its unique air traffic management solutions. Furthermore,it is partnered with global leading aviation organisations, such as Eurocontrol.
+Dubai Air Navigation Services is the air navigation services provider for Dubai Airports, Al Minhad Air Base and some of the airports in the North of the UAE, based in Terminal 1 of Dubai International. dans is well-respected in the industry due to its unique air traffic management solutions. Furthermore, it is partnered with global leading aviation organisations, such as Eurocontrol.
 
 ### Positions
 |Callsign                     | Frequency  | Remarks
@@ -81,13 +81,7 @@ For departures, the restriction is 250KT below 10,000ft.
 |            Medium            |         Medium        |       2.5nm        |
 
 ### Instrument Procedures
-Dubai's instrument procedures all require aircraft to have RNAV capabilities. Furthermore, Dubai's procedures require almost little input from the controller; climb and descent instructions must be issued by the controller. Vectors are rarely used, as all STARs end on the extended centrelines, where an approach clearance (ie. ILS approach) can be issued.
-
-##### Departures
-All departing aircraft will be assigned the Halifax Four departure. The Halifax Four advises pilots to climb to 5000ft on runway heading. Upon receipt of an aircraft on departure, Halifax Terminal should: 
-* give a direct to a point along the filed route;
-* give vectors to a point along the filed route;
-* issue climb instructions.
+Dubai's instrument procedures all require aircraft to have RNAV capabilities. Furthermore, Dubai's procedures require almost little input from the controller; climb and descent instructions must be issued by the controller. Vectors are rarely used, as all STARs end on the extended centrelines, where an approach clearance (ie. ILS approach) can be issued. Shortcuts on downwind may be given, if possible.
 
 ### Sectors Available in OpenScope
 ```
