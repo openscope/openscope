@@ -63,10 +63,29 @@
         }
     ],
     "fixes": {
+        "_DET014005": ["N51d23.10", "E00d37.67"],
+        "_DVR277033": ["N51d13.92", "E00d29.51"],
+        "_OCK176013": ["N51d05.36", "W00d25.14"],
+        "_OCK176018": ["N51d00.38", "W00d24.50"],
+        "_OCK176023": ["N50d55.41", "W00d23.85"],
+        "_OCK176028": ["N50d50.43", "W00d23.21"],
+        "_OCK166011": ["N51d07.67", "W00d22.40"],
+        "_TUNBY270015": ["N51d10.01", "W00d04.35"],
+        "_DVR270033": ["N51d09.91", "E00d29.12"],
+        "TUNBY": ["N51d10.13", "E00d19.48"],
         "_BIG112018": ["N51.21800264637", "E0.47738323556"],
+        "_BIG110017": [51.23350134286, 0.45855204724],
+        "_IWW": [51.148715, -0.175894],
+        "_RWY26LIWW02.3DME": [51.14008455516, -0.24870376316],
+        "_RWY26RIWW02.3DME": [51.14173455580, -0.24998025566],
         "_KKE09258003": ["N51.18546410684", "W0.28181293522"],
         "_MAY110012": ["N50.94866742211", "E0.41335321937"],
         "_MID105022": ["N50.95805593029", "W0.0647437487"],
+        "_DET259029": [51.20273041945, -0.15484747663],
+        "_DET259031": [51.19556851356, -0.20659933884],
+        "_DET259033": [51.18838373701, -0.25833513825],
+        "_BIG123018": [51.1672543605, 0.43485956589],
+        "NEXOX": ["N51d15.02", "E00d11.63"],
         "ABIBI": ["N51d06.45", "W00d28.90"],
         "ABTUM": ["N51d26.06", "E01d22.48"],
         "ADMAG": ["N51d14.03", "E00d29.57"],
@@ -233,6 +252,90 @@
                 ["KKE23", "_BIG112018", "BIG"]
             ]
         },
+        "BIG3P": {
+            "icao": "BIG3P",
+            "name": "Biggin Three Papa",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": ["_TUNBY270015", ["TUNBY", "A50+|A60-"], ["^_DVR270033", "A60"], "^_BIG110017", ["BIG", "A60|S230-"]],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_TUNBY270015", "TUNBY", "_DVR270033", "_BIG110017", "BIG"]
+            ]
+        },
+        "BIG3W": {
+            "icao": "BIG3W",
+            "name": "Biggin Three Whiskey",
+            "rwy": {
+                "EGKK08L": []
+            },
+            "body": ["_TUNBY270015", ["TUNBY", "A50+|A60-"], ["^_DVR270033", "A60"], "^_BIG110017", ["BIG", "A60|S230-"]],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_TUNBY270015", "TUNBY", "_DVR270033", "_BIG110017", "BIG"]
+            ]
+        },
+        "BIG8M": {
+            "icao": "BIG8M",
+            "name": "Biggin Eight Mike",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["^_RWY26LIWW02.3DME", "A15+|A40-|S220-"], "_DET259033", ["_DET259031", "A32+|A40-|S220-"], ["_DET259029", "A40-|S220-"], ["NEXOX", "A50"], ["^_BIG123018", "A60"], "^_BIG110017", ["BIG", "A60|S230-"]],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY26LIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_BIG123018", "_BIG110017", "BIG"]
+            ]
+        },
+        "BIG8V": {
+            "icao": "BIG8V",
+            "name": "Biggin Eight Victor",
+            "rwy": {
+                "EGKK26R": []
+            },
+            "body": [["^_RWY26RIWW02.3DME", "A15+|A40-|S220-"], "_DET259033", ["_DET259031", "A32+|A40-|S220-"], ["_DET259029", "A40-|S220-"], ["NEXOX", "A50"], ["^_BIG123018", "A60"], "^_BIG110017", ["BIG", "A60|S230-"]],
+            "exitPoints": {
+                "BIG": []
+            },
+            "draw": [
+                ["_RWY26RIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_BIG123018", "_BIG110017", "BIG"]
+            ]
+        },
+        "BOGNA1M": {
+            "icao": "BOGNA1M",
+            "name": "Bogna One Mike",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["^_OCK166011", "A25+|A50-"], ["_OCK176013", "A30+|A50-"], ["_OCK176018", "A50"], ["_OCK176023", "A60"], "_OCK176028", ["BOGNA", "A60"]],
+            "exitPoints": {
+                "BOGNA": []
+            },
+            "draw": [
+                ["_OCK166011", "_OCK176013", "_OCK176018", "_OCK176023", "_OCK176028", "BOGNA"]
+            ]
+        },
+        "BOGNA1V": {
+            "icao": "BOGNA1V",
+            "name": "Bogna One Victor",
+            "rwy": {
+                "EGKK26R": []
+            },
+            "body": [["^_OCK166011", "A25+|A50-"], ["_OCK176013", "A30+|A50-"], ["_OCK176018", "A50"], ["_OCK176023", "A60"], "_OCK176028", ["BOGNA", "A60"]],
+            "exitPoints": {
+                "BOGNA": []
+            },
+            "draw": [
+                ["_OCK166011", "_OCK176013", "_OCK176018", "_OCK176023", "_OCK176028", "BOGNA"]
+            ]
+        },
         "BOGNA1X": {
             "icao": "BOGNA1X",
             "name": "Bogna One X-Ray",
@@ -277,6 +380,20 @@
                 ["KKW02", "_KKE09258003", "KKE09", "KKE11", "KKE15", "SUNAV", "KKE42"],
                 ["KKE04", "KKE10", "KKE17", "KKE25"],
                 ["CLN"]
+            ]
+        },
+        "CLN9M": {
+            "icao": "CLN9M",
+            "name": "Clacton Niner Mike",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": [["^_RWY26LIWW02.3DME", "A15+|A40-|S220-"], "_DET259033", ["_DET259031", "A32+|A40-|S220-"], ["_DET259029", "A40-|S220-"], ["NEXOX", "A50"], ["^_DET277033", "A60"], ["DET", "A50"], ["_DET014005", "A60"], "DAGGA", ["CLN", "A60"]],
+            "exitPoints": {
+                "CLN": []
+            },
+            "draw": [
+                ["_RWY26LIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_DET277033", "DET", "_DET014005", "DAGGA", "CLN"]
             ]
         },
         "DAGGA1X": {
@@ -741,7 +858,32 @@
         }
     },
     "spawnPatterns": [
-
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK08R.BIG3P.BIG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["baw/short", 1]
+            ]
+        },
+        {
+            "origin": "EGKK",
+            "destination": "",
+            "category": "departure",
+            "route": "EGKK08L.BIG3W.BIG",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["baw/short", 1]
+            ]
+        }
     ],
     "maps": {
         "base": [
