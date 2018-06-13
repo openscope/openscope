@@ -1,5 +1,5 @@
 ### About Istanbul Atatürk Airport (IST | LTBA)
-Istanbul Atatürk Airport is the major airport of Turkey. It serves as a hub for *AtlasGlobal*, *Onur Air* and most important *Turkish Airlines*, which has the biggest share at the airport and serves numerous destinations worldwide. It is also used for cargo operations by cargo airlines like *Turkish Airlines Cargo*, *MNG Airlines*, *MyCargo Airlines* or *Qatar Airways Cargo*.  
+*Istanbul Atatürk Airport* is the main airport of Turkey. It serves as a hub for *AtlasGlobal*, *Onur Air* and, most importantly, *Turkish Airlines*, which has the biggest share at the airport and serves numerous destinations worldwide. The airport is also used for cargo operations by cargo airlines such as *Turkish Airlines Cargo*, *MNG Airlines*, *MyCargo Airlines* and *Qatar Airways Cargo*.
 The airport was originally named *Yeşilköy Airport*. In the 1980s, it was renamed *Istanbul Atatürk International Airport* in honour of *Mustafa Kemal Atatürk*, the founder and first president of the Republic of Turkey. It served more than 60 million passengers in 2015, making it the 11th-busiest airport in the world in terms of total passenger traffic and the 10th-busiest in the world in terms of international passenger traffic. As of 2017, it is Europe's 5th-busiest airport after *London Heathrow*, *Paris Charles de Gaulle*, *Frankfurt Airport* and *Amsterdam Schiphol Airport*, having fallen from third place after a decline in passengers due to security fears.
 
 #### Statistics
@@ -20,11 +20,11 @@ The airport has 3 runways. The southeastern runway (05/23) is 2580m (8465ft) lon
 * Runway 05 for landing
 * Runway 35L for take-off
 
-**In the simulator the mentioned runway configuration is used.**
+**This also the configuration in use in openScope**
 
 
 ### Instrument Procedures
-*Istanbul Atatürk* airport has various SIDs and STARs. For all exitpoints/entrypoints there are RNAV and non-RNAV procedures, usually only RNAV procedures are used.  
+*Istanbul Atatürk Airport* makes use of a large number of SIDs and STARs, both RNAV and non-RNAV, although only RNAV procedures are normally used.
 The procedure's suffix indicates the runway, the procedure is for.
 
 SIDs:
@@ -63,9 +63,22 @@ The sim features a combination of these sectors:
 
 ### Other aerodromes of interest
 
+##### Istanbul New Airport, LTFM
+*Istanbul New Airport*  is an international airport under construction in the *Arnavutköy* district on the European side of Istanbul.
+The reason for the construction is the lack of capacity of *Istanbul Atatürk Airport*, which has reached its capacity limits.
+The contruction of the airport has begun in May 2015 and it's opening is announced for 29 October 2018 but there are delays expected. Once the new airport has commenced operations, *Istanbul Atatürk Airport* is going to be closed down for scheduled passenger flights. The construction of the airport is set to take place in several stages, expanding the airport and its facilities over time. At the first stage, *Istanbul New Airport* is going to have a main terminal with a total passenger capacity of 90 million and 2 independent runways, whilst at completion stage the airport is going to have 6 runways and a capacity of 150 million passengers annually, expandable to 200 million.
+
+Runway 17L/35R, 3,750m (12,303ft)  
+Runway 17R/35L, 3,750m (12,303ft)  
+Runway 18L/36R, 3,750m (12,303ft)  
+Runway 18C/36C, 4,100m (13,451ft)  
+Runway 18R/36L, 3,750m (12,303ft)  
+Runway 09/27 , 3,750m (12,303ft)  
+34 km (21.2 mi) north of LTBA  
+
 ##### Sabiha Gökçen International Airport, LTFJ
 *Sabiha Gökçen International Airport* is the secondary international airport of Istanbul.  
-It serves as the hub for *Pegasus Airlines* but is also used by *Turkish Airlines* and another airlines since the airport isn't as busy as *Istanbul Atatürk Airport*.  
+It serves as the hub for *Pegasus Airlines* but is also used by *Turkish Airlines* and other airlines since the airport isn't as busy as *Istanbul Atatürk Airport*.  
 The departures and arrivals of LTFJ are also handled by *Yeşilköy Approach/Radar*
 
 Runway 06/24, concrete, 3,000m (9,843ft)  
