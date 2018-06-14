@@ -125,6 +125,8 @@ The videomap also contains:
 * All the borders of the airspaces that are contained within the Dubai CTA
 * Entry points/exit points of aircraft in the Dubai CTA via STARs/SIDs
 
+* Section of the Dubai Coastline with the Palm Jebel Ali and the Palm Jumeirah
+
 
 ### Additional Resources
 [Emirates vACC (VATSIM) OMDB SOP](https://vatame.org/policy/101)  
