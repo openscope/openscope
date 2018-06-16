@@ -597,8 +597,7 @@ export default class AircraftCommander {
         // remove aircraft from previous runway's queue
         aircraftModel.fms.departureRunwayModel.removeAircraftFromQueue(aircraftModel.id);
 
-        const flightPhase = aircraftModel.flightPhase;
-        const readback = aircraftModel.pilot.taxiToRunway(nextRunwayModel, aircraftModel.isDeparture(), flightPhase);
+        const readback = aircraftModel.pilot.taxiToRunway(nextRunwayModel, aircraftModel.isDeparture());
         aircraftModel.taxi_start = taxiStartTime;
 
         // add aircraft to new runway's queue

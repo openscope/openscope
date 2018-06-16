@@ -919,23 +919,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method taxiToRunway
-     * @param taxiDestination {RunwayModel}  runway has already been verified by the
-     *                                       time it is sent to this method
-     * @param isDeparture {boolean}         whether the aircraft's flightPhase is DEPARTURE
-     * @param flightPhase {string}          the flight phase of the aircraft
-     * @return {array}                      [success of operation, readback]
+     * @param {RunwayModel} taxiDestination runway has already been verified by the time it is sent to this method
+     * @param {boolean} isTaxiable whether the aircraft is a departure, on the ground, and not yet cleared for takeoff
+     * @return {array} [success of operation, readback]
      */
-    taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (!isDeparture) {
-            return [false, 'unable to taxi, we are not a departure'];
-        }
-
-        if (flightPhase === FLIGHT_PHASE.TAKEOFF) {
-            const readback = {};
-            readback.log = `we are already taking off on Runway ${taxiDestination.name}`;
-            readback.say = `we are already taking off on Runway ${radio_runway(taxiDestination.name)}`;
-
-            return [false, readback];
+    taxiToRunway(taxiDestination, isTaxiable) {
+        if (!isTaxiable) {
+            return [false, 'unable to taxi'];
         }
 
         this._fms.setDepartureRunway(taxiDestination);

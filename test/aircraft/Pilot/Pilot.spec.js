@@ -3,6 +3,7 @@ import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 import _isObject from 'lodash/isObject';
+import _omit from 'lodash/omit';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
@@ -1004,36 +1005,17 @@ ava('.sayTargetHeading() returns a message when #headingMode is OFF', (t) => {
     t.deepEqual(result, expectedResult);
 });
 
-ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.TAXI', (t) => {
-    const expectedResult = [false, 'already taxiing'];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, true, FLIGHT_PHASE.TAXI);
+ava('.taxiToRunway() returns an error when the aircraft\'s flight phase is not "APRON", "TAXI", or "WAITING"', (t) => {
+    const nonTaxiFlightPhases = _omit(FLIGHT_PHASE, 'APRON', 'TAXI', 'WAITING');
 
-    t.deepEqual(result, expectedResult);
-});
+    for (const phase in nonTaxiFlightPhases) {
+        console.log(phase);
+        const expectedResult = [false, 'unable to taxi'];
+        const pilot = createPilotFixture();
+        const result = pilot.taxiToRunway(runwayModelMock, false, FLIGHT_PHASE[phase]);
 
-ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.WAITING', (t) => {
-    const expectedResult = [false, 'already taxied and waiting in runway queue'];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, true, FLIGHT_PHASE.WAITING);
-
-    t.deepEqual(result, expectedResult);
-});
-
-ava('.taxiToRunway() returns an error when isDeparture is false', (t) => {
-    const expectedResult = [false, 'unable to taxi'];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, false, FLIGHT_PHASE.APRON);
-
-    t.deepEqual(result, expectedResult);
-});
-
-ava('.taxiToRunway() returns an error when flightPhase is not equal to FLIGHT_PHASE.APRON', (t) => {
-    const expectedResult = [false, 'unable to taxi'];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, true, FLIGHT_PHASE.ARRIVAL);
-
-    t.deepEqual(result, expectedResult);
+        t.deepEqual(result, expectedResult);
+    }
 });
 
 ava('.taxiToRunway() returns a success message when finished', (t) => {
