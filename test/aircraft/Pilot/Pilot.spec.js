@@ -1013,7 +1013,7 @@ ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.
 });
 
 ava('.taxiToRunway() returns an error when flightPhase is equal to FLIGHT_PHASE.WAITING', (t) => {
-    const expectedResult = [false, 'already taxiied and waiting in runway queue'];
+    const expectedResult = [false, 'already taxied and waiting in runway queue'];
     const pilot = createPilotFixture();
     const result = pilot.taxiToRunway(runwayModelMock, true, FLIGHT_PHASE.WAITING);
 
