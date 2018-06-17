@@ -795,18 +795,9 @@ export default class Fms {
     replaceDepartureProcedure(routeString) {
         const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
-        if (routeStringElements.length !== 2) {
+        if (routeStringElements.length !== 3) {
             return [false, 'departure procedure format not understood'];
         }
-
-        if (!this.departureRunwayModel) {
-            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-        }
-        
-        // add the entry point in front of the routeString
-        const entryName = this.departureAirportModel.icao + this.departureRunwayModel.name;
-        routeStringElements.unshift(entryName);
-        routeString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         const procedureId = routeStringElements[1];
 
