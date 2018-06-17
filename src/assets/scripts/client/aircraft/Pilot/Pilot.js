@@ -10,6 +10,7 @@ import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { radians_normalize } from '../../math/circle';
 import { clamp } from '../../math/core';
+import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
 import {
     groupNumbers,
     radio_altitude,
@@ -294,11 +295,55 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(routeString, airportIcao) {
+        let routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+
+        if (routeStringElements.length > 3) {
+            return [false, 'departure procedure format not understood'];
+        }
+
+        if (routeStringElements.length === 1) { // RouteString looks like PROC
+            const procedureId = routeStringElements[0];
+            const sidModel = NavigationLibrary.getProcedure(procedureId);
+            if (_isNil(sidModel)) {
+                return [false, 'SID name not understood'];
+            }
+
+            const existingWaypoints = this._fms.waypoints;
+            let exitPoint = '';
+            for (let i = 0; i < existingWaypoints.length; i++) {
+                const waypoint = existingWaypoints[i];
+                if (sidModel.hasExit(waypoint.name)) {
+                    exitPoint = waypoint.name;
+                    break;
+                }
+            }
+
+            if (exitPoint === '') {
+                return [false, `SID ${this._fms._routeModel.getSidIcao().toUpperCase()} doesn't intersect our route`];
+            }
+
+            routeStringElements.push(exitPoint);
+        }
+
+        if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
+            const runwayModel = this._fms.departureRunwayModel;
+
+            if (_isNil(runwayModel)) {
+                return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
+            }
+
+            const entryName = airportIcao.toUpperCase() + runwayModel.name;
+            routeStringElements.unshift(entryName);
+        }
+
+        routeString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
         const [successful, response] = this._fms.replaceDepartureProcedure(routeString);
 
         if (!successful) {
             return [false, response];
         }
+
+        this.hasDepartureClearance = true;
 
         // Build readback
         const readback = {};

@@ -792,26 +792,17 @@ export default class RouteModel extends BaseModel {
      * @return {boolean} whether operation was successful
      */
     replaceDepartureProcedure(routeString) {
-        let sidLegModel;
+        let sidModel;
 
         try {
-            sidLegModel = new LegModel(routeString);
+            sidModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
             return false;
         }
 
-        // if no SID leg exists, insert the new one as the new first leg
-        if (!this.hasSidLeg()) {
-            this._legCollection.unshift(sidLegModel);
-
-            return true;
-        }
-
-        this._legCollection[this._findSidLegIndex()] = sidLegModel;
-
-        return true;
+        return this.absorbRouteModel(sidModel);
     }
 
     /**
