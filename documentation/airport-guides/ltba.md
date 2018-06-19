@@ -20,7 +20,7 @@ The airport has 3 runways. The southeastern runway (05/23) is 2580m (8465ft) lon
 * Runway 05 for landing
 * Runway 35L for take-off
 
-**This also the configuration in use in openScope**
+**This is also the configuration in use in openScope**
 
 
 ### Instrument Procedures
@@ -64,10 +64,11 @@ The sim features a combination of these sectors:
 ### Other aerodromes of interest
 
 ##### Istanbul New Airport, LTFM
-*Istanbul New Airport*  is an international airport under construction in the *Arnavutköy* district on the European side of Istanbul.
-The reason for the construction is the lack of capacity of *Istanbul Atatürk Airport*, which has reached its capacity limits.
-The contruction of the airport has begun in May 2015 and it's opening is announced for 29 October 2018 but there are delays expected. Once the new airport has commenced operations, *Istanbul Atatürk Airport* is going to be closed down for scheduled passenger flights. The construction of the airport is set to take place in several stages, expanding the airport and its facilities over time. At the first stage, *Istanbul New Airport* is going to have a main terminal with a total passenger capacity of 90 million and 2 independent runways, whilst at completion stage the airport is going to have 6 runways and a capacity of 150 million passengers annually, expandable to 200 million.
+*Istanbul New Airport*  is an international airport under construction in the *Arnavutköy* district on the European side of Istanbul, with the aim of replacing the current *Istanbul Atatürk Airport*, which has reached its capacity limits.  
+The construction of the airport began in May 2015 and its inauguration is scheduled for the 29th of October 2018, although delays are expected. Once the new airport commences operations, *Istanbul Atatürk Airport* will be closed down for scheduled passenger flights. The construction of the airport is set to take place in several stages, expanding the airport and its facilities over time. For the first stage, *Istanbul New Airport* will have a main terminal with a total passenger capacity of 90 million and 2 independent runways.  
+Once fully completed however, the airport will have a total of 6 runways and a capacity of 150 million passengers annually, expandable to 200 million.
 
+Planned runways:  
 Runway 17L/35R, 3,750m (12,303ft)  
 Runway 17R/35L, 3,750m (12,303ft)  
 Runway 18L/36R, 3,750m (12,303ft)  
