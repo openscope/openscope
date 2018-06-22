@@ -3434,7 +3434,7 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "|S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": [["TETSA", "S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
                 "LTBA23": []
             },
