@@ -87,7 +87,7 @@
     "raf": "^3.3.0"
   },
   "devDependencies": {
-    "@openscope/validator": "^1.0.0",
+    "@openscope/validator": "latest",
     "ava": "^0.16.0",
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
