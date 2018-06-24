@@ -43,6 +43,8 @@
     ],
     "fixes": {
         "_BKZ283015.5": [41.1844261711, 28.80944900927],
+        "_CRL103025": ["N41d01.62", "E028d27.67"],
+        "_BKZ207017": ["N40d53.26", "E028d56.53"],
         "_CEK083016": [41.04084334523, 28.87805752052],
         "_CRL103021": [41.07284760558, 28.38932789252],
         "_CRL103022.5": [41.06711055328, 28.42150011225],
@@ -876,12 +878,12 @@
             "rwy": {
                 "LTBA05": []
             },
-            "body": [["^_IST051004.5", "A10+"], "CEK", "CRL"],
+            "body": [["^_IST051004.5", "A10+"], "_IST309006", "_CRL103025", "CRL"],
             "exitPoints": {
                 "CRL": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_CEK083016", "CEK", "CRL"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "_IST309006", "_CRL103025", "CRL"]
             ]
         },
         "CRL2G": {
@@ -1084,7 +1086,7 @@
         },
         "EKI1D": {
             "icao": "EKI1D",
-            "name": "EKI One Delta",
+            "name": "Tekirdag One Delta",
             "rwy": {
                 "LTBA35L": []
             },
@@ -1098,7 +1100,7 @@
         },
         "EKI1K": {
             "icao": "EKI1K",
-            "name": "EKI One Kilo",
+            "name": "Tekirdag One Kilo",
             "rwy": {
                 "LTBA35R": []
             },
@@ -1387,13 +1389,13 @@
                 "LTBA17L": [],
                 "LTBA17R": []
             },
-            "body": [["^_IST177005", "A14+"], "BKZ", "ERTAS"],
+            "body": [["^_IST177005", "A14+"], "_BKZ207017", "BKZ", "ERTAS"],
             "exitPoints": {
                 "ERTAS": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "ERTAS"],
-                ["_RWY35L", "_IST177005", "BKZ", "ERTAS"]
+                ["_RWY35R", "_IST177005", "_BKZ207017", "BKZ", "ERTAS"],
+                ["_RWY35L", "_IST177005", "_BKZ207017", "BKZ", "ERTAS"]
             ]
         },
         "ERTAS1U": {
@@ -1463,7 +1465,7 @@
                 "FENER": []
             },
             "draw": [
-                ["_RWY23", "_IST051004.5", "_IST309006", "FENER"]
+                ["_RWY23", "_IST051004.5", "_CEK083016", "_IST309006", "FENER"]
             ]
         },
         "FENER1U": {
@@ -1488,7 +1490,7 @@
             },
             "body": [["^_IST245005", "A14+"], "CEK", "FENER"],
             "exitPoints": {
-                "CRL": []
+                "FENER": []
             },
             "draw": [
                 ["_RWY05", "_IST245005", "CEK", "FENER"]
@@ -1573,13 +1575,13 @@
                 "LTBA17L": [],
                 "LTBA17R": []
             },
-            "body": [["^_IST177005", "A14+"], "BKZ", "GAYEM"],
+            "body": [["^_IST177005", "A14+"], "_BKZ207017", "BKZ", "GAYEM"],
             "exitPoints": {
-                "ERTAS": []
+                "GAYEM": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "GAYEM"],
-                ["_RWY35L", "_IST177005", "BKZ", "GAYEM"]
+                ["_RWY35R", "_IST177005", "_BKZ207017", "BKZ", "GAYEM"],
+                ["_RWY35L", "_IST177005", "_BKZ207017", "BKZ", "GAYEM"]
             ]
         },
         "GOLDO1E": {
@@ -2149,13 +2151,13 @@
                 "LTBA17L": [],
                 "LTBA17R": []
             },
-            "body": [["^_IST177005", "A14+"], "BKZ", "MOPIN"],
+            "body": [["^_IST177005", "A14+"], "_BKZ207017", "BKZ", "MOPIN"],
             "exitPoints": {
                 "MOPIN": []
             },
             "draw": [
-                ["_RWY35R", "_IST177005", "BKZ", "MOPIN"],
-                ["_RWY35L", "_IST177005", "BKZ", "MOPIN"]
+                ["_RWY35R", "_IST177005", "_BKZ207017", "BKZ", "MOPIN"],
+                ["_RWY35L", "_IST177005", "_BKZ207017", "BKZ", "MOPIN"]
             ]
         },
         "MOPIN1B": {
@@ -2867,7 +2869,7 @@
             },
             "body": [["^_IST177005", "A14+"], "YAA"],
             "exitPoints": {
-                "ERTAS": []
+                "YAA": []
             },
             "draw": [
                 ["_RWY35R", "_IST177005", "YAA"],
@@ -3707,7 +3709,7 @@
         },
         "YASEN1A": {
             "icao": "YASEN1A",
-            "name": "Yalova One Alpha",
+            "name": "Yasen One Alpha",
             "entryPoints": {
                 "YASEN": []
             },
@@ -3722,7 +3724,7 @@
         },
         "YASEN1B": {
             "icao": "YASEN1B",
-            "name": "Yalova One Bravo",
+            "name": "Yasen One Bravo",
             "entryPoints": {
                 "YASEN": []
             },
@@ -3736,7 +3738,7 @@
         },
         "YASEN1C": {
             "icao": "YASEN1C",
-            "name": "Yalova One Charlie",
+            "name": "Yasen One Charlie",
             "entryPoints": {
                 "YASEN": []
             },
@@ -3750,7 +3752,7 @@
         },
         "YASEN1E": {
             "icao": "YASEN1E",
-            "name": "Yalova One Echo",
+            "name": "Yasen One Echo",
             "entryPoints": {
                 "YASEN": []
             },
@@ -3764,7 +3766,7 @@
         },
         "YASEN1F": {
             "icao": "YASEN1F",
-            "name": "Yalova One Foxtrott",
+            "name": "Yasen One Foxtrott",
             "entryPoints": {
                 "YASEN": []
             },
