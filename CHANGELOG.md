@@ -7,6 +7,7 @@
 
 
 ### Bugfixes
+- [#1008](https://github.com/openscope/openscope/issues/1008) - Correct airline files using old callsign format
 
 
 
