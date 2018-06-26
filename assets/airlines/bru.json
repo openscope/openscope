@@ -3,17 +3,19 @@
     "name": "Belavia Belarusian Airlines",
     "callsign": {
         "name": "Belarus Avia",
-        "length": 3
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["B733", 8],
             ["B735", 6],
             ["B738", 5],
-            ["CRJ2", 3],
-            ["E170", 2],
-            ["E190", 2],
-            ["T154", 2]
+            ["CRJ2", 5],
+            ["E170", 3],
+            ["E190", 3]
         ]
     }
 }
