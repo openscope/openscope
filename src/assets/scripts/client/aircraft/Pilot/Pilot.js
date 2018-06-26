@@ -319,7 +319,7 @@ export default class Pilot {
             }
 
             if (exitPoint === '') {
-                return [false, `SID ${this._fms._routeModel.getSidIcao().toUpperCase()} doesn't intersect our route`];
+                return [false, `SID ${procedureId.toUpperCase()} doesn't have an exit along our route`];
             }
 
             routeStringElements.push(exitPoint);
