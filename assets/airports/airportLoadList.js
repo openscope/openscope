@@ -365,13 +365,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
-        // {
-        //     icao: 'ksan',
-        //     level: 'easy',
-        //     name: 'San Diego International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'ksan',
+            level: 'easy',
+            name: 'San Diego International Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'ksea',
             level: 'hard',

@@ -1,200 +1,129 @@
 {
-    "radio": {
-        "twr": "Lindbergh Tower",
-        "app": "SoCal Approach",
-        "dep": "SoCal Departure"
+  "radio": {
+    "twr": "Lindbergh Tower",
+    "app": "SoCal Approach",
+    "dep": "SoCal Departure"
+  },
+  "icao": "KSAN",
+  "iata": "SAN",
+  "magnetic_north": 12.3,
+  "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
+  "position": [ "N32.734", "W117.190", "5m" ],
+  "rr_radius_nm": 5.0,
+  "rr_center": [ "N32.734", "W117.190" ],
+  "has_terrain": false,
+  "wind": {
+    "angle": 300,
+    "speed": 8
+  },
+  "arrivalRunway": "27",
+  "departureRunway": "27",
+  "airspace": [
+    {
+      "floor": 0,
+      "ceiling": 150,
+      "airspace_class": "B",
+      "poly": [
+        [ 32.7967506, -117.3344986 ],
+        [ 32.7559781, -117.0303164 ],
+        [ 32.7005017, -117.0531547 ],
+        [ 32.6630036, -117.0870706 ],
+        [ 32.7228367, -117.2098333 ],
+        [ 32.7228944, -117.3206192 ],
+        [ 32.7967506, -117.3344986 ]
+      ]
+    }
+  ],
+  "fixes": {
+    "_KSAN046060": [ "N33d16.52m0", "W116d11.36m0" ],
+    "_KSAN075060": [ "N32d47.86m0", "W116d00.37m0" ],
+    "MELDY": [ "N33d05.36", "W117d41.63" ],
+    "PEBLE": [ "N33d10.92", "W117d50.17" ],
+    "PGY": [ "N32d36.62", "W116d58.75" ],
+    "BROWS": [ "N32d37.87", "W116d46.20" ],
+    "JLI": [ "N33d08.43", "W116d35.16" ],
+    "IPL": [ "N32d44.93", "W115d30.51" ],
+    "BOKNE": [ "N32d58.41", "W117d21.71" ],
+    "MAFAN": [ "N33d04.10", "W117d25.78" ],
+    "LNSAY": [ "N33d08.77", "W117d29.17" ],
+    "FALCC": [ "N33d15.68", "W117d34.11" ],
+    "HARBR": [ "N33d14.28", "W117d51.38" ],
+    "LOWMA": [ "N32d39'16.71", "W117d16'5.79" ],
+    "PILLO": [ "N32d46.22", "W116d28.11" ],
+    "BARET": [ "N32d46.45", "W116d40.65" ],
+    "IFHEJ": [ "N32d39.60", "W116d53.28" ],
+    "SARGS": [ "N32d46.90", "W117d23.37" ],
+    "VYDDA": [ "N32d40.30", "W116d56.15" ]
+  },
+  "runways": [
+    {
+      "name": [ "09", "27" ],
+      "name_offset": [
+        [ 0, 0 ],
+        [ 0, 0 ]
+      ],
+      "end": [
+        [ "N32.7371218", "W117.2043558" ],
+        [ "N32.7300016", "W117.1749719" ]
+      ],
+      "ils": [ true, false ]
+    }
+  ],
+  "sids": {
+    "BRDR7": {
+      "icao": "BRDR7",
+      "name": "Border Seven",
+      "rwy": {
+        "9": [ "BROWS" ],
+        "27": [ "PGY", "BROWS" ]
+      },
+      "exitPoints": {
+        "JLI": [ "JLI" ]
+      },
+      "draw": [ [ "PGY", "BROWS", "JLI*" ] ]
     },
-    "icao": "KSAN",
-    "iata": "SAN",
-    "magnetic_north": 12.3,
-    "ctr_radius": 80,
-    "ctr_ceiling": 10000,
-    "initial_alt": 5000,
-    "position": ["N32.734", "W117.190", "5m"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N32.734", "W117.190"],
-    "has_terrain": false,
-    "wind": {
-        "angle": 300,
-        "speed": 8
+    "LNSAY5": {
+      "icao": "LNSAY5",
+      "name": "Lindsay Five",
+      "rwy": {
+        "9": [ "BOKNE", "MAFAN", "LNSAY" ],
+        "27": [ "BOKNE", "MAFAN", "LNSAY" ]
+      },
+      "exitPoints": {
+        "FALCC": [ "FALCC" ]
+      },
+      "draw": [ [ "BOKNE", "MAFAN", "FALCC*" ] ]
     },
-    "arrivalRunway": "27",
-    "departureRunway": "27",
-    "fixes": {
-        "_KSAN046060": ["N33d16.52m0", "W116d11.36m0"],
-        "_KSAN075060": ["N32d47.86m0", "W116d00.37m0"],
-        "MELDY": ["N33d05.36", "W117d41.63"],
-        "PEBLE": ["N33d10.92", "W117d50.17"],
-        "PGY":  ["N32d36.62", "W116d58.75"],
-        "BROWS": ["N32d37.87", "W116d46.20"],
-        "JLI":   ["N33d08.43", "W116d35.16"],
-        "IPL":   ["N32d44.93", "W115d30.51"],
-        "BOKNE": ["N32d58.41", "W117d21.71"],
-        "MAFAN": ["N33d04.10", "W117d25.78"],
-        "LNSAY": ["N33d08.77", "W117d29.17"],
-        "FALCC":  ["N33d15.68", "W117d34.11"],
-        "HARBR": ["N33d14.28", "W117d51.38"],
-        "LOWMA": ["N32d39'16.71", "W117d16'5.79"],
-        "PILLO": ["N32d46.22", "W116d28.11"],
-        "BARET": ["N32d46.45", "W116d40.65"],
-        "IFHEJ": ["N32d39.60", "W116d53.28"],
-        "SARGS": ["N32d46.90", "W117d23.37"],
-        "VYDDA": ["N32d40.30", "W116d56.15"]
+    "PEBLE6": {
+      "icao": "PEBLE6",
+      "name": "Peble Six",
+      "rwy": {
+        "9": [ "SARGS", "MELDY" ],
+        "27": [ "SARGS", "MELDY" ]
+      },
+      "exitPoints": {
+        "PEBLE": [ "PEBLE" ]
+      },
+      "draw": [ [ "SARGS", "MELDY", "PEBLE*" ] ]
     },
-    "runways": [
-        {
-            "name":        ["09", "27"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [
-                ["N32.7371218", "W117.2043558"],
-                ["N32.7300016", "W117.1749719"]
-            ],
-            "length":      2.865,
-            "ils":         [true, false]
-        }
-    ],
-    "sids": {
-        "BRDR7": {
-            "icao": "BRDR7",
-            "name": "Border Seven",
-            "rwy": {
-                "9" : ["BROWS"],
-                "27": ["PGY", "BROWS"]
-            },
-            "exitPoints": {
-                "JLI": ["JLI"]
-            },
-            "draw": [["PGY","BROWS","JLI*"]]
-        },
-        "LNSAY5": {
-            "icao": "LNSAY5",
-            "name": "Lindsay Five",
-            "rwy": {
-                "9" : ["BOKNE", "MAFAN", "LNSAY"],
-                "27": ["BOKNE", "MAFAN", "LNSAY"]
-            },
-            "exitPoints": {
-                "FALCC": ["FALCC"]
-            },
-            "draw": [["BOKNE","MAFAN","FALCC*"]]
-        },
-        "PEBLE6": {
-            "icao": "PEBLE6",
-            "name": "Peble Six",
-            "rwy": {
-                "9" : ["SARGS", "MELDY"],
-                "27": ["SARGS", "MELDY"]
-            },
-            "exitPoints": {
-                "PEBLE": ["PEBLE"]
-            },
-            "draw": [["SARGS", "MELDY", "PEBLE*"]]
-        },
-        "POGGI5": {
-            "icao": "POGGI5",
-            "name": "Poggie Five",
-            "rwy": {
-                "9" : ["LOWMA", "PGY"],
-                "27": ["LOWMA", "PGY"]
-            },
-            "exitPoints": {
-                "BROWS": ["BROWS"]
-            },
-            "draw": [["LOWMA","PGY","BROWS*"]]
-        }
-    },
-    "departures": {
-        "airlines": [
-            ["swa", 35],
-            ["aal", 12],
-            ["ual", 9],
-            ["asa", 8],
-            ["dal", 8],
-            ["airtaxi", 12],
-            ["n/lightGA", 5]
-        ],
-        "destinations": [
-            "BRDR7", "LNSAY5", "PEBLE6", "POGGI5"
-        ],
-        "type": "cyclic",
-        "offset": 0,
-        "period": 30,
-        "frequency": 18.5
-    },
-    "arrivals": [
-        {
-            "_name": "BARET FIVE",
-            "speed": 250,
-            "type": "cyclic",
-            "offset": 12,
-            "period": 23,
-            "frequency": 7.5,
-            "altitude": 10000,
-            "fixes": ["_KSAN046060", "BARET", "IFHEJ", "VYDDA"],
-            "airlines": [
-                ["swa", 35],
-                ["aal", 12],
-                ["ual", 9],
-                ["asa", 8],
-                ["dal", 8],
-                ["airtaxi", 12]
-            ]
-        },
-        {
-            "_name": "HUBRD ONE",
-            "radial": 310,
-            "heading": 140,
-            "speed": 250,
-            "type": "cyclic",
-            "offset": 10,
-            "period": 21,
-            "frequency": 5,
-            "altitude": 10000,
-            "airlines": [
-                ["swa", 35],
-                ["aal", 12],
-                ["ual", 9],
-                ["asa", 8],
-                ["dal", 8],
-                ["airtaxi", 12]
-            ]
-        },
-        {
-            "_name": "SHAMU ONE",
-            "radial": 290,
-            "heading": 115,
-            "speed": 250,
-            "type": "cyclic",
-            "offset": 15,
-            "period": 18,
-            "frequency": 2.5,
-            "altitude": 10000,
-            "airlines": [
-                ["swa", 35],
-                ["aal", 12],
-                ["ual", 9],
-                ["asa", 8],
-                ["dal", 8],
-                ["airtaxi", 12]
-            ]
-        },
-        {
-            "_name": "LYNDI FOUR",
-            "speed": 250,
-            "type": "cyclic",
-            "offset": 8,
-            "period": 15,
-            "frequency": 2.5,
-            "altitude": 10000,
-            "fixes": ["_KSAN075060", "PILLO", "VYDDA"],
-            "airlines": [
-                ["swa", 35],
-                ["aal", 12],
-                ["ual", 9],
-                ["asa", 8],
-                ["dal", 8],
-                ["airtaxi", 12]
-            ]
-        }
+    "POGGI5": {
+      "icao": "POGGI5",
+      "name": "Poggie Five",
+      "rwy": {
+        "9": [ "LOWMA", "PGY" ],
+        "27": [ "LOWMA", "PGY" ]
+      },
+      "exitPoints": {
+        "BROWS": [ "BROWS" ]
+      },
+      "draw": [ [ "LOWMA", "PGY", "BROWS*" ] ]
+    }
+  },
+  "maps": {
+    "base": [
     ]
+  }
 }
+
