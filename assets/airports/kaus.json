@@ -26,21 +26,21 @@
 			"ceiling": 150,
 			"airspace_class": "C",
       "poly": [
-        [ 30.800031, -98.083243 ],
-        [ 30.800041, -97.099992 ],
-        [ 30.653611, -97.111944 ],
-        [ 30.337222, -96.815000 ],
-        [ 29.733611, -96.820833 ],
-        [ 29.510308, -96.931697 ],
-        [ 29.530278, -97.825556 ],
-        [ 29.591667, -97.808333 ],
-        [ 29.716667, -97.794444 ],
-        [ 29.766715, -97.791678 ],
-        [ 29.802780, -97.804167 ],
-        [ 29.800000, -97.866667 ],
-        [ 29.893065, -98.077714 ],
-        [ 30.116628, -98.250033 ],
-        [ 30.800031, -98.083243 ]
+        [30.800031, -98.083243],
+        [30.800041, -97.099992],
+        [30.653611, -97.111944],
+        [30.337222, -96.815000],
+        [29.733611, -96.820833],
+        [29.510308, -96.931697],
+        [29.530278, -97.825556],
+        [29.591667, -97.808333],
+        [29.716667, -97.794444],
+        [29.766715, -97.791678],
+        [29.802780, -97.804167],
+        [29.800000, -97.866667],
+        [29.893065, -98.077714],
+        [30.116628, -98.250033],
+        [30.800031, -98.083243]
 			]
 		}
 	],
@@ -49,121 +49,122 @@
 		"ACT"  : ["N31d39.74", "W97d16.15"],
 		"AEROZ": ["N30d42.22", "W98d51.83"],
 		"AGJ"  : ["N31d11.13", "W98d8.51"],
-    "AMUSE": ["N30d27.38", "W98d17.65"],
-    "ASHRR": ["N30d19.07", "W96d30.47"],
+        "AMUSE": ["N30d27.38", "W98d17.65"],
+        "ASHRR": ["N30d19.07", "W96d30.47"],
 		"AUS"  : ["N30d11.67", "W97d40.19"],
-    "BAAAB": ["N30d9.51", "W98d10.35"],
+        "BAAAB": ["N30d9.51", "W98d10.35"],
 		"BALLD": ["N29d55.59", "W97d39.04"],
-    "BASTO": ["N30d10.42", "W97d17.07"],
-    "BEESO": ["N30d20.25", "W97d34.39"],
-    "BIIRD": ["N30d4.46", "W97d40.54"],
-    "BITER": ["N30d6.75", "W97d4.79"],
-    "BLEWE": ["N31d12.46", "W97d12.54"],
-    "BNDIA": ["N29d38.65", "W98d27.67"],
-    "BOCCK": ["N29d56.20", "W96d12.45"],
-    "BOWTZ": ["N30d5.29", "W97d32.15"],
-    "BOYZZ": ["N30d33.70", "W97d55.99"],
-    "BRAZA": ["N30d17.97", "W97d40.90"],
-    "BS"   : ["N30d5.38", "W97d40.57"],
-    "BWD"  : ["N31d53.56", "W98d57.45"],
-    "CAMDY": ["N29d58.12", "W97d40.38"],
-    "CHADE": ["N30d25.23", "W97d41.09"],
-    "CLL"  : ["N30d36.30", "W96d25.24"],
-    "CRLOS": ["N30d29.46", "W97d50.20"],
-    "CRP"  : ["N27d54.22", "W97d26.69"],
+        "BASTO": ["N30d10.42", "W97d17.07"],
+        "BEESO": ["N30d20.25", "W97d34.39"],
+        "BIIRD": ["N30d4.46", "W97d40.54"],
+        "BITER": ["N30d6.75", "W97d4.79"],
+        "BLEWE": ["N31d12.46", "W97d12.54"],
+        "BNDIA": ["N29d38.65", "W98d27.67"],
+        "BOCCK": ["N29d56.20", "W96d12.45"],
+        "BOWTZ": ["N30d5.29", "W97d32.15"],
+        "BOYZZ": ["N30d33.70", "W97d55.99"],
+        "BRAZA": ["N30d17.97", "W97d40.90"],
+        "BS"   : ["N30d5.38", "W97d40.57"],
+        "BWD"  : ["N31d53.56", "W98d57.45"],
+        "CAMDY": ["N29d58.12", "W97d40.38"],
+        "CHADE": ["N30d25.23", "W97d41.09"],
+        "CLL"  : ["N30d36.30", "W96d25.24"],
+        "CRLOS": ["N30d29.46", "W97d50.20"],
+        "CRP"  : ["N27d54.22", "W97d26.69"],
 		"CWK"  : ["N30d22.71", "W97d31.79"],
 		"DBORD": ["N30d8.79", "W97d51.31"],
 		"DBOYS": ["N29d42.83", "W95d41.22"],
-    "DDTOO": ["N30d15.53", "W97d39.56"],
-    "DILLO": ["N30d47.78", "W98d47.23"],
-    "DOBBY": ["N28d59.03", "W98d34.71"],
-		"DOFFS": ["N30d27.16", "W97d39.87"],
-    "DXEEE": ["N30d3.57", "W98d12.19"],
+        "DDTOO": ["N30d15.53", "W97d39.56"],
+        "DILLO": ["N30d47.78", "W98d47.23"],
+        "DOBBY": ["N28d59.03", "W98d34.71"],
+		"DOOEE": ["N29d47.41", "W96d19.61"],
+        "DOFFS": ["N30d27.16", "W97d39.87"],
+        "DXEEE": ["N30d3.57", "W98d12.19"],
 		"EEVEE": ["N30d3.41", "W97d33.80"],
-    "ELLBJ": ["N30d15.96", "W97d40.84"],
-    "ELOEL": ["N30d54.32", "W97d55.24"],
+        "ELLBJ": ["N30d15.96", "W97d40.84"],
+        "ELOEL": ["N30d54.32", "W97d55.24"],
 		"FAACE": ["N30d11.49", "W97d57.33"],
 		"FNNLY": ["N30d7.37", "W97d39.34"],
-    "FORSS": ["N31d10.33", "W98d4.66"],
+        "FORSS": ["N31d10.33", "W98d4.66"],
 		"FUNNN": ["N30d7.47", "W97d40.62"],
-    "GARDS": ["N30d3.12", "W97d56.80"],
+        "GARDS": ["N30d3.12", "W97d56.80"],
 		"GYTON": ["N28d12.20", "W99d2.86"],
-    "HFMAN": ["N27d55.63", "W99d13.14"],
-    "HHOOF": ["N30d23.60", "W97d34.13"],
-    "HOOKK": ["N30d21.60", "W97d12.18"],
-    "HOOLR": ["N28d55.82", "W98d18.10"],
-    "HOUKM": ["N30d25.74", "W97d45.15"],
-    "HUB"  : ["N29d39.34", "W95d16.60"],
-    "IAH"  : ["N29d57.42", "W95d20.74"],
-    "IDU"  : ["N29d57.36", "W96d33.73"],
-    "ILEXY": ["N30d21.16", "W97d4.76"],
+        "HFMAN": ["N27d55.63", "W99d13.14"],
+        "HHOOF": ["N30d23.60", "W97d34.13"],
+        "HOOKK": ["N30d21.60", "W97d12.18"],
+        "HOOLR": ["N28d55.82", "W98d18.10"],
+        "HOUKM": ["N30d25.74", "W97d45.15"],
+        "HUB"  : ["N29d39.34", "W95d16.60"],
+        "IAH"  : ["N29d57.42", "W95d20.74"],
+        "IDU"  : ["N29d57.36", "W96d33.73"],
+        "ILEXY": ["N30d21.16", "W97d4.76"],
 		"ISHOV": ["N30d8.86", "W97d11.84"],
-    "JAYJO": ["N30d20.23", "W96d48.91"],
+        "JAYJO": ["N30d20.23", "W96d48.91"],
 		"JCT"  : ["N30d35.88", "W99d49.05"],
 		"JEDYE": ["N30d22.96", "W97d38.40"],
-    "JOVSA": ["N30d5.80", "W97d40.57"],
-    "KALLA": ["N30d43.26", "W98d4.65"],
-    "KLNGR": ["N31d13.41", "W98d2.33"],
+        "JOVSA": ["N30d5.80", "W97d40.57"],
+        "KALLA": ["N30d43.26", "W98d4.65"],
+        "KLNGR": ["N31d13.41", "W98d2.33"],
 		"LAIDY": ["N30d10.62", "W97d46.15"],
-    "LAIKS": ["N30d38.77", "W98d8.74"],
-    "LAMAS": ["N29d54.11", "W97d40.27"],
-    "LFK"  : ["N31d9.74", "W94d43.01"],
-    "LIPSS": ["N30d7.77", "W97d49.69"],
-    "LLO"  : ["N30d47.78", "W98d47.24"],
-    "LUKKE": ["N30d12.78", "W97d23.44"],
-    "LUKKN": ["N29d51.87", "W95d46.91"],
-    "MGTEC": ["N30d26.24", "W97d34.57"],
-    "MMARE": ["N30d16.83", "W97d34.14"],
-    "MNURE": ["N29d59.58", "W96d33.96"],
-    "MSTLO": ["N30d55.44", "W97d19.15"],
-    "MUCKY": ["N30d25.12", "W98d51.91"],
-    "MUNCH": ["N30d34.59", "W97d17.68"],
+        "LAIKS": ["N30d38.77", "W98d8.74"],
+        "LAMAS": ["N29d54.11", "W97d40.27"],
+        "LFK"  : ["N31d9.74", "W94d43.01"],
+        "LIPSS": ["N30d7.77", "W97d49.69"],
+        "LLO"  : ["N30d47.78", "W98d47.24"],
+        "LUKKE": ["N30d12.78", "W97d23.44"],
+        "LUKKN": ["N29d51.87", "W95d46.91"],
+        "MGTEC": ["N30d26.24", "W97d34.57"],
+        "MMARE": ["N30d16.83", "W97d34.14"],
+        "MNURE": ["N29d59.58", "W96d33.96"],
+        "MSTLO": ["N30d55.44", "W97d19.15"],
+        "MUCKY": ["N30d25.12", "W98d51.91"],
+        "MUNCH": ["N30d34.59", "W97d17.68"],
 		"MUSEC": ["N30d5.93", "W97d19.50"],
-    "NAVYS": ["N31d23.29", "W96d18.81"],
+        "NAVYS": ["N31d23.29", "W96d18.81"],
 		"NILEE": ["N29d5.38", "W98d21.53"],
-    "ORINT": ["N29d56.24", "W98d13.61"],
-    "PAYDA": ["N30d17.46", "W98d12.29"],
-    "PALMS": ["N29d12.81", "W97d24.81"],
+        "ORINT": ["N29d56.24", "W98d13.61"],
+        "PAYDA": ["N30d17.46", "W98d12.29"],
+        "PALMS": ["N29d12.81", "W97d24.81"],
 		"PLANX": ["N30d10.79", "W97d58.61"],
 		"PUDDY": ["N29d47.76", "W98d15.19"],
-    "RATTT": ["N30d16.58", "W97d46.31"],
-    "RRTOO": ["N30d18.58", "W97d39.64"],
-    "SAT"  : ["N29d38.64", "W98d27.68"],
-    "SAYBR": ["N30d58.40", "W97d2.81"],
+        "RATTT": ["N30d16.58", "W97d46.31"],
+        "RRTOO": ["N30d18.58", "W97d39.64"],
+        "SAT"  : ["N29d38.64", "W98d27.68"],
+        "SAYBR": ["N30d58.40", "W97d2.81"],
 		"SCALI": ["N30d23.15", "W97d39.76"],
-    "SCUTE": ["N30d0.74", "W97d33.74"],
-    "SEWZY": ["N30d48.80", "W97d21.74"],
-    "SHYNR": ["N29d55.64", "W96d2.43"],
-    "SJT"  : ["N31d22.49", "W100d27.30"],
+        "SCUTE": ["N30d0.74", "W97d33.74"],
+        "SEWZY": ["N30d48.80", "W97d21.74"],
+        "SHYNR": ["N29d55.64", "W96d2.43"],
+        "SJT"  : ["N31d22.49", "W100d27.30"],
 		"SKEWT": ["N29d25.83", "W98d21.27"],
 		"SMILN": ["N30d12.33", "W98d4.29"],
 		"SMRFF": ["N30d11.55", "W97d34.00"],
-    "SNOTT": ["N30d13.44", "W97d46.23"],
+        "SNOTT": ["N30d13.44", "W97d46.23"],
 		"SSHOE": ["N30d4.34", "W97d39.27"],
-    "SSOLO": ["N31d14.93", "W97d11.56"],
-    "SSURF": ["N30d18.20", "W97d34.34"],
-    "STNSN": ["N30d5.99", "W97d46.03"],
+        "SSOLO": ["N31d14.93", "W97d11.56"],
+        "SSURF": ["N30d18.20", "W97d34.34"],
+        "STNSN": ["N30d5.99", "W97d46.03"],
 		"STV"  : ["N30d12.40", "W98d42.34"],
 		"SZAGI": ["N30d45.55", "W98d25.92"],
-    "TATAU": ["N30d2.60", "W97d45.94"],
+        "TATAU": ["N30d2.60", "W97d45.94"],
 		"THELM": ["N29d26.68", "W98d24.14"],
 		"TNV"  : ["N30d17.31", "W96d3.49"],
 		"TOONE": ["N30d5.41", "W97d29.85"],
-    "TPL"  : ["N31d12.56", "W97d25.50"],
-    "TRPPN": ["N30d9.43", "W97d46.12"],
+        "TPL"  : ["N31d12.56", "W97d25.50"],
+        "TRPPN": ["N30d9.43", "W97d46.12"],
 		"TRVSS": ["N30d27.91", "W97d52.71"],
-    "UCOKA": ["N31d19.00", "W100d5.00"],
-    "UTEEE": ["N30d18.97", "W97d40.93"],
-    "VADRR": ["N30d39.81", "W97d26.87"],
-    "VIDAA": ["N29d34.38", "W98d21.17"],
-    "WAILN": ["N29d48.49", "W96d34.28"],
-    "WEEED": ["N29d46.75", "W96d10.91"],
-    "WINDU": ["N31d31.83", "W97d4.95"],
-    "WLEEE": ["N30d2.97", "W96d52.22"],
-    "WLMRT": ["N30d44.45", "W97d51.56"],
-    "XWING": ["N30d16.43", "W97d32.53"],
-    "ZEDKU": ["N30d5.69", "W97d39.31"],
-    "ZENZI": ["N30d17.31", "W96d3.50"]
+        "UCOKA": ["N31d19.00", "W100d5.00"],
+        "UTEEE": ["N30d18.97", "W97d40.93"],
+        "VADRR": ["N30d39.81", "W97d26.87"],
+        "VIDAA": ["N29d34.38", "W98d21.17"],
+        "WAILN": ["N29d48.49", "W96d34.28"],
+        "WEEED": ["N29d46.75", "W96d10.91"],
+        "WINDU": ["N31d31.83", "W97d4.95"],
+        "WLEEE": ["N30d2.97", "W96d52.22"],
+        "WLMRT": ["N30d44.45", "W97d51.56"],
+        "XWING": ["N30d16.43", "W97d32.53"],
+        "ZEDKU": ["N30d5.69", "W97d39.31"],
+        "ZENZI": ["N30d17.31", "W96d3.50"]
 	},
 	"runways":[
 		{
@@ -281,23 +282,23 @@
       "icao": "ELOEL2",
       "name": "Eloel Two",
       "rwy": {
-        "KAUS17L": [ "WLMRT" ],
-        "KAUS17R": [ "WLMRT" ],
-        "KAUS35L": [ "WLMRT" ],
-        "KAUS35R": [ "WLMRT" ]
+        "KAUS17L": ["WLMRT"],
+        "KAUS17R": ["WLMRT"],
+        "KAUS35L": ["WLMRT"],
+        "KAUS35R": ["WLMRT"]
       },
-      "body": [ "ELOEL" ],
+      "body": ["ELOEL"],
       "exitPoints": {
-        "ABI": [ "FORSS", "ABI" ],
-        "ELOEL": [ ],
-        "FORSS": [ "FORSS" ],
-        "KLNGR": [ "KLNGR" ]
+        "ABI": ["FORSS", "ABI"],
+        "ELOEL": [],
+        "FORSS": ["FORSS"],
+        "KLNGR": ["KLNGR"]
       },
       "draw": [
-        [ "WLMRT", "ELOEL*" ],
-        [ "ELOEL", "FORSS*" ],
-        [ "FORSS", "ABI*" ],
-        [ "ELOEL", "KLNGR*" ]
+        ["WLMRT", "ELOEL*"],
+        ["ELOEL", "FORSS*"],
+        ["FORSS", "ABI*"],
+        ["ELOEL", "KLNGR*"]
       ]
     },
     "ILEXY2": {
@@ -309,20 +310,16 @@
         "KAUS35L": ["HOOKK"],
         "KAUS35R": ["HOOKK"]
       },
-      "body": [ "ILEXY" ],
+      "body": ["ILEXY"],
       "exitPoints": {
         "ILEXY": [ ],
-        "JAYJO": [ [ "JAYJO", "A89+" ] ],
-        "ZENZI": [
-          [ "JAYJO", "A89+" ],
-          [ "ASHRR", "A120+" ],
-          [ "ZENZI", "A180+" ]
-        ]
+        "JAYJO": ["JAYJO"],
+        "ZENZI": ["JAYJO", "ASHRR", "ZENZI"]
       },
       "draw": [
-        [ "HOOKK", "ILEXY*" ],
-        [ "ILEXY", "JAYJO*" ],
-        [ "JAYJO", "ASHRR", "ZENZI" ]
+        ["HOOKK", "ILEXY*"],
+        ["ILEXY", "JAYJO*"],
+        ["JAYJO", "ASHRR", "ZENZI"]
       ]
     },
     "MUCKY2": {
@@ -335,27 +332,27 @@
         "KAUS35R": ["PAYDA"]
       },
       "exitPoints": {
-        "MUCKY": [ "MUCKY" ]
+        "MUCKY": ["MUCKY"]
       },
       "draw": [
-        [ "PAYDA", "MUCKY*" ]
+        ["PAYDA", "MUCKY*"]
       ]
     },
     "PALMS2": {
       "icao": "PALMS2",
       "name": "Palms Two",
       "rwy": {
-        "KAUS17L": [ "CWK" ],
-        "KAUS17R": [ "CWK" ],
-        "KAUS35L": [ "CWK" ],
-        "KAUS35R": [ "CWK" ]
+        "KAUS17L": ["CWK"],
+        "KAUS17R": ["CWK"],
+        "KAUS35L": ["CWK"],
+        "KAUS35R": ["CWK"]
       },
       "body": ["PALMS"],
       "exitPoints": {
-        "CRP": [ "CRP" ]
+        "CRP": ["CRP"]
       },
       "draw": [
-        [ "CWK", "PALMS", "CRP*" ]
+        ["CWK", "PALMS", "CRP*"]
       ]
     },
     "SAYBR2": {
@@ -368,10 +365,10 @@
         "KAUS35R": ["MUNCH"]
       },
       "exitPoints": {
-        "SAYBR": [ "SAYBR" ]
+        "SAYBR": ["SAYBR"]
       },
       "draw": [
-        [ "MUNCH", "SAYBR*" ]
+        ["MUNCH", "SAYBR*"]
       ]
     }
 	},
@@ -380,24 +377,24 @@
       "icao": "BITER7",
       "name": "Biter Seven",
       "entryPoints": {
-        "HUB": [ "HUB", "BOCCK", "IDU" ],
-        "IAH": [ "IAH", "SHYNR", "BOCCK", "IDU" ],
-        "IDU": [ "IDU" ],
-        "LFK": [ "LFK", "BOCCK", "IDU" ],
+        "HUB": ["HUB", "BOCCK", "IDU"],
+        "IAH": ["IAH", "SHYNR", "BOCCK", "IDU"],
+        "IDU": ["IDU"],
+        "LFK": ["LFK", "BOCCK", "IDU"],
         "WLEEE": [ ]
       },
-      "body": [ "WLEEE", "BITER", "ISHOV" ],
+      "body": [["WLEEE", "A60"], "BITER", "ISHOV"],
       "rwy": {
-        "KAUS17L": [ "BASTO" ],
-        "KAUS17R": [ "BASTO" ],
-        "KAUS35L": [ "BASTO" ],
-        "KAUS35R": [ "BASTO" ]
+        "KAUS17L": [["BASTO", "A30"]],
+        "KAUS17R": [["BASTO", "A30"]],
+        "KAUS35L": [["BASTO", "A30"]],
+        "KAUS35R": [["BASTO", "A30"]]
       },
       "draw": [
-        [ "HUB*", "BOCCK" ],
-        [ "IAH*", "SHYNR", "BOCCK", "IDU" ],
-        [ "IDU*", "WLEEE*", "BITER", "ISHOV", "BASTO" ],
-        [ "LFK*", "BOCCK" ]
+        ["HUB*", "BOCCK"],
+        ["IAH*", "SHYNR", "BOCCK", "IDU"],
+        ["IDU*", "WLEEE*", "BITER", "ISHOV", "BASTO"],
+        ["LFK*", "BOCCK"]
       ]
     },
     "BLEWE4": {
@@ -405,20 +402,20 @@
       "name": "Blue Four",
       "entryPoints": {
         "BLEWE": [ ],
-        "ACT": [ "ACT" ],
-        "WINDU": [ "WINDU" ]
+        "ACT": ["ACT"],
+        "WINDU": ["WINDU"]
       },
-      "body": [ "BLEWE", "SEWZY" ],
+      "body": [["BLEWE", "A80"], ["SEWZY", "A50"]],
       "rwy": {
-        "KAUS17L": [ "CWK" ],
-        "KAUS17R": [ "CWK" ],
-        "KAUS35L": [ "CWK" ],
-        "KAUS35R": [ "CWK" ]
+        "KAUS17L": ["CWK"],
+        "KAUS17R": ["CWK"],
+        "KAUS35L": ["CWK"],
+        "KAUS35R": ["CWK"]
       },
       "draw": [
-        [ "BLEWE*", "SEWZY", "CWK" ],
-        [ "ACT*", "BLEWE" ],
-        [ "WINDU*", "BLEWE" ]
+        ["BLEWE*", "SEWZY", "CWK"],
+        ["ACT*", "BLEWE"],
+        ["WINDU*", "BLEWE"]
       ]
     },
     "DXEEE1": {
@@ -426,74 +423,31 @@
       "name": "Dixie One",
       "entryPoints": {
         "DXEEE": [ ],
-        "HFMAN": [
-          "HFMAN",
-          "GYTON",
-          "DOBBY",
-          [ "THELM", "A200+|S280" ],
-          "VIDAA",
-          [ "PUDDY", "A140+" ],
-          [ "ORINT", "A120+" ]
-        ],
-        "HOOLR": [
-          "HOOLR",
-          "NILEE",
-          [ "SKEWT", "A200+|S280" ],
-          "VIDAA",
-          [ "PUDDY", "A140+" ],
-          [ "ORINT", "A120+" ]
-        ]
+        "HFMAN": ["HFMAN", "GYTON", "DOBBY", ["THELM", "A200+|S280"], "VIDAA", ["PUDDY", "A140+"], ["ORINT", "A120+"]],
+        "HOOLR": ["HOOLR", "NILEE", ["SKEWT", "A200+|S280"], "VIDAA", ["PUDDY", "A140+"], ["ORINT", "A120+"]]
       },
-      "body": [
-        [ "DXEEE", "A100+|A140-|S250" ],
-        "BAAAB",
-        [ "SMILN", "A120-" ]
-      ],
+      "body": [["DXEEE", "A100+|A140-|S250"], "BAAAB", ["SMILN", "A120-"]],
       "rwy": {
-        "KAUS17L": [
-          [ "PLANX", "A80+" ],
-          "DBORD",
-          [ "TRPPN", "A60|S210" ],
-          "SNOTT",
-          "#355"
-        ],
-        "KAUS17R": [
-          [ "PLANX", "A80+" ],
-          "DBORD",
-          [ "TRPPN", "A60|S210" ],
-          "SNOTT",
-          "#355"
-        ],
-        "KAUS35L": [
-          "FAACE",
-          [ "LIPSS", "A40|S210" ],
-          "STNSN",
-          "TATAU",
-          "#175"
-        ],
-        "KAUS35R": [
-          "FAACE",
-          [ "LIPSS", "A40|S210" ],
-          "STNSN",
-          "TATAU",
-          "#175"
-        ]
+        "KAUS17L": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "SNOTT", "#355"],
+        "KAUS17R": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "SNOTT", "#355"],
+        "KAUS35L": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"],
+        "KAUS35R": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU", "#175"]
       },
       "draw": [
-        [ "HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT" ],
-        [ "HOOLR*", "NILEE", "SKEWT", "VIDAA" ],
-        [ "ORINT", "DXEEE*", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU" ],
-        [ "SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT" ]
+        ["HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT"],
+        ["HOOLR*", "NILEE", "SKEWT", "VIDAA"],
+        ["ORINT", "DXEEE*", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU"],
+        ["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
       ]
     },
     "KALLA3": {
       "icao": "KALLA3",
       "name": "Kalla Three",
       "entryPoints": {
-        "LLO": [ "LLO" ],
+        "LLO": ["LLO"],
         "KALLA": [ ]
       },
-      "body": [ "CWK" ],
+      "body": [["KALLA", "A100"], "CWK"],
       "rwy": {
         "KAUS17L": [ ],
         "KAUS17R": [ ],
@@ -501,77 +455,77 @@
         "KAUS35R": [ ]
       },
       "draw": [
-        [ "LLO*", "KALLA" ],
-        [ "KALLA*", "CWK" ]
+        ["LLO*", "KALLA"],
+        ["KALLA*", "CWK"]
       ]
     },
     "LAIKS2": {
       "icao": "LAIKS2",
       "name": "Lakes Two",
       "entryPoints": {
-        "DILLO": [ "DILLO", "SZAGI" ],
-        "UCOKA": [ "UCOKA", "DILLO", "SZAGI" ],
+        "DILLO": ["DILLO", "SZAGI"],
+        "UCOKA": ["UCOKA", "DILLO", "SZAGI"],
         "LAIKS": [ ]
       },
-      "body": [ "LAIKS", "BOYZZ" ],
+      "body": [["LAIKS", "A140-|A100+"], ["BOYZZ", "A110-"]],
       "rwy": {
-        "KAUS17L": [ "CRLOS", "HOUKM" ],
-        "KAUS17R": [ "CRLOS", "HOUKM" ],
-        "KAUS35L": [ "TRVSS", "RATTT", "LAIDY", "#175" ],
-        "KAUS35R": [ "TRVSS", "RATTT", "LAIDY", "#175" ]
+        "KAUS17L": [["CRLOS", "A50"], ["HOUKM", "A50|S210"]],
+        "KAUS17R": [["CRLOS", "A50"], ["HOUKM", "A50|S210"]],
+        "KAUS35L": [["TRVSS", "A100-|A80+"], ["RATTT", "A60+|S220"], ["LAIDY", "A50|S210"], "#175"],
+        "KAUS35R": [["TRVSS", "A100-|A80+"], ["RATTT", "A60+|S220"], ["LAIDY", "A50|S210"], "#175"]
       },
       "draw": [
-        [ "UCOKA*", "DILLO" ],
-        [ "DILLO*", "SZAGI", "LAIKS" ],
-        [ "LAIKS*", "BOYZZ", "CRLOS", "HOUKM" ],
-        [ "BOYZZ", "TRVSS", "RATTT", "LAIDY" ]
+        ["UCOKA*", "DILLO"],
+        ["DILLO*", "SZAGI", "LAIKS"],
+        ["LAIKS*", "BOYZZ", "CRLOS", "HOUKM"],
+        ["BOYZZ", "TRVSS", "RATTT", "LAIDY"]
       ]
     },
     "SEWZY4": {
       "icao": "SEWZY4",
       "name": "Sewzy Four",
       "entryPoints": {
-        "WINDU": [ "WINDU", "SSOLO", "MSTLO" ],
-        "MSTLO": [ "MSTLO" ]
+        "WINDU": ["WINDU", ["SSOLO", "A230-|A170+|S280"], ["MSTLO", "A130+|S250"]],
+        "MSTLO": ["MSTLO"]
       },
-      "body": [ "SEWZY", "VADRR" ],
+      "body": [["SEWZY", "A160-|A100+"], ["VADRR", "A80+"]],
       "rwy": {
-        "KAUS17L": [ "MGTEC", "JEDYE" ],
-        "KAUS17R": [ "MGTEC", "JEDYE" ],
-        "KAUS35L": [ "HHOOF", "MMARE", "SMRFF", "#175" ],
-        "KAUS35R": [ "HHOOF", "MMARE", "SMRFF", "#175" ]
+        "KAUS17L": [["MGTEC", "A50+|S220"], ["JEDYE", "A40|S210"]],
+        "KAUS17R": [["MGTEC", "A50+|S220"], ["JEDYE", "A40|S210"]],
+        "KAUS35L": ["HHOOF", ["MMARE", "A60+|S220"], ["SMRFF", "A50|S210"], "#175"],
+        "KAUS35R": ["HHOOF", ["MMARE", "A60+|S220"], ["SMRFF", "A50|S210"], "#175"]
       },
       "draw": [
-        [ "WINDU*", "SSOLO", "MSTLO" ],
-        [ "MSTLO*", "SEWZY", "VADRR", "MGTEC", "JEDYE" ],
-        [ "VADRR", "HHOOF", "MMARE", "SMRFF" ]
+        ["WINDU*", "SSOLO", "MSTLO"],
+        ["MSTLO*", "SEWZY", "VADRR", "MGTEC", "JEDYE"],
+        ["VADRR", "HHOOF", "MMARE", "SMRFF"]
       ]
     },
     "WLEEE4": {
       "icao": "WLEEE4",
       "name": "Wleee Four",
       "entryPoints": {
-        "DBOYS": [ "DBOYS", "WEEED", "WAILN" ],
-        "LUKKN": [ "LUKKN", "WEEED", "WAILN" ],
-        "MNURE": [ "MNURE" ],
-        "WAILN": [ "WAILN" ],
-        "WEEED": [ "WEEED" ],
+        "DBOYS": ["DBOYS", "WEEED", ["DOOEE", "A170+"], "WAILN"],
+        "LUKKN": ["LUKKN", "WEEED", ["DOOEE", "A170+"], "WAILN"],
+        "MNURE": ["MNURE"],
+        "WAILN": ["WAILN"],
+        "WEEED": ["WEEED"],
         "WLEEE": [ ]
       },
-      "body": [ "WLEEE", "BITER" ],
+      "body": [["WLEEE", "A140-|A120+|S280"], ["BITER", "A120-"]],
       "rwy": {
-        "KAUS17L": [ "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO", "#355" ],
-        "KAUS17R": [ "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO", "#355" ],
-        "KAUS35L": [ "MUSEC", "TOONE", "BOWTZ", "EEVEE", "SCUTE", "#175" ],
-        "KAUS35R": [ "MUSEC", "TOONE", "BOWTZ", "EEVEE", "SCUTE", "#175" ]
+        "KAUS17L": ["ISHOV", ["BASTO", "A80-"], ["LUKKE", "A60+|S230"], ["XWING", "A40|S210"], "SSURF", "BEESO", "#355"],
+        "KAUS17R": ["ISHOV", ["BASTO", "A80-"], ["LUKKE", "A60+|S230"], ["XWING", "A40|S210"], "SSURF", "BEESO", "#355"],
+        "KAUS35L": [["MUSEC", "A60+|S230"]], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"],
+        "KAUS35R": [["MUSEC", "A60+|S230"]], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"]
       },
       "draw": [
-        [ "DBOYS*", "WEEED" ],
-        [ "LUKKN*", "WEEED" ],
-        [ "WEEED*", "WAILN" ],
-        [ "WAILN*", "WLEEE" ],
-        [ "WLEEE*", "BITER", "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO" ],
-        [ "BITER", "MUSEC", "TOONE", "BOWTZ", "EEVEE", "SCUTE" ]
+        ["DBOYS*", "WEEED"],
+        ["LUKKN*", "WEEED"],
+        ["WEEED*", "DOOEE", "WAILN"],
+        ["WAILN*", "WLEEE"],
+        ["WLEEE*", "BITER", "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO"],
+        ["BITER", "MUSEC", "TOONE", "BOWTZ", "EEVEE", "SCUTE"]
       ]
     }
   },
@@ -586,15 +540,15 @@
       "method": "random",
       "rate": 1.04,
       "airlines": [
-        [ "aal/short", 8 ],
-        [ "eny", 1 ],
-        [ "baw/b789", 1 ],
-        [ "dal/short", 3 ],
-        [ "fft", 1 ],
-        [ "nax/long", 1 ],
-        [ "skw", 1 ],
-        [ "swa", 6 ],
-        [ "sry/e145", 3 ]
+        ["aal/short", 8],
+        ["eny", 1],
+        ["baw/b789", 1],
+        ["dal/short", 3],
+        ["fft", 1],
+        ["nax/long", 1],
+        ["skw", 1],
+        ["swa", 6],
+        ["sry/e145", 3]
       ]
     },
     {
@@ -607,7 +561,7 @@
       "method": "random",
       "rate": 0.45,
       "airlines": [
-        [ "aal/short", 11 ]
+        ["aal/short", 11]
       ]
     },
     {
@@ -620,11 +574,11 @@
       "method": "random",
       "rate": 0.79,
       "airlines": [
-        [ "dal/short", 4 ],
-        [ "fft", 2 ],
-        [ "skw", 1 ],
-        [ "swa", 6 ],
-        [ "ual/short", 6 ]
+        ["dal/short", 4],
+        ["fft", 2],
+        ["skw", 1],
+        ["swa", 6],
+        ["ual/short", 6]
       ]
     },
     {
@@ -637,20 +591,20 @@
       "method": "random",
       "rate": 2.79,
       "airlines": [
-        [ "aal/short", 4 ],
-        [ "aay", 3 ],
-        [ "ash", 1 ],
-        [ "cfg/long", 1 ],
-        [ "dal/short", 15 ],
-        [ "edv", 2 ],
-        [ "fdx/eddf25l", 2 ],
-        [ "fft", 5 ],
-        [ "jbu", 5 ],
-        [ "rpa", 2 ],
-        [ "swa", 20 ],
-        [ "sry/e145", 1 ],
-        [ "ual/short", 5 ],
-        [ "ups", 1 ]
+        ["aal/short", 4],
+        ["aay", 3],
+        ["ash", 1],
+        ["cfg/long", 1],
+        ["dal/short", 15],
+        ["edv", 2],
+        ["fdx/eddf25l", 2],
+        ["fft", 5],
+        ["jbu", 5],
+        ["rpa", 2],
+        ["swa", 20 ],
+        ["sry/e145", 1],
+        ["ual/short", 5],
+        ["ups", 1]
       ]
     },
     {
@@ -663,9 +617,9 @@
       "method": "random",
       "rate": 0.58,
       "airlines": [
-        [ "ash", 2 ],
-        [ "swa", 5 ],
-        [ "ual/short", 7 ]
+        ["ash", 2],
+        ["swa", 5],
+        ["ual/short", 7]
       ]
     },
     {
@@ -678,9 +632,9 @@
       "method": "random",
       "rate": 0.29,
       "airlines": [
-        [ "fft", 2 ],
-        [ "rpa", 1 ],
-        [ "ual/short", 4 ]
+        ["fft", 2],
+        ["rpa", 1],
+        ["ual/short", 4]
       ]
     },
     {
@@ -693,14 +647,14 @@
       "method": "random",
       "rate": 1.67,
       "airlines": [
-        [ "aal/short", 8 ],
-        [ "aay", 1 ],
-        [ "dal/short", 3 ],
-        [ "fft", 2 ],
-        [ "jbu", 2 ],
-        [ "skw", 3 ],
-        [ "swa", 19 ],
-        [ "ual/short", 2 ]
+        ["aal/short", 8],
+        ["aay", 1],
+        ["dal/short", 3],
+        ["fft", 2],
+        ["jbu", 2],
+        ["skw", 3],
+        ["swa", 19],
+        ["ual/short", 2]
       ]
     },
     {
@@ -713,10 +667,10 @@
       "method": "random",
       "rate": 0.33,
       "airlines": [
-        [ "aay", 1 ],
-        [ "asa", 2 ],
-        [ "skw", 2 ],
-        [ "swa", 3 ]
+        ["aay", 1],
+        ["asa", 2],
+        ["skw", 2],
+        ["swa", 3]
       ]
     },
     {
@@ -729,9 +683,9 @@
       "method": "random",
       "rate": 0.21,
       "airlines": [
-        [ "aca/short", 1 ],
-        [ "asa", 3 ],
-        [ "bvn", 1 ]
+        ["aca/short", 1],
+        ["asa", 3],
+        ["bvn", 1]
       ]
     },
     {
@@ -744,9 +698,9 @@
       "method": "random",
       "rate": 0.125,
       "airlines": [
-        [ "amx/short", 1 ],
-        [ "swa", 1 ],
-        [ "ups", 1 ]
+        ["amx/short", 1],
+        ["swa", 1],
+        ["ups", 1]
       ]
     },
     {
@@ -759,7 +713,7 @@
       "method": "random",
       "rate": 0.42,
       "airlines": [
-        [ "swa", 10 ]
+        ["swa", 10]
       ]
     },
     {
@@ -772,7 +726,7 @@
       "method": "random",
       "rate": 0.125,
       "airlines": [
-        [ "bvn", 3 ]
+        ["bvn", 3]
       ]
     },
     {
@@ -785,7 +739,7 @@
       "method": "random",
       "rate": 0.125,
       "airlines": [
-        [ "bvn", 3 ]
+        ["bvn", 3]
       ]
     },
     {
@@ -793,12 +747,12 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "IAH.BITER7.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.25,
       "airlines": [
-        [ "aal/short", 6 ]
+        ["aal/short", 6]
       ]
     },
     {
@@ -806,24 +760,24 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "WINDU.SEWZY4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 3.25,
       "airlines": [
-        [ "aal/short", 16 ],
-        [ "aay", 3 ],
-        [ "aca/short", 1 ],
-        [ "ash", 1 ],
-        [ "dal/short", 6 ],
-        [ "eny", 1 ],
-        [ "fdx/eddf25l", 2 ],
-        [ "fft", 6 ],
-        [ "jbu", 1 ],
-        [ "rpa", 2 ],
-        [ "sry/e145", 4 ],
-        [ "swa", 25 ],
-        [ "ual/short", 10 ]
+        ["aal/short", 16],
+        ["aay", 3],
+        ["aca/short", 1],
+        ["ash", 1],
+        ["dal/short", 6],
+        ["eny", 1],
+        ["fdx/eddf25l", 2],
+        ["fft", 6],
+        ["jbu", 1],
+        ["rpa", 2],
+        ["sry/e145", 4],
+        ["swa", 25],
+        ["ual/short", 10]
       ]
     },
     {
@@ -831,15 +785,15 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "LUKKN.WLEEE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.71,
       "airlines": [
-        [ "aal/short", 1 ],
-        [ "dal/short", 9 ],
-        [ "fft", 1 ],
-        [ "swa", 6 ]
+        ["aal/short", 1],
+        ["dal/short", 9],
+        ["fft", 1],
+        ["swa", 6]
       ]
     },
     {
@@ -847,20 +801,20 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "DILLO.LAIKS2.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 2.54,
       "airlines": [
-        [ "aal/short", 8 ],
-        [ "aay", 2 ],
-        [ "asa", 5 ],
-        [ "dal/short", 7 ],
-        [ "fft", 6 ],
-        [ "jbu", 2 ],
-        [ "skw", 1 ],
-        [ "swa", 27 ],
-        [ "ual/short", 3 ]
+        ["aal/short", 8],
+        ["aay", 2],
+        ["asa", 5],
+        ["dal/short", 7],
+        ["fft", 6],
+        ["jbu", 2],
+        ["skw", 1],
+        ["swa", 27],
+        ["ual/short", 3]
       ]
     },
     {
@@ -868,16 +822,16 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "WEEED.WLEEE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.46,
       "airlines": [
-        [ "rpa", 2 ],
-        [ "dal/short", 3 ],
-        [ "edv", 1 ],
-        [ "jbu", 2 ],
-        [ "swa", 3 ]
+        ["rpa", 2],
+        ["dal/short", 3],
+        ["edv", 1],
+        ["jbu", 2],
+        ["swa", 3]
       ]
     },
     {
@@ -885,12 +839,12 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "WLEEE.WLEEE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.08,
       "airlines": [
-        [ "swa", 2 ]
+        ["swa", 2]
       ]
     },
     {
@@ -898,14 +852,14 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "UCOKA.LAIKS2.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.5,
       "airlines": [
-        [ "skw", 6 ],
-        [ "swa", 1 ],
-        [ "ual/short", 5 ]
+        ["skw", 6],
+        ["swa", 1],
+        ["ual/short", 5]
       ]
     },
     {
@@ -913,14 +867,14 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "WINDU.BLEWE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.125,
       "airlines": [
-        [ "baw/b789", 1 ],
-        [ "cfg/long", 1 ],
-        [ "nax/long", 1 ]
+        ["baw/b789", 1],
+        ["cfg/long", 1],
+        ["nax/long", 1]
       ]
     },
     {
@@ -928,12 +882,12 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "ACT.BLEWE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.04,
       "airlines": [
-        [ "edv", 1 ]
+        ["edv", 1]
       ]
     },
     {
@@ -941,13 +895,13 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "HFMAN.DXEEE1.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.83,
       "airlines": [
-        [ "amx/short", 1 ],
-        [ "ups", 1 ]
+        ["amx/short", 1],
+        ["ups", 1]
       ]
     },
     {
@@ -955,12 +909,12 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "HOOLR.DXEEE1.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.04,
       "airlines": [
-        [ "swa", 1 ]
+        ["swa", 1]
       ]
     },
     {
@@ -973,7 +927,7 @@
       "method": "random",
       "rate": 0.125,
       "airlines": [
-        [ "bvn", 3 ]
+        ["bvn", 3]
       ]
     },
     {
@@ -986,7 +940,7 @@
       "method": "random",
       "rate": 0.04,
       "airlines": [
-        [ "bvn", 1 ]
+        ["bvn", 1]
       ]
     },
     {
@@ -999,7 +953,7 @@
       "method": "random",
       "rate": 0.17,
       "airlines": [
-        [ "bvn", 4 ]
+        ["bvn", 4]
       ]
     },
     {
@@ -1007,12 +961,12 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "DBOYS.WLEEE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.08,
       "airlines": [
-        [ "jbu", 2 ]
+        ["jbu", 2]
       ]
     },
     {
@@ -1020,15 +974,15 @@
       "destination": "KAUS",
       "category": "arrival",
       "route": "MNURE.WLEEE4.KAUS17R",
-      "altitude": [ 18000, 36000 ],
+      "altitude": [18000, 36000],
       "speed": 320,
       "method": "random",
       "rate": 0.67,
       "airlines": [
-        [ "ash", 2 ],
-        [ "swa", 5 ],
-        [ "ual", 7 ],
-        [ "ups", 2 ]
+        ["ash", 2],
+        ["swa", 5],
+        ["ual", 7],
+        ["ups", 2]
       ]
     }
   ],
