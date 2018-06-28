@@ -516,8 +516,8 @@
       "rwy": {
         "KAUS17L": ["ISHOV", ["BASTO", "A80-"], ["LUKKE", "A60+|S230"], ["XWING", "A40|S210"], "SSURF", "BEESO", "#355"],
         "KAUS17R": ["ISHOV", ["BASTO", "A80-"], ["LUKKE", "A60+|S230"], ["XWING", "A40|S210"], "SSURF", "BEESO", "#355"],
-        "KAUS35L": [["MUSEC", "A60+|S230"]], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"],
-        "KAUS35R": [["MUSEC", "A60+|S230"]], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"]
+        "KAUS35L": [["MUSEC", "A60+|S230"], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"],
+        "KAUS35R": [["MUSEC", "A60+|S230"], ["TOONE", "A40"], ["BOWTZ", "A40|S210"], "EEVEE", "SCUTE", "#175"]
       },
       "draw": [
         ["DBOYS*", "WEEED"],
