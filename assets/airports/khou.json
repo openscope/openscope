@@ -1,0 +1,71 @@
+{
+    "radio": {
+        "twr": "Hobby Tower",
+        "app": "Houston Approach",
+        "dep": "Houston Departure"
+    },
+    "icao": "KHOU",
+    "iata": "HOU",
+    "magnetic_north": 2.8,
+    "ctr_radius": 80,
+    "ctr_ceiling": 15000,
+    "initial_alt": 15000,
+    "position": ["N29d38.73", "W95d16.74"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N29d38.73", "W95d16.74"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 110,
+        "speed": 10
+    },
+    "arrivalRunway": "13R",
+    "departureRunway": "13R",
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 150,
+            "airspace_class": "B",
+            "poly": [
+                [30.059612, -95.769097],
+                [30.052174, -94.922178],
+                [29.447520, -94.879909],
+                [29.459973, -95.867918]
+            ]
+        }
+    ],
+    "fixes": {
+      
+    },
+    "runways":[
+        {
+            "name": ["17", "35"],
+            "end": [
+                ["N29d39.14", "W95d17.08", "44.8ft"],
+                ["N29d38.15", "W95d17.06", "42.9ft"]
+            ],
+            "ils": [false, false],
+        },
+        {
+            "name": ["4", "22"],
+            "end": [
+                ["N29d38.35", "W95d17.12", "42.0ft"],
+                ["N29d39.25", "W95d16.12", "38.9ft"]
+            ],
+            "ils": [true, true],
+        }
+    ],
+    "sids": {
+      
+    },
+    "stars": {
+      
+    },
+    "spawnPatterns": [
+      
+    ],
+    "maps": {
+        "base": [
+            
+        ]
+    }
+}
