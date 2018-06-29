@@ -14,6 +14,7 @@
 
 
 ### Enhancements & Refactors
+- [#938](https://github.com/openscope/openscope/issues/938) - Overhaul of OMDB
 
 
 
