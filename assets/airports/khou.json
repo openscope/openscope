@@ -34,27 +34,48 @@
     }
   ],
   "fixes": {
+    "ALIEF": ["N28d41.23", "W96d44.31"],
     "ALLLY": ["N29d39.62", "W95d25.52"],
+    "AMMMO": ["N28d35.33", "W96d33.20"],
+    "AWSTN": ["N29d34.91", "W95d31.82"],
+    "BALKK": ["N29d25.20", "W97d1.61"],
     "BAYYY": ["N29d22.65", "W94d22.27"],
+    "BELLR": ["N29d19.49", "W96d5.32"],
+    "BIGTX": ["N28d49.29", "W96d36.94"],
+    "COLLT": ["N27d25.79", "W97d11.87"],
+    "CRP"  : ["N27d54.23", "W97d26.69"],
+    "CRSTY": ["N29d38.32", "W95d36.02"],
     "EMARR": ["N29d32.41", "W95d16.13"],
     "FIGGG": ["N29d34.91", "W95d8.44"],
     "FRDDY": ["N29d29.21", "W94d52.66"],
     "GEEAR": ["N29d20.99", "W93d53.13"],
+    "GEEEO": ["N29d28.82", "W95d38.94"],
+    "GLOCK": ["N29d22.81", "W96d38.88"],
+    "HACKT": ["N29d36.34", "W95d39.28"],
     "HUB"  : ["N29d39.34", "W95d16.60"],
     "IVEEE": ["N29d36.62", "W95d18.10"],
     "JEPEG": ["N29d27.40", "W92d27.47"],
     "KCEEE": ["N29d14.57", "W92d28.02"],
     "KELPP": ["N27d10.53", "W91d56.95"],
+    "KMMBR": ["N29d21.97", "W96d30.37"],
     "LEV"  : ["N29d10.51", "W90d6.24"],
+    "LMEDA": ["N28d27.95", "W96d56.37"],
+    "MAAHH": ["N29d36.29", "W95d8.93"],
+    "PARAA": ["N29d24.64", "W96d58.24"],
     "PEGLG": ["N26d48.27", "W92d50.67"],
     "PUCKS": ["N29d24.47", "W94d39.78"],
+    "PURKY": ["N29d26.34", "W96d29.26"],
+    "RJAAY": ["N29d33.82", "W95d18.42"],
+    "SAT"  : ["N29d38.64", "W98d27.68"],
     "SEAGL": ["N26d32.82", "W93d46.31"],
+    "SEUSS": ["N29d39.74", "W95d34.39"],
     "SHLLL": ["N29d3.22", "W94d0.34"],
     "SHREQ": ["N30d25.27", "W89d23.25"],
     "SHUDL": ["N29d22.15", "W94d14.48"],
     "SHUUG": ["N29d33.82", "W95d14.51"],
     "SJI"  : ["N30d43.56", "W88d21.56"],
     "SLYCE": ["N29d17.07", "W93d0.91"],
+    "SMAKR": ["N29d41.62", "W97d23.86"],
     "VILLI": ["N29d37.67", "W95d23.21"]
   },
   "runways": [
@@ -149,6 +170,95 @@
         [ "SHLLL*", "BAYYY" ],
         [ "BAYYY*", "PUCKS", "FRDDY", "FIGGG", "IVEEE", "VILLI", "ALLLY" ],
         [ "FIGGG", "SHUUG", "EMARR" ]
+      ]
+    },
+    "BELLR3": {
+      "icao": "BELLR3",
+      "name": "Bellr Three",
+      "entryPoints": {
+        "BELLR": [ ],
+        "COLLT": [
+          "COLLT",
+          [ "AMMMO", "A240+" ]
+        ],
+        "CRP": [
+          "CRP",
+          "LMEDA",
+          [ "ALIEF", "A240+" ],
+          "BIGTX"
+        ],
+        "LMEDA": [
+          "LMEDA",
+          [ "ALIEF", "A240+" ],
+          "BIGTX"
+        ],
+        "SAT": [
+          "SAT",
+          [ "BALKK", "A240+" ],
+          "PARAA",
+          [ "GLOCK", "A190+" ],
+          "KMMBR"
+        ],
+        "SMAKR": [ "SMAKR", "PURKY" ]
+      },
+      "body": [
+        [ "BELLR", "A110+|A130-|S250" ],
+        [ "HNTRR", "A80+|A100-" ]
+      ],
+      "rwy": {
+        "KHOU13L": [
+          [ "HACKT", "A70-" ],
+          [ "CRSTY", "A60|S210" ],
+          "SEUSS",
+          "#042"
+        ],
+        "KHOU13R": [
+          [ "HACKT", "A70-" ],
+          [ "CRSTY", "A60|S210" ],
+          "SEUSS",
+          "#042"
+        ],
+        "KHOU17": [
+          [ "HACKT", "A70-" ],
+          [ "CRSTY", "A60|S210" ],
+          "SEUSS",
+          "#042"
+        ],
+        "KHOU4": [ [ "GEEEO", "A60|S210" ] ],
+        "KHOU22": [
+          [ "AWSTN", "A70-|S210" ],
+          [ "VILLI", "A60" ],
+          "MAAHH",
+          "#110"
+        ],
+        "KHOU31L": [
+          [ "AWSTN", "A70-|S210" ],
+          [ "VILLI", "A60" ],
+          "RJAAY",
+          "#130"
+        ],
+        "KHOU31R": [
+          [ "AWSTN", "A70-|S210" ],
+          [ "VILLI", "A60" ],
+          "RJAAY",
+          "#130"
+        ],
+        "KHOU35": [
+          [ "AWSTN", "A70-|S210" ],
+          [ "VILLI", "A60" ],
+          "RJAAY",
+          "#130"
+        ]
+      },
+      "draw": [
+        [ "COLLT*", "AMMMO", "BELLR" ],
+        [ "CRP*", "LMEDA" ],
+        [ "LMEDA*", "ALIEF", "BIGTX", "BELLR" ],
+        [ "SAT*", "BALKK", "PARAA", "GLOCK", "KMMBR", "BELLR" ],
+        [ "SMAKR*", "PURKY", "BELLR" ],
+        [ "BELLR*", "HNTRR", "AWSTN", "VILLI", "MAAHH" ],
+        [ "VILLI", "RJAAY" ],
+        [ "HNTRR", "HACKT", "CRSTY", "SEUSS" ]
       ]
     }
   },
