@@ -253,6 +253,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: false
         // },
+        {
+            icao: 'khou',
+            level: 'easy',
+            name: 'Houston-Hobby Int\'l',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kiad',
         //     level: 'hard',
@@ -370,7 +377,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'easy',
         //     name: 'San Diego International Airport',
         //     premium: false,
-        //     wip: true
+        //     wip: false
         // },
         {
             icao: 'ksea',
