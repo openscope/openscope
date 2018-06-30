@@ -26,49 +26,421 @@
             "ceiling": 100,
             "airspace_class": "B",
             "poly": [
-                ["N051d39m08.000", "E007d29m10.000"],
-                ["N051d17m25.000", "E007d41m24.000"],
-                ["N051d07m56.000", "E007d49m45.000"],
-                ["N051d07m29.000", "E007d46m00.000"],
-                ["N051d07m01.000", "E007d30m57.000"],
-                ["N051d06m42.000", "E007d21m21.000"],
-                ["N051d06m31.000", "E007d15m42.000"],
-                ["N051d05m13.000", "E006d50m04.000"],
-                ["N051d04m44.000", "E006d43m52.000"],
-                ["N051d02m25.000", "E006d38m40.000"],
-                ["N050d53m40.000", "E006d32m00.000"],
-                ["N050d51m54.000", "E006d25m28.000"],
-                ["N050d45m16.000", "E006d01m14.000"],
-                ["N050d50m47.000", "E006d04m27.000"],
-                ["N050d51m40.000", "E006d04m41.000"],
-                ["N050d54m43.000", "E006d03m45.000"],
-                ["N051d04m51.000", "E006d00m25.000"],
-                ["N051d08m02.000", "E005d59m25.000"],
-                ["N051d11m00.000", "E005d58m25.000"],
-                ["N051d12m11.000", "E005d58m03.000"],
-                ["N051d13m28.000", "E005d57m37.000"],
-                ["N051d14m55.000", "E005d57m08.000"],
-                ["N051d20m00.000", "E006d02m09.000"],
-                ["N051d42m00.000", "E006d01m42.000"],
-                ["N051d49m41.000", "E006d24m27.000"],
-                ["N051d52m07.000", "E006d30m12.000"],
-                ["N051d53m39.000", "E006d35m16.000"],
-                ["N051d54m00.000", "E006d36m45.000"],
-                ["N051d54m37.000", "E006d39m33.000"],
-                ["N051d55m20.000", "E006d46m42.000"],
-                ["N051d53m58.000", "E006d52m34.000"],
-                ["N051d51m29.000", "E006d58m47.000"],
-                ["N051d46m35.000", "E007d10m55.000"],
-                ["N051d40m38.000", "E007d25m30.000"]
+                ["N51d30m35", "E006d12m47"],
+                ["N51d42m47", "E006d46m05"],
+                ["N51d39m56", "E006d53m37"],
+                ["N51d45m35", "E007d08m18"],
+                ["N51d45m41", "E007d17m33"],
+                ["N51d37m05", "E007d36m45"],
+                ["N51d35m18", "E007d31m21"],
+                ["N51d18m22", "E007d40m52"],
+                ["N51d17m25", "E007d41m24"],
+                ["N51d02m00", "E007d54m03"],
+                ["N50d44m44", "E007d57m40"],
+                ["N50d43m01", "E007d53m16"],
+                ["N50d41m14", "E007d48m44"],
+                ["N50d34m46", "E007d49m02"],
+                ["N50d31m17", "E007d39m33"],
+                ["N50d32m59", "E007d26m28"],
+                ["N50d32m47", "E006d48m53"],
+                ["N50d40m10", "E006d43m50"],
+                ["N50d56m40", "E006d21m00"],
+                ["N51d02m07", "E006d14m37"],
+                ["N51d15m21", "E006d13m30"],
+                ["N51d21m17", "E006d12m59"],
+                ["N51d30m35", "E006d12m47"]
+            ]
+        }
+    ],
+    "_airspace": [
+        {
+            "floor": 15,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d24m19", "E006d52m41"],
+                ["N51d25m56", "E006d56m07"],
+                ["N51d20m58", "E007d02m04"],
+                ["N51d19m21", "E006d58m35"],
+                ["N51d24m19", "E006d52m41"]
+            ]
+        },
+        {
+            "floor": 15,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d51m42", "E006d58m23"],
+                ["N50d46m46", "E007d02m02"],
+                ["N50d45m40", "E006d58m25"],
+                ["N50d46m20", "E006d52m01"],
+                ["N50d49m32", "E006d50m19"],
+                ["N50d50m17", "E006d53m06"],
+                ["N50d51m42", "E006d58m23"]
+            ]
+        },
+        {
+            "floor": 20,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d19m30", "E006d26m59"],
+                ["N51d15m33", "E006d34m06"],
+                ["N51d15m14", "E006d33m29"],
+                ["N51d10m15", "E006d39m25"],
+                ["N51d08m15", "E006d34m02"],
+                ["N51d13m48", "E006d22m45"],
+                ["N51d15m57", "E006d22m12"],
+                ["N51d19m30", "E006d26m59"]
+            ]
+        },
+        {
+            "floor": 25,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d16m43", "E006d19m48"],
+                ["N51d33m19", "E007d02m57"],
+                ["N51d20m06", "E007d15m17"],
+                ["N51d04m15", "E006d40m14"],
+                ["N51d06m57", "E006d23m04"],
+                ["N51d16m43", "E006d19m48"]
+            ]
+        },
+        {
+            "floor": 25,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d37m14", "E007d12m44"],
+                ["N50d46m46", "E007d02m02"],
+                ["N50d51m42", "E006d58m23"],
+                ["N50d56m56", "E006d54m51"],
+                ["N50d55m48", "E006d49m23"],
+                ["N50d53m37", "E006d41m40"],
+                ["N50d56m00", "E006d40m00"],
+                ["N50d58m37", "E006d42m26"],
+                ["N51d05m15", "E006d57m16"],
+                ["N51d05m52", "E007d11m25"],
+                ["N50d59m00", "E007d28m39"],
+                ["N50d56m17", "E007d30m39"],
+                ["N50d40m20", "E007d31m50"],
+                ["N50d37m14", "E007d12m44"]
+            ]
+        },
+        {
+            "floor": 25,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d48m13", "E006d45m25"],
+                ["N50d49m32", "E006d50m19"],
+                ["N50d46m20", "E006d52m01"],
+                ["N50d45m40", "E006d58m25"],
+                ["N50d43m18", "E006d50m38"],
+                ["N50d44m30", "E006d48m00"],
+                ["N50d48m13", "E006d45m25"]
+            ]
+        },
+        {
+            "floor": 25,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d55m48", "E006d49m23"],
+                ["N50d56m56", "E006d54m51"],
+                ["N50d51m42", "E006d58m23"],
+                ["N50d50m17", "E006d53m06"],
+                ["N50d55m48", "E006d49m23"]
+            ]
+        },
+        {
+            "floor": 29,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d53m37", "E006d41m40"],
+                ["N50d55m48", "E006d49m23"],
+                ["N50d50m17", "E006d53m06"],
+                ["N50d48m13", "E006d45m25"],
+                ["N50d53m37", "E006d41m40"]
+            ]
+        },
+        {
+            "floor": 35,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d06m57", "E006d23m04"],
+                ["N51d04m30", "E006d38m40"],
+                ["N51d03m02", "E006d35m27"],
+                ["N51d02m07", "E006d35m34"],
+                ["N51d00m10", "E006d31m19"],
+                ["N51d00m10", "E006d25m20"],
+                ["N51d06m57", "E006d23m04"]
+            ]
+        },
+        {
+            "floor": 35,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d16m43", "E006d19m48"],
+                ["N51d21m05", "E006d22m59"],
+                ["N51d38m48", "E007d08m51"],
+                ["N51d31m00", "E007d18m20"],
+                ["N51d25m26", "E007d20m36"],
+                ["N51d23m26", "E007d22m45"],
+                ["N51d20m06", "E007d15m17"],
+                ["N51d33m19", "E007d02m57"],
+                ["N51d16m43", "E006d19m48"]
+            ]
+        },
+        {
+            "floor": 35,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d41m06", "E007d36m54"],
+                ["N50d40m20", "E007d31m50"],
+                ["N50d56m17", "E007d30m39"],
+                ["N50d59m00", "E007d28m39"],
+                ["N51d05m52", "E007d11m25"],
+                ["N51d06m13", "E007d19m54"],
+                ["N51d00m28", "E007d33m42"],
+                ["N50d57m45", "E007d35m41"],
+                ["N50d41m06", "E007d36m54"]
+            ]
+        },
+        {
+            "floor": 35,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d43m18", "E006d50m38"],
+                ["N50d46m46", "E007d02m02"],
+                ["N50d37m14", "E007d12m44"],
+                ["N50d36m06", "E007d06m19"],
+                ["N50d43m18", "E006d50m38"]
+            ]
+        },
+        {
+            "floor": 45,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d15m21", "E006d13m20"],
+                ["N51d22m35", "E006d17m33"],
+                ["N51d39m20", "E007d00m51"],
+                ["N51d38m48", "E007d08m51"],
+                ["N51d21m05", "E006d22m59"],
+                ["N51d16m43", "E006d19m48"],
+                ["N51d06m57", "E006d23m04"],
+                ["N51d00m10", "E006d25m20"],
+                ["N51d00m10", "E006d19m54"],
+                ["N51d02m07", "E006d14m37"],
+                ["N51d15m21", "E006d13m20"]
+            ]
+        },
+        {
+            "floor": 45,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d14m12", "E007d02m13"],
+                ["N51d20m06", "E007d15m17"],
+                ["N51d23m26", "E007d22m45"],
+                ["N51d18m47", "E007d27m45"],
+                ["N51d12m38", "E007d13m38"],
+                ["N51d14m12", "E007d02m13"]
+            ]
+        },
+        {
+            "floor": 45,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d06m13", "E007d19m54"],
+                ["N51d06m37", "E007d29m51"],
+                ["N51d02m19", "E007d40m04"],
+                ["N50d59m36", "E007d42m07"],
+                ["N50d39m00", "E007d43m00"],
+                ["N50d32m59", "E007d26m28"],
+                ["N50d35m35", "E007d03m18"],
+                ["N50d38m10", "E006d52m22"],
+                ["N50d44m30", "E006d48m00"],
+                ["N50d36m06", "E007d06m19"],
+                ["N50d37m14", "E007d12m44"],
+                ["N50d40m20", "E007d31m50"],
+                ["N50d41m06", "E007d36m54"],
+                ["N50d57m45", "E007d35m41"],
+                ["N51d00m28", "E007d33m42"],
+                ["N51d06m13", "E007d19m54"]
+            ]
+        },
+        {
+            "floor": 65,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d26m57", "E006d20m00"],
+                ["N51d39m56", "E006d53m37"],
+                ["N51d45m35", "E007d08m18"],
+                ["N51d35m18", "E007d31m21"],
+                ["N51d18m22", "E007d40m52"],
+                ["N51d18m47", "E007d27m45"],
+                ["N51d23m26", "E007d22m45"],
+                ["N51d25m26", "E007d20m36"],
+                ["N51d31m00", "E007d18m20"],
+                ["N51d38m48", "E007d08m51"],
+                ["N51d39m20", "E007d00m51"],
+                ["N51d22m35", "E006d17m33"],
+                ["N51d26m57", "E006d20m00"]
+            ]
+        },
+        {
+            "floor": 65,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d02m07", "E006d14m37"],
+                ["N51d00m10", "E006d19m54"],
+                ["N51d00m10", "E006d25m20"],
+                ["N51d00m10", "E006d31m19"],
+                ["N51d02m07", "E006d35m34"],
+                ["N51d03m02", "E006d35m27"],
+                ["N51d04m30", "E006d38m40"],
+                ["N51d04m15", "E006d40m14"],
+                ["N51d14m12", "E007d02m13"],
+                ["N51d12m38", "E007d13m38"],
+                ["N51d18m47", "E007d27m45"],
+                ["N51d06m37", "E007d29m51"],
+                ["N51d06m12", "E007d19m56"],
+                ["N51d05m51", "E007d11m28"],
+                ["N51d05m15", "E006d57m16"],
+                ["N50d58m37", "E006d42m26"],
+                ["N50d56m00", "E006d40m00"],
+                ["N50d53m36", "E006d41m40"],
+                ["N50d48m13", "E006d45m25"],
+                ["N50d44m31", "E006d47m59"],
+                ["N50d38m09", "E006d52m22"],
+                ["N50d40m10", "E006d43m50"],
+                ["N50d56m40", "E006d21m00"],
+                ["N51d02m07", "E006d14m37"]
+            ]
+        },
+        {
+            "floor": 65,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d06m37", "E007d29m51"],
+                ["N51d07m11", "E007d45m03"],
+                ["N51d01m09", "E007d49m26"],
+                ["N50d43m01", "E007d53m16"],
+                ["N50d39m00", "E007d43m00"],
+                ["N50d59m36", "E007d42m07"],
+                ["N51d02m19", "E007d40m04"],
+                ["N51d06m37", "E007d29m51"]
+            ]
+        },
+        {
+            "floor": 75,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d40m10", "E006d43m50"],
+                ["N50d38m09", "E006d52m22"],
+                ["N50d35m35", "E007d03m18"],
+                ["N50d32m59", "E007d26m28"],
+                ["N50d32m47", "E006d48m53"],
+                ["N50d40m10", "E006d43m50"]
+            ]
+        },
+        {
+            "floor": 75,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N50d32m59", "E007d26m28"],
+                ["N50d39m00", "E007d43m00"],
+                ["N50d41m14", "E007d48m44"],
+                ["N50d34m46", "E007d49m02"],
+                ["N50d31m17", "E007d39m33"],
+                ["N50d32m59", "E007d26m28"]
+            ]
+        },
+        {
+            "floor": 85,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d18m47", "E007d27m45"],
+                ["N51d18m22", "E007d40m52"],
+                ["N51d17m25", "E007d41m24"],
+                ["N51d02m00", "E007d54m03"],
+                ["N50d44m44", "E007d57m40"],
+                ["N50d43m01", "E007d53m16"],
+                ["N51d01m09", "E007d49m26"],
+                ["N51d07m11", "E007d45m03"],
+                ["N51d06m37", "E007d29m51"],
+                ["N51d18m47", "E007d27m45"]
+            ]
+        },
+        {
+            "floor": 85,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d30m35", "E006d12m47"],
+                ["N51d42m47", "E006d46m05"],
+                ["N51d39m56", "E006d53m37"],
+                ["N51d26m57", "E006d20m00"],
+                ["N51d22m35", "E006d17m33"],
+                ["N51d15m21", "E006d13m30"],
+                ["N51d21m17", "E006d12m59"],
+                ["N51d30m35", "E006d12m47"]
+            ]
+        },
+        {
+            "floor": 85,
+            "ceiling": 100,
+            "airspace_class": "B",
+            "poly": [
+                ["N51d45m35", "E007d08m18"],
+                ["N51d45m41", "E007d17m33"],
+                ["N51d37m05", "E007d36m45"],
+                ["N51d35m18", "E007d31m21"],
+                ["N51d45m35", "E007d08m18"]
             ]
         }
     ],
     "fixes": {
+        "ABIGI": ["N51d07.4", "E006d46.0"],
+        "AGEDA": ["N51d47.0", "E007d01.3"],
         "ANAVI": ["N51d18.7", "E007d23.3"],
-        "BAM"  : ["N51d19m39.93", "E007d10m37.14"],
+        "BABUV": ["N51d09.6", "E006d44.3"],
+        "BAM"  : ["N51d19.7", "E007d10.6"],
         "BETZO": ["N50d58.0", "E007d44.2"],
+        "BIKMU": ["N51d06.3", "E006d40.4"],
+        "BOMBA": ["N51d33.1", "E007d06.4"],
+        "BOT"  : ["N51d35.1", "E007d01.4"],
         "COL"  : ["N50d47m00.70", "E007d35m39.03"],
         "DEGOM": ["N51d09.9", "E007d40.4"],
+        "DIKMI": ["N51d11.7", "E006d33.9"],
+        "DISIP": ["N51d18.2", "E006d33.8"],
+        "DL001": ["N51d25.4", "E007d03.3"],
+        "DL004": ["N51d25.6", "E007d03.0"],
+        "DL005": ["N51d15.5", "E006d41.7"],
+        "DL007": ["N51d15.3", "E006d42.0"],
+        "DL010": ["N51d04.1", "E006d35.1"],
+        "DL011": ["N51d13.0", "E006d24.2"],
+        "DL012": ["N51d09.1", "E006d29.0"],
+        "DL013": ["N51d20.5", "E006d53.0"],
+        "DL016": ["N51d13.2", "E006d23.9"],
+        "DL017": ["N51d09.3", "E006d28.7"],
+        "DL019": ["N51d18.9", "E006d48.9"],
+        "DL020": ["N51d22.9", "E006d46.6"],
         "DL050": ["N51d19.9", "E006d51.7"],
         "DL051": ["N51d20.5", "E006d53.0"],
         "DL052": ["N51d24.7", "E006d50.2"],
@@ -91,26 +463,89 @@
         "DL246": ["N51d18.9", "E006d41.3"],
         "DL247": ["N51d13.6", "E006d38.4"],
         "DL248": ["N51d23.2", "E006d41.7"],
+        "DL402": ["N51d21.7", "E007d23.7"],
+        "DL403": ["N51d19.5", "E007d18.4"],
+        "DL404": ["N51d17.2", "E007d13.1"],
+        "DL405": ["N51d15.0", "E007d07.8"],
+        "DL406": ["N51d19.0", "E007d03.0"],
+        "DL407": ["N51d21.4", "E007d08.1"],
+        "DL408": ["N51d23.8", "E007d13.2"],
+        "DL409": ["N51d26.2", "E007d18.3"],
+        "DL410": ["N51d29.8", "E007d26.0"],
+        "DL420": ["N51d39.0", "E007d02.9"],
+        "DL421": ["N51d36.6", "E006d57.8"],
+        "DL422": ["N51d34.2", "E006d52.7"],
+        "DL424": ["N51d26.4", "E006d52.1"],
+        "DL426": ["N51d29.4", "E006d58.5"],
+        "DL428": ["N51d31.8", "E007d03.6"],
+        "DL429": ["N51d34.2", "E007d08.7"],
+        "DL430": ["N51d37.8", "E007d16.4"],
+        "DL450": ["N51d33.8", "E007d21.2"],
+        "DL452": ["N51d30.2", "E007d13.5"],
+        "DL454": ["N51d27.8", "E007d08.4"],
+        "DL455": ["N51d25.4", "E007d03.3"],
+        "DL456": ["N51d25.6", "E007d03.0"],
+        "DL501": ["N51d08.4", "E006d53.8"],
+        "DL502": ["N51d12.4", "E006d49.0"],
+        "DL503": ["N51d09.9", "E006d44.0"],
+        "DL504": ["N51d07.5", "E006d38.9"],
+        "DL505": ["N51d05.1", "E006d33.9"],
+        "DL510": ["N51d02.7", "E006d28.8"],
+        "DL512": ["N51d46.8", "E006d38.0"],
+        "DL513": ["N51d22.7", "E006d28.5"],
+        "DL514": ["N51d25.1", "E006d33.6"],
+        "DL517": ["N51d30.0", "E006d59.7"],
+        "DL518": ["N51d27.6", "E006d54.6"],
+        "DL519": ["N51d25.2", "E006d49.5"],
+        "DL522": ["N51d20.3", "E006d39.4"],
+        "DL524": ["N51d15.5", "E006d29.2"],
+        "DL525": ["N51d13.0", "E006d24.2"],
+        "DL530": ["N51d10.6", "E006d19.1"],
+        "DL550": ["N51d06.6", "E006d24.0"],
+        "DL555": ["N51d09.1", "E006d29.0"],
+        "DL556": ["N51d09.3", "E006d28.8"],
         "DODEN": ["N50d36.1", "E008d05.6"],
+        "DOLAV": ["N51d25.3", "E007d10.3"],
+        "DOMUX": ["N51d25.2", "E007d32.2"],
+        "EKDUS": ["N51d21.0", "E006d22.7"],
         "ELBAL": ["N51d09.4", "E007d26.8"],
+        "ELDAR": ["N51d01.4", "E006d40.8"],
         "ERKUM": ["N51d37.2", "E006d41.8"],
+        "GAPNU": ["N51d22.7", "E006d44.5"],
         "GMH"  : ["N51d10m13.84", "E007d53m31.34"],
+        "GOGOG": ["N51d02.0", "E006d35.1"],
+        "IBIKO": ["N51d27.5", "E006d38.6"],
+        "IBIXI": ["N51d15.4", "E006d59.8"],
         "KULIX": ["N51d21.1", "E008d14.8"],
         "KUMIK": ["N50d50.2", "E008d04.4"],
+        "LEBTI": ["N51d08.0", "E006d44.0"],
         "LIPMI": ["N51d07.1", "E007d16.1"],
-        "LMA"  : ["N51d22m15.29", "E006d23m41.73"],
+        "LMA"  : ["N51d22.3", "E006d23.7"],
+        "LONSO": ["N51d21.7", "E007d23.2"],
         "LUSIX": ["N51d42.4", "E006d53.1"],
         "MAMIB": ["N51d13.3", "E007d42.6"],
+        "METMA": ["N51d23.0", "E006d58.2"],
         "MEVEL": ["N51d51.3", "E007d12.6"],
         "MODRU": ["N51d01.0", "E006d05.4"],
+        "NATOS": ["N51d11.5", "E006d34.1"],
         "NETEX": ["N51d19.7", "E006d16.3"],
         "NIKOG": ["N51d29.8", "E006d56.6"],
+        "NISOX": ["N51d25.7", "E007d24.1"],
         "NUDGO": ["N51d24.8", "E008d26.5"],
         "NVO"  : ["N50d49m21.63", "E006d38m11.52"],
+        "OBOMA": ["N51d33.2", "E007d19.9"],
         "ORSOV": ["N51d33.7", "E006d40.3"],
+        "REGNO": ["N51d23.2", "E006d57.9"],
+        "RONAD": ["N51d17.3", "E006d33.2"],
+        "RUGAP": ["N51d38.0", "E007d08.6"],
         "SONEB": ["N52d01.4", "E006d45.8"],
+        "TEBRO": ["N51d53.6", "E006d35.3"],
+        "TIVIM": ["N51d35.7", "E006d50.7"],
         "UBORO": ["N51d22.5", "E006d27.0"],
-        "VEBAK": ["N51d27.5", "E006d20.9"]
+        "UNDOG": ["N51d24.4", "E006d48.5"],
+        "VALSU": ["N51d28.1", "E006d45.5"],
+        "VEBAK": ["N51d27.5", "E006d20.9"],
+        "XAMOD": ["N51d41.4", "E007d08.1"]
     },
     "runways":[
         {
@@ -759,7 +1194,659 @@
         }
     },
     "stars": {
-
+        "ABIGI1A": {
+            "icao": "ABIGI1A",
+            "name": "Abigi One Alpha",
+            "entryPoints": {
+                "ABIGI": [["ABIGI", "A70+"]]
+            },
+            "body": ["DL505", "DL556", ["DIKMI", "A30+"]],
+            "rwy": {
+                "EDDL05L": []
+            },
+            "draw": [
+                ["ABIGI", "DL505", "DL556"]
+            ]
+        },
+        "ABIGI1B": {
+            "icao": "ABIGI1B",
+            "name": "Abigi One Bravo",
+            "entryPoints": {
+                "ABIGI": [["ABIGI", "A70+"]]
+            },
+            "body": ["DL505", "DL555", ["NATOS", "A30+"]],
+            "rwy": {
+                "EDDL05R": []
+            },
+            "draw": [
+                ["ABIGI"]
+            ]
+        },
+        "BABUV1A": {
+            "icao": "BABUV1A",
+            "name": "Babuv One Alpha",
+            "entryPoints": {
+                "BABUV": [["BABUV", "A70+"]]
+            },
+            "body": ["DL505", "DL556", ["DIKMI", "A30+"]],
+            "rwy": {
+                "EDDL05L": []
+            },
+            "draw": [
+                ["BABUV", "DL505"]
+            ]
+        },
+        "BABUV1B": {
+            "icao": "BABUV1B",
+            "name": "Babuv One Bravo",
+            "entryPoints": {
+                "BABUV": [["BABUV", "A70+"]]
+            },
+            "body": ["DL505", "DL555", ["NATOS", "A30+"]],
+            "rwy": {
+                "EDDL05R": []
+            },
+            "draw": [
+                ["BABUV"]
+            ]
+        },
+        "BIKMU05": {
+            "icao": "BIKMU05",
+            "name": "Bikmu Zero Five",
+            "entryPoints": {
+                "BIKMU": [["BIKMU", "A150-"]]
+            },
+            "body": ["RONAD", ["DL513", "S220"], "DL514", ["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["BIKMU", "RONAD", "DL513", "DL514", "IBIKO", "GAPNU", "DL522", "RONAD", "DL524", "DL525", "DL530", "DL550"]
+            ]
+        },
+        "BIKMU23": {
+            "icao": "BIKMU23",
+            "name": "Bikmu Two Three",
+            "entryPoints": {
+                "BIKMU": [["BIKMU", "A150-"]]
+            },
+            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["BIKMU", "DL426", "DL428", "DL429", "DL430", "DL450", "DL452", "DL454", "DL455", "METMA"],
+                ["DL455", "REGNO"]
+            ]
+        },
+        "BIKMU1G": {
+            "icao": "BIKMU1G",
+            "name": "Bikmu One Golf",
+            "entryPoints": {
+                "BIKMU": ["BIKMU"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["BIKMU", "BOT"]
+            ]
+        },
+        "BIKMU1X": {
+            "icao": "BIKMU1X",
+            "name": "Bikmu One X-ray",
+            "entryPoints": {
+                "BIKMU": ["BIKMU"]
+            },
+            "body": ["RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["BIKMU", "RONAD"]
+            ]
+        },
+        "DISIP1A": {
+            "icao": "DISIP1A",
+            "name": "Disip One Alpha",
+            "entryPoints": {
+                "DISIP": [["DISIP", "A70+"]]
+            },
+            "body": ["DL525", "DL556", ["DIKMI", "A30+"]],
+            "rwy": {
+                "EDDL05L": []
+            },
+            "draw": [
+                ["DISIP", "DL525"]
+            ]
+        },
+        "DISIP1B": {
+            "icao": "DISIP1B",
+            "name": "Disip One Bravo",
+            "entryPoints": {
+                "DISIP": [["DISIP", "A70+"]]
+            },
+            "body": ["DL525", "DL555", ["NATOS", "A30+"]],
+            "rwy": {
+                "EDDL05R": []
+            },
+            "draw": [
+                ["DISIP"]
+            ]
+        },
+        "DOMUX2G": {
+            "icao": "DOMUX2G",
+            "name": "Domux Two Golf",
+            "entryPoints": {
+                "DOMUX": ["DOMUX"]
+            },
+            "body": ["BAM"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["DOMUX", "BAM"]
+            ]
+        },
+        "DOMUX05": {
+            "icao": "DOMUX05",
+            "name": "Domux Zero Five",
+            "entryPoints": {
+                "DOMUX": [["DOMUX", "A140-"]]
+            },
+            "body": ["DOLAV", ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["DOMUX", "DOLAV", "DL502", "DL503", "DL504", "DL505", "DL510", "DL550", "DL555", "NATOS"],
+                ["DL555", "DIKMI"]
+            ]
+        },
+        "DOMUX23": {
+            "icao": "DOMUX23",
+            "name": "Domux Two Three",
+            "entryPoints": {
+                "DOMUX": [["DOMUX", "A140-"]]
+            },
+            "body": ["DL402", "DL403", "DL404", ["DL405", "S220"], ["DL406", "S220"], "DL407", "DL408", "DL409", ["DL410", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["DOMUX", "DL402", "DL403", "DL404", "DL405", "DL406", "DL407", "DL408", "DL409", "DL410", "DL450"]
+            ]
+        },
+        "DOMUX2X": {
+            "icao": "DOMUX2X",
+            "name": "Domux Two X-ray",
+            "entryPoints": {
+                "DOMUX": ["DOMUX"]
+            },
+            "body": ["DOLAV", "LEBTI"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["DOMUX", "DOLAV", "LEBTI"]
+            ]
+        },
+        "EKDUS1A": {
+            "icao": "EKDUS1A",
+            "name": "Ekdus One Alpha",
+            "entryPoints": {
+                "EKDUS": [["EKDUS", "A70+"]]
+            },
+            "body": ["DL525", "DL556", ["DIKMI", "A30+"]],
+            "rwy": {
+                "EDDL05L": []
+            },
+            "draw": [
+                ["EKDUS", "DL525", "DL556", "DIKMI"]
+            ]
+        },
+        "EKDUS1B": {
+            "icao": "EKDUS1B",
+            "name": "Ekdus One Bravo",
+            "entryPoints": {
+                "EKDUS": [["EKDUS", "A70+"]]
+            },
+            "body": ["DL525", "DL555", ["NATOS", "A30+"]],
+            "rwy": {
+                "EDDL05R": []
+            },
+            "draw": [
+                ["DL525", "DL555", "NATOS"]
+            ]
+        },
+        "ELDAR05": {
+            "icao": "ELDAR05",
+            "name": "Eldar Zero Five",
+            "entryPoints": {
+                "DOMUX": [["ELDAR", "A170-"]]
+            },
+            "body": [["DL501", "S220"], ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["ELDAR", "DL501", "DL502"]
+            ]
+        },
+        "GOGOG1A": {
+            "icao": "GOGOG1A",
+            "name": "Gogog One Alpha",
+            "entryPoints": {
+                "GOGOG": [["GOGOG", "A70+"]]
+            },
+            "body": ["DL510", "DL550", "DL556", ["DIKMI", "A30+"]],
+            "rwy": {
+                "EDDL05L": []
+            },
+            "draw": [
+                ["DL550", "DL556"]
+            ]
+        },
+        "GOGOG1B": {
+            "icao": "GOGO1B",
+            "name": "Gogog One Bravo",
+            "entryPoints": {
+                "GOGOG": [["GOGOG", "A70+"]]
+            },
+            "body": ["DL510", "DL550", "DL555", ["NATOS", "A30+"]],
+            "rwy": {
+                "EDDL05R": []
+            },
+            "draw": [
+                ["DL550", "DL555"]
+            ]
+        },
+        "IBIXI1A": {
+            "icao": "IBIXI1A",
+            "name": "Ibixi One Alpha",
+            "entryPoints": {
+                "IBIXI": [["IBIXI", "A70+"]]
+            },
+            "body": ["DL407", "DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["IBIXI", "DL456"]
+            ]
+        },
+        "IBIXI1B": {
+            "icao": "IBIXI1B",
+            "name": "Ibixi One Bravo",
+            "entryPoints": {
+                "IBIXI": [["IBIXI", "A70+"]]
+            },
+            "body": ["DL407", "DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["IBIXI", "DL455"]
+            ]
+        },
+        "LMA05": {
+            "icao": "LMA05",
+            "name": "Lima Zero Five",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": [["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["LMA", "IBIKO"]
+            ]
+        },
+        "LMA23": {
+            "icao": "LMA23",
+            "name": "Lima Two Three",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["LMA", "DL426"]
+            ]
+        },
+        "LMA8G": {
+            "icao": "LMA8G",
+            "name": "Lima Eight Golf",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["LMA", "BOT"]
+            ]
+        },
+        "LMA9X": {
+            "icao": "LMA9X",
+            "name": "Lima Nine X-ray",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": ["IBIKO", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["LMA", "IBIKO", "GAPNU", "RONAD"]
+            ]
+        },
+        "LONSO1A": {
+            "icao": "LONSO1A",
+            "name": "Lonso One Alpha",
+            "entryPoints": {
+                "LONSO": [["LONSO", "A70+"]]
+            },
+            "body": ["DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["LONSO", "DL456"]
+            ]
+        },
+        "LONSO1B": {
+            "icao": "LONSO1B",
+            "name": "Lonso One Bravo",
+            "entryPoints": {
+                "LONSO": [["LONSO", "A70+"]]
+            },
+            "body": ["DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["LONSO", "DL455"]
+            ]
+        },
+        "NISOX1A": {
+            "icao": "NISOX1A",
+            "name": "Nisox One Alpha",
+            "entryPoints": {
+                "NISOX": [["NISOX", "A70+"]]
+            },
+            "body": ["DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["NISOX", "DL456"]
+            ]
+        },
+        "NISOX1B": {
+            "icao": "NISOX1B",
+            "name": "Nisox One Bravo",
+            "entryPoints": {
+                "NISOX": [["NISOX", "A70+"]]
+            },
+            "body": ["DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["NISOX", "DL455"]
+            ]
+        },
+        "OBOMA1A": {
+            "icao": "OBOMA1A",
+            "name": "Oboma One Alpha",
+            "entryPoints": {
+                "OBOMA": [["OBOMA", "A70+"]]
+            },
+            "body": ["DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["OBOMA", "DL456"]
+            ]
+        },
+        "OBOMA1B": {
+            "icao": "OBOMA1B",
+            "name": "Oboma One Bravo",
+            "entryPoints": {
+                "OBOMA": [["OBOMA", "A70+"]]
+            },
+            "body": ["DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["OBOMA", "DL455"]
+            ]
+        },
+        "RUGAP1A": {
+            "icao": "RUGAP1A",
+            "name": "Rugap One Alpha",
+            "entryPoints": {
+                "RUGAP": [["RUGAP", "A70+"]]
+            },
+            "body": ["DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["RUGAP", "DL456"]
+            ]
+        },
+        "RUGAP1B": {
+            "icao": "RUGAP1B",
+            "name": "Rugap One Bravo",
+            "entryPoints": {
+                "RUGAP": [["RUGAP", "A70+"]]
+            },
+            "body": ["DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["RUGAP", "DL455"]
+            ]
+        },
+        "TEBRO05": {
+            "icao": "TEBRO05",
+            "name": "Tebro Zero Five",
+            "entryPoints": {
+                "TEBRO": [["TEBRO", "A170-"]]
+            },
+            "body": ["DL512", "VALSU", ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["TEBRO", "DL512", "VALSU", "GAPNU"]
+            ]
+        },
+        "TEBRO23": {
+            "icao": "TEBRO23",
+            "name": "Tebro Two Three",
+            "entryPoints": {
+                "TEBRO": [["TEBRO", "A170-"]]
+            },
+            "body": ["AGEDA", ["XAMOD", "A140-|S220"], "DL420", "DL421", ["DL422", "S220"], ["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["TEBRO", "AGEDA", "XAMOD"]
+            ]
+        },
+        "TEBRO1X": {
+            "icao": "TEBRO1X",
+            "name": "Tebro One X-ray",
+            "entryPoints": {
+                "TEBRO": ["TEBRO"]
+            },
+            "body": ["VALSU", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["TEBRO", "VALSU", "GAPNU", "RONAD"]
+            ]
+        },
+        "TEBRO3G": {
+            "icao": "TEBRO3G",
+            "name": "Tebro Three Golf",
+            "entryPoints": {
+                "TEBRO": ["TEBRO"]
+            },
+            "body": ["AGEDA", "XAMOD", "BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["TEBRO", "AGEDA", "XAMOD", "BOT"]
+            ]
+        },
+        "TIVIM1A": {
+            "icao": "TIVIM1A",
+            "name": "Tivim One Alpha",
+            "entryPoints": {
+                "TIVIM": [["TIVIM", "A70+"]]
+            },
+            "body": ["DL426", "DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["TIVIM", "DL426"]
+            ]
+        },
+        "TIVIM1B": {
+            "icao": "TIVIM1B",
+            "name": "Tivim One Bravo",
+            "entryPoints": {
+                "TIVIM": [["TIVIM", "A70+"]]
+            },
+            "body": ["DL426", "DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["TIVIM"]
+            ]
+        },
+        "XAMOD05": {
+            "icao": "XAMOD05",
+            "name": "Xamod Zero Five",
+            "entryPoints": {
+                "XAMOD": [["XAMOD", "A140-"]]
+            },
+            "body": ["BOMBA", "DL517", "DL518", "DL519", ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["BOMBA", "DL517", "DL518", "DL519", "GAPNU"]
+            ]
+        },
+        "XAMOD23": {
+            "icao": "XAMOD23",
+            "name": "Xamod Two Three",
+            "entryPoints": {
+                "XAMOD": [["XAMOD", "A140-|S220"]]
+            },
+            "body": ["DL420", "DL421", ["DL422", "S220"], ["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["XAMOD", "DL420", "DL421", "DL422", "DL426"]
+            ]
+        },
+        "XAMOD3G": {
+            "icao": "XAMOD2X",
+            "name": "Xamod Two X-ray",
+            "entryPoints": {
+                "XAMOD": ["XAMOD"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["XAMOD", "BOT"]
+            ]
+        },
+        "XAMOD2X": {
+            "icao": "XAMOD2X",
+            "name": "Xamod Two X-ray",
+            "entryPoints": {
+                "XAMOD": ["XAMOD"]
+            },
+            "body": ["BOMBA", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["XAMOD", "BOMBA", "GAPNU", "RONAD"]
+            ]
+        },
+        "UNDOG1A": {
+            "icao": "UNDOG1A",
+            "name": "Undog One Alpha",
+            "entryPoints": {
+                "UNDOG": [["UNDOG", "A70+"]]
+            },
+            "body": ["DL424", "DL426", "DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["UNDOG", "DL424", "DL426", "DL456", "REGNO"]
+            ]
+        },
+        "UNDOG1B": {
+            "icao": "UNDOG1B",
+            "name": "Undog One Bravo",
+            "entryPoints": {
+                "UNDOG": [["UNDOG", "A70+"]]
+            },
+            "body": ["DL424", "DL426", "DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["DL426", "DL455", "METMA"]
+            ]
+        }
     },
     "maps": {
         "base": [
