@@ -6,17 +6,17 @@
     },
     "icao": "EDDL",
     "iata": "DUS",
-    "magnetic_north": 1.0,
+    "magnetic_north": 1.4,
     "ctr_radius": 80,
     "ctr_ceiling": 10000,
     "initial_alt": 5000,
-    "position": ["51.280925", "6.757311", "147ft"],
+    "position": ["N51d16m51.33", "E006d45m26.32", "147ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["51.280925", "6.757311"],
+    "rr_center": ["N51d16m51.33", "E006d45m26.32"],
     "has_terrain": false,
     "wind": {
-        "angle": 220,
-        "speed": 6
+        "angle": 225,
+        "speed": 9
     },
     "arrivalRunway": "23R",
     "departureRunway": "23L",
@@ -63,538 +63,707 @@
             ]
         }
     ],
-    "fixes":{
-        "25VOR": ["51.258664", "6.700203"],
-        "40VO2": ["51.322294", "6.839700"],
-        "40VO3": ["51.325064", "6.836319"],
-        "40VOR": ["51.243814", "6.668214"],
-        "60VO2": ["51.345978", "6.877672"],
-        "60VOR": ["51.341825", "6.882742"],
-        "70VO2": ["51.211867", "6.606961"],
-        "70VOR": ["51.214086", "6.604300"],
-        "ABIGI": ["51.123058", "6.766833"],
-        "ADEMI": ["51.482778", "7.888611"],
-        "AGEDA": ["51.782947", "7.021419"],
-        "ANAVI": ["51.311964", "7.388458"],
-        "ARNEM": ["52.096447", "6.076603"],
-        "BABUV": ["51.160494", "6.738392"],
-        "BAM"  : ["51.327758", "7.176983"],
-        "BARAG": ["51.418611", "7.808611"],
-        "BBL"  : ["51.170583", "5.466083"],
-        "BETZO": ["50.966672", "7.736400"],
-        "BIKMU": ["51.105667", "6.672644"],
-        "BOMBA": ["51.551667", "7.106944"],
-        "BOT"  : ["51.585803", "7.023011"],
-        "COL"  : ["50.783519", "7.594175"],
-        "D225K": ["51.153892", "6.541147"],
-        "D227L": ["51.150453", "6.519753"],
-        "D228K": ["51.163572", "6.535250"],
-        "DEGOM": ["51.164208", "7.673856"],
-        "DIBIR": ["51.276944", "6.124444"],
-        "DIKMI": ["51.195442", "6.564292"],
-        "DISIP": ["51.303897", "6.564114"],
-        "DL001": ["51.422894", "7.054275"],
-        "DL003": ["51.261319", "6.713669"],
-        "DL004": ["51.426386", "7.049761"],
-        "DL006": ["51.264900", "6.709339"],
-        "DL010": ["51.067681", "6.584575"],
-        "DL011": ["51.216967", "6.402811"],
-        "DL012": ["51.150889", "6.483453"],
-        "DL014": ["51.311617", "6.819217"],
-        "DL015": ["51.378781", "6.781450"],
-        "DL016": ["51.220539", "6.398444"],
-        "DL017": ["51.154464", "6.479100"],
-        "DL019": ["51.315194", "6.814878"],
-        "DL020": ["51.382300", "6.776225"],
-        "DL021": ["51.312733", "6.637056"],
-        "DL022": ["51.319886", "6.629178"],
-        "DL050": ["51.331608", "6.861822"],
-        "DL051": ["51.341275", "6.883475"],
-        "DL052": ["51.411614", "6.837264"],
-        "DL053": ["51.350686", "6.904553"],
-        "DL054": ["51.861528", "6.826147"],
-        "DL058": ["51.354350", "6.912764"],
-        "DL230": ["51.271606", "6.734642"],
-        "DL231": ["51.275039", "6.730567"],
-        "DL236": ["51.264294", "6.718892"],
-        "DL237": ["51.266394", "6.712450"],
-        "DL239": ["51.224453", "6.633206"],
-        "DL240": ["51.223675", "6.633331"],
-        "DL241": ["51.128667", "6.648511"],
-        "DL242": ["51.153436", "7.335178"],
-        "DL243": ["51.227261", "6.639239"],
-        "DL244": ["51.145286", "7.096319"],
-        "DL245": ["51.857964", "6.736164"],
-        "DL246": ["51.314364", "6.687975"],
-        "DL247": ["51.226953", "6.639633"],
-        "DL248": ["51.386833", "6.695650"],
-        "DL402": ["51.361286", "7.395531"],
-        "DL403": ["51.324297", "7.306869"],
-        "DL404": ["51.287239", "7.218356"],
-        "DL405": ["51.250117", "7.129983"],
-        "DL406": ["51.316642", "7.050106"],
-        "DL407": ["51.356714", "7.135075"],
-        "DL408": ["51.396725", "7.220194"],
-        "DL409": ["51.436672", "7.305461"],
-        "DL410": ["51.496475", "7.433644"],
-        "DL420": ["51.649750", "7.048800"],
-        "DL421": ["51.609617", "6.963358"],
-        "DL422": ["51.569417", "6.878067"],
-        "DL424": ["51.439489", "6.868444"],
-        "DL426": ["51.489719", "6.974728"],
-        "DL428": ["51.529847", "7.059953"],
-        "DL429": ["51.569911", "7.145331"],
-        "DL430": ["51.629892", "7.273681"],
-        "DL450": ["51.563211", "7.353781"],
-        "DL452": ["51.503319", "7.225514"],
-        "DL454": ["51.463314", "7.140192"],
-        "DL455": ["51.423244", "7.055019"],
-        "DL456": ["51.426828", "7.050700"],
-        "DL501": ["51.139633", "6.896969"],
-        "DL502": ["51.206000", "6.816947"],
-        "DL503": ["51.165694", "6.732539"],
-        "DL504": ["51.125331", "6.648281"],
-        "DL505": ["51.084903", "6.564169"],
-        "DL510": ["51.044417", "6.480206"],
-        "DL512": ["51.779619", "6.633803"],
-        "DL513": ["51.377503", "6.474733"],
-        "DL514": ["51.417997", "6.559308"],
-        "DL517": ["51.499633", "6.995753"],
-        "DL518": ["51.459458", "6.910639"],
-        "DL519": ["51.419222", "6.825678"],
-        "DL522": ["51.338564", "6.656203"],
-        "DL524": ["51.257658", "6.487331"],
-        "DL525": ["51.217117", "6.403119"],
-        "DL530": ["51.176511", "6.319056"],
-        "DL550": ["51.110492", "6.399747"],
-        "DL555": ["51.151036", "6.483761"],
-        "DL556": ["51.154611", "6.479406"],
-        "DLN"  : ["52.057347", "5.872631"],
-        "DODEN": ["50.602256", "8.093250"],
-        "DOLAV": ["51.421667", "7.171944"],
-        "DOMUX": ["51.419722", "7.536389"],
-        "DOR"  : ["51.525342", "7.631056"],
-        "DUS"  : ["51.283189", "6.753728"],
-        "DWI"  : ["51.526128", "7.634378"],
-        "DY"   : ["51.234319", "6.654375"],
-        "EHN"  : ["51.467853", "5.394861"],
-        "EHV"  : ["51.448164", "5.374939"],
-        "EKDUS": ["51.349411", "6.378781"],
-        "ELBAL": ["51.157058", "7.446256"],
-        "ELDAR": ["51.023056", "6.679444"],
-        "ERKUM": ["51.619986", "6.696294"],
-        "FD23L": ["51.381814", "6.971092"],
-        "FD23R": ["51.387767", "6.960489"],
-        "FI05L": ["51.243769", "6.665114"],
-        "FI05R": ["51.240364", "6.669825"],
-        "FLO"  : ["50.876667", "5.134444"],
-        "FQ05L": ["51.196428", "6.562469"],
-        "GAPNU": ["51.378925", "6.740864"],
-        "GESBI": ["51.061111", "6.324722"],
-        "GIX"  : ["50.963339", "6.045189"],
-        "GMH"  : ["51.170511", "7.892039"],
-        "GOGOG": ["51.033297", "6.584342"],
-        "GUL"  : ["50.807322", "5.895461"],
-        "HMM"  : ["51.856867", "7.708294"],
-        "IBIKO": ["51.458428", "6.644031"],
-        "IBIXI": ["51.255842", "6.996367"],
-        "IDNE" : ["51.288389", "6.754306"],
-        "IDNW" : ["51.295983", "6.770247"],
-        "IDSE" : ["51.297650", "6.789864"],
-        "IDSW" : ["51.277867", "6.748342"],
-        "INBAX": ["51.455000", "7.732222"],
-        "KBO"  : ["50.861678", "7.145517"],
-        "KULIX": ["51.351339", "8.247236"],
-        "KUMIK": ["50.836586", "8.073325"],
-        "LAA"  : ["51.601686", "6.172700"],
-        "LEBTI": ["51.133722", "6.733717"],
-        "LGE"  : ["50.653972", "5.470417"],
-        "LI"   : ["51.346989", "6.891283"],
-        "LIPMI": ["51.118422", "7.268981"],
-        "LJ"   : ["50.927056", "7.062294"],
-        "LMA"  : ["51.370914", "6.394925"],
-        "LNO"  : ["50.585833", "5.710278"],
-        "LONSO": ["51.361189", "7.386383"],
-        "LUSIX": ["51.706806", "6.884883"],
-        "LV"   : ["50.804217", "7.240225"],
-        "LW"   : ["50.898306", "7.252850"],
-        "MABAB": ["51.417072", "8.067769"],
-        "MAMIB": ["51.221906", "7.710331"],
-        "MAS"  : ["50.971942", "5.960428"],
-        "MD23L": ["51.302750", "6.796694"],
-        "MD23R": ["51.303086", "6.792939"],
-        "METMA": ["51.383114", "6.969997"],
-        "MEVEL": ["51.854772", "7.209508"],
-        "MHD"  : ["51.234911", "6.491969"],
-        "MHV"  : ["51.237300", "6.490244"],
-        "MOD"  : ["52.137972", "7.687247"],
-        "MODRU": ["51.017489", "6.090078"],
-        "MQ05L": ["51.278450", "6.742886"],
-        "MQ05R": ["51.277061", "6.744883"],
-        "MYN"  : ["52.159328", "7.799994"],
-        "NATOS": ["51.191522", "6.567922"],
-        "NETEX": ["51.328019", "6.271356"],
-        "NID"  : ["51.599967", "6.141481"],
-        "NIKOG": ["51.497014", "6.943569"],
-        "NISOX": ["51.428894", "7.401050"],
-        "NOE"  : ["50.829722", "6.646389"],
-        "NOSTU": ["50.990000", "6.840833"],
-        "NUDGO": ["51.413625", "8.440942"],
-        "NVO"  : ["50.822678", "6.636539"],
-        "NW"   : ["51.019364", "5.878344"],
-        "OBOMA": ["51.553164", "7.332219"],
-        "OM23L": ["51.347061", "6.891800"],
-        "ONL"  : ["50.701083", "5.549167"],
-        "ORSOV": ["51.562253", "6.670839"],
-        "OSB"  : ["52.200136", "8.285519"],
-        "OSN"  : ["52.200136", "8.285519"],
-        "REGNO": ["51.386011", "6.964225"],
-        "RKN"  : ["52.133197", "6.763878"],
-        "RONAD": ["51.289122", "6.552869"],
-        "RUGAP": ["51.632594", "7.142836"],
-        "SIL"  : ["50.680036", "8.138500"],
-        "SLD"  : ["50.706769", "8.078511"],
-        "SLV"  : ["50.478000", "5.913028"],
-        "SONEB": ["52.023611", "6.764167"],
-        "SOXOS": ["50.906667", "6.847222"],
-        "SPI"  : ["50.514722", "5.623611"],
-        "TEBRO": ["51.894167", "6.587778"],
-        "TIVIM": ["51.595717", "6.845572"],
-        "UBORO": ["51.374917", "6.450053"],
-        "UNDOG": ["51.406772", "6.808003"],
-        "UNKAR": ["52.021667", "6.165000"],
-        "VALSU": ["51.468056", "6.757778"],
-        "VEBAK": ["51.457978", "6.348067"],
-        "VKL"  : ["51.655431", "5.706978"],
-        "WNN"  : ["50.835486", "6.669522"],
-        "WYP"  : ["51.048353", "7.279997"],
-        "XAMOD": ["51.689822", "7.134394"]
+    "fixes": {
+        "ANAVI": ["N51d18.7", "E007d23.3"],
+        "BAM"  : ["N51d19m39.93", "E007d10m37.14"],
+        "BETZO": ["N50d58.0", "E007d44.2"],
+        "COL"  : ["N50d47m00.70", "E007d35m39.03"],
+        "DEGOM": ["N51d09.9", "E007d40.4"],
+        "DL050": ["N51d19.9", "E006d51.7"],
+        "DL051": ["N51d20.5", "E006d53.0"],
+        "DL052": ["N51d24.7", "E006d50.2"],
+        "DL053": ["N51d21.0", "E006d54.3"],
+        "DL054": ["N51d51.7", "E006d49.6"],
+        "DL058": ["N51d21.3", "E006d54.8"],
+        "DL230": ["N51d16.3", "E006d44.1"],
+        "DL231": ["N51d16.5", "E006d43.8"],
+        "DL234": ["N51d17.7", "E006d40.9"],
+        "DL235": ["N51d17.3", "E006d41.1"],
+        "DL236": ["N51d15.9", "E006d43.1"],
+        "DL237": ["N51d16.0", "E006d42.7"],
+        "DL239": ["N51d13.5", "E006d38.0"],
+        "DL240": ["N51d13.4", "E006d38.0"],
+        "DL241": ["N51d07.7", "E006d38.9"],
+        "DL242": ["N51d09.2", "E007d20.1"],
+        "DL243": ["N51d13.6", "E006d38.4"],
+        "DL244": ["N51d08.7", "E007d05.8"],
+        "DL245": ["N51d51.5", "E006d44.2"],
+        "DL246": ["N51d18.9", "E006d41.3"],
+        "DL247": ["N51d13.6", "E006d38.4"],
+        "DL248": ["N51d23.2", "E006d41.7"],
+        "DODEN": ["N50d36.1", "E008d05.6"],
+        "ELBAL": ["N51d09.4", "E007d26.8"],
+        "ERKUM": ["N51d37.2", "E006d41.8"],
+        "GMH"  : ["N51d10m13.84", "E007d53m31.34"],
+        "KULIX": ["N51d21.1", "E008d14.8"],
+        "KUMIK": ["N50d50.2", "E008d04.4"],
+        "LIPMI": ["N51d07.1", "E007d16.1"],
+        "LMA"  : ["N51d22m15.29", "E006d23m41.73"],
+        "LUSIX": ["N51d42.4", "E006d53.1"],
+        "MAMIB": ["N51d13.3", "E007d42.6"],
+        "MEVEL": ["N51d51.3", "E007d12.6"],
+        "MODRU": ["N51d01.0", "E006d05.4"],
+        "NETEX": ["N51d19.7", "E006d16.3"],
+        "NIKOG": ["N51d29.8", "E006d56.6"],
+        "NUDGO": ["N51d24.8", "E008d26.5"],
+        "NVO"  : ["N50d49m21.63", "E006d38m11.52"],
+        "ORSOV": ["N51d33.7", "E006d40.3"],
+        "SONEB": ["N52d01.4", "E006d45.8"],
+        "UBORO": ["N51d22.5", "E006d27.0"],
+        "VEBAK": ["N51d27.5", "E006d20.9"]
     },
     "runways":[
         {
             "name": ["05L", "23R"],
             "end": [
-                ["51.285314", "6.752122", "116ft"],
-                ["51.296736", "6.776092", "124ft"]
+                ["N51d17m07.132", "E006d45m07.643", "116ft"],
+                ["N51d17m48.248", "E006d46m33.931", "124ft"]
             ],
             "ils": [true, true]
         },
         {
             "name": ["05R", "23L"],
             "end": [
-                ["51.281236", "6.755408", "121ft"],
-                ["51.294286", "6.782797", "138ft"]
+                ["N51d16m52.445", "E006d45m19.467", "121ft"],
+                ["N51d17m39.431", "E006d46m58.073", "138ft"]
             ],
             "ils": [true, true]
         }
     ],
     "sids": {
-        "COL": {
-            "icao": "COL",
-            "name": "COLA",
-            "suffix": {"05L":"3J", "05R":"3Z", "23L":"4T", "23R":"2H"},
+        "COL3H": {
+            "icao": "COL3H",
+            "name": "Cola Three Hotel",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM"],
-                "05R": ["DL050", "DL058", "BAM"],
-                "23L": ["DL239", "DL241", "DL244"],
-                "23R": ["DL240", "DL241", "DL244"]
+                "EDDL23R": []
             },
-            "body": [["LIPMI", "A150+"]],
+            "body": [["DL240", "A06+"], "DL241", "DL244", ["LIPMI", "A150+"]],
             "exitPoints": {
                 "COL": ["COL"]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "LIPMI", "COL*"],
-                ["DL239", "DL241", "DL244","LIPMI"],
-                ["DL240", "DL241"]
+                ["COL"]
             ]
         },
-        "DODEN": {
-            "icao": "DODEN",
-            "name": "DODEN",
-            "suffix": {"05L":"5J", "05R":"5Z", "23L":"8T", "23R":"2H"},
+        "COL4J": {
+            "icao": "COL4J",
+            "name": "Cola Four Juliett",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM"],
-                "05R": ["DL050", "DL058", "BAM"],
-                "23L": ["DL239", "DL241", ["DL242", "A150+"]],
-                "23R": ["DL240", "DL241", ["DL242", "A150+"]]
+                "EDDL05L": []
             },
-            "body": [["ELBAL", "A150+"], "BETZO"],
+            "body": [["DL050", "A06+"], "DL058", "BAM", ["LIPMI", "A150+"]],
+            "exitPoints": {
+                "COL": ["COL"]
+            },
+            "draw": [
+                ["ANAVI", "LIPMI", "COL"]
+            ]
+        },
+        "COL4Z": {
+            "icao": "COL4Z",
+            "name": "Cola Four Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM", ["LIPMI", "A150+"]],
+            "exitPoints": {
+                "COL": ["COL"]
+            },
+            "draw": [
+                ["COL"]
+            ]
+        },
+        "COL5T": {
+            "icao": "COL5T",
+            "name": "Cola Five Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241", "DL244", ["LIPMI", "A150+"]],
+            "exitPoints": {
+                "COL": ["COL"]
+            },
+            "draw": [
+                ["DL241", "DL244", "LIPMI"],
+                ["COL"]
+            ]
+        },
+        "DODEN3H": {
+            "icao": "DODEN3H",
+            "name": "Doden Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL240", "A06+"], "DL241", ["DL242", "A150+"], "ELBAL", "BETZO"],
             "exitPoints": {
                 "DODEN": [["DODEN", "A250+"]]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "ELBAL", "BETZO", "DODEN*"],
-                ["DL239", "DL241", "DL242", "ELBAL"],
-                ["DL240", "DL241"]
+                ["DODEN"]
             ]
         },
-        "GMH": {
-            "icao": "GMH",
-            "name": "Germinghausen",
-            "suffix": {"05L":"7Y", "05R":"4Z", "23L":"8T", "23R":"2H"},
+        "DODEN6J": {
+            "icao": "DODEN6J",
+            "name": "Doden Six Juliett",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
-                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
-                "23L": ["DL239", "DL241"],
-                "23R": ["DL240", "DL241"]
+                "EDDL05L": []
             },
-            "body": [],
+            "body": [["DL050", "A06+"], "DL058", "BAM", ["ELBAL", "A150+"], "BETZO"],
+            "exitPoints": {
+                "DODEN": [["DODEN", "A250+"]]
+            },
+            "draw": [
+                ["BAM", "ELBAL", "BETZO", "DODEN"]
+            ]
+        },
+        "DODEN6Z": {
+            "icao": "DODEN6Z",
+            "name": "Doden Six Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM", ["ELBAL", "A150+"], "BETZO"],
+            "exitPoints": {
+                "DODEN": [["DODEN", "A250+"]]
+            },
+            "draw": [
+                ["DODEN"]
+            ]
+        },
+        "DODEN9T": {
+            "icao": "DODEN9T",
+            "name": "Doden Nine Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241", ["DL242", "A150+"], "ELBAL", "BETZO"],
+            "exitPoints": {
+                "DODEN": [["DODEN", "A250+"]]
+            },
+            "draw": [
+                ["DL244", "DL242"],
+                ["DODEN"]
+            ]
+        },
+        "GMH3H": {
+            "icao": "GMH3H",
+            "name": "Germinghausen Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL240", "A06+"], "DL241"],
             "exitPoints": {
                 "GMH": ["GMH"]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "ANAVI", "GMH*"],
-                ["DL239", "DL241", "GMH"],
-                ["DL240", "DL241"]
+                ["DL240", "DL241"],
+                ["ELBAL", "GMH"]
             ]
         },
-        "KUMIK": {
-            "icao": "KUMIK",
-            "name": "KUMIK",
-            "suffix": {"05L":"3J", "05R":"3Z", "23L":"5T", "23R":"2H"},
+        "GMH8Y": {
+            "icao": "GMH8Y",
+            "name": "Germinghausen Eight Yankee",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
-                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
-                "23L": ["DL239", "DL241", "ELBAL"],
-                "23R": ["DL240", "DL241", "ELBAL"]
+                "EDDL05L": []
             },
-            "body": [["DEGOM", "A150+"]],
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI"],
+            "exitPoints": {
+                "GMH": ["GMH"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ANAVI", "GMH"]
+            ]
+        },
+        "GMH9T": {
+            "icao": "GMH9T",
+            "name": "Germinghausen Nine Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241"],
+            "exitPoints": {
+                "GMH": ["GMH"]
+            },
+            "draw": [
+                ["DL239", "DL240"],
+                ["GMH"]
+            ]
+        },
+        "GMH9Z": {
+            "icao": "GMH9Z",
+            "name": "Germinghausen Nine Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI"],
+            "exitPoints": {
+                "GMH": ["GMH"]
+            },
+            "draw": [
+                ["GMH"]
+            ]
+        },
+        "KUMIK3H": {
+            "icao": "KUMIK3H",
+            "name": "Kumik Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL240", "A06+"], "DL241", "ELBAL", ["DEGOM", "A150+"]],
             "exitPoints": {
                 "KUMIK": ["KUMIK"]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "ANAVI", "DEGOM", "KUMIK*"],
-                ["DL239", "DL241", "ELBAL", "DEGOM"],
-                ["DL240", "DL241"]
+                ["KUMIK"]
             ]
         },
-        "LMA": {
-            "icao": "LMA",
-            "name": "LIMA",
-            "suffix": {"05L":"6Y", "05R":"1Z", "23L":"2T", "23R":"2H"},
+        "KUMIK4J": {
+            "icao": "KUMIK4J",
+            "name": "Kumik Four Juliett",
             "rwy": {
-                "05L": ["DL050", "DL051", "DL052"],
-                "05R": ["DL050", "DL051", "DL052"],
-                "23L": [["DL236", "A6+"]],
-                "23R": [["DL237", "A6+"]]
+                "EDDL05L": []
             },
-            "body": [],
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI", ["DEGOM", "A150+"]],
+            "exitPoints": {
+                "KUMIK": ["KUMIK"]
+            },
+            "draw": [
+                ["ANAVI", "KUMIK"]
+            ]
+        },
+        "KUMIK4Z": {
+            "icao": "KUMIK4Z",
+            "name": "Kumik Four Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI", ["DEGOM", "A150+"]],
+            "exitPoints": {
+                "KUMIK": ["KUMIK"]
+            },
+            "draw": [
+                ["KUMIK"]
+            ]
+        },
+        "KUMIK6T": {
+            "icao": "KUMIK6T",
+            "name": "Kumik Six Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241", "ELBAL", ["DEGOM", "A150+"]],
+            "exitPoints": {
+                "KUMIK": ["KUMIK"]
+            },
+            "draw": [
+                ["ELBAL", "DEGOM", "KUMIK"]
+            ]
+        },
+        "LMA1Z": {
+            "icao": "LMA1Z",
+            "name": "Lima One Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "^DL051", "DL052"],
             "exitPoints": {
                 "LMA": ["LMA"]
             },
             "draw": [
-                ["DL050", "DL051", "DL052", "LMA*"],
-                ["DL236", "LMA"],
+                ["LMA"]
+            ]
+        },
+        "LMA2H": {
+            "icao": "LMA2H",
+            "name": "Lima Two Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL237", "A06+"]],
+            "exitPoints": {
+                "LMA": ["LMA"]
+            },
+            "draw": [
                 ["DL237", "LMA"]
             ]
         },
-        "MEVEL": {
-            "icao": "MEVEL",
-            "name": "MEVEL",
-            "suffix": {"05L":"7J", "05R":"8Z", "23L":"2T", "23R":"2H"},
+        "LMA2T": {
+            "icao": "LMA2T",
+            "name": "Lima Two Tango",
             "rwy": {
-                "05L": ["DL050", "DL053", "NIKOG"],
-                "05R": ["DL050", "DL053", "NIKOG"],
-                "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM"],
-                "23R": ["DL232", ["DL246", "S190-"], "DL248", "ERKUM"]
+                "EDDL23L": []
             },
-            "body": ["LUSIX"],
+            "body": [["DL236", "A06+"]],
             "exitPoints": {
-                "MEVEL": ["MEVEL"]
+                "LMA": ["LMA"]
             },
             "draw": [
-                ["DL050", "DL053", "NIKOG", "LUSIX", "MEVEL*"],
-                ["DL230", "DL246", "DL248", "ERKUM", "LUSIX"],
-                ["DL232", "DL246"]
+                ["DL236", "DL237"],
+                ["LMA"]
             ]
         },
-        "MODRU": {
-            "icao": "MODRU",
-            "name": "MODRU",
-            "suffix": {"05L":"6J", "05R":"6Z", "23L":"1T", "23R":"1H"},
+        "LMA6Y": {
+            "icao": "LMA6Y",
+            "name": "Lima Six Yankee",
             "rwy": {
-                "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
-                "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
-                "23L": [["DL243", "S210-"], "UBORO", ["NETEX", "S250-"]],
-                "23R": [["DL247", "S210-"], "UBORO", ["NETEX", "S250-"]]
+                "EDDL05L": []
             },
-            "body": [],
+            "body": [["DL050", "A06+"], "^DL051", "DL052"],
+            "exitPoints": {
+                "LMA": ["LMA"]
+            },
+            "draw": [
+                ["DL050", "DL051", "DL052", "LMA"]
+            ]
+        },
+        "MODRU1H": {
+            "icao": "MODRU1H",
+            "name": "Modru One Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL247", "A06+|S210-"], "^UBORO", ["NETEX", "S250-"]],
             "exitPoints": {
                 "MODRU": [["MODRU", "A210+"]]
             },
             "draw": [
-                ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX", "MODRU*"],
-                ["DL243", "UBORO", "NETEX"],
-                ["DL247", "UBORO"]
+                ["DL247", "UBORO"],
+                ["MODRU"]
             ]
         },
-        "NETEX": {
-            "icao": "NETEX",
-            "name": "NETEX",
-            "suffix": {"05L":"3J", "05R":"3Z", "23L":"5T", "23R":"2H"},
+        "MODRU1T": {
+            "icao": "MODRU1T",
+            "name": "Modru One Tango",
             "rwy": {
-                "05L": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
-                "05R": ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK"],
-                "23L": [["DL236", "A6+"], "LMA"],
-                "23R": [["DL237", "A6+"], "LMA"]
+                "EDDL23L": []
             },
-            "body": [],
+            "body": [["DL243", "A06+|S210-"], "^UBORO", ["NETEX", "S250-"]],
+            "exitPoints": {
+                "MODRU": [["MODRU", "A210+"]]
+            },
+            "draw": [
+                ["UBORO", "NETEX"],
+                ["MODRU"]
+            ]
+        },
+        "MODRU6J": {
+            "icao": "MODRU6J",
+            "name": "Modru Six Juliett",
+            "rwy": {
+                "EDDL05L": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
+            "exitPoints": {
+                "MODRU": [["MODRU", "A210+"]]
+            },
+            "draw": [
+                ["NIKOG", "ORSOV", "VEBAK", "NETEX", "MODRU"]
+            ]
+        },
+        "MODRU6Z": {
+            "icao": "MODRU6Z",
+            "name": "Modru Six Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX"],
+            "exitPoints": {
+                "MODRU": [["MODRU", "A210+"]]
+            },
+            "draw": [
+                ["MODRU"]
+            ]
+        },
+        "MEVEL3H": {
+            "icao": "MEVEL3H",
+            "name": "Mevel Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["^DL231", "A06+"], "DL234", ["DL246", "S190-"], "DL248", "ERKUM", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["DL234", "DL246"],
+                ["MEVEL"]
+            ]
+        },
+        "MEVEL3T": {
+            "icao": "MEVEL3T",
+            "name": "Mevel Three Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["^DL230", "A06+"], ["DL235", "S190-"], "DL248", "ERKUM", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["DL230", "DL235", "DL248", "ERKUM", "LUSIX", "MEVEL"]
+            ]
+        },
+        "MEVEL8J": {
+            "icao": "MEVEL8J",
+            "name": "Mevel Eight Juliett",
+            "rwy": {
+                "EDDL05L": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["MEVEL"]
+            ]
+        },
+        "MEVEL9Z": {
+            "icao": "MEVEL9Z",
+            "name": "Mevel Nine Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["MEVEL"]
+            ]
+        },
+        "NETEX2H": {
+            "icao": "NETEX2H",
+            "name": "Netex Two Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL237", "A06+"], "LMA"],
             "exitPoints": {
                 "NETEX": ["NETEX"]
             },
             "draw": [
-                ["DL050", "DL053", "NIKOG", "ORSOV", "VEBAK", "NETEX*"],
-                ["DL236", "LMA", "NETEX"],
-                ["DL237", "LMA", "NETEX"]
+                ["LMA", "NETEX"]
             ]
         },
-        "NUDGO": {
-            "icao": "NUDGO",
-            "name": "NUDGO",
-            "suffix": {"05L":"3J", "05R":"3Z", "23L":"4T", "23R":"2H"},
+        "NETEX3J": {
+            "icao": "NETEX3J",
+            "name": "Netex Three Juliett",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM", "ANAVI"],
-                "05R": ["DL050", "DL058", "BAM", "ANAVI"],
-                "23L": ["DL239", "DL241", "ELBAL"],
-                "23R": ["DL240", "DL241", "ELBAL"]
+                "EDDL05L": []
             },
-            "body": ["MAMIB", "KULIK"],
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "ORSOV", "VEBAK"],
+            "exitPoints": {
+                "NETEX": ["NETEX"]
+            },
+            "draw": [
+                ["NETEX"]
+            ]
+        },
+        "NETEX3Z": {
+            "icao": "NETEX3Z",
+            "name": "Netex Three Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "ORSOV", "VEBAK"],
+            "exitPoints": {
+                "NETEX": ["NETEX"]
+            },
+            "draw": [
+                ["NETEX"]
+            ]
+        },
+        "NETEX5T": {
+            "icao": "NETEX5T",
+            "name": "Netex Five Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL236", "A06+"], "LMA"],
+            "exitPoints": {
+                "NETEX": ["NETEX"]
+            },
+            "draw": [
+                ["LMA", "NETEX"]
+            ]
+        },
+        "NUDGO3H": {
+            "icao": "NUDGO3H",
+            "name": "Nudgo Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["DL240", "A06+"], "DL241", "ELBAL", "MAMIB", "KULIX"],
             "exitPoints": {
                 "NUDGO": ["NUDGO"]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "ANAVI","MAMIB","KULIK","NUDGO*"],
-                ["DL239", "DL241", "ELBAL", "MAMIB"],
-                ["DL240", "DL241"]
+                ["NUDGO"]
             ]
         },
-        "NVO": {
-            "icao": "NVO",
-            "name": "Noervenich",
-            "suffix": {"05L":"1Y", "05R":"1Z", "23L":"1T", "23R":"1U"},
+        "NUDGO4J": {
+            "icao": "NUDGO4J",
+            "name": "Nudgo Four Juliett",
             "rwy": {
-                "05L": ["DL050", "DL058", "BAM"],
-                "05R": ["DL050", "DL058", "BAM"],
-                "23L": ["DL239", "DL241"],
-                "23R": ["DL240", "DL241"]
+                "EDDL05L": []
             },
-            "body": [],
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI", "MAMIB", "KULIX"],
+            "exitPoints": {
+                "NUDGO": ["NUDGO"]
+            },
+            "draw": [
+                ["DL050", "DL058", "BAM", "ANAVI", "MAMIB", "KULIX", "NUDGO"]
+            ]
+        },
+        "NUDGO4Z": {
+            "icao": "NUDGO4Z",
+            "name": "Nudgo Four Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM", "ANAVI", "MAMIB", "KULIX"],
+            "exitPoints": {
+                "NUDGO": ["NUDGO"]
+            },
+            "draw": [
+                ["NUDGO"]
+            ]
+        },
+        "NUDGO5T": {
+            "icao": "NUDGO5T",
+            "name": "Nudgo Five Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241", "ELBAL", "MAMIB", "KULIX"],
+            "exitPoints": {
+                "NUDGO": ["NUDGO"]
+            },
+            "draw": [
+                ["DL242", "ELBAL"],
+                ["NUDGO"]
+            ]
+        },
+        "NVO1T": {
+            "icao": "NVO1T",
+            "name": "Noervenich One Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["DL239", "A06+"], "DL241"],
             "exitPoints": {
                 "NVO": ["NVO"]
             },
             "draw": [
-                ["DL050", "DL058", "BAM", "NVO*"],
-                ["DL239", "DL241", "BAM"],
-                ["DL240", "DL241"]
+                ["DL241", "NVO"]
             ]
         },
-        "SONEB": {
-            "icao": "SONEB",
-            "name": "SONEB",
-            "suffix": {"05L":"4J", "05R":"4Z", "23L":"6T", "23R":"2H"},
+        "NVO1U": {
+            "icao": "NVO1U",
+            "name": "Noervenich One Uniform",
             "rwy": {
-                "05L": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
-                "05R": ["DL050", "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
-                "23L": ["DL230", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
-                "23R": ["DL231", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]]
+                "EDDL23R": []
             },
-            "body": [],
+            "body": [["DL240", "A06+"], "DL241"],
+            "exitPoints": {
+                "NVO": ["NVO"]
+            },
+            "draw": [
+                ["NVO"]
+            ]
+        },
+        "NVO2Y": {
+            "icao": "NVO2Y",
+            "name": "Noervenich Two Yankee",
+            "rwy": {
+                "EDDL05L": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM"],
+            "exitPoints": {
+                "NVO": ["NVO"]
+            },
+            "draw": [
+                ["BAM", "NVO"]
+            ]
+        },
+        "NVO2Z": {
+            "icao": "NVO2Z",
+            "name": "Noervenich Two Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL058", "BAM"],
+            "exitPoints": {
+                "NVO": ["NVO"]
+            },
+            "draw": [
+                ["NVO"]
+            ]
+        },
+        "SONEB3H": {
+            "icao": "SONEB3H",
+            "name": "Soneb Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": [["^DL231", "A06+"], "DL234", ["DL236", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
             "exitPoints": {
                 "SONEB": ["SONEB"]
             },
             "draw": [
-                ["DL050", "DL053", "NIKOG", "LUSIX", "DL054", "SONEB*"],
-                ["DL230", "DL246", "DL248", "ERKUM", "SONEB"],
-                ["DL231", "DL246"]
+                ["DL231", "DL234", "DL236"],
+                ["ERKUM", "DL245", "SONEB"]
+            ]
+        },
+        "SONEB5J": {
+            "icao": "SONEB5J",
+            "name": "Soneb Five Juliett",
+            "rwy": {
+                "EDDL05L": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
+            "exitPoints": {
+                "SONEB": ["SONEB"]
+            },
+            "draw": [
+                ["DL050", "DL053", "NIKOG", "LUSIX", "DL054", "SONEB"]
+            ]
+        },
+        "SONEB5Z": {
+            "icao": "SONEB5Z",
+            "name": "Soneb Five Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": [["DL050", "A06+"], "DL053", "NIKOG", "LUSIX", ["DL054", "A140+"]],
+            "exitPoints": {
+                "SONEB": ["SONEB"]
+            },
+            "draw": [
+                ["SONEB"]
+            ]
+        },
+        "SONEB7T": {
+            "icao": "SONEB7T",
+            "name": "Soneb Seven Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": [["^DL230", "A06+"], ["DL235", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
+            "exitPoints": {
+                "SONEB": ["SONEB"]
+            },
+            "draw": [
+                ["SONEB"]
             ]
         }
     },
     "stars": {
-        "BIKMU": {
-            "icao": "BIKMU",
-            "name": "BIKMU",
-            "suffix": {"05L":"1X", "23R":"1G"},
-            "entryPoints": {
-                "BIKMU": ["BIKMU"]
-            },
-            "body": [],
-            "rwy": {
-                "05L": ["RONAD"],
-                "23R": ["BOT"]
-            },
-            "draw": [
-                ["BIKMU*", "RONAD"],
-                ["BIMKU", "BOT"]
-            ]
-        },
-        "DOMUX": {
-            "icao": "DOMUX",
-            "name": "DOMUX",
-            "suffix": {"05L":"2X", "23R":"2G"},
-            "entryPoints": {
-                "DOMUX": ["DOMUX"]
-            },
-            "body": [],
-            "rwy": {
-                "05L": ["DOLAV", "LEBTI"],
-                "23R": ["BAM"]
-            },
-            "draw": [
-                ["DOMUX*", "DOLAV", "LEBTI"],
-                ["DOMUX", "BAM"]
-            ]
-        },
-        "LMA": {
-            "icao": "LMA",
-            "name": "LIMA",
-            "suffix": {"05L":"9X", "23R":"8G"},
-            "entryPoints": {
-                "LMA": ["LMA"]
-            },
-            "body": [],
-            "rwy": {
-                "05L": ["IBIKO", "GAPNU", "RONAD"],
-                "23R": ["BOT"]
-            },
-            "draw": [
-                ["LMA*", "IBIKO", "GAPNU", "RONAD"],
-                ["LMA", "BOT"]
-            ]
-        },
-        "TEBRO": {
-            "icao": "TEBRO",
-            "name": "TEBRO",
-            "suffix": {"05L":"1X", "23R":"1G"},
-            "entryPoints": {
-                "TEBRO": ["TEBRO"]
-            },
-            "body": [],
-            "rwy": {
-                "05L": ["VALSU", "GAPNU", "RONAD"],
-                "23R": ["AGEDA", "XAMOD", "BOT"]
-            },
-            "draw": [
-                ["TEBRO*", "VALSU", "GAPNU", "RONAD"],
-                ["TEBRO", "AGEDA", "XAMOD", "BOT"]
-            ]
-        },
-        "XAMOD": {
-            "icao": "XAMOD",
-            "name": "XAMOD",
-            "suffix": {"05L":"2X", "23R":"2G"},
-            "entryPoints": {
-                "XAMOD": ["XAMOD"]
-            },
-            "body": [],
-            "rwy": {
-                "05L": ["BOMBA", "GAPNU", "RONAD"],
-                "23R": ["BOT"]
-            },
-            "draw": [
-                ["XAMOD*", "BOMBA", "GAPNU", "RONAD"],
-                ["XAMOD", "BOT"]
-            ]
-        }        
+
+    },
+    "maps": {
+        "base": [
+
+        ]
     }
 }
