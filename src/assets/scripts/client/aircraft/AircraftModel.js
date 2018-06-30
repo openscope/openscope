@@ -798,6 +798,8 @@ export default class AircraftModel {
      * @method cancelLanding
      */
     cancelLanding() {
+        this.mcp.altitude = this.fms.arrivalRunwayModel.elevation + 2000;
+        this.mcp.altitudeMode = MCP_MODE.ALTITUDE.HOLD;
         // TODO: add fms.clearRunwayAssignment()?
         this.setFlightPhase(FLIGHT_PHASE.CRUISE);
 
@@ -1393,8 +1395,26 @@ export default class AircraftModel {
                 break;
 
             case FLIGHT_PHASE.APPROACH: {
-                if (this.positionModel.distanceToPosition(this.mcp.nav1Datum) < AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM) {
-                    this.setFlightPhase(FLIGHT_PHASE.LANDING);
+                const datum = this.mcp.nav1Datum;
+                if (this.positionModel.distanceToPosition(datum) < AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM) {
+                    const angleAwayFromLocalizer = this.mcp.course - this.positionModel.bearingToPosition(datum);
+                    const course = this.mcp.course;
+                    const courseOffset = getOffset(this, datum.relativePosition, course);
+                    const lateralDistanceFromCourseNm = nm(courseOffset[0]);
+
+                    const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+                    const isCourseStabilised = abs(angleAwayFromLocalizer) < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+                    const isOnGlideslope = abs(this.altitude - this.target.altitude) < 100;
+
+                    if (isCourseStabilised && isOnGlideslope && isAlignedWithCourse) {
+                        // stabilised approach, switch to landing
+                        this.setFlightPhase(FLIGHT_PHASE.LANDING);
+                    } else {
+                        const runwayModel = this.fms.arrivalRunwayModel;
+                        if (this.altitude < runwayModel.elevation + PERFORMANCE.INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE) {
+                            this.updateLandingFailedLanding();
+                        } 
+                    }
                 }
 
                 break;
@@ -1437,7 +1457,6 @@ export default class AircraftModel {
             }
 
             case MCP_MODE.HEADING.VOR_LOC:
-                // TODO: fill out this function
                 return this._calculateTargetedHeadingToInterceptCourse();
 
             default:
@@ -1607,8 +1626,9 @@ export default class AircraftModel {
         if (!(shouldAttemptIntercept || inTheWindow)) {
             return this.mcp.heading;
         }
+        // continue if shouldAttemptIntercept OR inTheWindow
 
-        const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+        const severity_of_correction = 1;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
         const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
@@ -1632,9 +1652,7 @@ export default class AircraftModel {
             return headingToFly;
         }
     }
-    /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
 
-    /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
     /**
      * Cancels the landing and disaply message
      *
@@ -1643,13 +1661,13 @@ export default class AircraftModel {
      */
     updateLandingFailedLanding() {
         // Failed Approach
-        if ((this.approachDistance > 0.100) && (!this.projected)) {
+        if (!this.projected) {
             this.cancelLanding();
 
             const isWarning = true;
             // TODO: Should be moved to where the output is handled
             GameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, missed approach`, isWarning);
 
             speech_say([
                 { type: 'callsign', content: this },
@@ -1657,7 +1675,9 @@ export default class AircraftModel {
             ]);
         }
     }
+    /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
 
+    /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
     /**
      * This will display a waring and record an illegal approach event
      * @for AircraftModel
