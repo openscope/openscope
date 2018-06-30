@@ -70,7 +70,7 @@
 * Click `Run`
 
 
-*Note: QGIS may seem frozen while the algirthm is run, but it is still running. Try not clicking anywhere on the prograam to ensure it does not crash.*
+*Note: QGIS may seem frozen while the algorithm is run, but it is still running. Try not clicking anywhere on the program to ensure it does not crash.*
 
 
 * Go to `Vector->Geometry Tools->Polygons to Lines`
@@ -78,7 +78,7 @@
 * Click `Run`
 
 
-* On the Layers Panel, Rename `Polygons to Lines` layer to `clipping`
+* On the Layers Panel, Rename `Lines from Polygons` layer to `clipping`
 * Remove `Buffer` layer
 
 
@@ -131,6 +131,9 @@
 * Value: `0.00005`
 * Merge selection: `Largest common boundary`
 * Click `Run`
+
+
+*Note: This step can sometimes take a while to complete.
 
 
 ### 6. Prepare for Export
