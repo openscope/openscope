@@ -8,7 +8,7 @@
     "iata": "SIN",
     "magnetic_north": 0.26,
     "ctr_radius": 80,
-    "ctr_ceiling": 21000,
+    "ctr_ceiling": 25000,
     "initial_alt": 3000,
     "position": ["N01d21m33.16", "E103d59m21.57", "21.85ft"],
     "rr_radius_nm": 5.0,
@@ -23,13 +23,18 @@
     "airspace": [
         {
             "floor": 0,
-            "ceiling": 210,
+            "ceiling": 250,
             "airspace_class": "D",
             "poly": [
-                ["N02d26m00.00", "E102d56m05"],
-                ["N02d26m00.00", "E104d34m00"],
-                ["N00d43m00.00", "E104d34m00"],
-                ["N00d43m00.00", "E102d56m05"]
+                ["N00d43m00", "E102d56m05"],
+                ["N02d26m00", "E102d56m05"],
+                ["N02d22m05", "E103d47m24"],
+                ["N02d52m34", "E103d33m40"],
+                ["N02d54m32", "E103d43m41"],
+                ["N03d38m22", "E103d41m39"],
+                ["N02d36m00", "E104d45m00"],
+                ["N02d26m00", "E104d34m00"],
+                ["N00d43m00", "E104d34m00"]
             ]
         }
     ],
@@ -641,7 +646,291 @@
         }
     },
     "stars": {
-        
+        "ARAMA1A": {
+            "icao": "ARAMA1A",
+            "name": "Arama One Alpha",
+            "entryPoints": {
+                "ARAMA": [["ARAMA", "S250"]]
+            },
+            "body": [["BOBAG", "A100+|S220"], ["BOKIP", "A60+"], ["SAMKO", "A40+|S190"]],
+            "rwy": {
+                "WSSS02C": [],
+                "WSSS02L": []
+            },
+            "draw": [
+                ["ARAMA", "BOBAG", "BOKIP", "SAMKO"]
+            ]
+        },
+        "ARAMA1B": {
+            "icao": "ARAMA1B",
+            "name": "Arama One Bravo",
+            "entryPoints": {
+                "ARAMA": [["ARAMA", "S250"]]
+            },
+            "body": [["BOBAG", "A100+|S220"], "SAMKO",  ["BTM", "A70+|S220"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["ARAMA", "BOBAG", "SAMKO", "BTM", "DOVAN", "BIPOP"]
+            ]
+        },
+        "ASUNA1A": {
+            "icao": "ASUNA1A",
+            "name": "Asuna One Alpha",
+            "entryPoints": {
+                "ASUNA": [["ASUNA", "S250"]]
+            },
+            "body": [["BOBAG", "A100+|S220"], ["BOKIP", "A60+"], ["SAMKO", "A40+|S190"]],
+            "rwy": {
+                "WSSS02C": [],
+                "WSSS02L": []
+            },
+            "draw": [
+                ["ASUNA", "BOBAG", "BOKIP", "SAMKO"]
+            ]
+        },
+        "ASUNA1B": {
+            "icao": "ASUNA1B",
+            "name": "Asuna One Bravo",
+            "entryPoints": {
+                "ASUNA": [["ASUNA", "S250"]]
+            },
+            "body": [["BOBAG", "A100+|S220"], "SAMKO",  ["BTM", "A70+|S220"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["ASUNA", "BOBAG", "SAMKO", "BTM", "DOVAN", "BIPOP"]
+            ]
+        },
+        "ELALO1A": {
+            "icao": "ELALO1A",
+            "name": "Elalo One Alpha",
+            "entryPoints": {
+                "ELALO": ["ELALO"]
+            },
+            "body": ["KANLA", "KILOT", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60+|S220"], ["SANAT", "A40+|S190"]],
+            "rwy": {
+                "WSSS02C": [],
+                "WSSS02L": []
+            },
+            "draw": [
+                ["ELALO", "KANLA", "KILOT", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"]
+            ]
+        },
+        "ELALO1B": {
+            "icao": "ELALO1B",
+            "name": "Elalo One Bravo",
+            "entryPoints": {
+                "ELALO": ["ELALO"]
+            },
+            "body": ["KANLA", "KILOT", ["PIBAP", "A210-|S250"], ["PASPU", "A60+|S220"], ["NYLON", "A30+"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["ELALO", "KANLA", "KILOT", "PIBAP", "PASPU", "NYLON"]
+            ]
+        },
+        "KARTO1A": {
+            "icao": "KARTO1A",
+            "name": "Karto One Alpha",
+            "entryPoints": {
+                "TOMAN": ["TOMAN"]
+            },
+            "body": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70+"], ["SANAT", "A40+|S190"]],
+            "rwy": {
+                "WSSS02C": [],
+                "WSSS02L": []
+            },
+            "draw": [
+                ["TOMAN*", "KARTO", "KEXAS", "LAVAX", "IGNON", "SANAT"]
+            ]
+        },
+        "KARTO1B": {
+            "icao": "KARTO1B",
+            "name": "Karto One Bravo",
+            "entryPoints": {
+                "TOMAN": ["TOMAN"]
+            },
+            "body": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80+"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["TOMAN*", "KARTO", "KEXAS", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+            ]
+        },
+        "LEBAR2A": {
+            "icao": "LEBAR2A",
+            "name": "Lebar Two Alpha",
+            "entryPoints": {
+                "PASPU": [["PASPU", "S220"]]
+            },
+            "body": [["PU", "A70+"], ["SJ", "A70+"], ["PALGA", "S220"], "PAMSI", ["SAMKO", "A40+|S190"]],
+            "rwy": {
+                "WSSS02L": []
+            },
+            "draw": [
+                ["PASPU*", "PU", "SJ", "PALGA", "PAMSI", "SAMKO"]
+            ]
+        },
+        "LEBAR2B": {
+            "icao": "LEBAR2B",
+            "name": "Lebar Two Bravo",
+            "entryPoints": {
+                "BOBAG": [["BOBAG", "A100+|S220"]],
+                "REMES": [["REMES", "S220"]]
+            },
+            "body": [["SJ", "A70+"], ["PU", "A70+|S220"], "BETBA", ["BIDUS", "A30+|S190"]],
+            "rwy": {
+                "WSSS20R": []
+            },
+            "draw": [
+                ["BOBAG*", "SJ", "PU", "BETBA", "BIDUS"],
+                ["REMES*", "SJ"]
+            ]
+        },
+        "LELIB3B": {
+            "icao": "LELIB3B",
+            "name": "Lelib Three Bravo",
+            "entryPoints": {
+                "ARAMA": [["ARAMA", "S250"]]
+            },
+            "body": [["LELIB", "A100+"], ["JB", "A70+|S220"], ["ALFA", "A60+"], ["BIDUS", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["ARAMA*", "LELIB", "JB", "ALFA", "BIDUS"]
+            ]
+        },
+        "MABAL2A": {
+            "icao": "MABAL2A",
+            "name": "Mabal Two Alpha",
+            "entryPoints": {
+                "MABAL": ["MABAL"]
+            },
+            "body": ["KILOT", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60+|S220"], ["SANAT", "A40+|S190"]],
+            "rwy": {
+                "WSSS02L": [],
+                "WSSS02C": []
+            },
+            "draw": [
+                ["MABAL", "KILOT", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"]
+            ]
+        },
+        "MABAL2B": {
+            "icao": "MABAL2B",
+            "name": "Mabal Two Bravo",
+            "entryPoints": {
+                "MABAL": ["MABAL"]
+            },
+            "body": ["KILOT", ["PIBAP", "A210-|S250"], ["PASPU", "A60+|S220"], ["NYLON", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["MABAL", "KILOT", "PIBAP", "PASPU", "NYLON"]
+            ]
+        },
+        "OBDOS1A": {
+            "icao": "OBDOS1A",
+            "name": "Obdos One Alpha",
+            "entryPoints": {
+                "OBDOS": ["OBDOS"]
+            },
+            "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70+"], ["SANAT", "A40+|S190"]],
+            "rwy": {
+                "WSSS02L": [],
+                "WSSS02C": []
+            },
+            "draw": [
+                ["OBDOS", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"]
+            ]
+        },
+        "OBDOS1B": {
+            "icao": "OBDOS1B",
+            "name": "Obdos One Bravo",
+            "entryPoints": {
+                "OBDOS": ["OBDOS"]
+            },
+            "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80+"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["OBDOS", "IKAGO", "IKIMA", "IBULA", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+            ]
+        },
+        "REPOV1A": {
+            "icao": "REPOV1A",
+            "name": "Repov One Alpha",
+            "entryPoints": {
+                "REPOV": [["REPOV", "A210-|S250"]]
+            },
+            "body": [["REMES", "A60+|S220"], ["SAMKO", "A40+|S190"]],
+            "rwy": {
+                "WSSS02L": [],
+                "WSSS02C": []
+            },
+            "draw": [
+                ["REPOV", "REMES", "SAMKO"]
+            ]
+        },
+        "REPOV1B": {
+            "icao": "REPOV1B",
+            "name": "Repov One Bravo",
+            "entryPoints": {
+                "REPOV": [["REPOV", "A210-|S250"]]
+            },
+            "body": [["REMES", "S220"], ["BTM", "A70+|S220"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["REPOV", "BTM", "DOVAN", "BIPOP"]
+            ]
+        },
+        "SURGA1A": {
+            "icao": "SURGA1A",
+            "name": "Surga One Alpha",
+            "entryPoints": {
+                "SURGA": ["SURGA"]
+            },
+            "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70+"], ["SANAT", "A40+|S190"]],
+            "rwy": {
+                "WSSS02L": [],
+                "WSSS02C": []
+            },
+            "draw": [
+                ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"]
+            ]
+        },
+        "SURGA1B": {
+            "icao": "SURGA1B",
+            "name": "Surga One Bravo",
+            "entryPoints": {
+                "SURGA": ["SURGA"]
+            },
+            "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80+"], ["DOVAN", "A40+"], ["BIPOP", "A30+|S190"]],
+            "rwy": {
+                "WSSS20C": [],
+                "WSSS20R": []
+            },
+            "draw": [
+                ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+            ]
+        }
     },
     "spawnPatterns": [
         
