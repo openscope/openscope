@@ -1531,6 +1531,7 @@
         },
         "GOGOG1B": {
             "icao": "GOGO1B",
+            "icao": "GOGOG1B",
             "name": "Gogog One Bravo",
             "entryPoints": {
                 "GOGOG": [["GOGOG", "A70+"]]
@@ -1864,6 +1865,8 @@
         "XAMOD3G": {
             "icao": "XAMOD2X",
             "name": "Xamod Two X-ray",
+            "icao": "XAMOD3G",
+            "name": "Xamod Three Golf",
             "entryPoints": {
                 "XAMOD": ["XAMOD"]
             },
