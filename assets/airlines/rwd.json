@@ -1,0 +1,26 @@
+{
+    "icao": "rwd",
+    "name": "Rwandair",
+    "callsign": {
+        "name": "Rwandair",
+        "callsignFormats": [
+            "#",
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A332", 1],
+            ["A333", 1],
+            ["B737", 2],
+            ["B738", 4],
+            ["CRJ9", 2],
+            ["DH8A", 1],
+            ["DH8D", 2]
+        ],
+        "a333": [
+            ["A333", 1]
+        ]
+    }
+}

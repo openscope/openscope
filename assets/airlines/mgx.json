@@ -3,10 +3,13 @@
     "name": "Montenegro Airlines",
     "callsign": {
         "name": "Montenegro",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
+            ["B735", 1],
             ["E195", 3],
             ["F100", 2]
         ]

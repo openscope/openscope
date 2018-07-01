@@ -1,0 +1,23 @@
+{
+    "icao": "dah",
+    "name": "Air Algerie",
+    "callsign": {
+        "name": "Air Algerie",
+        "length": 3,
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A332", 8],
+            ["B736", 5],
+            ["B737", 2],
+            ["B738", 25],
+            ["B763", 3]
+        ],
+        "a332": [
+            ["A332", 8]
+        ]
+    }
+}

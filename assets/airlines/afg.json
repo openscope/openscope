@@ -1,0 +1,17 @@
+{
+    "icao": "afg",
+    "name": "Ariana Afghan Airlines",
+    "callsign": {
+        "name": "Ariana",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A310", 2],
+            ["B734", 3]
+        ],
+        "b734": [
+            ["B734", 3]
+        ]
+    }
+}
