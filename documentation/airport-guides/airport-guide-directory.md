@@ -4,6 +4,7 @@ In order to help you learn the details of each particular airspace, an "airport 
 - [CYOW - Ottawa Macdonald–Cartier International Airport](cyow.md)
 - [EDDF - Flughafen Frankfurt am Main](eddf.md)
 - [EDDH - Hamburg Airport](eddh.md)
+- [EDDL - Flughafen Düsseldorf](eddl.md)
 - [EGCC - Manchester Airport](egcc.md)
 - [EGNM - Leeds Bradford Airport](egnm.md)
 - [EIDW - Dublin Airport](eidw.md)
