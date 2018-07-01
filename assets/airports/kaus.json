@@ -13,7 +13,7 @@
     "position": ["N30.195105", "W97.666406", "542ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N30.195105", "W97.666406"],
-    "has_terrain": false,
+    "has_terrain": true,
     "wind": {
         "angle": 170,
         "speed": 7
@@ -55,10 +55,10 @@
         "BAAAB": ["N30d9.51", "W98d10.35"],
         "BALLD": ["N29d55.59", "W97d39.04"],
         "BASIS": ["N30d37.37", "W98d15.58"],
-		"BASTO": ["N30d10.42", "W97d17.07"],
+        "BASTO": ["N30d10.42", "W97d17.07"],
         "BEESO": ["N30d20.25", "W97d34.39"],
         "BETTI": ["N29d57.92", "W98d3.40"],
-		"BIIRD": ["N30d4.46", "W97d40.54"],
+        "BIIRD": ["N30d4.46", "W97d40.54"],
         "BITER": ["N30d6.75", "W97d4.79"],
         "BLEWE": ["N31d12.46", "W97d12.54"],
         "BNDIA": ["N29d38.65", "W98d27.67"],
@@ -75,7 +75,7 @@
         "CRP"  : ["N27d54.22", "W97d26.69"],
         "CWK"  : ["N30d22.71", "W97d31.79"],
         "DARTE": ["N30d45.97", "W97d27.11"],
-		"DBORD": ["N30d8.79", "W97d51.31"],
+        "DBORD": ["N30d8.79", "W97d51.31"],
         "DBOYS": ["N29d42.83", "W95d41.22"],
         "DDTOO": ["N30d15.53", "W97d39.56"],
         "DILLO": ["N30d47.78", "W98d47.23"],
@@ -105,7 +105,7 @@
         "JAYJO": ["N30d20.23", "W96d48.91"],
         "JCT"  : ["N30d35.88", "W99d49.05"],
         "JASMO": ["N30d43.70", "W97d47.61"],
-		"JEDYE": ["N30d22.96", "W97d38.40"],
+        "JEDYE": ["N30d22.96", "W97d38.40"],
         "JOVSA": ["N30d5.80", "W97d40.57"],
         "KALLA": ["N30d43.26", "W98d4.65"],
         "KLNGR": ["N31d13.41", "W98d2.33"],
@@ -233,7 +233,7 @@
                 ["CWK", "JASMO", "AGJ*"],
                 ["CWK", "BASIS", "LLO*"],
                 ["LLO", "ABI*"],
-				["CWK", "AMUSE"],
+                ["CWK", "AMUSE"],
                 ["AMUSE", "JCT*"],
                 ["LLO", "SJT*"],
                 ["CWK", "GARDS", "BETTI", "SAT*"],
@@ -249,7 +249,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": [["GARDS", "A50+"]],
+            "body": [["GARDS", "A50+"]],
             "exitPoints": {
                 "BNDIA": ["BNDIA"]
             },
@@ -266,22 +266,22 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": ["CWK"],
+            "body": ["CWK"],
             "exitPoints": {
                 "ACT": ["DARTE", "ACT"],
-				"CLL": ["HOOKK", "ILEXY", "CLL"],
+                "CLL": ["HOOKK", "ILEXY", "CLL"],
                 "ILEXY": ["HOOKK", "ILEXY"],
                 "JAYJO": ["HOOKK", "ILEXY", "JAYJO"],
-                "NAVYS": ["NAVYS"],
-				"TNV": ["HOOKK", "ILEXY", "JAYJO", "TNV"]
+                "NAVYS": ["MUNCH", "NAVYS"],
+                "TNV": ["HOOKK", "ILEXY", "JAYJO", "TNV"]
             },
             "draw": [
-                ["CWK", "ILEXY*"],
+                ["CWK", "HOOKK", "ILEXY*"],
                 ["ILEXY", "CLL*"],
-                ["CWK", "JAYJO*"],
+                ["ILEXY", "JAYJO*"],
                 ["CWK", "TNV*"],
-                ["CWK", "NAVYS*"],
-                ["CWK", "ACT*"]
+                ["CWK", "MUNCH", "NAVYS*"],
+                ["CWK", "DARTE", "ACT*"]
            ]
         },
         "ELOEL2": {
@@ -300,7 +300,7 @@
                 "KLNGR": ["KLNGR"]
             },
             "draw": [
-                ["WLMRT", "ELOEL*"],
+                ["WLMRT", "ELOEL"],
                 ["ELOEL", "FORSS*"],
                 ["FORSS", "ABI*"],
                 ["ELOEL", "KLNGR*"]
@@ -315,10 +315,10 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-            "body": [["HOOKK", "A50+"], "ILEXY"],
+            "body": [["HOOKK", "A50+"], "ILEXY", "JAYJO"],
             "exitPoints": {
-                "JAYJO": ["JAYJO"],
-                "ZENZI": ["JAYJO", "ASHRR", "ZENZI"]
+                "JAYJO": [],
+                "ZENZI": ["ASHRR", "ZENZI"]
             },
             "draw": [
                 ["HOOKK", "ILEXY*"],
@@ -335,7 +335,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": [["PAYDA", "A50+"]],
+            "body": [["PAYDA", "A50+"]],
             "exitPoints": {
                 "MUCKY": ["MUCKY"]
             },
@@ -352,7 +352,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-            "body": ["CWK", "PALMS"],
+            "body": ["CWK", ["PALMS", "A50+"]],
             "exitPoints": {
                 "CRP": ["CRP"]
             },
@@ -369,7 +369,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": [["MUNCH", "A50+"]],
+            "body": [["MUNCH", "A50+"]],
             "exitPoints": {
                 "SAYBR": ["SAYBR"]
             },
@@ -390,15 +390,15 @@
             },
             "body": ["WLEEE", "BITER", "ISHOV", "BASTO"],
             "rwy": {
-                "KAUS17L": [ ],
-                "KAUS17R": [ ],
-                "KAUS35L": [ ],
-                "KAUS35R": [ ]
+                "KAUS17L": [],
+                "KAUS17R": [],
+                "KAUS35L": [],
+                "KAUS35R": []
             },
             "draw": [
                 ["HUB*", "BOCCK"],
                 ["IAH*", "SHYNR", "BOCCK", "IDU"],
-                ["IDU*", "WLEEE*", "BITER", "ISHOV", "BASTO"],
+                ["IDU*", "WLEEE", "BITER", "ISHOV", "BASTO"],
                 ["LFK*", "BOCCK"]
            ]
         },
@@ -411,13 +411,13 @@
             },
             "body": ["BLEWE", "SEWZY", "CWK"],
             "rwy": {
-                "KAUS17L": [ ],
-                "KAUS17R": [ ],
-                "KAUS35L": [ ],
-                "KAUS35R": [ ]
+                "KAUS17L": [],
+                "KAUS17R": [],
+                "KAUS35L": [],
+                "KAUS35R": []
             },
             "draw": [
-                ["BLEWE*", "SEWZY", "CWK"],
+                ["BLEWE", "SEWZY", "CWK"],
                 ["ACT*", "BLEWE"],
                 ["WINDU*", "BLEWE"]
            ]
@@ -429,7 +429,7 @@
                 "HFMAN": ["HFMAN", "GYTON", "DOBBY", ["THELM", "A200+|S280"]],
                 "HOOLR": ["HOOLR", "NILEE", ["SKEWT", "A200+|S280"]]
             },
-            "body": ["VIDAA", ["DXEEE", "A100+|A140-|S250"], "BAAAB", ["SMILN", "A120-"]],
+            "body": ["VIDAA", ["PUDDY", "A140+"], ["ORINT", "A120+"], ["DXEEE", "A100+|A140-|S250"], "BAAAB", ["SMILN", "A120-"]],
             "rwy": {
                 "KAUS17L": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "^SNOTT", "#355"],
                 "KAUS17R": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "^SNOTT", "#355"],
@@ -439,7 +439,7 @@
             "draw": [
                 ["HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT"],
                 ["HOOLR*", "NILEE", "SKEWT", "VIDAA"],
-                ["ORINT", "DXEEE*", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU"],
+                ["ORINT", "DXEEE", "BAAAB", "SMILN", "FAACE", "LIPSS", "STNSN", "TATAU"],
                 ["SMILN", "PLANX", "DBORD", "TRPPN", "SNOTT"]
            ]
         },
@@ -451,34 +451,34 @@
             },
             "body": ["KALLA", "CWK"],
             "rwy": {
-                "KAUS17L": [ ],
-                "KAUS17R": [ ],
-                "KAUS35L": [ ],
-                "KAUS35R": [ ]
+                "KAUS17L": [],
+                "KAUS17R": [],
+                "KAUS35L": [],
+                "KAUS35R": []
             },
             "draw": [
                 ["LLO*", "KALLA"],
-                ["KALLA*", "CWK"]
+                ["KALLA", "CWK"]
            ]
         },
         "LAIKS2": {
             "icao": "LAIKS2",
             "name": "Lakes Two",
             "entryPoints": {
-                "DILLO": [ ],
+                "DILLO": [],
                 "UCOKA": ["UCOKA"]
             },
             "body": ["DILLO", "SZAGI", ["LAIKS", "A100+|A140-"], ["BOYZZ", "A110-"]],
             "rwy": {
                 "KAUS17L": [["CRLOS", "A50"], ["HOUKM", "A50|S210"]],
                 "KAUS17R": [["CRLOS", "A50"], ["HOUKM", "A50|S210"]],
-                "KAUS35L": [["TRVSS", "A100-|A80+"], ["RATTT", "A60+|S220"], ["^LAIDY", "A50|S210"], "#175"],
-                "KAUS35R": [["TRVSS", "A100-|A80+"], ["RATTT", "A60+|S220"], ["^LAIDY", "A50|S210"], "#175"]
+                "KAUS35L": [["TRVSS", "A80+|A100-"], ["RATTT", "A60+|S220"], ["^LAIDY", "A50|S210"], "#175"],
+                "KAUS35R": [["TRVSS", "A80+|A100-"], ["RATTT", "A60+|S220"], ["^LAIDY", "A50|S210"], "#175"]
             },
             "draw": [
                 ["UCOKA*", "DILLO"],
                 ["DILLO*", "SZAGI", "LAIKS"],
-                ["LAIKS*", "BOYZZ", "CRLOS", "HOUKM"],
+                ["LAIKS", "BOYZZ", "CRLOS", "HOUKM"],
                 ["BOYZZ", "TRVSS", "RATTT", "LAIDY"]
            ]
         },
@@ -488,10 +488,7 @@
             "entryPoints": {
                 "WINDU": ["WINDU", ["SSOLO", "A170+|A230-|S280"], ["MSTLO", "A130+|S250"]]
             },
-            "body": [
-                ["SEWZY", "A100+|A160-"],
-                ["VADRR", "A80+"]
-           ],
+            "body": [["SEWZY", "A100+|A160-"], ["VADRR", "A80+"]],
             "rwy": {
                 "KAUS17L": [["MGTEC", "A50+|S220"], ["JEDYE", "A40|S210"]],
                 "KAUS17R": [["MGTEC", "A50+|S220"], ["JEDYE", "A40|S210"]],
@@ -500,7 +497,7 @@
             },
             "draw": [
                 ["WINDU*", "SSOLO", "MSTLO"],
-                ["MSTLO*", "SEWZY", "VADRR", "MGTEC", "JEDYE"],
+                ["MSTLO", "SEWZY", "VADRR", "MGTEC", "JEDYE"],
                 ["VADRR", "HHOOF", "MMARE", "SMRFF"]
            ]
         },
@@ -512,7 +509,7 @@
                 "LUKKN": ["LUKKN", "WEEED", ["DOOEE", "A170+"], "WAILN"],
                 "MNURE": ["MNURE"],
                 "WAILN": ["WAILN"],
-                "WEEED": ["WEEED", ["DOOEE", "A170+"]]
+                "WEEED": ["WEEED", ["DOOEE", "A170+"], "WAILN"]
             },
             "body": [["WLEEE", "A120+|A140-|S280"], ["BITER", "A120-"]],
             "rwy": {
@@ -525,8 +522,7 @@
                 ["DBOYS*", "WEEED"],
                 ["LUKKN*", "WEEED"],
                 ["WEEED*", "DOOEE", "WAILN"],
-                ["WAILN*", "WLEEE"],
-                ["WLEEE*", "BITER", "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO"],
+                ["WAILN*", "WLEEE", "BITER", "ISHOV", "BASTO", "LUKKE", "XWING", "SSURF", "BEESO"],
                 ["BITER", "MUSEC", "TOONE", "BOWTZ", "EEVEE", "SCUTE"]
            ]
         }
@@ -543,9 +539,9 @@
             "rate": 1.46,
             "airlines": [
                 ["aal/short", 8],
-                ["eny", 1],
                 ["baw/b789", 1],
                 ["dal/short", 3],
+                ["eny", 1],
                 ["fft", 3],
                 ["n/fastGA", 1],
                 ["nax/long", 1],
@@ -658,8 +654,8 @@
             "airlines": [
                 ["aay", 1],
                 ["asa", 2],
-				["bvn", 3],
-				["n", 20],
+                ["bvn", 3],
+                ["n", 20],
                 ["n/fastGA", 1],
                 ["skw", 2],
                 ["swa", 3]
@@ -692,9 +688,9 @@
             "rate": 0.167,
             "airlines": [
                 ["amx/short", 1],
-                ["xa/fastGA", 1],
                 ["swa", 1],
-                ["ups", 1]
+                ["ups", 1],
+                ["xa/fastGA", 1]
            ]
         },
         {
@@ -814,11 +810,11 @@
             "method": "random",
             "rate": 0.54,
             "airlines": [
-                ["rpa", 2],
                 ["dal/short", 3],
                 ["edv", 1],
                 ["jbu", 2],
                 ["n/fastGA", 2],
+                ["rpa", 2],
                 ["swa", 5]
            ]
         },
@@ -964,10 +960,10 @@
             "rate": 0.75,
             "airlines": [
                 ["ash", 2],
+                ["n/fastGA", 1],
                 ["swa", 5],
                 ["ual", 7],
                 ["ups", 2],
-                ["n/fastGA", 1],
                 ["xa/fastGA", 1]
            ]
         }
