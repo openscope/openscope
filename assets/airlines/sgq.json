@@ -1,0 +1,18 @@
+{
+    "icao": "sgq",
+    "name": "SaudiGulf Airlines",
+    "callsign": {
+        "name": "Saudi Gold",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 4]
+        ],
+        "a320": [
+            ["A320", 4]
+        ]
+    }
+}

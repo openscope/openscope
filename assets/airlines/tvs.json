@@ -4,14 +4,15 @@
     "callsign": {
         "name": "Skytravel",
         "callsignFormats": [
-            "###"
+            "####",
+            "#@@",
+            "#@"
         ]
     },
     "fleets": {
         "default": [
-            ["A320",  3],
-            ["B738", 17],
-            ["B739",  2]
+            ["B738", 9],
+            ["B739", 2]
         ]
     }
 }

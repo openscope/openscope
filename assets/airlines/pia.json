@@ -3,13 +3,15 @@
     "name": "Pakistan International Airlines",
     "callsign": {
         "name": "Pakistan",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
             ["A320", 11],
-            ["AT45", 3],
-            ["AT72", 6],
+            ["AT45", 5],
+            ["AT72", 5],
             ["B772", 6],
             ["B77L", 2],
             ["B77W", 4]

@@ -873,7 +873,7 @@ export default class CanvasController {
 
         cc.save();
 
-        if (aircraftModel.inside_ctr) {
+        if (aircraftModel.isControllable) {
             fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_INSIDE_RANGE;
         }
 
@@ -1195,7 +1195,7 @@ export default class CanvasController {
         let blue = this.theme.DATA_BLOCK.DEPARTURE_BAR_OUT_OF_RANGE;
         let white = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
-        if (aircraftModel.inside_ctr) {
+        if (aircraftModel.isControllable) {
             red = this.theme.DATA_BLOCK.ARRIVAL_BAR_IN_RANGE;
             green = this.theme.DATA_BLOCK.BACKGROUND_IN_RANGE;
             blue = this.theme.DATA_BLOCK.DEPARTURE_BAR_IN_RANGE;
@@ -1347,7 +1347,7 @@ export default class CanvasController {
 
         let fillStyle = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
-        if (aircraftModel.inside_ctr) {
+        if (aircraftModel.isControllable) {
             fillStyle = this.theme.DATA_BLOCK.TEXT_IN_RANGE;
         }
 

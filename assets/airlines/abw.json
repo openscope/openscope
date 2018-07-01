@@ -3,7 +3,9 @@
     "name": "AirBridgeCargo",
     "callsign": {
         "name": "AirBridgeCargo",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [

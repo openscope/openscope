@@ -2,16 +2,18 @@
     "icao": "fft",
     "name": "Frontier Airlines",
     "callsign": {
-        "name": "FRONTIER FLIGHT",
+        "name": "Frontier Flight",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["A319", 28],
-            ["A320", 23],
-            ["A321", 6]
+            ["A20N", 21],
+            ["A319", 15],
+            ["A320", 22],
+            ["A321", 19]
         ]
     }
 }

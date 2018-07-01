@@ -219,6 +219,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'kcvg',
+            level: 'beginner',
+            name: 'Cincinnati-Northern Kentucky Int\'l Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kdca',
             level: 'easy',
             name: 'Ronald Reagan Washington National Airport',
@@ -442,13 +449,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'omdb',
-        //     level: 'hard',
-        //     name: 'Dubai International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'omdb',
+            level: 'hard',
+            name: 'Dubai International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'osdi',
         //     level: 'easy',

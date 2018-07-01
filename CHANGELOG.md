@@ -1,7 +1,20 @@
+# 6.3.0 (July 1, 2018)
+### New Features
+- [#272](https://github.com/openscope/openscope/issues/272) - Add Cincinnati/Northern Kentucky International Airport (KCVG)
+
+### Bugfixes
+- [#1008](https://github.com/openscope/openscope/issues/1008) - Correct airline files using old callsign format
+
+### Enhancements & Refactors
+- [#938](https://github.com/openscope/openscope/issues/938) - Overhaul of OMDB
+- [#94](https://github.com/openscope/openscope/issues/94) - Adds @openscope/validator package with supporting npm script
+
+
 # 6.2.0 (June 10, 2018)
 ### New Features
 - [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
 - [#444](https://github.com/openscope/openscope/issues/444) - Adds option button to toggle video map display
+- [#884](https://github.com/openscope/openscope/issues/884) - Add airline files for non-US registration callsigns
 
 ### Bugfixes
 - [#968](https://github.com/openscope/openscope/issues/968) - Fixed N-numbered GA aircraft having callsign "default" if voice is on
@@ -14,6 +27,8 @@
 - [#961](https://github.com/openscope/openscope/issues/961) - Updated climb and descent rates using Eurocontrol data
 - [#874](https://github.com/openscope/openscope/issues/874) - Continue and clean up following FMS / Route refactor
 - [#982](https://github.com/openscope/openscope/issues/982) - Remove empty .gitkeep file
+- [#916](https://github.com/openscope/openscope/issues/916) - Consolidates aircraft removal logics, renames AircraftModel#inside_ctr -> AircraftModel#isControllable, simplifies aircraft update logic in AircraftController
+- [#972](https://github.com/openscope/openscope/issues/972) - Updated airline fleets to newest data
 
 
 # 6.1.2 (May 2, 2018)

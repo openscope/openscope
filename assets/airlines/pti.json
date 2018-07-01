@@ -3,11 +3,14 @@
     "name": "PrivatAir",
     "callsign": {
         "name": "PrivatAir",
-        "length": 3
+        "callsignFormats": [
+            "###"
+        ]
     },
     "fleets": {
         "default": [
-            ["B737", 1]
+            ["B737", 2],
+            ["B752", 1]
         ]
     }
 }
