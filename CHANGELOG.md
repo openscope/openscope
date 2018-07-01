@@ -2,23 +2,12 @@
 ### New Features
 - [#272](https://github.com/openscope/openscope/issues/272) - Add Cincinnati/Northern Kentucky International Airport (KCVG)
 
-
-
-
-
 ### Bugfixes
 - [#1008](https://github.com/openscope/openscope/issues/1008) - Correct airline files using old callsign format
-
-
-
-
 
 ### Enhancements & Refactors
 - [#938](https://github.com/openscope/openscope/issues/938) - Overhaul of OMDB
 - [#94](https://github.com/openscope/openscope/issues/94) - Adds @openscope/validator package with supporting npm script
-
-
-
 
 
 # 6.2.0 (June 10, 2018)
