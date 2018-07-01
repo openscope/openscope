@@ -94,7 +94,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'eddl',
-            level: 'easy',
+            level: 'hard',
             name: 'Flughafen Düsseldorf',
             premium: false,
             wip: false
