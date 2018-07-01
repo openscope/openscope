@@ -335,7 +335,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": [["PAYDA", "A50+"]]
+			"body": [["PAYDA", "A50+"]],
             "exitPoints": {
                 "MUCKY": ["MUCKY"]
             },
@@ -369,7 +369,7 @@
                 "KAUS35L": ["#355"],
                 "KAUS35R": ["#355"]
             },
-			"body": [["MUNCH", "A50+"]]
+			"body": [["MUNCH", "A50+"]],
             "exitPoints": {
                 "SAYBR": ["SAYBR"]
             },
