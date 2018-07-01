@@ -433,8 +433,8 @@
             "rwy": {
                 "KAUS17L": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "^SNOTT", "#355"],
                 "KAUS17R": [["PLANX", "A80+"], "DBORD", ["TRPPN", "A60|S210"], "^SNOTT", "#355"],
-                "KAUS35L": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU^", "#175"],
-                "KAUS35R": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "TATAU^", "#175"]
+                "KAUS35L": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "^TATAU", "#175"],
+                "KAUS35R": ["FAACE", ["LIPSS", "A40|S210"], "STNSN", "^TATAU", "#175"]
             },
             "draw": [
                 ["HFMAN*", "GYTON", "DOBBY", "THELM", "VIDAA", "PUDDY", "ORINT"],
