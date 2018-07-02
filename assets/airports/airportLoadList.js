@@ -1,3 +1,4 @@
+
 /**
  * This file lives outside of normal javascript bundle. This provides a way for contributors to add or remove
  * airports without the need to re-build the entire app. This means a contributor does not need to have node
@@ -377,7 +378,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'easy',
         //     name: 'San Diego International Airport',
         //     premium: false,
-        //     wip: false
+        //     wip: true
         // },
         {
             icao: 'ksea',
@@ -456,13 +457,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'omdb',
-        //     level: 'hard',
-        //     name: 'Dubai International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'omdb',
+            level: 'hard',
+            name: 'Dubai International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'osdi',
         //     level: 'easy',

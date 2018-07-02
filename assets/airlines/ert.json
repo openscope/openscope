@@ -1,0 +1,18 @@
+{
+    "icao": "ert",
+    "name": "Eritrean Airlines",
+    "callsign": {
+        "name": "Eritrean",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1]
+        ],
+        "a319": [
+            ["A319", 1]
+        ]
+    }
+}

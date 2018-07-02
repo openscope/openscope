@@ -1,0 +1,18 @@
+{
+    "icao": "cpn",
+    "name": "Caspian Airlines",
+    "callsign": {
+        "name": "Caspian",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B734", 3],
+            ["B742", 1],
+            ["MD83", 6]
+        ],
+        "md83": [
+            ["MD83", 6]
+        ]
+    }
+}
