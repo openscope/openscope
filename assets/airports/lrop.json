@@ -1,0 +1,1369 @@
+{
+    "radio": {
+        "twr": "Otopeni Tower",
+        "app": "Bucharest Approach",
+        "dep": "Bucharest Radar"
+    },
+    "icao": "LROP",
+    "iata": "OTP",
+    "magnetic_north": 5,
+    "ctr_radius": 180,
+    "ctr_ceiling": 17500,
+    "initial_alt": 6000,
+    "position": ["N44d34m16.00", "E26d05m06.00", "314ft"],
+    "rr_radius_nm": 5,
+    "rr_center": ["N44d34m16.00", "E26d05m06.00"],
+    "has_terrain": true,
+    "wind": {
+        "angle": 90,
+        "speed": 10
+    },
+    "arrivalRunway": "08R",
+    "departureRunway": "08L",
+    "airspace": [
+        {
+            "floor": 20,
+            "ceiling": 175,
+            "airspace_class": "B",
+            "poly": [
+                ["N45d04m34.000", "E25d11m30.000"],
+                ["N45d04m34.000", "E26d27m15.000"],
+                ["N44d53m23.000", "E26d58m01.000"],
+                ["N44d20m00.000", "E27d00m00.000"],
+                ["N44d00m00.000", "E25d40m00.000"],
+                ["N44d04m47.000", "E25d15m11.000"],
+                ["N44d37m37.000", "E25d08m58.000"]
+            ]
+        }
+    ],
+    "_airspace": [
+        {
+            "floor": 20,
+            "ceiling": 175,
+            "airspace_class": "B",
+            "poly": [
+                ["N45d04m34.000", "E25d11m30.000"],
+                ["N45d04m34.000", "E26d27m15.000"],
+                ["N44d53m23.000", "E26d58m01.000"],
+                ["N44d20m00.000", "E27d00m00.000"],
+                ["N44d00m00.000", "E25d40m00.000"],
+                ["N44d04m47.000", "E25d15m11.000"],
+                ["N44d37m37.000", "E25d08m58.000"]
+            ]
+        },
+        {
+            "floor": 45,
+            "ceiling": 175,
+            "airspace_class": "B",
+            "poly": [
+                ["N45d04m34.000", "E25d11m30.000"],
+                ["N45d04m34.000", "E26d27m15.000"],
+                ["N45d01m22.000", "E26d36m08.000"],
+                ["N44d48m00.000", "E25d58m00.000"],
+                ["N44d55m05.000", "E25d10m36.000"]
+            ]
+        }
+    ],
+    "restricted": [
+        {
+            "name": "LRR3 - Bucharest",
+            "height": "10500ft",
+            "coordinates": [
+                ["N44d30m25.000", "E26d14m00.000"],
+                ["N44d27m20.000", "E25d58m30.000"],
+                ["N44d21m00.000", "E26d04m00.000"],
+                ["N44d21m00.000", "E26d14m00.000"]
+            ]
+        },
+        {
+            "name": "LRR206",
+            "height": "2000ft",
+            "coordinates": [
+                ["N44d40m45.790", "E25d36m32.000"],
+                ["N44d40m43.960", "E25d37m01.250"],
+                ["N44d40m38.560", "E25d37m29.610"],
+                ["N44d40m29.730", "E25d37m56.230"],
+                ["N44d40m17.750", "E25d38m20.270"],
+                ["N44d40m02.970", "E25d38m41.020"],
+                ["N44d39m45.870", "E25d38m57.850"],
+                ["N44d39m26.940", "E25d39m10.240"],
+                ["N44d39m06.770", "E25d39m17.820"],
+                ["N44d38m45.960", "E25d39m20.370"],
+                ["N44d38m25.170", "E25d39m17.790"],
+                ["N44d38m05.000", "E25d39m10.180"],
+                ["N44d37m46.080", "E25d38m57.770"],
+                ["N44d37m28.980", "E25d38m40.930"],
+                ["N44d37m14.220", "E25d38m20.180"],
+                ["N44d37m02.250", "E25d37m56.140"],
+                ["N44d36m53.430", "E25d37m29.550"],
+                ["N44d36m48.030", "E25d37m01.220"],
+                ["N44d36m46.210", "E25d36m32.000"],
+                ["N44d36m48.030", "E25d36m02.780"],
+                ["N44d36m53.430", "E25d35m34.450"],
+                ["N44d37m02.250", "E25d35m07.860"],
+                ["N44d37m14.220", "E25d34m43.820"],
+                ["N44d37m28.980", "E25d34m23.070"],
+                ["N44d37m46.080", "E25d34m06.230"],
+                ["N44d38m05.000", "E25d33m53.820"],
+                ["N44d38m25.170", "E25d33m46.210"],
+                ["N44d38m45.960", "E25d33m43.640"],
+                ["N44d39m06.770", "E25d33m46.180"],
+                ["N44d39m26.940", "E25d33m53.760"],
+                ["N44d39m45.870", "E25d34m06.150"],
+                ["N44d40m02.970", "E25d34m22.980"],
+                ["N44d40m17.750", "E25d34m43.730"],
+                ["N44d40m29.730", "E25d35m07.770"],
+                ["N44d40m38.560", "E25d35m34.390"],
+                ["N44d40m43.960", "E25d36m02.750"]
+            ]
+        },
+        {
+            "name": "LRD100 - Clinceni",
+            "height": "6000ft",
+            "coordinates": [
+                ["N44d23m58.631", "E25d55m16.236"],
+                ["N44d23m59.997", "E25d55m57.155"],
+                ["N44d23m58.964", "E25d56m38.092"],
+                ["N44d23m55.538", "E25d57m18.775"],
+                ["N44d23m49.742", "E25d57m58.931"],
+                ["N44d23m41.614", "E25d58m38.292"],
+                ["N44d23m31.210", "E25d59m16.594"],
+                ["N44d23m18.599", "E25d59m53.582"],
+                ["N44d23m03.864", "E26d00m29.008"],
+                ["N44d22m47.106", "E26d01m02.636"],
+                ["N44d22m28.434", "E26d01m34.242"],
+                ["N44d22m07.975", "E26d02m03.616"],
+                ["N44d21m45.865", "E26d02m30.561"],
+                ["N44d21m22.251", "E26d02m54.899"],
+                ["N44d20m57.292", "E26d03m16.467"],
+                ["N44d20m31.153", "E26d03m35.124"],
+                ["N44d20m04.009", "E26d03m50.746"],
+                ["N44d19m36.041", "E26d04m03.229"],
+                ["N44d19m07.436", "E26d04m12.492"],
+                ["N44d18m38.384", "E26d04m18.475"],
+                ["N44d18m09.078", "E26d04m21.139"],
+                ["N44d17m39.713", "E26d04m20.467"],
+                ["N44d17m10.486", "E26d04m16.466"],
+                ["N44d16m41.590", "E26d04m09.163"],
+                ["N44d16m13.218", "E26d03m58.608"],
+                ["N44d15m45.557", "E26d03m44.873"],
+                ["N44d15m18.793", "E26d03m28.051"],
+                ["N44d14m53.102", "E26d03m08.253"],
+                ["N44d14m28.655", "E26d02m45.613"],
+                ["N44d14m05.614", "E26d02m20.282"],
+                ["N44d13m44.133", "E26d01m52.428"],
+                ["N44d13m24.354", "E26d01m22.238"],
+                ["N44d13m06.407", "E26d00m49.911"],
+                ["N44d12m50.412", "E26d00m15.663"],
+                ["N44d12m36.475", "E25d59m39.721"],
+                ["N44d12m24.688", "E25d59m02.324"],
+                ["N44d12m15.129", "E25d58m23.719"],
+                ["N44d12m07.862", "E25d57m44.162"],
+                ["N44d12m02.934", "E25d57m03.915"],
+                ["N44d12m00.379", "E25d56m23.245"],
+                ["N44d12m00.212", "E25d55m42.422"],
+                ["N44d12m02.437", "E25d55m01.714"],
+                ["N44d12m07.036", "E25d54m21.393"],
+                ["N44d12m13.981", "E25d53m41.724"],
+                ["N44d12m23.225", "E25d53m02.972"],
+                ["N44d12m34.707", "E25d52m25.391"],
+                ["N44d12m48.351", "E25d51m49.233"],
+                ["N44d13m04.066", "E25d51m14.736"],
+                ["N44d13m21.748", "E25d50m42.129"],
+                ["N44d13m41.281", "E25d50m11.630"],
+                ["N44d14m02.534", "E25d49m43.440"],
+                ["N44d14m25.367", "E25d49m17.748"],
+                ["N44d14m49.628", "E25d48m54.725"],
+                ["N44d15m15.156", "E25d48m34.524"],
+                ["N44d15m41.782", "E25d48m17.281"],
+                ["N44d16m09.329", "E25d48m03.111"],
+                ["N44d16m37.614", "E25d47m52.110"],
+                ["N44d17m06.449", "E25d47m44.352"],
+                ["N44d17m35.641", "E25d47m39.890"],
+                ["N44d18m04.998", "E25d47m38.755"],
+                ["N44d18m34.324", "E25d47m40.956"],
+                ["N44d19m03.423", "E25d47m46.479"],
+                ["N44d19m32.102", "E25d47m55.290"],
+                ["N44d20m00.170", "E25d48m07.331"],
+                ["N44d20m27.439", "E25d48m22.522"],
+                ["N44d20m53.728", "E25d48m40.764"],
+                ["N44d21m18.861", "E25d49m01.937"],
+                ["N44d21m42.672", "E25d49m25.899"],
+                ["N44d22m05.000", "E25d49m52.492"],
+                ["N44d22m25.697", "E25d50m21.540"],
+                ["N44d22m44.624", "E25d50m52.848"],
+                ["N44d23m01.655", "E25d51m26.209"],
+                ["N44d23m16.677", "E25d52m01.399"],
+                ["N44d23m29.589", "E25d52m38.184"],
+                ["N44d23m40.304", "E25d53m16.319"],
+                ["N44d23m48.751", "E25d53m55.548"],
+                ["N44d23m54.874", "E25d54m35.610"]
+            ]
+        }
+    ],
+    "fixes": {
+        "_FAF08L": ["N44d33m53.000", "E25d55m43.300"],
+        "_FAF08R": ["N44d33m05.200", "E25d54m15.600"],
+        "_FAF26L": ["N44d34m51.400", "E26d17m38.200"],
+        "_FAF26R": ["N44d35m29.800", "E26d17m02.600"],
+        "_THR08L": ["N44d34m35.840", "E26d05m02.760"],
+        "_THR08R": ["N44d33m52.780", "E26d04m36.290"],
+        "_THR26L": ["N44d34m04.690", "E26d07m13.540"],
+        "_THR26R": ["N44d34m47.730", "E26d07m39.950"],
+        "ABRUT": ["N44d27m00.921", "E25d10m59.401"],
+        "ARGES": ["N44d04m56.000", "E26d49m36.000"],
+        "ASNEL": ["N44d32m12.001", "E26d19m47.999"],
+        "BALBI": ["N44d54m18.000", "E25d45m15.000"],
+        "BIVBU": ["N44d55m14.000", "E24d19m54.000"],
+        "BOGVI": ["N44d42m03.093", "E26d38m07.810"],
+        "BSE"  : ["N44d31m46.690", "E26d13m49.930"],
+        "BSW"  : ["N44d28m19.510", "E25d57m07.190"],
+        "BALIK": ["N43d40m36.001", "E27d18m00.000"],
+        "BUKEL": ["N45d04m40.121", "E25d43m32.572"],
+        "BULEN": ["N43d45m00.000", "E25d49m00.000"],
+        "CND"  : ["N44d17m08.001", "E28d28m41.998"],
+        "CRV"  : ["N44d19m06.999", "E23d55m21.900"],
+        "DENAK": ["N45d00m08.205", "E26d26m08.489"],
+        "DESUX": ["N44d56m22.808", "E25d50m05.231"],
+        "DEXIM": ["N44d42m33.075", "E26d45m14.335"],
+        "DILAS": ["N44d33m22.101", "E25d49m14.534"],
+        "DILIM": ["N44d37m13.027", "E26d50m37.704"],
+        "DINRO": ["N43d42m00.000", "E28d48m30.000"],
+        "DIRAL": ["N44d30m39.000", "E27d33m15.000"],
+        "DONOX": ["N44d11m05.174", "E25d54m23.878"],
+        "EDETA": ["N45d46m06.000", "E24d55m52.000"],
+        "EKSUN": ["N44d55m13.731", "E26d17m08.121"],
+        "ELKAV": ["N44d55m43.219", "E26d51m38.107"],
+        "ELVAB": ["N44d09m52.000", "E25d05m27.000"],
+        "ENIMA": ["N45d04m46.000", "E24d54m09.000"],
+        "ESUXU": ["N44d27m30.793", "E26d26m06.479"],
+        "ETOGO": ["N44d48m12.135", "E26d39m49.158"],
+        "ETUXA": ["N44d49m34.939", "E26d17m57.475"],
+        "FLR"  : ["N44d30m02.980", "E25d42m29.400"],
+        "FOCSA": ["N45d59m41.000", "E26d41m23.000"],
+        "GOL"  : ["N43d05m41.999", "E24d13m14.001"],
+        "GOMDI": ["N44d51m54.285", "E25d56m39.717"],
+        "IDARU": ["N44d38m24.506", "E26d58m54.475"],
+        "INDOR": ["N44d39m45.251", "E26d06m43.720"],
+        "IPRAS": ["N44d41m23.131", "E26d28m49.043"],
+        "IRLOX": ["N45d38m08.149", "E24d11m02.180"],
+        "ITVUK": ["N44d28m00.963", "E26d33m03.413"],
+        "IVDEK": ["N44d28m30.711", "E26d40m00.469"],
+        "KODRU": ["N46d11m31.999", "E28d07m26.000"],
+        "KOMAN": ["N43d58m59.998", "E26d13m00.001"],
+        "LAMIT": ["N45d06m14.320", "E23d22m29.161"],
+        "LAPKA": ["N45d17m33.518", "E26d30m32.669"],
+        "LEVTA": ["N44d35m22.004", "E26d24m34.540"],
+        "NERDI": ["N45d18m45.698", "E23d42m11.260"],
+        "NETUL": ["N44d41m43.375", "E26d58m42.826"],
+        "NIGEV": ["N43d58m41.000", "E24d45m14.000"],
+        "OBELA": ["N44d32m43.559", "E25d49m38.210"],
+        "OBUGA": ["N44d06m32.436", "E26d05m39.380"],
+        "OKAGO": ["N44d47m48.779", "E26d34m19.568"],
+        "OP081": ["N44d32m09.364", "E25d42m23.583"],
+        "OP082": ["N44d31m36.111", "E25d35m26.669"],
+        "OP083": ["N44d31m02.437", "E25d28m29.898"],
+        "OP084": ["N44d36m41.147", "E25d27m35.999"],
+        "OP085": ["N44d37m14.883", "E25d34m33.431"],
+        "OP086": ["N44d37m48.198", "E25d41m31.008"],
+        "OP087": ["N44d38m21.089", "E25d48m28.725"],
+        "OP088": ["N44d44m19.029", "E25d47m33.699"],
+        "OP261": ["N44d35m54.055", "E26d31m56.977"],
+        "OP262": ["N44d36m23.872", "E26d38m54.962"],
+        "OP264": ["N44d41m33.225", "E26d31m09.155"],
+        "OP265": ["N44d41m02.931", "E26d24m10.624"],
+        "OP267": ["N44d38m39.017", "E25d52m18.761"],
+        "OP268": ["N44d31m40.866", "E26d16m12.538"],
+        "OP269": ["N44d29m13.863", "E25d44m14.476"],
+        "OP661": ["N44d34m15.091", "E26d00m30.398"],
+        "OP662": ["N44d33m34.496", "E26d00m36.476"],
+        "OP663": ["N44d33m42.936", "E25d53m33.041"],
+        "OP664": ["N44d33m02.339", "E25d53m39.201"],
+        "OP665": ["N44d33m19.188", "E25d48m28.348"],
+        "OP666": ["N44d32m31.096", "E25d46m59.069"],
+        "OP667": ["N44d45m11.509", "E25d58m51.759"],
+        "OP881": ["N44d35m05.531", "E26d11m36.734"],
+        "OP882": ["N44d34m24.940", "E26d11m42.684"],
+        "OP883": ["N44d35m42.748", "E26d19m57.990"],
+        "OP884": ["N44d35m02.161", "E26d20m03.842"],
+        "OP885": ["N44d37m04.432", "E26d38m48.993"],
+        "OP886": ["N44d36m19.747", "E26d37m56.725"],
+        "OP887": ["N44d37m54.519", "E26d50m45.222"],
+        "OP888": ["N44d37m06.677", "E26d49m05.656"],
+        "OP889": ["N44d21m59.577", "E26d21m56.214"],
+        "OP890": ["N44d46m02.123", "E26d10m00.159"],
+        "OP891": ["N44d49m16.707", "E26d02m38.662"],
+        "OPE"  : ["N44d34m29.210", "E26d12m40.520"],
+        "OPT"  : ["N44d35m32.620", "E26d33m36.560"],
+        "OPW"  : ["N44d33m27.880", "E25d59m04.680"],
+        "ORTIP": ["N43d58m40.000", "E25d19m59.001"],
+        "OSTAL": ["N44d16m40.502", "E26d46m22.377"],
+        "OTL"  : ["N44d34m12.920", "E26d00m02.220"],
+        "OTR"  : ["N44d35m16.770", "E26d14m07.330"],
+        "PELUR": ["N45d17m12.278", "E25d29m17.678"],
+        "PEMOK": ["N44d21m52.891", "E24d20m54.470"],
+        "POGAV": ["N46d46m54.001", "E28d10m00.001"],
+        "POLUN": ["N44d14m14.722", "E25d13m24.144"],
+        "RARIT": ["N44d36m04.377", "E26d24m53.323"],
+        "RASUB": ["N43d58m44.000", "E25d25m05.998"],
+        "RIPGA": ["N45d11m30.998", "E27d54m06.998"],
+        "RIVOS": ["N44d39m20.498", "E27d39m16.999"],
+        "SISGU": ["N44d22m09.891", "E25d27m52.661"],
+        "SOKRU": ["N44d59m34.136", "E25d19m49.048"],
+        "SOMOV": ["N43d42m00.000", "E24d51m00.000"],
+        "SORDU": ["N44d02m33.097", "E25d26m48.226"],
+        "STJ"  : ["N44d55m06.820", "E25d58m37.300"],
+        "TABAV": ["N44d53m22.808", "E26d58m01.012"],
+        "TEVRO": ["N44d20m47.081", "E25d30m07.333"],
+        "TIMUR": ["N43d41m20.000", "E24d14m21.001"],
+        "TOBAG": ["N44d22m37.978", "E26d42m09.949"],
+        "TOSVI": ["N44d45m14.010", "E25d09m40.719"],
+        "TUMOP": ["N44d19m03.599", "E26d17m49.709"],
+        "TUTIX": ["N44d14m24.422", "E25d31m07.611"],
+        "UBOGU": ["N44d45m47.001", "E24d40m05.998"],
+        "URELA": ["N45d29m47.911", "E26d33m39.931"],
+        "USIRO": ["N44d14m30.397", "E25d45m52.599"],
+        "UTIDI": ["N44d15m10.031", "E26d14m01.934"],
+        "UTOKI": ["N44d44m39.242", "E25d51m53.111"],
+        "UVALU": ["N44d42m38.891", "E25d26m38.864"],
+        "VAMON": ["N44d23m57.998", "E24d40m46.999"],
+        "VEVIN": ["N44d42m47.001", "E26d39m06.998"],
+        "VIKBI": ["N44d15m30.999", "E24d39m20.998"]
+    },
+    "airways": {
+        "L5"  : ["UBOGU", "TOSVI", "VEVIN", "NETUL", "RIVOS", "CND"],
+        "L601": ["DENAK", "VEVIN", "DINRO"],
+        "L602": ["KOMAN", "NERDI"],
+        "L619": ["BALIK", "ARGES", "ASNEL", "BUKEL", "PELUR", "EDETA"],
+        "L622": ["KOMAN", "OBUGA", "FLR", "ENIMA", "IRLOX"],
+        "M747": ["NERDI", "ENIMA", "SOKRU", "BALBI", "VEVIN", "IDARU", "DIRAL", "CND"],
+        "M987": ["GOL", "SOMOV", "ORTIP", "SORDU", "ASNEL", "VEVIN", "RIPGA"],
+        "N180": ["DENAK", "POGAV"],
+        "N181": ["FLR", "POLUN", "ELVAB", "NIGEV", "TIMUR"],
+        "P727": ["VEVIN", "OSTAL", "ARGES"],
+        "P740": ["SORDU", "FLR", "DENAK", "KODRU"],
+        "P981": ["LAMIT", "BIVBU", "TOSVI"],
+        "T285": ["CRV", "PEMOK", "VAMON", "ABRUT", "FLR", "VEVIN"],
+        "T74" : ["DENAK", "LAPKA", "URELA", "FOCSA"],
+        "T746": ["ARGES", "ENIMA"],
+        "T777": ["BALIK", "KOMAN"],
+        "T995": ["IRLOX", "BIVBU", "UBOGU", "ABRUT"]
+    },
+    "runways": [
+        {
+            "name": ["08L", "26R"],
+            "end": [
+                ["N44d34m35.84", "E26d05m02.76", "313ft"],
+                ["N44d34m47.73", "E26d07m39.95", "303ft"]
+            ],
+            "ils": [true, true],
+            "ils_distance": [30, 30],
+            "loc_maxDist": [28, 28],
+            "glideslope": [3.00, 3.00]
+        },
+        {
+            "name": ["08R", "26L"],
+            "end": [
+                ["N44d33m52.78", "E26d04m36.29", "314ft"],
+                ["N44d34m04.69", "E26d07m13.54", "303ft"]
+            ],
+            "ils": [true, true],
+            "ils_distance": [30, 30],
+            "loc_maxDist": [28, 28],
+            "glideslope": [2.70, 2.70]
+        }
+    ],
+    "sids": {
+        "BUKEL1K": {
+            "icao": "BUKEL1K",
+            "name": "Bukel One Kilo",
+            "rwy": {
+                "LROP08L": [["^OP883", "S270-"]],
+                "LROP08R": [["^OP884", "S270-"]]
+            },
+            "body": ["ETUXA"],
+            "exitPoints": {
+              "BUKEL": [["BUKEL", "A110+"]]
+            },
+            "draw": [
+                ["OP884", "ETUXA", "BUKEL"],
+                ["OP883", "ETUXA", "BUKEL"]
+            ]
+        },
+        "BUKEL1M": {
+            "icao": "BUKEL1M",
+            "name": "Bukel One Mike",
+            "rwy": {
+                "LROP26L": [["^OP661", "S210-"]],
+                "LROP26R": [["^OP662", "S210-"]]
+            },
+            "body": [["OP667", "A45+"], "DESUX"],
+            "exitPoints": {
+              "BUKEL": [["BUKEL", "A110+"]]
+            },
+            "draw": [
+                ["OP662", "OP667", "DESUX", "BUKEL"],
+                ["OP661", "OP667", "DESUX", "BUKEL"]
+            ]
+        },
+        "DENAK1K": {
+            "icao": "DENAK1K",
+            "name": "Denak One Kilo",
+            "rwy": {
+                "LROP08L": [["^OP883", "S270-"]],
+                "LROP08R": [["^OP884", "S270-"]]
+            },
+            "body": ["ETUXA", "EKSUN"],
+            "exitPoints": {
+                "DENAK": [["DENAK", "A110+"]]
+            },
+            "draw": [
+                ["OP884", "ETUXA", "EKSUN", "DENAK"],
+                ["OP883", "ETUXA", "EKSUN", "DENAK"]
+            ]
+        },
+        "DENAK1M": {
+            "icao": "DENAK1M",
+            "name": "Denak One Mike",
+            "rwy": {
+                "LROP26L": [["^OP661", "S210-"]],
+                "LROP26R": [["^OP662", "S210-"]]
+            },
+            "body": ["OP667"],
+            "exitPoints": {
+                "DENAK": [["DENAK", "A110+"]]
+            },
+            "draw": [
+                ["OP662", "OP667", "DENAK"],
+                ["OP661", "OP667", "DENAK"]
+            ]
+        },
+        "IDARU1K": {
+            "icao": "IDARU1K",
+            "name": "Idaru One Kilo",
+            "rwy": {
+                "LROP08L": ["OP887"],
+                "LROP08R": ["OP888"]
+            },
+            "body": [],
+            "exitPoints": {
+                "IDARU": ["IDARU"]
+            },
+            "draw": [
+                ["OP887", "IDARU"],
+                ["OP888", "IDARU"]
+            ]
+        },
+        "IDARU1M": {
+            "icao": "IDARU1M",
+            "name": "Idaru One Mike",
+            "rwy": {
+                "LROP26R": [["^OP662", "S210-"]],
+                "LROP26L": [["^OP661", "S210-"]]
+            },
+            "body": [["OP667", "S270-"], "ETOGO"],
+            "exitPoints": {
+                "IDARU": ["IDARU"]
+            },
+            "draw": [
+                ["OP662", "OP667", "ETOGO", "IDARU"],
+                ["OP661", "OP667", "ETOGO", "IDARU"]
+            ]
+        },
+        "NETUL1K": {
+            "icao": "NETUL1K",
+            "name": "Netul One Kilo",
+            "rwy": {
+                "LROP08L": ["OP887"],
+                "LROP08R": ["OP888"]
+            },
+            "body": [],
+            "exitPoints": {
+                "NETUL": ["NETUL"]
+            },
+            "draw": [
+                ["OP887", "NETUL"],
+                ["OP888", "NETUL"]
+            ]
+        },
+        "NETUL1M": {
+            "icao": "NETUL1M",
+            "name": "Netul One Mike",
+            "rwy": {
+                "LROP26L": [["^OP661", "S210-"]],
+                "LROP26R": [["^OP662", "S210-"]]
+            },
+            "body": [["OP667", "S270-"], "ETOGO"],
+            "exitPoints": {
+                "NETUL": ["NETUL"]
+            },
+            "draw": [
+                ["OP662", "OP667", "ETOGO", "NETUL"],
+                ["OP661", "OP667", "ETOGO", "NETUL"]
+            ]
+        },
+        "POLUN1K": {
+            "icao": "POLUN1K",
+            "name": "Polun One Kilo",
+            "rwy": {
+                "LROP08L": [["^OP883", "A40+|S250-"]],
+                "LROP08R": [["^OP884", "A40+|S250-"]]
+            },
+            "body": ["OP889", "USIRO"],
+            "exitPoints": {
+                "POLUN": [["POLUN", "A110+"]]
+            },
+            "draw": [
+                ["OP884", "OP889", "USIRO", "POLUN"],
+                ["OP883", "OP889", "USIRO", "POLUN"]
+            ]
+        },
+        "POLUN1M": {
+            "icao": "POLUN1M",
+            "name": "Polun One Mike",
+            "rwy": {
+                "LROP26L": [["OP666", "A40+"]],
+                "LROP26R": [["OP665", "A40+"]]
+            },
+            "body": ["SISGU"],
+            "exitPoints": {
+                "POLUN": [["POLUN", "A110+"]]
+            },
+            "draw": [
+                ["OP665", "SISGU", "POLUN"],
+                ["OP666", "SISGU", "POLUN"]
+            ]
+        },
+        "SOKRU1K": {
+            "icao": "SOKRU1K",
+            "name": "Sokru One Kilo",
+            "rwy": {
+                "LROP08L": [["^OP881", "A09+|S220-"]],
+                "LROP08R": [["^OP882", "S220-"]]
+            },
+            "body": ["OP890", ["OP891", "A45+"], "GOMDI"],
+            "exitPoints": {
+                "SOKRU": [["SOKRU", "A110+"]]
+            },
+            "draw": [
+                ["OP881", "OP890", "OP891", "GOMDI", "SOKRU"],
+                ["OP882", "OP890", "OP891", "GOMDI", "SOKRU"]
+            ]
+        },
+        "SOKRU1M": {
+            "icao": "SOKRU1M",
+            "name": "Sokru One Mike",
+            "rwy": {
+                "LROP26L": [["^OP664", "S250-"]],
+                "LROP26R": [["^OP663", "S250-"]]
+            },
+            "body": ["UTOKI"],
+            "exitPoints": {
+                "SOKRU": [["SOKRU", "A110+"]]
+            },
+            "draw": [
+                ["OP663", "UTOKI", "SOKRU"],
+                ["OP664", "UTOKI", "SOKRU"]
+            ]
+        }
+    },
+    "stars": {
+        "DENAK1U" : {
+            "icao": "DENAK1U",
+            "name": "Denak One Uniform",
+            "entryPoints": {
+                "DENAK": [["DENAK", "A170-|A110+"]]
+            },
+            "body": [["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "DENAK2X" : {
+            "icao": "DENAK2X",
+            "name": "Denak Two Xray",
+            "entryPoints": {
+                "DENAK": [["DENAK", "A170-|A110+"]]
+            },
+            "body": [["OKAGO", "A45+"], ["BOGVI", "A35+|S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "IDARU2U" : {
+            "icao": "IDARU2U",
+            "name": "Idaru Two Uniform",
+            "entryPoints": {
+                "IDARU": [["IDARU", "A170-|A110+"]]
+            },
+            "body": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["IDARU", "DILIM", "OP262", "OP261", "RARIT"],
+                ["IDARU", "DILIM", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "IDARU1X" : {
+            "icao": "IDARU1X",
+            "name": "Idaru One Xray",
+            "entryPoints": {
+                "IDARU": [["IDARU", "A170-|A110+"]]
+            },
+            "body": [["DILIM", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["IDARU", "DILIM", "OP262", "OP261", "RARIT"],
+                ["IDARU", "DILIM", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "NETUL2U" : {
+            "icao": "NETUL2U",
+            "name": "Netul Two Uniform",
+            "entryPoints": {
+                "NETUL": [["NETUL", "A170-|A110+"]]
+            },
+            "body": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["NETUL", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["NETUL", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "NETUL1X" : {
+            "icao": "NETUL1X",
+            "name": "Netul One Xray",
+            "entryPoints": {
+                "NETUL": [["NETUL", "A170-|A110+"]]
+            },
+            "body": [["DILIM", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["NETUL", "DILIM", "OP262", "OP261", "RARIT"],
+                ["NETUL", "DILIM", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "OBUGA1U" : {
+            "icao": "OBUGA1U",
+            "name": "Obuga One Uniform",
+            "entryPoints": {
+                "OBUGA": [["OBUGA", "A170-|A110+"]]
+            },
+            "body": [["TEVRO", "A70+|S240-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
+                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "OBUGA1X" : {
+            "icao": "OBUGA1X",
+            "name": "Obuga One Xray",
+            "entryPoints": {
+                "OBUGA": [["OBUGA", "A170-|A110+"]]
+            },
+            "body": ["UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["OBUGA", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"],
+                ["OBUGA", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "OSTAL1U" : {
+            "icao": "OSTAL1U",
+            "name": "Ostal One Uniform",
+            "entryPoints": {
+                "OSTAL": [["OSTAL", "A170-|A110+"]]
+            },
+            "body": ["TOBAG", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+             },
+             "draw": [
+                  ["OSTAL", "TOBAG", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                  ["OSTAL", "TOBAG", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+              ]
+        },
+        "OSTAL1X" : {
+            "icao": "OSTAL1X",
+            "name": "Ostal One Xray",
+            "entryPoints": {
+                "OSTAL": [["OSTAL", "A170-|A110+"]]
+            },
+            "body": ["TOBAG", ["IVDEK", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+             },
+             "draw": [
+                  ["OSTAL", "TOBAG", "IVDEK", "OP262", "OP261", "LEVTA"],
+                  ["OSTAL", "TOBAG", "IVDEK", "OP262", "OP261", "RARIT"]
+              ]
+        },
+        "SORDU1U" : {
+            "icao": "SORDU1U",
+            "name": "Sordu One Uniform",
+            "entryPoints": {
+                "SORDU": [["SORDU", "A170-|A110+"]]
+            },
+            "body": ["TUTIX", ["TEVRO", "A70+|S240-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["SORDU", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
+                ["SORDU", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "SORDU1X" : {
+            "icao": "SORDU1X",
+            "name": "Sordu One Xray",
+            "entryPoints": {
+                "SORDU": [["SORDU", "A170-|A110+"]]
+            },
+            "body": ["DONOX", "UTIDI", ["TUMOP", "A70+"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["SORDU", "DONOX", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"],
+                ["SORDU", "DONOX", "UTIDI", "TUMOP", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"]
+            ]
+        },
+        "TOSVI2U" : {
+            "icao": "TOSVI2U",
+            "name": "Tosvi Two Uniform",
+            "entryPoints": {
+                "TOSVI": [["TOSVI", "A170-|A110+"]]
+            },
+            "body": [["UVALU", "A70+"], ["OP088", "S230-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "rwy": {
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
+            },
+            "draw": [
+                ["TOSVI", "UVALU", "OP088", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["TOSVI", "UVALU", "OP088", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+            ]
+        },
+        "TOSVI3X" : {
+            "icao": "TOSVI3X",
+            "name": "Tosvi Three Xray",
+            "entryPoints": {
+                "TOSVI": [["TOSVI", "A170-|A110+"]]
+            },
+            "body": [["UVALU", "A70+"], "OP267", ["INDOR", "A70+"], ["OP265", "S230-"], "OP264", ["BOGVI", "A35+|S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "RARIT"]
+            ]
+        },
+        "TOSVI1R" : {
+            "icao": "TOSVI1R",
+            "name": "Tosvi One Romeo",
+            "entryPoints": {
+                "TOSVI": [["TOSVI", "A170-|A110+"]]
+            },
+            "body": ["OP269", ["OP268", "A70+|S230-"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.SOKRU1K.SOKRU.M747.ENIMA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+               ["rot", 5],
+               ["ryr", 4],
+               ["baw", 1],
+               ["afr", 1],
+               ["klm", 1],
+               ["dlh", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.BUKEL1K.BUKEL.L619.EDETA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["rot", 5],
+                ["ryr", 4],
+                ["baw", 1],
+                ["afr", 1],
+                ["klm", 1],
+                ["dlh", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.DENAK1K.DENAK.P740.KODRU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["rot", 5],
+                ["ewg", 1],
+                ["lot", 1],
+                ["swr", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.NETUL1K.NETUL.L5.CND",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 3],
+                ["thy", 2],
+                ["pgt", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.IDARU1K.IDARU.M747.CND",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 3],
+                ["thy", 2],
+                ["pgt", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP08L.POLUN1K.POLUN.N181.TIMUR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["rot", 3],
+                ["ryr", 2],
+                ["asl", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "LAMIT.P981.TOSVI.TOSVI2U.LROP08R",
+            "altitude": [11000, 17000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 6,
+            "airlines": [
+                ["rot", 5],
+                ["ryr", 4],
+                ["dlh", 3],
+                ["klm", 2],
+                ["asl", 1],
+                ["afr", 2],
+                ["baw", 1],
+                ["ewg", 1],
+                ["lot", 1],
+                ["swr", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "BALIK.T777.KOMAN.L622.OBUGA.OBUGA1U.LROP08R",
+            "altitude": [14000, 17000],
+            "speed": 250,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 3],
+                ["thy", 2],
+                ["pgt", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "BALIK.L619.ARGES.P727.OSTAL.OSTAL1U.LROP08R",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 3],
+                ["thy", 2],
+                ["pgt", 1],
+                ["qtr", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "FOCSA.T74.DENAK.DENAK1U.LROP08R",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["rot", 5],
+                ["klm", 1],
+                ["csa", 1],
+                ["lot", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "CND.L5.NETUL.NETUL2U.LROP08R",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "CND.M747.IDARU.IDARU2U.LROP08R",
+            "altitude":  [15000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "SOMOV.M987.SORDU.SORDU1U.LROP08R",
+            "altitude": [14000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["rot", 3],
+                ["ryr", 2],
+                ["asl", 1]
+            ]
+        }
+    ],
+    "maps": {
+        "base": [
+            ["N44d59m58.827", "E25d57m23.151", "N44d59m59.970", "E25d57m59.495"],
+            ["N44d59m58.889", "E25d58m35.842", "N44d59m55.592", "E25d59m11.922"],
+            ["N44d59m50.103", "E25d59m47.468", "N44d59m42.464", "E26d00m22.215"],
+            ["N44d59m32.730", "E26d00m55.904", "N44d59m20.975", "E26d01m28.287"],
+            ["N44d59m07.286", "E26d01m59.121", "N44d58m51.765", "E26d02m28.178"],
+            ["N44d58m34.526", "E26d02m55.244", "N44d58m15.698", "E26d03m20.116"],
+            ["N44d57m55.421", "E26d03m42.612", "N44d57m33.845", "E26d04m02.565"],
+            ["N44d57m11.130", "E26d04m19.828", "N44d56m47.445", "E26d04m34.274"],
+            ["N44d56m22.966", "E26d04m45.795", "N44d55m57.873", "E26d04m54.309"],
+            ["N44d55m32.354", "E26d04m59.753", "N44d55m06.596", "E26d05m02.088"],
+            ["N44d54m40.791", "E26d05m01.297", "N44d54m15.130", "E26d04m57.388"],
+            ["N44d53m49.803", "E26d04m50.391", "N44d53m24.996", "E26d04m40.359"],
+            ["N44d53m00.894", "E26d04m27.366", "N44d52m37.675", "E26d04m11.511"],
+            ["N44d52m15.510", "E26d03m52.911", "N44d51m54.563", "E26d03m31.704"],
+            ["N44d51m34.988", "E26d03m08.048", "N44d51m16.931", "E26d02m42.117"],
+            ["N44d51m00.524", "E26d02m14.105", "N44d50m45.889", "E26d01m44.218"],
+            ["N44d50m33.133", "E26d01m12.677", "N44d50m22.351", "E26d00m39.715"],
+            ["N44d50m13.622", "E26d00m05.576", "N44d50m07.010", "E25d59m30.510"],
+            ["N44d50m02.565", "E25d58m54.777", "N44d50m00.318", "E25d58m18.641"],
+            ["N44d50m00.287", "E25d57m42.366", "N44d50m02.472", "E25d57m06.222"],
+            ["N44d50m06.857", "E25d56m30.475", "N44d50m13.409", "E25d55m55.387"],
+            ["N44d50m22.080", "E25d55m21.218", "N44d50m32.806", "E25d54m48.220"],
+            ["N44d50m45.509", "E25d54m16.636", "N44d51m00.093", "E25d53m46.701"],
+            ["N44d51m16.452", "E25d53m18.634", "N44d51m34.465", "E25d52m52.643"],
+            ["N44d51m54.000", "E25d52m28.921", "N44d52m14.911", "E25d52m07.644"],
+            ["N44d52m37.044", "E25d51m48.969", "N44d53m00.237", "E25d51m33.036"],
+            ["N44d53m24.316", "E25d51m19.963", "N44d53m49.106", "E25d51m09.847"],
+            ["N44d54m14.421", "E25d51m02.765", "N44d54m40.076", "E25d50m58.770"],
+            ["N44d55m05.879", "E25d50m57.892", "N44d55m31.641", "E25d51m00.140"],
+            ["N44d55m57.169", "E25d51m05.498", "N44d56m22.276", "E25d51m13.927"],
+            ["N44d56m46.775", "E25d51m25.367", "N44d57m10.485", "E25d51m39.732"],
+            ["N44d57m33.229", "E25d51m56.918", "N44d57m54.838", "E25d52m16.798"],
+            ["N44d58m15.154", "E25d52m39.226", "N44d58m34.024", "E25d53m04.035"],
+            ["N44d58m51.309", "E25d53m31.042", "N44d59m06.879", "E25d54m00.047"],
+            ["N44d59m20.621", "E25d54m30.835", "N44d59m32.431", "E25d55m03.177"],
+            ["N44d59m42.221", "E25d55m36.834", "N44d59m49.920", "E25d56m11.555"],
+            ["N44d59m55.469", "E25d56m47.082", "N44d59m58.827", "E25d57m23.151"],
+            ["N44d23m58.631", "E25d55m16.236", "N44d23m59.997", "E25d55m57.155"],
+            ["N44d23m59.997", "E25d55m57.155", "N44d23m58.964", "E25d56m38.092"],
+            ["N44d23m58.964", "E25d56m38.092", "N44d23m55.538", "E25d57m18.775"],
+            ["N44d23m55.538", "E25d57m18.775", "N44d23m49.742", "E25d57m58.931"],
+            ["N44d23m49.742", "E25d57m58.931", "N44d23m41.614", "E25d58m38.292"],
+            ["N44d23m41.614", "E25d58m38.292", "N44d23m31.210", "E25d59m16.594"],
+            ["N44d23m31.210", "E25d59m16.594", "N44d23m18.599", "E25d59m53.582"],
+            ["N44d23m18.599", "E25d59m53.582", "N44d23m03.864", "E26d00m29.008"],
+            ["N44d23m03.864", "E26d00m29.008", "N44d22m47.106", "E26d01m02.636"],
+            ["N44d22m47.106", "E26d01m02.636", "N44d22m28.434", "E26d01m34.242"],
+            ["N44d22m28.434", "E26d01m34.242", "N44d22m07.975", "E26d02m03.616"],
+            ["N44d22m07.975", "E26d02m03.616", "N44d21m45.865", "E26d02m30.561"],
+            ["N44d21m45.865", "E26d02m30.561", "N44d21m22.251", "E26d02m54.899"],
+            ["N44d21m22.251", "E26d02m54.899", "N44d20m57.292", "E26d03m16.467"],
+            ["N44d20m57.292", "E26d03m16.467", "N44d20m31.153", "E26d03m35.124"],
+            ["N44d20m31.153", "E26d03m35.124", "N44d20m04.009", "E26d03m50.746"],
+            ["N44d20m04.009", "E26d03m50.746", "N44d19m36.041", "E26d04m03.229"],
+            ["N44d19m36.041", "E26d04m03.229", "N44d19m07.436", "E26d04m12.492"],
+            ["N44d19m07.436", "E26d04m12.492", "N44d18m38.384", "E26d04m18.475"],
+            ["N44d18m38.384", "E26d04m18.475", "N44d18m09.078", "E26d04m21.139"],
+            ["N44d18m09.078", "E26d04m21.139", "N44d17m39.713", "E26d04m20.467"],
+            ["N44d17m39.713", "E26d04m20.467", "N44d17m10.486", "E26d04m16.466"],
+            ["N44d17m10.486", "E26d04m16.466", "N44d16m41.590", "E26d04m09.163"],
+            ["N44d16m41.590", "E26d04m09.163", "N44d16m13.218", "E26d03m58.608"],
+            ["N44d16m13.218", "E26d03m58.608", "N44d15m45.557", "E26d03m44.873"],
+            ["N44d15m45.557", "E26d03m44.873", "N44d15m18.793", "E26d03m28.051"],
+            ["N44d15m18.793", "E26d03m28.051", "N44d14m53.102", "E26d03m08.253"],
+            ["N44d14m53.102", "E26d03m08.253", "N44d14m28.655", "E26d02m45.613"],
+            ["N44d14m28.655", "E26d02m45.613", "N44d14m05.614", "E26d02m20.282"],
+            ["N44d14m05.614", "E26d02m20.282", "N44d13m44.133", "E26d01m52.428"],
+            ["N44d13m44.133", "E26d01m52.428", "N44d13m24.354", "E26d01m22.238"],
+            ["N44d13m24.354", "E26d01m22.238", "N44d13m06.407", "E26d00m49.911"],
+            ["N44d13m06.407", "E26d00m49.911", "N44d12m50.412", "E26d00m15.663"],
+            ["N44d12m50.412", "E26d00m15.663", "N44d12m36.475", "E25d59m39.721"],
+            ["N44d12m36.475", "E25d59m39.721", "N44d12m24.688", "E25d59m02.324"],
+            ["N44d12m24.688", "E25d59m02.324", "N44d12m15.129", "E25d58m23.719"],
+            ["N44d12m15.129", "E25d58m23.719", "N44d12m07.862", "E25d57m44.162"],
+            ["N44d12m07.862", "E25d57m44.162", "N44d12m02.934", "E25d57m03.915"],
+            ["N44d12m02.934", "E25d57m03.915", "N44d12m00.379", "E25d56m23.245"],
+            ["N44d12m00.379", "E25d56m23.245", "N44d12m00.212", "E25d55m42.422"],
+            ["N44d12m00.212", "E25d55m42.422", "N44d12m02.437", "E25d55m01.714"],
+            ["N44d12m02.437", "E25d55m01.714", "N44d12m07.036", "E25d54m21.393"],
+            ["N44d12m07.036", "E25d54m21.393", "N44d12m13.981", "E25d53m41.724"],
+            ["N44d12m13.981", "E25d53m41.724", "N44d12m23.225", "E25d53m02.972"],
+            ["N44d12m23.225", "E25d53m02.972", "N44d12m34.707", "E25d52m25.391"],
+            ["N44d12m34.707", "E25d52m25.391", "N44d12m48.351", "E25d51m49.233"],
+            ["N44d12m48.351", "E25d51m49.233", "N44d13m04.066", "E25d51m14.736"],
+            ["N44d13m04.066", "E25d51m14.736", "N44d13m21.748", "E25d50m42.129"],
+            ["N44d13m21.748", "E25d50m42.129", "N44d13m41.281", "E25d50m11.630"],
+            ["N44d13m41.281", "E25d50m11.630", "N44d14m02.534", "E25d49m43.440"],
+            ["N44d14m02.534", "E25d49m43.440", "N44d14m25.367", "E25d49m17.748"],
+            ["N44d14m25.367", "E25d49m17.748", "N44d14m49.628", "E25d48m54.725"],
+            ["N44d14m49.628", "E25d48m54.725", "N44d15m15.156", "E25d48m34.524"],
+            ["N44d15m15.156", "E25d48m34.524", "N44d15m41.782", "E25d48m17.281"],
+            ["N44d15m41.782", "E25d48m17.281", "N44d16m09.329", "E25d48m03.111"],
+            ["N44d16m09.329", "E25d48m03.111", "N44d16m37.614", "E25d47m52.110"],
+            ["N44d16m37.614", "E25d47m52.110", "N44d17m06.449", "E25d47m44.352"],
+            ["N44d17m06.449", "E25d47m44.352", "N44d17m35.641", "E25d47m39.890"],
+            ["N44d17m35.641", "E25d47m39.890", "N44d18m04.998", "E25d47m38.755"],
+            ["N44d18m04.998", "E25d47m38.755", "N44d18m34.324", "E25d47m40.956"],
+            ["N44d18m34.324", "E25d47m40.956", "N44d19m03.423", "E25d47m46.479"],
+            ["N44d19m03.423", "E25d47m46.479", "N44d19m32.102", "E25d47m55.290"],
+            ["N44d19m32.102", "E25d47m55.290", "N44d20m00.170", "E25d48m07.331"],
+            ["N44d20m00.170", "E25d48m07.331", "N44d20m27.439", "E25d48m22.522"],
+            ["N44d20m27.439", "E25d48m22.522", "N44d20m53.728", "E25d48m40.764"],
+            ["N44d20m53.728", "E25d48m40.764", "N44d21m18.861", "E25d49m01.937"],
+            ["N44d21m18.861", "E25d49m01.937", "N44d21m42.672", "E25d49m25.899"],
+            ["N44d21m42.672", "E25d49m25.899", "N44d22m05.000", "E25d49m52.492"],
+            ["N44d22m05.000", "E25d49m52.492", "N44d22m25.697", "E25d50m21.540"],
+            ["N44d22m25.697", "E25d50m21.540", "N44d22m44.624", "E25d50m52.848"],
+            ["N44d22m44.624", "E25d50m52.848", "N44d23m01.655", "E25d51m26.209"],
+            ["N44d23m01.655", "E25d51m26.209", "N44d23m16.677", "E25d52m01.399"],
+            ["N44d23m16.677", "E25d52m01.399", "N44d23m29.589", "E25d52m38.184"],
+            ["N44d23m29.589", "E25d52m38.184", "N44d23m40.304", "E25d53m16.319"],
+            ["N44d23m40.304", "E25d53m16.319", "N44d23m48.751", "E25d53m55.548"],
+            ["N44d23m48.751", "E25d53m55.548", "N44d23m54.874", "E25d54m35.610"],
+            ["N44d23m54.874", "E25d54m35.610", "N44d23m58.631", "E25d55m16.236"],
+            ["N45d01m22.000", "E26d36m08.000", "N44d48m00.000", "E25d58m00.000"],
+            ["N44d55m05.000", "E25d10m36.000", "N45d04m34.000", "E25d11m30.000"],
+            ["N45d04m34.000", "E25d11m30.000", "N45d04m34.000", "E26d27m15.000"],
+            ["N45d01m22.000", "E26d36m08.000", "N44d53m23.000", "E26d58m01.000"],
+            ["N44d55m05.000", "E25d10m36.000", "N44d48m00.000", "E25d58m00.000"],
+            ["N44d30m25.000", "E26d14m00.000", "N44d27m20.000", "E25d58m30.000"],
+            ["N44d27m20.000", "E25d58m30.000", "N44d21m00.000", "E26d04m00.000"],
+            ["N44d21m00.000", "E26d04m00.000", "N44d21m00.000", "E26d14m00.000"],
+            ["N44d21m00.000", "E26d14m00.000", "N44d30m25.000", "E26d14m00.000"],
+            ["N44d33m46.480", "E26d03m12.690", "N44d33m40.180", "E26d01m49.100"],
+            ["N44d33m33.880", "E26d00m25.510", "N44d33m27.580", "E25d59m01.920"],
+            ["N44d33m21.280", "E25d57m38.330", "N44d33m14.980", "E25d56m14.740"],
+            ["N44d33m08.680", "E25d54m51.160", "N44d33m02.380", "E25d53m27.590"],
+            ["N44d32m56.080", "E25d52m04.010", "N44d32m49.780", "E25d50m40.430"],
+            ["N44d32m43.480", "E25d49m16.860", "N44d32m37.180", "E25d47m53.290"],
+            ["N44d32m30.880", "E25d46m29.730", "N44d32m24.580", "E25d45m06.160"],
+            ["N44d32m18.280", "E25d43m42.600", "N44d32m11.980", "E25d42m19.040"],
+            ["N44d32m05.680", "E25d40m55.480", "N44d31m59.380", "E25d39m31.930"],
+            ["N44d31m53.080", "E25d38m08.380", "N44d31m46.780", "E25d36m44.830"],
+            ["N44d31m40.480", "E25d35m21.290", "N44d31m34.180", "E25d33m57.740"],
+            ["N44d31m27.880", "E25d32m34.200", "N44d31m21.580", "E25d31m10.660"],
+            ["N44d31m15.280", "E25d29m47.120", "N44d31m08.980", "E25d28m23.590"],
+            ["N44d31m02.680", "E25d27m00.060", "N44d30m56.380", "E25d25m36.530"],
+            ["N44d30m50.080", "E25d24m13.000", "N44d30m43.780", "E25d22m49.480"],
+            ["N44d34m29.540", "E26d03m39.150", "N44d34m23.240", "E26d02m15.540"],
+            ["N44d34m16.940", "E26d00m51.930", "N44d34m10.640", "E25d59m28.320"],
+            ["N44d34m04.340", "E25d58m04.720", "N44d33m58.040", "E25d56m41.110"],
+            ["N44d33m51.740", "E25d55m17.520", "N44d33m45.440", "E25d53m53.920"],
+            ["N44d33m39.140", "E25d52m30.320", "N44d33m32.840", "E25d51m06.730"],
+            ["N44d33m26.540", "E25d49m43.140", "N44d33m20.240", "E25d48m19.560"],
+            ["N44d33m13.940", "E25d46m55.970", "N44d33m07.640", "E25d45m32.390"],
+            ["N44d33m01.340", "E25d44m08.820", "N44d32m55.040", "E25d42m45.240"],
+            ["N44d32m48.740", "E25d41m21.660", "N44d32m42.440", "E25d39m58.090"],
+            ["N44d32m36.140", "E25d38m34.520", "N44d32m29.840", "E25d37m10.960"],
+            ["N44d32m23.540", "E25d35m47.390", "N44d32m17.240", "E25d34m23.830"],
+            ["N44d32m10.940", "E25d33m00.270", "N44d32m04.640", "E25d31m36.720"],
+            ["N44d31m58.340", "E25d30m13.170", "N44d31m52.040", "E25d28m49.610"],
+            ["N44d31m45.740", "E25d27m26.060", "N44d31m39.440", "E25d26m02.520"],
+            ["N44d31m33.140", "E25d24m38.970", "N44d31m26.840", "E25d23m15.430"],
+            ["N44d34m11.000", "E26d08m37.140", "N44d34m17.320", "E26d10m00.750"],
+            ["N44d34m23.630", "E26d11m24.350", "N44d34m29.950", "E26d12m47.960"],
+            ["N44d34m36.260", "E26d14m11.580", "N44d34m42.570", "E26d15m35.190"],
+            ["N44d34m48.890", "E26d16m58.810", "N44d34m55.200", "E26d18m22.430"],
+            ["N44d35m01.520", "E26d19m46.050", "N44d35m07.830", "E26d21m09.670"],
+            ["N44d35m14.150", "E26d22m33.300", "N44d35m20.460", "E26d23m56.930"],
+            ["N44d35m26.780", "E26d25m20.560", "N44d35m33.090", "E26d26m44.200"],
+            ["N44d35m39.400", "E26d28m07.830", "N44d35m45.720", "E26d29m31.470"],
+            ["N44d35m52.030", "E26d30m55.120", "N44d35m58.350", "E26d32m18.760"],
+            ["N44d36m04.660", "E26d33m42.410", "N44d36m10.980", "E26d35m06.060"],
+            ["N44d36m17.290", "E26d36m29.710", "N44d36m23.610", "E26d37m53.360"],
+            ["N44d36m29.920", "E26d39m17.020", "N44d36m36.230", "E26d40m40.680"],
+            ["N44d36m42.550", "E26d42m04.350", "N44d36m48.860", "E26d43m28.010"],
+            ["N44d36m55.180", "E26d44m51.680", "N44d37m01.490", "E26d46m15.350"],
+            ["N44d37m07.810", "E26d47m39.020", "N44d37m14.120", "E26d49m02.690"],
+            ["N44d34m54.040", "E26d09m03.570", "N44d35m00.360", "E26d10m27.190"],
+            ["N44d35m06.670", "E26d11m50.820", "N44d35m12.990", "E26d13m14.440"],
+            ["N44d35m19.300", "E26d14m38.070", "N44d35m25.620", "E26d16m01.700"],
+            ["N44d35m31.930", "E26d17m25.340", "N44d35m38.250", "E26d18m48.970"],
+            ["N44d35m44.560", "E26d20m12.610", "N44d35m50.870", "E26d21m36.260"],
+            ["N44d35m57.190", "E26d22m59.900", "N44d36m03.500", "E26d24m23.550"],
+            ["N44d36m09.820", "E26d25m47.200", "N44d36m16.130", "E26d27m10.850"],
+            ["N44d36m22.450", "E26d28m34.500", "N44d36m28.760", "E26d29m58.160"],
+            ["N44d36m35.070", "E26d31m21.820", "N44d36m41.390", "E26d32m45.480"],
+            ["N44d36m47.700", "E26d34m09.150", "N44d36m54.020", "E26d35m32.810"],
+            ["N44d37m00.330", "E26d36m56.480", "N44d37m06.650", "E26d38m20.160"],
+            ["N44d37m12.960", "E26d39m43.830", "N44d37m19.280", "E26d41m07.510"],
+            ["N44d37m25.590", "E26d42m31.190", "N44d37m31.900", "E26d43m54.870"],
+            ["N44d37m38.220", "E26d45m18.550", "N44d37m44.530", "E26d46m42.240"],
+            ["N44d37m50.850", "E26d48m05.930", "N44d37m57.160", "E26d49m29.620"],
+            ["N44d14m00.000", "E25d38m00.000", "N44d14m00.000", "E25d45m00.000"],
+            ["N44d00m00.000", "E25d38m00.000", "N44d14m00.000", "E25d38m00.000"],
+            ["N44d00m00.000", "E25d45m00.000", "N44d00m00.000", "E25d38m00.000"],
+            ["N44d14m00.000", "E25d45m00.000", "N44d00m00.000", "E25d45m00.000"],
+            ["N44d33m42.180", "E26d22m32.980", "N44d28m00.000", "E26d23m30.000"],
+            ["N44d28m00.000", "E26d23m30.000", "N44d28m00.000", "E26d20m00.000"],
+            ["N44d28m00.000", "E26d20m00.000", "N44d30m25.000", "E26d14m00.000"],
+            ["N44d30m25.000", "E26d14m00.000", "N44d27m20.000", "E25d58m30.000"],
+            ["N44d27m20.000", "E25d58m30.000", "N44d24m00.000", "E25d50m00.000"],
+            ["N44d24m00.000", "E25d50m00.000", "N44d24m00.000", "E25d47m40.000"],
+            ["N44d24m00.000", "E25d47m40.000", "N44d31m11.720", "E25d47m30.410"],
+            ["N44d31m11.720", "E25d47m30.410", "N44d30m04.800", "E25d56m35.000"],
+            ["N44d30m04.800", "E25d56m35.000", "N44d33m42.180", "E26d22m32.980"],
+            ["N44d33m42.180", "E26d22m32.980", "N44d33m42.180", "E26d22m32.980"],
+            ["N44d34m15.571", "E25d45m27.284", "N44d31m49.706", "E25d45m45.198"],
+            ["N44d36m41.435", "E25d45m45.198", "N44d34m15.571", "E25d45m27.284"],
+            ["N44d39m02.868", "E25d46m38.395", "N44d36m41.435", "E25d45m45.198"],
+            ["N44d41m15.571", "E25d48m05.260", "N44d39m02.868", "E25d46m38.395"],
+            ["N44d46m23.032", "E25d55m16.856", "N44d44m59.853", "E25d52m28.489"],
+            ["N44d44m59.853", "E25d52m28.489", "N44d43m15.512", "E25d50m03.152"],
+            ["N44d43m15.512", "E25d50m03.152", "N44d41m15.571", "E25d48m05.260"],
+            ["N44d47m24.913", "E25d58m23.137", "N44d46m23.032", "E25d55m16.856"],
+            ["N44d39m02.868", "E26d23m34.460", "N44d41m15.571", "E26d22m07.596"],
+            ["N44d48m02.809", "E26d01m41.672", "N44d47m24.913", "E25d58m23.137"],
+            ["N44d36m41.435", "E26d24m27.658", "N44d39m02.868", "E26d23m34.460"],
+            ["N44d41m15.571", "E26d22m07.596", "N44d43m15.512", "E26d20m09.704"],
+            ["N44d43m15.512", "E26d20m09.704", "N44d44m59.853", "E26d17m44.367"],
+            ["N44d44m59.853", "E26d17m44.367", "N44d46m23.032", "E26d14m56.853"],
+            ["N44d46m23.032", "E26d14m56.853", "N44d47m24.913", "E26d11m49.719"],
+            ["N44d47m24.913", "E26d11m49.719", "N44d48m02.809", "E26d08m31.184"],
+            ["N44d48m02.809", "E26d08m31.184", "N44d48m15.571", "E26d05m06.428"],
+            ["N44d48m15.571", "E26d05m06.428", "N44d48m02.809", "E26d01m41.672"],
+            ["N44d34m15.571", "E26d24m45.571", "N44d36m41.435", "E26d24m27.658"],
+            ["N44d31m49.706", "E25d45m45.198", "N44d31m23.000", "E25d45m58.000"],
+            ["N44d31m23.000", "E25d45m58.000", "N44d30m04.800", "E25d56m35.000"],
+            ["N44d30m04.800", "E25d56m35.000", "N44d33m59.860", "E26d24m41.830"],
+            ["N44d33m59.860", "E26d24m41.830", "N44d34m15.571", "E26d24m45.571"],
+            ["N44d33m52.780", "E26d04m36.290", "N44d34m04.690", "E26d07m13.540"],
+            ["N44d34m35.840", "E26d05m02.760", "N44d34m47.730", "E26d07m39.950"],
+            ["N44d33m50.000", "E26d05m12.000", "N44d34m09.000", "E26d24m42.000"],
+            ["N44d34m09.000", "E26d24m42.000", "N44d30m21.000", "E25d56m35.000"],
+            ["N44d30m21.000", "E25d56m35.000", "N44d31m23.000", "E25d45m58.000"],
+            ["N44d31m23.000", "E25d45m58.000", "N44d33m50.000", "E26d05m12.000"],
+            ["N44d33m50.000", "E26d05m12.000", "N44d33m50.000", "E26d05m12.000"],
+            ["N44d57m48.520", "E25d58m37.300", "N44d57m46.060", "E25d59m16.980"],
+            ["N44d57m38.760", "E25d59m55.460", "N44d57m26.840", "E26d00m31.550"],
+            ["N44d57m10.660", "E26d01m04.170", "N44d56m50.720", "E26d01m32.310"],
+            ["N44d56m27.620", "E26d01m55.140", "N44d56m02.070", "E26d02m11.940"],
+            ["N44d55m34.840", "E26d02m22.210", "N44d55m06.750", "E26d02m25.650"],
+            ["N44d54m38.680", "E26d02m22.150", "N44d54m11.460", "E26d02m11.820"],
+            ["N44d53m45.920", "E26d01m54.980", "N44d53m22.840", "E26d01m32.140"],
+            ["N44d53m02.930", "E26d01m03.990", "N44d52m46.770", "E26d00m31.400"],
+            ["N44d52m34.870", "E25d59m55.350", "N44d52m27.580", "E25d59m16.920"],
+            ["N44d52m25.120", "E25d58m37.300", "N44d52m27.580", "E25d57m57.680"],
+            ["N44d52m34.870", "E25d57m19.260", "N44d52m46.770", "E25d56m43.200"],
+            ["N44d53m02.930", "E25d56m10.610", "N44d53m22.840", "E25d55m42.460"],
+            ["N44d53m45.920", "E25d55m19.620", "N44d54m11.460", "E25d55m02.780"],
+            ["N44d54m38.680", "E25d54m52.450", "N44d55m06.750", "E25d54m48.950"],
+            ["N44d55m34.840", "E25d54m52.390", "N44d56m02.070", "E25d55m02.670"],
+            ["N44d56m27.620", "E25d55m19.470", "N44d56m50.720", "E25d55m42.290"],
+            ["N44d57m10.660", "E25d56m10.430", "N44d57m26.840", "E25d56m43.050"],
+            ["N44d57m38.760", "E25d57m19.140", "N44d57m46.060", "E25d57m57.620"],
+            ["N44d38m14.320", "E26d33m36.560", "N44d38m11.860", "E26d34m16.020"],
+            ["N44d38m04.560", "E26d34m54.280", "N44d37m52.640", "E26d35m30.170"],
+            ["N44d37m36.460", "E26d36m02.600", "N44d37m16.520", "E26d36m30.590"],
+            ["N44d36m53.420", "E26d36m53.280", "N44d36m27.870", "E26d37m09.990"],
+            ["N44d36m00.640", "E26d37m20.200", "N44d35m32.560", "E26d37m23.620"],
+            ["N44d35m04.480", "E26d37m20.150", "N44d34m37.260", "E26d37m09.880"],
+            ["N44d34m11.720", "E26d36m53.130", "N44d33m48.650", "E26d36m30.420"],
+            ["N44d33m28.720", "E26d36m02.430", "N44d33m12.570", "E26d35m30.020"],
+            ["N44d33m00.670", "E26d34m54.170", "N44d32m53.380", "E26d34m15.960"],
+            ["N44d32m50.920", "E26d33m36.560", "N44d32m53.380", "E26d32m57.160"],
+            ["N44d33m00.670", "E26d32m18.960", "N44d33m12.570", "E26d31m43.100"],
+            ["N44d33m28.720", "E26d31m10.690", "N44d33m48.650", "E26d30m42.710"],
+            ["N44d34m11.720", "E26d30m19.990", "N44d34m37.260", "E26d30m03.250"],
+            ["N44d35m04.480", "E26d29m52.980", "N44d35m32.560", "E26d29m49.500"],
+            ["N44d36m00.640", "E26d29m52.920", "N44d36m27.870", "E26d30m03.140"],
+            ["N44d36m53.420", "E26d30m19.840", "N44d37m16.520", "E26d30m42.530"],
+            ["N44d37m36.460", "E26d31m10.520", "N44d37m52.640", "E26d31m42.950"],
+            ["N44d38m04.560", "E26d32m18.840", "N44d38m11.860", "E26d32m57.100"],
+            ["N44d32m44.680", "E25d42m29.400", "N44d32m42.220", "E25d43m08.800"],
+            ["N44d32m34.920", "E25d43m47.000", "N44d32m23.000", "E25d44m22.830"],
+            ["N44d32m06.820", "E25d44m55.210", "N44d31m46.880", "E25d45m23.160"],
+            ["N44d31m23.780", "E25d45m45.810", "N44d30m58.230", "E25d46m02.490"],
+            ["N44d30m31.000", "E25d46m12.690", "N44d30m02.920", "E25d46m16.110"],
+            ["N44d29m34.840", "E25d46m12.630", "N44d29m07.620", "E25d46m02.380"],
+            ["N44d28m42.090", "E25d45m45.660", "N44d28m19.010", "E25d45m22.980"],
+            ["N44d27m59.090", "E25d44m55.040", "N44d27m42.930", "E25d44m22.680"],
+            ["N44d27m31.030", "E25d43m46.880", "N44d27m23.740", "E25d43m08.740"],
+            ["N44d27m21.280", "E25d42m29.400", "N44d27m23.740", "E25d41m50.060"],
+            ["N44d27m31.030", "E25d41m11.920", "N44d27m42.930", "E25d40m36.120"],
+            ["N44d27m59.090", "E25d40m03.760", "N44d28m19.010", "E25d39m35.820"],
+            ["N44d28m42.090", "E25d39m13.140", "N44d29m07.620", "E25d38m56.420"],
+            ["N44d29m34.840", "E25d38m46.170", "N44d30m02.920", "E25d38m42.690"],
+            ["N44d30m31.000", "E25d38m46.110", "N44d30m58.230", "E25d38m56.310"],
+            ["N44d31m23.780", "E25d39m12.990", "N44d31m46.880", "E25d39m35.650"],
+            ["N44d32m06.820", "E25d40m03.590", "N44d32m23.000", "E25d40m35.970"],
+            ["N44d32m34.920", "E25d41m11.810", "N44d32m42.220", "E25d41m50.000"],
+            ["N44d32m48.950", "E25d57m43.120", "N44d33m53.270", "E25d57m33.580"],
+            ["N44d32m17.280", "E25d50m45.250", "N44d33m21.600", "E25d50m35.720"],
+            ["N44d31m45.610", "E25d43m47.440", "N44d32m49.930", "E25d43m37.910"],
+            ["N44d31m13.940", "E25d36m49.700", "N44d32m18.260", "E25d36m40.170"],
+            ["N44d30m42.270", "E25d29m52.020", "N44d31m46.590", "E25d29m42.490"],
+            ["N44d30m10.610", "E25d22m54.400", "N44d31m14.920", "E25d22m44.870"],
+            ["N44d33m32.010", "E25d58m09.510", "N44d34m36.330", "E25d57m59.970"],
+            ["N44d33m00.340", "E25d51m11.550", "N44d34m04.660", "E25d51m02.020"],
+            ["N44d32m28.670", "E25d44m13.660", "N44d33m32.990", "E25d44m04.130"],
+            ["N44d31m57.000", "E25d37m15.830", "N44d33m01.320", "E25d37m06.300"],
+            ["N44d31m25.330", "E25d30m18.060", "N44d32m29.650", "E25d30m08.530"],
+            ["N44d30m53.670", "E25d23m20.360", "N44d31m57.980", "E25d23m10.830"],
+            ["N44d34m03.930", "E26d14m16.370", "N44d35m08.250", "E26d14m06.830"],
+            ["N44d34m35.340", "E26d21m14.490", "N44d35m39.650", "E26d21m04.950"],
+            ["N44d35m06.740", "E26d28m12.680", "N44d36m11.060", "E26d28m03.140"],
+            ["N44d35m38.140", "E26d35m10.930", "N44d36m42.460", "E26d35m01.380"],
+            ["N44d36m09.540", "E26d42m09.240", "N44d37m13.860", "E26d41m59.690"],
+            ["N44d36m40.950", "E26d49m07.620", "N44d37m45.260", "E26d48m58.070"],
+            ["N44d34m46.970", "E26d14m42.870", "N44d35m51.290", "E26d14m33.330"],
+            ["N44d35m18.380", "E26d21m41.080", "N44d36m22.690", "E26d21m31.540"],
+            ["N44d35m49.780", "E26d28m39.350", "N44d36m54.100", "E26d28m29.810"],
+            ["N44d36m21.180", "E26d35m37.680", "N44d37m25.500", "E26d35m28.140"],
+            ["N44d36m52.590", "E26d42m36.080", "N44d37m56.900", "E26d42m26.540"],
+            ["N44d37m23.990", "E26d49m34.540", "N44d38m28.310", "E26d49m25.000"],
+            ["N44d40m45.790", "E25d36m32.000", "N44d40m43.960", "E25d37m01.250"],
+            ["N44d40m43.960", "E25d37m01.250", "N44d40m38.560", "E25d37m29.610"],
+            ["N44d40m38.560", "E25d37m29.610", "N44d40m29.730", "E25d37m56.230"],
+            ["N44d40m29.730", "E25d37m56.230", "N44d40m17.750", "E25d38m20.270"],
+            ["N44d40m17.750", "E25d38m20.270", "N44d40m02.970", "E25d38m41.020"],
+            ["N44d40m02.970", "E25d38m41.020", "N44d39m45.870", "E25d38m57.850"],
+            ["N44d39m45.870", "E25d38m57.850", "N44d39m26.940", "E25d39m10.240"],
+            ["N44d39m26.940", "E25d39m10.240", "N44d39m06.770", "E25d39m17.820"],
+            ["N44d39m06.770", "E25d39m17.820", "N44d38m45.960", "E25d39m20.370"],
+            ["N44d38m45.960", "E25d39m20.370", "N44d38m25.170", "E25d39m17.790"],
+            ["N44d38m25.170", "E25d39m17.790", "N44d38m05.000", "E25d39m10.180"],
+            ["N44d38m05.000", "E25d39m10.180", "N44d37m46.080", "E25d38m57.770"],
+            ["N44d37m46.080", "E25d38m57.770", "N44d37m28.980", "E25d38m40.930"],
+            ["N44d37m28.980", "E25d38m40.930", "N44d37m14.220", "E25d38m20.180"],
+            ["N44d37m14.220", "E25d38m20.180", "N44d37m02.250", "E25d37m56.140"],
+            ["N44d37m02.250", "E25d37m56.140", "N44d36m53.430", "E25d37m29.550"],
+            ["N44d36m53.430", "E25d37m29.550", "N44d36m48.030", "E25d37m01.220"],
+            ["N44d36m48.030", "E25d37m01.220", "N44d36m46.210", "E25d36m32.000"],
+            ["N44d36m46.210", "E25d36m32.000", "N44d36m48.030", "E25d36m02.780"],
+            ["N44d36m48.030", "E25d36m02.780", "N44d36m53.430", "E25d35m34.450"],
+            ["N44d36m53.430", "E25d35m34.450", "N44d37m02.250", "E25d35m07.860"],
+            ["N44d37m02.250", "E25d35m07.860", "N44d37m14.220", "E25d34m43.820"],
+            ["N44d37m14.220", "E25d34m43.820", "N44d37m28.980", "E25d34m23.070"],
+            ["N44d37m28.980", "E25d34m23.070", "N44d37m46.080", "E25d34m06.230"],
+            ["N44d37m46.080", "E25d34m06.230", "N44d38m05.000", "E25d33m53.820"],
+            ["N44d38m05.000", "E25d33m53.820", "N44d38m25.170", "E25d33m46.210"],
+            ["N44d38m25.170", "E25d33m46.210", "N44d38m45.960", "E25d33m43.640"],
+            ["N44d38m45.960", "E25d33m43.640", "N44d39m06.770", "E25d33m46.180"],
+            ["N44d39m06.770", "E25d33m46.180", "N44d39m26.940", "E25d33m53.760"],
+            ["N44d39m26.940", "E25d33m53.760", "N44d39m45.870", "E25d34m06.150"],
+            ["N44d39m45.870", "E25d34m06.150", "N44d40m02.970", "E25d34m22.980"],
+            ["N44d40m02.970", "E25d34m22.980", "N44d40m17.750", "E25d34m43.730"],
+            ["N44d40m17.750", "E25d34m43.730", "N44d40m29.730", "E25d35m07.770"],
+            ["N44d40m29.730", "E25d35m07.770", "N44d40m38.560", "E25d35m34.390"],
+            ["N44d40m38.560", "E25d35m34.390", "N44d40m43.960", "E25d36m02.750"],
+            ["N44d40m43.960", "E25d36m02.750", "N44d40m45.790", "E25d36m32.000"]
+        ]
+    }
+}
