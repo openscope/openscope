@@ -1,273 +1,328 @@
 {
-  "radio": {
-    "twr": "Hobby Tower",
-    "app": "Houston Approach",
-    "dep": "Houston Departure"
-  },
-  "icao": "KHOU",
-  "iata": "HOU",
-  "magnetic_north": 2.8,
-  "ctr_radius": 80,
-  "ctr_ceiling": 15000,
-  "initial_alt": 15000,
-  "position": [ "N29d38.73", "W95d16.74" ],
-  "rr_radius_nm": 5.0,
-  "rr_center": [ "N29d38.73", "W95d16.74" ],
-  "has_terrain": false,
-  "wind": {
-    "angle": 110,
-    "speed": 10
-  },
-  "arrivalRunway": "13R",
-  "departureRunway": "13R",
-  "airspace": [
-    {
-      "floor": 0,
-      "ceiling": 150,
-      "airspace_class": "B",
-      "poly": [
-        [ 30.059612, -95.769097 ],
-        [ 30.052174, -94.922178 ],
-        [ 29.447520, -94.879909 ],
-        [ 29.459973, -95.867918 ]
-      ]
-    }
-  ],
-  "fixes": {
-    "ALIEF": ["N28d41.23", "W96d44.31"],
-    "ALLLY": ["N29d39.62", "W95d25.52"],
-    "AMMMO": ["N28d35.33", "W96d33.20"],
-    "AWSTN": ["N29d34.91", "W95d31.82"],
-    "BALKK": ["N29d25.20", "W97d1.61"],
-    "BAYYY": ["N29d22.65", "W94d22.27"],
-    "BELLR": ["N29d19.49", "W96d5.32"],
-    "BIGTX": ["N28d49.29", "W96d36.94"],
-    "COLLT": ["N27d25.79", "W97d11.87"],
-    "CRP"  : ["N27d54.23", "W97d26.69"],
-    "CRSTY": ["N29d38.32", "W95d36.02"],
-    "EMARR": ["N29d32.41", "W95d16.13"],
-    "FIGGG": ["N29d34.91", "W95d8.44"],
-    "FRDDY": ["N29d29.21", "W94d52.66"],
-    "GEEAR": ["N29d20.99", "W93d53.13"],
-    "GEEEO": ["N29d28.82", "W95d38.94"],
-    "GLOCK": ["N29d22.81", "W96d38.88"],
-    "HACKT": ["N29d36.34", "W95d39.28"],
-    "HUB"  : ["N29d39.34", "W95d16.60"],
-    "IVEEE": ["N29d36.62", "W95d18.10"],
-    "JEPEG": ["N29d27.40", "W92d27.47"],
-    "KCEEE": ["N29d14.57", "W92d28.02"],
-    "KELPP": ["N27d10.53", "W91d56.95"],
-    "KMMBR": ["N29d21.97", "W96d30.37"],
-    "LEV"  : ["N29d10.51", "W90d6.24"],
-    "LMEDA": ["N28d27.95", "W96d56.37"],
-    "MAAHH": ["N29d36.29", "W95d8.93"],
-    "PARAA": ["N29d24.64", "W96d58.24"],
-    "PEGLG": ["N26d48.27", "W92d50.67"],
-    "PUCKS": ["N29d24.47", "W94d39.78"],
-    "PURKY": ["N29d26.34", "W96d29.26"],
-    "RJAAY": ["N29d33.82", "W95d18.42"],
-    "SAT"  : ["N29d38.64", "W98d27.68"],
-    "SEAGL": ["N26d32.82", "W93d46.31"],
-    "SEUSS": ["N29d39.74", "W95d34.39"],
-    "SHLLL": ["N29d3.22", "W94d0.34"],
-    "SHREQ": ["N30d25.27", "W89d23.25"],
-    "SHUDL": ["N29d22.15", "W94d14.48"],
-    "SHUUG": ["N29d33.82", "W95d14.51"],
-    "SJI"  : ["N30d43.56", "W88d21.56"],
-    "SLYCE": ["N29d17.07", "W93d0.91"],
-    "SMAKR": ["N29d41.62", "W97d23.86"],
-    "VILLI": ["N29d37.67", "W95d23.21"]
-  },
-  "runways": [
-    {
-      "name": [ "17", "35" ],
-      "end": [
-        [ "N29d39.14", "W95d17.08", "44.8ft" ],
-        [ "N29d38.15", "W95d17.06", "42.9ft" ]
-      ],
-      "ils": [ false, false ]
+    "radio": {
+        "twr": "Hobby Tower",
+        "app": "Houston Approach",
+        "dep": "Houston Departure"
     },
-    {
-      "name": [ "4", "22" ],
-      "end": [
-        [ "N29d38.35", "W95d17.12", "42.0ft" ],
-        [ "N29d39.25", "W95d16.12", "38.9ft" ]
-      ],
-      "ils": [ true, false ]
+    "icao": "KHOU",
+    "iata": "HOU",
+    "magnetic_north": 2.8,
+    "ctr_radius": 80,
+    "ctr_ceiling": 15000,
+    "initial_alt": 15000,
+    "position": [ "N29d38.73", "W95d16.74" ],
+    "rr_radius_nm": 5.0,
+    "rr_center": [ "N29d38.73", "W95d16.74" ],
+    "has_terrain": false,
+    "wind": {
+        "angle": 110,
+        "speed": 10
     },
-    {
-      "name": [ "13R", "31L" ],
-      "end": [
-        [ "N29d39.06", "W95d17.13", "42.0ft" ],
-        [ "N29d38.19", "W95d16.10", "41.3ft" ]
-      ],
-      "ils": [ true, true ]
+    "arrivalRunway": "13R",
+    "departureRunway": "13R",
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 150,
+            "airspace_class": "B",
+            "poly": [
+                [29.2919628, -95.5245658],
+                [29.3252947, -95.5791192],
+                [29.3649236, -95.6278997],
+                [29.3983325, -95.6601142],
+                [29.4345017, -95.6881853],
+                [29.4730369, -95.7118028],
+                [29.5246633, -95.6334689],
+                [29.5505022, -95.6441103],
+                [29.5754383, -95.6518853],
+                [29.5681494, -95.6627478],
+                [29.5581856, -95.6878861],
+                [29.5576858, -95.693165],
+                [29.5986433, -95.7476383],
+                [29.6576519, -95.8068611],
+                [29.7239939, -95.8548811],
+                [29.7812678, -95.8844217],
+                [29.8413114, -95.9055494],
+                [29.8875981, -95.9156617],
+                [29.9816253, -95.9207586],
+                [30.0594881, -95.9094931],
+                [30.1271769, -95.8876603],
+                [30.2194197, -95.83677],
+                [30.3061833, -95.759335],
+                [30.3761697, -95.6618628],
+                [30.4313014, -95.531985],
+                [30.4507681, -95.4442528],
+                [30.45807, -95.3540706],
+                [30.4505408, -95.2457772],
+                [30.4308736, -95.158105],
+                [30.3995364, -95.0750983],
+                [30.3573078, -94.9988147],
+                [30.3052356, -94.9311383],
+                [30.24461, -94.8737314],
+                [30.1626942, -94.8203514],
+                [30.127205, -94.8039461],
+                [30.0735408, -94.7856144],
+                [30.0116375, -94.7734253],
+                [29.9488933, -94.7702364],
+                [29.9018764, -94.7737764],
+                [29.8707819, -94.7789439],
+                [29.8429917, -94.7855272],
+                [29.8097422, -94.7959111],
+                [29.7654367, -94.8142972],
+                [29.6955531, -94.8552158],
+                [29.6441858, -94.8965997],
+                [29.5675164, -94.9085953],
+                [29.530605, -94.9221094],
+                [29.4729072, -94.9551436],
+                [29.4314172, -94.9902975],
+                [29.3951517, -95.0323058],
+                [29.3649703, -95.0801658],
+                [29.3326272, -95.1604053],
+                [29.3204286, -95.2176817],
+                [29.3160842, -95.2764114],
+                [29.3196961, -95.3352053],
+                [29.3311792, -95.3926731],
+                [29.3448003, -95.4340833],
+                [29.3625183, -95.4734286],
+                [29.2919628, -95.5245658]
+            ]
+        }
+    ],
+    "fixes": {
+        "ALIEF": ["N28d41.23", "W96d44.31"],
+        "ALLLY": ["N29d39.62", "W95d25.52"],
+        "AMMMO": ["N28d35.33", "W96d33.20"],
+        "AWSTN": ["N29d34.91", "W95d31.82"],
+        "BALKK": ["N29d25.20", "W97d1.61"],
+        "BAYYY": ["N29d22.65", "W94d22.27"],
+        "BELLR": ["N29d19.49", "W96d5.32"],
+        "BIGTX": ["N28d49.29", "W96d36.94"],
+        "COLLT": ["N27d25.79", "W97d11.87"],
+        "CRP"  : ["N27d54.23", "W97d26.69"],
+        "CRSTY": ["N29d38.32", "W95d36.02"],
+        "EMARR": ["N29d32.41", "W95d16.13"],
+        "FIGGG": ["N29d34.91", "W95d8.44"],
+        "FRDDY": ["N29d29.21", "W94d52.66"],
+        "GEEAR": ["N29d20.99", "W93d53.13"],
+        "GEEEO": ["N29d28.82", "W95d38.94"],
+        "GLOCK": ["N29d22.81", "W96d38.88"],
+        "HACKT": ["N29d36.34", "W95d39.28"],
+        "HUB"  : ["N29d39.34", "W95d16.60"],
+        "IVEEE": ["N29d36.62", "W95d18.10"],
+        "JEPEG": ["N29d27.40", "W92d27.47"],
+        "KCEEE": ["N29d14.57", "W92d28.02"],
+        "KELPP": ["N27d10.53", "W91d56.95"],
+        "KMMBR": ["N29d21.97", "W96d30.37"],
+        "LEV"  : ["N29d10.51", "W90d6.24"],
+        "LMEDA": ["N28d27.95", "W96d56.37"],
+        "MAAHH": ["N29d36.29", "W95d8.93"],
+        "PARAA": ["N29d24.64", "W96d58.24"],
+        "PEGLG": ["N26d48.27", "W92d50.67"],
+        "PUCKS": ["N29d24.47", "W94d39.78"],
+        "PURKY": ["N29d26.34", "W96d29.26"],
+        "RJAAY": ["N29d33.82", "W95d18.42"],
+        "SAT"  : ["N29d38.64", "W98d27.68"],
+        "SEAGL": ["N26d32.82", "W93d46.31"],
+        "SEUSS": ["N29d39.74", "W95d34.39"],
+        "SHLLL": ["N29d3.22", "W94d0.34"],
+        "SHREQ": ["N30d25.27", "W89d23.25"],
+        "SHUDL": ["N29d22.15", "W94d14.48"],
+        "SHUUG": ["N29d33.82", "W95d14.51"],
+        "SJI"  : ["N30d43.56", "W88d21.56"],
+        "SLYCE": ["N29d17.07", "W93d0.91"],
+        "SMAKR": ["N29d41.62", "W97d23.86"],
+        "VILLI": ["N29d37.67", "W95d23.21"]
     },
-    {
-      "name": [ "13L", "31R" ],
-      "end": [
-        [ "N29d39.16", "W95d17.03", "44.9ft" ],
-        [ "N29d38.57", "W95d16.33", "39.6ft" ]
-      ],
-      "ils": [ false, false ]
-    }
-  ],
-  "sids": {
+    "runways": [
+        {
+            "name": [ "17", "35" ],
+            "end": [
+                [ "N29d39.14", "W95d17.08", "44.8ft" ],
+                [ "N29d38.15", "W95d17.06", "42.9ft" ]
+            ],
+            "ils": [ false, false ]
+        },
+        {
+            "name": [ "4", "22" ],
+            "end": [
+                [ "N29d38.35", "W95d17.12", "42.0ft" ],
+                [ "N29d39.25", "W95d16.12", "38.9ft" ]
+            ],
+            "ils": [ true, false ]
+        },
+        {
+            "name": [ "13R", "31L" ],
+            "end": [
+                [ "N29d39.06", "W95d17.13", "42.0ft" ],
+                [ "N29d38.19", "W95d16.10", "41.3ft" ]
+            ],
+            "ils": [ true, true ]
+        },
+        {
+            "name": [ "13L", "31R" ],
+            "end": [
+                [ "N29d39.16", "W95d17.03", "44.9ft" ],
+                [ "N29d38.57", "W95d16.33", "39.6ft" ]
+            ],
+            "ils": [ false, false ]
+        }
+    ],
+    "sids": {
 
-  },
-  "stars": {
-    "BAYYY3": {
-      "icao": "BAYYY3",
-      "name": "Bay Three",
-      "entryPoints": {
-        "BAYYY": [ ],
-        "KCEEE": [ "KCEEE", "SLYCE", "GEEAR", "SHUDL" ],
-        "KELPP": [ "KELPP", "SHLLL" ],
-        "LEV": [ "LEV", "KCEEE", "SLYCE", "GEEAR", "SHUDL" ],
-        "PEGLG": [ "PEGLG", "SHLLL" ],
-        "SEAGL": [ "SEAGL", "SHLLL" ],
-        "SJI": [ "SJI", "SHREQ", "JEPEG", "SLYCE", "GEEAR", "SHUDL" ],
-        "SHLLL": [ "SHLLL" ]
-      },
-      "body": [
-        [ "BAYYY", "A170+|A200-|S280" ],
-        [ "PUCKS", "A100+|A140-" ],
-        [ "FRDDY", "A80+|A100-|S240" ],
-        [ "FIGGG", "A60+|A70-" ]
-      ],
-      "rwy": {
-        "KHOU4": [
-          [ "SHUUG", "A60|S210" ],
-          "EMARR",
-          "#222"
-        ],
-        "KHOU13L": [
-          [ "IVEEE", "A60|S210" ],
-          "VILLI",
-          "ALLLY",
-          "#311"
-        ],
-        "KHOU13R": [
-          [ "IVEEE", "A60|S210" ],
-          "VILLI",
-          "ALLLY",
-          "#311"
-        ],
-        "KHOU17": [
-          [ "IVEEE", "A60|S210" ],
-          "VILLI",
-          "ALLLY",
-          "#311"
+    },
+    "stars": {
+        "BAYYY3": {
+            "icao": "BAYYY3",
+            "name": "Bay Three",
+            "entryPoints": {
+                "BAYYY": [ ],
+                "KCEEE": [ "KCEEE", "SLYCE", "GEEAR", "SHUDL" ],
+                "KELPP": [ "KELPP", "SHLLL" ],
+                "LEV": [ "LEV", "KCEEE", "SLYCE", "GEEAR", "SHUDL" ],
+                "PEGLG": [ "PEGLG", "SHLLL" ],
+                "SEAGL": [ "SEAGL", "SHLLL" ],
+                "SJI": [ "SJI", "SHREQ", "JEPEG", "SLYCE", "GEEAR", "SHUDL" ],
+                "SHLLL": [ "SHLLL" ]
+            },
+            "body": [
+                [ "BAYYY", "A170+|A200-|S280" ],
+                [ "PUCKS", "A100+|A140-" ],
+                [ "FRDDY", "A80+|A100-|S240" ],
+                [ "FIGGG", "A60+|A70-" ]
+            ],
+            "rwy": {
+                "KHOU4": [
+                    [ "SHUUG", "A60|S210" ],
+                    "EMARR",
+                    "#222"
+                ],
+                "KHOU13L": [
+                    [ "IVEEE", "A60|S210" ],
+                    "VILLI",
+                    "ALLLY",
+                    "#311"
+                ],
+                "KHOU13R": [
+                    [ "IVEEE", "A60|S210" ],
+                    "VILLI",
+                    "ALLLY",
+                    "#311"
+                ],
+                "KHOU17": [
+                    [ "IVEEE", "A60|S210" ],
+                    "VILLI",
+                    "ALLLY",
+                    "#311"
+                ]
+            },
+            "draw": [
+                [ "SJI*", "SHREQ", "JEPEG", "SLYCE", "GEEAR", "SHUDL", "BAYYY" ],
+                [ "LEV*", "KCEEE" ],
+                [ "KCEEE*", "SLYCE" ],
+                [ "KELPP*", "SHLLL" ],
+                [ "PEGLG*", "SHLLL" ],
+                [ "SEAGL*", "SHLLL" ],
+                [ "SHLLL*", "BAYYY" ],
+                [ "BAYYY*", "PUCKS", "FRDDY", "FIGGG", "IVEEE", "VILLI", "ALLLY" ],
+                [ "FIGGG", "SHUUG", "EMARR" ]
+            ]
+        },
+        "BELLR3": {
+            "icao": "BELLR3",
+            "name": "Bellr Three",
+            "entryPoints": {
+                "BELLR": [ ],
+                "COLLT": [
+                    "COLLT",
+                    [ "AMMMO", "A240+" ]
+                ],
+                "CRP": [
+                    "CRP",
+                    "LMEDA",
+                    [ "ALIEF", "A240+" ],
+                    "BIGTX"
+                ],
+                "LMEDA": [
+                    "LMEDA",
+                    [ "ALIEF", "A240+" ],
+                    "BIGTX"
+                ],
+                "SAT": [
+                    "SAT",
+                    [ "BALKK", "A240+" ],
+                    "PARAA",
+                    [ "GLOCK", "A190+" ],
+                    "KMMBR"
+                ],
+                "SMAKR": [ "SMAKR", "PURKY" ]
+            },
+            "body": [
+                [ "BELLR", "A110+|A130-|S250" ],
+                [ "HNTRR", "A80+|A100-" ]
+            ],
+            "rwy": {
+                "KHOU13L": [
+                    [ "HACKT", "A70-" ],
+                    [ "CRSTY", "A60|S210" ],
+                    "SEUSS",
+                    "#042"
+                ],
+                "KHOU13R": [
+                    [ "HACKT", "A70-" ],
+                    [ "CRSTY", "A60|S210" ],
+                    "SEUSS",
+                    "#042"
+                ],
+                "KHOU17": [
+                    [ "HACKT", "A70-" ],
+                    [ "CRSTY", "A60|S210" ],
+                    "SEUSS",
+                    "#042"
+                ],
+                "KHOU4": [ [ "GEEEO", "A60|S210" ] ],
+                "KHOU22": [
+                    [ "AWSTN", "A70-|S210" ],
+                    [ "VILLI", "A60" ],
+                    "MAAHH",
+                    "#110"
+                ],
+                "KHOU31L": [
+                    [ "AWSTN", "A70-|S210" ],
+                    [ "VILLI", "A60" ],
+                    "RJAAY",
+                    "#130"
+                ],
+                "KHOU31R": [
+                    [ "AWSTN", "A70-|S210" ],
+                    [ "VILLI", "A60" ],
+                    "RJAAY",
+                    "#130"
+                ],
+                "KHOU35": [
+                    [ "AWSTN", "A70-|S210" ],
+                    [ "VILLI", "A60" ],
+                    "RJAAY",
+                    "#130"
+                ]
+            },
+            "draw": [
+                [ "COLLT*", "AMMMO", "BELLR" ],
+                [ "CRP*", "LMEDA" ],
+                [ "LMEDA*", "ALIEF", "BIGTX", "BELLR" ],
+                [ "SAT*", "BALKK", "PARAA", "GLOCK", "KMMBR", "BELLR" ],
+                [ "SMAKR*", "PURKY", "BELLR" ],
+                [ "BELLR*", "HNTRR", "AWSTN", "VILLI", "MAAHH" ],
+                [ "VILLI", "RJAAY" ],
+                [ "HNTRR", "HACKT", "CRSTY", "SEUSS" ]
+            ]
+        }
+    },
+    "spawnPatterns": [
+
+    ],
+    "maps": {
+        "base": [
+
         ]
-      },
-      "draw": [
-        [ "SJI*", "SHREQ", "JEPEG", "SLYCE", "GEEAR", "SHUDL", "BAYYY" ],
-        [ "LEV*", "KCEEE" ],
-        [ "KCEEE*", "SLYCE" ],
-        [ "KELPP*", "SHLLL" ],
-        [ "PEGLG*", "SHLLL" ],
-        [ "SEAGL*", "SHLLL" ],
-        [ "SHLLL*", "BAYYY" ],
-        [ "BAYYY*", "PUCKS", "FRDDY", "FIGGG", "IVEEE", "VILLI", "ALLLY" ],
-        [ "FIGGG", "SHUUG", "EMARR" ]
-      ]
-    },
-    "BELLR3": {
-      "icao": "BELLR3",
-      "name": "Bellr Three",
-      "entryPoints": {
-        "BELLR": [ ],
-        "COLLT": [
-          "COLLT",
-          [ "AMMMO", "A240+" ]
-        ],
-        "CRP": [
-          "CRP",
-          "LMEDA",
-          [ "ALIEF", "A240+" ],
-          "BIGTX"
-        ],
-        "LMEDA": [
-          "LMEDA",
-          [ "ALIEF", "A240+" ],
-          "BIGTX"
-        ],
-        "SAT": [
-          "SAT",
-          [ "BALKK", "A240+" ],
-          "PARAA",
-          [ "GLOCK", "A190+" ],
-          "KMMBR"
-        ],
-        "SMAKR": [ "SMAKR", "PURKY" ]
-      },
-      "body": [
-        [ "BELLR", "A110+|A130-|S250" ],
-        [ "HNTRR", "A80+|A100-" ]
-      ],
-      "rwy": {
-        "KHOU13L": [
-          [ "HACKT", "A70-" ],
-          [ "CRSTY", "A60|S210" ],
-          "SEUSS",
-          "#042"
-        ],
-        "KHOU13R": [
-          [ "HACKT", "A70-" ],
-          [ "CRSTY", "A60|S210" ],
-          "SEUSS",
-          "#042"
-        ],
-        "KHOU17": [
-          [ "HACKT", "A70-" ],
-          [ "CRSTY", "A60|S210" ],
-          "SEUSS",
-          "#042"
-        ],
-        "KHOU4": [ [ "GEEEO", "A60|S210" ] ],
-        "KHOU22": [
-          [ "AWSTN", "A70-|S210" ],
-          [ "VILLI", "A60" ],
-          "MAAHH",
-          "#110"
-        ],
-        "KHOU31L": [
-          [ "AWSTN", "A70-|S210" ],
-          [ "VILLI", "A60" ],
-          "RJAAY",
-          "#130"
-        ],
-        "KHOU31R": [
-          [ "AWSTN", "A70-|S210" ],
-          [ "VILLI", "A60" ],
-          "RJAAY",
-          "#130"
-        ],
-        "KHOU35": [
-          [ "AWSTN", "A70-|S210" ],
-          [ "VILLI", "A60" ],
-          "RJAAY",
-          "#130"
-        ]
-      },
-      "draw": [
-        [ "COLLT*", "AMMMO", "BELLR" ],
-        [ "CRP*", "LMEDA" ],
-        [ "LMEDA*", "ALIEF", "BIGTX", "BELLR" ],
-        [ "SAT*", "BALKK", "PARAA", "GLOCK", "KMMBR", "BELLR" ],
-        [ "SMAKR*", "PURKY", "BELLR" ],
-        [ "BELLR*", "HNTRR", "AWSTN", "VILLI", "MAAHH" ],
-        [ "VILLI", "RJAAY" ],
-        [ "HNTRR", "HACKT", "CRSTY", "SEUSS" ]
-      ]
     }
-  },
-  "spawnPatterns": [
-
-  ],
-  "maps": {
-    "base": [
-
-    ]
-  }
 }
