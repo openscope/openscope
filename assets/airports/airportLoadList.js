@@ -414,13 +414,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'loww',
-        //     level: 'medium',
-        //     name: 'Vienna International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'loww',
+            level: 'medium',
+            name: 'Vienna International Airport',
+            premium: false,
+            wip: false
+        },
         {
             icao: 'lszh',
             level: 'medium',
