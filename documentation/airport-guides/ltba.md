@@ -118,6 +118,6 @@ Runway 07L/25R, concrete, 2,993m (9,818ft)
 
 
 ### Additional Resources
-* [Jeppesen Charts](http://vau.aero/navdb/chart/LTBA.pdf)  
+* [VATSIM Charts](https://trvacc.org/charts/)  
 * Additional information can be found in the [European AIS Database](https://www.ead.eurocontrol.int/fwf-eadbasic/restricted/user/aip/aip_overview.faces) (requires a free registration)  
 * Or the [Turkish AIP](http://ssd.dhmi.gov.tr/ANSLogin.aspx?mn=50) (requires a subscription)
