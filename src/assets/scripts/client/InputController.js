@@ -309,7 +309,7 @@ export default class InputController {
      * @param aircraftModel {AircraftModel}
      */
     selectAircraft = (aircraftModel) => {
-        if (!aircraftModel || !aircraftModel.inside_ctr) {
+        if (!aircraftModel || !aircraftModel.isControllable) {
             this.deselectAircraft();
 
             return;

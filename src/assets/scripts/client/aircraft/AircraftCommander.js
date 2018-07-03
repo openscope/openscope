@@ -43,7 +43,7 @@ export default class AircraftCommander {
      * @param commands {array<AircraftCommandParser>}
      */
     runCommands(aircraft, commands) {
-        if (!aircraft.inside_ctr) {
+        if (!aircraft.isControllable) {
             return true;
         }
 

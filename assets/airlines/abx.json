@@ -1,0 +1,27 @@
+{
+    "icao": "abx",
+    "name": "ABX Air",
+    "callsign": {
+        "name": "Abex",
+        "callsignFormats": [
+            "#",
+            "##",
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B762", 17],
+            ["B763", 9]
+        ],
+        "long": [
+            ["B762", 17],
+            ["B763", 9]
+        ],
+        "short": [
+            ["B762", 17],
+            ["B763", 9]
+        ]
+    }
+}

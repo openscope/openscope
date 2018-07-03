@@ -1,8 +1,8 @@
 {
     "icao": "ahy",
-    "name": "Azerbaijan Airlines",
+    "name": "AZAL Azerbaijan Airlines",
     "callsign": {
-        "name": "AZAL",
+        "name": "Azal",
         "callsignFormats": [
             "#",
             "##",
@@ -18,6 +18,9 @@
             ["B752", 3],
             ["B763", 3],
             ["B788", 2]
+        ],
+        "b763": [
+            ["B763", 3]
         ]
     }
 }
