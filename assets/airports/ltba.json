@@ -6,7 +6,7 @@
     },
     "icao": "LTBA",
     "iata": "IST",
-    "magnetic_north": 4,
+    "magnetic_north": 5.3,
     "ctr_radius": 120,
     "ctr_ceiling": 24000,
     "initial_alt": 5000,
@@ -1856,7 +1856,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
+            "body": [["BA010", "A16+|S240-"], "BA012", ["AYFER", "A130-"], "IBLAL"],
             "exitPoints": {
                 "IBLAL": []
             },
@@ -1996,7 +1996,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], ["BA045", "A90-"], "ERTAS", "MAKOL"],
+            "body": [["BA010", "A16+|S240-"], ["BA045", "A90-"], "ERTAS", "MAKOL"],
             "exitPoints": {
                 "MAKOL": []
             },
@@ -2348,7 +2348,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "MOPIN"],
+            "body": [["BA010", "A16+|S240-"], "BKZ", "TEMGO", "MOPIN"],
             "exitPoints": {
                 "MOPIN": []
             },
@@ -2656,7 +2656,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "TUDBU"],
+            "body": [["BA010", "A16+|S240-"], ["RIMBO", "A130-"], "TUDBU"],
             "exitPoints": {
                 "TUDBU": []
             },
@@ -2796,7 +2796,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], ["RIMBO", "A130-"], "VADEN"],
+            "body": [["BA010", "A16+|S240-"], ["RIMBO", "A130-"], "VADEN"],
             "exitPoints": {
                 "VADEN": []
             },
@@ -2971,7 +2971,7 @@
             "entryPoints": {
                 "DEKEK": []
             },
-            "body": ["DEKEK", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "body": ["DEKEK", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A40+|A60-"], "BA585", "BA586", "BA587", "BA588", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -2985,7 +2985,7 @@
             "entryPoints": {
                 "DEKEK": []
             },
-            "body": ["DEKEK", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "body": ["DEKEK", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A40+|A60-"], "BA877", "BA878", "BA879", "BA880", "BA881", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3000,7 +3000,7 @@
             "entryPoints": {
                 "DEKEK": []
             },
-            "body": ["DEKEK", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "body": ["DEKEK", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A50+|A70-"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3073,7 +3073,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A40+|A60-"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3087,7 +3087,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A40+|A60-"], "BA647", "BA648", "BA649", "BA650", "BA651", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3102,7 +3102,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3116,7 +3116,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3131,7 +3131,7 @@
             "entryPoints": {
                 "ERKAL": []
             },
-            "body": ["ERKAL", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "body": ["ERKAL", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A40+|A60-"], "BA585", "BA586", "BA587", "BA588", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3145,7 +3145,7 @@
             "entryPoints": {
                 "ERKAL": []
             },
-            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A40+|A60-"], "BA877", "BA878", "BA879", "BA880", "BA881", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3160,7 +3160,7 @@
             "entryPoints": {
                 "ERKAL": []
             },
-            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "body": ["ERKAL", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A50+|A70-"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3247,7 +3247,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A40+|A60-"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3261,7 +3261,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A40+|A60-"], "BA647", "BA648", "BA649", "BA650", "BA651", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3276,7 +3276,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3290,7 +3290,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3305,7 +3305,7 @@
             "entryPoints": {
                 "PAZAR": []
             },
-            "body": ["PAZAR", "BA046", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "body": ["PAZAR", "BA046", ["GAYEM", "S250-"], "BA044", ["VATOM", "A130+"], ["BA582", "S220"], "BA583", ["BA584", "A40+|A60-"], "BA585", "BA586", "BA587", "BA588", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3319,7 +3319,7 @@
             "entryPoints": {
                 "PAZAR": []
             },
-            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA858", "BA021", ["BA859", "S220"], ["BA876", "A40+|A60-"], "BA877", "BA878", "BA879", "BA880", "BA881", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3334,7 +3334,7 @@
             "entryPoints": {
                 "PAZAR": []
             },
-            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "body": ["PAZAR", "BA046", ["GAYEM", "A150+|S250-"], "BA044", "VATOM", ["BA570", "S220"], ["BA571", "A50+|A70-"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3349,7 +3349,7 @@
             "entryPoints": {
                 "PIMAV": []
             },
-            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A60-|A40+"], "BA585", "BA586", "BA587", "BA588"],
+            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA580", "A120+"], "BA581", ["BA582", "S220"], "BA583", ["BA584", "A40+|A60-"], "BA585", "BA586", "BA587", "BA588", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3363,7 +3363,7 @@
             "entryPoints": {
                 "PIMAV": []
             },
-            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A60-|A40+"], "BA877", "BA878", "BA879", "BA880", "BA881"],
+            "body": ["PIMAV", "EKDAM", ["YAA", "S250-"], ["BA875", "A140+"], "BA020", ["BA859", "S220"], ["BA876", "A40+|A60-"], "BA877", "BA878", "BA879", "BA880", "BA881", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3378,7 +3378,7 @@
             "entryPoints": {
                 "PIMAV": []
             },
-            "body": ["PIMAV", "EKDAM", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A70-|A50+"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577"],
+            "body": ["PIMAV", "EKDAM", ["YAA", "A130+|S250-"], "VATOM", ["BA570", "S220"], ["BA571", "A50+|A70-"], "BA572", "BA573", "BA574", "BA575", "BA576", "BA577", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3393,7 +3393,7 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "S250-"], ["UNTUT", "A190+"], "RIMBO", "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "body": [["TETSA", "S250-"], ["UNTUT", "A190+"], "RIMBO", "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A40+|A60-"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3407,7 +3407,7 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA623", "S220"], ["BA646", "A40+|A60-"], "BA647", "BA648", "BA649", "BA650", "BA651", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3422,12 +3422,12 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
             "rwy": {
                 "LTBA23": []
             },
             "draw": [
-                ["TETSA", "UNTUT", "BA612", "GEVLA", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
+                ["TETSA", "UNTUT", "BA612", "CEK", "BA614", "BA615", "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"]
             ]
         },
         "TETSA1D": {
@@ -3436,9 +3436,10 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": [["TETSA", "S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
-                "LTBA23": []
+                "LTBA35L": [],
+                "LTBA35R": []
             },
             "draw": [
                 ["TETSA", "UNTUT", "RIMBO", "BA612", "ERLEB", "BA760", "BA761", "BA762", "BA763", "BA764", "BA765", "BA766"]
@@ -3450,7 +3451,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A60-|A40+"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A120+"], "BA612", "ERLEB", ["BA791", "S220"], ["BA792", "A40+|A60-"], "BA793", "BA794", "BA795", "BA796", "BA797", "BA798", "#234"],
             "rwy": {
                 "LTBA05": []
             },
@@ -3464,7 +3465,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A60-|A40+"], "BA647", "BA648", "BA649", "BA650", "BA651"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A130+"], "GEVLA", "CEK", ["BA623", "S220"], ["BA646", "A40+|A60-"], "BA647", "BA648", "BA649", "BA650", "BA651", "#354"],
             "rwy": {
                 "LTBA17L": [],
                 "LTBA17R": []
@@ -3479,7 +3480,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A60-|A40+"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3493,7 +3494,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A70-|A50+"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3789,7 +3790,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7.60137807521,
+            "rate": 7.61,
             "airlines": [
                 ["aaw/short", 23],
                 ["brq", 6],
@@ -3816,7 +3817,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.38615504261,
+            "rate": 0.39,
             "airlines": [
                 ["abq", 1],
                 ["iaw/short", 17],
@@ -3835,7 +3836,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.21442398000,
+            "rate": 0.22,
             "airlines": [
                 ["dah/b738", 35],
                 ["ohy/short", 2],
@@ -3855,7 +3856,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.20324237562,
+            "rate": 2.21,
             "airlines": [
                 ["dah/b738", 35],
                 ["ohy/short", 2],
@@ -3875,7 +3876,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.97694592644,
+            "rate": 1.98,
             "airlines": [
                 ["kkk", 15],
                 ["mnb", 3],
@@ -3894,7 +3895,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 1.51523881034,
+            "rate": 1.52,
             "airlines": [
                 ["aui/short", 59],
                 ["bru/ltba", 9],
@@ -3916,7 +3917,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.43652309259,
+            "rate": 0.44,
             "airlines": [
                 ["aee/a319", 14],
                 ["aee/oal", 24],
@@ -3934,7 +3935,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2.12385273683,
+            "rate": 2.13,
             "airlines": [
                 ["kkk", 22],
                 ["mnb", 2],
@@ -3953,7 +3954,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.97907587837,
+            "rate": 3.98,
             "airlines": [
                 ["aar/a333", 8],
                 ["afl/short", 56],
@@ -3982,7 +3983,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5.79232564608,
+            "rate": 5.80,
             "airlines": [
                 ["afg/b734", 2],
                 ["etd/ltba", 14],
@@ -4018,7 +4019,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3.05764650284,
+            "rate": 3.06,
             "airlines": [
                 ["kkk", 44],
                 ["klm/short", 14],
@@ -4038,7 +4039,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 5.53647926456,
+            "rate": 5.54,
             "airlines": [
                 ["afr/a320", 8],
                 ["ahy", 1],
@@ -4063,7 +4064,7 @@
             "category": "arrival",
             "method": "random",
             "route": "SOMGU.UL610.DEKEK.DEKEK1A.LTBA05",
-            "rate": 7.60137807521,
+            "rate": 7.61,
             "altitude": [31000, 32000],
             "speed": 290,
             "airlines": [
@@ -4090,7 +4091,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ADORU.L614.ENESU.ENESU1A.LTBA05",
-            "rate": 5.28553584543,
+            "rate": 5.29,
             "altitude": [28000, 29000],
             "speed": 280,
             "airlines": [
@@ -4121,7 +4122,7 @@
             "category": "arrival",
             "method": "random",
             "route": "RILEX.L867.ENESU.ENESU1A.LTBA05",
-            "rate": 5.28553584543,
+            "rate": 5.29,
             "altitude": [26000, 27000],
             "speed": 280,
             "airlines": [
@@ -4152,7 +4153,7 @@
             "category": "arrival",
             "method": "random",
             "route": "YAVRU.UL615.ERKAL.ERKAL1A.LTBA05",
-            "rate": 0.38615504261,
+            "rate": 0.39,
             "altitude": [31000, 33000],
             "speed": 290,
             "airlines": [
@@ -4171,7 +4172,7 @@
             "category": "arrival",
             "method": "random",
             "route": "ALX.UM603.GELBU.GELBU1A.LTBA05",
-            "rate": 2.20324237562,
+            "rate": 2.21,
             "altitude": [27000, 30000],
             "speed": 290,
             "airlines": [
@@ -4191,7 +4192,7 @@
             "category": "arrival",
             "method": "random",
             "route": "INB.UW702.PAZAR.PAZAR1A.LTBA05",
-            "rate": 3.97907587837,
+            "rate": 3.98,
             "altitude": [31000, 39000],
             "speed": 290,
             "airlines": [
@@ -4220,7 +4221,7 @@
             "category": "arrival",
             "method": "random",
             "route": "TOKER.G8.PIMAV.PIMAV1A.LTBA05",
-            "rate": 5.79232564608,
+            "rate": 5.80,
             "altitude": [26000, 27000],
             "speed": 290,
             "airlines": [
@@ -4256,7 +4257,7 @@
             "category": "arrival",
             "method": "random",
             "route": "RIXEN.N616.TETSA.TETSA1A.LTBA05",
-            "rate": 1.51523881034,
+            "rate": 1.52,
             "altitude": [23000, 26000],
             "speed": 250,
             "airlines": [
@@ -4278,7 +4279,7 @@
             "category": "arrival",
             "method": "random",
             "route": "AMANI.UN604.BIG.Y146.TURKO.TURKO1A.LTBA05",
-            "rate": 0.43652309259,
+            "rate": 0.44,
             "altitude": [35000, 37000],
             "speed": 290,
             "airlines": [
@@ -4296,7 +4297,7 @@
             "category": "arrival",
             "method": "random",
             "route": "DUGLA.UN618.BIG.Y146.TURKO.TURKO1A.LTBA05",
-            "rate": 2.12385273683,
+            "rate": 2.13,
             "altitude": [32000, 34000],
             "speed": 290,
             "airlines": [
