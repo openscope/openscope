@@ -978,12 +978,12 @@
             "rwy": {
                 "LTBA17L": []
             },
-            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA027", "BA028", "BA029", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1S": {
@@ -992,12 +992,12 @@
             "rwy": {
                 "LTBA17R": []
             },
-            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA027", "BA028", "BA029", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1T": {
@@ -1006,12 +1006,12 @@
             "rwy": {
                 "LTBA17L": []
             },
-            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA027", "BA028", "BA029", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35R", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
+                ["_RWY35R", "BA015", "BA053", "BA026", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1U": {
@@ -1020,12 +1020,12 @@
             "rwy": {
                 "LTBA17R": []
             },
-            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "body": [["BA015", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA027", "BA028", "BA029", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY35L", "BA015", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
+                ["_RWY35L", "BA015", "BA053", "BA026", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1V": {
@@ -1034,12 +1034,12 @@
             "rwy": {
                 "LTBA23": []
             },
-            "body": [["_RWY2304DME", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"],
+            "body": [["_RWY2304DME", "A14+|S220"], ["BA053", "A50-"], "BA026", "BA027", "BA028", "BA029", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA063", "BA027", "BA028", "BA029", "EDASA"]
+                ["_RWY05", "_RWY2304DME", "BA053", "BA026", "BA027", "BA028", "BA029", "EDASA"]
             ]
         },
         "EDASA1X": {
@@ -1162,12 +1162,12 @@
             "rwy": {
                 "LTBA05": []
             },
-            "body": [["BA035", "A16+|S220"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
+            "body": [["BA035", "A16+|S220"], "BKZ", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
             "exitPoints": {
                 "ERSEN": []
             },
             "draw": [
-                ["_RWY23", "BA035", "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"]
+                ["_RWY23", "BA035", "BKZ", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"]
             ]
         },
         "ERSEN1R": {
