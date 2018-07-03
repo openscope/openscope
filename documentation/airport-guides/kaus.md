@@ -11,7 +11,17 @@ Class C airspace extends to 17,000 feet above sea level, encompassing the area a
 
 ### Instrument Procedures
 
-Traffic to/from the West is usually assigned to RWY17R/35L Traffic to/from the East is usually assigned to RWY17L/35R. During the hours of 0600 and 1200, landing on the 35's, and takeoffs on the 17's are preferred. For cargo aircraft, 17R/35L is preferred for both takeoffs and landings.
+#### Operation
+
+##### Preferential RWY
+
+- LDG 0600-1200: RWY35L and 35R
+- T/O 0600-1200: RWY17L and 17R
+- Cargo ACFT use 17R/35L for T/O and LDG
+
+##### Traffic note
+
+Traffic to/from the West is usually assigned to RWY17R/35L Traffic to/from the East is usually assigned to RWY17L/35R
 
 ### Sectors Available in OpenScope
 
