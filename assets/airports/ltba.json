@@ -2994,6 +2994,20 @@
                 ["DEKEK", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
             ]
         },
+        "DEKEK1C": {
+            "icao": "DEKEK1C",
+            "name": "Dekek One Charlie",
+            "entryPoints": {
+                "DEKEK": []
+            },
+            "body": ["DEKEK", ["YAA", "A150+|S250-"], "BA852", ["BA853", "S220"], ["BA854", "A40+|A60-"], "BA855", "BA856", "BA857", "BA860", "BA861", "BA862", "#054"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["DEKEK", "YAA", "BA852", "BA853", "BA854", "BA855", "BA856", "BA857", "BA860", "BA861", "BA862"]
+            ]
+        },
         "DEKEK1D": {
             "icao": "DEKEK1D",
             "name": "Dekek One Delta",
@@ -3102,7 +3116,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627", "#054"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3116,7 +3130,7 @@
             "entryPoints": {
                 "ENESU": []
             },
-            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["ENESU", ["CRL", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3152,6 +3166,20 @@
             },
             "draw": [
                 ["ERKAL", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "ERKAL1C": {
+            "icao": "ERKAL1C",
+            "name": "Erkal One Charlie",
+            "entryPoints": {
+                "ERKAL": []
+            },
+            "body": ["ERKAL", ["GAYEM", "A130+|S250-"], "BA852", ["BA853", "S220"], ["BA854", "A40+|A60-"], "BA855", "BA856", "BA857", "BA860", "BA861", "BA862", "#054"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["ERKAL", "GAYEM", "BA852", "BA853", "BA854", "BA855", "BA856", "BA857", "BA860", "BA861", "BA862"]
             ]
         },
         "ERKAL1D": {
@@ -3276,7 +3304,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627", "#054"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3290,7 +3318,7 @@
             "entryPoints": {
                 "GELBU": []
             },
-            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["GELBU", "EKI", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3326,6 +3354,20 @@
             },
             "draw": [
                 ["PAZAR", "BA046", "GAYEM", "BA858", "BA021", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "PAZAR1C": {
+            "icao": "PAZAR1C",
+            "name": "Pazar One Charlie",
+            "entryPoints": {
+                "PAZAR": []
+            },
+            "body": ["PAZAR", "BA046", ["GAYEM", "A130+|S250-"], "BA852", ["BA853", "S220"], ["BA854", "A40+|A60-"], "BA855", "BA856", "BA857", "BA860", "BA861", "BA862", "#054"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["PAZAR", "BA046", "GAYEM", "BA852", "BA853", "BA854", "BA855", "BA856", "BA857", "BA860", "BA861", "BA862"]
             ]
         },
         "PAZAR1D": {
@@ -3370,6 +3412,20 @@
             },
             "draw": [
                 ["PIMAV", "EKDAM", "YAA", "BA875", "BA020", "BA859", "BA876", "BA877", "BA878", "BA879", "BA880", "BA881"]
+            ]
+        },
+        "PIMAV1C": {
+            "icao": "PIMAV1C",
+            "name": "Pimav One Charlie",
+            "entryPoints": {
+                "PIMAV": []
+            },
+            "body": ["PIMAV", "EKDAM", ["YAA", "A150+|S250-"], "BA852", ["BA853", "S220"], ["BA854", "A40+|A60-"], "BA855", "BA856", "BA857", "BA860", "BA861", "BA862", "#054"],
+            "rwy": {
+                "LTBA23": []
+            },
+            "draw": [
+                ["PIMAV", "EKDAM", "YAA", "BA852", "BA853", "BA854", "BA855", "BA856", "BA857", "BA860", "BA861", "BA862"]
             ]
         },
         "PIMAV1D": {
@@ -3422,7 +3478,7 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": [["TETSA", "A160+|S250-"], "UNTUT", "BA612", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627", "#054"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3436,7 +3492,7 @@
             "entryPoints": {
                 "TETSA": []
             },
-            "body": [["TETSA", "S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": [["TETSA", "S250-"], ["UNTUT", "A200+"], "RIMBO", "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
@@ -3480,7 +3536,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA613", "A170+"], "GEVLA", "CEK", ["BA614", "S220"], ["BA615", "A40+|A60-"], "BA616", "BA617", "BA618", "BA625", "BA626", "BA627", "#054"],
             "rwy": {
                 "LTBA23": []
             },
@@ -3494,7 +3550,7 @@
             "entryPoints": {
                 "TURKO": []
             },
-            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766"],
+            "body": ["TURKO", ["ZEMBA", "S250-"], ["BA611", "A140+"], "BA612", "ERLEB", ["BA760", "S220"], ["BA761", "A50+|A70-"], "BA762", "BA763", "BA764", "BA765", "BA766", "#174"],
             "rwy": {
                 "LTBA35L": [],
                 "LTBA35R": []
