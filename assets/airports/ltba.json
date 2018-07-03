@@ -936,12 +936,12 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA"],
+            "body": [["BA010", "A16+|S240-"], ["BA040", "A40-"], "BA012", "BA047", "ERTAS", ["BA048", "A160+"], "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"],
             "exitPoints": {
                 "EDASA": []
             },
             "draw": [
-                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "EDASA"]
+                ["_RWY17L", "BA010", "BA040", "BA012", "BA047", "ERTAS", "BA048", "BA049", "BA050", "BAVUL", "ULPER", "EKDAM", "BRY", "EDASA"]
             ]
         },
         "EDASA1P": {
@@ -1260,7 +1260,7 @@
             "rwy": {
                 "LTBA35R": []
             },
-            "body": [["BA010", "A22+|S240-"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
+            "body": [["BA010", "A16+|S240-"], "BKZ", "TEMGO", "YASEN", "BA046", "KUBAP", "BEBEG", "ERSEN"],
             "exitPoints": {
                 "ERSEN": []
             },
