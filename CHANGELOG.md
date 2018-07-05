@@ -12,6 +12,7 @@
 
 
 ### Enhancements & Refactors
+- [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
 
 
 
