@@ -1321,7 +1321,6 @@ export default class AircraftModel {
         return score;
     }
 
-    /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv THESE SHOULD STAY vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
     /**
      * Update the aircraft's targeted telemetry (altitude, heading, and speed)
      *
@@ -1736,19 +1735,20 @@ export default class AircraftModel {
         const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
         const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
-        // TODO: this logic is confusing, simplify
-        if (!(shouldAttemptIntercept || inTheWindow)) {
+        if (!shouldAttemptIntercept && !inTheWindow) {
             return this.mcp.heading;
         }
         // continue if shouldAttemptIntercept OR inTheWindow
 
-        const severity_of_correction = 1;  // controls steepness of heading adjustments during localizer tracking
+        const severity_of_correction = 20;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
         const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
-        if (isAlignedWithCourse) {
+        if (inTheWindow || isAlignedWithCourse) {
+            this.target.turn = null;
+
             return course + interceptAngle;
         }
 
@@ -1767,9 +1767,6 @@ export default class AircraftModel {
         }
     }
 
-    /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
-
-    /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
     /**
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
@@ -1867,9 +1864,6 @@ export default class AircraftModel {
 
         // TODO: add distance based hold
     }
-    /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
-
-    /* vvvvvvv THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS vvvvvvv */
 
     /**
      * Calculates the altitude for a landing aircraft
@@ -2073,7 +2067,6 @@ export default class AircraftModel {
 
         return Math.min(waypointMaximumSpeed, this.mcp.speed);
     }
-    /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
