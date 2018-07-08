@@ -22,6 +22,7 @@
 - [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
 - [#1023](https://github.com/openscope/openscope/issues/1023) - Standardize `openScope` capitalization
 - [#949](https://github.com/openscope/openscope/issues/949) - Keep video map clearly visible at all zoom levels
+- [#1000](https://github.com/openscope/openscope/issues/1000) - Increase max width of airport selection dialog to permit longer airport names
 
 
 
