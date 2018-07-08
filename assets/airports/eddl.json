@@ -1411,12 +1411,12 @@
             "rwy": {
                 "EDDL23R": []
             },
-            "body": ["^DL231", "DL234", ["DL236", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
+            "body": ["^DL231", "DL234", ["DL246", "S190-"], "DL248", "ERKUM", ["DL245", "A140+"]],
             "exitPoints": {
                 "SONEB": ["SONEB"]
             },
             "draw": [
-                ["DL231", "DL234", "DL236"],
+                ["DL231", "DL234"],
                 ["ERKUM", "DL245", "SONEB"]
             ]
         },
