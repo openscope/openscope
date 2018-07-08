@@ -1121,6 +1121,63 @@
                 ["DL050", "DL051", "DL052", "LMA"]
             ]
         },
+        "MEVEL3H": {
+            "icao": "MEVEL3H",
+            "name": "Mevel Three Hotel",
+            "rwy": {
+                "EDDL23R": []
+            },
+            "body": ["^DL231", "DL234", ["DL246", "S190-"], "DL248", "ERKUM", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["DL234", "DL246"],
+                ["MEVEL"]
+            ]
+        },
+        "MEVEL3T": {
+            "icao": "MEVEL3T",
+            "name": "Mevel Three Tango",
+            "rwy": {
+                "EDDL23L": []
+            },
+            "body": ["^DL230", ["DL235", "S190-"], "DL248", "ERKUM", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["DL230", "DL235", "DL248", "ERKUM", "LUSIX", "MEVEL"]
+            ]
+        },
+        "MEVEL8J": {
+            "icao": "MEVEL8J",
+            "name": "Mevel Eight Juliett",
+            "rwy": {
+                "EDDL05L": []
+            },
+            "body": ["DL050", "DL053", "NIKOG", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["MEVEL"]
+            ]
+        },
+        "MEVEL9Z": {
+            "icao": "MEVEL9Z",
+            "name": "Mevel Nine Zulu",
+            "rwy": {
+                "EDDL05R": []
+            },
+            "body": ["DL050", "DL053", "NIKOG", "LUSIX"],
+            "exitPoints": {
+                "MEVEL": ["MEVEL"]
+            },
+            "draw": [
+                ["MEVEL"]
+            ]
+        },
         "MODRU1H": {
             "icao": "MODRU1H",
             "name": "Modru One Hotel",
@@ -1177,63 +1234,6 @@
             },
             "draw": [
                 ["MODRU"]
-            ]
-        },
-        "MEVEL3H": {
-            "icao": "MEVEL3H",
-            "name": "Mevel Three Hotel",
-            "rwy": {
-                "EDDL23R": []
-            },
-            "body": ["^DL231", "DL234", ["DL246", "S190-"], "DL248", "ERKUM", "LUSIX"],
-            "exitPoints": {
-                "MEVEL": ["MEVEL"]
-            },
-            "draw": [
-                ["DL234", "DL246"],
-                ["MEVEL"]
-            ]
-        },
-        "MEVEL3T": {
-            "icao": "MEVEL3T",
-            "name": "Mevel Three Tango",
-            "rwy": {
-                "EDDL23L": []
-            },
-            "body": ["^DL230", ["DL235", "S190-"], "DL248", "ERKUM", "LUSIX"],
-            "exitPoints": {
-                "MEVEL": ["MEVEL"]
-            },
-            "draw": [
-                ["DL230", "DL235", "DL248", "ERKUM", "LUSIX", "MEVEL"]
-            ]
-        },
-        "MEVEL8J": {
-            "icao": "MEVEL8J",
-            "name": "Mevel Eight Juliett",
-            "rwy": {
-                "EDDL05L": []
-            },
-            "body": ["DL050", "DL053", "NIKOG", "LUSIX"],
-            "exitPoints": {
-                "MEVEL": ["MEVEL"]
-            },
-            "draw": [
-                ["MEVEL"]
-            ]
-        },
-        "MEVEL9Z": {
-            "icao": "MEVEL9Z",
-            "name": "Mevel Nine Zulu",
-            "rwy": {
-                "EDDL05R": []
-            },
-            "body": ["DL050", "DL053", "NIKOG", "LUSIX"],
-            "exitPoints": {
-                "MEVEL": ["MEVEL"]
-            },
-            "draw": [
-                ["MEVEL"]
             ]
         },
         "NETEX2H": {
