@@ -97,9 +97,14 @@
         "BAYYY": ["N29d22.65", "W94d22.27"],
         "BELLR": ["N29d19.49", "W96d5.32"],
         "BIGTX": ["N28d49.29", "W96d36.94"],
+        "BLUBL": ["N30d18.28", "W96d18.18"],
+        "CHEWI": ["N29d39.33", "W96d3.09"],
+        "CLL"  : ["N30d36.30", "W96d25.24"],
         "COLLT": ["N27d25.79", "W97d11.87"],
+        "COWZZ": ["N30d4.37", "W96d12.77"],
         "CRP"  : ["N27d54.23", "W97d26.69"],
         "CRSTY": ["N29d38.32", "W95d36.02"],
+        "ELLVR": ["N31d42.48", "W96d50.27"],
         "EMARR": ["N29d32.41", "W95d16.13"],
         "FIGGG": ["N29d34.91", "W95d8.44"],
         "FRDDY": ["N29d29.21", "W94d52.66"],
@@ -108,13 +113,16 @@
         "GLOCK": ["N29d22.81", "W96d38.88"],
         "HACKT": ["N29d36.34", "W95d39.28"],
         "HUB"  : ["N29d39.34", "W95d16.60"],
+        "ILEXY": ["N30d21.16", "W97d4.76"],
         "IVEEE": ["N29d36.62", "W95d18.10"],
         "JEPEG": ["N29d27.40", "W92d27.47"],
         "KCEEE": ["N29d14.57", "W92d28.02"],
         "KELPP": ["N27d10.53", "W91d56.95"],
         "KMMBR": ["N29d21.97", "W96d30.37"],
         "LEV"  : ["N29d10.51", "W90d6.24"],
+        "LLO"  : ["N30d47.78", "W98d47.24"],
         "LMEDA": ["N28d27.95", "W96d56.37"],
+        "LOA"  : ["N31d7.44", "W95d58.07"],
         "MAAHH": ["N29d36.29", "W95d8.93"],
         "PARAA": ["N29d24.64", "W96d58.24"],
         "PEGLG": ["N26d48.27", "W92d50.67"],
@@ -131,6 +139,7 @@
         "SJI"  : ["N30d43.56", "W88d21.56"],
         "SLYCE": ["N29d17.07", "W93d0.91"],
         "SMAKR": ["N29d41.62", "W97d23.86"],
+        "SNDAY": ["N29d56.42", "W96d9.68"],
         "VILLI": ["N29d37.67", "W95d23.21"]
     },
     "runways": [
@@ -314,6 +323,34 @@
                 [ "BELLR*", "HNTRR", "AWSTN", "VILLI", "MAAHH" ],
                 [ "VILLI", "RJAAY" ],
                 [ "HNTRR", "HACKT", "CRSTY", "SEUSS" ]
+            ]
+        },
+        "BLUBL3": {
+            "icao": "BLUBL3",
+            "name": "Bluebell Three",
+            "entryPoints": {
+                "ELLVR": [ "ELLVR" ],
+                "CLL": [ ],
+                "LOA": [ "LOA" ],
+                "ILEXY": [ "ILEXY" ],
+                "LLO": [ "LLO" ]
+            },
+            "body": [ "CLL", "BLUBL", "COWZZ", "SNDAY", "CHEWI" ],
+            "rwy": {
+                "KHOU13L": [ ],
+                "KHOU13R": [ ],
+                "KHOU17": [ ],
+                "KHOU4": [ ],
+                "KHOU22": [ ],
+                "KHOU31L": [ ],
+                "KHOU31R": [ ],
+                "KHOU35": [ ]
+            },
+            "draw": [
+                [ "ELLVR*", "CLL", "BLUBL", "COWZZ", "SNDAY", "CHEWI" ],
+                [ "LOA*", "CLL" ],
+                [ "ILEXY*", "CLL" ],
+                [ "LLO*", "CLL" ]
             ]
         }
     },
