@@ -49,7 +49,7 @@ When winds favour the operation of runways 30L/R:
 - 30L for landing
 - 30R for takeoff
 
-In OpenScope, a 30 configuration is simulated, with aircraft automatically being assigned runways according to their flight type (departure/arrival). A few arriving aircraft will be automatically assigned 30R.
+In openScope, a 30 configuration is simulated, with aircraft automatically being assigned runways according to their flight type (departure/arrival). A few arriving aircraft will be automatically assigned 30R.
 
 ###### Low Visibility Operations
 Low Visibility Operations are enforced when any of the following criteria is met:
@@ -83,7 +83,7 @@ For departures, the restriction is 250KT below 10,000ft.
 ### Instrument Procedures
 Dubai's instrument procedures all require aircraft to have RNAV capabilities. Furthermore, Dubai's procedures require almost little input from the controller; climb and descent instructions must be issued by the controller. Vectors are rarely used, as all STARs end on the extended centrelines, where an approach clearance (ie. ILS approach) can be issued. Shortcuts on downwind may be given, if possible.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Dubai Departures North
 Dubai Departures South
@@ -115,7 +115,7 @@ As of current, the airport mainly serves cargo flights, hence the area's special
 Runway 12/30 - 4,500m, Asphalt
 
 ### Videomap
-In the videomap, there is a top down view of the airport's runways. Each dashed line on the extended centrelines represents one (1) nautical mile, with each small "T" representing four (4) nautical miles. 
+In the videomap, there is a top down view of the airport's runways. Each dashed line on the extended centrelines represents one (1) nautical mile, with each small "T" representing four (4) nautical miles.
 
 The videomap also contains:
 * All restricted airspaces

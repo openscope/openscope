@@ -30,7 +30,7 @@ NAVCanada outlines the airspace boundary around Halifax in their Designated Airs
 Halifax has one Standard Instrument Departure and four Standard Terminal Arrival Routes.
 
 ##### Departures
-All departing aircraft will be assigned the Halifax Four departure. The Halifax Four advises pilots to climb to 5000ft on runway heading. Upon receipt of an aircraft on departure, Halifax Terminal should: 
+All departing aircraft will be assigned the Halifax Four departure. The Halifax Four advises pilots to climb to 5000ft on runway heading. Upon receipt of an aircraft on departure, Halifax Terminal should:
 * give a direct to a point along the filed route;
 * give vectors to a point along the filed route;
 * issue climb instructions.
@@ -78,7 +78,7 @@ There are various transitions which can bring aircraft from an Initial Approach 
 |        |     RNAV (Y)     | NOTUB, EBLUV, MENVO, AVRIX |
 
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Halifax Terminal
 ```
@@ -122,7 +122,7 @@ CFB Shearwater is a Canadian Forces Base. It was previously known as Shearwater 
 
 
 ### Videomap
-Provided with the videomap is a top down view of the airport's taxiways and runway. Each dashed line on the extended centrelines represents one (1) nautical mile, with each "T" representing four (4) nautical miles. 
+Provided with the videomap is a top down view of the airport's taxiways and runway. Each dashed line on the extended centrelines represents one (1) nautical mile, with each "T" representing four (4) nautical miles.
 
 The videomap also contains:
 * Top down view of Debert Airport (CCQ3);

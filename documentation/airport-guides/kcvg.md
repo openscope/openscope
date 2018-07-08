@@ -7,7 +7,7 @@ Located just 10 minutes away from Downtown Cincinnati, Covington and Newport, an
 ### Airspace
 The CVG airspace is made up of a rough square with sides approximately 60nm long, centered on the Cincinnati Int'l Airport (KCVG), which covers all of Cincinnati and its surrounding areas. There is also Class B airspace around the CVG airport to prevent conflicts with VFR traffic.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 It is very difficult to find accurate and up-to-date information on the sectorization of the airspace, so the information below may not be perfectly accurate.
 ```
 F  - Final
@@ -16,7 +16,7 @@ AS - Arrival South
 DE - Departure East
 DW - Departure West
 ```
-The airspace available in Openscope is a combination of all the above sectors.
+The airspace available in openscope is a combination of all the above sectors.
 
 ### Airports of Interest
 
@@ -24,10 +24,10 @@ The airspace available in Openscope is a combination of all the above sectors.
 Cincinnati/Northern Kentucky International Airport    
 419,508 annual operations
 
-Serving the Greater Cincinnati metropolitan area, CVG is the fastest-growing cargo airport in North America. Although commercial operations at the airport decreased drastically between 2006 and 2013, the airport has been growing back slowly, having moved almost 8 million passengers in 2017. Although this is still far from the 22 million yearly passengers that CVG moved in the early 2000s, the airport hopes to increase cargo activity and grow traffic to 9 million annual passengers by 2021. Amazon Air is also planning on developing 920 acres of land at CVG in order to construct a 3 million sq. ft. sorting facility and ramp space for 100 cargo aircraft by 2050. 
+Serving the Greater Cincinnati metropolitan area, CVG is the fastest-growing cargo airport in North America. Although commercial operations at the airport decreased drastically between 2006 and 2013, the airport has been growing back slowly, having moved almost 8 million passengers in 2017. Although this is still far from the 22 million yearly passengers that CVG moved in the early 2000s, the airport hopes to increase cargo activity and grow traffic to 9 million annual passengers by 2021. Amazon Air is also planning on developing 920 acres of land at CVG in order to construct a 3 million sq. ft. sorting facility and ramp space for 100 cargo aircraft by 2050.
 
 ##### Instrument Procedures
-Most procedures at CVG are heavily automated, so controllers should focus mainly on the separation between departing and arriving aircraft, as well as providing vectors and descent clearances for aircraft on approach. 
+Most procedures at CVG are heavily automated, so controllers should focus mainly on the separation between departing and arriving aircraft, as well as providing vectors and descent clearances for aircraft on approach.
 
 ##### Runway Configuration
 KCVG has 4 lengthy runways; 3 parallel North-South runways (18L/C/R - 36/L/C/R), and 1 crosswind East-West runway (9-27). Despite its four long runways, Cincinnati often uses just one or two for both arrivals and departures, due its low traffic numbers. If necessary however, Cincinnati is able to support triple simultaneous approaches on its parallel runways. In openScope, KCVG is running a south configuration, meaning that runway 18L is the primary runway for arrivals and departures, with the occasional use of runway 18C mainly for arrivals from the West.
