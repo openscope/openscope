@@ -656,12 +656,12 @@
             "rwy": {
                 "EDDM26L": []
             },
-            "body": ["^_DMS2633.1DME", ["_DMN263MIQ348", "S220-"], ["MIQ", "S250-"]],
+            "body": ["^_DMS2633.1DME", ["_DMS263MIQ348", "S220-"], ["MIQ", "S250-"]],
             "exitPoints": {
                 "MIQ": []
             },
             "draw": [
-                ["_DMS2633.1DME", "_DMN263MIQ348", "MIQ"]
+                ["_DMS2633.1DME", "_DMS263MIQ348", "MIQ"]
             ]
         },
         "MIQ9N": {
@@ -727,7 +727,7 @@
             "rwy": {
                 "EDDM26L": []
             },
-            "body": [["DM049", "S210-"], "DM068", "DM069", "OBAXA"],
+            "body": [["DM049", "S210-"], "DM068", "DM069", ["OBAXA", "S250-"]],
             "exitPoints": {
                 "OBAXA": []
             },
