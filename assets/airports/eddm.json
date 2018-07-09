@@ -105,6 +105,21 @@
         }
     ],
     "sids": {
+        "ALG2E": {
+            "icao": "ALG2E",
+            "name": "Allgäu Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "ALG"],
+            "exitPoints": {
+                "ALG": []
+            },
+            "draw": [
+                ["DM081", "ALONU", "LAKOL"],
+                ["ALG"]
+            ]
+        },
         "ALG2Q": {
             "icao": "ALG2Q",
             "name": "Allgäu Two Quebec",
@@ -153,7 +168,7 @@
             "rwy": {
                 "EDDM08R": []
             },
-            "body": [["DM083", "S230"], ["ANKER", "S250"]],
+            "body": [["DM083", "S230-"], ["ANKER", "S250-"]],
             "exitPoints": {
                 "ANKER": []
             },
@@ -165,7 +180,7 @@
             "icao": "ANKER9N",
             "name": "Anker Niner November",
             "rwy": {
-                "EDDM08R": []
+                "EDDM26R": []
             },
             "body": [["DM066", "S220"], ["DM064", "S250"], "DM057", ["ANKER", "S250"]],
             "exitPoints": {
@@ -174,6 +189,21 @@
             "draw": [
                 ["DM066", "DM064", "DM057"],
                 ["ANKER"]
+            ]
+        },
+        "BIBAG2E": {
+            "icao": "BIBAG2E",
+            "name": "Bibag Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": [["DM080", "S230-"], ["RATGI", "S250-"], "BIBAG"],
+            "exitPoints": {
+                "BIBAG": []
+            },
+            "draw": [
+                ["DM080", "RATGI"],
+                ["BIBAG"]
             ]
         },
         "BIBAG2Q": {
@@ -190,6 +220,21 @@
                 ["DM071", "RATGI", "BIBAG"]
             ]
         },
+        "EVIVA3E": {
+            "icao": "EVIVA3E",
+            "name": "Eviva Three Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["^DM084", "DM088", ["DM089", "S250-"], "EVIVA"],
+            "exitPoints": {
+                "EVIVA": []
+            },
+            "draw": [
+                ["DM084", "DM088", "DM089"],
+                ["EVIVA"]
+            ]
+        },
         "EVIVA3Q": {
             "icao": "EVIVA3Q",
             "name": "Eviva Three Quebec",
@@ -202,6 +247,20 @@
             },
             "draw": [
                 ["DM070", "DM091", "DM089", "EVIVA"]
+            ]
+        },
+        "GIVMI5E": {
+            "icao": "GIVMI5E",
+            "name": "Givmi Five Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["^DM084", "DM085", ["MIQ", "S250-"], "GIVMI"],
+            "exitPoints": {
+                "GIVMI": []
+            },
+            "draw": [
+                ["DM084", "DM085", "MIQ"]
             ]
         },
         "GIVMI5Q": {
@@ -218,6 +277,21 @@
                 ["DM070", "DM073", "MIQ", "GIVMI"]
             ]
         },
+        "INPUD2E": {
+            "icao": "INPUD2E",
+            "name": "Inpud Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["^DM084", "DM076", ["DM065", "S250-"], "INPUD"],
+            "exitPoints": {
+                "INPUD": []
+            },
+            "draw": [
+                ["DM084", "DM076", "DM065"],
+                ["INPUD"]
+            ]
+        },
         "INPUD2Q": {
             "icao": "INPUD2Q",
             "name": "Inpud Two Quebec",
@@ -232,6 +306,20 @@
                 ["DM070", "DM073", "DM065", "INPUD"]
             ]
         },
+        "KIRDI2E": {
+            "icao": "KIRDI2E",
+            "name": "Kirdi Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": [["DM080", "S230-"], ["RATGI", "S250-"], "MEBEK", "KIRDI"],
+            "exitPoints": {
+                "KIRDI": []
+            },
+            "draw": [
+                ["KIRDI"]
+            ]
+        },
         "KIRDI2Q": {
             "icao": "KIRDI2Q",
             "name": "Kirdi Two Quebec",
@@ -244,6 +332,21 @@
             },
             "draw": [
                 ["RATGI", "MEBEK", "KIRDI"]
+            ]
+        },
+        "MERSI1P": {
+            "icao": "MERSI1P",
+            "name": "Mersi One Papa",
+            "rwy": {
+                "EDDM08R": []
+            },
+                "body": ["DM081", ["DM082", "S230-"], ["DM086", "A70+"], "MUN", "OBAXA", ["MERSI", "S250-"]],
+            "exitPoints": {
+                "MERSI": []
+            },
+            "draw": [
+                ["DM081", "DM082", "DM086", "MUN"],
+                ["MERSI"]
             ]
         },
         "MERSI1T": {
@@ -261,6 +364,20 @@
                 ["MERSI"]
             ]
         },
+        "MERSI4E": {
+            "icao": "MERSI4E",
+            "name": "Mersi Four Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"]],
+            "exitPoints": {
+                "MERSI": []
+            },
+            "draw": [
+                ["MERSI"]
+            ]
+        },
         "MERSI4Q": {
             "icao": "MERSI4Q",
             "name": "Mersi Four Quebec",
@@ -273,6 +390,20 @@
             },
             "draw": [
                 ["MERSI"]
+            ]
+        },
+        "MIQ8E": {
+            "icao": "MIQ8E",
+            "name": "Mike Eight Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["^_DMS0832.6DME", "_DMS083MIQ312", ["MIQ", "S250-"]],
+            "exitPoints": {
+                "MIQ": []
+            },
+            "draw": [
+                ["_DMS0832.6DME", "_DMS083MIQ312", "MIQ"]
             ]
         },
         "MIQ8Q": {
@@ -289,6 +420,20 @@
                 ["_DMN08302DME", "_DMN083MIQ308", "MIQ"]
             ]
         },
+        "OBAXA1P": {
+            "icao": "OBAXA1P",
+            "name": "Obaxa One Papa",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["DM082", "S230-"], ["DM086", "A70+"], "MUN", ["OBAXA", "S250-"]],
+            "exitPoints": {
+                "OBAXA": []
+            },
+            "draw": [
+                ["OBAXA"]
+            ]
+        },
         "OBAXA1T": {
             "icao": "OBAXA1T",
             "name": "Obaxa One Tango",
@@ -301,6 +446,20 @@
             },
             "draw": [
                 ["OBAXA"]
+            ]
+        },
+        "OLASO2E": {
+            "icao": "OLASO2E",
+            "name": "Olaso Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], "LAKOL", "OBAXA", ["MERSI", "S250-"], "OLASO"],
+            "exitPoints": {
+                "OLASO": []
+            },
+            "draw": [
+                ["OLASO"]
             ]
         },
         "OLASO2Q": {
@@ -317,6 +476,20 @@
                 ["MERSI", "OLASO"]
             ]
         },
+        "RIDAR6E": {
+            "icao": "RIDAR6E",
+            "name": "Ridar Six Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["^DM084", "DM085", ["MIQ", "S250-"], "WLD", "RIDAR"],
+            "exitPoints": {
+                "RIDAR": []
+            },
+            "draw": [
+                ["RIDAR"]
+            ]
+        },
         "RIDAR6Q": {
             "icao": "RIDAR6Q",
             "name": "Ridar Six Quebec",
@@ -329,6 +502,21 @@
             },
             "draw": [
                 ["MIQ", "WLD", "RIDAR"]
+            ]
+        },
+        "ROTAX3E": {
+            "icao": "ROTAX3E",
+            "name": "Rotax Three Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": [["DM080", "S230-"], ["DM092", "S250-"], "DM467", "ROTAX"],
+            "exitPoints": {
+                "ROTAX": []
+            },
+            "draw": [
+                ["DM080", "DM092", "DM467"],
+                ["ROTAX"]
             ]
         },
         "ROTAX3Q": {
@@ -359,6 +547,34 @@
                 ["LAKOL", "MANAL", "TULSI"]
             ]
         },
+        "TULSI2E": {
+            "icao": "TULSI2E",
+            "name": "Tulsi Two Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], ["LAKOL", "S250-"], "MANAL", "TULSI"],
+            "exitPoints": {
+                "TULSI": []
+            },
+            "draw": [
+                ["TULSI"]
+            ]
+        },
+        "TURBU6E": {
+            "icao": "TURBU6E",
+            "name": "Turbu Six Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], ["LAKOL", "S250-"], "TURBU"],
+            "exitPoints": {
+                "TURBU": []
+            },
+            "draw": [
+                ["TURBU"]
+            ]
+        },
         "TURBU7Q": {
             "icao": "TURBU7Q",
             "name": "Turbu Seven Quebec",
@@ -371,6 +587,21 @@
             },
             "draw": [
                 ["LAKOL", "TURBU"]
+            ]
+        },
+        "VAVOR3E": {
+            "icao": "VAVOR3E",
+            "name": "Vavor Three Echo",
+            "rwy": {
+                "EDDM08R": []
+            },
+            "body": ["DM081", ["ALONU", "S230-"], "EBEVO", ["VAVOR", "S250-"]],
+            "exitPoints": {
+                "VAVOR": []
+            },
+            "draw": [
+                ["ALONU", "EBEVO"],
+                ["VAVOR"]
             ]
         },
         "VAVOR3Q": {
