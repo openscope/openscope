@@ -937,7 +937,7 @@
         },
         "DODEN9T": {
             "icao": "DODEN9T",
-            "name": "Doden Nine Tango",
+            "name": "Doden Niner Tango",
             "rwy": {
                 "EDDL23L": []
             },
@@ -981,7 +981,7 @@
         },
         "GMH9T": {
             "icao": "GMH9T",
-            "name": "Germinghausen Nine Tango",
+            "name": "Germinghausen Niner Tango",
             "rwy": {
                 "EDDL23L": []
             },
@@ -996,7 +996,7 @@
         },
         "GMH9Z": {
             "icao": "GMH9Z",
-            "name": "Germinghausen Nine Zulu",
+            "name": "Germinghausen Niner Zulu",
             "rwy": {
                 "EDDL05R": []
             },
@@ -1166,7 +1166,7 @@
         },
         "MEVEL9Z": {
             "icao": "MEVEL9Z",
-            "name": "Mevel Nine Zulu",
+            "name": "Mevel Niner Zulu",
             "rwy": {
                 "EDDL05R": []
             },
@@ -1464,6 +1464,156 @@
         }
     },
     "stars": {
+        "BIKMU1G": {
+            "icao": "BIKMU1G",
+            "name": "Bikmu One Golf",
+            "entryPoints": {
+                "BIKMU": ["BIKMU"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["BIKMU", "BOT"]
+            ]
+        },
+        "BIKMU1X": {
+            "icao": "BIKMU1X",
+            "name": "Bikmu One X-ray",
+            "entryPoints": {
+                "BIKMU": ["BIKMU"]
+            },
+            "body": ["RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["BIKMU", "RONAD"]
+            ]
+        },
+        "DOMUX2G": {
+            "icao": "DOMUX2G",
+            "name": "Domux Two Golf",
+            "entryPoints": {
+                "DOMUX": ["DOMUX"]
+            },
+            "body": ["BAM"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["DOMUX", "BAM"]
+            ]
+        },
+        "DOMUX2X": {
+            "icao": "DOMUX2X",
+            "name": "Domux Two X-ray",
+            "entryPoints": {
+                "DOMUX": ["DOMUX"]
+            },
+            "body": ["DOLAV", "LEBTI"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["DOMUX", "DOLAV", "LEBTI"]
+            ]
+        },
+        "LMA8G": {
+            "icao": "LMA8G",
+            "name": "Lima Eight Golf",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["LMA", "BOT"]
+            ]
+        },
+        "LMA9X": {
+            "icao": "LMA9X",
+            "name": "Lima Niner X-ray",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": ["IBIKO", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["LMA", "IBIKO", "GAPNU", "RONAD"]
+            ]
+        },
+        "TEBRO1X": {
+            "icao": "TEBRO1X",
+            "name": "Tebro One X-ray",
+            "entryPoints": {
+                "TEBRO": ["TEBRO"]
+            },
+            "body": ["VALSU", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["TEBRO", "VALSU", "GAPNU", "RONAD"]
+            ]
+        },
+        "TEBRO3G": {
+            "icao": "TEBRO3G",
+            "name": "Tebro Three Golf",
+            "entryPoints": {
+                "TEBRO": ["TEBRO"]
+            },
+            "body": ["AGEDA", "XAMOD", "BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["TEBRO", "AGEDA", "XAMOD", "BOT"]
+            ]
+        },
+        "XAMOD3G": {
+            "icao": "XAMOD3G",
+            "name": "Xamod Three Golf",
+            "entryPoints": {
+                "XAMOD": ["XAMOD"]
+            },
+            "body": ["BOT"],
+            "rwy": {
+                "EDDL23L": [],
+                "EDDL23R": []
+            },
+            "draw": [
+                ["XAMOD", "BOT"]
+            ]
+        },
+        "XAMOD2X": {
+            "icao": "XAMOD2X",
+            "name": "Xamod Two X-ray",
+            "entryPoints": {
+                "XAMOD": ["XAMOD"]
+            },
+            "body": ["BOMBA", "GAPNU", "RONAD"],
+            "rwy": {
+                "EDDL05L": [],
+                "EDDL05R": []
+            },
+            "draw": [
+                ["XAMOD", "BOMBA", "GAPNU", "RONAD"]
+            ]
+        },
         "ABIGI1A": {
             "icao": "ABIGI1A",
             "name": "Abigi One Alpha",
@@ -1520,67 +1670,6 @@
                 ["BABUV"]
             ]
         },
-        "BIKMU05": {
-            "icao": "BIKMU05",
-            "name": "Bikmu Zero Five",
-            "entryPoints": {
-                "BIKMU": [["BIKMU", "A150-"]]
-            },
-            "body": ["RONAD", ["DL513", "S220"], "DL514", ["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
-            "rwy": {
-                "EDDL05L": [["DIKMI", "A30+"]],
-                "EDDL05R": [["NATOS", "A30+"]]
-            },
-            "draw": [
-                ["BIKMU", "RONAD", "DL513", "DL514", "IBIKO", "GAPNU", "DL522", "RONAD", "DL524", "DL525", "DL530", "DL550"]
-            ]
-        },
-        "BIKMU23": {
-            "icao": "BIKMU23",
-            "name": "Bikmu Two Three",
-            "entryPoints": {
-                "BIKMU": [["BIKMU", "A150-"]]
-            },
-            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
-            "rwy": {
-                "EDDL23L": [["METMA", "A30+"]],
-                "EDDL23R": [["REGNO", "A30+"]]
-            },
-            "draw": [
-                ["BIKMU", "DL426", "DL428", "DL429", "DL430", "DL450", "DL452", "DL454", "DL455", "METMA"],
-                ["DL455", "REGNO"]
-            ]
-        },
-        "BIKMU1G": {
-            "icao": "BIKMU1G",
-            "name": "Bikmu One Golf",
-            "entryPoints": {
-                "BIKMU": ["BIKMU"]
-            },
-            "body": ["BOT"],
-            "rwy": {
-                "EDDL23L": [],
-                "EDDL23R": []
-            },
-            "draw": [
-                ["BIKMU", "BOT"]
-            ]
-        },
-        "BIKMU1X": {
-            "icao": "BIKMU1X",
-            "name": "Bikmu One X-ray",
-            "entryPoints": {
-                "BIKMU": ["BIKMU"]
-            },
-            "body": ["RONAD"],
-            "rwy": {
-                "EDDL05L": [],
-                "EDDL05R": []
-            },
-            "draw": [
-                ["BIKMU", "RONAD"]
-            ]
-        },
         "DISIP1A": {
             "icao": "DISIP1A",
             "name": "Disip One Alpha",
@@ -1609,67 +1698,6 @@
                 ["DISIP"]
             ]
         },
-        "DOMUX2G": {
-            "icao": "DOMUX2G",
-            "name": "Domux Two Golf",
-            "entryPoints": {
-                "DOMUX": ["DOMUX"]
-            },
-            "body": ["BAM"],
-            "rwy": {
-                "EDDL23L": [],
-                "EDDL23R": []
-            },
-            "draw": [
-                ["DOMUX", "BAM"]
-            ]
-        },
-        "DOMUX05": {
-            "icao": "DOMUX05",
-            "name": "Domux Zero Five",
-            "entryPoints": {
-                "DOMUX": [["DOMUX", "A140-"]]
-            },
-            "body": ["DOLAV", ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
-            "rwy": {
-                "EDDL05L": [["DIKMI", "A30+"]],
-                "EDDL05R": [["NATOS", "A30+"]]
-            },
-            "draw": [
-                ["DOMUX", "DOLAV", "DL502", "DL503", "DL504", "DL505", "DL510", "DL550", "DL555", "NATOS"],
-                ["DL555", "DIKMI"]
-            ]
-        },
-        "DOMUX23": {
-            "icao": "DOMUX23",
-            "name": "Domux Two Three",
-            "entryPoints": {
-                "DOMUX": [["DOMUX", "A140-"]]
-            },
-            "body": ["DL402", "DL403", "DL404", ["DL405", "S220"], ["DL406", "S220"], "DL407", "DL408", "DL409", ["DL410", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
-            "rwy": {
-                "EDDL23L": [["METMA", "A30+"]],
-                "EDDL23R": [["REGNO", "A30+"]]
-            },
-            "draw": [
-                ["DOMUX", "DL402", "DL403", "DL404", "DL405", "DL406", "DL407", "DL408", "DL409", "DL410", "DL450"]
-            ]
-        },
-        "DOMUX2X": {
-            "icao": "DOMUX2X",
-            "name": "Domux Two X-ray",
-            "entryPoints": {
-                "DOMUX": ["DOMUX"]
-            },
-            "body": ["DOLAV", "LEBTI"],
-            "rwy": {
-                "EDDL05L": [],
-                "EDDL05R": []
-            },
-            "draw": [
-                ["DOMUX", "DOLAV", "LEBTI"]
-            ]
-        },
         "EKDUS1A": {
             "icao": "EKDUS1A",
             "name": "Ekdus One Alpha",
@@ -1696,21 +1724,6 @@
             },
             "draw": [
                 ["DL525", "DL555", "NATOS"]
-            ]
-        },
-        "ELDAR05": {
-            "icao": "ELDAR05",
-            "name": "Eldar Zero Five",
-            "entryPoints": {
-                "DOMUX": [["ELDAR", "A170-"]]
-            },
-            "body": [["DL501", "S220"], ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
-            "rwy": {
-                "EDDL05L": [["DIKMI", "A30+"]],
-                "EDDL05R": [["NATOS", "A30+"]]
-            },
-            "draw": [
-                ["ELDAR", "DL501", "DL502"]
             ]
         },
         "GOGOG1A": {
@@ -1767,66 +1780,6 @@
             },
             "draw": [
                 ["IBIXI", "DL455"]
-            ]
-        },
-        "LMA05": {
-            "icao": "LMA05",
-            "name": "Lima Zero Five",
-            "entryPoints": {
-                "LMA": ["LMA"]
-            },
-            "body": [["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
-            "rwy": {
-                "EDDL05L": [["DIKMI", "A30+"]],
-                "EDDL05R": [["NATOS", "A30+"]]
-            },
-            "draw": [
-                ["LMA", "IBIKO"]
-            ]
-        },
-        "LMA23": {
-            "icao": "LMA23",
-            "name": "Lima Two Three",
-            "entryPoints": {
-                "LMA": ["LMA"]
-            },
-            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
-            "rwy": {
-                "EDDL23L": [["METMA", "A30+"]],
-                "EDDL23R": [["REGNO", "A30+"]]
-            },
-            "draw": [
-                ["LMA", "DL426"]
-            ]
-        },
-        "LMA8G": {
-            "icao": "LMA8G",
-            "name": "Lima Eight Golf",
-            "entryPoints": {
-                "LMA": ["LMA"]
-            },
-            "body": ["BOT"],
-            "rwy": {
-                "EDDL23L": [],
-                "EDDL23R": []
-            },
-            "draw": [
-                ["LMA", "BOT"]
-            ]
-        },
-        "LMA9X": {
-            "icao": "LMA9X",
-            "name": "Lima Nine X-ray",
-            "entryPoints": {
-                "LMA": ["LMA"]
-            },
-            "body": ["IBIKO", "GAPNU", "RONAD"],
-            "rwy": {
-                "EDDL05L": [],
-                "EDDL05R": []
-            },
-            "draw": [
-                ["LMA", "IBIKO", "GAPNU", "RONAD"]
             ]
         },
         "LONSO1A": {
@@ -1941,6 +1894,169 @@
                 ["RUGAP", "DL455"]
             ]
         },
+        "TIVIM1A": {
+            "icao": "TIVIM1A",
+            "name": "Tivim One Alpha",
+            "entryPoints": {
+                "TIVIM": [["TIVIM", "A70+"]]
+            },
+            "body": ["DL426", "DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["TIVIM", "DL426"]
+            ]
+        },
+        "TIVIM1B": {
+            "icao": "TIVIM1B",
+            "name": "Tivim One Bravo",
+            "entryPoints": {
+                "TIVIM": [["TIVIM", "A70+"]]
+            },
+            "body": ["DL426", "DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["TIVIM"]
+            ]
+        },
+        "UNDOG1A": {
+            "icao": "UNDOG1A",
+            "name": "Undog One Alpha",
+            "entryPoints": {
+                "UNDOG": [["UNDOG", "A70+"]]
+            },
+            "body": ["DL424", "DL426", "DL456", ["REGNO", "A30+"]],
+            "rwy": {
+                "EDDL23R": []
+            },
+            "draw": [
+                ["UNDOG", "DL424", "DL426", "DL456", "REGNO"]
+            ]
+        },
+        "UNDOG1B": {
+            "icao": "UNDOG1B",
+            "name": "Undog One Bravo",
+            "entryPoints": {
+                "UNDOG": [["UNDOG", "A70+"]]
+            },
+            "body": ["DL424", "DL426", "DL455", ["METMA", "A30+"]],
+            "rwy": {
+                "EDDL23L": []
+            },
+            "draw": [
+                ["DL426", "DL455", "METMA"]
+            ]
+        },
+        "BIKMU05": {
+            "icao": "BIKMU05",
+            "name": "Bikmu Zero Five",
+            "entryPoints": {
+                "BIKMU": [["BIKMU", "A150-"]]
+            },
+            "body": ["RONAD", ["DL513", "S220"], "DL514", ["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["BIKMU", "RONAD", "DL513", "DL514", "IBIKO", "GAPNU", "DL522", "RONAD", "DL524", "DL525", "DL530", "DL550"]
+            ]
+        },
+        "BIKMU23": {
+            "icao": "BIKMU23",
+            "name": "Bikmu Two Three",
+            "entryPoints": {
+                "BIKMU": [["BIKMU", "A150-"]]
+            },
+            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["BIKMU", "DL426", "DL428", "DL429", "DL430", "DL450", "DL452", "DL454", "DL455", "METMA"],
+                ["DL455", "REGNO"]
+            ]
+        },
+        "DOMUX05": {
+            "icao": "DOMUX05",
+            "name": "Domux Zero Five",
+            "entryPoints": {
+                "DOMUX": [["DOMUX", "A140-"]]
+            },
+            "body": ["DOLAV", ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["DOMUX", "DOLAV", "DL502", "DL503", "DL504", "DL505", "DL510", "DL550", "DL555", "NATOS"],
+                ["DL555", "DIKMI"]
+            ]
+        },
+        "DOMUX23": {
+            "icao": "DOMUX23",
+            "name": "Domux Two Three",
+            "entryPoints": {
+                "DOMUX": [["DOMUX", "A140-"]]
+            },
+            "body": ["DL402", "DL403", "DL404", ["DL405", "S220"], ["DL406", "S220"], "DL407", "DL408", "DL409", ["DL410", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["DOMUX", "DL402", "DL403", "DL404", "DL405", "DL406", "DL407", "DL408", "DL409", "DL410", "DL450"]
+            ]
+        },
+        "ELDAR05": {
+            "icao": "ELDAR05",
+            "name": "Eldar Zero Five",
+            "entryPoints": {
+                "ELDAR": [["ELDAR", "A170-"]]
+            },
+            "body": [["DL501", "S220"], ["DL502", "S220"], "DL503", "DL504", "DL505", ["DL510", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["ELDAR", "DL501", "DL502"]
+            ]
+        },
+        "LMA05": {
+            "icao": "LMA05",
+            "name": "Lima Zero Five",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": [["IBIKO", "S220"], ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "rwy": {
+                "EDDL05L": [["DIKMI", "A30+"]],
+                "EDDL05R": [["NATOS", "A30+"]]
+            },
+            "draw": [
+                ["LMA", "IBIKO"]
+            ]
+        },
+        "LMA23": {
+            "icao": "LMA23",
+            "name": "Lima Two Three",
+            "entryPoints": {
+                "LMA": ["LMA"]
+            },
+            "body": [["DL426", "S220"], "DL428", "DL429", ["DL430", "S220"], ["DL450", "S220"], "DL452", "DL454", "DL455"],
+            "rwy": {
+                "EDDL23L": [["METMA", "A30+"]],
+                "EDDL23R": [["REGNO", "A30+"]]
+            },
+            "draw": [
+                ["LMA", "DL426"]
+            ]
+        },
         "TEBRO05": {
             "icao": "TEBRO05",
             "name": "Tebro Zero Five",
@@ -1971,71 +2087,13 @@
                 ["TEBRO", "AGEDA", "XAMOD"]
             ]
         },
-        "TEBRO1X": {
-            "icao": "TEBRO1X",
-            "name": "Tebro One X-ray",
-            "entryPoints": {
-                "TEBRO": ["TEBRO"]
-            },
-            "body": ["VALSU", "GAPNU", "RONAD"],
-            "rwy": {
-                "EDDL05L": [],
-                "EDDL05R": []
-            },
-            "draw": [
-                ["TEBRO", "VALSU", "GAPNU", "RONAD"]
-            ]
-        },
-        "TEBRO3G": {
-            "icao": "TEBRO3G",
-            "name": "Tebro Three Golf",
-            "entryPoints": {
-                "TEBRO": ["TEBRO"]
-            },
-            "body": ["AGEDA", "XAMOD", "BOT"],
-            "rwy": {
-                "EDDL23L": [],
-                "EDDL23R": []
-            },
-            "draw": [
-                ["TEBRO", "AGEDA", "XAMOD", "BOT"]
-            ]
-        },
-        "TIVIM1A": {
-            "icao": "TIVIM1A",
-            "name": "Tivim One Alpha",
-            "entryPoints": {
-                "TIVIM": [["TIVIM", "A70+"]]
-            },
-            "body": ["DL426", "DL456", ["REGNO", "A30+"]],
-            "rwy": {
-                "EDDL23R": []
-            },
-            "draw": [
-                ["TIVIM", "DL426"]
-            ]
-        },
-        "TIVIM1B": {
-            "icao": "TIVIM1B",
-            "name": "Tivim One Bravo",
-            "entryPoints": {
-                "TIVIM": [["TIVIM", "A70+"]]
-            },
-            "body": ["DL426", "DL455", ["METMA", "A30+"]],
-            "rwy": {
-                "EDDL23L": []
-            },
-            "draw": [
-                ["TIVIM"]
-            ]
-        },
         "XAMOD05": {
             "icao": "XAMOD05",
             "name": "Xamod Zero Five",
             "entryPoints": {
                 "XAMOD": [["XAMOD", "A140-"]]
             },
-            "body": ["BOMBA", "DL517", "DL518", "DL519", ["GAPNU", "S220"], "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
+            "body": ["BOMBA", "DL517", "DL518", "DL519", "GAPNU", "DL522", "RONAD", "DL524", "DL525", ["DL530", "S220"], ["DL550", "S220"], "DL555"],
             "rwy": {
                 "EDDL05L": [["DIKMI", "A30+"]],
                 "EDDL05R": [["NATOS", "A30+"]]
@@ -2057,64 +2115,6 @@
             },
             "draw": [
                 ["XAMOD", "DL420", "DL421", "DL422", "DL426"]
-            ]
-        },
-        "XAMOD3G": {
-            "icao": "XAMOD3G",
-            "name": "Xamod Three Golf",
-            "entryPoints": {
-                "XAMOD": ["XAMOD"]
-            },
-            "body": ["BOT"],
-            "rwy": {
-                "EDDL23L": [],
-                "EDDL23R": []
-            },
-            "draw": [
-                ["XAMOD", "BOT"]
-            ]
-        },
-        "XAMOD2X": {
-            "icao": "XAMOD2X",
-            "name": "Xamod Two X-ray",
-            "entryPoints": {
-                "XAMOD": ["XAMOD"]
-            },
-            "body": ["BOMBA", "GAPNU", "RONAD"],
-            "rwy": {
-                "EDDL05L": [],
-                "EDDL05R": []
-            },
-            "draw": [
-                ["XAMOD", "BOMBA", "GAPNU", "RONAD"]
-            ]
-        },
-        "UNDOG1A": {
-            "icao": "UNDOG1A",
-            "name": "Undog One Alpha",
-            "entryPoints": {
-                "UNDOG": [["UNDOG", "A70+"]]
-            },
-            "body": ["DL424", "DL426", "DL456", ["REGNO", "A30+"]],
-            "rwy": {
-                "EDDL23R": []
-            },
-            "draw": [
-                ["UNDOG", "DL424", "DL426", "DL456", "REGNO"]
-            ]
-        },
-        "UNDOG1B": {
-            "icao": "UNDOG1B",
-            "name": "Undog One Bravo",
-            "entryPoints": {
-                "UNDOG": [["UNDOG", "A70+"]]
-            },
-            "body": ["DL424", "DL426", "DL455", ["METMA", "A30+"]],
-            "rwy": {
-                "EDDL23L": []
-            },
-            "draw": [
-                ["DL426", "DL455", "METMA"]
             ]
         }
     },
