@@ -1422,10 +1422,80 @@
             "draw": [
                 ["RIXED", "DODIL", "REDVO", "RIDAR", "LELTA", "ROKIL", "MIQ"]
             ]
+        },
+        "ELMOX1C": {
+            "icao": "ELMOX1C",
+            "name": "Elmox One Charlie",
+            "entryPoints": {
+                "ELMOX": []
+            },
+            "body": [["ELMOX", "A320+|A370-"], ["PIGAB", "A270+|A310-"], "DKB", ["LEVBU", "A250+|A270-"], ["ANORA", "A220+|A260-"], "XERUM", ["BURAM", "A160+|A190-|S280-"], "ROKIL", ["DM421", "A170-|S240-"], "DM422", ["DM423", "A110+|S230-"], "DM424", ["DM425", "A90|S220-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "rwy": {
+                "EDDM26R": []
+            },
+            "draw": [
+                ["ELMOX", "PIGAB", "DKB", "LEVBU", "ANORA", "XERUM", "BURAM", "ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "LEVBU1C": {
+            "icao": "LEVBU1C",
+            "name": "Levbu One Charlie",
+            "entryPoints": {
+                "LEVBU": []
+            },
+            "body": [["LEVBU", "A250+|A270-"], ["ANORA", "A220+|A260-"], "XERUM", ["BURAM", "A160+|A190-|S280-"], "ROKIL", ["DM421", "A170-|S240-"], "DM422", ["DM423", "A110+|S230-"], "DM424", ["DM425", "A90|S220-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "rwy": {
+                "EDDM26R": []
+            },
+            "draw": [
+                ["LEVBU", "ANORA", "XERUM", "BURAM", "ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "LULAR1C": {
+            "icao": "LULAR1C",
+            "name": "Lular One Charlie",
+            "entryPoints": {
+                "LULAR": []
+            },
+            "body": [["LULAR", "A230+|A270-"], "EXUSI", "RDG", "GOMAX", ["VESIX", "A160+|A190-|S280-"], "LANDU", ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
+            "rwy": {
+                "EDDM08L": []
+            },
+            "draw": [
+                ["LULAR", "EXUSI", "RDG", "GOMAX", "VESIX", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "NIRGO1C": {
+            "icao": "NIRGO1C",
+            "name": "Nirgo One Charlie",
+            "entryPoints": {
+                "NIRGO": []
+            },
+            "body": [["NIRGO", "A250+|A290-"], "ARBAX", "USEMI", "LITLI", "OSTES", ["BINGU", "A160+|A190-|S280-"], ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
+            "rwy": {
+                "EDDM08L": []
+            },
+            "draw": [
+                ["NIRGO", "ARBAX", "USEMI", "LITLI", "OSTES", "BINGU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "VESUB1C": {
+            "icao": "VESUB1C",
+            "name": "Vesub One Charlie",
+            "entryPoints": {
+                "VESUB": []
+            },
+            "body": [["VESUB", "A250+|A290-"], "BAGMI", "ODUDA", "NETES", "UNKOM", ["MITNU", "A160+|A190-|S280-"], "TUSTO", ["DM428", "A170-|S250-"], "DM427", ["DM426", "A110+|S230-"], "DM425", ["DM424", "A90|S220-"], "DM423", "DM422", "DM421", "DM420", "#261"],
+            "rwy": {
+                "EDDM08L": []
+            },
+            "draw": [
+                ["VESUB", "BAGMI", "ODUDA", "NETES", "UNKOM", "MITNU", "TUSTO", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
         }
     },
     "spawnPatterns": [
-        
+
     ],
     "maps": {
         "base": []
