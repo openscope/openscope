@@ -1492,6 +1492,118 @@
             "draw": [
                 ["VESUB", "BAGMI", "ODUDA", "NETES", "UNKOM", "MITNU", "TUSTO", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
             ]
+        },
+        "BETOS08": {
+            "icao": "BETOS08",
+            "name": "Betos Zero Eight",
+            "entryPoints": {
+                "BETOS": []
+            },
+            "body": ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80+"], "DM452", "DM451", "DM450", "#261"],
+            "rwy": {
+                "EDDM08R": []
+            },
+            "draw": [
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "BETOS26": {
+            "icao": "BETOS26",
+            "name": "Betos Two Six",
+            "entryPoints": {
+                "BETOS": []
+            },
+            "body": ["BETOS", "DM452", "DM453", "DM454", ["DM455", "A80+"], "DM456", "DM457", "DM458", "DM459", "#081"],
+            "rwy": {
+                "EDDM26L": []
+            },
+            "draw": [
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "LANDU08": {
+            "icao": "LANDU08",
+            "name": "Landu Zero Eight",
+            "entryPoints": {
+                "LANDU": []
+            },
+            "body": ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80+"], "DM422", "DM421", "DM420", "#261"],
+            "rwy": {
+                "EDDM08L": []
+            },
+            "draw": [
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "LANDU26": {
+            "icao": "LANDU26",
+            "name": "Landu Two Six",
+            "entryPoints": {
+                "LANDU": []
+            },
+            "body": ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "rwy": {
+                "EDDM26R": []
+            },
+            "draw": [
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "NAPSA08": {
+            "icao": "NAPSA08",
+            "name": "Napsa Zero Eight",
+            "entryPoints": {
+                "NAPSA": []
+            },
+            "body": ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80+"], "DM452", "DM451", "DM450", "#261"],
+            "rwy": {
+                "EDDM08R": []
+            },
+            "draw": [
+                ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "NAPSA26": {
+            "icao": "NAPSA26",
+            "name": "Napsa Two Six",
+            "entryPoints": {
+                "NAPSA": []
+            },
+            "body": ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", ["DM455", "A80+"], "DM456", "DM457", "DM458", "DM459", "#081"],
+            "rwy": {
+                "EDDM26L": []
+            },
+            "draw": [
+                ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "ROKIL08": {
+            "icao": "ROKIL08",
+            "name": "Rokil Zero Eight",
+            "entryPoints": {
+                "ROKIL": []
+            },
+            "body": ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80+"], "DM422", "DM421", "DM420", "#261"],
+            "rwy": {
+                "EDDM08L": []
+            },
+            "draw": [
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "ROKIL26": {
+            "icao": "ROKIL26",
+            "name": "Rokil Two Six",
+            "entryPoints": {
+                "ROKIL": []
+            },
+            "body": ["ROKIL", "DM421", "DM422", "DM423", "DM424", ["DM425", "A80-"], "DM426", "DM427", "DM428", "DM429", "#080"],
+            "rwy": {
+                "EDDM26R": []
+            },
+            "draw": [
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
         }
     },
     "spawnPatterns": [
