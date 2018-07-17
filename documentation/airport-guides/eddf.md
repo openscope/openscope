@@ -33,6 +33,7 @@ Runways 18 and 25C are preferred for takeoff.
 There are also rules as to how the runways should be used:
 
 | Runway                     | Orientation    | Rule                                                |
+|:--------------------------:|:--------------:|:---------------------------------------------------:|
 | 07C/25C (runway north)     | East to West   | Mainly take-offs, but landings are allowed          |
 | 07R/25L (runway south)     | East to West   | Takeoffs and landings                               |
 | 07L/25R (runway northwest) | East to West   | Landings only (not allowed for A380, B74x and MD11) |
