@@ -6,6 +6,7 @@
 
 
 ### Bugfixes
+- [#1018](https://github.com/openscope/openscope/issues/1018) - Fix "leaving airspace without proper clearance" bug at KSEA
 
 
 
