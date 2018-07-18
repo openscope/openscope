@@ -1,8 +1,8 @@
 {
-    "icao": "aee",
-    "name": "Aegean Airlines",
+    "icao": "nvd",
+    "name": "Avion Express",
     "callsign": {
-        "name": "Aegean",
+        "name": "Nordvind",
         "callsignFormats": [
             "###"
         ]
@@ -10,11 +10,11 @@
     "fleets": {
         "default": [
             ["A319", 1],
-            ["A320", 37],
-            ["A321", 11]
+            ["A320", 12],
+            ["A321", 5]
         ],
         "a320": [
-            ["A320", 37]
+            ["A320", 12]
         ]
     }
 }
