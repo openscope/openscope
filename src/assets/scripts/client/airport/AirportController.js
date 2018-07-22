@@ -128,6 +128,11 @@ class AirportController {
      * @method reset
      */
     reset() {
+        this._eventBus = EventBus;
+        this._airportListToLoad = [];
+        this.airports = {};
+        this.current = null;
+
         return;
     }
 

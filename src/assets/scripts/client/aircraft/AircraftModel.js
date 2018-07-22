@@ -771,7 +771,6 @@ export default class AircraftModel {
         this.fms.cancelFix();
     }
 
-    // FIXME: TEST
     /**
      * Abort the landing attempt, and fly present heading, climbing to the minimum safe altitude
      *
@@ -884,7 +883,6 @@ export default class AircraftModel {
         return this.fms.isArrival();
     }
 
-    // FIXME: TEST
     /**
      * Returns whether aircraft is above the glidepath at (or abeam) their current position
      *
@@ -901,7 +899,6 @@ export default class AircraftModel {
         return altitudeDifference < -PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
     }
 
-    // FIXME: TEST
     /**
      * Aircraft is established on the course tuned into the nav radio and course
      *
@@ -934,7 +931,6 @@ export default class AircraftModel {
         // return isAlignedWithCourse && isOnCourseHeading;
     }
 
-    // FIXME: TEST
     /**
      * Aircraft is established on the glidepath
      *
@@ -948,7 +944,7 @@ export default class AircraftModel {
     isEstablishedOnGlidepath() {
         const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
 
-        return abs(glideslopeAltitude - this.altitude) < PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
+        return abs(glideslopeAltitude - this.altitude) <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
     }
 
     // TODO: the logic here should be moved to the `AirportModel`
@@ -972,7 +968,6 @@ export default class AircraftModel {
         return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
     }
 
-    // FIXME: TEST
     /**
      * Returns whether the aircraft is on the approach course and within the final approach fix
      *
@@ -984,7 +979,7 @@ export default class AircraftModel {
         const approachDistanceNm = this.positionModel.distanceToPosition(this.mcp.nav1Datum);
         const maxDistanceConsideredOnFinalNm = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
 
-        return this.isEstablishedOnCourse() && approachDistanceNm < maxDistanceConsideredOnFinalNm;
+        return this.isEstablishedOnCourse() && approachDistanceNm <= maxDistanceConsideredOnFinalNm;
     }
 
     /**
@@ -1070,7 +1065,6 @@ export default class AircraftModel {
         return true;
     }
 
-    // FIXME: TEST
     /**
      * Evaluate the intercept angle and altitude, and issue warnings and penalties as appropriate
      *
@@ -1154,7 +1148,6 @@ export default class AircraftModel {
         this.altitude = runwayModel.elevation;
     }
 
-    // FIXME: TEST
     /**
      * Display a waring and record an illegal glideslope intercept event
      *
@@ -1168,7 +1161,6 @@ export default class AircraftModel {
         GameController.events_recordNew(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE);
     }
 
-    // FIXME: TEST
     /**
      * Display a waring and record an illegal approach event
      *
@@ -1503,7 +1495,6 @@ export default class AircraftModel {
         }
     }
 
-    // FIXME: TEST
     /**
      * Calculate the glideslope altitude abeam the current position for the expected landing runway
      *
