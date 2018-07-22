@@ -1,10 +1,12 @@
 import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
+import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
 import _random from 'lodash/random';
 import _without from 'lodash/without';
 import RouteModel from '../aircraft/FlightManagementSystem/RouteModel';
+import { TIME } from '../constants/globalConstants';
 import {
     isWithinAirspace,
     calculateDistanceToBoundary
@@ -60,24 +62,26 @@ function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
 function _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap) {
     const altitudeOffsets = [];
 
-    _forEach(waypointModelList, (waypointModel, waypointIndex) => {
+    for (let i = 0; i < waypointModelList.length; i++) {
+        const waypointModel = waypointModelList[i];
+
         if (!waypointModel.hasAltitudeRestriction) {
-            return;
+            continue;
         }
 
         const altitudes = _without([waypointModel.altitudeMaximum, waypointModel.altitudeMinimum], -1);
 
         altitudeOffsets.push([
-            waypointOffsetMap[waypointIndex],
+            waypointOffsetMap[i],
             Math.min(...altitudes)
         ]);
-    });
+    }
 
     return altitudeOffsets;
 }
 
 /**
- * Calculate the ideal spawn altitude at the given distance along the route from the spawn point
+ * Calculate the interpolated altitude along the glidepath at the given distance along the route from the spawn point
  *
  * @function _calculateAltitudeAtOffset
  * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
@@ -121,17 +125,42 @@ function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitu
     return _floor(previousAltitudeRestriction[indexOfAltitude] + altitudeChangeFromPreviousRestriction, -3);
 }
 
-// function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets) {
-//     const spawnPositions = _calculateSpawnPositions(waypointModelList, spawnOffsets);
+/**
+ * Calculate the ideal spawn altitude at the given distance along the route from the spawn point
+ *
+ * @function _calculateAltitudeAtOffset
+ * @param waypointModelList {array<WaypointModel>} array of all waypoints along the route
+ * @param waypointOffsetMap {array<number>} offset distance from spawn point to each waypoint
+ * @param altitudeOffsets {array<array<number>>} information about location of altitude restrictions
+ * @param offsetDistance {number} distance along route at which we want to know the ideal spawn altitude
+ * @param spawnAltitude {number|array<number>} altitude specified in the spawn pattern json
+ * @param totalDistance {number} distance long route from spawn point to airspace boundary
+ * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
+ */
+function _calculateIdealSpawnAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
+    const indexOfDistance = 0;
+    const indexOfAltitude = 1;
+    let firstAltitudeRestriction = altitudeOffsets[0];
 
-//     // const altitudeRestrictedWaypoints = waypointModelList.filter((waypointModel) => {
-//     //     return waypointModel.hasAltitudeRestriction;
-//     // });
+    if (!firstAltitudeRestriction) {
+        firstAltitudeRestriction = [totalDistance, airspaceCeiling];
+    }
 
-//     return _forEach(spawnPositions, (spawnPosition) => {
-//         spawnPosition.altitude = _calculateAltitudeAtOffset
-//     });
-// }
+    if (offsetDistance >= firstAltitudeRestriction[indexOfDistance]) {
+        return _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance);
+    }
+
+    const distanceToFirstAltitudeRestriction = firstAltitudeRestriction[indexOfDistance] - offsetDistance;
+    const minutesToFirstAltitudeRestriction = distanceToFirstAltitudeRestriction / spawnSpeed * TIME.ONE_HOUR_IN_MINUTES;
+    const assumedDescentRate = 1000;
+    const highestAcceptableAltitude = firstAltitudeRestriction[indexOfAltitude] + (assumedDescentRate * minutesToFirstAltitudeRestriction);
+
+    if (_isArray(spawnAltitude)) {
+        spawnAltitude = _random(spawnAltitude[0] / 1000, spawnAltitude[1] / 1000) * 1000;
+    }
+
+    return Math.min(_floor(highestAcceptableAltitude, -3), spawnAltitude);
+}
 
 /**
  * Loop through `waypointModelList` and determine where along the route an
@@ -140,9 +169,12 @@ function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitu
  * @function _calculateSpawnPositionsAndAltitudes
  * @param waypointModelList {array<WaypointModel>}
  * @param spawnOffsets {array}
+ * @param spawnSpeed {number}
+ * @param spawnAltitude {number}
+ * @param totalDistance {number} distance along route from spawn point to airspace boundary
  * @return spawnPositions {array<number>} distances along route, in nm
  */
-function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets) {
+function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
     const spawnPositionsAndAltitudes = [];
     const waypointOffsetMap = _calculateOffsetsToEachWaypointInRoute(waypointModelList);
     const altitudeOffsets = _calculateAltitudeOffsets(waypointModelList, waypointOffsetMap);
@@ -150,33 +182,6 @@ function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets) {
     // for each new aircraft
     for (let i = 0; i < spawnOffsets.length; i++) {
         const spawnOffset = spawnOffsets[i];
-        //
-            // for each fix ahead
-            // for (let j = 1; j < waypointModelList.length; j++) {
-            //     const previousWaypointModel = waypointModelList[j - 1];
-            //     const nextWaypointModel = waypointModelList[j];
-            //     const distanceToNextWaypoint = previousWaypointModel.calculateDistanceToWaypoint(nextWaypointModel);
-
-            //     if (distanceToNextWaypoint > spawnOffset) {   // if point before next fix
-            //         const heading = previousWaypointModel.calculateBearingToWaypoint(nextWaypointModel);
-            //         const spawnPositionModel = previousWaypointModel.positionModel.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
-
-            //         // TODO: this looks like it should be a model object
-            //         const preSpawnHeadingAndPosition = {
-            //             heading,
-            //             positionModel: spawnPositionModel,
-            //             nextFix: nextWaypointModel.name
-            //         };
-
-            //         spawnPositionsAndAltitudes.push(preSpawnHeadingAndPosition);
-
-            //         break;
-            //     }
-
-            //     // if point beyond next fix subtract distance from spawnOffset and continue
-            //     spawnOffset -= distanceToNextWaypoint;
-            // }
-
         const nextWaypointIndex = _findIndex(waypointOffsetMap, (distanceToWaypoint) => {
             return distanceToWaypoint >= spawnOffset;
         });
@@ -189,7 +194,16 @@ function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets) {
             heading,
             distanceFromPreviousWaypointToSpawnPoint
         );
-        const altitude = _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, spawnOffset);
+        const altitude = _calculateIdealSpawnAltitudeAtOffset(
+            waypointModelList,
+            waypointOffsetMap,
+            altitudeOffsets,
+            spawnOffset,
+            spawnSpeed,
+            spawnAltitude,
+            totalDistance,
+            airspaceCeiling
+        );
 
         spawnPositionsAndAltitudes.push({
             altitude,
@@ -233,18 +247,18 @@ const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     }
 
     const spawnOffsets = [offsetClosestToAirspace];
-    let offset = offsetClosestToAirspace;
+    let distanceAlongRoute = offsetClosestToAirspace;
 
     // distance between successive arrivals in nm
-    while (offset > smallestIntervalNm) {
+    while (distanceAlongRoute > smallestIntervalNm) {
         const interval = _random(smallestIntervalNm, largestIntervalNm, true);
-        offset -= interval;
+        distanceAlongRoute -= interval;
 
-        if (offset < smallestIntervalNm) {
+        if (distanceAlongRoute < smallestIntervalNm) {
             break;
         }
 
-        spawnOffsets.push(offset);
+        spawnOffsets.push(distanceAlongRoute);
     }
 
     // spawn an aircraft at the first fix of the route
@@ -304,14 +318,17 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
  */
 const _preSpawn = (spawnPatternJson, airport) => {
     // distance between each arriving aircraft, in nm
-    const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
+    const airspaceCeiling = airport.maxAssignableAltitude;
+    const spawnSpeed = spawnPatternJson.speed;
+    const spawnAltitude = spawnPatternJson.altitude;
+    const entrailDistance = spawnSpeed / spawnPatternJson.rate;
     const routeModel = new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
     const totalDistance = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
-    const spawnPositions = _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, airport);
+    const spawnPositions = _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling);
 
     return spawnPositions;
 };
@@ -327,7 +344,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
  * the spawn point and the airspace boundary, in order to ensure the player is not kept waiting
  * for their first arrival aircraft.
  *
- * @function preSpawn
+ * @function buildPreSpawnAircraft
  * @param spawnPatternJson {object}
  * @param currentAirport {AirportModel}
  * @return {array<object>}

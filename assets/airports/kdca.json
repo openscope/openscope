@@ -1347,7 +1347,7 @@
             "entryPoints": {
                 "MXE": ["MXE", "NUGGY", "TROYZ", "BELAY", "TRISH"]
             },
-            "body": ["CLIPR", ["BAL", "S250"], "EYESS"],
+            "body": ["CLIPR", "BAL", "EYESS"],
             "rwy": {
                 "KDCA1": ["BRUNC", "FELTY", "HITEK", "^CAVDI", "#187"],
                 "KDCA19": ["EDDWD", "MEGGS", "^NAYES", "#327"]
