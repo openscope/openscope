@@ -152,7 +152,7 @@ export const PERFORMANCE = {
 
     /**
      * Maximum vertical distance between the aircraft and the glidepath to
-     * consider the aircraft to be "established on the localizer"
+     * consider the aircraft to be "established on the glidepath"
      *
      * @property MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH
      * @type {number}

@@ -228,28 +228,6 @@ export default class AircraftModel {
          */
         this.takeoffTime = 0;
 
-        // TODO: This value is never actually updated; it should update or be removed
-        /**
-         * Distance laterally from the approach path
-         *
-         * @for AircraftModel
-         * @property approachOffset
-         * @type {number}
-         * @default 0
-         */
-        this.approachOffset = 0;
-
-        // TODO: This value is never actually updated; it should update or be removed
-        /**
-         * Distance longitudinally from the threshold
-         *
-         * @for AircraftModel
-         * @property approachDistance
-         * @type {number}
-         * @default 0
-         */
-        this.approachDistance = 0;
-
         /**
          * Azimuth from airport center to aircraft, in radians
          *
@@ -823,20 +801,6 @@ export default class AircraftModel {
         this.mcp.setHeadingHold();
         this.setFlightPhase(FLIGHT_PHASE.DESCENT);
         this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-    }
-
-    // TODO: is this method still in use?
-    /**
-     * @for AircraftModel
-     * @method pushHistory
-     */
-    pushHistory() {
-        // TODO: this should use just positionModel.relativePosition
-        this.history.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1]]);
-
-        if (this.history.length > 10) {
-            this.history.splice(0, this.history.length - 10);
-        }
     }
 
     /**
@@ -1457,7 +1421,6 @@ export default class AircraftModel {
      * @param phase {string}
      */
     setFlightPhase(phase) {
-        console.log(`Set flight phase: ${this.getCallsign()} to '${phase}'`);
         this.fms.setFlightPhase(phase);
     }
 
@@ -2457,7 +2420,6 @@ export default class AircraftModel {
 
             for (const id in curr_ranges) {
                 curr_ranges[id] -= this.groundSpeed;
-                // console.log(curr_ranges[id]);
 
                 if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
                     area = terrain[ele][id];
@@ -2469,7 +2431,6 @@ export default class AircraftModel {
                         if (!this.hit) {
                             this.hit = true;
 
-                            console.log('hit terrain');
                             const isWarning = true;
                             UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
@@ -2481,7 +2442,6 @@ export default class AircraftModel {
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);
-                        // console.log(this.callsign, 'in', curr_ranges[id], 'km from', id, area[0].length);
                     }
                 }
             }
