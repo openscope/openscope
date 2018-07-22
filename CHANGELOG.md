@@ -8,6 +8,11 @@
 ### Bugfixes
 - [#1018](https://github.com/openscope/openscope/issues/1018) - Fix "leaving airspace without proper clearance" bug at KSEA
 - [#915](https://github.com/openscope/openscope/issues/915) - Change passing/diverging separation logic to use assigned heading, not ground track heading
+- [#38](https://github.com/openscope/openscope/issues/38) - Fix issues with localizer interception
+    - prevents aircraft from spinning in circles (in most cases we're seeing)
+    - ensures descents below assigned altitude do not begin until established on the localizer
+    - penalizes localizer interception above glideslope
+    - triggers go-arounds at final approach fix if not established on both localizer and glideslope
 
 
 
