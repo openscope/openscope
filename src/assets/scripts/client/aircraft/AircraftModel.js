@@ -2,6 +2,7 @@ import _ceil from 'lodash/ceil';
 import _defaultTo from 'lodash/defaultTo';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
+import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -794,6 +795,8 @@ export default class AircraftModel {
 
     // FIXME: TEST
     /**
+     * Abort the landing attempt, and fly present heading, climbing to the minimum safe altitude
+     *
      * @for AircraftModel
      * @method cancelLanding
      */
@@ -803,16 +806,23 @@ export default class AircraftModel {
         }
 
         const missedApproachAltitude = _ceil(this.fms.arrivalRunwayModel.elevation + 2000, -3);
-        const radioMessage = `going missed approach, present heading to ${missedApproachAltitude}`;
+        const nextIfrAltitudeBelow = _floor(this.altitude, -3);
+        let nextAltitudeToMaintain = missedApproachAltitude;
+        let radioMessage = `going missed approach, present heading, climbing to ${missedApproachAltitude}`;
 
-        this.mcp.setAltitudeFieldValue(missedApproachAltitude);
+        if (nextIfrAltitudeBelow >= missedApproachAltitude) {
+            nextAltitudeToMaintain = nextIfrAltitudeBelow;
+            radioMessage = `going missed approach, present heading, leveling at ${nextIfrAltitudeBelow}`;
+        }
+
+        this.pilot.hasApproachClearance = false;
+
+        this.mcp.setAltitudeFieldValue(nextAltitudeToMaintain);
         this.mcp.setAltitudeHold();
         this.mcp.setHeadingFieldValue(this.heading);
         this.mcp.setHeadingHold();
-        this.setFlightPhase(FLIGHT_PHASE.CRUISE);
+        this.setFlightPhase(FLIGHT_PHASE.DESCENT);
         this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-
-        return true;
     }
 
     // TODO: is this method still in use?
@@ -1512,6 +1522,8 @@ export default class AircraftModel {
 
                 if (!this.isEstablishedOnGlidepath()) {
                     this.cancelLanding();
+
+                    break;
                 }
 
                 this.setFlightPhase(FLIGHT_PHASE.LANDING);
@@ -1702,6 +1714,10 @@ export default class AircraftModel {
         // const distanceFromDatum_ft = distanceFromDatum_nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
         // const glideslopeAltitude = glideDatum.elevation + (slope * (distanceFromDatum_ft));
         // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
+
+        if (!this.isEstablishedOnCourse()) {
+            return this.mcp.altitude;
+        }
 
         // ILS SPECIFIC CODE
         const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
