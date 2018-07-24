@@ -10,7 +10,7 @@ The D21 airspace includes an area within a 40nm radius around the Detroit airpor
 ### Instrument Procedures
 The procedures are somewhat automated, with the design of the SIDs and STARs taking some weight off the controllers. departing aircraft must be vectored to their initial fixes and arriving aircraft must be vectored to the final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. There is little to no information on the structure of the TRACON._
 ```
 E - East Departure    (unavailable)

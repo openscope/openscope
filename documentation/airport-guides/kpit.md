@@ -11,7 +11,7 @@ Class B airspace exists with tops of 8,000 feet over the Pittsburgh metropolitan
 ### Instrument Procedures
 The airport contains only one standardized departure (PIT3), which requires aircraft to be vectored to a series of depicted fixes. Although 4 RNAV STAR's are available, controllers must give aircraft descent clearances and vectors to their final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. There is very little information on the structure of the TRACON._
 
 ### Airports of Interest

@@ -19,7 +19,7 @@ Hamad International Airport has various instrument departures and standard termi
 The procedure's suffix indicates the assigned runway: C stands for runway 16R, E for 34R, M for 16L and W for 34L.
 
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 The sim features a combination of these sectors:
 
 |     Callsign     | Primary Frequency |

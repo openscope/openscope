@@ -10,7 +10,7 @@ Due to its sheer size, the A90 TRACON is divided into two areas; Boston and Manc
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft must still be manually vectored to the final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 F1 - Final 1    (default)
 F2 - Final 2    (unavailable)
