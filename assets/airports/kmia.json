@@ -649,7 +649,7 @@
                 "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU"],
                 "MTH": ["MTH", "GUSHY"]
             },
-            "body": ["DVALL", "CURSO", "MNNDY", "JODPO", "#272"],
+            "body": ["DVALL", "CURSO", "MNNDY", "JODPO"],
             "rwy": {
                 "KMIA8L": ["BEETR", "#053"],
                 "KMIA8R": ["BEETR", "#053"],
