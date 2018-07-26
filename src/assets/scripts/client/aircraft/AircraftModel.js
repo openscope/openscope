@@ -1757,7 +1757,8 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-        const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
+        const timeToCompleteTurn = calculateTurnInitiaionDistance(this, waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < timeToCompleteTurn;
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
         const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
