@@ -10,7 +10,7 @@ The RDU TRACON airspace encompasses a large area around Great Raleigh extending 
 ### Instrument Procedures
 Although departing aircraft must be vectored to their initial fixes, the STARs are very automated, taking a lot of weight off the controllers. Arrivals must still be vectored to their final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 F - Final  (default)
 N - North Departure  (unavailable)

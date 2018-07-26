@@ -1,5 +1,5 @@
 {
-  "name": "openscope",
+  "name": "openScope",
   "version": "6.4.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
