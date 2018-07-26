@@ -16,6 +16,7 @@
 ### Enhancements & Refactors
 - [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
 - [#1023](https://github.com/openscope/openscope/issues/1023) - Standardize `openScope` capitalization
+- [#949](https://github.com/openscope/openscope/issues/949) - Keep video map clearly visible at all zoom levels
 
 
 
