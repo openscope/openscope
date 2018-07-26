@@ -1586,8 +1586,14 @@ export default class CanvasController {
      */
     _drawRangeRings(cc) {
         const airportModel = AirportController.airport_get();
-        const rangeRingRadius = km(airportModel.rr_radius_nm);
+        const rangeRingSettings = airportModel.rangeRings;
 
+        if (rangeRingSettings.enabled === false) {
+            return;
+        }
+        
+        const rangeRingRadius = km(airportModel.rangeRings.radius_nm);
+        
         cc.linewidth = 1;
         cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
 
