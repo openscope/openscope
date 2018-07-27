@@ -1,11 +1,13 @@
 # 6.4.0 (August 1, 2018)
 ### New Features
-
+- [#403](https://github.com/openscope/openscope/issues/403) - Add Flughafen Düsseldorf (Düsseldorf Airport, EDDL)
 
 
 
 
 ### Bugfixes
+- [#1018](https://github.com/openscope/openscope/issues/1018) - Fix "leaving airspace without proper clearance" bug at KSEA
+- [#915](https://github.com/openscope/openscope/issues/915) - Change passing/diverging separation logic to use assigned heading, not ground track heading
 
 
 
@@ -13,6 +15,8 @@
 
 ### Enhancements & Refactors
 - [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
+- [#1023](https://github.com/openscope/openscope/issues/1023) - Standardize `openScope` capitalization
+- [#949](https://github.com/openscope/openscope/issues/949) - Keep video map clearly visible at all zoom levels
 
 
 
