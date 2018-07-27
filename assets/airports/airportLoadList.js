@@ -221,7 +221,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         {
             icao: 'kaus',
             level: 'easy',
-            name: 'Austin-Bergstrom Int\'l',
+            name: 'Austin-Bergstrom International Airport',
             premium: false,
             wip: false
         },
