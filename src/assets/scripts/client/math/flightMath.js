@@ -26,19 +26,23 @@ import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 
 /**
  * Calculate the radius of turn of the aircraft, given its groundspeed
- * 
+ *
  * Reference:
  * http://www.flightlearnings.com/2009/08/26/radius-of-turn/
- * 
- * Using constant of 68416 (to yield nm) in lieu of 11.26 (yields ft)
- * 
+ *
+ * Possible conversion factor constants:
+ *    - 68416 (yields nautical miles)
+ *    - 11.26 (yields feet)
+ *
  * @function calcTurnRadius
  * @param speed {number} aircraft groundspeed, in knots
  * @param bankAngle {number} bank angle to use, in radians
  * @return {number} radius of turn, in nautical miles
  */
 export function calcTurnRadius(speed, bankAngle) {
-    return (speed * speed) / (68416 * Math.tan(bankAngle));
+    const conversionFactor = 68416; // yields radius in nautical miles
+
+    return (speed * speed) / (conversionFactor * Math.tan(bankAngle));
 }
 
 /**
@@ -50,8 +54,10 @@ export function calcTurnRadius(speed, bankAngle) {
  */
 export function calcTurnInitiationDistanceNm(speed, bankAngle, courseChange) {
     const turnRadiusNm = calcTurnRadius(speed, bankAngle);
+    const halfCourseChange = courseChange / 2;
+    const halfPi = Math.PI / 2;
 
-    return turnRadiusNm * (courseChange / 2) / (Math.PI / 2);
+    return turnRadiusNm * halfCourseChange / halfPi;
 }
 
 /**
