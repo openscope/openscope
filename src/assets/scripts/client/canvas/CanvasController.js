@@ -2128,7 +2128,7 @@ export default class CanvasController {
      * @private
      */
     _onToggleStarMap() {
-        console.log('+++', 'STAR maps are not yet implemented');
+        console.warn('+++', 'STAR maps are not yet implemented');
         // this._shouldDrawStarMap = !this._shouldDrawStarMap;
 
         // this._markDeepRender();

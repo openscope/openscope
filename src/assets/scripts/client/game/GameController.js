@@ -27,6 +27,7 @@ const GAME_EVENTS_POINT_VALUES = {
     HIGH_CROSSWIND_OPERATION: -5,
     HIGH_TAILWIND_OPERATION: -25,
     ILLEGAL_APPROACH_CLEARANCE: -10,
+    LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE: -10,
     NOT_CLEARED_ON_ROUTE: -25,
     SEPARATION_LOSS: -200
 };
@@ -46,6 +47,18 @@ export const GAME_EVENTS = {
     HIGH_CROSSWIND_OPERATION: 'HIGH_CROSSWIND_OPERATION',
     HIGH_TAILWIND_OPERATION: 'HIGH_TAILWIND_OPERATION',
     ILLEGAL_APPROACH_CLEARANCE: 'ILLEGAL_APPROACH_CLEARANCE',
+    /**
+    * Aircraft is cleared for the approach, has just become fully established on the localizer,
+    * but they are above the glideslope, and will have to chase it down
+    *
+    * This event is used to assess a penalty to the controller because they are required to have
+    * aircraft at/below glideslope altitude when intercepting the localizer
+    *
+    * @memberof GAME_EVENTS
+    * @property LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE
+    * @type {string}
+    */
+    LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE: 'LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE',
     NOT_CLEARED_ON_ROUTE: 'NOT_CLEARED_ON_ROUTE',
     SEPARATION_LOSS: 'SEPARATION_LOSS'
 };

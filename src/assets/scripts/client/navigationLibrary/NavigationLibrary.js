@@ -89,7 +89,7 @@ class NavigationLibrary {
         return FixCollection.findRealFixes();
     }
 
-    // FIXME: test
+    // TODO: TEST
     /**
      *
      * @property sidLines

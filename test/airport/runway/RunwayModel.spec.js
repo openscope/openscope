@@ -48,7 +48,7 @@ ava('#elevation returns #airportPositionModel.elevation if #_positionModel.eleva
 ava('#oppositeAngle returns opposite of runway heading', (t) => {
     const runwayModel = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
     const result = runwayModel.oppositeAngle;
-    const expectedResult = 3.9758603503842274;
+    const expectedResult = 4.502864578080533;
 
     t.true(result === expectedResult);
 });
@@ -99,7 +99,8 @@ ava.todo('.isOnCorrectApproachHeading()');
 ava('.calculateCrosswindAngleForRunway() returns the crosswind angle for a given runway based on a given windAngle', (t) => {
     const windAngleMock = 3.839724354387525;
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const expectedResult = 2.478452429896785;
     const result = model.calculateCrosswindAngleForRunway(windAngleMock);
 
-    t.true(result === 3.005456657593091);
+    t.true(result === expectedResult);
 });

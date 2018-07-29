@@ -196,7 +196,6 @@ ava('.replaceFlightPlanWithNewRoute() returns an error when passed an invalid ro
 
 ava('.replaceFlightPlanWithNewRoute() removes an existing route and replaces it with a new one', (t) => {
     const pilot = createPilotFixture();
-    console.log(createFmsArrivalFixture().waypoints.map(wp => wp.name));
 
     pilot.replaceFlightPlanWithNewRoute('COWBY..BIKKR');
 
