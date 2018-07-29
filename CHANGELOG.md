@@ -13,6 +13,7 @@
     - ensures descents below assigned altitude do not begin until established on the localizer
     - penalizes localizer interception above glideslope
     - triggers go-arounds at final approach fix if not established on both localizer and glideslope
+- [#1030](https://github.com/openscope/openscope/issues/1030) - Fix background color of options menu dropdowns
 
 
 
