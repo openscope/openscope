@@ -24,7 +24,7 @@ The airport has 3 runways. The southeastern runway (05/23) is 2580m (8465ft) lon
 
 
 ### Instrument Procedures
-*Istanbul Atatürk Airport* makes use of a large number of SIDs and STARs, both RNAV and non-RNAV, although only RNAV procedures are normally used.
+*Istanbul Atatürk Airport* has a large quantity of SIDs and STARs, RNAV and non-RNAV. However, only the RNAV procedures are normally used.
 The procedure's suffix indicates the runway, the procedure is for.
 
 SIDs:
