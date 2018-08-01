@@ -71,9 +71,12 @@
         "_DET259029": [51.20273041945, -0.15484747663],
         "_DET259031": [51.19556851356, -0.20659933884],
         "_DET259033": [51.18838373701, -0.25833513825],
+        "_DET260010": ["N51d16.37", "E00d20.19"],
+        "_DET260020": ["N51d14.46", "E00d04.57"],
         "_DET261026": [51.229167, -0.082167],
         "_DET261036": [51.199167, -0.343000],
         "_DET261043": [51.178000, -0.525333],
+        "_DVR259035": ["N51d02.94", "E00d27.08"],
         "_DVR270031": ["N51d09.91", "E00d32.30"],
         "_DVR270033": ["N51d09.91", "E00d29.12"],
         "_DVR277033": ["N51d13.92", "E00d29.51"],
@@ -85,6 +88,8 @@
         "_LAM157015": [51.416500, 0.309000],
         "_LAM157020": [51.339833, 0.361167],
         "_MAY110012": ["N50.94866742211", "E0.41335321937"],
+        "_MAY284009": ["N51d03.13", "W00d06.90"],
+        "_MAY284013": ["N51d04.06", "W00d13.06"],
         "_MID064008": [51.113833, -0.436167],
         "_MID105022": ["N50.95805593029", "W0.0647437487"],
         "_MID259010": [51.019667, -0.883333],
@@ -93,8 +98,12 @@
         "_OCK176018": ["N51d00.38", "W00d24.50"],
         "_OCK176023": ["N50d55.41", "W00d23.85"],
         "_OCK176028": ["N50d50.43", "W00d23.21"],
-        "_RWY08LIGG3DME": [51.160291, -0.112162],
-        "_RWY08RIGG3DME": [51.159244, -0.111807],
+        "_RWY08LIGG03.5DME": [51.162506, -0.099572],
+        "_RWY08LIGG03DME": [51.160291, -0.112162],
+        "_RWY08RIGG03.5DME": [51.160867, -0.098811],
+        "_RWY08RIGG02.5DME": [51.157014, -0.124610],
+        "_RWY08LIGG02.5DME": [51.159121, -0.125566],
+        "_RWY08RIGG03DME": [51.159244, -0.111807],
         "_RWY26LIWW02.3DME": [51.14008455516, -0.24870376316],
         "_RWY26LIWW06.8DME": [51.124120, -0.365016],
         "_RWY26LMID10DME": [51.11980749328, -0.40089900954],
@@ -102,12 +111,17 @@
         "_RWY26RIWW06.8DME": [51.125585, -0.365451],
         "_RWY26RMID10DME": [51.12145748981, -0.40218092219],
         "_SAM067020": [51.087500, -0.860667],
-        "_SFD312025": [51.037667, -0.369333],
-        "_SFD312018": [50.960333, -0.231167],
         "_SFD312016": [50.938167, -0.191833],
+        "_SFD312018": [50.960333, -0.231167],
+        "_SFD312025": [51.037667, -0.369333],
+        "_SFD344007": ["N50d52.36", "E00d04.25"],
+        "_SFD344013": ["N50d58.12", "E00d01.61"],
+        "_SFD344017": ["N51d01.95", "W00d00.15"],
+        "_SFD344021": ["N51d05.79", "W00d01.92"],
         "_TUNBY270015": ["N51d10.01", "W00d04.35"],
         "ABIBI": ["N51d06.45", "W00d28.90"],
         "ABTUM": ["N51d26.06", "E01d22.48"],
+        "ACORN": ["N51d15.32", "E00d11.77"],
         "ADMAG": ["N51d14.03", "E00d29.57"],
         "AMDUT": ["N50d40.47", "E00d47.77"],
         "ARNUN": ["N51d03.43", "E00d55.88"],
@@ -193,6 +207,7 @@
         "NEVIL": ["N50d00.00", "W00d22.10"],
         "NEXOX": ["N51d15.02", "E00d11.63"],
         "NIGIT": ["N51d18.78", "W01d10.25"],
+        "NOVMA": ["N51d02.20", "W00d45.25"],
         "ODVIK": ["N51d09.95", "E00d29.15"],
         "OLEVI": ["N51d11.29", "E00d06.19"],
         "OSPOL": ["N50d09.00", "W00d11.13"],
@@ -475,6 +490,34 @@
                 ["KKW04", "KKS06", "KKS09", "KKS14", "MAY", "KKS36", "DET", "DAGGA", "CLN"]
             ]
         },
+        "DAGGA1M": {
+            "icao": "DAGGA1M",
+            "name": "Dagga One Mike",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": ["^_RWY26LIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A50-"], ["MAY", "A50"], ["TIGER", "A50"], "DET", "DAGGA", ["CLN", "A50"]],
+            "exitPoints": {
+                "CLN": []
+            },
+            "draw": [
+                ["_RWY26LIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "TIGER", "DET", "DAGGA", "CLN"]
+            ]
+        },
+        "DAGGA1V": {
+            "icao": "DAGGA1V",
+            "name": "Dagga One Victor",
+            "rwy": {
+                "EGKK26R": []
+            },
+            "body": ["^_RWY26RIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A50-"], ["MAY", "A50"], ["TIGER", "A50"], "DET", "DAGGA", ["CLN", "A50"]],
+            "exitPoints": {
+                "CLN": []
+            },
+            "draw": [
+                ["_RWY26RIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "TIGER", "DET", "DAGGA", "CLN"]
+            ]
+        },
         "DVR2P": {
             "icao": "DVR2P",
             "name": "Dover Two Papa",
@@ -635,12 +678,12 @@
             "rwy": {
                 "EGKK08R": []
             },
-            "body": ["^_RWY08RIGG3DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], "_SAM067020", "_GWC328022", ["KENET", "A40"]],
+            "body": ["^_RWY08RIGG03DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], "_SAM067020", "_GWC328022", ["KENET", "A40"]],
             "exitPoints": {
                 "KENET": []
             },
             "draw": [
-                ["_RWY08RIGG3DME", "_DET261026", "_DET261036", "_DET261043", "_SAM067020", "_GWC328022", "KENET"]
+                ["_RWY08RIGG03DME", "_DET261026", "_DET261036", "_DET261043", "_SAM067020", "_GWC328022", "KENET"]
             ]
         },
         "KENET3W": {
@@ -649,12 +692,12 @@
             "rwy": {
                 "EGKK08L": []
             },
-            "body": ["^_RWY08LIGG3DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], "_SAM067020", "_GWC328022", ["KENET", "A40"]],
+            "body": ["^_RWY08LIGG03DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], "_SAM067020", "_GWC328022", ["KENET", "A40"]],
             "exitPoints": {
                 "KENET": []
             },
             "draw": [
-                ["_RWY08LIGG3DME", "_DET261026", "_DET261036", "_DET261043", "_SAM067020", "_GWC328022", "KENET"]
+                ["_RWY08LIGG03DME", "_DET261026", "_DET261036", "_DET261043", "_SAM067020", "_GWC328022", "KENET"]
             ]
         },
         "LAM1Z": {
@@ -701,6 +744,20 @@
                 ["_RWY26LIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_DET259011", "_LAM157020", "_LAM157015", "_LAM157010", "LAM"]
             ]
         },
+        "LAM5P": {
+            "icao": "LAM5P",
+            "name": "Lambourne Five Papa",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": ["^_RWY08RIGG03.5DME", "_DET260020", ["ACORN", "A50"], "_DET260010", ["_LAM157015", "A50"], ["_LAM157010", "A60"], ["LAM", "A60"]],
+            "exitPoints": {
+                "LAM": []
+            },
+            "draw": [
+                ["_RWY08RIGG03.5DME", "_DET260020", "ACORN", "_DET260010", "_LAM157015", "_LAM157010", "LAM"]
+            ]
+        },
         "LAM5V": {
             "icao": "LAM5V",
             "name": "Lambourne Five Victor",
@@ -713,6 +770,20 @@
             },
             "draw": [
                 ["_RWY26RIWW02.3DME", "_DET259033", "_DET259031", "_DET259029", "NEXOX", "_DET259011", "_LAM157020", "_LAM157015", "_LAM157010", "LAM"]
+            ]
+        },
+        "LAM5W": {
+            "icao": "LAM5W",
+            "name": "Lambourne Five Whiskey",
+            "rwy": {
+                "EGKK08L": []
+            },
+            "body": ["^_RWY08LIGG03.5DME", "_DET260020", ["ACORN", "A50"], "_DET260010", ["_LAM157015", "A50"], ["_LAM157010", "A60"], ["LAM", "A60"]],
+            "exitPoints": {
+                "LAM": []
+            },
+            "draw": [
+                ["_RWY08LIGG03.5DME", "_DET260020", "ACORN", "_DET260010", "_LAM157015", "_LAM157010", "LAM"]
             ]
         },
         "NOVMA1M": {
@@ -778,12 +849,12 @@
             "rwy": {
                 "EGKK08R": []
             },
-            "body": ["^_RWY08RIGG3DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], ["SAM", "A40"]],
+            "body": ["^_RWY08RIGG03DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], ["SAM", "A40"]],
             "exitPoints": {
                 "SAM": []
             },
             "draw": [
-                ["_RWY08RIGG3DME", "_DET261026", "_DET261036", "_DET261043", "SAM"]
+                ["_RWY08RIGG03DME", "_DET261026", "_DET261036", "_DET261043", "SAM"]
             ]
         },
         "SAM3W": {
@@ -792,12 +863,12 @@
             "rwy": {
                 "EGKK08L": []
             },
-            "body": ["^_RWY08LIGG3DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], ["SAM", "A40"]],
+            "body": ["^_RWY08LIGG03DME", ["_DET261026", "A25+|A30-"], ["_DET261036", "A30"], ["_DET261043", "A40"], ["SAM", "A40"]],
             "exitPoints": {
                 "SAM": []
             },
             "draw": [
-                ["_RWY08LIGG3DME", "_DET261026", "_DET261036", "_DET261043", "SAM"]
+                ["_RWY08LIGG03DME", "_DET261026", "_DET261036", "_DET261043", "SAM"]
             ]
         },
         "SFD1X": {
@@ -873,6 +944,34 @@
                 ["_RWY26RIWW06.8DME", "_SFD312025", "_SFD312018", "_SFD312016", "SFD"]
             ]
         },
+        "SFD9P": {
+            "icao": "SFD9P",
+            "name": "Seaford Niner Papa",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": ["^_RWY08RIGG02.5DME", ["_SFD344021", "A20+|A60-"], ["_SFD344017", "A30+|A60-"], ["_SFD344013", "A50+|A60-"], ["_SFD344007", "A60"], ["SFD", "A60"]],
+            "exitPoints": {
+                "SFD": []
+            },
+            "draw": [
+                ["_RWY08RIGG02.5DME", "_SFD344021", "_SFD344017", "_SFD344013", "_SFD344007", "SFD"]
+            ]
+        },
+        "SFD9W": {
+            "icao": "SFD9W",
+            "name": "Seaford Niner Whiskey",
+            "rwy": {
+                "EGKK08R": []
+            },
+            "body": ["^_RWY08LIGG02.5DME", ["_SFD344021", "A20+|A60-"], ["_SFD344017", "A30+|A60-"], ["_SFD344013", "A50+|A60-"], ["_SFD344007", "A60"], ["SFD", "A60"]],
+            "exitPoints": {
+                "SFD": []
+            },
+            "draw": [
+                ["_RWY08LIGG02.5DME", "_SFD344021", "_SFD344017", "_SFD344013", "_SFD344007", "SFD"]
+            ]
+        },
         "TIGER1X": {
             "icao": "TIGER1X",
             "name": "Tiger One X-Ray",
@@ -887,6 +986,34 @@
                 ["KKS36", "LAM"]
             ]
         },
+        "TIGER3M": {
+            "icao": "TIGER3M",
+            "name": "Tiger Three Mike",
+            "rwy": {
+                "EGKK26L": []
+            },
+            "body": ["^_RWY26LIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A50-"], ["MAY", "A50"], ["TIGER", "A50"], ["LAM", "A50"]],
+            "exitPoints": {
+                "LAM": []
+            },
+            "draw": [
+                ["_RWY26LIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "TIGER", "LAM"]
+            ]
+        },
+        "TIGER3V": {
+            "icao": "TIGER3V",
+            "name": "Tiger Three Victor",
+            "rwy": {
+                "EGKK26R": []
+            },
+            "body": ["^_RWY26RIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A50-"], ["MAY", "A50"], ["TIGER", "A50"], ["LAM", "A50"]],
+            "exitPoints": {
+                "LAM": []
+            },
+            "draw": [
+                ["_RWY26RIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "TIGER", "LAM"]
+            ]
+        },
         "WIZAD1X": {
             "icao": "WIZAD1X",
             "name": "Wizad One X-Ray",
@@ -899,6 +1026,34 @@
             },
             "draw": [
                 ["MAY", "KKS33", "WIZAD"]
+            ]
+        },
+        "WIZAD4M": {
+            "icao": "WIZAD4M",
+            "name": "Wizad Four Mike",
+            "rwy": {
+                "EGKK26L": ["^_RWY26LIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A60-"], ["MAY", "A50+|A60-"], ["_DVR259035", "A60"], ["WIZAD", "A60"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "WIZAD": []
+            },
+            "draw": [
+                ["_RWY26LIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "_DVR259035", "WIZAD"]
+            ]
+        },
+        "WIZAD4V": {
+            "icao": "WIZAD4V",
+            "name": "Wizad Four Victor",
+            "rwy": {
+                "EGKK26R": ["^_RWY26RIWW02.3DME", "_MAY284013", ["_MAY284009", "A30+|A60-"], ["MAY", "A50+|A60-"], ["_DVR259035", "A60"], ["WIZAD", "A60"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "WIZAD": []
+            },
+            "draw": [
+                ["_RWY26RIWW02.3DME", "_MAY284013", "_MAY284009", "MAY", "_DVR259035", "WIZAD"]
             ]
         }
     },
