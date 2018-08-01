@@ -1,3 +1,22 @@
+# 6.5.0 (September 1, 2018)
+### New Features
+
+
+
+
+
+### Bugfixes
+
+
+
+
+
+### Enhancements & Refactors
+
+
+
+
+
 # 6.4.0 (August 1, 2018)
 ### New Features
 - [#403](https://github.com/openscope/openscope/issues/403) - Add Flughafen Düsseldorf (Düsseldorf Airport, EDDL)
