@@ -192,6 +192,30 @@ ava('.hasExit() returns true when the specified exit is valid for the procedure'
     t.true(result);
 });
 
+ava('.isSid() returns false when this procedure is not a SID', (t) => {
+    const model = new ProcedureModel(PROCEDURE_TYPE.STAR, STAR_MOCK.KEPEC1);
+
+    t.false(model.isSid());
+});
+
+ava('.isSid() returns true when this procedure is a SID', (t) => {
+    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+
+    t.true(model.isSid());
+});
+
+ava('.isStar() returns false when this procedure is not a STAR', (t) => {
+    const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
+
+    t.false(model.isStar());
+});
+
+ava('.isStar() returns true when this procedure is a STAR', (t) => {
+    const model = new ProcedureModel(PROCEDURE_TYPE.STAR, STAR_MOCK.KEPEC1);
+
+    t.true(model.isStar());
+});
+
 ava('._getFixNameFromRestrictedFixArray() returns undefined when provided a vector waypoint name', (t) => {
     const model = new ProcedureModel(PROCEDURE_TYPE.SID, SID_MOCK.BOACH6);
     const result = model._getFixNameFromRestrictedFixArray('#123');

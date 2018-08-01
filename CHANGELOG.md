@@ -1,3 +1,24 @@
+# 6.4.0 (August 1, 2018)
+### New Features
+- [#403](https://github.com/openscope/openscope/issues/403) - Add Flughafen Düsseldorf (Düsseldorf Airport, EDDL)
+
+### Bugfixes
+- [#1018](https://github.com/openscope/openscope/issues/1018) - Fix "leaving airspace without proper clearance" bug at KSEA
+- [#915](https://github.com/openscope/openscope/issues/915) - Change passing/diverging separation logic to use assigned heading, not ground track heading
+- [#38](https://github.com/openscope/openscope/issues/38) - Fix issues with localizer interception
+    - prevents aircraft from spinning in circles (in most cases we're seeing)
+    - ensures descents below assigned altitude do not begin until established on the localizer
+    - penalizes localizer interception above glideslope
+    - triggers go-arounds at final approach fix if not established on both localizer and glideslope
+- [#1030](https://github.com/openscope/openscope/issues/1030) - Fix background color of options menu dropdowns
+
+### Enhancements & Refactors
+- [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
+- [#1023](https://github.com/openscope/openscope/issues/1023) - Standardize `openScope` capitalization
+- [#949](https://github.com/openscope/openscope/issues/949) - Keep video map clearly visible at all zoom levels
+- [#1000](https://github.com/openscope/openscope/issues/1000) - Increase max width of airport selection dialog to permit longer airport names
+
+
 # 6.3.0 (July 1, 2018)
 ### New Features
 - [#272](https://github.com/openscope/openscope/issues/272) - Add Cincinnati/Northern Kentucky International Airport (KCVG)

@@ -4,7 +4,7 @@
 [![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
 
-## OpenScope Air Traffic Control Simulator
+## openScope Air Traffic Control Simulator
 
 Visit http://openscope.co to begin playing now!
 

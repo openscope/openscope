@@ -95,10 +95,12 @@
         "EPH"  : ["N47d22.68", "W119d25.44"],
         "ERAVE": ["N46d54.58", "W123d24.10"],
         "EUG"  : ["N44d07.25", "W123d13.37"],
+        "FAMUK": ["N44d30.00", "W123d08.15"],
         "FEPOT": ["N47d04.85", "W123d13.13"],
         "FINKA": ["N47d32.32", "W122d19.03"],
         "FOOTT": ["N46d54.82", "W122d34.37"],
         "FOURT": ["N47d17.87", "W122d29.05"],
+        "FRFLY": ["N42d28.84", "W123d03.94"],
         "GEG"  : ["N47d33.90", "W117d37.61"],
         "GIGHR": ["N47d21.66", "W122d34.95"],
         "GIRTE": ["N47d17.06", "W122d33.10"],
@@ -281,7 +283,8 @@
     ],
     "airways": {
         "J70": ["HQM", "ELMAA", "SEA", "NORMY", "BLUIT", "EPH", "MLP"],
-        "J523": ["TOU", "ARRIE", "SEA", "WANTA", "LTJ", "IMB"]
+        "J523": ["TOU", "ARRIE", "SEA", "WANTA", "LTJ", "IMB"],
+        "Q3": ["FEPOT", "FAMUK", "FRFLY"]
     },
     "sids": {
         "ATOME2": {
@@ -806,7 +809,7 @@
             "origin": "ksea",
             "destination": "",
             "category": "departure",
-            "route": "KSEA16L.HAROB6.FEPOT",
+            "route": "KSEA16L.HAROB6.FEPOT.Q3.FAMUK",
             "altitude": "",
             "speed": "",
             "method": "random",

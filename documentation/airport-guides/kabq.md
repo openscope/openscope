@@ -20,13 +20,13 @@ Most procedures for KABQ are RNAV, so controllers only need to vector arriving a
 
 Non-RNAV departures apply to all runways.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 N - North Approach
 S - South Approach
 F - Final Approach
 ```
-The airspace available in Openscope is a combination of these 3 sectors.
+The airspace available in openscope is a combination of these 3 sectors.
 
 ### Airports of Interest
 
