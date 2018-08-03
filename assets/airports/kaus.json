@@ -555,7 +555,7 @@
         "origin": "KAUS",
         "destination": "KAUS",
         "category": "departure",
-        "route": "KAUS17L.GAROUTE1.RRTOO",
+        "route": "KAUS17L.GAROUTE1.DDTOO",
         "altitude": "",
         "speed": "",
         "method": "random",
