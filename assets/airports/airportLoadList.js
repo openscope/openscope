@@ -87,12 +87,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Flughafen Düsseldorf',
             premium: false
         },
-        // {
-        //     icao: 'eddm',
-        //     level: 'hard',
-        //     name: 'Franz Josef Strauß International Airport',
-        //     premium: false
-        // },
+        {
+            icao: 'eddm',
+            level: 'hard',
+            name: 'Flughafen München',
+            premium: false
+        },
         // {
         //     icao: 'eddt',
         //     level: 'medium',
