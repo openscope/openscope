@@ -1,6 +1,8 @@
+import _ceil from 'lodash/ceil';
 import _defaultTo from 'lodash/defaultTo';
 import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
+import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
@@ -225,28 +227,6 @@ export default class AircraftModel {
          * @default 0
          */
         this.takeoffTime = 0;
-
-        // TODO: This value is never actually updated; it should update or be removed
-        /**
-         * Distance laterally from the approach path
-         *
-         * @for AircraftModel
-         * @property approachOffset
-         * @type {number}
-         * @default 0
-         */
-        this.approachOffset = 0;
-
-        // TODO: This value is never actually updated; it should update or be removed
-        /**
-         * Distance longitudinally from the threshold
-         *
-         * @for AircraftModel
-         * @property approachDistance
-         * @type {number}
-         * @default 0
-         */
-        this.approachDistance = 0;
 
         /**
          * Azimuth from airport center to aircraft, in radians
@@ -705,9 +685,7 @@ export default class AircraftModel {
      * @return {string}
      */
     getCallsign() {
-        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
-        // flightnumber and visa versa. this needs to be ironed out first before making an instance property.
-        return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
+        return this.callsign.toUpperCase();
     }
 
     /**
@@ -794,28 +772,34 @@ export default class AircraftModel {
     }
 
     /**
+     * Abort the landing attempt, and fly present heading, climbing to the minimum safe altitude
+     *
      * @for AircraftModel
      * @method cancelLanding
      */
     cancelLanding() {
-        // TODO: add fms.clearRunwayAssignment()?
-        this.setFlightPhase(FLIGHT_PHASE.CRUISE);
-
-        return true;
-    }
-
-    // TODO: is this method still in use?
-    /**
-     * @for AircraftModel
-     * @method pushHistory
-     */
-    pushHistory() {
-        // TODO: this should use just positionModel.relativePosition
-        this.history.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1]]);
-
-        if (this.history.length > 10) {
-            this.history.splice(0, this.history.length - 10);
+        if (this.projected) {
+            return;
         }
+
+        const missedApproachAltitude = _ceil(this.fms.arrivalRunwayModel.elevation + 2000, -3);
+        const nextIfrAltitudeBelow = _floor(this.altitude, -3);
+        let nextAltitudeToMaintain = missedApproachAltitude;
+        let radioMessage = `going missed approach, present heading, climbing to ${missedApproachAltitude}`;
+
+        if (nextIfrAltitudeBelow >= missedApproachAltitude) {
+            nextAltitudeToMaintain = nextIfrAltitudeBelow;
+            radioMessage = `going missed approach, present heading, leveling at ${nextIfrAltitudeBelow}`;
+        }
+
+        this.pilot.hasApproachClearance = false;
+
+        this.mcp.setAltitudeFieldValue(nextAltitudeToMaintain);
+        this.mcp.setAltitudeHold();
+        this.mcp.setHeadingFieldValue(this.heading);
+        this.mcp.setHeadingHold();
+        this.setFlightPhase(FLIGHT_PHASE.DESCENT);
+        this.radioCall(radioMessage, AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
     }
 
     /**
@@ -900,7 +884,23 @@ export default class AircraftModel {
     }
 
     /**
-     * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
+     * Returns whether aircraft is above the glidepath at (or abeam) their current position
+     *
+     * Note that a small allowance is applied here to still be considered "on or below"
+     *
+     * @for AircraftModel
+     * @method isAboveGlidepath
+     * @return {boolean}
+     */
+    isAboveGlidepath() {
+        const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
+        const altitudeDifference = glideslopeAltitude - this.altitude;
+
+        return altitudeDifference < -PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
+    }
+
+    /**
+     * Aircraft is established on the course tuned into the nav radio and course
      *
      * @for AircraftModel
      * @method isEstablishedOnCourse
@@ -915,6 +915,8 @@ export default class AircraftModel {
 
         // TODO: the `this` here is ugly, but will be needed until `getOffset`
         // is refactored (#291 - https://github.com/openscope/openscope/issues/291)
+        // TODO: The methods called here should be moved to the AircraftModel,
+        // so that it can also be used for non-runway course interception
         return runwayModel.isOnApproachCourse(this) && runwayModel.isOnCorrectApproachHeading(this.heading);
 
         // TODO: Use this instead
@@ -929,6 +931,22 @@ export default class AircraftModel {
         // return isAlignedWithCourse && isOnCourseHeading;
     }
 
+    /**
+     * Aircraft is established on the glidepath
+     *
+     * Note that this is currently only usable for runway glideslopes, but should eventually
+     * be elaborated upon to support other types of glidepaths (such as those from FMS VNAV)
+     *
+     * @for AircraftModel
+     * @method isEstablishedOnCourse
+     * @return {boolean}
+     */
+    isEstablishedOnGlidepath() {
+        const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
+
+        return abs(glideslopeAltitude - this.altitude) <= PERFORMANCE.MAXIMUM_ALTITUDE_DIFFERENCE_CONSIDERED_ESTABLISHED_ON_GLIDEPATH;
+    }
+
     // TODO: the logic here should be moved to the `AirportModel`
     /**
      * Checks if the aircraft is inside the airspace of a specified airport
@@ -936,8 +954,7 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method isInsideAirspace
      * @param  {airport} airport the airport whose airspace we are checking
-     * @return {Boolean}
-     * @private
+     * @return {boolean}
      */
     isInsideAirspace(airport) {
         let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
@@ -949,6 +966,20 @@ export default class AircraftModel {
         }
 
         return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
+    }
+
+    /**
+     * Returns whether the aircraft is on the approach course and within the final approach fix
+     *
+     * @for AircraftModel
+     * @method isOnFinal
+     * @return {boolean}
+     */
+    isOnFinal() {
+        const approachDistanceNm = this.positionModel.distanceToPosition(this.mcp.nav1Datum);
+        const maxDistanceConsideredOnFinalNm = AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM;
+
+        return this.isEstablishedOnCourse() && approachDistanceNm <= maxDistanceConsideredOnFinalNm;
     }
 
     /**
@@ -1035,6 +1066,27 @@ export default class AircraftModel {
     }
 
     /**
+     * Evaluate the intercept angle and altitude, and issue warnings and penalties as appropriate
+     *
+     * @for AircraftModel
+     * @method judgeLocalizerInterception
+     */
+    judgeLocalizerInterception() {
+        if (this.projected) {
+            return;
+        }
+
+        if (this.isAboveGlidepath()) {
+            this.penalizeLocalizerInterceptAltitude();
+        }
+
+        // TODO: How can we evaluate the intercept angle?
+        // if () {
+        //     this.penalizeLocalizerInterceptAngle();
+        // }
+    }
+
+    /**
      * Sets `#isFlightStripRemovable` to true
      *
      * Provides a single source of change for the value of `#isFlightStripRemovable`
@@ -1097,6 +1149,32 @@ export default class AircraftModel {
     }
 
     /**
+     * Display a waring and record an illegal glideslope intercept event
+     *
+     * @for AircraftModel
+     * @method penalizeLocalizerInterceptAltitude
+     */
+    penalizeLocalizerInterceptAltitude() {
+        const isWarning = true;
+
+        UiController.ui_log(`${this.callsign} intercepted localizer above glideslope`, isWarning);
+        GameController.events_recordNew(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE);
+    }
+
+    /**
+     * Display a waring and record an illegal approach event
+     *
+     * @for AircraftModel
+     * @method penalizeLocalizerInterceptAngle
+     */
+    penalizeLocalizerInterceptAngle() {
+        const isWarning = true;
+
+        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
+        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
+    /**
      * @for AircraftModel
      * @method radioCall
      * @param msg {string}
@@ -1108,15 +1186,15 @@ export default class AircraftModel {
             return;
         }
 
-        // var is unused
-        let call = '';
-        const callsign_L = this.callsign;
-        const callsign_S = this.getRadioCallsign();
+        const writtenCallsign = this.callsign;
+        const spokenCallsign = this.getRadioCallsign();
 
-        if (sectorType) {
-            call += AirportController.airport_get().radio[sectorType];
-        }
-
+        // let call = '';
+        //
+        // if (sectorType) {
+        //     call += AirportController.airport_get().radio[sectorType];
+        // }
+        //
         // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
@@ -1124,14 +1202,14 @@ export default class AircraftModel {
 
         if (alert) {
             const isWarning = true;
-            UiController.ui_log(logMessage(callsign_L), isWarning);
+            UiController.ui_log(logMessage(writtenCallsign), isWarning);
         } else {
-            UiController.ui_log(logMessage(callsign_L));
+            UiController.ui_log(logMessage(writtenCallsign));
         }
 
         speech_say([{
             type: 'text',
-            content: logMessage(callsign_S)
+            content: logMessage(spokenCallsign)
         }]);
     }
 
@@ -1209,7 +1287,6 @@ export default class AircraftModel {
         return score;
     }
 
-    /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv THESE SHOULD STAY vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
     /**
      * Update the aircraft's targeted telemetry (altitude, heading, and speed)
      *
@@ -1386,16 +1463,25 @@ export default class AircraftModel {
                 break;
 
             case FLIGHT_PHASE.DESCENT:
-                if (this.pilot.hasApproachClearance) {
+                if (this.pilot.hasApproachClearance && this.isEstablishedOnCourse()) {
+                    this.judgeLocalizerInterception();
                     this.setFlightPhase(FLIGHT_PHASE.APPROACH);
                 }
 
                 break;
 
             case FLIGHT_PHASE.APPROACH: {
-                if (this.positionModel.distanceToPosition(this.mcp.nav1Datum) < AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM) {
-                    this.setFlightPhase(FLIGHT_PHASE.LANDING);
+                if (!this.isOnFinal()) {
+                    break;
                 }
+
+                if (!this.isEstablishedOnGlidepath()) {
+                    this.cancelLanding();
+
+                    break;
+                }
+
+                this.setFlightPhase(FLIGHT_PHASE.LANDING);
 
                 break;
             }
@@ -1407,6 +1493,22 @@ export default class AircraftModel {
                 break;
 
         }
+    }
+
+    /**
+     * Calculate the glideslope altitude abeam the current position for the expected landing runway
+     *
+     * @for AircraftModel
+     * @method _calculateArrivalRunwayModelGlideslopeAltitude
+     * @private
+     */
+    _calculateArrivalRunwayModelGlideslopeAltitude() {
+        const runwayModel = this.fms.arrivalRunwayModel;
+        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
+        const distanceOnFinalKm = offset[1];
+        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
+
+        return glideslopeAltitude;
     }
 
     /**
@@ -1437,7 +1539,6 @@ export default class AircraftModel {
             }
 
             case MCP_MODE.HEADING.VOR_LOC:
-                // TODO: fill out this function
                 return this._calculateTargetedHeadingToInterceptCourse();
 
             default:
@@ -1568,11 +1669,12 @@ export default class AircraftModel {
         // const glideslopeAltitude = glideDatum.elevation + (slope * (distanceFromDatum_ft));
         // const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
 
+        if (!this.isEstablishedOnCourse()) {
+            return this.mcp.altitude;
+        }
+
         // ILS SPECIFIC CODE
-        const runwayModel = this.fms.arrivalRunwayModel;
-        const offset = getOffset(this, runwayModel.relativePosition, runwayModel.angle);
-        const distanceOnFinalKm = offset[1];
-        const glideslopeAltitude = runwayModel.getGlideslopeAltitude(distanceOnFinalKm);
+        const glideslopeAltitude = this._calculateArrivalRunwayModelGlideslopeAltitude();
         const altitudeToTarget = Math.min(this.mcp.altitude, glideslopeAltitude);
 
         return altitudeToTarget;
@@ -1603,18 +1705,20 @@ export default class AircraftModel {
         const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
         const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
-        // TODO: this logic is confusing, simplify
-        if (!(shouldAttemptIntercept || inTheWindow)) {
+        if (!shouldAttemptIntercept && !inTheWindow) {
             return this.mcp.heading;
         }
+        // continue if shouldAttemptIntercept OR inTheWindow
 
-        const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+        const severity_of_correction = 20;  // controls steepness of heading adjustments during localizer tracking
         let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
         const minimumInterceptAngle = degreesToRadians(10);
         const isAlignedWithCourse = abs(lateralDistanceFromCourseNm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
 
         // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
-        if (isAlignedWithCourse) {
+        if (inTheWindow || isAlignedWithCourse) {
+            this.target.turn = null;
+
             return course + interceptAngle;
         }
 
@@ -1631,43 +1735,6 @@ export default class AircraftModel {
 
             return headingToFly;
         }
-    }
-    /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
-
-    /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
-    /**
-     * Cancels the landing and disaply message
-     *
-     * @for AircraftModel
-     * @method updateLandingFailedLanding
-     */
-    updateLandingFailedLanding() {
-        // Failed Approach
-        if ((this.approachDistance > 0.100) && (!this.projected)) {
-            this.cancelLanding();
-
-            const isWarning = true;
-            // TODO: Should be moved to where the output is handled
-            GameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            UiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
-
-            speech_say([
-                { type: 'callsign', content: this },
-                { type: 'text', content: ' going around' }
-            ]);
-        }
-    }
-
-    /**
-     * This will display a waring and record an illegal approach event
-     * @for AircraftModel
-     * @method warnInterceptAngle
-     */
-    warnInterceptAngle() {
-        const isWarning = true;
-
-        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
-        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     /**
@@ -1767,9 +1834,6 @@ export default class AircraftModel {
 
         // TODO: add distance based hold
     }
-    /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
-
-    /* vvvvvvv THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS vvvvvvv */
 
     /**
      * Calculates the altitude for a landing aircraft
@@ -1973,7 +2037,6 @@ export default class AircraftModel {
 
         return Math.min(waypointMaximumSpeed, this.mcp.speed);
     }
-    /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
@@ -2348,7 +2411,6 @@ export default class AircraftModel {
 
             for (const id in curr_ranges) {
                 curr_ranges[id] -= this.groundSpeed;
-                // console.log(curr_ranges[id]);
 
                 if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
                     area = terrain[ele][id];
@@ -2360,7 +2422,6 @@ export default class AircraftModel {
                         if (!this.hit) {
                             this.hit = true;
 
-                            console.log('hit terrain');
                             const isWarning = true;
                             UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
@@ -2372,7 +2433,6 @@ export default class AircraftModel {
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);
-                        // console.log(this.callsign, 'in', curr_ranges[id], 'km from', id, area[0].length);
                     }
                 }
             }

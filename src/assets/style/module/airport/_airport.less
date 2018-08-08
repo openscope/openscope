@@ -1,11 +1,11 @@
 /* TODO: this rule should be moved to a class instead of ID */
 /* TODO: this rule should be broken up into several other rules */
 #airport-switch {
+    width: fit-content;
     height: auto;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(85% - 2.3em - 20px)";
-    width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
     padding: 0px 10px 0px 10px;
     position: absolute;
@@ -42,7 +42,6 @@
 
 .airport-list {
     width: 100%;
-    max-width: 500px;
     height: auto;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(100% - 2.3em - 32px)";

@@ -12,7 +12,7 @@ Baltimore/Washington International Thurgood Marshall Airport is 9 miles south of
 Chesapeake (CHP) covers Baltimore and the northern area of the PCT.
 
 ##### Richmond International Airport (KRIC, RIC)
-Richmond International Airport is the smallest of the four major airports within the Potomac Consolidated TRACON, 7 miles southeast of downtown Richmond. During 2015-2016 it handled 3,818,759 passengers across 10,073 aircraft movements. 
+Richmond International Airport is the smallest of the four major airports within the Potomac Consolidated TRACON, 7 miles southeast of downtown Richmond. During 2015-2016 it handled 3,818,759 passengers across 10,073 aircraft movements.
 
 The area of the PCT which covers Richmond is the James River (JRV) area, which also covers the southern area of the PCT.
 
@@ -27,27 +27,27 @@ In an effort to send more air traffic to the larger Washington Dulles Airport, f
 
 There are no international routes from DCA; the only international flights that go to DCA are business jets that must depart from US Customs and Border Protection pre-clearance facilities.
 
-The airport is known by many pilots for its River Visual procedure for runway 19 which requires at least 3 statute miles of visibility. It uses the Potomac River and various bridges including the Roosevelt Bridge, Memorial Bridge, Rochambeau Bridge and more. 
+The airport is known by many pilots for its River Visual procedure for runway 19 which requires at least 3 statute miles of visibility. It uses the Potomac River and various bridges including the Roosevelt Bridge, Memorial Bridge, Rochambeau Bridge and more.
 
 ### Mount Vernon Area
 The Mount Vernon Area is the part of the Potomac PCT which mainly covers DCA. The airspace is relatively large, so [here is a diagram](https://image.prntscr.com/image/fRaW9wieSJ_Ibi9KRix4Kg.png) of the airspace that Mount Vernon owns.
 
 ### Instrument Procedures
 ##### Departures
-DCA has various instrument departures which are all available for usage in OpenScope. The only departure which is not assigned automatically is the National Seven departure as it is rarely used.
+DCA has various instrument departures which are all available for usage in openScope. The only departure which is not assigned automatically is the National Seven departure as it is rarely used.
 
 Washington National has very strict noise restrictions, however security is the number one priority. The areas around the National Mall and US Naval Observatory are both prohibited airspace with a ceiling of 18,000ft. This means that aircraft departing to the North must climb quickly and sharply turn left.
 
 ##### Arrivals
-There are 9 Standard Terminal Arrival Routes into Reagan National Airport. 
+There are 9 Standard Terminal Arrival Routes into Reagan National Airport.
 
-Unfortunately it isn't possible to simulate the RIVER 3 approach for runway 19; runway 01 is preferred for departure and arrival in OpenScope.
+Unfortunately it isn't possible to simulate the RIVER 3 approach for runway 19; runway 01 is preferred for departure and arrival in openScope.
 
 There are various restrictions along the arrivals for DCA, pilots are expected to descend to meet those instructions when they are cleared to "descend via the STAR".
 
 It's also worth looking at fix names for a few of the STARs such as the FRDMM3, NUMMY2 and TRUPS3 arrivals which were introduced to honour those who died in the September 11th attacks.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Potomac Approach (OJAAY Sector, feeder)
 Potomac Approach (DCA East Arrival)
@@ -93,7 +93,7 @@ Using agency. U.S. Marine Corps, Commanding General, Marine Corps Base, Quantico
 ##### Washington Dulles International Airport
 Washington Dulles is controlled by the Potomac TRACON but not directly controlled by the Mount Vernon Sector. For more details about KIAD, go to the top of this guide.
 
-##### Washington Executive Airport / Hyde Field 
+##### Washington Executive Airport / Hyde Field
 Washington Executive Airpark is a general aviation airport 2 miles southwest of Clinton's central business district in Maryland. It is just 1nm east of Potomac Airfield. It is subject to the Special Flight Rules Area restrictions which were introduced by the FAA after the September 11 attacks.
 
 Runway 5/23, 3000ft, Asphalt
@@ -104,12 +104,12 @@ Potomac Airfield is a public-use airport within Fort Washington. It is also subj
 Runway 6/24, 2665ft, Asphalt
 
 ##### Davison Army Airfield
-Davison AAF is an airport for military use in Fort Belvoir. The airfield provided support between 1957 and 1976 for "Army One", the callsign of a US Army Aircraft carrying the United States president. 
+Davison AAF is an airport for military use in Fort Belvoir. The airfield provided support between 1957 and 1976 for "Army One", the callsign of a US Army Aircraft carrying the United States president.
 
 Runway 14/32, 5618ft, Asphalt
 
 ##### Manassas Regional Airport
-KHEF is a public airport located 30 miles west of Washington D.C and 7km southwest of the CBD of Manassas. There were 85,000 aircraft operations here in 2010-2011. 
+KHEF is a public airport located 30 miles west of Washington D.C and 7km southwest of the CBD of Manassas. There were 85,000 aircraft operations here in 2010-2011.
 
 Runway 16L/34R, 6200ft, Asphalt
 Runway 16R/34L, 3704ft, Asphalt

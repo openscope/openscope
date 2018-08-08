@@ -14,7 +14,7 @@ Of unique note here is the location of Boeing Field (KBFI), which is less than 5
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft are still manually vectored to the final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. Currently still in search of information on S46 sectorization._
 ```
 F - final  (default)

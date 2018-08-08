@@ -53,7 +53,6 @@ export const choose_weight = (l) => {
         }
     }
 
-    console.log('OHSHIT');
 
     return null;
 };
@@ -74,4 +73,4 @@ export const leftPad = (value, length) => {
     const x = `0000000000000${value}`;
 
     return x.substr(x.length - length, length);
-}
+};

@@ -1,7 +1,7 @@
 ## Processes of Each Sprint
 **Note**: In order to complete all of the steps below a user will need:
-- to be a member of the `openscope-admins` team within the Openscope team on GitHub
-- have access to the openscope pipeline on Heroku
+- to be a member of the `openscope-admins` team within the openScope team on GitHub
+- have access to the openScope pipeline on Heroku
 
 Each sprint is considered to progress through these three phases. Further details about each phase can be found in the sections below. The development phase lasts the majority of the sprint, with the first two days of the sprint being reserved to the initialization phase, and the last three being reserved to the testing phase.
 

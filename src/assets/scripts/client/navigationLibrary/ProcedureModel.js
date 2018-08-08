@@ -347,12 +347,24 @@ export default class ProcedureModel {
         return exitName in this._exitPoints;
     }
 
-    // FIXME: docblocks, test
+    /**
+     * Returns whether this procedure is a SID
+     *
+     * @for ProcedureModel
+     * @method isSid
+     * @return {Boolean}
+     */
     isSid() {
         return this._procedureType === PROCEDURE_TYPE.SID;
     }
 
-    // FIXME: docblocks, test
+    /**
+     * Returns whether this procedure is a STAR
+     *
+     * @for ProcedureModel
+     * @method isStar
+     * @return {Boolean}
+     */
     isStar() {
         return this._procedureType === PROCEDURE_TYPE.STAR;
     }

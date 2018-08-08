@@ -2,7 +2,7 @@ import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-// FIXME: Fix and start using the model source factory again!
+// TODO: Start using the model source factory again!
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../base/BaseCollection';
 import FixModel from './FixModel';

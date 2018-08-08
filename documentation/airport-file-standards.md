@@ -7,7 +7,7 @@ This document serves as a checklist for airport contributors to review to ensure
 
 If you ever need help working on an airport, the best place to go is the [openScope Slack](https://openscopeatc.slack.com) ([click here if you need an invite](http://slack.openscope.co)). There is always somebody available, and many who will be glad to walk you through anything you may need help with.
 
-If you have not contributed before, please note that we will need to add you to the organization so you can keep your branch _directly_ on the openscope repository. We do all branching and pull requests internally like this, instead of using forks. Join slack and request to be invited to the openScope team by `@erikquinn`.
+If you have not contributed before, please note that we will need to add you to the organization so you can keep your branch _directly_ on the openScope repository. We do all branching and pull requests internally like this, instead of using forks. Join slack and request to be invited to the openScope team by `@erikquinn`.
 
 ---
 
