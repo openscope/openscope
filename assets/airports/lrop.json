@@ -66,58 +66,6 @@
     ],
     "restricted": [
         {
-            "name": "LRR3 - Bucharest",
-            "height": "10500ft",
-            "coordinates": [
-                ["N44d30m25.000", "E26d14m00.000"],
-                ["N44d27m20.000", "E25d58m30.000"],
-                ["N44d21m00.000", "E26d04m00.000"],
-                ["N44d21m00.000", "E26d14m00.000"]
-            ]
-        },
-        {
-            "name": "LRR206",
-            "height": "2000ft",
-            "coordinates": [
-                ["N44d40m45.790", "E25d36m32.000"],
-                ["N44d40m43.960", "E25d37m01.250"],
-                ["N44d40m38.560", "E25d37m29.610"],
-                ["N44d40m29.730", "E25d37m56.230"],
-                ["N44d40m17.750", "E25d38m20.270"],
-                ["N44d40m02.970", "E25d38m41.020"],
-                ["N44d39m45.870", "E25d38m57.850"],
-                ["N44d39m26.940", "E25d39m10.240"],
-                ["N44d39m06.770", "E25d39m17.820"],
-                ["N44d38m45.960", "E25d39m20.370"],
-                ["N44d38m25.170", "E25d39m17.790"],
-                ["N44d38m05.000", "E25d39m10.180"],
-                ["N44d37m46.080", "E25d38m57.770"],
-                ["N44d37m28.980", "E25d38m40.930"],
-                ["N44d37m14.220", "E25d38m20.180"],
-                ["N44d37m02.250", "E25d37m56.140"],
-                ["N44d36m53.430", "E25d37m29.550"],
-                ["N44d36m48.030", "E25d37m01.220"],
-                ["N44d36m46.210", "E25d36m32.000"],
-                ["N44d36m48.030", "E25d36m02.780"],
-                ["N44d36m53.430", "E25d35m34.450"],
-                ["N44d37m02.250", "E25d35m07.860"],
-                ["N44d37m14.220", "E25d34m43.820"],
-                ["N44d37m28.980", "E25d34m23.070"],
-                ["N44d37m46.080", "E25d34m06.230"],
-                ["N44d38m05.000", "E25d33m53.820"],
-                ["N44d38m25.170", "E25d33m46.210"],
-                ["N44d38m45.960", "E25d33m43.640"],
-                ["N44d39m06.770", "E25d33m46.180"],
-                ["N44d39m26.940", "E25d33m53.760"],
-                ["N44d39m45.870", "E25d34m06.150"],
-                ["N44d40m02.970", "E25d34m22.980"],
-                ["N44d40m17.750", "E25d34m43.730"],
-                ["N44d40m29.730", "E25d35m07.770"],
-                ["N44d40m38.560", "E25d35m34.390"],
-                ["N44d40m43.960", "E25d36m02.750"]
-            ]
-        },
-        {
             "name": "LRD100 - Clinceni",
             "height": "6000ft",
             "coordinates": [
@@ -198,6 +146,58 @@
                 ["N44d23m40.304", "E25d53m16.319"],
                 ["N44d23m48.751", "E25d53m55.548"],
                 ["N44d23m54.874", "E25d54m35.610"]
+            ]
+        },
+        {
+            "name": "LRR206",
+            "height": "2000ft",
+            "coordinates": [
+                ["N44d40m45.790", "E25d36m32.000"],
+                ["N44d40m43.960", "E25d37m01.250"],
+                ["N44d40m38.560", "E25d37m29.610"],
+                ["N44d40m29.730", "E25d37m56.230"],
+                ["N44d40m17.750", "E25d38m20.270"],
+                ["N44d40m02.970", "E25d38m41.020"],
+                ["N44d39m45.870", "E25d38m57.850"],
+                ["N44d39m26.940", "E25d39m10.240"],
+                ["N44d39m06.770", "E25d39m17.820"],
+                ["N44d38m45.960", "E25d39m20.370"],
+                ["N44d38m25.170", "E25d39m17.790"],
+                ["N44d38m05.000", "E25d39m10.180"],
+                ["N44d37m46.080", "E25d38m57.770"],
+                ["N44d37m28.980", "E25d38m40.930"],
+                ["N44d37m14.220", "E25d38m20.180"],
+                ["N44d37m02.250", "E25d37m56.140"],
+                ["N44d36m53.430", "E25d37m29.550"],
+                ["N44d36m48.030", "E25d37m01.220"],
+                ["N44d36m46.210", "E25d36m32.000"],
+                ["N44d36m48.030", "E25d36m02.780"],
+                ["N44d36m53.430", "E25d35m34.450"],
+                ["N44d37m02.250", "E25d35m07.860"],
+                ["N44d37m14.220", "E25d34m43.820"],
+                ["N44d37m28.980", "E25d34m23.070"],
+                ["N44d37m46.080", "E25d34m06.230"],
+                ["N44d38m05.000", "E25d33m53.820"],
+                ["N44d38m25.170", "E25d33m46.210"],
+                ["N44d38m45.960", "E25d33m43.640"],
+                ["N44d39m06.770", "E25d33m46.180"],
+                ["N44d39m26.940", "E25d33m53.760"],
+                ["N44d39m45.870", "E25d34m06.150"],
+                ["N44d40m02.970", "E25d34m22.980"],
+                ["N44d40m17.750", "E25d34m43.730"],
+                ["N44d40m29.730", "E25d35m07.770"],
+                ["N44d40m38.560", "E25d35m34.390"],
+                ["N44d40m43.960", "E25d36m02.750"]
+            ]
+        },
+        {
+            "name": "LRR3 - Bucharest",
+            "height": "10500ft",
+            "coordinates": [
+                ["N44d30m25.000", "E26d14m00.000"],
+                ["N44d27m20.000", "E25d58m30.000"],
+                ["N44d21m00.000", "E26d04m00.000"],
+                ["N44d21m00.000", "E26d14m00.000"]
             ]
         }
     ],
@@ -394,8 +394,8 @@
             "icao": "BUKEL1M",
             "name": "Bukel One Mike",
             "rwy": {
-                "LROP26L": [["^OP661", "S210-"]],
-                "LROP26R": [["^OP662", "S210-"]]
+                "LROP26L": [["^OP662", "S210-"]],
+                "LROP26R": [["^OP661", "S210-"]]
             },
             "body": [["OP667", "A45+"], "DESUX"],
             "exitPoints": {
@@ -426,8 +426,8 @@
             "icao": "DENAK1M",
             "name": "Denak One Mike",
             "rwy": {
-                "LROP26L": [["^OP661", "S210-"]],
-                "LROP26R": [["^OP662", "S210-"]]
+                "LROP26L": [["^OP662", "S210-"]],
+                "LROP26R": [["^OP661", "S210-"]]
             },
             "body": ["OP667"],
             "exitPoints": {
@@ -458,8 +458,8 @@
             "icao": "IDARU1M",
             "name": "Idaru One Mike",
             "rwy": {
-                "LROP26R": [["^OP662", "S210-"]],
-                "LROP26L": [["^OP661", "S210-"]]
+                "LROP26L": [["^OP662", "S210-"]],
+                "LROP26R": [["^OP661", "S210-"]]
             },
             "body": [["OP667", "S270-"], "ETOGO"],
             "exitPoints": {
@@ -490,8 +490,8 @@
             "icao": "NETUL1M",
             "name": "Netul One Mike",
             "rwy": {
-                "LROP26L": [["^OP661", "S210-"]],
-                "LROP26R": [["^OP662", "S210-"]]
+                "LROP26L": [["^OP662", "S210-"]],
+                "LROP26R": [["^OP661", "S210-"]]
             },
             "body": [["OP667", "S270-"], "ETOGO"],
             "exitPoints": {
@@ -576,8 +576,8 @@
             },
             "body": [["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
             "rwy": {
-                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
-                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
             },
             "draw": [
                 ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
@@ -596,8 +596,8 @@
                 "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
             },
             "draw": [
-                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
-                ["DENAK", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
+                ["DENAK", "OKAGO", "BOGVI", "OP262", "OP261", "LEVTA"],
+                ["DENAK", "OKAGO", "BOGVI", "OP262", "OP261", "RARIT"]
             ]
         },
         "IDARU2U" : {
@@ -608,12 +608,12 @@
             },
             "body": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
             "rwy": {
-                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
-                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
             },
             "draw": [
-                ["IDARU", "DILIM", "OP262", "OP261", "RARIT"],
-                ["IDARU", "DILIM", "OP262", "OP261", "LEVTA"]
+                ["IDARU", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
+                ["IDARU", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
             ]
         },
         "IDARU1X" : {
@@ -640,8 +640,8 @@
             },
             "body": ["DEXIM", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
             "rwy": {
-                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
-                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
             },
             "draw": [
                 ["NETUL", "DEXIM", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
@@ -664,20 +664,20 @@
                 ["NETUL", "DILIM", "OP262", "OP261", "LEVTA"]
             ]
         },
-        "OBUGA1U" : {
-            "icao": "OBUGA1U",
-            "name": "Obuga One Uniform",
+        "OBUGA2U" : {
+            "icao": "OBUGA2U",
+            "name": "Obuga Two Uniform",
             "entryPoints": {
                 "OBUGA": [["OBUGA", "A170-|A110+"]]
             },
-            "body": [["TEVRO", "A70+|S240-"], ["OP083", "S220-"], "OP082", "OP081"],
+            "body": ["TUTIX", ["TEVRO", "A70+|S240-"], ["OP083", "S220-"], "OP082", "OP081"],
             "rwy": {
                 "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
                 "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
             },
             "draw": [
-                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
-                ["OBUGA", "TEVRO", "OP083", "OP082", "OP081", "OBELA"]
+                ["OBUGA", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "DILAS"],
+                ["OBUGA", "TUTIX", "TEVRO", "OP083", "OP082", "OP081", "OBELA"]
             ]
         },
         "OBUGA1X" : {
@@ -704,8 +704,8 @@
             },
             "body": ["TOBAG", ["IPRAS", "A70+"], ["INDOR", "A70+|S240-"], ["OP087", "A70-|S230-"], "OP086", "OP085", ["OP084", "A35+|S220-"], ["OP083", "S220-"], "OP082", "OP081"],
             "rwy": {
-                "LROP08L": [["OBELA", "A25+|S210-"], "_FAF08L", "_THR08L"],
-                "LROP08R": [["DILAS", "A25+|S210-"], "_FAF08R", "_THR08R"]
+                "LROP08L": [["DILAS", "A25+|S210-"], "_FAF08L", "_THR08L"],
+                "LROP08R": [["OBELA", "A25+|S210-"], "_FAF08R", "_THR08R"]
              },
              "draw": [
                   ["OSTAL", "TOBAG", "IPRAS", "INDOR", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "DILAS"],
@@ -776,22 +776,6 @@
                 ["TOSVI", "UVALU", "OP088", "OP087", "OP086", "OP085", "OP084", "OP083", "OP082", "OP081", "OBELA"]
             ]
         },
-        "TOSVI3X" : {
-            "icao": "TOSVI3X",
-            "name": "Tosvi Three Xray",
-            "entryPoints": {
-                "TOSVI": [["TOSVI", "A170-|A110+"]]
-            },
-            "body": [["UVALU", "A70+"], "OP267", ["INDOR", "A70+"], ["OP265", "S230-"], "OP264", ["BOGVI", "A35+|S220-"], "OP262", "OP261"],
-            "rwy": {
-                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
-                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
-            },
-            "draw": [
-                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "LEVTA"],
-                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "RARIT"]
-            ]
-        },
         "TOSVI1R" : {
             "icao": "TOSVI1R",
             "name": "Tosvi One Romeo",
@@ -806,6 +790,22 @@
             "draw": [
                 ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"],
                 ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"]
+            ]
+        },
+        "TOSVI3X" : {
+            "icao": "TOSVI3X",
+            "name": "Tosvi Three Xray",
+            "entryPoints": {
+                "TOSVI": [["TOSVI", "A170-|A110+"]]
+            },
+            "body": [["UVALU", "A70+"], "OP267", ["INDOR", "A70+"], ["OP265", "S230-"], "OP264", ["BOGVI", "A35+|S220-"], "OP262", "OP261"],
+            "rwy": {
+                "LROP26L": [["LEVTA", "A25+|S210-"], "_FAF26L", "_THR26L"],
+                "LROP26R": [["RARIT", "A25+|S210-"], "_FAF26R", "_THR26R"]
+            },
+            "draw": [
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "RARIT"]
             ]
         }
     },
