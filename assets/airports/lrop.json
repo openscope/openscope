@@ -935,7 +935,7 @@
             "origin": "",
             "destination": "LROP",
             "category": "arrival",
-            "route": "BALIK.T777.KOMAN.L622.OBUGA.OBUGA1U.LROP08R",
+            "route": "BALIK.T777.KOMAN.L622.OBUGA.OBUGA2U.LROP08R",
             "altitude": [14000, 17000],
             "speed": 250,
             "method": "random",
