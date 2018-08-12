@@ -1,0 +1,28 @@
+{
+    "icao": "qsm",
+    "name": "Qeshm Airlines",
+    "callsign": {
+        "name": "Queshm Air",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 4],
+            ["A319", 1],
+            ["A320", 2],
+            ["RJ85", 1],
+            ["RJ1H", 5],
+            ["F100", 4],
+            ["F50", 4]
+        ],
+        "a319": [
+            ["A319", 1]
+        ],
+        "rj1h": [
+            ["RJ1H", 5]
+        ]
+    }
+}

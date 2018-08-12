@@ -12,7 +12,7 @@ Class C airspace exists with tops of 4,000 feet over the Portland/Vancouver area
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Most aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final. Aircraft are still manually vectored to the final approach course.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 _To be completed. Currently still in search of information on P80 sectorization._
 ```
 F - final  (default)

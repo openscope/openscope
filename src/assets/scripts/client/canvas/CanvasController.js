@@ -1867,7 +1867,7 @@ export default class CanvasController {
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = CanvasStageModel.scale / 15;
+        cc.lineWidth = Math.max(1, CanvasStageModel.scale / 15);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
@@ -2128,7 +2128,7 @@ export default class CanvasController {
      * @private
      */
     _onToggleStarMap() {
-        console.log('+++', 'STAR maps are not yet implemented');
+        console.warn('+++', 'STAR maps are not yet implemented');
         // this._shouldDrawStarMap = !this._shouldDrawStarMap;
 
         // this._markDeepRender();

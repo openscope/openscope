@@ -1,6 +1,6 @@
 {
     "icao": "syr",
-    "name": "SyrianAir",
+    "name": "Syrian Arab Airlines",
     "callsign": {
         "name": "Syrianair",
         "callsignFormats": [
@@ -18,6 +18,9 @@
             ["AT75", 2]
         ],
         "long": [
+            ["A343", 1]
+        ],
+        "a343": [
             ["A343", 1]
         ]
     }

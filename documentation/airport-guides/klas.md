@@ -12,7 +12,7 @@ Due to nearby Nellis Air Force Base (KLSV), just 11nm north of KLAS, the L30 TRA
 ### Instrument Procedures
 For an American airport, the procedures are fairly automated, with the design of the SIDs and STARs taking a lot of weight off the controllers. Aircraft climb and descend via the procedures, and by design the traffic flow requires minimal intervention other than running the final.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 F - Final  (default)
 D - Dagget Departure (unavailable)

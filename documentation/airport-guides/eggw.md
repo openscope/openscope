@@ -15,7 +15,7 @@ London Luton Airport is an international airport 29 miles north of Central Londo
 All of the airspace controlled by "London Control" is listed in the eAIP for the United Kingdom.
 Chart ENR 6.2.1.11 [from the NATS page](http://www.nats-uk.ead-it.com/public/index.php%3Foption=com_content&task=blogcategory&id=4&Itemid=11.html) from NATS may be useful to you so that you can understand the divisions within the London TMA.
 
-In OpenScope, only the North London Terminal Control Zone is available to control, considering the size of the London TMA.
+In openScope, only the North London Terminal Control Zone is available to control, considering the size of the London TMA.
 File 'TC North 2016_09.pdf' from within [this zip file from VATSIM UK](https://vatsim.uk/download/info/?downloadID=00200) may be of use to visualise TC North.
 
 ### Standard Operating Procedures
@@ -37,7 +37,7 @@ Further to this, when the Brookmans Park VOR is inoperable, ASKEY STARs should b
 
 Some arrivals are shared with Stansted and Cambridge; most notably the ABBOT STARs.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 London Control
 Essex Radar

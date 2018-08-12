@@ -1,0 +1,18 @@
+{
+    "icao": "oms",
+    "name": "Salamair",
+    "callsign": {
+        "name": "Mahan Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 3]
+        ],
+        "a320": [
+            ["A320", 3]
+        ]
+    }
+}

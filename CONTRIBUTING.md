@@ -1,8 +1,8 @@
 # Contribution Guidelines
-Hello, and thank you for your interest in contributing to OpenScope! Please take a minute to review our Contribution Guidelines, as this will result in getting your issue resolved or pull request merged faster.
+Hello, and thank you for your interest in contributing to openScope! Please take a minute to review our Contribution Guidelines, as this will result in getting your issue resolved or pull request merged faster.
 
 ## Getting set up
-OpenScope uses multiple tools for development, the basics being Git and Node (see the quick start guide in our [README](README.md) file for help). Please use eslint to ensure your code conforms to our conventions. Hit us up on [slack](http://slack.openscope.co) if you need help getting this set up.
+Here at openScope, we use multiple tools for development, the basics being Git and Node (see the quick start guide in our [README](README.md) file for help). Please use eslint to ensure your code conforms to our conventions. Hit us up on [slack](http://slack.openscope.co) if you need help getting this set up.
 
 ## Getting Push Access
 To make work sharing and collaboration easier, we _heavily_ prefer to add you to the organization, so you can __keep your branch directly on the [openscope/openscope] repository instead of using forks__. There is nothing stopping you from also having a fork, but all pull requests must originate from a branch in the main repository. Pull requests originating from user forked repositories will closed, copied to a new branch on `openscope/openscope` and reopened there.
@@ -10,7 +10,7 @@ To make work sharing and collaboration easier, we _heavily_ prefer to add you to
 For access to the repository, contact Nate Geslin or Erik Quinn via [slack](http://slack.openscope.co). After you join, you will be able to push your branch to the main repository.
 
 ## Creating a pull request
-Every pull request on OpenScope has a corresponding issue that describes the work to be done, and a category that it falls into. If no issue exists for the planned changes, create a new one. Remember to keep each issue and pull request focused and specific, and _keep the PR changes focused on the changes planned by the issue._ Generally, the smaller they are, the sooner they're merged.
+Every pull request on openScope has a corresponding issue that describes the work to be done, and a category that it falls into. If no issue exists for the planned changes, create a new one. Remember to keep each issue and pull request focused and specific, and _keep the PR changes focused on the changes planned by the issue._ Generally, the smaller they are, the sooner they're merged.
 
 __Branch names should take the format of `category/issuenumber`__ (see our [git flow document](documentation/git-flow-process.md) for more information).
 
@@ -36,6 +36,6 @@ Example: `documentation/723 - Add contribution guidelines file`
 ## Additional Information
 More information on our processes and file formats can be found in the [documentation folder](documentation/). If you have any questions, send us a message on [slack](http://slack.openscope.co), and we're always happy to help! We are a large, global team, so somebody is always awake and around to help you out.
 
-We really appreciate your willingness to put your time into improving OpenScope! It is thanks to our dedicated contributors that the simulator continues to grow and improve every month.
+We really appreciate your willingness to put your time into improving openScope! It is thanks to our dedicated contributors that the simulator continues to grow and improve every month.
 
-\- *The OpenScope team*
+\- *The openScope team*
