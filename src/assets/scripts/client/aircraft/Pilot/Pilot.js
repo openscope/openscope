@@ -357,7 +357,8 @@ export default class Pilot {
         }
 
         const airport = AirportController.airport_get();
-        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const currentAltitude = _floor(aircraftModel.altitude, -2);
+        const descentAltitude = Math.min(currentAltitude, this._mcp.altitude);
         const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
