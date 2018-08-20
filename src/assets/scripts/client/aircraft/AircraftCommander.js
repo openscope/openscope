@@ -341,7 +341,7 @@ export default class AircraftCommander {
             return [false, readback];
         }
 
-        return aircraft.pilot.setArrivalRunway(aircraft, runwayModel);
+        return aircraft.pilot.updateStarLegForArrivalRunway(aircraft, runwayModel);
     }
 
     /**
