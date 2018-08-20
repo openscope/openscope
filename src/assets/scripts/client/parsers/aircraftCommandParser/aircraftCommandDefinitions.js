@@ -18,13 +18,15 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
-    squawkValidator
+    squawkValidator,
+    optionalAltitudeValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
     holdParser,
-    timewarpParser
+    timewarpParser,
+    optionalAltitudeParser
 } from './argumentParsers';
 
 /**
@@ -84,10 +86,6 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         parse: noop
     },
     delete: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
-    descendViaStar: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
@@ -237,6 +235,10 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     timewarp: {
         validate: zeroOrOneArgumentValidator,
         parse: timewarpParser
+    },
+    descendViaStar: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
     }
 };
 

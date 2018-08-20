@@ -249,8 +249,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runDescendViaStar(aircraft, data = []) {
-        // TODO: add altitude param to descendViaStar command
-        const altitude = data[0];// NOT IN USE
+        const altitude = data[0];
 
         return aircraft.pilot.descendViaStar(altitude);
     }
