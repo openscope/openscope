@@ -1367,8 +1367,6 @@ export default class AircraftModel {
                 break;
 
             case FLIGHT_PHASE.LANDING: {
-                this.target.heading = this.mcp.course;
-
                 if (this.altitude <= this.mcp.nav1Datum.elevation) {
                     this.altitude = this.mcp.nav1Datum.elevation;
                     this.target.speed = 0;
