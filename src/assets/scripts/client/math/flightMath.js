@@ -44,7 +44,8 @@ export const calcTurnRadius = (speed, bankAngle) => {
 export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
     const turnRadius = calcTurnRadius(speed, bankAngle);
 
-    return turnRadius * tan(courseChange / 2) + speed;
+    // limit tan to 45° (PI/4) to prevent huge distances for 180° turns. see #935
+    return turnRadius * tan(Math.min(courseChange / 2, Math.PI/4)) + speed;
 };
 
 /**
@@ -168,7 +169,7 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
  * @param aircraft {AircraftModel}
  * @param fix
  */
-export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition) => {
+export const calculateTurnInitiationDistance = (aircraft, currentWaypointPosition) => {
     let currentHeading = aircraft.heading;
     const nominalBankAngleDegrees = 25;
     const speed = kn_ms(aircraft.speed);
