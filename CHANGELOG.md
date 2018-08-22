@@ -6,7 +6,7 @@
 
 
 ### Bugfixes
-
+- [#935] https://github.com/openscope/openscope/issues/935 - fix "Aircrafts are skipping a fix" (due to huge turn initiation distance)
 
 
 
