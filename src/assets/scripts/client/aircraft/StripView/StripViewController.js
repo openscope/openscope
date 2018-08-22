@@ -154,7 +154,7 @@ export default class StripViewController {
     }
 
     /**
-     * Create a new `StripViewModel` instance and addit to the collection
+     * Create a new `StripViewModel` instance and add it to the collection
      *
      * @for StripViewController
      * @method createStripView
