@@ -165,7 +165,7 @@ const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
  * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
  * - The Avionics Handbook, ch 15
  *
- * @function aircraft_turn_initiation_distance
+ * @function calculateTurnInitiationDistance
  * @param aircraft {AircraftModel}
  * @param fix
  */
