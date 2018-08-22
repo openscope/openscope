@@ -116,7 +116,7 @@ altitude required by the STAR, and after no further altitude and/or speed
 restrictions are listed, will maintain their altitude and speed until
 receiving further instructions from ATC.
 
-_Syntax -_ `AAL123 dvs`
+_Syntax -_ `AAL123 dvs [alt]`
 
 ### ILS
 _Aliases -_ `ils` / `i`
