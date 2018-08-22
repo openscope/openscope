@@ -18,11 +18,31 @@ ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t =>
     t.true(result === expectedResult);
 });
 
-ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
+ava('calcTurnInitiationDistance() returns a distance for a 80 degree course change', t => {
     const speed = 144.0444432;
     const bankAngle = 0.4363323129985824;
     const courseChange = 0.26420086153126987;
     const expectedResult = 746.732042830424;
+    const result = calcTurnInitiationDistance(speed, bankAngle, courseChange);
+
+    t.true(result === expectedResult);
+});
+
+ava('calcTurnInitiationDistance() returns a distance for a 90 degree course change', t => {
+    const speed = 144.0;
+    const bankAngle = 0.4363323129985824;
+    const courseChange = Math.PI*0.5;
+    const expectedResult = 4676.97609619635;
+    const result = calcTurnInitiationDistance(speed, bankAngle, courseChange);
+
+    t.true(result === expectedResult);
+});
+
+ava('calcTurnInitiationDistance() returns a distance for a 180 degree course change', t => {
+    const speed = 144.0;
+    const bankAngle = 0.4363323129985824;
+    const courseChange = Math.PI;
+    const expectedResult = 4676.97609619635;
     const result = calcTurnInitiationDistance(speed, bankAngle, courseChange);
 
     t.true(result === expectedResult);
