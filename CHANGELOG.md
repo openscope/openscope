@@ -6,7 +6,7 @@
 
 
 ### Bugfixes
-
+- [#994](https://github.com/openscope/openscope/issues/994) - fix "Aircraft vectored off ILS maintain over-precise altitude"
 
 
 
