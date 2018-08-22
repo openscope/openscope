@@ -1986,11 +1986,9 @@ export default class AircraftModel {
                     if (nextAltitudeMinimumWaypoint.altitudeMinimum > nextAltitudeMaximumWaypoint.altitudeMaximum) {
                         // the minimum altitude is above the maximum altiude, check if we can descend all the way down
                         // without violating VNAV restrictions.
-                        const waypoints = this.fms.waypoints;
-                        const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
-                        const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, nextAltitudeMinimumWaypoint, nextAltitudeMaximumWaypoint);
 
-                        if (indexOfMin < indexOfMax) {
+                        if (firstWaypoint.name === nextAltitudeMinimumWaypoint.name) {
                             // ... but we can not descend all the way down yet
                             return nextAltitudeMinimumWaypoint.altitudeMinimum;
                         }
@@ -2024,11 +2022,9 @@ export default class AircraftModel {
                     if (nextAltitudeMaximumWaypoint.altitudeMaximum < nextAltitudeMinimumWaypoint.altitudeMinimum) {
                         // the maximum altitude is below the minimal altiude, check if we can climb all the way up
                         // without violating VNAV restrictions.
-                        const waypoints = this.fms.waypoints;
-                        const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
-                        const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, nextAltitudeMinimumWaypoint, nextAltitudeMaximumWaypoint);
 
-                        if (indexOfMax < indexOfMin) {
+                        if (firstWaypoint.name === nextAltitudeMaximumWaypoint.name) {
                             // ... but we can not climb all the way up yet
                             return nextAltitudeMaximumWaypoint.altitudeMaximum;
                         }
@@ -2039,6 +2035,22 @@ export default class AircraftModel {
                 }
             }
         }
+    }
+
+    /**
+     * Takes two waypoints and returns the waypoint that comes first in the list of waypoints
+     *
+     * @for AircraftModel
+     * @method _findFirstWaypoint
+     * @param waypoints
+     * @param waypointA {WaypointModel}
+     * @param waypointB {WaypointModel}
+     * @return waypointA or waypointB {WaypointModel}
+     */
+    _findFirstWaypoint(waypoints, waypointA, waypointB) {
+        const indexOfA = _findIndex(waypoints, (waypoint) => waypoint.name === waypointA.name);
+        const indexOfB = _findIndex(waypoints, (waypoint) => waypoint.name === waypointB.name);
+        return indexOfA < indexOfB ? waypointA : waypointB;
     }
 
     /**
