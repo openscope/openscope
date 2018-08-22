@@ -1,6 +1,6 @@
 # 6.5.0 (September 1, 2018)
 ### New Features
-
+- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
 
 
 
