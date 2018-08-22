@@ -9,6 +9,7 @@
 - [#994](https://github.com/openscope/openscope/issues/994) - fix "Aircraft vectored off ILS maintain over-precise altitude"
 - [#1048](https://github.com/openscope/openscope/issues/1048) - fix "Aircrafts do not land after ILS clearance" because runway is not part of their STAR
 - [#1044](https://github.com/openscope/openscope/issues/1044) - fix aircrafts drift off ILS localizer during final approach causing "strange behaviour after landing"
+- [#1047](https://github.com/openscope/openscope/issues/1047) - fix "Flight number 5000 pronounced incorrectly"
 
 
 
