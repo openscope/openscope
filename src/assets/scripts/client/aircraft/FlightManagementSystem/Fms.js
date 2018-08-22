@@ -331,6 +331,7 @@ export default class Fms {
 
         if (!arrivalRunwayName) {
             this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
+
             return;
         }
 
