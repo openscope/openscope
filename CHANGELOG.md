@@ -13,6 +13,7 @@
 - [#993](https://github.com/openscope/openscope/issues/993) - fix Arrivals exiting and reentering airspace causes error about missing strip
  - [#724](https://github.com/openscope/openscope/issues/724) - fix settings modal doesn't add active class to control icon
  - [#421](https://github.com/openscope/openscope/issues/421) - Add missing keys to spawnPatternModelJsonValidator
+ - [#836](https://github.com/openscope/openscope/issues/836) - Fix "hold in STAR procedure isn't working"
 
 
 
