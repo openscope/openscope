@@ -1791,12 +1791,18 @@ export default class AircraftModel {
         const currentWaypoint = this.fms.currentWaypoint;
         const holdParameters = currentWaypoint.holdParameters;
         const waypointRelativePosition = currentWaypoint.relativePosition;
-        const inboundHeading = holdParameters.inboundHeading || 0;
+        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
+
+        if (typeof holdParameters.inboundHeading === 'undefined') {
+            // store the current heading as inbound heading, see #836
+            holdParameters.inboundHeading = bearingToHoldFix;
+        }
+
+        const inboundHeading = holdParameters.inboundHeading;
         const outboundHeading = radians_normalize(inboundHeading + Math.PI);
-        const offset = getOffset(this, waypointRelativePosition, holdParameters.inboundHeading);
+        const offset = getOffset(this, waypointRelativePosition, inboundHeading);
         const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
         const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
-        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
