@@ -603,7 +603,6 @@ export default class AircraftCommander {
         // add aircraft to new runway's queue
         aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
 
-
         aircraftModel.setFlightPhase(FLIGHT_PHASE.TAXI);
         GameController.game_timeout(
             this._changeFromTaxiToWaiting,
