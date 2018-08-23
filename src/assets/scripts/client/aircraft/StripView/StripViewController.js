@@ -141,15 +141,17 @@ export default class StripViewController {
         // We need a proper `AircraftCollection` for that to work
         for (let i = 0; i < aircraftList.length; i++) {
             const aircraftModel = aircraftList[i];
-            const stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
 
-            if (aircraftModel.isControllable && !stripViewModel.insideCenter) {
-                this._addViewToStripList(stripViewModel);
+            if (!aircraftModel.isControllable) {
+                continue;
             }
 
-            if (aircraftModel.isControllable) {
-                stripViewModel.update(aircraftModel);
+            let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+            if (typeof stripViewModel === "undefined") {
+                stripViewModel = this.createStripView(aircraftModel);
             }
+
+            stripViewModel.update(aircraftModel);
         }
     }
 
@@ -159,6 +161,7 @@ export default class StripViewController {
      * @for StripViewController
      * @method createStripView
      * @param aircraftModel {AircraftModel}
+     * @return {StripViewModel}
      */
     createStripView(aircraftModel) {
         const stripViewCid = this._generateCidNumber();
@@ -169,6 +172,8 @@ export default class StripViewController {
         if (aircraftModel.isDeparture() || aircraftModel.isControllable) {
             this._addViewToStripList(stripViewModel);
         }
+
+        return stripViewModel;
     }
 
     /**

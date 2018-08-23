@@ -2509,6 +2509,8 @@ export default class AircraftModel {
         // Crossing into the center
         if (this.isControllable) {
             this.callUp();
+            // for reentry, see #993
+            this.isFlightStripRemovable = false;
 
             return;
         }
