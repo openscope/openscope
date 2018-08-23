@@ -1005,16 +1005,15 @@ ava('.sayTargetHeading() returns a message when #headingMode is OFF', (t) => {
     t.deepEqual(result, expectedResult);
 });
 
-ava('.taxiToRunway() returns an error when the aircraft\'s flight phase is not "APRON", "TAXI", or "WAITING"', (t) => {
-    const nonTaxiFlightPhases = _omit(FLIGHT_PHASE, 'APRON', 'TAXI', 'WAITING');
+ava('.taxiToRunway() returns an error when the aircraft is unable to taxi', (t) => {
+    // TODO: check the flight phases
+    //const nonTaxiFlightPhases = _omit(FLIGHT_PHASE, 'APRON', 'TAXI', 'WAITING');
 
-    for (const phase in nonTaxiFlightPhases) {
-        const expectedResult = [false, 'unable to taxi'];
-        const pilot = createPilotFixture();
-        const result = pilot.taxiToRunway(runwayModelMock, false, FLIGHT_PHASE[phase]);
+    const expectedResult = [false, 'unable to taxi'];
+    const pilot = createPilotFixture();
+    const result = pilot.taxiToRunway(runwayModelMock, false);
 
-        t.deepEqual(result, expectedResult);
-    }
+    t.deepEqual(result, expectedResult);
 });
 
 ava('.taxiToRunway() returns a success message when finished', (t) => {
@@ -1026,7 +1025,7 @@ ava('.taxiToRunway() returns a success message when finished', (t) => {
         }
     ];
     const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, true, FLIGHT_PHASE.APRON);
+    const result = pilot.taxiToRunway(runwayModelMock, true);
 
     t.deepEqual(result, expectedResult);
 });
