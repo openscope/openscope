@@ -1009,7 +1009,6 @@ ava('.taxiToRunway() returns an error when the aircraft\'s flight phase is not "
     const nonTaxiFlightPhases = _omit(FLIGHT_PHASE, 'APRON', 'TAXI', 'WAITING');
 
     for (const phase in nonTaxiFlightPhases) {
-        console.log(phase);
         const expectedResult = [false, 'unable to taxi'];
         const pilot = createPilotFixture();
         const result = pilot.taxiToRunway(runwayModelMock, false, FLIGHT_PHASE[phase]);
