@@ -566,63 +566,27 @@ export default class AircraftCommander {
      * @method runTaxi
      * @param {AircraftModel} aircraftModel
      * @param {string} data
-     * @return {array}   [success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     runTaxi(aircraftModel, data) {
-        if (aircraftModel.isAirborne()) {
-            return [false, 'unable to taxi, we\'re already airborne'];
-        }
-
         const airportModel = AirportController.airport_get();
         const requestedRunwayName = data[0];
-        const taxiStartTime = TimeKeeper.accumulatedDeltaTime;
-        let nextRunwayModel = aircraftModel.fms.departureRunwayModel;
 
-        if (requestedRunwayName) {
-            nextRunwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());
-
-            if (!nextRunwayModel) {
-                const readback = {};
-                readback.log = `unable to find Runway ${requestedRunwayName.toUpperCase()} on our charts`;
-                readback.say = `unable to find Runway ${radio_runway(requestedRunwayName.name)} on our charts`;
-
-                return [false, readback];
-            }
+        if (!requestedRunwayName) {
+            return aircraftModel.taxiToRunway(aircraftModel.fms.departureRunwayModel);
         }
 
-        if (!aircraftModel.fms.isRunwayModelValidForSid(nextRunwayModel)) {
-            aircraftModel.pilot.cancelDepartureClearance(aircraftModel);
+        const runwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());
+
+        if (!runwayModel) {
+            const readback = {};
+            readback.log = `unable to find Runway ${requestedRunwayName.toUpperCase()} on our charts`;
+            readback.say = `unable to find Runway ${radio_runway(requestedRunwayName.name)} on our charts`;
+
+            return [false, readback];
         }
 
-        // remove aircraft from previous runway's queue
-        aircraftModel.fms.departureRunwayModel.removeAircraftFromQueue(aircraftModel.id);
-
-        const readback = aircraftModel.pilot.taxiToRunway(nextRunwayModel, aircraftModel.isDeparture());
-        aircraftModel.taxi_start = taxiStartTime;
-
-        // add aircraft to new runway's queue
-        aircraftModel.fms.departureRunwayModel.addAircraftToQueue(aircraftModel.id);
-
-        aircraftModel.setFlightPhase(FLIGHT_PHASE.TAXI);
-        GameController.game_timeout(
-            this._changeFromTaxiToWaiting,
-            aircraftModel.taxi_time,
-            null,
-            [aircraftModel]
-        );
-
-        return readback;
-    }
-
-    /**
-     * @for AircraftCommander
-     * @method _changeFromTaxiToWaiting
-     * @param args {array}
-     */
-    _changeFromTaxiToWaiting(args) {
-        const aircraft = args[0];
-
-        aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
+        return aircraftModel.taxiToRunway(runwayModel);
     }
 
     /**

@@ -50,6 +50,7 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
+    radio_runway,
     radio_altitude,
     radio_spellOut
 } from '../utilities/radioUtilities';
@@ -1255,6 +1256,56 @@ export default class AircraftModel {
                 { type: 'text', content: ', ready to taxi' }
             ]);
         }
+    }
+
+    /**
+     * @for AircraftModel
+     * @method taxiToRunway
+     * @param runwayModel {RunwayModel}
+     * @return {array} [success of operation, readback]
+     */
+    taxiToRunway(runwayModel) {
+        if (this.isAirborne()) {
+            return [false, 'unable to taxi, we\'re airborne'];
+        }
+
+        if (this.isArrival()) {
+            return  [false, 'uanble to taxi to runway, we have just landed'];
+        }
+
+        if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
+            this.pilot.cancelDepartureClearance(this);
+        }
+
+        // remove aircraft from previous runway's queue
+        this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
+
+        this.setFlightPhase(FLIGHT_PHASE.TAXI);
+        this.fms.setDepartureRunway(runwayModel);
+        this.fms.departureRunwayModel.addAircraftToQueue(this.id);
+        this.taxi_start = TimeKeeper.accumulatedDeltaTime;
+
+        GameController.game_timeout(
+            this._changeFromTaxiToWaiting,
+            this.taxi_time,
+            this,
+            null
+        );
+
+        const readback = {};
+        readback.log = `taxi to runway ${runwayModel.name}`;
+        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _changeFromTaxiToWaiting
+     * @param args {array}
+     */
+    _changeFromTaxiToWaiting(args) {
+        this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself

@@ -1004,28 +1004,3 @@ ava('.sayTargetHeading() returns a message when #headingMode is OFF', (t) => {
 
     t.deepEqual(result, expectedResult);
 });
-
-ava('.taxiToRunway() returns an error when the aircraft is unable to taxi', (t) => {
-    // TODO: check the flight phases
-    //const nonTaxiFlightPhases = _omit(FLIGHT_PHASE, 'APRON', 'TAXI', 'WAITING');
-
-    const expectedResult = [false, 'unable to taxi'];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, false);
-
-    t.deepEqual(result, expectedResult);
-});
-
-ava('.taxiToRunway() returns a success message when finished', (t) => {
-    const expectedResult = [
-        true,
-        {
-            log: 'taxi to runway 19L',
-            say: 'taxi to runway one niner left'
-        }
-    ];
-    const pilot = createPilotFixture();
-    const result = pilot.taxiToRunway(runwayModelMock, true);
-
-    t.deepEqual(result, expectedResult);
-});

@@ -6,7 +6,8 @@ import UiController from '../../src/assets/scripts/client/UiController';
 import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
 import {
     createAirportControllerFixture,
-    resetAirportControllerFixture
+    resetAirportControllerFixture,
+    airportModelFixture
 } from '../fixtures/airportFixtures';
 import {
     createNavigationLibraryFixture,
@@ -24,6 +25,10 @@ import {
 import { AIRPORT_CONSTANTS } from '../../src/assets/scripts/client/constants/airportConstants';
 
 let sandbox; // using the sinon sandbox ensures stubs are restored after each test
+
+// mocks
+const runwayNameMock = '19L';
+const runwayModelMock = airportModelFixture.getRunway(runwayNameMock);
 
 /* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
@@ -421,4 +426,34 @@ ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitu
     model.updateTarget();
 
     t.true(model.target.altitude === 8000);
+});
+
+ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
+    const expectedResult = [false, 'unable to taxi, we\'re airborne'];
+    const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+
+    const departure = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    departure.altitude = 28000;
+
+    const departureResult = departure.taxiToRunway(runwayModelMock);
+    t.deepEqual(departureResult, expectedResult);
+});
+
+ava('.taxiToRunway() returns a success message when finished', (t) => {
+    const expectedResult = [
+        true,
+        {
+            log: 'taxi to runway 19L',
+            say: 'taxi to runway one niner left'
+        }
+    ];
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    const result = model.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(result, expectedResult);
+    t.deepEqual(model.flightPhase, FLIGHT_PHASE.TAXI);
+    t.deepEqual(model.fms.departureRunwayModel, runwayModelMock);
 });
