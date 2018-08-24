@@ -616,16 +616,11 @@ class UiController {
      * @for UiController
      * @method onToggleOptions
      */
-    onToggleOptions() {
-        const $optionsDialog = $(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
+    onToggleOptions(event) {
+        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        if ($optionsDialog.hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-            $optionsDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
-            $optionsDialog.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        } else {
-            $optionsDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
-            $optionsDialog.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        }
+        const $optionsDialog = $(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
+        $optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
     }
 }
 

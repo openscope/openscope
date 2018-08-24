@@ -11,6 +11,7 @@
 - [#1044](https://github.com/openscope/openscope/issues/1044) - fix aircrafts drift off ILS localizer during final approach causing "strange behaviour after landing"
 - [#1047](https://github.com/openscope/openscope/issues/1047) - fix "Flight number 5000 pronounced incorrectly"
 - [#993](https://github.com/openscope/openscope/issues/993) - fix Arrivals exiting and reentering airspace causes error about missing strip
+ - [#724](https://github.com/openscope/openscope/issues/724) - fix settings modal doesn't add active class to control icon
 
 
 
