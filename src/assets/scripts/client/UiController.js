@@ -77,8 +77,6 @@ class UiController {
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
-        // TODO: Make the options dialog findable by ID, not just by class
-        this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
@@ -202,6 +200,9 @@ class UiController {
         });
 
         $('body').append($options);
+
+        // TODO: Make the options dialog findable by ID, not just by class
+        this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
     }
 
     /**
@@ -616,11 +617,9 @@ class UiController {
      * @for UiController
      * @method onToggleOptions
      */
-    onToggleOptions(event) {
-        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-
-        const $optionsDialog = $(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
-        $optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
+    onToggleOptions() {
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
     }
 }
 
