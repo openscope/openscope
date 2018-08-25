@@ -442,6 +442,37 @@ ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     t.deepEqual(departureResult, expectedResult);
 });
 
+ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
+    const expectedResult = [false, 'uanble to taxi to runway, we have just landed'];
+    const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    arrival.altitude = arrival.fms.arrivalAirportModel.elevation;
+
+    const arrivalResult = arrival.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(arrivalResult, expectedResult);
+});
+
+ava('.taxiToRunway() cancels IFR clearance if runway is invalid for the assigned SID', (t) => {
+    const expectedResult = [
+        true,
+        {
+            log: 'taxi to runway 01R',
+            say: 'taxi to runway zero one right'
+        }
+    ];
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+    // BOACH6 is the only SID with an invalid runway
+    model.fms.replaceFlightPlanWithNewRoute('KLAS07R.BOACH6.HEC');
+    model.pilot.hasDepartureClearance = true;
+
+    const invalidRunway = airportModelFixture.getRunway("01R");
+
+    const result = model.taxiToRunway(invalidRunway);
+
+    t.deepEqual(result, expectedResult);
+    t.false(model.pilot.hasDepartureClearance);
+});
+
 ava('.taxiToRunway() returns a success message when finished', (t) => {
     const expectedResult = [
         true,
