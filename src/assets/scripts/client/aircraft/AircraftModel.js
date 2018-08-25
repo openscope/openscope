@@ -1277,12 +1277,12 @@ export default class AircraftModel {
             this.pilot.cancelDepartureClearance(this);
         }
 
+        this.setFlightPhase(FLIGHT_PHASE.TAXI);
         // remove aircraft from previous runway's queue
         this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
-
-        this.setFlightPhase(FLIGHT_PHASE.TAXI);
         this.fms.setDepartureRunway(runwayModel);
         this.fms.departureRunwayModel.addAircraftToQueue(this.id);
+
         this.taxi_start = TimeKeeper.accumulatedDeltaTime;
 
         GameController.game_timeout(
