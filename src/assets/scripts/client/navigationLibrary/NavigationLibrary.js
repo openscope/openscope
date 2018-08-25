@@ -2,6 +2,7 @@ import _filter from 'lodash/filter';
 import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
+import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
@@ -11,6 +12,7 @@ import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { degreesToRadians } from '../utilities/unitConverters';
+import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
  *
@@ -54,6 +56,15 @@ class NavigationLibrary {
          * @default null
          */
         this._referencePosition = null;
+
+        /**
+         *
+         *
+         * @property _procedureLines
+         * @type {array}
+         * @default {}
+         */
+         this._procedureLines = {};
     }
 
     get hasSids() {
@@ -89,21 +100,6 @@ class NavigationLibrary {
         return FixCollection.findRealFixes();
     }
 
-    // TODO: TEST
-    /**
-     *
-     * @property sidLines
-     * @return
-     */
-    get sidLines() {
-        const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid());
-        const lines = _map(sids, (sid) => {
-            return { identifier: sid.icao, draw: sid.draw };
-        });
-
-        return lines;
-    }
-
     /**
      * Set initial instance properties
      *
@@ -120,6 +116,8 @@ class NavigationLibrary {
         this._initializeFixCollection(fixes);
         this._initializeAirwayCollection(airways);
         this._initializeProcedureCollection(sids, stars);
+        this._initializeSidLines();
+        this._initializeStarLines();
         this._showConsoleWarningForUndefinedFixes();
     }
 
@@ -163,6 +161,98 @@ class NavigationLibrary {
         );
     }
 
+    _initializeSidLines() {
+        const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid() && !_isEmpty(procedureModel));
+        const sidLines = [];
+        let mostRecentFixName = '';
+
+        for (let i = 0; i < sids.length; i++) {
+            const sid = sids[i];
+            const lines = [];
+            const exits = [];
+
+            for (let j = 0; j < sid.draw.length; j++) {
+                const fixList = sid.draw[j];
+                const positions = [];
+
+                for (let k = 0; k < fixList.length; k++) {
+                    const fixName = fixList[k];
+
+                    if (fixName.indexOf('*') !== INVALID_INDEX) {
+                        mostRecentFixName = fixName.replace('*', '');
+                        exits.push(mostRecentFixName);
+                    } else {
+                        mostRecentFixName = fixName;
+                    }
+
+                    const fixPosition = this.getFixRelativePosition(mostRecentFixName);
+
+                    if (!fixPosition) {
+                        console.warn(`Unable to draw line to '${fixName}' because its position is not defined!`);
+                        continue;
+                    }
+
+                    positions.push(fixPosition);
+                }
+
+                if (positions.length > 1) {
+                    lines.push(positions);
+                }
+            }
+
+            sidLines.push({
+                identifier: sid.icao,
+                lines: lines,
+                lastFixName: mostRecentFixName,
+                exits: exits
+            });
+        }
+
+        this._procedureLines[PROCEDURE_TYPE.SID] = sidLines;
+    }
+
+    _initializeStarLines() {
+        const stars = _filter(this._procedureCollection, (procedureModel) => procedureModel.isStar() && !_isEmpty(procedureModel));
+        const starLines = [];
+
+        for (let i = 0; i < stars.length; i++) {
+            const star = stars[i];
+            const lines = [];
+            let mostRecentFixName = '';
+
+            for (let j = 0; j < star.draw.length; j++) {
+                const fixList = star.draw[j];
+                const positions = [];
+
+                for (let k = 0; k < fixList.length; k++) {
+                    // TODO: is asterisk valid for STARs?
+                    mostRecentFixName = fixList[k].replace('*', '');
+                    const fixPosition = this.getFixRelativePosition(mostRecentFixName);
+
+                    if (!fixPosition) {
+                        console.warn(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
+                        continue;
+                    }
+
+                    positions.push(fixPosition);
+                }
+
+                if (positions.length > 1) {
+                    lines.push(positions);
+                }
+            }
+
+            starLines.push({
+                identifier: star.icao,
+                lines: lines,
+                lastFixName: mostRecentFixName,
+                exits: null
+            });
+        }
+
+        this._procedureLines[PROCEDURE_TYPE.STAR] = starLines;
+    }
+
     /**
      * Tear down the instance
      *
@@ -175,6 +265,7 @@ class NavigationLibrary {
         this._airwayCollection = {};
         this._procedureCollection = {};
         this._referencePosition = null;
+        this._procedureLines = {};
     }
 
     // /**
@@ -295,6 +386,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method getProcedure
+     * @param procedureId {string}
      * @return {ProcedureModel}
      */
     getProcedure(procedureId) {
@@ -316,6 +408,18 @@ class NavigationLibrary {
     getFixRelativePosition(fixName) {
         return FixCollection.getFixRelativePosition(fixName);
     }
+
+    /**
+     *
+     *
+     * @for NavigationLibrary
+     * @method getProcedureLines
+     * @param procedureId {string}
+     * @return {array}
+     */
+     getProcedureLines(procedureId) {
+         return this._procedureLines[procedureId];
+     }
 
     /**
      * Return whether the specified airway identifier is listed in the #_airwayCollection
