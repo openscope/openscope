@@ -116,7 +116,7 @@ export default class AirportInfoController {
 
     /**
      * Formats the wind angle and speed from object into a string,
-     * in the format `AngleSpeedGGustspeed`.
+     * in the format `${newAngle}${newSpeed}G${gustSpeed}`.
      *
      * @for AirportGameInfoView
      * @method _buildWindAndGustReadout
@@ -125,19 +125,19 @@ export default class AirportInfoController {
      * @private
      */
     _buildWindAndGustReadout(wind) {
+        const minGustStrength = 5;
         const speed = wind.speed;
         const angle = wind.angle;
-        let newAngle = '';
-        let newSpeed = '';
-        let gustSpeed = 0;
 
-        newAngle = leftPad((angle || 360), 3);
-
+        const newAngle = leftPad((angle || 360), 3);
+        const newSpeed = leftPad(speed, 2);
         // Creates a fake "gusting" speed
-        gustSpeed = Math.round(speed + (speed * Math.random()));
+        const gustStrength = speed * Math.random();
+        const gustSpeed = leftPad(Math.round(speed + gustStrength), 2);
 
-        newSpeed = leftPad(speed, 2);
-        gustSpeed = leftPad(gustSpeed, 2);
+        if (gustStrength < minGustStrength) {
+            return `${newAngle}${newSpeed}`;
+        }
 
         return `${newAngle}${newSpeed}G${gustSpeed}`;
     }
