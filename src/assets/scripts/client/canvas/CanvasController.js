@@ -819,16 +819,16 @@ export default class CanvasController {
             return;
         }
 
-        const first = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(points[0]);
+        const lineStartPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(points[0]);
 
         cc.beginPath();
-        cc.moveTo(first.x, first.y);
+        cc.moveTo(lineStartPosition.x, lineStartPosition.y);
 
         for (let k = 0; k < points.length; k++) {
             const position = points[k];
-            const pixel = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+            const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
 
-            cc.lineTo(pixel.x, pixel.y);
+            cc.lineTo(positionInPx.x, positionInPx.y);
         }
 
         cc.stroke();
@@ -843,14 +843,14 @@ export default class CanvasController {
      * @private
      */
     _drawLabelsAtPoint(cc, position, labels) {
-        const pixel = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+        const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
 
         for (let k = 0; k < labels.length; k++) {
             const textItem = labels[k];
-            const x_position = pixel.x + 10;
-            const y_position = pixel.y + (15 * k);
+            const positionX = positionInPx.x + 10;
+            const positionY = positionInPx.y + (15 * k);
 
-            cc.fillText(textItem, x_position, y_position);
+            cc.fillText(textItem, positionX, positionY);
         }
     }
 

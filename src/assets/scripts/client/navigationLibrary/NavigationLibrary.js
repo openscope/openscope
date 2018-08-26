@@ -46,6 +46,13 @@ class NavigationLibrary {
         //  */
         // this._starCollection = null;
 
+        /**
+         *
+         *
+         * @property _procedureCollection
+         * @type {array}
+         * @default {}
+         */
         this._procedureCollection = {};
 
         /**
@@ -67,6 +74,11 @@ class NavigationLibrary {
          this._procedureLines = {};
     }
 
+    /**
+     *
+     * @property hasSids
+     * @return {boolean}
+     */
     get hasSids() {
         const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.SID;
@@ -75,6 +87,11 @@ class NavigationLibrary {
         return sidProcedureModels.length > 0;
     }
 
+    /**
+     *
+     * @property hasStars
+     * @return {boolean}
+     */
     get hasStars() {
         const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.STAR;
@@ -121,6 +138,11 @@ class NavigationLibrary {
         this._showConsoleWarningForUndefinedFixes();
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeAirwayCollection
+     */
     _initializeAirwayCollection(airways) {
         _forEach(airways, (fixNames, airwayName) => {
             if (airwayName in this._airwayCollection) {
@@ -131,10 +153,20 @@ class NavigationLibrary {
         });
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeFixCollection
+     */
     _initializeFixCollection(fixes) {
         FixCollection.addItems(fixes, this._referencePosition);
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeProcedureCollection
+     */
     _initializeProcedureCollection(sids, stars) {
         _forEach(sids, (sid, sidId) => {
             if (sidId in this._procedureCollection) {
@@ -153,6 +185,11 @@ class NavigationLibrary {
         });
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeReferencePosition
+     */
     _initializeReferencePosition(airportJson) {
         this._referencePosition = new StaticPositionModel(
             airportJson.position,
@@ -161,11 +198,17 @@ class NavigationLibrary {
         );
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeSidLines
+     */
     _initializeSidLines() {
         const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid() && !_isEmpty(procedureModel));
         const sidLines = [];
         let mostRecentFixName = '';
 
+        // TODO: simplify/rector these nested loops.
         for (let i = 0; i < sids.length; i++) {
             const sid = sids[i];
             const lines = [];
@@ -177,12 +220,11 @@ class NavigationLibrary {
 
                 for (let k = 0; k < fixList.length; k++) {
                     const fixName = fixList[k];
+                    mostRecentFixName = fixName;
 
                     if (fixName.indexOf('*') !== INVALID_INDEX) {
                         mostRecentFixName = fixName.replace('*', '');
                         exits.push(mostRecentFixName);
-                    } else {
-                        mostRecentFixName = fixName;
                     }
 
                     const fixPosition = this.getFixRelativePosition(mostRecentFixName);
@@ -211,10 +253,16 @@ class NavigationLibrary {
         this._procedureLines[PROCEDURE_TYPE.SID] = sidLines;
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeStarLines
+     */
     _initializeStarLines() {
         const stars = _filter(this._procedureCollection, (procedureModel) => procedureModel.isStar() && !_isEmpty(procedureModel));
         const starLines = [];
 
+        // TODO: simplify/rector these nested loops.
         for (let i = 0; i < stars.length; i++) {
             const star = stars[i];
             const lines = [];
@@ -448,6 +496,15 @@ class NavigationLibrary {
         return !_isNil(fixOrNull);
     }
 
+    /**
+    * Provides a way to check for the existence
+    * of a specific `procedureId`.
+    *
+    * @for NavigationLibrary
+    * @method hasProcedure
+    * @param procedureId {string}
+    * @return {boolean}
+    */
     hasProcedure(procedureId) {
         return procedureId in this._procedureCollection;
     }
