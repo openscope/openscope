@@ -65,7 +65,7 @@ class NavigationLibrary {
         this._referencePosition = null;
 
         /**
-         *
+         * additional information to draw the procedures on the screen
          *
          * @property _procedureLines
          * @type {array}
@@ -199,6 +199,7 @@ class NavigationLibrary {
     }
 
     /**
+     * Generate lines for SIDs and add them to the procedure lines
      *
      * @for NavigationLibrary
      * @method _initializeSidLines
@@ -254,6 +255,7 @@ class NavigationLibrary {
     }
 
     /**
+     * Generate lines for STARs and add them to the procedure lines
      *
      * @for NavigationLibrary
      * @method _initializeStarLines
