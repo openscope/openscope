@@ -58,10 +58,10 @@ export default class SimClockController {
 
     /**
      * @for SimClockController
-     * @method destroy
+     * @method reset
      * @chainable
      */
-    destroy() {
+    reset() {
         this.startTime = 0;
         this.time = 0;
 
@@ -111,6 +111,7 @@ export default class SimClockController {
 
     /**
      * Updates the time stored in the clock
+     *
      * @for SimClockController
      * @method _tick
      * @private
@@ -122,8 +123,10 @@ export default class SimClockController {
 
     /**
      * Updates the DOM with the new game time
+     *
      * @for SimClockController
      * @method _render
+     * @return {number} current game time
      * @private
      */
     _render() {

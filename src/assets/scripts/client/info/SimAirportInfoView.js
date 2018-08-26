@@ -57,23 +57,21 @@ export default class SimAirportInfoView {
          */
         this._eventBus = EventBus;
 
-        return this._init();
+        return this.init();
     }
 
     /**
      * @for SimAirportInfoView
      * @method _init
-     * @private
+     * @chainable
      */
-    _init() {
+    init() {
         this.$template = $(SIM_AIRPORT_INFO_TEMPLATE);
         this.simClockController = new SimClockController();
         this.simAirportInfoController = new SimAirportInfoController();
 
         this._setupHandlers();
-
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
-
         this.$element.append(this.$template);
 
         return this;
@@ -90,9 +88,10 @@ export default class SimAirportInfoView {
 
     /**
      * @for SimAirportInfoView
-     * @method destroy
+     * @method reset
+     * @chainable
      */
-    destroy() {
+    reset() {
         this.$element = null;
         this.$template = null;
         this.simClockController = null;
@@ -114,17 +113,17 @@ export default class SimAirportInfoView {
     update_info(airport) {
         this.simAirportInfoController.update(airport);
 
-        this._renderInfo();
+        this._render();
     }
 
     /**
      * Sets the values from the updated airport info.
      *
      * @for SimAirportInfoView
-     * @method _renderInfo
+     * @method _render
      * @private
      */
-    _renderInfo() {
+    _render() {
         const wind = this.simAirportInfoController.wind;
         const altimeter = this.simAirportInfoController.altimeter;
         const elevation = this.simAirportInfoController.elevation;
@@ -158,6 +157,6 @@ export default class SimAirportInfoView {
     complete(airport) {
         this.simAirportInfoController.calculateInitialAirportData(airport);
 
-        this._renderInfo();
+        this._render();
     }
 }
