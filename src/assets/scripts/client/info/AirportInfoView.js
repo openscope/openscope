@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import EventBus from '../lib/EventBus';
 import SimClockController from './SimClockController';
-import SimAirportInfoController from './SimAirportInfoController';
+import AirportInfoController from './AirportInfoController';
 import { EVENT } from '../constants/eventNames';
 import { SIM_AIRPORT_INFO_TEMPLATE } from './simAirportInfoTemplate';
 
@@ -9,11 +9,11 @@ import { SIM_AIRPORT_INFO_TEMPLATE } from './simAirportInfoTemplate';
  * Displays an information corner that displays the current time, wind speed,
  * wind angle, altimeter, and airport elevation.
  *
- * @class SimAirportInfoView
+ * @class AirportInfoView
  */
-export default class SimAirportInfoView {
+export default class AirportInfoView {
     /**
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @constructor
      * @param {jQuery|HTML element}
      */
@@ -21,7 +21,7 @@ export default class SimAirportInfoView {
         /**
          * Root DOM element
          *
-         * @for SimAirportInfoView
+         * @for AirportInfoView
          * @property $element
          * @type {jQuery|HTML element}
          */
@@ -30,20 +30,20 @@ export default class SimAirportInfoView {
         /**
          * Information div
          *
-         * @for SimAirportInfoView
+         * @for AirportInfoView
          * @property $template
          * @type {jQuery|HTML element}
          */
         this.$template = null;
 
         /**
-         * @for SimAirportInfoView
+         * @for AirportInfoView
          * @property simClockController
          */
         this.simClockController = null;
 
         /**
-         * @for SimAirportInfoView
+         * @for AirportInfoView
          * @property simAirportInfoController
          */
         this.simAirportInfoController = null;
@@ -51,7 +51,7 @@ export default class SimAirportInfoView {
         /**
          * Local instance of the event bus
          *
-         * @for SimAirportInfoView
+         * @for AirportInfoView
          * @property _eventBus
          * @type {EventBus}
          */
@@ -61,14 +61,14 @@ export default class SimAirportInfoView {
     }
 
     /**
-     * @for SimAirportInfoView
-     * @method _init
+     * @for AirportInfoView
+     * @method init
      * @chainable
      */
     init() {
         this.$template = $(SIM_AIRPORT_INFO_TEMPLATE);
         this.simClockController = new SimClockController();
-        this.simAirportInfoController = new SimAirportInfoController();
+        this.simAirportInfoController = new AirportInfoController();
 
         this._setupHandlers();
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
@@ -78,7 +78,7 @@ export default class SimAirportInfoView {
     }
 
     /**
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method _setupHandlers
      * @private
      */
@@ -87,7 +87,7 @@ export default class SimAirportInfoView {
     }
 
     /**
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method reset
      * @chainable
      */
@@ -106,7 +106,7 @@ export default class SimAirportInfoView {
      * Updates the information taken from the AirportModel: the wind, the altimeter,
      * and the elevation. Triggered on airport change.
      *
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method update_info
      * @param {AirportModel} airport
      */
@@ -119,7 +119,7 @@ export default class SimAirportInfoView {
     /**
      * Sets the values from the updated airport info.
      *
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method _render
      * @private
      */
@@ -137,7 +137,7 @@ export default class SimAirportInfoView {
     /**
      * Updates the clock, called from `AppController#update_pre`
      *
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method update_clock
      */
     update_clock() {
@@ -150,7 +150,7 @@ export default class SimAirportInfoView {
      * Gets the data from the initial airport model, and displays those. Called
      * from `AppController#complete`.
      *
-     * @for SimAirportInfoView
+     * @for AirportInfoView
      * @method complete
      * @param {AirportModel} airport
      */
