@@ -49,7 +49,7 @@ export default class SimAirportInfoController {
          */
         this.icao = '';
 
-        return this._init();
+        return this.init();
     }
 
     /**
@@ -78,10 +78,10 @@ export default class SimAirportInfoController {
 
     /**
      * @for SimAirportInfoController
-     * @method destroy
+     * @method reset
      * @chainable
      */
-    destroy() {
+    reset() {
         this.airport = null;
         this.wind = null;
         this.altimeter = null;
@@ -93,10 +93,10 @@ export default class SimAirportInfoController {
 
     /**
      * @for SimAirportInfoController
-     * @method _init
-     * @private
+     * @method init
+     * @chainable
      */
-    _init() {
+    init() {
         this._setupHandlers();
 
         return this;
@@ -104,16 +104,14 @@ export default class SimAirportInfoController {
 
     /**
      * @for AirportGameInfoView
-     * @method _render
+     * @method _recalculate
      * @private
      */
     _recalculate() {
-        const airport = this.airport;
-
-        this.wind = this._buildWindAndGustReadout(airport.wind);
-        this.altimeter = this._generateAltimeterReading(airport.wind.speed);
-        this.elevation = airport.position[2];
-        this.icao = airport.icao.toUpperCase();
+        this.wind = this._buildWindAndGustReadout(this.airport.wind);
+        this.altimeter = this._generateAltimeterReading(this.airport.wind.speed);
+        this.elevation = this.airport.position[2];
+        this.icao = this.airport.icao.toUpperCase();
 
         return this;
     }
@@ -181,9 +179,7 @@ export default class SimAirportInfoController {
 
         this.wind = this._buildWindAndGustReadout({ speed: airport.wind.speed, angle: windAngle });
         this.altimeter = this._generateAltimeterReading(airport.wind.speed);
-        this.elevation = `${airport.elevation}ft`;
+        this.elevation = `${airport.elevation}`;
         this.icao = icao;
-
-        return this;
     }
 }
