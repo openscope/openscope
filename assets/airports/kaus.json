@@ -788,7 +788,7 @@
             "destination": "KAUS",
             "category": "arrival",
             "route": "DILLO.LAIKS2.KAUS17R",
-            "altitude": [27000, 35000],
+            "altitude": [23000, 26000],
             "speed": 320,
             "method": "random",
             "rate": 2.67,
@@ -967,7 +967,7 @@
                 ["ash", 2],
                 ["n/fastGA", 1],
                 ["swa", 5],
-                ["ual", 7],
+                ["ual/short", 7],
                 ["ups", 2],
                 ["xa/fastGA", 1]
           ]
