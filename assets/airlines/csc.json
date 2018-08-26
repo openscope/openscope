@@ -1,0 +1,25 @@
+{
+    "icao": "csc",
+    "name": "Sichuan Airlines",
+    "callsign": {
+        "name": "Sichuan",
+        "length": 3,
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 5],
+            ["A21N", 1],
+            ["A319", 23],
+            ["A320", 55],
+            ["A321", 38],
+            ["A332", 6],
+            ["A333", 6]
+        ],
+        "a333": [
+            ["A333", 6]
+        ]
+    }
+}

@@ -69,7 +69,7 @@ export const EVENT = {
      */
     PAUSE_TOGGLE: 'pause-toggle',
 
-     /**
+    /**
      * Fired when the update loop should be either paused or resumed.
      *
      * Usually called when airport data is changing (ie, when a new airport

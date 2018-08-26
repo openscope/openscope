@@ -1,0 +1,20 @@
+{
+    "icao": "rna",
+    "name": "Nepal Airlines",
+    "callsign": {
+        "name": "Royal Nepal",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 2],
+            ["B752", 1]
+        ],
+        "a320": [
+            ["A320", 2]
+        ]
+    }
+}

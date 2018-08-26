@@ -683,46 +683,44 @@ ava('.getVector() returns correct heading (in radians) for vector waypoints', (t
     t.true(result === expectedResult);
 });
 
-// FIXME
-ava.skip('.hasMaximumAltitudeAtOrBelow() returns false when waypoint does not have max restriction below specified value', (t) => {
+ava('.hasMaximumAltitudeAtOrBelow() returns false when waypoint does not have max restriction at or below specified value', (t) => {
     const waypointWithNoRestrictions = new WaypointModel('BOACH');
     const waypointWithMinAltOnly = new WaypointModel(['BOACH', 'A80+']);
     const waypointWithMaxAltAboveConstraint = new WaypointModel(['BOACH', 'A110-']);
-    const waypointWithMaxAltAtConstraint = new WaypointModel(['BOACH', 'A100-']);
     const constraint = 10000;
 
     t.false(waypointWithNoRestrictions.hasMaximumAltitudeAtOrBelow(constraint));
     t.false(waypointWithMinAltOnly.hasMaximumAltitudeAtOrBelow(constraint));
     t.false(waypointWithMaxAltAboveConstraint.hasMaximumAltitudeAtOrBelow(constraint));
-    t.false(waypointWithMaxAltAtConstraint.hasMaximumAltitudeAtOrBelow(constraint));
 });
 
-ava('.hasMaximumAltitudeAtOrBelow() returns true when waypoint has max restriction below specified value', (t) => {
-    const model = new WaypointModel(['BOACH', 'A80-']);
+ava('.hasMaximumAltitudeAtOrBelow() returns true when waypoint has max restriction at or below specified value', (t) => {
+    const waypointWithMaxAltAtConstraint = new WaypointModel(['BOACH', 'A100-']);
+    const waypointWithMaxAltBelowConstraint = new WaypointModel(['BOACH', 'A80-']);
     const constraint = 10000;
 
-    t.true(model.hasMaximumAltitudeAtOrBelow(constraint));
+    t.true(waypointWithMaxAltAtConstraint.hasMaximumAltitudeAtOrBelow(constraint));
+    t.true(waypointWithMaxAltBelowConstraint.hasMaximumAltitudeAtOrBelow(constraint));
 });
 
-// FIXME
-ava.skip('.hasMinimumAltitudeAtOrAbove() returns false when waypoint does not have min restriction above specified value', (t) => {
+ava('.hasMinimumAltitudeAtOrAbove() returns false when waypoint does not have min restriction at or above specified value', (t) => {
     const waypointWithNoRestrictions = new WaypointModel('BOACH');
     const waypointWithMaxAltOnly = new WaypointModel(['BOACH', 'A110-']);
     const waypointWithMinAltBelowConstraint = new WaypointModel(['BOACH', 'A80+']);
-    const waypointWithMinAltAtConstraint = new WaypointModel(['BOACH', 'A100+']);
     const constraint = 10000;
 
     t.false(waypointWithNoRestrictions.hasMinimumAltitudeAtOrAbove(constraint));
     t.false(waypointWithMaxAltOnly.hasMinimumAltitudeAtOrAbove(constraint));
     t.false(waypointWithMinAltBelowConstraint.hasMinimumAltitudeAtOrAbove(constraint));
-    t.false(waypointWithMinAltAtConstraint.hasMinimumAltitudeAtOrAbove(constraint));
 });
 
-ava('.hasMinimumAltitudeAtOrAbove() returns true when waypoint has min restriction above specified value', (t) => {
-    const model = new WaypointModel(['BOACH', 'A110+']);
+ava('.hasMinimumAltitudeAtOrAbove() returns true when waypoint has min restriction at or above specified value', (t) => {
+    const waypointWithMinAltAtConstraint = new WaypointModel(['BOACH', 'A100+']);
+    const waypointWithMinAltAboveConstraint = new WaypointModel(['BOACH', 'A110+']);
     const constraint = 10000;
 
-    t.true(model.hasMinimumAltitudeAtOrAbove(constraint));
+    t.true(waypointWithMinAltAtConstraint.hasMinimumAltitudeAtOrAbove(constraint));
+    t.true(waypointWithMinAltAboveConstraint.hasMinimumAltitudeAtOrAbove(constraint));
 });
 
 ava('.setHoldParameters() sets #_holdParameters to default values when no argument is provided', (t) => {
