@@ -6,7 +6,7 @@ import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
 import CanvasController from './canvas/CanvasController';
 import ContentQueue from './contentQueue/ContentQueue';
-import SimAirportInfoView from './info/SimAirportInfoView';
+import AirportInfoView from './info/AirportInfoView';
 import GameController from './game/GameController';
 import InputController from './InputController';
 import EventBus from './lib/EventBus';
@@ -174,7 +174,7 @@ export default class AppController {
         this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
-        this.simAirportInfoView = new SimAirportInfoView(this.$element);
+        this.simAirportInfoView = new AirportInfoView(this.$element);
 
         this.updateViewControls();
     }

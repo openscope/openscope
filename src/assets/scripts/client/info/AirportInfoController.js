@@ -8,7 +8,7 @@ import { INVALID_NUMBER } from '../constants/globalConstants';
  *
  * @class SimAirportInfoController
  */
-export default class SimAirportInfoController {
+export default class AirportInfoController {
     /**
      * @for SimAirportInfoController
      * @constructor
@@ -112,8 +112,6 @@ export default class SimAirportInfoController {
         this.altimeter = this._generateAltimeterReading(this.airport.wind.speed);
         this.elevation = this.airport.position[2];
         this.icao = this.airport.icao.toUpperCase();
-
-        return this;
     }
 
     /**
