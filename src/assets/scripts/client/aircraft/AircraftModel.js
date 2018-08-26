@@ -1998,8 +1998,7 @@ export default class AircraftModel {
                     return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
                 }
             }
-        }
-        else {
+        } else {
             // we want to climb...
             if (!maximumAltitudeExists || this.mcp.altitude <= nextAltitudeMaximumWaypoint.altitudeMaximum) {
                 // ... and there is nothing that can stop us.
@@ -2050,6 +2049,7 @@ export default class AircraftModel {
     _findFirstWaypoint(waypoints, waypointA, waypointB) {
         const indexOfA = _findIndex(waypoints, (waypoint) => waypoint.name === waypointA.name);
         const indexOfB = _findIndex(waypoints, (waypoint) => waypoint.name === waypointB.name);
+        
         return indexOfA < indexOfB ? waypointA : waypointB;
     }
 
