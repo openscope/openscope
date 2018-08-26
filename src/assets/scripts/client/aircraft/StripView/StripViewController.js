@@ -147,6 +147,7 @@ export default class StripViewController {
             }
 
             let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
+            
             if (typeof stripViewModel === "undefined") {
                 stripViewModel = this.createStripView(aircraftModel);
             }
