@@ -204,7 +204,7 @@ class NavigationLibrary {
      * @method _initializeSidLines
      */
     _initializeSidLines() {
-        const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid() && !_isEmpty(procedureModel));
+        const sids = this.getProceduresByType(PROCEDURE_TYPE.SID);
         const sidLines = [];
         let mostRecentFixName = '';
 
@@ -259,7 +259,7 @@ class NavigationLibrary {
      * @method _initializeStarLines
      */
     _initializeStarLines() {
-        const stars = _filter(this._procedureCollection, (procedureModel) => procedureModel.isStar() && !_isEmpty(procedureModel));
+        const stars = this.getProceduresByType(PROCEDURE_TYPE.STAR);
         const starLines = [];
 
         // TODO: simplify/rector these nested loops.
@@ -443,6 +443,20 @@ class NavigationLibrary {
         }
 
         return this._procedureCollection[procedureId];
+    }
+
+    /**
+    * Return a list of ProcedureModel with the specified procedure type
+    *
+    * @for NavigationLibrary
+    * @method getProceduresByType
+    * @param procedureType {string}
+    * @return {array<ProcedureModel>}
+    */
+    getProceduresByType(procedureType) {
+        return _filter(this._procedureCollection, (procedureModel) =>
+            !_isEmpty(procedureModel) && procedureModel.procedureType === procedureType
+        );
     }
 
     /**
