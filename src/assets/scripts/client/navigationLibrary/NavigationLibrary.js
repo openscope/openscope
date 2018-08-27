@@ -142,6 +142,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method _initializeAirwayCollection
+     * @param airways
      */
     _initializeAirwayCollection(airways) {
         _forEach(airways, (fixNames, airwayName) => {
@@ -157,6 +158,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method _initializeFixCollection
+     * @param fixes
      */
     _initializeFixCollection(fixes) {
         FixCollection.addItems(fixes, this._referencePosition);
@@ -166,6 +168,8 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method _initializeProcedureCollection
+     * @param sids
+     * @param stars
      */
     _initializeProcedureCollection(sids, stars) {
         _forEach(sids, (sid, sidId) => {
@@ -189,6 +193,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method _initializeReferencePosition
+     * @param airportJson
      */
     _initializeReferencePosition(airportJson) {
         this._referencePosition = new StaticPositionModel(
