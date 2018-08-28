@@ -443,7 +443,7 @@ ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
 });
 
 ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {
-    const expectedResult = [false, 'uanble to taxi to runway, we have just landed'];
+    const expectedResult = [false, 'unable to taxi to runway, we have just landed'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     arrival.altitude = arrival.fms.arrivalAirportModel.elevation;
 
