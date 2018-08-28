@@ -573,7 +573,7 @@ export default class AircraftCommander {
         const requestedRunwayName = data[0];
 
         if (!requestedRunwayName) {
-            return aircraftModel.taxiToRunway(aircraftModel.fms.departureRunwayModel);
+            return aircraftModel.taxiToRunway(airportModel.departureRunwayModel);
         }
 
         const runwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());

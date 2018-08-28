@@ -1270,7 +1270,7 @@ export default class AircraftModel {
         }
 
         if (this.isArrival()) {
-            return  [false, 'uanble to taxi to runway, we have just landed'];
+            return  [false, 'unable to taxi to runway, we have just landed'];
         }
 
         if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
