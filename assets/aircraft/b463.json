@@ -1,6 +1,6 @@
 {
-    "name": "Avro RJ-100",
-    "icao": "RJ1H",
+    "name": "BAe-146-300",
+    "icao": "B463",
     "engines": {
         "number": 4,
         "type": "J"
@@ -15,8 +15,8 @@
     "rate": {
         "climb":      2000,
         "descent":    3000,
-        "accelerate": 8,
-        "decelerate": 5
+        "accelerate": 10,
+        "decelerate": 6
     },
     "runway": {
         "takeoff": 1.600,
@@ -25,9 +25,9 @@
     "speed":{
         "min":     110,
         "landing": 125,
-        "cruise":  389,
-        "cruiseM": 0.68,
-        "max":     412,
+        "cruise":  380,
+        "cruiseM": 0.65,
+        "max":     414,
         "maxM":    null
     },
     "capability": {

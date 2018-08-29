@@ -1,0 +1,29 @@
+{
+    "icao": "aaw",
+    "name": "Afriqiyah Airways",
+    "callsign": {
+        "name": "Afriqiyah",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 1],
+            ["A319", 2],
+            ["A320", 3],
+            ["A333", 1]
+        ],
+        "short": [
+            ["A319", 2],
+            ["A320", 3]
+        ],
+        "long": [
+            ["A333", 1]
+        ],
+        "cargo": [
+            ["A306", 1]
+        ]
+    }
+}

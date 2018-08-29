@@ -19,6 +19,7 @@
 
 
 ### Enhancements & Refactors
+- [#933](https://github.com/openscope/openscope/issues/933) - Revival of Istanbul Atatürk Airport (LTBA)
 
 
 

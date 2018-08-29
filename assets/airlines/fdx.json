@@ -4,6 +4,7 @@
     "callsign": {
         "name": "Fedex",
         "callsignFormats": [
+            "####",
             "###"
         ]
     },

@@ -435,12 +435,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'ltba',
-        //     level: 'hard',
-        //     name: 'Atatürk International Airport',
-        //     premium: false,
-        //     wip: true
+        {
+            icao: 'ltba',
+            level: 'hard',
+            name: 'Atatürk International Airport',
+            premium: false,
+            wip: false
+        },
         // },
         // {
         //     icao: 'mdsd',
