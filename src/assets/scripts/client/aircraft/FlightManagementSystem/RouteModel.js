@@ -868,7 +868,10 @@ export default class RouteModel extends BaseModel {
         }
 
         if (!this.isRunwayModelValidForStar(runwayModel)) {
-            // for tests
+            console.error(`Received Runway ${runwayModel.name}, which is not valid for the assigned STAR. ` +
+                'The runway should have been validated before passing it to this method!'
+            );
+
             return;
         }
 
