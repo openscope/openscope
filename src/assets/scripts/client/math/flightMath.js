@@ -177,12 +177,12 @@ function _calculateCourseChangeInRadians(currentHeading, nominalNewCourse) {
  * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
  * - The Avionics Handbook, ch 15
  *
- * @function aircraft_turn_initiation_distance
+ * @function calculateTurnInitiationDistance
  * @param aircraft {AircraftModel}
  * @param currentWaypointPosition {StaticPositionModel}
  * @return {number} distance before fix to initiate turn to level out on route, in nautical miles
  */
-export function calculateTurnInitiaionDistance(aircraft, currentWaypointPosition) {
+export function calculateTurnInitiationDistance(aircraft, currentWaypointPosition) {
     let currentHeading = aircraft.heading;
     const nominalBankAngleDegrees = 30;
     const bankAngle = degreesToRadians(nominalBankAngleDegrees);

@@ -18,7 +18,7 @@ ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t =>
     t.true(result === expectedResult);
 });
 
-ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
+ava('calcTurnInitiationDistanceNm() returns the distance required for a turn', t => {
     const speed = 190;
     const bankAngle = 0.523599;
     const courseChange = 0.26420086153126987;
