@@ -1,6 +1,6 @@
 # 6.5.0 (September 1, 2018)
 ### New Features
-- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
+
 
 
 
@@ -21,6 +21,8 @@
 
 ### Enhancements & Refactors
 - [#933](https://github.com/openscope/openscope/issues/933) - Revival of Istanbul Atatürk Airport (LTBA)
+- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
+- [#1071](https://github.com/openscope/openscope/issues/1071) Add optional altitude argument for 'climb via SID' command
 
 
 
