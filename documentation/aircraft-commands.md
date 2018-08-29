@@ -70,7 +70,7 @@ SID that is currently in their flightplan. They will climb to their filed
 cruise altitude, whilst complying with all altitude and speed restrictions
 posted in the procedure.
 
-_Syntax -_ `AAL123 cvs`
+_Syntax -_ `AAL123 cvs [alt]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
