@@ -445,12 +445,24 @@ export default class Pilot {
      * Climb in accordance with the altitude restrictions, and sets
      * altitude at which the climb will end regardless of fix restrictions.
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method climbViaSid
+     * @param aircraftModel {AircraftModel}
+     * @param maximumAltitude {number} (optional) altitude at which the climb will end (regardless of fix restrictions)
      * @return {array}           [success of operation, readback]
      */
-    climbViaSid() {
-        if (this._fms.flightPlanAltitude === INVALID_NUMBER) {
+    climbViaSid(aircraftModel, maximumAltitude) {
+
+        let nextAltitude = maximumAltitude;
+
+        if (typeof nextAltitude === 'undefined') {
+            nextAltitude = this._fms.flightPlanAltitude;
+        }
+
+        if (nextAltitude === INVALID_NUMBER) {
             const readback = {};
             readback.log = 'unable to climb via SID, no altitude assigned';
             readback.say = 'unable to climb via SID, no altitude assigned';
@@ -458,12 +470,33 @@ export default class Pilot {
             return [false, readback];
         }
 
-        this._mcp.setAltitudeFieldValue(this._fms.flightPlanAltitude);
+        if (typeof nextAltitude !== 'number') {
+            return [false, `unable to climb to altitude of ${nextAltitude}`];
+        }
+
+        if (!aircraftModel.model.isAbleToMaintainAltitude(nextAltitude)) {
+            const readback = {};
+            readback.log = `unable to maintain ${nextAltitude} due to performance`;
+            readback.say = `unable to maintain ${radio_altitude(nextAltitude)} due to performance`;
+
+            return [false, readback];
+        }
+
+        if (nextAltitude < aircraftModel.altitude) {
+            const readback = {};
+            readback.log = `unable to comply, say again`;
+            readback.say = `unable to comply, say again`;
+
+            return [false, readback];
+        }
+
+        this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         const readback = {};
-        readback.log = 'climb via SID';
-        readback.say = 'climb via SID';
+        readback.log = `climb via SID and maintain ${nextAltitude}`;
+        readback.say = `climb via SID and maintain ${radio_altitude(nextAltitude)}`;
 
         return [true, readback];
     }
@@ -471,12 +504,16 @@ export default class Pilot {
     /**
      * Descend in accordance with the altitude restrictions
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method descendViaStar
+     * @param aircraftModel {AircraftModel}
      * @param bottomAltitude {number} (optional) altitude at which the descent will end (regardless of fix restrictions)
      * @return {array}                [success of operation, readback]
      */
-    descendViaStar(bottomAltitude) {
+    descendViaStar(aircraftModel, bottomAltitude) {
         let nextAltitude = bottomAltitude;
 
         if (typeof nextAltitude === 'undefined') {
@@ -491,11 +528,23 @@ export default class Pilot {
             return [false, `unable to descend to bottom altitude of ${nextAltitude}`];
         }
 
+        if (aircraftModel.altitude < nextAltitude) {
+            const readback = {};
+            readback.log = `unable to comply, say again`;
+            readback.say = `unable to comply, say again`;
+
+            return [false, readback];
+        }
+
         this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        return [true, 'descend via STAR'];
+        const readback = {};
+        readback.log = `descend via STAR and maintain ${nextAltitude}`;
+        readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
+
+        return [true, readback];
     }
 
     /**

@@ -77,10 +77,6 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    climbViaSid: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
     debug: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -237,6 +233,10 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
         parse: timewarpParser
     },
     descendViaStar: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
+    },
+    climbViaSid: {
         validate: optionalAltitudeValidator,
         parse: optionalAltitudeParser
     }
