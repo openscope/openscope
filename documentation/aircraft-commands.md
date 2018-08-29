@@ -68,9 +68,10 @@ _Aliases -_ `cvs`
 _Information -_ Authorizes the aircraft to climb in accordance with the
 SID that is currently in their flightplan. They will climb to their filed
 cruise altitude, whilst complying with all altitude and speed restrictions
-posted in the procedure.
+posted in the procedure. Optionally, an altitude may be specified to dictate
+the altitude to be climbed to.
 
-_Syntax -_ `AAL123 cvs [alt]`
+_Syntax -_ `AAL123 cvs` or `AAL123 cvs [alt]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -114,9 +115,10 @@ _Information -_ Authorizes the aircraft to descend in accordance with the
 STAR that is currently in their flightplan. They will descend to the lowest
 altitude required by the STAR, and after no further altitude and/or speed
 restrictions are listed, will maintain their altitude and speed until
-receiving further instructions from ATC.
+receiving further instructions from ATC. Optionally, an altitude may be
+specified to dictate the altitude to be descended to.
 
-_Syntax -_ `AAL123 dvs [alt]`
+_Syntax -_ `AAL123 dvs` or `AAL123 dvs [alt]`
 
 ### ILS
 _Aliases -_ `ils` / `i`
