@@ -58,6 +58,18 @@ ava('groupNumbers() returns appropriate string for "2216"', (t) => {
     t.true(groupNumbers('2216') === 'twenty two sixteen');
 });
 
+ava('groupNumbers() returns appropriate string for "3000"', (t) => {
+    t.true(groupNumbers('3000') === 'three thousand');
+});
+
+ava('groupNumbers() returns appropriate string for "4000"', (t) => {
+    t.true(groupNumbers('4000') === 'four thousand');
+});
+
+ava('groupNumbers() returns appropriate string for "5000"', (t) => {
+    t.true(groupNumbers('5000') === 'five thousand');
+});
+
 ava('groupNumbers() returns appropriate string for "6641"', (t) => {
     t.true(groupNumbers('6641') === 'sixty six fourty one');
 });
