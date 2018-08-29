@@ -341,6 +341,24 @@ export default class Pilot {
     }
 
     /**
+     * Ensure the STAR leg has the specified arrival runway as the exit point and
+     * set the specified runway as the new arrival runway.
+     *
+     * @for Pilot
+     * @method updateStarLegForArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param nextRunwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    updateStarLegForArrivalRunway(aircraft, nextRunwayModel) {
+        if (aircraft.isOnGround()) {
+            return [false, 'unable to accept arrival runway assignment until airborne'];
+        }
+
+        return this._fms.updateStarLegForArrivalRunway(nextRunwayModel);
+    }
+
+    /**
      * Stop conducting the instrument approach, and maintain:
      * - current or last assigned altitude (whichever is lower)
      * - current heading
@@ -357,7 +375,8 @@ export default class Pilot {
         }
 
         const airport = AirportController.airport_get();
-        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const currentAltitude = _floor(aircraftModel.altitude, -2);
+        const descentAltitude = Math.min(currentAltitude, this._mcp.altitude);
         const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
@@ -814,23 +833,6 @@ export default class Pilot {
     sayTargetedSpeed() {
         // TODO: How do we handle the cases where aircraft are using VNAV speed?
         return [true, this._mcp.speed];
-    }
-
-    /**
-     * Set the arrival runway to the specified runway model
-     *
-     * @for Pilot
-     * @method setArrivalRunway
-     * @param aircraft {AircraftModel}
-     * @param runwayModel {RunwayModel}
-     * @return {array} [success of operation, response]
-     */
-    setArrivalRunway(aircraft, runwayModel) {
-        if (aircraft.isOnGround()) {
-            return [false, 'unable to accept arrival runway assignment until airborne'];
-        }
-
-        return this._fms.setArrivalRunway(runwayModel);
     }
 
     /**
