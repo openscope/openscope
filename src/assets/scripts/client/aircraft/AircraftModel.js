@@ -1813,7 +1813,6 @@ export default class AircraftModel {
         }
 
         if (!this._isEstablishedOnHoldingPattern) {
-
             return bearingToHoldFix;
         }
 
