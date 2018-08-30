@@ -1,6 +1,6 @@
 # 6.5.0 (September 1, 2018)
 ### New Features
-
+- [#206](https://github.com/openscope/openscope/issues/206) - Add Bucharest Henri Coandǎ International Airport (LROP)
 
 
 
