@@ -1777,6 +1777,11 @@ export default class AircraftModel {
             }
 
             this.fms.moveToNextWaypoint();
+
+            const nextWaypointPosition = this.fms.currentWaypoint.positionModel;
+
+            // initiate the turn
+            return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
 
         return headingToWaypoint;
