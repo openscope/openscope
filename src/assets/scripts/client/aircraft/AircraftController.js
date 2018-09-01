@@ -392,19 +392,6 @@ export default class AircraftController {
     }
 
     /**
-     * Create a new `StripViewModel` for a new `AircraftModel` instance
-     *
-     * This method should only be run during instantiation of a new `AircraftModel`
-     *
-     * @for AircraftController
-     * @method initAircraftStripView
-     * @param  aircraftModel {AircraftModel}
-     */
-    initAircraftStripView(aircraftModel) {
-        this._stripViewController.createStripView(aircraftModel);
-    }
-
-    /**
      * Update all the `StripViewModel` objects with up-to-date aircraft data
      *
      * This is a **HOT** method and will run within the game loop
@@ -568,7 +555,6 @@ export default class AircraftController {
         // triggering event bus rather than calling locally because multiple classes
         // are listening for the event and aircraft model
         this._eventBus.trigger(EVENT.ADD_AIRCRAFT, aircraftModel);
-        this.initAircraftStripView(aircraftModel);
     }
 
     /**

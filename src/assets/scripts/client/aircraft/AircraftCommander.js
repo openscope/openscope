@@ -237,8 +237,10 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
-    runClimbViaSID(aircraft) {
-        return aircraft.pilot.climbViaSid();
+    runClimbViaSID(aircraft, data) {
+        const altitude = data[0];
+
+        return aircraft.pilot.climbViaSid(aircraft, altitude);
     }
 
     /**
@@ -249,10 +251,9 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runDescendViaStar(aircraft, data = []) {
-        // TODO: add altitude param to descendViaStar command
-        const altitude = data[0];// NOT IN USE
+        const altitude = data[0];
 
-        return aircraft.pilot.descendViaStar(altitude);
+        return aircraft.pilot.descendViaStar(aircraft, altitude);
     }
 
     /**
@@ -341,7 +342,7 @@ export default class AircraftCommander {
             return [false, readback];
         }
 
-        return aircraft.pilot.setArrivalRunway(aircraft, runwayModel);
+        return aircraft.pilot.updateStarLegForArrivalRunway(aircraft, runwayModel);
     }
 
     /**

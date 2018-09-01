@@ -1,4 +1,4 @@
-# 6.5.0 (September 1, 2018)
+# 6.6.0 (October 1, 2018)
 ### New Features
 - [#989](https://github.com/openscope/openscope/issues/989) - Add in Austin Bergstrom International Airport
 - [#403](https://github.com/openscope/openscope/issues/403) - Add Flughafen Düsseldorf (Düsseldorf Airport, EDDL)
@@ -17,6 +17,26 @@
 
 
 
+
+
+# 6.5.0 (September 1, 2018)
+### New Features
+- [#206](https://github.com/openscope/openscope/issues/206) - Add Bucharest Henri Coandǎ International Airport (LROP)
+
+### Bugfixes
+- [#994](https://github.com/openscope/openscope/issues/994) - fix "Aircraft vectored off ILS maintain over-precise altitude"
+- [#1048](https://github.com/openscope/openscope/issues/1048) - fix "Aircrafts do not land after ILS clearance" because runway is not part of their STAR
+- [#1044](https://github.com/openscope/openscope/issues/1044) - fix aircrafts drift off ILS localizer during final approach causing "strange behaviour after landing"
+- [#1047](https://github.com/openscope/openscope/issues/1047) - fix "Flight number 5000 pronounced incorrectly"
+- [#993](https://github.com/openscope/openscope/issues/993) - fix Arrivals exiting and reentering airspace causes error about missing strip
+- [#724](https://github.com/openscope/openscope/issues/724) - fix settings modal doesn't add active class to control icon
+- [#421](https://github.com/openscope/openscope/issues/421) - Add missing keys to spawnPatternModelJsonValidator
+- [#836](https://github.com/openscope/openscope/issues/836) - Fix "hold in STAR procedure isn't working"
+
+### Enhancements & Refactors
+- [#933](https://github.com/openscope/openscope/issues/933) - Revival of Istanbul Atatürk Airport (LTBA)
+- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
+- [#1071](https://github.com/openscope/openscope/issues/1071) Add optional altitude argument for 'climb via SID' command
 
 
 # 6.4.0 (August 1, 2018)
