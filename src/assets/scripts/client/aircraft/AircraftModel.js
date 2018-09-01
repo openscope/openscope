@@ -1367,8 +1367,6 @@ export default class AircraftModel {
                 break;
 
             case FLIGHT_PHASE.LANDING: {
-                this.target.heading = this.mcp.course;
-
                 if (this.altitude <= this.mcp.nav1Datum.elevation) {
                     this.altitude = this.mcp.nav1Datum.elevation;
                     this.target.speed = 0;
@@ -1793,11 +1791,18 @@ export default class AircraftModel {
         const currentWaypoint = this.fms.currentWaypoint;
         const holdParameters = currentWaypoint.holdParameters;
         const waypointRelativePosition = currentWaypoint.relativePosition;
-        const outboundHeading = radians_normalize(holdParameters.inboundHeading + Math.PI);
-        const offset = getOffset(this, waypointRelativePosition, holdParameters.inboundHeading);
+        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
+
+        if (typeof holdParameters.inboundHeading === 'undefined') {
+            // store the current heading as inbound heading, see #836
+            holdParameters.inboundHeading = bearingToHoldFix;
+        }
+
+        const inboundHeading = holdParameters.inboundHeading;
+        const outboundHeading = radians_normalize(inboundHeading + Math.PI);
+        const offset = getOffset(this, waypointRelativePosition, inboundHeading);
         const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
         const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
-        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
@@ -1808,9 +1813,7 @@ export default class AircraftModel {
         }
 
         if (!this._isEstablishedOnHoldingPattern) {
-            this.target.heading = bearingToHoldFix;
-
-            return;
+            return bearingToHoldFix;
         }
 
         let nextTargetHeading = outboundHeading;
@@ -2511,6 +2514,9 @@ export default class AircraftModel {
         // Crossing into the center
         if (this.isControllable) {
             this.callUp();
+            
+            // for reentry, see #993
+            this.isFlightStripRemovable = false;
 
             return;
         }

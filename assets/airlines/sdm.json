@@ -2,7 +2,7 @@
     "icao": "sdm",
     "name": "Rossiya - Russian Airlines",
     "callsign": {
-        "name": "Russia",
+        "name": "Rossiya",
         "callsignFormats": [
             "####"
         ]

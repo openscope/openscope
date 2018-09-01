@@ -421,6 +421,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+        {
+            icao: 'lrop',
+            level: 'medium',
+            name: 'Bucharest Henri Coanda International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'loww',
         //     level: 'medium',
@@ -435,12 +442,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'ltba',
-        //     level: 'hard',
-        //     name: 'Atatürk International Airport',
-        //     premium: false,
-        //     wip: true
+        {
+            icao: 'ltba',
+            level: 'hard',
+            name: 'Atatürk International Airport',
+            premium: false,
+            wip: false
+        },
         // },
         // {
         //     icao: 'mdsd',

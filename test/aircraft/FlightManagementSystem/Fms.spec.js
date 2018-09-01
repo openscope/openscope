@@ -249,10 +249,9 @@ ava('._initializeArrivalRunway() returns early when #arrivalAirportModel is null
 
 ava('._initializeArrivalRunway() sets #arrivalRunwayModel to arrival airport\'s standard arrival runway when unable to deduce arrival runway from route', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString(directOnlyRouteStringMock);
-    const expectedResult = [true, { log: 'expect Runway 25L', say: 'expect Runway two five left' }];
     const result = fms._initializeArrivalRunway();
 
-    t.deepEqual(result, expectedResult);
+    t.true(typeof result === 'undefined');
     t.deepEqual(fms.arrivalRunwayModel, fms.arrivalAirportModel.arrivalRunwayModel);
 });
 
@@ -700,40 +699,55 @@ ava('.setArrivalRunway() throws when passed something other than a RunwayModel i
     t.throws(() => fms.setArrivalRunway('hello'));
 });
 
-ava('.setArrivalRunway() returns early when the specified runway is already the #arrivalRunwayModel', (t) => {
+ava('.updateStarLegForArrivalRunway() throws when passed something other than a RunwayModel instance', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const originalRunwayModel = fms.arrivalRunwayModel;
-    const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
 
-    fms.setArrivalRunway(originalRunwayModel);
-
-    t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
-    t.deepEqual(fms.arrivalRunwayModel, originalRunwayModel);
+    t.throws(() => fms.updateStarLegForArrivalRunway());
+    t.throws(() => fms.updateStarLegForArrivalRunway({}));
+    t.throws(() => fms.updateStarLegForArrivalRunway([]));
+    t.throws(() => fms.updateStarLegForArrivalRunway(''));
+    t.throws(() => fms.updateStarLegForArrivalRunway(15));
+    t.throws(() => fms.updateStarLegForArrivalRunway('hello'));
 });
 
-ava('.setArrivalRunway() returns early when the specified runway is not valid for the currently assigned STAR', (t) => {
+ava('.updateStarLegForArrivalRunway() returns early when the specified runway is already the #arrivalRunwayModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.arrivalRunwayModel;
-    const nextRunwayModel = airportModelFixture.getRunway('01R');
     const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
-    const expectedResult = [false, {
-        log: 'according to our charts, Runway 01R is not valid for the KEPEC3 arrival, expecting Runway 07R instead',
-        say: 'according to our charts, Runway zero one right is not valid for the Kepec Three arrival, expecting Runway zero seven right instead'
-    }];
-    const result = fms.setArrivalRunway(nextRunwayModel);
+
+    const expectedResult = [true, { log: `expect Runway ${originalRunwayModel.name}`, say: `expect Runway ${originalRunwayModel.getRadioName()}` }];
+    const result = fms.updateStarLegForArrivalRunway(originalRunwayModel);
 
     t.deepEqual(result, expectedResult);
     t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
     t.deepEqual(fms.arrivalRunwayModel, originalRunwayModel);
 });
 
-ava('.setArrivalRunway() sets #arrivalRunwayModel to the specified RunwayModel', (t) => {
+ava('.updateStarLegForArrivalRunway() returns early when the specified runway is not valid for the currently assigned STAR', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const originalRunwayModel = fms.arrivalRunwayModel;
+    const nextRunwayModel = airportModelFixture.getRunway('01R');
+    const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
+    const expectedResult = [false, {
+        log: 'unable, according to our charts, Runway 01R is not valid for the KEPEC3 arrival, expecting Runway 07R instead',
+        say: 'unable, according to our charts, Runway zero one right is not valid for the Kepec Three arrival, expecting Runway zero seven right instead'
+    }];
+    const result = fms.updateStarLegForArrivalRunway(nextRunwayModel);
+
+    t.deepEqual(result, expectedResult);
+    t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.notCalled);
+    t.deepEqual(fms.arrivalRunwayModel, originalRunwayModel);
+});
+
+ava('.updateStarLegForArrivalRunway() sets #arrivalRunwayModel to the specified RunwayModel', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const nextRunwayModel = airportModelFixture.getRunway('25R');
     const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
 
-    fms.setArrivalRunway(nextRunwayModel);
+    const expectedResult = [true, { log: `expecting Runway ${nextRunwayModel.name}`, say: `expecting Runway ${nextRunwayModel.getRadioName()}` }];
+    const result = fms.updateStarLegForArrivalRunway(nextRunwayModel);
 
+    t.deepEqual(result, expectedResult);
     t.true(routeModelUpdateStarLegForArrivalRunwayModelSpy.calledWithExactly(nextRunwayModel));
     t.deepEqual(fms.arrivalRunwayModel, nextRunwayModel);
 });
