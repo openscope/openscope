@@ -9,7 +9,7 @@ This is the Control Tower position at AUS, serving Austin-Bergstrom Internationa
 
 Class C airspace extends to 17,000 feet above sea level, encompassing the area around the airport.
 
-#### Instrument Procedures
+### Instrument Procedures
 
 ##### Austin-Bergstrom International Airport has 7 STAR procedures, and 9 SID procedures. 
 
@@ -49,7 +49,7 @@ E - East Approach
 S - South Approach
 W - West Approach
 ```
-The airspace available in openscope is a combination of these 3 sectors.
+The airspace available in openScope is a combination of these 3 sectors.
 
 ### Airports of Interest
 
