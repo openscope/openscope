@@ -252,6 +252,16 @@ ava('.getAllWaypointModelsAfterWaypointName() returns an array of all waypoint m
     t.deepEqual(remainingFixNames, expectedRemainingFixNames);
 });
 
+ava('.getAllWaypointModelsBeforeWaypointName() returns an array of all waypoint models before and excluding the specified one', (t) => {
+    const model = new LegModel(sidRouteStringMock);
+    const lastExcludedWaypoint = 'BOACH';
+    const result = model.getAllWaypointModelsBeforeWaypointName(lastExcludedWaypoint);
+    const expectedRemainingFixNames = ['RBELL', 'ROPPR', 'RODDD'];
+    const remainingFixNames = result.map((wp) => wp.name);
+
+    t.deepEqual(remainingFixNames, expectedRemainingFixNames);
+});
+
 ava('.getArrivalRunwayAirportIcao() returns null when this is not a STAR leg', (t) => {
     const model = new LegModel(sidRouteStringMock);
     const result = model.getArrivalRunwayAirportIcao();
@@ -330,6 +340,54 @@ ava('.getDepartureRunwayName() returns the all but first four characters of the 
     const result = model.getDepartureRunwayName();
 
     t.true(result === '25R');
+});
+
+ava('.getEntryFixName() returns the name of the fix when this leg is a direct leg', (t) => {
+    const model = new LegModel('TNP');
+    const expectedResult = 'TNP';
+    const result = model.getEntryFixName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getEntryFixName() returns route string before the first \'.\' when this leg is a SID leg', (t) => {
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
+    const expectedResult = 'KLAS25R';
+    const result = model.getEntryFixName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getEntryFixName() returns route string before the first \'.\' when this leg is a STAR leg', (t) => {
+    const model = new LegModel('DAG.KEPEC3.KLAS19R');
+    const expectedResult = 'DAG';
+    const result = model.getEntryFixName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getExitFixName() returns the name of the fix when this leg is a direct leg', (t) => {
+    const model = new LegModel('TNP');
+    const expectedResult = 'TNP';
+    const result = model.getExitFixName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getExitFixName() returns route string after the last \'.\' when this leg is a SID leg', (t) => {
+    const model = new LegModel('KLAS25R.BOACH6.TNP');
+    const expectedResult = 'TNP';
+    const result = model.getExitFixName();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getExitFixName() returns route string after the last \'.\' when this leg is a STAR leg', (t) => {
+    const model = new LegModel('DAG.KEPEC3.KLAS19R');
+    const expectedResult = 'KLAS19R';
+    const result = model.getExitFixName();
+
+    t.true(result === expectedResult);
 });
 
 ava('.getProcedureIcao() returns undefined when this is not a procedure leg', (t) => {

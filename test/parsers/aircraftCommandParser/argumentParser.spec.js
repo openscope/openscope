@@ -7,7 +7,8 @@ import {
     headingParser,
     findHoldCommandByType,
     holdParser,
-    timewarpParser
+    timewarpParser,
+    optionalAltitudeParser
 } from '../../../src/assets/scripts/client/parsers/aircraftCommandParser/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
@@ -28,6 +29,18 @@ ava('.altitudeParser() returns an array of length two when passed a single argum
     t.true(result.length === 2);
     t.true(result[0] === 8000);
     t.false(result[1]);
+});
+
+ava('.optionalAltitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
+    const result = optionalAltitudeParser(['080']);
+
+    t.true(result[0] === 8000);
+});
+
+ava('.optionalAltitudeParser() returns true if there is no argument', t => {
+    const result = optionalAltitudeParser([]);
+
+    t.true(result.length === 0);
 });
 
 ava('.headingParser() throws if it does not receive 1 or 2 arguments', t => {

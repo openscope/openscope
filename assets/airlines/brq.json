@@ -1,0 +1,17 @@
+{
+    "icao": "brq",
+    "name": "Buraq Air",
+    "callsign": {
+        "name": "Buraqair",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B734", 2],
+            ["B735", 1],
+            ["B738", 2]
+        ]
+    }
+}

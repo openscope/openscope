@@ -4,7 +4,7 @@ import { airportModelFixture } from '../../fixtures/airportFixtures';
 
 export const GPS_COORDINATES_MOCK = [35.404050, -97.619943];
 
-export const MAGNETIC_NORTH_MOCK = -8.2;
+export const MAGNETIC_NORTH_MOCK = -0.143117;
 
 export const POSITION_MODEL_MOCK = new DynamicPositionModel(GPS_COORDINATES_MOCK, airportModelFixture.positionModel, MAGNETIC_NORTH_MOCK);
 
