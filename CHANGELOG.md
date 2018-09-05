@@ -1,7 +1,6 @@
 # 6.6.0 (October 1, 2018)
 ### New Features
 - [#989](https://github.com/openscope/openscope/issues/989) - Add in Austin Bergstrom International Airport
-- [#1074](https://github.com/openscope/openscope/issues/1074) - Update link to "aircraft separation rules" in scoring.md
 
 
 
@@ -15,6 +14,9 @@
 
 ### Enhancements & Refactors
 - [1077](https://github.com/openscope/openscope/issues/1077) - Update flight strips view by separating arrival and departure strips
+- [#1074](https://github.com/openscope/openscope/issues/1074) - Update link to "aircraft separation rules" in scoring.md
+
+
 
 
 
