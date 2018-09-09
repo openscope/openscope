@@ -13,8 +13,7 @@
 
 
 ### Enhancements & Refactors
-
-
+- [1077](https://github.com/openscope/openscope/issues/1077) - Update flight strips view by separating arrival and departure strips
 
 
 
