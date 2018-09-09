@@ -48,8 +48,9 @@ export default class StripViewModel extends BaseModel {
      * @constructor
      * @param aircraftModel {object}
      * @param cidValue {number}
+     * @param isDeparture {boolean}
      */
-    constructor(aircraftModel, cidValue) {
+    constructor(aircraftModel, cidValue, isDeparture) {
         super('stripViewModel');
 
         /**
@@ -68,6 +69,17 @@ export default class StripViewModel extends BaseModel {
          * @private
          */
         this._eventBus = EventBus;
+
+        /**
+         * If an aircraft is a Departure
+         *
+         * When this is true it means the aircraft is a Departure
+         * and if this is false it means the aircraft is an Arrival.
+         *
+         * @property isDeparture
+         * @type {boolean}
+         */
+        this.isDeparture = isDeparture;
 
         /**
          * Root HTML Element
