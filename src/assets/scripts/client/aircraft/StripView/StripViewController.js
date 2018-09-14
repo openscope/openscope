@@ -158,7 +158,7 @@ export default class StripViewController {
             let stripViewModel = this._collection.findStripByAircraftId(aircraftModel.id);
             
             if (typeof stripViewModel === "undefined") {
-                stripViewModel = this.createStripView(aircraftModel, aircraftModel.isDeparture());
+                stripViewModel = this.createStripView(aircraftModel);
             }
 
             stripViewModel.update(aircraftModel);
@@ -171,12 +171,11 @@ export default class StripViewController {
      * @for StripViewController
      * @method createStripView
      * @param aircraftModel {AircraftModel}
-     * @param isDeparture {boolean}
      * @return {StripViewModel}
      */
-    createStripView(aircraftModel, isDeparture) {
+    createStripView(aircraftModel) {
         const stripViewCid = this._generateCidNumber();
-        const stripViewModel = new StripViewModel(aircraftModel, stripViewCid, isDeparture);
+        const stripViewModel = new StripViewModel(aircraftModel, stripViewCid);
 
         this._collection.addItem(stripViewModel);
 

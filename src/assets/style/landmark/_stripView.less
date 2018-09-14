@@ -19,9 +19,10 @@
 }
 
 .stripTitle {
-    color: #ffffff;
-    font-size: 2em;
     background-color: #222222;
+    color: #ffffff;
+    font-size: 1.25em;
+    padding: 5px 0;
     text-align: center;
 }
 
@@ -30,7 +31,9 @@
     width: ~"calc(100% - " @spacing-2x ~")";
     overflow-y: scroll;
     list-style-type: none;
-    height: ~"calc(50% - 2em)";
+    height: ~"calc(50% - 1.25em - 10px)";
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .stripViewItem {

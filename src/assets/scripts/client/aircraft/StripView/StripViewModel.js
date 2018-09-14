@@ -48,9 +48,8 @@ export default class StripViewModel extends BaseModel {
      * @constructor
      * @param aircraftModel {object}
      * @param cidValue {number}
-     * @param isDeparture {boolean}
      */
-    constructor(aircraftModel, cidValue, isDeparture) {
+    constructor(aircraftModel, cidValue) {
         super('stripViewModel');
 
         /**
@@ -78,8 +77,9 @@ export default class StripViewModel extends BaseModel {
          *
          * @property isDeparture
          * @type {boolean}
+         * @default false
          */
-        this.isDeparture = isDeparture;
+        this.isDeparture = false;
 
         /**
          * Root HTML Element
@@ -380,6 +380,7 @@ export default class StripViewModel extends BaseModel {
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
+        this.isDeparture = aircraftModel.isDeparture();
 
         return this;
     }
