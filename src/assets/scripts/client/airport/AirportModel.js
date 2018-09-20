@@ -36,6 +36,11 @@ import { STORAGE_KEY } from '../constants/storageKeys';
 const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
+const DEFAULT_RANGE_RINGS = {
+    enabled: false,
+    radius_nm: 0,
+    center: [0, 0]
+};
 
 /**
  * @class AirportModel
@@ -243,11 +248,7 @@ export default class AirportModel {
          * @type {object}
          * @default 0
          */
-        this.rangeRings = {
-            enabled: false,
-            radius_nm: 0,
-            center: [0, 0]
-        };
+        this.rangeRings = DEFAULT_RANGE_RINGS;
 
         this.parse(options);
     }
@@ -364,7 +365,7 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rangeRings = _get(data, 'rangeRings');
+        this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();
