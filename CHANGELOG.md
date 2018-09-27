@@ -7,7 +7,7 @@
 
 
 ### Bugfixes
-
+- [#1086](https://github.com/openscope/openscope/issues/1086) - Update P28A Climb rate fm 2000ft/m to 700ft/m
 
 
 
