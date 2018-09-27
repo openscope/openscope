@@ -214,17 +214,41 @@ class NavigationLibrary {
      */
     _initializeSidLines() {
         const sids = this.getProceduresByType(PROCEDURE_TYPE.SID);
-        const sidLines = [];
-        let mostRecentFixName = '';
+        this._procedureLines[PROCEDURE_TYPE.SID] = this._buildProcedureLine(sids);
+    }
+
+    /**
+     * Generate lines for STARs and add them to the procedure lines
+     *
+     * @for NavigationLibrary
+     * @method _initializeStarLines
+     */
+    _initializeStarLines() {
+        const stars = this.getProceduresByType(PROCEDURE_TYPE.STAR);
+        this._procedureLines[PROCEDURE_TYPE.STAR] = this._buildProcedureLine(stars);
+    }
+
+    /**
+     * Generate lines for prodecures and return the resulting lines.
+     *
+     * @for NavigationLibrary
+     * @method _buildProcedureLine
+     * @param procedures {array<ProcedureModel>}
+     * @return {array<object>}
+     */
+    _buildProcedureLine(procedures) {
+        const procedureLines = [];
 
         // TODO: simplify/rector these nested loops.
-        for (let i = 0; i < sids.length; i++) {
-            const sid = sids[i];
+        for (let i = 0; i < procedures.length; i++) {
+            const procedure = procedures[i];
             const lines = [];
             const exits = [];
+            let firstFixName = null;
+            let mostRecentFixName = '';
 
-            for (let j = 0; j < sid.draw.length; j++) {
-                const fixList = sid.draw[j];
+            for (let j = 0; j < procedure.draw.length; j++) {
+                const fixList = procedure.draw[j];
                 const positions = [];
 
                 for (let k = 0; k < fixList.length; k++) {
@@ -243,53 +267,8 @@ class NavigationLibrary {
                         continue;
                     }
 
-                    positions.push(fixPosition);
-                }
-
-                if (positions.length > 1) {
-                    lines.push(positions);
-                }
-            }
-
-            sidLines.push({
-                identifier: sid.icao,
-                lines: lines,
-                lastFixName: mostRecentFixName,
-                exits: exits
-            });
-        }
-
-        this._procedureLines[PROCEDURE_TYPE.SID] = sidLines;
-    }
-
-    /**
-     * Generate lines for STARs and add them to the procedure lines
-     *
-     * @for NavigationLibrary
-     * @method _initializeStarLines
-     */
-    _initializeStarLines() {
-        const stars = this.getProceduresByType(PROCEDURE_TYPE.STAR);
-        const starLines = [];
-
-        // TODO: simplify/rector these nested loops.
-        for (let i = 0; i < stars.length; i++) {
-            const star = stars[i];
-            const lines = [];
-            let mostRecentFixName = '';
-
-            for (let j = 0; j < star.draw.length; j++) {
-                const fixList = star.draw[j];
-                const positions = [];
-
-                for (let k = 0; k < fixList.length; k++) {
-                    // TODO: is asterisk valid for STARs?
-                    mostRecentFixName = fixList[k].replace('*', '');
-                    const fixPosition = this.getFixRelativePosition(mostRecentFixName);
-
-                    if (!fixPosition) {
-                        console.warn(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
-                        continue;
+                    if (firstFixName === null) {
+                        firstFixName = mostRecentFixName;
                     }
 
                     positions.push(fixPosition);
@@ -300,15 +279,16 @@ class NavigationLibrary {
                 }
             }
 
-            starLines.push({
-                identifier: star.icao,
+            procedureLines.push({
+                identifier: procedure.icao,
                 lines: lines,
+                firstFixName: firstFixName,
                 lastFixName: mostRecentFixName,
-                exits: null
+                exits: exits
             });
         }
 
-        this._procedureLines[PROCEDURE_TYPE.STAR] = starLines;
+        return procedureLines;
     }
 
     /**

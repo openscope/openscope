@@ -746,7 +746,7 @@ export default class CanvasController {
             }
         }
 
-        // draw SID labels
+        // draw labels
         for (const fix in textAtFix) {
             const textItemsToPrint = textAtFix[fix];
             const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
@@ -785,16 +785,16 @@ export default class CanvasController {
                 this._drawLine(cc, star.lines[j]);
             }
 
-            const lastFixName = star.lastFixName;
+            const firstFixName = star.firstFixName;
 
-            if (!(lastFixName in textAtFix)) {
-                textAtFix[lastFixName] = [];
+            if (!(firstFixName in textAtFix)) {
+                textAtFix[firstFixName] = [];
             }
 
-            textAtFix[lastFixName].push(star.identifier);
+            textAtFix[firstFixName].push(star.identifier);
         }
 
-        // draw SID labels
+        // draw labels
         for (const fix in textAtFix) {
             const textItemsToPrint = textAtFix[fix];
             const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
