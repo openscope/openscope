@@ -114,7 +114,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @property realFixes
-     * @value {array<FixModel>}
+     * @return {array<FixModel>}
      */
     get realFixes() {
         return FixCollection.findRealFixes();
