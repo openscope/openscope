@@ -489,9 +489,9 @@ class NavigationLibrary {
      * @param procedureId {string}
      * @return {array}
      */
-     getProcedureLines(procedureId) {
-         return this._procedureLines[procedureId];
-     }
+    getProcedureLines(procedureId) {
+        return this._procedureLines[procedureId];
+    }
 
     /**
      * Return whether the specified airway identifier is listed in the #_airwayCollection
