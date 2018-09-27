@@ -130,7 +130,7 @@ export const SCOPE_THEME = {
      * @memberof SCOPE_THEME
      * @property STAR
      */
-    STAR: COLOR.BLUE_VERY_LIGHT,
+    STAR: COLOR.RED,
 
     /**
      * Color of the lines drawn between fixes on STARs

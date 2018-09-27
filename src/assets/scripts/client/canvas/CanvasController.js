@@ -708,8 +708,6 @@ export default class CanvasController {
         const textAtFix = [];
         const sidLines = NavigationLibrary.getProcedureLines(PROCEDURE_TYPE.SID);
 
-        let mostRecentFixName = '';
-
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.SID;
@@ -753,7 +751,7 @@ export default class CanvasController {
             const textItemsToPrint = textAtFix[fix];
             const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
 
-            this._drawLabelsAtPoint(cc, fixPosition, textItemsToPrint);
+            this._drawText(cc, fixPosition, textItemsToPrint);
         }
 
         cc.restore();
@@ -801,7 +799,7 @@ export default class CanvasController {
             const textItemsToPrint = textAtFix[fix];
             const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
 
-            this._drawLabelsAtPoint(cc, fixPosition, textItemsToPrint);
+            this._drawText(cc, fixPosition, textItemsToPrint);
         }
 
         cc.restore();
@@ -836,13 +834,13 @@ export default class CanvasController {
 
     /**
      * @for CanvasController
-     * @method _drawLabelsAtPoint
+     * @method _drawText
      * @param cc {HTMLCanvasContext}
      * @param position {array<number, number>} position coordinates (in km)
      * @param labels {array}
      * @private
      */
-    _drawLabelsAtPoint(cc, position, labels) {
+    _drawText(cc, position, labels) {
         const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
 
         for (let k = 0; k < labels.length; k++) {

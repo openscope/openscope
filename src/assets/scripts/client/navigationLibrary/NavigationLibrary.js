@@ -71,11 +71,12 @@ class NavigationLibrary {
          * @type {array}
          * @default {}
          */
-         this._procedureLines = {};
+        this._procedureLines = {};
     }
 
     /**
      *
+     * @for NavigationLibrary
      * @property hasSids
      * @return {boolean}
      */
@@ -89,6 +90,7 @@ class NavigationLibrary {
 
     /**
      *
+     * @for NavigationLibrary
      * @property hasStars
      * @return {boolean}
      */
@@ -110,8 +112,9 @@ class NavigationLibrary {
 
     /**
      *
+     * @for NavigationLibrary
      * @property realFixes
-     * @return {array<FixModel>}
+     * @value {array<FixModel>}
      */
     get realFixes() {
         return FixCollection.findRealFixes();
@@ -158,7 +161,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method _initializeFixCollection
-     * @param fixes
+     * @param {array<FixModel>} fixes - array of fixes to add to the collection.
      */
     _initializeFixCollection(fixes) {
         FixCollection.addItems(fixes, this._referencePosition);
