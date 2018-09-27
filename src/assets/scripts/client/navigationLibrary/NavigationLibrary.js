@@ -78,7 +78,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @property hasSids
-     * @return {boolean}
+     * @type {boolean}
      */
     get hasSids() {
         const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
@@ -92,7 +92,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @property hasStars
-     * @return {boolean}
+     * @type {boolean}
      */
     get hasStars() {
         const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
@@ -114,7 +114,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @property realFixes
-     * @return {array<FixModel>}
+     * @type {array<FixModel>}
      */
     get realFixes() {
         return FixCollection.findRealFixes();
