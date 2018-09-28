@@ -1,0 +1,21 @@
+{
+    "icao": "msa",
+    "name": "Mistral Air",
+    "callsign": {
+        "name": "Mistral Wings",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@",
+            "#@@",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 1],
+            ["AT75", 5],
+            ["AT73", 2]
+        ]
+    }
+}
