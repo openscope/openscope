@@ -1832,6 +1832,10 @@ export default class AircraftModel {
 
             const nextWaypointPosition = this.fms.currentWaypoint.positionModel;
 
+            if (nextWaypointPosition == null) {
+                console.log(`ERROR: positionModel of waypoint ${this.fms.currentWaypoint.name} is null!`);
+            }
+
             // initiate the turn
             return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
@@ -2572,7 +2576,7 @@ export default class AircraftModel {
         // Crossing into the center
         if (this.isControllable) {
             this.callUp();
-            
+
             // for reentry, see #993
             this.isFlightStripRemovable = false;
 
