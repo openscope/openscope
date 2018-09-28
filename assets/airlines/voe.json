@@ -1,0 +1,22 @@
+
+{
+    "icao": "voe",
+    "name": "Volotea",
+    "callsign": {
+        "name": "Volotea",
+        "callsignFormats": [
+            "##@@",
+            "###@",
+            "####",
+            "##@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 13],
+            ["A320", 1],
+            ["B717", 17],
+            [B737, 1]
+        ]
+    }
+}
