@@ -2,6 +2,7 @@
 ### New Features
 - [#989](https://github.com/openscope/openscope/issues/989) - Add in Austin Bergstrom International Airport
 - [#1090](https://github.com/openscope/openscope/issues/1090) - Add Tecnam P92 Aircraft
+- [#1095](https://github.com/openscope/openscope/issues/1095) - Add VOE & MSA Airlines
 
 
 
