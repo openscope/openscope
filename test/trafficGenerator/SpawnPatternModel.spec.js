@@ -232,7 +232,7 @@ ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in mil
 ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
@@ -243,7 +243,7 @@ ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and 
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
