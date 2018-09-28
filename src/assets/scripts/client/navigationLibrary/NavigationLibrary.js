@@ -2,6 +2,7 @@ import _filter from 'lodash/filter';
 import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isNil from 'lodash/isNil';
+import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import _uniq from 'lodash/uniq';
@@ -11,6 +12,7 @@ import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 import { degreesToRadians } from '../utilities/unitConverters';
+import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
  *
@@ -44,6 +46,13 @@ class NavigationLibrary {
         //  */
         // this._starCollection = null;
 
+        /**
+         *
+         *
+         * @property _procedureCollection
+         * @type {array}
+         * @default {}
+         */
         this._procedureCollection = {};
 
         /**
@@ -54,8 +63,23 @@ class NavigationLibrary {
          * @default null
          */
         this._referencePosition = null;
+
+        /**
+         * additional information to draw the procedures on the screen
+         *
+         * @property _procedureLines
+         * @type {array}
+         * @default {}
+         */
+        this._procedureLines = {};
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @property hasSids
+     * @type {boolean}
+     */
     get hasSids() {
         const sidProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.SID;
@@ -64,6 +88,12 @@ class NavigationLibrary {
         return sidProcedureModels.length > 0;
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @property hasStars
+     * @type {boolean}
+     */
     get hasStars() {
         const starProcedureModels = _filter(this._procedureCollection, (procedure) => {
             return procedure.procedureType === PROCEDURE_TYPE.STAR;
@@ -82,26 +112,12 @@ class NavigationLibrary {
 
     /**
      *
+     * @for NavigationLibrary
      * @property realFixes
-     * @return {array<FixModel>}
+     * @type {array<FixModel>}
      */
     get realFixes() {
         return FixCollection.findRealFixes();
-    }
-
-    // TODO: TEST
-    /**
-     *
-     * @property sidLines
-     * @return
-     */
-    get sidLines() {
-        const sids = _filter(this._procedureCollection, (procedureModel) => procedureModel.isSid());
-        const lines = _map(sids, (sid) => {
-            return { identifier: sid.icao, draw: sid.draw };
-        });
-
-        return lines;
     }
 
     /**
@@ -120,9 +136,17 @@ class NavigationLibrary {
         this._initializeFixCollection(fixes);
         this._initializeAirwayCollection(airways);
         this._initializeProcedureCollection(sids, stars);
+        this._initializeSidLines();
+        this._initializeStarLines();
         this._showConsoleWarningForUndefinedFixes();
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeAirwayCollection
+     * @param airways {object} - airways to add to the collection.
+     */
     _initializeAirwayCollection(airways) {
         _forEach(airways, (fixNames, airwayName) => {
             if (airwayName in this._airwayCollection) {
@@ -133,10 +157,23 @@ class NavigationLibrary {
         });
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeFixCollection
+     * @param fixes {object} - fixes to add to the collection.
+     */
     _initializeFixCollection(fixes) {
         FixCollection.addItems(fixes, this._referencePosition);
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeProcedureCollection
+     * @param sids {object} - SIDs to add to the collection
+     * @param stars {object} - STARs to add to the collection
+     */
     _initializeProcedureCollection(sids, stars) {
         _forEach(sids, (sid, sidId) => {
             if (sidId in this._procedureCollection) {
@@ -155,12 +192,103 @@ class NavigationLibrary {
         });
     }
 
+    /**
+     *
+     * @for NavigationLibrary
+     * @method _initializeReferencePosition
+     * @param airportJson {object}
+     */
     _initializeReferencePosition(airportJson) {
         this._referencePosition = new StaticPositionModel(
             airportJson.position,
             null,
             degreesToRadians(airportJson.magnetic_north)
         );
+    }
+
+    /**
+     * Generate lines for SIDs and add them to the procedure lines
+     *
+     * @for NavigationLibrary
+     * @method _initializeSidLines
+     */
+    _initializeSidLines() {
+        const sids = this.getProceduresByType(PROCEDURE_TYPE.SID);
+        this._procedureLines[PROCEDURE_TYPE.SID] = this._buildProcedureLine(sids);
+    }
+
+    /**
+     * Generate lines for STARs and add them to the procedure lines
+     *
+     * @for NavigationLibrary
+     * @method _initializeStarLines
+     */
+    _initializeStarLines() {
+        const stars = this.getProceduresByType(PROCEDURE_TYPE.STAR);
+        this._procedureLines[PROCEDURE_TYPE.STAR] = this._buildProcedureLine(stars);
+    }
+
+    /**
+     * Generate lines for prodecures and return the resulting lines.
+     *
+     * @for NavigationLibrary
+     * @method _buildProcedureLine
+     * @param procedures {array<ProcedureModel>}
+     * @return {array<object>}
+     */
+    _buildProcedureLine(procedures) {
+        const procedureLines = [];
+
+        // TODO: simplify/rector these nested loops.
+        for (let i = 0; i < procedures.length; i++) {
+            const procedure = procedures[i];
+            const lines = [];
+            const exits = [];
+            let firstFixName = null;
+            let mostRecentFixName = '';
+
+            for (let j = 0; j < procedure.draw.length; j++) {
+                const fixList = procedure.draw[j];
+                const positions = [];
+
+                for (let k = 0; k < fixList.length; k++) {
+                    const fixName = fixList[k];
+                    mostRecentFixName = fixName;
+
+                    if (fixName.indexOf('*') !== INVALID_INDEX) {
+                        mostRecentFixName = fixName.replace('*', '');
+                        exits.push(mostRecentFixName);
+                    }
+
+                    const fixPosition = this.getFixRelativePosition(mostRecentFixName);
+
+                    if (!fixPosition) {
+                        console.warn(`Unable to draw line to '${fixName}' because its position is not defined!`);
+                        continue;
+                    }
+
+                    if (firstFixName === null) {
+                        firstFixName = mostRecentFixName;
+                    }
+
+                    positions.push(fixPosition);
+                }
+
+                if (positions.length > 1) {
+                    lines.push(positions);
+                }
+            }
+
+            procedureLines.push({
+                identifier: procedure.icao,
+                lines: lines,
+                firstFixName: firstFixName,
+                lastFixName: mostRecentFixName,
+                exits: exits
+            });
+        }
+
+        return procedureLines;
     }
 
     /**
@@ -175,6 +303,7 @@ class NavigationLibrary {
         this._airwayCollection = {};
         this._procedureCollection = {};
         this._referencePosition = null;
+        this._procedureLines = {};
     }
 
     // /**
@@ -295,6 +424,7 @@ class NavigationLibrary {
      *
      * @for NavigationLibrary
      * @method getProcedure
+     * @param procedureId {string}
      * @return {ProcedureModel}
      */
     getProcedure(procedureId) {
@@ -303,6 +433,20 @@ class NavigationLibrary {
         }
 
         return this._procedureCollection[procedureId];
+    }
+
+    /**
+    * Return a list of ProcedureModel with the specified procedure type
+    *
+    * @for NavigationLibrary
+    * @method getProceduresByType
+    * @param procedureType {string}
+    * @return {array<ProcedureModel>}
+    */
+    getProceduresByType(procedureType) {
+        return _filter(this._procedureCollection, (procedureModel) =>
+            !_isEmpty(procedureModel) && procedureModel.procedureType === procedureType
+        );
     }
 
     /**
@@ -315,6 +459,18 @@ class NavigationLibrary {
      */
     getFixRelativePosition(fixName) {
         return FixCollection.getFixRelativePosition(fixName);
+    }
+
+    /**
+     *
+     *
+     * @for NavigationLibrary
+     * @method getProcedureLines
+     * @param procedureId {string}
+     * @return {array}
+     */
+    getProcedureLines(procedureId) {
+        return this._procedureLines[procedureId];
     }
 
     /**
@@ -344,6 +500,15 @@ class NavigationLibrary {
         return !_isNil(fixOrNull);
     }
 
+    /**
+    * Provides a way to check for the existence
+    * of a specific `procedureId`.
+    *
+    * @for NavigationLibrary
+    * @method hasProcedure
+    * @param procedureId {string}
+    * @return {boolean}
+    */
     hasProcedure(procedureId) {
         return procedureId in this._procedureCollection;
     }
