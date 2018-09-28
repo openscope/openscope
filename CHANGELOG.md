@@ -11,6 +11,7 @@
 - [#1086](https://github.com/openscope/openscope/issues/1086) - Update P28A Climb rate fm 2000ft/m to 700ft/m
 - [#1034](https://github.com/openscope/openscope/issues/1034) - Fix waypoint time-to-turn calculations to ensure smooth turns
 - [#935](https://github.com/openscope/openscope/issues/935) - Prevent aircraft from skipping fixes that require tight turns
+- [#870](https://github.com/openscope/openscope/issues/870) - Fix unusable runway bug after changing one aircraft's departure runway
 
 
 
