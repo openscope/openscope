@@ -1,7 +1,20 @@
+<script src="assets/scripts/client/jquery.min.js"></script>
+<script src="assets/scripts/client/jquery-ui.min.js"></script>
+  <script>
+  $( function() {
+    $( ".stripView-list" ).sortable();
+    $( ".stripView-list" ).disableSelection();
+  } );
+  </script>
+
 <div id="sidebar" class="stripView js-stripView mix-stripView_isHidden">
     <div class="stripView-trigger js-stripView-trigger"></div>
     <div class="stripTitle">Arrivals</div>
-    <ul class='stripView-list nice-scrollbar js-stripViewArrivals-list'></ul>
+    <div class="stripViewContainer">
+        <ul class='stripView-list nice-scrollbar js-stripViewArrivals-list'></ul>
+    </div>
     <div class="stripTitle">Departures</div>
-    <ul class='stripView-list nice-scrollbar js-stripViewDepartures-list'></ul>
+    <div class="stripViewContainer">    
+        <ul class='stripView-list nice-scrollbar js-stripViewDepartures-list'></ul>
+    </div>
 </div>

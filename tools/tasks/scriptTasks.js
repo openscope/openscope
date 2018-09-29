@@ -36,6 +36,15 @@ module.exports = function(gulp, config) {
             .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
     }
 
+    gulp.task('jquery', function() {
+        gulp.src([
+            'node_modules/jquery-ui-dist/jquery-ui.min.js',
+            'node_modules/jquery/dist/jquery.min.js',
+        ])
+         .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
+    });
+
+
     ////////////////////////////////////////////////////////////////////
     // BABEL
     ////////////////////////////////////////////////////////////////////
@@ -96,7 +105,7 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    gulp.task('build:scripts', ['babel']);
+    gulp.task('build:scripts', ['babel', 'jquery']);
     gulp.task('build:server', ['babel-server']);
 
     gulp.task('watch:scripts', () => {
