@@ -372,7 +372,6 @@ export default class LegModel {
         return this._airwayModel.icao;
     }
 
-    // FIXME: test
     /**
      * Return an array of WaypointModels AFTER (not including) the specified waypoint
      *
@@ -386,7 +385,6 @@ export default class LegModel {
         return this._waypointCollection.slice().splice(indexOfWaypointName + 1);
     }
 
-    // FIXME: test
     /**
      * Return an array of WaypointModels BEFORE (not including) the specified waypoint
      *
@@ -532,7 +530,6 @@ export default class LegModel {
         return this._procedureModel.name;
     }
 
-    // FIXME: test
     /**
      * Return the name of this leg's exit fix
      *
@@ -550,7 +547,6 @@ export default class LegModel {
         return routeStringElements[0];
     }
 
-    // FIXME: test
     /**
      * Return the name of this leg's exit fix
      *

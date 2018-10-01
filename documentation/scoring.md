@@ -1,7 +1,4 @@
----
-title: Scoring
----
-[back to index](index.html)
+
 
 # Scoring
 
@@ -41,7 +38,7 @@ most common warning is when two aircraft are separated by less 3
 nautical miles or less than 1000 feet of altitude.  However there are
 a number of situations where aircraft can be separated by less, for
 complete details refer to the
-[aircraft separation rules](aircraft-separation.html)
+[aircraft separation rules](aircraft-separation.md)
 
 ## Collisions
 50 points are lost whenever two aircraft collide (within 50 or so feet

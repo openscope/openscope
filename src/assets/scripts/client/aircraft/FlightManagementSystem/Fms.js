@@ -330,7 +330,9 @@ export default class Fms {
         const arrivalRunwayName = this._routeModel.getArrivalRunwayName();
 
         if (!arrivalRunwayName) {
-            return this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
+            this.setArrivalRunway(this.arrivalAirportModel.arrivalRunwayModel);
+
+            return;
         }
 
         const arrivalRunwayModel = this.arrivalAirportModel.getRunway(arrivalRunwayName);
@@ -582,7 +584,7 @@ export default class Fms {
     /**
      * Get the position of the next waypoint in the flight plan
      *
-     * Currently only used in `calculateTurnInitiaionDistance()` helper function
+     * Currently only used in `calculateTurnInitiationDistance()` helper function
      *
      * @for Fms
      * @method getNextWaypointPositionModel
@@ -866,38 +868,13 @@ export default class Fms {
      * @for Fms
      * @method setArrivalRunway
      * @param nextRunwayModel {RunwayModel}
-     * @return {array} [success of operation, response]
      */
     setArrivalRunway(nextRunwayModel) {
-        const currentArrivalRunway = this.arrivalRunwayModel;
-
         if (!(nextRunwayModel instanceof RunwayModel)) {
             throw new TypeError(`Expected instance of RunwayModel, but received ${nextRunwayModel}`);
         }
 
-        if (currentArrivalRunway && currentArrivalRunway.name === nextRunwayModel.name) {
-            const readback = {};
-            readback.log = `expect Runway ${nextRunwayModel.name}`;
-            readback.say = `expect Runway ${nextRunwayModel.getRadioName()}`;
-
-            return [true, readback];
-        }
-
-        if (!this.isRunwayModelValidForStar(nextRunwayModel)) {
-            const readback = {};
-            readback.log = `according to our charts, Runway ${nextRunwayModel.name} is ` +
-                `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
-                `Runway ${currentArrivalRunway.name} instead`;
-            readback.say = `according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
-                `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
-                `Runway ${currentArrivalRunway.getRadioName()} instead`;
-
-            return [false, readback];
-        }
-
         this.arrivalRunwayModel = nextRunwayModel;
-
-        return this._routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
     }
 
     /**
@@ -970,6 +947,51 @@ export default class Fms {
     //
     //     return legModel;
     // }
+
+    /**
+     * Ensure the STAR leg has the specified arrival runway as the exit point
+     *
+     * @for Fms
+     * @method updateStarLegForArrivalRunway
+     * @param nextRunwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    updateStarLegForArrivalRunway(nextRunwayModel) {
+        const currentArrivalRunway = this.arrivalRunwayModel;
+
+        if (!(nextRunwayModel instanceof RunwayModel)) {
+            throw new TypeError(`Expected instance of RunwayModel, but received ${nextRunwayModel}`);
+        }
+
+        if (currentArrivalRunway && currentArrivalRunway.name === nextRunwayModel.name) {
+            const readback = {};
+            readback.log = `expect Runway ${nextRunwayModel.name}`;
+            readback.say = `expect Runway ${nextRunwayModel.getRadioName()}`;
+
+            return [true, readback];
+        }
+
+        if (!this._routeModel.isRunwayModelValidForStar(nextRunwayModel)) {
+            const readback = {};
+            readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is ` +
+                            `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
+                            `Runway ${currentArrivalRunway.name} instead`;
+            readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
+                            `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
+                            `Runway ${currentArrivalRunway.getRadioName()} instead`;
+
+            return [false, readback];
+        }
+
+        this._routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+        this.setArrivalRunway(nextRunwayModel);
+
+        const readback = {};
+        readback.log = `expecting Runway ${nextRunwayModel.name}`;
+        readback.say = `expecting Runway ${nextRunwayModel.getRadioName()}`;
+
+        return [true, readback];
+    }
 
     /**
      * Update the expected arrival runway based on the STAR's exit point runway

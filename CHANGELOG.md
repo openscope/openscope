@@ -1,20 +1,103 @@
-# 6.2.0 (June 5, 2018)
+# 6.7.0 (November 1, 2018)
 ### New Features
-- [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
-- [#444](https://github.com/openscope/openscope/issues/444) - Adds option button to toggle video map display
-- [#884](https://github.com/openscope/openscope/issues/884) - Add airline files for non-US registration callsigns
 
 
 
 
 
 ### Bugfixes
+
+
+
+
+
+### Enhancements & Refactors
+
+
+
+
+
+# 6.6.0 (October 1, 2018)
+### New Features
+- [#989](https://github.com/openscope/openscope/issues/989) - Add in Austin Bergstrom International Airport
+- [#1090](https://github.com/openscope/openscope/issues/1090) - Add Tecnam P92 Aircraft
+
+### Bugfixes
+- [#1086](https://github.com/openscope/openscope/issues/1086) - Update P28A Climb rate fm 2000ft/m to 700ft/m
+- [#1034](https://github.com/openscope/openscope/issues/1034) - Fix waypoint time-to-turn calculations to ensure smooth turns
+- [#935](https://github.com/openscope/openscope/issues/935) - Prevent aircraft from skipping fixes that require tight turns
+- [#870](https://github.com/openscope/openscope/issues/870) - Fix unusable runway bug after changing one aircraft's departure runway
+- [#1101](https://github.com/openscope/openscope/issues/1101) - Fix console error caused by vector waypoints
+
+### Enhancements & Refactors
+- [1077](https://github.com/openscope/openscope/issues/1077) - Update flight strips view by separating arrival and departure strips
+- [#1074](https://github.com/openscope/openscope/issues/1074) - Update link to "aircraft separation rules" in scoring.md
+- [#111](https://github.com/openscope/openscope/issues/111) - Draw STARs on scope like we do with SIDs
+
+
+# 6.5.0 (September 1, 2018)
+### New Features
+- [#206](https://github.com/openscope/openscope/issues/206) - Add Bucharest Henri Coandǎ International Airport (LROP)
+
+### Bugfixes
+- [#994](https://github.com/openscope/openscope/issues/994) - fix "Aircraft vectored off ILS maintain over-precise altitude"
+- [#1048](https://github.com/openscope/openscope/issues/1048) - fix "Aircrafts do not land after ILS clearance" because runway is not part of their STAR
+- [#1044](https://github.com/openscope/openscope/issues/1044) - fix aircrafts drift off ILS localizer during final approach causing "strange behaviour after landing"
+- [#1047](https://github.com/openscope/openscope/issues/1047) - fix "Flight number 5000 pronounced incorrectly"
+- [#993](https://github.com/openscope/openscope/issues/993) - fix Arrivals exiting and reentering airspace causes error about missing strip
+- [#724](https://github.com/openscope/openscope/issues/724) - fix settings modal doesn't add active class to control icon
+- [#421](https://github.com/openscope/openscope/issues/421) - Add missing keys to spawnPatternModelJsonValidator
+- [#836](https://github.com/openscope/openscope/issues/836) - Fix "hold in STAR procedure isn't working"
+
+### Enhancements & Refactors
+- [#933](https://github.com/openscope/openscope/issues/933) - Revival of Istanbul Atatürk Airport (LTBA)
+- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
+- [#1071](https://github.com/openscope/openscope/issues/1071) Add optional altitude argument for 'climb via SID' command
+
+
+# 6.4.0 (August 1, 2018)
+### New Features
+- [#403](https://github.com/openscope/openscope/issues/403) - Add Flughafen Düsseldorf (Düsseldorf Airport, EDDL)
+
+### Bugfixes
+- [#1018](https://github.com/openscope/openscope/issues/1018) - Fix "leaving airspace without proper clearance" bug at KSEA
+- [#915](https://github.com/openscope/openscope/issues/915) - Change passing/diverging separation logic to use assigned heading, not ground track heading
+- [#38](https://github.com/openscope/openscope/issues/38) - Fix issues with localizer interception
+    - prevents aircraft from spinning in circles (in most cases we're seeing)
+    - ensures descents below assigned altitude do not begin until established on the localizer
+    - penalizes localizer interception above glideslope
+    - triggers go-arounds at final approach fix if not established on both localizer and glideslope
+- [#1030](https://github.com/openscope/openscope/issues/1030) - Fix background color of options menu dropdowns
+
+### Enhancements & Refactors
+- [#1005](https://github.com/openscope/openscope/issues/1005) - Minor updates to KRDU
+- [#1023](https://github.com/openscope/openscope/issues/1023) - Standardize `openScope` capitalization
+- [#949](https://github.com/openscope/openscope/issues/949) - Keep video map clearly visible at all zoom levels
+- [#1000](https://github.com/openscope/openscope/issues/1000) - Increase max width of airport selection dialog to permit longer airport names
+
+
+# 6.3.0 (July 1, 2018)
+### New Features
+- [#272](https://github.com/openscope/openscope/issues/272) - Add Cincinnati/Northern Kentucky International Airport (KCVG)
+
+### Bugfixes
+- [#1008](https://github.com/openscope/openscope/issues/1008) - Correct airline files using old callsign format
+
+### Enhancements & Refactors
+- [#938](https://github.com/openscope/openscope/issues/938) - Overhaul of OMDB
+- [#94](https://github.com/openscope/openscope/issues/94) - Adds @openscope/validator package with supporting npm script
+
+
+# 6.2.0 (June 10, 2018)
+### New Features
+- [#893](https://github.com/openscope/openscope/issues/893) - Add Prague Václav Havel Airport (LKPR)
+- [#444](https://github.com/openscope/openscope/issues/444) - Adds option button to toggle video map display
+- [#884](https://github.com/openscope/openscope/issues/884) - Add airline files for non-US registration callsigns
+
+### Bugfixes
 - [#968](https://github.com/openscope/openscope/issues/968) - Fixed N-numbered GA aircraft having callsign "default" if voice is on
 - [#907](https://github.com/openscope/openscope/issues/907) - Updates `SpawnPatternModel` to handle integer or float values for `#rate`
-
-
-
-
+- [#996](https://github.com/openscope/openscope/issues/996) - Add airport guide directory entry for LKPR
 
 ### Enhancements & Refactors
 - [#956](https://github.com/openscope/openscope/issues/956) - Updated 'descend via STAR' documentation to change mentioning SID to STAR
@@ -24,9 +107,6 @@
 - [#982](https://github.com/openscope/openscope/issues/982) - Remove empty .gitkeep file
 - [#916](https://github.com/openscope/openscope/issues/916) - Consolidates aircraft removal logics, renames AircraftModel#inside_ctr -> AircraftModel#isControllable, simplifies aircraft update logic in AircraftController
 - [#972](https://github.com/openscope/openscope/issues/972) - Updated airline fleets to newest data
-
-
-
 
 
 # 6.1.2 (May 2, 2018)

@@ -18,18 +18,22 @@
     right: -390px;
 }
 
+.stripTitle {
+    background-color: #222222;
+    color: #ffffff;
+    font-size: 1.25em;
+    padding: 5px 0;
+    text-align: center;
+}
+
 .stripView-list {
-    max-height: 100%;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     width: ~"calc(100% - " @spacing-2x ~")";
-    position: absolute;
-    top: @spacing-2x;
-    bottom: @spacing-2x;
-    left: @spacing-2x;
-    display: flex;
-    flex-direction: column-reverse;
     overflow-y: scroll;
     list-style-type: none;
+    height: ~"calc(50% - 1.25em - 10px)";
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .stripViewItem {

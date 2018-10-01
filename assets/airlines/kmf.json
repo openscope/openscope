@@ -1,0 +1,22 @@
+{
+    "icao": "kmf",
+    "name": "Kam Air",
+    "callsign": {
+        "name": "Kamgar",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A343", 1],
+            ["B733", 1],
+            ["B735", 2],
+            ["B762", 1]
+        ],
+        "b737": [
+            ["B733", 1],
+            ["B735", 2]
+        ]
+    }
+}

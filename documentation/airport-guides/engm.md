@@ -10,7 +10,7 @@ The Oslo TMA consists of Class C airspace (equivalent to American class B airspa
 ### Instrument Procedures
 The procedures are quite modern for a European airport. All SIDs and STARs are RNAV and include both altitude and speed restrictions, although descent clearances are given by ATC. Oslo was also the first airport in the world to adopt a point merge system, minimizing conflicts between departing and arriving aircraft as well as reducing fuel consumption. Once within the point merge arches, aircraft can be given shortucts or vectors to join the ILS approach.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 D - Director    (default)
 F - Final       (unavailable)

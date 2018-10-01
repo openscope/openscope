@@ -92,6 +92,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+        {
+            icao: 'eddl',
+            level: 'hard',
+            name: 'Flughafen Düsseldorf',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'eddm',
         //     level: 'hard',
@@ -122,7 +129,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'egkk',
-            level: 'easy',
+            level: 'medium',
             name: 'London Gatwick Airport',
             premium: false,
             wip: false
@@ -212,9 +219,23 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'kaus',
+            level: 'easy',
+            name: 'Austin-Bergstrom International Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kbos',
             level: 'hard',
             name: 'Boston Logan International Airport',
+            premium: false,
+            wip: false
+        },
+        {
+            icao: 'kcvg',
+            level: 'beginner',
+            name: 'Cincinnati-Northern Kentucky Int\'l Airport',
             premium: false,
             wip: false
         },
@@ -407,6 +428,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
+        {
+            icao: 'lrop',
+            level: 'medium',
+            name: 'Bucharest Henri Coanda International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'loww',
         //     level: 'medium',
@@ -421,12 +449,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'ltba',
-        //     level: 'hard',
-        //     name: 'Atatürk International Airport',
-        //     premium: false,
-        //     wip: true
+        {
+            icao: 'ltba',
+            level: 'hard',
+            name: 'Atatürk International Airport',
+            premium: false,
+            wip: false
+        },
         // },
         // {
         //     icao: 'mdsd',
@@ -442,13 +471,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'omdb',
-        //     level: 'hard',
-        //     name: 'Dubai International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'omdb',
+            level: 'hard',
+            name: 'Dubai International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'osdi',
         //     level: 'easy',

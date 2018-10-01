@@ -3,7 +3,9 @@
     "name": "Air China Cargo",
     "callsign": {
         "name": "Air China Freight",
-        "length": 3
+        "callsignFormats": [
+            "####"
+        ]
     },
     "fleets": {
         "default": [

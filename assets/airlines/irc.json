@@ -1,0 +1,24 @@
+{
+    "icao": "irc",
+    "name": "Iran Aseman Airlines",
+    "callsign": {
+        "name": "Aseman",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 1],
+            ["AT75", 2],
+            ["A320", 6],
+            ["A343", 1],
+            ["B722", 3],
+            ["B734", 3],
+            ["F100", 7]
+        ],
+        "a320": [
+            ["A320", 6]
+        ]
+    }
+}

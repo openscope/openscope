@@ -7,7 +7,7 @@ Located 20 miles southwest of KATL and almost 30 miles from Downtown Atlanta, Th
 ### Airspace
 Due to its sheer size, the A80 TRACON is divided into 4 main sectors: Atlanta, Macon, Columbus and Athens. However, only the Atlanta sector is available in our simulator; it extends 40nm around KATL up to 14,000ft. Class B airspace exists with a ceiling of 12,500ft over the Atlanta metropolitan area.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 The A80 TRACON has a huge number of different positions and it is very difficult to find accurate and up-to-date information on the sectorization of the airspace, so the information below may not be 100% accurate.
 ```
 ANW - North-West Approach      -----\
@@ -29,7 +29,7 @@ CSG - Columbus Approach
 MCN - Macon Approach
 AHN - Athens Approach
 ```
-The airspace available in Openscope is a combination of all ATL positions in the Atlanta sector.
+The airspace available in openscope is a combination of all ATL positions in the Atlanta sector.
 
 ### Airports of Interest
 
