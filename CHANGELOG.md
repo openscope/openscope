@@ -12,6 +12,7 @@
 - [#1034](https://github.com/openscope/openscope/issues/1034) - Fix waypoint time-to-turn calculations to ensure smooth turns
 - [#935](https://github.com/openscope/openscope/issues/935) - Prevent aircraft from skipping fixes that require tight turns
 - [#870](https://github.com/openscope/openscope/issues/870) - Fix unusable runway bug after changing one aircraft's departure runway
+- [#1101](https://github.com/openscope/openscope/issues/1101) - Fix console error caused by vector waypoints
 
 
 
