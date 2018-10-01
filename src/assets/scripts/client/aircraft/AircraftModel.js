@@ -1830,13 +1830,20 @@ export default class AircraftModel {
 
             this.fms.moveToNextWaypoint();
 
-            const nextWaypointPosition = this.fms.currentWaypoint.positionModel;
+            const currentWaypoint = this.fms.currentWaypoint;
 
-            if (nextWaypointPosition == null) {
-                console.log(`ERROR: positionModel of waypoint ${this.fms.currentWaypoint.name} is null!`);
+            if (currentWaypoint.isVectorWaypoint) {
+                return currentWaypoint.getVector();
             }
 
-            // initiate the turn
+            const nextWaypointPosition = currentWaypoint.positionModel;
+
+            if (_isNil(nextWaypointPosition)) {
+                console.log('Expected a valid PositionModel object for waypoint ' +
+                    `"${currentWaypoint.name}", but received ${nextWaypointPosition}`
+                );
+            }
+
             return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
 
