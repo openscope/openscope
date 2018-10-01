@@ -138,7 +138,7 @@ export default class AircraftConflict {
      */
     checkCollision() {
         if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
-            return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
+            return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIED A/C
         }
 
         // TODO: enumerate the magic numbers.

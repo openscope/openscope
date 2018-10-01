@@ -913,37 +913,4 @@ export default class Pilot {
 
         return [true, 'taxiing back to the gate'];
     }
-
-    /**
-     * Taxi the aircraft
-     *
-     * @for Pilot
-     * @method taxiToRunway
-     * @param taxiDestination {RunwayModel}  runway has already been verified by the
-     *                                       time it is sent to this method
-     * @param isDeparture {boolean}         whether the aircraft's flightPhase is DEPARTURE
-     * @param flightPhase {string}          the flight phase of the aircraft
-     * @return {array}                      [success of operation, readback]
-     */
-    taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (flightPhase === FLIGHT_PHASE.TAXI) {
-            return [false, 'already taxiing'];
-        }
-
-        if (flightPhase === FLIGHT_PHASE.WAITING) {
-            return [false, 'already taxiied and waiting in runway queue'];
-        }
-
-        if (!isDeparture || flightPhase !== FLIGHT_PHASE.APRON) {
-            return [false, 'unable to taxi'];
-        }
-
-        this._fms.setDepartureRunway(taxiDestination);
-
-        const readback = {};
-        readback.log = `taxi to runway ${taxiDestination.name}`;
-        readback.say = `taxi to runway ${radio_runway(taxiDestination.name)}`;
-
-        return [true, readback];
-    }
 }

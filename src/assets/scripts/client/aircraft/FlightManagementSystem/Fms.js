@@ -584,7 +584,7 @@ export default class Fms {
     /**
      * Get the position of the next waypoint in the flight plan
      *
-     * Currently only used in `calculateTurnInitiaionDistance()` helper function
+     * Currently only used in `calculateTurnInitiationDistance()` helper function
      *
      * @for Fms
      * @method getNextWaypointPositionModel

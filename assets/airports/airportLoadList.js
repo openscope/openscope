@@ -219,6 +219,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'kaus',
+            level: 'easy',
+            name: 'Austin-Bergstrom International Airport',
+            premium: false,
+            wip: false
+        },
+        {
             icao: 'kbos',
             level: 'hard',
             name: 'Boston Logan International Airport',
