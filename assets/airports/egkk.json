@@ -66,6 +66,8 @@
         }
     ],
     "fixes": {
+        "_SFD303028": ["N51d00.73", "W00d29.91"],
+        "_SFD303033": ["N51d03.41", "W00d36.60"],
         "_BIG110017": [51.23350134286, 0.45855204724],
         "_BIG112018": ["N51.21800264637", "E0.47738323556"],
         "_BIG123018": [51.1672543605, 0.43485956589],
@@ -114,6 +116,7 @@
         "_RWY26RIWW06.8DME": [51.125585, -0.365451],
         "_RWY26RMID10DME": [51.12145748981, -0.40218092219],
         "_SAM067020": [51.087500, -0.860667],
+        "_SFD304028": ["N51d01.14", "W00d29.49"],
         "_SFD312016": [50.938167, -0.191833],
         "_SFD312018": [50.960333, -0.231167],
         "_SFD312025": [51.037667, -0.369333],
@@ -1284,13 +1287,13 @@
             "entryPoints": {
                 "AMDUT": []
             },
-            "body": ["AMDUT", "SFD", "@WILLO"],
+            "body": ["AMDUT", ["SFD", "S220-"], ["@WILLO", "A70|S220-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["AMDUT*", "SFD", "WILLO"]
+                ["AMDUT", "SFD", "WILLO"]
             ]
         },
         "ARNUN1G": {
@@ -1299,13 +1302,103 @@
             "entryPoints": {
                 "ARNUN": []
             },
-            "body": ["ARNUN", "HASTY", "SFD", "@WILLO"],
+            "body": ["ARNUN", "HASTY", ["SFD", "S220-"], ["@WILLO", "A70|S220-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["ARNUN*", "HASTY", "SFD"]
+                ["ARNUN", "HASTY", "SFD"]
+            ]
+        },
+        "ASTRA1F": {
+            "icao": "ASTRA1F",
+            "name": "Astra One Foxtrot",
+            "entryPoints": {
+                "KENET": []
+            },
+            "body": ["KENET", "WOD", "_SFD303033", ["_SFD303028", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["KENET", "WOD", "_SFD303033", "_SFD303028", "ASTRA"]
+            ]
+        },
+        "ASTRA2B": {
+            "icao": "ASTRA2B",
+            "name": "Astra Two Bravo",
+            "entryPoints": {
+                "KIDLI": []
+            },
+            "body": ["KIDLI", "WOD", "_SFD303033", ["_SFD303028", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["KIDLI", "WOD", "_SFD303033", "_SFD303028", "ASTRA"]
+            ]
+        },
+        "ASTRA2H": {
+            "icao": "ASTRA2H",
+            "name": "Astra Two Hotel",
+            "entryPoints": {
+                "BEDEK": []
+            },
+            "body": ["BEDEK", "NIGIT", ["_SFD304028", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["BEDEK", "NIGIT", "_SFD304028", "ASTRA"]
+            ]
+        },
+        "ASTRA3A": {
+            "icao": "ASTRA3A",
+            "name": "Astra Three Alpha",
+            "entryPoints": {
+                "SAM": []
+            },
+            "body": ["SAM", ["GWC", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["SAM", "GWC", "ASTRA"]
+            ]
+        },
+        "ASTRA4C": {
+            "icao": "ASTRA4C",
+            "name": "Astra Four Charlie",
+            "entryPoints": {
+                "DOMUT": []
+            },
+            "body": ["DOMUT", "KATHY", "AVANT", ["GWC", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["DOMUT", "KATHY", "AVANT", "GWC", "ASTRA"]
+            ]
+        },
+        "ASTRA4D": {
+            "icao": "ASTRA4C",
+            "name": "Astra Four Delta",
+            "entryPoints": {
+                "BILNI": []
+            },
+            "body": ["BILNI", "KUMIL", "AVANT", ["GWC", "S250-"], "@ASTRA"],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["BILNI", "KUMIL", "AVANT", "GWC", "ASTRA"]
             ]
         },
         "OTMET1G": {
@@ -1314,13 +1407,13 @@
             "entryPoints": {
                 "OTMET": []
             },
-            "body": ["OTMET", "SOKDU", "NEDUL", "ELDER", ["TELTU", "S250-"], ["^HOLLY", "S220-"], "_MID105022", ["@WILLO", "S220-"]],
+            "body": [["OTMET", "A270"], "SOKDU", ["NEDUL", "A210"], "ELDER", ["TELTU", "A130|S250-"], ["^HOLLY", "S220-"], ["@WILLO", "A70|S220-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["OTMET*", "SOKDU", "NEDUL", "ELDER", "TELTU", "HOLLY", "_MID105022", "WILLO"]
+                ["OTMET", "SOKDU", "NEDUL", "ELDER", "TELTU", "HOLLY", "_MID105022"]
             ]
         },
         "TELTU1G": {
@@ -1329,13 +1422,13 @@
             "entryPoints": {
                 "TELTU": []
             },
-            "body": [["TELTU", "S250-"], ["SFD", "S220-"], ["@TIMBA", "S220-"]],
+            "body": [["TELTU", "S250-"], ["SFD", "S220-"], ["@TIMBA", "A70|S220-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["TELTU*", "SFD", "TIMBA"]
+                ["TELTU", "SFD", "TIMBA"]
             ]
         },
         "TIMBA1C": {
@@ -1344,13 +1437,13 @@
             "entryPoints": {
                 "GWC": []
             },
-            "body": ["GWC", "SFD", "@TIMBA"],
+            "body": ["GWC", "SFD", ["_SFD280005", "S250-"], "@TIMBA"],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["GWC*", "SFD"]
+                ["GWC", "_SFD280005", "SFD", "TIMBA"]
             ]
         },
         "TIMBA1D": {
@@ -1359,13 +1452,13 @@
             "entryPoints": {
                 "MID": []
             },
-            "body": ["MID", "MAY", "^_MAY110012", "^LARCK", "@TIMBA"],
+            "body": ["MID", ["_MAY275005", "S250-"], "MAY", "^_MAY110012", "@TIMBA"],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["MID*", "MAY", "_MAY110012"]
+                ["MID", "_MAY275005", "MAY", "_MAY110012", "TIMBA"]
             ]
         },
         "TIMBA1J": {
@@ -1374,13 +1467,13 @@
             "entryPoints": {
                 "ERING": []
             },
-            "body": ["ERING", "ABTUM", "ARNUN", ["KKE63", "S220-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
+            "body": ["ERING", ["ABTUM", "A140"], "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["ERING*", "ABTUM", "ARNUN", "KKE63", "LARCK", "TIMBA"]
+                ["ERING", "ABTUM", "ARNUN", "KKE63", "LARCK", "TIMBA"]
             ]
         },
         "TIMBA1K": {
@@ -1389,13 +1482,13 @@
             "entryPoints": {
                 "TEBRA": []
             },
-            "body": ["TEBRA", "ABTUM", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
+            "body": ["TEBRA", ["ABTUM", "A140"], "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["TEBRA*", "ABTUM"]
+                ["TEBRA", "ABTUM"]
             ]
         },
         "TIMBA2G": {
@@ -1404,13 +1497,13 @@
             "entryPoints": {
                 "NEVIL": []
             },
-            "body": ["NEVIL", "OSPOL", "ELDAX", "AMDUT", ["KKE64", "S250-"], ["@TIMBA", "S250-"]],
+            "body": [["NEVIL", "A220"], "OSPOL", ["NETVU", "A140"], "ELDAX", "AMDUT", ["KKE64", "S250-"], ["@TIMBA", "A70|S250-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["NEVIL*", "OSPOL", "ELDAX", "AMDUT", "KKE64", "TIMBA"]
+                ["NEVIL", "OSPOL", "ELDAX", "AMDUT", "KKE64", "TIMBA"]
             ]
         },
         "TIMBA3F": {
@@ -1419,13 +1512,13 @@
             "entryPoints": {
                 "KONAN": []
             },
-            "body": ["KONAN", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "S250-"]],
+            "body": ["KONAN", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["KONAN*", "ARNUN"]
+                ["KONAN", "ARNUN"]
             ]
         },
         "TIMBA4B": {
@@ -1434,13 +1527,13 @@
             "entryPoints": {
                 "KUNAV": []
             },
-            "body": ["KUNAV", "AMDUT", ["KKE64", "S250-"], ["@TIMBA", "S250-"]],
+            "body": ["KUNAV", ["AMDUT", "A160"], ["KKE64", "S250-"], ["@TIMBA", "A70|S250-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["KUNAV*", "AMDUT"]
+                ["KUNAV", "AMDUT"]
             ]
         },
         "VASUX1G": {
@@ -1449,13 +1542,13 @@
             "entryPoints": {
                 "VASUX": []
             },
-            "body": ["VASUX", "DISVO", ["TELTU", "S250-"], ["^HOLLY", "S220-"], "_MID105022", ["@WILLO", "S220-"]],
+            "body": ["VASUX", "DISVO", ["TELTU", "S250-"], ["^HOLLY", "S220-"], ["@WILLO", "S220-"]],
             "rwy": {
                 "EGKK08R": [],
                 "EGKK26L": []
             },
             "draw": [
-                ["VASUX*", "DISVO", "TELTU"]
+                ["VASUX", "DISVO", "TELTU"]
             ]
         },
         "WILLO1F": {
@@ -1470,7 +1563,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["KENET*", "MID", "HOLLY"]
+                ["KENET", "MID", "HOLLY"]
             ]
         },
         "WILLO2H": {
@@ -1485,7 +1578,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["BEDEK*", "NIGIT", "MID"]
+                ["BEDEK", "NIGIT", "MID"]
             ]
         },
         "WILLO3A": {
@@ -1500,7 +1593,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["SAM*", "GWC", "HOLLY"]
+                ["SAM", "GWC", "HOLLY"]
             ]
         },
         "WILLO3B": {
@@ -1515,7 +1608,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["KIDLI*", "MID"]
+                ["KIDLI", "MID"]
             ]
         },
         "WILLO3D": {
@@ -1530,7 +1623,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["BILNI*", "KUMIL", "AVANT", "GWC"]
+                ["BILNI", "KUMIL", "AVANT", "GWC"]
             ]
         },
         "WILLO4C": {
@@ -1545,7 +1638,7 @@
                 "EGKK26L": []
             },
             "draw": [
-                ["DOMUT*", "KATHY", "AVANT"]
+                ["DOMUT", "KATHY", "AVANT"]
             ]
         }
     },
