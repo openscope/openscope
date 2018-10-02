@@ -827,6 +827,10 @@ export default class AircraftModel {
             return false;
         }
 
+        if (this._isReadyToMoveToNextFix()) {
+            return true;
+        }
+
         const waypointSpeed = waypointModel.speedMaximum;
         const waypointDistance = this.positionModel.distanceToPosition(waypointModel.positionModel);
         const speedChange = waypointSpeed - this.speed;
@@ -1348,8 +1352,8 @@ export default class AircraftModel {
     updateTarget() {
         this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
         this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
-        this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
+        this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
 
         // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
         this.overrideTarget();
@@ -1792,6 +1796,7 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedHeadingLnav
+     * @return {number} target heading
      */
     _calculateTargetedHeadingLnav() {
         if (!this.fms.currentWaypoint) {
@@ -1807,22 +1812,11 @@ export default class AircraftModel {
         }
 
         const waypointPosition = this.fms.currentWaypoint.positionModel;
-        const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-        const turnInitiationDistance = calculateTurnInitiationDistance(this, waypointPosition);
-        const isTimeToStartTurning = distanceToWaypoint < turnInitiationDistance;
-        const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
-        const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
-        const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
-        let shouldMoveToNextFix = closeToBeingOverFix;
 
-        if (!this.fms.currentWaypoint.isFlyOverWaypoint) {
-            shouldMoveToNextFix = closeToBeingOverFix || shouldFlyByFix;
-        }
-
-        if (shouldMoveToNextFix) {
+        if (this._isReadyToMoveToNextFix()) {
             if (!this.fms.hasNextWaypoint()) {
-                // we've hit this block becuase and aircraft is about to fly over the last waypoint in its flightPlan
+                // we've hit this block because an aircraft is about to fly over the last waypoint in its flightPlan
                 this.pilot.maintainPresentHeading(this.heading);
 
                 return headingToWaypoint;
@@ -1848,6 +1842,30 @@ export default class AircraftModel {
         }
 
         return headingToWaypoint;
+    }
+
+    /**
+     * Determine if it is time to move to the next fix.
+     *
+     * @for AircraftModel
+     * @method _isReadyToMoveToNextFix
+     * @return {boolean}
+     */
+    _isReadyToMoveToNextFix() {
+        const waypointPosition = this.fms.currentWaypoint.positionModel;
+        const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
+        const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
+
+        if (this.fms.currentWaypoint.isFlyOverWaypoint) {
+            return closeToBeingOverFix;
+        }
+
+        const turnInitiationDistance = calculateTurnInitiationDistance(this, waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < turnInitiationDistance;
+        const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
+        const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
+
+        return closeToBeingOverFix || shouldFlyByFix;
     }
 
     /**

@@ -6,6 +6,7 @@
 
 
 ### Bugfixes
+ - [#1097](https://github.com/openscope/openscope/issues/1097) - Speed restrictions don't work correctly
 
 
 
