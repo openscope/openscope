@@ -496,72 +496,24 @@ ava('.hasWaypointName() returns #_routeModel.hasWaypointName()', (t) => {
     t.true(result === fms._routeModel.hasWaypointName(waypointNameMock));
 });
 
-ava('.isArrival() returns true for any arrival flight phase', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const arrivalFlightPhases = [
-        FLIGHT_PHASE.CRUISE,
-        FLIGHT_PHASE.DESCENT,
-        FLIGHT_PHASE.APPROACH,
-        FLIGHT_PHASE.LANDING
-    ];
-
-    for (let i = 0; i < arrivalFlightPhases.length; i++) {
-        fms.currentPhase = arrivalFlightPhases[i];
-
-        t.true(fms.isArrival());
-    }
+ava('.isArrival() returns true for any arrival flight', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
+    t.true(fms.isArrival());
 });
 
-ava('.isArrival() returns false for all phases that are not arrival phases', (t) => {
+ava('.isArrival() returns false for departing flights', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const arrivalFlightPhases = [
-        FLIGHT_PHASE.CRUISE,
-        FLIGHT_PHASE.DESCENT,
-        FLIGHT_PHASE.APPROACH,
-        FLIGHT_PHASE.LANDING
-    ];
-    const nonArrivalPhases = _filter(FLIGHT_PHASE, (phase) => arrivalFlightPhases.indexOf(phase) === INVALID_INDEX);
-
-    for (let i = 0; i < nonArrivalPhases.length; i++) {
-        fms.currentPhase = nonArrivalPhases[i];
-
-        t.false(fms.isArrival());
-    }
+    t.false(fms.isArrival());
 });
 
-ava('.isDeparture() returns true for any departure flight phase', (t) => {
+ava('.isDeparture() returns true for any departure flight', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const departurePhases = [
-        FLIGHT_PHASE.APRON,
-        FLIGHT_PHASE.TAXI,
-        FLIGHT_PHASE.WAITING,
-        FLIGHT_PHASE.TAKEOFF,
-        FLIGHT_PHASE.CLIMB
-    ];
-
-    for (let i = 0; i < departurePhases.length; i++) {
-        fms.currentPhase = departurePhases[i];
-
-        t.true(fms.isDeparture());
-    }
+    t.true(fms.isDeparture());
 });
 
-ava('.isDeparture() returns false for all phases that are not departure phases', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const departurePhases = [
-        FLIGHT_PHASE.APRON,
-        FLIGHT_PHASE.TAXI,
-        FLIGHT_PHASE.WAITING,
-        FLIGHT_PHASE.TAKEOFF,
-        FLIGHT_PHASE.CLIMB
-    ];
-    const nonDeparturePhases = _filter(FLIGHT_PHASE, (phase) => departurePhases.indexOf(phase) === INVALID_INDEX);
-
-    for (let i = 0; i < nonDeparturePhases.length; i++) {
-        fms.currentPhase = nonDeparturePhases[i];
-
-        t.false(fms.isDeparture());
-    }
+ava('.isDeparture() returns false for any arriving flight', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
+    t.false(fms.isDeparture());
 });
 
 ava('.moveToNextWaypoint() calls #_routeModel.moveToNextWaypoint()', (t) => {
@@ -711,7 +663,7 @@ ava('.updateStarLegForArrivalRunway() throws when passed something other than a 
 });
 
 ava('.updateStarLegForArrivalRunway() returns early when the specified runway is already the #arrivalRunwayModel', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.arrivalRunwayModel;
     const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');
 
@@ -724,7 +676,7 @@ ava('.updateStarLegForArrivalRunway() returns early when the specified runway is
 });
 
 ava('.updateStarLegForArrivalRunway() returns early when the specified runway is not valid for the currently assigned STAR', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString(fullRouteStringMock);
     const originalRunwayModel = fms.arrivalRunwayModel;
     const nextRunwayModel = airportModelFixture.getRunway('01R');
     const routeModelUpdateStarLegForArrivalRunwayModelSpy = sinon.spy(fms._routeModel, 'updateStarLegForArrivalRunwayModel');

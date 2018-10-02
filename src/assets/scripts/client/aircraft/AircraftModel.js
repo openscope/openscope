@@ -1012,7 +1012,7 @@ export default class AircraftModel {
         let airportModel = this.fms.departureAirportModel;
         let runwayModel = this.fms.departureRunwayModel;
 
-        if (this.isOverflight) {
+        if (this.isOverflight()) {
             return false;
         }
 
