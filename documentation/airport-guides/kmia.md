@@ -73,28 +73,28 @@ Miami Executive (Tamiami)
 282,066 annual operations
 11.8nm southwest of KMIA
 
-Almost all of Tamiami's traffic is itinerant general aviation traffic, which means the place can be a beehive of VFR during peak periods. Other than charters for the "top 1%", this airport exists solely to quench the people's thirst for a place to do pattern work, or to fly into and out of on the weekends. This is the kind of place for which "snowbirds" and "weekend warriors" get their names.
+A MIA satellite whose traffic is composed mostly of itinerant general aviation traffic, which means the place can be a beehive of VFR during peak periods. Other than charters for the "top 1%", this airport exists solely to quench the people's thirst for a place to do pattern work, or to fly into and out of on the weekends. This is the kind of place for which "snowbirds" and "weekend warriors" get their names.
 
 #### KHWO
 North Perry
 190,955 annual operations
 12.6nm north-northeast of KMIA
 
-_to be completed_
+A FLL satellite south of the Fort Lauderdale area.
 
 #### KPMP
 Pompano Beach Airpark
 186,534 annual operations
 28.7nm north-northeast of KMIA
 
-_to be completed_
+A FLL satellite north of the Fort Lauderdale area.
 
 #### KFXE
 Fort Lauderdale Executive
 174,391 annual operations
 24.9nm north-northeast of KMIA
 
-_to be completed_
+A FLL satellite airport with traffic destined for the Fort Lauderdale area.
 
 #### KPBI
 Palm Beach International
@@ -108,7 +108,7 @@ Miami Opa Locka Executive
 141,195 annual operations
 6.7nm north of KMIA
 
-_to be completed_
+A busy FLL satellite airport with the majority of corporate traffic destined for the Miami area.
 
 #### KBCT
 Boca Raton
@@ -118,4 +118,5 @@ Boca Raton
 Boca is pictured on the Miami video map, and is right along the northern perimeter depicted in openScope. However, due to the actual stratification of the airspace, altitudes 4,000 and down over the Boca Raton airport are controlled by Palm Beach TRACON, meaning Miami TRACON will be handing aircraft off to Palm Beach rather than directly providing approach and departure services at this airport.
 
 ### Additional Resources
-_Add links to relevant videos, files, etc here_
+- [Miami Approach (Final) footage](https://www.youtube.com/watch?v=zb5nvUY6IRY)
+- [Miami Approach footage during radar outage](https://www.youtube.com/watch?v=fvD1-SBq0hg)
