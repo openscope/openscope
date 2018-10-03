@@ -407,9 +407,9 @@
                 ["VKZ", "SKIPS*"]
             ]
         },
-        "MIA5": {
-            "icao": "MIA5",
-            "name": "Miami Five",
+        "MIA6": {
+            "icao": "MIA6",
+            "name": "Miami Six",
             "rwy": {
                 "KMIA8L": ["#095"],
                 "KMIA8R": ["#095"],
@@ -500,16 +500,16 @@
             },
             "body": ["_RWY26L03DME", "POTTR", "#060"],
             "exitPoints": {
-                "BEECH": ["FLL", "BEECH"],
-                "HEDLY": ["DRUUM", "HEDLY"],
-                "PADUS": ["VKZ", "JANUS", "PADUS"],
-                "WINCO": ["DHP", "WINCO"]
+                "BEECH": ["BEECH"],
+                "HEDLY": ["HEDLY"],
+                "PADUS": ["PADUS"],
+                "WINCO": ["WINCO"]
             },
             "draw": [
-                ["FLL", "BEECH*"],
-                ["DRUUM", "HEDLY*"],
-                ["VKZ", "PADUS*"],
-                ["DHP", "WINCO*"]
+                ["BEECH*"],
+                ["HEDLY*"],
+                ["PADUS*"],
+                ["WINCO*"]
             ]
         },
         "SKIPS2": {
@@ -604,9 +604,9 @@
         }
     },
     "stars": {
-        "ANNEY3": {
-            "icao": "ANNEY3",
-            "name": "Anney Three",
+        "ANNEY4": {
+            "icao": "ANNEY4",
+            "name": "Anney Four",
             "entryPoints": {
                 "MLB": ["MLB", "TRV", "PHORD", "PBI"],
                 "OMN": ["OMN", "PCMAN", "MLB", "TRV", "PHORD", "PBI"],
@@ -650,9 +650,9 @@
                 ["MLB*", "LEBUR", "DALOO", "TOPPR", "BLUFI", "HEATT", "KAINS", "VKZ"]
             ]
         },
-        "CURSO4": {
-            "icao": "CURSO4",
-            "name": "Curso Four",
+        "CURSO5": {
+            "icao": "CURSO5",
+            "name": "Curso Five",
             "entryPoints": {
                 "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU"],
                 "MTH": ["MTH", "GUSHY"]
@@ -674,9 +674,9 @@
                 ["JODPO", "LECIT"]
             ]
         },
-        "CYY8": {
-            "icao": "CYY8",
-            "name": "Cypress Eight",
+        "CYY9": {
+            "icao": "CYY9",
+            "name": "Cypress Niner",
             "entryPoints": {
                 "PIE": ["PIE"],
                 "RSW": ["RSW"],
@@ -699,9 +699,9 @@
                 ["SRQ*", "CYY"]
             ]
         },
-        "DVALL2": {
-            "icao": "DVALL2",
-            "name": "DaVall Two",
+        "DVALL3": {
+            "icao": "DVALL3",
+            "name": "DaVall Three",
             "entryPoints": {
                 "EYW": ["EYW", "CARNU"],
                 "MTH": ["MTH"]
@@ -722,16 +722,16 @@
                 ["MTH*", "DVALL"]
             ]
         },
-        "FLIPR4": {
-            "icao": "FLIPR4",
-            "name": "Flipper Four",
+        "FLIPR5": {
+            "icao": "FLIPR5",
+            "name": "Flipper Five",
             "entryPoints": {
                 "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS"],
                 "URSUS": ["URSUS", "ZOLLA"],
                 "ZFP": ["ZFP", "LUCSS"],
                 "ZQA": ["ZQA", "NICKO", "TINKY", "LUCSS"]
             },
-            "body": ["FOWEE", "FLIPR", "LUVLY", "LECIT", "JODPO"],
+            "body": ["FOWEE", "FLIPR", "LUVLY", "LECIT", "JODPO", "#272"],
             "rwy": {
                 "KMIA8L": [],
                 "KMIA8R": [],
@@ -749,9 +749,9 @@
                 ["ZQA*", "NICKO", "TINKY", "LUCSS"]
             ]
         },
-        "FOWEE8": {
-            "icao": "FOWEE8",
-            "name": "Fowey Eight",
+        "FOWEE9": {
+            "icao": "FOWEE9",
+            "name": "Fowey Niner",
             "entryPoints": {
                 "HODGY": ["HODGY", "TINKY", "LUCSS"],
                 "URSUS": ["URSUS"],
@@ -776,9 +776,9 @@
                 ["ZQA*", "TINKY", "LUCSS"]
             ]
         },
-        "HILEY6": {
-            "icao": "HILEY6",
-            "name": "Hiley Six",
+        "HILEY7": {
+            "icao": "HILEY7",
+            "name": "Hiley Seven",
             "entryPoints": {
                 "JORAY": ["JORAY", "OSOGY", "AMZAR", "STAPL", "MILSY", "BOYUR"],
                 "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", "PBI", "BTOGA"],
@@ -801,14 +801,12 @@
                 ["ZFP*", "STAPL"]
             ]
         },
-        "SSCOT3": {
-            "icao": "SSCOT3",
-            "name": "Scott Three",
+        "SSCOT4": {
+            "icao": "SSCOT4",
+            "name": "Scott Four",
             "entryPoints": {
                 "BAGGS": ["BAGGS"],
-                "OTK": ["OTK", "HITTR", "TUCKE", "JUULI"],
-                "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI"],
-                "TAY": ["TAY", "HITTR", "TUCKE", "JUULI"]
+                "JUULI": ["JUULI"]
             },
             "body": ["BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT", "#126"],
             "rwy": {
@@ -822,10 +820,9 @@
                 "KMIA30": []
             },
             "draw": [
-                ["BAGGS*", "BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT"],
-                ["OTK*", "HITTR", "TUCKE", "JUULI", "BAARY"],
-                ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI"],
-                ["TAY*", "HITTR"]
+                ["BAGGS*", "BAARY"],
+                ["JUULI*", "BAARY"],
+                ["BAARY", "CYY", "DEEDS", "SSCOT", "RUBOE", "WALIP", "LECIT"]
             ]
         }
     },
@@ -858,7 +855,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
+            "route": "KMIA8R.MIA6.WINCO..LBV..CHRRI..MMDUQ..PIE..TABIR..SWABE..PLYER..LEGGT..HEVVN..SZW",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -909,7 +906,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
+            "route": "KMIA8R.MIA6.HEDLY..PHK..CFVPP..ORL..KRSTN..VQQ",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -981,7 +978,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.PADUS..ZFP..FLINY..HAANA",
+            "route": "KMIA8R.MIA6.PADUS..ZFP..FLINY..HAANA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -999,7 +996,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.BEECH..BAHMA..ISAAC..OYSTA..HANKX..MAMML..DIAZZ",
+            "route": "KMIA8R.MIA6.BEECH..BAHMA..ISAAC..OYSTA..HANKX..MAMML..DIAZZ",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1048,7 +1045,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
+            "route": "KMIA8R.MIA6.SKIPS..LEEVI..SWIMM..WOOZE..RAJAY..PRUNE..HINZY..ZQA",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1097,7 +1094,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.EONNS..ELLEE..URSUS..GELOG",
+            "route": "KMIA8R.MIA6.EONNS..ELLEE..URSUS..GELOG",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1147,7 +1144,7 @@
             "origin": "kmia",
             "destination": "",
             "category": "departure",
-            "route": "KMIA8R.MIA5.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
+            "route": "KMIA8R.MIA6.MNATE..FIS..THUMP..CANOA..MUPKI..NOSAT..XOPUT..LETIS..CUN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -1173,7 +1170,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "JORAY.HILEY6.KMIA9",
+            "route": "JORAY.HILEY7.KMIA9",
             "altitude": 21000,
             "speed": 250,
             "method": "random",
@@ -1217,7 +1214,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "BAGGS.SSCOT3.KMIA9",
+            "route": "BAGGS.SSCOT4.KMIA9",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
@@ -1241,7 +1238,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "URSUS.FLIPR4.KMIA9",
+            "route": "URSUS.FLIPR5.KMIA9",
             "altitude": 12000,
             "speed": 280,
             "method": "random",
@@ -1274,7 +1271,7 @@
             "origin": "",
             "destination": "kmia",
             "category": "arrival",
-            "route": "MTH.CURSO4.KMIA9",
+            "route": "MTH.CURSO5.KMIA9",
             "altitude": 10000,
             "speed": 250,
             "method": "random",
