@@ -1,6 +1,5 @@
 import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
-import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
 import _isNil from 'lodash/isNil';
 import _random from 'lodash/random';
@@ -36,7 +35,6 @@ function _calculateOffsetsToEachWaypointInRoute(waypointModelList) {
         const previousWaypointModel = waypointModelList[i - 1];
         const nextWaypointModel = waypointModelList[i];
         const distanceToNextWaypoint = previousWaypointModel.calculateDistanceToWaypoint(nextWaypointModel);
-
         totalDistanceTraveled += distanceToNextWaypoint;
 
         waypointOffsetMap.push(totalDistanceTraveled);
