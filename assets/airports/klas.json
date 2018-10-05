@@ -6,7 +6,7 @@
     },
     "icao": "KLAS",
     "iata": "LAS",
-    "magnetic_north": 11.58,
+    "magnetic_north": 11.9,
     "ctr_radius": 120,
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
