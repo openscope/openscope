@@ -14,7 +14,7 @@ The procedures are fairly manual, still requiring controllers to issue standard 
 Daytime SIDs (0600-2300):
 - EONNS2
 - HEDLY2
-- MIA5
+- MIA6
 - MNATE2
 - PADUS2
 - VALLY2
