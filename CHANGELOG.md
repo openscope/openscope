@@ -13,6 +13,7 @@
 
 
 ### Enhancements & Refactors
+- [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
 
 
 

@@ -288,13 +288,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     premium: false,
         //     wip: true
         // },
-        // {
-        //     icao: 'klas',
-        //     level: 'hard',
-        //     name: 'McCarran International Airport',
-        //     premium: false,
-        //     wip: false
-        // },
+        {
+            icao: 'klas',
+            level: 'hard',
+            name: 'McCarran International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'klax90',
         //     level: 'medium',
