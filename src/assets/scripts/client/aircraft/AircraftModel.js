@@ -1814,34 +1814,34 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
 
-        if (this._isPassingWaypoint(this.fms.currentWaypoint)) {
-            if (!this.fms.hasNextWaypoint()) {
-                // we've hit this block because an aircraft is about to fly over the last waypoint in its flightPlan
-                this.pilot.maintainPresentHeading(this.heading);
-
-                return headingToWaypoint;
-            }
-
-            this.fms.moveToNextWaypoint();
-
-            const currentWaypoint = this.fms.currentWaypoint;
-
-            if (currentWaypoint.isVectorWaypoint) {
-                return currentWaypoint.getVector();
-            }
-
-            const nextWaypointPosition = currentWaypoint.positionModel;
-
-            if (_isNil(nextWaypointPosition)) {
-                console.log('Expected a valid PositionModel object for waypoint ' +
-                    `"${currentWaypoint.name}", but received ${nextWaypointPosition}`
-                );
-            }
-
-            return this.positionModel.bearingToPosition(nextWaypointPosition);
+        if (!this._isPassingWaypoint(this.fms.currentWaypoint)) {
+            return headingToWaypoint;
         }
 
-        return headingToWaypoint;
+        if (!this.fms.hasNextWaypoint()) {
+            // we've hit this block because an aircraft is about to fly over the last waypoint in its flightPlan
+            this.pilot.maintainPresentHeading(this.heading);
+
+            return headingToWaypoint;
+        }
+
+        this.fms.moveToNextWaypoint();
+
+        const currentWaypoint = this.fms.currentWaypoint;
+
+        if (currentWaypoint.isVectorWaypoint) {
+            return currentWaypoint.getVector();
+        }
+
+        const nextWaypointPosition = currentWaypoint.positionModel;
+
+        if (_isNil(nextWaypointPosition)) {
+            console.log('Expected a valid PositionModel object for waypoint ' +
+                `"${currentWaypoint.name}", but received ${nextWaypointPosition}`
+            );
+        }
+
+        return this.positionModel.bearingToPosition(nextWaypointPosition);
     }
 
     /**
