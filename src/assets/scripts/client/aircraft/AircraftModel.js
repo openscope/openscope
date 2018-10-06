@@ -827,7 +827,7 @@ export default class AircraftModel {
             return false;
         }
 
-        if (this._isReadyToMoveToWaypoint(waypointModel)) {
+        if (this._isPassingWaypoint(waypointModel)) {
             return true;
         }
 
@@ -1814,7 +1814,7 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
 
-        if (this._isReadyToMoveToWaypoint(this.fms.currentWaypoint)) {
+        if (this._isPassingWaypoint(this.fms.currentWaypoint)) {
             if (!this.fms.hasNextWaypoint()) {
                 // we've hit this block because an aircraft is about to fly over the last waypoint in its flightPlan
                 this.pilot.maintainPresentHeading(this.heading);
@@ -1848,11 +1848,11 @@ export default class AircraftModel {
      * Determine if it is time to move to the next fix.
      *
      * @for AircraftModel
-     * @method _isReadyToMoveToWaypoint
+     * @method _isPassingWaypoint
      * @param waypoint {WaypointModel}
      * @return {boolean}
      */
-    _isReadyToMoveToWaypoint(waypoint) {
+    _isPassingWaypoint(waypoint) {
         const waypointPosition = waypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
