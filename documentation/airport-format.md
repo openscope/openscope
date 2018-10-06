@@ -327,6 +327,14 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 ```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
 ```
+* Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
+```javascript
+"_RWY12BSTER081": []
+```
+* Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
+```javascript
+"_FIXXA030FIXXB180"
+```
 
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
 

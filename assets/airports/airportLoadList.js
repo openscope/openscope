@@ -316,13 +316,13 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             premium: false,
             wip: false
         },
-        // {
-        //     icao: 'kmia',
-        //     level: 'hard',
-        //     name: 'Miami International Airport',
-        //     premium: false,
-        //     wip: true
-        // },
+        {
+            icao: 'kmia',
+            level: 'hard',
+            name: 'Miami International Airport',
+            premium: false,
+            wip: false
+        },
         // {
         //     icao: 'kmsp',
         //     level: 'hard',
