@@ -18,6 +18,13 @@
     right: -390px;
 }
 
+.stripViewContainer {
+    height: ~"calc(50% - 1.25em - 10px)";
+    vertical-align: bottom;
+    position: relative;
+    overflow-y: scroll;
+}
+
 .stripTitle {
     background-color: #222222;
     color: #ffffff;
@@ -29,11 +36,10 @@
 .stripView-list {
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     width: ~"calc(100% - " @spacing-2x ~")";
-    overflow-y: scroll;
     list-style-type: none;
-    height: ~"calc(50% - 1.25em - 10px)";
-    display: flex;
-    flex-direction: column-reverse;
+    position: absolute;
+    bottom: 0;
+    left: 0;  
 }
 
 .stripViewItem {
