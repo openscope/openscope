@@ -324,7 +324,7 @@ export const groupNumbers = (callsign, airline) => {
                 break;
             case 4:
                 if (callsign[1] === '0' && callsign[2] === '0' && callsign[3] === '0') {
-                    return `${getGrouping(callsign[0])} thousand`;
+                    return `${radio_names[callsign[0]]} thousand`;
                 }
 
                 return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;

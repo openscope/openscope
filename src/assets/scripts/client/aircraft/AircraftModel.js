@@ -32,7 +32,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
-    calculateTurnInitiaionDistance
+    calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
     distance_to_poly,
@@ -50,6 +50,7 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
+    radio_runway,
     radio_altitude,
     radio_spellOut
 } from '../utilities/radioUtilities';
@@ -1036,6 +1037,7 @@ export default class AircraftModel {
             this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
+    // TODO: The function description and what it actually does do not match
     /**
      * Returns whether the aircraft is currently taking off
      *
@@ -1256,6 +1258,56 @@ export default class AircraftModel {
         }
     }
 
+    /**
+     * @for AircraftModel
+     * @method taxiToRunway
+     * @param runwayModel {RunwayModel}
+     * @return {array} [success of operation, readback]
+     */
+    taxiToRunway(runwayModel) {
+        if (this.isAirborne()) {
+            return [false, 'unable to taxi, we\'re airborne'];
+        }
+
+        if (this.isArrival()) {
+            return  [false, 'unable to taxi to runway, we have just landed'];
+        }
+
+        if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
+            this.pilot.cancelDepartureClearance(this);
+        }
+
+        this.setFlightPhase(FLIGHT_PHASE.TAXI);
+        // remove aircraft from previous runway's queue
+        this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
+        this.fms.setDepartureRunway(runwayModel);
+        this.fms.departureRunwayModel.addAircraftToQueue(this.id);
+
+        this.taxi_start = TimeKeeper.accumulatedDeltaTime;
+
+        GameController.game_timeout(
+            this._changeFromTaxiToWaiting,
+            this.taxi_time,
+            this,
+            null
+        );
+
+        const readback = {};
+        readback.log = `taxi to runway ${runwayModel.name}`;
+        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _changeFromTaxiToWaiting
+     * @param args {array}
+     */
+    _changeFromTaxiToWaiting(args) {
+        this.setFlightPhase(FLIGHT_PHASE.WAITING);
+    }
+
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
     /**
      * @for AircraftModel
@@ -1367,8 +1419,6 @@ export default class AircraftModel {
                 break;
 
             case FLIGHT_PHASE.LANDING: {
-                this.target.heading = this.mcp.course;
-
                 if (this.altitude <= this.mcp.nav1Datum.elevation) {
                     this.altitude = this.mcp.nav1Datum.elevation;
                     this.target.speed = 0;
@@ -1759,7 +1809,8 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-        const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
+        const turnInitiationDistance = calculateTurnInitiationDistance(this, waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < turnInitiationDistance;
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
         const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
@@ -1778,6 +1829,22 @@ export default class AircraftModel {
             }
 
             this.fms.moveToNextWaypoint();
+
+            const currentWaypoint = this.fms.currentWaypoint;
+
+            if (currentWaypoint.isVectorWaypoint) {
+                return currentWaypoint.getVector();
+            }
+
+            const nextWaypointPosition = currentWaypoint.positionModel;
+
+            if (_isNil(nextWaypointPosition)) {
+                console.log('Expected a valid PositionModel object for waypoint ' +
+                    `"${currentWaypoint.name}", but received ${nextWaypointPosition}`
+                );
+            }
+
+            return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
 
         return headingToWaypoint;
@@ -1793,11 +1860,18 @@ export default class AircraftModel {
         const currentWaypoint = this.fms.currentWaypoint;
         const holdParameters = currentWaypoint.holdParameters;
         const waypointRelativePosition = currentWaypoint.relativePosition;
-        const outboundHeading = radians_normalize(holdParameters.inboundHeading + Math.PI);
-        const offset = getOffset(this, waypointRelativePosition, holdParameters.inboundHeading);
+        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
+
+        if (typeof holdParameters.inboundHeading === 'undefined') {
+            // store the current heading as inbound heading, see #836
+            holdParameters.inboundHeading = bearingToHoldFix;
+        }
+
+        const inboundHeading = holdParameters.inboundHeading;
+        const outboundHeading = radians_normalize(inboundHeading + Math.PI);
+        const offset = getOffset(this, waypointRelativePosition, inboundHeading);
         const holdLegDurationInMinutes = holdParameters.legLength.replace('min', '');
         const holdLegDurationInSeconds = holdLegDurationInMinutes * TIME.ONE_MINUTE_IN_SECONDS;
-        const bearingToHoldFix = vradial(vsub(waypointRelativePosition, this.relativePosition));
         const gameTime = TimeKeeper.accumulatedDeltaTime;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerSet = holdParameters.timer !== INVALID_NUMBER;
@@ -1808,9 +1882,7 @@ export default class AircraftModel {
         }
 
         if (!this._isEstablishedOnHoldingPattern) {
-            this.target.heading = bearingToHoldFix;
-
-            return;
+            return bearingToHoldFix;
         }
 
         let nextTargetHeading = outboundHeading;
@@ -2581,6 +2653,9 @@ export default class AircraftModel {
         // Crossing into the center
         if (this.isControllable) {
             this.callUp();
+
+            // for reentry, see #993
+            this.isFlightStripRemovable = false;
 
             return;
         }

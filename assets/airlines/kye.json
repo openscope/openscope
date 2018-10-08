@@ -1,0 +1,13 @@
+{
+    "icao": "kye",
+    "name": "Sky Lease Cargo",
+    "callsign": {
+        "name": "Sky Cube",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["MD11", 7]
+        ]
+    }
+}
