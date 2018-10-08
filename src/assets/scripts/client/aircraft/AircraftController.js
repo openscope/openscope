@@ -319,7 +319,11 @@ export default class AircraftController {
      */
     aircraft_remove_all() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.removeStripView(this.aircraft.list[i]);
+            const aircraft = this.aircraft.list[i];
+
+            if (aircraft.isControllable) {
+                this.removeStripView(aircraft);
+            }
         }
 
         this.aircraft.list = [];
