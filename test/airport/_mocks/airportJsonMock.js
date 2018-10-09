@@ -281,6 +281,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["KENNO", "OAL*"]
             ]
         },
+        // Not a real route, used to test soft altitude restrictions
         "TRALR6": {
             "icao": "TRALR6",
             "name": "Trailer Six",
@@ -292,7 +293,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
                 "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
                 "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]]
             },
             "body": ["TRALR"],
             "exitPoints": {
@@ -341,7 +342,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110-"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], "TRROP", "LEMNZ"],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],
