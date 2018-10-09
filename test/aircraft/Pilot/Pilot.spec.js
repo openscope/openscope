@@ -321,7 +321,7 @@ ava('.cancelApproachClearance() sets #hasApproachClearance to false', (t) => {
 });
 
 ava('.clearedAsFiled() grants pilot departure clearance and returns the correct response strings', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const result = aircraftModel.pilot.clearedAsFiled(aircraftModel);
 
     t.true(_isArray(result));

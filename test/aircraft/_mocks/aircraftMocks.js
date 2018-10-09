@@ -88,7 +88,8 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
-    destination: 'KLAS',
+    destination: '',
+    origin: 'KLAS',
     fleet: 'default',
     airline: 'ual',
     airlineCallsign: 'speedbird',
@@ -116,6 +117,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '432',
     destination: 'KLAS',
+    origin: '',
     fleet: 'default',
     airline: 'aal',
     airlineCallsign: 'speedbird',

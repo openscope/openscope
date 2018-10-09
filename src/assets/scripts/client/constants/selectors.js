@@ -34,6 +34,7 @@ export const CLASSNAMES = {
     NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     OPTIONS_DIALOG: 'option-dialog',
+    OVERFLIGHT: 'overflight',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
     PREV: 'prev',
