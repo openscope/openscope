@@ -188,6 +188,21 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
                 ["aca", 1],
                 ["asa", 3]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         }
     ],
     "maps": {
@@ -601,6 +616,21 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
         "destination": "KSEA",
         "category": "arrival",
         "route": "PDT.CHINS2.KSEA",
+        "altitude": [18000, 36000],
+        "speed": 320,
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "",
+        "category": "overflight",
+        "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
         "altitude": [18000, 36000],
         "speed": 320,
         "method": "random",
