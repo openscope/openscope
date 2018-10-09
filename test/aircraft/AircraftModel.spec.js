@@ -16,7 +16,8 @@ import {
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK,
-    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK
 } from './_mocks/aircraftMocks';
 import {
     FLIGHT_PHASE,
@@ -408,25 +409,91 @@ ava('.matchCallsign() returns true when passed a mixed case callsign that matche
     t.true(model.matchCallsign('uAl1567'));
 });
 
-ava('.updateTarget() causes arrivals to descend when the STAR includes only AT or ABOVE altitude restrictions', (t) => {
+ava('.updateTarget() causes arrivals to comply with AT altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
-    model.positionModel = NavigationLibrary.findFixByName('LEMNZ').positionModel;
-
     model.groundSpeed = 320;
+
+    moveAircraftToFix(model, "KSINO");
+    model.updateTarget();
+
+    t.true(model.target.altitude === 17000);
+});
+
+ava('.updateTarget() causes arrivals to comply with ABOVE altitude restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, "LUXOR");
+    model.updateTarget();
+
+    t.true(model.target.altitude >= 12000);
+});
+
+ava('.updateTarget() causes arrivals to comply with BELOW altitude restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, "GRNPA");
+    model.updateTarget();
+
+    t.true(model.target.altitude <= 11000);
+});
+
+ava('.updateTarget() causes departures to comply with AT altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, "ROPPR");
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
     t.true(model.target.altitude === 7000);
 });
 
-ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    model.positionModel = NavigationLibrary.findFixByName('MISEN').positionModel;
+ava('.updateTarget() causes departures to comply with ABOVE altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
 
-    model.groundSpeed = 320;
+    moveAircraftToFix(model, "CEASR");
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 8000);
+    t.true(model.target.altitude >= 8000);
+    t.true(model.target.altitude <= 14000);
 });
+
+ava('.updateTarget() causes departures to comply with BELOW altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, "WILLW");
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude <= 14000);
+});
+
+function moveAircraftToFix(aircraft, fixName) {
+    const fms = aircraft.fms;
+
+    while (fms.currentWaypoint._name !== fixName) {
+        if (!fms.hasNextWaypoint()) {
+            throw Error(`Can not find waypoint ${fixName}`);
+        }
+
+        fms.moveToNextWaypoint();
+    }
+
+    aircraft.positionModel = NavigationLibrary.findFixByName(fixName).positionModel;
+}
+
+
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     const expectedResult = [false, 'unable to taxi, we\'re airborne'];
