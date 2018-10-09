@@ -1946,31 +1946,34 @@ export default class AircraftModel {
                 return this.mcp.altitude;
             }
 
-            if (this.altitude < nextAltitudeMinimumWaypoint.altitudeMinimum) {
+            const altitudeMinimum = nextAltitudeMinimumWaypoint.altitudeMinimum;
+
+            if (this.altitude < altitudeMinimum) {
                 // ... but we are too low and we have to comply with VNAV restriction
                 return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
             }
 
             if (maximumAltitudeExists) {
-                if (this.mcp.altitude > nextAltitudeMaximumWaypoint.altitudeMaximum) {
+                const altitudeMaximum = nextAltitudeMaximumWaypoint.altitudeMaximum;
+
+                if (this.mcp.altitude > altitudeMaximum) {
                     // we are too high but we are prioritizing clearance over VNAV restriction
                     return this.mcp.altitude;
                 }
 
-                if (this.altitude > nextAltitudeMaximumWaypoint.altitudeMaximum) {
+                if (this.altitude > altitudeMaximum) {
                     // we are too high...
-
-                    if (nextAltitudeMinimumWaypoint.altitudeMinimum > nextAltitudeMaximumWaypoint.altitudeMaximum) {
+                    if (altitudeMinimum > altitudeMaximum) {
                         // the minimum altitude is above the maximum altiude, check if we can descend all the way down
                         // without violating VNAV restrictions.
                         const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, nextAltitudeMinimumWaypoint, nextAltitudeMaximumWaypoint);
 
                         if (firstWaypoint.name === nextAltitudeMinimumWaypoint.name) {
                             // ... but we can not descend all the way down yet
-                            return nextAltitudeMinimumWaypoint.altitudeMinimum;
+                            // TODO: descend in-time
+                            return altitudeMinimum;
                         }
                     }
-
                     // ...so descend to comply with VNAV restriction
                     return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
                 }
@@ -1982,34 +1985,39 @@ export default class AircraftModel {
                 return this.mcp.altitude;
             }
 
-            if (this.altitude > nextAltitudeMaximumWaypoint.altitudeMaximum) {
+            const altitudeMaximum = nextAltitudeMaximumWaypoint.altitudeMaximum;
+
+            if (this.altitude > altitudeMaximum) {
                 // .. but we are too high and have to comply with NAV restriction
                 return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
             }
 
             if (minimumAltitudeExists) {
-                if (this.mcp.altitude < nextAltitudeMinimumWaypoint.altitudeMinimum) {
+                const altitudeMinimum = nextAltitudeMinimumWaypoint.altitudeMinimum;
+
+                if (this.mcp.altitude < altitudeMinimum) {
                     // we are too low but we are prioritizing clearance over VNAV restriction
                     return this.mcp.altitude;
                 }
 
-                if (this.altitude < nextAltitudeMinimumWaypoint.altitudeMinimum) {
+                if (this.altitude < altitudeMinimum) {
                     // we are too low ...
-                    if (nextAltitudeMaximumWaypoint.altitudeMaximum < nextAltitudeMinimumWaypoint.altitudeMinimum) {
+                    if (altitudeMaximum < altitudeMinimum) {
                         // the maximum altitude is below the minimal altiude, check if we can climb all the way up
                         // without violating VNAV restrictions.
                         const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, nextAltitudeMinimumWaypoint, nextAltitudeMaximumWaypoint);
 
                         if (firstWaypoint.name === nextAltitudeMaximumWaypoint.name) {
                             // ... but we can not climb all the way up yet
-                            return nextAltitudeMaximumWaypoint.altitudeMaximum;
+                            return altitudeMaximum;
                         }
                     }
-
                     // ... climb to comply with VNAV restriction
                     return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
                 }
             }
+
+            return altitudeMaximum;
         }
     }
 
@@ -2026,7 +2034,7 @@ export default class AircraftModel {
     _findFirstWaypoint(waypoints, waypointA, waypointB) {
         const indexOfA = _findIndex(waypoints, (waypoint) => waypoint.name === waypointA.name);
         const indexOfB = _findIndex(waypoints, (waypoint) => waypoint.name === waypointB.name);
-        
+
         return indexOfA < indexOfB ? waypointA : waypointB;
     }
 
