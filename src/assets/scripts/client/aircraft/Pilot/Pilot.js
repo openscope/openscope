@@ -1,4 +1,5 @@
 import _ceil from 'lodash/ceil';
+import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import AirportController from '../../airport/AirportController';
@@ -290,12 +291,12 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}          the identifier for the procedure
+     * @param routeString {String}          the route
      * @param airportIcao {string}          airport icao identifier
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(routeString, airportIcao) {
-        let routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length > 3) {
             return [false, 'departure procedure format not understood'];
@@ -339,7 +340,6 @@ export default class Pilot {
 
         this.hasDepartureClearance = true;
 
-        // Build readback
         const readback = {};
         readback.log = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
         readback.say = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
