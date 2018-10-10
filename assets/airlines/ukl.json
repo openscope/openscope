@@ -1,0 +1,16 @@
+{
+    "icao": "ukl",
+    "name": "Ukraine Air Alliance",
+    "callsign": {
+        "name": "Ukraine Alliance",
+        "callsignFormats": [
+            "####",
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AN12", 7]
+        ]
+    }
+}

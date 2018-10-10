@@ -4,7 +4,8 @@
     "callsign": {
         "name": "Black Sea",
         "callsignFormats": [
-            "###"
+            "###",
+            "####"
         ]
     },
     "fleets": {

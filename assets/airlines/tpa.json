@@ -1,0 +1,13 @@
+{
+    "icao": "tpa",
+    "name": "Avianca Cargo",
+    "callsign": {
+        "name": "Tampa",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A332", 5]
+        ]
+    }
+}

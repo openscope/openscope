@@ -366,6 +366,24 @@ export default class Pilot {
     }
 
     /**
+     * Ensure the STAR leg has the specified arrival runway as the exit point and
+     * set the specified runway as the new arrival runway.
+     *
+     * @for Pilot
+     * @method updateStarLegForArrivalRunway
+     * @param aircraft {AircraftModel}
+     * @param nextRunwayModel {RunwayModel}
+     * @return {array} [success of operation, response]
+     */
+    updateStarLegForArrivalRunway(aircraft, nextRunwayModel) {
+        if (aircraft.isOnGround()) {
+            return [false, 'unable to accept arrival runway assignment until airborne'];
+        }
+
+        return this._fms.updateStarLegForArrivalRunway(nextRunwayModel);
+    }
+
+    /**
      * Stop conducting the instrument approach, and maintain:
      * - current or last assigned altitude (whichever is lower)
      * - current heading
@@ -382,7 +400,8 @@ export default class Pilot {
         }
 
         const airport = AirportController.airport_get();
-        const descentAltitude = Math.min(aircraftModel.altitude, this._mcp.altitude);
+        const currentAltitude = _floor(aircraftModel.altitude, -2);
+        const descentAltitude = Math.min(currentAltitude, this._mcp.altitude);
         const altitudeToMaintain = Math.max(descentAltitude, airport.minAssignableAltitude);
 
         this._mcp.setAltitudeFieldValue(altitudeToMaintain);
@@ -451,12 +470,24 @@ export default class Pilot {
      * Climb in accordance with the altitude restrictions, and sets
      * altitude at which the climb will end regardless of fix restrictions.
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method climbViaSid
+     * @param aircraftModel {AircraftModel}
+     * @param maximumAltitude {number} (optional) altitude at which the climb will end (regardless of fix restrictions)
      * @return {array}           [success of operation, readback]
      */
-    climbViaSid() {
-        if (this._fms.flightPlanAltitude === INVALID_NUMBER) {
+    climbViaSid(aircraftModel, maximumAltitude) {
+
+        let nextAltitude = maximumAltitude;
+
+        if (typeof nextAltitude === 'undefined') {
+            nextAltitude = this._fms.flightPlanAltitude;
+        }
+
+        if (nextAltitude === INVALID_NUMBER) {
             const readback = {};
             readback.log = 'unable to climb via SID, no altitude assigned';
             readback.say = 'unable to climb via SID, no altitude assigned';
@@ -464,12 +495,33 @@ export default class Pilot {
             return [false, readback];
         }
 
-        this._mcp.setAltitudeFieldValue(this._fms.flightPlanAltitude);
+        if (typeof nextAltitude !== 'number') {
+            return [false, `unable to climb to altitude of ${nextAltitude}`];
+        }
+
+        if (!aircraftModel.model.isAbleToMaintainAltitude(nextAltitude)) {
+            const readback = {};
+            readback.log = `unable to maintain ${nextAltitude} due to performance`;
+            readback.say = `unable to maintain ${radio_altitude(nextAltitude)} due to performance`;
+
+            return [false, readback];
+        }
+
+        if (nextAltitude < aircraftModel.altitude) {
+            const readback = {};
+            readback.log = `unable to comply, say again`;
+            readback.say = `unable to comply, say again`;
+
+            return [false, readback];
+        }
+
+        this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         const readback = {};
-        readback.log = 'climb via SID';
-        readback.say = 'climb via SID';
+        readback.log = `climb via SID and maintain ${nextAltitude}`;
+        readback.say = `climb via SID and maintain ${radio_altitude(nextAltitude)}`;
 
         return [true, readback];
     }
@@ -477,12 +529,16 @@ export default class Pilot {
     /**
      * Descend in accordance with the altitude restrictions
      *
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
+     *
      * @for Pilot
      * @method descendViaStar
+     * @param aircraftModel {AircraftModel}
      * @param bottomAltitude {number} (optional) altitude at which the descent will end (regardless of fix restrictions)
      * @return {array}                [success of operation, readback]
      */
-    descendViaStar(bottomAltitude) {
+    descendViaStar(aircraftModel, bottomAltitude) {
         let nextAltitude = bottomAltitude;
 
         if (typeof nextAltitude === 'undefined') {
@@ -497,11 +553,23 @@ export default class Pilot {
             return [false, `unable to descend to bottom altitude of ${nextAltitude}`];
         }
 
+        if (aircraftModel.altitude < nextAltitude) {
+            const readback = {};
+            readback.log = `unable to comply, say again`;
+            readback.say = `unable to comply, say again`;
+
+            return [false, readback];
+        }
+
         this._mcp.setAltitudeFieldValue(nextAltitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();
 
-        return [true, 'descend via STAR'];
+        const readback = {};
+        readback.log = `descend via STAR and maintain ${nextAltitude}`;
+        readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -842,23 +910,6 @@ export default class Pilot {
     }
 
     /**
-     * Set the arrival runway to the specified runway model
-     *
-     * @for Pilot
-     * @method setArrivalRunway
-     * @param aircraft {AircraftModel}
-     * @param runwayModel {RunwayModel}
-     * @return {array} [success of operation, response]
-     */
-    setArrivalRunway(aircraft, runwayModel) {
-        if (aircraft.isOnGround()) {
-            return [false, 'unable to accept arrival runway assignment until airborne'];
-        }
-
-        return this._fms.setArrivalRunway(runwayModel);
-    }
-
-    /**
      * Stop taxiing to the runway and return to the gate
      *
      * @for Pilot
@@ -886,38 +937,5 @@ export default class Pilot {
         this._fms.flightPhase = FLIGHT_PHASE.APRON;
 
         return [true, 'taxiing back to the gate'];
-    }
-
-    /**
-     * Taxi the aircraft
-     *
-     * @for Pilot
-     * @method taxiToRunway
-     * @param taxiDestination {RunwayModel}  runway has already been verified by the
-     *                                       time it is sent to this method
-     * @param isDeparture {boolean}         whether the aircraft's flightPhase is DEPARTURE
-     * @param flightPhase {string}          the flight phase of the aircraft
-     * @return {array}                      [success of operation, readback]
-     */
-    taxiToRunway(taxiDestination, isDeparture, flightPhase) {
-        if (flightPhase === FLIGHT_PHASE.TAXI) {
-            return [false, 'already taxiing'];
-        }
-
-        if (flightPhase === FLIGHT_PHASE.WAITING) {
-            return [false, 'already taxiied and waiting in runway queue'];
-        }
-
-        if (!isDeparture || flightPhase !== FLIGHT_PHASE.APRON) {
-            return [false, 'unable to taxi'];
-        }
-
-        this._fms.setDepartureRunway(taxiDestination);
-
-        const readback = {};
-        readback.log = `taxi to runway ${taxiDestination.name}`;
-        readback.say = `taxi to runway ${radio_runway(taxiDestination.name)}`;
-
-        return [true, readback];
     }
 }

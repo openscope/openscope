@@ -1962,7 +1962,7 @@
             "rwy": {
                 "OTHH34R": []
             },
-            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["LADEM", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", ["BAT", "A60"]],
+            "body":[["ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["MUXED", "A40"], ["LADEM", "A40"], ["EMEXA", "A50+"], ["SOLAL", "A60"], "DENSI", ["BAT", "A60"]],
             "exitPoints": {
                 "BAT": []
             },
@@ -2018,7 +2018,7 @@
             "rwy": {
                 "OTHH34R": []
             },
-            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"],
+            "body":[["ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "BUNDU"],
             "exitPoints": {
                 "BUNDU": []
             },
@@ -2130,7 +2130,7 @@
             "rwy": {
                 "OTHH34R": []
             },
-            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"],
+            "body":[["ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], ["PUSNO", "A40"], ["NABIS", "A70"], "GOBLU", "NAMLA"],
             "exitPoints": {
                 "NAMLA": []
             },
@@ -2298,7 +2298,7 @@
             "rwy": {
                 "OTHH34R": []
             },
-            "body":[["ELEDA", "S250-"], ["^MEBTI", "S250-"], ["BOSUP", "A30+"], "MUXED", "OBVER", ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]],
+            "body":[["ELEDA", "S250-"], ["MEBTI", "S250-"], ["BOSUP", "A30+"], "MUXED", "OBVER", ["SODER", "A40"], ["BOXED", "A50+"], ["DEBKO", "A60"], ["SALWA", "A60"]],
             "exitPoints": {
                 "SALWA": []
             },
