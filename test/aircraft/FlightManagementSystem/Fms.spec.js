@@ -570,12 +570,10 @@ ava('.replaceArrivalProcedure() calls ._updateArrivalRunwayFromRoute() when the 
 
 ava('.replaceDepartureProcedure() returns early when passed a wrong-length route string', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    // const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
     const expectedResponse = [false, 'departure procedure format not understood'];
     const responseForSingleElement = fms.replaceDepartureProcedure('BOACH6');
-    //const responseForDoubleElement = fms.replaceDepartureProcedure('KLAS07R.BOACH6');
+    const responseForDoubleElement = fms.replaceDepartureProcedure('KLAS07R.BOACH6');
 
-    // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
     t.deepEqual(responseForDoubleElement, expectedResponse);
 });
@@ -608,7 +606,7 @@ ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() and u
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const expectedResponse = [true, ''];
-    const response = fms.replaceDepartureProcedure(proposedRoute);
+    const response = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
 
     t.true(updateDepartureRunwayFromRouteSpy.calledWithExactly());
     t.deepEqual(response, expectedResponse);
