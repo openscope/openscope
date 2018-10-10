@@ -340,7 +340,11 @@ export default class AircraftController {
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
-        this.removeStripView(aircraftModel);
+
+        if (aircraftModel.isControllable) {
+            this.removeStripView(aircraftModel);
+        }
+        
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
