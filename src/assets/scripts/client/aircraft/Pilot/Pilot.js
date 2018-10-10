@@ -304,19 +304,12 @@ export default class Pilot {
         if (routeStringElements.length === 1) { // RouteString looks like PROC
             const procedureId = routeStringElements[0];
             const sidModel = NavigationLibrary.getProcedure(procedureId);
+
             if (_isNil(sidModel)) {
                 return [false, 'SID name not understood'];
             }
 
-            const existingWaypoints = this._fms.waypoints;
-            let exitPoint = '';
-            for (let i = 0; i < existingWaypoints.length; i++) {
-                const waypoint = existingWaypoints[i];
-                if (sidModel.hasExit(waypoint.name)) {
-                    exitPoint = waypoint.name;
-                    break;
-                }
-            }
+            const exitPoint = _find(this._fms.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
 
             if (exitPoint === '') {
                 return [false, `SID ${procedureId.toUpperCase()} doesn't have an exit along our route`];
@@ -333,6 +326,7 @@ export default class Pilot {
             }
 
             const entryName = airportIcao.toUpperCase() + runwayModel.name;
+
             routeStringElements.unshift(entryName);
         }
 

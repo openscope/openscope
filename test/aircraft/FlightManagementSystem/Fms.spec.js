@@ -527,12 +527,10 @@ ava('.moveToNextWaypoint() calls #_routeModel.moveToNextWaypoint()', (t) => {
 
 ava('.replaceArrivalProcedure() returns early when passed a wrong-length route string', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    // const navigationLibraryHasProcedureSpy = sinon.spy(fms._navigationLibrary, 'hasProcedure');
     const expectedResponse = [false, 'arrival procedure format not understood'];
     const responseForSingleElement = fms.replaceArrivalProcedure('KEPEC3');
     const responseForDoubleElement = fms.replaceArrivalProcedure('KEPEC3.KLAS07R');
 
-    // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
     t.deepEqual(responseForDoubleElement, expectedResponse);
 });
@@ -579,7 +577,7 @@ ava('.replaceDepartureProcedure() returns early when passed a wrong-length route
 
     // t.true(navigationLibraryHasProcedureSpy.notCalled);
     t.deepEqual(responseForSingleElement, expectedResponse);
-    //t.deepEqual(responseForDoubleElement, expectedResponse);
+    t.deepEqual(responseForDoubleElement, expectedResponse);
 });
 
 ava('.replaceDepartureProcedure() returns early when the specified procedure does not exist', (t) => {
@@ -606,15 +604,15 @@ ava('.replaceDepartureProcedure() does not call ._updateDepartureRunwayFromRoute
 });
 
 ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() and updates route when the departure procedure is applied successfully', (t) => {
+    const expectedRouteString = 'KLAS07R.BOACH6.TNP.KEPEC3.KLAS07R'
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const expectedResponse = [true, ''];
-    const proposedRoute = 'KLAS07R.BOACH6.TNP'
     const response = fms.replaceDepartureProcedure(proposedRoute);
 
     t.true(updateDepartureRunwayFromRouteSpy.calledWithExactly());
     t.deepEqual(response, expectedResponse);
-    t.true(proposedRoute + fullRouteStringMock.substring(18) === fms.getRouteString())
+    t.true(expectedRouteString === fms.getRouteString());
 });
 
 ava('.replaceFlightPlanWithNewRoute() returns failure response and does not modify route when proposed route is not valid', (t) => {
