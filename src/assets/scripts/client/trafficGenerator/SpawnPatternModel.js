@@ -1019,7 +1019,7 @@ export default class SpawnPatternModel extends BaseModel {
 
         return selfReferencingPosition;
     }
-    
+
     /**
      * Used to determine if this spawn pattern is for an arriving aircraft
      *

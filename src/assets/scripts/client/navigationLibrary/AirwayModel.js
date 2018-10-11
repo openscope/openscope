@@ -1,7 +1,7 @@
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
-import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
+import NavigationLibrary from './NavigationLibrary';
 import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
 import { INVALID_INDEX } from '../constants/globalConstants';
 

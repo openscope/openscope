@@ -447,8 +447,8 @@ export default class RouteModel extends BaseModel {
         });
 
         return this._combineRouteStrings(legRouteStringsWithoutAirports)
-        .replace(REGEX.DOUBLE_DOT, ' ')
-        .replace(REGEX.SINGLE_DOT, ' ');
+            .replace(REGEX.DOUBLE_DOT, ' ')
+            .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
