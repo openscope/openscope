@@ -1353,15 +1353,13 @@ export default class CanvasController {
             cc.arc(-halfWidth - barHalfWidth,
                 -lock_offset, lock_size / 2 + barHalfWidth,
                 clipping_mask_angle - pi / 2,
-                0
-            );
+                0);
             cc.lineTo(-halfWidth + lock_size / 2, lock_offset);
             cc.arc(-halfWidth - barHalfWidth,
                 lock_offset,
                 lock_size / 2 + barHalfWidth,
                 0,
-                pi / 2 - clipping_mask_angle
-            );
+                pi / 2 - clipping_mask_angle);
             cc.closePath();
             cc.fill();
 

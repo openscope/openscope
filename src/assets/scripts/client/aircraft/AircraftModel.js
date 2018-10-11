@@ -598,7 +598,9 @@ export default class AircraftModel {
             this.speed = 0;
 
             return;
-        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
+        }
+
+        if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
             throw new Error('Invalid #category found in AircraftModel');
         }
     }
@@ -719,7 +721,9 @@ export default class AircraftModel {
 
         if (weightClass === 'H') {
             return 'heavy';
-        } else if (weightClass === 'U') {
+        }
+
+        if (weightClass === 'U') {
             return 'super';
         }
 
@@ -1803,7 +1807,9 @@ export default class AircraftModel {
             const headingToFly = Math.max(interceptHeading, this.mcp.heading);
 
             return headingToFly;
-        } else if (this.mcp.heading > this.mcp.course) {
+        }
+
+        if (this.mcp.heading > this.mcp.course) {
             const headingToFly = Math.min(interceptHeading, this.mcp.heading);
 
             return headingToFly;
@@ -1976,9 +1982,13 @@ export default class AircraftModel {
             }
 
             return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
-        } else if (maximumAltitudeExists) {
+        }
+
+        if (maximumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
-        } else if (minimumAltitudeExists) {
+        }
+
+        if (minimumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
         }
     }
@@ -2094,9 +2104,13 @@ export default class AircraftModel {
             }
 
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
-        } else if (hasMaximumSpeed) {
+        }
+
+        if (hasMaximumSpeed) {
             return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
-        } else if (hasMinimumSpeed) {
+        }
+
+        if (hasMinimumSpeed) {
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
         }
     }

@@ -59,8 +59,7 @@ export default class AirwayModel {
         _forEach(fixNames, (fixName) => {
             if (!NavigationLibrary.hasFixName(fixName)) {
                 throw new TypeError(`Expected to find fix "${fixName}" for ` +
-                    `airway "${this._icao}", but it is not a defined fix!`
-                );
+                    `airway "${this._icao}", but it is not a defined fix!`);
             }
         });
     }

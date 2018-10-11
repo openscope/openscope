@@ -176,7 +176,9 @@ const vdet = (v1, v2, /* optional */ v3) => {
     if (Math.min(v1.length, v2.length) === 2) {
         // 2x2 determinant
         return (v1[0] * v2[1]) - (v1[1] * v2[0]);
-    } else if (Math.min(v1.length, v2.length, v3.length) === 3 && v3) {
+    }
+
+    if (Math.min(v1.length, v2.length, v3.length) === 3 && v3) {
         // 3x3 determinant
         return (
             v1[0] *
@@ -260,7 +262,9 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 
         // parallel, non-intersecting
         return false;
-    } else if ((t_norm >= 0 && t_norm <= 1) && (u_norm >= 0 && u_norm <= 1)) {
+    }
+
+    if ((t_norm >= 0 && t_norm <= 1) && (u_norm >= 0 && u_norm <= 1)) {
         // rays intersect here
         return vadd(p, vscale(r, t));
     }

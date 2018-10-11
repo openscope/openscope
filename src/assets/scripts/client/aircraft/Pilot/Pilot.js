@@ -90,7 +90,7 @@ export default class Pilot {
      * @method enable
      */
     enable() {
-        return;
+
     }
 
     /**
