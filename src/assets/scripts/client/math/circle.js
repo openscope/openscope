@@ -53,7 +53,7 @@ export const angle_offset = (a, b) => {
  */
 export const degrees_normalize = (degrees) => {
     if (degrees >= 0) {
-      return degrees % 360;
+        return degrees % 360;
     }
 
     return 360 + (degrees % 360);
@@ -66,7 +66,7 @@ export const degrees_normalize = (degrees) => {
  */
 export const radians_normalize = (radians) => {
     if (radians >= 0) {
-      return radians % tau();
+        return radians % tau();
     }
 
     return tau() + (radians % tau());

@@ -10,8 +10,7 @@ import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import {
-    FLIGHT_PHASE,
-    FLIGHT_CATEGORY
+    FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { round } from '../math/core';

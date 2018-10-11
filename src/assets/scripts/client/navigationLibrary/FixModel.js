@@ -1,9 +1,6 @@
 import _cloneDeep from 'lodash/cloneDeep';
-import _get from 'lodash/get';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
-import WaypointModel from '../aircraft/FlightManagementSystem/WaypointModel';
-import { INVALID_NUMBER } from '../constants/globalConstants';
 
 /**
  * Defines a navigational `FixModel`
