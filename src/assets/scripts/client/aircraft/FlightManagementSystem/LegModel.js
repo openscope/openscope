@@ -287,8 +287,7 @@ export default class LegModel {
         }
 
         throw new TypeError(`Expected airway or procedure name, but we can't ' +
-            'determine what kind of leg ${airwayOrProcedureName} is`
-        );
+            'determine what kind of leg ${airwayOrProcedureName} is`);
     }
 
     /**
