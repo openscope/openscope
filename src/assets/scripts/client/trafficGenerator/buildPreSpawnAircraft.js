@@ -133,7 +133,7 @@ const _preSpawn = (spawnPatternJson, airport) => {
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
     const routeModel = new RouteModel(spawnPatternJson.route);
     const waypointModelList = routeModel.waypoints;
-    const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
+    const { totalDistance } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
