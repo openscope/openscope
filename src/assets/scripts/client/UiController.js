@@ -451,35 +451,6 @@ class UiController {
     }
 
     /**
-     * Build the markup for the airport list footer
-     *
-     * This is changed based on a user setting
-     *
-     * @for UiController
-     * @method _buildAirportListFooter
-     * @param flagIcon {string}
-     */
-    _buildAirportListFooter(flagIcon) {
-        // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
-        this.$airportListNotes.empty();
-
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
-
-        if (!shouldShowWipAirports) {
-            const notes = $('<span class="words">Additional work-in-progress airports ' +
-                'can be activated in the settings menu</span>');
-            this.$airportListNotes.append(notes);
-
-            return;
-        }
-
-        const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
-
-        this.$airportListNotes.append(notes);
-    }
-
-    /**
      * @for UiController
      * @method ui_log
      */
