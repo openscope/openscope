@@ -218,7 +218,7 @@ export default class AppController {
         GameController.complete();
         this.canvasController.canvas_complete();
         UiController.ui_complete();
-        this.simAirportInfoView.complete(AirportController.airport_get());
+        this.simAirportInfoView.complete(AirportInfoController.airport_get());
     }
 
     /**
@@ -226,7 +226,7 @@ export default class AppController {
      * @method updatePre
      */
     updatePre() {
-        this.simAirportInfoView.update_clock();
+        this.AirportInfoController.updatePre();
         GameController.update_pre();
         this.aircraftController.update();
     }
