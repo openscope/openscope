@@ -390,8 +390,6 @@ class UiController {
 
             this.$airportList.append($airportListItem);
         }
-
-        this._buildAirportListFooter(flagIcon);
     }
 
     /**
