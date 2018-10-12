@@ -15,6 +15,7 @@
 ### Enhancements & Refactors
 - [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
 - [#883](https://github.com/openscope/openscope/issues/883) - Stop penalizing light tailwind landings
+- [#1001](https://github.com/openscope/openscope/issues/1001) - Remove support for work-in-progress airports
 
 
 
