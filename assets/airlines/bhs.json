@@ -1,0 +1,15 @@
+{
+    "icao": "bhs",
+    "name": "Bahamasair",
+    "callsign": {
+        "name": "Bahamas",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["AT45", 3],
+            ["AT76", 2],
+            ["B735", 3]
+        ]
+    }
+}

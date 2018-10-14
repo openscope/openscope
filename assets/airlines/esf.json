@@ -1,0 +1,15 @@
+{
+    "icao": "esf",
+    "name": "Estafeta Carga Aérea",
+    "callsign": {
+        "name": "Estafeta",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733", 2],
+            ["B734", 2],
+            ["CRJ2", 2]
+        ]
+    }
+}

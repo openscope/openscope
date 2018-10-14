@@ -32,7 +32,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
-    calculateTurnInitiaionDistance
+    calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
     distance_to_poly,
@@ -50,6 +50,7 @@ import { speech_say } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
+    radio_runway,
     radio_altitude,
     radio_spellOut
 } from '../utilities/radioUtilities';
@@ -476,8 +477,7 @@ export default class AircraftModel {
         this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.fms, this.mcp);
 
-        // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
-        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
+        if (options.category !== FLIGHT_CATEGORY.DEPARTURE) {
             const bottomAltitude = this.fms.getBottomAltitude();
             const airportModel = AirportController.airport_get();
             const airspaceCeiling = airportModel.maxAssignableAltitude;
@@ -598,7 +598,7 @@ export default class AircraftModel {
             this.speed = 0;
 
             return;
-        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
+        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
             throw new Error('Invalid #category found in AircraftModel');
         }
     }
@@ -870,17 +870,37 @@ export default class AircraftModel {
         return descentTime > timeUntilWaypoint;
     }
 
+    /**
+     * Returns whether the aircraft is an arrival
+     *
+     * @for AircraftModel
+     * @method isArrival
+     * @returns {boolean}
+     */
+    isArrival() {
+        return this.fms.isArrival();
+    }
+
+    /**
+     * Returns whether the aircraft is a departure
+     *
+     * @for AircraftModel
+     * @method isDeparture
+     * @returns {booelan}
+     */
     isDeparture() {
         return this.fms.isDeparture();
     }
 
     /**
+     * Returns whether or not this aircraft is an overflight (neither departing or arriving within our airspace)
+     *
      * @for AircraftModel
      * @method isArrival
      * @returns booelan
      */
-    isArrival() {
-        return this.fms.isArrival();
+    isOverflight() {
+        return this.origin === '' && this.destination === '';
     }
 
     /**
@@ -992,6 +1012,10 @@ export default class AircraftModel {
         let airportModel = this.fms.departureAirportModel;
         let runwayModel = this.fms.departureRunwayModel;
 
+        if (this.isOverflight()) {
+            return false;
+        }
+
         if (this.isArrival()) {
             airportModel = this.fms.arrivalAirportModel;
             runwayModel = this.fms.arrivalRunwayModel;
@@ -1036,6 +1060,7 @@ export default class AircraftModel {
             this.flightPhase === FLIGHT_PHASE.WAITING;
     }
 
+    // TODO: The function description and what it actually does do not match
     /**
      * Returns whether the aircraft is currently taking off
      *
@@ -1254,6 +1279,56 @@ export default class AircraftModel {
                 { type: 'text', content: ', ready to taxi' }
             ]);
         }
+    }
+
+    /**
+     * @for AircraftModel
+     * @method taxiToRunway
+     * @param runwayModel {RunwayModel}
+     * @return {array} [success of operation, readback]
+     */
+    taxiToRunway(runwayModel) {
+        if (this.isAirborne()) {
+            return [false, 'unable to taxi, we\'re airborne'];
+        }
+
+        if (this.isArrival()) {
+            return  [false, 'unable to taxi to runway, we have just landed'];
+        }
+
+        if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
+            this.pilot.cancelDepartureClearance(this);
+        }
+
+        this.setFlightPhase(FLIGHT_PHASE.TAXI);
+        // remove aircraft from previous runway's queue
+        this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
+        this.fms.setDepartureRunway(runwayModel);
+        this.fms.departureRunwayModel.addAircraftToQueue(this.id);
+
+        this.taxi_start = TimeKeeper.accumulatedDeltaTime;
+
+        GameController.game_timeout(
+            this._changeFromTaxiToWaiting,
+            this.taxi_time,
+            this,
+            null
+        );
+
+        const readback = {};
+        readback.log = `taxi to runway ${runwayModel.name}`;
+        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * @for AircraftModel
+     * @method _changeFromTaxiToWaiting
+     * @param args {array}
+     */
+    _changeFromTaxiToWaiting(args) {
+        this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
@@ -1757,7 +1832,8 @@ export default class AircraftModel {
         const waypointPosition = this.fms.currentWaypoint.positionModel;
         const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
         const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-        const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
+        const turnInitiationDistance = calculateTurnInitiationDistance(this, waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < turnInitiationDistance;
         const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
         const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
         const shouldFlyByFix = closeEnoughToFlyByFix && isTimeToStartTurning;
@@ -1776,6 +1852,22 @@ export default class AircraftModel {
             }
 
             this.fms.moveToNextWaypoint();
+
+            const currentWaypoint = this.fms.currentWaypoint;
+
+            if (currentWaypoint.isVectorWaypoint) {
+                return currentWaypoint.getVector();
+            }
+
+            const nextWaypointPosition = currentWaypoint.positionModel;
+
+            if (_isNil(nextWaypointPosition)) {
+                console.log('Expected a valid PositionModel object for waypoint ' +
+                    `"${currentWaypoint.name}", but received ${nextWaypointPosition}`
+                );
+            }
+
+            return this.positionModel.bearingToPosition(nextWaypointPosition);
         }
 
         return headingToWaypoint;
@@ -2514,7 +2606,7 @@ export default class AircraftModel {
         // Crossing into the center
         if (this.isControllable) {
             this.callUp();
-            
+
             // for reentry, see #993
             this.isFlightStripRemovable = false;
 

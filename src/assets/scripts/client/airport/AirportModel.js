@@ -614,6 +614,10 @@ export default class AirportModel {
             return this.departureRunwayModel;
         }
 
+        if (category === FLIGHT_CATEGORY.OVERFLIGHT) {
+            return;
+        }
+
         console.warn('Did not expect a query for runway that applies to aircraft of category ' +
             `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
 
