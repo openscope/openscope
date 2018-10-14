@@ -85,6 +85,7 @@
         "CESAN": ["N30d32.32", "W94d12.11"],
         "CHEWI": ["N29d39.33", "W96d3.09"],
         "CLL"  : ["N30d36.30", "W96d25.24"],
+        "COLET": ["N30d26.96", "W95d9.66"],
         "COLLT": ["N27d25.79", "W97d11.87"],
         "COWZZ": ["N30d4.37", "W96d12.77"],
         "CREPO": ["N30d16.90", "W94d14.72"],
@@ -106,6 +107,7 @@
         "HNTRR": ["N29d28.17", "W95d52.71"],
         "HUB"  : ["N29d39.34", "W95d16.60"],
         "ILEXY": ["N30d21.16", "W97d4.76"],
+        "INDIE": ["N31d29.16", "W94d29.57"],
         "IVEEE": ["N29d36.62", "W95d18.10"],
         "JBULL": ["N31d18.91", "W91d18.87"],
         "JCNTO": ["N29d42.81", "W95d2.26"],
@@ -129,6 +131,7 @@
         "PLEDO": ["N29d48.51", "W94d25.71"],
         "PUCKS": ["N29d24.47", "W94d39.78"],
         "PURKY": ["N29d26.34", "W96d29.26"],
+        "RENNK": ["N30d17.48", "W95d13.35"],
         "RJAAY": ["N29d33.82", "W95d18.42"],
         "SAT"  : ["N29d38.64", "W98d27.68"],
         "SEAGL": ["N26d32.82", "W93d46.31"],
@@ -143,7 +146,10 @@
         "SNDAY": ["N29d56.42", "W96d9.68"],
         "SSERA": ["N29d38.61", "W94d29.54"],
         "STRYA": ["N31d18.35", "W93d50.63"],
+        "SUSHI": ["N30d35.48", "W95d4.39"],
+        "TPAKK": ["N32d59.63", "W93d25.47"],
         "VILLI": ["N29d37.67", "W95d23.21"],
+        "WWELL": ["N31d9.47", "W94d42.43"],
         "WWILD": ["N29d33.28", "W94d50.56"]
     },
     "runways": [
@@ -200,6 +206,27 @@
             },
             "draw": [
                 ["DREMR", "LITLD", "BLTWY", "CRIED*"]
+            ]
+        },
+        "INDIE6": {
+            "icao": "INDIE6",
+            "name": "Indie Six",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["RENNK", "COLET", "SUSHI", "WWELL", "INDIE"],
+            "exitPoints": {
+                "TPAKK": ["TPAKK"]
+            },
+            "draw": [
+                ["RENNK", "COLET", "SUSHI", "WWELL", "INDIE", "TPAKK*"]
             ]
         },
         "STRYA6": {
@@ -448,6 +475,19 @@
             "rate": 0.25,
             "airlines": [
                 ["dal", 6]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.INDIE6.TPAKK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["jbu", 2]
             ]
         }
     ],
