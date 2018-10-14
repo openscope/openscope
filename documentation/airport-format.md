@@ -1,5 +1,3 @@
-[noaa-calculator]: https://www.ngdc.noaa.gov/geomag-web/#declination
-
 # Airport Format
 
 * [Property Descriptions](#property-descriptions)
@@ -17,11 +15,11 @@
   * [Identifiers](#icao-and-iata-identifiers)
   * [Flight Level](#flight-level)
 
-The airport JSON file must be in "[assets/airports](assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
+The airport JSON file must be in "[assets/airports](https://github.com/openscope/openscope/tree/develop/assets/airports)"; the filename should be `icao.json` where `icao` is the lowercase four-letter ICAO airport identifier, such as `ksfo` or `kmsp`.  If this is a new airport, an entry must also be added to [airportLoadList.js](https://github.com/openscope/openscope/blob/develop/assets/airports/airportLoadList.js) in alphabetical order. See the comments at the top of that file for information on the correct structure to use.
 
 ## Example
 
-_Note: The code block shown below is an abbreviated version of [ksea.json](assets/airports/ksea.json)._
+_Note: The code block shown below is an abbreviated version of [ksea.json](https://github.com/openscope/openscope/blob/develop/assets/airports/ksea.json)._
 
 ```javascript
 {
@@ -237,14 +235,14 @@ _all properties in this section are required_
 
 * **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
 * **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
-* **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator][noaa-calculator] if you can't find this value_
+* **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator](https://www.ngdc.noaa.gov/geomag-web/#declination) if you can't find this value_
 * **ctr_radius** ― The radius (in kilometers) of the controlled airspace that aircraft are simulated within. Outside of this radius aircraft are removed, so ensure it is large enough for your airspace.
 * **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 * **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
 * **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 * **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
 * **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-* **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](../..assets/airports/terrain).
+* **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](https://github.com/openscope/openscope/tree/develop/assets/airports/terrain).
 * **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 
 ```javascript
@@ -648,7 +646,7 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
 
 Contains the parameters used to determine how and where aircraft are spawned into the simulation.  At least one `spawnPattern` is required so that aircraft can be added to the simulation.
 
-_see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
+_see [spawnPatternReadme.md](spawnPatternReadme.md) for more detailed descriptions on data shape and format of a spawnPattern_
 
 ### Maps
 
