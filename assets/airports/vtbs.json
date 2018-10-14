@@ -1,8 +1,8 @@
 {
     "radio": {
-        "twr": "Bangkok Tower",
+        "twr": "Suvarnabhumi Tower",
         "app": "Bangkok Approach",
-        "dep": "Bangkok Departure"
+        "dep": "Bangkok Approach"
     },
     "icao": "VTBS",
     "iata": "BKK",
