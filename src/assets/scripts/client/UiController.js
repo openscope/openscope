@@ -44,7 +44,6 @@ class UiController {
 
         this.$element = null;
         this.$airportList = null;
-        this.$airportListNotes = null;
         this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
@@ -73,7 +72,6 @@ class UiController {
         this.$element = $element;
 
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
-        this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
@@ -161,7 +159,6 @@ class UiController {
     destroy() {
         this.$element = null;
         this.$airportList = null;
-        this.$airportListNotes = null;
         this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
