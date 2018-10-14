@@ -1,4 +1,4 @@
-#Spawnpattern methods
+# Spawnpattern methods  
 At the very least, an arrival stream MUST have definitions for the
 following parameters. Additional may be required if the spawn method
 is set to one other than 'random'.
