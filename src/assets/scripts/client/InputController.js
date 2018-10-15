@@ -451,7 +451,8 @@ export default class InputController {
                 this.closeAllDialogs();
 
                 if (!_includes(currentCommandInputValue, this.input.callsign) ||
-                    currentCommandInputValue.trim() === this.input.callsign
+                    currentCommandInputValue.trim() === this.input.callsign ||
+                    this.input.callsign === ''
                 ) {
                     this.deselectAircraft();
 
