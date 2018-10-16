@@ -1976,9 +1976,7 @@ export default class AircraftModel {
             }
 
             return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
-        }
-
-        if (maximumAltitudeExists) {
+        } else if (maximumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
         } else if (minimumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
@@ -2096,9 +2094,7 @@ export default class AircraftModel {
             }
 
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
-        }
-
-        if (hasMaximumSpeed) {
+        } else if (hasMaximumSpeed) {
             return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
         } else if (hasMinimumSpeed) {
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
