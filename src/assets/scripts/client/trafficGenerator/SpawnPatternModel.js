@@ -770,21 +770,13 @@ export default class SpawnPatternModel extends BaseModel {
             this.cycleStartTime += this.period;
 
             return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (progressInPeriod - 4) * this.variation);
-        }
-
-        if (progressInPeriod <= 1) {
+        } else if (progressInPeriod <= 1) {
             return TIME.ONE_HOUR_IN_SECONDS / (this.rate + progressInPeriod * this.variation);
-        }
-
-        if (progressInPeriod <= 2) {
+        } else if (progressInPeriod <= 2) {
             return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (2 * (this.period - 2 * totalTime) / this.period) * this.variation);
-        }
-
-        if (progressInPeriod <= 3) {
+        } else if (progressInPeriod <= 3) {
             return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (progressInPeriod - 2) * this.variation);
-        }
-
-        if (progressInPeriod < 4) {
+        } else if (progressInPeriod < 4) {
             return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (4 * (this.period - totalTime) / this.period) * this.variation);
         }
     }
@@ -830,9 +822,7 @@ export default class SpawnPatternModel extends BaseModel {
         if (timeRemaining > intervalDown + intervalUp) {
             // plenty of time until new period
             return intervalDown;
-        }
-
-        if (timeRemaining > intervalDown) {
+        } else if (timeRemaining > intervalDown) {
             // next plane will delay the first arrival of the next period
             return intervalDown - (totalTime + intervalDown + intervalUp - this.period);
         }

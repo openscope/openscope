@@ -195,9 +195,7 @@ export default class ProcedureModel {
 
         if (this._procedureType === PROCEDURE_TYPE.SID) {
             return this._initEntriesAndExitsForSid(data);
-        }
-
-        if (this._procedureType === PROCEDURE_TYPE.STAR) {
+        } else if (this._procedureType === PROCEDURE_TYPE.STAR) {
             return this._initEntriesAndExitsForStar(data);
         }
 

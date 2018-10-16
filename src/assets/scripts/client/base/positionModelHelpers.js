@@ -104,9 +104,7 @@ export const isValidGpsCoordinatePair = (gpsCoordinates) => {
 
     if (typeof latitude === 'number') {
         return true;
-    }
-
-    if (typeof latitude === 'string') {
+    } else if (typeof latitude === 'string') {
         const latFirstCharIsNorthOrSouth = ['N', 'S'].indexOf(latitude[0].toUpperCase()) !== INVALID_INDEX;
         const lonFirstCharIsEastOrWest = ['E', 'W'].indexOf(longitude[0].toUpperCase()) !== INVALID_INDEX;
 

@@ -598,9 +598,7 @@ export default class AircraftModel {
             this.speed = 0;
 
             return;
-        }
-
-        if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
+        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
             throw new Error('Invalid #category found in AircraftModel');
         }
     }
@@ -721,9 +719,7 @@ export default class AircraftModel {
 
         if (weightClass === 'H') {
             return 'heavy';
-        }
-
-        if (weightClass === 'U') {
+        } else if (weightClass === 'U') {
             return 'super';
         }
 
@@ -1807,9 +1803,7 @@ export default class AircraftModel {
             const headingToFly = Math.max(interceptHeading, this.mcp.heading);
 
             return headingToFly;
-        }
-
-        if (this.mcp.heading > this.mcp.course) {
+        } else if (this.mcp.heading > this.mcp.course) {
             const headingToFly = Math.min(interceptHeading, this.mcp.heading);
 
             return headingToFly;
@@ -1986,9 +1980,7 @@ export default class AircraftModel {
 
         if (maximumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
-        }
-
-        if (minimumAltitudeExists) {
+        } else if (minimumAltitudeExists) {
             return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
         }
     }
@@ -2108,9 +2100,7 @@ export default class AircraftModel {
 
         if (hasMaximumSpeed) {
             return this._calculateTargetedSpeedVnavDeceleration(nextSpeedMaximumWaypoint);
-        }
-
-        if (hasMinimumSpeed) {
+        } else if (hasMinimumSpeed) {
             return this._calculateTargetedSpeedVnavAcceleration(nextSpeedMinimumWaypoint);
         }
     }

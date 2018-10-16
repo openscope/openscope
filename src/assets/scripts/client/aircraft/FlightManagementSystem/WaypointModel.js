@@ -534,9 +534,7 @@ export default class WaypointModel {
             this.altitudeMinimum = altitude;
 
             return;
-        }
-
-        if (restriction.indexOf('-') !== INVALID_INDEX) {
+        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.altitudeMaximum = altitude;
 
             return;
@@ -589,9 +587,7 @@ export default class WaypointModel {
             this.speedMinimum = speed;
 
             return;
-        }
-
-        if (restriction.indexOf('-') !== INVALID_INDEX) {
+        } else if (restriction.indexOf('-') !== INVALID_INDEX) {
             this.speedMaximum = speed;
 
             return;

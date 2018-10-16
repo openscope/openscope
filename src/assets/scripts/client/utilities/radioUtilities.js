@@ -176,14 +176,10 @@ export const digits_decimal = (number, digits, force, truncate) => {
 
             if (trailingDigits === digits) {
                 return number.toString();
-            }
-
-            if (trailingDigits < digits) {
+            } else if (trailingDigits < digits) {
                 // add trailing zeros
                 return number + Array(digits - trailingDigits + 1).join('0');
-            }
-
-            if (trailingDigits > digits) {
+            } else if (trailingDigits > digits) {
                 if (truncate) {
                     return number.substr(0, number.length - (trailingDigits - digits));
                 }
@@ -216,14 +212,10 @@ export const getGrouping = (groupable) => {
         }
         // just digits (eg 'zero seven')
         return `${radio_names[digit1]} ${radio_names[digit2]}`;
-    }
-
-    if (digit1 === '1') {
+    } else if (digit1 === '1') {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
-    }
-
-    if (digit1 >= 2) {
+    } else if (digit1 >= 2) {
         const firstDigit = `${digit1}0`;
 
         if (digit2 === '0') {

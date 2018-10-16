@@ -79,9 +79,7 @@ export default class ContentQueueClass {
             this.load(this.highPriorityQueue.shift());
 
             return true;
-        }
-
-        if (this.lowPriorityQueue.length) {
+        } else if (this.lowPriorityQueue.length) {
             this.load(this.lowPriorityQueue.shift());
 
             return true;
