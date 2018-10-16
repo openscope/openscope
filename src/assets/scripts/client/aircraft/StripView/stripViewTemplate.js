@@ -14,7 +14,7 @@ export const STRIP_VIEW_TEMPLATE = '' +
 '               <td class="stripView-table-td js-stripView-callsign" title="Callsign"></td>' +
 '               <td class="stripView-table-td js-stripView-transponder" title="Transponder"></td>' +
 '               <td class="stripView-table-td js-stripView-departureAirportId" title="Departure Airport Identifier"></td>' +
-'               <td class="stripView-table-td js-stripView-flightPlan" title="Flight Plan Route" rowspan="2"></td>' +
+'               <td class="stripView-table-td js-stripView-flightPlan" title="Flight Plan Route" rowspan="2" colspan="2"></td>' +
 '           </tr>' +
 '           <tr class="stripView-table-tr">' +
 '               <td class="stripView-table-td js-stripView-aircraftModel" title="Aircraft Model"></td>' +
@@ -29,6 +29,7 @@ export const STRIP_VIEW_TEMPLATE = '' +
 '               <td class="stripView-table-td mix-stripView-table_borderTop js-stripView-flightPlanAltitude" title="Flight Plan Altitude"></td>' +
 '               <td class="stripView-table-td js-stripView-alternateAirportId" title="Alternate Airport Identifier"></td>' +
 '               <td class="stripView-table-td js-stripView-remarks" title="Remarks"></td>' +
+'               <td class="stripView-table-td js-stripView-runway" title="Runway"></td>' +
 '           </tr>' +
 '       </tbody' +
 '   </table>' +

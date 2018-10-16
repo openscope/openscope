@@ -23,7 +23,8 @@ const STRIP_VIEW_SELECTORS = {
     ARRIVAL_AIRPORT_ID: '.js-stripView-arrivalAirportId',
     ALTERNATE_AIRPORT_ID: '.js-stripView-alternateAirportId',
     FLIGHT_PLAN: '.js-stripView-flightPlan',
-    REMARKS: '.js-stripView-remarks'
+    REMARKS: '.js-stripView-remarks',
+    RUNWAY: '.js-stripView-runway'
 };
 
 /**
@@ -320,11 +321,49 @@ export default class StripViewModel extends BaseModel {
         /**
          * HTML Element that holds the `#_flightPlan` value
          *
-         * @property $_flightPlanView
+         * @property $flightPlanView
          * @type {JQuery Element}
          * @default null
          */
         this.$flightPlanView = null;
+
+        /**
+         * Value of the remarks field
+         *
+         * @property _remarks
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._remarks = '';
+
+        /**
+         * HTML Element that holds the `#remarks` value
+         *
+         * @property $remarks
+         * @type {JQuery Element}
+         * @default null
+         */
+        this.$remarks = null;
+
+        /**
+         * The expected runway
+         *
+         * @property _runway
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._runway = '';
+
+        /**
+         * HTML Element that holds the `#runway` value
+         *
+         * @property $runway
+         * @type {JQuery Element}
+         * @default null
+         */
+        this.$runway = null;
 
         return this._init(aircraftModel)
             ._createChildren()
@@ -381,6 +420,8 @@ export default class StripViewModel extends BaseModel {
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
         this.isDeparture = aircraftModel.isDeparture();
+        // TODO: remarks
+        this._runway = this._buildRunway(aircraftModel);
 
         return this;
     }
@@ -406,6 +447,8 @@ export default class StripViewModel extends BaseModel {
         this.$departureAirportView = this.$element.find(STRIP_VIEW_SELECTORS.DEPARTURE_AIRPORT_ID);
         this.$alternateAirportView = this.$element.find(STRIP_VIEW_SELECTORS.ALTERNATE_AIRPORT_ID);
         this.$flightPlanView = this.$element.find(STRIP_VIEW_SELECTORS.FLIGHT_PLAN);
+        this.$remarks = this.$element.find(STRIP_VIEW_SELECTORS.REMARKS);
+        this.$runway = this.$element.find(STRIP_VIEW_SELECTORS.RUNWAY);
 
         return this;
     }
@@ -483,6 +526,8 @@ export default class StripViewModel extends BaseModel {
         this.$arrivalAirportView.text(this._arrivalAirport);
         this.$alternateAirportView.text(this._alternateAirport);
         this.$flightPlanView.text(this._flightPlan);
+        this.$remarks.text(this._remarks);
+        this.$runway.text(this._runway);
 
         return this;
     }
@@ -537,6 +582,10 @@ export default class StripViewModel extends BaseModel {
         this.$alternateAirportView = null;
         this._flightPlan = '';
         this.$flightPlanView = null;
+        this._remarks = '';
+        this.$remarks = null;
+        this._runway = '';
+        this.$runway = null;
 
         return this;
     }
@@ -594,6 +643,27 @@ export default class StripViewModel extends BaseModel {
         }
 
         return SELECTORS.CLASSNAMES.ARRIVAL;
+    }
+
+    /**
+     * Return the assigned runway based on whether an aircraft is a `departure` or an `arrival`
+     *
+     * @for AircraftStripView
+     * @method _buildRunway
+     * @return {string}
+     */
+    _buildRunway(aircraftModel) {
+        const fms = aircraftModel.fms;
+
+        if (fms.departureRunwayModel != null) {
+            return fms.departureRunwayModel.name;
+        }
+
+        if (fms.arrivalRunwayModel != null) {
+            return fms.arrivalRunwayModel.name;
+        }
+
+        return '';
     }
 
     /**

@@ -1,6 +1,7 @@
 # 6.7.0 (November 1, 2018)
 ### New Features
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
+- [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
 
 
 
