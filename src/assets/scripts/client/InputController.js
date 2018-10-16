@@ -450,10 +450,11 @@ export default class InputController {
             case KEY_CODES.ESCAPE: {
                 this.closeAllDialogs();
 
-                if (!_includes(currentCommandInputValue, this.input.callsign) ||
-                    currentCommandInputValue.trim() === this.input.callsign ||
-                    this.input.callsign === ''
-                ) {
+                const noCallsign = !_includes(currentCommandInputValue, this.input.callsign);
+                const hasOnlyCallsign = currentCommandInputValue.trim() === this.input.callsign;
+                const noSelectedCallsign = this.input.callsign === "";
+
+                if (noCallsign || hasOnlyCallsign || noSelectedCallsign) {
                     this.deselectAircraft();
 
                     return;
