@@ -296,43 +296,7 @@ export default class Pilot {
      * @return {array}                      [success of operation, readback]
      */
     applyDepartureProcedure(routeString, airportIcao) {
-        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
-
-        if (routeStringElements.length > 3) {
-            return [false, 'departure procedure format not understood'];
-        }
-
-        if (routeStringElements.length === 1) { // RouteString looks like PROC
-            const procedureId = routeStringElements[0];
-            const sidModel = NavigationLibrary.getProcedure(procedureId);
-
-            if (_isNil(sidModel)) {
-                return [false, 'SID name not understood'];
-            }
-
-            const exitPoint = _find(this._fms.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
-
-            if (exitPoint === '') {
-                return [false, `SID ${procedureId.toUpperCase()} doesn't have an exit along our route`];
-            }
-
-            routeStringElements.push(exitPoint);
-        }
-
-        if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
-            const runwayModel = this._fms.departureRunwayModel;
-
-            if (_isNil(runwayModel)) {
-                return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-            }
-
-            const entryName = airportIcao.toUpperCase() + runwayModel.name;
-
-            routeStringElements.unshift(entryName);
-        }
-
-        routeString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
-        const [successful, response] = this._fms.replaceDepartureProcedure(routeString);
+        const [successful, response] = this._fms.replaceDepartureProcedure(routeString, airportIcao);
 
         if (!successful) {
             return [false, response];
