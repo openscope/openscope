@@ -440,7 +440,6 @@ class UiController {
         return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="symbol">${reliabilityFlag}</span>` +
                     `<span class="name">${name}</span>` +
                 '</li>';
     }
