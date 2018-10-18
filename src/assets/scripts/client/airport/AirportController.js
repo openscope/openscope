@@ -91,7 +91,6 @@ class AirportController {
      * @param icao {string}
      * @param level {string}
      * @param name {string}
-     * @return airportModel {AirtportInstance}
      */
     airport_load({ icao, level, name }) {
         icao = icao.toLowerCase();
