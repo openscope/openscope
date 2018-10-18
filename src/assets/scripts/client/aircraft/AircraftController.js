@@ -319,11 +319,7 @@ export default class AircraftController {
      */
     aircraft_remove_all() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-
-            if (aircraft.isControllable) {
-                this.removeStripView(aircraft);
-            }
+            this.aircraft_remove(this.aircraft.list[i]);
         }
 
         this.aircraft.list = [];
@@ -344,7 +340,7 @@ export default class AircraftController {
         if (aircraftModel.isControllable) {
             this.removeStripView(aircraftModel);
         }
-        
+
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 
