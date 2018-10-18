@@ -653,14 +653,12 @@ export default class StripViewModel extends BaseModel {
      * @return {string}
      */
     _buildRunway(aircraftModel) {
-        const fms = aircraftModel.fms;
-
-        if (fms.departureRunwayModel != null) {
-            return fms.departureRunwayModel.name;
+        if (aircraftModel.isDeparture()) {
+            return aircraftModel.fms.departureRunwayModel.name;
         }
 
-        if (fms.arrivalRunwayModel != null) {
-            return fms.arrivalRunwayModel.name;
+        if (aircraftModel.isArrival() !== null) {
+            return aircraftModel.fms.arrivalRunwayModel.name;
         }
 
         return '';
