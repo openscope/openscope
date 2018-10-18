@@ -564,7 +564,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runTaxi
      * @param {AircraftModel} aircraftModel
-     * @param {array} data
+     * @param {array<string>} data
      * @return {array} [success of operation, readback]
      */
     runTaxi(aircraftModel, data) {
@@ -573,8 +573,8 @@ export default class AircraftCommander {
 
         if (!requestedRunwayName) {
             const readback = {};
-            readback.log = 'we did not understood the runway. say again';
-            readback.say = 'we did not understood the runway. say again';
+            readback.log = 'we did not understand the runway. say again';
+            readback.say = 'we did not understand the runway. say again';
 
             return [false, readback];
         }
