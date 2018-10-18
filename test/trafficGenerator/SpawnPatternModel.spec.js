@@ -249,7 +249,7 @@ ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and 
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
 });
 
-ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
+ava('._calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
     const mock = Object.assign(
         {},
         ARRIVAL_PATTERN_MOCK,
