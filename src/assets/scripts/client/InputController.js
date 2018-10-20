@@ -701,13 +701,14 @@ export default class InputController {
             }
             case PARSED_COMMAND_NAME.AIRAC: {
                 const airacCycle = AirportController.getAiracCycle();
+
                 if (airacCycle === null) {
                     UiController.ui_log('unknown airac cycle');
                 } else {
                     UiController.ui_log(`airac cycle ${airacCycle}`);
                 }
 
-                break;
+                return true;
             }
             // TODO: this will be removed entirely, eventually.
             case PARSED_COMMAND_NAME.RATE:
