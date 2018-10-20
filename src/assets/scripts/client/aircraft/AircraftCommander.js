@@ -10,8 +10,7 @@ import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import {
-    FLIGHT_PHASE,
-    FLIGHT_CATEGORY
+    FLIGHT_PHASE
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { round } from '../math/core';
@@ -237,8 +236,10 @@ export default class AircraftCommander {
      * @param aircraft {AircraftModel}
      * @return {array} [success of operation, readback]
      */
-    runClimbViaSID(aircraft) {
-        return aircraft.pilot.climbViaSid();
+    runClimbViaSID(aircraft, data) {
+        const altitude = data[0];
+
+        return aircraft.pilot.climbViaSid(aircraft, altitude);
     }
 
     /**
@@ -249,10 +250,9 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runDescendViaStar(aircraft, data = []) {
-        // TODO: add altitude param to descendViaStar command
-        const altitude = data[0];// NOT IN USE
+        const altitude = data[0];
 
-        return aircraft.pilot.descendViaStar(altitude);
+        return aircraft.pilot.descendViaStar(aircraft, altitude);
     }
 
     /**
@@ -341,7 +341,7 @@ export default class AircraftCommander {
             return [false, readback];
         }
 
-        return aircraft.pilot.setArrivalRunway(aircraft, runwayModel);
+        return aircraft.pilot.updateStarLegForArrivalRunway(aircraft, runwayModel);
     }
 
     /**
@@ -556,61 +556,37 @@ export default class AircraftCommander {
     }
 
     /**
+     * Taxi to the specified destination. Currently only supports taxiing to runways.
+     *
+     * If a runway is requested but doesn't exist, an error is returned.
+     *
      * @for AircraftCommander
      * @method runTaxi
-     * @param data
-     * @return {array}   [success of operation, readback]
+     * @param {AircraftModel} aircraftModel
+     * @param {array<string>} data
+     * @return {array} [success of operation, readback]
      */
-    runTaxi(aircraft, data) {
-        if (aircraft.isAirborne()) {
-            return [false, 'unable to taxi, we\'re already airborne'];
-        }
-        let taxiDestination = data[0];
-        const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
-        const flightPhase = aircraft.flightPhase;
+    runTaxi(aircraftModel, data) {
+        const airportModel = AirportController.airport_get();
+        const requestedRunwayName = data[0];
 
-        // Set the runway to taxi to
-        if (!taxiDestination) {
-            const airport = AirportController.airport_get();
-            taxiDestination = airport.departureRunwayModel.name;
+        if (!requestedRunwayName) {
+            const readback = 'we don\'t know which runway to taxi to';
+
+            return [false, readback];
         }
 
-        const runwayModel = AirportController.airport_get().getRunway(taxiDestination.toUpperCase());
+        const runwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());
 
         if (!runwayModel) {
-            return [false, `unable to find Runway ${taxiDestination.toUpperCase()} on our charts`];
+            const readback = {};
+            readback.log = `unable to find Runway ${requestedRunwayName.toUpperCase()} on our charts`;
+            readback.say = `unable to find Runway ${radio_runway(requestedRunwayName.name)} on our charts`;
+
+            return [false, readback];
         }
 
-        if (!aircraft.fms.isRunwayModelValidForSid(runwayModel)) {
-            aircraft.pilot.cancelDepartureClearance(aircraft);
-        }
-
-        const readback = aircraft.pilot.taxiToRunway(runwayModel, isDeparture, flightPhase);
-        aircraft.taxi_start = TimeKeeper.accumulatedDeltaTime;
-
-        aircraft.fms.setDepartureRunway(runwayModel);
-        runwayModel.addAircraftToQueue(aircraft.id);
-        aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
-
-        GameController.game_timeout(
-            this._changeFromTaxiToWaiting,
-            aircraft.taxi_time,
-            null,
-            [aircraft]
-        );
-
-        return readback;
-    }
-
-    /**
-     * @for AircraftCommander
-     * @method _changeFromTaxiToWaiting
-     * @param args {array}
-     */
-    _changeFromTaxiToWaiting(args) {
-        const aircraft = args[0];
-
-        aircraft.setFlightPhase(FLIGHT_PHASE.WAITING);
+        return aircraftModel.taxiToRunway(runwayModel);
     }
 
     /**
@@ -632,10 +608,10 @@ export default class AircraftCommander {
         const readback = {};
 
         if (!isInQueue) {
-            return [false, 'unable to take off, we\'re completely lost'];
+            return [false, 'unable to take off, we\'re not at any runway'];
         }
 
-        if (!aircraft.isOnGround()) {
+        if (aircraft.isAirborne()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
 

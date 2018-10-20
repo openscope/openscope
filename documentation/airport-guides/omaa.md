@@ -11,7 +11,7 @@ The Sheikh Zayed Air Navigation Center is located next to Abu Dhabi Airport. The
 
 ### Standard Operating Procedures
 ###### Preferential Runway
-Parallel runway operations can be used during peak times; during times when there are reduced traffic, single runway operations should be used. Usage of the northern runway (ie. 13L/31R) should be minimised. In OpenScope, single runway operation is in use.
+Parallel runway operations can be used during peak times; during times when there are reduced traffic, single runway operations should be used. Usage of the northern runway (ie. 13L/31R) should be minimised. In openScope, single runway operation is in use.
 
 When parallel runway operations are in use, one runway should be used for departure, the other for arrival.
 
@@ -23,7 +23,7 @@ ATC should typically enforce the following speed restrictions:
 * 180kt IAS or less to 8nm from touchdown;
 * 160kt IAS or less to 4nm from touchdown.
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Abu Dhabi Radar Central
 Abu Dhabi Radar West

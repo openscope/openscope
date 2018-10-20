@@ -28,7 +28,7 @@ Use [this map](https://bit.ly/openscopeCYOW) to see the different areas of Ottaw
 
 ### Instrument Procedures
 ##### Departures
-The only departure Ottawa has is the Ottawa 4 departure, which is a vector departure. When cleared for the Ottawa Four departure, pilots should climb to an altitude of 3000' on runway heading. 
+The only departure Ottawa has is the Ottawa 4 departure, which is a vector departure. When cleared for the Ottawa Four departure, pilots should climb to an altitude of 3000' on runway heading.
 
 The Ottawa Four for runway 14 states that there should be no left turn below 1000'.
 
@@ -43,12 +43,12 @@ Ottawa Arrivals is responsible for the following:
 The various advised altitude restrictions can be found on charts. Charts are available for free from [VATCAN's Montreal FIR](https://www.czul.ca/charts)
 
 The following fixes are Final Approach Course Fixes, meaning that aircraft can be cleared for an approach after these fixes:
-* TEFLY - RNAV 25 
+* TEFLY - RNAV 25
 * RAFNO - RNAV 14
 * TEXEN - ILS 32, RNAV 32
 * VISOL - ILS 07, RNAV 07
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Ottawa Departures
 Ottawa Arrivals
@@ -122,10 +122,10 @@ The airspace within the area bounded by a line beginning at:
     N45°05'16.00" W075°57'09.00" to
     N45°07'35.00" W075°59'10.00" to
     N45°09'46.00" W075°56'24.00"
-    
+
 Designated Altitude – Surface to 2500´
 Time of Designation – Continuous
-Operating Procedures – No person shall operate an aircraft within the area described 
+Operating Procedures – No person shall operate an aircraft within the area described
 
 Located here is a Canadian Forces Training Centre.
 

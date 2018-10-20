@@ -2,7 +2,6 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _filter from 'lodash/filter';
 import _has from 'lodash/has';
-import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -39,10 +38,10 @@ import {
 import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
-    INVALID_INDEX,
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
+import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
  * @class CanvasController
@@ -162,6 +161,15 @@ export default class CanvasController {
         this._shouldDrawSidMap = false;
 
         /**
+         * Flag used to determine if the star map should be displayed
+         *
+         * @property _shouldDrawStarMap
+         * @type {boolean}
+         * @default false
+         */
+        this._shouldDrawStarMap = false;
+
+        /**
          * Flag used to determine if terrain should be displayed
          *
          * @property _shouldDrawTerrain
@@ -169,6 +177,15 @@ export default class CanvasController {
          * @default true
          */
         this._shouldDrawTerrain = true;
+
+        /**
+         * Flag used to determine if the video map should be displayed
+         *
+         * @property _shouldDrawVideoMap
+         * @type {boolean}
+         * @default true
+         */
+        this._shouldDrawVideoMap = true;
 
         /**
          * has a console.warn been output for terrain?
@@ -218,8 +235,10 @@ export default class CanvasController {
         this._onToggleLabelsHandler = this._onToggleLabels.bind(this);
         this._onToggleRestrictedAreasHandler = this._onToggleRestrictedAreas.bind(this);
         this._onToggleSidMapHandler = this._onToggleSidMap.bind(this);
+        this._onToggleStarMapHandler = this._onToggleStarMap.bind(this);
         this._onAirportChangeHandler = this._onAirportChange.bind(this);
         this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
+        this._onToggleVideoMapHandler = this._onToggleVideoMap.bind(this);
         this._onResizeHandler = this.canvas_resize.bind(this);
 
         this._setThemeHandler = this._setTheme.bind(this);
@@ -240,7 +259,9 @@ export default class CanvasController {
         this._eventBus.on(EVENT.TOGGLE_LABELS, this._onToggleLabelsHandler);
         this._eventBus.on(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreasHandler);
         this._eventBus.on(EVENT.TOGGLE_SID_MAP, this._onToggleSidMapHandler);
+        this._eventBus.on(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMapHandler);
         this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
+        this._eventBus.on(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
         window.addEventListener('resize', this._onResizeHandler);
@@ -262,7 +283,9 @@ export default class CanvasController {
         this._eventBus.off(EVENT.TOGGLE_LABELS, this._onToggleLabels);
         this._eventBus.off(EVENT.TOGGLE_RESTRICTED_AREAS, this._onToggleRestrictedAreas);
         this._eventBus.off(EVENT.TOGGLE_SID_MAP, this._onToggleSidMap);
+        this._eventBus.off(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMap);
         this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
+        this._eventBus.off(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
         window.removeEventListener('resize', this._onResizeHandler);
@@ -284,6 +307,7 @@ export default class CanvasController {
         this._shouldDrawFixLabels = false;
         this._shouldDrawRestrictedAreas = false;
         this._shouldDrawSidMap = false;
+        this._shouldDrawStarMap = false;
         this._shouldDrawTerrain = true;
 
         return this;
@@ -374,6 +398,7 @@ export default class CanvasController {
             this._drawRunways(staticCanvasCtx);
             this._drawAirportFixesAndLabels(staticCanvasCtx);
             this._drawSids(staticCanvasCtx);
+            this._drawStars(staticCanvasCtx);
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
             this._drawWindVane(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
@@ -678,9 +703,8 @@ export default class CanvasController {
             return;
         }
 
-        const textAtPoint = [];
-        const { sidLines } = NavigationLibrary;
-        let mostRecentFixName = '';
+        const textAtFix = [];
+        const sidLines = NavigationLibrary.getProcedureLines(PROCEDURE_TYPE.SID);
 
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
@@ -689,82 +713,141 @@ export default class CanvasController {
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        // TODO: simplify/rector these nested loops. can we prepare the result elsewhere and store it
-        // to be retrieved here? seems wasteful to calculate all this _every_ frame
         for (let i = 0; i < sidLines.length; i++) {
             const sid = sidLines[i];
             let shouldDrawProcedureName = true;
-            let fixCanvasPosition;
 
-            if (_isEmpty(sid)) {
-                continue;
+            for (let j = 0; j < sid.lines.length; j++) {
+                this._drawLine(cc, sid.lines[j]);
             }
 
-            for (let j = 0; j < sid.draw.length; j++) {
-                const fixList = sid.draw[j];
-                let exitName = null;
+            for (let j = 0; j < sid.exits.length; j++) {
+                const exitName = sid.exits[j];
 
-                for (let k = 0; k < fixList.length; k++) {
-                    // write exitPoint name
-                    if (fixList[k].indexOf('*') !== INVALID_INDEX) {
-                        exitName = fixList[k].replace('*', '');
-                        shouldDrawProcedureName = false;
-                    }
-
-                    // TODO: this is duplicated in the if block above. need to consolidate
-                    mostRecentFixName = fixList[k].replace('*', '');
-                    const fixPosition = NavigationLibrary.getFixRelativePosition(mostRecentFixName);
-
-                    if (!fixPosition) {
-                        console.warn(`Unable to draw line to '${fixList[k]}' because its position is not defined!`);
-                    }
-
-                    fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
-
-                    if (k === 0) {
-                        cc.beginPath();
-                        cc.moveTo(fixCanvasPosition.x, fixCanvasPosition.y);
-                    } else {
-                        cc.lineTo(fixCanvasPosition.x, fixCanvasPosition.y);
-                    }
+                if (!(exitName in textAtFix)) {
+                    textAtFix[exitName] = [];
                 }
 
-                cc.stroke();
+                textAtFix[exitName].push(`${sid.identifier}.${exitName}`);
 
-                if (exitName) {
-                    if (!(exitName in textAtPoint)) {
-                        textAtPoint[exitName] = [];
-                    }
-
-                    textAtPoint[exitName].push(`${sid.identifier}.${exitName}`);
-                }
+                shouldDrawProcedureName = false;
             }
 
             if (shouldDrawProcedureName) {
-                if (!(mostRecentFixName in textAtPoint)) {
-                    textAtPoint[mostRecentFixName] = [];
+                const lastFixName = sid.lastFixName;
+
+                if (!(lastFixName in textAtFix)) {
+                    textAtFix[lastFixName] = [];
                 }
 
-                textAtPoint[mostRecentFixName].push(sid.identifier);
+                textAtFix[lastFixName].push(sid.identifier);
             }
         }
 
-        // draw SID labels
-        for (const j in textAtPoint) {
-            const textItemsToPrint = textAtPoint[j];
-            const fixPosition = NavigationLibrary.getFixRelativePosition(j);
-            const fixCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(fixPosition);
+        // draw labels
+        for (const fix in textAtFix) {
+            const textItemsToPrint = textAtFix[fix];
+            const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
 
-            for (let k = 0; k < textItemsToPrint.length; k++) {
-                const textItem = textItemsToPrint[k];
-                const x_position = fixCanvasPosition.x + 10;
-                const y_position = fixCanvasPosition.y + (15 * k);
-
-                cc.fillText(textItem, x_position, y_position);
-            }
+            this._drawText(cc, fixPosition, textItemsToPrint);
         }
 
         cc.restore();
+    }
+
+    /**
+     * @for CanvasController
+     * @method _drawStars
+     * @param cc {HTMLCanvasContext}
+     * @private
+     */
+    _drawStars(cc) {
+        if (!this._shouldDrawStarMap) {
+            return;
+        }
+
+        const starLines = NavigationLibrary.getProcedureLines(PROCEDURE_TYPE.STAR);
+        const textAtFix = [];
+
+        cc.save();
+        cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
+        cc.strokeStyle = this.theme.SCOPE.STAR;
+        cc.fillStyle = this.theme.SCOPE.STAR;
+        cc.setLineDash([1, 10]);
+        cc.font = 'italic 14px monoOne, monospace';
+
+        for (let i = 0; i < starLines.length; i++) {
+            const star = starLines[i];
+
+            for (let j = 0; j < star.lines.length; j++) {
+                this._drawLine(cc, star.lines[j]);
+            }
+
+            const firstFixName = star.firstFixName;
+
+            if (!(firstFixName in textAtFix)) {
+                textAtFix[firstFixName] = [];
+            }
+
+            textAtFix[firstFixName].push(star.identifier);
+        }
+
+        // draw labels
+        for (const fix in textAtFix) {
+            const textItemsToPrint = textAtFix[fix];
+            const fixPosition = NavigationLibrary.getFixRelativePosition(fix);
+
+            this._drawText(cc, fixPosition, textItemsToPrint);
+        }
+
+        cc.restore();
+    }
+
+    /**
+     * @for CanvasController
+     * @method _drawLine
+     * @param cc {HTMLCanvasContext}
+     * @param points {array of array<number, number>} position coordinates (in km)
+     * @private
+     */
+    _drawLine(cc, points) {
+        if (points.length < 2) {
+            return;
+        }
+
+        const lineStartPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(points[0]);
+
+        cc.beginPath();
+        cc.moveTo(lineStartPosition.x, lineStartPosition.y);
+
+        for (let k = 0; k < points.length; k++) {
+            const position = points[k];
+            const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+
+            cc.lineTo(positionInPx.x, positionInPx.y);
+        }
+
+        cc.stroke();
+    }
+
+    /**
+     * @for CanvasController
+     * @method _drawText
+     * @param cc {HTMLCanvasContext}
+     * @param position {array<number, number>} position coordinates (in km)
+     * @param labels {array}
+     * @private
+     */
+    _drawText(cc, position, labels) {
+        const positionInPx = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(position);
+
+        for (let k = 0; k < labels.length; k++) {
+            const textItem = labels[k];
+            const positionX = positionInPx.x + 10;
+            const positionY = positionInPx.y + (15 * k);
+
+            cc.fillText(textItem, positionX, positionY);
+        }
     }
 
     /**
@@ -1270,15 +1353,13 @@ export default class CanvasController {
             cc.arc(-halfWidth - barHalfWidth,
                 -lock_offset, lock_size / 2 + barHalfWidth,
                 clipping_mask_angle - pi / 2,
-                0
-            );
+                0);
             cc.lineTo(-halfWidth + lock_size / 2, lock_offset);
             cc.arc(-halfWidth - barHalfWidth,
                 lock_offset,
                 lock_size / 2 + barHalfWidth,
                 0,
-                pi / 2 - clipping_mask_angle
-            );
+                pi / 2 - clipping_mask_angle);
             cc.closePath();
             cc.fill();
 
@@ -1836,14 +1917,14 @@ export default class CanvasController {
     _drawVideoMap(cc) {
         const airportModel = AirportController.airport_get();
 
-        if (!_has(airportModel, 'maps')) {
+        if (!_has(airportModel, 'maps') || !this._shouldDrawVideoMap) {
             return;
         }
 
         cc.save();
         cc.translate(CanvasStageModel.halfWidth, CanvasStageModel.halfHeight);
         cc.strokeStyle = this.theme.SCOPE.VIDEO_MAP;
-        cc.lineWidth = CanvasStageModel.scale / 15;
+        cc.lineWidth = Math.max(1, CanvasStageModel.scale / 15);
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
@@ -2094,16 +2175,49 @@ export default class CanvasController {
     }
 
     /**
+     * Toogle display of STAR routes
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleStarMap
+     * @private
+     */
+    _onToggleStarMap() {
+        this._shouldDrawStarMap = !this._shouldDrawStarMap;
+
+        this._markDeepRender();
+    }
+
+    /**
      * Toogle current value of `#draw_terrain`
      *
      * This method will only be `trigger`ed by some other
      * class via the `EventBus`
+     *
      * @for CanvasController
      * @method _onToggleTerrain
      * @private
      */
     _onToggleTerrain() {
         this._shouldDrawTerrain = !this._shouldDrawTerrain;
+
+        this._markDeepRender();
+    }
+
+    /**
+     * Toogle display of video map
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onToggleVideoMap
+     * @private
+     */
+    _onToggleVideoMap() {
+        this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
 
         this._markDeepRender();
     }

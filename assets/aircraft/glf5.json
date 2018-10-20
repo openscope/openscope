@@ -1,0 +1,37 @@
+{
+    "name": "Gulfstream G550",
+    "icao": "GLF5",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightclass": "S+",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 51000,
+    "rate": {
+        "climb": 3600,
+        "descent": 3000,
+        "accelerate": 6,
+        "decelerate": 5
+    },
+    "runway": {
+        "takeoff": 1.800,
+        "landing": 0.960
+    },
+    "speed":{
+        "min": 120,
+        "landing": 130,
+        "cruise": 459,
+        "cruiseM": 0.80,
+        "max": 488,
+        "maxM": 0.85
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

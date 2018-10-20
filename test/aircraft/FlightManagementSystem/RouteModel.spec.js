@@ -109,6 +109,14 @@ ava('#currentLeg returns the first element of the #_legCollection', (t) => {
     t.true(result.routeString === singleFixRouteStringMock);
 });
 
+ava('#legCollection returns the entire #_legCollection', (t) => {
+    const model = new RouteModel(singleFixRouteStringMock);
+    const expectedResult = model._legCollection;
+    const result = model.legCollection;
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('#currentWaypoint returns the #currentWaypoint on the #currentLeg', (t) => {
     const model = new RouteModel(singleFixRouteStringMock);
     const expectedResult = model.currentLeg.currentWaypoint;
@@ -592,6 +600,78 @@ ava('.hasWaypointName() returns true when the specified waypoint is in the route
     t.true(result);
 });
 
+ava('.isRunwayModelValidForSid() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the flight plan does not contain a SID', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForSid() returns false if the specified runway exists and is not valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the specified runway exists and is valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForStar() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the flight plan does not contain a STAR', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForStar() returns false if the specified runway exists and is not valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the specified runway exists and is valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result);
+});
+
 ava('.moveToNextWaypoint() calls #currentLeg.moveToNextWaypoint() when the current leg contains more waypoints', (t) => {
     const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const currentLegMoveToNextWaypointSpy = sinon.spy(model.currentLeg, 'moveToNextWaypoint');
@@ -751,20 +831,16 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains
     t.true(typeof result === 'undefined');
 });
 
-ava('.updateStarLegForArrivalRunwayModel() returns an unable response when the runway is not valid for the current STAR', (t) => {
+ava('.updateStarLegForArrivalRunwayModel() returns early when the runway is not valid for the current STAR', (t) => {
     const routeModel = new RouteModel('DRK.ZIMBO1.KLAS07R');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
     const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
-    const expectedResult = [false, {
-        log: 'unable, Runway 25L is not valid for the ZIMBO1 arrival',
-        say: 'unable, Runway two five left is not valid for the Zimbo One arrival'
-    }];
     const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
     t.true(createAmendedStarLegSpy.notCalled);
-    t.deepEqual(result, expectedResult);
+    t.true(typeof result === 'undefined');
 });
 
 ava('.updateStarLegForArrivalRunwayModel() replaces the STAR leg with a newly created one using the correct parameters', (t) => {
@@ -773,14 +849,10 @@ ava('.updateStarLegForArrivalRunwayModel() replaces the STAR leg with a newly cr
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
     const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
-    const expectedResult = [true, {
-        log: 'expecting Runway 25L',
-        say: 'expecting Runway two five left'
-    }];
     const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
     t.true(createAmendedStarLegSpy.calledWithExactly('KLAS25L', 0));
-    t.deepEqual(result, expectedResult);
+    t.true(typeof result === 'undefined');
 });
 
 ava('.reset() clears #_legCollection', (t) => {

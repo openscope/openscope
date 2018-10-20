@@ -138,7 +138,7 @@ export default class AircraftConflict {
      */
     checkCollision() {
         if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
-            return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
+            return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIED A/C
         }
 
         // TODO: enumerate the magic numbers.
@@ -214,7 +214,7 @@ export default class AircraftConflict {
         // "Passing & Diverging" Rules (the "exception" to all of the above rules)
         // test the below only if separation is currently considered insufficient
         if (conflict) {
-            const hdg_difference = abs(angle_offset(a1.groundTrack, a2.groundTrack));
+            const hdg_difference = abs(angle_offset(a1.heading, a2.heading));
 
             // TODO: couldnt these two ifs be combined to something like:
             // if (hdg_difference >= degreesToRadians(15) && hdg_difference > degreesToRadians(165)) {}

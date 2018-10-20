@@ -1,17 +1,17 @@
 {
     "icao": "tya",
-    "name": "NordStar",
+    "name": "NordStar Airlines",
     "callsign": {
         "name": "Taimyr",
         "callsignFormats": [
-            "###"
+            "####"
         ]
     },
     "fleets": {
         "default": [
-            ["at43", 5 ],
-            ["B735", 1 ],
-            ["B738", 9 ]
+            ["AT43", 5],
+            ["B733", 1],
+            ["B738", 9]
         ]
     }
 }

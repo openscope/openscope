@@ -1,6 +1,6 @@
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-// import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
+import { POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
 // import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // fixtures
@@ -88,7 +88,8 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '1567',
-    destination: 'KLAS',
+    destination: '',
+    origin: 'KLAS',
     fleet: 'default',
     airline: 'ual',
     airlineCallsign: 'speedbird',
@@ -98,6 +99,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
     icao: 'b737',
     // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
     model: AIRCRAFT_DEFINITION_MOCK,
+    positionModel: POSITION_MODEL_MOCK,
     routeString: 'KLAS07R.COWBY6.GUP'
 };
 
@@ -116,6 +118,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '432',
     destination: 'KLAS',
+    origin: '',
     fleet: 'default',
     airline: 'aal',
     airlineCallsign: 'speedbird',
@@ -125,6 +128,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     icao: 'b737',
     // TODO: this may need to be a fixture for `AircraftTypeDefinitionModel`
     model: AIRCRAFT_DEFINITION_MOCK,
+    positionModel: POSITION_MODEL_MOCK,
     routeString: 'DAG.KEPEC3.KLAS07R'
 };
 
@@ -147,6 +151,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = 
 //     category: 'arrival',
 //     icao: 'b737',
 //     model: AIRCRAFT_DEFINITION_MOCK,
+//     positionModel: POSITION_MODEL_MOCK,
 //     routeString: 'COWBY..BIKKR..DAG',
 //     waypoints: []
 // };

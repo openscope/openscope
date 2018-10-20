@@ -4,7 +4,7 @@ import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
-import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
+import WaypointModel from './WaypointModel';
 import {
     INVALID_INDEX,
     INVALID_NUMBER
@@ -13,7 +13,7 @@ import {
     LEG_TYPE,
     PROCEDURE_TYPE,
     PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER
- } from '../../constants/routeConstants';
+} from '../../constants/routeConstants';
 
 /**
  * A portion of a navigation route containing one or more `WaypointModel` objects.
@@ -287,8 +287,7 @@ export default class LegModel {
         }
 
         throw new TypeError(`Expected airway or procedure name, but we can't ' +
-            'determine what kind of leg ${airwayOrProcedureName} is`
-        );
+            'determine what kind of leg ${airwayOrProcedureName} is`);
     }
 
     /**
@@ -372,7 +371,6 @@ export default class LegModel {
         return this._airwayModel.icao;
     }
 
-    // FIXME: test
     /**
      * Return an array of WaypointModels AFTER (not including) the specified waypoint
      *
@@ -386,7 +384,6 @@ export default class LegModel {
         return this._waypointCollection.slice().splice(indexOfWaypointName + 1);
     }
 
-    // FIXME: test
     /**
      * Return an array of WaypointModels BEFORE (not including) the specified waypoint
      *
@@ -532,7 +529,6 @@ export default class LegModel {
         return this._procedureModel.name;
     }
 
-    // FIXME: test
     /**
      * Return the name of this leg's exit fix
      *
@@ -550,7 +546,6 @@ export default class LegModel {
         return routeStringElements[0];
     }
 
-    // FIXME: test
     /**
      * Return the name of this leg's exit fix
      *

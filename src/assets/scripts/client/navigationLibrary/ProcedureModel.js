@@ -267,8 +267,7 @@ export default class ProcedureModel {
         if (!_isArray(this._draw[0])) {
             throw new TypeError(`Invalid data set in draw segment of the ${this._icao} procedure. Expected a 2D ` +
                 'array: `[[FIXXA, FIXXB*], [FIXXC, FIXXD*]]`. Please see airport documentation for more information ' +
-                '(https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).'
-            );
+                '(https://github.com/openscope/openscope/blob/develop/documentation/airport-format.md#sids).');
         }
 
         const entryFixNames = this._getFixNamesFromEntries();
@@ -347,12 +346,24 @@ export default class ProcedureModel {
         return exitName in this._exitPoints;
     }
 
-    // FIXME: docblocks, test
+    /**
+     * Returns whether this procedure is a SID
+     *
+     * @for ProcedureModel
+     * @method isSid
+     * @return {Boolean}
+     */
     isSid() {
         return this._procedureType === PROCEDURE_TYPE.SID;
     }
 
-    // FIXME: docblocks, test
+    /**
+     * Returns whether this procedure is a STAR
+     *
+     * @for ProcedureModel
+     * @method isStar
+     * @return {Boolean}
+     */
     isStar() {
         return this._procedureType === PROCEDURE_TYPE.STAR;
     }

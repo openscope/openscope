@@ -18,7 +18,8 @@ import {
     ARRIVAL_PATTERN_MOCK_ALL_STRINGS,
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK,
-    ARRIVAL_PATTERN_ROUTE_STRING_MOCK
+    ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
+    ARRIVAL_PATTERN_FLOAT_RATE_MOCK
 } from './_mocks/spawnPatternMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
@@ -61,6 +62,12 @@ ava('initializes correctly when spawn pattern definition uses string type for nu
     t.true(model._maximumAltitude === 36000);
     t.true(model.speed === 320);
     t.true(model.rate === 10);
+});
+
+ava('initializes correctly when rate is passed as a float', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_FLOAT_RATE_MOCK);
+
+    t.true(model.rate === 3.3);
 });
 
 ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
@@ -225,7 +232,7 @@ ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in mil
 ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
@@ -236,7 +243,7 @@ ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and 
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));

@@ -1,0 +1,21 @@
+{
+    "icao": "pga",
+    "name": "Portugália",
+    "callsign": {
+        "name": "Portugalia",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##@",
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E190", 13]
+        ],
+        "e190": [
+            ["E190", 13]
+        ]
+    }
+}

@@ -70,6 +70,18 @@ export default class StripViewModel extends BaseModel {
         this._eventBus = EventBus;
 
         /**
+         * If an aircraft is a Departure
+         *
+         * When this is true it means the aircraft is a Departure
+         * and if this is false it means the aircraft is an Arrival.
+         *
+         * @property isDeparture
+         * @type {boolean}
+         * @default false
+         */
+        this.isDeparture = false;
+
+        /**
          * Root HTML Element
          *
          * @property $element
@@ -368,6 +380,7 @@ export default class StripViewModel extends BaseModel {
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
+        this.isDeparture = aircraftModel.isDeparture();
 
         return this;
     }
@@ -572,13 +585,15 @@ export default class StripViewModel extends BaseModel {
      * @return {string}
      */
     _buildClassnameForFlightCategory(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
-
         if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
+            return SELECTORS.CLASSNAMES.DEPARTURE;
         }
 
-        return className;
+        if (aircraftModel.isOverflight()) {
+            return SELECTORS.CLASSNAMES.OVERFLIGHT;
+        }
+
+        return SELECTORS.CLASSNAMES.ARRIVAL;
     }
 
     /**
