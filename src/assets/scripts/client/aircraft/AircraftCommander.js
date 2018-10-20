@@ -559,13 +559,12 @@ export default class AircraftCommander {
     /**
      * Taxi to the specified destination. Currently only supports taxiing to runways.
      *
-     * If no runway is specified, the aircraft will taxi to their expected departure runway, stored
-     * in Fms.departureRunwayModel. And if a runway is requested but doesn't exist, an error is returned.
+     * If a runway is requested but doesn't exist, an error is returned.
      *
      * @for AircraftCommander
      * @method runTaxi
      * @param {AircraftModel} aircraftModel
-     * @param {string} data
+     * @param {array<string>} data
      * @return {array} [success of operation, readback]
      */
     runTaxi(aircraftModel, data) {
@@ -573,7 +572,9 @@ export default class AircraftCommander {
         const requestedRunwayName = data[0];
 
         if (!requestedRunwayName) {
-            return aircraftModel.taxiToRunway(airportModel.departureRunwayModel);
+            const readback = 'we don\'t know which runway to taxi to';
+
+            return [false, readback];
         }
 
         const runwayModel = airportModel.getRunway(requestedRunwayName.toUpperCase());
