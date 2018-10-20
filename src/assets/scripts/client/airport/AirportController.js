@@ -170,10 +170,10 @@ class AirportController {
     /**
      * @for InputController
      * @property airac
-     * @return {string}
+     * @return {number}
     */
     getAiracCycle() {
-        return this.current.airac.toString();
+        return this.current.airac;
     }
 
     /**
