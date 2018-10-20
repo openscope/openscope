@@ -572,9 +572,7 @@ export default class AircraftCommander {
         const requestedRunwayName = data[0];
 
         if (!requestedRunwayName) {
-            const readback = {};
-            readback.log = 'we did not understand the runway. say again';
-            readback.say = 'we did not understand the runway. say again';
+            const readback = 'we don\'t know which runway to taxi to';
 
             return [false, readback];
         }
