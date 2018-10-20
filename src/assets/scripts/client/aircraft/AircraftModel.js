@@ -669,7 +669,7 @@ export default class AircraftModel {
      */
     matchCallsign(callsignToMatch) {
         const shouldMatchAnyCallsign = callsignToMatch === '*';
-         // checks to see if the given call sign matches the airline Id + callsign format
+        // checks to see if the given call sign matches the airline Id + callsign format
         if (shouldMatchAnyCallsign || (this.airlineId.toUpperCase() + callsignToMatch.toUpperCase() === this.callsign)) {
             return true;
         }
@@ -1293,7 +1293,7 @@ export default class AircraftModel {
         }
 
         if (this.isArrival()) {
-            return  [false, 'unable to taxi to runway, we have just landed'];
+            return [false, 'unable to taxi to runway, we have just landed'];
         }
 
         if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
@@ -1338,7 +1338,7 @@ export default class AircraftModel {
      * @param action
      */
     scoreWind(action) {
-        let score = 0;
+        const score = 0;
         const components = this.getWind();
         const isWarning = true;
 
@@ -2494,7 +2494,7 @@ export default class AircraftModel {
             const terrain = AirportController.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
-            let curr_ranges = this.terrain_ranges[ele];
+            const curr_ranges = this.terrain_ranges[ele];
 
             if (ele !== this.terrain_level) {
                 for (const lev in prev_level) {

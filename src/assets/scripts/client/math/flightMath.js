@@ -1,8 +1,7 @@
 import {
     abs,
     sin,
-    cos,
-    tan
+    cos
 } from './core';
 import {
     tau,
@@ -18,11 +17,9 @@ import {
     area_to_poly
 } from './vector';
 import {
-    kn_ms,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
-import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import { PERFORMANCE } from '../constants/aircraftConstants';
 
 /**
@@ -78,7 +75,7 @@ export function calcTurnRadiusByTurnRate(speed, turnRate) {
 export function calcTurnInitiationDistanceNm(speed, turnRate, courseChange) {
     const turnRadiusNm = calcTurnRadiusByTurnRate(speed, turnRate);
 
-    return turnRadiusNm * Math.tan(courseChange*0.5);
+    return turnRadiusNm * Math.tan(courseChange * 0.5);
 }
 
 /**
