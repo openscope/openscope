@@ -1003,7 +1003,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.heading = this._calculateSpawnHeading();
     }
 
-
     /**
      * Calculate the heading from the first waypoint to the second waypoint
      *
