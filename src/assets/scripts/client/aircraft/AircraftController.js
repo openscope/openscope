@@ -466,6 +466,7 @@ export default class AircraftController {
     removeAircraftModelFromList(aircraftModel) {
         console.warn('deprecated');
         this._collection.remove(aircraftModel);
+
         this.aircraft.list = _without(this.aircraft.list, aircraftModel);
     }
 
