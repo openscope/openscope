@@ -784,7 +784,8 @@ export default class InputController {
     }
 
     /**
-     *
+     * Triggered when a user clicks on the `right` mouse button and
+     * records the position of the `right click` event.
      *
      * @param event {jquery Event}
      * @private
