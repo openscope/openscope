@@ -1,7 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _every from 'lodash/every';
-import _filter from 'lodash/filter';
 import _isArray from 'lodash/isArray';
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
@@ -24,7 +23,6 @@ import {
 } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 // import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 import {
-    INVALID_INDEX,
     INVALID_NUMBER
 } from '../../../src/assets/scripts/client/constants/globalConstants';
 // import { PROCEDURE_TYPE } from '../../../src/assets/scripts/client/constants/routeConstants';
