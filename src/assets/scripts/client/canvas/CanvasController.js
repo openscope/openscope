@@ -2,7 +2,6 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _filter from 'lodash/filter';
 import _has from 'lodash/has';
-import _isEmpty from 'lodash/isEmpty';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -39,7 +38,6 @@ import {
 import { THEME } from '../constants/themes';
 import { EVENT } from '../constants/eventNames';
 import {
-    INVALID_INDEX,
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
@@ -1355,15 +1353,13 @@ export default class CanvasController {
             cc.arc(-halfWidth - barHalfWidth,
                 -lock_offset, lock_size / 2 + barHalfWidth,
                 clipping_mask_angle - pi / 2,
-                0
-            );
+                0);
             cc.lineTo(-halfWidth + lock_size / 2, lock_offset);
             cc.arc(-halfWidth - barHalfWidth,
                 lock_offset,
                 lock_size / 2 + barHalfWidth,
                 0,
-                pi / 2 - clipping_mask_angle
-            );
+                pi / 2 - clipping_mask_angle);
             cc.closePath();
             cc.fill();
 

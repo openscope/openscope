@@ -447,8 +447,8 @@ export default class RouteModel extends BaseModel {
         });
 
         return this._combineRouteStrings(legRouteStringsWithoutAirports)
-        .replace(REGEX.DOUBLE_DOT, ' ')
-        .replace(REGEX.SINGLE_DOT, ' ');
+            .replace(REGEX.DOUBLE_DOT, ' ')
+            .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
@@ -860,8 +860,7 @@ export default class RouteModel extends BaseModel {
 
         if (!this.isRunwayModelValidForStar(runwayModel)) {
             console.error(`Received Runway ${runwayModel.name}, which is not valid for the assigned STAR. ` +
-                'The runway should have been validated before passing it to this method!'
-            );
+                'The runway should have been validated before passing it to this method!');
 
             return;
         }
@@ -913,8 +912,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**
@@ -1568,8 +1566,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**

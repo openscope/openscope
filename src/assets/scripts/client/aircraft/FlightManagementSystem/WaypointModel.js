@@ -247,8 +247,6 @@ export default class WaypointModel {
         this._initSpecialWaypoint(fixName);
         this._applyRestrictions(restrictions);
         this._initializePosition();
-
-        return;
     }
 
     /**
@@ -514,8 +512,7 @@ export default class WaypointModel {
     setHoldTimer(expirationTime) {
         if (typeof expirationTime !== 'number') {
             throw new TypeError('Expected hold timer expiration time to be a ' +
-                `number, but received type ${typeof expirationTime}`
-            );
+                `number, but received type ${typeof expirationTime}`);
         }
 
         this._holdParameters.timer = expirationTime;
