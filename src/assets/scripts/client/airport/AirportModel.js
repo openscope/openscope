@@ -115,7 +115,7 @@ export default class AirportModel {
         this.wip = null;
 
         /**
-         * This is what AIRAC cycle that the airport has been based off
+         * AIRAC cycle from which data for the airport was taken
          *
          * @property airac
          * @type {number}
