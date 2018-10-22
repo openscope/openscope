@@ -168,7 +168,8 @@ class AirportController {
     }
 
     /**
-     * @for InputController
+     * @for AirportController
+     * @method getAiracCycle
      * @property airac
      * @return {number}
     */
