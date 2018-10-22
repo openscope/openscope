@@ -13,7 +13,7 @@ module.exports = function(gulp, config) {
     function buildStyles() {
         const less = require('gulp-less');
         const sourcemaps = require('gulp-sourcemaps');
-        const minifyCss = require('gulp-minify-css');
+        const cleanCSS = require('gulp-clean-css');
         const concat = require('gulp-concat');
         const autoprefixer = require('gulp-autoprefixer');
 
@@ -26,7 +26,7 @@ module.exports = function(gulp, config) {
                 'ie 8',
                 'ie 9'
             ))
-            .pipe(minifyCss())
+            .pipe(cleanCSS({compatibility: 'ie8'}))
             .pipe(concat('main.min.css'))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
