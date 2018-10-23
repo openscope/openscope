@@ -1,4 +1,5 @@
 import _find from 'lodash/find';
+import _findLast from 'lodash/findLast';
 import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
@@ -814,13 +815,13 @@ export default class Fms {
                 return [false, 'SID name not understood'];
             }
 
-            const exitPoint = _find(this._fms.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
+            const exitPoint = _findLast(this.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
 
-            if (exitPoint === '') {
-                return [false, `SID ${procedureId.toUpperCase()} doesn't have an exit along our route`];
+            if (!exitPoint) {
+                return [false, `the ${procedureId.toUpperCase()} departure doesn't have an exit along our route`];
             }
 
-            routeStringElements.push(exitPoint);
+            routeStringElements.push(exitPoint.name);
         }
 
         if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
