@@ -1,7 +1,7 @@
-import express from 'express';
-import http from 'http';
-import path from 'path';
-import chalk from 'chalk';
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const chalk = require('chalk');
 
 const app = express();
 const server = http.Server(app);
