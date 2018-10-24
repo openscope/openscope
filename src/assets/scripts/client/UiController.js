@@ -287,9 +287,6 @@ class UiController {
 
             GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
 
-            if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
-                this._buildAirportList();
-            }
         });
 
         $optionSelector.append($selector);
@@ -347,34 +344,23 @@ class UiController {
      * Loop through each airport defined in the `AirportController` and build
      * a list item that can be appended to the #airport-list element.
      *
-     * Includes a switch to conditionally include WIP airports based on a user setting
-     *
      * @for UiController
      * @method _buildAirportList
      * @private
      */
     _buildAirportList() {
         // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportList.empty();
 
         const airports = _keys(AirportController.airports).sort();
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
         const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
-            const { name, icao, level, wip } = AirportController.airports[airports[i]];
-
-            if (!shouldShowWipAirports && wip) {
-                continue;
-            }
+            const { name, icao, level } = AirportController.airports[airports[i]];
 
             difficulty = this._buildAirportListIconForDifficultyLevel(level);
-            const reliabilityFlag = wip
-                ? ''
-                : flagIcon;
-            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
+            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
