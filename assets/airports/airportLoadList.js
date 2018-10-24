@@ -45,11 +45,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      *    +----------+------------------------+
      * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
      * - `MEETS_PREMIUM_STANDARDS` is either `true` or `false`, see the airport standards document
-     * - `IS_WORK_IN_PROGRESS` is either `true` or `false`, based on whether the airport is old
-     *   and needs to be updated in order to reach full compliance with the airport standards
-     *   specifications. Note that all new airports must meet these specifications before being
-     *   merged, so you may feel free to start out with `wip: false`, since that will be true by
-     *   the time the airport is added to the game.
      *
      * @property AIRPORT_LOAD_LIST
      * @type {Array}
