@@ -62,8 +62,7 @@ export default class InputController {
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
-        this._init()
-            .enable();
+        this._init();
     }
 
     /**
@@ -76,7 +75,7 @@ export default class InputController {
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
 
-        return this;
+        return this.setupHandlers().enable();
     }
 
     /**
