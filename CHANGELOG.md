@@ -1,6 +1,7 @@
 # 6.7.0 (November 1, 2018)
 ### New Features
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
+- [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
 
 
 

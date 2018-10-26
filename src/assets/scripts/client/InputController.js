@@ -699,6 +699,20 @@ export default class InputController {
 
                 return true;
             }
+            case PARSED_COMMAND_NAME.AIRAC: {
+                const airportIcao = AirportController.current.icao.toUpperCase();
+                const airacCycle = AirportController.getAiracCycle();
+
+                if (!airacCycle) {
+                    UiController.ui_log(`${airportIcao} AIRAC cycle: unknown`);
+
+                    return true;
+                }
+
+                UiController.ui_log(`${airportIcao} AIRAC cycle: ${airacCycle}`);
+
+                return true;
+            }
             // TODO: this will be removed entirely, eventually.
             case PARSED_COMMAND_NAME.RATE:
                 UiController.ui_log('this command has been deprecated', true);
