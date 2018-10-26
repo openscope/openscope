@@ -22,6 +22,7 @@
 - [#1112](https://github.com/openscope/openscope/issues/1112) - Cleanup of eslint errors and warnings
 - [#1138](https://github.com/openscope/openscope/issues/1138) - Remove contributors block from package.json
 - [#696](https://github.com/openscope/openscope/issues/696) - Default canvas theme no longer hardcoded in CanvasController
+- [#1144](https://github.com/openscope/openscope/issues/1144) - Move calculateSpawnHeading to SpawnPattenModel
 
 
 
