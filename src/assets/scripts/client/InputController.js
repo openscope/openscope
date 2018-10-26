@@ -700,13 +700,16 @@ export default class InputController {
                 return true;
             }
             case PARSED_COMMAND_NAME.AIRAC: {
+                const airportIcao = AirportController.current.icao.toUpperCase();
                 const airacCycle = AirportController.getAiracCycle();
 
-                if (airacCycle) {
-                    UiController.ui_log(`AIRAC cycle ${airacCycle}`);
-                } else {
-                    UiController.ui_log('unknown AIRAC cycle');
+                if (!airacCycle) {
+                    UiController.ui_log(`${airportIcao} AIRAC cycle: unknown`);
+
+                    return true;
                 }
+
+                UiController.ui_log(`${airportIcao} AIRAC cycle: ${airacCycle}`);
 
                 return true;
             }
