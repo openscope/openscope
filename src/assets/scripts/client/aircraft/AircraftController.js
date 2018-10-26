@@ -321,8 +321,6 @@ export default class AircraftController {
         for (let i = 0; i < this.aircraft.list.length; i++) {
             this.aircraft_remove(this.aircraft.list[i]);
         }
-
-        this.aircraft.list = [];
     }
 
     /**
