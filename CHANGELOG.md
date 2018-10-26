@@ -9,6 +9,7 @@
 
 ### Bugfixes
 - [#1099](https://github.com/openscope/openscope/issues/1099) - Fix wrong B747 entry in Turkish Airlines file
+- [#1104](https://github.com/openscope/openscope/issues/1104) - Fix console warnings for removing StripViewModel which doesn't exist
 
 
 
