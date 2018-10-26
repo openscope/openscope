@@ -41,6 +41,7 @@ import {
     INVALID_NUMBER,
     TIME
 } from '../constants/globalConstants';
+import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
 
 /**
@@ -203,8 +204,9 @@ export default class CanvasController {
          *
          * @property theme
          * @type {object}
+         * @default null
          */
-        this.theme = THEME.DEFAULT;
+        this.theme = null;
 
         return this._init()
             ._setupHandlers()
@@ -218,6 +220,8 @@ export default class CanvasController {
      * @chainable
      */
     _init() {
+        this._setTheme(GameController.getGameOption(GAME_OPTION_NAMES.THEME));
+
         return this;
     }
 
@@ -2310,7 +2314,9 @@ export default class CanvasController {
         }
 
         // TODO: abstract to method
-        this.$element.removeClass(this.theme.CLASSNAME);
+        if (this.theme !== null) {
+            this.$element.removeClass(this.theme.CLASSNAME);
+        }
 
         this.theme = THEME[themeName];
         // TODO: abstract to method
