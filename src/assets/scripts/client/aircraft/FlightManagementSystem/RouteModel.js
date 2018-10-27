@@ -234,23 +234,6 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Calculate the heading from the first waypoint to the second waypoint
-     *
-     * This is used to determine the heading of newly spawned aircraft
-     *
-     * @for RouteModel
-     * @method calculateSpawnHeading
-     * @return {number} heading, in radians
-     */
-    calculateSpawnHeading() {
-        const firstWaypointPositionModel = this.waypoints[0].positionModel;
-        const secondWaypointPositionModel = this.waypoints[1].positionModel;
-        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
-
-        return heading;
-    }
-
-    /**
     * Return an array of waypoints in the flight plan that have altitude restrictions
     *
     * @for RouteModel

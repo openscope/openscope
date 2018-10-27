@@ -168,6 +168,16 @@ class AirportController {
     }
 
     /**
+     * @for AirportController
+     * @method getAiracCycle
+     * @property airac
+     * @return {number}
+    */
+    getAiracCycle() {
+        return this.current.airac;
+    }
+
+    /**
      * Retrieve a specific `AirportModel` instance
      *
      * @for AirportController

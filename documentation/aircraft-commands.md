@@ -88,11 +88,10 @@ _Syntax -_ `AAL123 cto`
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane to taxi to a
-runway; if a runway is not included they will continue to the runway
-with the largest headwind.
+_Information -_ This command tells the specified plane to taxi to the specified
+runway.
 
-_Syntax -_ `AAL123 taxi [Runway]`
+_Syntax -_ `AAL123 taxi [runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
@@ -106,7 +105,7 @@ runway assignment. In cases where their STAR says to follow a different series
 of waypoints dependent upon their runway, we can use this command to have an
 aircraft follow the desired branch of the STAR toward the desired runway.
 
-_Syntax -_ `AAL123 e 26r`
+_Syntax -_ `AAL123 e [runway]`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -132,7 +131,7 @@ the glideslope and land.
 
 Note: This replaces the old `land` / `l` command.
 
-_Syntax -_ `AAL123 i [rwy]`
+_Syntax -_ `AAL123 i [runway]`
 
 # Routing Commands
 These commands allow you to manipulate the route in the aircraft's FMS.

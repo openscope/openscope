@@ -24,6 +24,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runAbort',
         isSystemCommand: false
     },
+    airac: {
+        aliases: ['airac'],
+        functionName: '',
+        isSystemCommand: true
+    },
     airport: {
         aliases: ['airport'],
         functionName: '',

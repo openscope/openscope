@@ -25,6 +25,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 ```javascript
 {
+    "airac": 1801,
     "radio": {
         "twr": "Seatle Tower",
         "app": "Seattle Approach",
@@ -223,6 +224,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 _all properties in this section are required_
 
+* **airac** ― AIRAC cycle from which data for the airport was taken. The airport must be fully compliant as of the specified cycle in order for this value to be changed.
 * **radio** ― The radio callsigns for each controller:
 
 ```javascript
