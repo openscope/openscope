@@ -37,7 +37,7 @@ function _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndF
 
     if (selectedAirline.indexOf(AIRLINE_NAME_FLEET_SEPARATOR) > -1) {
         const nameAndFleet = selectedAirline.split(AIRLINE_NAME_FLEET_SEPARATOR);
-        
+
         airlineNameAndFleet.name = _toLower(nameAndFleet[FIRST_INDEX]);
         airlineNameAndFleet.fleet = nameAndFleet[SECOND_INDEX];
     }

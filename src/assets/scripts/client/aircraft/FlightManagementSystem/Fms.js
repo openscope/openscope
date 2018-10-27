@@ -1048,8 +1048,7 @@ export default class Fms {
     _verifyRouteContainsMultipleWaypoints() {
         if (this.waypoints.length < 2) {
             throw new TypeError('Expected flight plan route to have at least two ' +
-                `waypoints, but only found ${this.waypoints.length} waypoints`
-            );
+                `waypoints, but only found ${this.waypoints.length} waypoints`);
         }
     }
 }
