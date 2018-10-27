@@ -9,7 +9,7 @@ import { leftPad } from '../../utilities/generalUtilities';
 
 /**
  * @property STRIP_VIEW_SELECTORS
- * @type {object<string, string}
+ * @type {object<string, string>}
  * @final
  */
 const STRIP_VIEW_SELECTORS = {
@@ -26,6 +26,13 @@ const STRIP_VIEW_SELECTORS = {
     REMARKS: '.js-stripView-remarks',
     RUNWAY: '.js-stripView-runway'
 };
+
+/**
+ * @property STRIP_VIEW_PREPLANNING_CLASS
+ * @type {string}
+ * @final
+ */
+const STRIP_VIEW_PREPLANNING_CLASS = "stripView-preplanning";
 
 /**
  * Encapsulation of data and view elements for a single aircraft progress strip
@@ -347,14 +354,14 @@ export default class StripViewModel extends BaseModel {
         this.$remarks = null;
 
         /**
-         * The expected runway
+         * The expected or assigned runway
          *
-         * @property _runway
-         * @type {string}
+         * @property _runwayInformation
+         * @type {object}
          * @default ''
          * @private
          */
-        this._runway = '';
+        this._runwayInformation = null;
 
         /**
          * HTML Element that holds the `#runway` value
@@ -421,7 +428,7 @@ export default class StripViewModel extends BaseModel {
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
         this.isDeparture = aircraftModel.isDeparture();
         // TODO: remarks
-        this._runway = this._buildRunway(aircraftModel);
+        this._runwayInformation = this._buildRunwayInformation(aircraftModel);
 
         return this;
     }
@@ -527,7 +534,8 @@ export default class StripViewModel extends BaseModel {
         this.$alternateAirportView.text(this._alternateAirport);
         this.$flightPlanView.text(this._flightPlan);
         this.$remarks.text(this._remarks);
-        this.$runway.text(this._runway);
+        this.$runway.text(this._runwayInformation.name);
+        this.$runway.toggleClass(STRIP_VIEW_PREPLANNING_CLASS, !this._runwayInformation.assigned);
 
         return this;
     }
@@ -584,7 +592,7 @@ export default class StripViewModel extends BaseModel {
         this.$flightPlanView = null;
         this._remarks = '';
         this.$remarks = null;
-        this._runway = '';
+        this._runwayInformation = null;
         this.$runway = null;
 
         return this;
@@ -646,22 +654,32 @@ export default class StripViewModel extends BaseModel {
     }
 
     /**
-     * Return the assigned runway based on whether an aircraft is a `departure` or an `arrival`
+     * Returns the runway and if it is expected or assigned based on whether an
+     * aircraft is a `departure` or an `arrival`.
      *
      * @for AircraftStripView
-     * @method _buildRunway
-     * @return {string}
+     * @method _buildRunwayInformation
+     * @return {object}
      */
-    _buildRunway(aircraftModel) {
+    _buildRunwayInformation(aircraftModel) {
         if (aircraftModel.isDeparture()) {
-            return aircraftModel.fms.departureRunwayModel.name;
+            return {
+                assigned: aircraftModel.pilot.hasDepartureClearance,
+                name: aircraftModel.fms.departureRunwayModel.name
+            };
         }
 
         if (aircraftModel.isArrival() !== null) {
-            return aircraftModel.fms.arrivalRunwayModel.name;
+            return {
+                assigned: aircraftModel.pilot.hasApproachClearance,
+                name: aircraftModel.fms.arrivalRunwayModel.name
+            };
         }
 
-        return '';
+        return {
+            assigned: false,
+            name: ''
+        };
     }
 
     /**
@@ -721,7 +739,9 @@ export default class StripViewModel extends BaseModel {
             this._flightPlanAltitude !== viewModel.flightPlanAltitude ||
             this._arrivalAirport !== viewModel.arrivalAirportId ||
             this._departureAirport !== viewModel.departureAirportId ||
-            this._flightPlan !== viewModel.flightPlan;
+            this._flightPlan !== viewModel.flightPlan ||
+            true
+            /*this._runwayInformation !== this._buildRunwayInformation(aircraftModel)*/;
     }
 
     /**
@@ -753,6 +773,7 @@ export default class StripViewModel extends BaseModel {
         this._arrivalAirport = arrivalAirportId;
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
+        this._runwayInformation = this._buildRunwayInformation(aircraftModel);
 
         return this._redraw();
     }
