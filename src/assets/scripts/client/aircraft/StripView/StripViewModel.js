@@ -639,6 +639,7 @@ export default class StripViewModel extends BaseModel {
      *
      * @for AircraftStripView
      * @method _buildClassnameForFlightCategory
+     * @param aircraftModel {AircraftModel}
      * @return {string}
      */
     _buildClassnameForFlightCategory(aircraftModel) {
@@ -659,6 +660,7 @@ export default class StripViewModel extends BaseModel {
      *
      * @for AircraftStripView
      * @method _buildRunwayInformation
+     * @param aircraftModel {AircraftModel}
      * @return {object}
      */
     _buildRunwayInformation(aircraftModel) {
@@ -732,6 +734,7 @@ export default class StripViewModel extends BaseModel {
      */
     _shouldUpdate(aircraftModel) {
         const viewModel = aircraftModel.getViewModel();
+        const runwayInfo = this._buildRunwayInformation(aircraftModel);
 
         return this.insideCenter !== viewModel.insideCenter ||
             this._transponder !== viewModel.transponderCode ||
@@ -740,8 +743,8 @@ export default class StripViewModel extends BaseModel {
             this._arrivalAirport !== viewModel.arrivalAirportId ||
             this._departureAirport !== viewModel.departureAirportId ||
             this._flightPlan !== viewModel.flightPlan ||
-            true
-            /*this._runwayInformation !== this._buildRunwayInformation(aircraftModel)*/;
+            this._runwayInformation.assigned !== runwayInfo.assigned ||
+            this._runwayInformation.name !== runwayInfo.name;
     }
 
     /**
