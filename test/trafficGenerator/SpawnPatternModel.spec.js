@@ -248,3 +248,19 @@ ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
 });
+
+ava('._calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
+    const mock = Object.assign(
+        {},
+        ARRIVAL_PATTERN_MOCK,
+        {
+            route: 'JESJI..BAKRR'
+        }
+    );
+
+    const model = new SpawnPatternModel(mock);
+    const expectedResult = 1.3415936051582544;
+    const result = model._calculateSpawnHeading();
+
+    t.true(result === expectedResult);
+});

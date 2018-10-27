@@ -450,9 +450,11 @@ export default class InputController {
             case KEY_CODES.ESCAPE: {
                 this.closeAllDialogs();
 
-                if (!_includes(currentCommandInputValue, this.input.callsign) ||
-                    currentCommandInputValue.trim() === this.input.callsign
-                ) {
+                const hasCallsign = _includes(currentCommandInputValue, this.input.callsign);
+                const hasOnlyCallsign = currentCommandInputValue.trim() === this.input.callsign;
+                const hasSelectedCallsign = this.input.callsign !== '';
+
+                if (!hasCallsign || hasOnlyCallsign || !hasSelectedCallsign) {
                     this.deselectAircraft();
 
                     return;
@@ -696,6 +698,20 @@ export default class InputController {
                 if (_has(AirportController.airports, airportIcao)) {
                     AirportController.airport_set(airportIcao);
                 }
+
+                return true;
+            }
+            case PARSED_COMMAND_NAME.AIRAC: {
+                const airportIcao = AirportController.current.icao.toUpperCase();
+                const airacCycle = AirportController.getAiracCycle();
+
+                if (!airacCycle) {
+                    UiController.ui_log(`${airportIcao} AIRAC cycle: unknown`);
+
+                    return true;
+                }
+
+                UiController.ui_log(`${airportIcao} AIRAC cycle: ${airacCycle}`);
 
                 return true;
             }

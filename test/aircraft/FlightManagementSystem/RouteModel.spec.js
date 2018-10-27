@@ -248,14 +248,6 @@ ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName()
     t.true(activateHoldForWaypointNameSpy2.calledWithExactly('KEPEC', holdParametersMock));
 });
 
-ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
-    const model = new RouteModel('JESJI..BAKRR');
-    const expectedResult = 1.3415936051582544;
-    const result = model.calculateSpawnHeading();
-
-    t.true(result === expectedResult);
-});
-
 ava('._createLegModelsFromWaypointModels() returns an array of LegModels matching the specified array of WaypointModels', (t) => {
     const model = new RouteModel('TNP.KEPEC3.KLAS07R');
 

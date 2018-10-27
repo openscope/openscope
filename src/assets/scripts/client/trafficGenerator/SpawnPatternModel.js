@@ -1000,7 +1000,24 @@ export default class SpawnPatternModel extends BaseModel {
         }
 
         this._positionModel = this._routeModel.waypoints[0].positionModel;
-        this.heading = this._routeModel.calculateSpawnHeading();
+        this.heading = this._calculateSpawnHeading();
+    }
+
+    /**
+     * Calculate the heading from the first waypoint to the second waypoint
+     *
+     * This is used to determine the heading of newly spawned aircraft
+     *
+     * @for SpawnPatternModel
+     * @method calculateSpawnHeading
+     * @return {number} heading, in radians
+     */
+    _calculateSpawnHeading() {
+        const firstWaypointPositionModel = this._routeModel.waypoints[0].positionModel;
+        const secondWaypointPositionModel = this._routeModel.waypoints[1].positionModel;
+        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
+
+        return heading;
     }
 
     /**
@@ -1019,7 +1036,7 @@ export default class SpawnPatternModel extends BaseModel {
 
         return selfReferencingPosition;
     }
-    
+
     /**
      * Used to determine if this spawn pattern is for an arriving aircraft
      *
