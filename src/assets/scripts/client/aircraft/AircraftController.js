@@ -318,7 +318,7 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             this.aircraft_remove(this.aircraft.list[i]);
         }
     }
