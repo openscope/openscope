@@ -234,23 +234,6 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Calculate the heading from the first waypoint to the second waypoint
-     *
-     * This is used to determine the heading of newly spawned aircraft
-     *
-     * @for RouteModel
-     * @method calculateSpawnHeading
-     * @return {number} heading, in radians
-     */
-    calculateSpawnHeading() {
-        const firstWaypointPositionModel = this.waypoints[0].positionModel;
-        const secondWaypointPositionModel = this.waypoints[1].positionModel;
-        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
-
-        return heading;
-    }
-
-    /**
     * Return an array of waypoints in the flight plan that have altitude restrictions
     *
     * @for RouteModel
@@ -447,8 +430,8 @@ export default class RouteModel extends BaseModel {
         });
 
         return this._combineRouteStrings(legRouteStringsWithoutAirports)
-        .replace(REGEX.DOUBLE_DOT, ' ')
-        .replace(REGEX.SINGLE_DOT, ' ');
+            .replace(REGEX.DOUBLE_DOT, ' ')
+            .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
@@ -869,8 +852,7 @@ export default class RouteModel extends BaseModel {
 
         if (!this.isRunwayModelValidForStar(runwayModel)) {
             console.error(`Received Runway ${runwayModel.name}, which is not valid for the assigned STAR. ` +
-                'The runway should have been validated before passing it to this method!'
-            );
+                'The runway should have been validated before passing it to this method!');
 
             return;
         }
@@ -922,8 +904,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**
@@ -1577,8 +1558,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**

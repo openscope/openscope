@@ -532,7 +532,7 @@ ava('.taxiToRunway() cancels IFR clearance if runway is invalid for the assigned
     model.fms.replaceFlightPlanWithNewRoute('KLAS07R.BOACH6.HEC');
     model.pilot.hasDepartureClearance = true;
 
-    const invalidRunway = airportModelFixture.getRunway("01R");
+    const invalidRunway = airportModelFixture.getRunway('01R');
 
     const result = model.taxiToRunway(invalidRunway);
 

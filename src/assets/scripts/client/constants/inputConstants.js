@@ -65,12 +65,13 @@ export const MOUSE_EVENT_CODE = {
  * @final
  */
 export const PARSED_COMMAND_NAME = {
-    TUTORIAL: 'tutorial',
-    AUTO: 'auto',
-    PAUSE: 'pause',
-    TIMEWARP: 'timewarp',
-    CLEAR: 'clear',
+    AIRAC: 'airac',
     AIRPORT: 'airport',
+    AUTO: 'auto',
+    CLEAR: 'clear',
+    PAUSE: 'pause',
     RATE: 'rate',
-    TRANSMIT: 'transmit'
+    TIMEWARP: 'timewarp',
+    TRANSMIT: 'transmit',
+    TUTORIAL: 'tutorial'
 };

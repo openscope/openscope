@@ -585,13 +585,15 @@ export default class StripViewModel extends BaseModel {
      * @return {string}
      */
     _buildClassnameForFlightCategory(aircraftModel) {
-        let className = SELECTORS.CLASSNAMES.ARRIVAL;
-
         if (aircraftModel.isDeparture()) {
-            className = SELECTORS.CLASSNAMES.DEPARTURE;
+            return SELECTORS.CLASSNAMES.DEPARTURE;
         }
 
-        return className;
+        if (aircraftModel.isOverflight()) {
+            return SELECTORS.CLASSNAMES.OVERFLIGHT;
+        }
+
+        return SELECTORS.CLASSNAMES.ARRIVAL;
     }
 
     /**

@@ -1,5 +1,6 @@
 /* eslint-disable */
 export const AIRPORT_JSON_KLAS_MOCK = {
+    "airac": 1004,
     "radio": {
         "twr": "Las Vegas Tower",
         "app": "Las Vegas Approach",

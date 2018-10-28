@@ -90,7 +90,7 @@ export default class Pilot {
      * @method enable
      */
     enable() {
-        return;
+
     }
 
     /**
@@ -455,7 +455,6 @@ export default class Pilot {
      * @return {array}           [success of operation, readback]
      */
     climbViaSid(aircraftModel, maximumAltitude) {
-
         let nextAltitude = maximumAltitude;
 
         if (typeof nextAltitude === 'undefined') {
@@ -484,8 +483,8 @@ export default class Pilot {
 
         if (nextAltitude < aircraftModel.altitude) {
             const readback = {};
-            readback.log = `unable to comply, say again`;
-            readback.say = `unable to comply, say again`;
+            readback.log = 'unable to comply, say again';
+            readback.say = 'unable to comply, say again';
 
             return [false, readback];
         }
@@ -530,8 +529,8 @@ export default class Pilot {
 
         if (aircraftModel.altitude < nextAltitude) {
             const readback = {};
-            readback.log = `unable to comply, say again`;
-            readback.say = `unable to comply, say again`;
+            readback.log = 'unable to comply, say again';
+            readback.say = 'unable to comply, say again';
 
             return [false, readback];
         }

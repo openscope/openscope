@@ -390,6 +390,7 @@ export default class Fms {
     _initializeFlightPhaseForCategory(category) {
         switch (category) {
             case FLIGHT_CATEGORY.ARRIVAL:
+            case FLIGHT_CATEGORY.OVERFLIGHT:
                 return this.setFlightPhase(FLIGHT_PHASE.CRUISE);
 
             case FLIGHT_CATEGORY.DEPARTURE:
@@ -698,32 +699,36 @@ export default class Fms {
     }
 
     /**
-     *
+     * Returns whether this is an arrival to an airport we control
      *
      * @for Fms
      * @method isArrival
      * @return {boolean}
      */
     isArrival() {
-        return this.currentPhase === FLIGHT_PHASE.CRUISE ||
-        this.currentPhase === FLIGHT_PHASE.DESCENT ||
-        this.currentPhase === FLIGHT_PHASE.APPROACH ||
-        this.currentPhase === FLIGHT_PHASE.LANDING;
+        return !_isNil(this.arrivalAirportModel);
     }
 
     /**
-     *
+     * Returns whether this is a departure from an airport we control
      *
      * @for Fms
      * @method isDeparture
      * @return {boolean}
      */
     isDeparture() {
-        return this.currentPhase === FLIGHT_PHASE.APRON ||
-        this.currentPhase === FLIGHT_PHASE.TAXI ||
-        this.currentPhase === FLIGHT_PHASE.WAITING ||
-        this.currentPhase === FLIGHT_PHASE.TAKEOFF ||
-        this.currentPhase === FLIGHT_PHASE.CLIMB;
+        return !_isNil(this.departureAirportModel);
+    }
+
+    /**
+     * Returns whether this is an overflight
+     *
+     * @for Fms
+     * @method isDeparture
+     * @return {boolean}
+     */
+    isOverflight() {
+        return !this.isArrival() && !this.isDeparture;
     }
 
     /**
@@ -1066,8 +1071,7 @@ export default class Fms {
     _verifyRouteContainsMultipleWaypoints() {
         if (this.waypoints.length < 2) {
             throw new TypeError('Expected flight plan route to have at least two ' +
-                `waypoints, but only found ${this.waypoints.length} waypoints`
-            );
+                `waypoints, but only found ${this.waypoints.length} waypoints`);
         }
     }
 }

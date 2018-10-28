@@ -25,6 +25,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 ```javascript
 {
+    "airac": 1801,
     "radio": {
         "twr": "Seatle Tower",
         "app": "Seattle Approach",
@@ -188,6 +189,21 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
                 ["aca", 1],
                 ["asa", 3]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         }
     ],
     "maps": {
@@ -208,6 +224,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 _all properties in this section are required_
 
+* **airac** ― AIRAC cycle from which data for the airport was taken. The airport must be fully compliant as of the specified cycle in order for this value to be changed.
 * **radio** ― The radio callsigns for each controller:
 
 ```javascript
@@ -601,6 +618,21 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
         "destination": "KSEA",
         "category": "arrival",
         "route": "PDT.CHINS2.KSEA",
+        "altitude": [18000, 36000],
+        "speed": 320,
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "",
+        "category": "overflight",
+        "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
         "altitude": [18000, 36000],
         "speed": 320,
         "method": "random",
