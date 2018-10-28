@@ -31,6 +31,20 @@ let sandbox; // using the sinon sandbox ensures stubs are restored after each te
 const runwayNameMock = '19L';
 const runwayModelMock = airportModelFixture.getRunway(runwayNameMock);
 
+function moveAircraftToFix(aircraft, fixName) {
+    const fms = aircraft.fms;
+
+    while (fms.currentWaypoint._name !== fixName) {
+        if (!fms.hasNextWaypoint()) {
+            throw Error(`Can not find waypoint ${fixName}`);
+        }
+
+        fms.moveToNextWaypoint();
+    }
+
+    aircraft.positionModel = NavigationLibrary.findFixByName(fixName).positionModel;
+}
+
 /* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
     createNavigationLibraryFixture();
@@ -413,7 +427,7 @@ ava('.updateTarget() causes arrivals to comply with AT altitude restriction', (t
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
 
-    moveAircraftToFix(model, "KSINO");
+    moveAircraftToFix(model, 'KSINO');
     model.updateTarget();
 
     t.true(model.target.altitude === 17000);
@@ -423,7 +437,7 @@ ava('.updateTarget() causes arrivals to comply with ABOVE altitude restriction',
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
 
-    moveAircraftToFix(model, "LUXOR");
+    moveAircraftToFix(model, 'LUXOR');
     model.updateTarget();
 
     t.true(model.target.altitude >= 12000);
@@ -433,7 +447,7 @@ ava('.updateTarget() causes arrivals to comply with BELOW altitude restriction',
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
     model.groundSpeed = 320;
 
-    moveAircraftToFix(model, "GRNPA");
+    moveAircraftToFix(model, 'GRNPA');
     model.updateTarget();
 
     t.true(model.target.altitude <= 11000);
@@ -444,7 +458,7 @@ ava('.updateTarget() causes departures to comply with AT altitude restriction', 
     model.speed = 320;
     model.altitude = 3000;
 
-    moveAircraftToFix(model, "ROPPR");
+    moveAircraftToFix(model, 'ROPPR');
     model.mcp.enable();
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
@@ -457,7 +471,7 @@ ava('.updateTarget() causes departures to comply with ABOVE altitude restriction
     model.speed = 320;
     model.altitude = 3000;
 
-    moveAircraftToFix(model, "CEASR");
+    moveAircraftToFix(model, 'CEASR');
     model.mcp.enable();
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
@@ -471,29 +485,13 @@ ava('.updateTarget() causes departures to comply with BELOW altitude restriction
     model.speed = 320;
     model.altitude = 3000;
 
-    moveAircraftToFix(model, "WILLW");
+    moveAircraftToFix(model, 'WILLW');
     model.mcp.enable();
     model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
     t.true(model.target.altitude <= 14000);
 });
-
-function moveAircraftToFix(aircraft, fixName) {
-    const fms = aircraft.fms;
-
-    while (fms.currentWaypoint._name !== fixName) {
-        if (!fms.hasNextWaypoint()) {
-            throw Error(`Can not find waypoint ${fixName}`);
-        }
-
-        fms.moveToNextWaypoint();
-    }
-
-    aircraft.positionModel = NavigationLibrary.findFixByName(fixName).positionModel;
-}
-
-
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     const expectedResult = [false, 'unable to taxi, we\'re airborne'];
