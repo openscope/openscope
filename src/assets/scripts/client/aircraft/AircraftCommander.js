@@ -369,7 +369,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSID
      * @param aircraft {AircraftModel}
-     * @param data {array<string>} a string representation of the SID
+     * @param data {array<string>} a string representation of the SID (may also include exit, eg sid.exit)
      * @return {array}   [success of operation, readback]
      */
     runSID(aircraft, data) {

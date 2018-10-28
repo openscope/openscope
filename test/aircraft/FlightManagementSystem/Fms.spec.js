@@ -585,10 +585,10 @@ ava('.replaceDepartureProcedure() returns early when the specified procedure doe
 });
 
 ava('.replaceDepartureProcedure() does not call ._updateDepartureRunwayFromRoute() when the departure procedure is not applied successfully', (t) => {
-    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceDepartureProcedureStub = sinon.stub(fms._routeModel, 'replaceDepartureProcedure', () => false);
-    const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const expectedResponse = [false, 'route of "KLAS07R.BOACH6.TNP" is not valid'];
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+    const routeModelReplaceDepartureProcedureStub = sinon.stub(fms._routeModel, 'replaceDepartureProcedure', () => expectedResponse);
+    const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const responseForInvalidProcedure = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
 
     routeModelReplaceDepartureProcedureStub.restore();
@@ -601,7 +601,7 @@ ava('.replaceDepartureProcedure() calls ._updateDepartureRunwayFromRoute() and u
     const expectedRouteString = 'KLAS07R.BOACH6.TNP.KEPEC3.KLAS07R';
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
-    const expectedResponse = [true, ''];
+    const expectedResponse = [true, { log: 'rerouting to: KLAS07R BOACH6 TNP KEPEC3 KLAS07R', say: 'rerouting as requested' }];
     const response = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
 
     t.true(updateDepartureRunwayFromRouteSpy.calledWithExactly());

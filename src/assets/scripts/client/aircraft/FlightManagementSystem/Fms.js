@@ -14,7 +14,7 @@ import {
 } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
-
+import { radio_runway } from '../../utilities/radioUtilities';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
@@ -843,14 +843,17 @@ export default class Fms {
             return [false, 'departure procedure format not understood'];
         }
 
+        const procedureId = routeStringElements.length <= 2 ?
+                                routeStringElements[0] :
+                                routeStringElements[1];
+
+        const sidModel = NavigationLibrary.getProcedure(procedureId);
+
+        if (_isNil(sidModel)) {
+            return [false, `unknown procedure "${procedureId}"`];
+        }
+
         if (routeStringElements.length === 1) { // RouteString looks like PROC
-            const procedureId = routeStringElements[0];
-            const sidModel = NavigationLibrary.getProcedure(procedureId);
-
-            if (_isNil(sidModel)) {
-                return [false, 'SID name not understood'];
-            }
-
             const exitPoint = _findLast(this.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
 
             if (!exitPoint) {
@@ -861,33 +864,38 @@ export default class Fms {
         }
 
         if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
-            const runwayModel = this._fms.departureRunwayModel;
+            const runwayModel = this.departureRunwayModel;
 
             if (_isNil(runwayModel)) {
                 return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
             }
 
-            const entryName = airportIcao.toUpperCase() + runwayModel.name;
+            let entryName = sidModel.getUniqueEntryPoint();
+
+            if (!entryName) {
+                entryName = airportIcao.toUpperCase() + runwayModel.name;
+
+                if (!sidModel.hasEntry(entryName)) {
+                    const readback = {
+                        log: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayModel.name}`,
+                        say: `the ${procedureId.toUpperCase()} departure is not valid for runway ${radio_runway(runwayModel.name)}`
+                    };
+
+                    return [false, readback];
+                }
+            }
 
             routeStringElements.unshift(entryName);
         }
 
-        const procedureId = routeStringElements[1];
+        const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const readback = this._routeModel.replaceDepartureProcedure(nextRouteString);
 
-        if (!NavigationLibrary.hasProcedure(procedureId)) {
-            return [false, `unknown procedure "${procedureId}"`];
-        }
-
-        const newRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
-        const wasSuccessful = this._routeModel.replaceDepartureProcedure(newRouteString);
-
-        if (wasSuccessful) {
+        if (readback[0]) {
             this._updateDepartureRunwayFromRoute();
-
-            return [true, ''];
         }
 
-        return [false, `route of "${routeString}" is not valid`];
+        return readback;
     }
 
     // TODO: we may need to update the runway in this method
