@@ -89,6 +89,14 @@ ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at t
     t.true(result === expectedResult);
 });
 
+ava.only('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
+    const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
+    const expectedResult = 2900;
+    const result = model.getMinimumGlideslopeInterceptAltitude();
+
+    t.true(result === expectedResult);
+});
+
 ava('.isAircraftInQueue() returns true when an aircraftId is in the queue', (t) => {
     const aircraftIdMock = 'aircraft-221';
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);

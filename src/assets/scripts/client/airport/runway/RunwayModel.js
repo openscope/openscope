@@ -1,3 +1,4 @@
+import _ceil from 'lodash/ceil';
 import _without from 'lodash/without';
 import BaseModel from '../../base/BaseModel';
 import StaticPositionModel from '../../base/StaticPositionModel';
@@ -265,6 +266,20 @@ export default class RunwayModel extends BaseModel {
     */
     getGlideslopeAltitudeAtFinalApproachFix() {
         return this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
+    }
+
+    /**
+    * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
+    *
+    * @for RunwayModel
+    * @method getMinimumGlideslopeInterceptAltitude
+    * @return {number} glideslope altitude in ft MSL
+    */
+    getMinimumGlideslopeInterceptAltitude() {
+        const altitudeAtFinalApproachFix = this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
+        const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
+
+        return minimumInterceptAltitude;
     }
 
     /**
