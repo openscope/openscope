@@ -752,20 +752,20 @@ export default class RouteModel extends BaseModel {
      * @for RouteModel
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @return {boolean} whether operation was successful
+     * @return {array} [success of operation, response]
      */
     replaceDepartureProcedure(routeString) {
-        let sidModel;
+        let routeModel;
 
         try {
-            sidModel = new RouteModel(routeString);
+            routeModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
-            return false;
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        return this.absorbRouteModel(sidModel);
+        return this.absorbRouteModel(routeModel);
     }
 
     /**
