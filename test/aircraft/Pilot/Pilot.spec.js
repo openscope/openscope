@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 import _isObject from 'lodash/isObject';
-import _omit from 'lodash/omit';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
@@ -18,7 +17,6 @@ import {
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // mocks
@@ -285,7 +283,7 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     );
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
     aircraftModel.pilot.maintainSpeed(speedMock, aircraftModel);
-    aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
     aircraftModel.pilot.cancelApproachClearance(aircraftModel);
 
     t.true(aircraftModel.pilot._mcp.altitudeMode === 'HOLD');
@@ -303,7 +301,7 @@ ava('.cancelApproachClearance() returns a success message when finished', (t) =>
         'cancel approach clearance, fly present heading, maintain last assigned altitude and speed'
     ];
 
-    aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     const result = aircraftModel.pilot.cancelApproachClearance(aircraftModel);
 
@@ -409,37 +407,53 @@ ava('.climbViaSID() correctly configures MCP and returns correct response when a
     t.true(pilot._mcp.altitude === 11000);
 });
 
-ava('.conductInstrumentApproach() returns error when no runway is provided', (t) => {
+ava('.conductInstrumentApproach() returns failure message when no runway is provided', (t) => {
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const expectedResult = [false, 'the specified runway does not exist'];
-    const pilot = createPilotFixture();
-    const result = pilot.conductInstrumentApproach(approachTypeMock, null);
+    const result = aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, null);
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.conductInstrumentApproach() returns failure message when assigned altitude is lower than minimum glideslope intercept altitude', (t) => {
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+
+    aircraftModel.mcp.setAltitudeFieldValue(1);
+
+    const expectedResult = [false, {
+        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope ' +
+            'intercept altitude, request climb to 2800',
+        say: 'unable ILS one niner left, our assigned altitude is below the minimum ' +
+            'glideslope intercept altitude, request climb to two thousand eight hundred'
+    }];
+    const result = aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.deepEqual(result, expectedResult);
 });
 
 ava('.conductInstrumentApproach() calls .setArrivalRunway() with the runwayName', (t) => {
-    const pilot = createPilotFixture();
-    const setArrivalRunwaySpy = sinon.spy(pilot._fms, 'setArrivalRunway');
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const setArrivalRunwaySpy = sinon.spy(aircraftModel.pilot._fms, 'setArrivalRunway');
 
-    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(setArrivalRunwaySpy.calledWithExactly(runwayModelMock));
 });
 
 ava('.conductInstrumentApproach() calls ._interceptCourse() with the correct properties', (t) => {
-    const pilot = createPilotFixture();
-    const _interceptCourseSpy = sinon.spy(pilot, '_interceptCourse');
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const _interceptCourseSpy = sinon.spy(aircraftModel.pilot, '_interceptCourse');
 
-    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(_interceptCourseSpy.calledWithExactly(runwayModelMock.positionModel, runwayModelMock.angle));
 });
 
 ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct properties', (t) => {
-    const pilot = createPilotFixture();
-    const _interceptGlidepathSpy = sinon.spy(pilot, '_interceptGlidepath');
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const _interceptGlidepathSpy = sinon.spy(aircraftModel.pilot, '_interceptGlidepath');
 
-    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(_interceptGlidepathSpy.calledWithExactly(
         runwayModelMock.positionModel,
@@ -449,23 +463,24 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
 });
 
 ava('.conductInstrumentApproach() calls .exitHold', (t) => {
-    const pilot = createPilotFixture();
-    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
 
-    pilot._fms.setFlightPhase('HOLD');
-    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    aircraftModel.pilot._fms.setFlightPhase('HOLD');
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(exitHoldSpy.calledWithExactly());
 });
 
 ava('.conductInstrumentApproach() sets #hasApproachClearance to true', (t) => {
-    const pilot = createPilotFixture();
-    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
-    t.true(pilot.hasApproachClearance);
+    t.true(aircraftModel.pilot.hasApproachClearance);
 });
 
 ava('.conductInstrumentApproach() returns a success message', (t) => {
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const expectedResult = [
         true,
         {
@@ -473,8 +488,7 @@ ava('.conductInstrumentApproach() returns a success message', (t) => {
             say: 'cleared ILS runway one niner left approach'
         }
     ];
-    const pilot = createPilotFixture();
-    const result = pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock);
+    const result = aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.deepEqual(result, expectedResult);
 });
@@ -735,14 +749,12 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
-    const altitudeMock = 7000;
-    const headingMock = 3.839724354387525; // 220 in degrees
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
-    aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(aircraftModel.pilot.hasApproachClearance);
 
@@ -823,12 +835,10 @@ ava('.maintainHeading() returns a success message when incremental is true and d
 ava('.maintainHeading() calls .cancelApproachClearance()', (t) => {
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
-    const altitudeMock = 7000;
-    const headingMock = 3.839724354387525; // 220 in degrees
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
-    aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(aircraftModel.pilot.hasApproachClearance);
 
@@ -863,12 +873,10 @@ ava('.maintainPresentHeading() returns a success message when finished', (t) => 
 ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
-    const altitudeMock = 7000;
-    const headingMock = 3.839724354387525; // 220 in degrees
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
-    aircraftModel.pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
+    aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.true(aircraftModel.pilot.hasApproachClearance);
 

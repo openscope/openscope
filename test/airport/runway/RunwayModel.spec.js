@@ -89,7 +89,7 @@ ava('.getGlideslopeAltitudeAtFinalApproachFix() returns glideslope altitude at t
     t.true(result === expectedResult);
 });
 
-ava.only('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
+ava('.getMinimumGlideslopeInterceptAltitude() returns glideslope altitude at the final approach fix', (t) => {
     const model = new RunwayModel(runway07L25R, 0, airportPositionFixtureKLAS);
     const expectedResult = 2900;
     const result = model.getMinimumGlideslopeInterceptAltitude();
