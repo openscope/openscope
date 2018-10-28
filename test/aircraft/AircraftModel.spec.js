@@ -493,6 +493,59 @@ ava('.updateTarget() causes departures to comply with BELOW altitude restriction
     t.true(model.target.altitude <= 14000);
 });
 
+ava('.updateTarget() causes arrivals to descend to the assigned altitude if there is no restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'LEMNZ');
+    model.pilot.descendViaStar(model, 5000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 5000);
+});
+
+ava('.updateTarget() causes departures to climb to cruise altitude if there is no restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'TRALR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 31000);
+});
+
+ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal restriction is above the assigned altitude', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'TRROP');
+    model.pilot.descendViaStar(model, 5000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 5000);
+});
+
+ava('.updateTarget() causes departures to climb to cruise altitude if the maximum restriction is below the cruise altitude', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'BIKKR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 31000);
+});
+
+// TODO: climb on descend
+// TODO: descend on climb
+// TODO: prioritizing clearance over restriction (arrival)
+// TODO: prioritizing clearance over restriction (departure)
+
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
     const expectedResult = [false, 'unable to taxi, we\'re airborne'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
