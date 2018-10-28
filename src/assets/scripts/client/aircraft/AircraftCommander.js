@@ -1,4 +1,3 @@
-import _ceil from 'lodash/ceil';
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
@@ -666,20 +665,8 @@ export default class AircraftCommander {
         const approachType = 'ils';
         const runwayName = data[1].toUpperCase();
         const runwayModel = AirportController.airport_get().getRunway(runwayName);
-        const minimumGlideslopeInterceptAltitude = runwayModel.getMinimumGlideslopeInterceptAltitude();
 
-        if (aircraft.mcp.altitude < minimumGlideslopeInterceptAltitude) {
-            const readback = {};
-
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
-
-            return [false, readback];
-        }
-
-        return aircraft.pilot.conductInstrumentApproach(approachType, runwayModel);
+        return aircraft.pilot.conductInstrumentApproach(aircraft, approachType, runwayModel);
     }
 
     /**
