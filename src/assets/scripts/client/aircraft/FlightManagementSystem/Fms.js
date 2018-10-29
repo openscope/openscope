@@ -843,9 +843,11 @@ export default class Fms {
             return [false, 'departure procedure format not understood'];
         }
 
-        const procedureId = routeStringElements.length <= 2 ?
-                                routeStringElements[0] :
-                                routeStringElements[1];
+        let procedureId = routeStringElements[0];
+
+        if (routeStringElements.length === 3) {
+            procedureId = routeStringElements[1];
+        }
 
         const sidModel = NavigationLibrary.getProcedure(procedureId);
 
@@ -872,7 +874,7 @@ export default class Fms {
 
             let entryName = sidModel.getUniqueEntryPoint();
 
-            if (!entryName) {
+            if (_isEmpty(entryName)) {
                 entryName = airportIcao.toUpperCase() + runwayModel.name;
 
                 if (!sidModel.hasEntry(entryName)) {
