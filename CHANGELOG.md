@@ -1,20 +1,76 @@
-# 6.5.0 (September 1, 2018)
+# 6.7.0 (November 1, 2018)
 ### New Features
-- [#945](https://github.com/openscope/openscope/issues/945) - added an information panel with data about wind and elevation
+- [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
+- [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
+- [#1017](https://github.com/openscope/openscope/issues/1017) - Add more GA aircraft
+- [#945](https://github.com/openscope/openscope/issues/945) - Add an information panel with data about wind and elevation
+
 
 
 
 
 ### Bugfixes
+- [#1099](https://github.com/openscope/openscope/issues/1099) - Fix wrong B747 entry in Turkish Airlines file
+- [#1104](https://github.com/openscope/openscope/issues/1104) - Fix console warnings for removing StripViewModel which doesn't exist
+- [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
+- [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 
 
 
 
 
 ### Enhancements & Refactors
+- [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
+- [#794](https://github.com/openscope/openscope/issues/794) - Bring KMIA back into compliance with the airport specs
+- [1123](https://github.com/openscope/openscope/issues/1123) - Make runway mandatory in "taxi" command
+- [#1112](https://github.com/openscope/openscope/issues/1112) - Cleanup of eslint errors and warnings
+- [#1138](https://github.com/openscope/openscope/issues/1138) - Remove contributors block from package.json
+- [#696](https://github.com/openscope/openscope/issues/696) - Default canvas theme no longer hardcoded in CanvasController
+- [#1144](https://github.com/openscope/openscope/issues/1144) - Move calculateSpawnHeading to SpawnPattenModel
+- [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
+- [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
+- [#1133](https://github.com/openscope/openscope/issues/1133) - Improve InputController class
 
 
 
+
+
+# 6.6.0 (October 1, 2018)
+### New Features
+- [#989](https://github.com/openscope/openscope/issues/989) - Add in Austin Bergstrom International Airport
+- [#1090](https://github.com/openscope/openscope/issues/1090) - Add Tecnam P92 Aircraft
+
+### Bugfixes
+- [#1086](https://github.com/openscope/openscope/issues/1086) - Update P28A Climb rate fm 2000ft/m to 700ft/m
+- [#1034](https://github.com/openscope/openscope/issues/1034) - Fix waypoint time-to-turn calculations to ensure smooth turns
+- [#935](https://github.com/openscope/openscope/issues/935) - Prevent aircraft from skipping fixes that require tight turns
+- [#870](https://github.com/openscope/openscope/issues/870) - Fix unusable runway bug after changing one aircraft's departure runway
+- [#1101](https://github.com/openscope/openscope/issues/1101) - Fix console error caused by vector waypoints
+
+### Enhancements & Refactors
+- [1077](https://github.com/openscope/openscope/issues/1077) - Update flight strips view by separating arrival and departure strips
+- [#1074](https://github.com/openscope/openscope/issues/1074) - Update link to "aircraft separation rules" in scoring.md
+- [#111](https://github.com/openscope/openscope/issues/111) - Draw STARs on scope like we do with SIDs
+
+
+# 6.5.0 (September 1, 2018)
+### New Features
+- [#206](https://github.com/openscope/openscope/issues/206) - Add Bucharest Henri Coandǎ International Airport (LROP)
+
+### Bugfixes
+- [#994](https://github.com/openscope/openscope/issues/994) - fix "Aircraft vectored off ILS maintain over-precise altitude"
+- [#1048](https://github.com/openscope/openscope/issues/1048) - fix "Aircrafts do not land after ILS clearance" because runway is not part of their STAR
+- [#1044](https://github.com/openscope/openscope/issues/1044) - fix aircrafts drift off ILS localizer during final approach causing "strange behaviour after landing"
+- [#1047](https://github.com/openscope/openscope/issues/1047) - fix "Flight number 5000 pronounced incorrectly"
+- [#993](https://github.com/openscope/openscope/issues/993) - fix Arrivals exiting and reentering airspace causes error about missing strip
+- [#724](https://github.com/openscope/openscope/issues/724) - fix settings modal doesn't add active class to control icon
+- [#421](https://github.com/openscope/openscope/issues/421) - Add missing keys to spawnPatternModelJsonValidator
+- [#836](https://github.com/openscope/openscope/issues/836) - Fix "hold in STAR procedure isn't working"
+
+### Enhancements & Refactors
+- [#933](https://github.com/openscope/openscope/issues/933) - Revival of Istanbul Atatürk Airport (LTBA)
+- [#1053](https://github.com/openscope/openscope/issues/1053) Add optional altitude argument for 'descend via STAR' command
+- [#1071](https://github.com/openscope/openscope/issues/1071) Add optional altitude argument for 'climb via SID' command
 
 
 # 6.4.0 (August 1, 2018)

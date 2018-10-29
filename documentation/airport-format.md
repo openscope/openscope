@@ -25,6 +25,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 ```javascript
 {
+    "airac": 1801,
     "radio": {
         "twr": "Seatle Tower",
         "app": "Seattle Approach",
@@ -188,6 +189,21 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
                 ["aca", 1],
                 ["asa", 3]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "",
+            "category": "overflight",
+            "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
+            "altitude": [18000, 36000],
+            "speed": 320,
+            "method": "random",
+            "rate": 15,
+            "airlines": [
+                ["aal", 4],
+                ["aca", 1],
+                ["asa", 3]
+            ]
         }
     ],
     "maps": {
@@ -208,6 +224,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](asset
 
 _all properties in this section are required_
 
+* **airac** ― AIRAC cycle from which data for the airport was taken. The airport must be fully compliant as of the specified cycle in order for this value to be changed.
 * **radio** ― The radio callsigns for each controller:
 
 ```javascript
@@ -326,6 +343,14 @@ They're used when we need aircraft to fly over a location that doesn't have an a
 
 ```javascript
 "_RWY33L01DME": [42.342838, -70.975751]
+```
+* Any fixes that represent the intersection of a runway's inbound course and another course to a fix will be descried using the format below. Note that the runway whose _approach course_ intersects is the one to be used, not the runway whose _departure course_ intersects.
+```javascript
+"_RWY12BSTER081": []
+```
+* Any fixes that represent the intersection of radials off of two fixes will be described by including each fix's _outbound_ radial.
+```javascript
+"_FIXXA030FIXXB180"
 ```
 
 * Fixes may be defined based on the intersection between outbound radials from two defined fixes. For a point northeast of `FIXXA`, and northwest of `FIXXB`, we could create `_FIXXA050FIXXB320`, where the three digit numbers after the fix names are the direction from that fix to the described location.
@@ -593,6 +618,21 @@ _At least one `spawnPattern` is required to get aircraft populating into the app
         "destination": "KSEA",
         "category": "arrival",
         "route": "PDT.CHINS2.KSEA",
+        "altitude": [18000, 36000],
+        "speed": 320,
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal", 4],
+            ["aca", 1],
+            ["asa", 3]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "",
+        "category": "overflight",
+        "route": "PDT..PSC..ELN..RADDY..AUBRN..GIGHR..ELMAA..HQM",
         "altitude": [18000, 36000],
         "speed": 320,
         "method": "random",

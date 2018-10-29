@@ -1,5 +1,3 @@
-import _has from 'lodash/has';
-import { radio_names } from './utilities/radioUtilities';
 import { LOG } from './constants/logLevel';
 
 /**

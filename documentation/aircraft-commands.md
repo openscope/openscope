@@ -68,9 +68,10 @@ _Aliases -_ `cvs`
 _Information -_ Authorizes the aircraft to climb in accordance with the
 SID that is currently in their flightplan. They will climb to their filed
 cruise altitude, whilst complying with all altitude and speed restrictions
-posted in the procedure.
+posted in the procedure. Optionally, an altitude may be specified to dictate
+the altitude to be climbed to.
 
-_Syntax -_ `AAL123 cvs`
+_Syntax -_ `AAL123 cvs` or `AAL123 cvs [alt]`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -87,11 +88,10 @@ _Syntax -_ `AAL123 cto`
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane to taxi to a
-runway; if a runway is not included they will continue to the runway
-with the largest headwind.
+_Information -_ This command tells the specified plane to taxi to the specified
+runway.
 
-_Syntax -_ `AAL123 taxi [Runway]`
+_Syntax -_ `AAL123 taxi [runway]`
 
 # Arrival Commands
 These commands are only used by arrival aircraft.
@@ -105,7 +105,7 @@ runway assignment. In cases where their STAR says to follow a different series
 of waypoints dependent upon their runway, we can use this command to have an
 aircraft follow the desired branch of the STAR toward the desired runway.
 
-_Syntax -_ `AAL123 e 26r`
+_Syntax -_ `AAL123 e [runway]`
 
 ### Descend via STAR
 _Aliases -_ `dvs`
@@ -114,9 +114,10 @@ _Information -_ Authorizes the aircraft to descend in accordance with the
 STAR that is currently in their flightplan. They will descend to the lowest
 altitude required by the STAR, and after no further altitude and/or speed
 restrictions are listed, will maintain their altitude and speed until
-receiving further instructions from ATC.
+receiving further instructions from ATC. Optionally, an altitude may be
+specified to dictate the altitude to be descended to.
 
-_Syntax -_ `AAL123 dvs`
+_Syntax -_ `AAL123 dvs` or `AAL123 dvs [alt]`
 
 ### ILS
 _Aliases -_ `ils` / `i`
@@ -130,7 +131,7 @@ the glideslope and land.
 
 Note: This replaces the old `land` / `l` command.
 
-_Syntax -_ `AAL123 i [rwy]`
+_Syntax -_ `AAL123 i [runway]`
 
 # Routing Commands
 These commands allow you to manipulate the route in the aircraft's FMS.

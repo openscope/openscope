@@ -39,6 +39,17 @@ export const altitudeParser = (args) => {
 };
 
 /**
+ * Converts a flight level altitude to a number in thousands if available
+ *
+ * @function optionalAltitudeParser
+ * @param args {array}
+ * @return {array<number>}
+ */
+export const optionalAltitudeParser = (args) => {
+    return args.length !== 0 ? [convertToThousands(args[0])] : [];
+};
+
+/**
  * Accepts a direction string:
  * - `left / l / right / r`
  *

@@ -234,23 +234,6 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Calculate the heading from the first waypoint to the second waypoint
-     *
-     * This is used to determine the heading of newly spawned aircraft
-     *
-     * @for RouteModel
-     * @method calculateSpawnHeading
-     * @return {number} heading, in radians
-     */
-    calculateSpawnHeading() {
-        const firstWaypointPositionModel = this.waypoints[0].positionModel;
-        const secondWaypointPositionModel = this.waypoints[1].positionModel;
-        const heading = firstWaypointPositionModel.bearingToPosition(secondWaypointPositionModel);
-
-        return heading;
-    }
-
-    /**
     * Return an array of waypoints in the flight plan that have altitude restrictions
     *
     * @for RouteModel
@@ -447,8 +430,8 @@ export default class RouteModel extends BaseModel {
         });
 
         return this._combineRouteStrings(legRouteStringsWithoutAirports)
-        .replace(REGEX.DOUBLE_DOT, ' ')
-        .replace(REGEX.SINGLE_DOT, ' ');
+            .replace(REGEX.DOUBLE_DOT, ' ')
+            .replace(REGEX.SINGLE_DOT, ' ');
     }
 
     /**
@@ -861,38 +844,27 @@ export default class RouteModel extends BaseModel {
     * @for RouteModel
     * @method updateStarLegForArrivalRunwayModel
     * @param runwayModel {RunwayModel}
-    * @return {array} [success of operation, response]
     */
     updateStarLegForArrivalRunwayModel(runwayModel) {
         if (!this.hasStarLeg()) {
             return;
         }
 
+        if (!this.isRunwayModelValidForStar(runwayModel)) {
+            console.error(`Received Runway ${runwayModel.name}, which is not valid for the assigned STAR. ` +
+                'The runway should have been validated before passing it to this method!');
+
+            return;
+        }
+
         const originalCurrentWaypointName = this.currentWaypoint.name;
         const nextExitName = `${this.getArrivalRunwayAirportIcao().toUpperCase()}${runwayModel.name}`;
         const starLegIndex = this._findStarLegIndex();
-        const starLegModel = this._legCollection[starLegIndex];
-
-        if (!starLegModel.procedureHasExit(nextExitName)) {
-            const procedureIcao = starLegModel.getProcedureIcao();
-            const procedureName = starLegModel.getProcedureName();
-            const readback = {};
-            readback.log = `unable, Runway ${runwayModel.name} is not valid for the ${procedureIcao} arrival`;
-            readback.say = `unable, Runway ${runwayModel.getRadioName()} is not valid for the ${procedureName} arrival`;
-
-            return [false, readback];
-        }
 
         const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
         this._legCollection[starLegIndex] = amendedStarLegModel;
 
         this.skipToWaypointName(originalCurrentWaypointName);
-
-        const readback = {};
-        readback.log = `expecting Runway ${runwayModel.name}`;
-        readback.say = `expecting Runway ${runwayModel.getRadioName()}`;
-
-        return [true, readback];
     }
 
     // ------------------------------ PRIVATE ------------------------------
@@ -932,8 +904,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${divergentLeg.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**
@@ -1587,8 +1558,7 @@ export default class RouteModel extends BaseModel {
         }
 
         throw new TypeError(`Expected known leg type, but received "${convergentLegModel.legType}" ` +
-            'type leg, preventing ability to determine the appropriate route merging strategy!'
-        );
+            'type leg, preventing ability to determine the appropriate route merging strategy!');
     }
 
     /**
