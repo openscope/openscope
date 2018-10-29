@@ -290,9 +290,9 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
-                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
                 "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"], ["BIKKR", "A400-"], "TRALR"]
             },
             "body": ["TRALR"],
