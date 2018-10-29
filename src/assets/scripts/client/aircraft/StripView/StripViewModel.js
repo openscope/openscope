@@ -664,14 +664,14 @@ export default class StripViewModel extends BaseModel {
      * @return {object}
      */
     _buildRunwayInformation(aircraftModel) {
-        if (aircraftModel.isDeparture()) {
+        if (aircraftModel.isApron()) {
             return {
                 assigned: aircraftModel.pilot.hasDepartureClearance,
                 name: aircraftModel.fms.departureRunwayModel.name
             };
         }
 
-        if (aircraftModel.isArrival() !== null) {
+        if (aircraftModel.isArrival()) {
             return {
                 assigned: aircraftModel.pilot.hasApproachClearance,
                 name: aircraftModel.fms.arrivalRunwayModel.name
