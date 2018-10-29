@@ -25,6 +25,7 @@
 - [#696](https://github.com/openscope/openscope/issues/696) - Default canvas theme no longer hardcoded in CanvasController
 - [#1144](https://github.com/openscope/openscope/issues/1144) - Move calculateSpawnHeading to SpawnPattenModel
 - [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
+- [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
 
 
 
