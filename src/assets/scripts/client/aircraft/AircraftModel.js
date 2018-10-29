@@ -2063,7 +2063,7 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavDescent
      * @param waypointModel {WaypointModel} the waypoint at which to comply with the restriction
-     * @param targetAltitude {number} the altitude to comnply with
+     * @param targetAltitude {number} the altitude to comply with
      * @return {number}
      */
     _calculateTargetedAltitudeVnavDescent(waypointModel, targetAltitude) {
