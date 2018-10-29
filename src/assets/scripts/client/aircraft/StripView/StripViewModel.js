@@ -32,7 +32,7 @@ const STRIP_VIEW_SELECTORS = {
  * @type {string}
  * @final
  */
-const STRIP_VIEW_PREPLANNING_CLASS = "stripView-preplanning";
+const STRIP_VIEW_PREPLANNING_CLASS = 'stripView-preplanning';
 
 /**
  * Encapsulation of data and view elements for a single aircraft progress strip
