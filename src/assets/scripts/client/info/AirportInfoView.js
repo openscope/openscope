@@ -3,7 +3,23 @@ import EventBus from '../lib/EventBus';
 import SimClockController from './SimClockController';
 import AirportInfoController from './AirportInfoController';
 import { EVENT } from '../constants/eventNames';
-import { SIM_AIRPORT_INFO_TEMPLATE } from './simAirportInfoTemplate';
+import { AIRPORT_INFO_TEMPLATE } from './airportInfoTemplate';
+
+/**
+ * @property STRIP_VIEW_SELECTORS
+ * @type {object<string, string}
+ * @final
+ */
+const INFO_VIEW_SELECTORS = {
+    CLOCK_LABEL: '.js-airportInfo-clock-label',
+    CLOCK_VALUE: '.js-airportInfo-clock-value',
+    WIND_LABEL: '.js-airportInfo-wind-label',
+    WIND_VALUE: '.js-airportInfo-wind-value',
+    ALTIMETER_LABEL: '.js-airportInfo-altimeter-label',
+    ALTIMETER_VALUE: '.js-airportInfo-altimeter-value',
+    ELEVATION_LABEL: '.js-airportInfo-elevation-label',
+    ELEVATION_VALUE: '.js-airportInfo-elevation-value'
+};
 
 /**
  * Displays an information corner that displays the current time, wind speed,
@@ -45,8 +61,9 @@ export default class AirportInfoView {
         /**
          * @for AirportInfoView
          * @property simAirportInfoController
+         * @type {AirportInfoController}
          */
-        this.simAirportInfoController = null;
+        this.airportInfoController = null;
 
         /**
          * Local instance of the event bus
@@ -57,7 +74,10 @@ export default class AirportInfoView {
          */
         this._eventBus = EventBus;
 
-        return this.init();
+        return this.init()
+                ._createChildren()
+                ._setupHandlers()
+                ._enable();
     }
 
     /**
@@ -66,13 +86,9 @@ export default class AirportInfoView {
      * @chainable
      */
     init() {
-        this.$template = $(SIM_AIRPORT_INFO_TEMPLATE);
+        this.$template = $(AIRPORT_INFO_TEMPLATE);
         this.simClockController = new SimClockController();
-        this.simAirportInfoController = new AirportInfoController();
-
-        this._setupHandlers();
-        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
-        this.$element.append(this.$template);
+        this.airportInfoController = new AirportInfoController();
 
         return this;
     }
@@ -80,24 +96,60 @@ export default class AirportInfoView {
     /**
      * @for AirportInfoView
      * @method _setupHandlers
+     * @chainable
      * @private
      */
     _setupHandlers() {
-        this.onAirportChangeHandler = this.update_info.bind(this);
+        this.onAirportChangeHandler = this.updateInfo.bind(this);
+
+        return this;
     }
 
     /**
-     * @for AirportInfoView
-     * @method reset
+     * Set initial element references
+     *
+     * Should be run once only on instantiation
+     *
+     * @for StripViewModel
+     * @method _createChildren
      * @chainable
+     * @private
      */
-    reset() {
+    _createChildren() {
+        this.$element.append(this.$template);
+
+        return this;
+    }
+
+    /**
+     * Enable all event handlers
+     *
+     * @for AirportInfoView
+     * @method _enable
+     * @chainable
+     * @private
+     */
+    _enable() {
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+
+        return this;
+    }
+
+    /**
+     * Disable all event handlers and destroy the instance
+     *
+     * @for AirportInfoView
+     * @method _disable
+     * @chainable
+     * @private
+     */
+    _disable() {
         this.$element = null;
         this.$template = null;
         this.simClockController = null;
-        this.simAirportInfoController = null;
+        this.airportInfoController = null;
 
-        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.update_info);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this.updateInfo);
 
         return this;
     }
@@ -107,12 +159,11 @@ export default class AirportInfoView {
      * and the elevation. Triggered on airport change.
      *
      * @for AirportInfoView
-     * @method update_info
+     * @method updateInfo
      * @param {AirportModel} airport
      */
-    update_info(airport) {
-        this.simAirportInfoController.update(airport);
-
+    updateInfo(airport) {
+        this.airportInfoController.update(airport);
         this._render();
     }
 
@@ -124,26 +175,28 @@ export default class AirportInfoView {
      * @private
      */
     _render() {
-        const wind = this.simAirportInfoController.wind;
-        const altimeter = this.simAirportInfoController.altimeter;
-        const elevation = this.simAirportInfoController.elevation;
-        const icao = this.simAirportInfoController.icao;
+        const wind = this.airportInfoController.wind;
+        const altimeter = this.airportInfoController.altimeter;
+        const elevation = this.airportInfoController.elevation;
+        const icao = this.airportInfoController.icao;
 
-        $('#wind').text(`${icao} ${wind}`);
-        $('#altimeter').text(`${icao} ${altimeter}`);
-        $('#elevation').text(`${icao} ${elevation}`);
+        $(INFO_VIEW_SELECTORS.WIND_VALUE).text(`${icao} ${wind}`);
+        $(INFO_VIEW_SELECTORS.ALTIMETER_VALUE).text(`${icao} ${altimeter}`);
+        $(INFO_VIEW_SELECTORS.ELEVATION_VALUE).text(`${icao} ${elevation}`);
     }
 
     /**
      * Updates the clock, called from `AppController#update_pre`
      *
      * @for AirportInfoView
-     * @method update_clock
+     * @method updateClock
      */
-    update_clock() {
-        const time = this.simClockController.update();
+    updateClock() {
+        this.simClockController.update();
 
-        $('#clock').text(time);
+        const time = this.simClockController.render();
+
+        $(INFO_VIEW_SELECTORS.CLOCK_VALUE).text(time);
     }
 
     /**
@@ -155,8 +208,7 @@ export default class AirportInfoView {
      * @param {AirportModel} airport
      */
     complete(airport) {
-        this.simAirportInfoController.calculateInitialAirportData(airport);
-
+        this.airportInfoController.calculateInitialAirportData(airport);
         this._render();
     }
 }

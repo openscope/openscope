@@ -108,10 +108,7 @@ export default class AirportInfoController {
      * @private
      */
     _recalculate() {
-        this.wind = this._buildWindAndGustReadout(this.airport.wind);
-        this.altimeter = this._generateAltimeterReading(this.airport.wind.speed);
-        this.elevation = this.airport.position[2];
-        this.icao = this.airport.icao.toUpperCase();
+        this.calculateInitialAirportData(this.airport);
     }
 
     /**

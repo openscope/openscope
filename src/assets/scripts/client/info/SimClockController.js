@@ -32,6 +32,17 @@ export default class SimClockController {
     }
 
     /**
+     * @for SimClockController
+     * @method _init
+     * @private
+     */
+    _init() {
+        this.startTime = this.realWorldCurrentZuluTime;
+
+        return this;
+    }
+
+    /**
      * Get current time in the user's time zone
      *
      *  @for SimClockController
@@ -72,10 +83,10 @@ export default class SimClockController {
      * Generates a string of the current game time in a human-readable format
      *
      * @for SimClockController
-     * @method generateCurrentTimeValue
-     * @return clockTime {string}   current game time formatted like '03:44:17'
+     * @method render
+     * @return clockTime {string} current game time formatted like '03:44:17'
      */
-    generateCurrentTimeValue() {
+    render() {
         const gameTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
         const clockDate = new Date(this.startTime + gameTimeInMilliseconds);
         const hours = digits_integer(clockDate.getHours(), 2);
@@ -87,51 +98,13 @@ export default class SimClockController {
     }
 
     /**
-     * Re-calculates elapsed time and re-renders the view
+     * Re-calculates elapsed time
      *
      * @for SimClockController
      * @method update
      */
     update() {
-        this._recalculate();
-
-        return this._render();
-    }
-
-    /**
-     * @for SimClockController
-     * @method _init
-     * @private
-     */
-    _init() {
-        this.startTime = this.realWorldCurrentZuluTime;
-
-        return this;
-    }
-
-    /**
-     * Updates the time stored in the clock
-     *
-     * @for SimClockController
-     * @method _tick
-     * @private
-     */
-    _recalculate() {
         const elapsedTime = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
         this.time = this.startTime + elapsedTime;
-    }
-
-    /**
-     * Updates the DOM with the new game time
-     *
-     * @for SimClockController
-     * @method _render
-     * @return {number} current game time
-     * @private
-     */
-    _render() {
-        const currentTimeValue = this.generateCurrentTimeValue();
-
-        return currentTimeValue;
     }
 }
