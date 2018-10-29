@@ -305,7 +305,11 @@ export default class ProcedureModel {
     getUniqueEntryPoint() {
         const entryNames = Object.keys(this._entryPoints);
 
-        return entryNames.length === 1 ? entryNames[0] : null;
+        if (entryNames.length !== 1) {
+            return '';
+        }
+
+        return entryNames[0];
     }
 
     /**
