@@ -318,6 +318,8 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
+        // iterating backwards because each iteration removes a list item
+        // iterating forward would cause skipping as the array shifts
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             this.aircraft_remove(this.aircraft.list[i]);
         }
