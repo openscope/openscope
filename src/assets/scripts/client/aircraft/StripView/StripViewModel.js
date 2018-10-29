@@ -427,7 +427,6 @@ export default class StripViewModel extends BaseModel {
         this._flightPlan = flightPlan;
         this._categoryClassName = this._buildClassnameForFlightCategory(aircraftModel);
         this.isDeparture = aircraftModel.isDeparture();
-        // TODO: remarks
         this._runwayInformation = this._buildRunwayInformation(aircraftModel);
 
         return this;
