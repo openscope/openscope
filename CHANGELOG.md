@@ -28,6 +28,7 @@
 - [#1144](https://github.com/openscope/openscope/issues/1144) - Move calculateSpawnHeading to SpawnPattenModel
 - [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
 - [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
+- [#1133](https://github.com/openscope/openscope/issues/1133) - Improve InputController class
 
 
 
