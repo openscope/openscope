@@ -1,6 +1,8 @@
 # 6.7.0 (November 1, 2018)
 ### New Features
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
+- [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
+- [#1017](https://github.com/openscope/openscope/issues/1017) - Add more GA aircraft
 
 
 
@@ -8,6 +10,9 @@
 
 ### Bugfixes
 - [#1099](https://github.com/openscope/openscope/issues/1099) - Fix wrong B747 entry in Turkish Airlines file
+- [#1104](https://github.com/openscope/openscope/issues/1104) - Fix console warnings for removing StripViewModel which doesn't exist
+- [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
+- [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 
 
 
@@ -18,6 +23,12 @@
 - [#794](https://github.com/openscope/openscope/issues/794) - Bring KMIA back into compliance with the airport specs
 - [1123](https://github.com/openscope/openscope/issues/1123) - Make runway mandatory in "taxi" command
 - [#1112](https://github.com/openscope/openscope/issues/1112) - Cleanup of eslint errors and warnings
+- [#1138](https://github.com/openscope/openscope/issues/1138) - Remove contributors block from package.json
+- [#696](https://github.com/openscope/openscope/issues/696) - Default canvas theme no longer hardcoded in CanvasController
+- [#1144](https://github.com/openscope/openscope/issues/1144) - Move calculateSpawnHeading to SpawnPattenModel
+- [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
+- [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
+- [#1133](https://github.com/openscope/openscope/issues/1133) - Improve InputController class
 
 
 
