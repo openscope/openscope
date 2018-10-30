@@ -1,5 +1,4 @@
 /* eslint-disable no-continue */
-import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
@@ -468,7 +467,7 @@ export default class AircraftController {
      * @param  {AircraftModel} aircraftModel the aircraft to remove
      */
     removeAircraftModelFromList(aircraftModel) {
-        console.warn('deprecated');
+        console.warn('AircraftController.removeAircraftModelFromList() has been deprecated');
         this._collection.remove(aircraftModel);
 
         this.aircraft.list = _without(this.aircraft.list, aircraftModel);
