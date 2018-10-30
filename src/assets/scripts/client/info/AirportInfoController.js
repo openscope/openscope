@@ -6,44 +6,44 @@ import { INVALID_NUMBER } from '../constants/globalConstants';
  * Gets information about the current airport, specifically
  * the airport's elevation, wind speed and direction, and altimeter.
  *
- * @class SimAirportInfoController
+ * @class AirportInfoController
  */
 export default class AirportInfoController {
     /**
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @constructor
      */
     constructor() {
         /**
-         * @for SimAirportInfoController
+         * @for AirportInfoController
          * @property airport
          * @type {AirportModel}
          */
         this.airport = null;
 
         /**
-         * @for SimAirportInfoController
+         * @for AirportInfoController
          * @property wind
          * @type {String}
          */
         this.wind = '';
 
         /**
-         * @for SimAirportInfoController
+         * @for AirportInfoController
          * @property altimeter
          * @type {Number}
          */
         this.altimeter = INVALID_NUMBER;
 
         /**
-         * @for SimAirportInfoController
+         * @for AirportInfoController
          * @property elevation
          * @type {String}
          */
         this.elevation = '';
 
         /**
-         * @for SimAirportInfoController
+         * @for AirportInfoController
          * @property icao
          * @type {String}
          */
@@ -55,7 +55,7 @@ export default class AirportInfoController {
     /**
      * Binds this.update to this
      *
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method _setupHandlers
      * @private
      */
@@ -66,7 +66,7 @@ export default class AirportInfoController {
     /**
      * Method to update information when airport is changed
      *
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method update
      * @param {AirportModel} airport
      */
@@ -77,7 +77,7 @@ export default class AirportInfoController {
     }
 
     /**
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method reset
      * @chainable
      */
@@ -92,7 +92,7 @@ export default class AirportInfoController {
     }
 
     /**
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method init
      * @chainable
      */
@@ -141,7 +141,7 @@ export default class AirportInfoController {
     /**
      * Creates an 'altimeter' reading for the info view
      *
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method _generateAltimeterReading
      * @param {Number} windSpeed
      * @returns {Number} the new altimeter value
@@ -163,7 +163,7 @@ export default class AirportInfoController {
      * A seperate render function is needed because the initial airport
      * model is formatted differently than subsequently loaded models.
      *
-     * @for SimAirportInfoController
+     * @for AirportInfoController
      * @method calculateInitialAirportData
      * @param {AirportModel} airport
      */
