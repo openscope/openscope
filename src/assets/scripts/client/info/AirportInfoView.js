@@ -6,7 +6,7 @@ import { EVENT } from '../constants/eventNames';
 import { AIRPORT_INFO_TEMPLATE } from './airportInfoTemplate';
 
 /**
- * @property STRIP_VIEW_SELECTORS
+ * @property INFO_VIEW_SELECTORS
  * @type {object<string, string}
  * @final
  */
@@ -86,9 +86,13 @@ export default class AirportInfoView {
      * @chainable
      */
     init() {
-        this.$template = $(AIRPORT_INFO_TEMPLATE);
         this.simClockController = new SimClockController();
         this.airportInfoController = new AirportInfoController();
+        this.$template = $(AIRPORT_INFO_TEMPLATE);
+        this.$clockView = this.$template.find(INFO_VIEW_SELECTORS.CLOCK_VALUE);
+        this.$windView = this.$template.find(INFO_VIEW_SELECTORS.WIND_VALUE);
+        this.$altimeterView = this.$template.find(INFO_VIEW_SELECTORS.ALTIMETER_VALUE);
+        this.$elevationView = this.$template.find(INFO_VIEW_SELECTORS.ELEVATION_VALUE);
 
         return this;
     }
@@ -180,9 +184,9 @@ export default class AirportInfoView {
         const elevation = this.airportInfoController.elevation;
         const icao = this.airportInfoController.icao;
 
-        $(INFO_VIEW_SELECTORS.WIND_VALUE).text(`${icao} ${wind}`);
-        $(INFO_VIEW_SELECTORS.ALTIMETER_VALUE).text(`${icao} ${altimeter}`);
-        $(INFO_VIEW_SELECTORS.ELEVATION_VALUE).text(`${icao} ${elevation}`);
+        this.$windView.text(`${icao} ${wind}`);
+        this.$altimeterView.text(`${icao} ${altimeter}`);
+        this.$elevationView.text(`${icao} ${elevation}`);
     }
 
     /**
@@ -196,7 +200,7 @@ export default class AirportInfoView {
 
         const time = this.simClockController.render();
 
-        $(INFO_VIEW_SELECTORS.CLOCK_VALUE).text(time);
+        this.$clockView.text(time);
     }
 
     /**
