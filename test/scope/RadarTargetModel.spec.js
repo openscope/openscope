@@ -1,7 +1,7 @@
 import ava from 'ava';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetModel from '../../src/assets/scripts/client/scope/RadarTargetModel';
-import { arrivalAircraftFixture } from '../aircraft/_mocks/aircraftMocks';
+import { ARRIVAL_AIRCRAFT_MODEL_MOCK } from '../aircraft/_mocks/aircraftMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
 
@@ -10,9 +10,9 @@ ava('throws when called to instantiate with no parameters', (t) => {
 });
 
 ava('initializes correctly when called to instantiate with correct parameters', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    t.deepEqual(model.aircraftModel, arrivalAircraftFixture);
+    t.deepEqual(model.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     t.true(model._cruiseAltitude === 28000);
     t.true(model._dataBlockLeaderDirection === THEME.DEFAULT.DATA_BLOCK.LEADER_DIRECTION);
     t.true(model._dataBlockLeaderLength === THEME.DEFAULT.DATA_BLOCK.LEADER_LENGTH);
@@ -28,31 +28,31 @@ ava('initializes correctly when called to instantiate with correct parameters', 
 });
 
 ava('#dataBlockLeaderDirection returns appropriate value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.true(model.dataBlockLeaderDirection === model._dataBlockLeaderDirection);
 });
 
 ava('#dataBlockLeaderLength returns appropriate value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.true(model.dataBlockLeaderLength === model._dataBlockLeaderLength);
 });
 
 ava('#positionModel returns appropriate value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.deepEqual(model.positionModel, model.aircraftModel.positionModel);
 });
 
 ava('#indicatedAltitude returns appropriate value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.true(model.indicatedAltitude === model.aircraftModel.altitude);
 });
 
 ava('.amendAltitude() sets #_cruiseAltitude to the specified altitude', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'AMEND ALTITUDE'];
     const newAltitude = 210;
 
@@ -63,7 +63,7 @@ ava('.amendAltitude() sets #_cruiseAltitude to the specified altitude', (t) => {
 });
 
 ava('.markAsNotOurControl() sets #_isUnderOurControl to false', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     model.markAsNotOurControl();
 
@@ -71,7 +71,7 @@ ava('.markAsNotOurControl() sets #_isUnderOurControl to false', (t) => {
 });
 
 ava('.markAsOurControl() sets #_isUnderOurControl to false', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     model.markAsOurControl();
 
@@ -79,7 +79,7 @@ ava('.markAsOurControl() sets #_isUnderOurControl to false', (t) => {
 });
 
 ava('.moveDataBlock() returns syntax error when no arguments provided', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [false, 'ERR: BAD SYNTAX'];
     const response = model.moveDataBlock('');
 
@@ -89,7 +89,7 @@ ava('.moveDataBlock() returns syntax error when no arguments provided', (t) => {
 });
 
 ava('.moveDataBlock() returns syntax error when invalid direction provided', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [false, 'ERR: BAD SYNTAX'];
     const response = model.moveDataBlock('0');
 
@@ -99,7 +99,7 @@ ava('.moveDataBlock() returns syntax error when invalid direction provided', (t)
 });
 
 ava('.moveDataBlock() returns error when a leader length greater than 6 is requested', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [false, 'ERR: LEADER LENGTH 0-6 ONLY'];
     const response = model.moveDataBlock('/7');
 
@@ -109,7 +109,7 @@ ava('.moveDataBlock() returns error when a leader length greater than 6 is reque
 });
 
 ava('.moveDataBlock() correctly sets properties when only a direction is provided', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'ADJUST DATA BLOCK'];
     const response = model.moveDataBlock('1');
 
@@ -119,7 +119,7 @@ ava('.moveDataBlock() correctly sets properties when only a direction is provide
 });
 
 ava('.moveDataBlock() correctly sets properties when only a length is provided', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'ADJUST DATA BLOCK'];
     const response = model.moveDataBlock('/3');
 
@@ -129,7 +129,7 @@ ava('.moveDataBlock() correctly sets properties when only a length is provided',
 });
 
 ava('.moveDataBlock() correctly sets properties when both a direction and length are provided', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'ADJUST DATA BLOCK'];
     const response = model.moveDataBlock('3/2');
 
@@ -139,7 +139,7 @@ ava('.moveDataBlock() correctly sets properties when both a direction and length
 });
 
 ava('.setScratchpad() sets #_scratchPadText to the specified string', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'SET SCRATCHPAD'];
     const newScratchPadText = 'V6R';
 
@@ -150,7 +150,7 @@ ava('.setScratchpad() sets #_scratchPadText to the specified string', (t) => {
 });
 
 ava('.toggleHalo() toggles #_hasHalo to opposite of its current value', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'TOGGLE HALO'];
     const haloWasActive = model._hasHalo;
 
@@ -164,7 +164,7 @@ ava('.toggleHalo() toggles #_hasHalo to opposite of its current value', (t) => {
 });
 
 ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destination', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedValue = model.aircraftModel.destination.substr(1);
 
     model._initializeScratchPad();
@@ -173,7 +173,7 @@ ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destinat
 });
 
 ava('._initializeScratchPad() sets #_scratchPadText to "XXX" when aircraft has no destination', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedValue = 'XXX';
 
     model.aircraftModel.destination = undefined;
@@ -184,7 +184,7 @@ ava('._initializeScratchPad() sets #_scratchPadText to "XXX" when aircraft has n
 });
 
 ava('._setTheme returns early when an invalid theme name is passed', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const themeName = 'great googly moogly!';
 
     model._setTheme(themeName);
@@ -193,7 +193,7 @@ ava('._setTheme returns early when an invalid theme name is passed', (t) => {
 });
 
 ava('._setTheme() changes the value of #_theme', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, arrivalAircraftFixture);
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const themeName = 'CLASSIC';
 
     model._setTheme(themeName);

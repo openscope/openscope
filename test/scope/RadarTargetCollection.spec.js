@@ -7,8 +7,8 @@ import RadarTargetCollection from '../../src/assets/scripts/client/scope/RadarTa
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
 import { RADAR_TARGET_ARRIVAL_MOCK } from './_mocks/radarTargetMocks';
 import {
-    arrivalAircraftFixture,
-    departureAircraftFixture
+    ARRIVAL_AIRCRAFT_MODEL_MOCK,
+    DEPARTURE_AIRCRAFT_MODEL_MOCK
 } from '../aircraft/_mocks/aircraftMocks';
 
 ava('does not throw when instantiated without parameters', (t) => {
@@ -49,14 +49,14 @@ ava('.addRadarTargetModel() adds the supplied radar target to the collection', (
 ava('.addRadarTargetModelForAircraftModel() adds new radar target to collection for the provided aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    t.deepEqual(collection._items[0].aircraftModel, arrivalAircraftFixture);
+    t.deepEqual(collection._items[0].aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
 ava('.findRadarTargetModelForAircraftModel() returns undefined when aircraft has no corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
-    const result = collection.findRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    const result = collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     t.true(result === undefined);
 });
@@ -64,20 +64,20 @@ ava('.findRadarTargetModelForAircraftModel() returns undefined when aircraft has
 ava('.findRadarTargetModelForAircraftModel() throws when multiple aircraft match', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    t.throws(() => collection.findRadarTargetModelForAircraftModel(arrivalAircraftFixture));
+    t.throws(() => collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK));
 });
 
 ava('.findRadarTargetModelForAircraftModel() returns radar target for corresponding supplied aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    const result = collection.findRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    const result = collection.findRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
-    t.deepEqual(result.aircraftModel, arrivalAircraftFixture);
+    t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
 ava('.findRadarTargetModelForAircraftReference() returns undefined when aircraft has no corresponding radar target', (t) => {
@@ -92,8 +92,8 @@ ava('.findRadarTargetModelForAircraftReference() returns undefined when multiple
     const collection = new RadarTargetCollection(THEME.DEFAULT);
     const aircraftReference = 'AAL432';
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const result = collection.findRadarTargetModelForAircraftReference(aircraftReference);
 
@@ -104,21 +104,21 @@ ava('.findRadarTargetModelForAircraftReference() returns radar target for corres
     const collection = new RadarTargetCollection(THEME.DEFAULT);
     const aircraftReference = 'AAL432';
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const result = collection.findRadarTargetModelForAircraftReference(aircraftReference);
 
-    t.deepEqual(result.aircraftModel, arrivalAircraftFixture);
+    t.deepEqual(result.aircraftModel, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 });
 
 ava('.removeRadarTargetModelForAircraftModel() makes no changes when the specified aircraft does not have a corresponding radar target', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const initialStateOfCollection = collection;
 
-    collection.removeRadarTargetModelForAircraftModel(departureAircraftFixture);
+    collection.removeRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
 
     t.deepEqual(collection, initialStateOfCollection);
 });
@@ -126,21 +126,21 @@ ava('.removeRadarTargetModelForAircraftModel() makes no changes when the specifi
 ava('.removeRadarTargetModelForAircraftModel() removes the corresponding radar target for the specified aircraft model', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
-    collection.addRadarTargetModelForAircraftModel(departureAircraftFixture);
-    collection.removeRadarTargetModelForAircraftModel(arrivalAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    collection.removeRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     const aircraftInCollection = _map(collection._items, (radarTargetModel) => radarTargetModel.aircraftModel);
 
-    t.false(_includes(aircraftInCollection, arrivalAircraftFixture));
-    t.true(_includes(aircraftInCollection, departureAircraftFixture));
+    t.false(_includes(aircraftInCollection, ARRIVAL_AIRCRAFT_MODEL_MOCK));
+    t.true(_includes(aircraftInCollection, DEPARTURE_AIRCRAFT_MODEL_MOCK));
 });
 
 ava('.resetAllRadarTargets() calls .reset() method of each radar target model in the collection', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
-    collection.addRadarTargetModelForAircraftModel(departureAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
 
     const arrivalAircraftResetSpy = sinon.spy(collection._items[0], 'reset');
     const departureAircraftResetSpy = sinon.spy(collection._items[1], 'reset');
@@ -154,8 +154,8 @@ ava('.resetAllRadarTargets() calls .reset() method of each radar target model in
 ava('.reset() clears all radar target models from the collection', (t) => {
     const collection = new RadarTargetCollection(THEME.DEFAULT);
 
-    collection.addRadarTargetModelForAircraftModel(arrivalAircraftFixture);
-    collection.addRadarTargetModelForAircraftModel(departureAircraftFixture);
+    collection.addRadarTargetModelForAircraftModel(ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    collection.addRadarTargetModelForAircraftModel(DEPARTURE_AIRCRAFT_MODEL_MOCK);
     collection.reset();
 
     t.true(collection._items.length === 0);

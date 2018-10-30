@@ -111,8 +111,7 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
 //     }
 // );
 
-// TODO: this should be moved to `fixtures`
-export const departureAircraftFixture = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
@@ -156,8 +155,7 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = 
 //     waypoints: []
 // };
 
-// TODO: this should be moved to `fixtures`
-export const arrivalAircraftFixture = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
+export const ARRIVAL_AIRCRAFT_MODEL_MOCK = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
 // export const HOLD_WAYPOINT_MOCK = {
 //     turnDirection: 'left',
