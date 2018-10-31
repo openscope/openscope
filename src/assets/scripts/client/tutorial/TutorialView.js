@@ -105,6 +105,7 @@ export default class TutorialView {
         this.$tutorialToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);
         this.$tutorialNext = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.NEXT);
+        this._onAirportChangeHandler = this.onAirportChange.bind(this);
 
         return this;
     }
@@ -138,6 +139,7 @@ export default class TutorialView {
      */
     enable() {
         this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.on('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.on('click', (event) => this.tutorial_next(event));
@@ -154,6 +156,7 @@ export default class TutorialView {
      */
     disable() {
         this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.off('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.off('click', (event) => this.tutorial_next(event));
@@ -180,6 +183,22 @@ export default class TutorialView {
         this.tutorial.open = false;
 
         return this;
+    }
+
+    /**
+     * Reloads the tutorial when the airport is changed.
+     *
+     * @for tutorialView
+     * @method onAirportChange
+     */
+    onAirportChange() {
+        const step = prop.tutorial.step;
+
+        this.tutorial_init_pre();
+
+        prop.tutorial.step = step;
+
+        this.tutorial_update_content();
     }
 
     /**
