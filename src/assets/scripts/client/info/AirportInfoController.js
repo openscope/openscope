@@ -102,7 +102,7 @@ export default class AirportInfoController {
         return this.init()
                 ._createChildren()
                 ._setupHandlers()
-                ._enable()
+                .enable()
                 .onAirportChange();
     }
 
@@ -156,9 +156,8 @@ export default class AirportInfoController {
      * @for AirportInfoController
      * @method _enable
      * @chainable
-     * @private
      */
-    _enable() {
+    enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
 
         return this;
@@ -170,9 +169,8 @@ export default class AirportInfoController {
      * @for AirportInfoController
      * @method _disable
      * @chainable
-     * @private
      */
-    _disable() {
+    disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         return this;
@@ -208,7 +206,7 @@ export default class AirportInfoController {
         const windAngle = Math.round(radiansToDegrees(airport.wind.angle));
 
         this.wind = this._buildWindAndGustReadout({ speed: airport.wind.speed, angle: windAngle });
-        this.altimeter = this._generateAltimeterReading(airport.wind.speed);
+        this.altimeter = this._generateHighAltimeterReading(airport.wind.speed);
         this.elevation = `${airport.elevation}`;
         this.icao = airport.icao.toUpperCase();
 
@@ -273,13 +271,13 @@ export default class AirportInfoController {
      * Creates an 'altimeter' reading for the info view
      *
      * @for AirportInfoController
-     * @method _generateAltimeterReading
+     * @method _generateHighAltimeterReading
      * @param {Number} windSpeed
-     * @returns {Number} the new altimeter value
+     * @returns {Number} the altimeter value (29.92 or above)
      * @private
      */
-    _generateAltimeterReading(windSpeed) {
-        const pressure = PERFORMANCE.DEFAULT_ALTIMETER_IN_INHG + (windSpeed * (Math.random() - 0.5) / 100);
+    _generateHighAltimeterReading(windSpeed) {
+        const pressure = PERFORMANCE.DEFAULT_ALTIMETER_IN_INHG + (windSpeed * Math.random() / 100);
 
         return pressure.toFixed(2);
     }
