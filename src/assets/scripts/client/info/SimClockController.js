@@ -20,14 +20,6 @@ export default class SimClockController {
          */
         this.startTime = 0;
 
-        /**
-         * @for SimClockController
-         * @property time
-         * @type {Number}
-         * @default 0
-         */
-        this.time = 0;
-
         return this._init();
     }
 
@@ -74,7 +66,6 @@ export default class SimClockController {
      */
     reset() {
         this.startTime = 0;
-        this.time = 0;
 
         return this;
     }
@@ -87,24 +78,13 @@ export default class SimClockController {
      * @return clockTime {string} current game time formatted like '03:44:17'
      */
     render() {
-        const gameTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
-        const clockDate = new Date(this.startTime + gameTimeInMilliseconds);
+        const elapsedTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
+        const clockDate = new Date(this.startTime + elapsedTimeInMilliseconds);
         const hours = digits_integer(clockDate.getHours(), 2);
         const minutes = digits_integer(clockDate.getMinutes(), 2);
         const seconds = digits_integer(clockDate.getSeconds(), 2);
         const clockTime = `${hours}${minutes}/${seconds}`;
 
         return clockTime;
-    }
-
-    /**
-     * Re-calculates elapsed time
-     *
-     * @for SimClockController
-     * @method update
-     */
-    update() {
-        const elapsedTime = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
-        this.time = this.startTime + elapsedTime;
     }
 }
