@@ -1345,18 +1345,18 @@ export default class AircraftModel {
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with major crosswind`, isWarning);
         } else if (components.cross >= 10) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with crosswind`, isWarning);
         }
 
         if (components.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
-        } else if (components.head <= -1) {
+            UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
+        } else if (components.head <= -5) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
 
         return score;
