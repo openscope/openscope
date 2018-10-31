@@ -551,6 +551,7 @@ export default class Pilot {
     *
     * @for Pilot
     * @method exitHold
+    * @return {array}                [success of operation, readback]
     */
     exitHold() {
         const currentWaypoint = this._fms.currentWaypoint;
@@ -561,7 +562,7 @@ export default class Pilot {
 
         currentWaypoint.deactivateHold();
 
-        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName}`];
+        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName()}`];
     }
 
     /**

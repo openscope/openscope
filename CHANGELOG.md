@@ -3,6 +3,7 @@
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
 - [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
 - [#1017](https://github.com/openscope/openscope/issues/1017) - Add more GA aircraft
+- [#898](https://github.com/openscope/openscope/issues/898) - Add command to exit holding pattern
 
 
 
