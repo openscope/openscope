@@ -129,7 +129,7 @@ export default class AirportInfoController {
      * @private
      */
     _setupHandlers() {
-        this.onAirportChangeHandler = this.onAirportChange.bind(this);
+        this._onAirportChangeHandler = this.onAirportChange.bind(this);
 
         return this;
     }
@@ -158,7 +158,7 @@ export default class AirportInfoController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         return this;
     }
