@@ -206,13 +206,12 @@ export default class AirportInfoController {
      */
     onAirportChange() {
         const airport = AirportController.airport_get();
-        const icao = airport.icao.toUpperCase();
         const windAngle = Math.round(radiansToDegrees(airport.wind.angle));
 
         this.wind = this._buildWindAndGustReadout({ speed: airport.wind.speed, angle: windAngle });
         this.altimeter = this._generateAltimeterReading(airport.wind.speed);
         this.elevation = `${airport.elevation}`;
-        this.icao = icao;
+        this.icao = airport.icao.toUpperCase();
 
         this._render();
     }
@@ -246,7 +245,9 @@ export default class AirportInfoController {
 
     /**
      * Formats the wind angle and speed from object into a string,
-     * in the format `${newAngle}${newSpeed}G${gustSpeed}`.
+     * in the format `${newAngle} ${newSpeed}G${gustSpeed}`.
+     *
+     * Example output: 270 10G18
      *
      * @for AirportGameInfoView
      * @method _buildWindAndGustReadout
