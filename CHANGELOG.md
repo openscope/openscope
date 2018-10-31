@@ -14,6 +14,7 @@
 
 ### Enhancements & Refactors
 - [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
+- [#883](https://github.com/openscope/openscope/issues/883) - Stop penalizing light tailwind landings
 
 
 
@@ -31,7 +32,6 @@
 - [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
 - [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 - [#1152](https://github.com/openscope/openscope/issues/1152) - Fix GameClockView crashes sim in Firefox
-
 
 ### Enhancements & Refactors
 - [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
