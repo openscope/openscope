@@ -11,7 +11,7 @@ import { PERFORMANCE } from '../constants/aircraftConstants';
 
 /**
  * @property INFO_VIEW_SELECTORS
- * @type {object<string, string}
+ * @type {object<string, string>}
  * @final
  */
 const INFO_VIEW_SELECTORS = {
@@ -102,7 +102,8 @@ export default class AirportInfoController {
         return this.init()
                 ._createChildren()
                 ._setupHandlers()
-                ._enable();
+                ._enable()
+                .onAirportChange();
     }
 
     /**
@@ -159,13 +160,12 @@ export default class AirportInfoController {
      */
     _enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this.onAirportChangeHandler);
-        this.onAirportChange();
 
         return this;
     }
 
     /**
-     * Disable all event handlers and destroy the instance
+     * Disable all event handlers
      *
      * @for AirportInfoController
      * @method _disable
@@ -173,11 +173,6 @@ export default class AirportInfoController {
      * @private
      */
     _disable() {
-        this.$element = null;
-        this.$template = null;
-        this.simClockController = null;
-        this.airportInfoController = null;
-
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         return this;
@@ -189,6 +184,10 @@ export default class AirportInfoController {
      * @chainable
      */
     reset() {
+        this.$element = null;
+        this.$template = null;
+        this.simClockController = null;
+        this.airportInfoController = null;
         this.wind = null;
         this.altimeter = null;
         this.elevation = null;
