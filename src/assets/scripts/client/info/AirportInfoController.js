@@ -7,6 +7,7 @@ import EventBus from '../lib/EventBus';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { EVENT } from '../constants/eventNames';
 import { AIRPORT_INFO_TEMPLATE } from './airportInfoTemplate';
+import { PERFORMANCE } from '../constants/aircraftConstants';
 
 /**
  * @property INFO_VIEW_SELECTORS
@@ -280,8 +281,8 @@ export default class AirportInfoController {
      * @private
      */
     _generateAltimeterReading(windSpeed) {
-        const DEFAULT_ALTIMETER_VALUE = 2992;
+        const pressure = PERFORMANCE.DEFAULT_ALTIMETER_IN_INHG + (windSpeed * (Math.random() - 0.5) / 100);
 
-        return DEFAULT_ALTIMETER_VALUE + Math.round(windSpeed * (Math.random() - 0.5));
+        return pressure.toFixed(2);
     }
 }
