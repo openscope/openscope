@@ -280,22 +280,10 @@ export default class AircraftController {
      * @for AircraftController
      * @method aircraft_get_nearest
      * @param position {StaticPositionModel}
+     * @returns {array<AircraftModel, number>}
      */
     aircraft_get_nearest(position) {
-        let nearest = null;
-        let distance = Infinity;
-
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-            const d = distance2d(aircraft.relativePosition, position);
-
-            if (d < distance && aircraft.isVisible() && !aircraft.hit) {
-                distance = d;
-                nearest = i;
-            }
-        }
-
-        return [this.aircraft.list[nearest], distance];
+        return this._collection.findAircraftNearPosition(position);
     }
 
     /**

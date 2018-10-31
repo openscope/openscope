@@ -1,5 +1,6 @@
 import BaseCollection from '../base/BaseCollection';
 import AircraftModel from './AircraftModel';
+import { distance2d } from '../math/distance';
 
 /**
  * Provides methods and logic to manage a list of `AircraftModel` objects
@@ -64,25 +65,6 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
-     *
-     *
-     * @for AircraftCollection
-     * @method findAircraftByCallsign
-     * @param {string} callsign
-     * @returns {AircraftModel|undefined}
-     * @public
-     */
-    findAircraftByCallsign(callsign = '') {
-        const foundAircraft = this._findByCallsign(callsign);
-
-        if (!foundAircraft) {
-            return null;
-        }
-
-        return foundAircraft;
-    }
-
-    /**
      * Remove an instance from `#_items`
      *r
      * @for AircraftCollection
@@ -100,20 +82,47 @@ export default class AircraftCollection extends BaseCollection {
      *
      *
      * @for AircraftCollection
-     * @method _findByCallsign
+     * @method findAircraftByCallsign
      * @param {string} callsign
-     * @return {AircraftModel} aircraftModel
-     * @private
+     * @returns {AircraftModel|undefined}
+     * @public
      */
-    _findByCallsign(callsign) {
+    findAircraftByCallsign(callsign = '') {
         if (callsign === '') {
             return null;
         }
 
-        const aircraftModel = this._items.filter((aircraftModel) => callsign.toLowerCase() === aircraftModel.callsign.toLowerCase());
+        const aircraftModels = this._items.filter((aircraftModel) => callsign.toLowerCase() === aircraftModel.callsign.toLowerCase());
 
         // `filter` returns an array, we only ever want a single instance
-        return aircraftModel[0];
+        if (!aircraftModels[0]) {
+            return null;
+        }
+
+        return aircraftModels[0];
+    }
+
+    /**
+     * @for AircraftCollection
+     * @method findAircraftNearPosition
+     * @param position {StaticPositionModel}
+     * @returns {array<AircraftModel, number>}
+     */
+    findAircraftNearPosition(position) {
+        let nearest = null;
+        let distance = Infinity;
+
+        for (let i = 0; i < this._items.length; i++) {
+            const aircraft = this._items[i];
+            const d = distance2d(aircraft.relativePosition, position);
+
+            if (d < distance && aircraft.isVisible() && !aircraft.hit) {
+                distance = d;
+                nearest = i;
+            }
+        }
+
+        return [this._items[nearest], distance];
     }
 
     /**

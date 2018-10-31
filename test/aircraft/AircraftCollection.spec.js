@@ -44,14 +44,14 @@ ava('.findAircraftByCallsign() returns null when no callsign is passed', (t) => 
     const collection = new AircraftCollection();
     const result = collection.findAircraftByCallsign();
 
-    t.falsy(result);
+    t.true(result === null);
 });
 
 ava('.findAircraftByCallsign() returns null when an aircraftModel with the passed callsign cannot be found', (t) => {
     const collection = new AircraftCollection();
     const result = collection.findAircraftByCallsign(ARRIVAL_AIRCRAFT_MODEL_MOCK.callsign);
 
-    t.falsy(result);
+    t.true(result === null);
 });
 
 ava('.findAircraftByCallsign() returns an `AircraftModel` with the passed callsign', (t) => {
