@@ -29,7 +29,7 @@ export const STRIP_VIEW_TEMPLATE = '' +
 '               <td class="stripView-table-td mix-stripView-table_borderTop js-stripView-flightPlanAltitude" title="Flight Plan Altitude"></td>' +
 '               <td class="stripView-table-td js-stripView-alternateAirportId" title="Alternate Airport Identifier"></td>' +
 '               <td class="stripView-table-td js-stripView-remarks" title="Remarks"></td>' +
-'               <td class="stripView-table-td js-stripView-runway" title="Runway"></td>' +
+'               <td class="stripView-table-td js-stripView-runway stripView-preplanning" title="Runway"></td>' +
 '           </tr>' +
 '       </tbody' +
 '   </table>' +

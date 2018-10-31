@@ -534,7 +534,6 @@ export default class StripViewModel extends BaseModel {
         this.$flightPlanView.text(this._flightPlan);
         this.$remarks.text(this._remarks);
         this.$runway.text(this._runwayInformation.name);
-        this.$runway.toggleClass(STRIP_VIEW_PREPLANNING_CLASS, !this._runwayInformation.assigned);
 
         return this;
     }
@@ -776,6 +775,8 @@ export default class StripViewModel extends BaseModel {
         this._departureAirport = departureAirportId;
         this._flightPlan = flightPlan;
         this._runwayInformation = this._buildRunwayInformation(aircraftModel);
+
+        this.$runway.toggleClass(STRIP_VIEW_PREPLANNING_CLASS, !this._runwayInformation.assigned);
 
         return this._redraw();
     }
