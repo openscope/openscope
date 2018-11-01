@@ -1,6 +1,9 @@
 import ava from 'ava';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
+import Compass from '../../src/assets/scripts/client/base/Compass';
+
+Compass.magneticNorth = 11.9;
 
 ava('throws when attempting to create an instance', (t) => {
     t.throws(() => new NavigationLibrary());

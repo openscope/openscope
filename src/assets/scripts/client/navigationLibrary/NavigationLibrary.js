@@ -11,7 +11,6 @@ import FixCollection from './FixCollection';
 import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
-import { degreesToRadians } from '../utilities/unitConverters';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
