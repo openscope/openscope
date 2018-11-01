@@ -565,7 +565,7 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method getWind
+     * @method getWindForRunway
      * @param runway {runwayModel}
      * @return wind {number}
      */
