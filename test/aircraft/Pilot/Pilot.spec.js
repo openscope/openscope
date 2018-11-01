@@ -690,6 +690,25 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
     t.deepEqual(result, expectedResult);
 });
 
+ava('.exitHold() returns error response when the aircraft is not holding', (t) => {
+    const expectedResult = [false, 'not currently holding'];
+    const pilot = createPilotFixture();
+    const result = pilot.exitHold();
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.exitHold() returns correct readback when the aircraft is holding', (t) => {
+    const expectedResult = [true, 'roger, cancelling hold over MISEN'];
+    const pilot = createPilotFixture();
+    pilot._fms.currentWaypoint.activateHold();
+
+    const result = pilot.exitHold();
+
+    t.false(pilot._fms.currentWaypoint.isHoldWaypoint);
+    t.deepEqual(result, expectedResult);
+});
+
 ava('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 90000;
