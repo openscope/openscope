@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 import _isObject from 'lodash/isObject';
-import _omit from 'lodash/omit';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
@@ -18,7 +17,6 @@ import {
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
 
 // mocks
@@ -627,6 +625,25 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
     const pilot = createPilotFixture();
     const result = pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
 
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.exitHold() returns error response when the aircraft is not holding', (t) => {
+    const expectedResult = [false, 'not currently holding'];
+    const pilot = createPilotFixture();
+    const result = pilot.exitHold();
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.exitHold() returns correct readback when the aircraft is holding', (t) => {
+    const expectedResult = [true, 'roger, cancelling hold over MISEN'];
+    const pilot = createPilotFixture();
+    pilot._fms.currentWaypoint.activateHold();
+
+    const result = pilot.exitHold();
+
+    t.false(pilot._fms.currentWaypoint.isHoldWaypoint);
     t.deepEqual(result, expectedResult);
 });
 
