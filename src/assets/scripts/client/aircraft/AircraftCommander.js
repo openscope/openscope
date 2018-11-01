@@ -309,7 +309,6 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runExitHold
      * @param aircraft {AircraftModel}
-     * @param data {array}
      * @return {array} [success of operation, readback]
      */
     runExitHold(aircraft) {
