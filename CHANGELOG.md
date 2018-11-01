@@ -1,3 +1,22 @@
+# 6.8.0 (December 1, 2018)
+### New Features
+
+
+
+
+
+### Bugfixes
+
+
+
+
+
+### Enhancements & Refactors
+
+
+
+
+
 # 6.7.0 (November 1, 2018)
 ### New Features
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
