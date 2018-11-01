@@ -15,7 +15,11 @@ import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round } from '../math/core';
+import {
+    sin,
+    cos,
+    round
+} from '../math/core';
 import { vlen, vsub, vadd, vscale } from '../math/vector';
 import {
     FLIGHT_CATEGORY,
@@ -542,7 +546,7 @@ export default class AirportModel {
      * @method getWind
      * @return wind {number}
      */
-    getWind = () => {
+    getWind() {
         return this.wind;
 
         // TODO: leaving this method here for when we implement changing winds. This method will allow for recalculation of the winds?
@@ -557,7 +561,28 @@ export default class AirportModel {
         // wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
         //
         // return wind;
-    };
+    }
+
+    /**
+     * @for AirportModel
+     * @method getWind
+     * @param runway {runwayModel}
+     * @return wind {number}
+     */
+    getWindForRunway(runway) {
+        const windForRunway = {
+            cross: 0,
+            head: 0
+        };
+
+        const angle = runway.calculateCrosswindAngleForRunway(this.wind.angle);
+
+        // TODO: these two bits of math should be abstracted to helper functions
+        windForRunway.cross = sin(angle) * this.wind.speed;
+        windForRunway.head = cos(angle) * this.wind.speed;
+
+        return windForRunway;
+    }
 
     /**
      * Set active arrival/departure runways from the runway names
