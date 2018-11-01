@@ -207,12 +207,7 @@ export default class TutorialView {
      * @method onAirportChange
      */
     onAirportChange() {
-        const step = prop.tutorial.step;
-
         this.tutorial_init_pre();
-
-        prop.tutorial.step = step;
-
         this.tutorial_update_content();
     }
 
