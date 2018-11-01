@@ -551,7 +551,7 @@ export default class Pilot {
     *
     * @for Pilot
     * @method exitHold
-    * @return {array}                [success of operation, readback]
+    * @return {array} [success of operation, readback]
     */
     exitHold() {
         const currentWaypoint = this._fms.currentWaypoint;
