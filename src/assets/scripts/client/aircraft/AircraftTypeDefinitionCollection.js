@@ -1,6 +1,4 @@
 import _find from 'lodash/find';
-import _isArray from 'lodash/isArray';
-import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';

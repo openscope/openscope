@@ -1,6 +1,6 @@
 {
   "name": "openScope",
-  "version": "6.6.0",
+  "version": "6.7.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "7.0.0",
@@ -35,15 +35,6 @@
     "airplane"
   ],
   "author": "Jon Ross <jonrosszlsa@gmail.com> (http://zlsa.github.io/)",
-  "contributors": [
-    "Fechulo (https://github.com/Fechulo)",
-    "Erik Quinn (https://github.com/erikquinn)",
-    "indianbhaji (https://github.com/indianbhaji)",
-    "Dmitri Lebedev <ryba4@ryba4.com> (http://one-giant-leap.info)",
-    "tedrek (https://github.com/tedrek)",
-    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)",
-    "Abraham Anderson <abeis@msn.com> (https://github.com/Dabea)"
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/openscope/openscope/issues"

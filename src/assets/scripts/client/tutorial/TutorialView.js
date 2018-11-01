@@ -206,14 +206,14 @@ export default class TutorialView {
             position: tutorial_position
         });
 
-	    this.tutorial_step({
-		    title: 'Moving Around',
-		    text: ['To move the middle of the radar screen, use the right click button and drag.',
-		          'Zoom in and out by scrolling, and press the middle mouse button or scroll wheel to reset the zoom.',
-		          'To select an aircraft when it is in flight, simply left-click.'
-		      ].join(' '),
-	    	position: tutorial_position
-	    });
+        this.tutorial_step({
+            title: 'Moving Around',
+            text: ['To move the middle of the radar screen, use the right click button and drag.',
+                'Zoom in and out by scrolling, and press the middle mouse button or scroll wheel to reset the zoom.',
+                'To select an aircraft when it is in flight, simply left-click.'
+                ].join(' '),
+            position: tutorial_position
+        });
 
         this.tutorial_step({
             title: 'Departing aircraft',

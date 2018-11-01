@@ -2,7 +2,6 @@ import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
-import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import { EVENT } from '../constants/eventNames';
 import { DECIMAL_RADIX } from '../utilities/unitConverters';
 import { THEME } from '../constants/themes';
