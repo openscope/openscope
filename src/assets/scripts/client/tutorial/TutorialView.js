@@ -87,6 +87,7 @@ export default class TutorialView {
         this.tutorial.open = false;
 
         this._init()
+            ._setupHandlers()
             .layout()
             .enable();
     }
@@ -105,6 +106,20 @@ export default class TutorialView {
         this.$tutorialToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);
         this.$tutorialNext = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.NEXT);
+
+        return this;
+    }
+
+    /**
+     * Create event handlers
+     *
+     * Should be run once only on instantiation
+     *
+     * @for tutorialView
+     * @method _setupHandlers
+     * @chainable
+     */
+    _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
 
         return this;
