@@ -38,9 +38,8 @@ export default class DynamicPositionModel {
      * @constructor
      * @param coordinates {array<string|number>}    array in shape of [latitude, longitude]
      * @param reference {StaticPositionModel}       position to use for calculating relative position
-     * @param magnetic_north {number}               magnetic declination (variation), in radians east
      */
-    constructor(coordinates = [], reference = null, magnetic_north = 0) {
+    constructor(coordinates = [], reference = null) {
         if (!isValidGpsCoordinatePair(coordinates)) {
             throw new TypeError('Invalid coordinates passed to DynamicPositionModel. Expected shape of ' +
                 `"[latitude, longitude]" but received "${coordinates}"`);
@@ -87,14 +86,6 @@ export default class DynamicPositionModel {
          */
         this._referencePosition = reference;
 
-        /**
-         * Magnetic declination, in radians east
-         *
-         * @property _magneticNorth
-         * @type {number}
-         */
-        this._magneticNorth = magnetic_north;
-
         this.init(coordinates);
     }
 
@@ -124,15 +115,6 @@ export default class DynamicPositionModel {
             this.longitude,
             this.latitude
         ];
-    }
-
-    /**
-     * @for DynamicPositionModel
-     * @property magneticNorth
-     * @return {number}
-     */
-    get magneticNorth() {
-        return this._magneticNorth;
     }
 
     /**
@@ -253,7 +235,7 @@ export default class DynamicPositionModel {
      */
     generateDynamicPositionFromBearingAndDistance(bearing, distance) {
         const [lat, lon] = this.generateCoordinatesFromBearingAndDistance(bearing, distance);
-        const dynamicPositionModel = new DynamicPositionModel([lat, lon], this._referencePosition, this._magneticNorth);
+        const dynamicPositionModel = new DynamicPositionModel([lat, lon], this._referencePosition);
 
         return dynamicPositionModel;
     }
@@ -330,7 +312,7 @@ export default class DynamicPositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        return DynamicPositionModel.calculateRelativePosition(this.gps, this._referencePosition, this._magneticNorth);
+        return DynamicPositionModel.calculateRelativePosition(this.gps, this._referencePosition);
     }
 
     /**
@@ -359,10 +341,10 @@ export default class DynamicPositionModel {
  * @return {array}
  * @static
  */
-DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition, magneticNorth) => {
-    if (!coordinates || !referencePosition || !_isNumber(magneticNorth)) {
+DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition) => {
+    if (!coordinates || !referencePosition) {
         throw new TypeError('Invalid parameter. DynamicPositionModel.calculateRelativePosition() requires ' +
-        'coordinates, referencePosition and magneticNorth as parameters');
+        'coordinates and referencePosition and magneticNorth as parameters');
     }
 
     const latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);

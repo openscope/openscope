@@ -117,7 +117,7 @@ export default class AirspaceModel extends BaseModel {
      */
     _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
         const polyPositionModels = _map(polyList, (poly) => {
-            return new StaticPositionModel(poly, airportPosition, magneticNorth);
+            return new StaticPositionModel(poly, airportPosition);
         });
 
         // TODO: Though its reusability is not real likely, this might as well be made into an external helper

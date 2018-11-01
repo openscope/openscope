@@ -252,6 +252,15 @@ export default class AirportModel {
          */
         this.rr_center = 0;
 
+        /**
+         * Magnetic declination, in radians east
+         *
+         * @property _magneticNorth
+         * @type {number}
+         */
+        this._magneticNorth = 0;
+
+
         this.parse(options);
     }
 
@@ -293,7 +302,7 @@ export default class AirportModel {
      * @return {number}
      */
     get magneticNorth() {
-        return this._positionModel.magneticNorth;
+        return this._magneticNorth;
     }
 
     /**
@@ -391,7 +400,8 @@ export default class AirportModel {
             return;
         }
 
-        this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
+        this._positionModel = new StaticPositionModel(gpsCoordinates, null);
+        this._magneticNorth = magneticNorth;
     }
 
     /**
@@ -411,7 +421,7 @@ export default class AirportModel {
             return new AirspaceModel(
                 airspaceSection,
                 this._positionModel,
-                this._positionModel.magneticNorth
+                this.magneticNorth
             );
         });
 
@@ -731,7 +741,7 @@ export default class AirportModel {
                     return _map(line_string, (point) => {
                         // `StaticPositionModel` requires [lat,lon] order
                         const latLongPoint = point.slice().reverse();
-                        const pos = new StaticPositionModel(latLongPoint, apt.positionModel, apt.magneticNorth);
+                        const pos = new StaticPositionModel(latLongPoint, apt.positionModel);
 
                         return pos.relativePosition;
                     });

@@ -25,10 +25,9 @@ export default class StaticPositionModel extends DynamicPositionModel {
      * @constructor
      * @param coordinates {array<string|number>}    array in shape of [latitude, longitude]
      * @param reference {StaticPositionModel}       position to use for calculating relative position
-     * @param magnetic_north {number}               magnetic declination (variation), in radians east
      */
-    constructor(coordinates = [], reference = null, magnetic_north = 0) {
-        super(coordinates, reference, magnetic_north);
+    constructor(coordinates = [], reference = null) {
+        super(coordinates, reference);
 
         /**
          * Description of a location, expressed in 'kilometers' north and east of a given
@@ -113,8 +112,7 @@ export default class StaticPositionModel extends DynamicPositionModel {
 
         this._relativePosition = DynamicPositionModel.calculateRelativePosition(
             this.gps,
-            this._referencePosition,
-            this._magneticNorth
+            this._referencePosition
         );
     }
 }

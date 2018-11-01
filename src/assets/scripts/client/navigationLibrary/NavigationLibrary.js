@@ -201,8 +201,7 @@ class NavigationLibrary {
     _initializeReferencePosition(airportJson) {
         this._referencePosition = new StaticPositionModel(
             airportJson.position,
-            null,
-            degreesToRadians(airportJson.magnetic_north)
+            null
         );
     }
 

@@ -196,13 +196,11 @@ export default class RunwayModel extends BaseModel {
 
             const thisSide = new StaticPositionModel(
                 data.end[end],
-                this.airportPositionModel,
-                this.airportPositionModel.magneticNorth
+                this.airportPositionModel
             );
             const farSide = new StaticPositionModel(
                 data.end[farSideIndex],
-                this.airportPositionModel,
-                this.airportPositionModel.magneticNorth
+                this.airportPositionModel
             );
 
             // relative position, based on center of map

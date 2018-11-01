@@ -1030,8 +1030,7 @@ export default class SpawnPatternModel extends BaseModel {
         const airportPosition = AirportController.airport_get().positionModel;
         const selfReferencingPosition = new StaticPositionModel(
             airportPosition.gps,
-            airportPosition,
-            airportPosition.magneticNorth
+            airportPosition
         );
 
         return selfReferencingPosition;

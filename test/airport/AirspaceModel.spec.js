@@ -6,7 +6,7 @@ import { AIRSPACE_MOCK, AIRSPACE_MOCK_WITH_CLOSING_ENTRY } from './_mocks/airspa
 
 const currentPosition = ['N36.080056', 'W115.15225', '2181ft'];
 const magneticNorth = 11.9;
-const airportPositionFixtureKSFO = new StaticPositionModel(currentPosition, null, magneticNorth);
+const airportPositionFixtureKSFO = new StaticPositionModel(currentPosition, null);
 
 ava('throws if called with invalid parameters', t => {
     t.throws(() => new AirspaceModel());
@@ -19,7 +19,7 @@ ava('throws if called with invalid parameters', t => {
 
 ava('does not throw when instantiated with a 0 magneticNorth', t => {
     t.notThrows(() => new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, 0));
-})
+});
 
 ava('accepts an airspace object that is used to set the instance properties', t => {
     const model = new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, magneticNorth);
