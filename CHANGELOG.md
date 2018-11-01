@@ -32,6 +32,7 @@
 - [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 - [#1152](https://github.com/openscope/openscope/issues/1152) - Fix GameClockView crashes sim in Firefox
 
+
 ### Enhancements & Refactors
 - [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
 - [#794](https://github.com/openscope/openscope/issues/794) - Bring KMIA back into compliance with the airport specs
