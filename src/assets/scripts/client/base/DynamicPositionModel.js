@@ -19,6 +19,7 @@ import {
     GPS_COORDINATE_INDEX,
     RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
+import Compass from './Compass';
 
 /**
  * @class Position
@@ -198,7 +199,7 @@ export default class DynamicPositionModel {
         const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
         const θ = Math.atan2(y, x);
 
-        return radians_normalize(θ - this._magneticNorth);
+        return radians_normalize(θ - Compass.magneticNorth);
     }
 
     /**
@@ -254,11 +255,8 @@ export default class DynamicPositionModel {
      * @return {array} [latitude, longitude]
      */
     generateCoordinatesFromBearingAndDistance(bearing, distance) {
-
-        // TODO: magneticNorth
-
         const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
-        const θ = bearing + magneticNorth;    // true bearing, in radians
+        const θ = bearing + Compass.magneticNorth;    // true bearing, in radians
         const d = distance;
         const δ = d / R;    // angular distance, in earth laps
         const φ1 = degreesToRadians(this.latitude);
@@ -363,8 +361,7 @@ DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition
         referencePosition.longitude
     );
 
-    // TODO: magneticNorth
-    const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
+    const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, Compass.magneticNorth);
 
     return [x, y];
 };

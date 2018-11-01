@@ -27,7 +27,6 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.x === expectedRelativePosition[RELATIVE_POSITION_OFFSET_INDEX.LONGITUDINAL]);
     t.true(result.y === expectedRelativePosition[RELATIVE_POSITION_OFFSET_INDEX.LATITUDINAL]);
     t.true(_isEqual(result._referencePosition, airportPositionFixtureKLAS));
-    t.true(result._magneticNorth === 0.2076941809873252);
     t.true(_isEqual(result.gps, LAT_LONG_DECIMAL_MOCK));
     t.true(result.gpsXY[0] === LAT_LONG_DECIMAL_MOCK[1]);
     t.true(result.gpsXY[1] === LAT_LONG_DECIMAL_MOCK[0]);
