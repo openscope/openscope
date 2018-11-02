@@ -701,6 +701,7 @@ ava('.exitHold() returns error response when the aircraft is not holding', (t) =
 ava('.exitHold() returns correct readback when the aircraft is holding', (t) => {
     const expectedResult = [true, 'roger, cancelling hold over MISEN'];
     const pilot = createPilotFixture();
+
     pilot._fms.currentWaypoint.activateHold();
 
     const result = pilot.exitHold();
