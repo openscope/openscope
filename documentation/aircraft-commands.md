@@ -16,6 +16,7 @@
 [Routing Commands](#routing-commands)
 - [~~Fix~~](#fix)
 - [Hold](#hold)
+- [Exit Hold](#exit-hold)
 - [Proceed Direct](#proceed-direct)
 - [Route](#route)
 - [Reroute](#reroute)
@@ -159,6 +160,14 @@ with simply `[fixname]`. Any combination of these arguments provided in
 any order is acceptable, as long as the command `hold` comes first.
 
 _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
+
+### Exit Hold
+_Aliases -_ `exithold` `nohold` `xh`
+
+_Information -_ This command instructs the aircraft to leave a holding
+pattern and resume it's flight plan.
+
+_Syntax -_ `AAL123 exithold`
 
 ### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`
