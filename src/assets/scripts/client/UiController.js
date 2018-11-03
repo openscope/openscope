@@ -7,7 +7,6 @@ import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
-import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 
@@ -286,7 +285,6 @@ class UiController {
             const $currentTarget = $(event.currentTarget);
 
             GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
-
         });
 
         $optionSelector.append($selector);
@@ -354,7 +352,6 @@ class UiController {
 
         const airports = _keys(AirportController.airports).sort();
         let difficulty = '';
-        const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
             const { name, icao, level } = AirportController.airports[airports[i]];
@@ -419,10 +416,9 @@ class UiController {
      * @param icao {string}
      * @param difficulty {string}
      * @param name {string}
-     * @param reliabilityFlag {string}
      * @return {DOM element|string}
      */
-    _buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
+    _buildAirportListItemTemplate(icao, difficulty, name) {
         return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
