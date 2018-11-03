@@ -165,7 +165,7 @@ _Syntax -_ `AAL123 hold [fixname] [left|right] [leg_time]min` or `AAL123 hold`
 _Aliases -_ `exithold` `nohold` `xh`
 
 _Information -_ This command instructs the aircraft to leave a holding
-pattern and resume it's flight plan.
+pattern and resume its flight plan.
 
 _Syntax -_ `AAL123 exithold`
 
