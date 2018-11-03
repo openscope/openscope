@@ -3,22 +3,54 @@
     display: inline-block;
 }
 
+#controls > .github-logo,
+#controls > .github-text {
+    width: auto;
+}
+
+.github-logo {
+    img {
+        width: auto;
+        height: 20px;
+        margin-top: 4px;
+        padding: 4px 4px 8px 4px;
+        background-color: #ffffff;
+    }
+}
+
+.github-text {
+    padding: 0px 8px;
+    line-height: 36px;
+    vertical-align: top;
+
+    a {
+        font-family: monoOne, monospace;
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+}
+
+
 .control {
     margin: 0;
     transition: box-shadow 0.05s ease;
 }
 
-.control img {
+.control > img,
+.control a {
     opacity: 0.5;
     transition: opacity 0.1s ease;
 }
 
-.control:hover img {
+.control:hover > img,
+.control:hover a {
     opacity: 0.9;
     cursor: pointer;
 }
 
-.control:active img {
+.control:active > img,
+.control:active a {
     opacity: 0.6;
 }
 

@@ -12,6 +12,7 @@
 
 
 ### Enhancements & Refactors
+- [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to github repo
 
 
 
