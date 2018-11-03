@@ -1,7 +1,7 @@
 import ava from 'ava';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 import Compass from '../../src/assets/scripts/client/base/Compass';
+import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 
 Compass.magneticNorth = 11.9;
 

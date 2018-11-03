@@ -4,7 +4,6 @@
 class Compass {
     /**
      * @constructor
-     * @param options {object}
      */
     // istanbul ignore next
     constructor() {
@@ -13,12 +12,13 @@ class Compass {
          *
          * @property _magneticNorth
          * @type {number}
+         * @default 0
          */
         this._magneticNorth = 0;
     }
 
     /**
-     * Fascade to access the compass's magnetic declination value
+     * Facade to access the compass's magnetic declination value
      *
      * @for Compass
      * @property magneticNorth
