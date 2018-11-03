@@ -11,8 +11,6 @@ import {
     SMALL_FIX_LIST_MOCK
 } from '../Fix/_mocks/fixMocks';
 
-Compass.magneticNorth = airportMagneticNorthFixtureKSFO;
-
 ava.before(() => {
     FixCollection.removeItems();
 });
@@ -29,6 +27,8 @@ ava.serial('throws when an attempt to instantiate is made with invalid params', 
 });
 
 ava.serial('sets its properties when it receives a valid fixList', t => {
+    Compass.magneticNorth = airportMagneticNorthFixtureKSFO;
+
     FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.true(FixCollection._items.length > 0);

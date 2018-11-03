@@ -3,14 +3,14 @@ import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary
 import Compass from '../../src/assets/scripts/client/base/Compass';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 
-Compass.magneticNorth = 11.9;
-
 ava('throws when attempting to create an instance', (t) => {
     t.throws(() => new NavigationLibrary());
     t.throws(() => new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK));
 });
 
 ava('.getAllFixNamesInUse() returns list of all fix names used in all procedures and airways', (t) => {
+    Compass.magneticNorth = 11.9;
+
     NavigationLibrary.init(AIRPORT_JSON_KLAS_MOCK);
 
     const fixNameList = NavigationLibrary._getAllFixNamesInUse();

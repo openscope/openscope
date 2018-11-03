@@ -7,7 +7,7 @@ import Compass from '../../src/assets/scripts/client/base/Compass';
 
 const currentPosition = ['N36.080056', 'W115.15225', '2181ft'];
 const airportPositionFixtureKSFO = new StaticPositionModel(currentPosition, null);
-Compass.magneticNorth = 11.9;
+const airportMagneticNorthKSFO = 11.9;
 
 ava('throws if called with invalid parameters', t => {
     t.throws(() => new AirspaceModel());
@@ -17,6 +17,8 @@ ava('throws if called with invalid parameters', t => {
 });
 
 ava('accepts an airspace object that is used to set the instance properties', t => {
+    Compass.magneticNorth = airportMagneticNorthKSFO;
+
     const model = new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO);
 
     t.false(typeof model._id === 'undefined');
@@ -27,6 +29,8 @@ ava('accepts an airspace object that is used to set the instance properties', t 
 });
 
 ava('removes last element in poly array if it is the same as the first element', t => {
+    Compass.magneticNorth = airportMagneticNorthKSFO;
+
     const model = new AirspaceModel(AIRSPACE_MOCK_WITH_CLOSING_ENTRY, airportPositionFixtureKSFO);
 
     t.false(model.poly.length === AIRSPACE_MOCK_WITH_CLOSING_ENTRY.poly.length);
