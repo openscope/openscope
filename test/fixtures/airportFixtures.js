@@ -25,6 +25,8 @@ export function createAirportModelFixture() {
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new StaticPositionModel(['N37.6195', 'W122.3738333', '13ft'], null);
+export const airportMagneticNorthFixtureKSFO = 0.2391101;
 
 // klas airport reference
 export const airportPositionFixtureKLAS = new StaticPositionModel(['N36.080056', 'W115.15225', '2181ft'], null);
+export const airportMagneticNorthFixtureKLAS = 0.2076941809873252;

@@ -4,11 +4,14 @@ import _isEqual from 'lodash/isEqual';
 
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/FixCollection';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
-import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
+import Compass from '../../../src/assets/scripts/client/base/Compass';
+import { airportPositionFixtureKSFO, airportMagneticNorthFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
 } from '../Fix/_mocks/fixMocks';
+
+Compass.magneticNorth = airportMagneticNorthFixtureKSFO;
 
 ava.before(() => {
     FixCollection.removeItems();

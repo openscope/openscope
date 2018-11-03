@@ -1,4 +1,3 @@
-import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
 import {
     adjustForMagneticNorth,
