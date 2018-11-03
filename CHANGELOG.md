@@ -12,6 +12,7 @@
 
 
 ### Enhancements & Refactors
+- [#91](https://github.com/openscope/openscope/issues/91) - Remove magnetic_north from PositionModel
 
 
 
