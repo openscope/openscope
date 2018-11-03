@@ -5,7 +5,6 @@ import {
     calculateDistanceToPointForY,
     isValidGpsCoordinatePair
 } from './positionModelHelpers';
-import { radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
@@ -198,7 +197,7 @@ export default class DynamicPositionModel {
         const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
         const θ = Math.atan2(y, x);
 
-        return radians_normalize(θ - Compass.magneticNorth);
+        return Compass.normalize(θ);
     }
 
     /**

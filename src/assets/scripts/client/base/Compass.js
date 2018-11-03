@@ -1,3 +1,5 @@
+import { radians_normalize } from '../math/circle';
+
 /**
  * @class Compass
  */
@@ -25,11 +27,6 @@ class Compass {
      * @return {number}
      */
     get magneticNorth() {
-        // TODO: remove check. for debugging only
-        if (!this._magneticNorth) {
-            throw "Compass is not set";
-        }
-
         return this._magneticNorth;
     }
 
@@ -43,6 +40,18 @@ class Compass {
     set magneticNorth(magneticNorth) {
         this._magneticNorth = magneticNorth;
     }
+
+    /**
+     *
+     * @for Compass
+     * @method normalize
+     * @param radians {number}
+     * @return {number} the angle relative to the magnetic north within [0,2π]
+     */
+    normalize(radians) {
+        return radians_normalize(radians - this._magneticNorth);
+    }
+
 }
 
 export default new Compass();
