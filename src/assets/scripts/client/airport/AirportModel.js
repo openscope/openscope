@@ -23,6 +23,7 @@ import {
 } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
+import Compass from '../base/Compass';
 
 const DEFAULT_CTR_RADIUS_KM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
@@ -293,7 +294,7 @@ export default class AirportModel {
      * @return {number}
      */
     get magneticNorth() {
-        return this._positionModel.magneticNorth;
+        return Compass.magneticNorth;
     }
 
     /**
@@ -391,7 +392,8 @@ export default class AirportModel {
             return;
         }
 
-        this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
+        this._positionModel = new StaticPositionModel(gpsCoordinates, null);
+        Compass.magneticNorth = magneticNorth;
     }
 
     /**
@@ -411,7 +413,7 @@ export default class AirportModel {
             return new AirspaceModel(
                 airspaceSection,
                 this._positionModel,
-                this._positionModel.magneticNorth
+                Compass.magneticNorth
             );
         });
 
@@ -424,7 +426,7 @@ export default class AirportModel {
                         DynamicPositionModel.calculateRelativePosition(
                             this.rr_center,
                             this._positionModel,
-                            this.magneticNorth
+                            Compass.magneticNorth
                         )
                     )
                 )
@@ -449,7 +451,7 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
+                const airportPositionAndDeclination = [this.positionModel, Compass.magneticNorth];
                 const lineStartCoordinates = [line[0], line[1]];
                 const lineEndCoordinates = [line[2], line[3]];
                 const startPosition = DynamicPositionModel.calculateRelativePosition(
@@ -488,7 +490,7 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
             obj.coordinates = _map(
                 area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, Compass.magneticNorth)
             );
 
             let coords_max = obj.coordinates[0];
@@ -731,7 +733,7 @@ export default class AirportModel {
                     return _map(line_string, (point) => {
                         // `StaticPositionModel` requires [lat,lon] order
                         const latLongPoint = point.slice().reverse();
-                        const pos = new StaticPositionModel(latLongPoint, apt.positionModel, apt.magneticNorth);
+                        const pos = new StaticPositionModel(latLongPoint, apt.positionModel);
 
                         return pos.relativePosition;
                     });

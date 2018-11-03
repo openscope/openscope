@@ -11,7 +11,6 @@ import FixCollection from './FixCollection';
 import ProcedureModel from './ProcedureModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { PROCEDURE_TYPE } from '../constants/routeConstants';
-import { degreesToRadians } from '../utilities/unitConverters';
 import { INVALID_INDEX } from '../constants/globalConstants';
 
 /**
@@ -201,8 +200,7 @@ class NavigationLibrary {
     _initializeReferencePosition(airportJson) {
         this._referencePosition = new StaticPositionModel(
             airportJson.position,
-            null,
-            degreesToRadians(airportJson.magnetic_north)
+            null
         );
     }
 

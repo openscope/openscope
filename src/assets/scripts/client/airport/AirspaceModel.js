@@ -1,5 +1,4 @@
 import _isEqual from 'lodash/isEqual';
-import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
@@ -17,14 +16,13 @@ export default class AirspaceModel extends BaseModel {
      * @constructor
      * @param airspace {object}
      * @param airportPosition {StaticPositionModel}
-     * @param magneticNorth {number}
      */
-    constructor(airspace, airportPosition, magneticNorth) {
+    constructor(airspace, airportPosition) {
         super();
 
-        if (!airspace || !airportPosition || !_isNumber(magneticNorth)) {
+        if (!airspace || !airportPosition) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
+            throw new TypeError('Invalid parameter, expected airspace and airportPosition to be defined');
         }
 
         /**
@@ -69,7 +67,7 @@ export default class AirspaceModel extends BaseModel {
          */
         this.airspace_class = '';
 
-        return this._init(airspace, airportPosition, magneticNorth);
+        return this._init(airspace, airportPosition);
     }
 
     /**
@@ -79,14 +77,13 @@ export default class AirspaceModel extends BaseModel {
      * @method _init
      * @param airspace {array}
      * @param airportPosition {StaticPositionModel}
-     * @param magneticNorth {number}
      * @private
      */
-    _init(airspace, airportPosition, magneticNorth) {
+    _init(airspace, airportPosition) {
         this.floor = convertToThousands(airspace.floor);
         this.ceiling = convertToThousands(airspace.ceiling);
         this.airspace_class = airspace.airspace_class;
-        this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
+        this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition);
 
         return this;
     }
@@ -111,13 +108,12 @@ export default class AirspaceModel extends BaseModel {
      * @method _buildPolyPositionModels
      * @param polyList {array}
      * @param airportPosition {StaticPositionModel}
-     * @param magneticNorth {number}
      * @return polyPositionModels {array}
      * @private
      */
-    _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
+    _buildPolyPositionModels(polyList, airportPosition) {
         const polyPositionModels = _map(polyList, (poly) => {
-            return new StaticPositionModel(poly, airportPosition, magneticNorth);
+            return new StaticPositionModel(poly, airportPosition);
         });
 
         // TODO: Though its reusability is not real likely, this might as well be made into an external helper

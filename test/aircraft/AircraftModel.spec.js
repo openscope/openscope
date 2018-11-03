@@ -1,6 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
+import Compass from '../../src/assets/scripts/client/base/Compass';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
 import UiController from '../../src/assets/scripts/client/UiController';
 import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
@@ -18,6 +19,7 @@ import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
 } from './_mocks/aircraftMocks';
+import { MAGNETIC_NORTH_MOCK } from '../base/_mocks/positionMocks';
 import {
     FLIGHT_PHASE,
     PERFORMANCE
@@ -359,6 +361,8 @@ ava('.penalizeLocalizerInterceptAngle() records an event and notifies the user o
 });
 
 ava('._calculateArrivalRunwayModelGlideslopeAltitude() returns arrival runway\'s glideslope altitude abeam the specified position', (t) => {
+    Compass.magneticNorth = MAGNETIC_NORTH_MOCK;
+
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const expectedResult = 3994.129742601768;
 

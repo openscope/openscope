@@ -4,7 +4,8 @@ import _isEqual from 'lodash/isEqual';
 
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/FixCollection';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/FixModel';
-import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
+import Compass from '../../../src/assets/scripts/client/base/Compass';
+import { airportPositionFixtureKSFO, airportMagneticNorthFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
@@ -26,6 +27,8 @@ ava.serial('throws when an attempt to instantiate is made with invalid params', 
 });
 
 ava.serial('sets its properties when it receives a valid fixList', t => {
+    Compass.magneticNorth = airportMagneticNorthFixtureKSFO;
+
     FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.true(FixCollection._items.length > 0);

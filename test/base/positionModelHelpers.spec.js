@@ -10,7 +10,7 @@ import {
 } from '../../src/assets/scripts/client/base/positionModelHelpers';
 
 // klas airport reference
-const AIRPORT_POSITION_FIXTURE = new StaticPositionModel(['N36.080056', 'W115.15225', '2181ft'], null, 11);
+const AIRPORT_POSITION_FIXTURE = new StaticPositionModel(['N36.080056', 'W115.15225', '2181ft'], null);
 
 ava('.calculateDistanceToPointForX() returns the distance from a reference position to a longitude', t => {
     const longitudeMock = -114.60478305555554;
