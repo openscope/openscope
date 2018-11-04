@@ -87,6 +87,7 @@
         "BOCCK": ["N29d56.20", "W96d12.46"],
         "CESAN": ["N30d32.32", "W94d12.11"],
         "CHEWI": ["N29d39.33", "W96d3.09"],
+        "CHPEE": ["N29d38.16", "W94d50.47"],
         "CLL"  : ["N30d36.30", "W96d25.24"],
         "COLET": ["N30d26.96", "W95d9.66"],
         "COLLT": ["N27d25.79", "W97d11.87"],
@@ -100,6 +101,7 @@
         "DPATY": ["N32d4.34", "W91d32.88"],
         "DREMR": ["N30d18.08", "W95d25.12"],
         "ELLVR": ["N31d42.48", "W96d50.27"],
+        "ELOCO": ["N29d35.22", "W95d1.17"],
         "EMARR": ["N29d32.41", "W95d16.13"],
         "FIGGG": ["N29d34.91", "W95d8.44"],
         "FOWLR": ["N30d17.79", "W98d21.98"],
@@ -108,6 +110,7 @@
         "GEEAR": ["N29d20.99", "W93d53.13"],
         "GEEEO": ["N29d28.82", "W95d38.94"],
         "GLOCK": ["N29d22.81", "W96d38.88"],
+        "GRIPY": ["N29d44.67", "W94d32.31"],
         "HACKT": ["N29d36.34", "W95d39.28"],
         "HAYYY": ["N30d10.17", "W97d44.78"],
         "HNTRR": ["N29d28.17", "W95d52.71"],
@@ -125,6 +128,7 @@
         "KNTKY": ["N30d5.16", "W95d15.65"],
         "LEV"  : ["N29d10.51", "W90d6.24"],
         "LITLD": ["N30d30.29", "W95d28.11"],
+        "LLA"  : ["N29d39.79", "W92d22.42"],
         "LLEGS": ["N29d32.78", "W94d44.85"],
         "LLO"  : ["N30d47.78", "W98d47.24"],
         "LMEDA": ["N28d27.95", "W96d56.37"],
@@ -147,6 +151,7 @@
         "RETYR": ["N29d43.38", "W95d47.62"],
         "RJAAY": ["N29d33.82", "W95d18.42"],
         "SAT"  : ["N29d38.64", "W98d27.68"],
+        "SBI"  : ["N29d41.21", "W94d2.28"],
         "SEAGL": ["N26d32.82", "W93d46.31"],
         "SEUSS": ["N29d39.74", "W95d34.39"],
         "SHLLL": ["N29d3.22", "W94d0.34"],
@@ -166,6 +171,7 @@
         "WEEED": ["N29d46.75", "W96d10.92"],
         "WWELL": ["N31d9.47", "W94d42.43"],
         "WWILD": ["N29d33.28", "W94d50.56"],
+        "YOKEM": ["N29d43.25", "W94d20.55"],
         "ZUUUU": ["N30d5.88", "W96d14.36"]
     },
     "runways": [
@@ -222,6 +228,27 @@
             },
             "draw": [
                 ["DREMR", "LITLD", "BLTWY", "CRIED*"]
+            ]
+        },
+        "ELOCO4": {
+            "icao": "ELOCO4",
+            "name": "Eloco Four",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["ELOCO", "CHPEE", "GRIPY", "YOKEM", "SBI"],
+            "exitPoints": {
+                "LLA": ["LLA"]
+            },
+            "draw": [
+                ["ELOCO", "CHPEE", "GRIPY", "YOKEM", "SBI", "LLA*"]
             ]
         },
         "INDIE6": {
@@ -504,7 +531,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.291,
+            "rate": 0.28,
             "airlines": [
                 ["ash", 7]
             ]
@@ -513,26 +540,13 @@
             "origin": "KHOU",
             "destination": "",
             "category": "departure",
-            "route": "KHOU13R.STRYA6.DPATY",
+            "route": "KHOU13R.ELOCO4.LLA",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.16,
             "airlines": [
-                ["dal", 6]
-            ]
-        },
-        {
-            "origin": "KHOU",
-            "destination": "",
-            "category": "departure",
-            "route": "KHOU13R.RETYR5.JCT",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.04,
-            "airlines": [
-                ["swa", 1]
+                ["swa", 4]
             ]
         },
         {
@@ -546,6 +560,45 @@
             "rate": 0.08,
             "airlines": [
                 ["jbu", 2]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.RETYR5.JCT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.16,
+            "airlines": [
+                ["swa", 4]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.RETYR5.MNURE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["swa", 3]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.STRYA6.DPATY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.25,
+            "airlines": [
+                ["dal", 6]
             ]
         }
     ],
