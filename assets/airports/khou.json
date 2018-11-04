@@ -596,9 +596,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.32,
             "airlines": [
-                ["dal", 6]
+                ["dal/short", 6],
+                ["swa", 2]
             ]
         }
     ],
