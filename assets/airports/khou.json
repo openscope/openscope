@@ -84,6 +84,7 @@
         "BIGTX": ["N28d49.29", "W96d36.94"],
         "BLTWY": ["N30d36.35", "W95d29.47"],
         "BLUBL": ["N30d18.28", "W96d18.18"],
+        "BOCCK": ["N29d56.20", "W96d12.46"],
         "CESAN": ["N30d32.32", "W94d12.11"],
         "CHEWI": ["N29d39.33", "W96d3.09"],
         "CLL"  : ["N30d36.30", "W96d25.24"],
@@ -91,6 +92,7 @@
         "COLLT": ["N27d25.79", "W97d11.87"],
         "COWZZ": ["N30d4.37", "W96d12.77"],
         "CREPO": ["N30d16.90", "W94d14.72"],
+        "CRGER": ["N30d26.95", "W98d20.57"],
         "CRIED": ["N31d21.23", "W95d39.69"],
         "CRP"  : ["N27d54.23", "W97d26.69"],
         "CRSTY": ["N29d38.32", "W95d36.02"],
@@ -100,12 +102,14 @@
         "ELLVR": ["N31d42.48", "W96d50.27"],
         "EMARR": ["N29d32.41", "W95d16.13"],
         "FIGGG": ["N29d34.91", "W95d8.44"],
+        "FOWLR": ["N30d17.79", "W98d21.98"],
         "FRDDY": ["N29d29.21", "W94d52.66"],
         "FRITZ": ["N29d42.41", "W94d28.07"],
         "GEEAR": ["N29d20.99", "W93d53.13"],
         "GEEEO": ["N29d28.82", "W95d38.94"],
         "GLOCK": ["N29d22.81", "W96d38.88"],
         "HACKT": ["N29d36.34", "W95d39.28"],
+        "HAYYY": ["N30d10.17", "W97d44.78"],
         "HNTRR": ["N29d28.17", "W95d52.71"],
         "HUB"  : ["N29d39.34", "W95d16.60"],
         "ILEXY": ["N30d21.16", "W97d4.76"],
@@ -113,6 +117,7 @@
         "IVEEE": ["N29d36.62", "W95d18.10"],
         "JBULL": ["N31d18.91", "W91d18.87"],
         "JCNTO": ["N29d42.81", "W95d2.26"],
+        "JCT"  : ["N30d35.88", "W99d49.05"],
         "JEPEG": ["N29d27.40", "W92d27.47"],
         "KCEEE": ["N29d14.57", "W92d28.02"],
         "KELPP": ["N27d10.53", "W91d56.95"],
@@ -125,15 +130,21 @@
         "LMEDA": ["N28d27.95", "W96d56.37"],
         "LOA"  : ["N31d7.44", "W95d58.07"],
         "MAAHH": ["N29d36.29", "W95d8.93"],
+        "MARCS": ["N29d53.87", "W97d51.68"],
         "MMOOW": ["N29d25.75", "W94d52.40"],
+        "MNNKE": ["N29d46.04", "W95d52.68"],
+        "MNURE": ["N29d59.58", "W96d33.96"],
         "MUSIQ": ["N30d33.17", "W94d53.53"],
         "PARAA": ["N29d24.64", "W96d58.24"],
         "PEETY": ["N30d15.03", "W95d7.75"],
         "PEGLG": ["N26d48.27", "W92d50.67"],
         "PLEDO": ["N29d48.51", "W94d25.71"],
+        "PSTUR": ["N30d19.19", "W97d43.59"],
         "PUCKS": ["N29d24.47", "W94d39.78"],
+        "PUFER": ["N30d13.44", "W97d4.53"],
         "PURKY": ["N29d26.34", "W96d29.26"],
         "RENNK": ["N30d17.48", "W95d13.35"],
+        "RETYR": ["N29d43.38", "W95d47.62"],
         "RJAAY": ["N29d33.82", "W95d18.42"],
         "SAT"  : ["N29d38.64", "W98d27.68"],
         "SEAGL": ["N26d32.82", "W93d46.31"],
@@ -151,8 +162,11 @@
         "SUSHI": ["N30d35.48", "W95d4.39"],
         "TPAKK": ["N32d59.63", "W93d25.47"],
         "VILLI": ["N29d37.67", "W95d23.21"],
+        "WAILN": ["N29d48.49", "W96d34.29"],
+        "WEEED": ["N29d46.75", "W96d10.92"],
         "WWELL": ["N31d9.47", "W94d42.43"],
-        "WWILD": ["N29d33.28", "W94d50.56"]
+        "WWILD": ["N29d33.28", "W94d50.56"],
+        "ZUUUU": ["N30d5.88", "W96d14.36"]
     },
     "runways": [
         {
@@ -187,7 +201,7 @@
            ],
             "ils": [false, false]
         }
-   ],
+    ],
     "sids": {
         "BLTWY5": {
             "icao": "BLTWY5",
@@ -252,6 +266,35 @@
             "draw": [
                 ["KNTKY", "PEETY", "DARTR", "MUSIQ", "STRYA", "DPATY*"],
                 ["STRYA", "JBULL*"]
+            ]
+        },
+        "RETYR5": {
+            "icao": "RETYR5",
+            "name": "Retire Five",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["RETYR", "MNNKE"],
+            "exitPoints": {
+                "CRGER": ["ZUUUU", "PUFER", "PSTUR", "CRGER"],
+                "JCT": ["BOCCK", "MNURE", "HAYYY", "FOWLR", "JCT"],
+                "MNURE": ["BOCCK", "MNURE"],
+                "SAT": ["BOCCK", "MNURE", "MARCS", "SAT"],
+                "WAILN": ["WEEED", "WAILN"]
+            },
+            "draw": [
+                ["RETYR", "MNNKE", "ZUUUU", "PUFER", "PSTUR", "CRGER*"],
+                ["MNNKE", "BOCCK", "MNURE*"],
+                ["MNURE", "HAYYY", "FOWLR", "JCT*"],
+                ["MNURE", "MARCS", "SAT*"],
+                ["MNNKE", "WEEED", "WAILN*"]
             ]
         }
     },
@@ -477,6 +520,19 @@
             "rate": 0.25,
             "airlines": [
                 ["dal", 6]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.RETYR5.JCT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.04,
+            "airlines": [
+                ["swa", 1]
             ]
         },
         {
