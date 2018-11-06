@@ -17,6 +17,7 @@
 
 ### Enhancements & Refactors
 - [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to github repo
+- [#883](https://github.com/openscope/openscope/issues/883) - Light tailwind landings wrongfully causing penalty
 
 
 
