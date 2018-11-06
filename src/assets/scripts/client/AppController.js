@@ -15,7 +15,6 @@ import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import ScopeModel from './scope/ScopeModel';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
-import TutorialView from './ui/TutorialView';
 import UiController from './ui/UiController';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
@@ -50,7 +49,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
         this.canvasController = null;
@@ -118,7 +116,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
         this.canvasController = null;
@@ -171,9 +168,8 @@ export default class AppController {
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
-        this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
@@ -185,7 +181,6 @@ export default class AppController {
      */
     init_pre() {
         GameController.init_pre();
-        this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
     }
 
