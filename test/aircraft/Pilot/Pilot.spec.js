@@ -416,16 +416,16 @@ ava('.conductInstrumentApproach() returns failure message when no runway is prov
 });
 
 ava('.conductInstrumentApproach() returns failure message when assigned altitude is lower than minimum glideslope intercept altitude', (t) => {
+    const expectedResult = [false, {
+        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope ' +
+        'intercept altitude, request climb to 2800',
+        say: 'unable ILS one niner left, our assigned altitude is below the minimum ' +
+        'glideslope intercept altitude, request climb to two thousand eight hundred'
+    }];
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
 
     aircraftModel.mcp.setAltitudeFieldValue(1);
 
-    const expectedResult = [false, {
-        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope ' +
-            'intercept altitude, request climb to 2800',
-        say: 'unable ILS one niner left, our assigned altitude is below the minimum ' +
-            'glideslope intercept altitude, request climb to two thousand eight hundred'
-    }];
     const result = aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
     t.deepEqual(result, expectedResult);
