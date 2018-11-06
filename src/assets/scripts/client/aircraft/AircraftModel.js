@@ -1,15 +1,12 @@
 import _ceil from 'lodash/ceil';
 import _defaultTo from 'lodash/defaultTo';
-import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _head from 'lodash/head';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import AirportController from '../airport/AirportController';
@@ -841,26 +838,12 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method isBeyondTopOfDescentForWaypointModel
+     * @param waypointModel {WaypointModel} the waypoint at which to comply with the restriction
+     * @param targetAltitude {number} the altitude to comnply with
      * @return {boolean}
      */
-    isBeyondTopOfDescentForWaypointModel() {
-        const currentAltitude = this.altitude;
-        const altitudeRestrictedWaypoints = this.fms.getAltitudeRestrictedWaypoints();
-        const waypointsWithRelevantCeiling = _filter(altitudeRestrictedWaypoints,
-            (waypoint) => waypoint.hasMaximumAltitudeAtOrBelow(currentAltitude));
-
-        if (_isEmpty(altitudeRestrictedWaypoints)) {
-            return;
-        }
-
-        let targetAltitude = this.mcp.altitude;
-        let targetPosition = _last(altitudeRestrictedWaypoints).positionModel;
-
-        if (!_isEmpty(waypointsWithRelevantCeiling)) {
-            targetAltitude = _head(waypointsWithRelevantCeiling).altitudeMaximum;
-            targetPosition = _head(waypointsWithRelevantCeiling).positionModel;
-        }
-
+    isBeyondTopOfDescentForWaypointModel(waypointModel, targetAltitude) {
+        const targetPosition = waypointModel.positionModel;
         const waypointDistance = this.positionModel.distanceToPosition(targetPosition);
         const altitudeChange = targetAltitude - this.altitude;
         const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
@@ -1857,8 +1840,8 @@ export default class AircraftModel {
 
         if (shouldMoveToNextFix) {
             if (!this.fms.hasNextWaypoint()) {
-                // we've hit this block becuase and aircraft is about to fly over the last waypoint in its flightPlan
-                this.pilot.maintainPresentHeading(this.heading);
+                // we've hit this block because and aircraft is about to fly over the last waypoint in its flightPlan
+                this.pilot.maintainPresentHeading(headingToWaypoint);
 
                 return headingToWaypoint;
             }
@@ -1969,30 +1952,107 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnav() {
-        const nextAltitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
-        const nextAltitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
-        const maximumAltitudeExists = !_isNil(nextAltitudeMaximumWaypoint);
-        const minimumAltitudeExists = !_isNil(nextAltitudeMinimumWaypoint);
+        const altitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeRestriction();
+        const altitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeRestriction();
+        const maximumAltitudeExists = !_isNil(altitudeMaximumWaypoint);
+        const minimumAltitudeExists = !_isNil(altitudeMinimumWaypoint);
 
-        if (!maximumAltitudeExists && !minimumAltitudeExists) {
-            return this.mcp.altitude;
-        }
-
-        if (maximumAltitudeExists && minimumAltitudeExists) {
-            const waypoints = this.fms.waypoints;
-            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
-            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
-
-            if (indexOfMax < indexOfMin) {
-                return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
+        if (this.mcp.altitude < this.altitude) {
+            // we want to descend...
+            if (!minimumAltitudeExists || altitudeMinimumWaypoint.altitudeMinimum <= this.mcp.altitude) {
+                // ... and there is nothing that can stop us.
+                return this.mcp.altitude;
             }
 
-            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
-        } else if (maximumAltitudeExists) {
-            return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
-        } else if (minimumAltitudeExists) {
-            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
+            const altitudeMinimum = altitudeMinimumWaypoint.altitudeMinimum;
+
+            if (this.altitude < altitudeMinimum) {
+                // ... but we are too low and we have to comply with VNAV restriction
+                return this._calculateTargetedAltitudeVnavClimb(altitudeMinimumWaypoint);
+            }
+
+            if (maximumAltitudeExists) {
+                const altitudeMaximum = altitudeMaximumWaypoint.altitudeMaximum;
+
+                if (this.mcp.altitude > altitudeMaximum) {
+                    // we are too high but we are prioritizing clearance over VNAV restriction
+                    return this.mcp.altitude;
+                }
+
+                if (this.altitude > altitudeMaximum) {
+                    // we are too high...
+                    if (altitudeMinimum > altitudeMaximum) {
+                        // the minimum altitude is above the maximum altiude, check if we can descend all the way down
+                        // without violating VNAV restrictions.
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint);
+
+                        if (firstWaypoint.name === altitudeMinimumWaypoint.name) {
+                            // ... but we can not descend all the way down yet
+                            return this._calculateTargetedAltitudeVnavDescent(altitudeMinimumWaypoint, altitudeMinimum);
+                        }
+                    }
+                    // ...so descend to comply with VNAV restriction
+                    return this._calculateTargetedAltitudeVnavDescent(altitudeMaximumWaypoint, altitudeMaximum);
+                }
+            }
+        } else {
+            // we want to climb...
+            if (!maximumAltitudeExists || this.mcp.altitude <= altitudeMaximumWaypoint.altitudeMaximum) {
+                // ... and there is nothing that can stop us.
+                return this.mcp.altitude;
+            }
+
+            const altitudeMaximum = altitudeMaximumWaypoint.altitudeMaximum;
+
+            if (this.altitude > altitudeMaximum) {
+                // .. but we are too high and have to comply with NAV restriction
+                return this._calculateTargetedAltitudeVnavDescent(altitudeMaximumWaypoint, altitudeMaximum);
+            }
+
+            if (minimumAltitudeExists) {
+                const altitudeMinimum = altitudeMinimumWaypoint.altitudeMinimum;
+
+                if (this.mcp.altitude < altitudeMinimum) {
+                    // we are too low but we are prioritizing clearance over VNAV restriction
+                    return this.mcp.altitude;
+                }
+
+                if (this.altitude < altitudeMinimum) {
+                    // we are too low ...
+                    if (altitudeMaximum < altitudeMinimum) {
+                        // the maximum altitude is below the minimal altiude, check if we can climb all the way up
+                        // without violating VNAV restrictions.
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint);
+
+                        if (firstWaypoint.name === altitudeMaximumWaypoint.name) {
+                            // ... but we can not climb all the way up yet
+                            return altitudeMaximum;
+                        }
+                    }
+                    // ... climb to comply with VNAV restriction
+                    return this._calculateTargetedAltitudeVnavClimb(altitudeMinimumWaypoint);
+                }
+            }
+
+            return altitudeMaximum;
         }
+    }
+
+    /**
+     * Takes two waypoints and returns the waypoint that comes first in the list of waypoints
+     *
+     * @for AircraftModel
+     * @method _findFirstWaypoint
+     * @param waypoints
+     * @param waypointA {WaypointModel}
+     * @param waypointB {WaypointModel}
+     * @return waypointA or waypointB {WaypointModel}
+     */
+    _findFirstWaypoint(waypoints, waypointA, waypointB) {
+        const indexOfA = _findIndex(waypoints, (waypoint) => waypoint.name === waypointA.name);
+        const indexOfB = _findIndex(waypoints, (waypoint) => waypoint.name === waypointB.name);
+
+        return indexOfA < indexOfB ? waypointA : waypointB;
     }
 
     /**
@@ -2006,7 +2066,7 @@ export default class AircraftModel {
     _calculateTargetedAltitudeVnavClimb(waypointWithMinimumAltitudeRestriction) {
         const waypointMinimumAltitude = waypointWithMinimumAltitudeRestriction.altitudeMinimum;
 
-        return Math.min(waypointMinimumAltitude, this.mcp.altitude);
+        return waypointMinimumAltitude;
     }
 
     /**
@@ -2014,16 +2074,16 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavDescent
+     * @param waypointModel {WaypointModel} the waypoint at which to comply with the restriction
+     * @param targetAltitude {number} the altitude to comply with
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavDescent(waypointWithMaximumAltitudeRestriction) {
-        const waypointMaximumAltitude = waypointWithMaximumAltitudeRestriction.altitudeMaximum;
-
-        if (!this.isBeyondTopOfDescentForWaypointModel(waypointWithMaximumAltitudeRestriction)) {
+    _calculateTargetedAltitudeVnavDescent(waypointModel, targetAltitude) {
+        if (!this.isBeyondTopOfDescentForWaypointModel(waypointModel, targetAltitude)) {
             return;
         }
 
-        return Math.min(waypointMaximumAltitude, this.mcp.altitude);
+        return targetAltitude;
     }
 
     /**
