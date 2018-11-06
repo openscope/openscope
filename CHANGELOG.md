@@ -6,6 +6,7 @@
 
 
 ### Bugfixes
+- [#1045](https://github.com/openscope/openscope/issues/1045) - Arrivals ignoring altitude restrictions
 
 
 
