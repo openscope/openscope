@@ -676,9 +676,9 @@ export default class AircraftCommander {
     runIls(aircraft, data) {
         const approachType = 'ils';
         const runwayName = data[1].toUpperCase();
-        const runway = AirportController.airport_get().getRunway(runwayName);
+        const runwayModel = AirportController.airport_get().getRunway(runwayName);
 
-        return aircraft.pilot.conductInstrumentApproach(approachType, runway);
+        return aircraft.pilot.conductInstrumentApproach(aircraft, approachType, runwayModel);
     }
 
     /**

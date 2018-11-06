@@ -12,6 +12,7 @@
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 - [#1045](https://github.com/openscope/openscope/issues/1045) - Arrivals ignoring altitude restrictions
+- [#1084](https://github.com/openscope/openscope/issues/1084) - Add messages for too-low glideslope intercepts
 
 
 

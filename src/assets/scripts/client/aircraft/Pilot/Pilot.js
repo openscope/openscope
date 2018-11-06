@@ -661,13 +661,27 @@ export default class Pilot {
      *
      * @for pilot
      * @method conductInstrumentApproach
-     * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param runwayModel {RunwayModel}   the runway the approach ends at
-     * @return {array}                    [success of operation, readback]
+     * @param aircraftModel {AircraftModel} the aircraft model belonging to this pilot
+     * @param approachType {string}         the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param runwayModel {RunwayModel}     the runway the approach ends at
+     * @return {array}                      [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runwayModel) {
+    conductInstrumentApproach(aircraftModel, approachType, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
+        }
+
+        const minimumGlideslopeInterceptAltitude = runwayModel.getMinimumGlideslopeInterceptAltitude();
+
+        if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
+            const readback = {};
+
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+
+            return [false, readback];
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
