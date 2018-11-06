@@ -12,6 +12,7 @@
 
 
 ### Enhancements & Refactors
+- [#883](https://github.com/openscope/openscope/issues/883) - Light tailwind landings wrongfully causing penalty
 
 
 
@@ -41,7 +42,6 @@
 - [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
 - [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
 - [#1133](https://github.com/openscope/openscope/issues/1133) - Improve InputController class
-- [#883](https://github.com/openscope/openscope/issues/883) - Light tailwind landings wrongfully causing penalty
 
 
 # 6.6.0 (October 1, 2018)
