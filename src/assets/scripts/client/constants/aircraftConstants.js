@@ -247,7 +247,16 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    TYPICAL_CLIMB_FACTOR: 0.7
+    TYPICAL_CLIMB_FACTOR: 0.7,
+
+    /**
+     * Standard pressure, the baseline used universally, is 1013.25 hPa, which is equivalent to 1013.25 mb or 29.92 inHg
+     *
+     * @property DEFAULT_ALTIMETER_IN_INHG
+     * @type {number}
+     * @final
+     */
+    DEFAULT_ALTIMETER_IN_INHG: 29.92
 };
 
 /**

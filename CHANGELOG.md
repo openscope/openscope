@@ -2,6 +2,7 @@
 ### New Features
 - [#898](https://github.com/openscope/openscope/issues/898) - Add command to exit holding pattern
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
+- [#945](https://github.com/openscope/openscope/issues/945) - Add an information panel with data about wind and elevation
 
 
 
