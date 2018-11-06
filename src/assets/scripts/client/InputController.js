@@ -110,7 +110,7 @@ export default class InputController {
         this.$canvases.on('mousemove', this.onMouseClickAndDragHandler);
         this.$canvases.on('mouseup', this.onMouseUpHandler);
         this.$canvases.on('mousedown', this.onMouseDownHandler);
-        this.$body.addEventListener('contextmenu', event.preventDefault());
+        this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
         this._eventBus.on(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);

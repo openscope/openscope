@@ -1,23 +1,35 @@
-# 6.7.0 (November 1, 2018)
+# 6.8.0 (December 1, 2018)
 ### New Features
-- [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
-- [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
-- [#1017](https://github.com/openscope/openscope/issues/1017) - Add more GA aircraft
 
 
 
 
 
 ### Bugfixes
-- [#1099](https://github.com/openscope/openscope/issues/1099) - Fix wrong B747 entry in Turkish Airlines file
-- [#1104](https://github.com/openscope/openscope/issues/1104) - Fix console warnings for removing StripViewModel which doesn't exist
-- [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
-- [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 
 
 
 
+
+### Enhancements & Refactors
+
+
+
+
+
+# 6.7.0 (November 1, 2018)
+### New Features
+- [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights
+- [#793](https://github.com/openscope/openscope/issues/793) - Add AIRAC airport file key and system command
+- [#1017](https://github.com/openscope/openscope/issues/1017) - Add more GA aircraft
+
+### Bugfixes
+- [#1099](https://github.com/openscope/openscope/issues/1099) - Fix wrong B747 entry in Turkish Airlines file
+- [#1104](https://github.com/openscope/openscope/issues/1104) - Fix console warnings for removing StripViewModel which doesn't exist
+- [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
+- [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
+- [#1152](https://github.com/openscope/openscope/issues/1152) - Fix GameClockView crashes sim in Firefox
 
 ### Enhancements & Refactors
 - [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
@@ -30,9 +42,6 @@
 - [#1142](https://github.com/openscope/openscope/pull/1142) - Update documentation for taxi command
 - [#966](https://github.com/openscope/openscope/pull/966) - Improve terrain generation documentation
 - [#1133](https://github.com/openscope/openscope/issues/1133) - Improve InputController class
-
-
-
 
 
 # 6.6.0 (October 1, 2018)
