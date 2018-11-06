@@ -63,6 +63,10 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
+    exitHold: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
     pause: {
         validate: zeroArgumentsValidator,
         parse: noop

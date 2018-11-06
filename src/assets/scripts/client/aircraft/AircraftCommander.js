@@ -301,6 +301,18 @@ export default class AircraftCommander {
     }
 
     /**
+     * Exit holding pattern and resume navigation
+     *
+     * @for AircraftCommander
+     * @method runExitHold
+     * @param aircraft {AircraftModel}
+     * @return {array} [success of operation, readback]
+     */
+    runExitHold(aircraft) {
+        return aircraft.pilot.exitHold();
+    }
+
+    /**
      * Skip forward to a particular fix that already exists further along the aircraft's route
      *
      * @for AircraftCommander
