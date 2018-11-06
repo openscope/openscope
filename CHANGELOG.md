@@ -10,6 +10,7 @@
 
 ### Bugfixes
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
+- [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 
 
 
