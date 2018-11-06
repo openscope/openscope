@@ -258,23 +258,23 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-    * Calculate the height of the glideslope at (or abeam) the final approach fix
-    *
-    * @for RunwayModel
-    * @method getGlideslopeAltitudeAtFinalApproachFix
-    * @return {number} glideslope altitude in ft MSL
-    */
+     * Calculate the height of the glideslope at (or abeam) the final approach fix
+     *
+     * @for RunwayModel
+     * @method getGlideslopeAltitudeAtFinalApproachFix
+     * @return {number} glideslope altitude in ft MSL
+     */
     getGlideslopeAltitudeAtFinalApproachFix() {
         return this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
     }
 
     /**
-    * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
-    *
-    * @for RunwayModel
-    * @method getMinimumGlideslopeInterceptAltitude
-    * @return {number} glideslope altitude in ft MSL
-    */
+     * Calculate the height of the lowest 100-ft-increment altitude which is along the glideslope and beyond the FAF
+     *
+     * @for RunwayModel
+     * @method getMinimumGlideslopeInterceptAltitude
+     * @return {number} glideslope altitude in ft MSL
+     */
     getMinimumGlideslopeInterceptAltitude() {
         const altitudeAtFinalApproachFix = this.getGlideslopeAltitude(AIRPORT_CONSTANTS.FINAL_APPROACH_FIX_DISTANCE_NM);
         const minimumInterceptAltitude = _ceil(altitudeAtFinalApproachFix, -2);
