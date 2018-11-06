@@ -1007,6 +1007,7 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method isOnGround
+     * @return {boolean}
      */
     isOnGround() {
         let airportModel = this.fms.departureAirportModel;
@@ -1026,6 +1027,17 @@ export default class AircraftModel {
         const nearAirportAltitude = abs(this.altitude - airportModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
+    }
+
+    /**
+     * Aircraft is on the apron
+     *
+     * @for AircraftModel
+     * @method isApron
+     * @return {boolean}
+     */
+    isApron() {
+        return this.flightPhase === FLIGHT_PHASE.APRON;
     }
 
     /**
