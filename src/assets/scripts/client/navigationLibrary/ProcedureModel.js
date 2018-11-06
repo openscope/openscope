@@ -296,6 +296,23 @@ export default class ProcedureModel {
     }
 
     /**
+     * Return the name of the first entry point if there is exactly one entry point.
+     *
+     * @for ProcedureModel
+     * @method getUniqueEntryPoint
+     * @return {string}
+     */
+    getUniqueEntryPoint() {
+        const entryNames = Object.keys(this._entryPoints);
+
+        if (entryNames.length !== 1) {
+            return '';
+        }
+
+        return entryNames[0];
+    }
+
+    /**
     * Given an entry point and exit point, return a list of all applicable waypoints
     *
     * @for ProcedureModel

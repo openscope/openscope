@@ -379,14 +379,14 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runSID
      * @param aircraft {AircraftModel}
-     * @param data {array}
+     * @param data {array<string>} a string representation of the SID (may also include exit, eg sid.exit)
      * @return {array}   [success of operation, readback]
      */
     runSID(aircraft, data) {
-        const sidId = data[0];
+        const routeString = data[0];
         const airportModel = AirportController.airport_get();
 
-        return aircraft.pilot.applyDepartureProcedure(sidId, airportModel.icao);
+        return aircraft.pilot.applyDepartureProcedure(routeString, airportModel.icao);
     }
 
     /**
