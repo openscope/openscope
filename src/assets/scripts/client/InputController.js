@@ -637,7 +637,7 @@ export default class InputController {
     processSystemCommand(aircraftCommandParser) {
         switch (aircraftCommandParser.command) {
             case PARSED_COMMAND_NAME.TUTORIAL:
-                this._tutorialView.tutorial_toggle();
+                UiController.onToggleTutorial();
 
                 return true;
 
