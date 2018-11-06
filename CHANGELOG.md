@@ -6,6 +6,7 @@
 
 
 ### Bugfixes
+- [#955](https://github.com/openscope/openscope/issues/955) - Fix SID Command doesn't work
 
 
 
