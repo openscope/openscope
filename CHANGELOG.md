@@ -6,6 +6,7 @@
 
 
 ### Bugfixes
+- [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
 
 
 
@@ -30,6 +31,7 @@
 - [#1103](https://github.com/openscope/openscope/issues/1103) - Fix pressing ESC doesn't fully clear the command bar
 - [#1149](https://github.com/openscope/openscope/issues/1149) - Ensure all flight strips are removed when switching to another airport
 - [#1152](https://github.com/openscope/openscope/issues/1152) - Fix GameClockView crashes sim in Firefox
+
 
 ### Enhancements & Refactors
 - [#1108](https://github.com/openscope/openscope/issues/1108) - Overhaul of KLAS
