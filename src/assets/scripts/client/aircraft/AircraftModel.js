@@ -1136,6 +1136,7 @@ export default class AircraftModel {
     /**
       * @for AircraftModel
       * @method getWind
+      * @return {object} headwind and crosswind
       */
     getWind() {
         const { wind } = AirportController.airport_get();

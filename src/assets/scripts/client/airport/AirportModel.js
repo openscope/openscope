@@ -567,7 +567,7 @@ export default class AirportModel {
      * @for AirportModel
      * @method getWindForRunway
      * @param runway {runwayModel}
-     * @return wind {number}
+     * @return {object} headwind and crosswind
      */
     getWindForRunway(runway) {
         const crosswindAngle = runway.calculateCrosswindAngleForRunway(this.wind.angle);
