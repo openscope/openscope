@@ -29,6 +29,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
+    calculateCrosswindAngle,
     calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
@@ -1133,6 +1134,20 @@ export default class AircraftModel {
     }
 
     /**
+      * @for AircraftModel
+      * @method getWind
+      */
+    getWind() {
+        const { wind } = AirportController.airport_get();
+        const crosswindAngle = calculateCrosswindAngle(this.heading, wind.angle);
+
+        return {
+            cross: sin(crosswindAngle) * wind.speed,
+            head: cos(crosswindAngle) * wind.speed
+        };
+    }
+
+    /**
      * Reposition the aircraft to the location of the specified runway
      *
      * @for AircraftModel
@@ -1313,14 +1328,7 @@ export default class AircraftModel {
     scoreWind(action) {
         const score = 0;
         const isWarning = true;
-
-        let wind;
-
-        if (this.isArrival()) {
-            wind = this.fms.arrivalAirportModel.getWindForRunway(this.fms.arrivalRunwayModel);
-        } else {
-            wind = this.fms.departureAirportModel.getWindForRunway(this.fms.departureRunwayModel);
-        }
+        const wind = this.getWind();
 
         // TODO: these two if blocks could be done in a single switch statement
         if (wind.cross >= 20) {
