@@ -219,7 +219,7 @@ class UiController {
     }
 
     /**
-     * Returns whether the airport selection dialog is open
+     * Returns whether the tutorial dialog is open
      *
      * @for UiController
      * @method isTutorialDialogOpen
