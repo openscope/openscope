@@ -1829,9 +1829,9 @@ export default class AircraftModel {
         if (shouldMoveToNextFix) {
             if (!this.fms.hasNextWaypoint()) {
                 // we've hit this block because and aircraft is about to fly over the last waypoint in its flightPlan
-                this.pilot.maintainPresentHeading(headingToWaypoint);
+                this.pilot.maintainPresentHeading(this);
 
-                return headingToWaypoint;
+                return this.heading;
             }
 
             this.fms.moveToNextWaypoint();
