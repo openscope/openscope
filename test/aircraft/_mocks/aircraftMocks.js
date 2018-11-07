@@ -113,6 +113,14 @@ export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
 
 export const DEPARTURE_AIRCRAFT_MODEL_MOCK = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, navigationLibraryFixture);
 
+export const DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK = Object.assign(
+    {},
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    {
+        routeString: 'KLAS25R.TRALR6.MLF'
+    }
+);
+
 export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     transponderCode: 3377,
     callsign: '432',

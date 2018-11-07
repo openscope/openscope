@@ -501,6 +501,17 @@ export default class Fms {
     }
 
     /**
+     * Return the next waypoint having an #altitudeMaximum restriction
+     *
+     * @for Fms
+     * @method findNextWaypointWithMaximumAltitudeRestriction
+     * @return {WaypointModel}
+     */
+    findNextWaypointWithMaximumAltitudeRestriction() {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasAltiudeMaximumRestriction);
+    }
+
+    /**
      * Return the next waypoint having a #speedMaximum equal to or less than the specified value
      *
      * This is helpful to see only future waypoints for which a particular speed is
@@ -530,6 +541,18 @@ export default class Fms {
      */
     findNextWaypointWithMinimumAltitudeAtOrAbove(altitude) {
         return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAtOrAbove(altitude));
+    }
+
+
+    /**
+     * Return the next waypoint having an #altitudeMinimum restriction
+     *
+     * @for Fms
+     * @method findNextWaypointWithMinimumAltitudeRestriction
+     * @return {WaypointModel}
+     */
+    findNextWaypointWithMinimumAltitudeRestriction(){
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasAltiudeMinimumRestriction);
     }
 
     /**
