@@ -570,18 +570,12 @@ export default class AirportModel {
      * @return wind {number}
      */
     getWindForRunway(runway) {
-        const windForRunway = {
-            cross: 0,
-            head: 0
+        const crosswindAngle = runway.calculateCrosswindAngleForRunway(this.wind.angle);
+
+        return {
+            cross: sin(crosswindAngle) * this.wind.speed,
+            head: cos(crosswindAngle) * this.wind.speed
         };
-
-        const angle = runway.calculateCrosswindAngleForRunway(this.wind.angle);
-
-        // TODO: these two bits of math should be abstracted to helper functions
-        windForRunway.cross = sin(angle) * this.wind.speed;
-        windForRunway.head = cos(angle) * this.wind.speed;
-
-        return windForRunway;
     }
 
     /**
