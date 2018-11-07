@@ -74,10 +74,10 @@ export default class SimClockController {
      * Generates a string of the current game time in a human-readable format
      *
      * @for SimClockController
-     * @method render
+     * @method buildClockReadout
      * @return clockTime {string} current game time formatted like '03:44:17'
      */
-    render() {
+    buildClockReadout() {
         const elapsedTimeInMilliseconds = TimeKeeper.accumulatedDeltaTime * TIME.ONE_SECOND_IN_MILLISECONDS;
         const clockDate = new Date(this.startTime + elapsedTimeInMilliseconds);
         const hours = digits_integer(clockDate.getHours(), 2);

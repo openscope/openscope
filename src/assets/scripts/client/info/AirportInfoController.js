@@ -233,9 +233,9 @@ export default class AirportInfoController {
      * @method updateClock
      */
     updateClock() {
-        const time = this.simClockController.render();
+        const readout = this.simClockController.buildClockReadout();
 
-        this.$clockView.text(time);
+        this.$clockView.text(readout);
     }
 
     /**
