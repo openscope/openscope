@@ -12,6 +12,7 @@
 
 
 ### Enhancements & Refactors
+- [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
 
 
 
