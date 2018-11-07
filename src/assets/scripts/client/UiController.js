@@ -7,7 +7,6 @@ import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
 import { speech_toggle } from './speech';
 import { EVENT } from './constants/eventNames';
-import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { INVALID_NUMBER } from './constants/globalConstants';
 import { SELECTORS } from './constants/selectors';
 
@@ -44,7 +43,6 @@ class UiController {
 
         this.$element = null;
         this.$airportList = null;
-        this.$airportListNotes = null;
         this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
@@ -73,7 +71,6 @@ class UiController {
         this.$element = $element;
 
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
-        this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
@@ -161,7 +158,6 @@ class UiController {
     destroy() {
         this.$element = null;
         this.$airportList = null;
-        this.$airportListNotes = null;
         this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
@@ -289,10 +285,6 @@ class UiController {
             const $currentTarget = $(event.currentTarget);
 
             GameController.game.option.setOptionByName($currentTarget.attr('name'), $currentTarget.val());
-
-            if ($currentTarget.attr('name') === GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) {
-                this._buildAirportList();
-            }
         });
 
         $optionSelector.append($selector);
@@ -350,34 +342,22 @@ class UiController {
      * Loop through each airport defined in the `AirportController` and build
      * a list item that can be appended to the #airport-list element.
      *
-     * Includes a switch to conditionally include WIP airports based on a user setting
-     *
      * @for UiController
      * @method _buildAirportList
      * @private
      */
     _buildAirportList() {
         // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
         this.$airportList.empty();
 
         const airports = _keys(AirportController.airports).sort();
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
         let difficulty = '';
-        const flagIcon = '\u25CA';
 
         for (let i = 0; i < airports.length; i++) {
-            const { name, icao, level, wip } = AirportController.airports[airports[i]];
-
-            if (!shouldShowWipAirports && wip) {
-                continue;
-            }
+            const { name, icao, level } = AirportController.airports[airports[i]];
 
             difficulty = this._buildAirportListIconForDifficultyLevel(level);
-            const reliabilityFlag = wip
-                ? ''
-                : flagIcon;
-            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag));
+            const $airportListItem = $(this._buildAirportListItemTemplate(icao, difficulty, name));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(icao.toLowerCase(), (event) => {
@@ -390,8 +370,6 @@ class UiController {
 
             this.$airportList.append($airportListItem);
         }
-
-        this._buildAirportListFooter(flagIcon);
     }
 
     /**
@@ -438,45 +416,14 @@ class UiController {
      * @param icao {string}
      * @param difficulty {string}
      * @param name {string}
-     * @param reliabilityFlag {string}
      * @return {DOM element|string}
      */
-    _buildAirportListItemTemplate(icao, difficulty, name, reliabilityFlag) {
+    _buildAirportListItemTemplate(icao, difficulty, name) {
         return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="symbol">${reliabilityFlag}</span>` +
                     `<span class="name">${name}</span>` +
                 '</li>';
-    }
-
-    /**
-     * Build the markup for the airport list footer
-     *
-     * This is changed based on a user setting
-     *
-     * @for UiController
-     * @method _buildAirportListFooter
-     * @param flagIcon {string}
-     */
-    _buildAirportListFooter(flagIcon) {
-        // clear out the contents of this element
-        // this method will run every time a user changes the `INCLUDE_WIP_AIPRORTS` option
-        this.$airportListNotes.empty();
-
-        const shouldShowWipAirports = GameController.getGameOption(GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS) === 'yes';
-
-        if (!shouldShowWipAirports) {
-            const notes = $('<span class="words">Additional work-in-progress airports ' +
-                'can be activated in the settings menu</span>');
-            this.$airportListNotes.append(notes);
-
-            return;
-        }
-
-        const notes = $(`<span class="words">${flagIcon} indicates airport is fully reliable</span>`);
-
-        this.$airportListNotes.append(notes);
     }
 
     /**
