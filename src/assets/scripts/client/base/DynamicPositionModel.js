@@ -343,7 +343,7 @@ export default class DynamicPositionModel {
 DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition) => {
     if (!coordinates || !referencePosition) {
         throw new TypeError('Invalid parameter. DynamicPositionModel.calculateRelativePosition() requires ' +
-        'coordinates and referencePosition and magneticNorth as parameters');
+        'coordinates and referencePosition as parameters');
     }
 
     const latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);
