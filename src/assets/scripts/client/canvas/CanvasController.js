@@ -241,6 +241,7 @@ export default class CanvasController {
         this._onAirportChangeHandler = this._onAirportChange.bind(this);
         this._onToggleTerrainHandler = this._onToggleTerrain.bind(this);
         this._onToggleVideoMapHandler = this._onToggleVideoMap.bind(this);
+        this._onRangeRingsChangeHandler = this._onRangeRingsChange.bind(this);
         this._onResizeHandler = this.canvas_resize.bind(this);
 
         this._setThemeHandler = this._setTheme.bind(this);
@@ -264,6 +265,7 @@ export default class CanvasController {
         this._eventBus.on(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMapHandler);
         this._eventBus.on(EVENT.TOGGLE_TERRAIN, this._onToggleTerrainHandler);
         this._eventBus.on(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
+        this._eventBus.on(EVENT.RANGE_RINGS_CHANGE, this._onRangeRingsChangeHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.on(EVENT.SET_THEME, this._setThemeHandler);
         window.addEventListener('resize', this._onResizeHandler);
@@ -288,6 +290,7 @@ export default class CanvasController {
         this._eventBus.off(EVENT.TOGGLE_STAR_MAP, this._onToggleStarMap);
         this._eventBus.off(EVENT.TOGGLE_TERRAIN, this._onToggleTerrain);
         this._eventBus.off(EVENT.TOGGLE_VIDEO_MAP, this._onToggleVideoMapHandler);
+        this._eventBus.off(EVENT.RANGE_RINGS_CHANGE, this._onRangeRingsChangeHandler);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
         window.removeEventListener('resize', this._onResizeHandler);
@@ -1586,14 +1589,25 @@ export default class CanvasController {
      */
     _drawRangeRings(cc) {
         const airportModel = AirportController.airport_get();
-        const rangeRingSettings = airportModel.rangeRings;
+        const userValue = GameController.getGameOption(GAME_OPTION_NAMES.RANGE_RINGS);
+        const useDefault = userValue === 'default';
+        const defaultRangeRings = airportModel.rangeRings;
 
-        if (rangeRingSettings.enabled === false) {
+        if (userValue === 'off' || (useDefault && defaultRangeRings.enabled === false)) {
             return;
         }
-        
-        const rangeRingRadius = km(airportModel.rangeRings.radius_nm);
-        
+
+        let rangeRingRadius = km(defaultRangeRings.radius_nm);
+
+        if (!useDefault) {
+            rangeRingRadius = km(parseInt(userValue, 10));
+        }
+
+        if (rangeRingRadius === 0) {
+            // prevent infinite loop
+            return;
+        }
+
         cc.linewidth = 1;
         cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
 
@@ -2163,6 +2177,20 @@ export default class CanvasController {
     _onToggleVideoMap() {
         this._shouldDrawVideoMap = !this._shouldDrawVideoMap;
 
+        this._markDeepRender();
+    }
+
+    /**
+     * Notify that the range rings value has changed by the user.
+     *
+     * This method will only be `trigger`ed by some other
+     * class via the `EventBus`
+     *
+     * @for CanvasController
+     * @method _onRangeRingsChange
+     * @private
+     */
+    _onRangeRingsChange() {
         this._markDeepRender();
     }
 

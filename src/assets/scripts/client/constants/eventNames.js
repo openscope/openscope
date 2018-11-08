@@ -208,6 +208,13 @@ export const EVENT = {
     TOGGLE_VIDEO_MAP: 'toggle-video-map',
 
     /**
+     * @memberof EVENT
+     * @property RANGE_RINGS_CHANGE
+     * @type {string}
+     */
+    RANGE_RINGS_CHANGE: 'range-rings-change',
+
+    /**
      * A click has been registered in the unpause button shown within the
      * screen overlay whil the app is paused
      *

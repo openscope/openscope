@@ -243,6 +243,8 @@ _all properties in this section are required_
 * **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 * **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
 * **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+* **rr_radius_nm** ― (deprecated) Use **rr.radius_nm** instead.
+* **rr_center** ― deprecated) Use **rr.center** instead.
 * **rr.enabled** ― Whether or not range rings will be shown for this airport
 * **rr.radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
 * **rr.center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)

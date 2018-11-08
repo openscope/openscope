@@ -16,7 +16,8 @@ ava('sets #_options on instantiation', (t) => {
         'drawIlsDistanceSeparator',
         'ptlLength',
         'drawProjectedPaths',
-        'softCeiling'
+        'softCeiling',
+        'rangeRings'
     ];
 
     const model = new GameOptions();
