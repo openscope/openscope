@@ -31,7 +31,7 @@ class Compass {
     }
 
     /**
-     * Fascade to change the compass's magnetic declination value
+     * Facade to change the compass's magnetic declination value
      *
      * @for Compass
      * @property magneticNorth
