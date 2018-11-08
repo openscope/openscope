@@ -2744,11 +2744,7 @@ export default class AircraftModel {
      */
     validateNextAltitude(nextAltitude) {
         if (nextAltitude === INVALID_NUMBER) {
-            const readback = {};
-            readback.log = 'unable, no altitude assigned';
-            readback.say = 'unable, no altitude assigned';
-
-            return [false, readback];
+            return [false, 'unable, no altitude assigned'];
         }
 
         if (typeof nextAltitude !== 'number') {
