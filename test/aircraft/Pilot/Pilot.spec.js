@@ -457,13 +457,7 @@ ava('.clearedAsFiled() grants pilot departure clearance and returns the correct 
 });
 
 ava('.climbViaSID() returns error response if #flightPlanAltitude has not been set', (t) => {
-    const expectedResult = [
-        false,
-        {
-            log: 'unable, no altitude assigned',
-            say: 'unable, no altitude assigned'
-        }
-    ];
+    const expectedResult = [false, 'unable, no altitude assigned'];
     const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
     aircraftModel.altitude = 0;
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
