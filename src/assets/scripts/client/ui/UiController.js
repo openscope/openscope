@@ -487,9 +487,11 @@ class UiController {
     onToggleTutorial() {
         if (this.isTutorialDialogOpen()) {
             this.tutorialView.tutorial_close();
-        } else {
-            this.tutorialView.tutorial_open();
+
+            return;
         }
+
+        this.tutorialView.tutorial_open();
     }
 }
 
