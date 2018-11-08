@@ -171,27 +171,27 @@ export const GAME_OPTION_VALUES = [
             },
             {
                 displayLabel: '1 nm',
-                value: '1'
+                value: 1
             },
             {
                 displayLabel: '2 nm',
-                value: '2'
+                value: 2
             },
             {
                 displayLabel: '5 nm',
-                value: '5'
+                value: 5
             },
             {
                 displayLabel: '10 nm',
-                value: '10'
+                value: 10
             },
             {
                 displayLabel: '15 nm',
-                value: '15'
+                value: 15
             },
             {
                 displayLabel: '20 nm',
-                value: '20'
+                value: 20
             }
         ]
     }
