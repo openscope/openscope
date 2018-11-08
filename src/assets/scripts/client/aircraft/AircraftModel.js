@@ -1948,7 +1948,7 @@ export default class AircraftModel {
 
         if (this.mcp.altitude < this.altitude) {
             // we want to descend...
-            if (!minimumAltitudeExists || altitudeMinimumWaypoint.altitudeMinimum <= this.mcp.altitude) {
+            if (!minimumAltitudeExists || altitudeMinimumWaypoint.altitudeMinimum < this.mcp.altitude) {
                 // ... and there is nothing that can stop us.
                 return this.mcp.altitude;
             }
@@ -1986,7 +1986,7 @@ export default class AircraftModel {
             }
         } else {
             // we want to climb...
-            if (!maximumAltitudeExists || this.mcp.altitude <= altitudeMaximumWaypoint.altitudeMaximum) {
+            if (!maximumAltitudeExists || this.mcp.altitude < altitudeMaximumWaypoint.altitudeMaximum) {
                 // ... and there is nothing that can stop us.
                 return this.mcp.altitude;
             }
@@ -2732,5 +2732,35 @@ export default class AircraftModel {
      */
     distanceToAircraft(anotherAircraftModel) {
         return this.positionModel.distanceToPosition(anotherAircraftModel.positionModel);
+    }
+
+    /**
+     * Ensure that the provided altitude is valid
+     *
+     * @for AircraftModel
+     * @method validateNextAltitude
+     * @param nextAltitude {number} altitude the aircraft should maintain
+     * @return {array|undefined}           [success of operation, readback]
+     */
+    validateNextAltitude(nextAltitude) {
+        if (nextAltitude === INVALID_NUMBER) {
+            const readback = {};
+            readback.log = 'unable, no altitude assigned';
+            readback.say = 'unable, no altitude assigned';
+
+            return [false, readback];
+        }
+
+        if (typeof nextAltitude !== 'number') {
+            return [false, `unable to maintain an altitude of ${nextAltitude}`];
+        }
+
+        if (!this.model.isAbleToMaintainAltitude(nextAltitude)) {
+            const readback = {};
+            readback.log = `unable to maintain ${nextAltitude} due to performance`;
+            readback.say = `unable to maintain ${radio_altitude(nextAltitude)} due to performance`;
+
+            return [false, readback];
+        }
     }
 }

@@ -460,8 +460,8 @@ ava('.climbViaSID() returns error response if #flightPlanAltitude has not been s
     const expectedResult = [
         false,
         {
-            log: 'unable to climb via SID, no altitude assigned',
-            say: 'unable to climb via SID, no altitude assigned'
+            log: 'unable, no altitude assigned',
+            say: 'unable, no altitude assigned'
         }
     ];
     const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);

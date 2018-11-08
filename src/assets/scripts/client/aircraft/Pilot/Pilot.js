@@ -2,6 +2,7 @@ import _ceil from 'lodash/ceil';
 import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
+import _find from 'lodash/find';
 import AirportController from '../../airport/AirportController';
 import Fms from '../FlightManagementSystem/Fms';
 import ModeController from '../ModeControl/ModeController';
@@ -116,13 +117,10 @@ export default class Pilot {
      * @return {array} [success of operation, readback]
      */
     maintainAltitude(altitude, expedite, shouldUseSoftCeiling, airportModel, aircraftModel) {
-        if (!aircraftModel.model.isAbleToMaintainAltitude(altitude)) {
-            const verbalRequestedAltitude = radio_altitude(altitude);
-            const readback = {};
-            readback.log = `unable to maintain ${altitude} due to performance`;
-            readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
+        const response = aircraftModel.validateNextAltitude(altitude);
 
-            return [false, readback];
+        if (response && !response[0]) {
+            return response;
         }
 
         const currentAltitude = aircraftModel.altitude;
@@ -475,24 +473,10 @@ export default class Pilot {
             nextAltitude = this._fms.flightPlanAltitude;
         }
 
-        if (nextAltitude === INVALID_NUMBER) {
-            const readback = {};
-            readback.log = 'unable to climb via SID, no altitude assigned';
-            readback.say = 'unable to climb via SID, no altitude assigned';
+        const response = aircraftModel.validateNextAltitude(nextAltitude);
 
-            return [false, readback];
-        }
-
-        if (typeof nextAltitude !== 'number') {
-            return [false, `unable to climb to altitude of ${nextAltitude}`];
-        }
-
-        if (!aircraftModel.model.isAbleToMaintainAltitude(nextAltitude)) {
-            const readback = {};
-            readback.log = `unable to maintain ${nextAltitude} due to performance`;
-            readback.say = `unable to maintain ${radio_altitude(nextAltitude)} due to performance`;
-
-            return [false, readback];
+        if (response && !response[0]) {
+            return response;
         }
 
         if (nextAltitude < aircraftModel.altitude) {
@@ -557,6 +541,47 @@ export default class Pilot {
         const readback = {};
         readback.log = `descend via STAR and maintain ${nextAltitude}`;
         readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Cross a fix at a certain altitude
+     *
+     * @for Pilot
+     * @method cross
+     * @param aircraft {AircraftModel}
+     * @param fixName {string} name of the fix
+     * @param altitude {number} the altitude
+     * @return {array}                [success of operation, readback]
+     */
+    cross(aircraft, fixName, altitude) {
+        if (!NavigationLibrary.hasFixName(fixName)) {
+            return [false, `unknown fix '${fixName}'`];
+        }
+
+        if (!this._fms.hasWaypointName(fixName)) {
+            return [false, `fix '${fixName}' is not on our route`];
+        }
+
+        const response = aircraft.validateNextAltitude(altitude);
+
+        if (response && !response[0]) {
+            return response;
+        }
+
+        const waypoint = _find(this._fms.waypoints, (waypointModel) => waypointModel.name === fixName);
+
+        waypoint.altitudeMaximum = altitude;
+        waypoint.altitudeMinimum = altitude;
+
+        this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setAltitudeVnav();
+
+        const readback = {
+            log: `crossing ${fixName} at ${altitude}`,
+            say: `crossing ${fixName} at ${radio_altitude(altitude)}`
+        };
 
         return [true, readback];
     }

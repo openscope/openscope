@@ -59,6 +59,11 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runClimbViaSID',
         isSystemCommand: false
     },
+    cross: {
+        aliases: ['cross'],
+        functionName: 'runCross',
+        isSystemCommand: false
+    },
     delete: {
         aliases: ['del', 'delete', 'kill'],
         functionName: 'runDelete',

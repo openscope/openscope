@@ -237,12 +237,27 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runClimbViaSID
      * @param aircraft {AircraftModel}
+     * @param data {array}
      * @return {array} [success of operation, readback]
      */
     runClimbViaSID(aircraft, data) {
         const altitude = data[0];
 
         return aircraft.pilot.climbViaSid(aircraft, altitude);
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runCross
+     * @param aircraft {AircraftModel}
+     * @param data {array}
+     * @return {array} [success of operation, readback]
+     */
+    runCross(aircraft, data) {
+        const fix = data[0].toUpperCase();
+        const altitude = data[1];
+
+        return aircraft.pilot.cross(aircraft, fix, altitude);
     }
 
     /**

@@ -279,3 +279,35 @@ export const squawkValidator = (args = []) => {
         return ERROR_MESSAGE.INVALID_SQUAWK;
     }
 };
+
+/**
+ * Checks that args is the required length and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['dumba', '120']
+ * ```
+ *
+ * @function crossingValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+export const crossingValidator = (args = []) => {
+    if (args.length !== 3) {
+        return ERROR_MESSAGE.THREE_ARG_LENGTH;
+    }
+
+    if (!_isString(args[0]) || !_isString(args[1])) {
+        return ERROR_MESSAGE.MUST_BE_STRING;
+    }
+
+    if (args[1] !== 'at' && args[1] !== '@') {
+        return ERROR_MESSAGE.AT;
+    }
+
+    const altitude = convertStringToNumber(args[2]);
+
+    if (_isNaN(altitude)) {
+        return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
+    }
+};

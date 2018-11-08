@@ -209,3 +209,19 @@ export const timewarpParser = (args = []) => {
         convertStringToNumber(args[0])
     ];
 };
+
+/**
+ * the `timewarp` command needs to be able to provide a default value,
+ * this parser allows us to do that.
+ *
+ * @method crossingParser
+ * @param  {array} [args=[]]
+ * @return {array<string, number>}
+ */
+export const crossingParser = (args = []) => {
+    const fix = args[0];
+    // args[1] should be 'at' or '@'
+    const altitude = convertToThousands(args[2]);
+
+    return [fix, altitude];
+};
