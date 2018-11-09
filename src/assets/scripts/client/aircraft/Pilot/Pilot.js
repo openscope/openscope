@@ -570,7 +570,7 @@ export default class Pilot {
             return response;
         }
 
-        const waypoint = _find(this._fms.waypoints, (waypointModel) => waypointModel.name === fixName);
+        const waypoint = this._fms.findWaypoint(fixName);
 
         waypoint.altitudeMaximum = altitude;
         waypoint.altitudeMinimum = altitude;

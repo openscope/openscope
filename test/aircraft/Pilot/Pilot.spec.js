@@ -613,6 +613,29 @@ ava('.conductInstrumentApproach() returns a success message', (t) => {
     t.deepEqual(result, expectedResult);
 });
 
+ava('.cross() correctly configures MCP and returns correct response ', (t) => {
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
+    const pilot = createPilotFixture();
+    const fixName = 'SKEBR';
+    const altitude = 8000;
+    const expectedResponse = [
+        true,
+        {
+            log: 'crossing SKEBR at 8000',
+            say: 'crossing SKEBR at eight thousand'
+        }
+    ];
+
+    const waypoint = pilot._fms.findWaypoint(fixName);
+    const response = pilot.cross(aircraftModel, fixName, altitude);
+
+    t.deepEqual(response, expectedResponse);
+    t.true(pilot._mcp.altitudeMode === 'VNAV');
+    t.true(pilot._mcp.altitude === altitude);
+    t.true(waypoint.altitudeMinimum === altitude);
+    t.true(waypoint.altitudeMaximum === altitude);
+});
+
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
