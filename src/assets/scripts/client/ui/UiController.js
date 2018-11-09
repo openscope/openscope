@@ -2,13 +2,13 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _isNaN from 'lodash/isNaN';
 import _keys from 'lodash/keys';
-import AirportController from './airport/AirportController';
-import EventBus from './lib/EventBus';
-import GameController from './game/GameController';
-import { speech_toggle } from './speech';
-import { EVENT } from './constants/eventNames';
-import { INVALID_NUMBER } from './constants/globalConstants';
-import { SELECTORS } from './constants/selectors';
+import AirportController from '../airport/AirportController';
+import EventBus from '../lib/EventBus';
+import GameController from '../game/GameController';
+import { speech_toggle } from '../speech';
+import { EVENT } from '../constants/eventNames';
+import { INVALID_NUMBER } from '../constants/globalConstants';
+import { SELECTORS } from '../constants/selectors';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE

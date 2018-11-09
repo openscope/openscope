@@ -6,7 +6,7 @@ import AirportController from './airport/AirportController';
 import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import UiController from './UiController';
+import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
 import { clamp } from './math/core';
