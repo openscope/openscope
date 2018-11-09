@@ -97,7 +97,7 @@ export default class TutorialView {
      *
      * Caches selectors in variabls so they only need to be looked up one time.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _init
      * @chainable
      */
@@ -115,7 +115,7 @@ export default class TutorialView {
      *
      * Should be run once only on instantiation
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _setupHandlers
      * @chainable
      */
@@ -130,7 +130,7 @@ export default class TutorialView {
      *
      * Adds the TUTORIAL_TEMPLATE to the view
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method layout
      * @chainable
      */
@@ -148,7 +148,7 @@ export default class TutorialView {
     /**
      * Lifecycle method should be run once on application init.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method enable
      * @chainable
      */
@@ -165,7 +165,7 @@ export default class TutorialView {
     /**
      * Disable any click handlers.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method disable
      * @chainable
      */
@@ -182,7 +182,7 @@ export default class TutorialView {
     /**
      * Tear down the view and unset any properties.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method destroy
      * @chainable
      */
@@ -203,7 +203,7 @@ export default class TutorialView {
     /**
      * Reloads the tutorial when the airport is changed.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method onAirportChange
      */
     onAirportChange() {
