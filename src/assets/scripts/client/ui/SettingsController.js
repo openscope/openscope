@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _isNaN from 'lodash/isNaN';
-import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 
 /**
@@ -32,14 +31,6 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 export default class SettingsController {
 
     constructor($element) {
-        /**
-         * @property EventBus
-         * @type {EventBus}
-         * @default EventBus
-         * @private
-         */
-        this._eventBus = EventBus;
-
         /**
          * Root DOM element
          *
@@ -79,7 +70,7 @@ export default class SettingsController {
     /**
      * Build the html for a game option and its cooresponding value elements.
      *
-     * @for UiController
+     * @for SettingsController
      * @method _buildOptionTemplate
      * @param option {object}
      * @return $container {jquery Element}
@@ -116,7 +107,7 @@ export default class SettingsController {
     /**
      * Build the html for a select option.
      *
-     * @for UiController
+     * @for SettingsController
      * @method _buildOptionTemplate
      * @param optionData {array<string>}
      * @param selectedOption {string}
