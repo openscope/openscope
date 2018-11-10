@@ -3,8 +3,8 @@
   "version": "6.8.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
-    "node": "8.12.0",
-    "npm": "5.6.0"
+    "node": "9.1.0",
+    "npm": "6.1.0"
   },
   "scripts": {
     "postinstall": "gulp build --prod",
@@ -97,10 +97,11 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "glob-fs": "^0.1.6",
-    "gulp": "^3.9.1",
+    "gulp": "3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cache": "^1.0.2",
     "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.10.0",
     "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-eslint": "^5.0.0",
@@ -109,7 +110,6 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-jsonmin": "^1.2.0",
     "gulp-less": "^4.0.1",
-    "gulp-clean-css": "^3.10.0",
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.1",
