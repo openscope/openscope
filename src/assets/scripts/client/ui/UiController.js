@@ -47,9 +47,7 @@ class UiController {
      */
     init($element) {
         this.settingsController = new SettingsController($element);
-
         this.$element = $element;
-
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
