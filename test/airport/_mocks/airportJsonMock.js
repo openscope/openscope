@@ -1,5 +1,6 @@
 /* eslint-disable */
 export const AIRPORT_JSON_KLAS_MOCK = {
+    "airac": 1004,
     "radio": {
         "twr": "Las Vegas Tower",
         "app": "Las Vegas Approach",
@@ -280,6 +281,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 ["KENNO", "OAL*"]
             ]
         },
+        // Not a real route, used to test soft altitude restrictions
         "TRALR6": {
             "icao": "TRALR6",
             "name": "Trailer Six",
@@ -288,10 +290,10 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "KLAS01R": ["_NAPSE068", "NAPSE", "TINNK", ["RIOOS", "A130+"]],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"]],
                 "KLAS07R": ["JESJI", ["BAKRR", "A70"]],
-                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]],
-                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
+                "KLAS19L": ["FIXIX", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS19R": ["JAKER", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25L": ["PIRMD", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"]],
+                "KLAS25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140-"], ["BIKKR", "A400-"], "TRALR"]
             },
             "body": ["TRALR"],
             "exitPoints": {
@@ -340,7 +342,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
                 "DVC":   ["DVC", "BETHL", ["HOLDM", "A270+"]],
                 "MLF":   ["MLF"]
             },
-            "body": [["KSINO", "A170+"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110+"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], "TRROP", "LEMNZ"],
+            "body": [["KSINO", "A170"], ["LUXOR", "A120+|S250"], ["GRNPA", "A110-"], ["DUBLX", "A90+"], ["FRAWG", "A70+|S210"], ["TRROP", "A30+"], "LEMNZ"],
             "rwy": {
                 "KLAS01L": [],
                 "KLAS01R": [],

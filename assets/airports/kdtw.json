@@ -1,4 +1,5 @@
 {
+    "airac": 1712,
     "radio": {
         "twr": "Metro Tower",
         "app": "Detroit Approach",
@@ -21,7 +22,7 @@
     "arrivalRunway": "22R",
     "departureRunway": "22L",
     "airspace": [
-        { 
+        {
             "floor": 0,
             "ceiling": 130,
             "airspace_class": "B",

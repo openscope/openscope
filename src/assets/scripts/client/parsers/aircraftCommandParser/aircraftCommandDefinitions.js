@@ -51,6 +51,10 @@ const noop = (args) => args;
  */
 const ZERO_ARG_AIRCRAFT_COMMANDS = {
     // system commands
+    airac: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
     auto: {
         validate: zeroArgumentsValidator,
         parse: noop

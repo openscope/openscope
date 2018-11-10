@@ -318,11 +318,11 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.removeStripView(this.aircraft.list[i]);
+        // iterating backwards because each iteration removes a list item
+        // iterating forward would cause skipping as the array shifts
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
+            this.aircraft_remove(this.aircraft.list[i]);
         }
-
-        this.aircraft.list = [];
     }
 
     /**
@@ -336,7 +336,11 @@ export default class AircraftController {
         this.removeAircraftModelFromList(aircraftModel);
         this._removeTransponderCodeFromUse(aircraftModel);
         this.removeAllAircraftConflictsForAircraft(aircraftModel);
-        this.removeStripView(aircraftModel);
+
+        if (aircraftModel.isControllable) {
+            this.removeStripView(aircraftModel);
+        }
+
         this._scopeModel.radarTargetCollection.removeRadarTargetModelForAircraftModel(aircraftModel);
     }
 

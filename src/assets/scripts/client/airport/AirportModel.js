@@ -106,13 +106,13 @@ export default class AirportModel {
         this.icao = null;
 
         /**
-         * Flag for if an airport is a work in progress
+         * AIRAC cycle from which data for the airport was taken
          *
-         * @property wip
-         * @type {boolean}
+         * @property airac
+         * @type {number}
          * @default null
-         */
-        this.wip = null;
+        */
+        this.airac = null;
 
         /**
          * @property radio
@@ -343,7 +343,6 @@ export default class AirportModel {
         this.name = _get(data, 'name', this.name);
         this.icao = _get(data, 'icao', this.icao).toLowerCase();
         this.level = _get(data, 'level', this.level);
-        this.wip = _get(data, 'wip', this.wip);
         // exit early if `position` doesn't exist in data. on app initialiazation, we loop through every airport
         // in the `airportLoadList` and instantiate a model for each but wont have the full data set until the
         // airport json file is loaded.
@@ -353,6 +352,7 @@ export default class AirportModel {
 
         this.setCurrentPosition(data.position, degreesToRadians(data.magnetic_north));
 
+        this.airac = _get(data, 'airac', this.airac);
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
