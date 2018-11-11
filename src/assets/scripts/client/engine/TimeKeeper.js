@@ -202,7 +202,7 @@ class TimeKeeper {
     /**
      * Current timestamp in seconds
      *
-     * @property gameTimeMilliseconds
+     * @property gameTimeSeconds
      * @return {number}
      */
     get gameTimeSeconds() {

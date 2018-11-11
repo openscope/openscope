@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _cloneDeep from 'lodash/cloneDeep';
 import _filter from 'lodash/filter';
 import _has from 'lodash/has';
+import _inRange from 'lodash/inRange';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -214,6 +215,16 @@ export default class CanvasController {
     }
 
     /**
+     *
+     *
+     * @property shouldShowSecondaryDataBlock
+     * @type {boolean}
+     */
+    get shouldShowSecondaryDataBlock() {
+        return _inRange(TimeKeeper.gameTimeMilliseconds % 6000, 0, 3000);
+    }
+
+    /**
      * @for CanvasController
      * @method _init
      * @private
@@ -326,8 +337,8 @@ export default class CanvasController {
      * @method canvas_init
      */
     canvas_init() {
-        this._canvas_add(CANVAS_NAME.STATIC);
-        this._canvas_add(CANVAS_NAME.DYNAMIC);
+        this._addCanvas(CANVAS_NAME.STATIC);
+        this._addCanvas(CANVAS_NAME.DYNAMIC);
     }
 
     /**
@@ -382,9 +393,9 @@ export default class CanvasController {
      * performant as possible so as not to degrade performance.
      *
      * @for CanvasController
-     * @method canvas_update_post
+     * @method canvasUpdatePost
      */
-    canvas_update_post() {
+    canvasUpdatePost() {
         if (!this._shouldShallowRender && !TimeKeeper.shouldUpdate()) {
             return;
         }
@@ -424,11 +435,11 @@ export default class CanvasController {
      * Add a `canvas` element to the DOM
      *
      * @for CanvasController
-     * @method _canvas_add
+     * @method _addCanvas
      * @param name {CANVAS_NAME|string}
      * @private
      */
-    _canvas_add(name) {
+    _addCanvas(name) {
         const canvasTemplate = `<canvas id='${name}-canvas'></canvas>`;
 
         this.$element.append(canvasTemplate);
@@ -481,7 +492,7 @@ export default class CanvasController {
      */
     _drawSingleRunway(cc, runwayModel, mode) {
         const runwayLength = round(CanvasStageModel.translateKilometersToPixels(runwayModel.length / 2)) * -2;
-        const angle = runwayModel.angle;
+        const { angle } = runwayModel;
         const runwayPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(runwayModel.relativePosition);
 
         cc.save();
@@ -738,7 +749,7 @@ export default class CanvasController {
             }
 
             if (shouldDrawProcedureName) {
-                const lastFixName = sid.lastFixName;
+                const { lastFixName } = sid;
 
                 if (!(lastFixName in textAtFix)) {
                     textAtFix[lastFixName] = [];
@@ -787,7 +798,7 @@ export default class CanvasController {
                 this._drawLine(cc, star.lines[j]);
             }
 
-            const firstFixName = star.firstFixName;
+            const { firstFixName } = star;
 
             if (!(firstFixName in textAtFix)) {
                 textAtFix[firstFixName] = [];
@@ -870,7 +881,9 @@ export default class CanvasController {
 
         const runway = aircraftModel.fms.arrivalRunwayModel;
         const oppositeOfRunwayHeading = runway.oppositeAngle;
-        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(aircraftModel.relativePosition);
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToRoundedCanvasPosition(
+            aircraftModel.relativePosition
+        );
         cc.strokeStyle = this.theme.RADAR_TARGET.TRAILING_SEPARATION_INDICATOR;
         cc.lineWidth = 3;
 
@@ -878,8 +891,8 @@ export default class CanvasController {
         cc.rotate(oppositeOfRunwayHeading);
         cc.beginPath();
         // TODO: this should use constants
-        cc.moveTo(-5, -CanvasStageModel.translateKilometersToPixels(5.556));  // 5.556km = 3.0nm
-        cc.lineTo(+5, -CanvasStageModel.translateKilometersToPixels(5.556));  // 5.556km = 3.0nm
+        cc.moveTo(-5, -CanvasStageModel.translateKilometersToPixels(5.556)); // 5.556km = 3.0nm
+        cc.lineTo(+5, -CanvasStageModel.translateKilometersToPixels(5.556)); // 5.556km = 3.0nm
         cc.stroke();
     }
 
@@ -927,6 +940,7 @@ export default class CanvasController {
      */
     _drawSingleRadarTarget(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
+        // TODO: death to the `prop`!!!
         const match = prop.input.callsign.length > 0 && aircraftModel.matchCallsign(prop.input.callsign);
         let fillStyle = this.theme.RADAR_TARGET.HISTORY_DOT_OUTSIDE_RANGE;
 
@@ -1238,13 +1252,12 @@ export default class CanvasController {
         const ILS_enabled = aircraftModel.pilot.hasApproachClearance;
         const lock_size = height / 3;
         const lock_offset = lock_size / 8;
-        const pi = Math.PI;
         const point1 = lock_size - barHalfWidth;
         const a = point1 - lock_offset;
         const b = barHalfWidth;
         const clipping_mask_angle = Math.atan(b / a);
         // describes how far around to arc the arms of the ils lock case
-        const pi_slice = pi / 24;
+        const pi_slice = Math.PI / 24;
         let match = false;
 
         // Callsign Matching
@@ -1349,11 +1362,11 @@ export default class CanvasController {
             // Draw green part of box (excludes space where ILS Clearance Indicator juts in)
             cc.fillStyle = green;
             cc.beginPath();
-            cc.moveTo(-halfWidth, halfHeight);  // bottom-left corner
-            cc.lineTo(halfWidth, halfHeight);   // bottom-right corner
-            cc.lineTo(halfWidth, -halfHeight);  // top-right corner
+            cc.moveTo(-halfWidth, halfHeight); // bottom-left corner
+            cc.lineTo(halfWidth, halfHeight); // bottom-right corner
+            cc.lineTo(halfWidth, -halfHeight); // top-right corner
             cc.lineTo(-halfWidth, -halfHeight); // top-left corner
-            cc.lineTo(-halfWidth, -point1);  // begin side cutout
+            cc.lineTo(-halfWidth, -point1); // begin side cutout
             cc.arc(-halfWidth - barHalfWidth,
                 -lock_offset, lock_size / 2 + barHalfWidth,
                 clipping_mask_angle - pi / 2,
@@ -1380,7 +1393,7 @@ export default class CanvasController {
             cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
             cc.moveTo(0, lock_size - barWidth);
             cc.lineTo(0, halfHeight);
-            cc.stroke();  // bottom arc end
+            cc.stroke(); // bottom arc end
 
             if (aircraftModel.isEstablishedOnCourse()) {
                 // Localizer Capture Indicator
@@ -1399,12 +1412,16 @@ export default class CanvasController {
         }
 
         // Text
-        const gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
+        const gap = 3; // height of TOTAL vertical space between the rows (0 for touching)
         const lineheight = 4.5; // height of text row (used for spacing basis)
         const row1text = callsign;
         const aircraftAltitude = round(aircraftModel.altitude * 0.01);
         const aircraftSpeed = round(aircraftModel.groundSpeed * 0.1);
-        const row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+        let row2text = `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+
+        if (this.shouldShowSecondaryDataBlock) {
+            row2text = `${aircraftModel.model.icao.toUpperCase()} ${aircraftModel.fms.currentWaypoint.name}`;
+        }
 
         let fillStyle = this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
@@ -1419,7 +1436,7 @@ export default class CanvasController {
         cc.textAlign = 'left';
         cc.fillText(row1text, -halfWidth + paddingLR, -gap / 2 - lineheight);
         cc.fillText(row2text, -halfWidth + paddingLR, gap / 2 + lineheight);
-        cc.font = BASE_CANVAS_FONT;  // change back to normal font
+        cc.font = BASE_CANVAS_FONT; // change back to normal font
 
         cc.restore();
     }
