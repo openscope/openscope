@@ -102,6 +102,30 @@ export const DATA_BLOCK_THEME = {
     HAS_FILL: false,
 
     /**
+     * One half of the height of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HALF_HEIGHT
+     */
+    HALF_HEIGHT: 16,
+
+    /**
+     * One half of the width of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HALF_HEIGHT
+     */
+    HALF_WIDTH: 30,
+
+    /**
+     * Height of a data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property HEIGHT
+     */
+    HEIGHT: 32,
+
+    /**
      * Direction to extend the data block away from the target
      * Currently, only 360, 45, 90, 135, 180, 225, 270, and 315 are available.
      *
@@ -189,5 +213,13 @@ export const DATA_BLOCK_THEME = {
      * @memberof DATA_BLOCK_THEME
      * @property TEXT_SELECTED
      */
-    TEXT_SELECTED: COLOR.WHITE
+    TEXT_SELECTED: COLOR.WHITE,
+
+    /**
+     * Width of the data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @property WIDTH
+     */
+    WIDTH: 60
 };

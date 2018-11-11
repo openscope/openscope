@@ -2,6 +2,9 @@ import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNaN from 'lodash/isNaN';
 import EventBus from '../lib/EventBus';
+import { round } from '../math/core';
+import { vadd } from '../math/vector';
+import { leftPad } from '../utilities/generalUtilities';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { DECIMAL_RADIX } from '../utilities/unitConverters';
@@ -301,6 +304,72 @@ export default class RadarTargetModel {
         this._cruiseAltitude = altitude;
 
         return [true, 'AMEND ALTITUDE'];
+    }
+
+    /**
+     * Generate a string to be used for the first row of a datablock
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowOne
+     * @returns {string}
+     */
+    buildDataBlockRowOne() {
+        let dataBlockRowOne = `${this.aircraftModel.callsign}`;
+
+        if (this.aircraftModel.model.weightclass === 'H') {
+            dataBlockRowOne = `${this.aircraftModel.callsign}  ${this.aircraftModel.model.weightclass}`;
+        }
+
+        return dataBlockRowOne;
+    }
+
+    /**
+     * Generate a string to be used for the second row of a datablock
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowTwo
+     * @returns {string}
+     */
+    buildDataBlockRowTwo() {
+        const aircraftAltitude = round(this.aircraftModel.altitude * 0.01);
+        const aircraftSpeed = round(this.aircraftModel.groundSpeed * 0.1);
+
+        return `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+    }
+
+    /**
+     * Generate a string to be used for the second row of a datablock
+     * when the timeshare section is active
+     *
+     * @for RadarTargetModel
+     * @method buildDataBlockRowTwoTimeshare
+     * @returns {string}
+     */
+    buildDataBlockRowTwoTimeshare() {
+        return `${this.aircraftModel.timeShareDestination} ${this.aircraftModel.model.icao.toUpperCase()}`;
+    }
+
+    /**
+     * Abstracts the math from the `CanvasController` used to determine
+     * where the center of a datablock should be located
+     *
+     * @param {number} leaderIntersectionWithBlock
+     */
+    calculateDataBlockCenter(leaderIntersectionWithBlock) {
+        const blockCenterOffset = {
+            ctr: [0, 0],
+            360: [0, -this._theme.DATA_BLOCK.HALF_HEIGHT],
+            45: [this._theme.DATA_BLOCK.HALF_WIDTH, -this._theme.DATA_BLOCK.HALF_HEIGHT],
+            90: [this._theme.DATA_BLOCK.HALF_WIDTH, 0],
+            135: [this._theme.DATA_BLOCK.HALF_WIDTH, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            180: [0, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            225: [-this._theme.DATA_BLOCK.HALF_WIDTH, this._theme.DATA_BLOCK.HALF_HEIGHT],
+            270: [-this._theme.DATA_BLOCK.HALF_WIDTH, 0],
+            315: [-this._theme.DATA_BLOCK.HALF_WIDTH, -this._theme.DATA_BLOCK.HALF_HEIGHT]
+        };
+        const leaderEndToBlockCenter = blockCenterOffset[this.dataBlockLeaderDirection];
+
+        return vadd(leaderIntersectionWithBlock, leaderEndToBlockCenter);
     }
 
     /**
