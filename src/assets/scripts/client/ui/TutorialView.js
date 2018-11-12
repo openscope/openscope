@@ -303,9 +303,8 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Aircraft strips, part 1',
-            text: ['On the right, there\'s a row of strips, one for each aircraft.',
-                   'Each strip has a bar on its left side, colored blue for departures and',
-                   'red for arrivals.'
+            text: ['On the right, there\'s a row of strips, one for each aircraft. You may need to pull it out with the',
+                   '\'|<\' tab. Each strip has a bar on its left side, colored blue for departures and red for arrivals.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -388,7 +387,7 @@ export default class TutorialView {
                    'vectors in three ways. Usually, you will use &lsquo;t l ###&rsquo; or &lsquo;t r ###&rsquo;. Be careful, as it is both easy',
                    'and dangerous to give a turn in the wrong direction. If the heading is only slightly left or right, to avoid choosing the wrong direction,',
                    'you can tell them to &lsquo;fly heading&rsquo; by typing &lsquo;fh ###&rsquo;, and the aircraft will simply turn the shortest direction',
-                   'to face that heading.'
+                   'to face that heading. You can also instruct an aircraft to turn left and right by a given number of degrees if you give only a two-digit number.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -476,8 +475,10 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
+            // TODO: the windsock will be moving soon. Update this when that happens
             title: 'Wind sock',
-            text: ['In the lower right corner of the map is a small circle with a line. It\'s like a flag: the line trails in the direction',
+            text: ['In the lower right corner of the map is a small circle with a line. You may need to collapse the',
+                   'the flight strips with the \'>|\' tab. It\'s like a flag: the line trails in the direction',
                    'the wind is blowing toward. If it\'s pointing straight down, the wind is blowing from the North',
                    'to the South. Aircraft must be assigned to different runways such that they always take off and land into the wind, unless the',
                    'wind is less than 5 knots.'
