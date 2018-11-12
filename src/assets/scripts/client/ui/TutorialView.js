@@ -220,7 +220,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Welcome!',
-            text: ['Welcome to Air Traffic Control simulator. It&rsquo;s not easy',
+            text: ['Welcome to Air Traffic Control simulator. It\'s not easy',
                    'to control dozens of aircraft while maintaining safe distances',
                    'between them; to get started with the ATC simulator tutorial, click the arrow on',
                    'the right. You can also click the graduation cap icon in the lower right corner',
@@ -240,9 +240,9 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Departing aircraft',
-            text: ['Let&rsquo;s route some planes out of here. On the right side of the screen, there',
+            text: ['Let\'s route some planes out of here. On the right side of the screen, there',
                    'should be a strip with a blue bar on the left, meaning the strip represents a departing aircraft.',
-                   'Click the first one ({CALLSIGN}). The aircraft&rsquo;s callsign will appear in the command entry box',
+                   'Click the first one ({CALLSIGN}). The aircraft\'s callsign will appear in the command entry box',
                    'and the strip will move slightly to the side. This means that the aircraft is selected.'
                ].join(' '),
             parse: (t) => {
@@ -277,7 +277,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Takeoff, part 1',
             text: ['When it appears at the start of runway ({RUNWAY}) (which may take a couple of seconds), click it (or press the up arrow once)',
-                   'and type in &lsquo;caf&rsquo; (for &lsquo;cleared as filed&rsquo;). This tells the aircraft it is cleared to follow its flightplan.',
+                   'and type in &lsquo;caf&rsquo; (for "cleared as filed"). This tells the aircraft it is cleared to follow its flightplan.',
                    'Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they\'re supposed to go.'
                 ].join(' '),
             parse: (t) => {
@@ -311,7 +311,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Aircraft strips, part 1',
-            text: ['On the right, there&rsquo;s a row of strips, one for each aircraft.',
+            text: ['On the right, there\'s a row of strips, one for each aircraft.',
                    'Each strip has a bar on its left side, colored blue for departures and',
                    'red for arrivals.'
             ].join(' '),
@@ -328,7 +328,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Aircraft strips, part 2',
-            text: ['The top row shows the aircraft&rsquo;s callsign, what it\'s doing (parked at apron,',
+            text: ['The top row shows the aircraft\'s callsign, what it\'s doing (parked at apron,',
                    'using a runway, flying to a fix, on a heading, etc), and its assigned altitude. The bottom row shows the model',
                    '({MODEL} here, which is a {MODELNAME}) to the left, its destination in the middle, and its assigned speed to the right.'
             ].join(' '),
@@ -346,10 +346,10 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Moving aircraft',
             text: ['Once {CALLSIGN} has taken off, you\'ll notice it will climb to {INIT_ALT} by itself. This is one of the instructions ',
-                    'we gave them when we cleared them &lsquo;as filed&rsquo;. Aircraft perform better when they are able to climb directly',
+                    'we gave them when we cleared them "as filed". Aircraft perform better when they are able to climb directly',
                     'from the ground to their cruise altitude without leveling off, so let\'s keep them climbing! Click it and type &lsquo;cvs&rsquo; (for',
-                    '&lsquo;climb via SID&rsquo;). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure',
-                    'procedure. Feel free to click the speedup button on the right side of the input box (it&rsquo;s two small arrows)',
+                    '"climb via SID"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure',
+                    'procedure. Feel free to click the speedup button on the right side of the input box (it\'s two small arrows)',
                     'to watch the departure climb along the SID. Then just click it again to return to 1x speed.'
             ].join(' '),
             parse: (t) => {
@@ -369,7 +369,7 @@ export default class TutorialView {
             title: 'Departure destinations',
             text: ['If you zoom out (using the mouse wheel) and click',
                    'on {CALLSIGN}, you will see a blue dashed line that shows where they are heading. At the end of the',
-                   'line is its &lsquo;departure fix&rsquo;. Your goal is to get every departure cleared to their filed departure fix. As',
+                   'line is its "departure fix". Your goal is to get every departure cleared to their filed departure fix. As',
                    'you have probably noticed, this is very easy with SIDs, as the aircraft do all the hard work themselves.'
             ].join(' '),
             parse: (t) => {
@@ -470,7 +470,7 @@ export default class TutorialView {
             title: 'Bon voyage, aircraft!',
             text: ['When the aircraft crosses the airspace boundary, it will ',
                    'automatically remove itself from the flight strip bay on the right.',
-                   'Congratulations, you&rsquo;ve successfully taken off one aircraft.'
+                   'Congratulations, you\'ve successfully taken off one aircraft.'
                ].join(' '),
             parse: (v) => v,
             side: 'left',
@@ -480,7 +480,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Arrivals',
             text: ['Now, onto arrivals. Click on any arriving aircraft in the radar screen; after',
-                   'you&rsquo;ve selected it, use the altitude/heading/speed controls you\'ve learned in',
+                   'you\'ve selected it, use the altitude/heading/speed controls you\'ve learned in',
                    'order to guide it to be in front of a runway. Make sure to get the aircraft down to',
                    'around 4,000ft, and 10-15 nautical miles (2-3 range rings) away from the airport.',
                    'While you work the airplane, read the next step.'
@@ -492,7 +492,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Approach Clearances, part 1',
-            text: ['You can clear aircraft for an ILS approach with the &quot;ILS&quot; command, followed by a runway name. Before you can do so, however,',
+            text: ['You can clear aircraft for an ILS approach with the &lsquo;ILS&rsquo; command, followed by a runway name. Before you can do so, however,',
                    'it must be on a heading that will cross the runway\'s extended centerline, that is no more than 30 degrees offset from the',
                    'runway\'s heading. Once we eventually give them an approach clearance, you can expect aircraft to capture the ILS\'s localizer',
                    'once they\'re within a few degrees of the extended centerline.'
@@ -505,8 +505,8 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Approach Clearances, part 2',
             text: ['When you have the aircraft facing the right direction, just select it and type &lsquo;i &lt;runway&gt;&rsquo;',
-                   'with the runway that&rsquo;s in front of it. Once it\'s close enough to capture the localizer, the assigned altitude on its strip',
-                   'will change to &lsquo;ILS locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway via',
+                   'with the runway that\'s in front of it. Once it\'s close enough to capture the localizer, the assigned altitude on its strip',
+                   'will change to "ILS locked" (meaning the aircraft is capable of guiding itself down to the runway via',
                    'the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance.'
                ].join(' '),
             parse: (v) => v,
@@ -517,8 +517,8 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Approach Clearances, part 3',
             text: ['You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,',
-                   'they follow an acronym &ldquo;PTAC&rdquo; for the four elements of an approach clearance, the &lsquo;T&rsquo; and &lsquo;C&rsquo; of which',
-                   'stand for &lsquo;Turn&rsquo; and &lsquo;Clearance&rsquo;, both of which we entered separately in this tutorial. Though longer, it is both ',
+                   'they follow an acronym "PTAC" for the four elements of an approach clearance, the "T" and "C" of which',
+                   'stand for "Turn" and "Clearance", both of which we entered separately in this tutorial. Though longer, it is both ',
                    'easier and more real-world accurate to enter them together, like this: &lsquo;fh 250 i 28r&rsquo;.'
                ].join(' '),
             parse: (v) => v,
@@ -529,7 +529,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Wind sock',
             text: ['In the lower right corner of the map is a small circle with a line. It\'s like a flag: the line trails in the direction',
-                   'the wind is blowing toward. If it&rsquo;s pointing straight down, the wind is blowing from the North',
+                   'the wind is blowing toward. If it\'s pointing straight down, the wind is blowing from the North',
                    'to the South. Aircraft must be assigned to different runways such that they always take off and land into the wind, unless the',
                    'wind is less than 5 knots.'
                ].join(' '),
@@ -540,9 +540,9 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Scope Commands',
-            text: ['There are also various commands that can be entered into your "scope" which deal with moving ' +
-                'aircraft data blocks (labels), transferring control of aircraft, etc. To toggle between aircraft ' +
-                'commands and scope commands, press the tab key.'
+            text: ['There are also various commands that can be entered into your "scope" which deal with moving',
+                   'aircraft data blocks (labels), transferring control of aircraft, etc. To toggle between aircraft',
+                   'commands and scope commands, press the tab key.'
                ].join(' '),
             parse: (v) => v,
             side: 'left',
@@ -554,7 +554,7 @@ export default class TutorialView {
             text: ['The lower-right corner of the page has a small number in it; this is your score.',
                    'Whenever you successfully route an aircraft to the ground or out of the screen, you earn points. As you make mistakes,',
                    'like directing aircraft to a runway with a strong crosswind/tailwind, losing separation between aircraft, or ignoring an',
-                   'aircraft, you will also lose points. If you&rsquo;d like, you can just ignore the score; it doesn&rsquo;t have any effect',
+                   'aircraft, you will also lose points. If you\'d like, you can just ignore the score; it doesn\'t have any effect',
                    'with the simulation.'
                ].join(' '),
             parse: (v) => v,
@@ -564,7 +564,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Good job!',
-            text: ['If you&rsquo;ve gone through this entire tutorial, you should do pretty well with the pressure.',
+            text: ['If you\'ve gone through this entire tutorial, you should do pretty well with the pressure.',
                    'In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,',
                    'keep them moving, and you\'ll be a controller in no time!',
                    'A full list of commands can be found <a title="openScope Command Reference" href="https://github.com/openscope/openscope/blob/develop/documentation/commands.md">here</a>.'
