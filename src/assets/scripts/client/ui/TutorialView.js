@@ -313,16 +313,18 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Aircraft strips, part 2',
-            text: ['The top row shows the aircraft\'s callsign, what it\'s doing (parked at apron,',
-                   'using a runway, flying to a fix, on a heading, etc), and its assigned altitude. The bottom row shows the model',
-                   '({MODEL} here, which is a {MODELNAME}) to the left, its destination in the middle, and its assigned speed to the right.'
+            text: ['The strip is split into four parts: the left section shows te aircraft\'s callsign, model number',
+                   '(in this case {MODEL}, representing {MODELNAME}), and computer identification number.',
+                   'The next column has the aircraft\' transponder code, assigned altitude, and flight plan altitude',
+                   'and the two rightmost blocks contain the departure airport code and flight plan route.'
             ].join(' '),
             parse: (t) => {
                 if (prop.aircraft.list.length <= 0) {
                     return t;
                 }
 
-                return t.replace('{MODEL}', departureAircraft.model.icao).replace('{MODELNAME}', departureAircraft.model.name);
+                return t.replace('{MODEL}', departureAircraft.model.icao)
+                        .replace('{MODELNAME}', departureAircraft.model.name);
             },
             side: 'left',
             position: tutorial_position
@@ -353,8 +355,8 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Departure destinations',
             text: ['If you zoom out (using the mouse wheel) and click',
-                   'on {CALLSIGN}, you will see a blue dashed line that shows where they are heading. At the end of the',
-                   'line is its "departure fix". Your goal is to get every departure cleared to their filed departure fix. As',
+                   'on {CALLSIGN}, you will see a solid blue line that shows where they are heading. At the end of the',
+                   'planned route is its "departure fix". Your goal is to get every departure cleared to their filed departure fix. As',
                    'you have probably noticed, this is very easy with SIDs, as the aircraft do all the hard work themselves.'
             ].join(' '),
             parse: (t) => {
@@ -446,21 +448,11 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Approach Clearances, part 1',
-            text: ['You can clear aircraft for an ILS approach with the &lsquo;ILS&rsquo; command, followed by a runway name. Before you can do so, however,',
-                   'it must be on a heading that will cross the runway\'s extended centerline, that is no more than 30 degrees offset from the',
-                   'runway\'s heading. Once we eventually give them an approach clearance, you can expect aircraft to capture the ILS\'s localizer',
-                   'once they\'re within a few degrees of the extended centerline.'
-            ].join(' '),
-            side: 'left',
-            position: tutorial_position
-        });
-
-        this.tutorial_step({
-            title: 'Approach Clearances, part 2',
-            text: ['When you have the aircraft facing the right direction, just select it and type &lsquo;i {RUNWAY}&rsquo;',
-                   'with the runway that\'s in front of it. Once it\'s close enough to capture the localizer, the assigned altitude on its strip',
-                   'will change to "ILS locked" (meaning the aircraft is capable of guiding itself down to the runway via',
-                   'the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance.'
+            text: ['You can clear aircraft for an ILS approach with the &lsquo;ILS&rsquo; command, followed by a runway name.',
+                   'When you do so, the aircraft will try to find a route that intercepts the localiser, represented by the',
+                   'extended centerline. Try giving radar vectors to get the aircraft on shallow intercept with this marking',
+                   'and then issue the instruction &lsquo;i {RUNWAY}&rsquo; to clear it to land. It should then guide itself',
+                   'the rest of the way to the runway, managing its own height and direction.'
             ].join(' '),
             parse: (t) => {
                 // This isn't robust. If there are multiple runways in use, or the arrival a/c has filed to land
@@ -473,7 +465,7 @@ export default class TutorialView {
         });
 
         this.tutorial_step({
-            title: 'Approach Clearances, part 3',
+            title: 'Approach Clearances, part 2',
             text: ['You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,',
                    'they follow an acronym "PTAC" for the four elements of an approach clearance, the "T" and "C" of which',
                    'stand for "Turn" and "Clearance", both of which we entered separately in this tutorial. Though longer, it is both ',
