@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
