@@ -16,10 +16,6 @@ function buildMarkup() {
         `!${paths.DIR.SRC}/templates/**`
     ];
 
-    // const versionStr = cli.argv.isProd
-    //     ? pkg.version
-    //     : new Date().getTime();
-
     return gulp.src(src)
         .pipe(hb()
             .partials(`${paths.DIR.SRC}/templates/**/*.hbs`)
