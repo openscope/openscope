@@ -3,7 +3,7 @@ import _keys from 'lodash/keys';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
-import SettingsController from './SettingsController';
+import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
 import { INVALID_NUMBER } from '../constants/globalConstants';
@@ -17,11 +17,12 @@ class UiController {
      * @constructor
      */
     constructor() {
-        this._eventBus = EventBus;
+        this._eventBus = null;
+        this.tutorialView = null;
 
         this.$element = null;
+        this.$airportDialog = null;
         this.$airportList = null;
-        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
@@ -32,6 +33,7 @@ class UiController {
         this.$toggleSids = null;
         this.$toggleStars = null;
         this.$toggleTerrain = null;
+        this.$toggleTutorial = null;
         this.$toggleOptions = null;
         this.$toggleVideoMap = null;
     }
@@ -46,11 +48,12 @@ class UiController {
      * @param $element {jQuery Element}
      */
     init($element) {
-        this.settingsController = new SettingsController($element);
+        this._eventBus = EventBus;
+        this.tutorialView = new TutorialView($element);
+
         this.$element = $element;
-        this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
-        this.$tutorialDialog = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
+        this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
@@ -61,6 +64,7 @@ class UiController {
         this.$toggleSids = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS);
         this.$toggleStars = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_STARS);
         this.$toggleTerrain = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN);
+        this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
 
@@ -86,7 +90,6 @@ class UiController {
      * @method enable
      */
     enable() {
-        this.$tutorialDialog.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
@@ -98,6 +101,7 @@ class UiController {
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
+        this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
 
@@ -111,7 +115,6 @@ class UiController {
      * @method disable
      */
     disable() {
-        this.$tutorialDialog.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
         this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
@@ -121,8 +124,11 @@ class UiController {
         this.$toggleLabels.off('click', (event) => this.onToggleLabels(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.onToggleRestrictedAreas(event));
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
+        this.$toggleStars.off('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
+        this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
+        this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
         return this.destroy();
     }
@@ -134,9 +140,14 @@ class UiController {
      * @method destroy
      */
     destroy() {
+        this._eventBus = null;
+        this.tutorialView = null;
+        this.ui = {};
+        this.ui.scale = INVALID_NUMBER;
+
         this.$element = null;
+        this.$airportDialog = null;
         this.$airportList = null;
-        this.$tutorialDialog = null;
         this.$fastForwards = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
@@ -145,11 +156,11 @@ class UiController {
         this.$toggleLabels = null;
         this.$toggleRestrictedAreas = null;
         this.$toggleSids = null;
+        this.$toggleStars = null;
         this.$toggleTerrain = null;
+        this.$toggleTutorial = null;
         this.$toggleOptions = null;
-
-        this.ui = {};
-        this.ui.scale = INVALID_NUMBER;
+        this.$toggleVideoMap = null;
 
         return this;
     }
@@ -159,6 +170,7 @@ class UiController {
      * @method ui_init
      */
     ui_init() {
+        this.tutorialView.tutorial_init_pre();
         this.$fastForwards.prop('title', 'Set time warp to 2');
         // TODO: Make the options dialog findable by ID, not just by class
         this.$optionsDialog = this.$element.find(SELECTORS.DOM_SELECTORS.OPTIONS_DIALOG);
@@ -172,11 +184,9 @@ class UiController {
      */
     closeAllDialogs() {
         if (this.isTutorialDialogOpen()) {
-            // TODO: Close the tutorial, once it is moved from `InputController` to `UiController`
+            this.tutorialView.tutorial_close();
         }
 
-        // TODO: Currently this will always be false because _init() is failing to find
-        // the options dialog by class name.
         if (this.isOptionsDialogOpen()) {
             this.onToggleOptions();
         }
@@ -209,14 +219,14 @@ class UiController {
     }
 
     /**
-     * Returns whether the airport selection dialog is open
+     * Returns whether the tutorial dialog is open
      *
      * @for UiController
      * @method isTutorialDialogOpen
      * @return {boolean}
      */
     isTutorialDialogOpen() {
-        return this.$tutorialDialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+        return this.$toggleTutorial.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
     /**
@@ -418,6 +428,15 @@ class UiController {
     }
 
     /**
+    * @for UiController
+    * @method onToggleOptions
+    */
+    onToggleOptions() {
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
      * @for UiController
      * @method onToggleSids
      * @param event {jquery event}
@@ -451,6 +470,16 @@ class UiController {
     }
 
     /**
+    * @for UiController
+    * @method onToggleTutorial
+    */
+    onToggleTutorial() {
+        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+        this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
+    }
+
+    /**
      * @for UiController
      * @method onToggleVideoMap
      * @param event {jquery event}
@@ -459,15 +488,6 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
-    }
-
-    /**
-     * @for UiController
-     * @method onToggleOptions
-     */
-    onToggleOptions() {
-        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
     }
 }
 

@@ -33,9 +33,8 @@ export default class InputController {
      * @param $element {JQuery|HTML Element}
      * @param aircraftCommander {AircraftCommander}
      * @param scopeModel {ScopeModel}
-     * @param tutorialView {TutorialView}
      */
-    constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
+    constructor($element, aircraftCommander, aircraftController, scopeModel) {
         this.$element = $element;
         this.$body = null;
         this.$window = null;
@@ -46,8 +45,6 @@ export default class InputController {
         this._aircraftCommander = aircraftCommander;
         this._aircraftController = aircraftController;
         this._scopeModel = scopeModel;
-        this._tutorialView = tutorialView;
-
 
         prop.input = input;
         this.input = input;
@@ -180,21 +177,6 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
-    }
-
-    // TODO: The tutorial should be moved to the UiController, and then this can be removed
-    /**
-     * Close all open dialogs and return focus to the command bar
-     *
-     * @for InputController
-     * @method closeAllDialogs
-     */
-    closeAllDialogs() {
-        if (prop.tutorial.open) {
-            this._tutorialView.tutorial_close();
-        }
-
-        UiController.closeAllDialogs();
     }
 
     /**
@@ -449,7 +431,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.ESCAPE: {
-                this.closeAllDialogs();
+                UiController.closeAllDialogs();
 
                 const hasCallsign = _includes(currentCommandInputValue, this.input.callsign);
                 const hasOnlyCallsign = currentCommandInputValue.trim() === this.input.callsign;
@@ -655,7 +637,7 @@ export default class InputController {
     processSystemCommand(aircraftCommandParser) {
         switch (aircraftCommandParser.command) {
             case PARSED_COMMAND_NAME.TUTORIAL:
-                this._tutorialView.tutorial_toggle();
+                UiController.onToggleTutorial();
 
                 return true;
 
