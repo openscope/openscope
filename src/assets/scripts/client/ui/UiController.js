@@ -101,7 +101,7 @@ class UiController {
         this.$toggleSids.on('click', (event) => this.onToggleSids(event));
         this.$toggleStars.on('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.on('click', (event) => this.onToggleTerrain(event));
-        this.$toggleTutorial.on('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
+        this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
 
@@ -126,7 +126,7 @@ class UiController {
         this.$toggleSids.off('click', (event) => this.onToggleSids(event));
         this.$toggleStars.off('click', (event) => this.onToggleStars(event));
         this.$toggleTerrain.off('click', (event) => this.onToggleTerrain(event));
-        this.$toggleTutorial.off('click', (event) => this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL, event));
+        this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
 
@@ -428,6 +428,15 @@ class UiController {
     }
 
     /**
+    * @for UiController
+    * @method onToggleOptions
+    */
+    onToggleOptions() {
+        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
      * @for UiController
      * @method onToggleSids
      * @param event {jquery event}
@@ -461,6 +470,16 @@ class UiController {
     }
 
     /**
+    * @for UiController
+    * @method onToggleTutorial
+    */
+    onToggleTutorial() {
+        $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+        this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
+    }
+
+    /**
      * @for UiController
      * @method onToggleVideoMap
      * @param event {jquery event}
@@ -469,29 +488,6 @@ class UiController {
         $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL).toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
-    }
-
-    /**
-     * @for UiController
-     * @method onToggleOptions
-     */
-    onToggleOptions() {
-        this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
-    }
-
-    /**
-     * @for UiController
-     * @method onToggleTutorial
-     */
-    onToggleTutorial() {
-        if (this.isTutorialDialogOpen()) {
-            this.tutorialView.tutorial_close();
-
-            return;
-        }
-
-        this.tutorialView.tutorial_open();
     }
 }
 
