@@ -7,7 +7,7 @@ import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import {
     FLIGHT_PHASE

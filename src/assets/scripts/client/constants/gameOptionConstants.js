@@ -14,7 +14,6 @@ export const GAME_OPTION_NAMES = {
     PROJECTED_TRACK_LINE_LENGTH: 'ptlLength',
     DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
     SOFT_CEILING: 'softCeiling',
-    INCLUDE_WIP_AIRPORTS: 'includeWipAirports',
     DRAW_ILS_DISTANCE_SEPARATOR: 'drawIlsDistanceSeparator',
     MOUSE_CLICK_DRAG: 'mouseClickDrag'
 };
@@ -140,24 +139,6 @@ export const GAME_OPTION_VALUES = [
         defaultValue: 'yes',
         description: 'Allow departures via climb',
         help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
-        type: 'select',
-        onChangeEventHandler: null,
-        optionList: [
-            {
-                displayLabel: 'Yes',
-                value: 'yes'
-            },
-            {
-                displayLabel: 'No',
-                value: 'no'
-            }
-        ]
-    },
-    {
-        name: GAME_OPTION_NAMES.INCLUDE_WIP_AIRPORTS,
-        defaultValue: 'no',
-        description: 'Include WIP Airports',
-        help: 'Will include all available airports including those marked as Work In Progress.',
         type: 'select',
         onChangeEventHandler: null,
         optionList: [

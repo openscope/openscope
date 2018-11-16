@@ -2,7 +2,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import UiController from '../../src/assets/scripts/client/UiController';
+import UiController from '../../src/assets/scripts/client/ui/UiController';
 import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
 import {
     createAirportControllerFixture,
@@ -16,7 +16,8 @@ import {
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK,
-    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK
 } from './_mocks/aircraftMocks';
 import {
     FLIGHT_PHASE,
@@ -29,6 +30,20 @@ let sandbox; // using the sinon sandbox ensures stubs are restored after each te
 // mocks
 const runwayNameMock = '19L';
 const runwayModelMock = airportModelFixture.getRunway(runwayNameMock);
+
+function moveAircraftToFix(aircraft, fixName) {
+    const fms = aircraft.fms;
+
+    while (fms.currentWaypoint._name !== fixName) {
+        if (!fms.hasNextWaypoint()) {
+            throw Error(`Can not find waypoint ${fixName}`);
+        }
+
+        fms.moveToNextWaypoint();
+    }
+
+    aircraft.positionModel = NavigationLibrary.findFixByName(fixName).positionModel;
+}
 
 /* eslint-disable no-unused-vars, no-undef */
 ava.beforeEach(() => {
@@ -408,24 +423,172 @@ ava('.matchCallsign() returns true when passed a mixed case callsign that matche
     t.true(model.matchCallsign('uAl1567'));
 });
 
-ava('.updateTarget() causes arrivals to descend when the STAR includes only AT or ABOVE altitude restrictions', (t) => {
+ava('.updateTarget() causes arrivals to comply with AT altitude restriction', (t) => {
     const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
-    model.positionModel = NavigationLibrary.findFixByName('LEMNZ').positionModel;
-
     model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'KSINO');
+    model.updateTarget();
+
+    t.true(model.target.altitude === 17000);
+});
+
+ava('.updateTarget() causes arrivals to comply with ABOVE altitude restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'LUXOR');
+    model.updateTarget();
+
+    t.true(model.target.altitude >= 12000);
+});
+
+ava('.updateTarget() causes arrivals to comply with BELOW altitude restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'GRNPA');
+    model.updateTarget();
+
+    t.true(model.target.altitude <= 11000);
+});
+
+ava('.updateTarget() causes departures to comply with AT altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'ROPPR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
     t.true(model.target.altitude === 7000);
 });
 
-ava('.updateTarget() causes arrivals to descend when the STAR includes AT altitude restrictions', (t) => {
-    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    model.positionModel = NavigationLibrary.findFixByName('MISEN').positionModel;
+ava('.updateTarget() causes departures to comply with ABOVE altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
 
-    model.groundSpeed = 320;
+    moveAircraftToFix(model, 'CEASR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
     model.updateTarget();
 
-    t.true(model.target.altitude === 8000);
+    t.true(model.target.altitude >= 8000);
+    t.true(model.target.altitude <= 14000);
+});
+
+ava('.updateTarget() causes departures to comply with BELOW altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'WILLW');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude <= 14000);
+});
+
+ava('.updateTarget() causes arrivals to descend to the assigned altitude if there is no restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'LEMNZ');
+    model.pilot.descendViaStar(model, 5000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 5000);
+});
+
+ava('.updateTarget() causes departures to climb to cruise altitude if there is no restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'TRALR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 31000);
+});
+
+ava('.updateTarget() causes arrivals to descend to the assigned altitude if the minimal altitude restriction is above the assigned altitude', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'TRROP');
+    model.pilot.descendViaStar(model, 5000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 5000);
+});
+
+ava('.updateTarget() causes departures to climb to cruise altitude if the maximum altitude restriction is below the cruise altitude', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'BIKKR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 31000);
+});
+
+ava('.updateTarget() causes arrivals to climb to comply with minimal altitude restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+    model.altitude = 7000;
+
+    moveAircraftToFix(model, 'LUXOR');
+    model.pilot.descendViaStar(model, 5000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 12000);
+});
+
+ava('.updateTarget() causes departures to descend to comply with maximum altitude restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.groundSpeed = 320;
+    model.altitude = 15000;
+
+    moveAircraftToFix(model, 'WILLW');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 31000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 14000);
+});
+
+ava('.updateTarget() causes arrivals to prioritize clearance over restriction', (t) => {
+    const model = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.groundSpeed = 320;
+
+    moveAircraftToFix(model, 'GRNPA');
+    model.pilot.descendViaStar(model, 15000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 15000);
+});
+
+ava('.updateTarget() causes departures to prioritize clearance over restriction', (t) => {
+    const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_WITH_SOFT_ALTITUDE_RESTRICTIONS_MOCK);
+    model.speed = 320;
+    model.altitude = 3000;
+
+    moveAircraftToFix(model, 'CEASR');
+    model.mcp.enable();
+    model.pilot.climbViaSid(model, 7000);
+    model.updateTarget();
+
+    t.true(model.target.altitude === 7000);
 });
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {

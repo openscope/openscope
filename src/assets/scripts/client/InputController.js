@@ -6,7 +6,7 @@ import AirportController from './airport/AirportController';
 import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import UiController from './UiController';
+import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
 import { clamp } from './math/core';
@@ -41,7 +41,6 @@ export default class InputController {
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
-        this.$sidebar = null;
 
         this._eventBus = EventBus;
         this._aircraftCommander = aircraftCommander;
@@ -63,8 +62,7 @@ export default class InputController {
         this.input.isMouseDown = false;
         this.commandBarContext = COMMAND_CONTEXT.AIRCRAFT;
 
-        this._init()
-            .enable();
+        this._init();
     }
 
     /**
@@ -76,9 +74,8 @@ export default class InputController {
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
-        this.$sidebar = this.$element.find(SELECTORS.DOM_SELECTORS.SIDEBAR);
 
-        return this;
+        return this.setupHandlers().enable();
     }
 
     /**
@@ -86,6 +83,13 @@ export default class InputController {
      * @method setupHandlers
      */
     setupHandlers() {
+        this.onKeydownHandler = this._onKeydown.bind(this);
+        this.onCommandInputChangeHandler = this._onCommandInputChange.bind(this);
+        this.onMouseScrollHandler = this._onMouseScroll.bind(this);
+        this.onMouseClickAndDragHandler = this._onMouseClickAndDrag.bind(this);
+        this.onMouseUpHandler = this._onMouseUp.bind(this);
+        this.onMouseDownHandler = this._onMouseDown.bind(this);
+
         return this;
     }
 
@@ -96,16 +100,16 @@ export default class InputController {
      * @method enable
      */
     enable() {
-        this.$window.on('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.on('input', (event) => this.onCommandInputChangeHandler(event));
+        this.$window.on('keydown', this.onKeydownHandler);
+        this.$commandInput.on('input', this.onCommandInputChangeHandler);
         // TODO: these are non-standard events and will be deprecated soon. this should be moved
         // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
         // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
-        // this.$commandInput.on('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.bind('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.on('mousemove', (event) => this.onMouseClickAndDragHandler(event));
-        this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
-        this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
+        // this.$commandInput.on('DOMMouseScroll mousewheel', this.onMouseScrollHandler);
+        this.$canvases.bind('DOMMouseScroll mousewheel', this.onMouseScrollHandler);
+        this.$canvases.on('mousemove', this.onMouseClickAndDragHandler);
+        this.$canvases.on('mouseup', this.onMouseUpHandler);
+        this.$canvases.on('mousedown', this.onMouseDownHandler);
         this.$body.addEventListener('contextmenu', (event) => event.preventDefault());
 
         // TODO: Fix this
@@ -121,14 +125,14 @@ export default class InputController {
      * @method disable
      */
     disable() {
-        this.$window.off('keydown', (event) => this.onKeydownHandler(event));
-        this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
+        this.$window.off('keydown', this.onKeydownHandler);
+        this.$commandInput.off('input', this.onCommandInputChangeHandler);
         // uncomment only after `.on()` for this event has been implemented.
-        // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
-        this.$canvases.off('mousemove', (event) => this.onMouseClickAndDragHandler(event));
-        this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
-        this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
-        this.$body.removeEventListener('contextmenu', (event) => event.preventDefault());
+        // this.$commandInput.off('DOMMouseScroll mousewheel', this.onMouseScrollHandler);
+        this.$canvases.off('mousemove', this.onMouseClickAndDragHandler);
+        this.$canvases.off('mouseup', this.onMouseUpHandler);
+        this.$canvases.off('mousedown', this.onMouseDownHandler);
+        this.$body.removeEventListener('contextmenu', event.preventDefault());
 
         this._eventBus.off(EVENT.STRIP_CLICK, this.selectAircraftByCallsign);
 
@@ -145,7 +149,6 @@ export default class InputController {
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
-        this.$sidebar = null;
 
         this.input = input;
         this.input.command = '';
@@ -219,23 +222,25 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onMouseScrollHandler
+     * @method _onMouseScroll
      * @param event {jquery Event}
      */
-    onMouseScrollHandler(event) {
+    _onMouseScroll(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
             CanvasStageModel.zoomIn();
-        } else {
-            CanvasStageModel.zoomOut();
+
+            return;
         }
+
+        CanvasStageModel.zoomOut();
     }
 
     /**
      * @for InputController
-     * @method onMouseClickAndDragHandler
+     * @method _onMouseClickAndDrag
      * @param event {jquery Event}
      */
-    onMouseClickAndDragHandler(event) {
+    _onMouseClickAndDrag(event) {
         if (!this.input.isMouseDown) {
             return this;
         }
@@ -255,39 +260,32 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onMouseUpHandler
+     * @method _onMouseUp
      * @param event {jquery Event}
      */
-    onMouseUpHandler(event) {
+    _onMouseUp(event) {
         this.input.isMouseDown = false;
     }
 
     /**
      * @for InputController
-     * @method onMouseDownHandler
+     * @method _onMouseDown
      * @param event {jquery Event}
      */
-    onMouseDownHandler(event) {
+    _onMouseDown(event) {
         event.preventDefault();
 
         switch (event.which) {
+            case MOUSE_EVENT_CODE.LEFT_PRESS:
+                this._onLeftMouseButtonPress(event);
+
+                break;
             case MOUSE_EVENT_CODE.MIDDLE_PRESS:
                 CanvasStageModel.zoomReset();
 
                 break;
             case MOUSE_EVENT_CODE.RIGHT_PRESS:
-                const mousePositionX = event.pageX - CanvasStageModel._panX;
-                const mousePositionY = event.pageY - CanvasStageModel._panY;
-                // Record mouse down position for panning
-                this._mouseDownScreenPosition = [
-                    mousePositionX,
-                    mousePositionY
-                ];
-                this.input.isMouseDown = true;
-
-                break;
-            case MOUSE_EVENT_CODE.LEFT_PRESS:
-                this._onLeftMouseButtonPress(event);
+                this._onRightMousePress(event);
 
                 break;
             default:
@@ -297,9 +295,10 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onCommandInputChangeHandler
+     * @method _onCommandInputChange
+     * @private
      */
-    onCommandInputChangeHandler() {
+    _onCommandInputChange() {
         this.input.command = this.$commandInput.val();
     }
 
@@ -340,9 +339,11 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method onKeydownHandler
+     * @method _onKeydown
+     * @param event {jquery Event}
+     * @private
      */
-    onKeydownHandler(event) {
+    _onKeydown(event) {
         const currentCommandInputValue = this.$commandInput.val();
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
@@ -569,27 +570,6 @@ export default class InputController {
     }
 
     /**
-     * Process the command currently in the command bar
-     *
-     * @for InputController
-     * @method processCommand
-     * @return {array} [success of operation, response]
-     */
-    processCommand() {
-        let response = [];
-
-        if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
-            response = this.processAircraftCommand();
-        } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
-            response = this.processScopeCommand();
-        }
-
-        this.deselectAircraft();
-
-        return response;
-    }
-
-    /**
      * Process user command to be applied to an aircraft
      *
      * @for InputController
@@ -619,6 +599,27 @@ export default class InputController {
         this.input.history_item = null;
 
         return this.processTransmitCommand(aircraftCommandParser);
+    }
+
+    /**
+     * Process the command currently in the command bar
+     *
+     * @for InputController
+     * @method processCommand
+     * @return {array} [success of operation, response]
+     */
+    processCommand() {
+        let response = [];
+
+        if (this.commandBarContext === COMMAND_CONTEXT.AIRCRAFT) {
+            response = this.processAircraftCommand();
+        } else if (this.commandBarContext === COMMAND_CONTEXT.SCOPE) {
+            response = this.processScopeCommand();
+        }
+
+        this.deselectAircraft();
+
+        return response;
     }
 
     /**
@@ -779,6 +780,24 @@ export default class InputController {
             CanvasStageModel.translatePixelsToKilometers(x - CanvasStageModel._panX),
             CanvasStageModel.translatePixelsToKilometers(y + CanvasStageModel._panY)
         ]);
+    }
+
+    /**
+     * Triggered when a user clicks on the `right` mouse button and
+     * records the position of the `right click` event.
+     *
+     * @param event {jquery Event}
+     * @private
+     */
+    _onRightMousePress(event) {
+        const mousePositionX = event.pageX - CanvasStageModel._panX;
+        const mousePositionY = event.pageY - CanvasStageModel._panY;
+        // Record mouse down position for panning
+        this._mouseDownScreenPosition = [
+            mousePositionX,
+            mousePositionY
+        ];
+        this.input.isMouseDown = true;
     }
 
     /**

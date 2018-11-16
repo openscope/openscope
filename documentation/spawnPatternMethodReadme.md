@@ -92,7 +92,7 @@ sooner. Overall, very similar to cyclic though.
 
 ### Surge
 
-The wave algorithm generates a group of aircraft back to back. For departures
+The surge algorithm generates a group of aircraft back to back. For departures
 the spacing is 10 seconds, for arrivals, you can specify the entrail distance
 while in and out of the "surge". This way, a "surge" can be gentle, or extreme,
 and at any arrival rate.

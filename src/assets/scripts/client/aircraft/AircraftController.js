@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
@@ -318,7 +318,9 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
+        // iterating backwards because each iteration removes a list item
+        // iterating forward would cause skipping as the array shifts
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             this.aircraft_remove(this.aircraft.list[i]);
         }
     }

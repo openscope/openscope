@@ -87,6 +87,7 @@ export default class TutorialView {
         this.tutorial.open = false;
 
         this._init()
+            ._setupHandlers()
             .layout()
             .enable();
     }
@@ -96,7 +97,7 @@ export default class TutorialView {
      *
      * Caches selectors in variabls so they only need to be looked up one time.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _init
      * @chainable
      */
@@ -110,11 +111,26 @@ export default class TutorialView {
     }
 
     /**
+     * Create event handlers
+     *
+     * Should be run once only on instantiation
+     *
+     * @for TutorialView
+     * @method _setupHandlers
+     * @chainable
+     */
+    _setupHandlers() {
+        this._onAirportChangeHandler = this.onAirportChange.bind(this);
+
+        return this;
+    }
+
+    /**
      * Lifecycle method should be run once on application init.
      *
      * Adds the TUTORIAL_TEMPLATE to the view
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method layout
      * @chainable
      */
@@ -132,12 +148,13 @@ export default class TutorialView {
     /**
      * Lifecycle method should be run once on application init.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method enable
      * @chainable
      */
     enable() {
         this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.on('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.on('click', (event) => this.tutorial_next(event));
@@ -148,12 +165,13 @@ export default class TutorialView {
     /**
      * Disable any click handlers.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method disable
      * @chainable
      */
     disable() {
         this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.off('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.off('click', (event) => this.tutorial_next(event));
@@ -164,7 +182,7 @@ export default class TutorialView {
     /**
      * Tear down the view and unset any properties.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method destroy
      * @chainable
      */
@@ -180,6 +198,17 @@ export default class TutorialView {
         this.tutorial.open = false;
 
         return this;
+    }
+
+    /**
+     * Reloads the tutorial when the airport is changed.
+     *
+     * @for TutorialView
+     * @method onAirportChange
+     */
+    onAirportChange() {
+        this.tutorial_init_pre();
+        this.tutorial_update_content();
     }
 
     /**
