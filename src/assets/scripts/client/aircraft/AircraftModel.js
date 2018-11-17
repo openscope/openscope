@@ -1343,7 +1343,7 @@ export default class AircraftModel {
         if (wind.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
-        } else if (wind.head <= -1) {
+        } else if (wind.head <= -5) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
