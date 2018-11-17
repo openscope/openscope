@@ -2,6 +2,7 @@
 ### New Features
 - [#804](https://github.com/openscope/openscope/issues/804) - Add ability to view changelog for the current version
 - [#1330](https://github.com/openscope/openscope/issues/1330) - Allow user to choose which mouse button drags the canvas
+- [#16](https://github.com/openscope/openscope/issues/16) - Add traffic volume scaling controls
 
 
 ### Bugfixes

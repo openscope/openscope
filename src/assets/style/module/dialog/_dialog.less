@@ -1,19 +1,8 @@
-.option {
-    position: relative;
-}
-
-.option + .option {
-    margin-top: 2px;
-}
-
-.option.simulator-version {
-    margin-top: 16px;
-    font-style: italic;
-    color: @gray-40;
-}
-
-.option-dialog {
+.dialog {
     width: 480px;
+    height: auto;
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    max-height: ~"calc(85% - 2.3em - 20px)";
     margin-left: -240px;
     padding: 12px 15px;
     position: absolute;
@@ -32,9 +21,33 @@
     z-index: 200;
 }
 
-.option-dialog.open {
+.dialog.open {
     opacity: 1;
     pointer-events: auto;
+}
+
+.dialog-titel {
+    min-height: 1.5em;
+    padding: @spacing-2x 0 7px 0;
+    font-size: 170%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.dialog-body {
+    height: auto;
+    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
+    //max-height: ~"calc(100% - 2.3em - 32px)";
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.option {
+    position: relative;
+}
+
+.option + .option {
+    margin-top: 2px;
 }
 
 .option-label {
@@ -42,24 +55,7 @@
     display: inline-block;
 }
 
-.option-type-select {
-    width: 35%;
-    position: absolute;
-    right: 0px;
-    display: inline-block;
-    color: inherit;
-}
-
-.option-type-select::after {
-    position: absolute;
-    top: 20%;
-    right: 0;
-    font-size: 8px;
-    content: "\25BC";
-    pointer-events: none;
-}
-
-.option-dialog select {
+.dialog select {
     width: 100%;
     padding-right: 2.5em; /* accommodate with the pseudo elements for the dropdown arrow */
     background-color: #141414;
@@ -71,6 +67,6 @@
     cursor: pointer;
 }
 
-.option-dialog select:focus {
+.dialog select:focus {
     outline: none;
 }

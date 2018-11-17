@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _isNaN from 'lodash/isNaN';
 import GameController from '../game/GameController';
+import { SELECTORS } from '../constants/selectors';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -52,6 +53,15 @@ export default class SettingsController {
          */
         this.$element = $element;
 
+        /**
+         * Dialog DOM element
+         *
+         * @property $dialog
+         * @type {jquery|HTML Element}
+         * @default null
+         */
+        this.$dialog = null;
+
         this.init();
     }
 
@@ -62,8 +72,7 @@ export default class SettingsController {
      * @chainable
      */
     init() {
-        const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
-        const $version = this._buildVersionTemplate();
+        this.$dialog = $(UI_SETTINGS_MODAL_TEMPLATE);
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -72,18 +81,39 @@ export default class SettingsController {
             }
 
             const $container = this._buildOptionTemplate(opt);
-            $options.append($container);
+
+            this.$dialog.append($container);
         });
 
-        $version.addClass('simulator-version');
-        $options.append($version);
-        this.$element.append($options);
+        const $version = this._buildVersionTemplate();
+
+        this.$dialog.append($version);
+        this.$element.append(this.$dialog);
 
         return this;
     }
 
     /**
-     * Build the html for a game option and its cooresponding value elements.
+     * Returns whether the airport selection dialog is open
+     *
+     * @for SettingsController
+     * @method isDialogOpen
+     * @return {boolean}
+     */
+    isDialogOpen() {
+        return this.$dialog.hasClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
+    * @for SettingsController
+    * @method toggleDialog
+    */
+    toggleDialog() {
+        this.$dialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
+    }
+
+    /**
+     * Build the html for a game option and its corresponding value elements.
      *
      * @for SettingsController
      * @method _buildOptionTemplate
@@ -181,7 +211,10 @@ export default class SettingsController {
      */
     _buildVersionTemplate() {
         const simulatorVersion = window.GLOBAL.VERSION;
+        const template = this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
 
-        return this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
+        template.addClass('simulator-version');
+
+        return template;
     }
 }

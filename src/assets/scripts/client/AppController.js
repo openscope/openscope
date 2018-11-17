@@ -172,10 +172,10 @@ export default class AppController {
         // explicit instance parameters easier.
         window.aircraftController = this.aircraftController;
 
+        SpawnPatternCollection.init(initialAirportData);
         UiController.init(this.$element);
 
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
+        this.spawnScheduler = new SpawnScheduler(this.aircraftController);
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
         this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
@@ -280,17 +280,14 @@ export default class AppController {
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
         this.scopeModel.radarTargetCollection.reset();
-        this.spawnPatternCollection.reset();
+        SpawnPatternCollection.reset();
         GameController.destroyTimers();
 
         this.spawnScheduler = null;
 
         NavigationLibrary.init(nextAirportJson);
-        this.spawnPatternCollection.init(nextAirportJson);
-        this.spawnScheduler = new SpawnScheduler(
-            this.spawnPatternCollection,
-            this.aircraftController
-        );
+        SpawnPatternCollection.init(nextAirportJson);
+        this.spawnScheduler = new SpawnScheduler(this.aircraftController);
 
         this.updateViewControls();
     }

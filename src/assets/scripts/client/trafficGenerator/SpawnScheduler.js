@@ -16,23 +16,18 @@ export default class SpawnScheduler {
     /**
      * @constructor
      * @for SpawnScheduler
-     * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftController {AircraftController}
      */
-    constructor(spawnPatternCollection, aircraftController) {
-        if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
-            throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
-        }
-
+    constructor(aircraftController) {
         if (typeof aircraftController === 'undefined') {
             throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
 
         // TODO: rename to createSchedulesWithTimer
-        this.createSchedulesFromList(spawnPatternCollection, aircraftController);
+        this.createSchedulesFromList(aircraftController);
         // TODO: create getter on collection to get all preSpawn including departures
         // TODO: create method `createPreSpawnDeparturesAndArrivals`
-        this.createPreSpawnDepartures(spawnPatternCollection, aircraftController);
+        this.createPreSpawnDepartures(aircraftController);
     }
 
     /**
@@ -40,11 +35,10 @@ export default class SpawnScheduler {
      *
      * @for SpawnScheduler
      * @method createSchedulesFromList
-     * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftController {AircraftTypeDefinitionCollection}
      */
-    createSchedulesFromList(spawnPatternCollection, aircraftController) {
-        _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
+    createSchedulesFromList(aircraftController) {
+        _forEach(SpawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
             // set the #cycleStartTime for this `spawnPatternModel` with current game time
             spawnPatternModel.cycleStart(TimeKeeper.accumulatedDeltaTime);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
@@ -70,11 +64,10 @@ export default class SpawnScheduler {
      *
      * @for SpawnScheduler
      * @method createPreSpawnDepartures
-     * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftController {AircraftController}
      */
-    createPreSpawnDepartures(spawnPatternCollection, aircraftController) {
-        const departureModelsToPreSpawn = spawnPatternCollection.getDepartureModelsForPreSpawn();
+    createPreSpawnDepartures(aircraftController) {
+        const departureModelsToPreSpawn = SpawnPatternCollection.getDepartureModelsForPreSpawn();
 
         for (let i = 0; i < departureModelsToPreSpawn.length; i++) {
             const spawnPatternModel = departureModelsToPreSpawn[i];

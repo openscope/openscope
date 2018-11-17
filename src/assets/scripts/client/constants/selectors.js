@@ -41,13 +41,13 @@ export const CLASSNAMES = {
     NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     OPTIONS_DIALOG: 'option-dialog',
+    TRAFFIC_DIALOG: 'traffic-dialog',
     OVERFLIGHT: 'overflight',
     PAUSE_TOGGLE: 'pause-toggle',
     PAUSED: 'paused',
     PREV: 'prev',
     RIGHT: 'right',
     RUNWAY: 'runway',
-    SPEECH_TOGGLE: 'speech-toggle',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     SPEED: 'speed',
@@ -78,6 +78,8 @@ export const CLASSNAMES = {
     TOGGLE_TERRAIN: 'toggle-terrain',
     TOGGLE_TUTORIAL: 'toggle-tutorial',
     TOGGLE_VIDEO_MAP: 'toggle-video-map',
+    TOGGLE_TRAFFIC: 'toggle-traffic',
+    SPEECH_TOGGLE: 'toggle-speech',
     WARN: 'warn',
     WARNING_BUTTON: 'warning-button'
 };
