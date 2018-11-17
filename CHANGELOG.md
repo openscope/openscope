@@ -23,6 +23,7 @@
 - [#1001](https://github.com/openscope/openscope/issues/1001) - Remove support for work-in-progress airports
 - [#1179](https://github.com/openscope/openscope/issues/1179) - Extract settings related code from UiController into its own controller
 - [#1171](https://github.com/openscope/openscope/issues/1171) - Move tutorial from InputController to UiController
+- [#1114](https://github.com/openscope/openscope/issues/1114), [#1115](https://github.com/openscope/openscope/issues/1115) - Update broken documentation links
 
 
 
