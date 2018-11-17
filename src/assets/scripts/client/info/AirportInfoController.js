@@ -57,26 +57,40 @@ export default class AirportInfoController {
         this.$template = null;
 
         /**
-         * @for AirportInfoController
-         * @property simClockController
-         */
-        this.simClockController = null;
-
-        /**
-         * Local instance of the event bus
+         * Information div
          *
          * @for AirportInfoController
-         * @property _eventBus
-         * @type {EventBus}
+         * @property $altimeterView
+         * @type {jQuery|HTML element}
          */
-        this._eventBus = EventBus;
+        this.$altimeterView = null;
 
         /**
+         * Information div
+         *
          * @for AirportInfoController
-         * @property wind
-         * @type {String}
+         * @property $clockView
+         * @type {jQuery|HTML element}
          */
-        this.wind = '';
+        this.$clockView = null;
+
+        /**
+         * Information div
+         *
+         * @for AirportInfoController
+         * @property $elevationView
+         * @type {jQuery|HTML element}
+         */
+        this.$elevationView = null;
+
+        /**
+         * Information div
+         *
+         * @for AirportInfoController
+         * @property $windView
+         * @type {jQuery|HTML element}
+         */
+        this.$windView = null;
 
         /**
          * @for AirportInfoController
@@ -99,12 +113,36 @@ export default class AirportInfoController {
          */
         this.icao = '';
 
+        /**
+         * @for AirportInfoController
+         * @property simClockController
+         */
+        this.simClockController = null;
+
+        /**
+         * @for AirportInfoController
+         * @property wind
+         * @type {String}
+         */
+        this.wind = '';
+
+        /**
+         * Local reference of the event bus
+         *
+         * @for AirportInfoController
+         * @property _eventBus
+         * @type {EventBus}
+         */
+        this._eventBus = EventBus;
+
         return this.init()
-                ._createChildren()
-                ._setupHandlers()
-                .enable()
-                .onAirportChange();
+            ._createChildren()
+            ._setupHandlers()
+            .enable()
+            .onAirportChange();
     }
+
+    // ------------------------------ LIFECYCLE ------------------------------
 
     /**
      * @for AirportInfoController
@@ -112,24 +150,17 @@ export default class AirportInfoController {
      * @chainable
      */
     init() {
-        this.simClockController = new SimClockController();
         this.$template = $(AIRPORT_INFO_TEMPLATE);
-        this.$clockView = this.$template.find(INFO_VIEW_SELECTORS.CLOCK_VALUE);
-        this.$windView = this.$template.find(INFO_VIEW_SELECTORS.WIND_VALUE);
         this.$altimeterView = this.$template.find(INFO_VIEW_SELECTORS.ALTIMETER_VALUE);
+        this.$clockView = this.$template.find(INFO_VIEW_SELECTORS.CLOCK_VALUE);
         this.$elevationView = this.$template.find(INFO_VIEW_SELECTORS.ELEVATION_VALUE);
-
-        return this;
-    }
-
-    /**
-     * @for AirportInfoController
-     * @method _setupHandlers
-     * @chainable
-     * @private
-     */
-    _setupHandlers() {
-        this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this.$windView = this.$template.find(INFO_VIEW_SELECTORS.WIND_VALUE);
+        this.altimeter = INVALID_NUMBER;
+        this.elevation = '';
+        this.icao = '';
+        this.simClockController = new SimClockController();
+        this.wind = '';
+        this._eventBus = EventBus;
 
         return this;
     }
@@ -146,6 +177,18 @@ export default class AirportInfoController {
      */
     _createChildren() {
         this.$element.append(this.$template);
+
+        return this;
+    }
+
+    /**
+     * @for AirportInfoController
+     * @method _setupHandlers
+     * @chainable
+     * @private
+     */
+    _setupHandlers() {
+        this._onAirportChangeHandler = this.onAirportChange.bind(this);
 
         return this;
     }
@@ -184,15 +227,17 @@ export default class AirportInfoController {
     reset() {
         this.$element = null;
         this.$template = null;
-        this.simClockController = null;
-        this.airportInfoController = null;
-        this.wind = null;
         this.altimeter = null;
         this.elevation = null;
         this.icao = null;
+        this.simClockController = null;
+        this.wind = null;
+        this._eventBus = null;
 
         return this;
     }
+
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Updates the information taken from the AirportModel: the wind, the altimeter,
@@ -214,19 +259,6 @@ export default class AirportInfoController {
     }
 
     /**
-     * Sets the values from the updated airport info.
-     *
-     * @for AirportInfoController
-     * @method _render
-     * @private
-     */
-    _render() {
-        this.$windView.text(`${this.icao} ${this.wind}`);
-        this.$altimeterView.text(`${this.icao} ${this.altimeter}`);
-        this.$elevationView.text(`${this.icao} ${this.elevation}`);
-    }
-
-    /**
      * Updates the clock, called from `AppController#update_pre`
      *
      * @for AirportInfoController
@@ -237,6 +269,8 @@ export default class AirportInfoController {
 
         this.$clockView.text(readout);
     }
+
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * Formats the wind angle and speed from object into a string,
@@ -252,8 +286,8 @@ export default class AirportInfoController {
      */
     _buildWindAndGustReadout(wind) {
         const minGustStrength = 5;
-        const speed = wind.speed;
-        const angle = wind.angle;
+        const { speed } = wind;
+        const { angle } = wind;
         const newAngle = leftPad((angle || 360), 3);
         const newSpeed = leftPad(speed, 2);
         // Creates a fake "gusting" speed
@@ -264,7 +298,7 @@ export default class AirportInfoController {
             return `${newAngle} ${newSpeed}`;
         }
 
-        return `${newAngle} ${newSpeed}G${gustSpeed}`;
+        return `${newAngle} ${newSpeed} G${gustSpeed}`;
     }
 
     /**
@@ -280,5 +314,18 @@ export default class AirportInfoController {
         const pressure = PERFORMANCE.DEFAULT_ALTIMETER_IN_INHG + (windSpeed * Math.random() / 100);
 
         return pressure.toFixed(2);
+    }
+
+    /**
+     * Sets the values from the updated airport info.
+     *
+     * @for AirportInfoController
+     * @method _render
+     * @private
+     */
+    _render() {
+        this.$windView.text(`${this.icao} ${this.wind}`);
+        this.$altimeterView.text(`${this.icao} ${this.altimeter}`);
+        this.$elevationView.text(`${this.icao} ${this.elevation}`);
     }
 }
