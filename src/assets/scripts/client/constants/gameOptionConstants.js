@@ -157,7 +157,7 @@ export const GAME_OPTION_VALUES = [
         name: GAME_OPTION_NAMES.RANGE_RINGS,
         defaultValue: 'default',
         description: 'Range rings',
-        help: '@erikquinn your help text here',
+        help: 'Radius of range rings, in nautical miles',
         type: 'select',
         onChangeEventHandler: EVENT.RANGE_RINGS_CHANGE,
         optionList: [
