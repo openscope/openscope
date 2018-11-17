@@ -2740,7 +2740,7 @@ export default class AircraftModel {
      * @for AircraftModel
      * @method validateNextAltitude
      * @param nextAltitude {number} altitude the aircraft should maintain
-     * @return {array|undefined}           [success of operation, readback]
+     * @return {array}           [success of operation, readback]
      */
     validateNextAltitude(nextAltitude) {
         if (nextAltitude === INVALID_NUMBER) {
@@ -2758,5 +2758,7 @@ export default class AircraftModel {
 
             return [false, readback];
         }
+
+        return [true];
     }
 }
