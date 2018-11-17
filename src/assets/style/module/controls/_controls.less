@@ -3,36 +3,26 @@
     display: inline-block;
 }
 
-#controls > .github-logo{
-    width: auto;
-}
-
-.github-logo {
-    img {
-        width: auto;
-        height: 20px;
-        margin-top: 4px;
-        padding: 4px 4px 8px 4px;
-    }
-}
-
-
 .control {
     margin: 0;
     transition: box-shadow 0.05s ease;
 }
 
-.control > img {
+.control > a {
+    display: inline-block;
+}
+
+.control img {
     opacity: 0.5;
     transition: opacity 0.1s ease;
 }
 
-.control:hover > img {
+.control:hover img {
     opacity: 0.9;
     cursor: pointer;
 }
 
-.control:active > img {
+.control:active img {
     opacity: 0.6;
 }
 
@@ -53,4 +43,10 @@
 .control.speed-5:hover,
 .warning-button:hover {
     box-shadow: inset 0 4px 0 rgba(255, 119, 102, .5);
+}
+
+.github-logo {
+    width: auto;
+    height: 20px;
+    padding: 8px 8px;
 }
