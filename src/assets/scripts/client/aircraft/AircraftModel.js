@@ -29,6 +29,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
+    calculateCrosswindAngle,
     calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
@@ -1132,26 +1133,19 @@ export default class AircraftModel {
         this.isRemovable = true;
     }
 
-    // TODO: this should be a method in the `AirportModel`
     /**
-     * @for AircraftModel
-     * @method getWind
-     */
+      * @for AircraftModel
+      * @method getWind
+      * @return {object} headwind and crosswind
+      */
     getWind() {
-        const windForRunway = {
-            cross: 0,
-            head: 0
+        const { wind } = AirportController.airport_get();
+        const crosswindAngle = calculateCrosswindAngle(this.heading, wind.angle);
+
+        return {
+            cross: sin(crosswindAngle) * wind.speed,
+            head: cos(crosswindAngle) * wind.speed
         };
-
-        const { wind } = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
-        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
-        const angle = runwayModel.calculateCrosswindAngleForRunway(wind.angle);
-
-        // TODO: these two bits of math should be abstracted to helper functions
-        windForRunway.cross = sin(angle) * wind.speed;
-        windForRunway.head = cos(angle) * wind.speed;
-
-        return windForRunway;
     }
 
     /**
@@ -1334,22 +1328,22 @@ export default class AircraftModel {
      */
     scoreWind(action) {
         const score = 0;
-        const components = this.getWind();
         const isWarning = true;
+        const wind = this.getWind();
 
         // TODO: these two if blocks could be done in a single switch statement
-        if (components.cross >= 20) {
+        if (wind.cross >= 20) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with major crosswind`, isWarning);
-        } else if (components.cross >= 10) {
+        } else if (wind.cross >= 10) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with crosswind`, isWarning);
         }
 
-        if (components.head <= -10) {
+        if (wind.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
-        } else if (components.head <= -5) {
+        } else if (wind.head <= -5) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
