@@ -1,0 +1,176 @@
+{
+    "airac": 1812,
+    "radio": {
+        "twr": "Aspen Tower",
+        "app": "Aspen Approach",
+        "dep": "Aspen Departure"
+    },
+    "icao": "KASE",
+    "iata": "ASE",
+    "magnetic_north": 9.4,
+    "ctr_radius": 110,
+    "ctr_ceiling": 15000,
+    "initial_alt": 15000,
+    "position": ["N39d13.31", "W106d52.09", "7837ft"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N39d13.31", "W106d52.09"],
+    "has_terrain": true,
+    "wind": {
+        "angle": 120,
+        "speed": 4
+    },
+    "arrivalRunway": "15",
+    "departureRunway": "33",
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 150,
+            "airspace_class": "B",
+            "poly": [
+                [39.30867987068438, -107.4023509231906],
+                [39.50021264583411, -107.36685798979023],
+                [39.593139598736926, -107.30245444882006],
+                [39.72633489789765, -106.94107185419794],
+                [39.746985331876054, -106.82955951071455],
+                [39.4599442995762, -106.65093325680132],
+                [39.440326387296714, -106.54561604351144],
+                [39.43413125710319, -106.44236387361941],
+                [39.27305787207162, -106.43410370002805],
+                [39.18529352766339, -106.63028282282292],
+                [39.11714709553465, -106.85020994469295],
+                [39.133667442717375, -107.11866558641223],
+                [39.30867987068438, -107.4023509231906]
+            ]
+        }
+    ],
+    "fixes": {
+        "_LINDZ12365": [39.33761693617, -107.05595158588],
+        "_KASERWY15": ["N39d13.93", "W106d52.39"],
+        "_KASERWY15343004": [39.28759551289, -106.89506254005],
+        "ALS"  : ["N37d20.95", "W105d48.93"],
+        "BRK"  : ["N38d56.67", "W104d38.01"],
+        "DBL"  : ["N39d26.36", "W106d53.68"],
+        "DVV"  : ["N39d53.68", "W104d37.46"],
+        "EKR"  : ["N40d4.05", "W107d55.50"],
+        "FQF"  : ["N39d41.41", "W104d37.26"],
+        "HBU"  : ["N38d27.13", "W107d2.39"],
+        "JNC"  : ["N39d3.57", "W108d47.56"],
+        "JNETT": ["N39d21.14", "W106d28.78"],
+        "LINDZ": ["N39d23.32", "W107d9.47"],
+        "MTJ"  : ["N38d30.39", "W107d53.96"],
+        "PUB"  : ["N38d17.65", "W104d25.77"],
+        "RIL"  : ["N39d31.70", "W107d43.18"],
+        "RLG"  : ["N40d0.16", "W106d26.55"],
+        "SXW"  : ["N39d37.77", "W106d59.47"]
+    },
+    "runways":[
+        {
+            "name": ["15", "33"],
+            "end": [
+                ["N39d13.93", "W106d52.39", "7680.3ft"],
+                ["N39d12.69", "W106d51.80", "7837.9ft"]
+            ],
+            "ils": [true, false]
+        }
+    ],
+    "sids": {
+        "ASPE7": {
+            "icao": "ASPE7",
+            "name": "Aspen Seven",
+            "rwy": {
+                "KASE33": [["#348", "A160"]]
+            },
+            "body": [],
+            "exitPoints": {
+                "EKR": ["EKR"],
+                "RLG": ["RLG"],
+                "DVV": ["DVV"],
+                "SXW": ["SXW"],
+                "FQF": ["FQF"],
+                "BRK": ["BRK"],
+                "RIL": ["RIL"],
+                "JNC": ["JNC"],
+                "MTJ": ["MTJ"],
+                "HBU": ["HBU"],
+                "ALS": ["ALS"],
+                "PUB": ["PUB"]
+            },
+            "draw": [
+                ["EKR*"],
+                ["RLG*"],
+                ["DVV*"],
+                ["SXW*"],
+                ["FQF*"],
+                ["BRK*"],
+                ["RIL*"],
+                ["JNC*"],
+                ["MTJ*"],
+                ["HBU*"],
+                ["ALS*"],
+                ["PUB*"]
+            ]
+        },
+        "SARDD3": {
+            "icao": "SARDD3",
+            "name": "Sardd Three Obstacle",
+            "rwy": {
+                "KASE33": ["_KASERWY15", "_KASERWY15343004", "_LINDZ12365"]
+            },
+            "body": ["LINDZ"],
+            "exitPoints": {
+                "DBL": ["DBL"],
+                "SXW": ["SXW"]
+            },
+            "draw": [
+                ["_KASERWY15", "_KASERWY15343004", "_LINDZ12365", "LINDZ", "DBL*"],
+                ["LINDZ", "SXW*"]
+            ]
+        }
+    },
+    "spawnPatterns": [
+        {
+            "origin": "KASE",
+            "destination": "",
+            "category": "departure",
+            "route": "KASE33.ASPE7.HBU",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["skw", 2],
+                ["n/fastGA", 1]
+            ]
+        },
+        {
+            "origin": "KASE",
+            "destination": "",
+            "category": "departure",
+            "route": "KASE33.ASPE7.JNC",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["skw", 2]
+            ]
+        },
+        {
+            "origin": "KASE",
+            "destination": "",
+            "category": "departure",
+            "route": "KASE33.SARDD3.DBL..JNETT",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["n/fastGA", 2]
+            ]
+        }
+    ],
+    "maps": {
+        "base": [
+        ]
+    }
+}
