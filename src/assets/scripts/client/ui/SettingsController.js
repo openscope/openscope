@@ -9,7 +9,7 @@ import { SELECTORS } from '../constants/selectors';
  * @type {string}
  * @final
  */
-const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
+const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog dialog"><p class="dialog-titel">Options</p><div class="dialog-body nice-scrollbar"></div></div>';
 
 /**
  * @property UI_OPTION_CONTAINER_TEMPLATE
@@ -23,7 +23,7 @@ const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
  * @type {string}
  * @final
  */
-const UI_OPTION_LABEL_TEMPLATE = '<span class="option-description"></span>';
+const UI_OPTION_LABEL_TEMPLATE = '<span class="option-label"></span>';
 
 /**
  * @property UI_OPTION_SELECTOR_TEMPLATE
@@ -73,6 +73,7 @@ export default class SettingsController {
      */
     init() {
         this.$dialog = $(UI_SETTINGS_MODAL_TEMPLATE);
+        this.$body = this.$dialog.find('.dialog-body');
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -82,7 +83,7 @@ export default class SettingsController {
 
             const $container = this._buildOptionTemplate(opt);
 
-            this.$dialog.append($container);
+            this.$body.append($container);
         });
 
         const $version = this._buildVersionTemplate();
@@ -213,7 +214,7 @@ export default class SettingsController {
         const simulatorVersion = window.GLOBAL.VERSION;
         const template = this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
 
-        template.addClass('simulator-version');
+        template.addClass('option-simulator-version');
 
         return template;
     }

@@ -9,7 +9,7 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
  * @type {string}
  * @final
  */
-const UI_TRAFFIC_MODAL_TEMPLATE = '<div class="traffic-dialog dialog"><p class="dialog-titel">Traffic rate</p><div class="dialog-body"></div></div>';
+const UI_TRAFFIC_MODAL_TEMPLATE = '<div class="traffic-dialog dialog"><p class="dialog-titel">Traffic rate</p><div class="dialog-body nice-scrollbar"></div></div>';
 
 /**
  * @class TrafficRateController
@@ -66,7 +66,7 @@ export default class TrafficRateController {
 
         _forEach(arrivals, (opt) => {
             const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString}</div>
+                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
                                 <input class="option-slider" type="range" min="0" max="20" value="5" />
                             </div>`;
             this.$body.append($option);
@@ -78,7 +78,7 @@ export default class TrafficRateController {
 
         _forEach(departures, (opt) => {
             const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString}</div>
+                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
                                 <input class="option-slider" type="range" min="0" max="20" value="5" />
                             </div>`;
             this.$body.append($option);
@@ -90,7 +90,7 @@ export default class TrafficRateController {
 
         _forEach(overflights, (opt) => {
             const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString}</div>
+                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
                                 <input class="option-slider" type="range" min="0" max="20" value="5" />
                             </div>`;
             this.$body.append($option);
