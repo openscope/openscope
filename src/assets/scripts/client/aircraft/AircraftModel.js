@@ -541,7 +541,7 @@ export default class AircraftModel {
      */
     get timeShareDestination() {
         if (this.isArrival()) {
-            return this.destination;
+            return this.destination.toUpperCase();
         }
 
         return this.fms.currentWaypoint.name.slice(0, 3);

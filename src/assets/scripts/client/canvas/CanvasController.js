@@ -213,19 +213,6 @@ export default class CanvasController {
     }
 
     /**
-     * Used primarily for the data block
-     *
-     * This provides a way to know when to show the primary
-     * dataBlock or the secondary dataBlock
-     *
-     * @property shouldShowSecondaryDataBlock
-     * @type {boolean}
-     */
-    get shouldShowSecondaryDataBlock() {
-        return _inRange(TimeKeeper.gameTimeMilliseconds % 3000, 2000, 3000);
-    }
-
-    /**
      * @for CanvasController
      * @method _init
      * @private
@@ -430,6 +417,19 @@ export default class CanvasController {
 
         this._shouldShallowRender = false;
         this._shouldDeepRender = false;
+    }
+
+    /**
+     * Used primarily for the data block
+     *
+     * This provides a way to know when to show the primary
+     * dataBlock or the secondary dataBlock
+     *
+     * @method shouldShowSecondaryDataBlock
+     * @returns {boolean}
+     */
+    shouldShowSecondaryDataBlock() {
+        return _inRange(TimeKeeper.gameTimeMilliseconds % 3000, 2000, 3000);
     }
 
     /**
@@ -1306,15 +1306,15 @@ export default class CanvasController {
         const gap = 3;
         const lineheight = 4.5; // height of text row (used for spacing basis)
         const row1text = radarTargetModel.buildDataBlockRowOne();
-        let row2text = radarTargetModel.buildDataBlockRowTwo();
+        let row2text = radarTargetModel.buildDataBlockRowTwoPrimaryInfo();
 
-        if (this.shouldShowSecondaryDataBlock) {
-            row2text = radarTargetModel.buildDataBlockRowTwoTimeshare();
+        if (this.shouldShowSecondaryDataBlock()) {
+            row2text = radarTargetModel.buildDataBlockRowTwoSecondaryInfo();
         }
 
-        const fillStyle = aircraftModel.isControllable ?
-            this.theme.DATA_BLOCK.TEXT_IN_RANGE :
-            this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        const fillStyle = aircraftModel.isControllable
+            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
+            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         cc.fillStyle = fillStyle;
 

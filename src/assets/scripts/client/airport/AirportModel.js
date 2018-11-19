@@ -20,7 +20,12 @@ import {
     cos,
     round
 } from '../math/core';
-import { vlen, vsub, vadd, vscale } from '../math/vector';
+import {
+    vlen,
+    vsub,
+    vadd,
+    vscale
+} from '../math/vector';
 import {
     FLIGHT_CATEGORY,
     PERFORMANCE

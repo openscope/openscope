@@ -1,6 +1,7 @@
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNaN from 'lodash/isNaN';
+import _pad from 'lodash/pad';
 import EventBus from '../lib/EventBus';
 import { round } from '../math/core';
 import { vadd } from '../math/vector';
@@ -317,7 +318,9 @@ export default class RadarTargetModel {
         let dataBlockRowOne = `${this.aircraftModel.callsign}`;
 
         if (this.aircraftModel.model.weightclass === 'H') {
-            dataBlockRowOne = `${this.aircraftModel.callsign}  ${this.aircraftModel.model.weightclass}`;
+            // using empty space here on purpose so this gets rendered
+            // appropriately within a canvas
+            dataBlockRowOne += '  H';
         }
 
         return dataBlockRowOne;
@@ -327,14 +330,14 @@ export default class RadarTargetModel {
      * Generate a string to be used for the second row of a datablock
      *
      * @for RadarTargetModel
-     * @method buildDataBlockRowTwo
+     * @method buildDataBlockRowTwoPrimaryInfo
      * @returns {string}
      */
-    buildDataBlockRowTwo() {
-        const aircraftAltitude = round(this.aircraftModel.altitude * 0.01);
-        const aircraftSpeed = round(this.aircraftModel.groundSpeed * 0.1);
+    buildDataBlockRowTwoPrimaryInfo() {
+        const aircraftAltitude = round(this.aircraftModel.altitude / 100);
+        const aircraftSpeed = round(this.aircraftModel.groundSpeed / 10);
 
-        return `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
+        return `${leftPad(aircraftAltitude, 3)}  ${leftPad(aircraftSpeed, 2)}`;
     }
 
     /**
@@ -342,11 +345,14 @@ export default class RadarTargetModel {
      * when the timeshare section is active
      *
      * @for RadarTargetModel
-     * @method buildDataBlockRowTwoTimeshare
+     * @method buildDataBlockRowTwoSecondaryInfo
      * @returns {string}
      */
-    buildDataBlockRowTwoTimeshare() {
-        return `${this.aircraftModel.timeShareDestination} ${this.aircraftModel.model.icao.toUpperCase()}`;
+    buildDataBlockRowTwoSecondaryInfo() {
+        const aircraftTimeshareDestination = _pad(this.aircraftModel.timeShareDestination, 4, ' ');
+        const aircraftModelIcao = _pad(this.aircraftModel.model.icao.toUpperCase(), 4, ' ');
+
+        return `${aircraftTimeshareDestination} ${aircraftModelIcao}`;
     }
 
     /**
