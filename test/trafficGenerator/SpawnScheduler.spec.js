@@ -18,8 +18,8 @@ let spawnPatternCollectionFixture;
 ava.beforeEach(() => {
     createNavigationLibraryFixture();
     createAirportControllerFixture();
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
     aircraftControllerStub = {
         createAircraftWithSpawnPatternModel: sinon.stub(),
         createPreSpawnAircraftWithSpawnPatternModel: sinon.stub()
@@ -37,27 +37,26 @@ ava.afterEach(() => {
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => new SpawnScheduler());
     t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture));
-    t.throws(() => new SpawnScheduler(aircraftControllerStub));
     t.throws(() => new SpawnScheduler({}, aircraftControllerStub));
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub));
+    t.notThrows(() => new SpawnScheduler(aircraftControllerStub));
 });
 
 ava('.createSchedulesFromList() calls .createNextSchedule() for each SpawnPatternModel in the collection', (t) => {
-    const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub);
+    const scheduler = new SpawnScheduler(aircraftControllerStub);
     const createNextScheduleSpy = sinon.spy(scheduler, 'createNextSchedule');
 
-    scheduler.createSchedulesFromList(spawnPatternCollectionFixture, aircraftControllerStub);
+    scheduler.createSchedulesFromList(aircraftControllerStub);
 
     t.true(createNextScheduleSpy.calledTwice);
 });
 
 ava('.createSchedulesFromList() calls aircraftController.createPreSpawnAircraftWithSpawnPatternModel() if preSpawnAircraftList has items', (t) => {
-    const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub);
+    const scheduler = new SpawnScheduler(aircraftControllerStub);
 
-    scheduler.createSchedulesFromList(spawnPatternCollectionFixture, aircraftControllerStub);
+    scheduler.createSchedulesFromList(aircraftControllerStub);
 
     t.true(aircraftControllerStub.createPreSpawnAircraftWithSpawnPatternModel.called);
 });
@@ -69,8 +68,8 @@ ava.skip('.createNextSchedule() calls GameController.game_timeout()', (t) => {
             time: 0
         }
     };
-    const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub);
-    const spawnPatternModel = spawnPatternCollectionFixture._items[0];
+    const scheduler = new SpawnScheduler(aircraftControllerStub);
+    const spawnPatternModel = SpawnPatternCollection._items[0];
 
     scheduler.createNextSchedule(spawnPatternModel, aircraftControllerStub);
 
@@ -78,8 +77,8 @@ ava.skip('.createNextSchedule() calls GameController.game_timeout()', (t) => {
 });
 
 ava('.createAircraftAndRegisterNextTimeout() calls aircraftController.createAircraftWithSpawnPatternModel()', (t) => {
-    const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub);
-    const spawnPatternModel = spawnPatternCollectionFixture._items[0];
+    const scheduler = new SpawnScheduler(aircraftControllerStub);
+    const spawnPatternModel = SpawnPatternCollection._items[0];
 
     scheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
 
@@ -87,9 +86,9 @@ ava('.createAircraftAndRegisterNextTimeout() calls aircraftController.createAirc
 });
 
 ava('.createAircraftAndRegisterNextTimeout() calls .createNextSchedule()', (t) => {
-    const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub);
+    const scheduler = new SpawnScheduler(aircraftControllerStub);
     const createNextScheduleSpy = sinon.spy(scheduler, 'createNextSchedule');
-    const spawnPatternModel = spawnPatternCollectionFixture._items[0];
+    const spawnPatternModel = SpawnPatternCollection._items[0];
 
     scheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
 

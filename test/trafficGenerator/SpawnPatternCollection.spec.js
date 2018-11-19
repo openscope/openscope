@@ -21,49 +21,43 @@ ava.afterEach(() => {
     resetAirportControllerFixture();
 });
 
-ava('throws when called with invalid parameters', (t) => {
-    t.throws(() => new SpawnPatternCollection());
-
-    t.notThrows(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK));
-});
-
 ava('.init() calls _buildSpawnPatternModels()', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const _buildSpawnPatternModelsSpy = sinon.spy(collection, '_buildSpawnPatternModels');
+    const _buildSpawnPatternModelsSpy = sinon.spy(SpawnPatternCollection, '_buildSpawnPatternModels');
 
-    collection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
     t.true(_buildSpawnPatternModelsSpy.calledWithExactly(AIRPORT_JSON_FOR_SPAWN_MOCK.spawnPatterns));
 });
 
 ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const addItemSpy = sinon.spy(collection, 'addItem');
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    collection.addItems([]);
+    const addItemSpy = sinon.spy(SpawnPatternCollection, 'addItem');
+
+    SpawnPatternCollection.addItems([]);
     t.false(addItemSpy.called);
 
-    collection.addItems();
+    SpawnPatternCollection.addItems();
     t.false(addItemSpy.called);
 });
 
 ava('.addItems() calls .addItem() for each item in the list passed as an argument', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    const addItemStub = sinon.stub(collection, 'addItem');
+    const addItemStub = sinon.stub(SpawnPatternCollection, 'addItem');
 
-    collection.addItems([false, false]);
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.addItems([false, false]);
     t.true(addItemStub.calledTwice);
 });
 
 ava('.addItem() throws if anything other than a SpawnPatternModel is passed as an argument', (t) => {
-    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    t.throws(() => collection.addItem());
-    t.throws(() => collection.addItem([]));
-    t.throws(() => collection.addItem({}));
-    t.throws(() => collection.addItem(42));
-    t.throws(() => collection.addItem('threeve'));
-    t.throws(() => collection.addItem(false));
-    t.throws(() => collection.addItem(null));
-    t.throws(() => collection.addItem(undefined));
+    t.throws(() => SpawnPatternCollection.addItem());
+    t.throws(() => SpawnPatternCollection.addItem([]));
+    t.throws(() => SpawnPatternCollection.addItem({}));
+    t.throws(() => SpawnPatternCollection.addItem(42));
+    t.throws(() => SpawnPatternCollection.addItem('threeve'));
+    t.throws(() => SpawnPatternCollection.addItem(false));
+    t.throws(() => SpawnPatternCollection.addItem(null));
+    t.throws(() => SpawnPatternCollection.addItem(undefined));
 });
