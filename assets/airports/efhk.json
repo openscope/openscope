@@ -691,7 +691,7 @@
         "INTOR": {
             "icao": "INTOR",
             "name": "INTOR",
-            "suffix": {"04L":"4B", "04R":"4R", "15":"5M", "22L":"3A", "22R":"3V", "33":"4W"},
+            "suffix": {"04L":"4B", "04R":"4R", "15":"5M", "22L":"3A", "22R":"3V", "33":"5W"},
             "entryPoints": {
                 "INTOR": [["INTOR", "A120+"]]
             },
