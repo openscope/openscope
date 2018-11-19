@@ -191,7 +191,8 @@
         "LINTU": ["N60d22m47.00", "E24d41m04.00"],
         "NOKKA": ["N60d11m00.00", "E25d01m21.00"],
         "OGELI": ["N60d13m51.00", "E24d59m16.00"],
-        "RASTI": ["N60d11m56.00", "E25d05m26.00"]
+        "RASTI": ["N60d11m56.00", "E25d05m26.00"],
+        "LEDUN": ["N59d58m30.00", "E26d06m42.00"]
     },
     "runways": [
         {
@@ -284,9 +285,9 @@
             "icao": "ROPAM",
             "name": "ROPAM",
             "entryPoints": {
-                "ROPAM": ["ROPAM"]
+                "ROPAM": ["LEDUN"]
             },
-            "body": ["HK906", "HK904", "BIMVU"],
+            "body": ["ROPAM", "HK906", "HK904", "BIMVU"],
             "rwy": {
                 "EFHK22L": []
             },
@@ -316,8 +317,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "DIVAM.DIVAM.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [10000, 15000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -335,8 +336,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "INTOR.INTOR.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [10000, 15000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -354,8 +355,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "LAKUT.LAKUT.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [10000, 15000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -373,8 +374,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "LUSEP.LUSEP.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [8000, 10000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -392,8 +393,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "ROPAM.ROPAM.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [10000, 15000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -411,8 +412,8 @@
             "destination": "EFHK",
             "category": "arrival",
             "route": "VEPIN.VEPIN.EFHK22L",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": [8000, 10000],
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
@@ -430,8 +431,8 @@
             "destination": "",
             "category": "departure",
             "route": "HK451..HK926..HK927..KOIVU",
-            "altitude": 25000,
-            "speed": 300,
+            "altitude": "25000",
+            "speed": 250,
             "method": "random",
             "rate": 5.2,
             "airlines": [
