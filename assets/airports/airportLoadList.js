@@ -93,6 +93,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Flughafen Düsseldorf',
             premium: false
         },
+        {
+            icao: 'efhk',
+            level: 'medium',
+            name: 'Helsinki Airport',
+            wip: true
+        },
         // {
         //     icao: 'eddm',
         //     level: 'hard',
