@@ -3,6 +3,7 @@
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
 - [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
 - [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
+- [#1199](https://github.com/openscope/openscope/issues/1199) - Taxi command should say "Taxi to and hold short runway..."
 
 
 
