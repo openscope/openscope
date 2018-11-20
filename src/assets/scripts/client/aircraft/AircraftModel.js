@@ -1494,6 +1494,12 @@ export default class AircraftModel {
                 if (elapsed > this.taxi_time) {
                     this.setFlightPhase(FLIGHT_PHASE.WAITING);
                     this.moveToRunway(runwayModel);
+                    speech_say([
+                        { type: 'text', content: AirportController.airport_get().radio.twr },
+                        { type: 'callsign', content: this },
+                        { type: 'text', content: `, holding short runway ${runwayModel.getRadioName()}` }
+                    ]);
+                    UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, holding short runway ${runwayModel.name}`);
                 }
 
                 break;
