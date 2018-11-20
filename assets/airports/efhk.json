@@ -352,16 +352,26 @@
             "altitude": 29000,
             "speed": 300,
             "method": "random",
-            "rate": 5.2,
+            "rate": 3.6,
             "airlines": [
-                ["fin/long", 20],
-                ["jal/long", 1],
-                ["fin/short", 10],
-                ["afl", 1],
-                ["vkg", 1],
-                ["tom", 1],
-                ["tui", 1]
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["dlh", 8],
+                ["klm", 3],
+                ["ber", 3],
+                ["bti", 1],
+                ["baw", 2],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["tra", 1],
+                ["ibe", 1],
+                ["tap", 1]
             ]
+
         },
         {
             "origin": "",
@@ -371,15 +381,24 @@
             "altitude": 29000,
             "speed": 300,
             "method": "random",
-            "rate": 5.2,
+            "rate": 2.6,
             "airlines": [
-                ["fin/long", 20],
-                ["jal/long", 1],
-                ["fin/short", 10],
-                ["afl", 1],
-                ["vkg", 1],
-                ["tom", 1],
-                ["tui", 1]
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 1],
+                ["dlh", 8],
+                ["ber", 3],
+                ["thy", 3],
+                ["bti", 3],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["csa", 1],
+                ["aui", 1],
+                ["ibe", 1],
+                ["tap", 1],
+                ["qtr", 1],
+                ["fin/long", 2]
             ]
         },
         {
@@ -390,15 +409,16 @@
             "altitude": 19000,
             "speed": 280,
             "method": "random",
-            "rate": 5.2,
+            "rate": 3.4,
             "airlines": [
-                ["fin/long", 20],
-                ["jal/long", 1],
-                ["fin/short", 10],
-                ["afl", 1],
-                ["vkg", 1],
-                ["tom", 1],
-                ["tui", 1]
+                ["fin/short", 90],
+                ["nax", 30],
+                ["sas", 12],
+                ["baw", 1],
+                ["vkg", 2],
+                ["tui", 2],
+                ["tom", 2],
+                ["fin/long", 20]
             ]
         },
         {
@@ -409,15 +429,10 @@
             "altitude": 19000,
             "speed": 280,
             "method": "random",
-            "rate": 5.2,
+            "rate": 2.2,
             "airlines": [
-                ["fin/long", 20],
-                ["jal/long", 1],
-                ["fin/short", 10],
-                ["afl", 1],
-                ["vkg", 1],
-                ["tom", 1],
-                ["tui", 1]
+                ["fin/short", 65],
+                ["nax", 5]
             ]
         },
         {
@@ -428,11 +443,13 @@
             "altitude": 23000,
             "speed": 300,
             "method": "random",
-            "rate": 5.2,
+            "rate": 2.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
                 ["fin/short", 10],
+                ["qtr", 1],
+                ["thy", 1],
                 ["afl", 1],
                 ["vkg", 1],
                 ["tom", 1],
@@ -447,7 +464,7 @@
             "altitude": 25000,
             "speed": 300,
             "method": "random",
-            "rate": 5.2,
+            "rate": 3.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
