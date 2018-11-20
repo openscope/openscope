@@ -648,7 +648,7 @@ export default class Pilot {
 
         const readback = {};
         readback.log = 'intercept glidepath';
-        readback.log = 'intercept glidepath';
+        readback.say = 'intercept glidepath';
 
         return [true, readback];
     }
