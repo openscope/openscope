@@ -1238,7 +1238,7 @@ export default class CanvasController {
 
         cc.save();
 
-        const paddingLR = 10;
+        const paddingLR = 5;
         let match = false;
 
         // Callsign Matching
@@ -1342,14 +1342,14 @@ export default class CanvasController {
         }
 
         // TODO: logic and math here should be done once and not every frame. this could be moved to the `RadarTargetModel`
-        const { callsign } = aircraftModel;
-        const paddingLR = 5;
+        // const { callsign } = aircraftModel;
+        // const paddingLR = 5;
         // width of datablock (scales to fit callsign)
-        const width = clamp(1, 6 * callsign.length) + (paddingLR * 2);
-        const halfWidth = width / 2;
+        const width = this.theme.DATA_BLOCK.WIDTH; // clamp(1, 6 * callsign.length) + (paddingLR * 2);
+        const halfWidth = this.theme.DATA_BLOCK.HALF_WIDTH; // width / 2;
         // height of datablock
-        const height = 31;
-        const halfHeight = height / 2;
+        const height = this.theme.DATA_BLOCK.HEIGHT; // 31;
+        const halfHeight = this.theme.DATA_BLOCK.HALF_HEIGHT; // height / 2;
         // width of colored bar
         const barWidth = 3;
         const barHalfWidth = barWidth / 2;
