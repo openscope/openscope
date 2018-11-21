@@ -7,6 +7,7 @@ module.exports = function(gulp, config) {
     function buildScripts() {
         const browserify = require('browserify');
         const babelify = require('babelify');
+        const tsify = require('tsify');
         const uglify = require('gulp-uglify');
         const gulpif = require('gulp-if');
         const sourcemaps = require('gulp-sourcemaps');
@@ -15,13 +16,14 @@ module.exports = function(gulp, config) {
         const buffer = require('vinyl-buffer');
 
         return browserify({
-                entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
-                extensions: ['.js'],
+                entries: [OPTIONS.FILE.TS_ENTRY_CLIENT],
+                extensions: ['.js', '.ts'],
                 debug: true
             })
-            .transform(babelify, {
-                presets: ['es2015', 'react', 'stage-0']
-            })
+            // .transform(babelify, {
+            //     presets: ['es2015', 'react', 'stage-0']
+            // })
+            .plugin(tsify)
             .bundle()
             .pipe(source('bundle.js'))
             .pipe(buffer())

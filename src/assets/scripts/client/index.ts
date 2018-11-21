@@ -6,9 +6,10 @@ import App from './App';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { STORAGE_KEY } from './constants/storageKeys';
 
-require('raf').polyfill();
+import * as raf from 'raf';
+raf.polyfill();
 
-function _isAirportIcaoInLoadList(icao, airportLoadList) {
+function _isAirportIcaoInLoadList(icao: string, airportLoadList: any): boolean {
     if (_isNil(icao)) {
         return false;
     }
@@ -16,7 +17,7 @@ function _isAirportIcaoInLoadList(icao, airportLoadList) {
     return airportLoadList.some((airport) => airport.icao === icao);
 }
 
-function getInitialAirport(airportLoadList) {
+function getInitialAirport(airportLoadList: any): any {
     let airportName = DEFAULT_AIRPORT_ICAO;
     const previousAirportIcaoFromLocalStorage = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
 
@@ -32,10 +33,10 @@ function getInitialAirport(airportLoadList) {
  *
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
-export default (() => {
-    const airportLoadList = window.AIRPORT_LOAD_LIST;
-    const initialAirportToLoad = getInitialAirport(airportLoadList);
-    const $body = $('body');
+export default ((): void => {
+    const airportLoadList: any[] = (<any>window).AIRPORT_LOAD_LIST;
+    const initialAirportToLoad: any = getInitialAirport(airportLoadList);
+    const $body: HTMLBodyElement = $('body');
     // eslint-disable-next-line no-unused-vars
-    const app = new App($body, airportLoadList, initialAirportToLoad);
+    const app: App = new App($body, airportLoadList, initialAirportToLoad);
 })();

@@ -27,8 +27,8 @@ options.DIR = {
     SRC_FONTS: scrScriptsFonts,
     SRC_MARKUP: srcMarkup,
     SRC_SCRIPTS: srcScriptsDir,
-    SRC_SCRIPTS_SERVER: srcScriptsServerDir,
     SRC_SCRIPTS_CLIENT: srcScriptsClientDir,
+    SRC_SCRIPTS_SERVER: srcScriptsServerDir,
     SRC_STYLE: srcStylesDir,
     SRC_IMAGES: srcImagesDir,
 
@@ -55,6 +55,7 @@ options.DIR = {
 // for specific files
 options.FILE = {
     JS_ENTRY_CLIENT: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.js'),
+    TS_ENTRY_CLIENT: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.ts'),
     JS_ENTRY_SERVER: path.join(options.DIR.SRC_SCRIPTS_SERVER, 'index.js'),
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.less'),
     PKG_JSON: path.join(options.ROOT, 'package.json'),
