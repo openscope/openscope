@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import EventTracker from './EventTracker';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
@@ -92,15 +93,15 @@ export const speech_say = (sentence, pilotVoice) => {
  * @function speech_toggle
  */
 export const speech_toggle = () => {
-    const $speechToggle = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
     prop.speech.enabled = !prop.speech.enabled;
 
-    if (prop.speech.enabled) {
-        $speechToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-    } else {
-        $speechToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+    if (!prop.speech.enabled) {
         prop.speech.synthesis.cancel();
     }
 
+    $speechToggleElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
     localStorage[STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
+    EventTracker.sendEvent('options', 'speech', $speechToggleElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
 };

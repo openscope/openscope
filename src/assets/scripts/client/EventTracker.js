@@ -1,11 +1,20 @@
-// typescript
-
+/**
+ *
+ */
 class EventTracker {
 
+    /**
+     *
+     *
+     */
     get _isEnabled() {
         return typeof window.ga !== 'undefined';
     }
 
+    /**
+     *
+     *
+     */
     constructor() {
         if (!this._isEnabled) {
             console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
@@ -16,6 +25,10 @@ class EventTracker {
         this._ga = window.ga;
     }
 
+    /**
+     *
+     *
+     */
     sendEvent(category, action, label, value = null) {
         const event = {
             hitType: 'event',
@@ -27,6 +40,21 @@ class EventTracker {
         if (value) {
             event.value = value;
         }
+
+        return this._ga('send', event);
+    }
+
+    /**
+     *
+     *
+     */
+    trackOutboundLink(url) {
+        const event = {
+            hitType: 'Outbound Link',
+            eventCategory: 'click',
+            eventAction: url,
+            beacon: true
+        };
 
         return this._ga('send', event);
     }

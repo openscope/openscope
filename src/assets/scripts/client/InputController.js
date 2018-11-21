@@ -20,6 +20,7 @@ import {
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
 import { SELECTORS } from './constants/selectors';
+import EventTracker from './EventTracker';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -666,6 +667,7 @@ export default class InputController {
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
+                EventTracker.sendEvent('options', 'timewarp-maunal-entry', nextTimewarpValue);
 
                 return true;
 

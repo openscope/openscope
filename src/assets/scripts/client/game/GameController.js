@@ -10,6 +10,7 @@ import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
+import EventTracker from '../EventTracker';
 
 // TODO: Remember to move me to wherever the constants end up being moved to
 /**
@@ -278,16 +279,19 @@ class GameController {
 
         if (TimeKeeper.simulationRate >= 5) {
             TimeKeeper.updateSimulationRate(1);
+            EventTracker.sendEvent('options', 'timewarp', 1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.simulationRate === 1) {
             TimeKeeper.updateSimulationRate(2);
+            EventTracker.sendEvent('options', 'timewarp', 2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             TimeKeeper.updateSimulationRate(5);
+            EventTracker.sendEvent('options', 'timewarp', 5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -329,11 +333,13 @@ class GameController {
      */
     game_pause_toggle() {
         if (TimeKeeper.isPaused) {
+            EventTracker.sendEvent('options', 'pause', false);
             this.game_unpause();
 
             return;
         }
 
+        EventTracker.sendEvent('options', 'pause', true);
         this.game_pause();
     }
 
@@ -421,6 +427,7 @@ class GameController {
         if (this.game.score === this.game.last_score) {
             return;
         }
+
         const $scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
         $scoreElement.text(round(this.game.score));
 
