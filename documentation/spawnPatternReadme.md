@@ -1,4 +1,4 @@
-## Spawn Patterns
+# Spawn Patterns
 In version 3.3.0 we completely changed how aircraft coming into the system are defined.  We introduced ***Spawn Patterns***.  Spawn Patterns provide a simple, consistent way to describe aircraft coming into the system.  Spawn Patterns are used for _both_ arrivals and departures.  The shape of the data is exactly the same for both, all keys are expected to be passed all the time.  
 
 Lets look at some examples before we continue:
@@ -99,7 +99,7 @@ Defines the method used to calculate delay between aircraft spawns.
 
 * Should always be one of: `cyclic, random, surge, wave`
 
-*See [spawnPatternMethodReadme.md](documentation/spawnPatternMethodReadme.md) for more information*
+*See [spawnPatternMethodReadme.md](spawnPatternMethodReadme.md) for more information*
 
 #### rate*
 Rate at which aircraft spawn expressed in ACPH (aircraft per hour). This should be a _number_ (eg. `15`), _not a string_ (eg `"15"`).

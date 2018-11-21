@@ -2,7 +2,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 import AircraftModel from '../../src/assets/scripts/client/aircraft/AircraftModel';
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import UiController from '../../src/assets/scripts/client/UiController';
+import UiController from '../../src/assets/scripts/client/ui/UiController';
 import GameController, { GAME_EVENTS } from '../../src/assets/scripts/client/game/GameController';
 import {
     createAirportControllerFixture,

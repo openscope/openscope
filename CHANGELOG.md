@@ -1,6 +1,8 @@
 # 6.8.0 (December 1, 2018)
 ### New Features
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
+- [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
+- [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
 
 
 
@@ -9,6 +11,8 @@
 ### Bugfixes
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
 - [#1045](https://github.com/openscope/openscope/issues/1045) - Fix descent planning logic so arrivals can meet their altitude restrictions
+- [#1084](https://github.com/openscope/openscope/issues/1084) - Add messages for too-low glideslope intercepts
+- [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 
 
 
@@ -18,6 +22,10 @@
 - [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
 - [#883](https://github.com/openscope/openscope/issues/883) - Stop penalizing light tailwind landings
 - [#1001](https://github.com/openscope/openscope/issues/1001) - Remove support for work-in-progress airports
+- [#1179](https://github.com/openscope/openscope/issues/1179) - Extract settings related code from UiController into its own controller
+- [#1171](https://github.com/openscope/openscope/issues/1171) - Move tutorial from InputController to UiController
+- [#1114](https://github.com/openscope/openscope/issues/1114), [#1115](https://github.com/openscope/openscope/issues/1115) - Update broken documentation links
+- [#308](https://github.com/openscope/openscope/issues/308) - Abstract Aircraft.getWind() to the AirportModel
 - [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
 
 

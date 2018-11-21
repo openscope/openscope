@@ -4,7 +4,7 @@ import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from '../game/GameController';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';

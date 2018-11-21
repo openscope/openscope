@@ -56,13 +56,6 @@ export default class TutorialView {
         this.$tutorialView = null;
 
         /**
-         * @property $tutorialToggle
-         * @type {jquery|HTML Element}
-         * @default `.toggle-tutorial`
-         */
-        this.$tutorialToggle = null;
-
-        /**
          * Previous tutorial step button
          *
          * @property $tutorialPrevious
@@ -80,12 +73,6 @@ export default class TutorialView {
          */
         this.$tutorialNext = null;
 
-        prop.tutorial = tutorial;
-        this.tutorial = tutorial;
-        this.tutorial.steps = [];
-        this.tutorial.step = 0;
-        this.tutorial.open = false;
-
         this._init()
             ._setupHandlers()
             .layout()
@@ -97,15 +84,20 @@ export default class TutorialView {
      *
      * Caches selectors in variabls so they only need to be looked up one time.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _init
      * @chainable
      */
     _init() {
         this.$tutorialView = $(TUTORIAL_TEMPLATE);
-        this.$tutorialToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);
         this.$tutorialNext = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.NEXT);
+
+        prop.tutorial = tutorial;
+        this.tutorial = tutorial;
+        this.tutorial.steps = [];
+        this.tutorial.step = 0;
+        this.tutorial.open = false;
 
         return this;
     }
@@ -115,12 +107,13 @@ export default class TutorialView {
      *
      * Should be run once only on instantiation
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _setupHandlers
      * @chainable
      */
     _setupHandlers() {
         this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this._onTutorialToggleHandler = this.tutorial_toggle.bind(this);
 
         return this;
     }
@@ -130,7 +123,7 @@ export default class TutorialView {
      *
      * Adds the TUTORIAL_TEMPLATE to the view
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method layout
      * @chainable
      */
@@ -148,12 +141,12 @@ export default class TutorialView {
     /**
      * Lifecycle method should be run once on application init.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method enable
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this._onTutorialToggleHandler);
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.on('click', (event) => this.tutorial_prev(event));
@@ -165,12 +158,12 @@ export default class TutorialView {
     /**
      * Disable any click handlers.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method disable
      * @chainable
      */
     disable() {
-        this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this._onTutorialToggleHandler);
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.off('click', (event) => this.tutorial_prev(event));
@@ -182,13 +175,12 @@ export default class TutorialView {
     /**
      * Tear down the view and unset any properties.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method destroy
      * @chainable
      */
     destroy() {
         this.$tutorialView = null;
-        this.$tutorialToggle = null;
         this.$tutorialPrevious = null;
         this.$tutorialNext = null;
 
@@ -203,7 +195,7 @@ export default class TutorialView {
     /**
      * Reloads the tutorial when the airport is changed.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method onAirportChange
      */
     onAirportChange() {
@@ -589,7 +581,7 @@ export default class TutorialView {
      * @for TutorialView
      * @method tutorial_toggle
      */
-    tutorial_toggle = () => {
+    tutorial_toggle() {
         if (prop.tutorial.open) {
             this.tutorial_close();
 
@@ -597,7 +589,7 @@ export default class TutorialView {
         }
 
         this.tutorial_open();
-    };
+    }
 
     /**
      * @method tutorial_get
@@ -662,8 +654,6 @@ export default class TutorialView {
         prop.tutorial.open = true;
 
         this.$tutorialView.addClass(SELECTORS.CLASSNAMES.OPEN);
-        this.$tutorialToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$tutorialToggle.prop('title', 'Close tutorial');
 
         this.tutorial_update_content();
     }
@@ -675,8 +665,6 @@ export default class TutorialView {
         prop.tutorial.open = false;
 
         this.$tutorialView.removeClass(SELECTORS.CLASSNAMES.OPEN);
-        this.$tutorialToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$tutorialToggle.prop('title', 'Open tutorial');
 
         this.tutorial_move();
     }

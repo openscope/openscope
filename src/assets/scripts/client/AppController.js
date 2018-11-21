@@ -6,7 +6,7 @@ import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
 import CanvasController from './canvas/CanvasController';
 import ContentQueue from './contentQueue/ContentQueue';
-import GameClockView from './game/GameClockView';
+import AirportInfoController from './info/AirportInfoController';
 import GameController from './game/GameController';
 import InputController from './InputController';
 import EventBus from './lib/EventBus';
@@ -15,8 +15,7 @@ import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import ScopeModel from './scope/ScopeModel';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
-import TutorialView from './tutorial/TutorialView';
-import UiController from './UiController';
+import UiController from './ui/UiController';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
 import { speech_init } from './speech';
@@ -50,7 +49,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
         this.canvasController = null;
@@ -118,7 +116,6 @@ export default class AppController {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineCollection = null;
-        this.tutorialView = null;
         this.aircraftCommander = null;
         this.inputController = null;
         this.canvasController = null;
@@ -171,10 +168,9 @@ export default class AppController {
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
-        this.tutorialView = new TutorialView(this.$element);
         this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
-        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel, this.tutorialView);
-        this.gameClockView = new GameClockView(this.$element);
+        this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
+        this.airportInfoController = new AirportInfoController(this.$element);
 
         this.updateViewControls();
     }
@@ -185,7 +181,6 @@ export default class AppController {
      */
     init_pre() {
         GameController.init_pre();
-        this.tutorialView.tutorial_init_pre();
         this.inputController.input_init_pre();
     }
 
@@ -230,7 +225,7 @@ export default class AppController {
      * @method updatePre
      */
     updatePre() {
-        this.gameClockView.update();
+        this.airportInfoController.updateClock();
         GameController.update_pre();
         this.aircraftController.update();
     }

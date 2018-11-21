@@ -7,7 +7,7 @@ import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import {
     FLIGHT_PHASE
@@ -664,9 +664,9 @@ export default class AircraftCommander {
     runIls(aircraft, data) {
         const approachType = 'ils';
         const runwayName = data[1].toUpperCase();
-        const runway = AirportController.airport_get().getRunway(runwayName);
+        const runwayModel = AirportController.airport_get().getRunway(runwayName);
 
-        return aircraft.pilot.conductInstrumentApproach(approachType, runway);
+        return aircraft.pilot.conductInstrumentApproach(aircraft, approachType, runwayModel);
     }
 
     /**
