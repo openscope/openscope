@@ -17,9 +17,10 @@ import ScopeModel from './scope/ScopeModel';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import UiController from './ui/UiController';
+import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
-import { speech_init } from './speech';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 /**
  * Root controller class
@@ -139,7 +140,7 @@ export default class AppController {
      * @param aircraftTypeDefinitionList {array<object>}
      */
     setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
-        EventTracker.sendEvent('airports', 'initial-load', initialAirportIcao);
+        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'initial-load', initialAirportIcao);
 
         this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
 
@@ -268,7 +269,7 @@ export default class AppController {
             return;
         }
 
-        EventTracker.sendEvent('airports', 'airport-switcher', nextAirportJson.icao);
+        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', nextAirportJson.icao);
 
         NavigationLibrary.reset();
         this.airlineController.reset();

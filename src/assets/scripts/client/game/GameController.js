@@ -2,15 +2,16 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
 import GameOptions from './GameOptions';
 import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
 import { TIME } from '../constants/globalConstants';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
-import EventTracker from '../EventTracker';
 
 // TODO: Remember to move me to wherever the constants end up being moved to
 /**
@@ -279,19 +280,19 @@ class GameController {
 
         if (TimeKeeper.simulationRate >= 5) {
             TimeKeeper.updateSimulationRate(1);
-            EventTracker.sendEvent('options', 'timewarp', 1);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 1);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.simulationRate === 1) {
             TimeKeeper.updateSimulationRate(2);
-            EventTracker.sendEvent('options', 'timewarp', 2);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 2);
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             TimeKeeper.updateSimulationRate(5);
-            EventTracker.sendEvent('options', 'timewarp', 5);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 5);
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -333,13 +334,13 @@ class GameController {
      */
     game_pause_toggle() {
         if (TimeKeeper.isPaused) {
-            EventTracker.sendEvent('options', 'pause', false);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', false);
             this.game_unpause();
 
             return;
         }
 
-        EventTracker.sendEvent('options', 'pause', true);
+        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', true);
         this.game_pause();
     }
 

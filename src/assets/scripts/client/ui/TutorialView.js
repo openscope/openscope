@@ -10,6 +10,8 @@ import { heading_to_string } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
+import EventTracker from '../EventTracker';
 
 const tutorial = {};
 
@@ -669,7 +671,7 @@ export default class TutorialView {
         this.tutorial_move();
     }
 
-    // TODO: this function never gets called in this file
+    // TODO: this method never gets called anywhere else, remove
     /**
      * @method tutorial_complete
      */
@@ -693,6 +695,7 @@ export default class TutorialView {
 
         prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.trackEvent(TRACKABLE_EVENT.TUTORIAL, 'next', prop.tutorial.step);
         this.tutorial_update_content();
     }
 
@@ -702,6 +705,7 @@ export default class TutorialView {
     tutorial_prev() {
         prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.trackEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', prop.tutorial.step);
         this.tutorial_update_content();
     }
 

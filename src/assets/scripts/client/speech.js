@@ -12,6 +12,7 @@ import { VOICES,
          NORMAL_SPEED,
          FASTER_SPEED
 } from './constants/speechConstants';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 /**
  *
@@ -103,5 +104,5 @@ export const speech_toggle = () => {
     $speechToggleElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
 
     localStorage[STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
-    EventTracker.sendEvent('options', 'speech', $speechToggleElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+    EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'speech', $speechToggleElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
 };
