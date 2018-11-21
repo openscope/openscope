@@ -127,10 +127,10 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
+            UiController.ui_log(`${r_log} ${response_end}, ${aircraft.callsign}`, redResponse);
             speech_say([
-                { type: 'callsign', content: aircraft },
-                { type: 'text', content: `${r_say} ${response_end}` }
+                { type: 'text', content: `${r_say} ${response_end}` },
+                { type: 'callsign', content: aircraft }
             ]);
         }
 
