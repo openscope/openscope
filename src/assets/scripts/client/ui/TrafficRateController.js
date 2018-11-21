@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
-import SpawnPatternCollection from '../trafficGenerator/SpawnPatternCollection';
 import EventBus from '../lib/EventBus';
+import SpawnPatternCollection from '../trafficGenerator/SpawnPatternCollection';
+import SpawnScheduler from '../trafficGenerator/SpawnScheduler';
 import { SELECTORS } from '../constants/selectors';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
@@ -148,10 +149,8 @@ export default class TrafficRateController {
         this.$body.empty();
 
         _forEach(['departures', 'arrivals', 'overflights'], (opt) => {
-            const $option = `<div class="option">
-                                <div class="option-label">${opt}</div>
-                                <input class="option-slider" type="range" min="0" max="20" value="5" />
-                            </div>`;
+            const $option = this._buildOption(opt);
+
             this.$body.append($option);
         });
 
@@ -163,11 +162,9 @@ export default class TrafficRateController {
             this.$body.append('<hr />');
         }
 
-        _forEach(arrivals, (opt) => {
-            const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
-                                <input class="option-slider" type="range" min="0" max="20" value="5" />
-                            </div>`;
+        _forEach(arrivals, (spawnPattern) => {
+            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+
             this.$body.append($option);
         });
 
@@ -175,11 +172,9 @@ export default class TrafficRateController {
             this.$body.append('<hr />');
         }
 
-        _forEach(departures, (opt) => {
-            const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
-                                <input class="option-slider" type="range" min="0" max="20" value="5" />
-                            </div>`;
+        _forEach(departures, (spawnPattern) => {
+            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+
             this.$body.append($option);
         });
 
@@ -187,12 +182,67 @@ export default class TrafficRateController {
             this.$body.append('<hr />');
         }
 
-        _forEach(overflights, (opt) => {
-            const $option = `<div class="option">
-                                <div class="option-label">${opt.routeString.replace(/\./g, ' ')}</div>
-                                <input class="option-slider" type="range" min="0" max="20" value="5" />
-                            </div>`;
+        _forEach(overflights, (spawnPattern) => {
+            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+
             this.$body.append($option);
         });
+    }
+
+    /**
+     * Builds a single slider
+     *
+     * @for TrafficRateController
+     * @method _buildOption
+     * @return {jquery|HTML Element}
+     */
+    _buildOption(opt) {
+        const currentValue = 5;
+        const $option = $(`<div class="option">
+                            <div class="option-label">${opt.replace(/\./g, ' ')}</div>
+                            <input class="option-slider" type="range" min="0" max="60" value="${currentValue}" name="${opt}" />
+                        </div>`);
+
+        $option.change((event) => {
+            const $target = $(event.target);
+            const name = $target.attr('name');
+            const value = $target.val();
+
+            console.log(`CHANGE: ${name} ${value}`);
+
+            // TODO: implement
+        });
+
+        return $option;
+    }
+
+    /**
+     * Builds a single slider
+     *
+     * @for TrafficRateController
+     * @method _buildOptionForSpawnPattern
+     * @param spawnPattern {SpawnPatternModel}
+     * @return {jquery|HTML Element}
+     */
+    _buildOptionForSpawnPattern(spawnPattern) {
+        const name = spawnPattern.routeString.replace(/\./g, ' ');
+        const $option = $(`<div class="option">
+                            <div class="option-label">${name}</div>
+                            <input class="option-slider" type="range" min="0" max="60" value="${spawnPattern.rate}" name="${name}" />
+                        </div>`);
+
+        $option.change((event) => {
+            const $target = $(event.target);
+            const value = $target.val();
+
+            // debug, to be removed
+            console.log(`CHANGE: ${spawnPattern.routeString} ${value}`);
+
+            spawnPattern.rate = parseFloat(value);
+
+            SpawnScheduler.resetTimer(spawnPattern);
+        });
+
+        return $option;
     }
 }

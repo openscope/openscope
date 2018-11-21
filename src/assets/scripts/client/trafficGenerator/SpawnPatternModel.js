@@ -126,7 +126,7 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Type of arrival or departure pattern
          *
-         * Could be `random`, `cyclic`. `surge` or `wave`
+         * Could be `random`, `cyclic`, `surge` or `wave`
          *
          * @property type
          * @type {string}
@@ -348,7 +348,7 @@ export default class SpawnPatternModel extends BaseModel {
         // TODO: this is currently an internal property but could be defined in
         //       the `spawnPattern` section of airport.json
         /**
-         * Minimum milisecond elay between spawn.
+         * Minimum milisecond delay between spawn.
          *
          * Is used as the lower bound when getting a random delay value.
          *

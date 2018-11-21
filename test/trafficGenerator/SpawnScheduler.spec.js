@@ -35,28 +35,27 @@ ava.afterEach(() => {
 });
 
 ava('throws when passed invalid parameters', (t) => {
-    t.throws(() => new SpawnScheduler());
-    t.throws(() => new SpawnScheduler(spawnPatternCollectionFixture));
-    t.throws(() => new SpawnScheduler({}, aircraftControllerStub));
+    t.throws(() => SpawnScheduler.init());
+    t.throws(() => SpawnScheduler.init(spawnPatternCollectionFixture));
+    t.throws(() => SpawnScheduler.init({}, aircraftControllerStub));
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new SpawnScheduler(aircraftControllerStub));
+    t.notThrows(() => SpawnScheduler.init(aircraftControllerStub));
 });
 
 ava('.createSchedulesFromList() calls .createNextSchedule() for each SpawnPatternModel in the collection', (t) => {
-    const scheduler = new SpawnScheduler(aircraftControllerStub);
-    const createNextScheduleSpy = sinon.spy(scheduler, 'createNextSchedule');
+    SpawnScheduler.init(aircraftControllerStub);
+    const createNextScheduleSpy = sinon.spy(SpawnScheduler, 'createNextSchedule');
 
-    scheduler.createSchedulesFromList(aircraftControllerStub);
+    SpawnScheduler.createSchedulesFromList();
 
     t.true(createNextScheduleSpy.calledTwice);
 });
 
 ava('.createSchedulesFromList() calls aircraftController.createPreSpawnAircraftWithSpawnPatternModel() if preSpawnAircraftList has items', (t) => {
-    const scheduler = new SpawnScheduler(aircraftControllerStub);
-
-    scheduler.createSchedulesFromList(aircraftControllerStub);
+    SpawnScheduler.init(aircraftControllerStub);
+    SpawnScheduler.createSchedulesFromList();
 
     t.true(aircraftControllerStub.createPreSpawnAircraftWithSpawnPatternModel.called);
 });
@@ -68,29 +67,29 @@ ava.skip('.createNextSchedule() calls GameController.game_timeout()', (t) => {
             time: 0
         }
     };
-    const scheduler = new SpawnScheduler(aircraftControllerStub);
+    SpawnScheduler.init(aircraftControllerStub);
     const spawnPatternModel = SpawnPatternCollection._items[0];
 
-    scheduler.createNextSchedule(spawnPatternModel, aircraftControllerStub);
+    SpawnScheduler.createNextSchedule(spawnPatternModel, aircraftControllerStub);
 
     t.true(gameControllerGameTimeoutStub.game_timeout.called);
 });
 
 ava('.createAircraftAndRegisterNextTimeout() calls aircraftController.createAircraftWithSpawnPatternModel()', (t) => {
-    const scheduler = new SpawnScheduler(aircraftControllerStub);
+    SpawnScheduler.init(aircraftControllerStub);
     const spawnPatternModel = SpawnPatternCollection._items[0];
 
-    scheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
+    SpawnScheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
 
     t.true(aircraftControllerStub.createAircraftWithSpawnPatternModel.called);
 });
 
 ava('.createAircraftAndRegisterNextTimeout() calls .createNextSchedule()', (t) => {
-    const scheduler = new SpawnScheduler(aircraftControllerStub);
-    const createNextScheduleSpy = sinon.spy(scheduler, 'createNextSchedule');
+    SpawnScheduler.init(aircraftControllerStub);
+    const createNextScheduleSpy = sinon.spy(SpawnScheduler, 'createNextSchedule');
     const spawnPatternModel = SpawnPatternCollection._items[0];
 
-    scheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
+    SpawnScheduler.createAircraftAndRegisterNextTimeout([spawnPatternModel, aircraftControllerStub]);
 
     t.true(createNextScheduleSpy.calledOnce);
 });
