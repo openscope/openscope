@@ -280,19 +280,19 @@ class GameController {
 
         if (TimeKeeper.simulationRate >= 5) {
             TimeKeeper.updateSimulationRate(1);
-            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 1);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '1');
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
         } else if (TimeKeeper.simulationRate === 1) {
             TimeKeeper.updateSimulationRate(2);
-            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 2);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '2');
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
             TimeKeeper.updateSimulationRate(5);
-            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', 5);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp', '5');
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -334,13 +334,13 @@ class GameController {
      */
     game_pause_toggle() {
         if (TimeKeeper.isPaused) {
-            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', false);
+            EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', 'false');
             this.game_unpause();
 
             return;
         }
 
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', true);
+        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'pause', 'true');
         this.game_pause();
     }
 

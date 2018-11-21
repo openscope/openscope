@@ -28,7 +28,7 @@ class EventTracker {
      * @param category {TRACKABLE_EVENT}
      * @param action {string}
      * @param label {string}
-     * @param value {string|number|boolean}
+     * @param value {string|null} [optional]
      */
     trackEvent(category, action, label, value = null) {
         if (!this._isEnabled()) {
