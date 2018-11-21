@@ -1,28 +1,27 @@
 import 'babel-polyfill';
-import $ from 'jquery';
-import _isNil from 'lodash/isNil';
-import _lowerCase from 'lodash/lowerCase';
+import 'raf/polyfill';
+import isNil = require('lodash/isNil');
+import lowerCase = require('lodash/lowerCase');
+import * as $ from 'jquery';
 import App from './App';
+import ILoadableAirport from './common/i-loadable-airport';
 import { DEFAULT_AIRPORT_ICAO } from './constants/airportConstants';
 import { STORAGE_KEY } from './constants/storageKeys';
 
-import * as raf from 'raf';
-raf.polyfill();
-
-function _isAirportIcaoInLoadList(icao: string, airportLoadList: any): boolean {
-    if (_isNil(icao)) {
+function _isAirportIcaoInLoadList(icao: string, airportLoadList: ILoadableAirport[]): boolean {
+    if (isNil(icao)) {
         return false;
     }
 
-    return airportLoadList.some((airport) => airport.icao === icao);
+    return airportLoadList.some((airport: ILoadableAirport): boolean => airport.icao === icao);
 }
 
-function getInitialAirport(airportLoadList: any): any {
-    let airportName = DEFAULT_AIRPORT_ICAO;
-    const previousAirportIcaoFromLocalStorage = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
+function getInitialAirport(airportLoadList: ILoadableAirport[]): string {
+    let airportName: string = DEFAULT_AIRPORT_ICAO;
+    const previousAirportIcaoFromLocalStorage: string = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
 
     if (_isAirportIcaoInLoadList(previousAirportIcaoFromLocalStorage, airportLoadList)) {
-        airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
+        airportName = lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
     }
 
     return airportName;
@@ -34,9 +33,10 @@ function getInitialAirport(airportLoadList: any): any {
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
 export default ((): void => {
-    const airportLoadList: any[] = (<any>window).AIRPORT_LOAD_LIST;
+    const airportLoadList: ILoadableAirport[] = (<any>window).AIRPORT_LOAD_LIST;
     const initialAirportToLoad: any = getInitialAirport(airportLoadList);
-    const $body: HTMLBodyElement = $('body');
+    const $body: JQuery = $('body');
+
     // eslint-disable-next-line no-unused-vars
-    const app: App = new App($body, airportLoadList, initialAirportToLoad);
+    new App($body, airportLoadList, initialAirportToLoad);
 })();
