@@ -381,7 +381,7 @@
             "altitude": 29000,
             "speed": 300,
             "method": "random",
-            "rate": 2.6,
+            "rate": 0.6,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -409,7 +409,7 @@
             "altitude": 19000,
             "speed": 280,
             "method": "random",
-            "rate": 3.4,
+            "rate": 0.4,
             "airlines": [
                 ["fin/short", 90],
                 ["nax", 30],
@@ -443,7 +443,7 @@
             "altitude": 23000,
             "speed": 300,
             "method": "random",
-            "rate": 2.2,
+            "rate": 1.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
@@ -464,7 +464,7 @@
             "altitude": 25000,
             "speed": 300,
             "method": "random",
-            "rate": 3.2,
+            "rate": 0.2,
             "airlines": [
                 ["fin/long", 20],
                 ["jal/long", 1],
