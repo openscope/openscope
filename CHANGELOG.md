@@ -8,6 +8,7 @@
 
 
 
+
 ### Bugfixes
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
 - [#1045](https://github.com/openscope/openscope/issues/1045) - Fix descent planning logic so arrivals can meet their altitude restrictions
