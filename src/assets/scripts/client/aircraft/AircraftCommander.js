@@ -581,7 +581,7 @@ export default class AircraftCommander {
         if (!runwayModel) {
             const readback = {};
             readback.log = `unable to find Runway ${requestedRunwayName.toUpperCase()} on our charts`;
-            readback.say = `unable to find Runway ${radio_runway(requestedRunwayName.name)} on our charts`;
+            readback.say = `unable to find Runway ${radio_runway(requestedRunwayName)} on our charts`;
 
             return [false, readback];
         }
@@ -647,10 +647,10 @@ export default class AircraftCommander {
         aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         aircraft.scoreWind('taking off');
 
-        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${runway.name}, ` +
+        readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, Runway ${runway.name}, ` +
             'cleared for takeoff';
         readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
-            `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(runway.name)}, cleared for takeoff`;
+            `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, cleared for takeoff`;
 
         return [true, readback];
     }

@@ -1305,8 +1305,8 @@ export default class AircraftModel {
         );
 
         const readback = {};
-        readback.log = `taxi to runway ${runwayModel.name}`;
-        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+        readback.log = `taxi to and hold short of Runway ${runwayModel.name}`;
+        readback.say = `taxi to and hold short of Runway ${radio_runway(runwayModel.name)}`;
 
         return [true, readback];
     }
