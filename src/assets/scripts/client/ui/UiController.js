@@ -146,10 +146,6 @@ class UiController {
         this._eventBus = null;
         this.tutorialView = null;
         this.settingsController = null;
-        // TODO: possibly deprecated
-        this.ui = {};
-        // TODO: possibly deprecated
-        this.ui.scale = INVALID_NUMBER;
 
         this.$element = null;
         this.$airportDialog = null;
