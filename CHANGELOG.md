@@ -3,7 +3,6 @@
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
 - [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
 - [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
-- [#1199](https://github.com/openscope/openscope/issues/1199) - Taxi command should say "Taxi to and hold short runway..."
 
 
 
@@ -28,6 +27,7 @@
 - [#1171](https://github.com/openscope/openscope/issues/1171) - Move tutorial from InputController to UiController
 - [#1114](https://github.com/openscope/openscope/issues/1114), [#1115](https://github.com/openscope/openscope/issues/1115) - Update broken documentation links
 - [#308](https://github.com/openscope/openscope/issues/308) - Abstract Aircraft.getWind() to the AirportModel
+- [#1199](https://github.com/openscope/openscope/issues/1199) - Change taxi readback to "taxi to and hold short of Runway 1"
 
 
 

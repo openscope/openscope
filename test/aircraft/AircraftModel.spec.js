@@ -619,8 +619,8 @@ ava('.taxiToRunway() cancels IFR clearance if runway is invalid for the assigned
     const expectedResult = [
         true,
         {
-            log: 'taxi to and hold short runway 01R',
-            say: 'taxi to and hold short runway zero one right'
+            log: 'taxi to and hold short of Runway 01R',
+            say: 'taxi to and hold short of Runway zero one right'
         }
     ];
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
@@ -640,8 +640,8 @@ ava('.taxiToRunway() returns a success message when finished', (t) => {
     const expectedResult = [
         true,
         {
-            log: 'taxi to and hold short runway 19L',
-            say: 'taxi to and hold short runway one niner left'
+            log: 'taxi to and hold short of Runway 19L',
+            say: 'taxi to and hold short of Runway one niner left'
         }
     ];
     const model = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);

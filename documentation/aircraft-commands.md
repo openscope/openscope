@@ -88,7 +88,7 @@ _Syntax -_ `AAL123 cto`
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
 
-_Information -_ This command tells the specified plane to taxi to and hold short 
+_Information -_ This command tells the specified plane to taxi to and hold short
 of specified runway.
 
 _Syntax -_ `AAL123 taxi [runway]`
