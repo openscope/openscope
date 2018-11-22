@@ -44,7 +44,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
-import { speech_say } from '../speech';
+import { speech_say, randomize_voice } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -167,6 +167,17 @@ export default class AircraftModel {
          * @default 1200
          */
         this.transponderCode = 1200;
+
+        /**
+         * Pilot's voice
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @for AircraftModel
+         * @property voiceName
+         * @type {string}
+         */
+        this.voiceName = randomize_voice();
 
         /**
          * Magnetic heading the aircraft is facing
@@ -1221,10 +1232,13 @@ export default class AircraftModel {
             UiController.ui_log(logMessage(writtenCallsign));
         }
 
-        speech_say([{
-            type: 'text',
-            content: logMessage(spokenCallsign)
-        }]);
+        speech_say(
+            [{
+                type: 'text',
+                content: logMessage(spokenCallsign)
+            }],
+            this.voiceName
+        );
     }
 
     /**
@@ -1253,20 +1267,26 @@ export default class AircraftModel {
             }
 
             UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
-            speech_say([
-                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
-                { type: 'callsign', content: this },
-                { type: 'text', content: `with you ${alt_say}` }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: `with you ${alt_say}` }
+                ],
+                this.voiceName
+            );
         }
 
         if (this.isDeparture()) {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
-            speech_say([
-                { type: 'text', content: AirportController.airport_get().radio.twr },
-                { type: 'callsign', content: this },
-                { type: 'text', content: ', ready to taxi' }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: AirportController.airport_get().radio.twr },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: ', ready to taxi' }
+                ],
+                this.voiceName
+            );
         }
     }
 
@@ -2585,10 +2605,13 @@ export default class AircraftModel {
 
                             const isWarning = true;
                             UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
-                            speech_say([
-                                { type: 'callsign', content: this },
-                                { type: 'text', content: ', we\'re going down!' }
-                            ]);
+                            speech_say(
+                                [
+                                    { type: 'callsign', content: this },
+                                    { type: 'text', content: ', we\'re going down!' }
+                                ],
+                                this.voiceName
+                            );
 
                             GameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }
