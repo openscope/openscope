@@ -116,7 +116,6 @@ export default class AircraftCommander {
                 say: 'say again',
                 log: 'say again'
             }];
-            response_end = 'say again';
         }
 
         if (response.length >= 1) {

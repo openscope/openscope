@@ -646,11 +646,7 @@ export default class Pilot {
         // 'APP' until established on the localizer. This will prevent improper descent behaviors.
         this._mcp.setAltitudeApproach();
 
-        const readback = {};
-        readback.log = 'intercept glidepath';
-        readback.log = 'intercept glidepath';
-
-        return [true, readback];
+        return [true, 'intercept glidepath'];
     }
 
     /**

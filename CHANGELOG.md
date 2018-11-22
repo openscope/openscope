@@ -14,7 +14,7 @@
 - [#1084](https://github.com/openscope/openscope/issues/1084) - Add messages for too-low glideslope intercepts
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 - [#1193](https://github.com/openscope/openscope/issues/1193) - Adds `SettingsController` instantiation to `UiController.init()`
-
+- [#1202](https://github.com/openscope/openscope/issues/1202) - Prevent pilot from responding with "say again, say again"
 
 
 
