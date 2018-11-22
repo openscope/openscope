@@ -844,7 +844,7 @@ export default class AircraftController {
                     { type: 'callsign', content: aircraftModel },
                     { type: 'text', content: ', switching to ground, good day' }
                 ],
-                aircraftModel.voiceName
+                aircraftModel.pilotVoice
             );
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
@@ -865,7 +865,7 @@ export default class AircraftController {
                     { type: 'callsign', content: aircraftModel },
                     { type: 'text', content: ', radar contact lost' }
                 ],
-                aircraftModel.voiceName
+                aircraftModel.pilotVoice
             );
         }
 

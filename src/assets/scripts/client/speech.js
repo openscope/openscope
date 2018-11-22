@@ -21,7 +21,7 @@ export const speech_init = () => {
     }
 };
 
-export const randomize_voice = () => {
+export const randomize_pilot_voice = () => {
     const voices = [
         'Alex',
         'Daniel',
@@ -31,7 +31,15 @@ export const randomize_voice = () => {
         'Google UK English Male'
     ];
 
-    return voices[Math.floor(Math.random() * voices.length)];
+    const voice = voices[Math.floor(Math.random() * voices.length)];
+    const pitch = (Math.random() * (0.9 - 1.125) + 1.125).toFixed(1);
+    const rate = (Math.random() * (1 - 1.125) + 1.125).toFixed(3);
+
+    return {
+        voice,
+        pitch,
+        rate
+    };
 };
 
 /**
@@ -39,7 +47,7 @@ export const randomize_voice = () => {
  * @function speech_say
  * @param sentence
  */
-export const speech_say = (sentence, voiceName) => {
+export const speech_say = (sentence, pilotVoice) => {
     if (prop.speech.synthesis != null && prop.speech.enabled) {
         let textToSay = '';
 
@@ -68,9 +76,10 @@ export const speech_say = (sentence, voiceName) => {
         utterance.lang = 'en-US'; // set the language
         utterance.voice = prop.speech.synthesis.getVoices().filter((voice) => {
             // set the voice
-            return voice.name === voiceName;
-         })[0];
-        utterance.rate = 1.125; // speed up just a touch
+            return voice.name === pilotVoice.voice;
+        })[0];
+        utterance.rate = pilotVoice.rate;
+        utterance.pitch = pilotVoice.pitch;
 
         // say the words
         prop.speech.synthesis.speak(utterance);

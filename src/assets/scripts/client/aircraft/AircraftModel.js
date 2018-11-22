@@ -44,7 +44,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
-import { speech_say, randomize_voice } from '../speech';
+import { speech_say, randomize_pilot_voice } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -174,10 +174,10 @@ export default class AircraftModel {
          * Initially generated and assined on instantiation by the `AircraftController`
          *
          * @for AircraftModel
-         * @property voiceName
+         * @property pilotVoice
          * @type {string}
          */
-        this.voiceName = randomize_voice();
+        this.pilotVoice = randomize_pilot_voice();
 
         /**
          * Magnetic heading the aircraft is facing
@@ -1237,7 +1237,7 @@ export default class AircraftModel {
                 type: 'text',
                 content: logMessage(spokenCallsign)
             }],
-            this.voiceName
+            this.pilotVoice
         );
     }
 
@@ -1273,7 +1273,7 @@ export default class AircraftModel {
                     { type: 'callsign', content: this },
                     { type: 'text', content: `with you ${alt_say}` }
                 ],
-                this.voiceName
+                this.pilotVoice
             );
         }
 
@@ -1285,7 +1285,7 @@ export default class AircraftModel {
                     { type: 'callsign', content: this },
                     { type: 'text', content: ', ready to taxi' }
                 ],
-                this.voiceName
+                this.pilotVoice
             );
         }
     }
@@ -2610,7 +2610,7 @@ export default class AircraftModel {
                                     { type: 'callsign', content: this },
                                     { type: 'text', content: ', we\'re going down!' }
                                 ],
-                                this.voiceName
+                                this.pilotVoice
                             );
 
                             GameController.events_recordNew(GAME_EVENTS.COLLISION);

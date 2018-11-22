@@ -132,7 +132,7 @@ export default class AircraftCommander {
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: `${r_say} ${response_end}` }
                 ],
-                aircraft.voiceName
+                aircraft.pilotVoice
             );
         }
 
@@ -651,7 +651,9 @@ export default class AircraftCommander {
 
         readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, Runway ${runway.name}, ` +
             'cleared for takeoff';
-        readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+
+        // We have to make it say winned to make it sound like "Wind" and not "Wined"
+        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
             `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, cleared for takeoff`;
 
         return [true, readback];
