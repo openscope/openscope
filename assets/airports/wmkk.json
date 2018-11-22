@@ -1,6 +1,5 @@
 {
-    "name": "Kuala Lumpur International Airport (KLIA)",
-    "level": "hard",
+    "airac": 1812,
     "radio": {
         "twr": "Lumpur Tower",
         "app": "Lumpur Arrival",
@@ -8,1270 +7,197 @@
     },
     "icao": "WMKK",
     "iata": "KUL",
-    "magnetic_north": 0.02,
+    "magnetic_north": 0.01,
     "ctr_radius": 80,
     "ctr_ceiling": 24500,
-    "initial_alt": 3000,
-    "position": ["N02d44m36.00", "E101d41m53.00"],
+    "initial_alt": 6000,
+    "position": ["N02d44m36.00", "E101d41m53.00", "70ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N02d44m36.00", "E101d41m53.00"],
+    "rr_center": ["N02d44m36.00", "E101d41m53.00", "70ft"],
     "has_terrain": false,
     "wind": {
-        "angle": 110,
-        "speed": 0
+        "angle": 330,
+        "speed": 2
     },
-    "arrivalRunway": "15",
-    "departureRunway": "15",
+    "arrivalRunway": "32L",
+    "departureRunway": "32R",
     "airspace": [
         {
-            "floor":             0,
-            "ceiling":         24500,
-            "airspace_class":    "C",
-            "poly":
-            [
-                ["N01d39m00", "E102d10m00"],
-                ["N02d09m48", "E102d38m30"],
-                ["N02d29m27", "E102d56m43"],
-                ["N02d48m02", "E102d40m19"],
-                ["N03d00m55", "E102d28m53"],
-                ["N03d09m44", "E102d21m02"],
-                ["N03d40m24", "E101d53m48"],
-                ["N03d56m20", "E101d39m40"],
-                ["N03d48m14", "E101d19m03"],
-                ["N03d24m04", "E100d17m43"],
-                ["N01d39m00", "E102d10m00"]
+            "floor": 0,
+            "ceiling": 24500,
+            "airspace_class": "B",
+            "poly": [
+                ["N02d56m05.00", "E102d11m30.00"],
+                ["N02d55m39.00", "E102d11m42.00"],
+                ["N02d54m12.00", "E102d12m18.00"],
+                ["N02d52m43.00", "E102d12m49.00"],
+                ["N02d51m12.00", "E102d13m15.00"],
+                ["N02d49m41.00", "E102d13m37.00"],
+                ["N02d48m08.00", "E102d13m54.00"],
+                ["N02d46m35.00", "E102d14m06.00"],
+                ["N02d45m01.00", "E102d14m13.00"],
+                ["N02d43m27.00", "E102d14m15.00"],
+                ["N02d41m53.00", "E102d14m13.00"],
+                ["N02d40m19.00", "E102d14m05.00"],
+                ["N02d38m46.00", "E102d13m53.00"],
+                ["N02d37m13.00", "E102d13m36.00"],
+                ["N02d35m42.00", "E102d13m15.00"],
+                ["N02d34m12.00", "E102d12m48.00"],
+                ["N02d32m43.00", "E102d12m17.00"],
+                ["N02d31m16.00", "E102d11m41.00"],
+                ["N02d29m50.00", "E102d11m01.00"],
+                ["N02d28m27.00", "E102d10m17.00"],
+                ["N02d27m07.00", "E102d09m28.00"],
+                ["N02d25m49.00", "E102d08m35.00"],
+                ["N02d24m34.00", "E102d07m38.00"],
+                ["N02d23m21.00", "E102d06m37.00"],
+                ["N02d22m13.00", "E102d05m32.00"],
+                ["N02d21m07.00", "E102d04m24.00"],
+                ["N02d20m05.00", "E102d03m13.00"],
+                ["N02d19m07.00", "E102d01m58.00"],
+                ["N02d18m13.00", "E102d00m40.00"],
+                ["N02d17m24.00", "E101d59m20.00"],
+                ["N02d16m38.00", "E101d57m57.00"],
+                ["N02d15m57.00", "E101d56m32.00"],
+                ["N02d15m20.00", "E101d55m05.00"],
+                ["N02d14m48.00", "E101d53m36.00"],
+                ["N02d14m21.00", "E101d52m05.00"],
+                ["N02d13m59.00", "E101d50m33.00"],
+                ["N02d13m41.00", "E101d49m00.00"],
+                ["N02d13m29.00", "E101d47m26.00"],
+                ["N02d13m21.00", "E101d45m51.00"],
+                ["N02d13m19.00", "E101d44m17.00"],
+                ["N02d13m21.00", "E101d42m42.00"],
+                ["N02d13m29.00", "E101d41m07.00"],
+                ["N02d13m41.00", "E101d39m33.00"],
+                ["N02d13m59.00", "E101d38m00.00"],
+                ["N02d14m21.00", "E101d36m28.00"],
+                ["N02d14m48.00", "E101d34m57.00"],
+                ["N02d15m20.00", "E101d33m28.00"],
+                ["N02d15m57.00", "E101d32m01.00"],
+                ["N02d16m38.00", "E101d30m36.00"],
+                ["N02d17m24.00", "E101d29m13.00"],
+                ["N02d18m13.00", "E101d27m53.00"],
+                ["N02d19m07.00", "E101d26m35.00"],
+                ["N02d20m05.00", "E101d25m20.00"],
+                ["N02d21m07.00", "E101d24m09.00"],
+                ["N02d22m13.00", "E101d23m01.00"],
+                ["N02d23m21.00", "E101d21m56.00"],
+                ["N02d24m34.00", "E101d20m55.00"],
+                ["N02d25m49.00", "E101d19m58.00"],
+                ["N02d27m07.00", "E101d19m05.00"],
+                ["N02d28m27.00", "E101d18m16.00"],
+                ["N02d29m50.00", "E101d17m32.00"],
+                ["N02d30m51.00", "E101d17m04.00"],
+                ["N02d55m16.00", "E101d05m45.00"],
+                ["N02d55m41.00", "E101d05m32.00"],
+                ["N02d57m08.00", "E101d04m56.00"],
+                ["N02d58m37.00", "E101d04m25.00"],
+                ["N03d00m07.00", "E101d03m59.00"],
+                ["N03d01m38.00", "E101d03m37.00"],
+                ["N03d03m11.00", "E101d03m20.00"],
+                ["N03d04m44.00", "E101d03m08.00"],
+                ["N03d06m18.00", "E101d03m01.00"],
+                ["N03d07m52.00", "E101d02m58.00"],
+                ["N03d09m26.00", "E101d03m00.00"],
+                ["N03d11m00.00", "E101d03m08.00"],
+                ["N03d12m33.00", "E101d03m20.00"],
+                ["N03d14m06.00", "E101d03m37.00"],
+                ["N03d15m37.00", "E101d03m58.00"],
+                ["N03d17m08.00", "E101d04m25.00"],
+                ["N03d18m37.00", "E101d04m56.00"],
+                ["N03d20m04.00", "E101d05m31.00"],
+                ["N03d21m29.00", "E101d06m12.00"],
+                ["N03d22m52.00", "E101d06m56.00"],
+                ["N03d24m13.00", "E101d07m45.00"],
+                ["N03d25m31.00", "E101d08m38.00"],
+                ["N03d26m46.00", "E101d09m35.00"],
+                ["N03d27m58.00", "E101d10m36.00"],
+                ["N03d29m07.00", "E101d11m40.00"],
+                ["N03d30m12.00", "E101d12m49.00"],
+                ["N03d31m14.00", "E101d14m00.00"],
+                ["N03d32m12.00", "E101d15m15.00"],
+                ["N03d33m06.00", "E101d16m32.00"],
+                ["N03d33m56.00", "E101d17m53.00"],
+                ["N03d34m42.00", "E101d19m16.00"],
+                ["N03d35m23.00", "E101d20m41.00"],
+                ["N03d36m00.00", "E101d22m09.00"],
+                ["N03d36m32.00", "E101d23m38.00"],
+                ["N03d36m59.00", "E101d25m09.00"],
+                ["N03d37m21.00", "E101d26m41.00"],
+                ["N03d37m39.00", "E101d28m14.00"],
+                ["N03d37m51.00", "E101d29m48.00"],
+                ["N03d37m59.00", "E101d31m23.00"],
+                ["N03d38m01.00", "E101d32m57.00"],
+                ["N03d38m01.00", "E101d32m57.00"],
+                ["N03d37m59.00", "E101d34m32.00"],
+                ["N03d37m51.00", "E101d36m07.00"],
+                ["N03d37m39.00", "E101d37m41.00"],
+                ["N03d37m21.00", "E101d39m14.00"],
+                ["N03d36m59.00", "E101d40m46.00"],
+                ["N03d36m32.00", "E101d42m17.00"],
+                ["N03d36m00.00", "E101d43m46.00"],
+                ["N03d35m23.00", "E101d45m14.00"],
+                ["N03d34m42.00", "E101d46m39.00"],
+                ["N03d33m56.00", "E101d48m02.00"],
+                ["N03d33m06.00", "E101d49m23.00"],
+                ["N03d32m12.00", "E101d50m40.00"],
+                ["N03d31m14.00", "E101d51m55.00"],
+                ["N03d30m12.00", "E101d53m06.00"],
+                ["N03d29m07.00", "E101d54m15.00"],
+                ["N03d27m58.00", "E101d55m19.00"],
+                ["N03d26m46.00", "E101d56m20.00"],
+                ["N03d25m31.00", "E101d57m17.00"],
+                ["N03d24m13.00", "E101d58m10.00"],
+                ["N03d22m52.00", "E101d58m59.00"],
+                ["N03d21m29.00", "E101d59m43.00"],
+                ["N03d20m30.00", "E102d00m11.00"],
+                ["N02d56m05.00", "E102d11m30.00"]
             ]
         }
     ],
     "fixes": {
-        "ADGIP":  ["N02d32m29.00",  "E101d50m00.00"],
-        "ADMOL":  ["N03d02m47.00",  "E101d31m20.00"],
-        "ADPAX":  ["N01d44m00.00",  "E103d15m63.00"],
-        "AGOSA":  ["N03d08m41.00",  "E101d13m09.00"],
-        "BATAR":  ["N02d10m00.00",  "E102d05m13.00"],
-        "BEGIN":  ["N02d31m49.00",  "E101d49m01.00"],
-        "BELER":  ["N02d21m32.00",  "E101d39m03.00"],
-        "BENRI":  ["N03d07m08.00",  "E101d08m28.00"],
-        "BERBI":  ["N02d23m35.00",  "E101d55m58.00"],
-        "BOBIS":  ["N02d30m39.00",  "E102d20m17.00"],
-        "BUKTI":  ["N02d56m26.00",  "E101d33m56.00"],
-        "CE":     ["N03d17m42.00",  "E101d27m07.00"],
-        "D086G":  ["N02d44m00.00",  "E101d51m26.00"],
-        "DAKUS":  ["N03d48m14.00",  "E101d19m03.00"],
-        "DARGU":  ["N02d59m27.00",  "E101d33m34.00"],
-        "DOXER":  ["N02d55m46.00",  "E101d32m57.00"],
-        "DUMOK":  ["N02d17m57.00",  "E102d00m15.00"],
-        "EKUDA":  ["N02d54m20.00",  "E101d25m29.00"],
-        "GEMAS":  ["N02d10m22.00",  "E102d00m24.00"],
-        "GOKAD":  ["N03d22m13.00",  "E100d44m38.00"],
-        "GUNIP":  ["N04d29m88.00",  "E099d31m83.00"],
-        "GUPTA":  ["N02d09m48.00",  "E102d38m30.00"],
-        "INTOT":  ["N03d00m25.00",  "E101d08m01.00"],
-        "IRMEK":  ["N02d54m25.00",  "E101d59m51.00"],
-        "ISTAN":  ["N03d00m55.00",  "E102d28m53.00"],
-        "KIDOT":  ["N03d03m20.00",  "E101d39m22.00"],
-        "KIKAL":  ["N03d02m10.00",  "E101d31m10.00"],
-        "KILAL":  ["N03d02m10.00",  "E101d31m10.00"],
-        "KIMAT":  ["N03d09m44.00",  "E102d21m02.00"],
-        "KK401":  ["N02d47m29.09",  "E101d57m26.19"],
-        "KK402":  ["N02d47m55.26",  "E102d03m39.76"],
-        "KK403":  ["N02d46m11.36",  "E102d09m39.66"],
-        "KK404":  ["N02d42m29.95",  "E102d14m42.47"],
-        "KK405":  ["N02d37m17.78",  "E102d18m11.69"],
-        "KK410":  ["N02d24m46.23",  "E102d05m15.22"],
-        "KK411":  ["N02d41m06.31",  "E102d13m16.29"],
-        "KK412":  ["N02d44m23.11",  "E102d08m47.11"],
-        "KK413":  ["N02d45m55.46",  "E102d03m27.20"],
-        "KK414":  ["N02d45m32.19",  "E101d57m55.15"],
-        "KK415":  ["N02d43m16.21",  "E101d52m51.21"],
-        "KK421":  ["N02d39m52.99",  "E101d35m10.48"],
-        "KK422":  ["N02d32m18.87",  "E101d40m15.13"],
-        "KK424":  ["N02d23m30.05",  "E102d19m28.88"],
-        "KK425":  ["N02d03m49.94",  "E101d50m55.86"],
-        "KK433":  ["N02d15m40.56",  "E101d51m20.84"],
-        "KK434":  ["N02d19m34.72",  "E101d57m10.50"],
-        "KK435":  ["N02d22m55.86",  "E101d54m58.59"],
-        "KK441":  ["N02d38m33.95",  "E101d56m00.41"],
-        "KK445":  ["N02d21m33.80",  "E102d07m20.70"],
-        "KK446":  ["N02d16m54.28",  "E102d00m23.17"],
-        "KK447":  ["N02d20m14.85",  "E101d58m10.44"],
-        "KK448":  ["N02d28m25.17",  "E102d17m35.49"],
-        "KK451":  ["N02d47m59.96",  "E101d29m43.79"],
-        "KK454":  ["N02d50m26.43",  "E101d19m39.65"],
-        "KK462":  ["N03d08m31.72",  "E101d15m57.72"],
-        "KK463":  ["N03d12m25.54",  "E101d21m47.04"],
-        "KK464":  ["N03d09m05.49",  "E101d24m01.29"],
-        "KK465":  ["N03d05m45.63",  "E101d26m15.36"],
-        "KK471":  ["N03d00m46.31",  "E101d41m05.35"],
-        "KK484":  ["N03d16m41.65",  "E101d30m24.49"],
-        "KK485":  ["N03d12m46.64",  "E101d24m37.67"],
-        "KK486":  ["N03d09m26.77",  "E101d26m51.74"],
-        "KK487":  ["N03d06m06.91",  "E101d29m05.79"],
-        "KK488":  ["N03d07m15.70",  "E101d45m09.92"],
-        "KK489":  ["N02d26m52.61",  "E102d15m46.47"],
-        "KK612":  ["N02d45m87.00",  "E101d33m57.00"],
-        "KK613":  ["N02d42m15.00",  "E101d25m92.00"],
-        "KK622":  ["N02d34m25.22",  "E101d39m56.80"],
-        "KK623":  ["N02d30m21.44",  "E101d31m35.73"],
-        "KK624":  ["N02d24m38.70",  "E101d34m20.62"],
-        "KL":     ["N03d00m41.00",  "E101d37m13.00"],
-        "LAPIR":  ["N02d26m27.00",  "E101d54m58.00"],
-        "LENKI":  ["N02d44m56.00",  "E101d51m44.00"],
-        "LUVON":  ["N02d30m56.00",  "E101d51m02.00"],
-        "MENIK":  ["N02d35m43.00",  "E101d37m58.00"],
-        "MIDIK":  ["N02d58m42.00",  "E101d32m25.00"],
-        "MITOS":  ["N01d58m30.00",  "E102d06m10.00"],
-        "MUNOV":  ["N02d29m57.00",  "E102d01m47.00"],
-        "NIVID":  ["N03d01m36.00",  "E101d29m03.00"],
-        "NOBEK":  ["N02d10m22.00",  "E102d00m24.00"],
-        "OLBON":  ["N03d19m32.00",  "E101d36m56.00"],
-        "OLSOS":  ["N02d36m29.00",  "E102d16m22.00"],
-        "OSPOV":  ["N02d49m06.00",  "E101d48m56.00"],
-        "PIBOS":  ["N03d21m07.00",  "E102d03m16.00"],
-        "PONOX":  ["N02d42m27.00",  "E102d01m50.00"],
-        "PUGER":  ["N03d24m10.00",  "E100d17m60.00"],
-        "PULIP":  ["N03d40m24.00",  "E101d53m48.00"],
-        "RUMID":  ["N02d20m16.00",  "E101d36m27.00"],
-        "SADON":  ["N02d20m31.00",  "E101d45m27.00"],
-        "SALAX":  ["N02d12m24.00",  "E101d33m43.00"],
-        "SAPAT":  ["N02d32m10.00",  "E102d02m30.00"],
-        "SAROX":  ["N02d48m02.00",  "E102d40m19.00"],
-        "SUROP":  ["N02d25m26.00",  "E101d44m52.00"],
-        "TUNKU":  ["N02d26m16.00",  "E101d52m45.00"],
-        "UPSIR":  ["N02d53m46.00",  "E101d16m06.00"],
-        "VBA":    ["N03d19m29.00",  "E101d27m25.00"],
-        "VKL":    ["N02d43m47.00",  "E101d44m28.00"],
-        "VMK":    ["N02d15m29.00",  "E102d14m45.00"],
-        "_32L":   ["N02d42m47.86",  "E101d43m05.03"],
-        "_32R":   ["N02d44m54.03",  "E101d43m19.41"]
+
     },
+    "restricted": [
+
+    ],
     "runways": [
         {
             "name": ["14L", "32R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d46m42.52", "E101d42m06.67"], ["N02d44m54.03", "E101d43m19.41"]],
-            "length": 4.019,
+            "end": [
+                ["N02d46m42.52", "E101d42m06.67", "54ft"],
+                ["N02d44m54.03", "E101d43m19.41", "69ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["14R", "32L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d44m35.84", "E101d41m52.63"], ["N02d42m47.86", "E101d43m05.03"]],
-            "length": 4,
+            "end": [
+                ["N02d44m35.84", "E101d41m52.63", "54ft"],
+                ["N02d42m47.86", "E101d43m05.03", "48ft"]
+            ],
             "ils": [true, true]
         },
         {
             "name": ["15", "33"],
-            "name_offset": [[0, 0], [0, 0]],
-            "end": [["N02d44m17.57", "E101d40m38.97"], ["N02d42m30.67" ,"E101d41m50.65"]],
-            "length": 3.96,
+            "end": [
+                ["N02d44m17.57", "E101d40m38.97", "27ft"],
+                ["N02d42m30.67", "E101d41m50.65", "27ft"]
+            ],
             "ils": [true, true]
         }
     ],
     "sids": {
-        "AGOSA": {
-            "icao": "AGOSA",
-            "name": "Agosa",
-            "suffix": {"14L":"1H", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"], "AGOSA"],
-                "15":   ["VKL", "AGOSA"],
-                "32L":  ["AGOSA"],
-                "32R":  ["AGOSA"],
-                "33":   ["AGOSA"]
-            },
-            "draw": [
-                ["_32R", "VKL", "D086G"],
-                ["VKL", "AGOSA"]
-            ]
-        },
-        "AGOSA1N": {
-            "icao": "AGOSA",
-            "name": "Agosa One November",
-            "suffix": {"15":"1N"},
-            "rwy": {
-                "15":   [["VKL", "S210"], ["KK622", "A30"], "KK623", "AGOSA"]
-            },
-            "draw": [
-                ["VKL", "KK622", "KK623", "AGOSA"]
-            ]
-        },
-        "AGOSA1X": {
-            "icao": "AGOSA",
-            "name": "Agosa One Xray",
-            "suffix": {"33":"1X"},
-            "rwy": {
-                "33":   ["KK612", "KK613", "AGOSA"]
-            },
-            "draw": [
-                ["KK612", "KK613", "AGOSA"]
-            ]
-        },
-        "PIBOS": {
-            "icao": "PIBOS",
-            "name": "Pibos",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL"],
-                "14R":  [],
-                "15":   [["PIBOS", "A50"]],
-                "32L":  [],
-                "32R":  [],
-                "33":   ["VKL"]
-            },
-            "body": ["PIBOS"],
-            "draw": [
-                ["VKL", "PIBOS"],
-                ["_32L", "PIBOS"]
-            ]
-        },
-        "KIMAT": {
-            "icao": "KIMAT",
-            "name": "Kimat",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL"],
-                "14R":  [],
-                "15":   [["VKL", "A50"]],
-                "32L":  [],
-                "32R":  [],
-                "33":   ["VKL"]
-            },
-            "body": ["KIMAT"],
-            "draw": [
-                ["VKL", "KIMAT"]
-            ]
-        },
-        "ISTAN": {
-            "icao": "ISTAN",
-            "name": "Istan",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL"],
-                "14R":  [],
-                "15":   [["VKL", "A50"]],
-                "32L":  [],
-                "32R":  [],
-                "33":   ["VKL"]
-            },
-            "body": ["ISTAN"],
-            "draw": [
-                ["VKL", "ISTAN"],
-                ["_32L", "ISTAN"]
-            ]
-        },
-        "BATAR": {
-            "icao": "BATAR",
-            "name": "Batar",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL", "DUMOK"],
-                "14R":  ["DUMOK"],
-                "15":   ["VKL", "SADON"],
-                "32L":  ["RUMID"],
-                "32R":  ["RUMID"],
-                "33":   ["RUMID"]
-            },
-            "body": ["BATAR"],
-            "draw": [
-                ["_32L", "DUMOK"],
-                ["VKL", "DUMOK", "BATAR"],
-                ["VKL", "SADON", "BATAR"]
-            ]
-        },
-        "BATAR1N": {
-            "icao": "BATAR",
-            "name": "Batar One November",
-            "suffix": {"15":"1N"},
-            "rwy": {
-                "15":   [["VKL", "S210"], ["KK622", "A30+"], "KK624", "RUMID", "BATAR"]
-            },
-            "draw": [
-                ["RUMID", "BATAR"]
-            ]
-        },
-        "BATAR1X": {
-            "icao": "BATAR",
-            "name": "Batar One Xray",
-            "suffix": {"33":"1X"},
-            "rwy": {
-                "33":   ["KK612", "KK613", "RUMID", "BATAR"]
-            },
-            "draw": [
-                ["KK613", "RUMID"]
-            ]
-        },
-        "DUMOK": {
-            "icao": "DUMOK",
-            "name": "Dumok",
-            "suffix": {"15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "15":   ["VKL", "SADON", "DUMOK"],
-                "32L":  ["RUMID", "DUMOK"],
-                "32R":  ["RUMID", "DUMOK"],
-                "33":   ["RUMID", "DUMOK"]
-            },
-            "draw": [
-                ["SADON", "DUMOK"],
-                ["RUMID", "DUMOK"]
-            ]
-        },
-        "MITOS": {
-            "icao": "MITOS",
-            "name": "Mitos",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL", "DUMOK"],
-                "14R":  ["DUMOK"],
-                "15":   ["VKL", "SADON"],
-                "32L":  ["RUMID"],
-                "32R":  ["RUMID"],
-                "33":   ["RUMID"]
-            },
-            "body": ["MITOS"],
-            "draw": [
-                ["DUMOK", "MITOS"]
-            ]
-        },
-        "MITOS1N": {
-            "icao": "MITOS",
-            "name": "Mitos One November",
-            "suffix": {"15":"1N"},
-            "rwy": {
-                "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID", "MITOS"]
-            },
-            "draw": [
-                ["RUMID", "MITOS"]
-            ]
-        },
-        "MITOS1X": {
-            "icao": "MITOS",
-            "name": "Mitos One Xray",
-            "suffix": {"33":"1X"},
-            "rwy": {
-                "33":   ["KK612", "KK613", "RUMID", "MITOS"]
-            },
-            "draw": [
-                ["KK612", "KK613", "RUMID", "MITOS"]
-            ]
-        },
-        "RUMID": {
-            "icao": "RUMID",
-            "name": "Rumid",
-            "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-            "rwy": {
-                "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"]],
-                "14R":  [],
-                "15":   ["VKL"],
-                "32L":  [],
-                "32R":  [],
-                "33":   []
-            },
-            "body": ["RUMID"],
-            "draw": [
-                ["VKL", "RUMID"],
-                ["_32L", "RUMID"]
-            ]
-        },
-        "RUMID1N": {
-            "icao": "RUMID",
-            "name": "Rumid One November",
-            "suffix": {"15":"1N"},
-            "rwy": {
-                "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID"]
-            },
-            "draw": [
-                ["VKL", "KK622", "KK624", "RUMID"]
-            ]
-        },
-        "RUMID1X": {
-            "icao": "RUMID",
-            "name": "Rumid One Xray",
-            "suffix": {"33":"1X"},
-            "rwy": {
-                "33":  ["KK612", "KK613", "RUMID"]
-            },
-            "draw": [
-                ["KK612", "KK613", "RUMID"]
-            ]
-        },
-        "SUBANG1W": {
-            "icao": "CE",
-            "name": "Subang One Whiskey",
-            "suffix": {"14R":"1W"},
-            "rwy": {
-                "14R": ["VKL", "CE"]
-            },
-            "draw": [
-                ["VKL", "CE"]
-            ]
-        },
-        "SUBANG1Y": {
-            "icao": "CE",
-            "name": "Subang One Yankee",
-            "suffix": {"32R":"1W"},
-            "rwy": {
-                "32R": ["CE"]
-            },
-            "draw": [
-                ["CE"]
-            ]
-        },
-        "SUBANG1V": {
-            "icao": "KL",
-            "name": "Subang One Victor",
-            "suffix": {"14R":"1V"},
-            "rwy": {
-                "14R": ["VKL", "KL"]
-            },
-            "draw": [
-                ["VKL", "KL"]
-            ]
-        },
-        "SUBANG1Z": {
-            "icao": "KL",
-            "name": "Subang One Zulu",
-            "suffix": {"14R":"1V"},
-            "rwy": {
-                "14R": ["KL"]
-            },
-            "draw": [
-                ["KL"]
-            ]
-        }
+
     },
     "stars": {
-        "DAKUS1V": {
-            "icao": "DAKUS1V",
-            "name": "Dakus One Victor",
-            "entryPoints": {
-                "DAKUS": ["DAKUS"]
-            },
-            "body": [["VKL", "A60|S230"]],
-            "draw": [
-                ["DAKUS", "VKL"]
-            ]
-        },
-        "PULIP1V": {
-            "icao": "PULIP1V",
-            "name": "Pulip One Victor",
-            "entryPoints": {
-                "PULIP": ["PULIP"]
-            },
-            "body": [["VKL", "A60|S230"]],
-            "draw": [
-                ["PULIP", "VKL"]
-            ]
-        },
-        "SAROX1V": {
-            "icao": "SAROX1V",
-            "name": "Sarox One Victor",
-            "entryPoints": {
-                "SAROX": [["SAROX", "A70"]]
-            },
-            "body": [["VKL", "A60|S230"]],
-            "draw": [
-                ["SAROX", "VKL"]
-            ]
-        },
-        "GUPTA1V": {
-            "icao": "GUPTA1V",
-            "name": "Gupta One Victor",
-            "entryPoints": {
-                "GUPTA": ["GUPTA"]
-            },
-            "body": [["SAPAT", "A70"], ["VKL", "A60|S230"]],
-            "draw": [
-                ["GUPTA", "SAPAT", "VKL"]
-            ]
-        },
-        "SALAX1V": {
-            "icao": "SALAX1V",
-            "name": "Salax One Victor",
-            "entryPoints": {
-                "SALAX": ["SALAX"]
-            },
-            "body": [["RUMID", "A70"], ["VKL", "A60|S230"]],
-            "draw": [
-                ["SALAX", "RUMID", "VKL"]
-            ]
-        },
-        "INTOT1V": {
-            "icao": "INTOT1V",
-            "name": "Intot One Victor",
-            "entryPoints": {
-                "INTOT": ["PUGER", "INTOT"]
-            },
-            "body": [["VKL", "A60|S230"]],
-            "draw": [
-                ["INTOT", "VKL"]
-            ]
-        },
-        "KIKAL3": {
-            "icao": "KIKAL3",
-            "name": "Kikal Three",
-            "entryPoints": {
-                "BATU_ARANG": ["DAKUS", ["VBA", "A90"]]
-            },
-            "body": [["KIKAL", "A45"]],
-            "draw": [
-                ["DAKUS", "VBA", "KIKAL"]
-            ]
-        },
-        "OLBON1B": {
-            "_comment": "OLBON1B is meant to be dependent on runway usage.",
-            "icao": "OLBON1B",
-            "name": "Olbon One Bravo",
-            "entryPoints": {
-                "PULIP":  ["PULIP"],
-                "DAKUS":  ["DAKUS"],
-                "GOKAD":  ["GUNIP", "GOKAD"]
-            },
-            "body": [["OLBON", "A90"], "KK488", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "S60"], ["KK487", "A50"], ["ADMOL", "S210"]],
-            "draw": [
-                ["PULIP", "OLBON"],
-                ["DAKUS", "OLBON"],
-                ["GOKAD", "OLBON"],
-                ["OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
-            ]
-        },
-        "LENKI1B": {
-            "_comment": "LENKI1B is meant to be dependent on runway usage.",
-            "icao": "LENKI1B",
-            "name": "Lenki One Bravo",
-            "entryPoints": {
-                "SALAX":  ["SALAX"],
-                "GUPTA":  ["GUPTA", "KK489"],
-                "SAROX":  ["SAROX"]
-            },
-            "body": [["LENKI", "A100|S250"], "KK471", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "A60"], ["KK487", "A50"], ["ADMOL", "S210"]],
-            "draw": [
-                ["SALAX", "LENKI"],
-                ["GUPTA", "KK489", "LENKI"],
-                ["SAROX", "LENKI"],
-                ["LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
-            ]
-        },
-        "BENRI1A": {
-            "_comment": "BENRI1A is meant to be dependent on runway usage.",
-            "icao": "BENRI1A",
-            "name": "Benri One Alfa",
-            "entryPoints": {
-                "PULIP":  ["PULIP"],
-                "DAKUS":  ["DAKUS"],
-                "GOKAD":  ["GUNIP", "GOKAD"]
-            },
-            "body": [["BENRI", "A90|S250"], "KK454", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30"]],
-            "draw": [
-                ["PULIP", "BENRI"],
-                ["DAKUS", "BENRI"],
-                ["GOKAD", "BENRI"],
-                ["BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
-            ]
-        },
-        "MENIK1A": {
-            "_comment": "MENIK1A is meant to be dependent on runway usage.",
-            "icao": "MENIK1A",
-            "name": "Menik One Alfa",
-            "entryPoints": {
-                "SAROX":  ["SAROX"],
-                "GUPTA":  ["GUPTA"],
-                "SALAX":  ["SALAX"]
-            },
-            "body": [["MENIK", "A90|S250"], "KK451", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30|S210"]],
-            "draw": [
-                ["SAROX", "MENIK"],
-                ["GUPTA", "MENIK"],
-                ["SALAX", "MENIK"],
-                ["MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
-            ]
-        },
-        "LAPIR3": {
-            "_comment": "LAPIR3 is meant to be dependent on runway usage.",
-            "icao": "LAPIR3",
-            "name": "Lapir Three",
-            "entryPoints": {
-                "DUMOK":    ["GUPTA", "BATAR", "DUMOK"],
-                "MALACCA":  ["ADPAX", ["VMK", "A60"]]
-            },
-            "body": [["LAPIR", "A40"]],
-            "draw": [
-                ["BATAR", "DUMOK", "LAPIR"],
-                ["GUPTA", "VMK", "LAPIR"]
-            ]
-        },
-        "KIDOT1P": {
-            "_comment": "KIDOT1P is meant to be dependent on runway usage.",
-            "icao": "KIDOT1P",
-            "name": "Kidot One Papa",
-            "entryPoints": {
-                "PULIP":  ["PULIP"],
-                "DAKUS":  ["DAKUS"],
-                "INTOT":  ["PUGER", "INTOT"]
-            },
-            "body": [["KIDOT", "A90|S250"], "OSPOV", ["LENKI", "S230"], "KK401", "KK402", "KK403", "KK404", ["KK405", "A80|S230"], ["MUNOV", "A70|S210"]],
-            "draw": [
-                ["PULIP", "KIDOT"],
-                ["DAKUS", "KIDOT"],
-                ["INTOT", "KIDOT"],
-                ["KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"]
-            ]
-        },
-        "BOBIS1P": {
-            "_comment": "BOBIS1P is meant to be dependent on runway usage.",
-            "icao": "BOBIS1P",
-            "name": "Bobis One Papa",
-            "entryPoints": {
-                "SALAX":  ["SALAX", "KK410"],
-                "GUPTA":  ["GUPTA"],
-                "SAROX":  ["SAROX"]
-            },
-            "body": [["BOBIS", "A110"], ["OLSOS", "S230"], "KK411", "KK412", "KK413", "KK414", "KK415", ["MUNOV", "A70|S210"]],
-            "draw": [
-                ["SALAX", "KK410", "BOBIS"],
-                ["GUPTA", "BOBIS"],
-                ["SAROX", "BOBIS"],
-                ["SALAX", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"]
-            ]
-        },
-        "KIDOT1C": {
-            "_comment": "KIDOT1C is meant to be dependent on runway usage.",
-            "icao": "KIDOT1C",
-            "name": "Kidot One Charlie",
-            "entryPoints": {
-                "PULIP":  ["PULIP"],
-                "DAKUS":  ["DAKUS"],
-                "INTOT":  ["PUGER", "INTOT"]
-            },
-            "body": [["KIDOT", "A90"], "OSPOV", "KK411", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-            "draw": [
-                ["PULIP", "KIDOT"],
-                ["DAKUS", "KIDOT"],
-                ["INTOT", "KIDOT"],
-                ["KIDOT", "OSPOV", "KK411", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-            ]
-        },
-        "PONOX1A": {
-            "_comment": "PONOX1A is meant to be dependent on runway usage.",
-            "icao": "PONOX1A",
-            "name": "Ponox One Alfa",
-            "entryPoints": {
-                "SAROX":  ["SAROX"],
-                "GUPTA":  ["GUPTA", "KK448"]
-            },
-            "body": [["PONOX", "A70"], "KK441", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-            "draw": [
-                ["SAROX", "PONOX"],
-                ["GUPTA", "KK448", "PONOX"],
-                ["PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-            ]
-        },
-        "SALAX1D": {
-            "_comment": "SALAX1D is meant to be dependent on runway usage.",
-            "icao": "SALAX1D",
-            "name": "Salax One Delta",
-            "entryPoints": {
-                "SALAX":  ["SALAX"]
-            },
-            "body": [["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-            "draw": [
-                ["SALAX", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-            ]
-        },
-        "EKUDA1A": {
-            "_comment": "EKUDA1A is meant to be dependent on runway usage.",
-            "icao": "EKUDA1A",
-            "name": "Ekuda One Alfa",
-            "entryPoints": {
-                "PULIP":  ["PULIP"],
-                "DAKUS":  ["DAKUS"],
-                "INTOT":  ["PUGER", "INTOT"]
-            },
-            "body": [["EKUDA", "A90|S250"], "KK421", "KK422", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-            "draw": [
-                ["PULIP", "EKUDA"],
-                ["DAKUS", "EKUDA"],
-                ["INTOT", "EKUDA"],
-                ["EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-            ]
-        },
-        "NOBEK1B": {
-            "_comment": "NOBEK1B is meant to be dependent on runway usage.",
-            "icao": "NOBEK1B",
-            "name": "Nobek One Bravo",
-            "entryPoints": {
-                "SAROX":  ["SAROX", "GEMAS", "KK424"],
-                "GUPTA":  ["GUPTA"]
-            },
-            "body": [["NOBEK", "A110|S250"], "KK425", "BELER", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-            "draw": [
-                ["SAROX", "GEMAS", "KK424", "NOBEK"],
-                ["GUPTA", "NOBEK"],
-                ["NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-            ]
-        },
-        "SALAX1A": {
-            "_comment": "SALAX1A is meant to be dependent on runway usage.",
-            "icao": "SALAX1A",
-            "name": "Salax One Alfa",
-            "entryPoints": {
-                "SALAX":  [["SALAX", "S250"]]
-            },
-            "body": [["BELER", "S230"], "SUROP", ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-            "draw": [
-                ["SALAX", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-            ]
-        }
+
     },
     "spawnPatterns": [
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.AGOSA.AGOSA",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.RUMID.RUMID",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.BATAR.BATAR",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.MITOS.MITOS",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.DUMOK.DUMOK",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.PIBOS.PIBOS",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.ISTAN.ISTAN",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK.KIMAT.KIMAT",
-            "altitude": null,
-            "speed": null,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["uae",  2],
-                ["etd",  1],
-                ["eva",  1],
-                ["gia",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["jsa",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "DAKUS.DAKUS1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 12,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["eva",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["mas", 74],
-                ["mxd", 31],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "PULIP.PULIP1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 12,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["eva",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["mas", 74],
-                ["mxd", 31],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "SAROX.SAROX1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 12,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["eva",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["mas", 74],
-                ["mxd", 31],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "GUPTA.GUPTA1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 12,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["gia",  1],
-                ["awq",  5],
-                ["jsa",  1],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "SALAX.SALAX1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 12,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["gia",  1],
-                ["awq",  5],
-                ["jsa",  1],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "INTOT.INTOT1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["uae",  2],
-                ["etd",  1],
-                ["klm",  2],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "INTOT.INTOT1V.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 10,
-            "airlines": [
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "BATU_ARANG.KIKAL3.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["cca",  1],
-                ["cpa",  1],
-                ["csn",  2],
-                ["eva",  1],
-                ["awq",  5],
-                ["jal",  1],
-                ["klm",  2],
-                ["kal",  3],
-                ["mas", 74],
-                ["mxd", 31],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "GOKAD.OLBON1B.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 4,
-            "airlines": [
-                ["axb",  1],
-                ["axm", 81],
-                ["xax", 22],
-                ["baw",  1],
-                ["uae",  2],
-                ["etd",  1],
-                ["klm",  2],
-                ["mas", 74],
-                ["mxd", 31],
-                ["qtr",  1],
-                ["thy",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKK",
-            "category": "arrival",
-            "route": "DUMOK.LAPIR3.WMKK",
-            "altitude": 10000,
-            "speed": 280,
-            "method": "random",
-            "rate": 2,
-            "airlines": [
-                ["axm", 81],
-                ["xax", 22],
-                ["gia",  1],
-                ["awq",  5],
-                ["jsa",  1],
-                ["lni",  1],
-                ["mas", 74],
-                ["mxd", 31],
-                ["slk",  1],
-                ["sia",  1],
-                ["tgw",  1],
-                ["fdx",  5],
-                ["ups", 20]
-            ]
-        }
-    ]
+
+    ],
+    "maps": {
+        "base": [[]]
+    }
 }
