@@ -1,0 +1,21 @@
+{
+    "icao": "mac",
+    "name": "Air Arabia Maroc",
+    "callsign": {
+        "name": "Arabia Maroc",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 9]
+        ],
+        "short": [
+            ["A320", 9]
+        ],
+        "a320": [
+            ["A320", 9]
+        ]
+    }
+}

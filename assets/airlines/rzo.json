@@ -1,18 +1,18 @@
 {
-    "icao": "ent",
-    "name": "Enter Air",
+    "icao": "rzo",
+    "name": "Azores Airlines",
     "callsign": {
-        "name": "EnterAir",
+        "name": "Air Azores",
         "callsignFormats": [
             "###"
         ]
     },
     "fleets": {
         "default": [
-            ["B738", 18]
+            ["A320", 2]
         ],
-        "b738": [
-            ["B738", 18]
+        "a320": [
+            ["A320", 2]
         ]
     }
 }

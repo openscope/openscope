@@ -1,0 +1,19 @@
+{
+    "icao": "nrs",
+    "name": "Norwegian Air UK",
+    "callsign": {
+        "name": "Rednose",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 1],
+            ["B789", 12]
+        ],
+        "b789": [
+            ["B789", 12]
+        ]
+    }
+}

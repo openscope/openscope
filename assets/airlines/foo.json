@@ -1,0 +1,18 @@
+{
+    "icao": "foo",
+    "name": "Anisec Luftfahrt",
+    "callsign": {
+        "name": "Austrojet",
+        "callsignFormats": [
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A321", 4]
+        ],
+        "a321": [
+            ["A321", 4]
+        ]
+    }
+}

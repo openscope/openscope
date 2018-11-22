@@ -1,0 +1,23 @@
+{
+    "icao": "awc",
+    "name": "Titan Airways",
+    "callsign": {
+        "name": "Zap",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A318", 1],
+            ["A320", 2],
+            ["A321", 3],
+            ["B734", 2],
+            ["B752", 2],
+            ["B763", 1]
+        ],
+        "a321": [
+            ["A321", 3]
+        ]
+    }
+}

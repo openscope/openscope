@@ -1,0 +1,23 @@
+{
+    "icao": "tgz",
+    "name": "Airzena Georgian Airways",
+    "callsign": {
+        "name": "Tamazi",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B737", 2],
+            ["CRJ2", 2],
+            ["E190", 4]
+        ],
+        "b737": [
+            ["B737", 2]
+        ],
+        "e190": [
+            ["E190", 4]
+        ]
+    }
+}

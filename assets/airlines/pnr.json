@@ -1,0 +1,18 @@
+{
+    "icao": "pwd",
+    "name": "PAWA Dominica",
+    "callsign": {
+        "name": "Pawa",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["DC93", 2],
+            ["MD82", 1],
+            ["MD83", 4],
+            ["MD87", 1]
+        ]
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "icao": "jaf",
+    "name": "TUI Airlines Belgium",
+    "callsign": {
+        "name": "Beauty",
+        "callsignFormats": [
+            "###",
+            "##@",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B38M", 4],
+            ["B737", 5],
+            ["B738", 17],
+            ["B739", 4],
+            ["B763", 1],
+            ["B788", 2],
+            ["E190", 4]
+        ]
+    }
+}
