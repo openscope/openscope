@@ -3,6 +3,7 @@ import _keys from 'lodash/keys';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
 import GameController from '../game/GameController';
+import SettingsController from './SettingsController';
 import TutorialView from './TutorialView';
 import { speech_toggle } from '../speech';
 import { EVENT } from '../constants/eventNames';
@@ -19,6 +20,7 @@ class UiController {
     constructor() {
         this._eventBus = null;
         this.tutorialView = null;
+        this.settingsController = null;
 
         this.$element = null;
         this.$airportDialog = null;
@@ -50,6 +52,7 @@ class UiController {
     init($element) {
         this._eventBus = EventBus;
         this.tutorialView = new TutorialView($element);
+        this.settingsController = new SettingsController($element);
 
         this.$element = $element;
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -142,8 +145,7 @@ class UiController {
     destroy() {
         this._eventBus = null;
         this.tutorialView = null;
-        this.ui = {};
-        this.ui.scale = INVALID_NUMBER;
+        this.settingsController = null;
 
         this.$element = null;
         this.$airportDialog = null;
@@ -330,11 +332,13 @@ class UiController {
      * @return {DOM element|string}
      */
     _buildAirportListItemTemplate(icao, difficulty, name) {
-        return `<li class="airport-list-item icao-${icao.toLowerCase()}">` +
-                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
-                    `<span class="icao">${icao.toUpperCase()}</span>` +
-                    `<span class="name">${name}</span>` +
-                '</li>';
+        return `
+            <li class="airport-list-item icao-${icao.toLowerCase()}">
+                <span style="font-size: 7pt" class="difficulty">${difficulty}</span>
+                <span class="icao">${icao.toUpperCase()}</span>
+                <span class="name">${name}</span>
+            </li>
+        `;
     }
 
     /**

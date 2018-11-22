@@ -13,6 +13,7 @@
 - [#1045](https://github.com/openscope/openscope/issues/1045) - Fix descent planning logic so arrivals can meet their altitude restrictions
 - [#1084](https://github.com/openscope/openscope/issues/1084) - Add messages for too-low glideslope intercepts
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
+- [#1193](https://github.com/openscope/openscope/issues/1193) - Adds `SettingsController` instantiation to `UiController.init()`
 
 
 
