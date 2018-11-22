@@ -2198,6 +2198,483 @@
             "airlines": [
                 ["baw/short", 1]
             ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "ADKUV.UL610.BATTY.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 1.662602637,
+            "airlines": [
+                ["baw/a320", 13],
+                ["ctn/a319", 2],
+                ["ctn/a320", 3],
+                ["ezy/airbusShort", 242],
+                ["foo/a321", 30],
+                ["iaw/a320", 7],
+                ["ibk/b738", 9],
+                ["nrs/b789", 12],
+                ["pgt/b738", 2],
+                ["qtr/b788", 43],
+                ["tcx/a321", 27],
+                ["tcx/b753", 15],
+                ["tom/b738", 14],
+                ["tom/b752", 6],
+                ["tvs/b738", 11],
+                ["uae/a388", 56],
+                ["wzz/a321", 22]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "ANG.UN861.DIKRO.UZ273.ANGLO.UM189.NEVIL.TIMBA2G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.316994277,
+            "airlines": [
+                ["ezy/airbusShort", 95],
+                ["tom/b738", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "ARE.UN472.REVTU.UP88.ODREB.P88.VASUX.VASUX1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 2.471261508,
+            "airlines": [
+                ["aea/b738", 20],
+                ["baw/a319", 13],
+                ["baw/a320", 121],
+                ["ezy/airbusShort", 300],
+                ["ibk/b738", 85],
+                ["ibs/a320", 39],
+                ["mac/a320", 8],
+                ["pga/e190", 24],
+                ["tap/airbusShort", 49],
+                ["tcx/a321", 34],
+                ["tcx/b753", 3],
+                ["tom/b738", 25],
+                ["tom/b752", 23],
+                ["tom/b787", 10],
+                ["vlg/a320", 10]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "BADIM.Q63.KENET.WILLO1F.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.006469271,
+            "airlines": [
+                ["ezy/airbusShort", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "BRILL..ORTAC.Y113.ERGUM.L982.VASUX.VASUX1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.824832048,
+            "airlines": [
+                ["aur/at72", 32],
+                ["aur/e190", 78],
+                ["baw/a319", 83],
+                ["ezy/airbusShort", 62]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "CHABY.UM733.OPALE.T421.KUNAV.TIMBA4B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 4.376461806,
+            "airlines": [
+                ["amc/a320", 19],
+                ["baw/short", 324],
+                ["ezs/short", 71],
+                ["ezy/airbusShort", 749],
+                ["ibk/b738m", 41],
+                ["tcx", 47],
+                ["tom/b738", 28],
+                ["tom/b752", 6],
+                ["tom/b787", 5],
+                ["vlg/short", 63]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "DAWLY.N17.OTMET.OTMET1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.145558597,
+            "airlines": [
+                ["bee/e170", 45]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.032346355,
+            "airlines": [
+                ["jaf", 2],
+                ["rwd/a33x", 8]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "DEXEN.UY124.AMPIT.UL15.KEPAD.UL151.TELBA.L151.KIDLI.WILLO3B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.931575019,
+            "airlines": [
+                ["baw/b772", 17],
+                ["ein/a320", 111],
+                ["nrs/b789", 15],
+                ["ryr/b738", 132],
+                ["tcx/a332", 8],
+                ["tsc/a332", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "EEL.UN125.SPY.UZ701.GORLO.UL980.REFSO.Z291.ERING.TIMBA1J.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.368748445,
+            "airlines": [
+                ["bti", 44],
+                ["cca/a333", 12],
+                ["ezy/airbusShort", 37],
+                ["sdm/a319", 21]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "EEL.UZ701.GORLO.UL980.REFSO.Z291.ERING.TIMBA1J.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.511072406,
+            "airlines": [
+                ["cpa/a359", 16],
+                ["ezy/a319", 50],
+                ["ibk/b738", 90],
+                ["nax/b738", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "ETEBO.UM20.GORLO.UL980.REFSO.UZ291.RIMBU.Z291.ERING.TIMBA1J.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.57253048,
+            "airlines": [
+                ["aui/b738", 41],
+                ["bru/b735", 1],
+                ["bru/e190", 6],
+                ["ent", 1],
+                ["ezy/airbusShort", 122],
+                ["tgz/b737", 2],
+                ["tgz/e190", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "GAPLI.UN20.RIGDI.N17.OTMET.OTMET1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.591938293,
+            "airlines": [
+                ["baw/b772", 112],
+                ["nrs/b789", 18],
+                ["rzo/a320", 2],
+                ["tcx/a332", 2],
+                ["tom/b787", 16],
+                ["vir/a33x", 33]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "GORLO.UL980.REFSO.UZ291.RIMBU.Z291.ERING.TIMBA1J.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.633988554,
+            "airlines": [
+                ["baw/short", 56],
+                ["ezy/airbusShort", 137]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "LAKEY.UL612.HON.N859.KIDLI.WILLO3B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.216720577,
+            "airlines": [
+                ["ezy/a320", 7],
+                ["ice/short", 22],
+                ["wow/short", 38]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "LARDI.N866.BUKUT.P7.SONOG.Y291.ODROB.Z291.ERING.TIMBA1J.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 1.060960438,
+            "airlines": [
+                ["cal/a359", 14],
+                ["ibk/b738", 206],
+                ["m/fastGA", 1],
+                ["nax/b738", 107]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "LESLU.N514.DIDEL.N513.ELRIP.N17.OTMET.OTMET1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.203782035,
+            "airlines": [
+                ["nrs/b789", 25],
+                ["tcx/a332", 3],
+                ["tom/b787", 7],
+                ["vir/b744", 6],
+                ["wja/b38m", 22]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "LIRSU.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.640457825,
+            "airlines": [
+                ["baw/a319", 10],
+                ["baw/a320", 22],
+                ["ezy/airbusShort", 84],
+                ["ibk/b738", 5],
+                ["tcx/a321", 8],
+                ["thy/a321", 41],
+                ["thy/b738", 19],
+                ["tom/b738", 3],
+                ["tom/b752", 1],
+                ["tom/b787", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "NOMSU.UQ4.WAL.UL151.TELBA.L151.KIDLI.WILLO3B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.119681513,
+            "airlines": [
+                ["ezy/airbusShort", 37]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "NORLA.UM140.MERLY.L149.DIDEL.N513.ELRIP.N17.OTMET.OTMET1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 1.096541428,
+            "airlines": [
+                ["baw/b772", 63],
+                ["n/fastGA", 1],
+                ["nrs/b789", 111],
+                ["ryr/b738", 37],
+                ["tcx/a332", 5],
+                ["tom/b787", 32],
+                ["tsc/a33x", 20],
+                ["vir/b744", 31],
+                ["wja/b763", 39]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "OPALE.UT421.KUNAV.TIMBA4B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.310525006,
+            "airlines": [
+                ["ezy/airbusShort", 57],
+                ["vlg/a320", 39]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "REN.UY110.REVTU.UP88.ODREB.P88.VASUX.VASUX1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 3.270216472,
+            "airlines": [
+                ["baw/a319", 97],
+                ["baw/a320", 200],
+                ["ezy/airbusShort", 423],
+                ["ibk/b738", 83],
+                ["mac/a320", 6],
+                ["ram/b73x", 20],
+                ["ryr/b738", 13],
+                ["tcx/a321", 5],
+                ["tom/b738", 8],
+                ["tom/b752", 4],
+                ["tom/b788", 6],
+                ["vlg/a32x", 146]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "RINSO.UM184.DIKRO.UZ273.ANGLO.UM189.NEVIL.TIMBA2G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.226424484,
+            "airlines": [
+                ["baw/short", 24],
+                ["ezy/airbusShort", 39],
+                ["mac/a320", 5],
+                ["tom/b738", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "RLP.UT10.NITAR.UQ220.KESAX.T421.KUNAV.TIMBA4B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 3.548395123,
+            "airlines": [
+                ["awc/a321", 1],
+                ["baw/short", 213],
+                ["ent/b738", 12],
+                ["ezs/a320", 17],
+                ["ezy/airbusShort", 530],
+                ["fcb/a320", 23],
+                ["ibk/b738", 42],
+                ["mgx", 5],
+                ["sp/fastGA", 1],
+                ["tar/a320", 9],
+                ["tcx/a321", 86],
+                ["tcx/b753", 28],
+                ["tom", 126]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "RUSIB.UN491.BETUV.UY111.JSY.UN472.REVTU.UP88.ODREB.P88.VASUX.VASUX1G.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.097039064,
+            "airlines": [
+                ["baw/b772", 30]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "SOSIM.UL15.KEPAD.UL151.DISIT.L151.KIDLI.WILLO3B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 0.524010948,
+            "airlines": [
+                ["ezy/airbusShort", 119],
+                ["nrs/b789", 7],
+                ["tsc/a310", 4],
+                ["vir/b744", 21],
+                ["wja/b763", 11]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGKK",
+            "category": "arrival",
+            "route": "SUBUK..KEPAD.UL151.TELBA.L151.KIDLI.WILLO3B.EGKK26R",
+            "altitude": [30000, 37000],
+            "speed": 280,
+            "method": "random",
+            "rate": 1.238865389,
+            "airlines": [
+                ["baw/short", 130],
+                ["ezy/airbusShort", 241],
+                ["tsc/a332", 12]
+            ]
         }
     ],
     "maps": {
