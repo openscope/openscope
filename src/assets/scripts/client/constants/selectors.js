@@ -93,7 +93,7 @@ export const IDS = {
     PAUSED: 'paused',
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
-    GITHUB_EXTERNAL_LINK: 'github-external-link',
+    GITHUB_EXTERNAL_LINK: 'js-github-external-link',
     SCORE: 'score',
     SIDEBAR: 'sidebar'
 };

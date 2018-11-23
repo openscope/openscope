@@ -270,7 +270,6 @@ export default class AppController {
         }
 
         EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', nextAirportJson.icao);
-
         NavigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();

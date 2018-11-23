@@ -430,6 +430,7 @@ class GameController {
         }
 
         const $scoreElement = $(SELECTORS.DOM_SELECTORS.SCORE);
+
         $scoreElement.text(round(this.game.score));
 
         // TODO: wait, what? Why not just < 0?
