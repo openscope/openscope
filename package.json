@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "gulp build --prod",
-    "test": "nyc --require babel-core/register ava --concurrency=5",
+    "test": "nyc --require babel-core/register --require ts-node/register ava --concurrency=5",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "coverage": "npm run test && npm run report",
@@ -50,7 +50,13 @@
       "!**/testHelpers/**"
     ],
     "verbose": true,
+    "compileEnhancements": false,
+    "extensions": [
+      "ts",
+      "js"
+    ],
     "require": [
+      "ts-node/register",
       "babel-core/register",
       "./test/testHelpers/globalProps.js",
       "./test/testHelpers/localStorage.js"
@@ -82,6 +88,7 @@
     "@openscope/validator": "latest",
     "@types/jquery": "3.3.22",
     "@types/lodash": "4.14.118",
+    "@types/sinon": "5.0.7",
     "ava": "^0.25.0",
     "babel-core": "^6.23.3",
     "babel-eslint": "^10.0.1",
@@ -124,6 +131,7 @@
     "rimraf": "^2.5.4",
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.6",
+    "ts-node": "7.0.1",
     "tsify": "4.0.0",
     "tslint": "5.11.0",
     "vinyl-buffer": "^1.0.0",
