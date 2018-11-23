@@ -1246,7 +1246,9 @@ export default class CanvasController {
             match = true;
         }
 
-        let white = aircraftModel.isControllable ? this.theme.DATA_BLOCK.TEXT_IN_RANGE : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
+        let white = aircraftModel.isControllable
+            ? this.theme.DATA_BLOCK.TEXT_IN_RANGE
+            : this.theme.DATA_BLOCK.TEXT_OUT_OF_RANGE;
 
         if (match) {
             white = this.theme.DATA_BLOCK.TEXT_SELECTED;
@@ -1342,8 +1344,6 @@ export default class CanvasController {
         }
 
         // TODO: logic and math here should be done once and not every frame. this could be moved to the `RadarTargetModel`
-        // const { callsign } = aircraftModel;
-        // const paddingLR = 5;
         // width of datablock (scales to fit callsign)
         const width = this.theme.DATA_BLOCK.WIDTH; // clamp(1, 6 * callsign.length) + (paddingLR * 2);
         const halfWidth = this.theme.DATA_BLOCK.HALF_WIDTH; // width / 2;

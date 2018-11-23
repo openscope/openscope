@@ -349,10 +349,10 @@ export default class RadarTargetModel {
      * @returns {string}
      */
     buildDataBlockRowTwoSecondaryInfo() {
-        const aircraftTimeshareDestination = _pad(this.aircraftModel.timeShareDestination, 4, ' ');
+        const scratchPadText = _pad(this._scratchPadText, 4, ' ');
         const aircraftModelIcao = _pad(this.aircraftModel.model.icao.toUpperCase(), 4, ' ');
 
-        return `${aircraftTimeshareDestination} ${aircraftModelIcao}`;
+        return `${scratchPadText} ${aircraftModelIcao}`;
     }
 
     /**

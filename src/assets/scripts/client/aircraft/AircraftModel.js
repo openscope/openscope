@@ -532,21 +532,6 @@ export default class AircraftModel {
         return this.positionModel.relativePosition;
     }
 
-    /**
-     * Returns the appropriate string to use in
-     * row one of a data block.
-     *
-     * @property timeShareDestination
-     * @type {string}
-     */
-    get timeShareDestination() {
-        if (this.isArrival()) {
-            return this.destination.toUpperCase();
-        }
-
-        return this.fms.currentWaypoint.name.slice(0, 3);
-    }
-
     // TODO: this feels like it belongs in either the AirportModel or the AirspaceModel which then exposes a
     // method that will check collisions
     /**
