@@ -243,8 +243,8 @@ export default class RadarTargetModel {
      * @chainable
      */
     _initializeScratchPad() {
-        if (!this.aircraftModel.destination) {
-            this._scratchPadText = 'XXX';
+        if (this.aircraftModel.isDeparture()) {
+            this._scratchPadText = this.aircraftModel.fms.getDepartureExitView();
 
             return this;
         }
@@ -315,7 +315,7 @@ export default class RadarTargetModel {
      * @returns {string}
      */
     buildDataBlockRowOne() {
-        let dataBlockRowOne = `${this.aircraftModel.callsign}`;
+        let dataBlockRowOne = this.aircraftModel.callsign;
 
         if (this.aircraftModel.model.weightclass === 'H') {
             // using empty space here on purpose so this gets rendered

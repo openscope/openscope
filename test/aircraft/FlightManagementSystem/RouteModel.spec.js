@@ -471,6 +471,22 @@ ava('.getRouteStringWithSpaces() returns a route string for the remaining legs o
     t.true(result === 'GUP IGM');
 });
 
+ava.only('.getDepartureExitView() returns the exit fixname of a SID procedure', (t) => {
+    const procedureRouteModel = new RouteModel(singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = 'TNP';
+    const result = procedureRouteModel.getDepartureExitView();
+
+    t.true(result === expectedResult);
+});
+
+ava.only('.getDepartureExitView() returns first fix in route when no procedure is defined', (t) => {
+    const fixRouteModel = new RouteModel(multiDirectSegmentRouteStringMock);
+    const expectedResult = 'OAL';
+    const result = fixRouteModel.getDepartureExitView();
+
+    t.true(result === expectedResult);
+});
+
 ava('.getSidIcao() returns undefined when there is no SID leg in the route', (t) => {
     const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const result = model.getSidIcao();

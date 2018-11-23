@@ -417,7 +417,9 @@ export default class RouteModel extends BaseModel {
 
     /**
     * Returns the full route string, with airports removed
-    * For example, `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
+    *
+    * Example:
+    * - `KSEA16L.BANGR9.PANGL` --> `BANGR9.PANGL`
     *
     * @for RouteModel
     * @method getFullRouteStringWithoutAirportsWithSpaces
@@ -436,6 +438,12 @@ export default class RouteModel extends BaseModel {
 
     /**
      * Return `#fullRouteString` with spaces between elements instead of dot notation
+     *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL` --> `KSEA16L BANGR9 PANGL`
+     *
+     * Used mostly for representing the route string in the view, like
+     * an aircraft strip, etc.
      *
      * @for RouteModel
      * @method getFullRouteStringWithSpaces
@@ -463,6 +471,9 @@ export default class RouteModel extends BaseModel {
     /**
      * Return `#routeString` with spaces between elements instead of dot notation
      *
+     * Example:
+     * - `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+     *
      * @for RouteModel
      * @method getRouteStringWithSpaces
      * @return {string}
@@ -471,6 +482,29 @@ export default class RouteModel extends BaseModel {
         const routeString = this.getRouteString();
 
         return routeString.replace(REGEX.DOUBLE_DOT, ' ').replace(REGEX.SINGLE_DOT, ' ');
+    }
+
+    /**
+     * Returns exit waypoint for a departure aircraft, to be used in datablock
+     *
+     * When a SID procedure is defined, this will return the exit waypoint
+     * Example:
+     * - `KLAS07R.BOACH6.TNP` -> `TNP`
+     *
+     * When no SID procedure is defined, this will return the first fix in the route
+     * Example:
+     * - `OAL..MLF..PGS` -> `OAL`
+     *
+     * @for RouteModel
+     * @method getDepartureExitView
+     * @returns {string} First fix in flightPlan or exit fix of SID
+     */
+    getDepartureExitView() {
+        if (!this.hasSidLeg()) {
+            return this.getRouteString().split('..')[0];
+        }
+
+        return _last(this.getRouteString().split('.'));
     }
 
     /**
@@ -860,7 +894,6 @@ export default class RouteModel extends BaseModel {
         const originalCurrentWaypointName = this.currentWaypoint.name;
         const nextExitName = `${this.getArrivalRunwayAirportIcao().toUpperCase()}${runwayModel.name}`;
         const starLegIndex = this._findStarLegIndex();
-
         const amendedStarLegModel = this._createAmendedStarLegUsingDifferentExitName(nextExitName, starLegIndex);
         this._legCollection[starLegIndex] = amendedStarLegModel;
 
