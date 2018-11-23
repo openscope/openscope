@@ -30,6 +30,7 @@
 - [#308](https://github.com/openscope/openscope/issues/308) - Abstract Aircraft.getWind() to the AirportModel
 - [#1199](https://github.com/openscope/openscope/issues/1199) - Change taxi readback to "taxi to and hold short of Runway 1"
 - [#1208](https://github.com/openscope/openscope/issues/1208) - Update Thomas Cook callsign
+- [#1209](https://github.com/openscope/openscope/issues/1209) - Update TUI Airways callsign
 
 
 

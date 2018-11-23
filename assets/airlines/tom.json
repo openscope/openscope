@@ -2,7 +2,7 @@
     "icao": "tom",
     "name": "TUI Airways",
     "callsign": {
-        "name": "Tuiair",
+        "name": "Tomjet",
         "callsignFormats": [
             "##@@",
             "###"
