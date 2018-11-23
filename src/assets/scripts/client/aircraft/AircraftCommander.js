@@ -652,7 +652,7 @@ export default class AircraftCommander {
         readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, Runway ${runway.name}, ` +
             'cleared for takeoff';
 
-        // We have to make it say winned to make it sound like "Wind" and not "Wined"
+        // We have to make it say winned to make it sound like "Wind" and not "Whined"
         readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
             `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, cleared for takeoff`;
 
