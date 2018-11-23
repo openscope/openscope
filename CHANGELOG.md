@@ -1,6 +1,7 @@
 # 6.8.0 (December 1, 2018)
 ### New Features
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
+- [#985](https://github.com/openscope/openscope/issues/985) - Add London Heathrow Aiport (EGLL)
 - [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
 - [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
 
