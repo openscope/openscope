@@ -708,12 +708,4 @@ export default class TutorialView {
         EventTracker.trackEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
         this.tutorial_update_content();
     }
-
-    // TODO: this method never gets called ever, remove
-    /**
-     * @method tutorial_resize
-     */
-    tutorial_resize() {
-        this.tutorial_move();
-    }
 }

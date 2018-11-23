@@ -28,6 +28,7 @@ class UiController {
         this.$airportDialog = null;
         this.$airportList = null;
         this.$fastForwards = null;
+        this.$githubLinkElement = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
         this.$speechToggle = null;
@@ -60,6 +61,7 @@ class UiController {
         this.$airportDialog = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
+        this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK)
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
         this.$pausedImg = this.$element.find(`${SELECTORS.DOM_SELECTORS.PAUSED} img`);
         this.$speechToggle = this.$element.find(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
@@ -72,7 +74,6 @@ class UiController {
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$toggleOptions = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS);
         this.$toggleVideoMap = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_VIDEO_MAP);
-        this.$githubLinkElement = this.$element.find(SELECTORS.DOM_SELECTORS.GITHUB_EXTERNAL_LINK)
 
         return this.setupHandlers()
             .enable();
@@ -98,6 +99,7 @@ class UiController {
     enable() {
         // TODO: move these to properly bound handler methods
         this.$fastForwards.on('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
         this.$pauseToggle.on('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.on('click', (event) => GameController.game_unpause(event));
         this.$speechToggle.on('click', (event) => speech_toggle(event));
@@ -110,7 +112,6 @@ class UiController {
         this.$toggleTutorial.on('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.on('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.on('click', (event) => this.onToggleVideoMap(event));
-        this.$githubLinkElement.on('click', (event) => this.onClickGithubLink(event));
 
         return this;
     }
@@ -123,6 +124,7 @@ class UiController {
      */
     disable() {
         this.$fastForwards.off('click', (event) => GameController.game_timewarp_toggle(event));
+        this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
         this.$pauseToggle.off('click', (event) => GameController.game_pause_toggle(event));
         this.$pausedImg.off('click', (event) => GameController.game_unpause(event));
         this.$speechToggle.off('click', (event) => speech_toggle(event));
@@ -135,7 +137,6 @@ class UiController {
         this.$toggleTutorial.off('click', (event) => this.onToggleTutorial(event));
         this.$toggleOptions.off('click', (event) => this.onToggleOptions(event));
         this.$toggleVideoMap.off('click', (event) => this.onToggleVideoMap(event));
-        this.$githubLinkElement.off('click', (event) => this.onClickGithubLink(event));
 
         return this.destroy();
     }
@@ -155,6 +156,7 @@ class UiController {
         this.$airportDialog = null;
         this.$airportList = null;
         this.$fastForwards = null;
+        this.$githubLinkElement = null;
         this.$pauseToggle = null;
         this.$pausedImg = null;
         this.$speechToggle = null;
@@ -398,7 +400,6 @@ class UiController {
      */
     _onClickCloseAirportDialog() {
         EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
-
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
