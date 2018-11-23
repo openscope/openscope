@@ -7,7 +7,7 @@ coverage/
 .idea/
 .nyc_output/
 node_modules/
-npm-debug.log
+npm-debug.log.*
 public/
 assets/style/
 assets/scripts/
