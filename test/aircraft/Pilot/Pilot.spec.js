@@ -617,7 +617,7 @@ ava('.crossFix() correctly configures MCP and returns correct response ', (t) =>
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilotFixture = createPilotFixture();
     const fixNameMock = 'SKEBR';
-    const altitude = 8000;
+    const altitudeMock = 8000;
     const expectedResponse = [
         true,
         {
@@ -627,13 +627,13 @@ ava('.crossFix() correctly configures MCP and returns correct response ', (t) =>
     ];
 
     const waypointModel = pilotFixture._fms.findWaypoint(fixNameMock);
-    const response = pilotFixture.crossFix(aircraftModel, fixNameMock, altitude);
+    const response = pilotFixture.crossFix(aircraftModel, fixNameMock, altitudeMock);
 
     t.deepEqual(response, expectedResponse);
     t.true(pilotFixture._mcp.altitudeMode === 'VNAV');
-    t.true(pilotFixture._mcp.altitude === altitude);
-    t.true(waypointModel.altitudeMinimum === altitude);
-    t.true(waypointModel.altitudeMaximum === altitude);
+    t.true(pilotFixture._mcp.altitude === altitudeMock);
+    t.true(waypointModel.altitudeMinimum === altitudeMock);
+    t.true(waypointModel.altitudeMaximum === altitudeMock);
 });
 
 ava('.descendViaStar() returns early when provided bottom altitude parameter is invalid', (t) => {
