@@ -211,10 +211,10 @@ export const timewarpParser = (args = []) => {
 };
 
 /**
- * `crossingParser` converts the altitude argument from flight level number (i.e. 180) to feet in thousands (i.e. 18000)
+ * `crossingParser` converts the altitude argument from flight level number (i.e. 180) to feet in thousands (i.e. 18000).
  *
  * @method crossingParser
- * @param  {array} [args=[]]
+ * @param  args {array} [fix name, 'at' or '@', altitude]
  * @return {array<string, number>}
  */
 export const crossingParser = (args = []) => {
