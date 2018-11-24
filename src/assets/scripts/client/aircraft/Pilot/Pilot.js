@@ -549,13 +549,13 @@ export default class Pilot {
      * Cross a fix at a certain altitude
      *
      * @for Pilot
-     * @method cross
+     * @method crossFix
      * @param aircraft {AircraftModel}
-     * @param fixName {string} name of the fix
+     * @param fixName  {string} name of the fix
      * @param altitude {number} the altitude
-     * @return {array}                [success of operation, readback]
+     * @return {array}  success of operation, readback]
      */
-    cross(aircraft, fixName, altitude) {
+    crossFix(aircraft, fixName, altitude) {
         if (!NavigationLibrary.hasFixName(fixName)) {
             return [false, `unknown fix '${fixName}'`];
         }

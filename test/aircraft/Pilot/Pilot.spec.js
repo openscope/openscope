@@ -613,7 +613,7 @@ ava('.conductInstrumentApproach() returns a success message', (t) => {
     t.deepEqual(result, expectedResult);
 });
 
-ava('.cross() correctly configures MCP and returns correct response ', (t) => {
+ava('.crossFix() correctly configures MCP and returns correct response ', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
     const fixName = 'SKEBR';
@@ -627,7 +627,7 @@ ava('.cross() correctly configures MCP and returns correct response ', (t) => {
     ];
 
     const waypoint = pilot._fms.findWaypoint(fixName);
-    const response = pilot.cross(aircraftModel, fixName, altitude);
+    const response = pilot.crossFix(aircraftModel, fixName, altitude);
 
     t.deepEqual(response, expectedResponse);
     t.true(pilot._mcp.altitudeMode === 'VNAV');
