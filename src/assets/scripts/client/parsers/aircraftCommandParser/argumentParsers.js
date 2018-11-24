@@ -211,8 +211,7 @@ export const timewarpParser = (args = []) => {
 };
 
 /**
- * the `timewarp` command needs to be able to provide a default value,
- * this parser allows us to do that.
+ * `crossingParser` converts the altitude argument from flight level number (i.e. 180) to feet in thousands (i.e. 18000)
  *
  * @method crossingParser
  * @param  {array} [args=[]]
