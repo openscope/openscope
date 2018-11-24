@@ -244,7 +244,7 @@ export default class RadarTargetModel {
      */
     _initializeScratchPad() {
         if (this.aircraftModel.isDeparture()) {
-            this._scratchPadText = this.aircraftModel.fms.getDepartureExitView();
+            this._scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
 
             return this;
         }

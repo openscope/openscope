@@ -611,11 +611,11 @@ export default class Fms {
      * Primarily used for aircraft dataBlock
      *
      * @for Fms
-     * @method getDepartureExitView
+     * @method getFlightPlanEntry
      * @returns {string} First fix in flightPlan or exit fix of SID
      */
-    getDepartureExitView() {
-        return this._routeModel.getDepartureExitView();
+    getFlightPlanEntry() {
+        return this._routeModel.getFlightPlanEntry();
     }
 
     /**

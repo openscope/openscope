@@ -496,15 +496,18 @@ export default class RouteModel extends BaseModel {
      * - `OAL..MLF..PGS` -> `OAL`
      *
      * @for RouteModel
-     * @method getDepartureExitView
+     * @method getFlightPlanEntry
      * @returns {string} First fix in flightPlan or exit fix of SID
      */
-    getDepartureExitView() {
+    getFlightPlanEntry() {
         if (!this.hasSidLeg()) {
-            return this.getRouteString().split('..')[0];
+            return this.getFullRouteString().split('..')[0];
         }
 
-        return _last(this.getRouteString().split('.'));
+        const routeStringParts = this._divideRouteStringIntoSegments(this.getFullRouteString());
+        const temporaryLegModel = new LegModel(routeStringParts[0]);
+
+        return temporaryLegModel.getExitFixName();
     }
 
     /**

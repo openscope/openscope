@@ -471,18 +471,27 @@ ava('.getRouteStringWithSpaces() returns a route string for the remaining legs o
     t.true(result === 'GUP IGM');
 });
 
-ava('.getDepartureExitView() returns the exit fixname of a SID procedure', (t) => {
+ava('.getFlightPlanEntry() returns the exit fixname of a SID procedure', (t) => {
     const procedureRouteModel = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const expectedResult = 'TNP';
-    const result = procedureRouteModel.getDepartureExitView();
+    const result = procedureRouteModel.getFlightPlanEntry();
 
     t.true(result === expectedResult);
 });
 
-ava('.getDepartureExitView() returns first fix in route when no procedure is defined', (t) => {
+ava('.getFlightPlanEntry() returns the exit fixname of the SID leg when part of a complex route', (t) => {
+    const routeString = 'KLAS07R.BOACH6.TNP..OAL..COWBY';
+    const fixRouteModel = new RouteModel(routeString);
+    const expectedResult = 'TNP';
+    const result = fixRouteModel.getFlightPlanEntry();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getFlightPlanEntry() returns first fix in route when no procedure is defined', (t) => {
     const fixRouteModel = new RouteModel(multiDirectSegmentRouteStringMock);
     const expectedResult = 'OAL';
-    const result = fixRouteModel.getDepartureExitView();
+    const result = fixRouteModel.getFlightPlanEntry();
 
     t.true(result === expectedResult);
 });
