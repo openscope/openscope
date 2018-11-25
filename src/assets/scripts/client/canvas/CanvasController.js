@@ -14,7 +14,6 @@ import {
     sin,
     cos,
     round,
-    extrapolate_range_clamp,
     clamp
 } from '../math/core';
 import {
@@ -403,7 +402,6 @@ export default class CanvasController {
             this._drawSids(staticCanvasCtx);
             this._drawStars(staticCanvasCtx);
             this._drawAirspaceAndRangeRings(staticCanvasCtx);
-            this._drawWindVane(staticCanvasCtx);
             this._drawRunwayLabels(staticCanvasCtx);
             this._drawCurrentScale(staticCanvasCtx);
             this._drawSelectedAircraftCompass(staticCanvasCtx);
@@ -639,6 +637,7 @@ export default class CanvasController {
         cc.translate(0.5, 0.5);
         cc.lineWidth = 1;
         cc.textAlign = 'center';
+        cc.beginPath();
         cc.moveTo(widthLessOffset, offsetY);
         cc.lineTo(widthLessOffset, offsetY + height);
         cc.lineTo(widthLessOffset - px_length, offsetY + height);
@@ -1293,6 +1292,7 @@ export default class CanvasController {
             radarTargetPosition[1] + offsetComponent[1] * leaderLength
         ];
 
+        cc.beginPath();
         cc.moveTo(...leaderStart);
         cc.lineTo(...leaderEnd);
         cc.strokeStyle = white;
@@ -1474,20 +1474,6 @@ export default class CanvasController {
         }
 
         cc.restore();
-    }
-
-    /**
-     * Draw wind vane in lower right section of the scope view
-     *
-     * @for CanvasController
-     * @method _drawWindVane
-     * @param cc {HTMLCanvasContext}
-     * @private
-     */
-    _drawWindVane(cc) {
-        // left over from old `._drawWindVane()` method. removing this, or moving it to `._drawAirspaceAndRangeRings`
-        // or `._drawRunwayLabels()` causes a white circle to be drawn with the airport center at its origin
-        cc.beginPath();
     }
 
     /**
@@ -1879,6 +1865,7 @@ export default class CanvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
         cc.translate(CanvasStageModel._panX, CanvasStageModel._panY);
+        cc.beginPath();
 
         for (let i = 0; i < airportModel.maps.base.length; i++) {
             const mapItem = airportModel.maps.base[i];
