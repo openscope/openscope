@@ -140,7 +140,7 @@ export default class AppController {
      * @param aircraftTypeDefinitionList {array<object>}
      */
     setupChildren(airportLoadList, initialAirportIcao, initialAirportData, airlineList, aircraftTypeDefinitionList) {
-        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'initial-load', initialAirportIcao);
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'initial-load', initialAirportIcao);
 
         this.$canvasesElement = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
 
@@ -269,7 +269,7 @@ export default class AppController {
             return;
         }
 
-        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', nextAirportJson.icao);
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', nextAirportJson.icao);
         NavigationLibrary.reset();
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();

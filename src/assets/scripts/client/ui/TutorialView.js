@@ -695,7 +695,7 @@ export default class TutorialView {
 
         prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
-        EventTracker.trackEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${prop.tutorial.step}`);
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${prop.tutorial.step}`);
         this.tutorial_update_content();
     }
 
@@ -705,7 +705,7 @@ export default class TutorialView {
     tutorial_prev() {
         prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
-        EventTracker.trackEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
         this.tutorial_update_content();
     }
 }

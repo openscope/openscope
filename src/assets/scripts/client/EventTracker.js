@@ -24,13 +24,13 @@ class EventTracker {
      * Send a custom event to google analytics
      *
      * @for EventTracker
-     * @method trackEvent
+     * @method recordEvent
      * @param category {TRACKABLE_EVENT}
      * @param action {string}
      * @param label {string}
      * @param value {string|null} [optional]
      */
-    trackEvent(category, action, label, value = null) {
+    recordEvent(category, action, label, value = null) {
         if (!this._isEnabled()) {
             console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
 
@@ -55,10 +55,10 @@ class EventTracker {
      * Track a click on an outbound link
      *
      * @for EventTracker
-     * @method trackOutboundLink
+     * @method recordClickOnOutboundLink
      * @param url {string}
      */
-    trackOutboundLink(url) {
+    recordClickOnOutboundLink(url) {
         if (!this._isEnabled()) {
             console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
 

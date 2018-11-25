@@ -668,7 +668,7 @@ export default class InputController {
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
-                EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp-maunal-entry', `${nextTimewarpValue}`);
+                EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp-maunal-entry', `${nextTimewarpValue}`);
 
                 return true;
 

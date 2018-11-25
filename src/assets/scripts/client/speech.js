@@ -106,5 +106,5 @@ export const speech_toggle = () => {
     localStorage[STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
     const hasClass = $speechToggleElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-    EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'speech', `${hasClass}`);
+    EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'speech', `${hasClass}`);
 };

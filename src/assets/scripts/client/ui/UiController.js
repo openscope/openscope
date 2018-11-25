@@ -356,7 +356,7 @@ class UiController {
 
         if (warn) {
             html.addClass(SELECTORS.CLASSNAMES.WARN);
-            EventTracker.trackEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
+            EventTracker.recordEvent(TRACKABLE_EVENT.UI_LOG, 'error', message);
         }
 
         const $log = $(SELECTORS.DOM_SELECTORS.LOG);
@@ -377,7 +377,7 @@ class UiController {
      * @method _onClickOpenAirportDialog
      */
     _onClickOpenAirportDialog() {
-        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'open');
         this.$airportDialog.addClass(SELECTORS.CLASSNAMES.OPEN);
 
         const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_ITEM_IS_ACTIVE);
@@ -399,7 +399,7 @@ class UiController {
      * @private
      */
     _onClickCloseAirportDialog() {
-        EventTracker.trackEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
+        EventTracker.recordEvent(TRACKABLE_EVENT.AIRPORTS, 'airport-switcher', 'close');
         this.$airportDialog.removeClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
@@ -426,7 +426,7 @@ class UiController {
     onToggleLabels(event) {
         const labelButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'fix-runway-labels', labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'fix-runway-labels', `${labelButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         labelButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this._eventBus.trigger(EVENT.TOGGLE_LABELS);
     }
@@ -439,7 +439,7 @@ class UiController {
         const restrictedButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         restrictedButtonElement.toggleClass(`${SELECTORS.DOM_SELECTORS.WARNING_BUTTON} ${SELECTORS.CLASSNAMES.ACTIVE}`);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'restricted', restrictedButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'restricted', `${restrictedButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_RESTRICTED_AREAS);
     }
 
@@ -448,7 +448,7 @@ class UiController {
     * @method onToggleOptions
     */
     onToggleOptions() {
-        EventTracker.trackEvent(TRACKABLE_EVENT.SETTINGS, 'toggle-dialog', this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.SETTINGS, 'toggle-dialog', `${this.$toggleOptions.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this.$toggleOptions.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
         this.$optionsDialog.toggleClass(SELECTORS.CLASSNAMES.OPEN);
     }
@@ -462,7 +462,7 @@ class UiController {
         const $sisdButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $sisdButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'sids', $sisdButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'sids', `${$sisdButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_SID_MAP);
     }
 
@@ -475,7 +475,7 @@ class UiController {
         const $starsButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $starsButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'stars', $starsButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'stars', `${$starsButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_STAR_MAP);
     }
 
@@ -488,7 +488,7 @@ class UiController {
         const $terrainButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $terrainButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'terrain', $terrainButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'terrain', `${$terrainButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_TERRAIN);
     }
 
@@ -500,7 +500,7 @@ class UiController {
         const $tutorialButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $tutorialButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'tutorial', $tutorialButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'tutorial', `${$tutorialButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_TUTORIAL);
     }
 
@@ -513,7 +513,7 @@ class UiController {
         const $videoMapButtonElement = $(event.target).closest(SELECTORS.DOM_SELECTORS.CONTROL);
 
         $videoMapButtonElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
-        EventTracker.trackEvent(TRACKABLE_EVENT.OPTIONS, 'video-map', $videoMapButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE));
+        EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'video-map', `${$videoMapButtonElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE)}`);
         this._eventBus.trigger(EVENT.TOGGLE_VIDEO_MAP);
     }
 
@@ -525,7 +525,7 @@ class UiController {
      * @param event {jquery event}
      */
     onClickGithubLink(event) {
-        EventTracker.trackOutboundLink(event.target.href);
+        EventTracker.recordClickOnOutboundLink(event.target.href);
     }
 }
 

@@ -111,7 +111,7 @@ export default class GameOptions {
         const optionStorageKey = this.buildStorageName(name);
 
         global.localStorage.setItem(optionStorageKey, value);
-        EventTracker.trackEvent(TRACKABLE_EVENT.SETTINGS, name, value);
+        EventTracker.recordEvent(TRACKABLE_EVENT.SETTINGS, name, value);
 
         if (this._options[name].onChangeEventHandler) {
             this._eventBus.trigger(this._options[name].onChangeEventHandler, value);
