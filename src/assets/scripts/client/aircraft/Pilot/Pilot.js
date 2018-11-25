@@ -572,9 +572,7 @@ export default class Pilot {
 
         const waypoint = this._fms.findWaypoint(fixName);
 
-        waypoint.altitudeMaximum = altitude;
-        waypoint.altitudeMinimum = altitude;
-
+        waypoint.setAltitude(altitude);
         this._mcp.setAltitudeFieldValue(altitude);
         this._mcp.setAltitudeVnav();
 

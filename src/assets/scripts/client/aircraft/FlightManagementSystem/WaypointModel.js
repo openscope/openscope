@@ -1,5 +1,6 @@
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import _isNaN from 'lodash/isNaN';
 import FixCollection from '../../navigationLibrary/FixCollection';
 import {
     INVALID_INDEX,
@@ -473,6 +474,63 @@ export default class WaypointModel {
      */
     resetHoldTimer() {
         this._holdParameters.timer = DEFAULT_HOLD_PARAMETERS.timer;
+    }
+
+    // FIXME: test
+    /**
+     * Set the #altitudeMinimum and #altitudeMaximum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitude
+     * @param altitude {number} in feet
+     */
+    setAltitude(altitude) {
+        this.setAltitudeMaximum(altitude);
+        this.setAltitudeMinimum(altitude);
+    }
+
+    // FIXME: test
+    /**
+     * Set the #altitudeMaximum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitudeMaximum
+     * @param altitudeMaximum {number} in feet
+     */
+    setAltitudeMaximum(altitudeMaximum) {
+        if (_isNaN(altitudeMaximum)) {
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMaximum}'`);
+        }
+
+        if (altitudeMaximum < 0 || altitudeMaximum > 60000) {
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude altitude of '${altitudeMaximum}'`);
+        }
+
+        this.altitudeMaximum = altitudeMaximum;
+    }
+
+    // FIXME: test
+    /**
+     * Set the #altitudeMinimum to the specified altitude
+     *
+     * @for WaypointModel
+     * @method setAltitudeMinimum
+     * @param altitudeMinimum {number} in feet
+     */
+    setAltitudeMinimum(altitudeMinimum) {
+        if (_isNaN(altitudeMinimum)) {
+            console.warn(`Expected number to set as max altitude of waypoint '${this._name}', ` +
+                `but received '${altitudeMinimum}'`);
+        }
+
+        if (altitudeMinimum < 0 || altitudeMinimum > 60000) {
+            console.warn(`Expected requested waypoint '${this._name}' max altitude to be reasonable, ` +
+                `but received altitude altitude of '${altitudeMinimum}'`);
+        }
+
+        this.altitudeMinimum = altitudeMinimum;
     }
 
     /**
