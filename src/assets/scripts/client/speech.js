@@ -36,11 +36,9 @@ export const randomizePilotVoice = () => {
     ];
 
     const voice = voices[Math.floor(Math.random() * voices.length)];
-
     const lowerPitch = 0.9;
     const higherPitch = 1.125;
     const pitch = (Math.random() * (lowerPitch - higherPitch) + higherPitch).toFixed(1);
-
     const normal = 1;
     const faster = 1.125;
     const rate = (Math.random() * (normal - faster) + faster).toFixed(3);
