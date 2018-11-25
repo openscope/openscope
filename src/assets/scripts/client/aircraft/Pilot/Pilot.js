@@ -557,11 +557,11 @@ export default class Pilot {
      */
     crossFix(aircraft, fixName, altitude) {
         if (!NavigationLibrary.hasFixName(fixName)) {
-            return [false, `unknown fix '${fixName}'`];
+            return [false, `unable to find '${fixName}'`];
         }
 
         if (!this._fms.hasWaypointName(fixName)) {
-            return [false, `fix '${fixName}' is not on our route`];
+            return [false, `unable, '${fixName}' is not on our route`];
         }
 
         const response = aircraft.validateNextAltitude(altitude);
@@ -579,8 +579,8 @@ export default class Pilot {
         this._mcp.setAltitudeVnav();
 
         const readback = {
-            log: `crossing ${fixName} at ${altitude}`,
-            say: `crossing ${fixName} at ${radio_altitude(altitude)}`
+            log: `cross ${fixName} at ${altitude}`,
+            say: `cross ${fixName} at ${radio_altitude(altitude)}`
         };
 
         return [true, readback];
