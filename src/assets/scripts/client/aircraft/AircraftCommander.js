@@ -127,10 +127,13 @@ export default class AircraftCommander {
             const r_say = _map(response, (r) => r.say).join(', ');
 
             UiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`, redResponse);
-            speech_say([
-                { type: 'callsign', content: aircraft },
-                { type: 'text', content: `${r_say} ${response_end}` }
-            ]);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraft },
+                    { type: 'text', content: `${r_say} ${response_end}` }
+                ],
+                aircraft.pilotVoice
+            );
         }
 
         return true;
@@ -648,7 +651,9 @@ export default class AircraftCommander {
 
         readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, Runway ${runway.name}, ` +
             'cleared for takeoff';
-        readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+
+        // We have to make it say winned to make it sound like "Wind" and not "Whined"
+        readback.say = `winned ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
             `${radio_spellOut(roundedWindSpeed)}, Runway ${radio_runway(runway.name)}, cleared for takeoff`;
 
         return [true, readback];

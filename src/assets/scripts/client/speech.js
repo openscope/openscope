@@ -5,6 +5,12 @@ import _has from 'lodash/has';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
+import { VOICES,
+         LOWER_PITCH,
+         HIGHER_PITCH,
+         NORMAL_SPEED,
+         FASTER_SPEED
+} from './constants/speechConstants';
 
 /**
  *
@@ -23,10 +29,26 @@ export const speech_init = () => {
 
 /**
  *
+ * @function randomizePilotVoice
+ */
+export const randomizePilotVoice = () => {
+    const voice = VOICES[Math.floor(Math.random() * VOICES.length)];
+    const pitch = (Math.random() * (LOWER_PITCH - HIGHER_PITCH) + HIGHER_PITCH).toFixed(1);
+    const rate = (Math.random() * (NORMAL_SPEED - FASTER_SPEED) + FASTER_SPEED).toFixed(3);
+
+    return {
+        voice,
+        pitch,
+        rate
+    };
+};
+
+/**
+ *
  * @function speech_say
  * @param sentence
  */
-export const speech_say = (sentence) => {
+export const speech_say = (sentence, pilotVoice) => {
     if (prop.speech.synthesis != null && prop.speech.enabled) {
         let textToSay = '';
 
@@ -55,9 +77,10 @@ export const speech_say = (sentence) => {
         utterance.lang = 'en-US'; // set the language
         utterance.voice = prop.speech.synthesis.getVoices().filter((voice) => {
             // set the voice
-            return voice.name === 'Google US English';
+            return voice.name === pilotVoice.voice;
         })[0];
-        utterance.rate = 1.125; // speed up just a touch
+        utterance.rate = pilotVoice.rate;
+        utterance.pitch = pilotVoice.pitch;
 
         // say the words
         prop.speech.synthesis.speak(utterance);
