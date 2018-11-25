@@ -504,10 +504,10 @@ export default class RouteModel extends BaseModel {
             return this.getFullRouteString().split('..')[0];
         }
 
-        const routeStringParts = this._divideRouteStringIntoSegments(this.getFullRouteString());
-        const temporaryLegModel = new LegModel(routeStringParts[0]);
+        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._legCollection[sidLegIndex];
 
-        return temporaryLegModel.getExitFixName();
+        return sidLegModel.getExitFixName();
     }
 
     /**

@@ -12,6 +12,14 @@ import { COLOR } from '../color';
  */
 export const DATA_BLOCK_THEME = {
     /**
+     * Number of characters of aircraft model icao to show in data block
+     *
+     * @memberof AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT
+     * @type {number}
+     */
+    AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT: 4,
+
+    /**
      * Color of the bar on the left side of the data block
      * Opacity used for when the aircraft is within the airspace
      *
@@ -179,6 +187,14 @@ export const DATA_BLOCK_THEME = {
      * @type {number}
      */
     LEADER_PADDING_FROM_TARGET_PX: 0,
+
+    /**
+     * Number of characters of scratchpad to show in data block
+     *
+     * @memberof DATA_BLOCK_THEME
+     * @type {number}
+     */
+    SCRATCHPAD_CHARACTER_LIMIT: 3,
 
     /**
      * Font and size of text used in the data block

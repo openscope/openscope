@@ -1,7 +1,7 @@
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNaN from 'lodash/isNaN';
-import _pad from 'lodash/pad';
+import _padEnd from 'lodash/padEnd';
 import EventBus from '../lib/EventBus';
 import { round } from '../math/core';
 import { vadd } from '../math/vector';
@@ -214,6 +214,15 @@ export default class RadarTargetModel {
         return this.aircraftModel.altitude;
     }
 
+
+    get scratchPadText() {
+        return this._scratchPadText;
+    }
+
+    set scratchPadText(text) {
+        this._scratchPadText = text.slice(0, 3).toUpperCase();
+    }
+
     /**
      * Complete initialization tasks
      *
@@ -244,12 +253,12 @@ export default class RadarTargetModel {
      */
     _initializeScratchPad() {
         if (this.aircraftModel.isDeparture()) {
-            this._scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
+            this.scratchPadText = this.aircraftModel.fms.getFlightPlanEntry();
 
             return this;
         }
 
-        this._scratchPadText = this.aircraftModel.destination.substr(1);
+        this.scratchPadText = this.aircraftModel.destination.substr(1, 3);
 
         return this;
     }
@@ -291,7 +300,6 @@ export default class RadarTargetModel {
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
         this._routeString = '';
-        this._scratchPadText = '';
     }
 
     /**
@@ -317,10 +325,10 @@ export default class RadarTargetModel {
     buildDataBlockRowOne() {
         let dataBlockRowOne = this.aircraftModel.callsign;
 
-        if (this.aircraftModel.model.weightclass === 'H') {
+        if (this.aircraftModel.model.isHeavyOrSuper()) {
             // using empty space here on purpose so this gets rendered
             // appropriately within a canvas
-            dataBlockRowOne += '  H';
+            dataBlockRowOne += ' H';
         }
 
         return dataBlockRowOne;
@@ -337,7 +345,7 @@ export default class RadarTargetModel {
         const aircraftAltitude = round(this.aircraftModel.altitude / 100);
         const aircraftSpeed = round(this.aircraftModel.groundSpeed / 10);
 
-        return `${leftPad(aircraftAltitude, 3)}  ${leftPad(aircraftSpeed, 2)}`;
+        return `${leftPad(aircraftAltitude, 3)} ${leftPad(aircraftSpeed, 2)}`;
     }
 
     /**
@@ -349,8 +357,18 @@ export default class RadarTargetModel {
      * @returns {string}
      */
     buildDataBlockRowTwoSecondaryInfo() {
-        const scratchPadText = _pad(this._scratchPadText, 4, ' ');
-        const aircraftModelIcao = _pad(this.aircraftModel.model.icao.toUpperCase(), 4, ' ');
+        const paddedScratchPadText = _padEnd(
+            this.scratchPadText,
+            this._theme.DATA_BLOCK.SCRATCHPAD_CHARACTER_LIMIT,
+            ' '
+        );
+        const paddedAircraftModelIcao = _padEnd(
+            this.aircraftModel.model.icao.toUpperCase(),
+            this._theme.DATA_BLOCK.AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT,
+            ' '
+        );
+        const scratchPadText = paddedScratchPadText.slice(0, this._theme.DATA_BLOCK.SCRATCHPAD_CHARACTER_LIMIT);
+        const aircraftModelIcao = paddedAircraftModelIcao.slice(0, this._theme.DATA_BLOCK.AIRCRAFT_MODEL_ICAO_CHARACTER_LIMIT);
 
         return `${scratchPadText} ${aircraftModelIcao}`;
     }
@@ -456,7 +474,7 @@ export default class RadarTargetModel {
      * @return {array} [success of operation, system's response]
      */
     setScratchpad(scratchPadText) {
-        this._scratchPadText = scratchPadText;
+        this.scratchPadText = scratchPadText;
 
         return [true, 'SET SCRATCHPAD'];
     }
