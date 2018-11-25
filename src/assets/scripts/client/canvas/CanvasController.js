@@ -1485,95 +1485,9 @@ export default class CanvasController {
      * @private
      */
     _drawWindVane(cc) {
-        cc.save();
-        cc.font = 'bold 10px monoOne, monospace';
-        cc.translate(
-            CanvasStageModel.width,
-            CanvasStageModel.height
-        );
-
-        const airportModel = AirportController.airport_get();
-        const size = 80;
-        const size2 = size / 2;
-        const padding = 16;
-        const dot = 16;
-        let windspeed_line;
-        let highwind;
-
-        // Shift compass location
-        cc.translate(-size2 - padding, -size2 - padding);
-        cc.lineWidth = 4;
-
-        // Outer circle
-        cc.fillStyle = this.theme.WIND_VANE.OUTER_RING_FILL;
+        // left over from old `._drawWindVane()` method. removing this, or moving it to `._drawAirspaceAndRangeRings`
+        // or `._drawRunwayLabels()` causes a white circle to be drawn with the airport center at its origin
         cc.beginPath();
-        cc.arc(0, 0, size2, 0, tau());
-        cc.fill();
-
-        // Inner circle
-        cc.lineWidth = 1;
-        cc.beginPath();
-        cc.arc(0, 0, dot / 2, 0, tau());
-        cc.strokeStyle = this.theme.WIND_VANE.INNER_RING_STROKE;
-        cc.stroke();
-
-        // Wind Value
-        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        cc.textAlign = 'center';
-        cc.textBaseline = 'center';
-        cc.font = '9px monoOne, monospace';
-        cc.fillText(airportModel.wind.speed, 0, 3.8);
-        cc.font = 'bold 10px monoOne, monospace';
-
-        // Wind line
-        if (airportModel.wind.speed > 8) {
-            windspeed_line = airportModel.wind.speed / 2;
-            highwind = true;
-        } else {
-            windspeed_line = airportModel.wind.speed;
-            highwind = false;
-        }
-
-        cc.save();
-        cc.translate(
-            -dot / 2 * sin(airportModel.wind.angle),
-            dot / 2 * cos(airportModel.wind.angle)
-        );
-        cc.beginPath();
-        cc.moveTo(0, 0);
-        cc.rotate(airportModel.wind.angle);
-        cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
-
-        // TODO: simplify. replace with initial assignment and re-assignment in if condition
-        // Color wind line red for high-wind
-        if (highwind) {
-            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE_GUSTY;
-        } else {
-            cc.strokeStyle = this.theme.WIND_VANE.DIRECTION_LINE;
-        }
-
-        cc.lineWidth = 2;
-        cc.stroke();
-        cc.restore();
-        cc.fillStyle = this.theme.WIND_VANE.WIND_SPEED_TEXT;
-        cc.textAlign = 'center';
-        cc.textBaseline = 'top';
-
-        for (let i = 90; i <= 360; i += 90) {
-            let angle = i;
-
-            cc.rotate(degreesToRadians(90));
-
-            if (i === 90) {
-                angle = `0${i}`;
-            }
-
-            cc.save();
-            cc.fillText(angle, 0, -size2 + 4);
-            cc.restore();
-        }
-
-        cc.restore();
     }
 
     /**

@@ -34,6 +34,7 @@
 - [#1208](https://github.com/openscope/openscope/issues/1208) - Update Thomas Cook callsign
 - [#1209](https://github.com/openscope/openscope/issues/1209) - Update TUI Airways callsign
 - [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
+- [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
 
 
 
