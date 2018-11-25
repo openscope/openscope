@@ -5,6 +5,12 @@ import _has from 'lodash/has';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
+import { VOICES,
+         LOWER_PITCH,
+         HIGHER_PITCH,
+         NORMAL_SPEED,
+         FASTER_SPEED
+} from './constants/speechConstants';
 
 /**
  *
@@ -26,22 +32,9 @@ export const speech_init = () => {
  * @function randomizePilotVoice
  */
 export const randomizePilotVoice = () => {
-    const voices = [
-        'Alex',
-        'Daniel',
-        'Fiona',
-        'Google US English',
-        'Google UK English Female',
-        'Google UK English Male'
-    ];
-
-    const voice = voices[Math.floor(Math.random() * voices.length)];
-    const lowerPitch = 0.9;
-    const higherPitch = 1.125;
-    const pitch = (Math.random() * (lowerPitch - higherPitch) + higherPitch).toFixed(1);
-    const normal = 1;
-    const faster = 1.125;
-    const rate = (Math.random() * (normal - faster) + faster).toFixed(3);
+    const voice = VOICES[Math.floor(Math.random() * VOICES.length)];
+    const pitch = (Math.random() * (LOWER_PITCH - HIGHER_PITCH) + HIGHER_PITCH).toFixed(1);
+    const rate = (Math.random() * (NORMAL_SPEED - FASTER_SPEED) + FASTER_SPEED).toFixed(3);
 
     return {
         voice,
