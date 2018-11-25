@@ -44,7 +44,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
-import { speech_say, randomize_pilot_voice } from '../speech';
+import { speech_say, randomizePilotVoice } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -177,7 +177,7 @@ export default class AircraftModel {
          * @property pilotVoice
          * @type {string}
          */
-        this.pilotVoice = randomize_pilot_voice();
+        this.pilotVoice = randomizePilotVoice();
 
         /**
          * Magnetic heading the aircraft is facing

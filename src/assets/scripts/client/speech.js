@@ -21,7 +21,7 @@ export const speech_init = () => {
     }
 };
 
-export const randomize_pilot_voice = () => {
+export const randomizePilotVoice = () => {
     const voices = [
         'Alex',
         'Daniel',
