@@ -293,19 +293,15 @@ export const squawkValidator = (args = []) => {
  * @return {array<string>}
  */
 export const crossingValidator = (args = []) => {
-    if (args.length !== 3) {
-        return ERROR_MESSAGE.THREE_ARG_LENGTH;
+    if (args.length !== 2) {
+        return ERROR_MESSAGE.TWO_ARG_LENGTH;
     }
 
     if (!_isString(args[0]) || !_isString(args[1])) {
         return ERROR_MESSAGE.MUST_BE_STRING;
     }
 
-    if (args[1] !== 'at' && args[1] !== '@') {
-        return ERROR_MESSAGE.AT;
-    }
-
-    const altitude = convertStringToNumber(args[2]);
+    const altitude = convertStringToNumber(args[1]);
 
     if (_isNaN(altitude)) {
         return ERROR_MESSAGE.ALTITUDE_MUST_BE_NUMBER;
