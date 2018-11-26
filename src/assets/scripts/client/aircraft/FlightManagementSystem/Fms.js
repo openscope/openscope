@@ -594,8 +594,7 @@ export default class Fms {
     }
 
     /**
-     * Get the full flight plan route string (with airports removed), with legs separated by spaces
-     * For example, `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+     * Get the full flight plan route string with legs separated by spaces
      *
      * @for Fms
      * @method getFullRouteStringWithoutAirportsWithSpaces
@@ -603,6 +602,20 @@ export default class Fms {
      */
     getFullRouteStringWithoutAirportsWithSpaces() {
         return this._routeModel.getFullRouteStringWithoutAirportsWithSpaces();
+    }
+
+    /**
+     * Return the first fix in a flightPlan or the exit fix of
+     * the current SID procedure
+     *
+     * Primarily used for aircraft dataBlock
+     *
+     * @for Fms
+     * @method getFlightPlanEntry
+     * @returns {string} First fix in flightPlan or exit fix of SID
+     */
+    getFlightPlanEntry() {
+        return this._routeModel.getFlightPlanEntry();
     }
 
     /**

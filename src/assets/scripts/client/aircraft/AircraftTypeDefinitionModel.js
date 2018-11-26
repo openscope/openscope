@@ -2,6 +2,10 @@ import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { isEmptyObject } from '../utilities/validatorUtilities';
 
+// TODO: abstract these to an appropriate constants file
+const HEAVY_LETTER = 'H';
+const SUPER_LETTER = 'U';
+
 /**
  * Provides a definition for a specific type of aircraft.
  *
@@ -188,8 +192,6 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @private
      */
     _buildTypeForStripView() {
-        const HEAVY_LETTER = 'H';
-        const SUPER_LETTER = 'U';
         let aircraftIcao = `${this.icao}/L`;
 
         switch (this.weightclass) {
@@ -223,5 +225,14 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      */
     isAbleToMaintainSpeed(speed) {
         return speed >= this.speed.min && speed <= this.speed.max;
+    }
+
+    /**
+     * @for AircraftTypeDefinitionModel
+     * @method isHeavyOrSuper
+     * @returns {Boolean}
+     */
+    isHeavyOrSuper() {
+        return this.weightclass === HEAVY_LETTER || this.weightclass === SUPER_LETTER;
     }
 }
