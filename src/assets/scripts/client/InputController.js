@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return*/
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
@@ -9,6 +9,7 @@ import GameController from './game/GameController';
 import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
+import EventTracker from './EventTracker';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -20,6 +21,7 @@ import {
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
 import { SELECTORS } from './constants/selectors';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -666,6 +668,7 @@ export default class InputController {
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
+                EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp-maunal-entry', `${nextTimewarpValue}`);
 
                 return true;
 

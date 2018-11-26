@@ -1,8 +1,9 @@
-/* eslint-disable max-len, no-undef, indent */
+/* eslint-disable max-len, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
 import TimeKeeper from '../engine/TimeKeeper';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
@@ -10,6 +11,7 @@ import { heading_to_string } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 const tutorial = {};
 
@@ -669,7 +671,7 @@ export default class TutorialView {
         this.tutorial_move();
     }
 
-    // TODO: this function never gets called in this file
+    // TODO: this method never gets called anywhere else, remove
     /**
      * @method tutorial_complete
      */
@@ -693,6 +695,7 @@ export default class TutorialView {
 
         prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${prop.tutorial.step}`);
         this.tutorial_update_content();
     }
 
@@ -702,14 +705,7 @@ export default class TutorialView {
     tutorial_prev() {
         prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
         this.tutorial_update_content();
-    }
-
-    // TODO: this function never gets called in this file
-    /**
-     * @method tutorial_resize
-     */
-    tutorial_resize() {
-        this.tutorial_move();
     }
 }
