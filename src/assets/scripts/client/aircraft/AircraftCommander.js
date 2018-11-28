@@ -229,7 +229,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
-        return aircraft.pilot.clearedAsFiled(aircraft);
+        return aircraft.pilot.clearedAsFiled();
     }
 
     /**
