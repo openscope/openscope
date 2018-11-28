@@ -805,7 +805,7 @@ export default class Fms {
      * @return {array<boolean, string>}
      */
     replaceArrivalProcedure(routeString) {
-        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length !== 3) {
             return [false, 'arrival procedure format not understood'];
@@ -837,7 +837,7 @@ export default class Fms {
      * @return {boolean}
      */
     replaceDepartureProcedure(routeString, airportIcao) {
-        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length > 3) {
             return [false, 'departure procedure format not understood'];
@@ -866,40 +866,18 @@ export default class Fms {
         }
 
         if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
-            const runwayModel = this.departureRunwayModel;
+            const expectedRunwayModel = this.departureRunwayModel;
+            let entryPoint = airportIcao.toUpperCase() + expectedRunwayModel.name; // sidModel.getFirstEntryPoint();
 
-            if (_isNil(runwayModel)) {
-                return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-            }
+            if (!sidModel.hasEntry(entryPoint)) {
+                entryPoint = sidModel.getFirstEntryPoint();
 
-            let entryName = sidModel.getFirstEntryPoint();
-
-            if (this.currentPhase !== FLIGHT_PHASE.APRON) {
-                const runwayEntryPoint = airportIcao.toUpperCase() + runwayModel.name;
-                entryName = runwayEntryPoint;
-
-                if (!sidModel.hasEntry(runwayEntryPoint)) {
-                    const runwayName = runwayModel.name;
-                    const runwayWords = radio_runway(runwayModel.name);
-                    const readback = {
-                        log: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayName}`,
-                        say: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayWords}`
-                    };
-
-                    return [false, readback];
+                if (_isEmpty(entryPoint)) {
+                    throw new TypeError(`the '${procedureId}' departure has no valid entry points`);
                 }
             }
 
-            if (_isEmpty(entryName)) {
-                const readback = {
-                    log: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`,
-                    say: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`
-                };
-
-                return [false, readback];
-            }
-
-            routeStringElements.unshift(entryName);
+            routeStringElements.unshift(entryPoint);
         }
 
         const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);

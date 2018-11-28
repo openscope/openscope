@@ -294,10 +294,17 @@ export default class ProcedureModel {
 
         return exitNames[randomIndex];
     }
-    
-    
+
       /**
-     * Return the name of the first entry point
+     * Return the name of the first entry point in the list
+     *
+     * NOTE: Since this will return whichever element appears first in the object,
+     * it should only really be useful when we are trying to get ANY valid entry point.
+     *
+     * The above is exactly the use case for which this was created: When given a clearance
+     * with a route that is invalid for the planned departure runway, we need to apply that
+     * route using ANY runway which is valid. When the aircraft is taxiied to a runway and
+     * cleared for takeoff, they will verify the procedure's compatibility with that runway.
      *
      * @for ProcedureModel
      * @method getFirstEntryPoint
@@ -305,8 +312,11 @@ export default class ProcedureModel {
      */
     getFirstEntryPoint() {
         const entryNames = Object.keys(this._entryPoints);
-        if (entryNames.length===0)
+
+        if (entryNames.length === 0) {
             return null;
+        }
+
         return entryNames[0];
     }
 
