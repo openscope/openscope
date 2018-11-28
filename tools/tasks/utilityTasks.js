@@ -5,7 +5,7 @@ module.exports = (gulp, config) => {
     const rimraf = require('rimraf');
     const OPTIONS = config;
 
-    gulp.task('clean', gulp.series((done) => {
+    gulp.task(OPTIONS.TASKS.CLEAN.DEFAULT, gulp.series((done) => {
         const dirsToClean = [
             OPTIONS.DIR.DIST_SCRIPTS_CLIENT,
             OPTIONS.DIR.DIST_SCRIPTS_SERVER,

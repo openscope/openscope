@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const paths = require('../paths');
+const paths = require('../options');
 
 const BUILD_CONFIG = [
     [paths.DIR.ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.DIST_AIRCRAFT],

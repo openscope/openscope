@@ -4,8 +4,6 @@
 module.exports = function(gulp, config) {
     const jsonmin = require('gulp-jsonmin');
     const path = require('path');
-    // const imagemin = require('gulp-imagemin');
-    // const cache = require('gulp-cache');
     const merge = require('merge-stream');
 
     const OPTIONS = config;
@@ -27,13 +25,13 @@ module.exports = function(gulp, config) {
         return merge(fonts, images);
     };
 
-    gulp.task('json:minify', gulp.series(jsonMinify));
-    gulp.task('copy:airports', gulp.series(copyAirportFiles));
-    gulp.task('copy:static', gulp.series(copyStatic));
-    gulp.task('copy:dist', gulp.series(
-            'copy:static',
-            'copy:airports',
-            'json:minify'
+    gulp.task(OPTIONS.TASKS.JSON.MINIFY, gulp.series(jsonMinify));
+    gulp.task(OPTIONS.TASKS.COPY.AIRPORTS, gulp.series(copyAirportFiles));
+    gulp.task(OPTIONS.TASKS.COPY.STATIC, gulp.series(copyStatic));
+    gulp.task(OPTIONS.TASKS.COPY.DIST, gulp.series(
+            OPTIONS.TASKS.COPY.STATIC,
+            OPTIONS.TASKS.COPY.AIRPORTS,
+            OPTIONS.TASKS.JSON.MINIFY
         )
     );
 }

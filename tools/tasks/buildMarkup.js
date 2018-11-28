@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 
-const paths = require('../paths');
-const cli = require('../cli');
+const paths = require('../options');
 const pkg = require('../../package.json');
 
 function buildMarkup() {
