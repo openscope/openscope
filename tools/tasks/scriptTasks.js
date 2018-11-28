@@ -13,24 +13,25 @@ module.exports = function(gulp, config) {
     const cli = require('../cli');
     const OPTIONS = config;
 
-    const buildScripts = () => browserify({
+    const buildScripts = () => {
+        const b = browserify({
             entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
             extensions: ['.js'],
-            debug: true
-        })
-        .transform(babelify, {
-            presets: ['es2015', 'react', 'stage-0']
-        })
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(gulpif(cli.argv.isProd, uglify({
-            mangle: false
-        })))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
+            debug: true,
+            transform: [babelify]
+        });
+
+        return b.bundle()
+            .pipe(source('bundle.js'))
+            .pipe(buffer())
+            .pipe(sourcemaps.init({ loadMaps: true }))
+            .pipe(gulpif(cli.argv.isProd, uglify({
+                mangle: false
+            })))
+            .pipe(rename({ suffix: '.min' }))
+            .pipe(sourcemaps.write('./'))
+            .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
+    }
 
     const buildServer = () => gulp.src([path.join(OPTIONS.DIR.SRC_SCRIPTS_SERVER, '**/*.js')])
         .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_SERVER));

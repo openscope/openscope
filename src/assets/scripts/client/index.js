@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import $ from 'jquery';
 import _isNil from 'lodash/isNil';
 import _lowerCase from 'lodash/lowerCase';
