@@ -1,7 +1,7 @@
-import express from 'express';
-import http from 'http';
-import path from 'path';
-import chalk from 'chalk';
+const express = require('express');
+const http = require('http');
+const path = require('path');
+const colors = require('ansi-colors');
 
 const app = express();
 const server = http.Server(app);
@@ -15,5 +15,5 @@ app.get('/', (req, res) => {
 });
 
 server.listen(PORT, () => {
-    console.log(chalk.green.bold(`\nListening on PORT ${PORT}`));
+    console.log(colors.green.bold(`\nListening on PORT ${PORT}`));
 });

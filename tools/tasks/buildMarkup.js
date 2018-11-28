@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 
-const paths = require('../paths');
-const cli = require('../cli');
+const paths = require('../options');
 const pkg = require('../../package.json');
 
 function buildMarkup() {
@@ -15,10 +14,6 @@ function buildMarkup() {
         `!${paths.DIR.SRC}/assets/**`,
         `!${paths.DIR.SRC}/templates/**`
     ];
-
-    // const versionStr = cli.argv.isProd
-    //     ? pkg.version
-    //     : new Date().getTime();
 
     return gulp.src(src)
         .pipe(hb()

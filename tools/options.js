@@ -1,7 +1,6 @@
 const path = require('path');
 
 const ROOT = path.join(__dirname, '../');
-
 const src = './src';
 const srcAssetsDir = path.join(src, 'assets');
 const srcMarkup = path.join(src, 'templates');
@@ -11,15 +10,14 @@ const srcScriptsServerDir = path.join(srcScriptsDir, 'server');
 const srcScriptsClientDir = path.join(srcScriptsDir, 'client');
 const srcStylesDir = path.join(srcAssetsDir, 'style');
 const srcImagesDir = path.join(srcAssetsDir, 'images');
-
 const build = ROOT;
 const buildAssetsDir = path.join(ROOT, 'assets');
-
 const dist = path.join(ROOT, 'public');
 const distAssets = path.join(dist, 'assets');
 
-// configuration object that wraps all path/file/glob
+// configuration object that wraps all path/file/glob instructions
 const options = {};
+
 options.ROOT = ROOT;
 options.DIR = {
     SRC: src,
@@ -27,6 +25,7 @@ options.DIR = {
     SRC_FONTS: scrScriptsFonts,
     SRC_MARKUP: srcMarkup,
     SRC_SCRIPTS: srcScriptsDir,
+
     SRC_SCRIPTS_SERVER: srcScriptsServerDir,
     SRC_SCRIPTS_CLIENT: srcScriptsClientDir,
     SRC_STYLE: srcStylesDir,
@@ -74,5 +73,33 @@ options.GLOB = {
     LESS: path.join(options.DIR.SRC_STYLE, '**/*.less'),
     MARKUP: path.join(options.DIR.SRC_MARKUP, '**/*.hbs')
 };
+
+options.TASKS = {
+    BUILD: {
+        SCRIPTS: 'build:scripts',
+        SERVER: 'build:server',
+        STYLES: 'build:styles',
+        DEFAULT: 'build'
+    },
+    CLEAN: {
+        DEFAULT: 'clean'
+    },
+    COPY: {
+        AIRPORTS: 'copy:airports',
+        STATIC: 'copy:static',
+        DIST: 'copy:dist'
+    },
+    DEFAULT: 'default',
+    MARKUP: 'markup',
+    JSON: {
+        ASSEMBLE: 'json:assemble',
+        MINIFY: 'json:minify'
+    },
+    WATCH: {
+        DEFAULT: 'watch',
+        SCRIPTS: 'watch:scripts',
+        STYLES: 'watch:styles'
+    }
+}
 
 module.exports = options;
