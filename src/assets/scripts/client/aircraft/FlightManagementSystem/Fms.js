@@ -552,7 +552,7 @@ export default class Fms {
      * @method findNextWaypointWithMinimumAltitudeRestriction
      * @return {WaypointModel}
      */
-    findNextWaypointWithMinimumAltitudeRestriction(){
+    findNextWaypointWithMinimumAltitudeRestriction() {
         return _find(this.waypoints, (waypointModel) => waypointModel.hasAltiudeMinimumRestriction);
     }
 
@@ -874,35 +874,32 @@ export default class Fms {
 
             let entryName = sidModel.getFirstEntryPoint();
 
+            if (this.currentPhase !== FLIGHT_PHASE.APRON) {
+                const runwayEntryPoint = airportIcao.toUpperCase() + runwayModel.name;
+                entryName = runwayEntryPoint;
 
-
-
-
-            if (this.currentPhase!==FLIGHT_PHASE.APRON){
-                let runwayEntryPoint=airportIcao.toUpperCase() + runwayModel.name;
                 if (!sidModel.hasEntry(runwayEntryPoint)) {
-                    const negativeReadback = {
-                        log: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayModel.name}`,
-                        say: `the ${procedureId.toUpperCase()} departure is not valid for runway ${radio_runway(runwayModel.name)}`
+                    const runwayName = runwayModel.name;
+                    const runwayWords = radio_runway(runwayModel.name);
+                    const readback = {
+                        log: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayName}`,
+                        say: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayWords}`
                     };
-                    return [false, negativeReadback];
-                }
-                else{
-                    entryName=runwayEntryPoint;
+
+                    return [false, readback];
                 }
             }
+
             if (_isEmpty(entryName)) {
-                const negativeReadback = {
+                const readback = {
                     log: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`,
                     say: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`
                 };
-                return [false, negativeReadback];
+
+                return [false, readback];
             }
 
-
-
             routeStringElements.unshift(entryName);
-
         }
 
         const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
