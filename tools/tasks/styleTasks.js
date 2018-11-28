@@ -2,12 +2,11 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-    const less = require('gulp-less');
     const sourcemaps = require('gulp-sourcemaps');
+    const less = require('gulp-less');
+    const autoprefixer = require('gulp-autoprefixer');
     const cleanCSS = require('gulp-clean-css');
     const concat = require('gulp-concat');
-    const autoprefixer = require('gulp-autoprefixer');
-
     const OPTIONS = config;
 
     const buildStyles = () => gulp.src(OPTIONS.FILE.CSS_MAIN)

@@ -4,12 +4,12 @@ module.exports = function(gulp, config) {
     const path = require('path');
     const browserify = require('browserify');
     const babelify = require('babelify');
-    const uglify = require('gulp-uglify');
-    const gulpif = require('gulp-if');
-    const sourcemaps = require('gulp-sourcemaps');
-    const rename = require('gulp-rename');
     const source = require('vinyl-source-stream');
     const buffer = require('vinyl-buffer');
+    const sourcemaps = require('gulp-sourcemaps');
+    const gulpif = require('gulp-if');
+    const uglify = require('gulp-uglify');
+    const rename = require('gulp-rename');
     const cli = require('../cli');
     const OPTIONS = config;
 

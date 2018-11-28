@@ -2,10 +2,9 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-    const jsonmin = require('gulp-jsonmin');
     const path = require('path');
+    const jsonmin = require('gulp-jsonmin');
     const merge = require('merge-stream');
-
     const OPTIONS = config;
 
     const jsonMinify = () => gulp.src([
