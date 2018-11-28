@@ -294,9 +294,9 @@ export default class ProcedureModel {
 
         return exitNames[randomIndex];
     }
-	
-	
-	  /**
+    
+    
+      /**
      * Return the name of the first entry point
      *
      * @for ProcedureModel
@@ -305,8 +305,8 @@ export default class ProcedureModel {
      */
     getFirstEntryPoint() {
         const entryNames = Object.keys(this._entryPoints);
-		if (entryNames.length===0)
-			return null;
+        if (entryNames.length===0)
+            return null;
         return entryNames[0];
     }
 

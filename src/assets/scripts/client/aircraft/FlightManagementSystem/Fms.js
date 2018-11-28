@@ -874,35 +874,35 @@ export default class Fms {
 
             let entryName = sidModel.getFirstEntryPoint();
 
-			
-			
-			
-					
-			if (this.currentPhase!==FLIGHT_PHASE.APRON){
-				let runwayEntryPoint=airportIcao.toUpperCase() + runwayModel.name;
-				if (!sidModel.hasEntry(runwayEntryPoint)) {
-					const negativeReadback = {
+
+
+
+
+            if (this.currentPhase!==FLIGHT_PHASE.APRON){
+                let runwayEntryPoint=airportIcao.toUpperCase() + runwayModel.name;
+                if (!sidModel.hasEntry(runwayEntryPoint)) {
+                    const negativeReadback = {
                         log: `the ${procedureId.toUpperCase()} departure is not valid for runway ${runwayModel.name}`,
                         say: `the ${procedureId.toUpperCase()} departure is not valid for runway ${radio_runway(runwayModel.name)}`
                     };
                     return [false, negativeReadback];
                 }
-				else{
-					entryName=runwayEntryPoint;
-				}
-			}
-			if (_isEmpty(entryName)) {
-				const negativeReadback = {
-					log: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`,
-					say: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`
-				};
-				return [false, negativeReadback];			
-			}
-				
-					
-           
-			routeStringElements.unshift(entryName);
-           
+                else{
+                    entryName=runwayEntryPoint;
+                }
+            }
+            if (_isEmpty(entryName)) {
+                const negativeReadback = {
+                    log: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`,
+                    say: `the ${procedureId.toUpperCase()} departure has no valid entrypoint`
+                };
+                return [false, negativeReadback];
+            }
+
+
+
+            routeStringElements.unshift(entryName);
+
         }
 
         const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
