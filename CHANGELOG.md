@@ -17,6 +17,7 @@
 - [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
 - [#1193](https://github.com/openscope/openscope/issues/1193) - Adds `SettingsController` instantiation to `UiController.init()`
 - [#1202](https://github.com/openscope/openscope/issues/1202) - Prevent pilot from responding with "say again, say again"
+- [#1154](https://github.com/openscope/openscope/issues/1154) - Ensure that the runway is valid for SID before takeoff
 
 
 
@@ -34,6 +35,7 @@
 - [#1208](https://github.com/openscope/openscope/issues/1208) - Update Thomas Cook callsign
 - [#1209](https://github.com/openscope/openscope/issues/1209) - Update TUI Airways callsign
 - [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
+- [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
 
 
 
