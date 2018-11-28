@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const gutil = require('gulp-util');
 const mkdirp = require('mkdirp');
-
 const paths = require('../paths');
 
 const BUILD_CONFIG = [
@@ -27,7 +25,7 @@ function _buildResultList(source, outputFilename) {
 
         // if the file contains the outputFilename, we don't want to add it to our list
         if (fileSource.indexOf(outputFilename) !== -1) {
-            gutil.log(gutil.colors.yellow(`::: Skipping ${outputFilename}`));
+            console.log(`--- Skipping ${outputFilename}`);
 
             return;
         }
@@ -57,13 +55,13 @@ function _createDestinationDirAndFile(destination, outputFilename, data) {
     // create `destination` directory, with parents, if it doesnt exist
     mkdirp(destination, (error) => {
         if (error) {
-            throw error;
+            return Promise.reject(error);
         }
 
         // write the new file
         fs.writeFile(outFilenameWithPath, jsonOutput, (error) => {
             if (error) {
-                throw error;
+                return Promise.reject(error);
             }
         });
     });
@@ -77,13 +75,13 @@ function _createDestinationDirAndFile(destination, outputFilename, data) {
  * @param destination {string}
  */
 function _jsonAssembler(source, outputFilename, destination) {
-    gutil.log(gutil.colors.cyan(`::: Preparing ${outputFilename}`));
+    console.log(`--- Preparing ${outputFilename}`);
 
     const result = _buildResultList(source, outputFilename);
 
     _createDestinationDirAndFile(destination, outputFilename, result);
 
-    gutil.log(gutil.colors.green(`::: ${result.length} items written sucessfully to ${outputFilename}`));
+    console.log(`--- ${result.length} items written sucessfully to ${outputFilename}`);
 }
 
 /**
@@ -96,6 +94,8 @@ function jsonAssembler() {
     for (let i = 0; i < BUILD_CONFIG.length; i++) {
         _jsonAssembler(...BUILD_CONFIG[i]);
     }
+
+    return Promise.resolve();
 }
 
 module.exports = jsonAssembler;

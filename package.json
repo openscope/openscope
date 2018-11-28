@@ -1,10 +1,10 @@
 {
-  "name": "openScope",
+  "name": "openscope",
   "version": "6.8.0-BETA",
   "description": "An ATC simulator in HTML5",
   "engines": {
-    "node": "9.1.0",
-    "npm": "6.1.0"
+    "node": "1131.0",
+    "npm": "6.4.0"
   },
   "scripts": {
     "postinstall": "gulp build --prod",
@@ -70,7 +70,7 @@
   "dependencies": {
     "chalk": "2.4.1",
     "coveralls": "3.0.2",
-    "express": "4.15.5",
+    "express": "4.16.4",
     "jquery": "3.3.1",
     "lodash": "4.17.11",
     "mkdirp": "0.5.1",
@@ -97,7 +97,7 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
     "glob-fs": "0.1.6",
-    "gulp": "3.9.1",
+    "gulp": "git://github.com/gulpjs/gulp.git#6d71a658c61edb3090221579d8f97dbe086ba2ed",
     "gulp-autoprefixer": "6.0.0",
     "gulp-cache": "1.0.2",
     "gulp-clean": "0.4.0",
@@ -119,7 +119,6 @@
     "nyc": "13.1.0",
     "path": "0.12.7",
     "rimraf": "2.5.4",
-    "run-sequence": "1.2.2",
     "sinon": "1.17.6",
     "vinyl-buffer": "1.0.0",
     "vinyl-source-stream": "1.1.0",

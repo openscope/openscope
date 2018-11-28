@@ -1,41 +1,32 @@
 /* eslint-disable */
 
 const gulp = require('gulp');
-const runSequence = require('run-sequence');
 const OPTIONS = require('./tools/paths');
 
 const buildMarkup = require('./tools/tasks/buildMarkup');
 const jsonAssembler = require('./tools/tasks/jsonAssembler');
 
-////////////////////////////////////////////////////////////////////
-// EXTERNAL TASKS
-////////////////////////////////////////////////////////////////////
 require('./tools/tasks/scriptTasks')(gulp, OPTIONS);
 require('./tools/tasks/styleTasks')(gulp, OPTIONS);
 require('./tools/tasks/mediaTasks')(gulp, OPTIONS);
 require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 
-////////////////////////////////////////////////////////////////////
-// UNIFIED GULP TASKS
-////////////////////////////////////////////////////////////////////
-gulp.task('markup', () => buildMarkup());
-gulp.task('json:assemble', () => jsonAssembler());
+gulp.task('markup', gulp.series(buildMarkup));
+gulp.task('json:assemble', gulp.series(jsonAssembler));
 
-gulp.task('lint', ['lint:scripts']);
+const buildAndMarkup = gulp.parallel(
+    'build:scripts',
+    'build:server',
+    'build:styles',
+    'markup'
+);
 
-gulp.task('build', () => {
-    runSequence(
-        'clean',
-        [
-            'build:scripts',
-            'build:server',
-            'build:styles',
-            'markup'
-        ],
-        'json:assemble',
-        'copy:dist'
-    )
-});
+gulp.task('build', gulp.series(
+    'clean',
+    buildAndMarkup,
+    'json:assemble',
+    'copy:dist'
+));
 
-gulp.task('watch', ['watch:scripts', 'watch:styles']);
-gulp.task('default', ['build']);
+gulp.task('watch', gulp.parallel('watch:scripts', 'watch:styles'));
+gulp.task('default', gulp.series('build'));

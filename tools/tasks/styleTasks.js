@@ -2,42 +2,29 @@
 'use strict';
 
 module.exports = function(gulp, config) {
+    const less = require('gulp-less');
+    const sourcemaps = require('gulp-sourcemaps');
+    const cleanCSS = require('gulp-clean-css');
+    const concat = require('gulp-concat');
+    const autoprefixer = require('gulp-autoprefixer');
+
     const OPTIONS = config;
 
-    ////////////////////////////////////////////////////////////////////
-    // CONCAT MINIFY
-    //
-    // concat all css files imported into main.css, then output
-    // minified css file
-    ////////////////////////////////////////////////////////////////////
-    function buildStyles() {
-        const less = require('gulp-less');
-        const sourcemaps = require('gulp-sourcemaps');
-        const cleanCSS = require('gulp-clean-css');
-        const concat = require('gulp-concat');
-        const autoprefixer = require('gulp-autoprefixer');
+    const buildStyles = () => gulp.src(OPTIONS.FILE.CSS_MAIN)
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
+        .pipe(cleanCSS({compatibility: 'ie11'}))
+        .pipe(concat('main.min.css'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
 
-        return gulp.src(OPTIONS.FILE.CSS_MAIN)
-            .pipe(sourcemaps.init())
-            .pipe(less())
-            .pipe(autoprefixer(
-                'last 2 version',
-                'safari 5',
-                'ie 8',
-                'ie 9'
-            ))
-            .pipe(cleanCSS({compatibility: 'ie8'}))
-            .pipe(concat('main.min.css'))
-            .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
-    }
-
-    ////////////////////////////////////////////////////////////////////
-    // TASKS
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('build:styles', () => buildStyles());
+    gulp.task('build:styles', gulp.series(buildStyles));
 
     gulp.task('watch:styles', () => {
-        gulp.watch(OPTIONS.GLOB.LESS, ['build:styles',]);
+        gulp.watch(OPTIONS.GLOB.LESS).on('change', () => buildStyles());
     });
 };
