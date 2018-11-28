@@ -867,7 +867,7 @@ export default class Fms {
 
         let procedureId = routeStringElements[0];
 
-        if (routeStringElements.length === 3) {
+        if (routeStringElements.length === 3) { // if the runway IS specified in the route string
             procedureId = routeStringElements[1];
         }
 
@@ -889,7 +889,7 @@ export default class Fms {
 
         if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
             const expectedRunwayModel = this.departureRunwayModel;
-            let entryPoint = airportIcao.toUpperCase() + expectedRunwayModel.name; // sidModel.getFirstEntryPoint();
+            let entryPoint = `${airportIcao.toUpperCase()}${expectedRunwayModel.name}`;
 
             if (!sidModel.hasEntry(entryPoint)) {
                 entryPoint = sidModel.getFirstEntryPoint();

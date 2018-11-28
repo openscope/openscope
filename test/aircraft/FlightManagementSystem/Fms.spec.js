@@ -466,7 +466,7 @@ ava('.getSpeedRestrictedWaypoints() returns array of all speed restricted waypoi
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
-ava.only('.getSidIcao() returns #_routeModel.getSidIcao()', (t) => {
+ava('.getSidIcao() returns #_routeModel.getSidIcao()', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
     const expectedResult = fms._routeModel.getSidIcao();
     const result = fms.getSidIcao();
@@ -474,7 +474,7 @@ ava.only('.getSidIcao() returns #_routeModel.getSidIcao()', (t) => {
     t.true(result === expectedResult);
 });
 
-ava.only('.getSidName() returns #_routeModel.getSidName()', (t) => {
+ava('.getSidName() returns #_routeModel.getSidName()', (t) => {
     const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
     const expectedResult = fms._routeModel.getSidName();
     const result = fms.getSidName();

@@ -295,7 +295,7 @@ export default class ProcedureModel {
         return exitNames[randomIndex];
     }
 
-      /**
+    /**
      * Return the name of the first entry point in the list
      *
      * NOTE: Since this will return whichever element appears first in the object,
