@@ -301,9 +301,12 @@ export default class Pilot {
 
         this.hasDepartureClearance = true;
 
+        // FIXME: We should not be accessing a private property of the Fms directly from the AircraftModel like this
+        const sidIcao = this._fms._routeModel.getSidIcao().toUpperCase();
+        const sidName = this._fmd._routeModel.getSidName().toUpperCase();
         const readback = {};
-        readback.log = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
-        readback.say = `cleared to destination via the ${this._fms._routeModel.getSidIcao().toUpperCase()} departure, then as filed`;
+        readback.log = `cleared to destination via the ${sidIcao} departure, then as filed`;
+        readback.say = `cleared to destination via the ${sidName} departure, then as filed`;
 
         return [true, readback];
     }

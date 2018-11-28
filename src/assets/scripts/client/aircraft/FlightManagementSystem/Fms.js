@@ -805,7 +805,7 @@ export default class Fms {
      * @return {array<boolean, string>}
      */
     replaceArrivalProcedure(routeString) {
-        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length !== 3) {
             return [false, 'arrival procedure format not understood'];
@@ -837,7 +837,7 @@ export default class Fms {
      * @return {boolean}
      */
     replaceDepartureProcedure(routeString, airportIcao) {
-        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length > 3) {
             return [false, 'departure procedure format not understood'];

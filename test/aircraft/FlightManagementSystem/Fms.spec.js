@@ -587,7 +587,7 @@ ava('.replaceDepartureProcedure() returns early when the specified procedure doe
 ava('.replaceDepartureProcedure() does not call ._updateDepartureRunwayFromRoute() when the departure procedure is not applied successfully', (t) => {
     const expectedResponse = [false, 'route of "KLAS07R.BOACH6.TNP" is not valid'];
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
-    const routeModelReplaceDepartureProcedureStub = sinon.stub(fms._routeModel, 'replaceDepartureProcedure', () => expectedResponse);
+    const routeModelReplaceDepartureProcedureStub = sinon.stub(fms._routeModel, 'replaceDepartureProcedure').returns(expectedResponse);
     const updateDepartureRunwayFromRouteSpy = sinon.spy(fms, '_updateDepartureRunwayFromRoute');
     const responseForInvalidProcedure = fms.replaceDepartureProcedure('KLAS07R.BOACH6.TNP');
 
