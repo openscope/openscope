@@ -789,29 +789,20 @@ export default class RouteModel extends BaseModel {
      * @for RouteModel
      * @method replaceDepartureProcedure
      * @param routeString {string}
-     * @return {boolean} whether operation was successful
+     * @return {array} [success of operation, response]
      */
     replaceDepartureProcedure(routeString) {
-        let sidLegModel;
+        let routeModel;
 
         try {
-            sidLegModel = new LegModel(routeString);
+            routeModel = new RouteModel(routeString);
         } catch (error) {
             console.error(error);
 
-            return false;
+            return [false, `requested route of "${routeString.toUpperCase()}" is invalid`];
         }
 
-        // if no SID leg exists, insert the new one as the new first leg
-        if (!this.hasSidLeg()) {
-            this._legCollection.unshift(sidLegModel);
-
-            return true;
-        }
-
-        this._legCollection[this._findSidLegIndex()] = sidLegModel;
-
-        return true;
+        return this.absorbRouteModel(routeModel);
     }
 
     /**

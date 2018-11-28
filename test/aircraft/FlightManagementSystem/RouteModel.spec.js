@@ -733,27 +733,30 @@ ava('.replaceArrivalProcedure() replaces STAR leg with a new one when the route 
 });
 
 ava('.replaceDepartureProcedure() returns false when route string does not yield a valid leg', (t) => {
+    const expectedResponse = [false, 'requested route of "GOBBLEDEEGOOK" is invalid'];
     const model = new RouteModel(singleFixRouteStringMock);
-    const result = model.replaceDepartureProcedure('gobbledeegook');
+    const response = model.replaceDepartureProcedure('gobbledeegook');
 
-    t.false(result);
+    t.deepEqual(response, expectedResponse);
     t.true(model.waypoints.length === 1);
 });
 
 ava('.replaceDepartureProcedure() appends specified SID leg as the new first leg when no SID leg previously existed', (t) => {
+    const expectedResponse = [true, { log: 'rerouting to: KLAS19L TRALR6 DVC', say: 'rerouting as requested' }];
     const model = new RouteModel(singleFixRouteStringMock);
-    const result = model.replaceDepartureProcedure(singleSidProcedureSegmentRouteStringMock);
+    const response = model.replaceDepartureProcedure('KLAS19L.TRALR6.DVC');
 
-    t.true(result);
-    t.true(model.getRouteString() === `${singleSidProcedureSegmentRouteStringMock}..${singleFixRouteStringMock}`);
+    t.deepEqual(response, expectedResponse);
+    t.true(model.getRouteString() === 'KLAS19L.TRALR6.DVC');
 });
 
 ava('.replaceDepartureProcedure() replaces SID leg with a new one when the route already has a SID leg', (t) => {
+    const expectedResponse = [true, { log: 'rerouting to: KLAS25L BOACH6 TNP', say: 'rerouting as requested' }];
     const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const differentSidRouteStringMock = 'KLAS25L.BOACH6.TNP';
-    const result = model.replaceDepartureProcedure(differentSidRouteStringMock);
+    const response = model.replaceDepartureProcedure(differentSidRouteStringMock);
 
-    t.true(result);
+    t.deepEqual(response, expectedResponse);
     t.true(model.getRouteString() === differentSidRouteStringMock);
 });
 
