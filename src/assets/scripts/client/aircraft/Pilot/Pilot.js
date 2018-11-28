@@ -416,22 +416,9 @@ export default class Pilot {
      *
      * @for Pilot
      * @method clearedAsFiled
-     * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
      * @return {Array}                  [success of operation, readback]
      */
-    clearedAsFiled(aircraft) {
-        const departureRunwayModel = aircraft.fms.departureRunwayModel;
-
-        if (!aircraft.fms.isRunwayModelValidForSid(departureRunwayModel)) {
-            const readback = {};
-            readback.log = `according to our charts, Runway ${departureRunwayModel.name} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
-            readback.say = `according to our charts, Runway ${departureRunwayModel.getRadioName()} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
-
-            return [false, readback];
-        }
-
+    clearedAsFiled() {
         this.hasDepartureClearance = true;
 
         const readback = {};

@@ -229,7 +229,7 @@ export default class AircraftCommander {
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
-        return aircraft.pilot.clearedAsFiled(aircraft);
+        return aircraft.pilot.clearedAsFiled();
     }
 
     /**
@@ -641,6 +641,16 @@ export default class AircraftCommander {
 
         if (!aircraft.pilot.hasDepartureClearance) {
             return [false, 'unable to take off, we never received an IFR clearance'];
+        }
+
+        // see #1154, we may have been rerouted since we started taxiing.
+        if (!aircraft.fms.isRunwayModelValidForSid(runway)) {
+            readback.log = `according to our charts, Runway ${runway.name} ` +
+                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
+            readback.say = `according to our charts, Runway ${runway.getRadioName()} ` +
+                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
+
+            return [false, readback];
         }
 
         runway.removeAircraftFromQueue(aircraft.id);
