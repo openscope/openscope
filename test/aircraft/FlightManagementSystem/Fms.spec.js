@@ -466,6 +466,22 @@ ava('.getSpeedRestrictedWaypoints() returns array of all speed restricted waypoi
     t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
+ava.only('.getSidIcao() returns #_routeModel.getSidIcao()', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
+    const expectedResult = fms._routeModel.getSidIcao();
+    const result = fms.getSidIcao();
+
+    t.true(result === expectedResult);
+});
+
+ava.only('.getSidName() returns #_routeModel.getSidName()', (t) => {
+    const fms = buildFmsForAircraftInCruisePhaseWithRouteString('DVC.GRNPA1.KLAS07R');
+    const expectedResult = fms._routeModel.getSidName();
+    const result = fms.getSidName();
+
+    t.true(result === expectedResult);
+});
+
 ava('.getTopAltitude() returns #_routeModel.getTopAltitude()', (t) => {
     const fms = buildFmsForAircraftInApronPhaseWithRouteString(sidRouteStringMock);
     const routeModelGetTopAltitudeSpy = sinon.spy(fms._routeModel, 'getTopAltitude');

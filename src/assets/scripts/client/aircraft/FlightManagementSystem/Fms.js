@@ -668,6 +668,28 @@ export default class Fms {
     }
 
     /**
+     * Facade for #_routeModel.getSidIcao
+     *
+     * @for Fms
+     * @method getSidIcao
+     * @return {string}
+     */
+    getSidIcao() {
+        return this._routeModel.getSidIcao();
+    }
+
+    /**
+     * Facade for #_routeModel.getSidName
+     *
+     * @for Fms
+     * @method getSidName
+     * @return {string}
+     */
+    getSidName() {
+        return this._routeModel.getSidName();
+    }
+
+    /**
      * Return an array of waypoints in the flight plan that have speed restrictions
      *
      * @for Fms

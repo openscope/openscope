@@ -622,8 +622,8 @@ export default class AircraftCommander {
         }
 
         if (aircraft.flightPhase === FLIGHT_PHASE.TAXI) {
-            readback.log = `unable to take off, we're still taxiing to runway ${runway.name}`;
-            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(runway.name)}`;
+            readback.log = `unable to take off, we're still taxiing to Runway ${runway.name}`;
+            readback.say = `unable to take off, we're still taxiing to Runway ${radio_runway(runway.name)}`;
 
             return [false, readback];
         }
@@ -646,9 +646,9 @@ export default class AircraftCommander {
         // see #1154, we may have been rerouted since we started taxiing.
         if (!aircraft.fms.isRunwayModelValidForSid(runway)) {
             readback.log = `according to our charts, Runway ${runway.name} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
+                `is not valid for the ${aircraft.fms.getSidIcao()} departure`;
             readback.say = `according to our charts, Runway ${runway.getRadioName()} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
+                `is not valid for the ${aircraft.fms.getSidName()} departure`;
 
             return [false, readback];
         }
