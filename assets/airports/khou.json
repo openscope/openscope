@@ -1,7 +1,8 @@
 
 {
+    
+    "airac": 1811,
     "radio": {
-        "airac": 1811,
         "twr": "Hobby Tower",
         "app": "Houston Approach",
         "dep": "Houston Departure"
@@ -80,11 +81,13 @@
         "AWSTN": ["N29d34.91", "W95d31.82"],
         "BALKK": ["N29d25.20", "W97d1.61"],
         "BAYYY": ["N29d22.65", "W94d22.27"],
+        "BBYSE": ["N30d5.72", "W95d24.23"],
         "BELLR": ["N29d19.49", "W96d5.32"],
         "BIGTX": ["N28d49.29", "W96d36.94"],
         "BLTWY": ["N30d36.35", "W95d29.47"],
         "BLUBL": ["N30d18.28", "W96d18.18"],
         "BOCCK": ["N29d56.20", "W96d12.46"],
+        "BUMCO": ["N30d38.91", "W95d18.02"],
         "CESAN": ["N30d32.32", "W94d12.11"],
         "CHEWI": ["N29d39.33", "W96d3.09"],
         "CHPEE": ["N29d38.16", "W94d50.47"],
@@ -99,6 +102,7 @@
         "CRP"  : ["N27d54.23", "W97d26.69"],
         "CRSTY": ["N29d38.32", "W95d36.02"],
         "DARTR": ["N30d24.19", "W95d0.40"],
+        "DOLEY": ["N32d11.36", "W96d23.09"],
         "DPATY": ["N32d4.34", "W91d32.88"],
         "DREMR": ["N30d18.08", "W95d25.12"],
         "ELLVR": ["N31d42.48", "W96d50.27"],
@@ -111,6 +115,7 @@
         "FRITZ": ["N29d42.41", "W94d28.07"],
         "GEEAR": ["N29d20.99", "W93d53.13"],
         "GEEEO": ["N29d28.82", "W95d38.94"],
+        "GIFFA": ["N31d22.89", "W95d15.10"],
         "GLOCK": ["N29d22.81", "W96d38.88"],
         "GRIPY": ["N29d44.67", "W94d32.31"],
         "HACKT": ["N29d36.34", "W95d39.28"],
@@ -127,6 +132,7 @@
         "JEPEG": ["N29d27.40", "W92d27.47"],
         "KCEEE": ["N29d14.57", "W92d28.02"],
         "KELPP": ["N27d10.53", "W91d56.95"],
+        "KLJOY": ["N30d38.68", "W95d20.93"],
         "KMMBR": ["N29d21.97", "W96d30.37"],
         "KNTKY": ["N30d5.16", "W95d15.65"],
         "LEV"  : ["N29d10.51", "W90d6.24"],
@@ -138,10 +144,12 @@
         "LOA"  : ["N31d7.44", "W95d58.07"],
         "LURIC": ["N31d46.90", "W93d56.10"],
         "MAAHH": ["N29d36.29", "W95d8.93"],
+        "MAJKK": ["N31d31.06", "W95d33.69"],
         "MARCS": ["N29d53.87", "W97d51.68"],
         "MMOOW": ["N29d25.75", "W94d52.40"],
         "MNNKE": ["N29d46.04", "W95d52.68"],
         "MNURE": ["N29d59.58", "W96d33.96"],
+        "MONNT": ["N30d28.65", "W95d18.70"],
         "MUSIQ": ["N30d33.17", "W94d53.53"],
         "NGP"  : ["N27d41.17", "W97d17.68"],
         "ORRTH": ["N32d33.46", "W92d44.33"],
@@ -173,17 +181,22 @@
         "SLYCE": ["N29d17.07", "W93d0.91"],
         "SMAKR": ["N29d41.62", "W97d23.86"],
         "SNDAY": ["N29d56.42", "W96d9.68"],
+        "SPICR": ["N30d16.53", "W95d30.29"],
         "SSERA": ["N29d38.61", "W94d29.54"],
         "STRYA": ["N31d18.35", "W93d50.63"],
+        "STYCK": ["N31d7.45", "W95d58.09"],
         "SUSHI": ["N30d35.48", "W95d4.39"],
         "TPAKK": ["N32d59.63", "W93d25.47"],
         "VELCO": ["N31d10.67", "W94d24.55"],
         "VILLI": ["N29d37.67", "W95d23.21"],
         "WAILN": ["N29d48.49", "W96d34.29"],
         "WEEED": ["N29d46.75", "W96d10.92"],
+        "WLLIS": ["N30d32.07", "W95d39.10"],
+        "WTSON": ["N32d11.22", "W96d12.66"],
         "WWELL": ["N31d9.47", "W94d42.43"],
         "WWILD": ["N29d33.28", "W94d50.56"],
         "WWREN": ["N28d7.90", "W96d5.92"],
+        "WYLSN": ["N30d18.47", "W95d19.32"],
         "YOKEM": ["N29d43.25", "W94d20.55"],
         "YOMOM": ["N27d59.26", "W97d8.93"],
         "ZUUUU": ["N30d5.88", "W96d14.36"]
@@ -386,6 +399,52 @@
             "draw": [
                 ["KNTKY", "PEETY", "DARTR", "MUSIQ", "CLAVN", "STRYA", "DPATY*"],
                 ["STRYA", "JBULL*"]
+            ]
+        },
+        "STYCK6": {
+            "icao": "STYCK6",
+            "name": "Stick Six",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["BBYSE", "SPICR", "WLLIS", "STYCK"],
+            "exitPoints": {
+                "DOLEY": ["DOLEY"],
+                "WTSON": ["WTSON"]
+            },
+            "draw": [
+                ["BBYSE", "SPICR", "WLLIS", "STYCK", "DOLEY*"],
+                ["STYCK", "WTSON*"]
+            ]
+        },
+        "WYLSN6": {
+            "icao": "WYLSN6",
+            "name": "Wilson Six",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["WYLSN", "MONNT"],
+            "exitPoints": {
+                "GIFFA": ["BUMCO", "GIFFA"],
+                "MAJKK": ["KLJOY", "MAJKK"]
+            },
+            "draw": [
+                ["WYLSN", "MONNT", "BUMCO", "GIFFA*"],
+                ["MONNT", "KLJOY", "MAJKK*"]
             ]
         }
     },
@@ -608,9 +667,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.28,
+            "rate": 0.88,
             "airlines": [
-                ["swa", 7]
+                ["swa", 21]
             ]
         },
         {
@@ -621,9 +680,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.08,
+            "rate": 0.44,
             "airlines": [
-                ["jbu", 2]
+                ["jbu", 2],
+                ["swa", 9]
             ]
         },
         {
@@ -634,9 +694,35 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.08,
+            "rate": 0.16,
+            "airlines": [
+                ["swa", 4]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.LURIC6.ORRTH",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.16,
             "airlines": [
                 ["swa", 2]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.PTRON5.NGP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.20,
+            "airlines": [
+                ["swa", 5]
             ]
         },
         {
@@ -660,9 +746,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.16,
+            "rate": 0.88,
             "airlines": [
-                ["swa", 4]
+                ["swa", 21]
             ]
         },
         {
@@ -670,6 +756,19 @@
             "destination": "",
             "category": "departure",
             "route": "KHOU13R.RETYR5.MNURE",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.12,
+            "airlines": [
+                ["swa", 3]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.RETYR5.WAILN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -690,6 +789,45 @@
             "airlines": [
                 ["dal/short", 6],
                 ["swa", 2]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.STYCK6.DOLEY",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.20,
+            "airlines": [
+                ["swa", 5]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.STYCK6.WTSON",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.20,
+            "airlines": [
+                ["swa", 5]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.WYLSN6.MAJKK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.708,
+            "airlines": [
+                ["swa", 17]
             ]
         }
     ],
