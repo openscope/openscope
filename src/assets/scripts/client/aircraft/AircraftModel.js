@@ -326,7 +326,6 @@ export default class AircraftModel {
          */
         this.warning = false;
 
-
         /**
          * Whether aircraft has crashed
          *
@@ -473,6 +472,30 @@ export default class AircraftModel {
             speed: 0
         };
 
+        /**
+         * @for AircraftModel
+         * @property model
+         * @type {AircraftTypeDefinitionModel}
+         * @private
+         */
+        this.model = new AircraftTypeDefinitionModel(options.model);
+
+        /**
+         * @for AircraftModel
+         * @property mcp
+         * @type {ModeController}
+         * @private
+         */
+        this.mcp = new ModeController();
+
+        /**
+         * @for AircraftModel
+         * @property fms
+         * @type {Fms}
+         * @private
+         */
+        this.fms = new Fms(options);
+
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
             ? TimeKeeper.accumulatedDeltaTime
             : null;
@@ -482,8 +505,6 @@ export default class AircraftModel {
         this.parse(options);
         this.initFms(options);
 
-        this.mcp = new ModeController();
-        this.model = new AircraftTypeDefinitionModel(options.model);
         this.pilot = new Pilot(this.fms, this.mcp);
 
         if (options.category !== FLIGHT_CATEGORY.DEPARTURE) {
@@ -596,10 +617,9 @@ export default class AircraftModel {
         this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
-    initFms(data) {
+    initFms() {
         const airport = AirportController.airport_get();
         // const initialRunway = airport.getActiveRunwayForCategory(this.category);
-        this.fms = new Fms(data);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.setFlightPhase(FLIGHT_PHASE.APRON);
@@ -1335,6 +1355,48 @@ export default class AircraftModel {
         this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
+    /**
+     * Initialize all autopilot systems after being given an IFR clearance to destination and execute takeoff.
+     *
+     * @for Pilot
+     * @method takeoff
+     * @param runway {RunwayModel} the runway taking off on
+     * @param initialAltitude {number} the altitude aircraft can automatically climb to at this airport
+     */
+    takeoff(runway, initialAltitude) {
+        const cruiseSpeed = this.model.speed.cruise;
+
+        if (this.mcp.altitude === INVALID_NUMBER) {
+            this.mcp.setAltitudeFieldValue(initialAltitude);
+        }
+
+        if (this.mcp.altitudeMode === MCP_MODE.ALTITUDE.OFF) {
+            this.mcp.setAltitudeHold();
+        }
+
+        if (this.mcp.heading === INVALID_NUMBER) {
+            this.mcp.setHeadingFieldValue(runway.angle);
+        }
+
+        if (this.mcp.headingMode === MCP_MODE.HEADING.OFF) {
+            this.mcp.setHeadingLnav();
+        }
+
+        if (this.mcp.speed === INVALID_NUMBER) {
+            this.mcp.setSpeedFieldValue(cruiseSpeed);
+        }
+
+        if (this.mcp.speedMode === MCP_MODE.SPEED.OFF) {
+            this.mcp.setSpeedN1();
+        }
+
+        this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
+        this.scoreWind('taking off');
+
+        this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
+        runway.lastAircraftTakenoff = this.callsign;
+    }
+
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
     /**
      * @for AircraftModel
@@ -1342,7 +1404,6 @@ export default class AircraftModel {
      * @param action
      */
     scoreWind(action) {
-        const score = 0;
         const isWarning = true;
         const wind = this.getWind();
 
@@ -1362,8 +1423,6 @@ export default class AircraftModel {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
-
-        return score;
     }
 
     /**

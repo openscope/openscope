@@ -48,6 +48,7 @@
 - [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
 - [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
 - [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
+- [#132](https://github.com/openscope/openscope/issues/1232) - Distance based sep for same-rwy departures
 
 
 # 6.7.0 (November 1, 2018)

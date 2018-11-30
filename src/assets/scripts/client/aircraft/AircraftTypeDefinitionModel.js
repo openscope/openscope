@@ -239,4 +239,28 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     isHeavyOrSuper() {
         return this.weightClass === HEAVY_LETTER || this.weightClass === SUPER_LETTER;
     }
+
+    /**
+     * Returns the minimal distance that is required to a previous aircraft before another aircraft is allowed to use the runway.
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method calculateRunwaySeparationDistanceInFeet
+     * @param previousTypeModel {AircraftTypeDefinitionModel} the aircraft type that used the runway before us.
+     * @returns {number} distance in feet
+     */
+    calculateRunwaySeparationDistanceInFeet(previousTypeModel) {
+        if (typeof previousTypeModel.category.srs === 'undefined'
+            || previousTypeModel.category.srs === 3) {
+            return 6000;
+        }
+
+        switch (this.category.srs) {
+            case 1:
+                return 3000;
+            case 2:
+                return 4500;
+            default:
+                return 6000;
+        }
+    }
 }
