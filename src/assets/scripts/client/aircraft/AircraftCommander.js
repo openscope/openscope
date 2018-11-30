@@ -21,7 +21,7 @@ import {
     radio_heading,
     radio_altitude
 } from '../utilities/radioUtilities';
-import { radiansToDegrees } from '../utilities/unitConverters';
+import { radiansToDegrees, nm_ft } from '../utilities/unitConverters';
 
 /**
  *
@@ -655,16 +655,17 @@ export default class AircraftCommander {
         }
 
         // TODO: move somewhere else
-        const previousAircraft = this._aircraftController.findAircraftByCallsign(runway.lastAircraftTakenoff);
+        const previousAircraft = this._aircraftController.findAircraftByCallsign(runway.lastDepartedAircraftId);
+
         if (previousAircraft) {
-            const actualDistance = aircraft.positionModel.distanceToPosition(previousAircraft.positionModel) * 1000;
+            const actualDistance = nm_ft(aircraft.distanceToAircraft(previousAircraft));
             const requiredDistance = aircraft.model.calculateRunwaySeparationDistanceInFeet(previousAircraft.model);
 
-            if (actualDistance < requiredDistance) {
+            if (actualDistance < requiredDistance || previousAircraft.isOnGround()) {
                 const isWarning = true;
 
                 GameController.events_recordNew(GAME_EVENTS.NO_TAKEOFF_SEPARATION);
-                UiController.ui_log(`${aircraft.callsign} taking off without the required ${requiredDistance}ft separation`, isWarning);
+                UiController.ui_log(`${aircraft.callsign} taking off while another aircraft was using the same runway`, isWarning);
             }
         }
 

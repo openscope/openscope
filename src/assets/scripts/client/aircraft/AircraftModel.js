@@ -1394,7 +1394,7 @@ export default class AircraftModel {
         this.scoreWind('taking off');
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastAircraftTakenoff = this.callsign;
+        runway.lastDepartedAircraftId = this.callsign;
     }
 
     // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
@@ -2823,5 +2823,17 @@ export default class AircraftModel {
         if (!nextControllableStatus) {
             this.setIsFlightStripRemovable();
         }
+    }
+
+    /**
+     * Returns the distance to another aircraft in nm
+     *
+     * @for AircraftModel
+     * @method distanceToAircraft
+     * @param aircraftModel {AircraftModel}
+     * @return {number} distance in nm
+     */
+    distanceToAircraft(anotherAircraftModel) {
+        return this.positionModel.distanceToPosition(anotherAircraftModel.positionModel);
     }
 }

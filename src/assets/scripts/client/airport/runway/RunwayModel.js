@@ -122,11 +122,11 @@ export default class RunwayModel extends BaseModel {
         /**
          * The flight number of the last aircraft that used the runway for takeoff.
          *
-         * @property lastAircraftTakenoff
+         * @property lastDepartedAircraftId
          * @type {string}
          * @default null
          */
-        this.lastAircraftTakenoff = null;
+        this.lastDepartedAircraftId = null;
 
         this._init(options, end, airportPositionModel);
     }
