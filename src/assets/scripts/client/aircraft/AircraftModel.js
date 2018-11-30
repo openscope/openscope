@@ -29,6 +29,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
+    calculateCrosswindAngle,
     calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
@@ -43,7 +44,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
-import { speech_say } from '../speech';
+import { speech_say, randomizePilotVoice } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -166,6 +167,17 @@ export default class AircraftModel {
          * @default 1200
          */
         this.transponderCode = 1200;
+
+        /**
+         * Pilot's voice
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @for AircraftModel
+         * @property pilotVoice
+         * @type {string}
+         */
+        this.pilotVoice = randomizePilotVoice();
 
         /**
          * Magnetic heading the aircraft is facing
@@ -1132,26 +1144,19 @@ export default class AircraftModel {
         this.isRemovable = true;
     }
 
-    // TODO: this should be a method in the `AirportModel`
     /**
-     * @for AircraftModel
-     * @method getWind
-     */
+      * @for AircraftModel
+      * @method getWind
+      * @return {object} headwind and crosswind
+      */
     getWind() {
-        const windForRunway = {
-            cross: 0,
-            head: 0
+        const { wind } = AirportController.airport_get();
+        const crosswindAngle = calculateCrosswindAngle(this.heading, wind.angle);
+
+        return {
+            cross: sin(crosswindAngle) * wind.speed,
+            head: cos(crosswindAngle) * wind.speed
         };
-
-        const { wind } = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
-        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
-        const angle = runwayModel.calculateCrosswindAngleForRunway(wind.angle);
-
-        // TODO: these two bits of math should be abstracted to helper functions
-        windForRunway.cross = sin(angle) * wind.speed;
-        windForRunway.head = cos(angle) * wind.speed;
-
-        return windForRunway;
     }
 
     /**
@@ -1227,10 +1232,13 @@ export default class AircraftModel {
             UiController.ui_log(logMessage(writtenCallsign));
         }
 
-        speech_say([{
-            type: 'text',
-            content: logMessage(spokenCallsign)
-        }]);
+        speech_say(
+            [{
+                type: 'text',
+                content: logMessage(spokenCallsign)
+            }],
+            this.pilotVoice
+        );
     }
 
     /**
@@ -1259,20 +1267,26 @@ export default class AircraftModel {
             }
 
             UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
-            speech_say([
-                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
-                { type: 'callsign', content: this },
-                { type: 'text', content: `with you ${alt_say}` }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: `with you ${alt_say}` }
+                ],
+                this.pilotVoice
+            );
         }
 
         if (this.isDeparture()) {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
-            speech_say([
-                { type: 'text', content: AirportController.airport_get().radio.twr },
-                { type: 'callsign', content: this },
-                { type: 'text', content: ', ready to taxi' }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: AirportController.airport_get().radio.twr },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: ', ready to taxi' }
+                ],
+                this.pilotVoice
+            );
         }
     }
 
@@ -1291,10 +1305,6 @@ export default class AircraftModel {
             return [false, 'unable to taxi to runway, we have just landed'];
         }
 
-        if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
-            this.pilot.cancelDepartureClearance(this);
-        }
-
         this.setFlightPhase(FLIGHT_PHASE.TAXI);
         // remove aircraft from previous runway's queue
         this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
@@ -1311,8 +1321,8 @@ export default class AircraftModel {
         );
 
         const readback = {};
-        readback.log = `taxi to runway ${runwayModel.name}`;
-        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+        readback.log = `taxi to and hold short of Runway ${runwayModel.name}`;
+        readback.say = `taxi to and hold short of Runway ${radio_runway(runwayModel.name)}`;
 
         return [true, readback];
     }
@@ -1320,9 +1330,8 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method _changeFromTaxiToWaiting
-     * @param args {array}
      */
-    _changeFromTaxiToWaiting(args) {
+    _changeFromTaxiToWaiting() {
         this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
@@ -1334,22 +1343,22 @@ export default class AircraftModel {
      */
     scoreWind(action) {
         const score = 0;
-        const components = this.getWind();
         const isWarning = true;
+        const wind = this.getWind();
 
         // TODO: these two if blocks could be done in a single switch statement
-        if (components.cross >= 20) {
+        if (wind.cross >= 20) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with major crosswind`, isWarning);
-        } else if (components.cross >= 10) {
+        } else if (wind.cross >= 10) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with crosswind`, isWarning);
         }
 
-        if (components.head <= -10) {
+        if (wind.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
-        } else if (components.head <= -5) {
+        } else if (wind.head <= -5) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
             UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
@@ -2591,10 +2600,13 @@ export default class AircraftModel {
 
                             const isWarning = true;
                             UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
-                            speech_say([
-                                { type: 'callsign', content: this },
-                                { type: 'text', content: ', we\'re going down!' }
-                            ]);
+                            speech_say(
+                                [
+                                    { type: 'callsign', content: this },
+                                    { type: 'text', content: ', we\'re going down!' }
+                                ],
+                                this.pilotVoice
+                            );
 
                             GameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }

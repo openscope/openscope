@@ -1,30 +1,27 @@
 /* eslint-disable */
 
 module.exports = function(gulp, config) {
+    const path = require('path');
+    const browserify = require('browserify');
+    const babelify = require('babelify');
+    const source = require('vinyl-source-stream');
+    const buffer = require('vinyl-buffer');
+    const sourcemaps = require('gulp-sourcemaps');
+    const gulpif = require('gulp-if');
+    const uglify = require('gulp-uglify');
+    const rename = require('gulp-rename');
+    const cli = require('../cli');
     const OPTIONS = config;
 
-    const cli = require('../cli');
+    const buildScripts = () => {
+        const b = browserify({
+            entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
+            extensions: ['.js'],
+            debug: true,
+            transform: [babelify]
+        });
 
-    function buildScripts() {
-        const browserify = require('browserify');
-        const babelify = require('babelify');
-        const babel = require('gulp-babel');
-        const uglify = require('gulp-uglify');
-        const gulpif = require('gulp-if');
-        const sourcemaps = require('gulp-sourcemaps');
-        const rename = require('gulp-rename');
-        const source = require('vinyl-source-stream');
-        const buffer = require('vinyl-buffer');
-
-        return browserify({
-                entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
-                extensions: ['.js'],
-                debug: true
-            })
-            .transform(babelify, {
-                presets: ['es2015', 'react', 'stage-0']
-            })
-            .bundle()
+        return b.bundle()
             .pipe(source('bundle.js'))
             .pipe(buffer())
             .pipe(sourcemaps.init({ loadMaps: true }))
@@ -36,70 +33,12 @@ module.exports = function(gulp, config) {
             .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_CLIENT));
     }
 
-    ////////////////////////////////////////////////////////////////////
-    // BABEL
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('babel', () => buildScripts());
+    const buildServer = () => gulp.src([path.join(OPTIONS.DIR.SRC_SCRIPTS_SERVER, '**/*.js')])
+        .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_SERVER));
 
-    gulp.task('babel-server', () => {
-        const babel = require('gulp-babel');
-        const path = require('path');
-
-        return gulp.src([path.join(OPTIONS.DIR.SRC_SCRIPTS_SERVER, '**/*.js')])
-            .pipe(babel({
-                presets: ['es2015']
-            }))
-            .pipe(gulp.dest(OPTIONS.DIR.DIST_SCRIPTS_SERVER))
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // ESLINT
-    ////////////////////////////////////////////////////////////////////
-    // const gutil = require('gulp-util');
-    // const eslint = require('gulp-eslint');
-    // const Table = require('cli-table');
-    // const t = new Table({
-    //     head: ['Filename', 'Errors', 'Wranings']
-    // });
-    //
-    // gulp.task('lint:scripts', function() {
-    //     gulp.src([OPTIONS.GLOB.JS])
-    //         .pipe(eslint({
-    //             useEslintrc: true
-    //         }))
-    //         .pipe(eslint.result((result) => {
-    //             t.push([
-    //                 result.filePath.split('scripts')[1],
-    //                 gutil.colors.red(result.errorCount),
-    //                 gutil.colors.yellow(result.warningCount)
-    //             ]);
-    //         }))
-    //         .pipe(eslint.results(results => {
-    //             // Add a footer to the results table
-    //             t.push([
-    //                 gutil.colors.cyan(`Total: ${results.length}`),
-    //                 gutil.colors.red(results.errorCount),
-    //                 gutil.colors.yellow(results.warningCount)
-    //             ])
-    //
-    //             gutil.log(gutil.colors.cyan('--- ---- --- ESLint Results --- ---- --- '));
-    //             console.log('\n' + t);
-    //             // // Called once for all ESLint results.
-    //             // gutil.log('\n');
-    //             // gutil.log(gutil.colors.cyan(`Total Files: ${results.length}`));
-    //             // gutil.log(gutil.colors.yellow(`Total Warnings: ${results.warningCount}`));
-    //             // gutil.log(gutil.colors.red(`Total Errors: ${results.errorCount}`));
-    //         }))
-    //         .pipe(eslint.format('checkstyle'));
-    // });
-
-    ////////////////////////////////////////////////////////////////////
-    // TASKS
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('build:scripts', ['babel']);
-    gulp.task('build:server', ['babel-server']);
-
-    gulp.task('watch:scripts', () => {
-        gulp.watch(OPTIONS.GLOB.JS, ['babel-server', 'babel']);
+    gulp.task(OPTIONS.TASKS.BUILD.SCRIPTS, gulp.series(buildScripts));
+    gulp.task(OPTIONS.TASKS.BUILD.SERVER, gulp.series(buildServer));
+    gulp.task(OPTIONS.TASKS.WATCH.SCRIPTS, () => {
+        gulp.watch(OPTIONS.GLOB.JS).on('change', () => buildScripts());
     });
 };

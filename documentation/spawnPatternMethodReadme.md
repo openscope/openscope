@@ -1,3 +1,4 @@
+# spawnPattern methods  
 At the very least, an arrival stream MUST have definitions for the
 following parameters. Additional may be required if the spawn method
 is set to one other than 'random'.
@@ -66,7 +67,7 @@ increase to ('frequency' + 'variation'), then steadily decrease to
 ```
 
 
-# Wave
+### Wave
 
 The wave algorithm works exactly like the cyclic algorithm, however,
 instead of a linear shift between arrival rates, the arrival rate will

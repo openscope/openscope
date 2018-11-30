@@ -2,9 +2,17 @@
 import $ from 'jquery';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import EventTracker from './EventTracker';
 import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
+import { VOICES,
+         LOWER_PITCH,
+         HIGHER_PITCH,
+         NORMAL_SPEED,
+         FASTER_SPEED
+} from './constants/speechConstants';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 /**
  *
@@ -23,10 +31,26 @@ export const speech_init = () => {
 
 /**
  *
+ * @function randomizePilotVoice
+ */
+export const randomizePilotVoice = () => {
+    const voice = VOICES[Math.floor(Math.random() * VOICES.length)];
+    const pitch = (Math.random() * (LOWER_PITCH - HIGHER_PITCH) + HIGHER_PITCH).toFixed(1);
+    const rate = (Math.random() * (NORMAL_SPEED - FASTER_SPEED) + FASTER_SPEED).toFixed(3);
+
+    return {
+        voice,
+        pitch,
+        rate
+    };
+};
+
+/**
+ *
  * @function speech_say
  * @param sentence
  */
-export const speech_say = (sentence) => {
+export const speech_say = (sentence, pilotVoice) => {
     if (prop.speech.synthesis != null && prop.speech.enabled) {
         let textToSay = '';
 
@@ -55,9 +79,10 @@ export const speech_say = (sentence) => {
         utterance.lang = 'en-US'; // set the language
         utterance.voice = prop.speech.synthesis.getVoices().filter((voice) => {
             // set the voice
-            return voice.name === 'Google US English';
+            return voice.name === pilotVoice.voice;
         })[0];
-        utterance.rate = 1.125; // speed up just a touch
+        utterance.rate = pilotVoice.rate;
+        utterance.pitch = pilotVoice.pitch;
 
         // say the words
         prop.speech.synthesis.speak(utterance);
@@ -69,15 +94,17 @@ export const speech_say = (sentence) => {
  * @function speech_toggle
  */
 export const speech_toggle = () => {
-    const $speechToggle = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+    const $speechToggleElement = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
     prop.speech.enabled = !prop.speech.enabled;
 
-    if (prop.speech.enabled) {
-        $speechToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-    } else {
-        $speechToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+    if (!prop.speech.enabled) {
         prop.speech.synthesis.cancel();
     }
 
+    $speechToggleElement.toggleClass(SELECTORS.CLASSNAMES.ACTIVE);
+
     localStorage[STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
+    const hasClass = $speechToggleElement.hasClass(SELECTORS.CLASSNAMES.ACTIVE);
+
+    EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'speech', `${hasClass}`);
 };

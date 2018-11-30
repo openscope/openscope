@@ -1,7 +1,10 @@
 import ava from 'ava';
 import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetModel from '../../src/assets/scripts/client/scope/RadarTargetModel';
-import { ARRIVAL_AIRCRAFT_MODEL_MOCK } from '../aircraft/_mocks/aircraftMocks';
+import {
+    ARRIVAL_AIRCRAFT_MODEL_MOCK,
+    DEPARTURE_AIRCRAFT_MODEL_MOCK
+} from '../aircraft/_mocks/aircraftMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { THEME } from '../../src/assets/scripts/client/constants/themes';
 
@@ -172,11 +175,18 @@ ava('._initializeScratchPad() sets #_scratchPadText to show aircraft\'s destinat
     t.true(model._scratchPadText === expectedValue);
 });
 
-ava('._initializeScratchPad() sets #_scratchPadText to "XXX" when aircraft has no destination', (t) => {
-    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
-    const expectedValue = 'XXX';
+ava('._initializeScratchPad() sets #_scratchPadText to departure exit fix when aircraft is on departure route', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, DEPARTURE_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'GUP';
 
-    model.aircraftModel.destination = undefined;
+    model._initializeScratchPad();
+
+    t.true(model._scratchPadText === expectedValue);
+});
+
+ava('._initializeScratchPad() sets #_scratchPadText to arrival airport when aircraft is on arrival route', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'LAS';
 
     model._initializeScratchPad();
 

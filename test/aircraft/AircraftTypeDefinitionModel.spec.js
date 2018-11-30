@@ -38,3 +38,24 @@ ava('._buildTypeForStripView() returns the correct string for S weightclass', (t
 
     t.true(result === 'H/B737/L');
 });
+
+ava('.isHeavyOrSuper() returns true when `#weightclass` is `H`', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightclass = 'H';
+
+    t.true(model.isHeavyOrSuper());
+});
+
+ava('.isHeavyOrSuper() returns true when `#weightclass` is `S`', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightclass = 'U';
+
+    t.true(model.isHeavyOrSuper());
+});
+
+ava('.isHeavyOrSuper() returns false when `#weightclass` is not `H` or `S`', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.weightclass = 'S';
+
+    t.false(model.isHeavyOrSuper());
+});

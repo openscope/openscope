@@ -4,7 +4,6 @@ import _isNil from 'lodash/isNil';
 import AirportController from '../../airport/AirportController';
 import Fms from '../FlightManagementSystem/Fms';
 import ModeController from '../ModeControl/ModeController';
-import NavigationLibrary from '../../navigationLibrary/NavigationLibrary';
 import { MCP_MODE } from '../ModeControl/modeControlConstants';
 import { FLIGHT_PHASE } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
@@ -289,41 +288,24 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param procedureId {String}          the identifier for the procedure
+     * @param routeString {String}          the route
      * @param airportIcao {string}          airport icao identifier
      * @return {array}                      [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, airportIcao) {
-        const procedureModel = NavigationLibrary.getProcedure(procedureId);
+    applyDepartureProcedure(routeString, airportIcao) {
+        const [successful, response] = this._fms.replaceDepartureProcedure(routeString, airportIcao);
 
-        if (_isNil(procedureModel)) {
-            return [false, 'SID name not understood'];
-        }
-
-        if (!runwayModel) {
-            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
-        }
-
-        const exitName = procedureModel.getRandomExitPoint();
-        const routeString = `${runwayModel.name}.${procedureId}.${exitName}`;
-
-        if (!procedureModel.hasEntry(runwayModel.name)) {
-            return [
-                false,
-                `unable, the ${procedureModel.name.toUpperCase()} departure not valid ` +
-                `from Runway ${runwayModel.name.toUpperCase()}`
-            ];
+        if (!successful) {
+            return [false, response];
         }
 
         this.hasDepartureClearance = true;
 
-        this._mcp.setAltitudeVnav();
-        this._mcp.setSpeedVnav();
-        this._fms.replaceDepartureProcedure(routeString);
-
+        const sidIcao = this._fms.getSidIcao();
+        const sidName = this._fms.getSidName();
         const readback = {};
-        readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
-        readback.say = `cleared to destination via the ${procedureModel.name} departure, then as filed`;
+        readback.log = `cleared to destination via the ${sidIcao.toUpperCase()} departure, then as filed`;
+        readback.say = `cleared to destination via the ${sidName.toUpperCase()} departure, then as filed`;
 
         return [true, readback];
     }
@@ -416,22 +398,9 @@ export default class Pilot {
      *
      * @for Pilot
      * @method clearedAsFiled
-     * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
      * @return {Array}                  [success of operation, readback]
      */
-    clearedAsFiled(aircraft) {
-        const departureRunwayModel = aircraft.fms.departureRunwayModel;
-
-        if (!aircraft.fms.isRunwayModelValidForSid(departureRunwayModel)) {
-            const readback = {};
-            readback.log = `according to our charts, Runway ${departureRunwayModel.name} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidIcao()} departure`;
-            readback.say = `according to our charts, Runway ${departureRunwayModel.getRadioName()} ` +
-                `is not valid for the ${aircraft.fms._routeModel.getSidName()} departure`;
-
-            return [false, readback];
-        }
-
+    clearedAsFiled() {
         this.hasDepartureClearance = true;
 
         const readback = {};
@@ -646,11 +615,7 @@ export default class Pilot {
         // 'APP' until established on the localizer. This will prevent improper descent behaviors.
         this._mcp.setAltitudeApproach();
 
-        const readback = {};
-        readback.log = 'intercept glidepath';
-        readback.log = 'intercept glidepath';
-
-        return [true, readback];
+        return [true, 'intercept glidepath'];
     }
 
     /**
@@ -660,13 +625,27 @@ export default class Pilot {
      *
      * @for pilot
      * @method conductInstrumentApproach
-     * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param runwayModel {RunwayModel}   the runway the approach ends at
-     * @return {array}                    [success of operation, readback]
+     * @param aircraftModel {AircraftModel} the aircraft model belonging to this pilot
+     * @param approachType {string}         the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param runwayModel {RunwayModel}     the runway the approach ends at
+     * @return {array}                      [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runwayModel) {
+    conductInstrumentApproach(aircraftModel, approachType, runwayModel) {
         if (_isNil(runwayModel)) {
             return [false, 'the specified runway does not exist'];
+        }
+
+        const minimumGlideslopeInterceptAltitude = runwayModel.getMinimumGlideslopeInterceptAltitude();
+
+        if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
+            const readback = {};
+
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
+                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+
+            return [false, readback];
         }
 
         // TODO: split these two method calls and the corresponding ifs to a new method
