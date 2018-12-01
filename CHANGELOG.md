@@ -1,3 +1,37 @@
+# 6.8.0 (December 1, 2018)
+### New Features
+- [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
+- [#945](https://github.com/openscope/openscope/issues/945) - Add airport information panel to scope
+- [#159](https://github.com/openscope/openscope/issues/159) - Add in-game link to GitHub repo
+- [#1212](https://github.com/openscope/openscope/issues/1212) - Randomize pilot voice for each aircraft
+- [#1197](https://github.com/openscope/openscope/issues/1197) - Adds custom analytics event tracking
+
+### Bugfixes
+- [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
+- [#1045](https://github.com/openscope/openscope/issues/1045) - Fix descent planning logic so arrivals can meet their altitude restrictions
+- [#1084](https://github.com/openscope/openscope/issues/1084) - Add messages for too-low glideslope intercepts
+- [#155](https://github.com/openscope/openscope/issues/155) - Accept entrail property in spawnPatternModel
+- [#1193](https://github.com/openscope/openscope/issues/1193) - Adds `SettingsController` instantiation to `UiController.init()`
+- [#1202](https://github.com/openscope/openscope/issues/1202) - Prevent pilot from responding with "say again, say again"
+- [#1154](https://github.com/openscope/openscope/issues/1154) - Ensure that the runway is valid for SID before takeoff
+- [#955](https://github.com/openscope/openscope/issues/955) - Fix `sid` command`
+
+### Enhancements & Refactors
+- [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
+- [#883](https://github.com/openscope/openscope/issues/883) - Stop penalizing light tailwind landings
+- [#1001](https://github.com/openscope/openscope/issues/1001) - Remove support for work-in-progress airports
+- [#1179](https://github.com/openscope/openscope/issues/1179) - Extract settings related code from UiController into its own controller
+- [#1171](https://github.com/openscope/openscope/issues/1171) - Move tutorial from InputController to UiController
+- [#1114](https://github.com/openscope/openscope/issues/1114), [#1115](https://github.com/openscope/openscope/issues/1115) - Update broken documentation links
+- [#308](https://github.com/openscope/openscope/issues/308) - Abstract Aircraft.getWind() to the AirportModel
+- [#1199](https://github.com/openscope/openscope/issues/1199) - Change taxi readback to "taxi to and hold short of Runway 1"
+- [#1208](https://github.com/openscope/openscope/issues/1208) - Update Thomas Cook callsign
+- [#1209](https://github.com/openscope/openscope/issues/1209) - Update TUI Airways callsign
+- [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
+- [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
+- [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
+
+
 # 6.7.0 (November 1, 2018)
 ### New Features
 - [#1033](https://github.com/openscope/openscope/issues/1033) - Add support for overflights

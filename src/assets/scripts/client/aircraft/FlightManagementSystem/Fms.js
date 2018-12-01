@@ -1,4 +1,5 @@
 import _find from 'lodash/find';
+import _findLast from 'lodash/findLast';
 import _includes from 'lodash/includes';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
@@ -13,7 +14,7 @@ import {
 } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
-
+import { radio_runway } from '../../utilities/radioUtilities';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
@@ -501,6 +502,17 @@ export default class Fms {
     }
 
     /**
+     * Return the next waypoint having an #altitudeMaximum restriction
+     *
+     * @for Fms
+     * @method findNextWaypointWithMaximumAltitudeRestriction
+     * @return {WaypointModel}
+     */
+    findNextWaypointWithMaximumAltitudeRestriction() {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasAltiudeMaximumRestriction);
+    }
+
+    /**
      * Return the next waypoint having a #speedMaximum equal to or less than the specified value
      *
      * This is helpful to see only future waypoints for which a particular speed is
@@ -530,6 +542,18 @@ export default class Fms {
      */
     findNextWaypointWithMinimumAltitudeAtOrAbove(altitude) {
         return _find(this.waypoints, (waypointModel) => waypointModel.hasMinimumAltitudeAtOrAbove(altitude));
+    }
+
+
+    /**
+     * Return the next waypoint having an #altitudeMinimum restriction
+     *
+     * @for Fms
+     * @method findNextWaypointWithMinimumAltitudeRestriction
+     * @return {WaypointModel}
+     */
+    findNextWaypointWithMinimumAltitudeRestriction() {
+        return _find(this.waypoints, (waypointModel) => waypointModel.hasAltiudeMinimumRestriction);
     }
 
     /**
@@ -571,8 +595,7 @@ export default class Fms {
     }
 
     /**
-     * Get the full flight plan route string (with airports removed), with legs separated by spaces
-     * For example, `KSEA16L.BANGR9.PANGL..TOU` --> `BANGR9 PANGL TOU`
+     * Get the full flight plan route string with legs separated by spaces
      *
      * @for Fms
      * @method getFullRouteStringWithoutAirportsWithSpaces
@@ -580,6 +603,20 @@ export default class Fms {
      */
     getFullRouteStringWithoutAirportsWithSpaces() {
         return this._routeModel.getFullRouteStringWithoutAirportsWithSpaces();
+    }
+
+    /**
+     * Return the first fix in a flightPlan or the exit fix of
+     * the current SID procedure
+     *
+     * Primarily used for aircraft dataBlock
+     *
+     * @for Fms
+     * @method getFlightPlanEntry
+     * @returns {string} First fix in flightPlan or exit fix of SID
+     */
+    getFlightPlanEntry() {
+        return this._routeModel.getFlightPlanEntry();
     }
 
     /**
@@ -628,6 +665,28 @@ export default class Fms {
      */
     getRouteStringWithSpaces() {
         return this._routeModel.getRouteStringWithSpaces();
+    }
+
+    /**
+     * Facade for #_routeModel.getSidIcao
+     *
+     * @for Fms
+     * @method getSidIcao
+     * @return {string}
+     */
+    getSidIcao() {
+        return this._routeModel.getSidIcao();
+    }
+
+    /**
+     * Facade for #_routeModel.getSidName
+     *
+     * @for Fms
+     * @method getSidName
+     * @return {string}
+     */
+    getSidName() {
+        return this._routeModel.getSidName();
     }
 
     /**
@@ -768,7 +827,7 @@ export default class Fms {
      * @return {array<boolean, string>}
      */
     replaceArrivalProcedure(routeString) {
-        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
         if (routeStringElements.length !== 3) {
             return [false, 'arrival procedure format not understood'];
@@ -799,28 +858,58 @@ export default class Fms {
      * @param routeString {string}
      * @return {boolean}
      */
-    replaceDepartureProcedure(routeString) {
-        const routeStringElements = routeString.split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+    replaceDepartureProcedure(routeString, airportIcao) {
+        const routeStringElements = routeString.toUpperCase().split(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
 
-        if (routeStringElements.length !== 3) {
+        if (routeStringElements.length > 3) {
             return [false, 'departure procedure format not understood'];
         }
 
-        const procedureId = routeStringElements[1];
+        let procedureId = routeStringElements[0];
 
-        if (!NavigationLibrary.hasProcedure(procedureId)) {
+        if (routeStringElements.length === 3) { // if the runway IS specified in the route string
+            procedureId = routeStringElements[1];
+        }
+
+        const sidModel = NavigationLibrary.getProcedure(procedureId);
+
+        if (_isNil(sidModel)) {
             return [false, `unknown procedure "${procedureId}"`];
         }
 
-        const wasSuccessful = this._routeModel.replaceDepartureProcedure(routeString);
+        if (routeStringElements.length === 1) { // RouteString looks like PROC
+            const exitPoint = _findLast(this.waypoints, (waypointModel) => sidModel.hasExit(waypointModel.name));
 
-        if (wasSuccessful) {
-            this._updateDepartureRunwayFromRoute();
+            if (!exitPoint) {
+                return [false, `the ${procedureId.toUpperCase()} departure doesn't have an exit along our route`];
+            }
 
-            return [true, ''];
+            routeStringElements.push(exitPoint.name);
         }
 
-        return [false, `route of "${routeString}" is not valid`];
+        if (routeStringElements.length === 2) { // RouteString looks like PROC.EXIT
+            const expectedRunwayModel = this.departureRunwayModel;
+            let entryPoint = `${airportIcao.toUpperCase()}${expectedRunwayModel.name}`;
+
+            if (!sidModel.hasEntry(entryPoint)) {
+                entryPoint = sidModel.getFirstEntryPoint();
+
+                if (_isEmpty(entryPoint)) {
+                    throw new TypeError(`the '${procedureId}' departure has no valid entry points`);
+                }
+            }
+
+            routeStringElements.unshift(entryPoint);
+        }
+
+        const nextRouteString = routeStringElements.join(PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER);
+        const readback = this._routeModel.replaceDepartureProcedure(nextRouteString);
+
+        if (readback[0]) {
+            this._updateDepartureRunwayFromRoute();
+        }
+
+        return readback;
     }
 
     // TODO: we may need to update the runway in this method

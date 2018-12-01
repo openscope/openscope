@@ -1,6 +1,4 @@
-# Airport File Standards generateFlightNumberWithAirlineModel
-
----
+# Airport File Standards
 
 ## Overview
 This document serves as a checklist for airport contributors to review to ensure their airport file is "up to snuff". There are two levels of airports: `Standard` and `Premium`, the latter designator being used only for our most pristine, complete, realistic, and well-documented airports. In order for a new airport to be merged, it must at least meet all the `Standard` specifications listed in the section below. If it does not meet these requirements, it will require extra work before being merged. It will often require a team of people to complete work on an airport, because of the wide variety of tasks to complete.

@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-mixed-operators, object-shorthand, no-undef, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, expected-return*/
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _includes from 'lodash/includes';
@@ -6,9 +6,10 @@ import AirportController from './airport/AirportController';
 import CanvasStageModel from './canvas/CanvasStageModel';
 import EventBus from './lib/EventBus';
 import GameController from './game/GameController';
-import UiController from './UiController';
+import UiController from './ui/UiController';
 import AircraftCommandParser from './parsers/aircraftCommandParser/AircraftCommandParser';
 import ScopeCommandModel from './parsers/scopeCommandParser/ScopeCommandModel';
+import EventTracker from './EventTracker';
 import { clamp } from './math/core';
 import { EVENT } from './constants/eventNames';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -20,6 +21,7 @@ import {
     PARSED_COMMAND_NAME
 } from './constants/inputConstants';
 import { SELECTORS } from './constants/selectors';
+import { TRACKABLE_EVENT } from './constants/trackableEvents';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
@@ -33,9 +35,8 @@ export default class InputController {
      * @param $element {JQuery|HTML Element}
      * @param aircraftCommander {AircraftCommander}
      * @param scopeModel {ScopeModel}
-     * @param tutorialView {TutorialView}
      */
-    constructor($element, aircraftCommander, aircraftController, scopeModel, tutorialView) {
+    constructor($element, aircraftCommander, aircraftController, scopeModel) {
         this.$element = $element;
         this.$body = null;
         this.$window = null;
@@ -46,8 +47,6 @@ export default class InputController {
         this._aircraftCommander = aircraftCommander;
         this._aircraftController = aircraftController;
         this._scopeModel = scopeModel;
-        this._tutorialView = tutorialView;
-
 
         prop.input = input;
         this.input = input;
@@ -180,21 +179,6 @@ export default class InputController {
         this._mouseDelta = [0, 0];
         this._mouseDownScreenPosition = [0, 0];
         this.input.isMouseDown = false;
-    }
-
-    // TODO: The tutorial should be moved to the UiController, and then this can be removed
-    /**
-     * Close all open dialogs and return focus to the command bar
-     *
-     * @for InputController
-     * @method closeAllDialogs
-     */
-    closeAllDialogs() {
-        if (prop.tutorial.open) {
-            this._tutorialView.tutorial_close();
-        }
-
-        UiController.closeAllDialogs();
     }
 
     /**
@@ -449,7 +433,7 @@ export default class InputController {
 
                 break;
             case KEY_CODES.ESCAPE: {
-                this.closeAllDialogs();
+                UiController.closeAllDialogs();
 
                 const hasCallsign = _includes(currentCommandInputValue, this.input.callsign);
                 const hasOnlyCallsign = currentCommandInputValue.trim() === this.input.callsign;
@@ -655,7 +639,7 @@ export default class InputController {
     processSystemCommand(aircraftCommandParser) {
         switch (aircraftCommandParser.command) {
             case PARSED_COMMAND_NAME.TUTORIAL:
-                this._tutorialView.tutorial_toggle();
+                UiController.onToggleTutorial();
 
                 return true;
 
@@ -684,6 +668,7 @@ export default class InputController {
                 }
 
                 GameController.updateTimescale(nextTimewarpValue);
+                EventTracker.recordEvent(TRACKABLE_EVENT.OPTIONS, 'timewarp-maunal-entry', `${nextTimewarpValue}`);
 
                 return true;
 

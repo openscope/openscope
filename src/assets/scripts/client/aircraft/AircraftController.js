@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AirportController from '../airport/AirportController';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftModel from './AircraftModel';
@@ -839,10 +839,13 @@ export default class AircraftController {
             aircraftModel.scoreWind('landed');
 
             UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
-            speech_say([
-                { type: 'callsign', content: aircraftModel },
-                { type: 'text', content: ', switching to ground, good day' }
-            ]);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', switching to ground, good day' }
+                ],
+                aircraftModel.pilotVoice
+            );
 
             GameController.events_recordNew(GAME_EVENTS.ARRIVAL);
             aircraftModel.setIsFlightStripRemovable();
@@ -857,10 +860,13 @@ export default class AircraftController {
             aircraftModel.setIsFlightStripRemovable();
             aircraftModel.setIsRemovable();
 
-            speech_say([
-                { type: 'callsign', content: aircraftModel },
-                { type: 'text', content: ', radar contact lost' }
-            ]);
+            speech_say(
+                [
+                    { type: 'callsign', content: aircraftModel },
+                    { type: 'text', content: ', radar contact lost' }
+                ],
+                aircraftModel.pilotVoice
+            );
         }
 
         // Clean up the screen from aircraft that are too far

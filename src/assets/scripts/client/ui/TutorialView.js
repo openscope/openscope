@@ -1,8 +1,9 @@
-/* eslint-disable max-len, no-undef, indent */
+/* eslint-disable max-len, indent */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
+import EventTracker from '../EventTracker';
 import TimeKeeper from '../engine/TimeKeeper';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
@@ -10,6 +11,7 @@ import { heading_to_string } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
+import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 const tutorial = {};
 
@@ -56,13 +58,6 @@ export default class TutorialView {
         this.$tutorialView = null;
 
         /**
-         * @property $tutorialToggle
-         * @type {jquery|HTML Element}
-         * @default `.toggle-tutorial`
-         */
-        this.$tutorialToggle = null;
-
-        /**
          * Previous tutorial step button
          *
          * @property $tutorialPrevious
@@ -80,13 +75,8 @@ export default class TutorialView {
          */
         this.$tutorialNext = null;
 
-        prop.tutorial = tutorial;
-        this.tutorial = tutorial;
-        this.tutorial.steps = [];
-        this.tutorial.step = 0;
-        this.tutorial.open = false;
-
         this._init()
+            ._setupHandlers()
             .layout()
             .enable();
     }
@@ -96,15 +86,36 @@ export default class TutorialView {
      *
      * Caches selectors in variabls so they only need to be looked up one time.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method _init
      * @chainable
      */
     _init() {
         this.$tutorialView = $(TUTORIAL_TEMPLATE);
-        this.$tutorialToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);
         this.$tutorialNext = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.NEXT);
+
+        prop.tutorial = tutorial;
+        this.tutorial = tutorial;
+        this.tutorial.steps = [];
+        this.tutorial.step = 0;
+        this.tutorial.open = false;
+
+        return this;
+    }
+
+    /**
+     * Create event handlers
+     *
+     * Should be run once only on instantiation
+     *
+     * @for TutorialView
+     * @method _setupHandlers
+     * @chainable
+     */
+    _setupHandlers() {
+        this._onAirportChangeHandler = this.onAirportChange.bind(this);
+        this._onTutorialToggleHandler = this.tutorial_toggle.bind(this);
 
         return this;
     }
@@ -114,7 +125,7 @@ export default class TutorialView {
      *
      * Adds the TUTORIAL_TEMPLATE to the view
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method layout
      * @chainable
      */
@@ -132,12 +143,13 @@ export default class TutorialView {
     /**
      * Lifecycle method should be run once on application init.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method enable
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.on(EVENT.TOGGLE_TUTORIAL, this._onTutorialToggleHandler);
+        this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.on('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.on('click', (event) => this.tutorial_next(event));
@@ -148,12 +160,13 @@ export default class TutorialView {
     /**
      * Disable any click handlers.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method disable
      * @chainable
      */
     disable() {
-        this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this.tutorial_toggle);
+        this._eventBus.off(EVENT.TOGGLE_TUTORIAL, this._onTutorialToggleHandler);
+        this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
 
         this.$tutorialPrevious.off('click', (event) => this.tutorial_prev(event));
         this.$tutorialNext.off('click', (event) => this.tutorial_next(event));
@@ -164,13 +177,12 @@ export default class TutorialView {
     /**
      * Tear down the view and unset any properties.
      *
-     * @for tutorialView
+     * @for TutorialView
      * @method destroy
      * @chainable
      */
     destroy() {
         this.$tutorialView = null;
-        this.$tutorialToggle = null;
         this.$tutorialPrevious = null;
         this.$tutorialNext = null;
 
@@ -180,6 +192,17 @@ export default class TutorialView {
         this.tutorial.open = false;
 
         return this;
+    }
+
+    /**
+     * Reloads the tutorial when the airport is changed.
+     *
+     * @for TutorialView
+     * @method onAirportChange
+     */
+    onAirportChange() {
+        this.tutorial_init_pre();
+        this.tutorial_update_content();
     }
 
     /**
@@ -560,7 +583,7 @@ export default class TutorialView {
      * @for TutorialView
      * @method tutorial_toggle
      */
-    tutorial_toggle = () => {
+    tutorial_toggle() {
         if (prop.tutorial.open) {
             this.tutorial_close();
 
@@ -568,7 +591,7 @@ export default class TutorialView {
         }
 
         this.tutorial_open();
-    };
+    }
 
     /**
      * @method tutorial_get
@@ -633,8 +656,6 @@ export default class TutorialView {
         prop.tutorial.open = true;
 
         this.$tutorialView.addClass(SELECTORS.CLASSNAMES.OPEN);
-        this.$tutorialToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$tutorialToggle.prop('title', 'Close tutorial');
 
         this.tutorial_update_content();
     }
@@ -646,13 +667,11 @@ export default class TutorialView {
         prop.tutorial.open = false;
 
         this.$tutorialView.removeClass(SELECTORS.CLASSNAMES.OPEN);
-        this.$tutorialToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
-        this.$tutorialToggle.prop('title', 'Open tutorial');
 
         this.tutorial_move();
     }
 
-    // TODO: this function never gets called in this file
+    // TODO: this method never gets called anywhere else, remove
     /**
      * @method tutorial_complete
      */
@@ -676,6 +695,7 @@ export default class TutorialView {
 
         prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'next', `${prop.tutorial.step}`);
         this.tutorial_update_content();
     }
 
@@ -685,14 +705,7 @@ export default class TutorialView {
     tutorial_prev() {
         prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
+        EventTracker.recordEvent(TRACKABLE_EVENT.TUTORIAL, 'prev', `${prop.tutorial.step}`);
         this.tutorial_update_content();
-    }
-
-    // TODO: this function never gets called in this file
-    /**
-     * @method tutorial_resize
-     */
-    tutorial_resize() {
-        this.tutorial_move();
     }
 }

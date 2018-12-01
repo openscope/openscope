@@ -1,15 +1,12 @@
 import _ceil from 'lodash/ceil';
 import _defaultTo from 'lodash/defaultTo';
-import _filter from 'lodash/filter';
 import _findIndex from 'lodash/findIndex';
 import _floor from 'lodash/floor';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _head from 'lodash/head';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _last from 'lodash/last';
 import _uniqueId from 'lodash/uniqueId';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import AirportController from '../airport/AirportController';
@@ -18,7 +15,7 @@ import GameController, { GAME_EVENTS } from '../game/GameController';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import TimeKeeper from '../engine/TimeKeeper';
-import UiController from '../UiController';
+import UiController from '../ui/UiController';
 import {
     radians_normalize,
     angle_offset
@@ -32,6 +29,7 @@ import {
 } from '../math/core';
 import {
     getOffset,
+    calculateCrosswindAngle,
     calculateTurnInitiationDistance
 } from '../math/flightMath';
 import {
@@ -46,7 +44,7 @@ import {
     vscale,
     vsub
 } from '../math/vector';
-import { speech_say } from '../speech';
+import { speech_say, randomizePilotVoice } from '../speech';
 import {
     digits_decimal,
     groupNumbers,
@@ -169,6 +167,17 @@ export default class AircraftModel {
          * @default 1200
          */
         this.transponderCode = 1200;
+
+        /**
+         * Pilot's voice
+         *
+         * Initially generated and assined on instantiation by the `AircraftController`
+         *
+         * @for AircraftModel
+         * @property pilotVoice
+         * @type {string}
+         */
+        this.pilotVoice = randomizePilotVoice();
 
         /**
          * Magnetic heading the aircraft is facing
@@ -841,26 +850,12 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method isBeyondTopOfDescentForWaypointModel
+     * @param waypointModel {WaypointModel} the waypoint at which to comply with the restriction
+     * @param targetAltitude {number} the altitude to comnply with
      * @return {boolean}
      */
-    isBeyondTopOfDescentForWaypointModel() {
-        const currentAltitude = this.altitude;
-        const altitudeRestrictedWaypoints = this.fms.getAltitudeRestrictedWaypoints();
-        const waypointsWithRelevantCeiling = _filter(altitudeRestrictedWaypoints,
-            (waypoint) => waypoint.hasMaximumAltitudeAtOrBelow(currentAltitude));
-
-        if (_isEmpty(altitudeRestrictedWaypoints)) {
-            return;
-        }
-
-        let targetAltitude = this.mcp.altitude;
-        let targetPosition = _last(altitudeRestrictedWaypoints).positionModel;
-
-        if (!_isEmpty(waypointsWithRelevantCeiling)) {
-            targetAltitude = _head(waypointsWithRelevantCeiling).altitudeMaximum;
-            targetPosition = _head(waypointsWithRelevantCeiling).positionModel;
-        }
-
+    isBeyondTopOfDescentForWaypointModel(waypointModel, targetAltitude) {
+        const targetPosition = waypointModel.positionModel;
         const waypointDistance = this.positionModel.distanceToPosition(targetPosition);
         const altitudeChange = targetAltitude - this.altitude;
         const descentRate = -this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
@@ -1007,6 +1002,7 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method isOnGround
+     * @return {boolean}
      */
     isOnGround() {
         let airportModel = this.fms.departureAirportModel;
@@ -1026,6 +1022,17 @@ export default class AircraftModel {
         const nearAirportAltitude = abs(this.altitude - airportModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
+    }
+
+    /**
+     * Aircraft is on the apron
+     *
+     * @for AircraftModel
+     * @method isApron
+     * @return {boolean}
+     */
+    isApron() {
+        return this.flightPhase === FLIGHT_PHASE.APRON;
     }
 
     /**
@@ -1137,26 +1144,19 @@ export default class AircraftModel {
         this.isRemovable = true;
     }
 
-    // TODO: this should be a method in the `AirportModel`
     /**
-     * @for AircraftModel
-     * @method getWind
-     */
+      * @for AircraftModel
+      * @method getWind
+      * @return {object} headwind and crosswind
+      */
     getWind() {
-        const windForRunway = {
-            cross: 0,
-            head: 0
+        const { wind } = AirportController.airport_get();
+        const crosswindAngle = calculateCrosswindAngle(this.heading, wind.angle);
+
+        return {
+            cross: sin(crosswindAngle) * wind.speed,
+            head: cos(crosswindAngle) * wind.speed
         };
-
-        const { wind } = this.fms.arrivalAirportModel || this.fms.departureAirportModel;
-        const runwayModel = this.fms.arrivalRunwayModel || this.fms.departureRunwayModel;
-        const angle = runwayModel.calculateCrosswindAngleForRunway(wind.angle);
-
-        // TODO: these two bits of math should be abstracted to helper functions
-        windForRunway.cross = sin(angle) * wind.speed;
-        windForRunway.head = cos(angle) * wind.speed;
-
-        return windForRunway;
     }
 
     /**
@@ -1232,10 +1232,13 @@ export default class AircraftModel {
             UiController.ui_log(logMessage(writtenCallsign));
         }
 
-        speech_say([{
-            type: 'text',
-            content: logMessage(spokenCallsign)
-        }]);
+        speech_say(
+            [{
+                type: 'text',
+                content: logMessage(spokenCallsign)
+            }],
+            this.pilotVoice
+        );
     }
 
     /**
@@ -1264,20 +1267,26 @@ export default class AircraftModel {
             }
 
             UiController.ui_log(`${AirportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
-            speech_say([
-                { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
-                { type: 'callsign', content: this },
-                { type: 'text', content: `with you ${alt_say}` }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: `${AirportController.airport_get().radio.app}, ` },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: `with you ${alt_say}` }
+                ],
+                this.pilotVoice
+            );
         }
 
         if (this.isDeparture()) {
             UiController.ui_log(`${AirportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
-            speech_say([
-                { type: 'text', content: AirportController.airport_get().radio.twr },
-                { type: 'callsign', content: this },
-                { type: 'text', content: ', ready to taxi' }
-            ]);
+            speech_say(
+                [
+                    { type: 'text', content: AirportController.airport_get().radio.twr },
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: ', ready to taxi' }
+                ],
+                this.pilotVoice
+            );
         }
     }
 
@@ -1296,10 +1305,6 @@ export default class AircraftModel {
             return [false, 'unable to taxi to runway, we have just landed'];
         }
 
-        if (!this.fms.isRunwayModelValidForSid(runwayModel)) {
-            this.pilot.cancelDepartureClearance(this);
-        }
-
         this.setFlightPhase(FLIGHT_PHASE.TAXI);
         // remove aircraft from previous runway's queue
         this.fms.departureRunwayModel.removeAircraftFromQueue(this.id);
@@ -1316,8 +1321,8 @@ export default class AircraftModel {
         );
 
         const readback = {};
-        readback.log = `taxi to runway ${runwayModel.name}`;
-        readback.say = `taxi to runway ${radio_runway(runwayModel.name)}`;
+        readback.log = `taxi to and hold short of Runway ${runwayModel.name}`;
+        readback.say = `taxi to and hold short of Runway ${radio_runway(runwayModel.name)}`;
 
         return [true, readback];
     }
@@ -1325,9 +1330,8 @@ export default class AircraftModel {
     /**
      * @for AircraftModel
      * @method _changeFromTaxiToWaiting
-     * @param args {array}
      */
-    _changeFromTaxiToWaiting(args) {
+    _changeFromTaxiToWaiting() {
         this.setFlightPhase(FLIGHT_PHASE.WAITING);
     }
 
@@ -1339,24 +1343,24 @@ export default class AircraftModel {
      */
     scoreWind(action) {
         const score = 0;
-        const components = this.getWind();
         const isWarning = true;
+        const wind = this.getWind();
 
         // TODO: these two if blocks could be done in a single switch statement
-        if (components.cross >= 20) {
+        if (wind.cross >= 20) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
-        } else if (components.cross >= 10) {
+            UiController.ui_log(`${this.callsign} ${action} with major crosswind`, isWarning);
+        } else if (wind.cross >= 10) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with crosswind`, isWarning);
         }
 
-        if (components.head <= -10) {
+        if (wind.head <= -10) {
             GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
-        } else if (components.head <= -1) {
+            UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
+        } else if (wind.head <= -5) {
             GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
+            UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
         }
 
         return score;
@@ -1845,10 +1849,10 @@ export default class AircraftModel {
 
         if (shouldMoveToNextFix) {
             if (!this.fms.hasNextWaypoint()) {
-                // we've hit this block becuase and aircraft is about to fly over the last waypoint in its flightPlan
-                this.pilot.maintainPresentHeading(this.heading);
+                // we've hit this block because and aircraft is about to fly over the last waypoint in its flightPlan
+                this.pilot.maintainPresentHeading(this);
 
-                return headingToWaypoint;
+                return this.heading;
             }
 
             this.fms.moveToNextWaypoint();
@@ -1957,30 +1961,107 @@ export default class AircraftModel {
      * @return {number}
      */
     _calculateTargetedAltitudeVnav() {
-        const nextAltitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeAtOrBelow(this.altitude);
-        const nextAltitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeAtOrAbove(this.altitude);
-        const maximumAltitudeExists = !_isNil(nextAltitudeMaximumWaypoint);
-        const minimumAltitudeExists = !_isNil(nextAltitudeMinimumWaypoint);
+        const altitudeMaximumWaypoint = this.fms.findNextWaypointWithMaximumAltitudeRestriction();
+        const altitudeMinimumWaypoint = this.fms.findNextWaypointWithMinimumAltitudeRestriction();
+        const maximumAltitudeExists = !_isNil(altitudeMaximumWaypoint);
+        const minimumAltitudeExists = !_isNil(altitudeMinimumWaypoint);
 
-        if (!maximumAltitudeExists && !minimumAltitudeExists) {
-            return this.mcp.altitude;
-        }
-
-        if (maximumAltitudeExists && minimumAltitudeExists) {
-            const waypoints = this.fms.waypoints;
-            const indexOfMax = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMaximumWaypoint.name);
-            const indexOfMin = _findIndex(waypoints, (waypoint) => waypoint.name === nextAltitudeMinimumWaypoint.name);
-
-            if (indexOfMax < indexOfMin) {
-                return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
+        if (this.mcp.altitude < this.altitude) {
+            // we want to descend...
+            if (!minimumAltitudeExists || altitudeMinimumWaypoint.altitudeMinimum <= this.mcp.altitude) {
+                // ... and there is nothing that can stop us.
+                return this.mcp.altitude;
             }
 
-            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
-        } else if (maximumAltitudeExists) {
-            return this._calculateTargetedAltitudeVnavDescent(nextAltitudeMaximumWaypoint);
-        } else if (minimumAltitudeExists) {
-            return this._calculateTargetedAltitudeVnavClimb(nextAltitudeMinimumWaypoint);
+            const altitudeMinimum = altitudeMinimumWaypoint.altitudeMinimum;
+
+            if (this.altitude < altitudeMinimum) {
+                // ... but we are too low and we have to comply with VNAV restriction
+                return this._calculateTargetedAltitudeVnavClimb(altitudeMinimumWaypoint);
+            }
+
+            if (maximumAltitudeExists) {
+                const altitudeMaximum = altitudeMaximumWaypoint.altitudeMaximum;
+
+                if (this.mcp.altitude > altitudeMaximum) {
+                    // we are too high but we are prioritizing clearance over VNAV restriction
+                    return this.mcp.altitude;
+                }
+
+                if (this.altitude > altitudeMaximum) {
+                    // we are too high...
+                    if (altitudeMinimum > altitudeMaximum) {
+                        // the minimum altitude is above the maximum altiude, check if we can descend all the way down
+                        // without violating VNAV restrictions.
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint);
+
+                        if (firstWaypoint.name === altitudeMinimumWaypoint.name) {
+                            // ... but we can not descend all the way down yet
+                            return this._calculateTargetedAltitudeVnavDescent(altitudeMinimumWaypoint, altitudeMinimum);
+                        }
+                    }
+                    // ...so descend to comply with VNAV restriction
+                    return this._calculateTargetedAltitudeVnavDescent(altitudeMaximumWaypoint, altitudeMaximum);
+                }
+            }
+        } else {
+            // we want to climb...
+            if (!maximumAltitudeExists || this.mcp.altitude <= altitudeMaximumWaypoint.altitudeMaximum) {
+                // ... and there is nothing that can stop us.
+                return this.mcp.altitude;
+            }
+
+            const altitudeMaximum = altitudeMaximumWaypoint.altitudeMaximum;
+
+            if (this.altitude > altitudeMaximum) {
+                // .. but we are too high and have to comply with NAV restriction
+                return this._calculateTargetedAltitudeVnavDescent(altitudeMaximumWaypoint, altitudeMaximum);
+            }
+
+            if (minimumAltitudeExists) {
+                const altitudeMinimum = altitudeMinimumWaypoint.altitudeMinimum;
+
+                if (this.mcp.altitude < altitudeMinimum) {
+                    // we are too low but we are prioritizing clearance over VNAV restriction
+                    return this.mcp.altitude;
+                }
+
+                if (this.altitude < altitudeMinimum) {
+                    // we are too low ...
+                    if (altitudeMaximum < altitudeMinimum) {
+                        // the maximum altitude is below the minimal altiude, check if we can climb all the way up
+                        // without violating VNAV restrictions.
+                        const firstWaypoint = this._findFirstWaypoint(this.fms.waypoints, altitudeMinimumWaypoint, altitudeMaximumWaypoint);
+
+                        if (firstWaypoint.name === altitudeMaximumWaypoint.name) {
+                            // ... but we can not climb all the way up yet
+                            return altitudeMaximum;
+                        }
+                    }
+                    // ... climb to comply with VNAV restriction
+                    return this._calculateTargetedAltitudeVnavClimb(altitudeMinimumWaypoint);
+                }
+            }
+
+            return altitudeMaximum;
         }
+    }
+
+    /**
+     * Takes two waypoints and returns the waypoint that comes first in the list of waypoints
+     *
+     * @for AircraftModel
+     * @method _findFirstWaypoint
+     * @param waypoints
+     * @param waypointA {WaypointModel}
+     * @param waypointB {WaypointModel}
+     * @return waypointA or waypointB {WaypointModel}
+     */
+    _findFirstWaypoint(waypoints, waypointA, waypointB) {
+        const indexOfA = _findIndex(waypoints, (waypoint) => waypoint.name === waypointA.name);
+        const indexOfB = _findIndex(waypoints, (waypoint) => waypoint.name === waypointB.name);
+
+        return indexOfA < indexOfB ? waypointA : waypointB;
     }
 
     /**
@@ -1994,7 +2075,7 @@ export default class AircraftModel {
     _calculateTargetedAltitudeVnavClimb(waypointWithMinimumAltitudeRestriction) {
         const waypointMinimumAltitude = waypointWithMinimumAltitudeRestriction.altitudeMinimum;
 
-        return Math.min(waypointMinimumAltitude, this.mcp.altitude);
+        return waypointMinimumAltitude;
     }
 
     /**
@@ -2002,16 +2083,16 @@ export default class AircraftModel {
      *
      * @for AircraftModel
      * @method _calculateTargetedAltitudeVnavDescent
+     * @param waypointModel {WaypointModel} the waypoint at which to comply with the restriction
+     * @param targetAltitude {number} the altitude to comply with
      * @return {number}
      */
-    _calculateTargetedAltitudeVnavDescent(waypointWithMaximumAltitudeRestriction) {
-        const waypointMaximumAltitude = waypointWithMaximumAltitudeRestriction.altitudeMaximum;
-
-        if (!this.isBeyondTopOfDescentForWaypointModel(waypointWithMaximumAltitudeRestriction)) {
+    _calculateTargetedAltitudeVnavDescent(waypointModel, targetAltitude) {
+        if (!this.isBeyondTopOfDescentForWaypointModel(waypointModel, targetAltitude)) {
             return;
         }
 
-        return Math.min(waypointMaximumAltitude, this.mcp.altitude);
+        return targetAltitude;
     }
 
     /**
@@ -2519,10 +2600,13 @@ export default class AircraftModel {
 
                             const isWarning = true;
                             UiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
-                            speech_say([
-                                { type: 'callsign', content: this },
-                                { type: 'text', content: ', we\'re going down!' }
-                            ]);
+                            speech_say(
+                                [
+                                    { type: 'callsign', content: this },
+                                    { type: 'text', content: ', we\'re going down!' }
+                                ],
+                                this.pilotVoice
+                            );
 
                             GameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }
