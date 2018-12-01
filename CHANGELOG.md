@@ -6,10 +6,6 @@
 - [#1212](https://github.com/openscope/openscope/issues/1212) - Randomize pilot voice for each aircraft
 - [#1197](https://github.com/openscope/openscope/issues/1197) - Adds custom analytics event tracking
 
-
-
-
-
 ### Bugfixes
 - [#1147](https://github.com/openscope/openscope/issues/1147) - Fix Callsigns in tutorial should update when switching airports
 - [#1045](https://github.com/openscope/openscope/issues/1045) - Fix descent planning logic so arrivals can meet their altitude restrictions
@@ -19,10 +15,6 @@
 - [#1202](https://github.com/openscope/openscope/issues/1202) - Prevent pilot from responding with "say again, say again"
 - [#1154](https://github.com/openscope/openscope/issues/1154) - Ensure that the runway is valid for SID before takeoff
 - [#955](https://github.com/openscope/openscope/issues/955) - Fix `sid` command`
-
-
-
-
 
 ### Enhancements & Refactors
 - [#1075](https://github.com/openscope/openscope/issues/1075) - Typo In surgePattern documentation
@@ -38,9 +30,6 @@
 - [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
 - [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
 - [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
-
-
-
 
 
 # 6.7.0 (November 1, 2018)
