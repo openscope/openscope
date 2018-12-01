@@ -477,8 +477,7 @@ export default class AircraftModel {
         /**
          * @for AircraftModel
          * @property model
-         * @type {AircraftTypeDefinitionModel}
-         * @private
+         * @type {AircraftTypeDefinitionModel}         
          */
         this.model = new AircraftTypeDefinitionModel(options.model);
 
@@ -486,7 +485,6 @@ export default class AircraftModel {
          * @for AircraftModel
          * @property mcp
          * @type {ModeController}
-         * @private
          */
         this.mcp = new ModeController();
 
@@ -494,9 +492,15 @@ export default class AircraftModel {
          * @for AircraftModel
          * @property fms
          * @type {Fms}
-         * @private
          */
         this.fms = new Fms(options);
+
+        /**
+         * @for AircraftModel
+         * @property pilot
+         * @type {Pilot}
+         */
+        this.pilot = new Pilot(this.fms, this.mcp);
 
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
             ? TimeKeeper.accumulatedDeltaTime
@@ -505,11 +509,19 @@ export default class AircraftModel {
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
         this.parse(options);
-        this.initFms(options);
 
-        this.pilot = new Pilot(this.fms, this.mcp);
+        const airport = AirportController.airport_get();
+        // const initialRunway = airport.getActiveRunwayForCategory(this.category);
 
-        if (options.category !== FLIGHT_CATEGORY.DEPARTURE) {
+        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.setFlightPhase(FLIGHT_PHASE.APRON);
+            this.altitude = airport.positionModel.elevation;
+            this.speed = 0;
+        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
+            throw new Error('Invalid #category found in AircraftModel');
+        }
+
+        if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             const bottomAltitude = this.fms.getBottomAltitude();
             const airportModel = AirportController.airport_get();
             const airspaceCeiling = airportModel.maxAssignableAltitude;
@@ -617,21 +629,6 @@ export default class AircraftModel {
 
         // This assumes and arrival spawns outside the airspace
         this.isControllable = data.category === FLIGHT_CATEGORY.DEPARTURE;
-    }
-
-    initFms() {
-        const airport = AirportController.airport_get();
-        // const initialRunway = airport.getActiveRunwayForCategory(this.category);
-
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.setFlightPhase(FLIGHT_PHASE.APRON);
-            this.altitude = airport.positionModel.elevation;
-            this.speed = 0;
-
-            return;
-        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL && this.category !== FLIGHT_CATEGORY.OVERFLIGHT) {
-            throw new Error('Invalid #category found in AircraftModel');
-        }
     }
 
     /**
