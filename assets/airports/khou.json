@@ -78,6 +78,7 @@
         "ALIEF": ["N28d41.23", "W96d44.31"],
         "ALLLY": ["N29d39.62", "W95d25.52"],
         "AMMMO": ["N28d35.33", "W96d33.20"],
+        "ANKRR": ["N27d40.92", "W93d12.02"],
         "AWSTN": ["N29d34.91", "W95d31.82"],
         "BALKK": ["N29d25.20", "W97d1.61"],
         "BAYYY": ["N29d22.65", "W94d22.27"],
@@ -87,8 +88,10 @@
         "BLTWY": ["N30d36.35", "W95d29.47"],
         "BLUBL": ["N30d18.28", "W96d18.18"],
         "BOCCK": ["N29d56.20", "W96d12.46"],
+        "BOWFN": ["N28d59.35", "W91d13.68"],
         "BUMCO": ["N30d38.91", "W95d18.02"],
         "CESAN": ["N30d32.32", "W94d12.11"],
+        "CFOOD": ["N29d0.03", "W92d31.57"],
         "CHEWI": ["N29d39.33", "W96d3.09"],
         "CHPEE": ["N29d38.16", "W94d50.47"],
         "CLAVN": ["N31d0.45", "W94d32.48"],
@@ -122,6 +125,8 @@
         "HAWES": ["N32d57.71", "W92d50.48"],
         "HAYYY": ["N30d10.17", "W97d44.78"],
         "HNTRR": ["N29d28.17", "W95d52.71"],
+        "HOODO": ["N28d59.81", "W94d21.15"],
+        "HRV"  : ["N29d51.01", "W90d0.18"],
         "HUB"  : ["N29d39.34", "W95d16.60"],
         "ILEXY": ["N30d21.16", "W97d4.76"],
         "INDIE": ["N31d29.16", "W94d29.57"],
@@ -151,9 +156,11 @@
         "MNURE": ["N29d59.58", "W96d33.96"],
         "MONNT": ["N30d28.65", "W95d18.70"],
         "MUSIQ": ["N30d33.17", "W94d53.53"],
+        "MUSYL": ["N28d10.22", "W94d7.75"],
         "NGP"  : ["N27d41.17", "W97d17.68"],
         "ORRTH": ["N32d33.46", "W92d44.33"],
         "PARAA": ["N29d24.64", "W96d58.24"],
+        "PEECE": ["N29d29.07", "W95d7.24"],
         "PEETY": ["N30d15.03", "W95d7.75"],
         "PEGLG": ["N26d48.27", "W92d50.67"],
         "PLEDO": ["N29d48.51", "W94d25.71"],
@@ -170,6 +177,7 @@
         "SAALT": ["N29d29.83", "W95d11.87"],
         "SAT"  : ["N29d38.64", "W98d27.68"],
         "SBI"  : ["N29d41.21", "W94d2.28"],
+        "SBIRD": ["N29d0.01", "W93d39.99"],
         "SEAGL": ["N26d32.82", "W93d46.31"],
         "SEUSS": ["N29d39.74", "W95d34.39"],
         "SHLLL": ["N29d3.22", "W94d0.34"],
@@ -189,6 +197,7 @@
         "TPAKK": ["N32d59.63", "W93d25.47"],
         "VELCO": ["N31d10.67", "W94d24.55"],
         "VILLI": ["N29d37.67", "W95d23.21"],
+        "VUH"  : ["N29d16.16", "W94d52.07"],
         "WAILN": ["N29d48.49", "W96d34.29"],
         "WEEED": ["N29d46.75", "W96d10.92"],
         "WLLIS": ["N30d32.07", "W95d39.10"],
@@ -278,6 +287,32 @@
                 ["ELOCO", "CHPEE", "GRIPY", "YOKEM", "SBI", "LLA*"]
             ]
         },
+        "HOODO5": {
+            "icao": "HOODO5",
+            "name": "Hoodo Five",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["VUH", "HOODO"],
+            "exitPoints": {
+                "BOWFN": ["SBIRD", "CFOOD", "BOWFN"],
+                "CFOOD": ["SBIRD", "CFOOD"],
+                "HRV": ["SBIRD", "CFOOD", "BOWFN", "HRV"],
+                "LEV": ["SBIRD", "CFOOD", "BOWFN", "LEV"],
+                "SBIRD": ["SBIRD"]
+            },
+            "draw": [
+                ["VUH", "HOODO", "SBIRD*", "CFOOD*", "BOWFN*", "HRV*"],
+                ["BOWFN", "LEV*"]
+            ]
+        },
         "INDIE6": {
             "icao": "INDIE6",
             "name": "Indie Six",
@@ -347,6 +382,31 @@
                 ["SAALT", "PTRON", "SKUBA", "PSX*", "YOMOM*", "CRP*"],
                 ["PTRON", "RIIGG", "NGP*"],
                 ["RIIGG", "WWREN*"]
+            ]
+        },
+        "PEECE4": {
+            "icao": "PEECE4",
+            "name": "Peace Four",
+            "rwy": {
+                "KHOU4": ["#041"],
+                "KHOU22": ["#221"],
+                "KHOU17": ["#176"],
+                "KHOU35": ["#356"],
+                "KHOU13L": ["#131"],
+                "KHOU13R": ["#131"],
+                "KHOU31L": ["#311"],
+                "KHOU31R": ["#311"]
+            },
+            "body": ["PEECE", "VUH"],
+            "exitPoints": {
+                "ANKRR": ["ANKRR"],
+                "KELPP": ["KELPP"],
+                "MUSYL": ["MUSYL"]
+            },
+            "draw": [
+                ["PEECE", "VUH", "ANKRR*"],
+                ["VUH", "KELPP*"],
+                ["VUH", "MUSYL*"]
             ]
         },
         "RETYR5": {
@@ -667,9 +727,22 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.88,
+            "rate": 1.28,
             "airlines": [
-                ["swa", 21]
+                ["swa", 31]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.HOODO5.BOWFN",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.04,
+            "airlines": [
+                ["swa", 1]
             ]
         },
         {
@@ -680,10 +753,10 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.44,
+            "rate": 0.58,
             "airlines": [
                 ["jbu", 2],
-                ["swa", 9]
+                ["swa", 12]
             ]
         },
         {
@@ -707,9 +780,22 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.16,
+            "rate": 0.28,
             "airlines": [
-                ["swa", 2]
+                ["swa", 7]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.PEECE4.ANKRR",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["swa", 3]
             ]
         },
         {
@@ -717,6 +803,19 @@
             "destination": "",
             "category": "departure",
             "route": "KHOU13R.PTRON5.NGP",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.24,
+            "airlines": [
+                ["swa", 6]
+            ]
+        },
+        {
+            "origin": "KHOU",
+            "destination": "",
+            "category": "departure",
+            "route": "KHOU13R.PTRON5.PSX",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -729,13 +828,13 @@
             "origin": "KHOU",
             "destination": "",
             "category": "departure",
-            "route": "KHOU13R.PTRON5.PSX",
+            "route": "KHOU13R.PTRON5.WWREN",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.16,
+            "rate": 0.12,
             "airlines": [
-                ["swa", 4]
+                ["swa", 3]
             ]
         },
         {
@@ -746,9 +845,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.88,
+            "rate": 1.16,
             "airlines": [
-                ["swa", 21]
+                ["swa", 28]
             ]
         },
         {
@@ -759,9 +858,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.12,
+            "rate": 0.20,
             "airlines": [
-                ["swa", 3]
+                ["swa", 5]
             ]
         },
         {
@@ -772,9 +871,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.12,
+            "rate": 0.20,
             "airlines": [
-                ["swa", 3]
+                ["swa", 5]
             ]
         },
         {
@@ -799,9 +898,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.20,
+            "rate": 0.40,
             "airlines": [
-                ["swa", 5]
+                ["swa", 10]
             ]
         },
         {
@@ -812,9 +911,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.20,
+            "rate": 0.28,
             "airlines": [
-                ["swa", 5]
+                ["swa", 7]
             ]
         },
         {
@@ -825,9 +924,9 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 0.708,
+            "rate": 0.84,
             "airlines": [
-                ["swa", 17]
+                ["swa", 20]
             ]
         }
     ],
