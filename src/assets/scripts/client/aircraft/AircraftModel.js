@@ -16,6 +16,8 @@ import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../ui/UiController';
+import EventBus from '../lib/EventBus';
+import { AIRCRAFT_EVENT } from '../constants/eventNames';
 import {
     radians_normalize,
     angle_offset
@@ -1391,38 +1393,10 @@ export default class AircraftModel {
         }
 
         this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        this.scoreWind('taking off');
+        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
         runway.lastDepartedAircraftId = this.callsign;
-    }
-
-    // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
-    /**
-     * @for AircraftModel
-     * @method scoreWind
-     * @param action
-     */
-    scoreWind(action) {
-        const isWarning = true;
-        const wind = this.getWind();
-
-        // TODO: these two if blocks could be done in a single switch statement
-        if (wind.cross >= 20) {
-            GameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major crosswind`, isWarning);
-        } else if (wind.cross >= 10) {
-            GameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with crosswind`, isWarning);
-        }
-
-        if (wind.head <= -10) {
-            GameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with major tailwind`, isWarning);
-        } else if (wind.head <= -5) {
-            GameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            UiController.ui_log(`${this.callsign} ${action} with tailwind`, isWarning);
-        }
     }
 
     /**
@@ -1618,6 +1592,7 @@ export default class AircraftModel {
                 }
 
                 this.setFlightPhase(FLIGHT_PHASE.LANDING);
+                EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
 
                 break;
             }

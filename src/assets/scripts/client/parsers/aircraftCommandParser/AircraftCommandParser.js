@@ -35,7 +35,7 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  *
  * Commands are broken out into two categories: `System` and `Transmit`.
  * - System commands are zero or single argument commands that are used for interacting with the app
- *   itslef. Things like `timewarp` or `tutorial` are examples of system commands.
+ *   itself. Things like `timewarp` or `tutorial` are examples of system commands.
  *
  * - Transmit commands are instructions meant for a specific aircraft within the controlled airspace.
  *   These commands can have zero to many arguments, depending on the command. Some examples of transmit
