@@ -47,7 +47,7 @@ export default class ScoreLogic {
      */
     enable() {
         EventBus.on(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
-        EventBus.on(AIRCRAFT_EVENT.LANDING, this._onLandingHandler);
+        EventBus.on(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
 
         return this;
     }
@@ -59,7 +59,7 @@ export default class ScoreLogic {
      */
     disable() {
         EventBus.off(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
-        EventBus.off(AIRCRAFT_EVENT.LANDING, this._onLandingHandler);
+        EventBus.off(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
 
         return this;
     }

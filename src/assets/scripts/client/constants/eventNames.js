@@ -247,7 +247,7 @@ export const AIRCRAFT_EVENT = {
     FINAL_APPROACH: 'final-approach',
 
     /**
-     * Trigged when the aircraft landed on the runway
+     * FOR FUTURE USE. Should be trigged when the aircraft landed on the runway.
      *
      * @memberof AIRCRAFT_EVENT
      * @property LANDING
