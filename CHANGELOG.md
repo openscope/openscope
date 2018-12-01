@@ -1,3 +1,13 @@
+# 6.9.0 (January 1, 2019)
+### New Features
+
+
+### Bugfixes
+
+
+### Enhancements & Refactors
+
+
 # 6.8.0 (December 1, 2018)
 ### New Features
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
