@@ -1117,27 +1117,6 @@ export default class AircraftModel {
     }
 
     /**
-     * Evaluate the intercept angle and altitude, and issue warnings and penalties as appropriate
-     *
-     * @for AircraftModel
-     * @method judgeLocalizerInterception
-     */
-    judgeLocalizerInterception() {
-        if (this.projected) {
-            return;
-        }
-
-        if (this.isAboveGlidepath()) {
-            this.penalizeLocalizerInterceptAltitude();
-        }
-
-        // TODO: How can we evaluate the intercept angle?
-        // if () {
-        //     this.penalizeLocalizerInterceptAngle();
-        // }
-    }
-
-    /**
      * Sets `#isFlightStripRemovable` to true
      *
      * Provides a single source of change for the value of `#isFlightStripRemovable`
@@ -1190,32 +1169,6 @@ export default class AircraftModel {
 
         this.heading = runwayModel.angle;
         this.altitude = runwayModel.elevation;
-    }
-
-    /**
-     * Display a waring and record an illegal glideslope intercept event
-     *
-     * @for AircraftModel
-     * @method penalizeLocalizerInterceptAltitude
-     */
-    penalizeLocalizerInterceptAltitude() {
-        const isWarning = true;
-
-        UiController.ui_log(`${this.callsign} intercepted localizer above glideslope`, isWarning);
-        GameController.events_recordNew(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE);
-    }
-
-    /**
-     * Display a waring and record an illegal approach event
-     *
-     * @for AircraftModel
-     * @method penalizeLocalizerInterceptAngle
-     */
-    penalizeLocalizerInterceptAngle() {
-        const isWarning = true;
-
-        UiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
-        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     /**
@@ -1571,8 +1524,11 @@ export default class AircraftModel {
 
             case FLIGHT_PHASE.DESCENT:
                 if (this.pilot.hasApproachClearance && this.isEstablishedOnCourse()) {
-                    this.judgeLocalizerInterception();
                     this.setFlightPhase(FLIGHT_PHASE.APPROACH);
+
+                    if (!this.projected) {
+                        EventBus.trigger(AIRCRAFT_EVENT.APPROACH, this);
+                    }
                 }
 
                 break;
@@ -1589,7 +1545,10 @@ export default class AircraftModel {
                 }
 
                 this.setFlightPhase(FLIGHT_PHASE.LANDING);
-                EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+
+                if (!this.projected) {
+                    EventBus.trigger(AIRCRAFT_EVENT.FINAL_APPROACH, this, this.fms.arrivalRunwayModel);
+                }
 
                 break;
             }

@@ -238,10 +238,19 @@ export const AIRCRAFT_EVENT = {
     TAKEOFF: 'takeoff',
 
     /**
+     * Trigged when the aircraft enters the approach
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property APPROACH
+     * @type {string}
+     */
+    APPROACH: 'approach',
+
+    /**
      * Trigged when the aircraft reaches its final approach
      *
      * @memberof AIRCRAFT_EVENT
-     * @property LANDING
+     * @property FINAL_APPROACH
      * @type {string}
      */
     FINAL_APPROACH: 'final-approach',

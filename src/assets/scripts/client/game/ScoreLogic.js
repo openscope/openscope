@@ -35,6 +35,7 @@ export default class ScoreLogic {
      */
     setupHandler() {
         this._onTakeoffHandler = this._onTakeoff.bind(this);
+        this._onApproachHandler = this._onApproach.bind(this);
         this._onLandingHandler = this._onLanding.bind(this);
 
         return this;
@@ -47,6 +48,7 @@ export default class ScoreLogic {
      */
     enable() {
         EventBus.on(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
+        EventBus.on(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.on(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
 
         return this;
@@ -59,6 +61,7 @@ export default class ScoreLogic {
      */
     disable() {
         EventBus.off(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
+        EventBus.off(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.off(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
 
         return this;
@@ -73,6 +76,20 @@ export default class ScoreLogic {
     _onTakeoff(aircraftModel, runwayModel) {
         this._scoreWind(aircraftModel, 'taking off');
         this._scoreRunwaySeparation(aircraftModel, runwayModel, 'taking off');
+    }
+
+    /**
+     * @for ScoreLogic
+     * @method _onApproach
+     * @param aircraftModel {AircraftModel}
+     */
+    _onApproach(aircraftModel) {
+        this._penalizeLocalizerInterceptAltitude(aircraftModel);
+
+        // TODO: How can we evaluate the intercept angle?
+        // if () {
+        //     this._penalizeLocalizerInterceptAngle();
+        // }
     }
 
     /**
@@ -136,4 +153,35 @@ export default class ScoreLogic {
             }
         }
     }
+
+    /**
+     * Display a waring and record an illegal glideslope intercept event
+     *
+     * @for AircraftModel
+     * @method _penalizeLocalizerInterceptAltitude
+     * @param aircraftModel {AircraftModel}
+     */
+    _penalizeLocalizerInterceptAltitude(aircraftModel) {
+        if (aircraftModel.isAboveGlidepath()) {
+            const isWarning = true;
+
+            UiController.ui_log(`${aircraftModel.callsign} intercepted localizer above glideslope`, isWarning);
+            GameController.events_recordNew(GAME_EVENTS.LOCALIZER_INTERCEPT_ABOVE_GLIDESLOPE);
+        }
+    }
+
+    /**
+     * Display a waring and record an illegal approach event
+     *
+     * @for AircraftModel
+     * @method _penalizeLocalizerInterceptAngle
+     * @param aircraftModel {AircraftModel}
+     */
+    _penalizeLocalizerInterceptAngle(aircraftModel) {
+        const isWarning = true;
+
+        UiController.ui_log(`${aircraftModel.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
+        GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
 }
