@@ -3,6 +3,7 @@
 
 
 ### Bugfixes
+- [#1250](https://github.com/openscope/openscope/issues/1250) - Fix error code 128: fatal: unable to look up github.com (port 9418)
 
 
 ### Enhancements & Refactors
