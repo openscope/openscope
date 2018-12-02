@@ -59,3 +59,40 @@ ava('.isHeavyOrSuper() returns false when `#weightClass` is not `H` or `J`', (t)
 
     t.false(model.isHeavyOrSuper());
 });
+
+ava('.calculateRunwaySeparationDistanceInFeet() returns the correct distance as long as the previous aircraft is not a srs category 3', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    const previousModel = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    previousModel.category.srs = 1;
+    model.category.srs = 1;
+
+    let distance = model.calculateRunwaySeparationDistanceInFeet(previousModel);
+
+    t.true(distance === 3000);
+
+    model.category.srs = 2;
+    distance = model.calculateRunwaySeparationDistanceInFeet(previousModel);
+
+    t.true(distance === 4500);
+
+    model.category.srs = 3;
+    distance = model.calculateRunwaySeparationDistanceInFeet(previousModel);
+
+    t.true(distance === 6000);
+});
+
+ava('.calculateRunwaySeparationDistanceInFeet() returns 6000ft when the previous aircraft has no srs category or is srs category 3', (t) => {
+    const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    const previousModel = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
+    model.category.srs = undefined;
+    previousModel.category.srs = undefined;
+
+    let distance = model.calculateRunwaySeparationDistanceInFeet(previousModel);
+
+    t.true(distance === 6000);
+
+    previousModel.category.srs = 3;
+    distance = model.calculateRunwaySeparationDistanceInFeet(previousModel);
+
+    t.true(distance === 6000);
+});
