@@ -1,5 +1,4 @@
 /* eslint-disable no-continue */
-import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
@@ -7,6 +6,7 @@ import AirportController from '../airport/AirportController';
 import UiController from '../ui/UiController';
 import EventBus from '../lib/EventBus';
 import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
+import AircraftCollection from './AircraftCollection';
 import AircraftModel from './AircraftModel';
 import AircraftConflict from './AircraftConflict';
 import StripViewController from './StripView/StripViewController';
@@ -141,6 +141,14 @@ export default class AircraftController {
 
         // TODO: this should its own collection class
         this.aircraft.list = [];
+
+        /**
+         * @property _collection
+         * @type {AircraftCollection}
+         * @private
+         */
+        this._collection = new AircraftCollection();
+
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
 
@@ -176,6 +184,7 @@ export default class AircraftController {
      * @chainable
      */
     _setupHandlers() {
+        this._onAddAircraftHandler = this._onAddAircraft.bind(this);
         this._onRemoveAircraftHandler = this.aircraft_remove.bind(this);
 
         return this;
@@ -187,7 +196,7 @@ export default class AircraftController {
      * @chainable
      */
     enable() {
-        this._eventBus.on(EVENT.ADD_AIRCRAFT, this.addItem);
+        this._eventBus.on(EVENT.ADD_AIRCRAFT, this._onAddAircraftHandler);
         this._eventBus.on(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.on(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this.onSelectAircraftStrip);
         this._eventBus.on(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
@@ -203,7 +212,7 @@ export default class AircraftController {
      * @chainable
      */
     disable() {
-        this._eventBus.off(EVENT.ADD_AIRCRAFT, this.addItem);
+        this._eventBus.off(EVENT.ADD_AIRCRAFT, this._onAddAircraftHandler);
         this._eventBus.off(EVENT.STRIP_DOUBLE_CLICK, this._onStripDoubleClickHandler);
         this._eventBus.off(EVENT.SELECT_STRIP_VIEW_FROM_DATA_BLOCK, this._onSelectAircraftStrip);
         this._eventBus.off(EVENT.DESELECT_ACTIVE_STRIP_VIEW, this._onDeselectActiveStripView);
@@ -212,15 +221,6 @@ export default class AircraftController {
 
         return this;
     }
-
-    /**
-     * Adds an `AircraftModel` to the collection
-     *
-     * @for AircraftController
-     * @method addItem
-     * @param item {AircraftModel}
-     */
-    addItem = (item) => this.aircraft.list.push(item);
 
     /**
      * Callback method fired by an interval defined in the `SpawnScheduler`.
@@ -280,22 +280,10 @@ export default class AircraftController {
      * @for AircraftController
      * @method aircraft_get_nearest
      * @param position {StaticPositionModel}
+     * @returns {array<AircraftModel, number>}
      */
     aircraft_get_nearest(position) {
-        let nearest = null;
-        let distance = Infinity;
-
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-            const d = distance2d(aircraft.relativePosition, position);
-
-            if (d < distance && aircraft.isVisible() && !aircraft.hit) {
-                distance = d;
-                nearest = i;
-            }
-        }
-
-        return [this.aircraft.list[nearest], distance];
+        return this._collection.findAircraftNearPosition(position);
     }
 
     /**
@@ -383,16 +371,14 @@ export default class AircraftController {
     }
 
     /**
+     * @for AircraftController
      * @method findAircraftByCallsign
      * @param  {string} [callsign='']
      * @return {AircraftModel|null}
+     * @public
      */
     findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
-            return null;
-        }
-
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+        return this._collection.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -424,7 +410,7 @@ export default class AircraftController {
      * @return {AircraftModel|null}
      */
     debug(callsign = '') {
-        return this.findAircraftByCallsign(callsign);
+        return this._collection.findAircraftByCallsign(callsign);
     }
 
     /**
@@ -466,10 +452,13 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method removeAircraftModelFromList
-     * @param  {AircraftModel} aircraft the aircraft to remove
+     * @param  {AircraftModel} aircraftModel the aircraft to remove
      */
-    removeAircraftModelFromList(aircraft) {
-        this.aircraft.list = _without(this.aircraft.list, aircraft);
+    removeAircraftModelFromList(aircraftModel) {
+        console.warn('AircraftController.removeAircraftModelFromList() has been deprecated');
+        this._collection.remove(aircraftModel);
+
+        this.aircraft.list = _without(this.aircraft.list, aircraftModel);
     }
 
     /**
@@ -717,6 +706,21 @@ export default class AircraftController {
     }
 
     /**
+     * Adds an `AircraftModel` to the collection
+     *
+     * @for AircraftController
+     * @method _onAddAircraft
+     * @param aircraftModel {AircraftModel}
+     * @private
+     */
+    _onAddAircraft(aircraftModel) {
+        console.warn('AircraftController._onAddAircraft() has been deprecated');
+
+        this._collection.add(aircraftModel);
+        this.aircraft.list.push(aircraftModel);
+    }
+
+    /**
      * Show a `StripViewModel` as selected
      *
      * @for AircraftController
@@ -760,7 +764,7 @@ export default class AircraftController {
      * @private
      */
     _onStripDoubleClickHandler = (callsign) => {
-        const { relativePosition } = this.findAircraftByCallsign(callsign);
+        const { relativePosition } = this._collection.findAircraftByCallsign(callsign);
         const [x, y] = relativePosition;
 
         this._eventBus.trigger(EVENT.REQUEST_TO_CENTER_POINT_IN_VIEW, { x, y });
