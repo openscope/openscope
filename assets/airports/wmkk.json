@@ -42,7 +42,45 @@
         }
     ],
     "fixes": {
-
+        "_RWY14L": ["N02d46m42.52", "E101d42m06.67"],
+        "_RWY14L341013": ["N02d59m43.00", "E101d37m72.00"],
+        "_RWY14R": ["N02d44m35.84", "E101d41m52.63"],
+        "_RWY15": ["N02d44m17.57", "E101d40m38.97"],
+        "_RWY15326002": ["N02d46m07.00", "E101d39m50.00"],
+        "_RWY32L": ["N02d42m47.86", "E101d43m05.03"],
+        "_RWY32R": ["N02d44m54.03", "E101d43m19.41"],
+        "_RWY33": ["N02d42m30.67", "E101d41m50.65"],
+        "_VBA163051": ["N02d30m50.00", "E101d42m40.00"],
+        "_VBA165022": ["N02d58m14.00", "E101d33m14.00"],
+        "_VBA171026": ["N02d53m69.00", "E101d31m52.00"],
+        "_VBA171035": ["N02d44m76.00", "E101d32m95.00"],
+        "_VBA171043": ["N02d36m82.00", "E101d34m21.00"],
+        "_VKL086012": ["N02d44m35.00", "E101d56m24.00"],
+        "_VKL101015": ["N02d40m64.00", "E101d59m01.00"],
+        "_VKL116008": ["N02d39m97.00", "E101d51m48.00"],
+        "_VKL116012": ["N02d38m22.00", "E101d55m08.00"],
+        "_VKL148014": ["N02d31m56.00", "E101d51m74.00"],
+        "_VKL148025": ["N02d22m21.00", "E101d57m59.00"],
+        "_VKL152012": ["N02d32m84.00", "E101d49m95.00"],
+        "_VKL155009": ["N02d35m28.00", "E101d48m11.00"],
+        "_VKL210003": ["N02d40m85.00", "E101d42m79.00"],
+        "_VKL210010": ["N02d34m75.00", "E101d39m32.00"],
+        "_VKL275015": ["N02d44m73.00", "E101d29m35.00"],
+        "_VKL281011": ["N02d45m54.00", "E101d33m49.00"],
+        "_VKL309005": ["N02d46m61.00", "E101d40m39.00"],
+        "_VKL309010": ["N02d49m76.00", "E101d36m49.00"],
+        "_VKL309013": ["N02d51m65.00", "E101d34m16.00"],
+        "_VKL309023": ["N02d57m95.00", "E101d26m37.00"],
+        "_VKL309027": ["N03d00m46.00", "E101d23m25.00"],
+        "_VKL323016": ["N02d56m27.00", "E101d34m61.00"],
+        "_VKL336011": ["N02d53m55.00", "E101d39m78.00"],
+        "_VKL336013": ["N02d55m38.00", "E101d38m96.00"],
+        "AGOSA": ["N03d08m68.00", "E101d13m15.00"],
+        "BATAR": ["N02d10m00.00", "E102d05m00.00"],
+        "DUMOK": ["N02d17m95.00", "E102d00m25.00"],
+        "RUMID": ["N02d20m27.00", "E101d36m45.00"],
+        "SADON": ["N02d20m51.00", "E101d45m45.00"],
+        "VKL": ["N02d43m47.00", "E101d44m28.00"]
     },
     "restricted": [
         {
@@ -770,13 +808,284 @@
         }
     ],
     "sids": {
-
+        "AGOSA1C": {
+            "icao": "AGOSA1C",
+            "name": "Agosa One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14L", ["_VKL336011", "A25+"], ["_RWY14L341013", "A40|S250-"], "_VKL309023"]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY14L", "_VKL336011", "_RWY14L341013", "_VKL309023", "AGOSA"]
+            ]
+        },
+        "AGOSA1D": {
+            "icao": "AGOSA1D",
+            "name": "Agosa One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["_VKL309013", "A30+"]]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "AGOSA"]
+            ]
+        },
+        "AGOSA1F": {
+            "icao": "AGOSA1F",
+            "name": "Agosa One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["_VKL281011", "A30+"], ["_VKL275015", "A40"], "_VKL309027"]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VKL275015", "_VKL309027", "AGOSA"]
+            ]
+        },
+        "AGOSA1H": {
+            "icao": "AGOSA1H",
+            "name": "Agosa One Hotel",
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["_VKL116012", "A40|S250-"], "_VKL101015", "_VKL086012", ["_VKL086012", "A60+"], "VKL"]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL101015", "_VKL086012", "_VKL086012", "VKL", "AGOSA"]
+            ]
+        },
+        "AGOSA1M": {
+            "icao": "AGOSA1M",
+            "name": "Agosa One Mike",
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"]]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "AGOSA"]
+            ]
+        },
+        "BATAR1C": {
+            "icao": "BATAR1C",
+            "name": "Batar One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID", "BATAR"]
+            ]
+        },
+        "BATAR1D": {
+            "icao": "BATAR1D",
+            "name": "Batar One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID", "BATAR"]
+            ]
+        },
+        "BATAR1E": {
+            "icao": "BATAR1E",
+            "name": "Batar One Echo",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "RUMID", "BATAR"]
+            ]
+        },
+        "BATAR1F": {
+            "icao": "BATAR1F",
+            "name": "Batar One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "^_VBA171043", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VBA171043", "RUMID", "BATAR"]
+            ]
+        },
+        "BATAR1H": {
+            "icao": "BATAR1H",
+            "name": "Batar One Hotel",
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["^_VKL116012", "A40|S250-"], "_VKL148025", "DUMOK"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL148025", "DUMOK", "BATAR"]
+            ]
+        },
+        "BATAR1K": {
+            "icao": "BATAR1K",
+            "name": "Batar One Kilo",
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], "_VKL148014", "DUMOK"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL148014", "DUMOK", "BATAR"]
+            ]
+        },
+        "BATAR1M": {
+            "icao": "BATAR1M",
+            "name": "Batar One Mike",
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VBA163051", "SADON"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "BATAR"]
+            ]
+        },
+        "DUMOK1C": {
+            "icao": "DUMOK1C",
+            "name": "Dumok One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14L", ["_VKL336011", "A25+"], ["_RWY14L341013", "A40|S250-"], ["^_VBA165022", "S250-"], "_VBA171026", "RUMID"]
+            },
+            "exitPoints": {
+                "DUMOK": ["DUMOK"]
+            },
+            "draw": [
+                ["_RWY14L", "_VKL336011", "_RWY14L341013", "_VBA165022", "_VBA171026", "RUMID", "DUMOK"]
+            ]
+        },
+        "DUMOK1D": {
+            "icao": "DUMOK1D",
+            "name": "Dumok One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL", "RUMID"]
+            },
+            "exitPoints": {
+                "DUMOK": ["DUMOK"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID", "DUMOK"]
+            ]
+        },
+        "DUMOK1E": {
+            "icao": "DUMOK1E",
+            "name": "Dumok One Echo",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "RUMID"]
+            },
+            "exitPoints": {
+                "DUMOK": ["DUMOK"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "RUMID", "DUMOK"]
+            ]
+        },
+        "DUMOK1F": {
+            "icao": "DUMOK1F",
+            "name": "Dumok One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "^_VBA171043", "RUMID"]
+            },
+            "exitPoints": {
+                "DUMOK": ["DUMOK"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VBA171043", "RUMID", "DUMOK"]
+            ]
+        },
+        "DUMOK1M": {
+            "icao": "DUMOK1M",
+            "name": "Dumok One Mike",
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VBA163051", "SADON"]
+            },
+            "exitPoints": {
+                "DUMOK": ["DUMOK"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "DUMOK"]
+            ]
+        }
     },
     "stars": {
 
     },
     "spawnPatterns": [
-
+        {
+            "origin": "WMKK",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKK32L.DUMOK1D.DUMOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["CSA", 10]
+            ]
+        },
+        {
+            "origin": "WMKK",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKK32R.DUMOK1C.DUMOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["CSA", 10]
+            ]
+        },
+        {
+            "origin": "WMKK",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKK33.DUMOK1F.DUMOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["CSA", 10]
+            ]
+        },
+        {
+            "origin": "WMKK",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKK32L.DUMOK1E.DUMOK",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["CSA", 10]
+            ]
+        }
     ],
     "maps": {
         "base": [[]]
