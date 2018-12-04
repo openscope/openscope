@@ -3,6 +3,10 @@ import GameController, { GAME_EVENTS } from './GameController';
 import UiController from '../ui/UiController';
 import { AIRCRAFT_EVENT } from '../constants/eventNames';
 import { nm_ft } from '../utilities/unitConverters';
+import AirportController from '../airport/AirportController';
+import { speech_say } from '../speech';
+import { AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
+import { MCP_MODE } from '../aircraft/ModeControl/modeControlConstants';
 
 /**
  * @class ScoreLogic
@@ -37,6 +41,7 @@ export default class ScoreLogic {
         this._onTakeoffHandler = this._onTakeoff.bind(this);
         this._onApproachHandler = this._onApproach.bind(this);
         this._onLandingHandler = this._onLanding.bind(this);
+        this._onExitAirspaceHandler = this._onExitAirspace.bind(this);
 
         return this;
     }
@@ -50,6 +55,7 @@ export default class ScoreLogic {
         EventBus.on(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.on(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.on(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
+        EventBus.on(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
 
         return this;
     }
@@ -63,6 +69,7 @@ export default class ScoreLogic {
         EventBus.off(AIRCRAFT_EVENT.TAKEOFF, this._onTakeoffHandler);
         EventBus.off(AIRCRAFT_EVENT.APPROACH, this._onApproachHandler);
         EventBus.off(AIRCRAFT_EVENT.FULLSTOP, this._onLandingHandler);
+        EventBus.off(AIRCRAFT_EVENT.AIRSPACE_EXIT, this._onExitAirspaceHandler);
 
         return this;
     }
@@ -101,6 +108,63 @@ export default class ScoreLogic {
     _onLanding(aircraftModel, runwayModel) {
         this._scoreWind(aircraftModel, 'landed');
         this._scoreRunwaySeparation(aircraftModel, runwayModel, 'landed');
+    }
+
+    /**
+     * @for ScoreLogic
+     * @method _onExitAirspace
+     * @param aircraftModel {AircraftModel}
+     */
+    _onExitAirspace(aircraftModel) {
+        if (aircraftModel.isArrival()) {
+            this._onAirspaceExitForArrival(aircraftModel);
+
+            return;
+        }
+
+        if (aircraftModel.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
+            this._onAirspaceExitWithoutClearance(aircraftModel);
+
+            return;
+        }
+
+        this._onAirspaceExitWithClearance(aircraftModel);
+    }
+
+
+    /**
+     * An arriving aircraft is exiting the airpsace
+     *
+     * @for ScoreLogic
+     * @method _onAirspaceExitForArrival
+     * @param aircraftModel {AircraftModel}
+     * @private
+     */
+    _onAirspaceExitForArrival(aircraftModel) {
+        this._radioCall(aircraftModel, 'leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
+        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
+    }
+
+    /**
+     * @for ScoreLogic
+     * @method _onAirspaceExitWithClearance
+     * @param aircraftModel {AircraftModel}
+     * @private
+     */
+    _onAirspaceExitWithClearance(aircraftModel) {
+        this._radioCall(aircraftModel, 'switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
+        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
+    }
+
+    /**
+     * @for ScoreLogic
+     * @method _onAirspaceExitWithoutClearance
+     * @param aircraftModel {AircraftModel}
+     * @private
+     */
+    _onAirspaceExitWithoutClearance(aircraftModel) {
+        this._radioCall(aircraftModel, 'leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+        GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
     }
 
     /**
@@ -157,7 +221,7 @@ export default class ScoreLogic {
     /**
      * Display a waring and record an illegal glideslope intercept event
      *
-     * @for AircraftModel
+     * @for ScoreLogic
      * @method _penalizeLocalizerInterceptAltitude
      * @param aircraftModel {AircraftModel}
      */
@@ -173,7 +237,7 @@ export default class ScoreLogic {
     /**
      * Display a waring and record an illegal approach event
      *
-     * @for AircraftModel
+     * @for ScoreLogic
      * @method _penalizeLocalizerInterceptAngle
      * @param aircraftModel {AircraftModel}
      */
@@ -184,4 +248,27 @@ export default class ScoreLogic {
         GameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
+    /**
+     * @for ScoreLogic
+     * @method _radioCall
+     * @param msg {string}
+     * @param sectorType {string}
+     * @param isWarning {string}
+     */
+    _radioCall(aircraftModel, msg, sectorType, isWarning = false) {
+        const writtenCallsign = aircraftModel.callsign;
+        const spokenCallsign = aircraftModel.getRadioCallsign();
+
+        const logMessage = (callsign) => `${AirportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+
+        UiController.ui_log(logMessage(writtenCallsign), isWarning);
+
+        speech_say(
+            [{
+                type: 'text',
+                content: logMessage(spokenCallsign)
+            }],
+            aircraftModel.pilotVoice
+        );
+    }
 }

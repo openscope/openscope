@@ -271,5 +271,15 @@ export const AIRCRAFT_EVENT = {
      * @property FULLSTOP
      * @type {string}
      */
-    FULLSTOP: 'fullstop'
+    FULLSTOP: 'fullstop',
+
+    /**
+     * Triggered when the aircraft exits the airspace.
+     *
+     * @memberof AIRCRAFT_EVENT
+     * @property AIRSPACE_EXIT
+     * @type {string}
+     */
+    AIRSPACE_EXIT: 'airspace-exit'
+
 }

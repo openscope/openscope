@@ -671,24 +671,6 @@ export default class AircraftModel {
     }
 
     /**
-     * @for AircraftModel
-     * @method onAirspaceExit
-     */
-    onAirspaceExit() {
-        if (this.isArrival()) {
-            return this._onAirspaceExitForArrival();
-        }
-
-        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV) {
-            this._onAirspaceExitWithoutClearance();
-
-            return;
-        }
-
-        this._onAirspaceExitWithClearance();
-    }
-
-    /**
      * Returns a true value if there is a match from the callsignToMatch
      *
      * @for AircraftModel
@@ -2688,40 +2670,7 @@ export default class AircraftModel {
         }
 
         this.setIsRemovable();
-        // leaving airspace
-        this.onAirspaceExit();
-    }
-
-    /**
-     * An arriving aircraft is exiting the airpsace
-     *
-     * @for AircraftModel
-     * @method _onAirspaceExitForArrival
-     * @private
-     */
-    _onAirspaceExitForArrival() {
-        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
-        GameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
-    }
-
-    /**
-     * @for AircraftModel
-     * @method _onAirspaceExitWithClearance
-     * @private
-     */
-    _onAirspaceExitWithClearance() {
-        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-        GameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-    }
-
-    /**
-     * @for AircraftModel
-     * @method _onAirspaceExitWithoutClearance
-     * @private
-     */
-    _onAirspaceExitWithoutClearance() {
-        this.radioCall('leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
-        GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+        EventBus.trigger(AIRCRAFT_EVENT.AIRSPACE_EXIT, this);
     }
 
     /**
