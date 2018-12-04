@@ -175,7 +175,7 @@ export default class AppController {
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController);
         this.canvasController = new CanvasController(this.$canvasesElement, this.aircraftController, this.scopeModel);
-        this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
+        this.aircraftCommander = new AircraftCommander(this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
 
