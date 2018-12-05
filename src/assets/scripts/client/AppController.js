@@ -21,7 +21,7 @@ import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
-import ScoreLogic from './game/ScoreLogic';
+import ScoreController from './game/ScoreController';
 
 /**
  * Root controller class
@@ -162,7 +162,7 @@ export default class AppController {
         this.airlineController = new AirlineController(airlineList);
         this.scopeModel = new ScopeModel();
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.scopeModel);
-        this.scoreLogic = new ScoreLogic(this.aircraftController);
+        this.scoreController = new ScoreController(this.aircraftController);
 
         // TEMPORARY!
         // some instances are attached to the window here as an intermediate step away from global functions.
