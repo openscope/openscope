@@ -206,7 +206,7 @@ export default class ScoreController {
 
         if (previousAircraft) {
             const actualDistance = nm_ft(aircraftModel.distanceToAircraft(previousAircraft));
-            const requiredDistance = aircraftModel.model.calculateRunwaySeparationDistanceInFeet(previousAircraft.model);
+            const requiredDistance = aircraftModel.model.calculateSameRunwaySeparationDistanceInFeet(previousAircraft.model);
 
             if (actualDistance < requiredDistance || previousAircraft.isOnGround()) {
                 const isWarning = true;

@@ -244,11 +244,11 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * Returns the minimal distance that is required to a previous aircraft before another aircraft is allowed to use the runway.
      *
      * @for AircraftTypeDefinitionModel
-     * @method calculateRunwaySeparationDistanceInFeet
+     * @method calculateSameRunwaySeparationDistanceInFeet
      * @param previousTypeModel {AircraftTypeDefinitionModel} the aircraft type that used the runway before us.
      * @returns {number} distance in feet
      */
-    calculateRunwaySeparationDistanceInFeet(previousTypeModel) {
+    calculateSameRunwaySeparationDistanceInFeet(previousTypeModel) {
         if (typeof previousTypeModel.category.srs === 'undefined'
             || previousTypeModel.category.srs === 3) {
             return 6000;
