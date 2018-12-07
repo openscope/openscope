@@ -892,6 +892,32 @@
                 ["_RWY33", "_VKL210003", "_VKL210010", "AGOSA"]
             ]
         },
+        "AGOSA1N": {
+            "icao": "AGOSA1N",
+            "name": "Agosa One November", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "A4+"], ["KK622", "A30+"], "KK623"]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "KK622", "KK623", "AGOSA"]
+            ]
+        },
+        "AGOSA1X": {
+            "icao": "AGOSA1X",
+            "name": "Agosa One X-ray", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["KK612", "A30+"], "KK613", "KK613"]
+            },
+            "exitPoints": {
+                "AGOSA": ["AGOSA"]
+            },
+            "draw": [
+                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "AGOSA"]
+            ]
+        },
         "BATAR1C": {
             "icao": "BATAR1C",
             "name": "Batar One Charlie",
@@ -981,6 +1007,32 @@
             },
             "draw": [
                 ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "BATAR"]
+            ]
+        },
+        "BATAR1N": {
+            "icao": "BATAR1N",
+            "name": "Batar One November", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "A4+"], ["KK622", "A30+"], "KK624", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "KK622", "KK624", "RUMID", "BATAR"]
+            ]
+        },
+        "BATAR1X": {
+            "icao": "BATAR1X",
+            "name": "Batar One X-ray", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID"]
+            },
+            "exitPoints": {
+                "BATAR": ["BATAR"]
+            },
+            "draw": [
+                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID", "BATAR"]
             ]
         },
         "DUMOK1C": {
@@ -1321,6 +1373,32 @@
                 ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "MITOS"]
             ]
         },
+        "MITOS1N": {
+            "icao": "MITOS1N",
+            "name": "Mitos One November", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "A4+"], ["KK622", "A30+"], "KK624", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "KK622", "KK624", "RUMID", "MITOS"]
+            ]
+        },
+        "MITOS1X": {
+            "icao": "MITOS1X",
+            "name": "Mitos One X-ray", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID", "MITOS"]
+            ]
+        },
         "PIBOS1C": {
             "icao": "PIBOS1C",
             "name": "Pibos One Charlie", 
@@ -1502,13 +1580,39 @@
             "draw": [
                 ["_RWY33", "_VKL210003", "_VKL210010", "_VKL210017", "RUMID"]
             ]
+        },
+        "RUMID1N": {
+            "icao": "RUMID1N",
+            "name": "Rumid One November", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "A4+"], ["KK622", "A30+"], "KK624"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "KK622", "KK624", "RUMID"]
+            ]
+        },
+        "RUMID1X": {
+            "icao": "RUMID1X",
+            "name": "Rumid One X-ray", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["KK612", "A30+"], "KK613", "KK613"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID"]
+            ]
         }
     },
     "stars": {
 
     },
     "spawnPatterns": [
-        
+
     ],
     "maps": {
         "base": [[]]
