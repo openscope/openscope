@@ -1508,58 +1508,7 @@
 
     },
     "spawnPatterns": [
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK32L.DUMOK1D.DUMOK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["CSA", 10]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK32R.DUMOK1C.DUMOK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["CSA", 10]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK33.DUMOK1F.DUMOK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["CSA", 10]
-            ]
-        },
-        {
-            "origin": "WMKK",
-            "destination": "",
-            "category": "departure",
-            "route": "WMKK32L.DUMOK1E.DUMOK",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["CSA", 10]
-            ]
-        }
+        
     ],
     "maps": {
         "base": [[]]
