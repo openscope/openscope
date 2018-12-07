@@ -55,16 +55,30 @@
         "_VBA171026": ["N02d53m69.00", "E101d31m52.00"],
         "_VBA171035": ["N02d44m76.00", "E101d32m95.00"],
         "_VBA171043": ["N02d36m82.00", "E101d34m21.00"],
+        "_VKL027016": ["N02d57.82", "E101d51.49"],
+        "_VKL027023": ["N03d04.10", "E101d54.65"],
+        "_VKL027027": ["N03d07.68", "E101d56.45"],
+        "_VKL027040": ["N03d19.34", "E102d02.32"],
+        "_VKL055028": ["N02d59.68", "E102d07.15"],
+        "_VKL055033": ["N03d02.58", "E102d11.24"],
+        "_VKL069015": ["N02d48m92.00", "E101d58m26.00"],
+        "_VKL069021": ["N02d51.10", "E102d03.85"],
         "_VKL086012": ["N02d44m35.00", "E101d56m24.00"],
         "_VKL101015": ["N02d40m64.00", "E101d59m01.00"],
         "_VKL116008": ["N02d39m97.00", "E101d51m48.00"],
         "_VKL116012": ["N02d38m22.00", "E101d55m08.00"],
+        "_VKL132015": ["N02d33.42", "E101d55.46"],
         "_VKL148014": ["N02d31m56.00", "E101d51m74.00"],
         "_VKL148025": ["N02d22m21.00", "E101d57m59.00"],
+        "_VKL151015": ["N02d30.31", "E101d51.60"],
         "_VKL152012": ["N02d32m84.00", "E101d49m95.00"],
         "_VKL155009": ["N02d35m28.00", "E101d48m11.00"],
         "_VKL210003": ["N02d40m85.00", "E101d42m79.00"],
         "_VKL210010": ["N02d34m75.00", "E101d39m32.00"],
+        "_VKL210017": ["N02d28.64", "E101d35.84"],
+        "_VKL235009": ["N02d38m25.00", "E101d36m93.00"],
+        "_VKL235010": ["N02d37.67", "E101d36.12"],
+        "_VKL246012": ["N02d38m52.00", "E101d33m35.00"],
         "_VKL275015": ["N02d44m73.00", "E101d29m35.00"],
         "_VKL281011": ["N02d45m54.00", "E101d33m49.00"],
         "_VKL309005": ["N02d46m61.00", "E101d40m39.00"],
@@ -75,9 +89,14 @@
         "_VKL323016": ["N02d56m27.00", "E101d34m61.00"],
         "_VKL336011": ["N02d53m55.00", "E101d39m78.00"],
         "_VKL336013": ["N02d55m38.00", "E101d38m96.00"],
+        "_VKL346012": ["N02d55m16.00", "E101d41m34.00"],
         "AGOSA": ["N03d08m68.00", "E101d13m15.00"],
         "BATAR": ["N02d10m00.00", "E102d05m00.00"],
         "DUMOK": ["N02d17m95.00", "E102d00m25.00"],
+        "ISTAN": ["N03d00m92.00", "E102d28m88.00"],
+        "KIMAT": ["N03d09.73", "E102d21.04"],
+        "MITOS": ["N01d58.50", "E102d06.17"],
+        "PIBOS": ["N03d21.10", "E102d03.26"],
         "RUMID": ["N02d20m27.00", "E101d36m45.00"],
         "SADON": ["N02d20m51.00", "E101d45m45.00"],
         "VKL": ["N02d43m47.00", "E101d44m28.00"]
@@ -1027,6 +1046,461 @@
             },
             "draw": [
                 ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "DUMOK"]
+            ]
+        },
+        "ISTAN1C": {
+            "icao": "ISTAN1C",
+            "name": "Istan One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14L", ["^_VKL336011", "A25+"], "^_VKL346012", "_VKL069015"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY14L", "_VKL336011", "_VKL346012", "_VKL069015", "ISTAN"]
+            ]
+        },
+        "ISTAN1D": {
+            "icao": "ISTAN1D",
+            "name": "Istan One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "_VKL069015"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "_VKL069015", "ISTAN"]
+            ]
+        },
+        "ISTAN1E": {
+            "icao": "ISTAN1E",
+            "name": "Istan One Echo",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "VKL"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "VKL", "ISTAN"]
+            ]
+        },
+        "ISTAN1F": {
+            "icao": "ISTAN1F",
+            "name": "Istan One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "_VKL246012", "_VKL235009", "VKL"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VKL246012", "_VKL235009", "VKL", "ISTAN"]
+            ]
+        },
+        "ISTAN1H": {
+            "icao": "ISTAN1H",
+            "name": "Istan One Hotel",
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["_VKL116012", "A40|S250-"], "_VKL101015", "_VKL069021"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL101015", "_VKL069021", "ISTAN"]
+            ]
+        },
+        "ISTAN1K": {
+            "icao": "ISTAN1K",
+            "name": "Istan One Kilo",
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], "_VKL132015", "_VKL069021"]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL132015", "_VKL069021", "ISTAN"]
+            ]
+        },
+        "ISTAN1M": {
+            "icao": "ISTAN1M",
+            "name": "Istan One Mike", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VKL235010", ["VKL", "A50+"]]
+            },
+            "exitPoints": {
+                "ISTAN": ["ISTAN"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VKL235010", "VKL", "ISTAN"]
+            ]
+        },
+        "KIMAT1C": {
+            "icao": "KIMAT1C",
+            "name": "Kimat One Charlie", 
+            "rwy": {
+                "WMKK32R": ["_RWY14L", ["^_VKL336011", "A25+"], "^_VKL346012", "_VKL055028"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY14L", "_VKL336011", "_VKL346012", "_VKL055028", "KIMAT"]
+            ]
+        },
+        "KIMAT1D": {
+            "icao": "KIMAT1D",
+            "name": "Kimat One Delta", 
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "_VKL055033"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL055033", "KIMAT"]
+            ]
+        },
+        "KIMAT1E": {
+            "icao": "KIMAT1E",
+            "name": "Kimat One Echo", 
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "VKL"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "VKL", "KIMAT"]
+            ]
+        },
+        "KIMAT1F": {
+            "icao": "KIMAT1F",
+            "name": "Kimat One Foxtrot", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "_VKL246012", "_VKL235009", "VKL"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VKL246012", "_VKL235009", "VKL", "KIMAT"]
+            ]
+        },
+        "KIMAT1H": {
+            "icao": "KIMAT1H",
+            "name": "Kimat One Hotel", 
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["_VKL116012", "A40|S250-"], "_VKL101015", "_VKL055028"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL101015", "_VKL055028", "KIMAT"]
+            ]
+        },
+        "KIMAT1K": {
+            "icao": "KIMAT1K",
+            "name": "Kimat One Kilo", 
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], "_VKL132015", "_VKL055028"]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL132015", "_VKL055028", "KIMAT"]
+            ]
+        },
+        "KIMAT1M": {
+            "icao": "KIMAT1M",
+            "name": "Kimat One Mike", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VKL235010", ["VKL", "A50+"]]
+            },
+            "exitPoints": {
+                "KIMAT": ["KIMAT"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VKL235010", "VKL", "KIMAT"]
+            ]
+        },
+        "MITOS1C": {
+            "icao": "MITOS1C",
+            "name": "Mitos One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID", "MITOS"]
+            ]
+        },
+        "MITOS1D": {
+            "icao": "MITOS1D",
+            "name": "Mitos One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID", "MITOS"]
+            ]
+        },
+        "MITOS1E": {
+            "icao": "MITOS1E",
+            "name": "Mitos One Echo",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "RUMID", "MITOS"]
+            ]
+        },
+        "MITOS1F": {
+            "icao": "MITOS1F",
+            "name": "Mitos One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "^_VBA171043", "RUMID"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VBA171043", "RUMID", "MITOS"]
+            ]
+        },
+        "MITOS1H": {
+            "icao": "MITOS1H",
+            "name": "Mitos One Hotel",
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["^_VKL116012", "A40|S250-"], "_VKL148025", "DUMOK"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL148025", "DUMOK", "MITOS"]
+            ]
+        },
+        "MITOS1K": {
+            "icao": "MITOS1K",
+            "name": "Mitos One Kilo",
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], "_VKL148014", "DUMOK"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL148014", "DUMOK", "MITOS"]
+            ]
+        },
+        "MITOS1M": {
+            "icao": "MITOS1M",
+            "name": "Mitos One Mike",
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VBA163051", "SADON"]
+            },
+            "exitPoints": {
+                "MITOS": ["MITOS"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VBA163051", "SADON", "MITOS"]
+            ]
+        },
+        "PIBOS1C": {
+            "icao": "PIBOS1C",
+            "name": "Pibos One Charlie", 
+            "rwy": {
+                "WMKK32R": ["_RWY14L", ["^_VKL336011", "A25+"], "^_VKL346012", "_VKL027027"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY14L", "_VKL336011", "_VKL346012", "_VKL027027", "PIBOS"]
+            ]
+        },
+        "PIBOS1D": {
+            "icao": "PIBOS1D",
+            "name": "Pibos One Delta", 
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "_VKL027040"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL027040", "PIBOS"]
+            ]
+        },
+        "PIBOS1E": {
+            "icao": "PIBOS1E",
+            "name": "Pibos One Echo", 
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035", "VKL"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "VKL", "PIBOS"]
+            ]
+        },
+        "PIBOS1F": {
+            "icao": "PIBOS1F",
+            "name": "Pibos One Foxtrot", 
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "_VKL246012", "_VKL235009", "VKL"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VKL246012", "_VKL235009", "VKL", "PIBOS"]
+            ]
+        },
+        "PIBOS1H": {
+            "icao": "PIBOS1H",
+            "name": "Pibos One Hotel", 
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["_VKL116012", "A40|S250-"], "_VKL101015", "_VKL027023"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL101015", "_VKL027023", "PIBOS"]
+            ]
+        },
+        "PIBOS1K": {
+            "icao": "PIBOS1K",
+            "name": "Pibos One Kilo", 
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], "_VKL132015", "_VKL027016"]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL132015", "_VKL027016", "PIBOS"]
+            ]
+        },
+        "PIBOS1M": {
+            "icao": "PIBOS1M",
+            "name": "Pibos One Mike", 
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VKL235010", ["VKL", "A50+"]]
+            },
+            "exitPoints": {
+                "PIBOS": ["PIBOS"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VKL235010", "VKL", "PIBOS"]
+            ]
+        },
+        "RUMID1C": {
+            "icao": "RUMID1C",
+            "name": "Rumid One Charlie",
+            "rwy": {
+                "WMKK32R": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID"]
+            ]
+        },
+        "RUMID1D": {
+            "icao": "RUMID1D",
+            "name": "Rumid One Delta",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "_VKL323016", "^_VKL336013", "VKL"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VKL323016", "_VKL336013", "VKL", "RUMID"]
+            ]
+        },
+        "RUMID1E": {
+            "icao": "RUMID1E",
+            "name": "Rumid One Echo",
+            "rwy": {
+                "WMKK32L": ["_RWY14R", "_VKL309005", "_VKL309010", ["^_VKL309013", "A30+"], "^_VBA171035"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY14R", "_VKL309005", "_VKL309010", "_VKL309013", "_VBA171035", "RUMID"]
+            ]
+        },
+        "RUMID1F": {
+            "icao": "RUMID1F",
+            "name": "Rumid One Foxtrot",
+            "rwy": {
+                "WMKK33": ["_RWY15", ["_RWY15326002", "S230-"], ["^_VKL281011", "A30+"], "^_VBA171043"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY15", "_RWY15326002", "_VKL281011", "_VBA171043", "RUMID"]
+            ]
+        },
+        "RUMID1H": {
+            "icao": "RUMID1H",
+            "name": "Rumid One Hotel",
+            "rwy": {
+                "WMKK14L": ["_RWY32R", "VKL", "_VKL116008", ["_VKL116012", "A40|S250-"], "_VKL101015", "_VKL086012", ["_VKL086012", "A60+"], "VKL"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY32R", "VKL", "_VKL116008", "_VKL116012", "_VKL101015", "_VKL086012", "_VKL086012", "VKL", "RUMID"]
+            ]
+        },
+        "RUMID1K": {
+            "icao": "RUMID1K",
+            "name": "Rumid One Kilo",
+            "rwy": {
+                "WMKK14R": ["_RWY32L", "_VKL155009", ["^_VKL152012", "A40"], ["^_VKL151015", "A50"]]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY32L", "_VKL155009", "_VKL152012", "_VKL151015", "RUMID"]
+            ]
+        },
+        "RUMID1M": {
+            "icao": "RUMID1M",
+            "name": "Rumid One Mike",
+            "rwy": {
+                "WMKK15": ["_RWY33", ["_VKL210003", "S210-"], ["^_VKL210010", "A30+|S250-"], "_VKL210017"]
+            },
+            "exitPoints": {
+                "RUMID": ["RUMID"]
+            },
+            "draw": [
+                ["_RWY33", "_VKL210003", "_VKL210010", "_VKL210017", "RUMID"]
             ]
         }
     },
