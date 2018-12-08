@@ -1114,19 +1114,6 @@
             "origin": "",
             "destination": "KHOU",
             "category": "arrival",
-            "route": "CHUKY.KIDDZ3.KHOU13R",
-            "altitude": [23000, 27000],
-            "speed": 400,
-            "method": "random",
-            "rate": 0.16,
-            "airlines": [
-                ["swa", 4]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KHOU",
-            "category": "arrival",
             "route": "ILEXY.KIDDZ3.KHOU13R",
             "altitude": [18000, 23000],
             "speed": 400,
@@ -1144,9 +1131,9 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 0.24,
+            "rate": 0.41,
             "airlines": [
-                ["swa", 6]
+                ["swa", 10]
             ]
         },
         {
