@@ -1001,9 +1001,22 @@
             "altitude": [35000, 39000],
             "speed": 400,
             "method": "random",
-            "rate": 0.28,
+            "rate": 0.33,
             "airlines": [
-                ["swa", 7]
+                ["swa", 8]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KHOU",
+            "category": "arrival",
+            "route": "KELPP.BAYYY3.KHOU13R",
+            "altitude": [36000, 40000],
+            "speed": 400,
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["swa", 2]
             ]
         },
         {
@@ -1014,9 +1027,9 @@
             "altitude": [25000, 29000],
             "speed": 400,
             "method": "random",
-            "rate": 0.20,
+            "rate": 0.25,
             "airlines": [
-                ["swa", 5]
+                ["swa", 6]
             ]
         },
         {
@@ -1030,6 +1043,45 @@
             "rate": 0.04,
             "airlines": [
                 ["swa", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KHOU",
+            "category": "arrival",
+            "route": "PEGLG.BAYYY3.KHOU13R",
+            "altitude": [36000, 40000],
+            "speed": 400,
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["swa", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KHOU",
+            "category": "arrival",
+            "route": "CRP.BELLR3.KHOU13R",
+            "altitude": [35000, 39000],
+            "speed": 400,
+            "method": "random",
+            "rate": 0.08,
+            "airlines": [
+                ["swa", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KHOU",
+            "category": "arrival",
+            "route": "COLLT.BELLR3.KHOU13R",
+            "altitude": [33000, 37000],
+            "speed": 400,
+            "method": "random",
+            "rate": 0.16,
+            "airlines": [
+                ["swa", 4]
             ]
         },
         {
@@ -1053,9 +1105,22 @@
             "altitude": [34000, 38000],
             "speed": 400,
             "method": "random",
-            "rate": 0.36,
+            "rate": 0.66,
             "airlines": [
-                ["swa", 9]
+                ["swa", 16]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "KHOU",
+            "category": "arrival",
+            "route": "CHUKY.KIDDZ3.KHOU13R",
+            "altitude": [23000, 27000],
+            "speed": 400,
+            "method": "random",
+            "rate": 0.16,
+            "airlines": [
+                ["swa", 4]
             ]
         },
         {
@@ -1092,10 +1157,10 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 1.32,
+            "rate": 1.63,
             "airlines": [
                 ["ash", 7],
-                ["swa", 25]
+                ["swa", 32]
             ]
         },
         {
@@ -1106,11 +1171,11 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 0.84,
+            "rate": 0.88,
             "airlines": [
                 ["dal/short", 6],
                 ["jbu", 1],
-                ["swa", 13]
+                ["swa", 14]
             ]
         },
         {
@@ -1121,22 +1186,10 @@
             "altitude": [36000, 40000],
             "speed": 400,
             "method": "random",
-            "rate": 0.36,
+            "rate": 0.50,
             "airlines": [
-                ["swa", 9]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "KHOU",
-            "category": "arrival",
-            "route": "SWB.WAPPL4.KHOU13R",
-            "altitude": [25000, 30000],
-            "speed": 400,
-            "method": "random",
-            "rate": 0.04,
-            "airlines": [
-                ["jbu", 1]
+                ["jbu", 1],
+                ["swa", 11]
             ]
         }
     ],
