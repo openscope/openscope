@@ -383,16 +383,33 @@ export default class AircraftController {
     }
 
     /**
+     * Finds an aircraft by its callsign
+     *
      * @method findAircraftByCallsign
      * @param  {string} [callsign='']
      * @return {AircraftModel|null}
      */
     findAircraftByCallsign(callsign = '') {
-        if (callsign === '') {
+        if (!callsign) {
             return null;
         }
 
         return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+    }
+
+    /**
+     * Finds an aircraft by its internal id
+     *
+     * @method findAircraftById
+     * @param  {string} [id]
+     * @return {AircraftModel|null}
+     */
+    findAircraftById(id) {
+        if (!id) {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.id === id);
     }
 
     /**
