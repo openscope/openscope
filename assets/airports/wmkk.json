@@ -50,61 +50,135 @@
         "_RWY32L": ["N02d42m47.86", "E101d43m05.03"],
         "_RWY32R": ["N02d44m54.03", "E101d43m19.41"],
         "_RWY33": ["N02d42m30.67", "E101d41m50.65"],
-        "_VBA163051": ["N02d30m50.00", "E101d42m40.00"],
-        "_VBA165022": ["N02d58m14.00", "E101d33m14.00"],
-        "_VBA171026": ["N02d53m69.00", "E101d31m52.00"],
-        "_VBA171035": ["N02d44m76.00", "E101d32m95.00"],
-        "_VBA171043": ["N02d36m82.00", "E101d34m21.00"],
-        "_VKL027016": ["N02d57.82", "E101d51.49"],
-        "_VKL027023": ["N03d04.10", "E101d54.65"],
-        "_VKL027027": ["N03d07.68", "E101d56.45"],
-        "_VKL027040": ["N03d19.34", "E102d02.32"],
-        "_VKL055028": ["N02d59.68", "E102d07.15"],
-        "_VKL055033": ["N03d02.58", "E102d11.24"],
-        "_VKL069015": ["N02d48m92.00", "E101d58m26.00"],
-        "_VKL069021": ["N02d51.10", "E102d03.85"],
-        "_VKL086012": ["N02d44m35.00", "E101d56m24.00"],
-        "_VKL101015": ["N02d40m64.00", "E101d59m01.00"],
-        "_VKL116008": ["N02d39m97.00", "E101d51m48.00"],
-        "_VKL116012": ["N02d38m22.00", "E101d55m08.00"],
-        "_VKL132015": ["N02d33.42", "E101d55.46"],
-        "_VKL148014": ["N02d31m56.00", "E101d51m74.00"],
-        "_VKL148025": ["N02d22m21.00", "E101d57m59.00"],
-        "_VKL151015": ["N02d30.31", "E101d51.60"],
-        "_VKL152012": ["N02d32m84.00", "E101d49m95.00"],
-        "_VKL155009": ["N02d35m28.00", "E101d48m11.00"],
-        "_VKL210003": ["N02d40m85.00", "E101d42m79.00"],
-        "_VKL210010": ["N02d34m75.00", "E101d39m32.00"],
-        "_VKL210017": ["N02d28.64", "E101d35.84"],
-        "_VKL235009": ["N02d38m25.00", "E101d36m93.00"],
-        "_VKL235010": ["N02d37.67", "E101d36.12"],
-        "_VKL246012": ["N02d38m52.00", "E101d33m35.00"],
-        "_VKL275015": ["N02d44m73.00", "E101d29m35.00"],
-        "_VKL281011": ["N02d45m54.00", "E101d33m49.00"],
-        "_VKL309005": ["N02d46m61.00", "E101d40m39.00"],
-        "_VKL309010": ["N02d49m76.00", "E101d36m49.00"],
-        "_VKL309013": ["N02d51m65.00", "E101d34m16.00"],
-        "_VKL309023": ["N02d57m95.00", "E101d26m37.00"],
-        "_VKL309027": ["N03d00m46.00", "E101d23m25.00"],
-        "_VKL323016": ["N02d56m27.00", "E101d34m61.00"],
-        "_VKL336011": ["N02d53m55.00", "E101d39m78.00"],
-        "_VKL336013": ["N02d55m38.00", "E101d38m96.00"],
-        "_VKL346012": ["N02d55m16.00", "E101d41m34.00"],
-        "AGOSA": ["N03d08m68.00", "E101d13m15.00"],
-        "BATAR": ["N02d10m00.00", "E102d05m00.00"],
-        "DUMOK": ["N02d17m95.00", "E102d00m25.00"],
-        "ISTAN": ["N03d00m92.00", "E102d28m88.00"],
-        "KIMAT": ["N03d09.73", "E102d21.04"],
-        "KK612": ["N02d45m52.44", "E101d33m33.96"],
-        "KK613": ["N02d42m09.31", "E101d25m55.20"],
-        "KK622": ["N02d34m25.22", "E101d39m56.80"],
-        "KK623": ["N02d30m21.44", "E101d31m35.73"],
-        "KK624": ["N02d24m38.70", "E101d34m20.62"],
-        "MITOS": ["N01d58.50", "E102d06.17"],
-        "PIBOS": ["N03d21.10", "E102d03.26"],
-        "RUMID": ["N02d20m27.00", "E101d36m45.00"],
-        "SADON": ["N02d20m51.00", "E101d45m45.00"],
-        "VKL": ["N02d43m47.00", "E101d44m28.00"]
+        "_VBA163051": ["N02d30m50", "E101d42m40"],
+        "_VBA165022": ["N02d58m14", "E101d33m14"],
+        "_VBA166008": ["N03d11m69", "E101d29m36"],
+        "_VBA166022": ["N02d58m05", "E101d32m77"],
+        "_VBA166025": ["N02d55m12", "E101d33m50"],
+        "_VBA171026": ["N02d53m69", "E101d31m52"],
+        "_VBA171035": ["N02d44m76", "E101d32m95"],
+        "_VBA171043": ["N02d36m82", "E101d34m21"],
+        "_VKL010026": ["N03d09m21", "E101d48m71"],
+        "_VKL010035": ["N03d18m12", "E101d50m24"],
+        "_VKL027016": ["N02d57m82", "E101d51m49"],
+        "_VKL027023": ["N03d04m10", "E101d54m65"],
+        "_VKL027027": ["N03d07m68", "E101d56m45"],
+        "_VKL027040": ["N03d19m34", "E102d02m32"],
+        "_VKL055028": ["N02d59m68", "E102d07m15"],
+        "_VKL055033": ["N03d02m58", "E102d11m24"],
+        "_VKL069015": ["N02d48m92", "E101d58m26"],
+        "_VKL069021": ["N02d51m10", "E102d03m85"],
+        "_VKL085027": ["N02d45m92", "E102d11m16"],
+        "_VKL086012": ["N02d44m35", "E101d56m24"],
+        "_VKL101015": ["N02d40m64", "E101d59m01"],
+        "_VKL116008": ["N02d39m97", "E101d51m48"],
+        "_VKL116012": ["N02d38m22", "E101d55m08"],
+        "_VKL132015": ["N02d33m42", "E101d55m46"],
+        "_VKL148014": ["N02d31m56", "E101d51m74"],
+        "_VKL148024": ["N02d23.06", "E101d57.06"],
+        "_VKL148025": ["N02d22m21", "E101d57m59"],
+        "_VKL151015": ["N02d30m31", "E101d51m60"],
+        "_VKL152012": ["N02d32m84", "E101d49m95"],
+        "_VKL155009": ["N02d35m28", "E101d48m11"],
+        "_VKL210003": ["N02d40m85", "E101d42m79"],
+        "_VKL210010": ["N02d34m75", "E101d39m32"],
+        "_VKL210017": ["N02d28m64", "E101d35m84"],
+        "_VKL235009": ["N02d38m25", "E101d36m93"],
+        "_VKL235010": ["N02d37m67", "E101d36m12"],
+        "_VKL246012": ["N02d38m52", "E101d33m35"],
+        "_VKL275015": ["N02d44m73", "E101d29m35"],
+        "_VKL281011": ["N02d45m54", "E101d33m49"],
+        "_VKL299018": ["N02d52.18", "E101d28.52"],
+        "_VKL309005": ["N02d46m61", "E101d40m39"],
+        "_VKL309010": ["N02d49m76", "E101d36m49"],
+        "_VKL309013": ["N02d51m65", "E101d34m16"],
+        "_VKL309023": ["N02d57m95", "E101d26m37"],
+        "_VKL309027": ["N03d00m46", "E101d23m25"],
+        "_VKL323016": ["N02d56m27", "E101d34m61"],
+        "_VKL336011": ["N02d53m55", "E101d39m78"],
+        "_VKL336013": ["N02d55m38", "E101d38m96"],
+        "_VKL346012": ["N02d55m16", "E101d41m34"],
+        "ADMOL": ["N03d02m78", "E101d31m33"],
+        "AGOSA": ["N03d08m68", "E101d13m15"],
+        "BATAR": ["N02d10.00", "E102d05.00"],
+        "BELER": ["N02d21m53", "E101d39m05"],
+        "BENRI": ["N03d07m13", "E101d08m47"],
+        "BERBI": ["N02d23m59", "E101d55m97"],
+        "BOBIS": ["N02d30m65", "E102d20m29"],
+        "DAKUS": ["N03d48m23", "E101d19m05"],
+        "DUMOK": ["N02d17m95", "E102d00m25"],
+        "EKUDA": ["N02d54m34", "E101d25m48"],
+        "GEMAS": ["N02d32m00", "E102d31m84"],
+        "GOKAD": ["N03d22m22", "E100d44m63"],
+        "GUPTA": ["N02d09.80", "E102d38.50"],
+        "INTOT": ["N03d00m41", "E101d08m12"],
+        "ISTAN": ["N03d00m92", "E102d28m88"],
+        "KIDOT": ["N03d03m34", "E101d39m37"],
+        "KIKAL": ["N03d01.94", "E101d31.80"],
+        "KIMAT": ["N03d09m73", "E102d21m04"],
+        "KK401": ["N02d47m48", "E101d57m44"],
+        "KK402": ["N02d47m92", "E102d03m66"],
+        "KK403": ["N02d46m19", "E102d09m66"],
+        "KK404": ["N02d42m50", "E102d14m71"],
+        "KK405": ["N02d37m30", "E102d18m19"],
+        "KK410": ["N02d24m77", "E102d05m25"],
+        "KK411": ["N02d41m11", "E102d13m27"],
+        "KK412": ["N02d44m39", "E102d08m79"],
+        "KK413": ["N02d45m92", "E102d03m45"],
+        "KK414": ["N02d45m54", "E101d57m92"],
+        "KK415": ["N02d43m27", "E101d52m85"],
+        "KK421": ["N02d39m88", "E101d35m17"],
+        "KK422": ["N02d32m31", "E101d40m25"],
+        "KK424": ["N02d23m50", "E102d19m48"],
+        "KK425": ["N02d03m83", "E101d50m93"],
+        "KK433": ["N02d15m68", "E101d51m35"],
+        "KK434": ["N02d19m58", "E101d57m18"],
+        "KK435": ["N02d22m93", "E101d54m98"],
+        "KK441": ["N02d38m57", "E101d56m01"],
+        "KK445": ["N02d21m56", "E102d07m35"],
+        "KK446": ["N02d16m90", "E102d00m39"],
+        "KK447": ["N02d20m25", "E101d58m17"],
+        "KK448": ["N02d28m42", "E102d17m59"],
+        "KK451": ["N02d48m00", "E101d29m73"],
+        "KK454": ["N02d50m44", "E101d19m66"],
+        "KK462": ["N03d08m53", "E101d15m96"],
+        "KK463": ["N03d12m43", "E101d21m78"],
+        "KK464": ["N03d09m09", "E101d24m02"],
+        "KK465": ["N03d05m76", "E101d26m26"],
+        "KK471": ["N03d00m77", "E101d41m09"],
+        "KK484": ["N03d16m71", "E101d30m41"],
+        "KK485": ["N03d12m78", "E101d24m63"],
+        "KK486": ["N03d09m45", "E101d26m86"],
+        "KK487": ["N03d06m12", "E101d29m10"],
+        "KK488": ["N03d07m26", "E101d45m17"],
+        "KK612": ["N02d45m87", "E101d33m57"],
+        "KK613": ["N02d42m15", "E101d25m92"],
+        "KK622": ["N02d34m42", "E101d39m95"],
+        "KK623": ["N02d30m36", "E101d31m60"],
+        "KK624": ["N02d24m65", "E101d34m34"],
+        "LAPIR": ["N02d26.45", "E101d54.94"],
+        "LENKI": ["N02d44m93", "E101d51m73"],
+        "MENIK": ["N02d35m72", "E101d37m97"],
+        "MITOS": ["N01d58m50", "E102d06m17"],
+        "MUNOV": ["N02d29m95", "E102d01m78"],
+        "NIVID": ["N03d01m60", "E101d29m05"],
+        "NOBEK": ["N02d10m37", "E102d00m40"],
+        "OLBON": ["N03d19m54", "E101d36m94"],
+        "OLSOS": ["N02d36m49", "E102d16m37"],
+        "OSPOV": ["N02d49m10", "E101d48m94"],
+        "PIBOS": ["N03d21m10", "E102d03m26"],
+        "PONOX": ["N02d42m45", "E102d01m84"],
+        "PULIP": ["N03d40m40", "E101d53m80"],
+        "RUMID": ["N02d20m27", "E101d36m45"],
+        "SADON": ["N02d20m51", "E101d45m45"],
+        "SALAX": ["N02d12m40", "E101d33m80"],
+        "SAPAT": ["N02d32m17", "E102d02m50"],
+        "SAROX": ["N02d48m04", "E102d40m31"],
+        "SUROP": ["N02d25m43", "E101d44m87"],
+        "TUNKU": ["N02d26m27", "E101d52m75"],
+        "VBA": ["N03d19m49", "E101d27m42"],
+        "VKL": ["N02d43m47", "E101d44m28"],
+        "VMK": ["N02d15.49", "E102d14.76"]
     },
     "restricted": [
         {
@@ -831,6 +905,9 @@
             "ils": [true, true]
         }
     ],
+    "airways": {
+
+    },
     "sids": {
         "AGOSA1C": {
             "icao": "AGOSA1C",
@@ -920,7 +997,7 @@
                 "AGOSA": ["AGOSA"]
             },
             "draw": [
-                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "AGOSA"]
+                ["_RWY15", "KK612", "KK613", "KK613", "AGOSA"]
             ]
         },
         "BATAR1C": {
@@ -1037,7 +1114,7 @@
                 "BATAR": ["BATAR"]
             },
             "draw": [
-                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID", "BATAR"]
+                ["_RWY15", "KK612", "KK613", "KK613", "RUMID", "BATAR"]
             ]
         },
         "DUMOK1C": {
@@ -1401,7 +1478,7 @@
                 "MITOS": ["MITOS"]
             },
             "draw": [
-                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID", "MITOS"]
+                ["_RWY15", "KK612", "KK613", "KK613", "RUMID", "MITOS"]
             ]
         },
         "PIBOS1C": {
@@ -1609,28 +1686,385 @@
                 "RUMID": ["RUMID"]
             },
             "draw": [
-                ["_RWY15", ["KK612", "A30+"], "KK613", "KK613", "RUMID"]
+                ["_RWY15", "KK612", "KK613", "KK613", "RUMID"]
             ]
         }
     },
     "stars": {
+        "BENRI1B": {
+            "icao": "BENRI1B",
+            "name": "Benri One Bravo",
+            "entryPoints": {
+                "PULIP": ["PULIP"],
+                "DAKUS": ["DAKUS"],
+                "GOKAD": ["GOKAD"]
+            },
+            "body": [["BENRI", "A90+|S250-"], "KK454", ["EKUDA", "S230-"], ["KK462", "A50-"], ["KK463", "A50-"], ["KK464", "A40"], ["KK465", "A40"], ["NIVID", "A30|S210-"]],
+            "rwy": {
+                "WMKK14R": [],
+                "WMKK15": []
+            },
+            "draw": [
+                ["BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["PULIP", "BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["DAKUS", "BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["GOKAD", "BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
+            ]
+        },
+        "BOBIS1P": {
+            "icao": "BOBIS1P",
+            "name": "Bobis One Papa",
+            "entryPoints": {
+                "SALAX": ["SALAX", "KK410"],
+                "GUPTA": ["GUPTA"],
+                "SAROX": ["SAROX"]
+            },
+            "body": [["BOBIS", "A90+|S250-"], ["OLSOS", "A130-|A110+|S230-"], "KK411", "KK412", "KK413", "KK414", ["KK415", "A130-|A110+|S230-"], ["MUNOV", "A70+|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK32R": []
+            },
+            "draw": [
+                ["BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"],
+                ["SALAX", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"],
+                ["GUPTA", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"],
+                ["SAROX", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"]
+            ]
+        },
         "DAKUS1V": {
             "icao": "DAKUS1V",
             "name": "Dakus One Victor",
             "entryPoints": {
                 "DAKUS": ["DAKUS"]
             },
-            "body": [],
+            "body": [["VKL", "A60+|S230-"]],
             "rwy": {
-                "WMKK14L": [["VKL", "A60+"]],
-                "WMKK14R": [["VKL", "A60+"]],
-                "WMKK15": [["VKL", "A60+"]],
-                "WMKK32L": [["VKL", "A60+"]],
-                "WMKK32R": [["VKL", "A60+"]],
-                "WMKK33": [["VKL", "A60+"]]
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
             },
             "draw": [
                 ["DAKUS", "VKL"]
+            ]
+        },
+        "EKUDA1B": {
+            "icao": "EKUDA1B",
+            "name": "Ekuda One Bravo",
+            "entryPoints": {
+                "PULIP": ["PULIP"],
+                "DAKUS": ["DAKUS"],
+                "INTOT": ["INTOT"]
+            },
+            "body": [["EKUDA", "A90+|S250-"], "KK421", "KK422", ["SUROP", "S230-"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"],
+                ["PULIP", "EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"],
+                ["DAKUS", "EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"],
+                ["INTOT", "EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+            ]
+        },
+        "GUPTA1V": {
+            "icao": "GUPTA1V",
+            "name": "Gupta One Victor",
+            "entryPoints": {
+                "GUPTA": ["GUPTA"]
+            },
+            "body": [["SAPAT", "A70+"], ["VKL", "A60+|S230-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["GUPTA", "VKL"]
+            ]
+        },
+        "INTOT1V": {
+            "icao": "INTOT1V",
+            "name": "Intot One Victor",
+            "entryPoints": {
+                "INTOT": ["INTOT"]
+            },
+            "body": [["VKL", "A60+|S230-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["INTOT", "VKL"]
+            ]
+        },
+        "KIDOT1D": {
+            "icao": "KIDOT1D",
+            "name": "Kidot One Delta",
+            "entryPoints": {
+                "PULIP": ["PULIP"],
+                "DAKUS": ["DAKUS"],
+                "INTOT": ["INTOT"]
+            },
+            "body": [["KIDOT", "A90+|S250-"], "OSPOV", "KK441", ["MUNOV", "S230-"], "KK445", "KK446", ["KK447", "A70+"], ["BERBI", "A60+|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK32R": []
+            },
+            "draw": [
+                ["KIDOT", "OSPOV", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"],
+                ["PULIP", "KIDOT", "OSPOV", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"],
+                ["DAKUS", "KIDOT", "OSPOV", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"],
+                ["INTOT", "KIDOT", "OSPOV", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+            ]
+        },
+        "KIDOT1P": {
+            "icao": "KIDOT1P",
+            "name": "Kidot One Papa",
+            "entryPoints": {
+                "PULIP": ["PULIP"],
+                "DAKUS": ["DAKUS"],
+                "INTOT": ["INTOT"]
+            },
+            "body": [["KIDOT", "A90+|S250-"], ["OSPOV", "A100-"], ["LENKI", "S230-"], "KK401", "KK402", "KK403", "KK404", ["^KK405", "A80+|S230-"], ["MUNOV", "A70+|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK32R": []
+            },
+            "draw": [
+                ["KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"],
+                ["PULIP", "KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"],
+                ["DAKUS", "KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"],
+                ["INTOT", "KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"]
+            ]
+        },
+        "KIKAL3": {
+            "icao": "KIKAL3",
+            "name": "Kikal Three",
+            "entryPoints": {
+                "VBA": ["VBA"]
+            },
+            "body": [["_VBA166008", "A70+"], ["KIKAL", "A45+|S220-"]],
+            "rwy": {
+                "WMKK14L": ["_RWY14L"],
+                "WMKK14R": ["_VBA166022", "_RWY14R"],
+                "WMKK15": ["_VBA166025", "_RWY15"]
+            },
+            "draw": [
+                ["KIKAL"],
+                ["VBA", "KIKAL"]
+            ]
+        },
+        "LAPIR3": {
+            "icao": "LAPIR3",
+            "name": "Lapir Three",
+            "entryPoints": {
+                "DUMOK": ["DUMOK", ["_VKL148024", "A60"]],
+                "VMK": ["VMK", ["_VKL299018", "A60"]]
+            },
+            "body": [["LAPIR", "S220-"]],
+            "rwy": {
+                "WMKK32L": ["_RWY32L"],
+                "WMKK32R": ["_RWY32R"],
+                "WMKK33": ["_RWY33"]
+            },
+            "draw": [
+                ["LAPIR"],
+                ["DUMOK", "LAPIR"],
+                ["VMK", "LAPIR"]
+            ]
+        },
+        "LENKI1B": {
+            "icao": "LENKI1B",
+            "name": "Lenki One Bravo",
+            "entryPoints": {
+                "SAROX": ["SAROX"],
+                "GUPTA": ["GUPTA"],
+                "SALAX": ["SALAX"]
+            },
+            "body": [["LENKI", "A100+|S250-"], "KK471", ["KIDOT", "S230-"], "KK484", "KK485", ["KK486", "A60+"], ["KK487", "A50+"], ["ADMOL", "A50+|S210-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": []
+            },
+            "draw": [
+                ["LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["SAROX", "LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["GUPTA", "LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["SALAX", "LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
+            ]
+        },
+        "MENIK1B": {
+            "icao": "MENIK1B",
+            "name": "Menik One Bravo",
+            "entryPoints": {
+                "SAROX": ["SAROX"],
+                "GUPTA": ["GUPTA"],
+                "SALAX": ["SALAX"]
+            },
+            "body": [["MENIK", "A90+|S250-"], "KK451", ["EKUDA", "S230-"], ["KK462", "A50-"], ["KK463", "A50-"], ["KK464", "A40"], ["KK465", "A40"], ["NIVID", "A30|S210-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": []
+            },
+            "draw": [
+                ["MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["SAROX", "MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["GUPTA", "MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"],
+                ["SALAX", "MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
+            ]
+        },
+        "NOBEK1B": {
+            "icao": "NOBEK1B",
+            "name": "Nobek One Bravo",
+            "entryPoints": {
+                "SAROX": ["SAROX", "GEMAS", ["KK424", "A110+"]],
+                "GUPTA": ["GUPTA"]
+            },
+            "body": [["NOBEK", "A110+|S250-"], "KK425", "BELER", ["SUROP", "S230-"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"],
+                ["SAROX", "GEMAS", "KK424", "NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"],
+                ["GUPTA", "NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+            ]
+        },
+        "OLBON1B": {
+            "icao": "OLBON1B",
+            "name": "Olbon One Bravo",
+            "entryPoints": {
+                "PULIP": ["PULIP"],
+                "DAKUS": ["DAKUS"],
+                "GOKAD": ["GOKAD"]
+            },
+            "body": [["OLBON", "A90+|S250-"], "KK488", ["KIDOT", "S230-"], "KK484", "KK485", ["KK486", "A60+"], ["KK487", "A50+"], ["ADMOL", "A50+|S210-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": []
+            },
+            "draw": [
+                ["OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["PULIP", "OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["DAKUS", "OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"],
+                ["GOKAD", "OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
+            ]
+        },
+        "PONOX1B": {
+            "icao": "PONOX1B",
+            "name": "Ponox One Bravo",
+            "entryPoints": {
+                "SAROX": ["SAROX"],
+                "GUPTA": ["GUPTA", ["KK448", "A110+"]]
+            },
+            "body": [["PONOX", "A70+|S250-"], "KK441", ["MUNOV", "S230-"], "KK445", "KK446", ["KK447", "A70+"], ["BERBI", "A60+|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK32R": []
+            },
+            "draw": [
+                ["PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"],
+                ["SAROX", "PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"],
+                ["GUPTA", "KK448", "PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+            ]
+        },
+        "PULIP1V": {
+            "icao": "PULIP1V",
+            "name": "Pulip One Victor",
+            "entryPoints": {
+                "PULIP": ["PULIP"]
+            },
+            "body": [["_VKL010035", "A110+"], ["_VKL010026", "A70+"], ["VKL", "A60+|S230-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["PULIP", "VKL"]
+            ]
+        },
+        "SALAX1B": {
+            "icao": "SALAX1B",
+            "name": "Salax One Bravo",
+            "entryPoints": {
+                "SAROX": [["SALAX", "S250-"]]
+            },
+            "body": [["BELER", "S230-"], "SUROP", ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["SALAX", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+            ]
+        },
+        "SALAX1D": {
+            "icao": "SALAX1D",
+            "name": "Salax One Delta",
+            "entryPoints": {
+                "SALAX": ["SALAX"]
+            },
+            "body": [["MUNOV", "S230-"], "KK445", "KK446", ["KK447", "A70+"], ["BERBI", "A60+|S210-"]],
+            "rwy": {
+                "WMKK32L": [],
+                "WMKK32R": []
+            },
+            "draw": [
+                ["SALAX", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+            ]
+        },
+        "SALAX1V": {
+            "icao": "SALAX1V",
+            "name": "Salax One Victor",
+            "entryPoints": {
+                "SALAX": ["SALAX"]
+            },
+            "body": ["RUMID", ["VKL", "A60+|S230-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["SALAX", "VKL"]
+            ]
+        },
+        "SAROX1V": {
+            "icao": "SAROX1V",
+            "name": "Sarox One Victor",
+            "entryPoints": {
+                "SAROX": ["SAROX"]
+            },
+            "body": [["_VKL085027", "A70+"], ["VKL", "A60+|S230-"]],
+            "rwy": {
+                "WMKK14L": [],
+                "WMKK14R": [],
+                "WMKK15": [],
+                "WMKK32L": [],
+                "WMKK32R": [],
+                "WMKK33": []
+            },
+            "draw": [
+                ["SAROX", "VKL"]
             ]
         }
     },
