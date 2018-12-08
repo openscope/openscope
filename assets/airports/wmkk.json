@@ -95,6 +95,11 @@
         "DUMOK": ["N02d17m95.00", "E102d00m25.00"],
         "ISTAN": ["N03d00m92.00", "E102d28m88.00"],
         "KIMAT": ["N03d09.73", "E102d21.04"],
+        "KK612": ["N02d45m52.44", "E101d33m33.96"],
+        "KK613": ["N02d42m09.31", "E101d25m55.20"],
+        "KK622": ["N02d34m25.22", "E101d39m56.80"],
+        "KK623": ["N02d30m21.44", "E101d31m35.73"],
+        "KK624": ["N02d24m38.70", "E101d34m20.62"],
         "MITOS": ["N01d58.50", "E102d06.17"],
         "PIBOS": ["N03d21.10", "E102d03.26"],
         "RUMID": ["N02d20m27.00", "E101d36m45.00"],
@@ -1609,7 +1614,25 @@
         }
     },
     "stars": {
-
+        "DAKUS1V": {
+            "icao": "DAKUS1V",
+            "name": "Dakus One Victor",
+            "entryPoints": {
+                "DAKUS": ["DAKUS"]
+            },
+            "body": [],
+            "rwy": {
+                "WMKK14L": [["VKL", "A60+"]],
+                "WMKK14R": [["VKL", "A60+"]],
+                "WMKK15": [["VKL", "A60+"]],
+                "WMKK32L": [["VKL", "A60+"]],
+                "WMKK32R": [["VKL", "A60+"]],
+                "WMKK33": [["VKL", "A60+"]]
+            },
+            "draw": [
+                ["DAKUS", "VKL"]
+            ]
+        }
     },
     "spawnPatterns": [
 
