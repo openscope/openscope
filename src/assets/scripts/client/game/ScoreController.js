@@ -204,16 +204,18 @@ export default class ScoreController {
     _scoreRunwaySeparation(aircraftModel, runwayModel, action) {
         const previousAircraft = this._aircraftController.findAircraftByCallsign(runwayModel.lastDepartedAircraftId);
 
-        if (previousAircraft) {
-            const actualDistance = nm_ft(aircraftModel.distanceToAircraft(previousAircraft));
-            const requiredDistance = aircraftModel.model.calculateSameRunwaySeparationDistanceInFeet(previousAircraft.model);
+        if (!previousAircraft) {
+            return;
+        }
 
-            if (actualDistance < requiredDistance || previousAircraft.isOnGround()) {
-                const isWarning = true;
+        const actualDistance = nm_ft(aircraftModel.distanceToAircraft(previousAircraft));
+        const requiredDistance = aircraftModel.model.calculateSameRunwaySeparationDistanceInFeet(previousAircraft.model);
 
-                GameController.events_recordNew(GAME_EVENTS.NO_TAKEOFF_SEPARATION);
-                UiController.ui_log(`${aircraftModel.callsign} ${action} while another aircraft was using the same runway`, isWarning);
-            }
+        if (actualDistance < requiredDistance || previousAircraft.isOnGround()) {
+            const isWarning = true;
+
+            GameController.events_recordNew(GAME_EVENTS.NO_TAKEOFF_SEPARATION);
+            UiController.ui_log(`${aircraftModel.callsign} ${action} while another aircraft was using the same runway`, isWarning);
         }
     }
 
