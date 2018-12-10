@@ -394,9 +394,9 @@ export default class AircraftController {
             return null;
         }
 
-        const normalizedCallSign = callsign.toUpperCase();
+        const normalizedCallsign = callsign.toUpperCase();
 
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign === normalizedCallSign);
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign === normalizedCallsign);
     }
 
     /**
