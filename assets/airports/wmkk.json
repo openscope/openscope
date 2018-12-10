@@ -108,11 +108,14 @@
         "DAKUS": ["N03d48m23", "E101d19m05"],
         "DUMOK": ["N02d17m95", "E102d00m25"],
         "EKUDA": ["N02d54m34", "E101d25m48"],
+        "ENKOL": ["N02d22m37", "E102d18m27"],
         "GEMAS": ["N02d32m00", "E102d31m84"],
         "GOKAD": ["N03d22m22", "E100d44m63"],
         "GUPTA": ["N02d09.80", "E102d38.50"],
+        "HTY"  : ["N06d56m05", "E100d23m27"],
         "INTOT": ["N03d00m41", "E101d08m12"],
         "ISTAN": ["N03d00m92", "E102d28m88"],
+        "KARMI": ["N06d29m66", "E100d31m35"],
         "KIDOT": ["N03d03m34", "E101d39m37"],
         "KIKAL": ["N03d01.94", "E101d31.80"],
         "KIMAT": ["N03d09m73", "E102d21m04"],
@@ -158,6 +161,8 @@
         "KK624": ["N02d24m65", "E101d34m34"],
         "LAPIR": ["N02d26.45", "E101d54.94"],
         "LENKI": ["N02d44m93", "E101d51m73"],
+        "MASBO": ["N02d02m80", "E102d52m84"],
+        "MDN"  : ["N03d30m30", "E098d36m50"],
         "MENIK": ["N02d35m72", "E101d37m97"],
         "MITOS": ["N01d58m50", "E102d06m17"],
         "MUNOV": ["N02d29m95", "E102d01m78"],
@@ -167,18 +172,27 @@
         "OLSOS": ["N02d36m49", "E102d16m37"],
         "OSPOV": ["N02d49m10", "E101d48m94"],
         "PIBOS": ["N03d21m10", "E102d03m26"],
+        "PKU"  : ["N00d25m54", "E101d26m50"],
         "PONOX": ["N02d42m45", "E102d01m84"],
+        "PUGER": ["N03d24m10", "E100d17m60"],
         "PULIP": ["N03d40m40", "E101d53m80"],
         "RUMID": ["N02d20m27", "E101d36m45"],
+        "RUPOS": ["N05d32m24", "E102d12m55"],
+        "SABKA": ["N01d50m85", "E103d17m21"],
         "SADON": ["N02d20m51", "E101d45m45"],
         "SALAX": ["N02d12m40", "E101d33m80"],
         "SAPAT": ["N02d32m17", "E102d02m50"],
         "SAROX": ["N02d48m04", "E102d40m31"],
         "SUROP": ["N02d25m43", "E101d44m87"],
         "TUNKU": ["N02d26m27", "E101d52m75"],
-        "VBA": ["N03d19m49", "E101d27m42"],
-        "VKL": ["N02d43m47", "E101d44m28"],
-        "VMK": ["N02d15.49", "E102d14.76"]
+        "UKASA": ["N02d52m75", "E103d39m02"],
+        "VBA"  : ["N03d19m49", "E101d27m42"],
+        "VIH"  : ["N04d34m42", "E101d05m64"],
+        "VJB"  : ["N01d39m84", "E103d39m65"],
+        "VKB"  : ["N06d09m81", "E102d18m85"],
+        "VKL"  : ["N02d43m47", "E101d44m28"],
+        "VMK"  : ["N02d15.49", "E102d14.76"],
+        "VPT"  : ["N02d54m52", "E104d06m05"]
     },
     "restricted": [
         {
@@ -906,7 +920,12 @@
         }
     ],
     "airways": {
-
+        "A457": ["VKL", "SAPAT", "ENKOL", "GUPTA", "MASBO", "SABKA", "VJB"],
+        "A464": ["VKL", "VBA", "DAKUS", "VIH", "KARMI", "HTY"],
+        "G334": ["VKL", "SAROX", "UKASA", "VPT"],
+        "G466": ["VKL", "PULIP", "RUPOS", "VKB"],
+        "N633": ["VKL", "RUMID", "SALAX", "PKU"],
+        "R461": ["VKL", "INTOT", "PUGER", "MDN"]
     },
     "sids": {
         "AGOSA1C": {
@@ -1757,7 +1776,8 @@
             "entryPoints": {
                 "PULIP": ["PULIP"],
                 "DAKUS": ["DAKUS"],
-                "GOKAD": ["GOKAD"]
+                "GOKAD": ["GOKAD"],
+                "BENRI": []
             },
             "body": [["BENRI", "A90+|S250-"], "KK454", ["EKUDA", "S230-"], ["KK462", "A50-"], ["KK463", "A50-"], ["KK464", "A40"], ["KK465", "A40"], ["NIVID", "A30|S210-"]],
             "rwy": {
@@ -1777,7 +1797,8 @@
             "entryPoints": {
                 "SALAX": ["SALAX", "KK410"],
                 "GUPTA": ["GUPTA"],
-                "SAROX": ["SAROX"]
+                "SAROX": ["SAROX"],
+                "BOBIS": []
             },
             "body": [["BOBIS", "A90+|S250-"], ["OLSOS", "A130-|A110+|S230-"], "KK411", "KK412", "KK413", "KK414", ["KK415", "A130-|A110+|S230-"], ["MUNOV", "A70+|S210-"]],
             "rwy": {
@@ -1816,7 +1837,8 @@
             "entryPoints": {
                 "PULIP": ["PULIP"],
                 "DAKUS": ["DAKUS"],
-                "INTOT": ["INTOT"]
+                "INTOT": ["INTOT"],
+                "EKUDA": []
             },
             "body": [["EKUDA", "A90+|S250-"], "KK421", "KK422", ["SUROP", "S230-"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
             "rwy": {
@@ -1874,7 +1896,8 @@
             "entryPoints": {
                 "PULIP": ["PULIP"],
                 "DAKUS": ["DAKUS"],
-                "INTOT": ["INTOT"]
+                "INTOT": ["INTOT"],
+                "KIDOT": []
             },
             "body": [["KIDOT", "A90+|S250-"], "OSPOV", "KK441", ["MUNOV", "S230-"], "KK445", "KK446", ["KK447", "A70+"], ["BERBI", "A60+|S210-"]],
             "rwy": {
@@ -1894,7 +1917,8 @@
             "entryPoints": {
                 "PULIP": ["PULIP"],
                 "DAKUS": ["DAKUS"],
-                "INTOT": ["INTOT"]
+                "INTOT": ["INTOT"],
+                "KIDOT": []
             },
             "body": [["KIDOT", "A90+|S250-"], ["OSPOV", "A100-"], ["LENKI", "S230-"], "KK401", "KK402", "KK403", "KK404", ["^KK405", "A80+|S230-"], ["MUNOV", "A70+|S210-"]],
             "rwy": {
@@ -1930,7 +1954,8 @@
             "name": "Lapir Three",
             "entryPoints": {
                 "DUMOK": ["DUMOK", ["_VKL148024", "A60"]],
-                "VMK": ["VMK", ["_VKL299018", "A60"]]
+                "VMK": ["VMK", ["_VKL299018", "A60"]],
+                "LAPIR": []
             },
             "body": [["LAPIR", "S220-"]],
             "rwy": {
@@ -1950,7 +1975,8 @@
             "entryPoints": {
                 "SAROX": ["SAROX"],
                 "GUPTA": ["GUPTA"],
-                "SALAX": ["SALAX"]
+                "SALAX": ["SALAX"],
+                "LENKI": []
             },
             "body": [["LENKI", "A100+|S250-"], "KK471", ["KIDOT", "S230-"], "KK484", "KK485", ["KK486", "A60+"], ["KK487", "A50+"], ["ADMOL", "A50+|S210-"]],
             "rwy": {
@@ -1970,7 +1996,8 @@
             "entryPoints": {
                 "SAROX": ["SAROX"],
                 "GUPTA": ["GUPTA"],
-                "SALAX": ["SALAX"]
+                "SALAX": ["SALAX"],
+                "MENIK": []
             },
             "body": [["MENIK", "A90+|S250-"], "KK451", ["EKUDA", "S230-"], ["KK462", "A50-"], ["KK463", "A50-"], ["KK464", "A40"], ["KK465", "A40"], ["NIVID", "A30|S210-"]],
             "rwy": {
@@ -1989,7 +2016,8 @@
             "name": "Nobek One Bravo",
             "entryPoints": {
                 "SAROX": ["SAROX", "GEMAS", ["KK424", "A110+"]],
-                "GUPTA": ["GUPTA"]
+                "GUPTA": ["GUPTA"],
+                "NOBEK": []
             },
             "body": [["NOBEK", "A110+|S250-"], "KK425", "BELER", ["SUROP", "S230-"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
             "rwy": {
@@ -2008,7 +2036,8 @@
             "entryPoints": {
                 "PULIP": ["PULIP"],
                 "DAKUS": ["DAKUS"],
-                "GOKAD": ["GOKAD"]
+                "GOKAD": ["GOKAD"],
+                "OLBON": []
             },
             "body": [["OLBON", "A90+|S250-"], "KK488", ["KIDOT", "S230-"], "KK484", "KK485", ["KK486", "A60+"], ["KK487", "A50+"], ["ADMOL", "A50+|S210-"]],
             "rwy": {
@@ -2027,7 +2056,8 @@
             "name": "Ponox One Bravo",
             "entryPoints": {
                 "SAROX": ["SAROX"],
-                "GUPTA": ["GUPTA", ["KK448", "A110+"]]
+                "GUPTA": ["GUPTA", ["KK448", "A110+"]],
+                "PONOX": []
             },
             "body": [["PONOX", "A70+|S250-"], "KK441", ["MUNOV", "S230-"], "KK445", "KK446", ["KK447", "A70+"], ["BERBI", "A60+|S210-"]],
             "rwy": {
@@ -2063,7 +2093,7 @@
             "icao": "SALAX1B",
             "name": "Salax One Bravo",
             "entryPoints": {
-                "SAROX": [["SALAX", "S250-"]]
+                "SALAX": [["SALAX", "S250-|A90+"]]
             },
             "body": [["BELER", "S230-"], "SUROP", ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210-"]],
             "rwy": {
@@ -2129,7 +2159,111 @@
         }
     },
     "spawnPatterns": [
-
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "PKU.N633.SALAX.BOBIS1P.WMKK32L",
+            "altitude": [13000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["mas", 140],
+                ["mxd", 55],
+                ["btk", 7],
+                ["lni", 4],
+                ["gia/b738", 2],
+                ["sia/a359", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "PKU.N633.SALAX.SALAX1D.WMKK32L",
+            "altitude": [13000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["mas", 140],
+                ["mxd", 55],
+                ["btk", 7],
+                ["lni", 4],
+                ["gia/b738", 2],
+                ["sia/a359", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "PKU.N633.SALAX.SALAX1B.WMKK33",
+            "altitude": [13000, 17000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["axm", 220],
+                ["xax", 29],
+                ["awq", 18],
+                ["jsa", 5],
+                ["slk", 7]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "VJB.A457.GUPTA.BOBIS1P.WMKK32L",
+            "altitude": [14000, 18000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["mas", 140],
+                ["mxd", 55],
+                ["btk", 7],
+                ["lni", 6],
+                ["gia/b738", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "VJB.A457.GUPTA.PONOX1B.WMKK32L",
+            "altitude": [14000, 18000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["mas", 140],
+                ["mxd", 55],
+                ["btk", 7],
+                ["lni", 6],
+                ["gia/b738", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKK",
+            "category": "arrival",
+            "route": "VJB.A457.GUPTA.NOBEK1B.WMKK33",
+            "altitude": [14000, 18000],
+            "speed": 320,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["axm", 220],
+                ["xax", 29],
+                ["awq", 18],
+                ["jsa", 5],
+                ["slk", 6],
+                ["tgw/a320", 4]
+            ]
+        }
     ],
     "maps": {
         "base": [[]]
