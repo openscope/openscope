@@ -12,3 +12,4 @@ public/
 assets/style/
 assets/scripts/
 yarn.lock
+package-lock.json

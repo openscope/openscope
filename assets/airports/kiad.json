@@ -92,11 +92,12 @@
         "CARRY": ["N38d48m24.010", "W77d27m42.120"],
         "CASLY": ["N38d03.24", "W77d51.66"],
         "CAVLR": ["N38d14.35", "W77d29.01"],
-        "CINNA": ["N38d40m53.820", "W77m28d43.050"],
+        "CINNA": [38.68160, -77.47860],
         "CLAYY": [39.09400, -77.47260],
         "CLTCH": ["N38d26.86", "W77d54.34"],
         "COINZ": ["N38d34.88", "W77d22.39"],
         "COLIN": ["N38d05.99", "W76d39.85"],
+        "COLNS": ["N38d50m25.480", "W79d11m48.610"],
         "COVUR": [39.35910, -77.45350],
         "CRAIN": ["N39d26.70", "W77d24.26"],
         "CSN":   [38.6412022, -77.8654994],
@@ -112,6 +113,7 @@
         "DORRN": ["N37d31.90", "W77d53.63"],
         "ELISN": ["N38d56.07", "W77d34.79"],
         "ENEDE": [39.09460, -77.45750],
+        "EYTEE": ["N38d58m45.230", "W78d51m32.820"],
         "FAZER": ["N38d45m18.110", "W77d28m39.230"],
         "FEMKO": [39.03170, -77.45840],
         "FILGA": ["N41d24.47", "W74d01.21"],
@@ -193,6 +195,7 @@
         "PRTZL": ["N40d04.34", "W77d06.40"],
         "PSB"  : ["N40d54.98", "W77d59.56"],
         "RAMAY": ["N38d57.64", "W78d12.98"],
+        "RARVE": ["N38d54m56.270", "W78d15m09.380"],
         "RAZZA": ["N39d14.27", "W77d17.75"],
         "RBV"  : ["N40d12.14", "W74d29.70"],
         "RCHLE": ["N38d53m47.550", "W77d27m37.430"],
@@ -682,15 +685,15 @@
                 "KIAD19R": ["_RWY1L1DME", "TIICE", "WHYUU"],
                 "KIAD30" : ["_RWY121DME", "LOULU"]
             },
-            "body": ["BUNZZ"],
+            "body": [["BUNZZ", "A30"], ["RAMAY", "A30"]],
             "exitPoints": {
-                "RAMAY": ["RAMAY"]
+                "RAMAY": ["EYTEE"]
             },
-            "draw": [["LOULU","BUNZZ"],["TIICE","WHYUU","BUNZZ","RAMAY*"]]
+            "draw": [["LOULU","BUNZZ"],["TIICE","WHYUU","BUNZZ","RAMAY*","EYTEE"]]
         },
-        "CLTCH1": {
-            "icao": "CLTCH1",
-            "name": "Clutch One",
+        "CLTCH2": {
+            "icao": "CLTCH2",
+            "name": "Clutch Two",
             "rwy": {
                 "KIAD1L" : ["_RWY19R1DME"],
                 "KIAD1C" : ["_RWY19C1DME"],
@@ -700,10 +703,10 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "KIAD30" : ["_RWY121DME"]
             },
-            "body": ["BUTRZ", "CLTCH", "KERRK"],
+            "body": ["BUTRZ", ["CLTCH", "A30"], ["KERRK", "A30"]],
             "exitPoints": {
-                "MAULS": ["MAULS"],
-                "FLASK": ["TEEMS", "FLASK"]
+                "MAULS": [["MAULS", "A30"]],
+                "FLASK": ["TEEMS", ["FLASK", "A30"]]
             },
             "draw": [["BUTRZ","CLTCH","KERRK"],["KERRK","MAULS*"],["KERRK","TEEMS","FLASK*"]]
         },
@@ -719,7 +722,7 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "KIAD30" : ["_RWY121DME"]
             },
-            "body": ["RIGNZ", "JCOBY"],
+            "body": ["RIGNZ", ["JCOBY", "A30"]],
             "exitPoints": {
                 "COLIN": ["BAUGH", "BOOCK", "COLIN"],
                 "SWANN": ["GRIIM", "SOOKI", "SWANN"],
@@ -727,9 +730,9 @@
             },
             "draw": [["RIGNZ","JCOBY"],["JCOBY","BAUGH","BOOCK","COLIN*"],["JCOBY","GRIIM","SOOKI","SWANN*"],["GRIIM","RIISE","DOCTR","AGARD*"]]
         },
-        "JDUBB1": {
-            "icao": "JDUBB1",
-            "name": "Jay-Dub One",
+        "JDUBB2": {
+            "icao": "JDUBB2",
+            "name": "Jay-Dub Two",
             "rwy": {
                 "KIAD1L" : ["_RWY19R1DME"],
                 "KIAD1C" : ["_RWY19C1DME"],
@@ -739,7 +742,7 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "3KIAD0" : ["_RWY121DME"]
             },
-            "body": ["HAFNR", "JDUBB"],
+            "body": ["HAFNR", ["JDUBB", "A30"]],
             "exitPoints": {
                 "GSO": ["TYPNZ", "SCORN", "RRSIN", "GSO"],
                 "SBV": ["CASLY", "MELTN", "SBV"]
@@ -760,7 +763,7 @@
             },
             "body": ["IDORE"],
             "exitPoints": {
-                "JERES": ["JERES"]
+                "JERES": [["JERES", "A30"]]
             },
             "draw": [["IDORE","JERES*"]]
         },
@@ -776,7 +779,7 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "KIAD30" : ["_RWY121DME"]
             },
-            "body": ["HAYGR"],
+            "body": [["HAYGR", "A30"]],
             "exitPoints": {
                 "MCRAY": ["MCRAY"]
             },
@@ -794,15 +797,15 @@
                 "KIAD19R": ["_RWY1L1DME", "TIICE", "WHYUU"],
                 "KIAD30" : ["_RWY121DME", "LOULU"]
             },
-            "body": ["RNLDI"],
+            "body": [["RNLDI", "A30"], ["OTTTO", "A30"]],
             "exitPoints": {
-                "OTTTO": ["OTTTO"]
+                "OTTTO": ["COLNS"]
             },
-            "draw": [["LOULU","RNLDI"],["WHYUU","RNLDI"],["RNLDI","OTTTO*"]]
+            "draw": [["LOULU","RNLDI"],["WHYUU","RNLDI"],["RNLDI","OTTTO*","COLNS"]]
         },
-        "SCRAM3": {
-            "icao": "SCRAM3",
-            "name": "Scram Three",
+        "SCRAM4": {
+            "icao": "SCRAM4",
+            "name": "Scram Four",
             "rwy": {
                 "KIAD1L" : ["_RWY19R1DME"],
                 "KIAD1C" : ["_RWY19C1DME"],
@@ -812,7 +815,7 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "KIAD30" : ["_RWY121DME"]
             },
-            "body": ["POOCH", "SCRAM", "DANOO", "WALCE", "GLANC"],
+            "body": ["POOCH", ["SCRAM", "A30"], "DANOO", "WALCE", "GLANC"],
             "exitPoints": {
                 "LYH": ["LYH"]
             },
@@ -830,7 +833,7 @@
                 "KIAD19R": ["_RWY1L1DME"],
                 "KIAD30" : ["_RWY121DME"]
             },
-            "body": ["RAZZA", "WOOLY"],
+            "body": ["RAZZA", ["WOOLY", "A30"]],
             "exitPoints": {
                 "BAL": ["BAL"],
                 "AGARD": ["AGARD"],
@@ -907,12 +910,12 @@
             },
             "body": ["DELRO", ["LIRCH","A140"], "BINNS", ["HYPER", "A100|S250"]],
             "rwy": {
-                "KIAD1R": [["SIGBE","A70"], "MOWAT", "HUSEL", "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
-                "KIAD1C": [["SIGBE","A70"], "MOWAT", "HUSEL", "YACKK", "TICON", "LUSIE", "PEPPR", "CARRY", "SKINS", "^RCHLE", "#011"],
-                "KIAD1L": [["SIGBE","A70"], "MOWAT", "HUSEL", "YACKK", "TICON", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
-                "KIAD19L": [["OOGLE", "A50-"], "LITEY", "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
-                "KIAD19C": [["COVUR", "A70"], "DIMKE", "HOOSR", "BOYDS", "ARKAY", "ENEDE", "^FEMKO", "#191"],
-                "KIAD19R": [["CRAIN", "A60"], "REXOE", "BEEZY", "LAUGH", "CLAYY", "^MULKY", "#191"]
+                "KIAD1R": [["SIGBE","A70"], ["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
+                "KIAD1C": [["SIGBE","A70"], ["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "LUSIE", "PEPPR", "CARRY", "SKINS", "^RCHLE", "#011"],
+                "KIAD1L": [["CRAIN","A60"], ["KUKSE","A50"], "ELISN", "MIKEJ", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
+                "KIAD19L": [["OOGLE","A50-"], ["LITEY","A40"], "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
+                "KIAD19C": [["COVUR","A70"], "DIMKE", "HOOSR", "BOYDS", "ARKAY", "ENEDE", "^FEMKO", "#191"],
+                "KIAD19R": [["CRAIN","A60"], "REXOE", "BEEZY", "LAUGH", "CLAYY", "^MULKY", "#191"]
             },
             "draw": [
                ["ALB", "ATWAN", "FILGA", "KEAVR"],
@@ -938,12 +941,12 @@
             },
             "body": ["SEG", "LEGGO", "PRTZL", "HYPER"],
             "rwy": {
-                "KIAD1R": [["SIGBE", "A70"], "MOWAT", "HUSEL", "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
-                "KIAD1C": [["SIGBE", "A70"], "MOWAT", "HUSEL", "YACKK", "TICON", "LUSIE", "PEPPR", "CARRY", "SKINS", "^RCHLE", "#011"],
-                "KIAD1L": [["CRAIN","A60"], "KUKSE", "ELISN", "MIKEJ", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
-                "KIAD19L": [["OOGLE", "A50-"], "LITEY", "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
-                "KIAD19C": [["COVUR", "A70"], "DIMKE", "HOOSR", "BOYDS", "ARKAY", "ENEDE", "^FEMKO", "#191"],
-                "KIAD19R": [["CRAIN", "A60"], "REXOE", "BEEZY", "LAUGH", "CLAYY", "^MULKY", "#191"]
+                "KIAD1R": [["SIGBE","A70"], ["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
+                "KIAD1C": [["SIGBE","A70"], ["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "LUSIE", "PEPPR", "CARRY", "SKINS", "^RCHLE", "#011"],
+                "KIAD1L": [["CRAIN","A60"], ["KUKSE","A50"], "ELISN", "MIKEJ", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
+                "KIAD19L": [["OOGLE","A50-"], ["LITEY","A40"], "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
+                "KIAD19C": [["COVUR","A70"], "DIMKE", "HOOSR", "BOYDS", "ARKAY", "ENEDE", "^FEMKO", "#191"],
+                "KIAD19R": [["CRAIN","A60"], "REXOE", "BEEZY", "LAUGH", "CLAYY", "^MULKY", "#191"]
             },
             "draw": [
                 ["LVZ", "DIANO", "BLESS", "SEG"],
@@ -959,10 +962,10 @@
             },
             "body": ["PRIVO", ["DAFIX","A120"], ["OVIEE","A100|S250"], ["MAPEL","A70"]],
             "rwy": {
-                "KIAD1R": ["MOWAT", "HUSEL", "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
-                "KIAD1C": ["MOWAT", "HUSEL", "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
-                "KIAD1L": ["KUKSE", "ELISN", "MIKEJ", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
-                "KIAD19L": [["MCQUE", "A50-"], "LITEY", "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
+                "KIAD1R": [["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
+                "KIAD1C": [["MOWAT", "A50"], ["HUSEL", "A40"], "YACKK", "TICON", "MOSBY", "^WAXIN", "#011"],
+                "KIAD1L": [["KUKSE","A50"], "ELISN", "MIKEJ", "CINNA", "FAZER", "BIGGZ", "^MORCE","#011"],
+                "KIAD19L": [["MCQUE", "A50-"], ["LITEY","A40"], "YYANG", "DADEY", "IZUMI", "^DOMSE", "#191"],
                 "KIAD19C": [["COVUR", "A70"], "DIMKE", "HOOSR", "BOYDS", "ARKAY", "ENEDE", "^FEMKO", "#191"],
                 "KIAD19R": [["BASYL", "A60"], "REXOE", "BEEZY", "LAUGH", "CLAYY", "^MULKY", "#191"]
 
@@ -1015,7 +1018,7 @@
             "origin": "kiad",
             "destination": "",
             "category": "departure",
-            "route": "KIAD30.SCRAM3.LYH",
+            "route": "KIAD30.SCRAM4.LYH",
             "altitude": "",
             "speed": "",
             "method": "random",
