@@ -386,15 +386,17 @@ export default class AircraftController {
      * Finds an aircraft by its callsign
      *
      * @method findAircraftByCallsign
-     * @param  {string} [callsign='']
+     * @param  {string} [callsign=null]
      * @return {AircraftModel|null}
      */
-    findAircraftByCallsign(callsign = '') {
+    findAircraftByCallsign(callsign = null) {
         if (!callsign) {
             return null;
         }
 
-        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
+        const normalizedCallSign = callsign.toUpperCase();
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign === normalizedCallSign);
     }
 
     /**
