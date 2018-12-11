@@ -75,8 +75,8 @@ export default class AircraftController {
     constructor(aircraftTypeDefinitionList, airlineController, scopeModel) {
         if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
-                `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. '
+                + `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -603,7 +603,7 @@ export default class AircraftController {
         // TODO: this may need to be reworked.
         // if we are building a preSpawn aircraft, cap the altitude at 18000 so aircraft that spawn closer to
         // airspace can safely enter controlled airspace properly
-        let altitude = spawnPatternModel.altitude;
+        let { altitude } = spawnPatternModel;
 
         if (isPreSpawn && spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL) {
             altitude = Math.min(18000, altitude);
@@ -732,7 +732,10 @@ export default class AircraftController {
      * @return {boolean}
      */
     _isDiscreteTransponderCode(transponderCode) {
-        return this._isValidTransponderCode(transponderCode) && RESERVED_SQUAWK_CODES.indexOf(transponderCode) === INVALID_INDEX;
+        const isValidCode = this._isValidTransponderCode(transponderCode);
+        const isReservedCode = RESERVED_SQUAWK_CODES.indexOf(transponderCode) !== INVALID_INDEX;
+
+        return isValidCode && !isReservedCode;
     }
 
     /**
