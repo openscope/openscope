@@ -3,7 +3,8 @@
 
 
 ### Bugfixes
-- [#1250](https://github.com/openscope/openscope/issues/1250) - Fix error code 128: fatal: unable to look up github.com (port 9418)
+- [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
+- [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
 
 
 ### Enhancements & Refactors
