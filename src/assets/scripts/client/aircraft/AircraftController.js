@@ -386,12 +386,12 @@ export default class AircraftController {
      * Finds an aircraft by its callsign
      *
      * @method findAircraftByCallsign
-     * @param  {string} [callsign=null]
-     * @return {AircraftModel|null}
+     * @param  {string} callsign
+     * @return {AircraftModel}
      */
-    findAircraftByCallsign(callsign = null) {
+    findAircraftByCallsign(callsign) {
         if (!callsign) {
-            return null;
+            return;
         }
 
         const normalizedCallsign = callsign.toUpperCase();
@@ -403,12 +403,12 @@ export default class AircraftController {
      * Finds an aircraft by its internal id
      *
      * @method findAircraftById
-     * @param  {string} [id]
-     * @return {AircraftModel|null}
+     * @param  {string} id
+     * @return {AircraftModel}
      */
     findAircraftById(id) {
         if (!id) {
-            return null;
+            return;
         }
 
         return _find(this.aircraft.list, (aircraft) => aircraft.id === id);
@@ -440,7 +440,7 @@ export default class AircraftController {
     /**
      * @method debug
      * @param  {string} [callsign='']
-     * @return {AircraftModel|null}
+     * @return {AircraftModel}
      */
     debug(callsign = '') {
         return this.findAircraftByCallsign(callsign);
