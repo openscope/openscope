@@ -17,7 +17,7 @@
 - [#1338](https://github.com/openscope/openscope/issues/1338) - Add `fph` command to aircraft command documentation
 - [#1370](https://github.com/openscope/openscope/issues/1370) - Upgrade dependencies and address `npm audit` issues 
 - [#1319](https://github.com/openscope/openscope/issues/1319) - Addresses lint errors in documentation files
-- [#1260](https://github.com/openscope/openscope/issues/1260) - Update KABQ to AIRAC 1812
+- [#1260](https://github.com/openscope/openscope/issues/1260) - Update all airports to AIRAC 1813
 
 
 # 6.12.3 (April 22, 2019)
