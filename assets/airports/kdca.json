@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Washington Tower",
         "app": "Potomac Approach",
@@ -1138,7 +1139,7 @@
         },
         "JDUBB2": {
             "icao": "JDUBB2",
-            "name": "Jaydubb One",
+            "name": "Jaydubb Two",
             "rwy": {
                 "KDCA1": ["_1006ADAXE334", ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", ["CUKLI", "S250-"]],
                 "KDCA15": [["_RWY150.5DME", "A05+"], "CAPVC", "GAITE", "DMKRT"],
