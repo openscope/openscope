@@ -1,4 +1,5 @@
 {
+    "airac": 1813,
     "radio": {
         "twr": "Pittsburgh Tower",
         "app": "Pittsburgh Approach",
@@ -404,34 +405,22 @@
                 "AHTIY": ["AHTIY"],
                 "AIR": ["AIR"],
                 "BSV": ["BSV"],
-                "BURGS": ["BURGS"],
-                "CKB": ["CKB"],
-                "DILNE": ["DILNE"],
                 "EWC": ["EWC"],
                 "HLG": ["HLG"],
                 "JST": ["JST"],
                 "KEMAN": ["KEMAN"],
-                "MGW": ["MGW"],
-                "MMJ": ["MMJ"],
-                "REC": ["REC"],
-                "TVT": ["TVT"]
+                "MGW": ["MGW"]
             },
             "draw": [
                 ["AGC*"],
                 ["AHTIY*"],
                 ["AIR*"],
                 ["BSV*"],
-                ["BURGS*"],
-                ["CKB*"],
-                ["DILNE*"],
                 ["EWC*"],
                 ["HLG*"],
                 ["JST*"],
                 ["KEMAN*"],
                 ["MGW*"],
-                ["MMJ*"],
-                ["REC*"],
-                ["TVT*"]
             ]
         }
     },
@@ -601,7 +590,7 @@
             "origin": "KPIT",
             "destination": "",
             "category": "departure",
-            "route": "KPIT28R.PIT3.CKB..COBBE..PSK",
+            "route": "KPIT28R.PIT3.KEMAN..COBBE..PSK",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -633,7 +622,7 @@
             "origin": "KPIT",
             "destination": "",
             "category": "departure",
-            "route": "KPIT28R.PIT3.DILNE..TVT..ROD..VHP",
+            "route": "KPIT28R.PIT3.BSV..ROD..VHP",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -748,7 +737,7 @@
             "origin": "KPIT",
             "destination": "",
             "category": "departure",
-            "route": "KPIT28R.PIT3.REC..TYROO..MIP",
+            "route": "KPIT28R.PIT3.JST..MIP",
             "altitude": "",
             "speed": "",
             "method": "random",
