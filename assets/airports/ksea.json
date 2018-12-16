@@ -1,5 +1,5 @@
 {
-    "airac": 1711,
+    "airac": 1813,
     "radio": {
         "twr": "Seatle Tower",
         "app": "Seattle Approach",
@@ -73,6 +73,7 @@
         "BEARB": ["N47d50.67", "W122d22.71"],
         "BKE"  : ["N44d50.44", "W117d48.47"],
         "BLUIT": ["N47d24.36", "W120d25.09"],
+        "BLYTZ": ["N43d47.05", "W121d18.23"],
         "BOANE": ["N47d59.10", "W122d43.52"],
         "BREMM": ["N47d37.20", "W122d28.10"],
         "BREVE": ["N47d11.40", "W122d28.81"],
@@ -98,6 +99,7 @@
         "EMRLD": ["N47d18.95", "W122d46.18"],
         "EPH"  : ["N47d22.68", "W119d25.44"],
         "ERAVE": ["N46d54.58", "W123d24.10"],
+        "ESLEY": ["N45d17.77", "W122d17.20"],
         "EUG"  : ["N44d07.25", "W123d13.37"],
         "FAMUK": ["N44d30.00", "W123d08.15"],
         "FEPOT": ["N47d04.85", "W123d13.13"],
@@ -121,13 +123,16 @@
         "HUMPP": ["N47d12.56", "W121d48.61"],
         "HUVUS": ["N47d49.86", "W121d46.74"],
         "IMB"  : ["N44d38.90", "W119d42.70"],
+        "ISBRG": ["N47d37.68", "W122d37.04"],
         "JAKSN": ["N47d53.19", "W121d42.22"],
         "JALON": ["N47d20.19", "W122d19.14"],
         "JAWBN": ["N48d01.90", "W122d50.59"],
+        "JEFPO": ["N47d43.75", "W122d27.59"],
         "JESSP": ["N47d44.21", "W122d04.58"],
         "JIGEB": ["N48d13.90", "W123d01.53"],
         "KIMSH": ["N47d38.08", "W122d44.41"],
         "KMORE": ["N47d48.65", "W122d20.82"],
+        "KNGDM": ["N43d21.18", "W122d00.26"],
         "KRIEG": ["N46d19.21", "W122d43.33"],
         "KRUZR": ["N48d04.65", "W120d34.68"],
         "KTSAP": ["N47d45.51", "W122d27.92"],
@@ -157,6 +162,7 @@
         "ORCHO": ["N47d34.00", "W122d32.96"],
         "ORCUS": ["N48d20.66", "W123d07.74"],
         "OTLIE": ["N47d23.87", "W122d18.69"],
+        "OZWLD": ["N47d32.57", "W122d35.06"],
         "PAE"  : ["N47d55.19", "W122d16.67"],
         "PANGL": ["N48d09.02", "W123d40.21"],
         "PDT"  : ["N45d41.91", "W118d56.32"],
@@ -189,6 +195,7 @@
         "WESET": ["N47d24.35", "W122d19.10"],
         "WITRO": ["N47d46.83", "W120d08.20"],
         "WOODI": ["N47d46.12", "W121d51.80"],
+        "WRUSL": ["N45d15.34", "W122d28.01"],
         "WUBET": ["N47d28.13", "W122d27.88"],
         "WUREL": ["N47d33.33", "W122d18.61"],
         "YDC"  : ["N49d22.89", "W120d22.42"],
@@ -291,53 +298,6 @@
         "Q3": ["FEPOT", "FAMUK", "FRFLY"]
     },
     "sids": {
-        "ATOME2": {
-            "icao": "ATOME2",
-            "name": "Atom Two",
-            "rwy": {
-                "KSEA34L": ["CUSBU"],
-                "KSEA34C": ["NESOE"],
-                "KSEA34R": ["DODVE"]
-            },
-            "body": [["WUREL", "A31+"], ["ATOME", "A50+"]],
-            "exitPoints": {
-                "ALDER": ["HQM", "ELMAA", "SEA", "NORMY", "BLUIT", "EPH", "MLP", "TOU", "ARRIE", "SEA", "WANTA", "LTJ", "IMB"],
-                "ALPSE": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], "ALPSE"],
-                "ARRIE": ["BREMM", ["ZUMBI", "A90-"], ["KIMSH", "A100+"], "BANGR", "ARRIE"],
-                "BANDR": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "BANDR"],
-                "BUWZO": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "BUWZO"],
-                "ERAVE": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "FEPOT", "ERAVE"],
-                "FEPOT": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "FEPOT"],
-                "HQM": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["HAROB", "A100+"], "HQM"],
-                "NORMY": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "NORMY"],
-                "PAE": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], "PAE"],
-                "SUMMA": ["BREMM", ["ORCHO", "A90-"], "DRUMR", ["GIGHR", "A140+"], "GIRTE", "SUMMA"],
-                "ZADON": ["CENEX", "KTSAP", ["GOOBI", "A90-"], ["BEARB", "A100+"], ["JESSP", "A150+"], "ZADON"]
-            },
-            "draw": [
-                ["CUSBU", "WUREL"],
-                ["NESOE", "WUREL"],
-                ["DODVE", "WUREL"],
-                ["WUREL", "ATOME"],
-                ["ATOME", "BREMM"],
-                ["BREMM", "ZUMBI", "KIMSH", "BANGR", "ARRIE*"],
-                ["BREMM", "ORCHO", "DRUMR"],
-                ["DRUMR", "HAROB"],
-                ["HAROB", "HQM*"],
-                ["HAROB", "FEPOT*", "ERAVE*"],
-                ["DRUMR", "GIGHR", "GIRTE"],
-                ["GIRTE", "ALDER*"],
-                ["GIRTE", "BUWZO*"],
-                ["GIRTE", "SUMMA*"],
-                ["ATOME", "CENEX", "KTSAP", "GOOBI", "BEARB"],
-                ["BEARB", "ALPSE*"],
-                ["BEARB", "PAE*"],
-                ["BEARB", "RAYNG", "JESSP"],
-                ["JESSP", "ZADON*"],
-                ["JESSP", "BANDR*"],
-                ["JESSP", "NORMY*"]
-            ]
-        },
         "BANGR9": {
             "icao": "BANGR9",
             "name": "Bangor Nine",
@@ -421,6 +381,51 @@
                 ["HAROB*", "FEPOT*", "HISKU*"]
             ]
         },
+        "ISBRG1": {
+            "icao": "ISBRG1",
+            "name": "Iceberg One",
+            "rwy": {
+                "KSEA34L": ["CUSBU"],
+                "KSEA34C": ["NESOE"],
+                "KSEA34R": ["DODVE"]
+            },
+            "body": [["WUREL", "A31+"], "ATOME", "BREMM", "ISBRG", "#259"],
+            "exitPoints": {
+                "ARRIE": ["ARRIE"]
+            },
+            "draw": [
+                ["CUSBU", "WUREL"],
+                ["NESOE", "WUREL"],
+                ["DODVE", "WUREL"],
+                ["WUREL", "ATOME", "BREMM", "ISBRG"],
+                ["ARRIE*"]
+            ]
+        },
+        "JEFPO1": {
+            "icao": "JEFPO1",
+            "name": "Jefpo One",
+            "rwy": {
+                "KSEA34L": ["CUSBU"],
+                "KSEA34C": ["NESOE"],
+                "KSEA34R": ["DODVE"]
+            },
+            "body": [["WUREL", "A31+"], "ATOME", "CENEX", "JEFPO", "#343"],
+            "exitPoints": {
+                "ALPSE": ["ALPSE"],
+                "BANDR": ["BANDR"],
+                "NORMY": ["NORMY"],
+                "PAE": ["PAE"],
+                "ZADON": ["ZADON"]
+            },
+            "draw": [
+                ["ATOME", "CENEX", "JEFPO"],
+                ["ALPSE*"],
+                ["PAE*"],
+                ["ZADON*"],
+                ["BANDR*"],
+                ["NORMY*"]
+            ]
+        },
         "MOUNT9": {
             "icao": "MOUNT9",
             "name": "Mountain Nine",
@@ -460,9 +465,36 @@
                 ["YVR*"]
             ]
         },
-        "SEA6": {
-            "icao": "SEA6",
-            "name": "Seattle Six",
+        "OZWLD1": {
+            "icao": "OZWLD1",
+            "name": "Oswald One",
+            "rwy": {
+                "KSEA34L": ["CUSBU"],
+                "KSEA34C": ["NESOE"],
+                "KSEA34R": ["DODVE"]
+            },
+            "body": [["WUREL", "A31+"], "ATOME", "BREMM", "OZWLD", "#210"],
+            "exitPoints": {
+                "ALDER": ["ALDER"],
+                "BUWZO": ["BUWZO"],
+                "ERAVE": ["ERAVE"],
+                "FEPOT": ["FEPOT"],
+                "HQM": ["HQM"],
+                "SUMMA": ["SUMMA"],
+            },
+            "draw": [
+                ["ATOME", "BREMM", "OZWLD"],
+                ["HQM*"],
+                ["FEPOT*"],
+                ["ERAVE*"],
+                ["ALDER*"],
+                ["BUWZO*"],
+                ["SUMMA*"]
+            ]
+        },
+        "SEA7": {
+            "icao": "SEA7",
+            "name": "Seattle Seven",
             "rwy": {
                 "KSEA16L": ["_SEA161002", "#161"],
                 "KSEA16C": ["_SEA161002", "#161"],
@@ -602,16 +634,16 @@
                 ["GLASR", "JAKSN", "WOODI", "HETHR"]
             ]
         },
-        "HAWKZ6": {
-            "icao": "HAWKZ6",
-            "name": "Hawks Six",
+        "HAWKZ7": {
+            "icao": "HAWKZ7",
+            "name": "Hawks Seven",
             "entryPoints": {
                 "BTG": [["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
                 "HAWKZ": [],
                 "KRIEG": ["KRIEG"],
                 "LATAY": ["LATAY", "AAYRR"],
-                "LKV": ["LKV", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
-                "LMT": ["LMT", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"]
+                "LKV": ["LKV", "BLYTZ", "ESLEY", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"],
+                "LMT": ["LMT", "KNGDM", "WRUSL", ["BTG", "A240+"], ["PTERA", "A220+"], "KRIEG"]
             },
             "body": [["HAWKZ", "A120+|S270"], "LIINE"],
             "rwy": {
@@ -623,8 +655,8 @@
                 "KSEA34R": [["FOOTT", "A100+|A120-|S250"], ["GOALZ", "A80+"], ["SONDR", "A60|S230"]]
             },
             "draw": [
-                ["LKV*", "BTG*", "HAWKZ*"],
-                ["LMT*", "BTG", "HAWKZ"],
+                ["LKV*", "BLYTZ", "ESLEY", "BTG*", "HAWKZ*"],
+                ["LMT*", "KNGDM", "WRUSL", "BTG", "HAWKZ"],
                 ["BTG", "PTERA", "KRIEG*", "HAWKZ"],
                 ["LATAY*", "AAYRR", "HAWKZ"],
                 ["HAWKZ", "LIINE"],
@@ -1037,7 +1069,7 @@
             "origin": "",
             "destination": "ksea",
             "category": "arrival",
-            "route": "LMT.HAWKZ6.KSEA16R",
+            "route": "LMT.HAWKZ7.KSEA16R",
             "altitude": [24000, 36000],
             "speed": 320,
             "method": "random",
