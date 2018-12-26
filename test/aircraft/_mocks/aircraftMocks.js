@@ -13,7 +13,7 @@ export const AIRCRAFT_DEFINITION_MOCK = {
         number: 2,
         type: 'J'
     },
-    weightclass: 'L',
+    weightClass: 'L',
     category: {
         srs: 3,
         lahso: 8,
@@ -53,7 +53,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
             number: 2,
             type: 'J'
         },
-        weightclass: 'L',
+        weightClass: 'L',
         category: {
             srs: 3,
             lahso: 7,
