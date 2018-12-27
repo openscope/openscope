@@ -728,7 +728,7 @@ export default class AircraftModel {
 
         if (weightClass === 'H') {
             return 'heavy';
-        } else if (weightClass === 'U') {
+        } else if (weightClass === 'J') {
             return 'super';
         }
 

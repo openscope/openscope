@@ -3,6 +3,8 @@ import EventBus from '../../src/assets/scripts/client/lib/EventBus';
 import RadarTargetModel from '../../src/assets/scripts/client/scope/RadarTargetModel';
 import {
     ARRIVAL_AIRCRAFT_MODEL_MOCK,
+    ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY,
+    ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER,
     DEPARTURE_AIRCRAFT_MODEL_MOCK
 } from '../aircraft/_mocks/aircraftMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
@@ -209,4 +211,25 @@ ava('._setTheme() changes the value of #_theme', (t) => {
     model._setTheme(themeName);
 
     t.true(model._theme === THEME.CLASSIC);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Large', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
+    const expectedValue = 'AAL432';
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Heavy', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY);
+    const expectedValue = 'UAL99 H';  //check to see if it adds the `H` designation properly
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
+});
+
+ava('.buildDataBlockRowOne() creates correct first row for Super', (t) => {
+    const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER);
+    const expectedValue = 'UAE11 J';  //check to see if it adds the `J` designation properly
+
+    t.true(model.buildDataBlockRowOne() === expectedValue);
 });
