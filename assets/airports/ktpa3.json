@@ -172,7 +172,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["FINKI", "BAYPO", "ECAKE", "WILON", "SPRNG", "CAMJO"],
@@ -193,7 +193,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["MILEJ", "CROWD"],
@@ -212,7 +212,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["ENDED", "LACEN"],
@@ -233,7 +233,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["GANDY", "PAIRS"],
@@ -252,7 +252,7 @@
                 "1R": ["#007"],
                 "10": ["#097"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#277"]
             },
             "body": [],
@@ -289,7 +289,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["SYKES", "DORMR"],
@@ -310,7 +310,7 @@
                 "1R": ["#007"],
                 "10": ["#097"],
                 "19L": [["_RWY19LPIE116", "A26+"], "#187"],
-                "19R": [["_RWY19RPIE116", "A26+"], "#187"],
+                "KTPA19R": [["_RWY19RPIE116", "A26+"], "#187"],
                 "28": ["#277"]
             },
             "body": [],
@@ -356,7 +356,7 @@
                 "1L": ["DADPE", "BAYZZ", "WOBKI", "#097"],
                 "1R": ["DADPE", "BAYZZ", "WOBKI", "#097"],
                 "19L": ["OOSAF", "GUSNE", "#097"],
-                "19R": ["OOSAF", "GUSNE", "#097"]
+                "KTPA19R": ["OOSAF", "GUSNE", "#097"]
             },
             "draw": [
                 ["SIMMR", "RUDOF", "BLOND", "AGASE", "OOSAF", "GUSNE"],
@@ -376,7 +376,7 @@
                 "1L": ["PIE"],
                 "1R": ["PIE"],
                 "19L": ["#360"],
-                "19R": ["#360"]
+                "KTPA19R": ["#360"]
             },
             "draw": [
                 ["PHK", "BRDGE", "JSTRM", "PIE"],
@@ -396,7 +396,7 @@
                 "1L": ["LISAF", "GUZDA", "JSTRM", "#277"],
                 "1R": ["LISAF", "GUZDA", "JSTRM", "#277"],
                 "19L": ["JKBAL", "#277"],
-                "19R": ["JKBAL", "#277"]
+                "KTPA19R": ["JKBAL", "#277"]
             },
             "draw": [
                 ["TAY", "JAYJA", "EDISN", "OLENE", "MARVI", "KOKOH", "DADES"],
@@ -415,7 +415,7 @@
                 "1L": [],
                 "1R": [],
                 "19L": [],
-                "19R": []
+                "KTPA19R": []
             },
             "draw": [
                 ["SZW", "HEVVN", "LEGGT", "TABIR", "DARBS", "PIE"]
@@ -434,7 +434,7 @@
                 "1L": ["#277"],
                 "1R": ["#277"],
                 "19L": ["GUZDA", "JKBAL", "#277"],
-                "19R": ["GUZDA", "JKBAL", "#277"]
+                "KTPA19R": ["GUZDA", "JKBAL", "#277"]
             },
             "draw": [
                 ["PHK", "ROGAN"],
@@ -452,7 +452,7 @@
                 "1L": ["DARBS", "FOOXX", "DADPE", "BAYZZ", "WOBKI", "#097"],
                 "1R": ["DARBS", "FOOXX", "DADPE", "BAYZZ", "WOBKI", "#097"],
                 "19L": ["GUSNE", "#097"],
-                "19R": ["GUSNE", "#097"]
+                "KTPA19R": ["GUSNE", "#097"]
             },
             "draw": [
                 ["DARBS", "FOOXX", "DADPE"],
@@ -471,7 +471,7 @@
                 "1L": ["#180"],
                 "1R": ["#180"],
                 "19L": ["PIE"],
-                "19R": ["PIE"]
+                "KTPA19R": ["PIE"]
             },
             "draw": [
                 ["LZARD", "TUMPY", "PIE"]
@@ -483,7 +483,7 @@
             "origin": "KTPA",
             "destination": "",
             "category": "departure",
-            "route": "KTPA.BAYPO7.DUNKN",
+            "route": "KTPA19R.BAYPO7.DUNKN",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -509,7 +509,7 @@
             "origin": "KTPA",
             "destination": "",
             "category": "departure",
-            "route": "KTPA.ENDED7.CTY",
+            "route": "KTPA19R.ENDED7.CTY",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -533,7 +533,7 @@
             "origin": "KTPA",
             "destination": "",
             "category": "departure",
-            "route": "KTPA.GANDY7.SABEE",
+            "route": "KTPA19R.GANDY7.SABEE",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -552,7 +552,7 @@
             "origin": "KTPA",
             "destination": "",
             "category": "departure",
-            "route": "KTPA.SYKES7.SIMMR",
+            "route": "KTPA19R.SYKES7.SIMMR",
             "altitude": "",
             "speed": "",
             "method": "random",
@@ -573,7 +573,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "SIMMR.BLOND4.KTPA",
+            "route": "SIMMR.BLOND4.KTPA19R",
             "altitude": 10000,
             "speed": 320,
             "method": "random",
@@ -594,7 +594,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "PHK.BRDGE8.KTPA",
+            "route": "PHK.BRDGE8.KTPA19R",
             "altitude": 11000,
             "speed": 250,
             "method": "random",
@@ -607,7 +607,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "TAY.DADES4.KTPA",
+            "route": "TAY.DADES4.KTPA19R",
             "altitude": 12000,
             "speed": 320,
             "method": "random",
@@ -633,7 +633,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "LBV.DEAKK5.KTPA",
+            "route": "LBV.DEAKK5.KTPA19R",
             "altitude": 11000,
             "speed": 320,
             "method": "random",
@@ -651,7 +651,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "SZW.FOOXX4.KTPA",
+            "route": "SZW.FOOXX4.KTPA19R",
             "altitude": 12000,
             "speed": 320,
             "method": "random",

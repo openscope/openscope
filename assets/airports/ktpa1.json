@@ -175,7 +175,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["FINKI", "BAYPO", "ECAKE", "WILON", "SPRNG", "CAMJO"],
@@ -196,7 +196,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["MILEJ", "CROWD"],
@@ -215,7 +215,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["ENDED", "LACEN"],
@@ -236,7 +236,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["GANDY", "PAIRS"],
@@ -255,7 +255,7 @@
                 "1R": ["#007"],
                 "10": ["#097"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#277"]
             },
             "body": [],
@@ -292,7 +292,7 @@
                 "1R": ["#003"],
                 "10": ["#093"],
                 "19L": ["#213"],
-                "19R": ["#203"],
+                "KTPA19R": ["#203"],
                 "28": ["#273"]
             },
             "body": ["SYKES", "DORMR"],
@@ -313,7 +313,7 @@
                 "1R": ["#007"],
                 "10": ["#097"],
                 "19L": [["_RWY19LPIE116", "A26+"], "#187"],
-                "19R": [["_RWY19RPIE116", "A26+"], "#187"],
+                "KTPA19R": [["_RWY19RPIE116", "A26+"], "#187"],
                 "28": ["#277"]
             },
             "body": [],
@@ -359,7 +359,7 @@
                 "1L": ["DADPE", "BAYZZ", "WOBKI", "#097"],
                 "1R": ["DADPE", "BAYZZ", "WOBKI", "#097"],
                 "19L": ["_KTPA277005", "#007"],
-                "19R": ["_KTPA277005", "#007"]
+                "KTPA19R": ["_KTPA277005", "#007"]
             },
             "draw": [
                 ["SIMMR", "RUDOF", "BLOND", "AGASE", "OOSAF", "GUSNE"],
@@ -379,7 +379,7 @@
                 "1L": ["PIE"],
                 "1R": ["PIE"],
                 "19L": ["#360"],
-                "19R": ["#360"]
+                "KTPA19R": ["#360"]
             },
             "draw": [
                 ["PHK", "BRDGE", "JSTRM", "PIE"],
@@ -399,7 +399,7 @@
                 "1L": ["LISAF", "GUZDA", "JSTRM", "#277"],
                 "1R": ["LISAF", "GUZDA", "JSTRM", "#277"],
                 "19L": ["JKBAL", "#277"],
-                "19R": ["JKBAL", "#277"]
+                "KTPA19R": ["JKBAL", "#277"]
             },
             "draw": [
                 ["TAY", "JAYJA", "EDISN", "OLENE", "MARVI", "KOKOH", "DADES"],
@@ -418,7 +418,7 @@
                 "1L": [],
                 "1R": [],
                 "19L": [],
-                "19R": []
+                "KTPA19R": []
             },
             "draw": [
                 ["SZW", "HEVVN", "LEGGT", "TABIR", "DARBS", "PIE"]
@@ -437,7 +437,7 @@
                 "1L": ["#277"],
                 "1R": ["#277"],
                 "19L": ["_KTPA097005", "#007"],
-                "19R": ["_KTPA097005", "#007"]
+                "KTPA19R": ["_KTPA097005", "#007"]
             },
             "draw": [
                 ["PHK", "ROGAN"],
@@ -455,7 +455,7 @@
                 "1L": ["DARBS", "FOOXX", "DADPE", "BAYZZ", "WOBKI", "#097"],
                 "1R": ["DARBS", "FOOXX", "DADPE", "BAYZZ", "WOBKI", "#097"],
                 "19L": ["GUSNE", "#097"],
-                "19R": ["GUSNE", "#097"]
+                "KTPA19R": ["GUSNE", "#097"]
             },
             "draw": [
                 ["DARBS", "FOOXX", "DADPE"],
@@ -474,7 +474,7 @@
                 "1L": ["#180"],
                 "1R": ["#180"],
                 "19L": ["PIE"],
-                "19R": ["PIE"]
+                "KTPA19R": ["PIE"]
             },
             "draw": [
                 ["LZARD", "TUMPY", "PIE"]
@@ -486,7 +486,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "SIMMR.BLOND4.KTPA",
+            "route": "SIMMR.BLOND4.KTPA19R",
             "altitude": 6000,
             "speed": 250,
             "method": "random",
@@ -507,7 +507,7 @@
             "origin": "",
             "destination": "KTPA",
             "category": "arrival",
-            "route": "LBV.DEAKK5.KTPA",
+            "route": "LBV.DEAKK5.KTPA19R",
             "altitude": 6000,
             "speed": 250,
             "method": "random",
