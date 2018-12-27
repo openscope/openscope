@@ -10,6 +10,7 @@
 
 
 ### Enhancements & Refactors
+- [#1264](https://github.com/openscope/openscope/issues/1264) &[#1265](https://github.com/openscope/openscope/issues/1265) - Change the "super" weight class identifier from `U` to `J`
 
 
 # 6.8.0 (December 1, 2018)
