@@ -5,6 +5,7 @@
 ### Bugfixes
 - [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
 - [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
+- [#1259](https://github.com/openscope/openscope/issues/1259) - Fix missing "heavy/super" designation in speech synthesis of callsigns
 
 
 ### Enhancements & Refactors
