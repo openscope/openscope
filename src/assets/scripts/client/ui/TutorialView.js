@@ -7,7 +7,6 @@ import EventTracker from '../EventTracker';
 import TimeKeeper from '../engine/TimeKeeper';
 import TutorialStep from './TutorialStep';
 import { round, clamp } from '../math/core';
-import { heading_to_string } from '../utilities/unitConverters';
 import { EVENT } from '../constants/eventNames';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
@@ -15,13 +14,13 @@ import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 
 const tutorial = {};
 
-const TUTORIAL_TEMPLATE = '' +
-    '<div id="tutorial">' +
-    '   <h1></h1>' +
-    '   <main></main>' +
-    '   <div class="prev"><img src="assets/images/prev.png" title="Previous step" /></div>' +
-    '   <div class="next"><img src="assets/images/next.png" title="Next step" /></div>' +
-    '</div>';
+const TUTORIAL_TEMPLATE = ''
+    + '<div id="tutorial">'
+    + '   <h1></h1>'
+    + '   <main></main>'
+    + '   <div class="prev"><img src="assets/images/prev.png" title="Previous step" /></div>'
+    + '   <div class="next"><img src="assets/images/next.png" title="Next step" /></div>'
+    + '</div>';
 
 /**
  * @class TutorialView
@@ -185,7 +184,6 @@ export default class TutorialView {
         this.$tutorialView = null;
         this.$tutorialPrevious = null;
         this.$tutorialNext = null;
-
         this.tutorial = {};
         this.tutorial.steps = [];
         this.tutorial.step = 0;
@@ -220,10 +218,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Welcome!',
-            text: ['Welcome to Air Traffic Control simulator. It\'s not easy',
+            text: ['Welcome to the OpenScope Air Traffic Control simulator. It\'s not easy',
                    'to control dozens of aircraft while maintaining safe distances',
                    'between them; to get started with the ATC simulator tutorial, click the arrow on',
-                   'the right. You can also click the graduation cap icon in the lower right corner',
+                   'the right. You can click the graduation cap icon in the lower right corner',
                    'of the window at any time to close this tutorial.'
                 ].join(' '),
             position: tutorial_position
@@ -258,7 +256,7 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Taxiing',
-            text: ['Now type in &lsquo;taxi {RUNWAY}&rsquo; or &lsquo;wait {RUNWAY}&rsquo; into the command box after the callsign and hit Return;',
+            text: ['Now type in "taxi {RUNWAY}" or "wait {RUNWAY}" into the command box after the callsign and hit Return;',
                    'the messages area above it will show that the aircraft is taxiing to runway ({RUNWAY}) in',
                    'preparation for takeoff.'
             ].join(' '),
@@ -276,7 +274,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Takeoff, part 1',
             text: ['When it appears at the start of runway ({RUNWAY}) (which may take a couple of seconds), click it (or press the up arrow once)',
-                   'and type in &lsquo;caf&rsquo; (for "cleared as filed"). This tells the aircraft it is cleared to follow its flightplan.',
+                   'and type in "caf" (for "cleared as filed"). This tells the aircraft it is cleared to follow its flightplan.',
                    'Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they\'re supposed to go.'
             ].join(' '),
             parse: (t) => {
@@ -293,7 +291,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Takeoff, part 2',
             text: ['Now the aircraft is ready for take off. Click the aircraft again (or press up arrow once)',
-                   'and type &lsquo;takeoff&rsquo; (or &lsquo;to&rsquo;) to clear the aircraft for take off.',
+                   'and type "takeoff" (or "to") to clear the aircraft for take off.',
                    'Once it\'s going fast enough, it should lift off the ground and you should',
                    'see its altitude increasing. Meanwhile, read the next step.'
             ].join(' '),
@@ -333,7 +331,7 @@ export default class TutorialView {
             title: 'Moving aircraft',
             text: ['Once {CALLSIGN} has taken off, you\'ll notice it will climb to {INIT_ALT} by itself. This is one of the instructions ',
                     'we gave them when we cleared them "as filed". Aircraft perform better when they are able to climb directly',
-                    'from the ground to their cruise altitude without leveling off, so let\'s keep them climbing! Click it and type &lsquo;cvs&rsquo; (for',
+                    'from the ground to their cruise altitude without leveling off, so let\'s keep them climbing! Click it and type "cvs" (for',
                     '"climb via SID"). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure',
                     'procedure. Feel free to click the speedup button on the right side of the input box (it\'s two small arrows)',
                     'to watch the departure climb along the SID. Then just click it again to return to 1x speed.'
@@ -371,11 +369,11 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Basic Control Instructions: Altitude',
-            text: ['You can assign altitudes with the &lsquo;climb&rsquo; command, or any of its aliases (other words that',
-                   'act identically). Running the command &lsquo;climb&rsquo; is the same as the commands &lsquo;descend&rsquo;, &lsquo;d&rsquo;,',
-                   '&lsquo;clear&rsquo;, &lsquo;c&rsquo;, &lsquo;altitude&rsquo;, or &lsquo;a&rsquo;. Just use whichever feels correct in your situation.',
-                   'Remember, just as in real ATC, altitudes are ALWAYS written in hundreds of feet, eg. &lsquo;descend 30&rsquo; for 3,000ft or &lsquo;climb',
-                   ' 100&rsquo; for 10,000ft.'
+            text: ['You can assign altitudes with the "climb" command, or any of its aliases (other words that',
+                   'act identically). Running the command "climb" is the same as the commands "descend", "d",',
+                   '"clear", "c", "altitude", or "a". Just use whichever feels correct in your situation.',
+                   'Remember, just as in real ATC, altitudes are ALWAYS written in hundreds of feet, eg. "descend 30" for 3,000ft or "climb',
+                   ' 100" for 10,000ft.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -384,9 +382,9 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Basic Control Instructions: Radar Vectors',
             text: ['Radar vectors are an air traffic controller\'s way of telling aircraft to fly a specific magnetic heading. We can give aircraft radar',
-                   'vectors in three ways. Usually, you will use &lsquo;t l ###&rsquo; or &lsquo;t r ###&rsquo;. Be careful, as it is both easy',
+                   'vectors in three ways. Usually, you will use "t l ###" or "t r ###". Be careful, as it is both easy',
                    'and dangerous to give a turn in the wrong direction. If the heading is only slightly left or right, to avoid choosing the wrong direction,',
-                   'you can tell them to &lsquo;fly heading&rsquo; by typing &lsquo;fh ###&rsquo;, and the aircraft will simply turn the shortest direction',
+                   'you can tell them to "fly heading" by typing "fh ###", and the aircraft will simply turn the shortest direction',
                    'to face that heading. You can also instruct an aircraft to turn left and right by a given number of degrees if you give only a two-digit number.'
             ].join(' '),
             side: 'left',
@@ -397,7 +395,7 @@ export default class TutorialView {
             title: 'Basic Control Instructions: Speed',
             text: ['Speed control is the TRACON controller\'s best friend. Making good use of speed control can help keep the pace manageable and allow',
                    'you to carefully squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions, use the',
-                   '&lsquo;+&rsquo; and &lsquo;-&rsquo; keys on the numpad, followed by the speed, in knots. Note that this assigned speed is indicated',
+                   '"+" and "-" keys on the numpad, followed by the speed, in knots. Note that this assigned speed is indicated',
                    'airspeed, and our radar scope can only display groundspeed; so, the values may be different.'
             ].join(' '),
             side: 'left',
@@ -407,7 +405,7 @@ export default class TutorialView {
         this.tutorial_step({
             title: 'Route',
             text: ['Instead of guiding each aircraft based on heading, you can also clear each aircraft to proceed to a fix or navaid (shown on the map',
-                   'as a small triangle). Just use the command &lsquo;route&rsquo; and the name of a fix, and the aircraft will fly to it. Upon passing the',
+                   'as a small triangle). Just use the command "route" and the name of a fix, and the aircraft will fly to it. Upon passing the',
                    'fix, it will continue flying along its present heading.'
             ].join(' '),
             side: 'left',
@@ -416,8 +414,8 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Proceed Direct',
-            text: ['The proceed direct command &lsquo;pd&rsquo; instructs an aircraft to go directly to a waypoint in the flight plan. For example, if an',
-                   'aircraft is flying to fixes [A, B, C], issuing the command &lsquo;pd B&rsquo; will cause the aircraft to go to B, then C.'
+            text: ['The proceed direct command "pd" instructs an aircraft to go directly to a waypoint in the flight plan. For example, if an',
+                   'aircraft is flying to fixes [A, B, C], issuing the command "pd B" will cause the aircraft to go to B, then C.'
             ].join(' '),
             side: 'left',
             position: tutorial_position
@@ -447,10 +445,10 @@ export default class TutorialView {
 
         this.tutorial_step({
             title: 'Approach Clearances, part 1',
-            text: ['You can clear aircraft for an ILS approach with the &lsquo;ILS&rsquo; command, followed by a runway name.',
+            text: ['You can clear aircraft for an ILS approach with the "ILS" command, followed by a runway name.',
                    'When you do so, the aircraft will try to find a route that intercepts the localiser, represented by the',
                    'extended centerline. Try giving radar vectors to get the aircraft on shallow intercept with this marking',
-                   'and then issue the instruction &lsquo;i {RUNWAY}&rsquo; to clear it to land. It should then guide itself',
+                   'and then issue the instruction "i {RUNWAY}" to clear it to land. It should then guide itself',
                    'the rest of the way to the runway, managing its own height and direction.'
             ].join(' '),
             parse: (t) => {
@@ -468,7 +466,7 @@ export default class TutorialView {
             text: ['You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,',
                    'they follow an acronym "PTAC" for the four elements of an approach clearance, the "T" and "C" of which',
                    'stand for "Turn" and "Clearance", both of which we entered separately in this tutorial. Though longer, it is both ',
-                   'easier and more real-world accurate to enter them together, like this: &lsquo;fh 250 i 28r&rsquo;.'
+                   'easier and more real-world accurate to enter them together, like this: "fh 250 i 28r".'
             ].join(' '),
             side: 'left',
             position: tutorial_position
