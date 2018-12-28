@@ -197,11 +197,14 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         switch (this.weightClass) {
             case SUPER_LETTER:
                 aircraftIcao = `${SUPER_LETTER}/${this.icao}/L`;
+
                 break;
             case HEAVY_LETTER:
                 aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
+
                 break;
             default:
+
                 break;
         }
 

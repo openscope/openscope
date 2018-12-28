@@ -222,14 +222,14 @@ ava('.buildDataBlockRowOne() creates correct first row for Large', (t) => {
 
 ava('.buildDataBlockRowOne() creates correct first row for Heavy', (t) => {
     const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_HEAVY);
-    const expectedValue = 'UAL99 H';  //check to see if it adds the `H` designation properly
+    const expectedValue = 'UAL99 H';
 
     t.true(model.buildDataBlockRowOne() === expectedValue);
 });
 
 ava('.buildDataBlockRowOne() creates correct first row for Super', (t) => {
     const model = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK_SUPER);
-    const expectedValue = 'UAE11 J';  //check to see if it adds the `J` designation properly
+    const expectedValue = 'UAE11 J';
 
     t.true(model.buildDataBlockRowOne() === expectedValue);
 });

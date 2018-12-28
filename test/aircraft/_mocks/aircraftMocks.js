@@ -45,7 +45,6 @@ export const AIRCRAFT_DEFINITION_MOCK = {
 };
 
 export const AIRCRAFT_DEFINITION_MOCK_HEAVY = {
-
     name: 'Boeing 787-9 Dreamliner',
     icao: 'B789',
     engines: {
@@ -120,7 +119,6 @@ export const AIRCRAFT_DEFINITION_MOCK_SUPER = {
         fix: true
     }
 };
-
 
 export const AIRCRAFT_DEFINITION_LIST_MOCK = [
     AIRCRAFT_DEFINITION_MOCK,

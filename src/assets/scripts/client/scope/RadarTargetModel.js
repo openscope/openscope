@@ -334,11 +334,14 @@ export default class RadarTargetModel {
         switch (this.aircraftModel.model.weightClass) {
             case SUPER_LETTER:
                 dataBlockRowOne += ` ${SUPER_LETTER}`;
+
                 break;
             case HEAVY_LETTER:
                 dataBlockRowOne += ` ${HEAVY_LETTER}`;
+
                 break;
             default:
+
                 break;
         }
 
