@@ -169,9 +169,10 @@ ava('.applyDepartureProcedure() should set mcp altitude and speed modes to `VNAV
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
     pilot.applyDepartureProcedure(sidIdMock, airportIcaoMock);
 
-    // CAUSES OUT OF MEMORY CRASH
-//    t.true(pilot._mcp.altitudeMode === 'VNAV');
-//    t.true(pilot._mcp.speedMode === 'VNAV');
+    // workaround: t.true(pilot._mcp..altitudeMode) causes out of memory crash
+    const mcp = pilot._mcp;
+    t.true(mcp.altitudeMode === 'VNAV');
+    t.true(mcp.speedMode === 'VNAV');
 });
 
 ava('.applyDepartureProcedure() returns a success message after success', (t) => {
@@ -244,8 +245,9 @@ ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a ho
     pilot._fms.setFlightPhase('HOLD');
     pilot.applyPartialRouteAmendment(amendRouteString);
 
-    // CAUSES OUT OF MEMORY CRASH
-    //t.true(pilot._fms.currentPhase === 'CRUISE');
+    // workaround: t.true(pilot._fms.currentPhase) causes out of memory crash
+    const currentPhase = pilot._fms.currentPhase;
+    t.true(currentPhase === 'CRUISE');
 });
 
 ava('.applyPartialRouteAmendment() returns a success message when complete', (t) => {
@@ -300,7 +302,8 @@ ava('.applyPartialRouteAmendment() grants departure clearance when the route ame
 
     t.deepEqual(result, expectedResult);
     // CAUSES OUT OF MEMORY CRASH
-    //t.true(pilot.hasDepartureClearance);
+    const departureClearance = pilot.hasDepartureClearance;
+    t.true(departureClearance);
 });
 
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
