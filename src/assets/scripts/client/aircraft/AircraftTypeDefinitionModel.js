@@ -4,7 +4,7 @@ import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: abstract these to an appropriate constants file
 const HEAVY_LETTER = 'H';
-const SUPER_LETTER = 'U';
+const SUPER_LETTER = 'J';
 
 /**
  * Provides a definition for a specific type of aircraft.
@@ -196,11 +196,15 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
 
         switch (this.weightClass) {
             case SUPER_LETTER:
+                aircraftIcao = `${SUPER_LETTER}/${this.icao}/L`;
+
+                break;
             case HEAVY_LETTER:
                 aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
 
                 break;
             default:
+
                 break;
         }
 

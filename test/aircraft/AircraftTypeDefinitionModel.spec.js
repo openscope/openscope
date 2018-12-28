@@ -31,12 +31,12 @@ ava('._buildTypeForStripView() returns the correct string for H weightClass', (t
     t.true(result === 'H/B737/L');
 });
 
-ava('._buildTypeForStripView() returns the correct string for S weightClass', (t) => {
+ava('._buildTypeForStripView() returns the correct string for J weightClass', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightClass = 'U';
+    model.weightClass = 'J';
     const result = model._buildTypeForStripView();
 
-    t.true(result === 'H/B737/L');
+    t.true(result === 'J/B737/L');
 });
 
 ava('.isHeavyOrSuper() returns true when `#weightClass` is `H`', (t) => {
@@ -46,16 +46,16 @@ ava('.isHeavyOrSuper() returns true when `#weightClass` is `H`', (t) => {
     t.true(model.isHeavyOrSuper());
 });
 
-ava('.isHeavyOrSuper() returns true when `#weightClass` is `S`', (t) => {
+ava('.isHeavyOrSuper() returns true when `#weightClass` is `J`', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightClass = 'U';
+    model.weightClass = 'J';
 
     t.true(model.isHeavyOrSuper());
 });
 
-ava('.isHeavyOrSuper() returns false when `#weightClass` is not `H` or `S`', (t) => {
+ava('.isHeavyOrSuper() returns false when `#weightClass` is not `H` or `J`', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightClass = 'S';
+    model.weightClass = 'L';
 
     t.false(model.isHeavyOrSuper());
 });
