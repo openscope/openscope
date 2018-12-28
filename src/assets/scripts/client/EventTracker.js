@@ -12,12 +12,12 @@ class EventTracker {
      */
     constructor() {
         if (!this._isEnabled()) {
-            console.error('Event tracking is disabled because we couldn\'t find `ga` on the window');
+            console.error('Event tracking is disabled because we couldn\'t find `gtag` on the window');
 
             return;
         }
 
-        this._ga = window.ga;
+        this._gtag = window.gtag;
     }
 
     /**
@@ -48,7 +48,7 @@ class EventTracker {
             event.value = value;
         }
 
-        return this._ga('send', event);
+        return this._gtag('send', event);
     }
 
     /**
@@ -72,7 +72,7 @@ class EventTracker {
             beacon: true
         };
 
-        return this._ga('send', event);
+        return this._gtag('send', event);
     }
 
     /**
@@ -81,7 +81,7 @@ class EventTracker {
      * @returns {boolean}
      */
     _isEnabled() {
-        return typeof window.ga !== 'undefined';
+        return typeof window.gtag !== 'undefined';
     }
 }
 
