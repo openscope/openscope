@@ -49,7 +49,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
 
         /**
-         * Icao identifier that includes a weightclass
+         * Icao identifier that includes a weightClass
          * designation when `Heavy` or `Super`
          *
          * @property icaoWithWeightClass
@@ -68,11 +68,11 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.engines = null;
 
         /**
-         * @property weightclass
+         * @property weightClass
          * @type {string}
          * @default ''
          */
-        this.weightclass = '';
+        this.weightClass = '';
 
         /**
          * @property category
@@ -152,7 +152,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.name = aircraftTypeDefinition.name;
         this.icao = aircraftTypeDefinition.icao.toLowerCase();
         this.engines = aircraftTypeDefinition.engines;
-        this.weightclass = aircraftTypeDefinition.weightclass;
+        this.weightClass = aircraftTypeDefinition.weightClass;
         this.category = aircraftTypeDefinition.category;
         this.ceiling = aircraftTypeDefinition.ceiling;
         this.rate = aircraftTypeDefinition.rate;
@@ -174,7 +174,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
         this.icaoWithWeightClass = '';
         this.engines = null;
-        this.weightclass = '';
+        this.weightClass = '';
         this.category = null;
         this.ceiling = INVALID_NUMBER;
         this.rate = null;
@@ -194,7 +194,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     _buildTypeForStripView() {
         let aircraftIcao = `${this.icao}/L`;
 
-        switch (this.weightclass) {
+        switch (this.weightClass) {
             case SUPER_LETTER:
             case HEAVY_LETTER:
                 aircraftIcao = `${HEAVY_LETTER}/${this.icao}/L`;
@@ -233,6 +233,6 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @returns {Boolean}
      */
     isHeavyOrSuper() {
-        return this.weightclass === HEAVY_LETTER || this.weightclass === SUPER_LETTER;
+        return this.weightClass === HEAVY_LETTER || this.weightClass === SUPER_LETTER;
     }
 }

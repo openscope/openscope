@@ -16,46 +16,46 @@ ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK));
 });
 
-ava('._buildTypeForStripView() returns the icao when not a heavy/super weightclass', (t) => {
+ava('._buildTypeForStripView() returns the icao when not a heavy/super weightClass', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
     const result = model._buildTypeForStripView();
 
     t.true(result === 'B737/L');
 });
 
-ava('._buildTypeForStripView() returns the correct string for H weightclass', (t) => {
+ava('._buildTypeForStripView() returns the correct string for H weightClass', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightclass = 'H';
+    model.weightClass = 'H';
     const result = model._buildTypeForStripView();
 
     t.true(result === 'H/B737/L');
 });
 
-ava('._buildTypeForStripView() returns the correct string for S weightclass', (t) => {
+ava('._buildTypeForStripView() returns the correct string for S weightClass', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightclass = 'U';
+    model.weightClass = 'U';
     const result = model._buildTypeForStripView();
 
     t.true(result === 'H/B737/L');
 });
 
-ava('.isHeavyOrSuper() returns true when `#weightclass` is `H`', (t) => {
+ava('.isHeavyOrSuper() returns true when `#weightClass` is `H`', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightclass = 'H';
+    model.weightClass = 'H';
 
     t.true(model.isHeavyOrSuper());
 });
 
-ava('.isHeavyOrSuper() returns true when `#weightclass` is `S`', (t) => {
+ava('.isHeavyOrSuper() returns true when `#weightClass` is `S`', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightclass = 'U';
+    model.weightClass = 'U';
 
     t.true(model.isHeavyOrSuper());
 });
 
-ava('.isHeavyOrSuper() returns false when `#weightclass` is not `H` or `S`', (t) => {
+ava('.isHeavyOrSuper() returns false when `#weightClass` is not `H` or `S`', (t) => {
     const model = new AircraftTypeDefinitionModel(AIRCRAFT_DEFINITION_MOCK);
-    model.weightclass = 'S';
+    model.weightClass = 'S';
 
     t.false(model.isHeavyOrSuper());
 });
