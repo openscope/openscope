@@ -202,7 +202,7 @@ export default class ScoreController {
      * @param action {string}
      */
     _scoreRunwaySeparation(aircraftModel, runwayModel, action) {
-        const previousAircraft = this._aircraftController.findAircraftByCallsign(runwayModel.lastDepartedAircraftId);
+        const previousAircraft = this._aircraftController.findAircraftByCallsign(runwayModel.lastDepartedAircraftCallsign);
 
         if (!previousAircraft) {
             return;

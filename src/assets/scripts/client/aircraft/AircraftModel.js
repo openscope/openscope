@@ -1328,7 +1328,7 @@ export default class AircraftModel {
         EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
 
         this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastDepartedAircraftId = this.callsign;
+        runway.lastDepartedAircraftCallsign = this.callsign;
     }
 
     /**
