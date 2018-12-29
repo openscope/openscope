@@ -17,7 +17,6 @@ import {
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
-import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 
 // mocks
 const airportElevationMock = 11;
@@ -28,8 +27,8 @@ const runwayModelMock = airportModelFixture.getRunway(runwayNameMock);
 const approachTypeMock = 'ils';
 
 const validRouteStringMock = 'DAG.KEPEC3.KLAS07R';
-const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
-const amendRouteString = 'HITME..HOLDM..BIKKR';
+const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS01L';
+const amendRouteString = 'DAG..HOLDM..PRINO';
 const invalidRouteString = 'A..B.C.D';
 const invalidAmendRouteString = 'A..B..C';
 const sidIdMock = 'COWBY6';
@@ -225,7 +224,7 @@ ava('.applyPartialRouteAmendment() returns an error with passed an invalid route
 });
 
 ava('.applyPartialRouteAmendment() returns an error with passed a routeString without a shared waypoint', (t) => {
-    const expectedResult = [false, 'requested route of "HITME..HOLDM" is invalid, it must contain a Waypoint in the current route'];
+    const expectedResult = [false, 'routes do not have continuity!'];
     const pilot = buildPilotWithComplexRoute();
     const result = pilot.applyPartialRouteAmendment('HITME..HOLDM');
 
@@ -236,7 +235,7 @@ ava('.applyPartialRouteAmendment() returns a success message when complete', (t)
     const expectedResult = [
         true,
         {
-            log: 'rerouting to: HITME..HOLDM..BIKKR..DAG.KEPEC3.KLAS',
+            log: 'rerouting to: DAG HOLDM PRINO',
             say: 'rerouting as requested'
         }
     ];
@@ -252,7 +251,7 @@ ava('.applyPartialRouteAmendment() calls #_fms.applyPartialRouteAmendment()', (t
     const expectedResult = [
         true,
         {
-            log: 'rerouting to: HITME..HOLDM..BIKKR..DAG.KEPEC3.KLAS',
+            log: 'rerouting to: DAG HOLDM PRINO',
             say: 'rerouting as requested'
         }
     ];
@@ -265,6 +264,7 @@ ava('.applyPartialRouteAmendment() calls #_fms.applyPartialRouteAmendment()', (t
 ava('.applyPartialRouteAmendment() does not grant departure clearance when the route amendment fails', (t) => {
     const pilot = buildPilotWithComplexRoute();
 
+    pilot.hasDepartureClearance = false;
     t.false(pilot.hasDepartureClearance);
 
     const expectedResult = [false, `requested route of "${invalidAmendRouteString}" is invalid`];
@@ -277,9 +277,15 @@ ava('.applyPartialRouteAmendment() does not grant departure clearance when the r
 ava('.applyPartialRouteAmendment() grants departure clearance when the route amendment succeeds', (t) => {
     const pilot = buildPilotWithComplexRoute();
 
+    pilot.hasDepartureClearance = false;
     t.false(pilot.hasDepartureClearance);
 
-    const expectedResult = [true, 'rerouting as requested']; // or whatever the correct readback is
+    const expectedResult = [true,
+        {
+            log: 'rerouting to: DAG HOLDM PRINO',
+            say: 'rerouting as requested'
+        }
+    ];
     const result = pilot.applyPartialRouteAmendment(amendRouteString);
 
     t.deepEqual(result, expectedResult);
