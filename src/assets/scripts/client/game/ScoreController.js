@@ -162,7 +162,7 @@ export default class ScoreController {
      * @private
      */
     _onAirspaceExitWithoutClearance(aircraftModel) {
-        aircraftModel.radioCall('leaving radar coverage without proper clearance', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
+        aircraftModel.radioCall('leaving airspace without being on our route', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
         GameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
     }
 
