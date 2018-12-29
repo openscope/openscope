@@ -1,6 +1,7 @@
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { isEmptyObject } from '../utilities/validatorUtilities';
+import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 
 // TODO: abstract these to an appropriate constants file
 const HEAVY_LETTER = 'H';
@@ -249,18 +250,28 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
      * @returns {number} distance in feet
      */
     calculateSameRunwaySeparationDistanceInFeet(previousTypeModel) {
-        if (typeof previousTypeModel.category.srs === 'undefined'
-            || previousTypeModel.category.srs === 3) {
-            return 6000;
+        if (previousTypeModel.isSameRunwaySeparationCatThree()) {
+            return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT3;
         }
 
         switch (this.category.srs) {
             case 1:
-                return 3000;
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT1;
             case 2:
-                return 4500;
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT2;
             default:
-                return 6000;
+                return AIRPORT_CONSTANTS.SRS_REDUCED_MINIMA_FEET.CAT3;
         }
+    }
+
+    /**
+     * Returns true if srs cat 3 is required
+     *
+     * @for AircraftTypeDefinitionModel
+     * @method isSameRunwaySeparationCatThree
+     * @returns true if srs cat 3 is required
+     */
+    isSameRunwaySeparationCatThree() {
+        return typeof this.category.srs === 'undefined' || this.category.srs === 3;
     }
 }
