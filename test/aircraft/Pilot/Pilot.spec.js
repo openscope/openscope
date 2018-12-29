@@ -32,6 +32,7 @@ const validRouteStringMock = 'DAG.KEPEC3.KLAS07R';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const amendRouteString = 'HITME..HOLDM..BIKKR';
 const invalidRouteString = 'A..B.C.D';
+const invalidAmendRouteString = 'A..B..C';
 const sidIdMock = 'COWBY6';
 const waypointNameMock = 'SUNST';
 const holdParametersMock = {
@@ -288,8 +289,8 @@ ava('.applyPartialRouteAmendment() does not grant departure clearance when the r
 
     t.false(pilot.hasDepartureClearance);
 
-    const expectedResult = [false, 'routes do not have continuity!'];
-    const result = pilot.applyPartialRouteAmendment(amendRouteString);
+    const expectedResult = [false, `requested route of "${invalidAmendRouteString}" is invalid`];
+    const result = pilot.applyPartialRouteAmendment(invalidAmendRouteString);
 
     t.deepEqual(result, expectedResult);
     t.false(pilot.hasDepartureClearance);
