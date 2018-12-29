@@ -215,7 +215,7 @@ export default class ScoreController {
             const isWarning = true;
 
             GameController.events_recordNew(GAME_EVENTS.NO_TAKEOFF_SEPARATION);
-            UiController.ui_log(`${aircraftModel.callsign} ${action} while another aircraft was using the same runway`, isWarning);
+            UiController.ui_log(`${aircraftModel.callsign} ${action} without adequate separation from another aircraft using the same runway`, isWarning);
         }
     }
 
