@@ -18,6 +18,7 @@ import {
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 import { createNavigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import { INVALID_NUMBER } from '../../../src/assets/scripts/client/constants/globalConstants';
+import { FLIGHT_PHASE } from '../../../src/assets/scripts/client/constants/aircraftConstants';
 
 // mocks
 const airportElevationMock = 11;
@@ -165,14 +166,17 @@ ava('.applyDepartureProcedure() returns an error when passed a runway incompatab
     t.false(pilot.hasDepartureClearance);
 });
 
-ava('.applyDepartureProcedure() should set mcp altitude and speed modes to `VNAV`', (t) => {
+ava('.applyDepartureProcedure() should NOT change mcp modes', (t) => {
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
+    const mcp = pilot._mcp;
+    const expectedAltitudeMode = mcp.altitudeMode;
+    const expectedSpeedMode = mcp.speedMode;
+
     pilot.applyDepartureProcedure(sidIdMock, airportIcaoMock);
 
     // workaround: t.true(pilot._mcp..altitudeMode) causes out of memory crash
-    const mcp = pilot._mcp;
-    t.true(mcp.altitudeMode === 'VNAV');
-    t.true(mcp.speedMode === 'VNAV');
+    t.true(mcp.altitudeMode === expectedAltitudeMode);
+    t.true(mcp.speedMode === expectedSpeedMode);
 });
 
 ava('.applyDepartureProcedure() returns a success message after success', (t) => {
@@ -239,15 +243,14 @@ ava('.applyPartialRouteAmendment() returns an error with passed a routeString wi
     t.deepEqual(result, expectedResult);
 });
 
-
 ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a hold', (t) => {
     const pilot = buildPilotWithComplexRoute();
-    pilot._fms.setFlightPhase('HOLD');
+    pilot._fms.setFlightPhase(FLIGHT_PHASE.HOLD);
     pilot.applyPartialRouteAmendment(amendRouteString);
 
     // workaround: t.true(pilot._fms.currentPhase) causes out of memory crash
     const currentPhase = pilot._fms.currentPhase;
-    t.true(currentPhase === 'CRUISE');
+    t.true(currentPhase === FLIGHT_PHASE.CRUISE);
 });
 
 ava('.applyPartialRouteAmendment() returns a success message when complete', (t) => {
