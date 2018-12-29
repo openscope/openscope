@@ -1,7 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
-import _isEqual from 'lodash/isEqual';
 import _isObject from 'lodash/isObject';
 import AircraftModel from '../../../src/assets/scripts/client/aircraft/AircraftModel';
 import ModeController from '../../../src/assets/scripts/client/aircraft/ModeControl/ModeController';
@@ -156,17 +155,6 @@ ava('.applyDepartureProcedure() returns an error when passed an invalid runway',
     t.false(pilot.hasDepartureClearance);
 });
 
-ava('.applyDepartureProcedure() returns an error when passed a runway incompatable for the route', (t) => {
-    // FIXME
-    const routeString = 'EDDF30R.COWBY6.GUP';
-    const expectedResult = [false, 'unable, the COWBOY SIX departure not valid from Runway ~!@#$%'];
-    const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
-    const result = pilot.applyDepartureProcedure(routeString, airportIcaoMock);
-
-    t.deepEqual(result, expectedResult);
-    t.false(pilot.hasDepartureClearance);
-});
-
 ava('.applyDepartureProcedure() should NOT change mcp modes', (t) => {
     const pilot = new Pilot(createFmsDepartureFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
     const mcp = pilot._mcp;
@@ -242,16 +230,6 @@ ava('.applyPartialRouteAmendment() returns an error with passed a routeString wi
     const result = pilot.applyPartialRouteAmendment('HITME..HOLDM');
 
     t.deepEqual(result, expectedResult);
-});
-
-ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a hold', (t) => {
-    const pilot = buildPilotWithComplexRoute();
-    pilot._fms.setFlightPhase(FLIGHT_PHASE.HOLD);
-    pilot.applyPartialRouteAmendment(amendRouteString);
-
-    // workaround: t.true(pilot._fms.currentPhase) causes out of memory crash
-    const currentPhase = pilot._fms.currentPhase;
-    t.true(currentPhase === FLIGHT_PHASE.CRUISE);
 });
 
 ava('.applyPartialRouteAmendment() returns a success message when complete', (t) => {
