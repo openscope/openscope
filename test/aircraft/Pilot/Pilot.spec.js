@@ -301,7 +301,8 @@ ava('.applyPartialRouteAmendment() grants departure clearance when the route ame
     const result = pilot.applyPartialRouteAmendment(amendRouteString);
 
     t.deepEqual(result, expectedResult);
-    // CAUSES OUT OF MEMORY CRASH
+
+    // workaround: t.true(pilot.hasDepartureClearance) causes out of memory crash
     const departureClearance = pilot.hasDepartureClearance;
     t.true(departureClearance);
 });
