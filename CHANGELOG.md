@@ -7,6 +7,7 @@
 - [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
 - [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
 - [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
+- [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
 
 
 ### Enhancements & Refactors
