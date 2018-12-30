@@ -5,8 +5,8 @@
 ### Bugfixes
 - [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
 - [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
-- [#1259](https://github.com/openscope/openscope/issues/1259) - Fix missing "heavy/super" designation in speech synthesis of callsigns
-- [#1266](https://github.com/openscope/openscope/issues/1266) - Fix flip-flopped A380 speed definitions
+- [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
+- [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
 
 
 ### Enhancements & Refactors
@@ -14,6 +14,7 @@
 - [#1269](https://github.com/openscope/openscope/issues/1269) - Updates [Google Analytics](https://developers.google.com/analytics/devguides/collection/gtagjs/migration) tracking function from `ga` to `gtag`
 - [#727](https://github.com/openscope/openscope/issues/727) &[#1265](https://github.com/openscope/openscope/issues/1265) - Updates to the tutorial
 - [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
+- [#1232](https://github.com/openscope/openscope/issues/1232) - Require proper application of separation with same-runway subsequent departures
 
 
 # 6.8.0 (December 1, 2018)
@@ -48,7 +49,6 @@
 - [#604](https://github.com/openscope/openscope/issues/604) - Adds support for dataBlock timeshare data
 - [#678](https://github.com/openscope/openscope/issues/678) - Removes wind vane visualization from `CanvasController`
 - [#1137](https://github.com/openscope/openscope/issues/1137) - Updates project dependencies
-- [#132](https://github.com/openscope/openscope/issues/1232) - Distance based sep for same-rwy departures
 
 
 # 6.7.0 (November 1, 2018)
