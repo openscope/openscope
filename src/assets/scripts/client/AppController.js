@@ -17,11 +17,11 @@ import ScopeModel from './scope/ScopeModel';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import UiController from './ui/UiController';
+import ScoreController from './game/ScoreController';
 import { speech_init } from './speech';
 import { EVENT } from './constants/eventNames';
 import { SELECTORS } from './constants/selectors';
 import { TRACKABLE_EVENT } from './constants/trackableEvents';
-import ScoreController from './game/ScoreController';
 
 /**
  * Root controller class

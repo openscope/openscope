@@ -1,10 +1,8 @@
 import EventBus from '../lib/EventBus';
 import GameController, { GAME_EVENTS } from './GameController';
 import UiController from '../ui/UiController';
-import { AIRCRAFT_EVENT } from '../constants/eventNames';
 import { nm_ft } from '../utilities/unitConverters';
-import AirportController from '../airport/AirportController';
-import { speech_say } from '../speech';
+import { AIRCRAFT_EVENT } from '../constants/eventNames';
 import { AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
 import { MCP_MODE } from '../aircraft/ModeControl/modeControlConstants';
 
