@@ -22,7 +22,7 @@ import { speech_say } from '../speech';
 import { km } from '../utilities/unitConverters';
 import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
-import { EVENT } from '../constants/eventNames';
+import { EVENT, AIRCRAFT_EVENT } from '../constants/eventNames';
 import {
     INVALID_INDEX,
     REGEX
@@ -856,9 +856,7 @@ export default class AircraftController {
     _updateAircraftVisibility(aircraftModel) {
         // TODO: these next 3 logic blocks could use some cleaning/abstraction
         if (aircraftModel.isArrival() && aircraftModel.isStopped()) {
-            // TODO: move this to the GAME_EVENTS constant
-            // TODO: move this out of the aircraft model
-            aircraftModel.scoreWind('landed');
+            EventBus.trigger(AIRCRAFT_EVENT.FULLSTOP, aircraftModel, aircraftModel.fms.arrivalRunwayModel);
 
             UiController.ui_log(`${aircraftModel.callsign} switching to ground, good day`);
             speech_say(

@@ -160,6 +160,17 @@ export const kn_ms = (kn = 0) => {
 };
 
 /**
+ * nautical miles to feet
+ *
+ * @function nm_ft
+ * @param nm {number}
+ * @return {number}
+ */
+export const nm_ft = (nm) => {
+    return nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
+}
+
+/**
  * convert radians to degrees
  *
  * @function radiansToDegrees

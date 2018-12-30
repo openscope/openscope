@@ -4,9 +4,8 @@ import _map from 'lodash/map';
 import _round from 'lodash/round';
 import AirportController from '../airport/AirportController';
 import EventBus from '../lib/EventBus';
-import GameController from '../game/GameController';
+import GameController, { GAME_EVENTS } from '../game/GameController';
 import NavigationLibrary from '../navigationLibrary/NavigationLibrary';
-import TimeKeeper from '../engine/TimeKeeper';
 import UiController from '../ui/UiController';
 import { MCP_MODE } from './ModeControl/modeControlConstants';
 import {
@@ -30,10 +29,9 @@ import { radiansToDegrees } from '../utilities/unitConverters';
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(aircraftController) {
+    constructor(onChangeTransponderCode) {
         this._eventBus = EventBus;
-        this._aircraftController = aircraftController;
-        this._onChangeTransponderCode = aircraftController.onRequestToChangeTransponderCode;
+        this._onChangeTransponderCode = onChangeTransponderCode;
     }
 
     /**
@@ -656,10 +654,7 @@ export default class AircraftCommander {
         }
 
         runway.removeAircraftFromQueue(aircraft.id);
-        aircraft.pilot.configureForTakeoff(airport.initial_alt, runway, aircraft.model.speed.cruise);
-        aircraft.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        aircraft.scoreWind('taking off');
+        aircraft.takeoff(runway, airport.initial_alt);
 
         readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, `
             + `Runway ${runway.name}, cleared for takeoff`;
