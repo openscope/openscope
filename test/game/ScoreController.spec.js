@@ -13,7 +13,7 @@ ava.beforeEach(() => {
     sandbox = sinon.sandbox.create();
 });
 
-ava.afterEach(() => {
+ava.afterEach.always(() => {
     sandbox.restore();
 });
 /* eslint-enable no-unused-vars, no-undef */
