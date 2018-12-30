@@ -35,14 +35,14 @@ ava('._penalizeLocalizerInterceptAltitude() records an event and notifies the us
 ava('._penalizeLocalizerInterceptAltitude() does not record an event when at or below glideslope', (t) => {
     const scoreController = new ScoreController();
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const uiControllerUiLogStub = sandbox.stub(UiController, 'ui_log');
-    const gameControllerRecordEventStub = sandbox.stub(GameController, 'events_recordNew');
+    const uiControllerUiLogSpy = sandbox.spy(UiController, 'ui_log');
+    const gameControllerRecordEventSpy = sandbox.spy(GameController, 'events_recordNew');
 
     sandbox.stub(aircraftModel, 'isAboveGlidepath', () => false);
     scoreController._penalizeLocalizerInterceptAltitude(aircraftModel);
 
-    t.true(uiControllerUiLogStub.notCalled);
-    t.true(gameControllerRecordEventStub.notCalled);
+    t.true(uiControllerUiLogSpy.notCalled);
+    t.true(gameControllerRecordEventSpy.notCalled);
 });
 
 ava('._penalizeLocalizerInterceptAngle() records an event and notifies the user of their error', (t) => {
