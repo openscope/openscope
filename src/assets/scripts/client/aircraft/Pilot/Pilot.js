@@ -274,6 +274,8 @@ export default class Pilot {
             return [false, response];
         }
 
+        this.exitHold();
+
         // Build readback
         const readback = {};
         readback.log = `cleared to ${airportName} via the ${this._fms._routeModel.getStarIcao().toUpperCase()} arrival`;
@@ -319,7 +321,15 @@ export default class Pilot {
      * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        return this._fms.applyPartialRouteAmendment(routeString);
+        const readback = this._fms.applyPartialRouteAmendment(routeString);
+
+        if (readback[0]) {
+            this.hasDepartureClearance = true;
+
+            this.exitHold();
+        }
+
+        return readback;
     }
 
     /**
@@ -788,7 +798,13 @@ export default class Pilot {
      * @return {array}              [success of operation, readback]
      */
     replaceFlightPlanWithNewRoute(routeString) {
-        return this._fms.replaceFlightPlanWithNewRoute(routeString);
+        const readback = this._fms.replaceFlightPlanWithNewRoute(routeString);
+
+        if (readback[0]) {
+            this.hasDepartureClearance = true;
+        }
+
+        return readback;
     }
 
     /**

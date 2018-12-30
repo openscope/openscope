@@ -13,6 +13,7 @@
 - [#1264](https://github.com/openscope/openscope/issues/1264) &[#1265](https://github.com/openscope/openscope/issues/1265) - Change the "super" weight class identifier from `U` to `J`
 - [#1269](https://github.com/openscope/openscope/issues/1269) - Updates [Google Analytics](https://developers.google.com/analytics/devguides/collection/gtagjs/migration) tracking function from `ga` to `gtag`
 - [#727](https://github.com/openscope/openscope/issues/727) &[#1265](https://github.com/openscope/openscope/issues/1265) - Updates to the tutorial
+- [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
 
 
 # 6.8.0 (December 1, 2018)
