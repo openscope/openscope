@@ -274,6 +274,8 @@ export default class Pilot {
             return [false, response];
         }
 
+        this.exitHold();
+
         // Build readback
         const readback = {};
         readback.log = `cleared to ${airportName} via the ${this._fms._routeModel.getStarIcao().toUpperCase()} arrival`;
@@ -323,6 +325,8 @@ export default class Pilot {
 
         if (readback[0]) {
             this.hasDepartureClearance = true;
+
+            this.exitHold();
         }
 
         return readback;

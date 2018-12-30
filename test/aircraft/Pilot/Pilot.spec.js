@@ -295,6 +295,16 @@ ava('.applyPartialRouteAmendment() grants departure clearance when the route ame
     t.true(departureClearance);
 });
 
+ava('.applyPartialRouteAmendment() calls .exitHold()', (t) => {
+    const pilot = buildPilotWithComplexRoute();
+    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+
+    pilot.initiateHoldingPattern('MISEN', holdParametersMock);
+    pilot.applyPartialRouteAmendment(amendRouteString);
+
+    t.true(exitHoldSpy.calledWithExactly());
+});
+
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
     const result = aircraftModel.pilot.cancelApproachClearance(aircraftModel);
