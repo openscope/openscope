@@ -285,7 +285,7 @@ export default class StripViewController {
         const listView = stripViewModel.isDeparture ? this.$stripViewListDepartures : this.$stripViewListArrivals;
         const scrollPosition = listView.scrollTop();
 
-        listView.append(stripViewModel.$element);
+        listView.prepend(stripViewModel.$element);
         // shift scroll down one strip's height
         listView.scrollTop(scrollPosition + StripViewModel.HEIGHT);
     }
