@@ -8,6 +8,7 @@
 - [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
 - [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
 - [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
+- [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glidelope intercept messages not showing
 
 
 ### Enhancements & Refactors
@@ -17,7 +18,6 @@
 - [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
 - [#1232](https://github.com/openscope/openscope/issues/1232) - Require proper application of separation with same-runway subsequent departures
 - [#1275](https://github.com/openscope/openscope/issues/1275) - Updates `buildMarkup` task to output date and time when generating the `index.html` file
-
 
 
 # 6.8.0 (December 1, 2018)
