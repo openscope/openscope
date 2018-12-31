@@ -8,7 +8,8 @@
 - [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
 - [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
 - [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
-- [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glidelope intercept messages not showing
+- [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glideslope intercept messages not showing
+- [#1279](https://github.com/openscope/openscope/issues/1279) - Fix erroneous altitudes appearing in flight strip
 
 
 ### Enhancements & Refactors
