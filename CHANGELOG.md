@@ -16,6 +16,8 @@
 - [#727](https://github.com/openscope/openscope/issues/727) &[#1265](https://github.com/openscope/openscope/issues/1265) - Updates to the tutorial
 - [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
 - [#1232](https://github.com/openscope/openscope/issues/1232) - Require proper application of separation with same-runway subsequent departures
+- [#1275](https://github.com/openscope/openscope/issues/1275) - Updates `buildMarkup` task to output date and time when generating the `index.html` file
+
 
 
 # 6.8.0 (December 1, 2018)
