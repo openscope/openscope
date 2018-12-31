@@ -2432,7 +2432,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 15,
+            "rate": 0.00000001,
             "airlines": [
                 ["baw/short", 1]
             ]
@@ -2445,7 +2445,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 15,
+            "rate": 0.00000001,
             "airlines": [
                 ["baw/short", 1]
             ]
@@ -2458,7 +2458,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 1.662602637,
+            "rate": 1.67,
             "airlines": [
                 ["baw/a320", 13],
                 ["ctn/a319", 2],
@@ -2487,7 +2487,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.316994277,
+            "rate": 0.32,
             "airlines": [
                 ["ezy/airbusShort", 95],
                 ["tom/b738", 3]
@@ -2501,7 +2501,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 2.471261508,
+            "rate": 2.48,
             "airlines": [
                 ["aea/b738", 20],
                 ["baw/a319", 13],
@@ -2528,7 +2528,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.006469271,
+            "rate": 0.01,
             "airlines": [
                 ["ezy/airbusShort", 2]
             ]
@@ -2541,7 +2541,7 @@
             "altitude": 20000,
             "speed": 280,
             "method": "random",
-            "rate": 0.355809903,
+            "rate": 0.36,
             "airlines": [
                 ["aur/at72", 32],
                 ["aur/e190", 78]
@@ -2555,7 +2555,7 @@
             "altitude": 22000,
             "speed": 280,
             "method": "random",
-            "rate": 0.469022145,
+            "rate": 0.47,
             "airlines": [
                 ["baw/a319", 83],
                 ["ezy/airbusShort", 62]
@@ -2569,7 +2569,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 4.376461806,
+            "rate": 4.38,
             "airlines": [
                 ["amc/a320", 19],
                 ["baw/short", 324],
@@ -2591,7 +2591,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.145558597,
+            "rate": 0.15,
             "airlines": [
                 ["bee/e170", 45]
             ]
@@ -2604,7 +2604,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.032346355,
+            "rate": 0.04,
             "airlines": [
                 ["jaf", 2],
                 ["rwd/a33x", 8]
@@ -2618,7 +2618,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.931575019,
+            "rate": 0.94,
             "airlines": [
                 ["baw/b772", 17],
                 ["ein/a320", 111],
@@ -2636,7 +2636,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.368748445,
+            "rate": 0.37,
             "airlines": [
                 ["bti", 44],
                 ["cca/a333", 12],
@@ -2652,7 +2652,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.511072406,
+            "rate": 0.52,
             "airlines": [
                 ["cpa/a359", 16],
                 ["ezy/a319", 50],
@@ -2668,7 +2668,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.57253048,
+            "rate": 0.58,
             "airlines": [
                 ["aui/b738", 41],
                 ["bru/b735", 1],
@@ -2687,7 +2687,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.591938293,
+            "rate": 0.60,
             "airlines": [
                 ["baw/b772", 112],
                 ["nrs/b789", 18],
@@ -2705,7 +2705,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.633988554,
+            "rate": 0.64,
             "airlines": [
                 ["baw/short", 56],
                 ["ezy/airbusShort", 137]
@@ -2719,7 +2719,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.216720577,
+            "rate": 0.22,
             "airlines": [
                 ["ezy/a320", 7],
                 ["ice/short", 22],
@@ -2734,7 +2734,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 1.060960438,
+            "rate": 1.07,
             "airlines": [
                 ["cal/a359", 14],
                 ["ibk/b738", 206],
@@ -2750,7 +2750,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.203782035,
+            "rate": 0.21,
             "airlines": [
                 ["nrs/b789", 25],
                 ["tcx/a332", 3],
@@ -2767,7 +2767,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.640457825,
+            "rate": 0.65,
             "airlines": [
                 ["baw/a319", 10],
                 ["baw/a320", 22],
@@ -2789,7 +2789,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.119681513,
+            "rate": 0.12,
             "airlines": [
                 ["ezy/airbusShort", 37]
             ]
@@ -2802,7 +2802,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 1.096541428,
+            "rate": 1.10,
             "airlines": [
                 ["baw/b772", 63],
                 ["n/fastGA", 1],
@@ -2823,7 +2823,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.310525006,
+            "rate": 0.32,
             "airlines": [
                 ["ezy/airbusShort", 57],
                 ["vlg/a320", 39]
@@ -2837,7 +2837,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 3.270216472,
+            "rate": 3.28,
             "airlines": [
                 ["baw/a319", 97],
                 ["baw/a320", 200],
@@ -2861,7 +2861,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.226424484,
+            "rate": 0.23,
             "airlines": [
                 ["baw/short", 24],
                 ["ezy/airbusShort", 39],
@@ -2877,7 +2877,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 3.548395123,
+            "rate": 3.55,
             "airlines": [
                 ["awc/a321", 1],
                 ["baw/short", 213],
@@ -2902,7 +2902,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.097039064,
+            "rate": 0.10,
             "airlines": [
                 ["baw/b772", 30]
             ]
@@ -2915,7 +2915,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 0.524010948,
+            "rate": 0.53,
             "airlines": [
                 ["ezy/airbusShort", 119],
                 ["nrs/b789", 7],
@@ -2932,7 +2932,7 @@
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
-            "rate": 1.238865389,
+            "rate": 1.24,
             "airlines": [
                 ["baw/short", 130],
                 ["ezy/airbusShort", 241],
