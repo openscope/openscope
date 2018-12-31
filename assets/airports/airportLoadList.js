@@ -423,7 +423,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Doha Hamad International Airport',
             premium: false
-        // },
+        },
         // {
         //     icao: 'panc',
         //     level: 'easy',
@@ -556,11 +556,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     name: 'Pulau Pinang International Airport',
         //     premium: false
         // },
-        // {
-        //     icao: 'wmkk',
-        //     level: 'hard',
-        //     name: 'Kuala Lumpur International Airport (KLIA)',
-        //     premium: false
+        {
+            icao: 'wmkk',
+            level: 'hard',
+            name: 'Kuala Lumpur International Airport (KLIA)',
+            premium: false
         // },
         // {
         //     icao: 'wsss',
