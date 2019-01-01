@@ -1,7 +1,4 @@
 # 6.9.0 (January 1, 2019)
-### New Features
-
-
 ### Bugfixes
 - [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
 - [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
@@ -10,7 +7,6 @@
 - [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
 - [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glideslope intercept messages not showing
 - [#1279](https://github.com/openscope/openscope/issues/1279) - Fix erroneous altitudes appearing in flight strip
-
 
 ### Enhancements & Refactors
 - [#1264](https://github.com/openscope/openscope/issues/1264) &[#1265](https://github.com/openscope/openscope/issues/1265) - Change the "super" weight class identifier from `U` to `J`
