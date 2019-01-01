@@ -15,6 +15,10 @@ import {
 } from '../constants/scopeCommandConstants';
 import { THEME } from '../constants/themes';
 
+// TODO: abstract these to an appropriate constants file
+const HEAVY_LETTER = 'H';
+const SUPER_LETTER = 'J';
+
 /**
  * A single radar target observed by the radar system and shown on the scope
  * Contains references to the full aircraft model, though only some of that
@@ -325,10 +329,20 @@ export default class RadarTargetModel {
     buildDataBlockRowOne() {
         let dataBlockRowOne = this.aircraftModel.callsign;
 
-        if (this.aircraftModel.model.isHeavyOrSuper()) {
-            // using empty space here on purpose so this gets rendered
-            // appropriately within a canvas
-            dataBlockRowOne += ' H';
+        // NOTE: using empty space before the letter on purpose so this gets rendered
+        // appropriately within a canvas
+        switch (this.aircraftModel.model.weightClass) {
+            case SUPER_LETTER:
+                dataBlockRowOne += ` ${SUPER_LETTER}`;
+
+                break;
+            case HEAVY_LETTER:
+                dataBlockRowOne += ` ${HEAVY_LETTER}`;
+
+                break;
+            default:
+
+                break;
         }
 
         return dataBlockRowOne;

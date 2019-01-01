@@ -25,6 +25,9 @@ export default class TutorialStep {
     }
 
     /**
+     * Replace tokens with values from current sim state
+     * or return simple text.
+     *
      * @for TutorialStep
      * @method getText
      * @return {string}

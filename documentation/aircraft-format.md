@@ -9,7 +9,7 @@
         "number": 4,            - Number of Engines¹   
         "type": "J"             - Engines type¹ - [J = Jet / T = TurboProp / P = Piston]  
     },  
-    "weightclass": "H",         - wake turbulence category¹  
+    "weightClass": "H",         - wake turbulence category¹  
     "category": {  
         "srs": 3,               - Same Runway Separation Category²  
         "lahso": 10,            - LAHSO (land-and-hold-short) Category²  

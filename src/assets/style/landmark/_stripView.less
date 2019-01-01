@@ -33,12 +33,16 @@
     list-style-type: none;
     height: ~"calc(50% - 1.25em - 10px)";
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .stripViewItem {
     border: 1px solid #222;
     transition: ease-in-out margin 0.15s;
+}
+
+.stripViewItem:first-child {
+    margin-top: auto;
 }
 
 .active,

@@ -1,3 +1,22 @@
+# 6.9.0 (January 1, 2019)
+### Bugfixes
+- [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
+- [#1240](https://github.com/openscope/openscope/issues/1240) - Fix readback from departure cleared for takeoff when they aren't first in line
+- [#1259](https://github.com/openscope/openscope/issues/1259) - Fix speech synthesis's use of "heavy/super" in callsigns
+- [#1266](https://github.com/openscope/openscope/issues/1266) - Fix A380 speed definitions
+- [#1158](https://github.com/openscope/openscope/issues/1158) - Fix Firefox strip bay scrollbars are not working
+- [#1242](https://github.com/openscope/openscope/issues/1242) - Fix too-low glideslope intercept messages not showing
+- [#1279](https://github.com/openscope/openscope/issues/1279) - Fix erroneous altitudes appearing in flight strip
+
+### Enhancements & Refactors
+- [#1264](https://github.com/openscope/openscope/issues/1264) &[#1265](https://github.com/openscope/openscope/issues/1265) - Change the "super" weight class identifier from `U` to `J`
+- [#1269](https://github.com/openscope/openscope/issues/1269) - Updates [Google Analytics](https://developers.google.com/analytics/devguides/collection/gtagjs/migration) tracking function from `ga` to `gtag`
+- [#727](https://github.com/openscope/openscope/issues/727) &[#1265](https://github.com/openscope/openscope/issues/1265) - Updates to the tutorial
+- [#1238](https://github.com/openscope/openscope/issues/1238) - Grant IFR clearance when any type of route amendment is issued
+- [#1232](https://github.com/openscope/openscope/issues/1232) - Require proper application of separation with same-runway subsequent departures
+- [#1275](https://github.com/openscope/openscope/issues/1275) - Updates `buildMarkup` task to output date and time when generating the `index.html` file
+
+
 # 6.8.0 (December 1, 2018)
 ### New Features
 - [#1003](https://github.com/openscope/openscope/issues/1003) - Add assigned runway to the aircrafts' strips
