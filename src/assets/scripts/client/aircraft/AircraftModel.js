@@ -477,7 +477,7 @@ export default class AircraftModel {
         /**
          * @for AircraftModel
          * @property model
-         * @type {AircraftTypeDefinitionModel}         
+         * @type {AircraftTypeDefinitionModel}
          */
         this.model = new AircraftTypeDefinitionModel(options.model);
 
@@ -649,7 +649,7 @@ export default class AircraftModel {
         let flightPlanAltitude = '-';
 
         if (this.mcp.altitude !== INVALID_NUMBER) {
-            assignedAltitude = this.mcp.altitude * UNIT_CONVERSION_CONSTANTS.FT_FL;
+            assignedAltitude = Math.round(this.mcp.altitude) * UNIT_CONVERSION_CONSTANTS.FT_FL;
         }
 
         if (this.fms.flightPlanAltitude !== INVALID_NUMBER) {

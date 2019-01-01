@@ -121,8 +121,6 @@ export default class Pilot {
             readback.log = `unable to maintain ${altitude} due to performance`;
             readback.say = `unable to maintain ${verbalRequestedAltitude} due to performance`;
 
-            this._mcp.setAltitudeFieldValue(aircraftModel.altitude);
-
             return [false, readback];
         }
 
