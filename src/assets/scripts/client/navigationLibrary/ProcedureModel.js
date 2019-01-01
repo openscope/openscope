@@ -128,6 +128,17 @@ export default class ProcedureModel {
          */
         this._procedureType = '';
 
+        /**
+         * The initial climb clearance (only for SIDs)
+         *
+         * @for ProcedureModel
+         * @property _altitude
+         * @type {number}
+         * @default null
+         * @private
+         */
+        this._altitude = null;
+
         this.init(procedureType, data);
     }
 
@@ -175,6 +186,17 @@ export default class ProcedureModel {
         return this._procedureType;
     }
 
+    /**
+     * Return value of `#_altitude`
+     *
+     * @for ProcedureModel
+     * @property altitude
+     * @type {number}
+     */
+    get altitude() {
+        return this._altitude;
+    }
+
     // ------------------------------ LIFECYCLE ------------------------------
 
     /**
@@ -191,6 +213,7 @@ export default class ProcedureModel {
         this._draw = data.draw;
         this._icao = data.icao;
         this._name = data.name;
+        this._altitude = data.altitude;
         this._procedureType = procedureType;
 
         if (this._procedureType === PROCEDURE_TYPE.SID) {
@@ -218,6 +241,7 @@ export default class ProcedureModel {
         this._icao = '';
         this._name = '';
         this._procedureType = '';
+        this._altitude = null;
 
         return this;
     }

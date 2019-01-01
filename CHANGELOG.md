@@ -6,6 +6,7 @@
 
 
 ### Enhancements & Refactors
+- [#1247](https://github.com/openscope/openscope/issues/1247) - Initial altitude should be based on the SID
 
 
 # 6.9.1 (January 4, 2019)

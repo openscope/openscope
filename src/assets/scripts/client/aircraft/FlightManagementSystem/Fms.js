@@ -15,6 +15,7 @@ import {
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
 import { radio_runway } from '../../utilities/radioUtilities';
+import ProcedureModel from '../../navigationLibrary/ProcedureModel';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
@@ -687,6 +688,17 @@ export default class Fms {
      */
     getSidName() {
         return this._routeModel.getSidName();
+    }
+
+    /**
+     * Facade for #_routeModel.getInitialClimbClearance
+     *
+     * @for Fms
+     * @method getInitialClimbClearance
+     * @return {number}
+     */
+    getInitialClimbClearance() {
+        return this._routeModel.getInitialClimbClearance();
     }
 
     /**

@@ -114,6 +114,7 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
         "SUMMA1": {
             "icao": "SUMMA1",
             "name": "Summa One",
+            "altitude": 7000,
             "rwy": {
                 "KSEA16L": ["NEVJO"],
                 "KSEA16R": ["NEVJO"],
@@ -503,6 +504,7 @@ _All properties in this section are required for each route definition_
     "SUMMA1": {
         "icao": "SUMMA1",
         "name": "Summa One",
+        "altitude": 7000,
         "rwy": {
             "KSEA16L": ["NEVJO"],
             "KSEA16R": ["NEVJO"],
@@ -535,6 +537,7 @@ SID is an acronym for _Standard Instrument Departure_.
 ```
 
 * **name** - spoken name of the route used for read backs.
+* **altitude** - (number) initial climb clearance (optional).
 * **rwy** - (2d array of strings) considered the `Entry`. Each key corresponds to a runway that can be used to enter the route.
 * **body** - (2d array of strings) fix names for the `Body` segment.
 * **exitPoints** - (2d array of strings) considered the `Exit`. Each key corresponds to and exit transition for a route.

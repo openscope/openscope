@@ -655,7 +655,7 @@ export default class AircraftCommander {
         }
 
         runway.removeAircraftFromQueue(aircraft.id);
-        aircraft.takeoff(runway, airport.initial_alt);
+        aircraft.takeoff(runway);
 
         readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, `
             + `Runway ${runway.name}, cleared for takeoff`;
