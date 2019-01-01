@@ -1,3 +1,13 @@
+# 6.1.0 (February 1, 2019)
+### New Features
+
+
+### Bugfixes
+
+
+### Enhancements & Refactors
+
+
 # 6.9.0 (January 1, 2019)
 ### Bugfixes
 - [#1250](https://github.com/openscope/openscope/issues/1250) - Fix fatal error code 128 during `npm install`
