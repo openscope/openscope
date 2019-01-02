@@ -49,17 +49,17 @@ _More Info -_ On real ATC systems, moving the data block is sometimes used by co
 
 ~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
 
-~~### Set Scratch Pad~~
-~~_Syntax -_ `[scratchpad text] [CID]`~~
+### Set Scratch Pad~~
+_Syntax -_ `[scratchpad text] [CID]`~~
 
-~~_Description -_ This will amend the value stored in the target's data block's scratch pad. This value can be a maximum of three alphanumeric characters.~~
+_Description -_ This will amend the value stored in the target's data block's scratch pad. This value can be a maximum of three alphanumeric characters.~~
 
-~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
+_More Info -_
 
-~~### Toggle Halo~~
-~~_Syntax -_ `QP_J [CID]`~~
-~~_Shortcut -_ `[F7] [CID]`~~
+### Toggle Halo~~
+_Syntax -_ `QP_J [CID]`~~
+_Shortcut -_ `[F7] [CID]`~~
 
-~~_Description -_ This toggles a circle around the center of the radar target, with a radius definable in the scope's theme (generally 3nm for terminal, or 5nm for en route).~~
+_Description -_ This toggles a circle around the center of the radar target, with a radius definable in the scope's theme (generally 3nm for terminal, or 5nm for en route).~~
 
-~~_More Info -_ **THIS COMMAND IS NOT YET AVAILABLE**~~
+_More Info -_

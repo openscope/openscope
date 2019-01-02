@@ -218,13 +218,26 @@ export default class RadarTargetModel {
         return this.aircraftModel.altitude;
     }
 
-
+    /**
+     * @for RadarTargetModel
+     * @property scratchPadText
+     * @type {string}
+     */
     get scratchPadText() {
         return this._scratchPadText;
     }
 
     set scratchPadText(text) {
         this._scratchPadText = text.slice(0, 3).toUpperCase();
+    }
+
+    /**
+     * @for RadarTargetModel
+     * @property hasHalo
+     * @type {boolean}
+     */
+    get hasHalo() {
+        return this._hasHalo;
     }
 
     /**
