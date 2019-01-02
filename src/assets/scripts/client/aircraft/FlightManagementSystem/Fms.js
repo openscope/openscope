@@ -14,8 +14,6 @@ import {
 } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
-import { radio_runway } from '../../utilities/radioUtilities';
-import ProcedureModel from '../../navigationLibrary/ProcedureModel';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
