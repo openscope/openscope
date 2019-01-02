@@ -39,7 +39,6 @@ export default class ProcedureModel {
          * any waypoints, provided that no combination of entry/exit would result
          * in fewer than two waypoints.
          *
-         * @for ProcedureModel
          * @property _body
          * @type {array<array<string>|<string>>}
          * @default []
@@ -56,7 +55,6 @@ export default class ProcedureModel {
          *     ['FIXXA', 'FIXXC']
          * ]
          *
-         * @for ProcedureModel
          * @property _draw
          * @type {array<array<string>>}
          * @default []
@@ -70,7 +68,6 @@ export default class ProcedureModel {
          * Each entry fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that entry in order to join the body of the procedure.
          *
-         * @for ProcedureModel
          * @property _entryPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -84,7 +81,6 @@ export default class ProcedureModel {
          * Each exit fix is a key in this property, whose value is a list of (restrictable)
          * fixes to follow on that exit in order to leave the procedure.
          *
-         * @for ProcedureModel
          * @property _exitPoints
          * @type {array<array<string>|<string>>}
          * @default {}
@@ -95,7 +91,6 @@ export default class ProcedureModel {
         /**
          * The ICAO identifier for this procedure
          *
-         * @for ProcedureModel
          * @property _icao
          * @type {string}
          * @default ''
@@ -109,7 +104,6 @@ export default class ProcedureModel {
          * Nonstandard spellings may be used to achieve the desired pronunciations,
          * since this is only used for speech synthesis.
          *
-         * @for ProcedureModel
          * @property _name
          * @type {string}
          * @default ''
@@ -120,7 +114,6 @@ export default class ProcedureModel {
         /**
          * The type of instrument procedure (must be one of `PROCEDURE_TYPE`)
          *
-         * @for ProcedureModel
          * @property _procedureType
          * @type {string}
          * @default ''
@@ -131,7 +124,6 @@ export default class ProcedureModel {
         /**
          * The initial climb clearance (only for SIDs)
          *
-         * @for ProcedureModel
          * @property _altitude
          * @type {number}
          * @default null
