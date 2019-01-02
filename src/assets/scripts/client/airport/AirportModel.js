@@ -366,23 +366,6 @@ export default class AirportModel {
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rangeRings = _get(data, 'rangeRings');
-
-        if (!this.rangeRings) {
-            // fallback code, so we don't break existing airport files
-            const fallbackRadius = _get(data, 'rr_radius_nm');
-            const fallbackCenter = _get(data, 'rr_center');
-
-            if (fallbackRadius && fallbackCenter) {
-                this.rangeRings = {
-                    enabled: true,
-                    radius_nm: fallbackRadius,
-                    center: fallbackCenter
-                };
-            } else {
-                this.rangeRings = DEFAULT_RANGE_RINGS;
-            }
-        }
-
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();
