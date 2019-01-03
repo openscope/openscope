@@ -390,6 +390,7 @@ export default class InputController {
                 }
 
                 break;
+/*
             case KEY_CODES.MULTIPLY:
                 this.$commandInput.val(`${currentCommandInputValue} * `);
                 event.preventDefault();
@@ -414,14 +415,23 @@ export default class InputController {
                 this.onCommandInputChangeHandler();
 
                 break;
+*/
+/*
             case KEY_CODES.DASH: // mac -
                 this.$commandInput.val(`${currentCommandInputValue} - `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
+*/
             case KEY_CODES.DIVIDE:
                 this.$commandInput.val(`${currentCommandInputValue} takeoff `);
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
+            case KEY_CODES.F7:
+                this.$commandInput.val('QP_J');
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 

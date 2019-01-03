@@ -17,27 +17,42 @@ export const COMMAND_CONTEXT = {
  * @final
  */
 export const KEY_CODES = {
-    // +
-    ADD: 107,
+
     // -
     DASH: 189,
     DASH_FIREFOX: 173,
-    DIVIDE: 111,
-    DOWN_ARROW: 40,
     ENTER: 13,
     // =
     EQUALS: 187,
     EQUALS_FIREFOX: 61,
     // esc
     ESCAPE: 27,
-    LEFT_ARROW: 37,
-    MULTIPLY: 106,
     PAGE_UP: 33,
     PAGE_DOWN: 34,
-    RIGHT_ARROW: 39,
-    SUBTRACT: 109,
     TAB: 9,
+    //
+    MULTIPLY: 106,
+    ADD: 107,
+    SUBTRACT: 109,
+    DIVIDE: 111,
+    // arrow keys
+    LEFT_ARROW: 37,
     UP_ARROW: 38,
+    RIGHT_ARROW: 39,
+    DOWN_ARROW: 40,
+    // F-Keys
+    F1: 112,
+    F2: 113,
+    F3: 114,
+    F4: 115,
+    F5: 116,
+    F6: 117,
+    F7: 118,
+    F8: 119,
+    F9: 120,
+    F10: 121,
+    F11: 122,
+    F12: 123,
     // `
     BAT_TICK: 192
 };
