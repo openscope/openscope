@@ -713,7 +713,6 @@ ava('.maintainAltitude() returns early responding that they are unable to mainta
         aircraftModel
     );
 
-
     t.true(mcp.altitudeMode === 'VNAV');
     t.true(mcp.altitude === expectedAltitude);
     t.deepEqual(result, expectedResult);
