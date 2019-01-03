@@ -52,7 +52,7 @@ const invalidAltitudeMock = 'threeve';
 
 // helpers
 function createPilotFixture() {
-    return new Pilot(createFmsArrivalFixture(), createModeControllerFixture(), createNavigationLibraryFixture());
+    return new Pilot(createFmsArrivalFixture(), createModeControllerFixture());
 }
 
 function buildPilotWithComplexRoute() {
@@ -691,10 +691,12 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
 });
 
 ava('.maintainAltitude() returns early responding that they are unable to maintain the requested altitude', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 90000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = true;
+    const mcp = aircraftModel.mcp;
+    const expectedAltitude = mcp.altitude;
     const expectedResult = [
         false,
         {
@@ -711,13 +713,14 @@ ava('.maintainAltitude() returns early responding that they are unable to mainta
         aircraftModel
     );
 
-    t.true(aircraftModel.mcp.altitudeMode === 'VNAV');
-    t.true(aircraftModel.mcp.altitude === aircraftModel.altitude);
+
+    t.true(mcp.altitudeMode === 'VNAV');
+    t.true(mcp.altitude === expectedAltitude);
     t.deepEqual(result, expectedResult);
 });
 
 ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altitude to the correct value', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
@@ -735,7 +738,7 @@ ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altit
 });
 
 ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedite is true', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
@@ -753,7 +756,7 @@ ava('.maintainAltitude() calls .shouldExpediteAltitudeChange() when shouldExpedi
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is false', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 13000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = false;
@@ -774,7 +777,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
 });
 
 ava('.maintainAltitude() returns the correct response strings when shouldExpedite is true', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const nextAltitudeMock = 19000;
     const shouldExpediteMock = true;
     const shouldUseSoftCeilingMock = false;
@@ -792,7 +795,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
 });
 
 ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
     const nextAltitudeMock = 13000;
@@ -816,7 +819,7 @@ ava('.maintainAltitude() calls .cancelApproachClearance()', (t) => {
 });
 
 ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
@@ -825,7 +828,7 @@ ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) =>
 });
 
 ava('.maintainHeading() calls .exitHold()', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
@@ -842,7 +845,7 @@ ava('.maintainHeading() returns a success message when incremental is false and 
             say: 'fly heading one eight zero'
         }
     ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
     t.deepEqual(result, expectedResult);
@@ -857,7 +860,7 @@ ava('.maintainHeading() returns a success message when incremental is true and d
             say: 'turn 42 degrees left'
         }
     ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.maintainHeading(aircraftModel, 42, directionMock, true);
 
     t.deepEqual(result, expectedResult);
@@ -872,7 +875,7 @@ ava('.maintainHeading() returns a success message when incremental is true and d
             say: 'turn 42 degrees right'
         }
     ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.maintainHeading(aircraftModel, 42, directionMock, true);
 
     t.deepEqual(result, expectedResult);
@@ -881,7 +884,7 @@ ava('.maintainHeading() returns a success message when incremental is true and d
 ava('.maintainHeading() calls .cancelApproachClearance()', (t) => {
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
     aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
@@ -894,7 +897,7 @@ ava('.maintainHeading() calls .cancelApproachClearance()', (t) => {
 });
 
 ava('.maintainPresentHeading() sets the #mcp with the correct modes and values', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
@@ -910,7 +913,7 @@ ava('.maintainPresentHeading() returns a success message when finished', (t) => 
             say: 'fly present heading'
         }
     ];
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const result = aircraftModel.pilot.maintainPresentHeading(aircraftModel);
 
     t.deepEqual(result, expectedResult);
@@ -919,7 +922,7 @@ ava('.maintainPresentHeading() returns a success message when finished', (t) => 
 ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
     const approachTypeMock = 'ils';
     const runwayModelMock = airportModelFixture.getRunway('19L');
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const cancelApproachClearanceSpy = sinon.spy(aircraftModel.pilot, 'cancelApproachClearance');
 
     aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
@@ -932,7 +935,7 @@ ava('.maintainPresentHeading() calls .cancelApproachClearance()', (t) => {
 });
 
 ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
     const expectedResult = [
         true,
@@ -949,7 +952,7 @@ ava('.maintainSpeed() sets the correct Mcp mode and value', (t) => {
 });
 
 ava('.maintainSpeed() returns early with a warning when assigned an unreachable speed', (t) => {
-    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
+    const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const pilot = createPilotFixture();
     const expectedResult = [
         false,
@@ -1008,7 +1011,7 @@ ava('.proceedDirect() returns success message when finished', (t) => {
 
 ava('.sayTargetHeading() returns a message when #headingMode is HOLD', (t) => {
     const modeController = new ModeController();
-    const pilot = new Pilot(createFmsArrivalFixture(), modeController, createNavigationLibraryFixture());
+    const pilot = new Pilot(createFmsArrivalFixture(), modeController);
     const expectedResult = [
         true,
         {
@@ -1026,7 +1029,7 @@ ava('.sayTargetHeading() returns a message when #headingMode is HOLD', (t) => {
 
 ava('.sayTargetHeading() returns a message when #headingMode is VOR/LOC', (t) => {
     const modeController = new ModeController();
-    const pilot = new Pilot(createFmsArrivalFixture(), modeController, createNavigationLibraryFixture());
+    const pilot = new Pilot(createFmsArrivalFixture(), modeController);
     const expectedResult = [
         true,
         {
@@ -1046,7 +1049,7 @@ ava.todo('.sayTargetHeading() returns a message when #headingMode is LNAV');
 
 ava('.sayTargetHeading() returns a message when #headingMode is OFF', (t) => {
     const modeController = new ModeController();
-    const pilot = new Pilot(createFmsArrivalFixture(), modeController, createNavigationLibraryFixture());
+    const pilot = new Pilot(createFmsArrivalFixture(), modeController);
     const expectedResult = [
         true,
         {
