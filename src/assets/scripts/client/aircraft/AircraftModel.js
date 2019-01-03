@@ -1300,7 +1300,7 @@ export default class AircraftModel {
         const cruiseSpeed = this.model.speed.cruise;
         const initialAltitude = this.fms.getInitialClimbClearance();
 
-        this._prepareMCPforTakeoff(initialAltitude, runway.angle, cruiseSpeed);
+        this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
         this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
         EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
 
@@ -1312,12 +1312,12 @@ export default class AircraftModel {
      * Initialize all autopilot systems for takeoff.
      *
      * @for AircraftModel
-     * @method _prepareMCPforTakeoff
+     * @method _prepareMcpForTakeoff
      * @param altitude {number}
      * @param heading {number}
      * @param speed {number}
      */
-    _prepareMCPforTakeoff(altitude, heading, speed) {
+    _prepareMcpForTakeoff(altitude, heading, speed) {
         if (this.mcp.altitude === INVALID_NUMBER) {
             this.mcp.setAltitudeFieldValue(altitude);
         }
