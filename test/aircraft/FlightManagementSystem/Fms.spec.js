@@ -842,3 +842,15 @@ ava('._verifyRouteContainsMultipleWaypoints() does not throw when route has more
     t.true(fms.waypoints.length === 2);
     t.notThrows(() => fms._verifyRouteContainsMultipleWaypoints());
 });
+
+ava('.getInitialClimbClearance() returns the airport initial climb altitude when the SID\'s altitude is undefined', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString(fullRouteStringMock);
+
+    t.true(fms.getInitialClimbClearance() === 19000);
+});
+
+ava('.getInitialClimbClearance() returns the SID\'s altitude when defined', (t) => {
+    const fms = buildFmsForAircraftInApronPhaseWithRouteString('KLAS07R.BOACH6.HEC');
+
+    t.true(fms.getInitialClimbClearance() === 7000);
+});
