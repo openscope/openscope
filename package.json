@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "gulp build --prod",
     "test": "nyc --require @babel/register ava --concurrency=5",
+    "gulp": "gulp build",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "posttest": "npm run report",
