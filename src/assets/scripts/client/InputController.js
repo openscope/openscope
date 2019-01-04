@@ -331,7 +331,7 @@ export default class InputController {
         const currentCommandInputValue = this.$commandInput.val();
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
-        switch (event.which) {
+        switch (event.originalEvent.code) {
             case KEY_CODES.BAT_TICK:
                 this.$commandInput.val(`${currentCommandInputValue}\` `);
                 event.preventDefault();
@@ -352,6 +352,7 @@ export default class InputController {
                 event.preventDefault();
 
                 break;
+            // turning
             case KEY_CODES.LEFT_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} t l `);
@@ -360,6 +361,15 @@ export default class InputController {
                 }
 
                 break;
+            case KEY_CODES.RIGHT_ARROW:
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} t r `);
+                    event.preventDefault();
+                    this.onCommandInputChangeHandler();
+                }
+
+                break;
+            // climb / descend
             case KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} c `);
@@ -368,14 +378,6 @@ export default class InputController {
                 } else {
                     this.selectPreviousAircraft();
                     event.preventDefault();
-                }
-
-                break;
-            case KEY_CODES.RIGHT_ARROW:
-                if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} t r `);
-                    event.preventDefault();
-                    this.onCommandInputChangeHandler();
                 }
 
                 break;
@@ -390,42 +392,28 @@ export default class InputController {
                 }
 
                 break;
-/*
-            case KEY_CODES.MULTIPLY:
+            // takeoff / landing
+            case KEY_CODES.NUM_DIVIDE:
+                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
+                event.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
+            case KEY_CODES.NUM_MULTIPLY:
                 this.$commandInput.val(`${currentCommandInputValue} * `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-            case KEY_CODES.ADD:
+            // speed up / slow down
+            case KEY_CODES.NUM_ADD:
                 this.$commandInput.val(`${currentCommandInputValue} + `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
-            case KEY_CODES.EQUALS: // mac + (actually `=`)
-                this.$commandInput.val(`${currentCommandInputValue} + `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-            case KEY_CODES.SUBTRACT:
+            case KEY_CODES.NUM_SUBTRACT:
                 this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-*/
-/*
-            case KEY_CODES.DASH: // mac -
-                this.$commandInput.val(`${currentCommandInputValue} - `);
-                event.preventDefault();
-                this.onCommandInputChangeHandler();
-
-                break;
-*/
-            case KEY_CODES.DIVIDE:
-                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
