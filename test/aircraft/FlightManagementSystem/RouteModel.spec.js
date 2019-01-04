@@ -1322,6 +1322,7 @@ ava.todo('._findConvergentWaypointNameWithRouteModel()');
 ava.todo('._findIndexOfLegContainingWaypointName()');
 
 ava.todo('._findSidLegIndex()');
+ava.todo('._findSidLeg()');
 
 ava.todo('._findStarLegIndex()');
 

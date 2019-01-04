@@ -1292,16 +1292,34 @@ export default class AircraftModel {
     /**
      * Initialize all autopilot systems after being given an IFR clearance to destination and execute takeoff.
      *
-     * @for Pilot
+     * @for AircraftModel
      * @method takeoff
      * @param runway {RunwayModel} the runway taking off on
-     * @param initialAltitude {number} the altitude aircraft can automatically climb to at this airport
      */
-    takeoff(runway, initialAltitude) {
+    takeoff(runway) {
         const cruiseSpeed = this.model.speed.cruise;
+        const initialAltitude = this.fms.getInitialClimbClearance();
 
+        this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
+        this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
+        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+
+        this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
+        runway.lastDepartedAircraftCallsign = this.callsign;
+    }
+
+    /**
+     * Initialize all autopilot systems for takeoff.
+     *
+     * @for AircraftModel
+     * @method _prepareMcpForTakeoff
+     * @param altitude {number}
+     * @param heading {number}
+     * @param speed {number}
+     */
+    _prepareMcpForTakeoff(altitude, heading, speed) {
         if (this.mcp.altitude === INVALID_NUMBER) {
-            this.mcp.setAltitudeFieldValue(initialAltitude);
+            this.mcp.setAltitudeFieldValue(altitude);
         }
 
         if (this.mcp.altitudeMode === MCP_MODE.ALTITUDE.OFF) {
@@ -1309,7 +1327,7 @@ export default class AircraftModel {
         }
 
         if (this.mcp.heading === INVALID_NUMBER) {
-            this.mcp.setHeadingFieldValue(runway.angle);
+            this.mcp.setHeadingFieldValue(heading);
         }
 
         if (this.mcp.headingMode === MCP_MODE.HEADING.OFF) {
@@ -1317,18 +1335,12 @@ export default class AircraftModel {
         }
 
         if (this.mcp.speed === INVALID_NUMBER) {
-            this.mcp.setSpeedFieldValue(cruiseSpeed);
+            this.mcp.setSpeedFieldValue(speed);
         }
 
         if (this.mcp.speedMode === MCP_MODE.SPEED.OFF) {
             this.mcp.setSpeedN1();
         }
-
-        this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
-
-        this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastDepartedAircraftCallsign = this.callsign;
     }
 
     /**

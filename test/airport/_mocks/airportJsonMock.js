@@ -206,6 +206,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "BOACH6": {
             "icao": "BOACH6",
             "name": "Boach Six",
+            "altitude": 7000,
             "rwy": {
                 "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],

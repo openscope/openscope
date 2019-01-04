@@ -6,6 +6,7 @@
 
 
 ### Enhancements & Refactors
+- [#1247](https://github.com/openscope/openscope/issues/1247) - Determine initial climb altitude from the SID
 
 
 # 6.9.1 (January 4, 2019)
