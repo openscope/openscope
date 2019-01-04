@@ -1,4 +1,4 @@
-# 6.1.0 (February 1, 2019)
+# 6.10.0 (February 1, 2019)
 ### New Features
 
 
@@ -6,6 +6,11 @@
 
 
 ### Enhancements & Refactors
+
+
+# 6.9.1 (January 4, 2019)
+### Hotfixes
+- [#1284](https://github.com/openscope/openscope/issues/1284) - Fixes overflow issues with tests
 
 
 # 6.9.0 (January 1, 2019)
