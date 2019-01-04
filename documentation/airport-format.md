@@ -36,8 +36,11 @@ _Note: The code block shown below is an abbreviated version of [ksea.json](https
     "ctr_ceiling": 15000,
     "initial_alt": 15000,
     "position": ["N47d26.99m0", "W122d18.71m0"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N47d26.99m0", "W122d18.71m0"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N47d26.99m0", "W122d18.71m0"],
+        "radius_nm": 5.0,
+    }
     "has_terrain": true,
     "wind": {
         "angle": 150,
@@ -233,7 +236,6 @@ _all properties in this section are required_
     "dep": "Seattle Departure"
 },
 ```
-
 * **icao** ― ICAO identifier of the airport. _see [ICAO identifiers](#icao-and-iata-identifiers) for more information_
 * **iata** ― IATA identifier of the airport. _see [IATA identifiers](#icao-and-iata-identifiers) for more information_
 * **magnetic_north** ― The magnetic declination (variation) of the airport.  Declination is the angular difference between true north and magnetic north (in degrees **EAST**!) _see this [NOAA calculator](https://www.ngdc.noaa.gov/geomag-web/#declination) if you can't find this value_
@@ -241,8 +243,11 @@ _all properties in this section are required_
 * **ctr_ceiling** ― The ceiling/top of the airspace (in feet). When an `airspace` property is present, that value will take priority over this one.
 * **initial_alt** ― The altitude (in feet) at which all departing aircraft are expected to stop their climb after takeoff unless otherwise instructed.
 * **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
-* **rr_radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
-* **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
+* **rr_radius_nm** ― (deprecated) Use **rr.radius_nm** instead.
+* **rr_center** ― (deprecated) Use **rr.center** instead.
+* **rr.enabled** ― Whether or not range rings will be shown for this airport
+* **rr.radius_nm** ― The distance between each range ring (in nautical miles) within the airspace.
+* **rr.center** ― The position at which the range rings are centered. (in latitude, longitude: _see [lat, lon, elev](#latitude-longitude-elevation) for formatting_)
 * **has_terrain** ― Flag used to determine if the airport has a corresponding `.geoJSON` file in [assets/airports/terrain](https://github.com/openscope/openscope/tree/develop/assets/airports/terrain).
 * **wind** ― The true heading (angle) in degrees and speed in knots of the current wind at the airport:
 

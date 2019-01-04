@@ -11,8 +11,11 @@
     "ctr_ceiling": 19000,
     "initial_alt": 5000,
     "position": ["N47d27m52.92", "E8d32m57.01", "1416.0ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N47d27m52.92", "E8d32m57.01"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N47d27m52.92", "E8d32m57.01"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 200,
@@ -1234,7 +1237,7 @@
                 ["hb/fastGA", 2],
                 ["swr/short", 52],
                 ["tra", 5]
-                
+
             ]
         },
         {
