@@ -951,7 +951,7 @@
         "MARUN5E": {
             "icao": "MARUN5E",
             "name": "Marun Five Echo",
-            "altitude": 7000,
+            "altitude": 5000,
             "rwy": {
                 "EDDF07C": [["DF139", "A08+"]],
                 "EDDF07R": [["DF140", "A08+"]]
@@ -1044,9 +1044,9 @@
                 ["DF149", "MTR", "TOBAK", "APROX", "MARUN"]
             ]
         },
-        "MTR4C": {
-            "icao": "MTR4C",
-            "name": "Metro Four Charlie",
+        "MTR5C": {
+            "icao": "MTR5C",
+            "name": "Metro Five Charlie",
             "altitude": 5000,
             "rwy": {
                 "EDDF07C": [],
@@ -1288,9 +1288,9 @@
                 ["DF160", "DF198", "ROSIG", "DONAB", "SOBRA"]
             ]
         },
-        "SOBRA4P": {
-            "icao": "SOBRA4P",
-            "name": "Sobra Four Papa",
+        "SOBRA5P": {
+            "icao": "SOBRA5P",
+            "name": "Sobra Five Papa",
             "altitude": 5000,
             "rwy": {
                 "EDDF25L": [["^DF135", "A08+"]],
@@ -1303,23 +1303,6 @@
             "draw": [
                 ["DF134", "DONAB"],
                 ["DF135", "DONAB", "SOBRA"]
-            ]
-        },
-        "SOBRA5F": {
-            "icao": "SOBRA5F",
-            "name": "Sobra Five Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF163", "DF201", "DONAB"],
-            "exitPoints": {
-                "SOBRA": ["SOBRA"]
-            },
-            "draw": [
-                ["DF135", "DF142"],
-                ["DF134", "DF141", "DF163", "DF201", "DONAB", "SOBRA"]
             ]
         },
         "SOBRA6D": {
@@ -1351,6 +1334,23 @@
             "draw": [
                 ["DF144", "DF154"],
                 ["DF145", "DF154", "DF160", "DF198", "ROSIG", "DONAB", "SOBRA"]
+            ]
+        },
+        "SOBRA6F": {
+            "icao": "SOBRA6F",
+            "name": "Sobra Six Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EDDF25L": [["^DF135", "A08+"], "DF142"],
+                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+            },
+            "body": ["DF163", "DF201", "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
+                ["DF135", "DF142"],
+                ["DF134", "DF141", "DF163", "DF201", "DONAB", "SOBRA"]
             ]
         },
         "SOBRA6N": {
