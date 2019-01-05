@@ -724,6 +724,7 @@
         "AKONI1F": {
             "icao": "AKONI1F",
             "name": "Akoni One Foxtrot",
+            "altitude": 5000,
             "rwy": {
                 "EDDF25L": [["^DF135", "A08+"], "DF142"],
                 "EDDF25C": [["^DF134", "A08+"], "DF141"]
