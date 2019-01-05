@@ -21,11 +21,10 @@ export const COMMAND_CONTEXT = {
 export const KEY_CODES = {
 
     ENTER: 'Enter',
-    // esc
     ESCAPE: 'Escape',
+    TAB: 'Tab',
     PAGE_UP: 'PageUp',
     PAGE_DOWN: 'PageDown',
-    TAB: 'Tab',
     // numpad
     NUM_MULTIPLY: 'NumpadMultiply',
     NUM_ADD: 'NumpadAdd',
@@ -51,6 +50,47 @@ export const KEY_CODES = {
     F12: 'F12',
     // `
     BAT_TICK: 'Backquote'
+};
+
+/**
+ * Enumeration of key codes used for inputs (for older browsers like IE)
+ *
+ * @property LEGACY_KEY_CODES
+ * @type {Object}
+ * @final
+ */
+export const LEGACY_KEY_CODES = {
+
+    ENTER: 13,
+    ESCAPE: 27,
+    TAB: 9,
+    PAGE_UP: 33,
+    PAGE_DOWN: 34,
+    // numpad
+    NUM_MULTIPLY: 106,
+    NUM_ADD: 107,
+    NUM_SUBTRACT: 109,
+    NUM_DIVIDE: 111,
+    // arrow keys
+    LEFT_ARROW: 37,
+    UP_ARROW: 38,
+    RIGHT_ARROW: 39,
+    DOWN_ARROW: 40,
+    // F-Keys
+    F1: '112',
+    F2: '113',
+    F3: '114',
+    F4: '115',
+    F5: '116',
+    F6: '117',
+    F7: '118',
+    F8: '119',
+    F9: '120',
+    F10: '121',
+    F11: '122',
+    F12: '123',
+    // `
+    BAT_TICK: 192
 };
 
 /**
