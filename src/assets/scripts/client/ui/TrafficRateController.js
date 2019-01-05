@@ -12,7 +12,11 @@ import { EVENT } from '../constants/eventNames';
  * @type {string}
  * @final
  */
-const UI_TRAFFIC_MODAL_TEMPLATE = '<div class="traffic-dialog dialog"><p class="dialog-titel">Traffic rate</p><div class="dialog-body nice-scrollbar"></div></div>';
+const UI_TRAFFIC_MODAL_TEMPLATE = `
+    <div class="traffic-dialog dialog">
+        <p class="dialog-title">Traffic rate</p>
+        <div class="dialog-body nice-scrollbar"></div>
+    </div>`;
 
 /**
  * @class TrafficRateController
