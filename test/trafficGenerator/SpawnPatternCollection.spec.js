@@ -9,20 +9,27 @@ import {
     createNavigationLibraryFixture,
     resetNavigationLibraryFixture
 } from '../fixtures/navigationLibraryFixtures';
+import { spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture } from '../fixtures/trafficGeneratorFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
+let sandbox; // using the sinon sandbox ensures stubs are restored after each test
+
 ava.beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+
     createNavigationLibraryFixture();
     createAirportControllerFixture();
 });
 
-ava.afterEach(() => {
+ava.afterEach.always(() => {
+    sandbox.restore();
+
     resetNavigationLibraryFixture();
     resetAirportControllerFixture();
 });
 
 ava('.init() calls _buildSpawnPatternModels()', (t) => {
-    const _buildSpawnPatternModelsSpy = sinon.spy(SpawnPatternCollection, '_buildSpawnPatternModels');
+    const _buildSpawnPatternModelsSpy = sandbox.spy(SpawnPatternCollection, '_buildSpawnPatternModels');
 
     SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
@@ -32,7 +39,7 @@ ava('.init() calls _buildSpawnPatternModels()', (t) => {
 ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
     SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-    const addItemSpy = sinon.spy(SpawnPatternCollection, 'addItem');
+    const addItemSpy = sandbox.spy(SpawnPatternCollection, 'addItem');
 
     SpawnPatternCollection.addItems([]);
     t.false(addItemSpy.called);
@@ -42,11 +49,11 @@ ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
 });
 
 ava('.addItems() calls .addItem() for each item in the list passed as an argument', (t) => {
-    const addItemStub = sinon.stub(SpawnPatternCollection, 'addItem');
+    const addItemSpy = sandbox.spy(SpawnPatternCollection, 'addItem');
 
     SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
-    SpawnPatternCollection.addItems([false, false]);
-    t.true(addItemStub.calledTwice);
+    SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
+    t.true(addItemSpy.calledTwice);
 });
 
 ava('.addItem() throws if anything other than a SpawnPatternModel is passed as an argument', (t) => {
