@@ -153,7 +153,7 @@ export default class TrafficRateController {
         this.$body.empty();
 
         _forEach(['departures', 'arrivals', 'overflights'], (opt) => {
-            const $option = this._buildOption(opt);
+            const $option = this._buildFormElement(opt);
 
             this.$body.append($option);
         });
@@ -197,56 +197,64 @@ export default class TrafficRateController {
      * Builds a single slider
      *
      * @for TrafficRateController
-     * @method _buildOption
+     * @method _buildFormElement
      * @return {jquery|HTML Element}
      */
-    _buildOption(opt) {
+    _buildFormElement(opt) {
         const currentValue = 5;
-        const $option = $(`<div class="option">
-                            <div class="option-label">${opt.replace(/\./g, ' ')}</div>
-                            <input class="option-slider" type="range" min="0" max="60" value="${currentValue}" name="${opt}" />
-                        </div>`);
+        const template = `
+            <div class="form-element">
+                <div class="form-label">${opt.replace(/\./g, ' ')}</div>
+                <input class="form-slider" type="range" min="0" max="60" value="${currentValue}" name="${opt}" />
+            </div>`;
+        const $element = $(template);
 
-        $option.change((event) => {
-            const $target = $(event.target);
-            const name = $target.attr('name');
-            const value = $target.val();
+        $element.on('change', this._onSliderChange);
 
-            console.log(`CHANGE: ${name} ${value}`);
-
-            // TODO: implement
-        });
-
-        return $option;
+        return $element;
     }
 
     /**
      * Builds a single slider
      *
      * @for TrafficRateController
-     * @method _buildOptionForSpawnPattern
+     * @method _buildFormElementForSpawnPattern
      * @param spawnPattern {SpawnPatternModel}
      * @return {jquery|HTML Element}
      */
-    _buildOptionForSpawnPattern(spawnPattern) {
+    _buildFormElementForSpawnPattern(spawnPattern) {
         const name = spawnPattern.routeString.replace(/\./g, ' ');
-        const $option = $(`<div class="option">
-                            <div class="option-label">${name}</div>
-                            <input class="option-slider" type="range" min="0" max="60" value="${spawnPattern.rate}" name="${name}" />
-                        </div>`);
+        const template = `
+            <div class="form-element">
+                <div class="form-label">${name}</div>
+                <input class="form-slider" type="range" min="0" max="60" value="${spawnPattern.rate}" name="${name}" />
+            </div>`;
+        const $element = $(template);
 
-        $option.change((event) => {
-            const $target = $(event.target);
-            const value = $target.val();
+        $element.on('change', (event) => this._onChangeSpawnPattern(event, spawnPattern));
 
-            // debug, to be removed
-            console.log(`CHANGE: ${spawnPattern.routeString} ${value}`);
+        return $element;
+    }
 
-            spawnPattern.rate = parseFloat(value);
+    _onSliderChange(event) {
+        const $target = $(event.target);
+        const name = $target.attr('name');
+        const value = $target.val();
 
-            SpawnScheduler.resetTimer(spawnPattern);
-        });
+        console.log(`CHANGE: ${name} ${value}`);
 
-        return $option;
+        // TODO: implement
+    }
+
+    _onChangeSpawnPattern(event, spawnPattern) {
+        const $target = $(event.target);
+        const value = $target.val();
+
+        // debug, to be removed
+        console.log(`CHANGE: ${spawnPattern.routeString} ${value}`);
+
+        spawnPattern.rate = parseFloat(value);
+
+        SpawnScheduler.resetTimer(spawnPattern);
     }
 }
