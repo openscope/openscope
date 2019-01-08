@@ -167,7 +167,7 @@ export default class TrafficRateController {
         }
 
         _forEach(arrivals, (spawnPattern) => {
-            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
 
             this.$body.append($option);
         });
@@ -177,7 +177,7 @@ export default class TrafficRateController {
         }
 
         _forEach(departures, (spawnPattern) => {
-            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
 
             this.$body.append($option);
         });
@@ -187,7 +187,7 @@ export default class TrafficRateController {
         }
 
         _forEach(overflights, (spawnPattern) => {
-            const $option = this._buildOptionForSpawnPattern(spawnPattern);
+            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
 
             this.$body.append($option);
         });
