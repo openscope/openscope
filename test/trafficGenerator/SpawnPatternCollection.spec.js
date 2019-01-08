@@ -49,10 +49,12 @@ ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
 });
 
 ava('.addItems() calls .addItem() for each item in the list passed as an argument', (t) => {
+    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+
     const addItemSpy = sandbox.spy(SpawnPatternCollection, 'addItem');
 
-    SpawnPatternCollection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
     SpawnPatternCollection.addItems([spawnPatternModelArrivalFixture, spawnPatternModelDepartureFixture]);
+
     t.true(addItemSpy.calledTwice);
 });
 

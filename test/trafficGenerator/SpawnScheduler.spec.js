@@ -48,12 +48,14 @@ ava('does not throw when passed valid parameters', (t) => {
 });
 
 ava('.createSchedulesFromList() calls .createNextSchedule() for each SpawnPatternModel in the collection', (t) => {
-    SpawnScheduler.init(aircraftControllerStub);
+    const createSchedulesFromListSpy = sandbox.spy(SpawnScheduler, 'createSchedulesFromList');
     const createNextScheduleSpy = sandbox.spy(SpawnScheduler, 'createNextSchedule');
+    const expectedCallCount = SpawnPatternCollection.spawnPatternModels.length;
 
-    SpawnScheduler.createSchedulesFromList();
+    SpawnScheduler.init(aircraftControllerStub);
 
-    t.true(createNextScheduleSpy.calledTwice);
+    t.true(createSchedulesFromListSpy.called);
+    t.true(createNextScheduleSpy.callCount === expectedCallCount);
 });
 
 ava('.createSchedulesFromList() calls aircraftController.createPreSpawnAircraftWithSpawnPatternModel() if preSpawnAircraftList has items', (t) => {

@@ -27,7 +27,7 @@ class SpawnScheduler {
          */
         this._aircraftController = null;
     }
-    
+
     /**
      * @for SpawnScheduler
      * @method init
@@ -38,17 +38,17 @@ class SpawnScheduler {
         if (typeof aircraftController === 'undefined') {
             throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
-        
+
         this.aircraftController = aircraftController;
 
         this.startScheduler();
 
         return this;
     }
-    
+
     /**
      * Starts the scheduler and prespawns departures
-     * 
+     *
      * @for SpawnScheduler
      * @method startScheduler
      */
@@ -130,7 +130,7 @@ class SpawnScheduler {
      * @for SpawnScheduler
      * @method resetTimer
      * @param spawnPatternModel {SpawnPatternModel}
-     */    
+     */
     resetTimer(spawnPatternModel) {
         if (spawnPatternModel.scheduleId) {
             GameController.destroyTimer(spawnPatternModel.scheduleId);
