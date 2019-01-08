@@ -3,6 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/openscope/openscope/badge.svg?branch=develop)](https://coveralls.io/github/openscope/openscope?branch=develop)
 [![Slack Status](http://slack.openscope.co/badge.svg)](http://slack.openscope.co)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE.md)
+[![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge)
 
 # openScope Air Traffic Control Simulator
 
