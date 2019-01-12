@@ -14,7 +14,6 @@ import {
 } from '../../constants/aircraftConstants';
 import { INVALID_NUMBER } from '../../constants/globalConstants';
 import { PROCEDURE_OR_AIRWAY_SEGMENT_DIVIDER } from '../../constants/routeConstants';
-import { radio_runway } from '../../utilities/radioUtilities';
 
 /**
  * Provides methods to create, update or replace a flightPlan and the legs
@@ -690,6 +689,17 @@ export default class Fms {
     }
 
     /**
+     * Facade for #_routeModel.getInitialClimbClearance
+     *
+     * @for Fms
+     * @method getInitialClimbClearance
+     * @return {number}
+     */
+    getInitialClimbClearance() {
+        return this._routeModel.getInitialClimbClearance();
+    }
+
+    /**
      * Return an array of waypoints in the flight plan that have speed restrictions
      *
      * @for Fms
@@ -944,7 +954,6 @@ export default class Fms {
         }
 
         this._routeModel = nextRouteModel;
-        this.hasDepartureClearance = true;
 
         this.skipToWaypointName(currentWaypointName);
 

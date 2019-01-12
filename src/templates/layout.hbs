@@ -2,7 +2,7 @@
 <!--
     Build information
     Version: {{version}}
-    Date: {{date}}
+    Build Date: {{buildDate}}
 -->
 <html>
     <head>
@@ -39,6 +39,14 @@
         {{#block "styles"}}
         <link rel="stylesheet" href="assets/style/main.min.css?={{version}}" />
         {{/block}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91575400-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91575400-1');
+        </script>
     </head>
     <body>
         {{#block "body"}}

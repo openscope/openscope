@@ -22,10 +22,10 @@ function buildMarkup() {
             .helpers(handlebarsLayouts)
             .data({
                 version: pkg.version,
-                date: new Date().toISOString()
+                buildDate: new Date().toUTCString()
             })
         )
-        .pipe(rename(path => { path.extname = '.html'; }))
+        .pipe(rename((path) => { path.extname = '.html'; }))
         .pipe(gulp.dest(paths.DIR.DIST));
 }
 
