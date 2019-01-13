@@ -27,6 +27,8 @@ export const CLASSNAMES = {
     CONTROL: 'control',
     DEPARTURE: 'departure',
     DESTINATION: 'destination',
+    DIALOG: 'dialog',
+    DIALOG_BODY: 'dialog-body',
     FAST_FORWARDS: 'fast-forwards',
     FOLLOWING_STAR: 'followingSTAR',
     HEADING: 'heading',

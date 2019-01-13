@@ -3,7 +3,7 @@ import _forEach from 'lodash/forEach';
 import EventBus from '../lib/EventBus';
 import SpawnPatternCollection from '../trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from '../trafficGenerator/SpawnScheduler';
-import { SELECTORS } from '../constants/selectors';
+import { SELECTORS, CLASSNAMES } from '../constants/selectors';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { EVENT } from '../constants/eventNames';
 
@@ -50,6 +50,15 @@ export default class TrafficRateController {
          */
         this.$dialog = null;
 
+        /**
+         * Spawn rates by category or route
+         *
+         * @property _rates
+         * @type {object}
+         * @default null
+         */
+        this._rates = null;
+
         this.init()
             ._setupHandlers()
             .enable();
@@ -63,7 +72,7 @@ export default class TrafficRateController {
      */
     init() {
         this.$dialog = $(UI_TRAFFIC_MODAL_TEMPLATE);
-        this.$body = this.$dialog.find('.dialog-body');
+        this.$body = this.$dialog.find(`.${CLASSNAMES.DIALOG_BODY}`);
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
@@ -151,109 +160,109 @@ export default class TrafficRateController {
      */
     _buildDialogBody() {
         this.$body.empty();
+        this._rates = {};
 
-        _forEach(['departures', 'arrivals', 'overflights'], (opt) => {
-            const $option = this._buildFormElement(opt);
+        for (const category of Object.values(FLIGHT_CATEGORY)) {
+            this._rates[category] = 1;
+
+            const $option = this._buildFormElement(category, category, this._onChangeFlightCategoryRate);
 
             this.$body.append($option);
-        });
-
-        const arrivals = SpawnPatternCollection.findSpawnPatternsByCategory(FLIGHT_CATEGORY.ARRIVAL);
-        const departures = SpawnPatternCollection.findSpawnPatternsByCategory(FLIGHT_CATEGORY.DEPARTURE);
-        const overflights = SpawnPatternCollection.findSpawnPatternsByCategory(FLIGHT_CATEGORY.OVERFLIGHT);
-
-        if (arrivals.length > 0) {
-            this.$body.append('<hr />');
         }
 
-        _forEach(arrivals, (spawnPattern) => {
-            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
+        for (const category of Object.values(FLIGHT_CATEGORY)) {
+            const spawnPatterns = SpawnPatternCollection.findSpawnPatternsByCategory(category);
 
-            this.$body.append($option);
-        });
+            if (spawnPatterns.length > 0) {
+                this.$body.append('<hr />');
+            }
 
-        if (departures.length > 0) {
-            this.$body.append('<hr />');
+            _forEach(spawnPatterns, (spawnPattern) => {
+                const { routeString } = spawnPattern;
+                this._rates[routeString] = spawnPattern.rate;
+
+                const $option = this._buildFormElement(routeString, spawnPattern, this._onChangeSpawnPatternRate);
+
+                this.$body.append($option);
+            });
         }
-
-        _forEach(departures, (spawnPattern) => {
-            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
-
-            this.$body.append($option);
-        });
-
-        if (overflights.length > 0) {
-            this.$body.append('<hr />');
-        }
-
-        _forEach(overflights, (spawnPattern) => {
-            const $option = this._buildFormElementForSpawnPattern(spawnPattern);
-
-            this.$body.append($option);
-        });
     }
 
     /**
-     * Builds a single slider
+     * Build form element
      *
      * @for TrafficRateController
      * @method _buildFormElement
+     * @param key {string}
+     * @param data {string|object} passed to the change handler
+     * @param onChangeMethod {function}
      * @return {jquery|HTML Element}
      */
-    _buildFormElement(opt) {
-        const currentValue = 5;
+    _buildFormElement(key, data, onChangeMethod) {
+        const rate = this._rates[key];
+        const name = key.replace(/\./g, ' ');
         const template = `
             <div class="form-element">
-                <div class="form-label">${opt.replace(/\./g, ' ')}</div>
-                <input class="form-slider" type="range" min="0" max="60" value="${currentValue}" name="${opt}" />
+                <div class="form-label">${name}</div>
+                <input class="form-input" type="number" name="${key}" value="${rate}" min="0" max="60">
             </div>`;
         const $element = $(template);
+        const onChangeHandler = onChangeMethod.bind(this);
 
-        $element.on('change', this._onSliderChange);
+        $element.on('change', { rateKey: data }, onChangeHandler);
 
         return $element;
     }
 
     /**
-     * Builds a single slider
+     * Called when the rate for a flight category was changed
      *
      * @for TrafficRateController
-     * @method _buildFormElementForSpawnPattern
-     * @param spawnPattern {SpawnPatternModel}
-     * @return {jquery|HTML Element}
+     * @method _onChangeFlightCategoryRate
+     * @param event
      */
-    _buildFormElementForSpawnPattern(spawnPattern) {
-        const name = spawnPattern.routeString.replace(/\./g, ' ');
-        const template = `
-            <div class="form-element">
-                <div class="form-label">${name}</div>
-                <input class="form-slider" type="range" min="0" max="60" value="${spawnPattern.rate}" name="${name}" />
-            </div>`;
-        const $element = $(template);
-
-        $element.on('change', (event) => this._onChangeSpawnPattern(event, spawnPattern));
-
-        return $element;
-    }
-
-    _onSliderChange(event) {
-        const $target = $(event.target);
-        const name = $target.attr('name');
-        const value = $target.val();
-
-        console.log(`CHANGE: ${name} ${value}`);
-
-        // TODO: implement
-    }
-
-    _onChangeSpawnPattern(event, spawnPattern) {
+    _onChangeFlightCategoryRate(event) {
         const $target = $(event.target);
         const value = $target.val();
+        const category = event.data.rateKey;
 
-        // debug, to be removed
-        console.log(`CHANGE: ${spawnPattern.routeString} ${value}`);
+        this._rates[category] = parseFloat(value);
 
-        spawnPattern.rate = parseFloat(value);
+        const spawnPatterns = SpawnPatternCollection.findSpawnPatternsByCategory(category);
+
+        for (const spawnPattern of spawnPatterns) {
+            this._updateRate(spawnPattern);
+        }
+    }
+
+    /**
+     * Called when the rate for a route was changed
+     *
+     * @for TrafficRateController
+     * @method _onChangeSpawnPatternRate
+     * @param event
+     */
+    _onChangeSpawnPatternRate(event) {
+        const $target = $(event.target);
+        const value = $target.val();
+        const spawnPattern = event.data.rateKey;
+
+        this._rates[spawnPattern.routeString] = parseFloat(value);
+
+        this._updateRate(spawnPattern);
+    }
+
+    /**
+     * Recalculate the rate for a spawn pattern
+     *
+     * @for TrafficRateController
+     * @method _updateRate
+     * @param spawnPattern {SpawnPatternModel}
+     */
+    _updateRate(spawnPattern) {
+        const { category, routeString } = spawnPattern;
+
+        spawnPattern.rate = this._rates[category] * this._rates[routeString];
 
         SpawnScheduler.resetTimer(spawnPattern);
     }
