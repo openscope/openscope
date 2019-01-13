@@ -72,7 +72,7 @@ export default class TrafficRateController {
      */
     init() {
         this.$dialog = $(UI_TRAFFIC_MODAL_TEMPLATE);
-        this.$body = this.$dialog.find(`.${CLASSNAMES.DIALOG_BODY}`);
+        this.$dialogBody = this.$dialog.find(`.${CLASSNAMES.DIALOG_BODY}`);
 
         this._buildDialogBody();
         this.$element.append(this.$dialog);
@@ -159,31 +159,31 @@ export default class TrafficRateController {
      * @method _buildDialogBody
      */
     _buildDialogBody() {
-        this.$body.empty();
+        this.$dialogBody.empty();
         this._rates = {};
 
         for (const category of Object.values(FLIGHT_CATEGORY)) {
             this._rates[category] = 1;
 
-            const $option = this._buildFormElement(category, category, this._onChangeFlightCategoryRate);
+            const $formElement = this._buildFormElement(category, category, this._onChangeFlightCategoryRate);
 
-            this.$body.append($option);
+            this.$dialogBody.append($formElement);
         }
 
         for (const category of Object.values(FLIGHT_CATEGORY)) {
             const spawnPatterns = SpawnPatternCollection.findSpawnPatternsByCategory(category);
 
             if (spawnPatterns.length > 0) {
-                this.$body.append('<hr />');
+                this.$dialogBody.append('<hr />');
             }
 
             _forEach(spawnPatterns, (spawnPattern) => {
                 const { routeString } = spawnPattern;
                 this._rates[routeString] = spawnPattern.rate;
 
-                const $option = this._buildFormElement(routeString, spawnPattern, this._onChangeSpawnPatternRate);
+                const $formElement = this._buildFormElement(routeString, spawnPattern, this._onChangeSpawnPatternRate);
 
-                this.$body.append($option);
+                this.$dialogBody.append($formElement);
             });
         }
     }

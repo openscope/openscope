@@ -1,11 +1,11 @@
 .dialog {
     display: flex;
     flex-direction: column;
-    width: fit-content;
     height: auto;
     // LESS itself tries to evaluate calc(), using ~"" here to prevent that
     max-height: ~"calc(100% - 2*36px - 2*7px)";
-    max-width: 600px;
+    width: 600px;
+    //width: fit-content;
     margin: auto;
     padding: 0px 10px 10px 10px;
     position: absolute;
@@ -37,7 +37,8 @@
 }
 
 .dialog-body {
-    width: auto;
+    box-sizing: border-box;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     padding: @spacing-1x @spacing-1x;
@@ -47,44 +48,6 @@
     border: 2px solid @blue-medium;
     border-radius: 10px;
     overflow-y: auto;
-}
-
-.form-element {
-    display: flex;
-}
-
-.form-element + .form-element {
-    margin-top: 2px;
-}
-
-.form-label {
-    display: block;
-    flex-grow: 1;
-    box-sizing: border-box;
-    width: 65%;
-    padding-right: 10px;
-    line-height: 25px;
-}
-
-.form-element input[type="range"] {
-    display: block;
-    flex-grow: 1;
-}
-
-.option-type-select {
-    position: relative;
-    width: 35%;
-    display: inline-block;
-    color: inherit;
-}
-
-.option-type-select::after {
-    position: absolute;
-    right: 0;
-    font-size: 8px;
-    line-height: 25px;
-    content: "\25BC";
-    pointer-events: none;
 }
 
 .dialog select {
@@ -103,3 +66,42 @@
 .dialog select:focus {
     outline: none;
 }
+
+.form-element {
+    display: flex;
+}
+
+.form-element + .form-element {
+    margin-top: 2px;
+}
+
+.form-element input[type="range"] {
+    display: block;
+    flex-grow: 1;
+}
+
+.form-label {
+    display: block;
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: 65%;
+    padding-right: 10px;
+    line-height: 25px;
+}
+
+.form-type-select {
+    position: relative;
+    width: 35%;
+    display: inline-block;
+    color: inherit;
+}
+
+.form-type-select::after {
+    position: absolute;
+    right: 0;
+    font-size: 8px;
+    line-height: 25px;
+    content: "\25BC";
+    pointer-events: none;
+}
+

@@ -20,22 +20,23 @@ const UI_SETTINGS_MODAL_TEMPLATE = `
  * @type {string}
  * @final
  */
-const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
+const UI_OPTION_CONTAINER_TEMPLATE = '<div class="form-element"></div>';
 
 /**
  * @property UI_OPTION_LABEL_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTION_LABEL_TEMPLATE = '<span class="option-label"></span>';
+const UI_OPTION_LABEL_TEMPLATE = '<span class="form-label"></span>';
 
 /**
  * @property UI_OPTION_SELECTOR_TEMPLATE
  * @type {string}
  * @final
  */
-const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
+const UI_OPTION_SELECTOR_TEMPLATE = '<span class="form-type-select"></span>';
 
+// TODO: This class has no corresponding styles
 /**
  * @property UI_STATIC_TEXT_TEMPLATE
  * @type {string}
@@ -218,7 +219,7 @@ export default class SettingsController {
         const simulatorVersion = window.GLOBAL.VERSION;
         const template = this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
 
-        template.addClass('option-simulator-version');
+        template.addClass('simulator-version');
 
         return template;
     }
