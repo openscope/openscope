@@ -108,9 +108,6 @@ ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
 
 ava('.getNextDelayValue() returns a random number between minimumDelay and maximumDelay', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
-    model._minimumDelay = 0;
-    model._maximumDelay = 3;
-
     const result = model.getNextDelayValue();
 
     t.true(typeof result === 'number');

@@ -331,35 +331,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.variation = INVALID_NUMBER;
 
         /**
-         * Calculated milisecond delay from `rate`.
-         *
-         * Is used as the upper bound when getting a random delay value.
-         *
-         * This value does not take game speed (timewarp) into effect, thus
-         * this value may need to be translated by the class or method using it.
-         *
-         * @property _maximumDelay
-         * @type {number}
-         * @default INVALID_NUMBER
-         * @private
-         */
-        this._maximumDelay = INVALID_NUMBER;
-
-        // TODO: this is currently an internal property but could be defined in
-        //       the `spawnPattern` section of airport.json
-        /**
-         * Minimum milisecond delay between spawn.
-         *
-         * Is used as the lower bound when getting a random delay value.
-         *
-         * @property _minimumDelay
-         * @type {number}
-         * @default INVALID_NUMBER
-         * @private
-         */
-        this._minimumDelay = INVALID_NUMBER;
-
-        /**
          * Miles entrail during the surge [fast, slow]
          *
          * Used only for `surge` spawn patterns. set as a class
@@ -495,8 +466,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
         this._positionModel = this._generateSelfReferencedAirportPositionModel();
-        this._minimumDelay = this._calculateMinimumDelayFromSpeed();
-        this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
         this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson);
@@ -533,8 +502,6 @@ export default class SpawnPatternModel extends BaseModel {
         this.offset = INVALID_NUMBER;
         this.period = INVALID_NUMBER;
         this.variation = INVALID_NUMBER;
-        this._maximumDelay = INVALID_NUMBER;
-        this._minimumDelay = INVALID_NUMBER;
 
         this.airlines = [];
         this._weightedAirlineList = [];
@@ -644,7 +611,6 @@ export default class SpawnPatternModel extends BaseModel {
 
         this._aircraftPerHourDown = reducedSpawnRate;
 
-
         // TODO: abstract this if/else block to helper method
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.rate > this._aircraftPerHourUp) {
@@ -718,15 +684,18 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _calculateRandomDelayPeriod() {
-        let targetDelayPeriod = this._maximumDelay;
+        const minimumDelay = this._calculateMinimumDelayFromSpeed();
+        const maximumDelay = this._calculateMaximumDelayFromSpawnRate();
 
-        if (targetDelayPeriod < this._minimumDelay) {
-            targetDelayPeriod = this._minimumDelay;
+        let targetDelayPeriod = maximumDelay;
+
+        if (targetDelayPeriod < minimumDelay) {
+            targetDelayPeriod = minimumDelay;
         }
 
-        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - this._minimumDelay);
+        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - minimumDelay);
 
-        return _random(this._minimumDelay, maxDelayPeriod);
+        return _random(minimumDelay, maxDelayPeriod);
     }
 
     /**
