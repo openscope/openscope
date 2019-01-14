@@ -113,15 +113,7 @@ class SpawnScheduler {
     createNextSchedule(spawnPatternModel) {
         const delay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
 
-        return GameController.game_timeout(
-            this.createAircraftAndRegisterNextTimeout,
-            // lifespan of timeout
-            delay,
-            // passing null only to match existing api
-            null,
-            // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
-            [spawnPatternModel, this.aircraftController]
-        );
+        return this._createTimeout(spawnPatternModel, delay);
     }
 
     /**
@@ -138,8 +130,39 @@ class SpawnScheduler {
         }
 
         if (spawnPatternModel.rate > 0) {
-            spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel);
+            // TODO: calc time passed since last spawn
+            const timePassed = 0;
+            let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
+
+            if (timePassed < nextDelay) {
+                nextDelay -= timePassed;
+            } else {
+                this.aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+            }
+
+            spawnPatternModel.scheduleId = this._createTimeout(spawnPatternModel, nextDelay);
         }
+    }
+
+    /**
+     * Registers a new timeout, its callback and callback arguments with the `GameController`
+     *
+     * @for SpawnScheduler
+     * @method _createTimeout
+     * @param spawnPatternModel {SpawnPatternModel}
+     * @param delay {number} time in seconds
+     * @return {array}
+     */
+    _createTimeout(spawnPatternModel, delay) {
+        return GameController.game_timeout(
+            this.createAircraftAndRegisterNextTimeout,
+            // lifespan of timeout
+            delay,
+            // passing null only to match existing api
+            null,
+            // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
+            [spawnPatternModel, this.aircraftController]
+        );
     }
 
     /**

@@ -31,6 +31,7 @@ export const CLASSNAMES = {
     DIALOG_BODY: 'dialog-body',
     FAST_FORWARDS: 'fast-forwards',
     FOLLOWING_STAR: 'followingSTAR',
+    FORM_VALUE: 'form-value',
     HEADING: 'heading',
     HIDDEN: 'hidden',
     HOLD: 'hold',

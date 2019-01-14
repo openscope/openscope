@@ -59,6 +59,24 @@ export default class TrafficRateController {
          */
         this._rates = null;
 
+        /**
+         * Spawn rates by category or route
+         *
+         * @property _rates
+         * @type {object}
+         * @default null
+         */
+        this._rates = null;
+
+        /**
+         * Form elements by category
+         *
+         * @property _elements
+         * @type {array}
+         * @default null
+         */
+        this._elements = null;
+
         this.init()
             ._setupHandlers()
             .enable();
@@ -161,11 +179,13 @@ export default class TrafficRateController {
     _buildDialogBody() {
         this.$dialogBody.empty();
         this._rates = {};
+        this._elements = {};
 
         for (const category of Object.values(FLIGHT_CATEGORY)) {
             this._rates[category] = 1;
+            this._elements[category] = [];
 
-            const $formElement = this._buildFormElement(category, category, this._onChangeFlightCategoryRate);
+            const $formElement = this._buildSlider(category, category, this._onChangeFlightCategoryRate);
 
             this.$dialogBody.append($formElement);
         }
@@ -181,9 +201,11 @@ export default class TrafficRateController {
                 const { routeString } = spawnPattern;
                 this._rates[routeString] = spawnPattern.rate;
 
-                const $formElement = this._buildFormElement(routeString, spawnPattern, this._onChangeSpawnPatternRate);
+                const $formElement = this._buildInputField(routeString, spawnPattern, this._onChangeSpawnPatternRate);
 
                 this.$dialogBody.append($formElement);
+
+                this._elements[category].push({ spawnPattern, $formElement });
             });
         }
     }
@@ -198,13 +220,41 @@ export default class TrafficRateController {
      * @param onChangeMethod {function}
      * @return {jquery|HTML Element}
      */
-    _buildFormElement(key, data, onChangeMethod) {
+    _buildSlider(key, data, onChangeMethod) {
+        const rate = this._rates[key];
+        const name = key.replace(/\./g, ' ');
+        const template = `
+            <div class="form-element">
+                <div class="form-label">${name}</div>
+                <input class="form-slider" type="range" name="${key}" value="${rate}" min="0" max="10" step="0.5" />
+                <span class="form-value">${rate}</span>
+            </div>`;
+        const $element = $(template);
+        const onChangeHandler = onChangeMethod.bind(this);
+
+        $element.on('change', { rateKey: data }, onChangeHandler);
+
+        return $element;
+    }
+
+    /**
+     * Build form element
+     *
+     * @for TrafficRateController
+     * @method _buildInputField
+     * @param key {string}
+     * @param data {string|object} passed to the change handler
+     * @param onChangeMethod {function}
+     * @return {jquery|HTML Element}
+     */
+    _buildInputField(key, data, onChangeMethod) {
         const rate = this._rates[key];
         const name = key.replace(/\./g, ' ');
         const template = `
             <div class="form-element">
                 <div class="form-label">${name}</div>
                 <input class="form-input" type="number" name="${key}" value="${rate}" min="0" max="60">
+                <span class="form-value">${rate}</span>
             </div>`;
         const $element = $(template);
         const onChangeHandler = onChangeMethod.bind(this);
@@ -223,15 +273,17 @@ export default class TrafficRateController {
      */
     _onChangeFlightCategoryRate(event) {
         const $target = $(event.target);
+        const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
         const value = $target.val();
         const category = event.data.rateKey;
+        const elements = this._elements[category];
 
         this._rates[category] = parseFloat(value);
 
-        const spawnPatterns = SpawnPatternCollection.findSpawnPatternsByCategory(category);
+        $output.text(value);
 
-        for (const spawnPattern of spawnPatterns) {
-            this._updateRate(spawnPattern);
+        for (const { spawnPattern, $formElement } of elements) {
+            this._updateRate(spawnPattern, $formElement);
         }
     }
 
@@ -258,11 +310,15 @@ export default class TrafficRateController {
      * @for TrafficRateController
      * @method _updateRate
      * @param spawnPattern {SpawnPatternModel}
+     * @param $formElement {jQuery element}
      */
-    _updateRate(spawnPattern) {
+    _updateRate(spawnPattern, $formElement) {
         const { category, routeString } = spawnPattern;
+        const $output = $formElement.children(`.${CLASSNAMES.FORM_VALUE}`);
 
         spawnPattern.rate = this._rates[category] * this._rates[routeString];
+
+        $output.text(spawnPattern.rate);
 
         SpawnScheduler.resetTimer(spawnPattern);
     }
