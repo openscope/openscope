@@ -440,7 +440,11 @@ export default class InputController {
                 break;
             case KEY_CODES.F7:
             case LEGACY_KEY_CODES.F7:
-                this.$commandInput.val('QP_J');
+                if (this.commandBarContext !== COMMAND_CONTEXT.SCOPE) {
+                    return;
+                }
+
+                this.$commandInput.val('QP_J ');
                 event.preventDefault();
                 this.onCommandInputChangeHandler();
 
