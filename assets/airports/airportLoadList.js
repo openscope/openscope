@@ -235,8 +235,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'khou',
             level: 'easy',
             name: 'Houston-Hobby Int\'l',
-            premium: false,
-            wip: false
+            premium: false
         },
         // {
         //     icao: 'kiad',

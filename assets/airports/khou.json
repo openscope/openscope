@@ -1,7 +1,7 @@
 
 {
     
-    "airac": 1811,
+    "airac": 1901,
     "radio": {
         "twr": "Hobby Tower",
         "app": "Houston Approach",
@@ -14,8 +14,11 @@
     "ctr_ceiling": 16000,
     "initial_alt": 16000,
     "position": ["N29d38.73", "W95d16.74"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N29d38.73", "W95d16.74"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N29d38.73", "W95d16.74"],
+        "radius_nm": 5.0
+    },
     "has_terrain": false,
     "wind": {
         "angle": 110,
@@ -1001,9 +1004,9 @@
             "altitude": [35000, 39000],
             "speed": 400,
             "method": "random",
-            "rate": 0.33,
+            "rate": 0.40,
             "airlines": [
-                ["swa", 8]
+                ["swa", 10]
             ]
         },
         {
@@ -1027,9 +1030,9 @@
             "altitude": [25000, 29000],
             "speed": 400,
             "method": "random",
-            "rate": 0.25,
+            "rate": 0.32,
             "airlines": [
-                ["swa", 6]
+                ["swa", 8]
             ]
         },
         {
@@ -1040,9 +1043,9 @@
             "altitude": [25000, 29000],
             "speed": 400,
             "method": "random",
-            "rate": 0.04,
+            "rate": 0.16,
             "airlines": [
-                ["swa", 1]
+                ["swa", 4]
             ]
         },
         {
@@ -1105,9 +1108,9 @@
             "altitude": [34000, 38000],
             "speed": 400,
             "method": "random",
-            "rate": 0.66,
+            "rate": 0.76,
             "airlines": [
-                ["swa", 16]
+                ["swa", 19]
             ]
         },
         {
@@ -1118,9 +1121,9 @@
             "altitude": [18000, 23000],
             "speed": 400,
             "method": "random",
-            "rate": 0.08,
+            "rate": 0.20,
             "airlines": [
-                ["swa", 2]
+                ["swa", 5]
             ]
         },
         {
@@ -1131,9 +1134,9 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 0.41,
+            "rate": 0.54,
             "airlines": [
-                ["swa", 10]
+                ["swa", 14]
             ]
         },
         {
@@ -1144,10 +1147,10 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 1.63,
+            "rate": 2.00,
             "airlines": [
                 ["ash", 7],
-                ["swa", 32]
+                ["swa", 41]
             ]
         },
         {
@@ -1158,11 +1161,11 @@
             "altitude": [25000, 30000],
             "speed": 400,
             "method": "random",
-            "rate": 0.88,
+            "rate": 1.0,
             "airlines": [
                 ["dal/short", 6],
                 ["jbu", 1],
-                ["swa", 14]
+                ["swa", 17]
             ]
         },
         {
@@ -1173,10 +1176,10 @@
             "altitude": [36000, 40000],
             "speed": 400,
             "method": "random",
-            "rate": 0.50,
+            "rate": 0.88,
             "airlines": [
                 ["jbu", 1],
-                ["swa", 11]
+                ["swa", 21]
             ]
         }
     ],
