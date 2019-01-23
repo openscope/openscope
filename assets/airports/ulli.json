@@ -46,6 +46,19 @@
         }
     ],
     "fixes": {
+        "KANET": ["N58d43.59", "E033d25.52"],
+        "KERIS": ["N59d48.93", "E032d20.30"],
+        "LI709": ["N59d50.94", "E029d58.69"],
+        "LI710": ["N59d43.97", "E029d54.68"],
+        "LI711": ["N59d41.79", "E030d09.50"],
+        "LI712": ["N59d41.61", "E030d20.39"],
+        "LI713": ["N59d39.35", "E030d41.51"],
+        "LI714": ["N59d56.60", "E030d01.96"],
+        "LI715": ["N59d55.27", "E030d11.10"],
+        "LI716": ["N59d53.27", "E030d19.97"],
+        "LI717": ["N59d52.65", "E030d41.15"],
+        "LI719": ["N59d49.77", "E030d06.70"],
+        "SUGIN": ["N59d31.92", "E032d06.60"]
     },
     "restricted": [
     ],
@@ -69,13 +82,65 @@
             "glideslope": [3.0, 3.0]
         }
     ],
-    "airways": [
-    ],
-    "sids": [
-    ],
+    "airways": {
+        "R904": ["SUGIN", "KANET"]
+    },
+    "sids": {
+        "KERIS1A": {
+            "icao": "KERIS1A",
+            "name": "Keris One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S420-"], ["LI714", "S420-"], "LI715", ["LI716", "A80+"], ["LI717", "A130+"], ["KERIS", "A130+"]]
+            },
+            "exitPoints": {
+                "KERIS": []
+            },
+            "draw": [
+                ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "KERIS*"]
+            ]
+        },
+        "SUGIN1A": {
+            "icao": "SUGIN1A",
+            "name": "Sugin One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S420-"], ["LI710", "S420-"], ["LI711", "A70+"], ["LI712", "A100+"], ["LI713", "A140+"], ["SUGIN", "A150+"]]
+            },
+            "exitPoints": {
+                "SUGIN": []
+            },
+            "draw": [
+                ["LI719", "LI709", "LI710", "LI711", "LI712", "LI713", "SUGIN*"]
+            ]
+        }
+    },
     "stars": [
     ],
     "spawnPatterns": [
+        {
+            "origin": "ulli",
+            "destination": "",
+            "category": "departure",
+            "route": "ULLI28R.SUGIN1A.SUGIN.R904.KANET",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["kar", 3],
+                ["afl", 21],
+                ["nws", 2],
+                ["sbi", 7],
+                ["svr", 1.14],
+                ["glp", 1],
+                ["tya", 0.29],
+                ["kma", 0.14],
+                ["llm", 0.29],
+                ["sdm", 12],
+                ["uta", 3.5],
+                ["rsy", 0.43],
+                ["pbd", 3]
+            ]
+        }
     ],
     "maps": {
         "base": [
