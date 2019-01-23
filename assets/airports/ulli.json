@@ -1,0 +1,84 @@
+{
+    "airac": 1901,
+    "radio": {
+        "twr": "Pulkovo Tower",
+        "app": "Peterburg Approach",
+        "dep": "Peterburg Approach"
+    },
+    "icao": "ULLI",
+    "iata": "LED",
+    "magnetic_north": 10,
+    "ctr_radius": 120,
+    "ctr_ceiling": 8000,
+    "initial_alt": 3500,
+    "position": ["N59d48.01m0", "E030d15.45m0", "79ft"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [59.800278, 30.2625],
+        "radius_nm": 5.0
+    },
+    "has_terrain": false,
+    "wind": {
+        "angle": 230,
+        "speed": 6
+    },
+    "arrivalRunway": "28L",
+    "departureRunway": "28R",
+    "airspace": [
+        {
+            "floor": 0,
+            "ceiling": 15,
+            "airspace_class": "C",
+            "poly": [
+                ["N59.88888889", "E029.90500000"],
+                ["N59.90694444", "E030.05972222"],
+                ["N59.88333333", "E030.17833333"],
+                ["N59.88138889", "E030.19944444"],
+                ["N59.85583333", "E030.49138889"],
+                ["N59.84305556", "E030.51916667"],
+                ["N59.78472222", "E030.64194444"],
+                ["N59.71500000", "E030.60000000"],
+                ["N59.70000000", "E030.27500000"],
+                ["N59.71333333", "E030.19500000"],
+                ["N59.72166667", "E030.10500000"],
+                ["N59.82944444", "E029.87111111"]
+            ]
+        }
+    ],
+    "fixes": {
+    },
+    "restricted": [
+    ],
+    "runways": [
+        {
+            "name": ["10R", "28L"],
+            "end": [
+                [59.799919, 30.218339, "67ft"],
+                [59.790328, 30.282917, "79ft"]
+            ],
+            "ils": [true, true],
+            "glideslope": [3.0, 3.0]
+        },
+        {
+            "name": ["10L", "28R"],
+            "end": [
+                [59.809747, 30.245408, "61ft"],
+                [59.801103, 30.303456, "66ft"]
+            ],
+            "ils": [true, true],
+            "glideslope": [3.0, 3.0]
+        }
+    ],
+    "airways": [
+    ],
+    "sids": [
+    ],
+    "stars": [
+    ],
+    "spawnPatterns": [
+    ],
+    "maps": {
+        "base": [
+        ]
+    }
+}

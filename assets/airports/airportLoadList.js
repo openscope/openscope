@@ -423,7 +423,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             level: 'easy',
             name: 'Doha Hamad International Airport',
             premium: false
-        // },
+        },
         // {
         //     icao: 'panc',
         //     level: 'easy',
@@ -501,6 +501,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         //     level: 'easy',
         //     name: 'Princess Juliana International Airport',
         //     premium: false
+        // },
+           {
+               icao: 'ulli',
+               level: 'medium',
+               name: 'Sankt-Peterburg Pulkovo Airport',
+               premium: false
         // },
         // {
         //     icao: 'uudd',
