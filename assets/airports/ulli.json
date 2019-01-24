@@ -320,7 +320,7 @@
             "airlines": [
                 ["aul", 0.43],
                 ["sbi", 1.43],
-                ["sdm", 4]
+                ["sdm", 4.0]
             ],
             "altitude": "",
             "category": "departure",
@@ -333,8 +333,8 @@
         },
         {
             "airlines": [
-                ["pbd", 1],
-                ["sdm", 2],
+                ["pbd", 1.0],
+                ["sdm", 2.0],
                 ["svr", 1.57],
                 ["uta", 0.57]
             ],
@@ -352,7 +352,7 @@
                 ["aul", 3.14],
                 ["sbi", 0.29],
                 ["sdm", 4.71],
-                ["ssf", 1]
+                ["ssf", 1.0]
             ],
             "altitude": "",
             "category": "departure",
@@ -365,14 +365,14 @@
         },
         {
             "airlines": [
-                ["afl", 21],
+                ["afl", 21.0],
                 ["aul", 2.43],
                 ["azo", 1.71],
-                ["glp", 1],
-                ["kar", 3],
+                ["glp", 1.0],
+                ["kar", 3.0],
                 ["kma", 0.14],
                 ["llm", 0.29],
-                ["nws", 2],
+                ["nws", 2.0],
                 ["pbd", 4.86],
                 ["rsy", 0.43],
                 ["rwz", 1.29],
@@ -380,39 +380,39 @@
                 ["sdm", 22.86],
                 ["svr", 1.14],
                 ["tya", 0.29],
-                ["uta", 3.5]
+                ["uta", 3.57]
             ],
             "altitude": "",
             "category": "departure",
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 3,
+            "rate": 3.05,
             "route": "ULLI28R.SUGIN1A.SUGIN.R904.KANET",
             "speed": ""
         },
         {
             "airlines": [
-                ["afl", 21],
-                ["glp", 1],
-                ["kar", 3],
+                ["afl", 21.0],
+                ["glp", 1.0],
+                ["kar", 3.0],
                 ["kma", 0.14],
                 ["llm", 0.29],
-                ["nws", 2],
-                ["pbd", 3],
+                ["nws", 2.0],
+                ["pbd", 3.0],
                 ["rsy", 0.43],
-                ["sbi", 7],
-                ["sdm", 12],
+                ["sbi", 7.0],
+                ["sdm", 12.0],
                 ["svr", 1.14],
                 ["tya", 0.29],
-                ["uta", 3.5]
+                ["uta", 3.57]
             ],
             "altitude": [6000, 16000],
             "category": "arrival",
-            "destination": "ULLI",
+            "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 2.28,
+            "rate": 2.29,
             "route": "OKULO.R961.GENPA.GENPA1B.ULLI28L",
             "speed": 225
         }
