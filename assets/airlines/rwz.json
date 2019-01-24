@@ -1,0 +1,16 @@
+{
+    "icao": "rwz",
+    "name": "Red Wings Airlines",
+    "callsign": {
+        "name": "Air Red",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 4],
+            ["A321", 8]
+        ]
+    }
+}

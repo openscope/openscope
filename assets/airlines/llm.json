@@ -1,0 +1,18 @@
+{
+    "icao": "llm",
+    "name": "Yamal Airlines",
+    "callsign": {
+        "name": "Yamal",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 8],
+            ["A321", 3],
+            ["B734", 1],
+            ["SU9", 7]
+        ]
+    }
+}

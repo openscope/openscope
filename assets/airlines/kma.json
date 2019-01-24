@@ -1,0 +1,16 @@
+{
+    "icao": "kma",
+    "name": "Komiaviatrans",
+    "callsign": {
+        "name": "Komi Avia",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["E145", 5],
+            ["L410", 4]
+        ]
+    }
+}

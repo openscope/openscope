@@ -1,0 +1,15 @@
+{
+    "icao": "azo",
+    "name": "Azimuth Airlines",
+    "callsign": {
+        "name": "Azimuth",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["SU95", 8]
+        ]
+    }
+}

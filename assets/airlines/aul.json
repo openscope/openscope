@@ -1,0 +1,16 @@
+{
+    "icao": "aul",
+    "name": "Nordavia",
+    "callsign": {
+        "name": "Archangelsk Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B735", 8],
+            ["B737", 2]
+        ]
+    }
+}

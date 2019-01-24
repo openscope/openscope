@@ -1,0 +1,16 @@
+{
+    "icao": "glp",
+    "name": "Globus Airlines",
+    "callsign": {
+        "name": "Globus",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B738", 21],
+            ["B38M", 1]
+        ]
+    }
+}
