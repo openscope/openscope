@@ -46,8 +46,10 @@
         }
     ],
     "fixes": {
-        "KANET": ["N58d43.59", "E033d25.52"],
+        "BLZ"  : ["N60d01.03", "E037d45.32"],
+        "KANET": ["N58d44.00", "E033d27.87"],
         "KERIS": ["N59d48.93", "E032d20.30"],
+        "KTL"  : ["N61d14.30", "E046d42.78"],
         "LI709": ["N59d50.94", "E029d58.69"],
         "LI710": ["N59d43.97", "E029d54.68"],
         "LI711": ["N59d41.79", "E030d09.50"],
@@ -58,6 +60,8 @@
         "LI716": ["N59d53.27", "E030d19.97"],
         "LI717": ["N59d52.65", "E030d41.15"],
         "LI719": ["N59d49.77", "E030d06.70"],
+        "NUKSA": ["N60d35.03", "E031d56.45"],
+        "RELNI": ["N60d08.83", "E031d30.48"],
         "SUGIN": ["N59d31.92", "E032d06.60"]
     },
     "restricted": [
@@ -83,6 +87,9 @@
         }
     ],
     "airways": {
+        "B831": ["RELNI", "NUKSA"],
+        "N742": ["KERIS", "BLZ"],
+        "R30": ["KERIS", "KTL"],
         "R904": ["SUGIN", "KANET"]
     },
     "sids": {
@@ -90,13 +97,26 @@
             "icao": "KERIS1A",
             "name": "Keris One Alpha",
             "rwy": {
-                "ULLI28R": ["LI719", ["LI709", "S420-"], ["LI714", "S420-"], "LI715", ["LI716", "A80+"], ["LI717", "A130+"], ["KERIS", "A130+"]]
+                "ULLI28R": ["LI719", ["LI709", "S420-"], ["LI714", "S420-"], ["LI715", "S420-"], ["LI716", "A80+"], ["LI717", "A130+"], ["KERIS", "A130+"]]
             },
             "exitPoints": {
                 "KERIS": []
             },
             "draw": [
                 ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "KERIS*"]
+            ]
+        },
+        "RELNI1A": {
+            "icao": "RELNI1A",
+            "name": "Relni One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S420-"], ["LI714", "S420-"], ["LI715", "S420-"], ["LI716", "A80+"], ["LI717", "A130+"], ["RELNI", "A130+"]]
+            },
+            "exitPoints": {
+                "RELNI": []
+            },
+            "draw": [
+                ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "RELNI*"]
             ]
         },
         "SUGIN1A": {
@@ -129,16 +149,65 @@
                 ["kar", 3],
                 ["afl", 21],
                 ["nws", 2],
-                ["sbi", 7],
+                ["sbi", 7.14],
                 ["svr", 1.14],
                 ["glp", 1],
                 ["tya", 0.29],
                 ["kma", 0.14],
                 ["llm", 0.29],
-                ["sdm", 12],
+                ["sdm", 22.86],
                 ["uta", 3.5],
                 ["rsy", 0.43],
-                ["pbd", 3]
+                ["pbd", 4.86],
+                ["aul", 2.43],
+                ["azo", 1.71],
+                ["rwz", 1.29]
+            ]
+        },
+        {
+            "origin": "ulli",
+            "destination": "",
+            "category": "departure",
+            "route": "ULLI28R.KERIS1A.KERIS.R30.KTL",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.21,
+            "airlines": [
+                ["sdm", 2],
+                ["pbd", 1],
+                ["svr", 1.57],
+                ["uta", 0.57]
+            ]
+        },
+        {
+            "origin": "ulli",
+            "destination": "",
+            "category": "departure",
+            "route": "ULLI28R.KERIS1A.KERIS.N742.BLZ",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.24,
+            "airlines": [
+                ["sdm", 4],
+                ["sbi", 1.43],
+                ["aul", 0.43]
+            ]
+        },
+        {
+            "origin": "ulli",
+            "destination": "",
+            "category": "departure",
+            "route": "ULLI28R.RELNI1A.RELNI.B831.NUKSA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "rate": 0.34,
+            "airlines": [
+                ["sdm", 4.71],
+                ["aul", 3.14],
+                ["sbi", 0.29]
             ]
         }
     ],
