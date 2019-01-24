@@ -1,0 +1,15 @@
+{
+    "icao": "ssf",
+    "name": "Severstal Aircompany",
+    "callsign": {
+        "name": "Severstal",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2", 5]
+        ]
+    }
+}
