@@ -69,16 +69,19 @@
         }
     ],
     "fixes": {
+        "ABEDO": ["N59d58.10", "E035d49.97"],
         "AKARU": ["N60d11.19", "E028d37.91"],
         "ARNAT": ["N59d48.13", "E030d45.90"],
+        "ASNOL": ["N60d11.10", "E035d46.97"],
+        "BANRU": ["N59d30.92", "E032d56.87"],
         "BEPOL": ["N60d03.65", "E032d17.58"],
         "BIPRI": ["N59d44.87", "E030d33.94"],
-        "BLZ"  : ["N60d01.03", "E037d45.32"],
+        "DILGA": ["N58d09.38", "E031d13.47"],
         "GENPA": ["N59d06.37", "E031d48.72"],
         "KANET": ["N58d44.00", "E033d27.87"],
         "KERIS": ["N59d48.93", "E032d20.30"],
         "KOLET": ["N58d59.99", "E029d11.22"],
-        "KTL"  : ["N61d14.30", "E046d42.78"],
+        "LANSO": ["N57d44.97", "E033d28.62"],
         "LI709": ["N59d50.94", "E029d58.69"],
         "LI710": ["N59d43.97", "E029d54.68"],
         "LI711": ["N59d41.79", "E030d09.50"],
@@ -88,7 +91,9 @@
         "LI715": ["N59d55.27", "E030d11.10"],
         "LI716": ["N59d53.27", "E030d19.97"],
         "LI717": ["N59d52.65", "E030d41.15"],
+        "LI718": ["N59d55.42", "E029d45.28"],
         "LI719": ["N59d49.77", "E030d06.70"],
+        "LI720": ["N60d08.55", "E029d45.28"],
         "LI744": ["N59d29.09", "E029d43.14"],
         "LI745": ["N59d31.80", "E030d00.06"],
         "LI746": ["N59d31.86", "E030d27.65"],
@@ -113,12 +118,21 @@
         "LI765": ["N59d57.33", "E031d40.84"],
         "LI766": ["N59d51.80", "E031d09.73"],
         "MADID": ["N59d45.50", "E030d35.25"],
+        "NEROG": ["N59d20.00", "E034d58.87"],
         "NUKSA": ["N60d35.03", "E031d56.45"],
         "OBANA": ["N59d16.74", "E028d29.30"],
         "OBARI": ["N59d39.99", "E030d40.75"],
         "OKULO": ["N58d24.20", "E033d23.37"],
+        "PETAP": ["N60d20.33", "E029d48.14"],
+        "RANVA": ["N59d27.40", "E028d06.10"],
         "RELNI": ["N60d08.83", "E031d30.48"],
-        "SUGIN": ["N59d31.92", "E032d06.60"]
+        "RISAT": ["N58d29.32", "E027d29.77"],
+        "RUDUT": ["N60d30.78", "E032d42.62"],
+        "RUMOL": ["N59d07.21", "E030d50.29"],
+        "SUGIN": ["N59d31.92", "E032d06.60"],
+        "TURAL": ["N59d37.39", "E029d01.46"],
+        "UBORI": ["N58d19.08", "E028d53.57"],
+        "UTETA": ["N59d44.08", "E029d01.03"]
     },
     "restricted": [
     ],
@@ -143,11 +157,19 @@
         }
     ],
     "airways": {
+        "B141": ["TURAL", "RANVA"],
+        "B157": ["RUDUT", "BEPOL"],
         "B831": ["RELNI", "NUKSA"],
-        "N742": ["KERIS", "BLZ"],
-        "R30": ["KERIS", "KTL"],
+        "B924": ["RUMOL", "DILGA"],
+        "G711": ["SUGIN", "BANRU"],
+        "N742": ["KERIS", "ABEDO"],
+        "R1": ["UBORI", "KOLET"],
+        "R108": ["RISAT", "KOLET"],
+        "R822": ["ASNOL", "BEPOL"],
+        "R903": ["SUGIN", "NEROG"],
         "R904": ["SUGIN", "KANET"],
-        "R961": ["OKULO", "GENPA"]
+        "R961": ["OKULO", "GENPA"],
+        "R962": ["LANSO", "GENPA"]
     },
     "sids": {
         "KERIS1A": {
@@ -163,6 +185,19 @@
                 ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "KERIS*"]
             ]
         },
+        "PETAP1A": {
+            "icao": "PETAP1A",
+            "name": "Petap One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S225-"], "LI718", ["LI720", "A110+|A120-"], ["PETAP", "A120+"]]
+            },
+            "exitPoints": {
+                "PETAP": []
+            },
+            "draw": [
+                ["LI719", "LI709", "LI718", "LI720", "PETAP*"]
+            ]
+        },
         "RELNI1A": {
             "icao": "RELNI1A",
             "name": "Relni One Alpha",
@@ -176,6 +211,19 @@
                 ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "RELNI*"]
             ]
         },
+        "RUMOL1A": {
+            "icao": "RUMOL1A",
+            "name": "Rumol One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S225-"], ["LI710", "S225-"], ["LI711", "A70+"], ["LI712", "A100+"], ["LI713", "A140+"], ["RUMOL", "A150+"]]
+            },
+            "exitPoints": {
+                "RUMOL": []
+            },
+            "draw": [
+                ["LI719", "LI709", "LI710", "LI711", "LI712", "LI713", "RUMOL*"]
+            ]
+        },
         "SUGIN1A": {
             "icao": "SUGIN1A",
             "name": "Sugin One Alpha",
@@ -187,6 +235,32 @@
             },
             "draw": [
                 ["LI719", "LI709", "LI710", "LI711", "LI712", "LI713", "SUGIN*"]
+            ]
+        },
+        "TURAL1A": {
+            "icao": "TURAL1A",
+            "name": "Tural One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S225-"], ["TURAL", "A80+"]]
+            },
+            "exitPoints": {
+                "TURAL": []
+            },
+            "draw": [
+                ["LI719", "LI709", "TURAL*"]
+            ]
+        },
+        "UTETA1A": {
+            "icao": "UTETA1A",
+            "name": "Uteta One Alpha",
+            "rwy": {
+                "ULLI28R": ["LI719", ["LI709", "S225-"], ["UTETA", "A80+"]]
+            },
+            "exitPoints": {
+                "UTETA": []
+            },
+            "draw": [
+                ["LI719", "LI709", "UTETA*"]
             ]
         }
     },
@@ -318,23 +392,14 @@
     "spawnPatterns": [
         {
             "airlines": [
-                ["aul", 0.43],
+                ["aul", 1.14],
+                ["iae", 0.29],
+                ["iza", 0.57],
+                ["llm", 0.71],
+                ["pbd", 1.29],
                 ["sbi", 1.43],
-                ["sdm", 4.0]
-            ],
-            "altitude": "",
-            "category": "departure",
-            "destination": "",
-            "method": "random",
-            "origin": "ulli",
-            "rate": 0.24,
-            "route": "ULLI28R.KERIS1A.KERIS.N742.BLZ",
-            "speed": ""
-        },
-        {
-            "airlines": [
-                ["pbd", 1.0],
-                ["sdm", 2.0],
+                ["sdm", 11.0],
+                ["ssf", 1.0],
                 ["svr", 1.57],
                 ["uta", 0.57]
             ],
@@ -343,41 +408,94 @@
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.21,
-            "route": "ULLI28R.KERIS1A.KERIS.R30.KTL",
+            "rate": 0.82,
+            "route": "ULLI28R.KERIS1A.KERIS.N742.ABEDO",
             "speed": ""
         },
         {
             "airlines": [
-                ["aul", 3.14],
+                ["aul", 3.29],
+                ["kma", 0.43],
+                ["llm", 0.86],
+                ["rlu", 0.57],
                 ["sbi", 0.29],
                 ["sdm", 4.71],
-                ["ssf", 1.0]
+                ["ssf", 1.0],
+                ["syl", 0.29],
+                ["tya", 0.29]
             ],
             "altitude": "",
             "category": "departure",
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.38,
+            "rate": 0.49,
             "route": "ULLI28R.RELNI1A.RELNI.B831.NUKSA",
             "speed": ""
         },
         {
             "airlines": [
+                ["rwz", 0.71],
+                ["sbi", 0.29],
+                ["sdm", 2.0]
+            ],
+            "altitude": "",
+            "category": "departure",
+            "destination": "",
+            "method": "random",
+            "origin": "ulli",
+            "rate": 0.12,
+            "route": "ULLI28R.RUMOL1A.RUMOL.B924.DILGA",
+            "speed": ""
+        },
+        {
+            "airlines": [
+                ["kmw", 0.43],
+                ["sbi", 0.29],
+                ["ssf", 2.0],
+                ["vgv", 0.29]
+            ],
+            "altitude": "",
+            "category": "departure",
+            "destination": "",
+            "method": "random",
+            "origin": "ulli",
+            "rate": 0.12,
+            "route": "ULLI28R.SUGIN1A.SUGIN.G711.BANRU",
+            "speed": ""
+        },
+        {
+            "airlines": [
+                ["aul", 2.0],
+                ["pbd", 0.71],
+                ["rlu", 1.57],
+                ["sdm", 4.0]
+            ],
+            "altitude": "",
+            "category": "departure",
+            "destination": "",
+            "method": "random",
+            "origin": "ulli",
+            "rate": 0.35,
+            "route": "ULLI28R.SUGIN1A.SUGIN.R903.NEROG",
+            "speed": ""
+        },
+        {
+            "airlines": [
                 ["afl", 21.0],
-                ["aul", 2.43],
-                ["azo", 1.71],
+                ["aul", 1.14],
+                ["azo", 2.14],
                 ["glp", 1.0],
                 ["kar", 3.0],
                 ["kma", 0.14],
                 ["llm", 0.29],
                 ["nws", 2.0],
-                ["pbd", 4.86],
+                ["pbd", 7.29],
+                ["rlu", 1.71],
                 ["rsy", 0.43],
                 ["rwz", 1.29],
-                ["sbi", 7.14],
-                ["sdm", 22.86],
+                ["sbi", 7.43],
+                ["sdm", 19.86],
                 ["svr", 1.14],
                 ["tya", 0.29],
                 ["uta", 3.57]
@@ -387,22 +505,82 @@
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 3.05,
+            "rate": 3.07,
             "route": "ULLI28R.SUGIN1A.SUGIN.R904.KANET",
             "speed": ""
         },
         {
             "airlines": [
+                ["pbd", 1.0],
+                ["sdm", 4.0],
+                ["svr", 0.57]
+            ],
+            "altitude": "",
+            "category": "departure",
+            "destination": "",
+            "method": "random",
+            "origin": "ulli",
+            "rate": 0.23,
+            "route": "ULLI28R.TURAL1A.TURAL.B141.RANVA",
+            "speed": ""
+        },
+        {
+            "airlines": [
+                ["aul", 1.14],
+                ["iae", 0.29],
+                ["iza", 0.57],
+                ["kmw", 0.43],
+                ["llm", 1.14],
+                ["pbd", 1.29],
+                ["sbi", 1.43],
+                ["sdm", 11.0],
+                ["ssf", 3.0],
+                ["svr", 1.57],
+                ["uta", 0.57],
+                ["vgv", 0.29]
+            ],
+            "altitude": [6000, 16000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.95,
+            "route": "ASNOL.R822.BEPOL.BEPOL1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["aul", 1.14],
+                ["azo", 2.14],
+                ["pbd", 4.29],
+                ["rlu", 1.71],
+                ["rwz", 1.29],
+                ["sbi", 0.43],
+                ["sdm", 7.86]
+            ],
+            "altitude": [6000, 16000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.79,
+            "route": "LANSO.R962.GENPA.GENPA1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
                 ["afl", 21.0],
+                ["aul", 2.0],
                 ["glp", 1.0],
                 ["kar", 3.0],
                 ["kma", 0.14],
                 ["llm", 0.29],
                 ["nws", 2.0],
-                ["pbd", 3.0],
+                ["pbd", 3.71],
+                ["rlu", 1.57],
                 ["rsy", 0.43],
-                ["sbi", 7.0],
-                ["sdm", 12.0],
+                ["sbi", 7.29],
+                ["sdm", 16.0],
                 ["svr", 1.14],
                 ["tya", 0.29],
                 ["uta", 3.57]
@@ -412,8 +590,59 @@
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 2.29,
+            "rate": 2.64,
             "route": "OKULO.R961.GENPA.GENPA1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["pbd", 1.0],
+                ["sdm", 4.0],
+                ["svr", 0.57]
+            ],
+            "altitude": [6000, 25000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.23,
+            "route": "RISAT.R108.KOLET.KOLET1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["aul", 3.29],
+                ["kma", 0.43],
+                ["llm", 0.43],
+                ["rlu", 0.57],
+                ["sbi", 0.29],
+                ["sdm", 4.71],
+                ["ssf", 1.0],
+                ["syl", 0.29],
+                ["tya", 0.29]
+            ],
+            "altitude": [6000, 16000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.47,
+            "route": "RUDUT.B157.BEPOL.BEPOL1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["rwz", 0.71],
+                ["sbi", 0.29],
+                ["sdm", 2.0]
+            ],
+            "altitude": [6000, 25000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.12,
+            "route": "UBORI.R1.KOLET.KOLET1B.ULLI28L",
             "speed": 225
         }
     ],

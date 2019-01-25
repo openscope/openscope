@@ -1,0 +1,15 @@
+{
+    "icao": "vgv",
+    "name": "Vologda Air Company",
+    "callsign": {
+        "name": "Vologda Air",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["AN24", 5]
+        ]
+    }
+}

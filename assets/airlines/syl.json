@@ -1,0 +1,18 @@
+{
+    "icao": "syl",
+    "name": "Yakutia Airlines",
+    "callsign": {
+        "name": "Air Yakutia",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B737", 1],
+            ["B738", 5],
+            ["SU95", 5],
+            ["AN24", 7]
+        ]
+    }
+}
