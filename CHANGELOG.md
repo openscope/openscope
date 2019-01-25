@@ -4,6 +4,7 @@
 
 
 ### Bugfixes
+- [#1292](https://github.com/openscope/openscope/issues/1292) - Disallow aircraft taking off from taxiing
 
 
 ### Enhancements & Refactors

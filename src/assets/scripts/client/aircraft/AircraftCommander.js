@@ -589,6 +589,10 @@ export default class AircraftCommander {
             return [false, readback];
         }
 
+        if (aircraftModel.flightPhase === FLIGHT_PHASE.TAKEOFF) {
+            return [false, 'unable to taxi, we\'re already taking off'];
+        }
+
         return aircraftModel.taxiToRunway(runwayModel);
     }
 
