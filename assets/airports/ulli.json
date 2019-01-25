@@ -92,10 +92,12 @@
         "AKARU": ["N60d11.19", "E028d37.91"],
         "ARNAT": ["N59d48.13", "E030d45.90"],
         "ASNOL": ["N60d11.10", "E035d46.97"],
+        "ATLUM": ["N59d45.92", "E027d40.13"],
         "BANRU": ["N59d30.92", "E032d56.87"],
         "BEPOL": ["N60d03.65", "E032d17.58"],
         "BIPRI": ["N59d44.87", "E030d33.94"],
         "DILGA": ["N58d09.38", "E031d13.47"],
+        "DITEL": ["N59d03.08", "E027d46.27"],
         "GENPA": ["N59d06.37", "E031d48.72"],
         "KANET": ["N58d44.00", "E033d27.87"],
         "KERIS": ["N59d48.93", "E032d20.30"],
@@ -142,6 +144,7 @@
         "OBANA": ["N59d16.74", "E028d29.30"],
         "OBARI": ["N59d39.99", "E030d40.75"],
         "OKULO": ["N58d24.20", "E033d23.37"],
+        "OLEMA": ["N60d14.00", "E027d28.50"],
         "PETAP": ["N60d20.33", "E029d48.14"],
         "RANVA": ["N59d27.40", "E028d06.10"],
         "RELNI": ["N60d08.83", "E031d30.48"],
@@ -180,7 +183,9 @@
         "B157": ["RUDUT", "BEPOL"],
         "B831": ["RELNI", "NUKSA"],
         "B924": ["RUMOL", "DILGA"],
+        "B965": ["UTETA", "ATLUM"],
         "G711": ["SUGIN", "BANRU"],
+        "L24": ["OLEMA", "AKARU"],
         "N742": ["KERIS", "ABEDO"],
         "R1": ["UBORI", "KOLET"],
         "R108": ["RISAT", "KOLET"],
@@ -188,7 +193,8 @@
         "R903": ["SUGIN", "NEROG"],
         "R904": ["SUGIN", "KANET"],
         "R961": ["OKULO", "GENPA"],
-        "R962": ["LANSO", "GENPA"]
+        "R962": ["LANSO", "GENPA"],
+        "R964": ["DITEL", "OBANA"]
     },
     "sids": {
         "KERIS1A": {
@@ -412,8 +418,11 @@
         {
             "airlines": [
                 ["aul", 1.14],
+                ["chh", 0.14],
+                ["csc", 0.29],
                 ["iae", 0.29],
                 ["iza", 0.57],
+                ["kzr", 1.71],
                 ["llm", 0.71],
                 ["pbd", 1.29],
                 ["sbi", 1.43],
@@ -427,7 +436,7 @@
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.82,
+            "rate": 0.9,
             "route": "ULLI28R.KERIS1A.KERIS.N742.ABEDO",
             "speed": ""
         },
@@ -454,16 +463,22 @@
         },
         {
             "airlines": [
+                ["bru", 4.29],
+                ["mld", 1.0],
+                ["nws", 0.14],
+                ["pbd", 1.0],
                 ["rwz", 0.71],
                 ["sbi", 0.29],
-                ["sdm", 2.0]
+                ["sdm", 3.57],
+                ["svr", 0.29],
+                ["thy", 1.0]
             ],
             "altitude": "",
             "category": "departure",
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.12,
+            "rate": 0.51,
             "route": "ULLI28R.RUMOL1A.RUMOL.B924.DILGA",
             "speed": ""
         },
@@ -486,37 +501,45 @@
         {
             "airlines": [
                 ["aul", 2.0],
+                ["avj", 0.57],
                 ["pbd", 0.71],
                 ["rlu", 1.57],
-                ["sdm", 4.0]
+                ["sdm", 4.71],
+                ["smr", 0.43],
+                ["svr", 1.86],
+                ["uzb", 2.29]
             ],
             "altitude": "",
             "category": "departure",
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.35,
+            "rate": 0.59,
             "route": "ULLI28R.SUGIN1A.SUGIN.R903.NEROG",
             "speed": ""
         },
         {
             "airlines": [
                 ["afl", 21.0],
-                ["aul", 1.14],
+                ["ahy", 0.57],
+                ["aul", 1.29],
                 ["azo", 2.14],
                 ["glp", 1.0],
                 ["kar", 3.0],
                 ["kma", 0.14],
                 ["llm", 0.29],
                 ["nws", 2.0],
-                ["pbd", 7.29],
+                ["pbd", 8.29],
+                ["qtr", 1.0],
                 ["rlu", 1.71],
                 ["rsy", 0.43],
                 ["rwz", 1.29],
                 ["sbi", 7.43],
-                ["sdm", 19.86],
-                ["svr", 1.14],
+                ["sdm", 20.14],
+                ["svr", 1.71],
+                ["tua", 0.43],
                 ["tya", 0.29],
+                ["uae", 0.86],
                 ["uta", 3.57]
             ],
             "altitude": "",
@@ -524,31 +547,59 @@
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 3.07,
+            "rate": 3.27,
             "route": "ULLI28R.SUGIN1A.SUGIN.R904.KANET",
             "speed": ""
         },
         {
             "airlines": [
-                ["pbd", 1.0],
-                ["sdm", 4.0],
-                ["svr", 0.57]
+                ["afr", 0.57],
+                ["baw", 0.71],
+                ["bti", 3.0],
+                ["csa", 0.43],
+                ["dlh", 3.0],
+                ["klm", 1.0],
+                ["lot", 1.0],
+                ["pbd", 2.71],
+                ["sbi", 0.57],
+                ["sdm", 16.43],
+                ["svr", 0.57],
+                ["swr", 0.71],
+                ["vlg", 0.29],
+                ["wzz", 0.43]
             ],
             "altitude": "",
             "category": "departure",
             "destination": "",
             "method": "random",
             "origin": "ulli",
-            "rate": 0.23,
+            "rate": 1.31,
             "route": "ULLI28R.TURAL1A.TURAL.B141.RANVA",
             "speed": ""
         },
         {
             "airlines": [
+                ["fin", 2.86],
+                ["sas", 0.43]
+            ],
+            "altitude": "",
+            "category": "departure",
+            "destination": "",
+            "method": "random",
+            "origin": "ulli",
+            "rate": 0.14,
+            "route": "ULLI28R.UTETA1A.UTETA.B965.ATLUM",
+            "speed": ""
+        },
+        {
+            "airlines": [
                 ["aul", 1.14],
+                ["chh", 0.14],
+                ["csc", 0.29],
                 ["iae", 0.29],
                 ["iza", 0.57],
                 ["kmw", 0.43],
+                ["kzr", 1.71],
                 ["llm", 1.14],
                 ["pbd", 1.29],
                 ["sbi", 1.43],
@@ -563,26 +614,50 @@
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 0.95,
+            "rate": 1.04,
             "route": "ASNOL.R822.BEPOL.BEPOL1B.ULLI28L",
             "speed": 225
         },
         {
             "airlines": [
-                ["aul", 1.14],
+                ["afr", 0.57],
+                ["baw", 0.71],
+                ["dlh", 2.0],
+                ["klm", 1.0],
+                ["pbd", 0.86],
+                ["sdm", 5.86],
+                ["swr", 0.71]
+            ],
+            "altitude": [7000, 25000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.49,
+            "route": "DITEL.R964.OBANA.OBANA1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["ahy", 0.57],
+                ["aul", 1.29],
                 ["azo", 2.14],
-                ["pbd", 4.29],
+                ["pbd", 5.29],
+                ["qtr", 1.0],
                 ["rlu", 1.71],
                 ["rwz", 1.29],
                 ["sbi", 0.43],
-                ["sdm", 7.86]
+                ["sdm", 8.14],
+                ["svr", 0.57],
+                ["tua", 0.43],
+                ["uae", 0.86]
             ],
             "altitude": [6000, 16000],
             "category": "arrival",
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 0.79,
+            "rate": 0.99,
             "route": "LANSO.R962.GENPA.GENPA1B.ULLI28L",
             "speed": 225
         },
@@ -590,6 +665,7 @@
             "airlines": [
                 ["afl", 21.0],
                 ["aul", 2.0],
+                ["avj", 0.57],
                 ["glp", 1.0],
                 ["kar", 3.0],
                 ["kma", 0.14],
@@ -599,32 +675,55 @@
                 ["rlu", 1.57],
                 ["rsy", 0.43],
                 ["sbi", 7.29],
-                ["sdm", 16.0],
-                ["svr", 1.14],
+                ["sdm", 16.71],
+                ["smr", 0.43],
+                ["svr", 3.0],
                 ["tya", 0.29],
-                ["uta", 3.57]
+                ["uta", 3.57],
+                ["uzb", 2.29]
             ],
             "altitude": [6000, 16000],
             "category": "arrival",
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 2.64,
+            "rate": 2.89,
             "route": "OKULO.R961.GENPA.GENPA1B.ULLI28L",
             "speed": 225
         },
         {
             "airlines": [
-                ["pbd", 1.0],
-                ["sdm", 4.0],
-                ["svr", 0.57]
+                ["fin", 2.86],
+                ["sas", 0.43]
+            ],
+            "altitude": [13000, 25000],
+            "category": "arrival",
+            "destination": "ulli",
+            "method": "random",
+            "origin": "",
+            "rate": 0.14,
+            "route": "OLEMA.L24.AKARU.AKARU1B.ULLI28L",
+            "speed": 225
+        },
+        {
+            "airlines": [
+                ["bti", 3.0],
+                ["csa", 0.43],
+                ["dlh", 1.0],
+                ["lot", 1.0],
+                ["pbd", 1.86],
+                ["sbi", 0.57],
+                ["sdm", 10.57],
+                ["svr", 0.57],
+                ["vlg", 0.29],
+                ["wzz", 0.43]
             ],
             "altitude": [6000, 25000],
             "category": "arrival",
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 0.23,
+            "rate": 0.82,
             "route": "RISAT.R108.KOLET.KOLET1B.ULLI28L",
             "speed": 225
         },
@@ -651,16 +750,22 @@
         },
         {
             "airlines": [
+                ["bru", 4.29],
+                ["mld", 1.0],
+                ["nws", 0.14],
+                ["pbd", 1.0],
                 ["rwz", 0.71],
                 ["sbi", 0.29],
-                ["sdm", 2.0]
+                ["sdm", 3.57],
+                ["svr", 0.29],
+                ["thy", 1.0]
             ],
             "altitude": [6000, 25000],
             "category": "arrival",
             "destination": "ulli",
             "method": "random",
             "origin": "",
-            "rate": 0.12,
+            "rate": 0.51,
             "route": "UBORI.R1.KOLET.KOLET1B.ULLI28L",
             "speed": 225
         }

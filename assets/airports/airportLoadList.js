@@ -504,7 +504,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
            {
                icao: 'ulli',
-               level: 'medium',
+               level: 'beginner',
                name: 'Sankt-Peterburg Pulkovo Airport',
                premium: false
         // },
