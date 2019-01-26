@@ -469,16 +469,19 @@ export default class AirportModel {
      * @method prepareCircularRestrictedArea
      * @param center {array<number>}
      * @param radius {number}   circle radius, in nm
+     * @return {array}
+     * @private
      */
-    getCircularCoordinates(center, radius) {
+    _getCircularCoordinates(center, radius) {
         const NUM_POINTS = 32;
         const delta = tau() / NUM_POINTS;
         let coords = [];
-        let centerPos = new StaticPositionModel(center, this._positionModel, this._magneticNorth);
+        const centerPos = new StaticPositionModel(center, this._positionModel, this._magneticNorth);
 
         for (let i = 0; i < NUM_POINTS; i++) {
-            let bearing = delta * i;
+            const bearing = delta * i;
             const rawPoint = centerPos.generateCoordinatesFromBearingAndDistance(bearing, radius);
+
             coords.push(DynamicPositionModel.calculateRelativePosition(rawPoint, this._positionModel, this.magneticNorth));
         }
 
@@ -507,7 +510,7 @@ export default class AirportModel {
 
             if (area.radius && area.center) {
                 obj.center = DynamicPositionModel.calculateRelativePosition(area.center, this._positionModel, this.magneticNorth);
-                obj.coordinates = this.getCircularCoordinates(area.center, area.radius);
+                obj.coordinates = this._getCircularCoordinates(area.center, area.radius);
             } else {
                 obj.coordinates = _map(
                     area.coordinates,
