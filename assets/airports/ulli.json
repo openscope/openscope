@@ -98,11 +98,13 @@
         "BIPRI": ["N59d44.87", "E030d33.94"],
         "DILGA": ["N58d09.38", "E031d13.47"],
         "DITEL": ["N59d03.08", "E027d46.27"],
+        "GEBKA": ["N59d50.51", "E029d56.01"],
         "GENPA": ["N59d06.37", "E031d48.72"],
         "KANET": ["N58d44.00", "E033d27.87"],
         "KERIS": ["N59d48.93", "E032d20.30"],
         "KOLET": ["N58d59.99", "E029d11.22"],
         "LANSO": ["N57d44.97", "E033d28.62"],
+        "LEPTO": ["N59d51.16", "E029d57.28"],
         "LI709": ["N59d50.94", "E029d58.69"],
         "LI710": ["N59d43.97", "E029d54.68"],
         "LI711": ["N59d41.79", "E030d09.50"],
@@ -115,6 +117,13 @@
         "LI718": ["N59d55.42", "E029d45.28"],
         "LI719": ["N59d49.77", "E030d06.70"],
         "LI720": ["N60d08.55", "E029d45.28"],
+        "LI732": ["N60d08.33", "E029d13.74"],
+        "LI733": ["N60d06.93", "E029d30.61"],
+        "LI739": ["N60d02.44", "E029d39.00"],
+        "LI740": ["N59d59.33", "E029d31.78"],
+        "LI741": ["N59d55.09", "E029d27.45"],
+        "LI742": ["N59d50.35", "E029d26.64"],
+        "LI743": ["N59d45.80", "E029d29.45"],
         "LI744": ["N59d29.09", "E029d43.14"],
         "LI745": ["N59d31.80", "E030d00.06"],
         "LI746": ["N59d31.86", "E030d27.65"],
@@ -138,7 +147,10 @@
         "LI764": ["N59d33.52", "E030d51.95"],
         "LI765": ["N59d57.33", "E031d40.84"],
         "LI766": ["N59d51.80", "E031d09.73"],
+        "LI768": ["N59d50.18", "E029d58.25"],
+        "LI785": ["N59d49.01", "E030d06.22"],
         "MADID": ["N59d45.50", "E030d35.25"],
+        "NANEB": ["N59d56.13", "E029d50.69"],
         "NEROG": ["N59d20.00", "E034d58.87"],
         "NUKSA": ["N60d35.03", "E031d56.45"],
         "OBANA": ["N59d16.74", "E028d29.30"],
@@ -210,6 +222,19 @@
                 ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "KERIS*"]
             ]
         },
+        "KERIS1B": {
+            "icao": "KERIS1B",
+            "name": "Keris One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["LI714", "S225-"], ["LI715", "S225-"], ["LI716", "A80+"], ["LI717", "A130+"], ["KERIS", "A130+"]]
+            },
+            "exitPoints": {
+                "KERIS": []
+            },
+            "draw": [
+                ["LI785", "LI768", "LI714", "LI715", "LI716", "LI717", "KERIS*"]
+            ]
+        },
         "PETAP1A": {
             "icao": "PETAP1A",
             "name": "Petap One Alpha",
@@ -221,6 +246,19 @@
             },
             "draw": [
                 ["LI719", "LI709", "LI718", "LI720", "PETAP*"]
+            ]
+        },
+        "PETAP1B": {
+            "icao": "PETAP1B",
+            "name": "Petap One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], "LI718", ["LI720", "A110+|A120-"], ["PETAP", "A120+"]]
+            },
+            "exitPoints": {
+                "PETAP": []
+            },
+            "draw": [
+                ["LI785", "LI768", "LI718", "LI720", "PETAP*"]
             ]
         },
         "RELNI1A": {
@@ -236,6 +274,19 @@
                 ["LI719", "LI709", "LI714", "LI715", "LI716", "LI717", "RELNI*"]
             ]
         },
+        "RELNI1B": {
+            "icao": "RELNI1B",
+            "name": "Relni One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["LI714", "S225-"], ["LI715", "S225-"], ["LI716", "A80+"], ["LI717", "A130+"], ["RELNI", "A130+"]]
+            },
+            "exitPoints": {
+                "RELNI": []
+            },
+            "draw": [
+                ["LI785", "LI768", "LI714", "LI715", "LI716", "LI717", "RELNI*"]
+            ]
+        },
         "RUMOL1A": {
             "icao": "RUMOL1A",
             "name": "Rumol One Alpha",
@@ -247,6 +298,19 @@
             },
             "draw": [
                 ["LI719", "LI709", "LI710", "LI711", "LI712", "LI713", "RUMOL*"]
+            ]
+        },
+        "RUMOL1B": {
+            "icao": "RUMOL1B",
+            "name": "Rumol One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["LI710", "S225-"], ["LI711", "A70+"], ["LI712", "A100+"], ["LI713", "A140+"], ["RUMOL", "A150+"]]
+            },
+            "exitPoints": {
+                "RUMOL": []
+            },
+            "draw": [
+                ["LI785", "LI768", "LI710", "LI711", "LI712", "LI713", "RUMOL*"]
             ]
         },
         "SUGIN1A": {
@@ -262,6 +326,19 @@
                 ["LI719", "LI709", "LI710", "LI711", "LI712", "LI713", "SUGIN*"]
             ]
         },
+        "SUGIN1B": {
+            "icao": "SUGIN1B",
+            "name": "Sugin One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["LI710", "S225-"], ["LI711", "A70+"], ["LI712", "A100+"], ["LI713", "A140+"], ["SUGIN", "A150+"]]
+            },
+            "exitPoints": {
+                "SUGIN": []
+            },
+            "draw": [
+                ["LI785", "LI768", "LI710", "LI711", "LI712", "LI713", "SUGIN*"]
+            ]
+        },
         "TURAL1A": {
             "icao": "TURAL1A",
             "name": "Tural One Alpha",
@@ -273,6 +350,19 @@
             },
             "draw": [
                 ["LI719", "LI709", "TURAL*"]
+            ]
+        },
+        "TURAL1B": {
+            "icao": "TURAL1B",
+            "name": "Tural One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["TURAL", "A80+"]]
+            },
+            "exitPoints": {
+                "TURAL": []
+            },
+            "draw": [
+                ["LI785", "LI768", "TURAL*"]
             ]
         },
         "UTETA1A": {
@@ -287,9 +377,46 @@
             "draw": [
                 ["LI719", "LI709", "UTETA*"]
             ]
+        },
+        "UTETA1B": {
+            "icao": "UTETA1B",
+            "name": "Uteta One Bravo",
+            "rwy": {
+                "ULLI28L": ["LI785", ["LI768", "S225-"], ["UTETA", "A80+"]]
+            },
+            "exitPoints": {
+                "UTETA": []
+            },
+            "draw": [
+                ["LI719", "LI709", "UTETA*"]
+            ]
         }
     },
     "stars": {
+        "AKARU1A": {
+            "icao": "AKARU1A",
+            "name": "Akaru One Alpha",
+            "entryPoints": {
+                "AKARU": [["AKARU", "A150-"]]
+            },
+            "body": [
+                ["LI732", "A100-"],
+                ["LI733", "A60"],
+                ["LI739", "A60|S225"],
+                ["LI740", "S225"],
+                ["LI741", "S225"],
+                ["LI742", "S220"],
+                ["LI743", "A60|S220"],
+                ["NANEB", "A25+|A35-"]
+            ],
+            "rwy": {
+                "ULLI10L": [["LEPTO", "A25"]],
+                "ULLI10R": [["GEBKA", "A25"]]
+            },
+            "draw": [
+                ["AKARU*", "LI732", "LI733", "LI739", "LI740", "LI741", "LI742", "LI743", "NANEB"]
+            ]
+        },
         "AKARU1B": {
             "icao": "AKARU1B",
             "name": "Akaru One Bravo",
