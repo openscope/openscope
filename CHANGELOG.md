@@ -9,6 +9,7 @@
 ### Enhancements & Refactors
 - [#1247](https://github.com/openscope/openscope/issues/1247) - Determine initial climb altitude from the SID
 - [#1290](https://github.com/openscope/openscope/issues/1290) - Add Pull Reminders badge to repository readme
+- [#1296](https://github.com/openscope/openscope/issues/1296) - Allow defining restricted areas as circles
 
 
 # 6.9.1 (January 4, 2019)

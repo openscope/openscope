@@ -20,6 +20,7 @@ import {
     cos,
     round
 } from '../math/core';
+import { tau } from '../math/circle';
 import {
     vlen,
     vsub,
@@ -465,6 +466,27 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
+     * @method prepareCircularRestrictedArea
+     * @param center {array<number>}
+     * @param radius {number}   circle radius, in nm
+     */
+    getCircularCoordinates(center, radius) {
+        const NUM_POINTS = 32;
+        const delta = tau() / NUM_POINTS;
+        let coords = [];
+        let centerPos = new StaticPositionModel(center, this._positionModel, this._magneticNorth);
+
+        for (let i = 0; i < NUM_POINTS; i++) {
+            let bearing = delta * i;
+            const rawPoint = centerPos.generateCoordinatesFromBearingAndDistance(bearing, radius);
+            coords.push(DynamicPositionModel.calculateRelativePosition(rawPoint, this._positionModel, this.magneticNorth));
+        }
+
+        return coords;
+    }
+
+    /**
+     * @for AirportModel
      * @method buildRestrictedAreas
      * @param restrictedAreas
      */
@@ -482,26 +504,32 @@ export default class AirportModel {
             }
 
             obj.height = parseElevation(area.height);
-            obj.coordinates = _map(
-                area.coordinates,
-                (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
-            );
 
-            let coords_max = obj.coordinates[0];
-            let coords_min = obj.coordinates[0];
+            if (area.radius && area.center) {
+                obj.center = DynamicPositionModel.calculateRelativePosition(area.center, this._positionModel, this.magneticNorth);
+                obj.coordinates = this.getCircularCoordinates(area.center, area.radius);
+            } else {
+                obj.coordinates = _map(
+                    area.coordinates,
+                    (v) => DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth)
+                );
 
-            _forEach(obj.coordinates, (v) => {
-                coords_max = [
-                    Math.max(v[0], coords_max[0]),
-                    Math.max(v[1], coords_max[1])
-                ];
-                coords_min = [
-                    Math.min(v[0], coords_min[0]),
-                    Math.min(v[1], coords_min[1])
-                ];
-            });
+                let coords_max = obj.coordinates[0];
+                let coords_min = obj.coordinates[0];
 
-            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+                _forEach(obj.coordinates, (v) => {
+                    coords_max = [
+                        Math.max(v[0], coords_max[0]),
+                        Math.max(v[1], coords_max[1])
+                    ];
+                    coords_min = [
+                        Math.min(v[0], coords_min[0]),
+                        Math.min(v[1], coords_min[1])
+                    ];
+                });
+
+                obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+            }
 
             this.restricted_areas.push(obj);
         });
