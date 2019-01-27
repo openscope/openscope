@@ -1252,7 +1252,11 @@ export default class AircraftModel {
      */
     taxiToRunway(runwayModel) {
         if (this.isAirborne()) {
-            return [false, 'unable to taxi, we\'re airborne'];
+            return [false, 'unable to taxi, we\'re already airborne'];
+        }
+
+        if (this.flightPhase === FLIGHT_PHASE.TAKEOFF) {
+            return [false, 'unable to taxi, we\'re already taking off'];
         }
 
         if (this.isArrival()) {

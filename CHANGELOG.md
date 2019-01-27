@@ -4,6 +4,7 @@
 
 
 ### Bugfixes
+- [#1292](https://github.com/openscope/openscope/issues/1292) - Ensure taxi instructions are ignored when aircraft is taking off
 
 
 ### Enhancements & Refactors
