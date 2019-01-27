@@ -27,34 +27,31 @@ Runways 18 and 25C are preferred for takeoff.
 | N         | MARUN                    | 25C              |
 | NE        | TOBAK                    | 25C              |
 | SW        | SOBRA, ULKIG             | 18               |
-| SE        | NOMBO, DKB, RATIM, ROTEN | 18               |
+| SE        | AKONI                    | 18               |
 | E         | SULUS                    | 18               |
 
 There are also rules as to how the runways should be used:
 
 | Runway                     | Orientation    | Rule                                                |
+|:---------------------------|:---------------|:----------------------------------------------------|
 | 07C/25C (runway north)     | East to West   | Mainly take-offs, but landings are allowed          |
 | 07R/25L (runway south)     | East to West   | Takeoffs and landings                               |
 | 07L/25R (runway northwest) | East to West   | Landings only (not allowed for A380, B74x and MD11) |
 | 18 (runway northwest)      | North to South | Takeoffs in Southbound direction only               |
 
-Runway 18 *is a one way runway*. There are no markings at the opposite end of the runway. 
+Runway 18 *is a one way runway*. There are no markings at the opposite end of the runway.
 You can read more about why runway 18 is a one way runway on [StackExchange](https://aviation.stackexchange.com/a/20807).
 
 
 ### Instrument Procedures
-##### Departures 
+##### Departures
 Frankfurt has a variety of departures. However, there are certain rules as to when certain departures can be used.  
 
 | Departure Name     | Rule                                                                                                              |
 |:-------------------|:-----------------------------------------------------------------------------------------------------------------:|
-| Dinkelsbuehl (DKB) | Only for flights terminating within the EDMM (Muenchen) FIR                                                       |
 | KOMIB              | Only for flights terminating within the EDDN (Nuernberg) area                                                     |
 | Metro (MTR)        | Special permission required, non RNAV equipped aircraft only                                                      |
-| NOMBO              | Not for propeller aircraft or flights terminaing with the EDMM FIR or EDDN area (props should file RATIM instead) |
-| RATIM              | Only for propeller aircraft; not for flights terminating with the EDDM FIR or EDDN area                           |
 | Ried (RID)         | Special permission required, non RNAV equipped aircraft only                                                      |
-| ROTEN              | Only for flights terminating within the EDDN area                                                                 |
 | SOBRA              | For flights intending to proceed via Y180/Y181 airways                                                            |
 | SULUS              | Not for flights terminating within the EDDN area                                                                  |
 | Taunus (TAU)       | Special permission required; non RNAV equipped aircraft only                                                      |
@@ -88,7 +85,7 @@ Runway 08/26, 1000m, asphalt
 Runway 08R/26L, 1000m, grass
 
 ##### Frankfurt-Egelsbach Airport, EDFE
-Frankfurt-Egelsbach (Flugplatz Frankfurt-Egelsbach) is the busiest general aviation airport in Germany. In 2007, it saw 77,000 aircraft movements. 
+Frankfurt-Egelsbach (Flugplatz Frankfurt-Egelsbach) is the busiest general aviation airport in Germany. In 2007, it saw 77,000 aircraft movements.
 
 Runway 08/26, 1400m, asphalt
 Runway 08/26, 670m, grass
