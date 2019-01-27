@@ -96,14 +96,16 @@ export default class RadarTargetModel {
         this._hasFullDataBlock = true;
 
         /**
-         * Boolean value representing whether the radar target should have a
-         * 'halo' (circle with a given radius) drawn around it.
+         * Radius of the halo to be drawn around the radar taget
+         *
+         * If no halo is to be drawn, the value will be INVALID_NUMBER
          *
          * @for RadarTargetModel
-         * @property _hasHalo
-         * @type {boolean}
+         * @property _haloRadius
+         * @type {number}
+         * @default INVALID_NUMBER
          */
-        this._hasHalo = false;
+        this._haloRadius = INVALID_NUMBER;
 
         /**
          * Boolean value representing whether the full data block is being suppressed
@@ -233,11 +235,20 @@ export default class RadarTargetModel {
 
     /**
      * @for RadarTargetModel
+     * @property haloRadius
+     * @type {number}
+     */
+    get haloRadius() {
+        return this._haloRadius;
+    }
+
+    /**
+     * @for RadarTargetModel
      * @property hasHalo
      * @type {boolean}
      */
     get hasHalo() {
-        return this._hasHalo;
+        return this._haloRadius > 0;
     }
 
     /**
@@ -312,7 +323,7 @@ export default class RadarTargetModel {
         this._dataBlockLeaderDirection = INVALID_NUMBER;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._hasFullDataBlock = true;
-        this._hasHalo = false;
+        this._haloRadius = false;
         this._hasSuppressedDataBlock = false;
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
@@ -493,6 +504,47 @@ export default class RadarTargetModel {
     }
 
     /**
+     * Clear any existing halo
+     *
+     * @for RadarTargetModel
+     * @method removeHalo
+     * @return {array} [success of operation, system's response]
+     */
+    removeHalo() {
+        if (!this.hasHalo) {
+            return;
+        }
+
+        this._haloRadius = INVALID_NUMBER;
+
+        return [true, 'TOGGLE HALO'];
+    }
+
+    /**
+     * Set the radius of the halo
+     *
+     * @for RadarTargetModel
+     * @method setHaloRadius
+     * @param radius {number}
+     * @return {array} [success of operation, system's response]
+     */
+    setHaloRadius(radius) {
+        if (!this.hasHalo) {
+            this._haloRadius = radius;
+
+            return [true, 'TOGGLE HALO'];
+        }
+
+        if (radius === this._haloRadius) {
+            return this.removeHalo();
+        }
+
+        this._haloRadius = radius;
+
+        return [true, 'ADJUST HALO'];
+    }
+
+    /**
      * Set the value of the scratchpad
      *
      * @for RadarTargetModel
@@ -504,19 +556,6 @@ export default class RadarTargetModel {
         this.scratchPadText = scratchPadText;
 
         return [true, 'SET SCRATCHPAD'];
-    }
-
-    /**
-     * Toggle halo (circle) on and off
-     *
-     * @for RadarTargetModel
-     * @method toggleHalo
-     * @return {array} [success of operation, system's response]
-     */
-    toggleHalo() {
-        this._hasHalo = !this._hasHalo;
-
-        return [true, 'TOGGLE HALO'];
     }
 
     /**
