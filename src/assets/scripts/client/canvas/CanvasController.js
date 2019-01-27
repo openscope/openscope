@@ -910,7 +910,7 @@ export default class CanvasController {
      */
     _drawAircraftHalo(cc, radarTargetModel) {
         const { aircraftModel } = radarTargetModel;
-        const aircraftAlerts = aircraftModel.hasAlerts();
+        const aircraftAlerts = aircraftModel.getAlerts();
         const radiusNm = 3;
 
         cc.save();
