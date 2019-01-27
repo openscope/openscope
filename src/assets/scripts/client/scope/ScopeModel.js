@@ -231,16 +231,19 @@ export default class ScopeModel {
      * @return result {array} [success of operation, system's response]
      */
     setHaloRadius(radarTargetModel, radius) {
-        if (!radius) {
-            radius = this._theme.SCOPE.HALO_DEFAULT_SIZE_NM;
-        }
+        const haloDefaultRadius = this._theme.SCOPE.HALO_DEFAULT_RADIUS_NM;
+        const haloMaxRadius = this._theme.SCOPE.HALO_MAX_RADIUS_NM;
 
         if (radius <= 0) {
             return [false, 'ERR: HALO SIZE INVALID'];
         }
 
-        if (radius > this._theme.SCOPE.HALO_MAX_SIZE_NM) {
-            return [false, 'ERR: HALO MAX 20 NM'];
+        if (radius > haloMaxRadius) {
+            return [false, `ERR: HALO MAX ${haloMaxRadius} NM`];
+        }
+
+        if (!radius) {
+            radius = haloDefaultRadius;
         }
 
         return radarTargetModel.setHaloRadius(radius);
