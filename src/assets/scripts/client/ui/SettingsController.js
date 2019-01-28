@@ -51,6 +51,7 @@ export default class SettingsController {
      */
     init() {
         const $options = $(UI_SETTINGS_MODAL_TEMPLATE);
+        const $version = this._buildVersionTemplate();
         const descriptions = GameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
@@ -62,6 +63,7 @@ export default class SettingsController {
             $options.append($container);
         });
 
+        $options.append($version);
         this.$element.append($options);
 
         return this;
@@ -126,5 +128,25 @@ export default class SettingsController {
         }
 
         return `<option value="${optionData.value}">${optionData.displayLabel}</option>`;
+    }
+
+    /**
+     * Build the html for the simulator version psuedo-option.
+     *
+     * @for SettingsController
+     * @method _buildVersionTemplate
+     * @return {JQuery|HTML element}
+     */
+    _buildVersionTemplate() {
+        const simulatorVersion = GameController.game.version;
+        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
+        const $version = $(UI_OPTION_SELECTOR_TEMPLATE);
+        
+        $version.text(simulatorVersion);
+        $version.addClass('simulator-version');
+        $container.append('<span class="option-description">openScope ATC Simulator version</span>');
+        $container.append($version);
+
+        return $container;
     }
 }

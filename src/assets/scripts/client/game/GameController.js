@@ -8,7 +8,7 @@ import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
-import { TIME } from '../constants/globalConstants';
+import { TIME, INVALID_VERSION } from '../constants/globalConstants';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
@@ -91,6 +91,7 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
+        this.game.version = this._getVersion();
         this.theme = THEME.DEFAULT;
 
         this._eventBus = EventBus;
@@ -188,6 +189,7 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
+        this.game.version = '';
         this.theme = THEME.DEFAULT;
 
         return this;
@@ -608,6 +610,23 @@ class GameController {
 
         this.theme = THEME[themeName];
     };
+
+    /**
+     * Retrieves the current version of the simulator from the `window` global object.
+     *
+     * @for GameController
+     * @method _getVersion
+     * @return {string}
+     */
+    _getVersion() {
+        const version = window.GLOBAL.VERSION;
+        
+        if (!version) {
+            return INVALID_VERSION;
+        }
+
+        return version;
+    }
 }
 
 export default new GameController();

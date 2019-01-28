@@ -95,3 +95,12 @@ export const INVALID_NUMBER = -1;
  * @final
  */
 export const INVALID_INDEX = -1;
+
+/**
+ * This value is used to represent an invalid simulator version.
+ *
+ * @enum INVALID_VERSION
+ * @type {string}
+ * @final
+ */
+export const INVALID_VERSION = '0.0.0';
