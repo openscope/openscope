@@ -8,7 +8,7 @@ import TimeKeeper from '../engine/TimeKeeper';
 import { round } from '../math/core';
 import { EVENT } from '../constants/eventNames';
 import { GAME_OPTION_NAMES } from '../constants/gameOptionConstants';
-import { TIME, INVALID_VERSION } from '../constants/globalConstants';
+import { TIME } from '../constants/globalConstants';
 import { TRACKABLE_EVENT } from '../constants/trackableEvents';
 import { SELECTORS } from '../constants/selectors';
 import { THEME } from '../constants/themes';
