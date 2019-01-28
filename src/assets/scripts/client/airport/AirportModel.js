@@ -14,13 +14,13 @@ import RunwayCollection from './runway/RunwayCollection';
 import StaticPositionModel from '../base/StaticPositionModel';
 import TimeKeeper from '../engine/TimeKeeper';
 import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
+import { getCircularCoordinates } from '../utilities/navigationUtilities';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import {
     sin,
     cos,
     round
 } from '../math/core';
-import { tau } from '../math/circle';
 import {
     vlen,
     vsub,
@@ -466,30 +466,6 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method prepareCircularRestrictedArea
-     * @param center {array<number>}
-     * @param radius {number}   circle radius, in nm
-     * @return {array}
-     * @private
-     */
-    _getCircularCoordinates(center, radius) {
-        const NUM_POINTS = 32;
-        const delta = tau() / NUM_POINTS;
-        let coords = [];
-        const centerPos = new StaticPositionModel(center, this._positionModel, this._magneticNorth);
-
-        for (let i = 0; i < NUM_POINTS; i++) {
-            const bearing = delta * i;
-            const rawPoint = centerPos.generateCoordinatesFromBearingAndDistance(bearing, radius);
-
-            coords.push(DynamicPositionModel.calculateRelativePosition(rawPoint, this._positionModel, this.magneticNorth));
-        }
-
-        return coords;
-    }
-
-    /**
-     * @for AirportModel
      * @method buildRestrictedAreas
      * @param restrictedAreas
      */
@@ -497,6 +473,8 @@ export default class AirportModel {
         if (!restrictedAreas) {
             return;
         }
+
+        const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
 
         _forEach(restrictedAreas, (area) => {
             // TODO: find a better name for `obj`
@@ -509,8 +487,8 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
 
             if (area.radius && area.center) {
-                obj.center = DynamicPositionModel.calculateRelativePosition(area.center, this._positionModel, this.magneticNorth);
-                obj.coordinates = this._getCircularCoordinates(area.center, area.radius);
+                obj.center = DynamicPositionModel.calculateRelativePosition(area.center, ...airportPositionAndDeclination);
+                obj.coordinates = getCircularCoordinates(area.center, area.radius, airportPositionAndDeclination);
             } else {
                 obj.coordinates = _map(
                     area.coordinates,
