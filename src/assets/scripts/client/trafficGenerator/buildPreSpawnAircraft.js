@@ -103,7 +103,9 @@ function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitu
         }
 
         return altitudeOffsets[indexOfPreviousAltitudeRestriction][indexOfAltitude];
-    } else if (indexOfPreviousAltitudeRestriction < 0) {
+    }
+
+    if (indexOfPreviousAltitudeRestriction < 0) {
         return _floor(altitudeOffsets[indexOfNextAltitudeRestriction][indexOfAltitude], -3);
     }
 
@@ -135,6 +137,7 @@ function _calculateAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitu
  * @param totalDistance {number} distance long route from spawn point to airspace boundary
  * @return {number} ideal spawn altitude, in feet (rounded up to nearest thousand)
  */
+/* eslint-disable-next-line max-len */
 function _calculateIdealSpawnAltitudeAtOffset(waypointModelList, waypointOffsetMap, altitudeOffsets, offsetDistance, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
     const indexOfDistance = 0;
     const indexOfAltitude = 1;
@@ -151,7 +154,8 @@ function _calculateIdealSpawnAltitudeAtOffset(waypointModelList, waypointOffsetM
     const distanceToFirstAltitudeRestriction = firstAltitudeRestriction[indexOfDistance] - offsetDistance;
     const minutesToFirstAltitudeRestriction = distanceToFirstAltitudeRestriction / spawnSpeed * TIME.ONE_HOUR_IN_MINUTES;
     const assumedDescentRate = 1000;
-    const highestAcceptableAltitude = firstAltitudeRestriction[indexOfAltitude] + (assumedDescentRate * minutesToFirstAltitudeRestriction);
+    const highestAcceptableAltitude = firstAltitudeRestriction[indexOfAltitude]
+        + (assumedDescentRate * minutesToFirstAltitudeRestriction);
 
     if (_isArray(spawnAltitude)) {
         spawnAltitude = _random(spawnAltitude[0] / 1000, spawnAltitude[1] / 1000) * 1000;
@@ -172,6 +176,7 @@ function _calculateIdealSpawnAltitudeAtOffset(waypointModelList, waypointOffsetM
  * @param totalDistance {number} distance along route from spawn point to airspace boundary
  * @return spawnPositions {array<number>} distances along route, in nm
  */
+/* eslint-disable-next-line max-len */
 function _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling) {
     const spawnPositionsAndAltitudes = [];
     const waypointOffsetMap = _calculateOffsetsToEachWaypointInRoute(waypointModelList);
@@ -291,7 +296,9 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
         }
 
         if (isWithinAirspace(airport, waypointModel.relativePosition)) {
-            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousWaypoint.relativePosition));
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(
+                airport, previousWaypoint.relativePosition
+            ));
             totalDistance += distanceFromClosestFixToAirspaceBoundary;
 
             break;
@@ -326,7 +333,9 @@ const _preSpawn = (spawnPatternJson, airport) => {
     // calculate number of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftModel` along a route
-    const spawnPositions = _calculateSpawnPositionsAndAltitudes(waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling);
+    const spawnPositions = _calculateSpawnPositionsAndAltitudes(
+        waypointModelList, spawnOffsets, spawnSpeed, spawnAltitude, totalDistance, airspaceCeiling
+    );
 
     return spawnPositions;
 };
