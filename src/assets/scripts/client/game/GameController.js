@@ -610,23 +610,6 @@ class GameController {
 
         this.theme = THEME[themeName];
     };
-
-    /**
-     * Retrieves the current version of the simulator from the `window` global object.
-     *
-     * @for GameController
-     * @method _getVersion
-     * @return {string}
-     */
-    _getVersion() {
-        const version = window.GLOBAL.VERSION;
-        
-        if (!version) {
-            return INVALID_VERSION;
-        }
-
-        return version;
-    }
 }
 
 export default new GameController();

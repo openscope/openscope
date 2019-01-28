@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _isNaN from 'lodash/isNaN';
 import GameController from '../game/GameController';
+import AppController from '../AppController';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -138,7 +139,7 @@ export default class SettingsController {
      * @return {JQuery|HTML element}
      */
     _buildVersionTemplate() {
-        const simulatorVersion = GameController.game.version;
+        const simulatorVersion = AppController.getVersion();
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
         const $version = $(UI_OPTION_SELECTOR_TEMPLATE);
         
