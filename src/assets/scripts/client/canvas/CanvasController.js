@@ -919,11 +919,13 @@ export default class CanvasController {
             return;
         }
 
+        let strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
+
         if (aircraftAlerts[1]) {
-            cc.strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
-        } else {
-            cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
+            strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
         }
+
+        cc.strokeStyle = strokeStyle;
 
         cc.beginPath();
         cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(radiusNm)), 0, tau());
