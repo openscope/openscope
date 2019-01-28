@@ -18,6 +18,13 @@ const UI_SETTINGS_MODAL_TEMPLATE = '<div class="option-dialog"></div>';
 const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
 
 /**
+ * @property UI_OPTION_LABEL_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_OPTION_LABEL_TEMPLATE = '<span class="option-description"></span>';
+
+/**
  * @property UI_OPTION_SELECTOR_TEMPLATE
  * @type {string}
  * @final
@@ -29,14 +36,7 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
  * @type {string}
  * @final
  */
-const UI_STATIC_TEXT_TEMPLATE = '<span class="option-description option-static-text"></span>';
-
-/**
- * @property UI_STATIC_VALUE_TEMPLATE
- * @type {string}
- * @final
- */
-const UI_STATIC_VALUE_TEMPLATE = '<span class="option-static-text"></span>';
+const UI_STATIC_TEXT_TEMPLATE = '<span class="option-static-text"></span>';
 
 /**
  * @class SettingsController
@@ -93,11 +93,13 @@ export default class SettingsController {
      */
     _buildOptionTemplate(option) {
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-        $container.append(`<span class="option-description">${option.description}</span>`);
-
+        const $label = $(UI_OPTION_LABEL_TEMPLATE);
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select name="${option.name}"></select>`);
         const selectedOption = GameController.game.option.getOptionByName(option.name);
+
+        $container.append($label);
+        $label.text(option.description);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.optionList.length; i++) {
@@ -153,20 +155,19 @@ export default class SettingsController {
      *
      * @for SettingsController
      * @method _buildStaticTemplate
-     * @param {string} text
+     * @param {string} label
      * @param {string} value (optional)
      * @return {JQuery|HTML element}
      */
-    _buildStaticTemplate(text, value='') {
+    _buildStaticTemplate(label, value = '') {
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-        const $info = $(UI_STATIC_TEXT_TEMPLATE);
-        const $value = $(UI_STATIC_VALUE_TEMPLATE);
+        const $label = $(UI_OPTION_LABEL_TEMPLATE);
+        const $value = $(UI_STATIC_TEXT_TEMPLATE);
 
-        $info.text(text);
-        $value.text(value);
-
-        $container.append($info);
+        $container.append($label);
         $container.append($value);
+        $label.text(label);
+        $value.text(value);
 
         return $container;
     }
