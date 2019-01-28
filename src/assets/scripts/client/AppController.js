@@ -312,16 +312,4 @@ export default class AppController {
         $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(NavigationLibrary.hasSids);
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(airport.data.has_terrain);
     }
-
-    /**
-     * Retrieves the current version of the simulator from the `window` global object.
-     * Putting this in the `GameController` caused test errors because of the `window` object.
-     *
-     * @for AppController
-     * @method getVersion
-     * @return {string}
-     */
-    getVersion() {
-        return window.GLOBAL.VERSION;
-    }
 }

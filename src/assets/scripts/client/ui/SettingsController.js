@@ -139,7 +139,7 @@ export default class SettingsController {
      * @return {JQuery|HTML element}
      */
     _buildVersionTemplate() {
-        const simulatorVersion = AppController.getVersion();
+        const simulatorVersion = window.GLOBAL.VERSION;
         const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
         const $version = $(UI_OPTION_SELECTOR_TEMPLATE);
         
