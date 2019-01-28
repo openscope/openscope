@@ -322,12 +322,6 @@ export default class AppController {
      * @return {string}
      */
     getVersion() {
-        const version = window.GLOBAL.VERSION;
-        
-        if (!version) {
-            return INVALID_VERSION;
-        }
-
-        return version;
+        return window.GLOBAL.VERSION;
     }
 }

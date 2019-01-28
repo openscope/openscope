@@ -91,7 +91,6 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
-        this.game.version = this._getVersion();
         this.theme = THEME.DEFAULT;
 
         this._eventBus = EventBus;
@@ -189,7 +188,6 @@ class GameController {
         this.game.last_score = 0;
         this.game.score = 0;
         this.game.option = new GameOptions();
-        this.game.version = '';
         this.theme = THEME.DEFAULT;
 
         return this;
