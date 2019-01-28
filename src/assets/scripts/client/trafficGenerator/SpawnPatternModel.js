@@ -586,7 +586,40 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {boolean}
      */
     isAirborneAtSpawn() {
-        return this._isArrival() || this._isOverflight();
+        return this.isArrival() || this.isOverflight();
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an arrival
+     *
+     * @for SpawnPatternModel
+     * @method isArrival
+     * @return {boolean}
+     */
+    isArrival() {
+        return this.category === FLIGHT_CATEGORY.ARRIVAL;
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an departing aircraft
+     *
+     * @for SpawnPatternModel
+     * @method isDeparture
+     * @return {boolean}
+     */
+    isDeparture() {
+        return this.category === FLIGHT_CATEGORY.DEPARTURE;
+    }
+
+    /**
+     * Used to determine if this spawn pattern is for an overflight
+     *
+     * @for SpawnPatternModel
+     * @method isOverflight
+     * @return {boolean}
+     */
+    isOverflight() {
+        return this.category === FLIGHT_CATEGORY.OVERFLIGHT;
     }
 
     /**
@@ -956,7 +989,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @param spawnPatternJson {object}
      */
     _buildPreSpawnAircraft(spawnPatternJson) {
-        if (this._isDeparture()) {
+        if (this.isDeparture()) {
             // TODO: this may be dead, please remove if it is
             const preSpawnDepartureAircraft = [{
                 type: 'departure'
