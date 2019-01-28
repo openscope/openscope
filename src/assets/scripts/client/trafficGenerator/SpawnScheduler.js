@@ -124,14 +124,17 @@ class SpawnScheduler {
      * @param spawnPatternModel {SpawnPatternModel}
      */
     resetTimer(spawnPatternModel) {
+        let timePassed = 0;
+
         if (spawnPatternModel.scheduleId) {
             GameController.destroyTimer(spawnPatternModel.scheduleId);
+
+            const timerStart = spawnPatternModel.scheduleId[1] - spawnPatternModel.scheduleId[3];
+            timePassed = TimeKeeper.accumulatedDeltaTime - timerStart;
             spawnPatternModel.scheduleId = null;
         }
 
         if (spawnPatternModel.rate > 0) {
-            // TODO: calc time passed since last spawn
-            const timePassed = 0;
             let nextDelay = spawnPatternModel.getNextDelayValue(TimeKeeper.accumulatedDeltaTime);
 
             if (timePassed < nextDelay) {

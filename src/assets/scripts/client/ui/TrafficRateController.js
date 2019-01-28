@@ -273,7 +273,9 @@ export default class TrafficRateController {
         $output.text(value);
 
         for (const { spawnPattern, $formElement } of elements) {
-            this._updateRate(spawnPattern, $formElement);
+            const $childOutput = $formElement.children(`.${CLASSNAMES.FORM_VALUE}`);
+
+            this._updateRate(spawnPattern, $childOutput);
         }
     }
 
@@ -286,12 +288,13 @@ export default class TrafficRateController {
      */
     _onChangeSpawnPatternRate(event) {
         const $target = $(event.target);
+        const $output = $target.next(`.${CLASSNAMES.FORM_VALUE}`);
         const value = $target.val();
         const spawnPattern = event.data.rateKey;
 
         this._rates[spawnPattern.routeString] = parseFloat(value);
 
-        this._updateRate(spawnPattern);
+        this._updateRate(spawnPattern, $output);
     }
 
     /**
@@ -300,16 +303,14 @@ export default class TrafficRateController {
      * @for TrafficRateController
      * @method _updateRate
      * @param spawnPattern {SpawnPatternModel}
-     * @param $formElement {jQuery element}
+     * @param $output {jQuery element} text element to output the actual rate
      */
-    _updateRate(spawnPattern, $formElement) {
+    _updateRate(spawnPattern, $output) {
         const { category, routeString } = spawnPattern;
-        const $output = $formElement.children(`.${CLASSNAMES.FORM_VALUE}`);
 
         spawnPattern.rate = this._rates[category] * this._rates[routeString];
 
         $output.text(spawnPattern.rate);
-
         SpawnScheduler.resetTimer(spawnPattern);
     }
 }

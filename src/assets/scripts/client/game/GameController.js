@@ -401,7 +401,7 @@ class GameController {
 
     /**
      * Destroys a specific timer.
-     * 
+     *
      * @for GameController
      * @method destroyTimer
      * @param timer {array} the timer to destroy
