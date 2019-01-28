@@ -22,7 +22,6 @@ const UI_TRAFFIC_MODAL_TEMPLATE = `
  * @class TrafficRateController
  */
 export default class TrafficRateController {
-
     constructor($element) {
         /**
          * @property EventBus
@@ -49,15 +48,6 @@ export default class TrafficRateController {
          * @default null
          */
         this.$dialog = null;
-
-        /**
-         * Spawn rates by category or route
-         *
-         * @property _rates
-         * @type {object}
-         * @default null
-         */
-        this._rates = null;
 
         /**
          * Spawn rates by category or route
