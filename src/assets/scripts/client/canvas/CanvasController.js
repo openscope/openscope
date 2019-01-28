@@ -900,36 +900,58 @@ export default class CanvasController {
     }
 
     /**
-     * Draws circle around aircraft that are approaching, or are in,
-     * conflict with another aircraft
+     * Draws circle around aircraft that are in (or soon to be in) conflict with another aircraft
+     *
+     * These rings are drawn independently of user-set halos
      *
      * @for CanvasController
-     * @method _drawAircraftRings
+     * @method _drawAircraftConflictRings
      * @param cc {HTMLCanvasContext}
-     * @param aircraftModel {AircraftModel}
+     * @param radarTargetModel {RadarTargetModel}
+     * @private
      */
-    _drawAircraftRings(cc, aircraftModel) {
-        const aircraftAlerts = aircraftModel.hasAlerts();
+    _drawAircraftConflictRings(cc, radarTargetModel) {
+        const { aircraftModel } = radarTargetModel;
+        const aircraftAlerts = aircraftModel.getAlerts();
+        const radiusNm = 3;
 
-        cc.save();
+        if (!aircraftAlerts[0]) {
+            return;
+        }
 
-        let strokeStyle = cc.fillStyle;
-        // TODO: this block should be simplified
-        if (aircraftAlerts[0]) {
-            if (aircraftAlerts[1]) {
-                // red violation circle
-                strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
-            } else {
-                // white warning circle
-                strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
-            }
+        let strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
+
+        if (aircraftAlerts[1]) {
+            strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
         }
 
         cc.strokeStyle = strokeStyle;
+
         cc.beginPath();
-        cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(3)), 0, tau());  // 3nm RADIUS
+        cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(radiusNm)), 0, tau());
         cc.stroke();
-        cc.restore();
+    }
+
+    /**
+     * Draws circle around aircraft with radius as requested by the user
+     *
+     * @for CanvasController
+     * @method _drawAircraftHalo
+     * @param cc {HTMLCanvasContext}
+     * @param radarTargetModel {RadarTargetModel}
+     */
+    _drawAircraftHalo(cc, radarTargetModel) {
+        if (!radarTargetModel.hasHalo) {
+            return;
+        }
+
+        const radiusNm = radarTargetModel.haloRadius;
+
+        cc.strokeStyle = this.theme.RADAR_TARGET.HALO;
+
+        cc.beginPath();
+        cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(radiusNm)), 0, tau());
+        cc.stroke();
     }
 
     /**
@@ -1012,16 +1034,15 @@ export default class CanvasController {
                 break;
         }
 
-        const alerts = aircraftModel.hasAlerts();
-        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(aircraftModel.relativePosition);
+        const aircraftCanvasPosition = CanvasStageModel.translatePostionModelToPreciseCanvasPosition(
+            aircraftModel.relativePosition
+        );
 
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
         this._drawAircraftVectorLines(cc, aircraftModel);
-
-        if (aircraftModel.notice || alerts[0]) {
-            this._drawAircraftRings(cc, aircraftModel);
-        }
+        this._drawAircraftHalo(cc, radarTargetModel);
+        this._drawAircraftConflictRings(cc, radarTargetModel);
 
         let radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_KM;
 

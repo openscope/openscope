@@ -1,6 +1,7 @@
 # 6.10.0 (February 1, 2019)
 ### New Features
 - [#1032](https://github.com/openscope/openscope/issues/1032) - Add range ring options and toggle button
+- [#1234](https://github.com/openscope/openscope/issues/1234) - Add scope command for drawing halos around aircraft data blocks
 
 
 ### Bugfixes

@@ -51,11 +51,12 @@ export default class AircraftConflict {
     /**
      * Is there anything which should be brought to the controllers attention
      *
-     * @returns {Array of Boolean} First element true if any conflicts/warnings,
-     *                             Second element true if any violations.
+     * @for AircraftConflict
+     * @method hasAlerts
+     * @returns {boolean} whether ANY conflicts OR violations exist
      */
     hasAlerts() {
-        return [this.hasConflict(), this.hasViolation()];
+        return this.hasConflict() || this.hasViolation();
     }
 
     /**

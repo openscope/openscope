@@ -65,7 +65,7 @@ export default class ScopeCommandModel {
      * @param command {string}
      */
     _init(command) {
-        const pieces = command.toUpperCase().split(' ');
+        const pieces = _without(command.toUpperCase().split(' '), '');
 
         this.aircraftReference = _last(pieces);
         this.commandFunction = this._extractCommandFunction(pieces);
