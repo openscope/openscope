@@ -36,13 +36,12 @@ const UI_STATIC_TEXT_TEMPLATE = '<span class="option-description option-static-t
  * @type {string}
  * @final
  */
-const UI_STATIC_VALUE_TEMPLATE = '<span class="option-type-select option-static-value"></span>';
+const UI_STATIC_VALUE_TEMPLATE = '<span class="option-static-text"></span>';
 
 /**
  * @class SettingsController
  */
 export default class SettingsController {
-
     constructor($element) {
         /**
          * Root DOM element
@@ -76,6 +75,7 @@ export default class SettingsController {
             $options.append($container);
         });
 
+        $version.addClass('simulator-version');
         $options.append($version);
         this.$element.append($options);
 
@@ -146,7 +146,7 @@ export default class SettingsController {
     /**
      * Builds a static text information psuedo-option.
      * Will display as such:
-     * 
+     *
      * `(settings menu)`
      *
      * `Text text text         Value value value`
@@ -180,7 +180,7 @@ export default class SettingsController {
      */
     _buildVersionTemplate() {
         const simulatorVersion = window.GLOBAL.VERSION;
-        
+
         return this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
     }
 }
