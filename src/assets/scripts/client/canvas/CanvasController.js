@@ -1039,8 +1039,8 @@ export default class CanvasController {
         cc.translate(aircraftCanvasPosition.x, aircraftCanvasPosition.y);
 
         this._drawAircraftVectorLines(cc, aircraftModel);
-        this._drawAircraftConflictRings(cc, radarTargetModel);
         this._drawAircraftHalo(cc, radarTargetModel);
+        this._drawAircraftConflictRings(cc, radarTargetModel);
 
         let radarTargetRadiusKm = this.theme.RADAR_TARGET.RADIUS_KM;
 
