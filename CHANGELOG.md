@@ -1,6 +1,7 @@
 # 6.11.0 (March 1, 2019)
 ### New Features
 - [#898](https://github.com/openscope/openscope/issues/898) - Add command to exit holding pattern
+- [#1272](https://github.com/openscope/openscope/issues/1272) - Add version number to settings menu
 
 
 ### Bugfixes
