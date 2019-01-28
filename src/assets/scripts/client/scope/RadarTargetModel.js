@@ -323,7 +323,7 @@ export default class RadarTargetModel {
         this._dataBlockLeaderDirection = INVALID_NUMBER;
         this._dataBlockLeaderLength = this._theme.DATA_BLOCK.LEADER_LENGTH;
         this._hasFullDataBlock = true;
-        this._haloRadius = false;
+        this._haloRadius = INVALID_NUMBER;
         this._hasSuppressedDataBlock = false;
         this._interimAltitude = INVALID_NUMBER;
         this._isUnderOurControl = true;
@@ -524,11 +524,11 @@ export default class RadarTargetModel {
      * Set the radius of the halo
      *
      * @for RadarTargetModel
-     * @method setHaloRadius
+     * @method setHalo
      * @param radius {number}
      * @return {array} [success of operation, system's response]
      */
-    setHaloRadius(radius) {
+    setHalo(radius) {
         if (!this.hasHalo) {
             this._haloRadius = radius;
 

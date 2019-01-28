@@ -165,35 +165,35 @@ ava('.setScratchpad() sets #_scratchPadText to the specified string', (t) => {
     t.true(model._scratchPadText === newScratchPadText);
 });
 
-ava('.setHaloRadius() sets halo radius correctly when no halo previously existed', (t) => {
+ava('.setHalo() sets halo radius correctly when no halo previously existed', (t) => {
     const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const expectedResponse = [true, 'TOGGLE HALO'];
-    const response = radarTargetModel.setHaloRadius(7);
+    const response = radarTargetModel.setHalo(7);
 
     t.deepEqual(response, expectedResponse);
     t.true(radarTargetModel._haloRadius === 7);
 });
 
-ava('.setHaloRadius() adjusts halo radius correctly when a halo previously existed', (t) => {
+ava('.setHalo() adjusts halo radius correctly when a halo previously existed', (t) => {
     const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
 
     radarTargetModel._haloRadius = 5;
 
     const expectedResponse = [true, 'ADJUST HALO'];
-    const response = radarTargetModel.setHaloRadius(7);
+    const response = radarTargetModel.setHalo(7);
 
     t.deepEqual(response, expectedResponse);
     t.true(radarTargetModel._haloRadius === 7);
 });
 
-ava('.setHaloRadius() calls .removeHalo() when a halo is requested of the same radius as the existing', (t) => {
+ava('.setHalo() calls .removeHalo() when a halo is requested of the same radius as the existing', (t) => {
     const radarTargetModel = new RadarTargetModel(THEME.DEFAULT, ARRIVAL_AIRCRAFT_MODEL_MOCK);
     const removeHaloStub = sinon.stub(radarTargetModel, 'removeHalo');
 
     radarTargetModel._haloRadius = 7;
 
     const expectedResponse = undefined;
-    const response = radarTargetModel.setHaloRadius(7);
+    const response = radarTargetModel.setHalo(7);
 
     t.true(response === expectedResponse);
     t.true(removeHaloStub.calledWithExactly());

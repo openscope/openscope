@@ -151,48 +151,48 @@ ava('.setScratchpad() sets RadarTargetModel._scratchPadText to the specified str
     t.true(radarTargetModelSetScratchPadSpy.calledWithExactly(newScratchPadText));
 });
 
-ava('.setHaloRadius() returns error when requested halo size is invalid', (t) => {
+ava('.setHalo() returns error when requested halo size is invalid', (t) => {
     const scopeModel = new ScopeModel();
     const radarTargetModel = createRadarTargetArrivalMock();
-    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHaloRadius');
+    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHalo');
     const expectedResponse = [false, 'ERR: HALO SIZE INVALID'];
-    const response = scopeModel.setHaloRadius(radarTargetModel, 0);
+    const response = scopeModel.setHalo(radarTargetModel, 0);
 
     t.deepEqual(response, expectedResponse);
     t.true(setHaloRadiusStub.notCalled);
 });
 
-ava('.setHaloRadius() returns error when requested halo size is too large', (t) => {
+ava('.setHalo() returns error when requested halo size is too large', (t) => {
     const scopeModel = new ScopeModel();
     const radarTargetModel = createRadarTargetArrivalMock();
     const maxRadius = scopeModel._theme.SCOPE.HALO_MAX_RADIUS_NM;
     const radius = maxRadius + 0.1;
-    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHaloRadius');
+    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHalo');
     const expectedResponse = [false, `ERR: HALO MAX ${maxRadius} NM`];
-    const response = scopeModel.setHaloRadius(radarTargetModel, radius);
+    const response = scopeModel.setHalo(radarTargetModel, radius);
 
     t.deepEqual(response, expectedResponse);
     t.true(setHaloRadiusStub.notCalled);
 });
 
-ava('.setHaloRadius() uses default halo radius when one is not specified in the command', (t) => {
+ava('.setHalo() uses default halo radius when one is not specified in the command', (t) => {
     const scopeModel = new ScopeModel();
     const radarTargetModel = createRadarTargetArrivalMock();
     const defaultRadius = scopeModel._theme.SCOPE.HALO_DEFAULT_RADIUS_NM;
-    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHaloRadius');
+    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHalo');
 
-    scopeModel.setHaloRadius(radarTargetModel);
+    scopeModel.setHalo(radarTargetModel);
 
     t.true(setHaloRadiusStub.calledWithExactly(defaultRadius));
 });
 
-ava('.setHaloRadius() calls RadarTargetModel.setHaloRadius()', (t) => {
+ava('.setHalo() calls RadarTargetModel.setHalo()', (t) => {
     const scopeModel = new ScopeModel();
     const radarTargetModel = createRadarTargetArrivalMock();
     const radius = 7;
-    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHaloRadius');
+    const setHaloRadiusStub = sinon.stub(radarTargetModel, 'setHalo');
 
-    scopeModel.setHaloRadius(radarTargetModel, radius);
+    scopeModel.setHalo(radarTargetModel, radius);
 
     t.true(setHaloRadiusStub.calledWithExactly(radius));
 });
@@ -214,45 +214,5 @@ ava('._setTheme() changes the value of #_theme', (t) => {
 
     t.true(model._theme === THEME.CLASSIC);
 });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
-
-// // ava('', (t) => {
-//     //
-// });
 
 // ava.todo('Add test for .amendAltitude()');

@@ -6,7 +6,7 @@
  */
 export const EXPLICIT_COMMANDS = {
     QP: 'propogateDataBlock',
-    QP_J: 'setHaloRadius',
+    QP_J: 'setHalo',
     QU: 'route',
     QZ: 'amendAltitude'
 };

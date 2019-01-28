@@ -919,20 +919,15 @@ export default class CanvasController {
             return;
         }
 
-        cc.save();
-
-        let strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
-
-        if (aircraftAlerts[0] && aircraftAlerts[1]) {
-            strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
+        if (aircraftAlerts[1]) {
+            cc.strokeStyle = this.theme.RADAR_TARGET.RING_VIOLATION;
+        } else {
+            cc.strokeStyle = this.theme.RADAR_TARGET.RING_CONFLICT;
         }
-
-        cc.strokeStyle = strokeStyle;
 
         cc.beginPath();
         cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(radiusNm)), 0, tau());
         cc.stroke();
-        cc.restore();
     }
 
     /**
@@ -950,14 +945,11 @@ export default class CanvasController {
 
         const radiusNm = radarTargetModel.haloRadius;
 
-        cc.save();
-
         cc.strokeStyle = this.theme.RADAR_TARGET.HALO;
 
         cc.beginPath();
         cc.arc(0, 0, CanvasStageModel.translateKilometersToPixels(km(radiusNm)), 0, tau());
         cc.stroke();
-        cc.restore();
     }
 
     /**
