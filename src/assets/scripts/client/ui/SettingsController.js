@@ -2,7 +2,6 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _isNaN from 'lodash/isNaN';
 import GameController from '../game/GameController';
-import AppController from '../AppController';
 
 /**
  * @property UI_SETTINGS_MODAL_TEMPLATE
@@ -25,6 +24,19 @@ const UI_OPTION_CONTAINER_TEMPLATE = '<div class="option"></div>';
  */
 const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-type-select"></span>';
 
+/**
+ * @property UI_STATIC_TEXT_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_STATIC_TEXT_TEMPLATE = '<span class="option-description option-static-text"></span>';
+
+/**
+ * @property UI_STATIC_VALUE_TEMPLATE
+ * @type {string}
+ * @final
+ */
+const UI_STATIC_VALUE_TEMPLATE = '<span class="option-type-select option-static-value"></span>';
 
 /**
  * @class SettingsController
@@ -132,6 +144,34 @@ export default class SettingsController {
     }
 
     /**
+     * Builds a static text information psuedo-option.
+     * Will display as such:
+     * 
+     * `(settings menu)`
+     *
+     * `Text text text         Value value value`
+     *
+     * @for SettingsController
+     * @method _buildStaticTemplate
+     * @param {string} text
+     * @param {string} value (optional)
+     * @return {JQuery|HTML element}
+     */
+    _buildStaticTemplate(text, value='') {
+        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
+        const $info = $(UI_STATIC_TEXT_TEMPLATE);
+        const $value = $(UI_STATIC_VALUE_TEMPLATE);
+
+        $info.text(text);
+        $value.text(value);
+
+        $container.append($info);
+        $container.append($value);
+
+        return $container;
+    }
+
+    /**
      * Build the html for the simulator version psuedo-option.
      *
      * @for SettingsController
@@ -140,14 +180,7 @@ export default class SettingsController {
      */
     _buildVersionTemplate() {
         const simulatorVersion = window.GLOBAL.VERSION;
-        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-        const $version = $(UI_OPTION_SELECTOR_TEMPLATE);
         
-        $version.text(simulatorVersion);
-        $version.addClass('simulator-version');
-        $container.append('<span class="option-description">openScope ATC Simulator version</span>');
-        $container.append($version);
-
-        return $container;
+        return this._buildStaticTemplate('openScope ATC simulator version', simulatorVersion);
     }
 }
