@@ -365,7 +365,7 @@ export default class AirportModel {
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_KM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
-        this.rangeRings = _get(data, 'rangeRings');
+        this.rangeRings = _get(data, 'rangeRings', DEFAULT_RANGE_RINGS);
         this._runwayCollection = new RunwayCollection(data.runways, this._positionModel);
 
         this.loadTerrain();

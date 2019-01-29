@@ -4,6 +4,7 @@
 
 
 ### Bugfixes
+- [#1305](https://github.com/openscope/openscope/issues/1305) - Fix range rings center is undefined
 
 
 ### Enhancements & Refactors
