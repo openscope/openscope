@@ -1,0 +1,18 @@
+{
+    "icao": "kkk",
+    "name": "AtlasGlobal",
+    "callsign": {
+        "name": "Atlas Jet",
+        "callsignFormats": [
+            "####",
+            "#@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 1],
+            ["A321", 12]
+        ]
+    }
+}

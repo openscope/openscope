@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A300B",
+    "icao": "A30B",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "C"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3200,
+        "descent":    2000,
+        "accelerate": 8,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 2.700,
+        "landing": 1.536
+    },
+    "speed":{
+        "min":     110,
+        "landing": 125,
+        "cruise":  457,
+        "cruiseM": null,
+        "max":     496,
+        "maxM":    0.84
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

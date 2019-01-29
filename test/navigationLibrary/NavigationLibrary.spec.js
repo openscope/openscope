@@ -12,5 +12,5 @@ ava('.getAllFixNamesInUse() returns list of all fix names used in all procedures
 
     const fixNameList = NavigationLibrary._getAllFixNamesInUse();
 
-    t.true(fixNameList.length === 91);
+    t.true(fixNameList.length === 93);
 });

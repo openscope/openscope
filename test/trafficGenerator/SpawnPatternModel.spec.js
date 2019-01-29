@@ -15,10 +15,11 @@ import {
     DEPARTURE_PATTERN_MOCK,
     DEPARTURE_PATTERN_ROUTE_STRING_MOCK,
     ARRIVAL_PATTERN_MOCK,
+    ARRIVAL_PATTERN_MOCK_ALL_STRINGS,
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK,
     ARRIVAL_PATTERN_ROUTE_STRING_MOCK,
-    ARRIVAL_PATTERN_SINGLE_ENTRY_AND_RWY_MOCK
+    ARRIVAL_PATTERN_FLOAT_RATE_MOCK
 } from './_mocks/spawnPatternMocks';
 import { INVALID_NUMBER } from '../../src/assets/scripts/client/constants/globalConstants';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
@@ -54,6 +55,21 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK));
 });
 
+ava('initializes correctly when spawn pattern definition uses string type for number values', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK_ALL_STRINGS);
+
+    t.true(model._minimumAltitude === 36000);
+    t.true(model._maximumAltitude === 36000);
+    t.true(model.speed === 320);
+    t.true(model.rate === 10);
+});
+
+ava('initializes correctly when rate is passed as a float', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_FLOAT_RATE_MOCK);
+
+    t.true(model.rate === 3.3);
+});
+
 ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
@@ -66,6 +82,7 @@ ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) =>
     const expectedResult = _round(result, -3);
 
     t.true(_isEqual(result, expectedResult));
+    t.true(typeof result === 'number');
 });
 
 ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
@@ -156,7 +173,7 @@ ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     // t.true(result === 360);
 });
 
-ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an array is passed ', (t) => {
+ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an array of numbers is passed ', (t) => {
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = [10000, 20000];
@@ -166,6 +183,18 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an ar
 
     t.true(model._minimumAltitude === altitudeMock[0]);
     t.true(model._maximumAltitude === altitudeMock[1]);
+});
+
+ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an array of strings is passed ', (t) => {
+    // creating new mock here so as not to overwrite and affect original
+    const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
+    const altitudeMock = ['10000', '20000'];
+    const model = new SpawnPatternModel(arrivalMock);
+
+    model._setMinMaxAltitude(altitudeMock);
+
+    t.true(model._minimumAltitude === 10000);
+    t.true(model._maximumAltitude === 20000);
 });
 
 ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a number is passed ', (t) => {
@@ -180,6 +209,18 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a num
     t.true(model._maximumAltitude === altitudeMock);
 });
 
+ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a string is passed ', (t) => {
+    // creating new mock here so as not to overwrite and affect original
+    const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
+    const altitudeMock = '23000';
+    const model = new SpawnPatternModel(arrivalMock);
+
+    model._setMinMaxAltitude(altitudeMock);
+
+    t.true(model._minimumAltitude === 23000);
+    t.true(model._maximumAltitude === 23000);
+});
+
 ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
     const expectedResult = 360;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
@@ -191,7 +232,7 @@ ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in mil
 ava('._initializePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(DEPARTURE_PATTERN_MOCK);
 
     t.true(model.heading === -999);
     t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
@@ -202,8 +243,24 @@ ava('._initializePositionAndHeadingForArrival() calculates aircraft heading and 
     const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK);
 
-    model._initializePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK);
+    model._initializePositionAndHeadingForAirborneAircraft(ARRIVAL_PATTERN_MOCK);
 
     t.true(model.heading === expectedHeadingResult);
     t.true(_isEqual(model.relativePosition, expectedPositionResult));
+});
+
+ava('._calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
+    const mock = Object.assign(
+        {},
+        ARRIVAL_PATTERN_MOCK,
+        {
+            route: 'JESJI..BAKRR'
+        }
+    );
+
+    const model = new SpawnPatternModel(mock);
+    const expectedResult = 1.3415936051582544;
+    const result = model._calculateSpawnHeading();
+
+    t.true(result === expectedResult);
 });

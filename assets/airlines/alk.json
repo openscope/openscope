@@ -1,0 +1,26 @@
+{
+    "icao": "alk",
+    "name": "SriLankan Airlines",
+    "callsign": {
+        "name": "Srilankan",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A20N", 2],
+            ["A21N", 3],
+            ["A320", 5],
+            ["A321", 3],
+            ["A332", 6],
+            ["A333", 7]
+        ],
+        "a21n": [
+            ["A21N", 3]
+        ],
+        "a333": [
+            ["A333", 7]
+        ]
+    }
+}

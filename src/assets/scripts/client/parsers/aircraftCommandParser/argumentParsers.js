@@ -39,6 +39,17 @@ export const altitudeParser = (args) => {
 };
 
 /**
+ * Converts a flight level altitude to a number in thousands if available
+ *
+ * @function optionalAltitudeParser
+ * @param args {array}
+ * @return {array<number>}
+ */
+export const optionalAltitudeParser = (args) => {
+    return args.length !== 0 ? [convertToThousands(args[0])] : [];
+};
+
+/**
  * Accepts a direction string:
  * - `left / l / right / r`
  *
@@ -151,7 +162,7 @@ export const findHoldCommandByType = (type, args) => {
     return null;
 };
 
-// FIXME: This duplicates work being done with initializing WaypointModel._holdParameters
+// TODO: This duplicates work being done with initializing WaypointModel._holdParameters
 //        We must determine how best to achieve this and remove the duplicated effort.
 /**
  * The `hold` command accepts arguments in any order thus, we use the `findHoldCommandByType` helper

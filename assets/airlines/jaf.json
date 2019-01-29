@@ -1,0 +1,19 @@
+{
+    "icao": "jaf",
+    "name": "TUI Fly Belgium",
+    "callsign": {
+        "name": "JetAirFly",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737", 5],
+            ["B738", 16],
+            ["E190", 4]
+        ],
+        "long": [
+            ["B763", 1],
+            ["B788", 1]
+        ]
+    }
+}

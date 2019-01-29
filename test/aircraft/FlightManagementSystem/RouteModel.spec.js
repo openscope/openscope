@@ -109,6 +109,14 @@ ava('#currentLeg returns the first element of the #_legCollection', (t) => {
     t.true(result.routeString === singleFixRouteStringMock);
 });
 
+ava('#legCollection returns the entire #_legCollection', (t) => {
+    const model = new RouteModel(singleFixRouteStringMock);
+    const expectedResult = model._legCollection;
+    const result = model.legCollection;
+
+    t.deepEqual(result, expectedResult);
+});
+
 ava('#currentWaypoint returns the #currentWaypoint on the #currentLeg', (t) => {
     const model = new RouteModel(singleFixRouteStringMock);
     const expectedResult = model.currentLeg.currentWaypoint;
@@ -238,14 +246,6 @@ ava('.activateHoldForWaypointName() calls LegModel.activateHoldForWaypointName()
     t.true(typeof result === 'undefined');
     t.true(activateHoldForWaypointNameSpy1.notCalled);
     t.true(activateHoldForWaypointNameSpy2.calledWithExactly('KEPEC', holdParametersMock));
-});
-
-ava('.calculateSpawnHeading() returns bearing between route\'s first and second waypoints', (t) => {
-    const model = new RouteModel('JESJI..BAKRR');
-    const expectedResult = 1.3415936051582544;
-    const result = model.calculateSpawnHeading();
-
-    t.true(result === expectedResult);
 });
 
 ava('._createLegModelsFromWaypointModels() returns an array of LegModels matching the specified array of WaypointModels', (t) => {
@@ -471,6 +471,31 @@ ava('.getRouteStringWithSpaces() returns a route string for the remaining legs o
     t.true(result === 'GUP IGM');
 });
 
+ava('.getFlightPlanEntry() returns the exit fixname of a SID procedure', (t) => {
+    const procedureRouteModel = new RouteModel(singleSidProcedureSegmentRouteStringMock);
+    const expectedResult = 'TNP';
+    const result = procedureRouteModel.getFlightPlanEntry();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getFlightPlanEntry() returns the exit fixname of the SID leg when part of a complex route', (t) => {
+    const routeString = 'KLAS07R.BOACH6.TNP..OAL..COWBY';
+    const fixRouteModel = new RouteModel(routeString);
+    const expectedResult = 'TNP';
+    const result = fixRouteModel.getFlightPlanEntry();
+
+    t.true(result === expectedResult);
+});
+
+ava('.getFlightPlanEntry() returns first fix in route when no procedure is defined', (t) => {
+    const fixRouteModel = new RouteModel(multiDirectSegmentRouteStringMock);
+    const expectedResult = 'OAL';
+    const result = fixRouteModel.getFlightPlanEntry();
+
+    t.true(result === expectedResult);
+});
+
 ava('.getSidIcao() returns undefined when there is no SID leg in the route', (t) => {
     const model = new RouteModel(singleStarProcedureSegmentRouteStringMock);
     const result = model.getSidIcao();
@@ -592,6 +617,78 @@ ava('.hasWaypointName() returns true when the specified waypoint is in the route
     t.true(result);
 });
 
+ava('.isRunwayModelValidForSid() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the flight plan does not contain a SID', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForSid() returns false if the specified runway exists and is not valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForSid() returns true if the specified runway exists and is valid for the assigned SID', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const result = model.isRunwayModelValidForSid(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForStar() returns false if passed runway is not an instance of RunwayModel', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('00');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the flight plan does not contain a STAR', (t) => {
+    const model = new RouteModel(multiDirectSegmentRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result);
+});
+
+ava('.isRunwayModelValidForStar() returns false if the specified runway exists and is not valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('01R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.false(result);
+});
+
+ava('.isRunwayModelValidForStar() returns true if the specified runway exists and is valid for the assigned STAR', (t) => {
+    const model = new RouteModel(complexRouteStringMock);
+    const airportModel = createAirportModelFixture();
+    const runwayModel = airportModel.getRunway('25R');
+    const result = model.isRunwayModelValidForStar(runwayModel);
+
+    t.true(result);
+});
+
 ava('.moveToNextWaypoint() calls #currentLeg.moveToNextWaypoint() when the current leg contains more waypoints', (t) => {
     const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const currentLegMoveToNextWaypointSpy = sinon.spy(model.currentLeg, 'moveToNextWaypoint');
@@ -636,27 +733,30 @@ ava('.replaceArrivalProcedure() replaces STAR leg with a new one when the route 
 });
 
 ava('.replaceDepartureProcedure() returns false when route string does not yield a valid leg', (t) => {
+    const expectedResponse = [false, 'requested route of "GOBBLEDEEGOOK" is invalid'];
     const model = new RouteModel(singleFixRouteStringMock);
-    const result = model.replaceDepartureProcedure('gobbledeegook');
+    const response = model.replaceDepartureProcedure('gobbledeegook');
 
-    t.false(result);
+    t.deepEqual(response, expectedResponse);
     t.true(model.waypoints.length === 1);
 });
 
 ava('.replaceDepartureProcedure() appends specified SID leg as the new first leg when no SID leg previously existed', (t) => {
+    const expectedResponse = [true, { log: 'rerouting to: KLAS19L TRALR6 DVC', say: 'rerouting as requested' }];
     const model = new RouteModel(singleFixRouteStringMock);
-    const result = model.replaceDepartureProcedure(singleSidProcedureSegmentRouteStringMock);
+    const response = model.replaceDepartureProcedure('KLAS19L.TRALR6.DVC');
 
-    t.true(result);
-    t.true(model.getRouteString() === `${singleSidProcedureSegmentRouteStringMock}..${singleFixRouteStringMock}`);
+    t.deepEqual(response, expectedResponse);
+    t.true(model.getRouteString() === 'KLAS19L.TRALR6.DVC');
 });
 
 ava('.replaceDepartureProcedure() replaces SID leg with a new one when the route already has a SID leg', (t) => {
+    const expectedResponse = [true, { log: 'rerouting to: KLAS25L BOACH6 TNP', say: 'rerouting as requested' }];
     const model = new RouteModel(singleSidProcedureSegmentRouteStringMock);
     const differentSidRouteStringMock = 'KLAS25L.BOACH6.TNP';
-    const result = model.replaceDepartureProcedure(differentSidRouteStringMock);
+    const response = model.replaceDepartureProcedure(differentSidRouteStringMock);
 
-    t.true(result);
+    t.deepEqual(response, expectedResponse);
     t.true(model.getRouteString() === differentSidRouteStringMock);
 });
 
@@ -743,23 +843,36 @@ ava('.updateStarLegForArrivalRunwayModel() returns early when the route contains
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
-    const starLegUpdateSidRunwaySpy = sinon.spy(routeModel._legCollection[0], 'updateStarLegForArrivalRunwayModel');
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
 
-    routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
-    t.true(starLegUpdateSidRunwaySpy.notCalled);
+    t.true(createAmendedStarLegSpy.notCalled);
+    t.true(typeof result === 'undefined');
 });
 
-ava('.updateStarLegForArrivalRunwayModel() calls LegModel.updateStarLegForArrivalRunwayModel() on the STAR leg', (t) => {
+ava('.updateStarLegForArrivalRunwayModel() returns early when the runway is not valid for the current STAR', (t) => {
+    const routeModel = new RouteModel('DRK.ZIMBO1.KLAS07R');
+    const airportModel = createAirportModelFixture();
+    const nextRunwayName = '25L';
+    const nextRunwayModel = airportModel.getRunway(nextRunwayName);
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
+
+    t.true(createAmendedStarLegSpy.notCalled);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.updateStarLegForArrivalRunwayModel() replaces the STAR leg with a newly created one using the correct parameters', (t) => {
     const routeModel = new RouteModel('TNP.KEPEC3.KLAS07R');
     const airportModel = createAirportModelFixture();
     const nextRunwayName = '25L';
     const nextRunwayModel = airportModel.getRunway(nextRunwayName);
-    const starLegUpdateSidRunwaySpy = sinon.spy(routeModel._legCollection[0], 'updateStarLegForArrivalRunwayModel');
+    const createAmendedStarLegSpy = sinon.spy(routeModel, '_createAmendedStarLegUsingDifferentExitName');
+    const result = routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
 
-    routeModel.updateStarLegForArrivalRunwayModel(nextRunwayModel);
-
-    t.true(starLegUpdateSidRunwaySpy.calledWithExactly(nextRunwayModel));
+    t.true(createAmendedStarLegSpy.calledWithExactly('KLAS25L', 0));
+    t.true(typeof result === 'undefined');
 });
 
 ava('.reset() clears #_legCollection', (t) => {
@@ -953,40 +1066,74 @@ ava('._createAmendedConvergentLeg() returns an empty array when leg is a direct 
     t.deepEqual(result, []);
 });
 
+ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent waypoint is the SID leg\'s first fix', (t) => {
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
+    const waypointName = 'JESJI';
+    const legIndex = 0;
+    const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'HEC'];
+    const waypointNames = _map(result[0].waypoints, (waypointModel) => waypointModel.name);
+
+    t.deepEqual(waypointNames, expectedWaypointNames);
+});
+
 ava('._createAmendedConvergentLeg() calls ._createLegsFromSidWaypointsAfterWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'HITME';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromSidWaypointsAfterWaypointName(waypointName, legIndex);
     const createLegsFromSidWaypointsAfterWaypointNameSpy = sinon.spy(model, '_createLegsFromSidWaypointsAfterWaypointName');
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
+    const expectedWaypointNames = ['BOACH', 'HEC'];
 
     t.true(createLegsFromSidWaypointsAfterWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
+});
+
+ava('._createAmendedConvergentLeg() returns the leg unmodified when convergent waypoint is the STAR leg\'s first fix', (t) => {
+    const model = new RouteModel('DVC.GRNPA1.KLAS07R');
+    const waypointName = 'DVC';
+    const legIndex = 0;
+    const expectedWaypointNames = ['DVC', 'BETHL', 'HOLDM', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
+    const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
+
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createAmendedStarLegUsingDifferentEntryName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'BETHL';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedStarLegUsingDifferentEntryName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentEntryNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentEntryName');
+    const expectedWaypointNames = ['BETHL', 'HOLDM', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedStarLegUsingDifferentEntryNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedConvergentLeg() calls ._createLegsFromStarWaypointsAfterWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'FRAWG';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromStarWaypointsAfterWaypointName(waypointName, legIndex);
     const createLegsFromStarWaypointsAfterWaypointNameSpy = sinon.spy(model, '_createLegsFromStarWaypointsAfterWaypointName');
+    const expectedWaypointNames = ['TRROP', 'LEMNZ'];
     const result = model._createAmendedConvergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromStarWaypointsAfterWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() throws when leg is not an airway/direct/SID/STAR leg', (t) => {
@@ -1003,12 +1150,15 @@ ava('._createAmendedDivergentLeg() calls ._createAmendedAirwayLegUsingDifferentE
     const model = new RouteModel('DAG.V394.LAS');
     const waypointName = 'CLARR';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedAirwayLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedAirwayLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedAirwayLegUsingDifferentExitName');
+    const expectedWaypointNames = ['DAG', 'DISBE', 'CHRLT', 'CLARR'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedAirwayLegUsingDifferentExitNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct leg', (t) => {
@@ -1020,43 +1170,80 @@ ava('._createAmendedDivergentLeg() returns an empty array when leg is a direct l
     t.deepEqual(result, []);
 });
 
+ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent waypoint is the SID leg\'s last fix', (t) => {
+    const model = new RouteModel('KLAS07R.BOACH6.HEC');
+    const waypointName = 'HEC';
+    const legIndex = 0;
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME', 'BOACH', 'HEC'];
+    const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
+
+    t.deepEqual(waypointNames, expectedWaypointNames);
+});
+
 ava('._createAmendedDivergentLeg() calls ._createLegsFromSidWaypointsBeforeWaypointName() when leg is a SID leg', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
     const waypointName = 'BOACH';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromSidWaypointsBeforeWaypointName(waypointName, legIndex);
     const createLegsFromSidWaypointsBeforeWaypointNameSpy = sinon.spy(model, '_createLegsFromSidWaypointsBeforeWaypointName');
+    const expectedWaypointNames = ['JESJI', 'BAKRR', 'MINEY', 'HITME'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromSidWaypointsBeforeWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
+});
+
+ava('._createAmendedDivergentLeg() returns the leg unmodified when divergent waypoint is the STAR leg\'s last fix', (t) => {
+    const model = new RouteModel('BCE.GRNPA1.KLAS07R');
+    const waypointName = 'LEMNZ';
+    const legIndex = 0;
+    // const expectedResult = [model._legCollection[legIndex]];
+    const expectedWaypointNames = ['BCE', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX', 'FRAWG', 'TRROP', 'LEMNZ'];
+    const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
+
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createAmendedStarLegUsingDifferentExitName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('BCE.GRNPA1.KLAS07R');
     const waypointName = 'DUBLX';
     const legIndex = 0;
-    const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
+    // const expectedResult = [model._createAmendedStarLegUsingDifferentExitName(waypointName, legIndex)];
     const createAmendedStarLegUsingDifferentExitNameSpy = sinon.spy(model, '_createAmendedStarLegUsingDifferentExitName');
+    const expectedWaypointNames = ['BCE', 'KSINO', 'LUXOR', 'GRNPA', 'DUBLX'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createAmendedStarLegUsingDifferentExitNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
 
 ava('._createAmendedDivergentLeg() calls ._createLegsFromStarWaypointsBeforeWaypointName() when leg is a STAR leg and convergent waypoint is a valid STAR entry', (t) => {
     const model = new RouteModel('DVC.GRNPA1.KLAS07R');
     const waypointName = 'LUXOR';
     const legIndex = 0;
-    const expectedResult = model._createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex);
+    // const expectedResult = model._createLegsFromStarWaypointsBeforeWaypointName(waypointName, legIndex);
     const createLegsFromStarWaypointsBeforeWaypointNameSpy = sinon.spy(model, '_createLegsFromStarWaypointsBeforeWaypointName');
+    const expectedWaypointNames = ['DVC', 'BETHL', 'HOLDM', 'KSINO'];
     const result = model._createAmendedDivergentLeg(legIndex, waypointName);
+    const waypointNames = result.reduce((names, legModel) => {
+        return [...names, ...legModel.waypoints.map(waypointModel => waypointModel.name)];
+    }, []);
 
     t.true(createLegsFromStarWaypointsBeforeWaypointNameSpy.calledWithExactly(waypointName, legIndex));
-    t.deepEqual(result, expectedResult);
+    t.deepEqual(waypointNames, expectedWaypointNames);
 });
-
-ava.todo('._createAmendedDivergentLeg()');
 
 ava('._createLegsFromSidWaypointsAfterWaypointName() returns an array of LegModels, one for each WaypointModel in the SID, after the specified one', (t) => {
     const model = new RouteModel('KLAS07R.BOACH6.HEC');
@@ -1135,6 +1322,7 @@ ava.todo('._findConvergentWaypointNameWithRouteModel()');
 ava.todo('._findIndexOfLegContainingWaypointName()');
 
 ava.todo('._findSidLegIndex()');
+ava.todo('._findSidLeg()');
 
 ava.todo('._findStarLegIndex()');
 
@@ -1154,7 +1342,19 @@ ava('._getPastAndPresentLegModels() returns #_previousLegCollection concatenated
     t.deepEqual(result, expectedResult);
 });
 
-ava.todo('._overwriteRouteBetweenWaypointNames()');
+ava('._overwriteRouteBetweenWaypointNames() adjusts divergent/convergent legs and replaces middle content correctly', (t) => {
+    const primaryModel = new RouteModel('KLAS07R.TRALR6.BCE.J11.DRK');
+    const otherModel = new RouteModel('BCE..NAVHO');
+    const expectedResult = [true, { log: 'rerouting to: KLAS07R TRALR6 BCE NAVHO J11 DRK', say: 'rerouting as requested' }];
+    const result = primaryModel._overwriteRouteBetweenWaypointNames('BCE', 'NAVHO', otherModel);
+
+    t.deepEqual(result, expectedResult);
+    t.true(primaryModel._legCollection.length === 4);
+    t.true(primaryModel._legCollection[0].routeString === 'KLAS07R.TRALR6.BCE');
+    t.true(primaryModel._legCollection[1].routeString === 'BCE');
+    t.true(primaryModel._legCollection[2].routeString === 'NAVHO');
+    t.true(primaryModel._legCollection[3].routeString === 'NAVHO.J11.DRK');
+});
 
 ava('._prependRouteModelEndingAtWaypointName() throws when leg type is not airway/direct/SID/STAR', (t) => {
     const primaryModel = new RouteModel('CLARR..SKEBR..MDDOG..IPUMY');

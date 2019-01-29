@@ -73,7 +73,7 @@ ava.serial('.findFixByName() returns a FixModel when passed a mixed case fixName
 
 ava.serial('.getFixRelativePosition() returns the position of a FixModel', t => {
     const result = FixCollection.getFixRelativePosition('BAKRR');
-    const expectedResult = [432.14550155204154, 519.2919854158829];
+    const expectedResult = [675.4773179362775, -12.012226373501111];
 
     t.true(_isEqual(result, expectedResult));
 });

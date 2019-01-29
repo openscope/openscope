@@ -1,0 +1,14 @@
+{
+    "icao": "slm",
+    "name": "Surinam Airlines",
+    "callsign": {
+        "name": "Surinam",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A343", 1],
+            ["B733", 3]
+        ]
+    }
+}

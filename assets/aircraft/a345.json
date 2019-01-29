@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A340-500",
+    "icao": "A345",
+    "engines": {
+        "number": 4,
+        "type": "J"
+    },
+    "weightClass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 9,
+        "recat": "B"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb": 3500,
+        "descent": 2000,
+        "accelerate": 4,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 3.200,
+        "landing": 1.920
+    },
+    "speed":{
+        "min":     145,
+        "landing": 160,
+        "cruise":  480,
+        "cruiseM": 0.82,
+        "max":     494,
+        "maxM":    0.84
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

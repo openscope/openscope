@@ -1,0 +1,37 @@
+{
+    "name": "Boeing 787-10 Dreamliner",
+    "icao": "B78X",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "H",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "B"
+    },
+    "ceiling": 43000,
+    "rate": {
+        "climb": 2700,
+        "descent": 2800,
+        "accelerate": 7,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 2.820,
+        "landing": 1.520
+    },
+    "speed":{
+        "min":     120,
+        "landing": 130,
+        "cruise":  487,
+        "cruiseM": 0.85,
+        "max":     516,
+        "maxM":    0.90
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

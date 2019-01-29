@@ -1,0 +1,16 @@
+{
+    "icao": "aru",
+    "name": "Aruba Airlines",
+    "callsign": {
+        "name": "Aruba",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 1],
+            ["A320", 2],
+            ["B734", 1],
+            ["CRJ2", 1]
+        ]
+    }
+}

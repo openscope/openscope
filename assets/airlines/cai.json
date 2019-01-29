@@ -1,0 +1,22 @@
+{
+    "icao": "cai",
+    "name": "Corendon Airlines",
+    "callsign": {
+        "name": "Corendon",
+        "callsignFormats": [
+            "#@",
+            "###",
+            "##@@"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A320", 2],
+            ["B38M", 1],
+            ["B738", 10]
+        ],
+        "b738": [
+            ["B738", 10]
+        ]
+    }
+}

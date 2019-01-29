@@ -1,16 +1,14 @@
 import _compact from 'lodash/compact';
 import _forEach from 'lodash/forEach';
-import _has from 'lodash/has';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import AircraftCommandModel from './AircraftCommandModel';
-import { unicodeToString } from '../../utilities/generalUtilities';
 import {
-    SYSTEM_COMMANDS,
-    AIRCRAFT_COMMAND_MAP
+    AIRCRAFT_COMMAND_MAP,
+    findCommandNameWithAlias
 } from './aircraftCommandMap';
-import { REGEX } from '../../constants/globalConstants';
+import { PARSED_COMMAND_NAME } from '../../constants/inputConstants';
 
 /**
  * Symbol used to split the command string as it enters the class.
@@ -37,7 +35,7 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  *
  * Commands are broken out into two categories: `System` and `Transmit`.
  * - System commands are zero or single argument commands that are used for interacting with the app
- *   itslef. Things like `timewarp` or `tutorial` are examples of system commands.
+ *   itself. Things like `timewarp` or `tutorial` are examples of system commands.
  *
  * - Transmit commands are instructions meant for a specific aircraft within the controlled airspace.
  *   These commands can have zero to many arguments, depending on the command. Some examples of transmit
@@ -122,7 +120,7 @@ export default class AircraftCommandParser {
      * @return {string|array<string>}
      */
     get args() {
-        if (this.command !== SYSTEM_COMMANDS.transmit) {
+        if (this.command !== PARSED_COMMAND_NAME.TRANSMIT) {
             return this.commandList[0].args;
         }
 
@@ -187,7 +185,7 @@ export default class AircraftCommandParser {
      * @private
      */
     _buildTransmitAircraftCommandModels(callsignOrSystemCommandName, commandArgSegments) {
-        this.command = SYSTEM_COMMANDS.transmit;
+        this.command = PARSED_COMMAND_NAME.TRANSMIT;
         this.callsign = callsignOrSystemCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
 
@@ -214,63 +212,41 @@ export default class AircraftCommandParser {
      * @private
      */
     _buildCommandList(commandArgSegments) {
+        const commandList = [];
         let aircraftCommandModel;
 
-        // TODO: this still feels icky and could be simplified some more
-        const commandList = _map(commandArgSegments, (commandOrArg) => {
+        for (let i = 0; i < commandArgSegments.length; i++) {
+            const commandOrArg = commandArgSegments[i];
+
             if (commandOrArg === '') {
-                return;
-            } else if (REGEX.UNICODE.test(commandOrArg)) {
-                const commandString = unicodeToString(commandOrArg);
-                aircraftCommandModel = new AircraftCommandModel(AIRCRAFT_COMMAND_MAP[commandString]);
-
-                return aircraftCommandModel;
-            } else if (_has(AIRCRAFT_COMMAND_MAP, commandOrArg) &&
-                !this._isAliasCommandAnArg(aircraftCommandModel, commandOrArg)
-            ) {
-                aircraftCommandModel = new AircraftCommandModel(AIRCRAFT_COMMAND_MAP[commandOrArg]);
-
-                return aircraftCommandModel;
-            } else if (typeof aircraftCommandModel === 'undefined') {
-                // if we've made it here and aircraftCommandModel is still undefined, a command was not found
-                return;
+                continue;
             }
 
-            aircraftCommandModel.args.push(commandOrArg);
-        });
+            const commandName = findCommandNameWithAlias(commandOrArg);
 
+            if (typeof aircraftCommandModel === 'undefined') {
+                if (typeof commandName === 'undefined') {
+                    continue;
+                }
 
-        return _compact(commandList);
-    }
+                aircraftCommandModel = new AircraftCommandModel(commandName);
+            } else {
+                if (typeof commandName === 'undefined') {
+                    aircraftCommandModel.args.push(commandOrArg);
 
-    /**
-     * This method is used for addressing a very specific situation
-     *
-     * When the current command is `heading` and one of the arguments is `l`, the parser interprets
-     * the `l` as another command. `l` is an alias for the `land` command.
-     *
-     * This method expects that a commandString will look like:
-     * `AA321 t l 042`
-     *
-     * We look for the `heading` command and no existing arguments, as the `l` would become the
-     * first argument in this situation.
-     *
-     * @for AircraftCommandParser
-     * @method _isAliasCommandAnArg
-     * @param aircraftCommandModel {AircraftCommandModel}
-     * @param commandOrArg {string}
-     * @return {boolean}
-     */
-    _isAliasCommandAnArg(aircraftCommandModel, commandOrArg) {
-        if (!aircraftCommandModel) {
-            return false;
+                    continue;
+                }
+
+                commandList.push(aircraftCommandModel);
+
+                aircraftCommandModel = new AircraftCommandModel(commandName);
+            }
         }
 
-        const isHeadingCommand = aircraftCommandModel.name === 'heading';
-        const isNoArgumentCommand = aircraftCommandModel.args.length === 0;
-        const isLeftTurn = commandOrArg === 'l';
+        // add last command to array
+        commandList.push(aircraftCommandModel);
 
-        return isHeadingCommand && isNoArgumentCommand && isLeftTurn;
+        return _compact(commandList);
     }
 
     /**
@@ -299,17 +275,23 @@ export default class AircraftCommandParser {
      * @private
      */
     _validateCommandArguments() {
-        return _compact(_map(this.commandList, (command) => {
-            const hasError = command.validateArgs();
+        const validatedCommandList = _map(this.commandList, (command) => {
+            if (typeof command === 'undefined') {
+                return null;
+            }
 
-            if (hasError) {
+            const errorMessage = command.validateArgs();
+
+            if (errorMessage) {
                 // we only return here so all the errors can be thrown at once
                 // from within the calling method
-                return hasError;
+                return errorMessage;
             }
 
             command.parseArgs();
-        }));
+        });
+
+        return _compact(validatedCommandList);
     }
 
     /**
@@ -323,7 +305,12 @@ export default class AircraftCommandParser {
      * @return {boolean}
      */
     _isSystemCommand(callsignOrSystemCommandName) {
-        return _has(SYSTEM_COMMANDS, callsignOrSystemCommandName) &&
-            callsignOrSystemCommandName !== SYSTEM_COMMANDS.transmit;
+        const command = AIRCRAFT_COMMAND_MAP[callsignOrSystemCommandName];
+
+        if (typeof command === 'undefined') {
+            return false;
+        }
+
+        return command.isSystemCommand && callsignOrSystemCommandName !== PARSED_COMMAND_NAME.TRANSMIT;
     }
 }

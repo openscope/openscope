@@ -8,7 +8,7 @@ The airport was initially known as Ringway Airport when it opened in 1938. It wa
 203,631 aircraft movement in 2016-2017
 
 ### About the Manchester Area Control Centre
-The Manchester Area Control Centre controls most aircraft over the north of England, the Midlands and North Wales between 2,500ft and FL285. It is located in the operations centre of NATS in Prestwick, hence the callsign "Scottish Control". The west sector is available for you to control within OpenScope.
+The Manchester Area Control Centre controls most aircraft over the north of England, the Midlands and North Wales between 2,500ft and FL285. It is located in the operations centre of NATS in Prestwick, hence the callsign "Scottish Control". The west sector is available for you to control within openScope.
 
 The file "MAN West and East xxxx_xx.pdf" from [here](https://vatsim.uk/download/info/?downloadID=00200) may be useful to understand the MACC.
 
@@ -67,7 +67,7 @@ Aircraft arriving from airways, or via the following fixes should expect the fol
 
 DALEY STARs should be used instead of ROSUN STARs when the Manchester VOR is unserviceable.  
 
-### Sectors Available in OpenScope
+### Sectors Available in openScope
 ```
 Manchester Radar
 Manchester Director
@@ -118,7 +118,7 @@ Runway 13/31, Asphalt, 998m
 **Description**: A circle, 1 nm radius centred at 532934N 0021450W
 **Limits**: SFC - 1700ft
 **Purpose**: Restriction for helicopters
-(not enforced in OpenScope, however is plotted on the videomap)
+(not enforced in openScope, however is plotted on the videomap)
 
 ##### EG R322 Wyfla
 **Description**: A circle, 2 nm radius centred at 532458N 0042852W

@@ -1,0 +1,18 @@
+{
+    "icao": "vsv",
+    "name": "SCAT Airlines",
+    "callsign": {
+        "name": "Vlasta",
+        "callsignFormats": [
+            "###"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["B733", 3],
+            ["B735", 3],
+            ["B737", 1],
+            ["B38M", 1]
+        ]
+    }
+}

@@ -4,12 +4,12 @@
     "callsign": {
         "name": "Jeju Air",
         "callsignFormats": [
-            "###"
+            "####"
         ]
     },
     "fleets": {
         "default": [
-            ["B738",    25]
+            ["B738", 34]
         ]
     }
 }

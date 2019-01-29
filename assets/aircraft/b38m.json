@@ -1,0 +1,37 @@
+{
+    "name": "Boeing 737 MAX 8",
+    "icao": "B38M",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "M",
+    "category": {
+        "srs": 3,
+        "lahso": 9,
+        "recat": "D"
+    },
+    "ceiling": 41000,
+    "rate": {
+        "climb":      3000,
+        "descent":    3000,
+        "accelerate": 7,
+        "decelerate": 3
+    },
+    "runway": {
+        "takeoff": 2.256,
+        "landing": 1.600
+    },
+    "speed":{
+        "min":     130,
+        "landing": 140,
+        "cruise":  460,
+        "cruiseM": null,
+        "max":     525,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "Airbus A321 Neo",
+    "icao": "A21N",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightClass": "L",
+    "category": {
+        "srs": 3,
+        "lahso": 7,
+        "recat": "D"
+    },
+    "ceiling": 43000,
+    "rate": {
+        "climb":      3500,
+        "descent":    3000,
+        "accelerate": 6,
+        "decelerate": 4
+    },
+    "runway": {
+        "takeoff": 2.400,
+        "landing": 1.500
+    },
+    "speed":{
+        "min":     120,
+        "landing": 135,
+        "cruise":  447,
+        "cruiseM": null,
+        "max":     488,
+        "maxM":    0.83
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
+}

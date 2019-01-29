@@ -4,12 +4,13 @@
     "callsign": {
         "name": "Orange Liner",
         "callsignFormats": [
-            "###"
+            "###",
+            "##"
         ]
     },
     "fleets": {
         "default": [
-            ["A320", 20]
+            ["A320", 22]
         ]
     }
 }

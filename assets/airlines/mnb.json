@@ -1,0 +1,20 @@
+{
+    "icao": "mnb",
+    "name": "MNG Airlines",
+    "callsign": {
+        "name": "Black Sea",
+        "callsignFormats": [
+            "###",
+            "####"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A306", 6],
+            ["A332", 1]
+        ],
+        "a306": [
+            ["A306", 6]
+        ]
+    }
+}

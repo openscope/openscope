@@ -18,13 +18,15 @@ import {
     fixValidator,
     headingValidator,
     holdValidator,
-    squawkValidator
+    squawkValidator,
+    optionalAltitudeValidator
 } from './argumentValidators';
 import {
     altitudeParser,
     headingParser,
     holdParser,
-    timewarpParser
+    timewarpParser,
+    optionalAltitudeParser
 } from './argumentParsers';
 
 /**
@@ -49,6 +51,10 @@ const noop = (args) => args;
  */
 const ZERO_ARG_AIRCRAFT_COMMANDS = {
     // system commands
+    airac: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
     auto: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -75,19 +81,11 @@ const ZERO_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    climbViaSID: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
     debug: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
     delete: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
-    descendViaStar: {
         validate: zeroArgumentsValidator,
         parse: noop
     },
@@ -151,15 +149,22 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         // return an array here
         parse: (args) => [convertStringToNumber(args)]
     },
-
+    expectArrivalRunway: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
     direct: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    land: {
+    ils: {
         validate: singleArgumentValidator,
         // TODO: split this out to custom parser once the null value is defined
         parse: (args) => [null, args[0]]
+    },
+    land: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
     },
     moveDataBlock: {
         validate: singleArgumentValidator,
@@ -230,9 +235,19 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     timewarp: {
         validate: zeroOrOneArgumentValidator,
         parse: timewarpParser
+    },
+    descendViaStar: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
+    },
+    climbViaSid: {
+        validate: optionalAltitudeValidator,
+        parse: optionalAltitudeParser
     }
 };
 
+// TODO: This entire thing ought to be absorbed into aircraftCommandMap, to keep
+// all command definition information in a single place.
 /**
  * Single exported constant that combines all the definitions above
  *

@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 
-const paths = require('../paths');
-const cli = require('../cli');
+const paths = require('../options');
 const pkg = require('../../package.json');
 
 function buildMarkup() {
@@ -16,10 +15,6 @@ function buildMarkup() {
         `!${paths.DIR.SRC}/templates/**`
     ];
 
-    // const versionStr = cli.argv.isProd
-    //     ? pkg.version
-    //     : new Date().getTime();
-
     return gulp.src(src)
         .pipe(hb()
             .partials(`${paths.DIR.SRC}/templates/**/*.hbs`)
@@ -27,10 +22,10 @@ function buildMarkup() {
             .helpers(handlebarsLayouts)
             .data({
                 version: pkg.version,
-                date: new Date().toISOString()
+                buildDate: new Date().toUTCString()
             })
         )
-        .pipe(rename(path => { path.extname = '.html'; }))
+        .pipe(rename((path) => { path.extname = '.html'; }))
         .pipe(gulp.dest(paths.DIR.DIST));
 }
 

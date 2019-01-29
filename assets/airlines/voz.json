@@ -1,0 +1,33 @@
+{
+    "icao": "voz",
+    "name": "Virgin Australia",
+    "callsign": {
+        "name": "Velocity",
+        "callsignFormats": [
+            "####",
+            "###",
+            "##"
+        ]
+    },
+    "fleets": {
+        "default": [
+            ["A332", 6],
+            ["AT76", 8],
+            ["B737", 2],
+            ["B738", 80],
+            ["B77W", 5]
+        ],
+        "short": [
+            ["AT76", 8],
+            ["B737", 2],
+            ["B738", 80]
+        ],
+        "long": [
+            ["A332", 6],
+            ["B77W", 5]
+        ],
+        "b77w": [
+            ["B77W", 5]
+        ]
+    }
+}

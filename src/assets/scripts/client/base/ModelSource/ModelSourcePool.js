@@ -1,5 +1,4 @@
 import _find from 'lodash/find';
-import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _isNil from 'lodash/isNil';
 import _without from 'lodash/without';
