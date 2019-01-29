@@ -202,6 +202,7 @@ export default class AirportInfoController {
      */
     enable() {
         this._eventBus.on(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
+        this._eventBus.on(EVENT.AIRPORT_WIND_CHANGE, this._onAirportChangeHandler);
 
         return this;
     }
@@ -215,6 +216,7 @@ export default class AirportInfoController {
      */
     disable() {
         this._eventBus.off(EVENT.AIRPORT_CHANGE, this._onAirportChangeHandler);
+        this._eventBus.off(EVENT.AIRPORT_WIND_CHANGE, this._onAirportChangeHandler);
 
         return this;
     }
@@ -248,9 +250,8 @@ export default class AirportInfoController {
      */
     onAirportChange() {
         const airport = AirportController.airport_get();
-        const windAngle = Math.round(radiansToDegrees(airport.wind.angle));
 
-        this.wind = this._buildWindAndGustReadout({ speed: airport.wind.speed, angle: windAngle });
+        this.wind = this._buildWindAndGustReadout(airport.wind);
         this.altimeter = this._generateHighAltimeterReading(airport.wind.speed);
         this.elevation = `${airport.elevation}`;
         this.icao = airport.icao.toUpperCase();

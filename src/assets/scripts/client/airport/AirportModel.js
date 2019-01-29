@@ -225,12 +225,9 @@ export default class AirportModel {
          * default wind settings for an airport
          *
          * @property wind
-         * @type {object}
+         * @type {AirportWindModel}
          */
-        this.wind = {
-            speed: 10,
-            angle: 0
-        };
+        this.wind = null;
 
         /**
          * @property ctr_radius
@@ -542,7 +539,7 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method getWind
-     * @return wind {number}
+     * @return {AirportWindModel} wind
      */
     getWind() {
         return this.wind;

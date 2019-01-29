@@ -470,7 +470,7 @@ class GameController {
             let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
             const callback = timeout[0];
-            let delayFireTime = timeout[1];
+            const delayFireTime = timeout[1];
             const callbackArguments = timeout[2];
             const delayInterval = timeout[3];
             const shouldRepeat = timeout[4];
@@ -480,7 +480,7 @@ class GameController {
                 willRemoveTimerFromList = true;
 
                 if (shouldRepeat) {
-                    delayFireTime += delayInterval;
+                    timeout[1] += delayInterval;
                     willRemoveTimerFromList = false;
                 }
             }

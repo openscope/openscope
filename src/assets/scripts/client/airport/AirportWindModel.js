@@ -3,10 +3,13 @@ import _isNil from 'lodash/isNil';
 import _round from 'lodash/round';
 import GameController from '../game/GameController';
 import { calculateNormalDistributedNumber } from '../math/core';
+import { degrees_normalize } from '../math/circle';
 import {
     vectorize_2d,
     vscale
 } from '../math/vector';
+import { EVENT } from '../constants/eventNames';
+import EventBus from '../lib/EventBus';
 
 /**
  *
@@ -37,6 +40,14 @@ export default class AirportWindModel {
          */
         this.speed = -1;
 
+        /**
+         * Local reference to the EventBus
+         *
+         * @property _eventBus
+         * @type {EventBus}
+         */
+        this._eventBus = null;
+
         return this._init(initialAirportWind)
             ._setupHandlers()
             .enable();
@@ -57,6 +68,8 @@ export default class AirportWindModel {
 
         this.speed = initialAirportWind.speed;
         this.angle = initialAirportWind.angle;
+
+        this._eventBus = EventBus;
 
         return this;
     }
@@ -121,15 +134,13 @@ export default class AirportWindModel {
             this.speed = 5;
         }
 
-        if (this.angle === 0) {
-            this.angle = 180;
-        }
-
         const speed = calculateNormalDistributedNumber(this.speed);
-        const angle = calculateNormalDistributedNumber(this.angle);
+        const angle = calculateNormalDistributedNumber(this.angle + 360);
 
         this.speed = _clamp(_round(speed), 0, 25);
-        this.angle = _round(angle);
+        this.angle = degrees_normalize(_round(angle));
+
+        this._eventBus.trigger(EVENT.AIRPORT_WIND_CHANGE);
     }
 
     /**
@@ -143,7 +154,7 @@ export default class AirportWindModel {
     _createWindUpdateTimer() {
         GameController.game_interval(
             this._calculateNextWindHandler,
-            3000,
+            300,
             null,
             null
         );
