@@ -138,7 +138,7 @@ export default class AirportWindModel {
         const angle = calculateNormalDistributedNumber(this.angle + 360);
 
         this.speed = _clamp(_round(speed), 0, 25);
-        this.angle = degrees_normalize(_round(angle));
+        this.angle = degrees_normalize(_round(angle, 10));
 
         this._eventBus.trigger(EVENT.AIRPORT_WIND_CHANGE);
     }
