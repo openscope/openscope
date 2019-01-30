@@ -1725,9 +1725,8 @@ export default class CanvasController {
         // draw airspaces
         for (let i = 0; i < airport.airspace.length; i++) {
             const airspace = airport.airspace[i];
-            const poly = area_to_poly(airspace);
 
-            this._drawPoly(cc, poly, false);
+            this._drawPoly(cc, airspace.relativePoly, false);
         }
     }
 

@@ -39,6 +39,16 @@ export default class AirspaceModel extends BaseModel {
         this.poly = [];
 
         /**
+         * A transformed version of this.poly
+         *
+         * @for AirspaceModel
+         * @property relativePoly
+         * @type {array}
+         * @default []
+         */
+        this.relativePoly = [];
+
+        /**
          * Altitude at bottom of area, in hundreds of feet
          *
          * @for AirspaceModel
@@ -87,6 +97,8 @@ export default class AirspaceModel extends BaseModel {
         this.airspace_class = airspace.airspace_class;
         this.poly = buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
 
+        this.transformPoly();
+
         return this;
     }
 
@@ -101,6 +113,10 @@ export default class AirspaceModel extends BaseModel {
         this.airspace_class = '';
     }
 
+    transformPoly() {
+        this.relativePoly = _map(this.poly, (v) => v.relativePosition);
+    }
+
     /**
      *
      *
@@ -110,9 +126,7 @@ export default class AirspaceModel extends BaseModel {
      * @return {boolean}
      */
     isPointInside(point) {
-        const transformed = _map(this.poly, (v) => v.relativePosition);
-
-        if (!point_in_poly(point, transformed)) {
+        if (!point_in_poly(point, this.relativePoly)) {
             return false;
         }
 
