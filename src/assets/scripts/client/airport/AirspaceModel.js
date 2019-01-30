@@ -1,8 +1,9 @@
 import _isNumber from 'lodash/isNumber';
+import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { convertToThousands } from '../utilities/unitConverters';
-import { buildPolyPositionModels, point_in_area } from '../math/vector';
+import { buildPolyPositionModels, point_in_poly } from '../math/vector';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
@@ -109,7 +110,9 @@ export default class AirspaceModel extends BaseModel {
      * @return {boolean}
      */
     isPointInside(point) {
-        if (!point_in_area(point, this.poly)) {
+        const transformed = _map(this.poly, (v) => v.relativePosition);
+
+        if (!point_in_poly(point, transformed)) {
             return false;
         }
 
