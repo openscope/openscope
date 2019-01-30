@@ -1,3 +1,4 @@
+import _map from 'lodash/map';
 import {
     abs,
     sin,
@@ -12,9 +13,7 @@ import {
     vradial,
     vsub,
     vlen,
-    point_in_area,
-    distance_to_poly,
-    area_to_poly
+    distance_to_poly
 } from './vector';
 import {
     degreesToRadians,
@@ -121,23 +120,6 @@ export function getOffset(aircraft, target, headingThruTarget = null) {
 
 /**
  *
- * @function isWithinAirspace
- * @param airport {AirportModel}
- * @param  pos {array}
- * @return {boolean}
- */
-export function isWithinAirspace(airport, pos) {
-    const perim = airport.perimeter;
-
-    if (perim) {
-        return point_in_area(pos, perim);
-    }
-
-    return distance2d(pos, airport.relativePosition) <= airport.ctr_radius;
-}
-
-/**
- *
  * @function calculateDistanceToBoundary
  * @param airport {AirportModel}
  * @param pos {array}
@@ -148,12 +130,13 @@ export function calculateDistanceToBoundary(airport, pos) {
 
     if (perim) {
         // km
-        return distance_to_poly(pos, area_to_poly(perim));
+        const poly = _map(perim, (v) => v.relativePosition);
+
+        return distance_to_poly(pos, poly);
     }
 
     return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
 }
-
 
 /**
  * @function _calculateNominalNewCourse

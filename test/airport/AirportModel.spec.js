@@ -50,7 +50,7 @@ ava('.buildAirportAirspace() returns early when passed a null or undefined argum
     const model = new AirportModel(AIRPORT_JSON_KLAS_MOCK);
     model.airspace = null;
 
-    model.buildAirportAirspace();
+    model.buildAirspace();
 
     t.true(!model.airspace);
 });

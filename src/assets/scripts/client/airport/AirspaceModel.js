@@ -1,10 +1,8 @@
-import _isEqual from 'lodash/isEqual';
 import _isNumber from 'lodash/isNumber';
-import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
-import StaticPositionModel from '../base/StaticPositionModel';
 import { INVALID_NUMBER } from '../constants/globalConstants';
 import { convertToThousands } from '../utilities/unitConverters';
+import { buildPolyPositionModels, point_in_area } from '../math/vector';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
@@ -86,7 +84,7 @@ export default class AirspaceModel extends BaseModel {
         this.floor = convertToThousands(airspace.floor);
         this.ceiling = convertToThousands(airspace.ceiling);
         this.airspace_class = airspace.airspace_class;
-        this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
+        this.poly = buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
 
         return this;
     }
@@ -103,33 +101,18 @@ export default class AirspaceModel extends BaseModel {
     }
 
     /**
-     * Create a StaticPositionModel for each poly listed in `airspace.poly`.
      *
-     * If the last entry is the same as the first, remove it because the path will be closed automatically.
      *
      * @for AirspaceModel
-     * @method _buildPolyPositionModels
-     * @param polyList {array}
-     * @param airportPosition {StaticPositionModel}
-     * @param magneticNorth {number}
-     * @return polyPositionModels {array}
-     * @private
+     * @method isPointInside
+     * @param point {array} x,y
+     * @return {boolean}
      */
-    _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
-        const polyPositionModels = _map(polyList, (poly) => {
-            return new StaticPositionModel(poly, airportPosition, magneticNorth);
-        });
-
-        // TODO: Though its reusability is not real likely, this might as well be made into an external helper
-        // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
-        const firstIndex = 0;
-        const lastIndex = polyPositionModels.length - 1;
-        const firstIndexRelativePosition = polyPositionModels[firstIndex].relativePosition;
-        const lastIndexRelativePosition = polyPositionModels[lastIndex].relativePosition;
-        if (_isEqual(firstIndexRelativePosition, lastIndexRelativePosition)) {
-            polyPositionModels.pop();
+    isPointInside(point) {
+        if (!point_in_area(point, this.poly)) {
+            return false;
         }
 
-        return polyPositionModels;
+        return true;
     }
 }

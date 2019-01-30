@@ -3,6 +3,7 @@ import _cloneDeep from 'lodash/cloneDeep';
 import _filter from 'lodash/filter';
 import _has from 'lodash/has';
 import _inRange from 'lodash/inRange';
+import _map from 'lodash/map';
 import AirportController from '../airport/AirportController';
 import CanvasStageModel from './CanvasStageModel';
 import EventBus from '../lib/EventBus';
@@ -16,6 +17,7 @@ import {
     clamp
 } from '../math/core';
 import {
+    area_to_poly,
     positive_intersection_with_rect,
     vectorize2dFromRadians,
     vectorize2dFromDegrees,
@@ -1115,7 +1117,7 @@ export default class CanvasController {
      * @param aircraft {AircraftModel}
      * @param future_track
      */
-    canvas_draw_future_track_fixes(cc, aircraft, future_track) {
+    canvas_draw_future_track_fixes(/* cc, aircraft, future_track */) {
         // const waypointList = aircraft.fms.waypoints;
         //
         // if (waypointList.length <= 1) {
@@ -1457,8 +1459,12 @@ export default class CanvasController {
         }
 
         // Move to center of where the data block is to be drawn
-        const radarTargetPositionX = round(CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[0])) + CanvasStageModel._panX;
-        const radarTargetPositionY = -round(CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[1])) + CanvasStageModel._panY;
+        const radarTargetPositionX = round(
+            CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[0])
+        ) + CanvasStageModel._panX;
+        const radarTargetPositionY = -round(
+            CanvasStageModel.translateKilometersToPixels(aircraftModel.relativePosition[1])
+        ) + CanvasStageModel._panY;
         const radarTargetPosition = [
             radarTargetPositionX,
             radarTargetPositionY
@@ -1675,11 +1681,13 @@ export default class CanvasController {
             round(CanvasStageModel.halfWidth + CanvasStageModel._panX),
             round(CanvasStageModel.halfHeight + CanvasStageModel._panY)
         );
-        this._drawAirspaceBorder(cc);
+
+        this._drawAirspace(cc);
+        this._drawRangeRings(cc);
 
         // undo the above translation
         // caution: do not replace with restore().save() because
-        // we need the clipping region from _drawAirspaceBorder()
+        // we need the clipping region from _drawAirspace()
         // also, do not reverse these calls, as the rings should be
         // drawn ON TOP of the airspace boundary lines
         cc.translate(
@@ -1695,82 +1703,33 @@ export default class CanvasController {
      * Draw polygonal airspace border
      *
      * @for CanvasController
-     * @method _drawAirspaceBorder
+     * @method _drawAirspace
      * @param cc {HTMLCanvasContext}
      * @private
      */
-    _drawAirspaceBorder(cc) {
+    _drawAirspace(cc) {
         const airport = AirportController.airport_get();
 
         cc.strokeStyle = this.theme.SCOPE.AIRSPACE_PERIMETER;
         cc.fillStyle = this.theme.SCOPE.AIRSPACE_FILL;
 
-        for (let i = 0; i < airport.airspace.length; i++) {
-            const poly = $.map(airport.perimeter.poly, (v) => {
-                return [v.relativePosition];
-            });
+        // draw perimeter
+        if (airport.perimeter) {
+            const poly = _map(airport.perimeter, (v) => v.relativePosition);
 
             this._drawPoly(cc, poly);
+            // use perimeter as clipping mask for range rings
             cc.clip();
         }
+
+        // draw airspaces
+        for (let i = 0; i < airport.airspace.length; i++) {
+            const airspace = airport.airspace[i];
+            const poly = area_to_poly(airspace);
+
+            this._drawPoly(cc, poly, false);
+        }
     }
-
-    // TODO: are these two methods still needed? why?
-    // /**
-    //  * @for CanvasController
-    //  * @method canvas_draw_engm_range_rings
-    //  * @param cc {HTMLCanvasContext}
-    //  */
-    // // Draw range rings for ENGM airport to assist in point merge
-    // canvas_draw_engm_range_rings(cc) {
-    //     cc.strokeStyle = this.theme.SCOPE.RANGE_RING_COLOR;
-    //     cc.setLineDash([3, 6]);
-
-    //     this.canvas_draw_fancy_rings(cc, 'BAVAD', 'GM428', 'GM432');
-    //     this.canvas_draw_fancy_rings(cc, 'TITLA', 'GM418', 'GM422');
-    //     this.canvas_draw_fancy_rings(cc, 'INSUV', 'GM403', 'GM416');
-    //     this.canvas_draw_fancy_rings(cc, 'VALPU', 'GM410', 'GM402');
-    // }
-
-    //  /**
-    //  * Draw range rings for `ENGM`
-    //  *
-    //  * This method is used exclusively by `.canvas_draw_engm_range_rings()`
-    //  *
-    //  * @for CanvasController
-    //  * @method canvas_draw_fancy_rings
-    //  * @param cc {HTMLCanvasContext}
-    //  * @param fix_origin
-    //  * @param fix1
-    //  * @param fix2
-    //  */
-    // canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-    //     const airport = AirportController.airport_get();
-    //     const origin = airport.getFixPosition(fix_origin);
-    //     const f1 = airport.getFixPosition(fix1);
-    //     const f2 = airport.getFixPosition(fix2);
-    //     const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
-    //     const halfPI = Math.PI / 2;
-    //     const extend_ring = degreesToRadians(10);
-    //     const start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
-    //     const end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
-    //     const x = round(CanvasStageModel.translateKilometersToPixels(origin[0])) + CanvasStageModel._panX;
-    //     const y = -round(CanvasStageModel.translateKilometersToPixels(origin[1])) + CanvasStageModel._panY;
-    //     // 5NM = 9.27km
-    //     const radius = 9.27;
-
-    //     for (let i = 0; i < 4; i++) {
-    //         cc.beginPath();
-    //         cc.arc(
-    //             x,
-    //             y,
-    //             CanvasStageModel.translateKilometersToPixels(minDist - (i * radius)),
-    //             start_angle, end_angle
-    //         );
-
-    //         cc.stroke();
-    //     }
-    // }
 
     /**
      * @for CanvasController
@@ -1822,7 +1781,7 @@ export default class CanvasController {
      * @param poly {array<array<number, number>>}
      * @private
      */
-    _drawPoly(cc, poly) {
+    _drawPoly(cc, poly, fill = true) {
         cc.beginPath();
 
         for (let i = 0; i < poly.length; i++) {
@@ -1836,7 +1795,10 @@ export default class CanvasController {
 
         cc.closePath();
         cc.stroke();
-        cc.fill();
+
+        if (fill) {
+            cc.fill();
+        }
     }
 
     /**

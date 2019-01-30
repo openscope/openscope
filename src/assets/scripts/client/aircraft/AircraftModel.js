@@ -1020,13 +1020,9 @@ export default class AircraftModel {
      * @return {boolean}
      */
     isInsideAirspace(airport) {
-        let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
+        const withinAirspaceLateralBoundaries = airport.isWithinAirspace(this.positionModel.relativePosition);
+        // TODO:
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
-
-        // polygonal airspace boundary
-        if (!_isNil(airport.perimeter)) {
-            withinAirspaceLateralBoundaries = point_in_area(this.positionModel.relativePosition, airport.perimeter);
-        }
 
         return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
     }

@@ -1,14 +1,13 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
-
+import _map from 'lodash/map';
 import { isWithinEpsilon } from '../../src/assets/scripts/client/math/core';
 import {
     vectorize2dFromRadians,
     vectorize2dFromDegrees,
     vlen,
     vradial,
-    vsub,
-    area_to_poly
+    vsub
 } from '../../src/assets/scripts/client/math/vector';
 import { airportModelFixture } from '../fixtures/airportFixtures';
 
@@ -154,7 +153,8 @@ ava('.area_to_poly() returns an array of 2 index arrays that represent canvas po
         [-49.641760676130005, 11.37605308808484],
         [-67.81746809538386, 15.91078422023606]
     ];
-    const result = area_to_poly(airportModelFixture.perimeter);
+
+    const result = _map(airportModelFixture.perimeter, (v) => v.relativePosition);
 
     t.true(_isEqual(result, expectedResult));
 });

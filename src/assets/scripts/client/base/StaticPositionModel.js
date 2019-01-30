@@ -48,7 +48,7 @@ export default class StaticPositionModel extends DynamicPositionModel {
 
     /**
      * @for StaticPositionModel
-     * @property relativePosition
+     * @property referencePosition
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get referencePosition() {

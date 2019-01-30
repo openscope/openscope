@@ -4,7 +4,6 @@ import _chunk from 'lodash/chunk';
 import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirportController from './AirportController';
 import AirspaceModel from './AirspaceModel';
@@ -23,6 +22,7 @@ import {
     round
 } from '../math/core';
 import {
+    buildPolyPositionModels,
     vectorize2dFromRadians,
     vlen,
     vsub,
@@ -198,10 +198,10 @@ export default class AirportModel {
         this.terrain = {};
 
         /**
-         * area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
+         * a polygon that outlines the outermost lateral airspace boundary.
          *
          * @property perimeter
-         * @type {object}
+         * @type {array<array>}
          * @default null
          */
         this.perimeter = null;
@@ -374,7 +374,8 @@ export default class AirportModel {
 
         this._initRangeRings(data.rangeRings);
         this.loadTerrain();
-        this.buildAirportAirspace(data.airspace);
+        this.buildAirspacePerimeter(data.perimeter);
+        this.buildAirspace(data.airspace);
         this.setActiveRunwaysFromNames(data.arrivalRunway, data.departureRunway);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
@@ -425,7 +426,18 @@ export default class AirportModel {
      * @method buildAirportAirspace
      * @param airspace
      */
-    buildAirportAirspace(airspace) {
+    buildAirspacePerimeter(perimeter) {
+        this.perimeter = buildPolyPositionModels(perimeter, this._positionModel, this._positionModel.magneticNorth);
+    }
+
+    /**
+     * create 3d polygonal airspace
+     *
+     * @for AirportModel
+     * @method buildAirspace
+     * @param airspace
+     */
+    buildAirspace(airspace) {
         if (!airspace) {
             return;
         }
@@ -439,10 +451,8 @@ export default class AirportModel {
             );
         });
 
-        // airspace perimeter (assumed to be first entry in data.airspace)
-        this.perimeter = _head(this.airspace);
         this.ctr_radius = Math.max(
-            ..._map(this.perimeter.poly, (vertexPosition) => vlen(
+            ..._map(this.perimeter, (vertexPosition) => vlen(
                 vsub(vertexPosition.relativePosition, this.rangeRings.center.relativePosition)
             ))
         );
@@ -871,5 +881,28 @@ export default class AirportModel {
 
         this.init(response);
         this.set();
+    }
+
+    /**
+     *
+     * @for AirportModel
+     * @method isWithinAirspace
+     * @param point {array} x,y
+     * @return {boolean}
+     */
+    isWithinAirspace(point) {
+        if (!this.airspace) {
+            return vlen(point) <= this.ctr_radius;
+        }
+
+        for (let i = 0; i < this.airspace.length; i++) {
+            const airspace = this.airspace[i];
+
+            if (airspace.isPointInside(point)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
