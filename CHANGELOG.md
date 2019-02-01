@@ -3,11 +3,9 @@
 - [#1032](https://github.com/openscope/openscope/issues/1032) - Add range ring options and toggle button
 - [#1234](https://github.com/openscope/openscope/issues/1234) - Add scope command for drawing halos around aircraft data blocks
 
-
 ### Bugfixes
 - [#1292](https://github.com/openscope/openscope/issues/1292) - Ensure taxi instructions are ignored when aircraft is taking off
 - [#1309](https://github.com/openscope/openscope/issues/1309) - Fix GameController.game_interval calls continuously after it fires initially
-
 
 ### Enhancements & Refactors
 - [#1247](https://github.com/openscope/openscope/issues/1247) - Determine initial climb altitude from the SID
