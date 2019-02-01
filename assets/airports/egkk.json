@@ -2012,6 +2012,21 @@
                 ["BILNI", "KUMIL", "AVANT", "GWC", "ASTRA"]
             ]
         },
+        "KONAN1G": {
+            "icao": "KONAN1G",
+            "name": "Konan One Golf",
+            "entryPoints": {
+                "KONAN": []
+            },
+            "body": ["KONAN", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["KONAN", "ARNUN"]
+            ]
+        },
         "LUMBA1C": {
             "icao": "LUMBA1C",
             "name": "Lumba One Charlie",
@@ -2055,6 +2070,21 @@
             },
             "draw": [
                 ["OTMET", "SOKDU", "NEDUL", "ELDER", "TELTU", "HOLLY", "_MID105022"]
+            ]
+        },
+        "TEBRA1G": {
+            "icao": "TEBRA1G",
+            "name": "Tebra One Golf",
+            "entryPoints": {
+                "TEBRA": []
+            },
+            "body": ["TEBRA", ["ABTUM", "A140"], "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
+            "rwy": {
+                "EGKK08R": [],
+                "EGKK26L": []
+            },
+            "draw": [
+                ["TEBRA", "ABTUM"]
             ]
         },
         "TELTU1G": {
@@ -2117,21 +2147,6 @@
                 ["ERING", "ABTUM", "ARNUN", "KKE63", "LARCK", "TIMBA"]
             ]
         },
-        "TIMBA1K": {
-            "icao": "TIMBA1K",
-            "name": "Timba One Kilo",
-            "entryPoints": {
-                "TEBRA": []
-            },
-            "body": ["TEBRA", ["ABTUM", "A140"], "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
-            "rwy": {
-                "EGKK08R": [],
-                "EGKK26L": []
-            },
-            "draw": [
-                ["TEBRA", "ABTUM"]
-            ]
-        },
         "TIMBA2G": {
             "icao": "TIMBA2G",
             "name": "Timba Two Golf",
@@ -2145,21 +2160,6 @@
             },
             "draw": [
                 ["NEVIL", "OSPOL", "ELDAX", "AMDUT", "KKE64", "TIMBA"]
-            ]
-        },
-        "TIMBA3F": {
-            "icao": "TIMBA3F",
-            "name": "Timba Three Foxtrot",
-            "entryPoints": {
-                "KONAN": []
-            },
-            "body": ["KONAN", "ARNUN", ["KKE63", "S250-"], ["LARCK", "S250-"], ["@TIMBA", "A70|S250-"]],
-            "rwy": {
-                "EGKK08R": [],
-                "EGKK26L": []
-            },
-            "draw": [
-                ["KONAN", "ARNUN"]
             ]
         },
         "TIMBA4B": {
