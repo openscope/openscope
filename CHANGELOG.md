@@ -6,6 +6,7 @@
 
 ### Bugfixes
 - [#1292](https://github.com/openscope/openscope/issues/1292) - Ensure taxi instructions are ignored when aircraft is taking off
+- [#1309](https://github.com/openscope/openscope/issues/1309) - Fix GameController.game_interval calls continuously after it fires initially
 
 
 ### Enhancements & Refactors
@@ -13,6 +14,7 @@
 - [#1290](https://github.com/openscope/openscope/issues/1290) - Add Pull Reminders badge to repository readme
 - [#1286](https://github.com/openscope/openscope/issues/1286) - Update EDDF to AIRAC 1901
 - [#1288](https://github.com/openscope/openscope/issues/1288) - Update event tracking arguments sent to GA
+- [#1308](https://github.com/openscope/openscope/issues/1308) - Clarify that TimeKeeper and GameController.game_timeout are using seconds (not milliseconds)
 
 
 # 6.9.1 (January 4, 2019)
