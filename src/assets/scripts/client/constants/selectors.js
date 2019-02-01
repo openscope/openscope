@@ -17,6 +17,8 @@ export const CLASSNAMES = {
     ALTITUDE: 'altitude',
     ARRIVAL: 'arrival',
     CALLSIGN: 'callsign',
+    CHANGELOG_VISIBLE: 'changelog-container-is-visible',
+    CHANGELOG_TOGGLE: 'changelog-toggle',
     CONTROL: 'control',
     DEPARTURE: 'departure',
     DESTINATION: 'destination',
