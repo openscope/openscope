@@ -11,8 +11,11 @@
     "ctr_ceiling": 16000,
     "initial_alt": 5000,
     "position": ["N25d47m43.3", "W80d17m24.4"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N25d47m43.3", "W80d17m24.4"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N25d47m43.3", "W80d17m24.4"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "airspace": [
         {

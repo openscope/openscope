@@ -13,8 +13,11 @@ export const AIRPORT_JSON_KLAS_MOCK = {
     "ctr_ceiling": 19000,
     "initial_alt": 19000,
     "position": ["N36.080056", "W115.15225", "2181ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N36.080056", "W115.15225"],
+    "rangeRings": {
+        "enabled": true,
+        "center": [36.080056, -115.15225],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 220,
@@ -206,6 +209,7 @@ export const AIRPORT_JSON_KLAS_MOCK = {
         "BOACH6": {
             "icao": "BOACH6",
             "name": "Boach Six",
+            "altitude": 7000,
             "rwy": {
                 "KLAS01L": [["BESSY", "S230"], ["WITLA", "A100"], "JEBBB"],
                 "KLAS07L": ["WASTE", ["BAKRR", "A70"], ["MINEY", "A80+"], "HITME"],

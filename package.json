@@ -1,6 +1,6 @@
 {
   "name": "openscope",
-  "version": "6.9.1",
+  "version": "6.10.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "11.3.0",
@@ -9,6 +9,7 @@
   "scripts": {
     "postinstall": "gulp build --prod",
     "test": "nyc --require @babel/register ava --concurrency=5",
+    "gulp": "gulp build",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "posttest": "npm run report",

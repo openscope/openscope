@@ -49,6 +49,14 @@ export const TRACKABLE_EVENT = {
     TUTORIAL: 'tutorial',
 
     /**
+     * reports on clicks of links to an external resource
+     *
+     * @memberof
+     * @property OUTBOUND
+     */
+    OUTBOUND: 'outbound',
+
+    /**
      * reports when the ui log renders an error message
      *
      * @memberof TRACKABLE_EVENT

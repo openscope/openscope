@@ -314,14 +314,6 @@ export default class AircraftModel {
 
         /**
          * @for AircraftModel
-         * @property notice
-         * @type {boolean}
-         * @default false
-         */
-        this.notice = false;
-
-        /**
-         * @for AircraftModel
          * @property warning
          * @type {boolean}
          * @default false
@@ -1252,7 +1244,11 @@ export default class AircraftModel {
      */
     taxiToRunway(runwayModel) {
         if (this.isAirborne()) {
-            return [false, 'unable to taxi, we\'re airborne'];
+            return [false, 'unable to taxi, we\'re already airborne'];
+        }
+
+        if (this.flightPhase === FLIGHT_PHASE.TAKEOFF) {
+            return [false, 'unable to taxi, we\'re already taking off'];
         }
 
         if (this.isArrival()) {
@@ -1292,16 +1288,34 @@ export default class AircraftModel {
     /**
      * Initialize all autopilot systems after being given an IFR clearance to destination and execute takeoff.
      *
-     * @for Pilot
+     * @for AircraftModel
      * @method takeoff
      * @param runway {RunwayModel} the runway taking off on
-     * @param initialAltitude {number} the altitude aircraft can automatically climb to at this airport
      */
-    takeoff(runway, initialAltitude) {
+    takeoff(runway) {
         const cruiseSpeed = this.model.speed.cruise;
+        const initialAltitude = this.fms.getInitialClimbClearance();
 
+        this._prepareMcpForTakeoff(initialAltitude, runway.angle, cruiseSpeed);
+        this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
+        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
+
+        this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
+        runway.lastDepartedAircraftCallsign = this.callsign;
+    }
+
+    /**
+     * Initialize all autopilot systems for takeoff.
+     *
+     * @for AircraftModel
+     * @method _prepareMcpForTakeoff
+     * @param altitude {number}
+     * @param heading {number}
+     * @param speed {number}
+     */
+    _prepareMcpForTakeoff(altitude, heading, speed) {
         if (this.mcp.altitude === INVALID_NUMBER) {
-            this.mcp.setAltitudeFieldValue(initialAltitude);
+            this.mcp.setAltitudeFieldValue(altitude);
         }
 
         if (this.mcp.altitudeMode === MCP_MODE.ALTITUDE.OFF) {
@@ -1309,7 +1323,7 @@ export default class AircraftModel {
         }
 
         if (this.mcp.heading === INVALID_NUMBER) {
-            this.mcp.setHeadingFieldValue(runway.angle);
+            this.mcp.setHeadingFieldValue(heading);
         }
 
         if (this.mcp.headingMode === MCP_MODE.HEADING.OFF) {
@@ -1317,18 +1331,12 @@ export default class AircraftModel {
         }
 
         if (this.mcp.speed === INVALID_NUMBER) {
-            this.mcp.setSpeedFieldValue(cruiseSpeed);
+            this.mcp.setSpeedFieldValue(speed);
         }
 
         if (this.mcp.speedMode === MCP_MODE.SPEED.OFF) {
             this.mcp.setSpeedN1();
         }
-
-        this.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-        EventBus.trigger(AIRCRAFT_EVENT.TAKEOFF, this, runway);
-
-        this.takeoffTime = TimeKeeper.accumulatedDeltaTime;
-        runway.lastDepartedAircraftCallsign = this.callsign;
     }
 
     /**
@@ -2627,17 +2635,26 @@ export default class AircraftModel {
     }
 
     /**
+     * Return the presence/absence of (any existing) conflict or violation in terms
+     * of separation with another aircraft
+     *
      * @for AircraftModel
-     * @method hasAlerts
+     * @method getAlerts
+     * @return {array} [hasConflict, hasViolation]
      */
-    hasAlerts() {
+    getAlerts() {
         const alert = [false, false];
 
         for (const i in this.conflicts) {
-            const conflict = this.conflicts[i].hasAlerts();
+            const hasConflict = this.conflicts[i].hasConflict();
+            const hasViolation = this.conflicts[i].hasViolation();
 
-            alert[0] = (alert[0] || conflict[0]);
-            alert[1] = (alert[1] || conflict[1]);
+            alert[0] = (alert[0] || hasConflict);
+            alert[1] = (alert[1] || hasViolation);
+
+            if (alert[0] && alert[1]) {
+                return alert;
+            }
         }
 
         return alert;

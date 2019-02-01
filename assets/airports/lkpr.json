@@ -11,8 +11,11 @@
     "ctr_ceiling": 14500,
     "initial_alt": 5000,
     "position": ["N50d05.8", "E14d15.9", "1247ft"],
-    "rr_radius_nm": 5.0,
-    "rr_center": ["N50d05.8", "E14d15.9"],
+    "rangeRings": {
+        "enabled": true,
+        "center": ["N50d05.8", "E14d15.9"],
+        "radius_nm": 5.0
+    },
     "has_terrain": true,
     "wind": {
         "angle": 270,
@@ -768,7 +771,7 @@
         {
             "name": ["06", "24"],
             "end": [
-                ["N50d06m06.61", "E14d13m34.68", "1202ft"], 
+                ["N50d06m06.61", "E14d13m34.68", "1202ft"],
                 ["N50d06m57.42", "E14d16m24.12", "1158ft"]
             ],
             "ils": [true, true]

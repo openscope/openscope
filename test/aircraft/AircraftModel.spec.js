@@ -532,7 +532,7 @@ ava('.updateTarget() causes departures to prioritize clearance over restriction'
 });
 
 ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
-    const expectedResult = [false, 'unable to taxi, we\'re airborne'];
+    const expectedResult = [false, 'unable to taxi, we\'re already airborne'];
     const arrival = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
     const arrivalResult = arrival.taxiToRunway(runwayModelMock);
 
@@ -543,6 +543,18 @@ ava('.taxiToRunway() returns an error when the aircraft is airborne', (t) => {
 
     const departureResult = departure.taxiToRunway(runwayModelMock);
     t.deepEqual(departureResult, expectedResult);
+});
+
+ava('.taxiToRunway() returns an error when the aircraft is taking off', (t) => {
+    const aircraftModel = new AircraftModel(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK);
+
+    aircraftModel.fms.currentPhase = FLIGHT_PHASE.TAKEOFF;
+
+    const expectedResult = [false, 'unable to taxi, we\'re already taking off'];
+    const result = aircraftModel.taxiToRunway(runwayModelMock);
+
+    t.deepEqual(result, expectedResult);
+    t.true(aircraftModel.flightPhase === FLIGHT_PHASE.TAKEOFF);
 });
 
 ava('.taxiToRunway() returns an error when the aircraft has landed', (t) => {

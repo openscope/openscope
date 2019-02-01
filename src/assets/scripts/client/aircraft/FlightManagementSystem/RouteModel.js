@@ -324,9 +324,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayAirportIcao();
+        return sidLegModel.getDepartureRunwayAirportIcao();
     }
 
     /**
@@ -358,9 +358,9 @@ export default class RouteModel extends BaseModel {
             return null;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
+        const sidLegModel = this._findSidLeg();
 
-        return this._legCollection[sidLegIndex].getDepartureRunwayName();
+        return sidLegModel.getDepartureRunwayName();
     }
 
     /**
@@ -504,8 +504,7 @@ export default class RouteModel extends BaseModel {
             return this.getFullRouteString().split('..')[0];
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getExitFixName();
     }
@@ -522,7 +521,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureIcao();
     }
@@ -539,9 +538,28 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegModel = this._legCollection[this._findSidLegIndex()];
+        const sidLegModel = this._findSidLeg();
 
         return sidLegModel.getProcedureName();
+    }
+
+    /**
+     * Return the initial altitude of the SID or the airport
+     *
+     * @for RouteModel
+     * @method getInitialClimbClearance
+     * @return {number}
+     */
+    getInitialClimbClearance() {
+        const sidLegModel = this._findSidLeg();
+
+        if (sidLegModel && sidLegModel.altitude) {
+            return sidLegModel.altitude;
+        }
+
+        const airport = AirportController.airport_get();
+
+        return airport.initial_alt;
     }
 
     /**
@@ -686,8 +704,7 @@ export default class RouteModel extends BaseModel {
             return false;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         if (!sidLegModel) {
             return true;
@@ -860,8 +877,7 @@ export default class RouteModel extends BaseModel {
             return;
         }
 
-        const sidLegIndex = this._findSidLegIndex();
-        const sidLegModel = this._legCollection[sidLegIndex];
+        const sidLegModel = this._findSidLeg();
 
         sidLegModel.updateSidLegForDepartureRunwayModel(runwayModel);
     }
@@ -1460,6 +1476,20 @@ export default class RouteModel extends BaseModel {
      */
     _findSidLegIndex() {
         return _findIndex(this._legCollection, (legModel) => legModel.isSidLeg);
+    }
+
+    /**
+     * Return the SID leg
+     *
+     * If for some reason there are multiple, this returns the first one.
+     * This search does NOT include legs in the `#_previousLegCollection`.
+     *
+     * @for RouteModel
+     * @method findSidLeg
+     * @return {ProcedureModel}
+     */
+    _findSidLeg() {
+        return this._legCollection.find((legModel) => legModel.isSidLeg);
     }
 
     /**
