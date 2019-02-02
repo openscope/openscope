@@ -1,4 +1,5 @@
 {
+    "airac": 1901,
     "radio": {
         "twr": "Frankfurt Tower",
         "app": "Langen Radar",
@@ -334,6 +335,10 @@
         "_MTR191016": [50.01640510369, 8.75818429846],
         "_MTR202010": [50.12372387054, 8.74470303298],
         "_RID356009": [49.93141571698, 8.53173738603],
+        "SIRIO": ["N49d34.42", "E010d04.40"],
+        "TOSTU": ["N49d42.82", "E009d48.35"],
+        "KISEK": ["N49d00.50", "E009d06.13"],
+        "XORBO": ["N49d35.20", "E009d14.95"],
         "ADEVO": ["N49d57.1", "E008d20.4"],
         "ADNIS": ["N49d42m00.33", "E009d17m23.55"],
         "ADUSU": ["N49d57m22", "E006d11m46"],
@@ -346,7 +351,9 @@
         "AMOSU": ["N51d38m20", "E006d27m18"],
         "AMTIX": ["N49d45.7", "E009d05.5"],
         "ANEKI": ["N49d19.0", "E008d28.8"],
+        "ANORA": ["N48d56.97", "E010d32.90"],
         "APROX": ["N50d43.5", "E008d43.0"],
+        "ASKIK": ["N50d03.17", "E008d32.02"],
         "ASMOX": ["N49d54m10", "E006d16m34"],
         "ASPAT": ["N49d11m46.23", "E010d43m32.98"],
         "BARSU": ["N49d55m18", "E010d23m22"],
@@ -355,6 +362,8 @@
         "BIGSU": ["N50d41m42", "E008d24m29"],
         "BIKMU": ["N51d06m20", "E006d40m22"],
         "BITBU": ["N49d58m59", "E006d33m42"],
+        "BOMBI": ["N50d03.40", "E008d48.02"],
+        "BURAM": ["N48d41.73", "E010d56.93"],
         "CHA"  : ["N49d55.3", "E009d02.4"],
         "COL"  : ["N50d47m00.70", "E007d35m39.03"],
         "DEMAB": ["N50d32m28", "E009d57m21"],
@@ -484,6 +493,7 @@
         "EBIPA": ["N50d22.9", "E009d31.3"],
         "EDUDU": ["N49d54m37", "E010d10m01"],
         "EKPUT": ["N49d47m13", "E010d05m48"],
+        "ELMOX": ["N49d23.02", "E009d49.48"],
         "EMGOD": ["N50d11m47", "E007d19m44"],
         "EMPAX": ["N48d27m43.05", "E008d59m53.34"],
         "ERMEL": ["N49d11m16", "E011d02m41"],
@@ -527,6 +537,7 @@
         "LEDKI": ["N50d06.2", "E008d51.4"],
         "LEPSA": ["N49d49m22.37", "E009d35m26.20"],
         "LESMO": ["N50d47m50", "E010d12m33"],
+        "LEVBU": ["N49d00.42", "E010d27.40"],
         "LIKSI": ["N50d28.4", "E008d30.3"],
         "LIPMI": ["N51d07m06", "E007d16m08"],
         "LISKU": ["N50d02.8", "E008d16.6"],
@@ -565,6 +576,7 @@
         "PABVI": ["N49d53.1", "E008d22.4"],
         "PESOV": ["N50d22m39", "E006d20m54"],
         "PETIX": ["N49d20m27.65", "E010d45m17.30"],
+        "PIGAB": ["N49d11.90", "E010d08.60"],
         "PIPEP": ["N50d27m20", "E007d02m26"],
         "PIPIX": ["N49d42.4", "E008d13.4"],
         "PSA"  : ["N49d51m44", "E009d20m54"],
@@ -621,8 +633,10 @@
         "VFM"  : ["N49d57.7", "E008d28.3"],
         "WEMAR": ["N50d58m59", "E011d15m07"],
         "WIB"  : ["N50d02.8", "E008d18.7"],
+        "WLD"  : ["N48d34.77", "E011d07.76"],
         "WUR"  : ["N49d43.1", "E009d56.8"],
         "XAMUB": ["N49d47.7", "E008d19.7"],
+        "XERUM": ["N48d48.67", "E010d46.07"],
         "XIBGI": ["N49d00m30.21", "E009d06m08.09"],
         "XINLA": ["N49d17m01.13", "E009d08m29.79"],
         "XOPMO": ["N49d36m00.42", "E009d15m14.54"]
@@ -663,6 +677,7 @@
     ],
     "airways": {
         "L610": ["RENKA", "GONBA", "STAUB", "MAMOR", "UNKUL", "UPALA", "INBED", "AMOSA", "IBAGA", "BARSU", "KOMIB", "TUSOS", "BIBEG"],
+        "T104": ["BOMBI", "HAREM", "ELMOX", "PIGAB", "DKB", "LEVBU", "ANORA", "XERUM", "BURAM", "WLD"],
         "T150": ["NAPRO", "DEPAD", "AMOSU", "MISGO", "LIPMI", "COL", "ROLIS", "RUDUS"],
         "T157": ["HLZ", "ALOSI", "RIMET", "ODIPI", "KOKEB", "LESMO", "TUNIV", "KERAX"],
         "T173": ["TADUV", "NOTGO", "NAMUB", "RELKO", "WEMAR", "TAMEB", "GAPLA", "DEMAB", "SOLVU", "KERAX"],
@@ -674,9 +689,85 @@
         "Y101": ["GIVMI", "ERNAS", "TALAL", "ERMEL", "INBED", "AMOSA", "IBAGA", "EDUDU", "OSBIT", "TEKTU"],
         "Y180": ["DONAB", "SOBRA", "ULKIG", "RUDOT", "BITBU", "ASMOX", "NISIV"],
         "Z104": ["IBAGA", "EKPUT", "LEPSA", "PSA", "BATGA", "KOSEK", "NOKDI", "MISGI", "OLGIL", "SIPVU", "IDOVI", "ODVUX", "AGBUL", "LULAT", "TIPUT"],
-        "Z658": ["OHMAR", "BIGSU", "ROLIS", "EMGOD", "IDOVI"]
+        "Z658": ["OHMAR", "BIGSU", "ROLIS", "EMGOD", "IDOVI"],
+        "Z74": ["ASKIK", "KOSEK", "AKONI", "HAREM", "LAMPU"]
     },
     "sids": {
+        "AKONI1A": {
+            "icao": "AKONI1A",
+            "name": "Akoni One Alpha",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "S220-"], "AMTIX"],
+            "exitPoints": {
+                "AKONI": ["AKONI"]
+            },
+            "draw": [
+                ["RID", "AMTIX", "AKONI"]
+            ]
+        },
+        "AKONI1D": {
+            "icao": "AKONI1D",
+            "name": "Akoni One Delta",
+            "rwy": {
+                "EDDF07C": [],
+                "EDDF07R": []
+            },
+            "body": ["^DF152", ["DF150", "S220-"], "DF153", "AMTIX"],
+            "exitPoints": {
+                "AKONI": ["AKONI"]
+            },
+            "draw": [
+                ["DF152", "DF150", "DF153", "AMTIX", "AKONI"]
+            ]
+        },
+        "AKONI1F": {
+            "icao": "AKONI1F",
+            "name": "Akoni One Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EDDF25L": ["^DF135", "DF142"],
+                "EDDF25C": ["^DF134", "DF141"]
+            },
+            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX"],
+            "exitPoints": {
+                "AKONI": ["AKONI"]
+            },
+            "draw": [
+                ["DF134", "DF141", "DF143"],
+                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI"]
+            ]
+        },
+        "AKONI1L": {
+            "icao": "AKONI1L",
+            "name": "Akoni One Lima",
+            "altitude": 4000,
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["RID", "S220-"], "AMTIX"],
+            "exitPoints": {
+                "AKONI": ["AKONI"]
+            },
+            "draw": [
+                ["RID", "AMTIX", "AKONI"]
+            ]
+        },
+        "AKONI1S": {
+            "icao": "AKONI1S",
+            "name": "Akoni One Sierra",
+            "rwy": {
+                "EDDF18": []
+            },
+            "body": [["DF158", "S220-"], ["DF159", "A25+"], "AMTIX"],
+            "exitPoints": {
+                "AKONI": ["AKONI"]
+            },
+            "draw": [
+                ["DF158", "DF159", "AMTIX", "AKONI"]
+            ]
+        },
         "ANEKI2A": {
             "icao": "ANEKI2A",
             "name": "Aneki Two Alpha",
@@ -698,7 +789,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157"],
+            "body": ["^DF152", ["DF150", "S220-"], "DF157"],
             "exitPoints": {
                 "ANEKI": ["ANEKI"]
             },
@@ -710,8 +801,8 @@
             "icao": "ANEKI4E",
             "name": "Aneki Four Echo",
             "rwy": {
-                "EDDF07C": [["^DF144", "A08+"]],
-                "EDDF07R": [["^DF145", "A08+"]]
+                "EDDF07C": ["^DF144"],
+                "EDDF07R": ["^DF145"]
             },
             "body": [["DF154", "A25+|S220-"], "DF160", "RID"],
             "exitPoints": {
@@ -727,8 +818,8 @@
             "name": "Aneki Niner Foxtrot",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+                "EDDF25L": ["^DF135", "DF142"],
+                "EDDF25C": ["^DF134", "DF141"]
             },
             "body": ["DF143", ["DF137", "S210-"], "RID"],
             "exitPoints": {
@@ -753,80 +844,6 @@
                 ["RID", "ANEKI"]
             ]
         },
-        "DKB1A": {
-            "icao": "DKB1A",
-            "name": "Dinkelsbühl One Alpha",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["RID", "S220-"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "DKB": ["DKB"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "DKB"]
-            ]
-        },
-        "DKB1D": {
-            "icao": "DKB1D",
-            "name": "Dinkelsbühl One Delta",
-            "rwy": {
-                "EDDF07C": [],
-                "EDDF07R": []
-            },
-            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
-            "exitPoints": {
-                "DKB": ["DKB"]
-            },
-            "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "DKB"]
-            ]
-        },
-        "DKB6L": {
-            "icao": "DKB6L",
-            "name": "Dinkelsbühl Six Lima",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "DKB": ["DKB"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "DKB"]
-            ]
-        },
-        "DKB8F": {
-            "icao": "DKB8F",
-            "name": "Dinkelsbühl Eight Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "DKB": ["DKB"]
-            },
-            "draw": [
-                ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "DKB"]
-            ]
-        },
-        "DKB8S": {
-            "icao": "DKB8S",
-            "name": "Dinkelsbühl Eight Sierra",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["DF158", "A08+|S200-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "DKB": ["DKB"]
-            },
-            "draw": [
-                ["DF158", "DF159", "AMTIX", "AKONI", "DKB"]
-            ]
-        },
         "KOMIB3D": {
             "icao": "KOMIB3D",
             "name": "Komib Three Delta",
@@ -834,7 +851,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM"],
+            "body": [["DF149", "S220-"], "DF151", "DF169", "AGOLO", "OKTUM"],
             "exitPoints": {
                 "KOMIB": ["KOMIB"]
             },
@@ -849,7 +866,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["DF980", "A08+|S200-"], ["DF979", "A18+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
+            "body": [["DF980", "S200-"], ["DF979", "A18+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -864,7 +881,7 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
+            "body": [["DF999", "S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -878,7 +895,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR", "TOBAK", "APROX"],
+            "body": [["DF158", "S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR", "TOBAK", "APROX"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -891,8 +908,8 @@
             "name": "Marun Four Foxtrot",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["DF235", "A08+"]],
-                "EDDF25C": [["DF234", "A08+"]]
+                "EDDF25L": ["DF235"],
+                "EDDF25C": ["DF234"]
             },
             "body": [["DF233", "A35+"], ["DF132", "A44+"], "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
@@ -910,7 +927,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["^DF980", "A08+|S200-"], ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
+            "body": [["^DF980", "S200-"], ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -924,7 +941,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "S250-|A90+"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA", "ALIDI"],
+            "body": [["DF160", "S220-"], ["DF200", "S250-"], ["PIPIX", "S250-|A90+"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA", "ALIDI"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -935,10 +952,10 @@
         "MARUN5E": {
             "icao": "MARUN5E",
             "name": "Marun Five Echo",
-            "altitude": 7000,
+            "altitude": 5000,
             "rwy": {
-                "EDDF07C": [["DF139", "A08+"]],
-                "EDDF07R": [["DF140", "A08+"]]
+                "EDDF07C": ["DF139"],
+                "EDDF07R": ["DF140"]
             },
             "body": [["DF146", "A20+"], "ODAGA", "TESGA", "ALIDI"],
             "exitPoints": {
@@ -955,7 +972,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197", "A08+"], ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA"],
+            "body": ["DF197", ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -968,8 +985,8 @@
             "name": "Marun Six Golf",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["DF235", "A08+"]],
-                "EDDF25C": [["DF234", "A08+"]]
+                "EDDF25L": ["DF235"],
+                "EDDF25C": ["DF234"]
             },
             "body": ["DF133", ["^DF236", "A35+"], ["DF238", "A44+"], "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
@@ -987,7 +1004,7 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["^DF999", "A08+"], ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA", "MARUN"],
+            "body": ["^DF999", ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "LIKSI", "LORPA", "MARUN"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -1000,8 +1017,8 @@
             "name": "Marun Six November",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], ["DF165", "S220-"]],
-                "EDDF25C": [["^DF134", "A08+"], ["DF162", "S220-"]]
+                "EDDF25L": ["^DF135", ["DF165", "S220-"]],
+                "EDDF25C": ["^DF134", ["DF162", "S220-"]]
             },
             "body": ["DF166", "DF164", "KUPIP", "TABUM", "LIKSI", "LORPA"],
             "exitPoints": {
@@ -1020,7 +1037,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["DF149", "A08+|S220-"], "MTR", "TOBAK", "APROX"],
+            "body": [["DF149", "S220-"], "MTR", "TOBAK", "APROX"],
             "exitPoints": {
                 "MARUN": ["MARUN"]
             },
@@ -1028,94 +1045,20 @@
                 ["DF149", "MTR", "TOBAK", "APROX", "MARUN"]
             ]
         },
-        "MTR4C": {
-            "icao": "MTR4C",
-            "name": "Metro Four Charlie",
+        "MTR5C": {
+            "icao": "MTR5C",
+            "name": "Metro Five Charlie",
             "altitude": 5000,
             "rwy": {
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["FR", "A08+"], "_MTR202010"],
+            "body": ["FR", "_MTR202010"],
             "exitPoints": {
                 "MTR": ["MTR"]
             },
             "draw": [
                 ["FR", "_MTR202010", "MTR"]
-            ]
-        },
-        "NOMBO1A": {
-            "icao": "NOMBO1A",
-            "name": "Nombo One Alpha",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
-            "exitPoints": {
-                "NOMBO": ["NOMBO"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
-            ]
-        },
-        "NOMBO1D": {
-            "icao": "NOMBO1D",
-            "name": "Nombo One Delta",
-            "rwy": {
-                "EDDF07C": [],
-                "EDDF07R": []
-            },
-            "body": [["^DF152", "A80+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
-            "exitPoints": {
-                "NOMBO": ["NOMBO"]
-            },
-            "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
-            ]
-        },
-        "NOMBO8L": {
-            "icao": "NOMBO8L",
-            "name": "Nombo Eight Lima",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
-            "exitPoints": {
-                "NOMBO": ["NOMBO"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
-            ]
-        },
-        "NOMBO8S": {
-            "icao": "NOMBO8S",
-            "name": "Nombo Eight Sierra",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
-            "exitPoints": {
-                "NOMBO": ["NOMBO"]
-            },
-            "draw": [
-                ["DF158", "DF159", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
-            ]
-        },
-        "NOMBO9F": {
-            "icao": "NOMBO9F",
-            "name": "Nombo Niner Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO"],
-            "exitPoints": {
-                "NOMBO": ["NOMBO"]
-            },
-            "draw": [
-                ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AMTIX", "AKONI", "HAREM", "LAMPU", "GEBNO", "NOMBO"]
             ]
         },
         "OBOKA1D": {
@@ -1126,7 +1069,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["DF149", "A08+"], "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
+            "body": ["DF149", "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1139,8 +1082,8 @@
             "name": "Oboka One Echo",
             "altitude": 5000,
             "rwy": {
-                "EDDF07C": [["DF139", "A08+"]],
-                "EDDF07R": [["DF140", "A08+"]]
+                "EDDF07C": ["DF139"],
+                "EDDF07R": ["DF140"]
             },
             "body": [["DF146", "A20+"], "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
             "exitPoints": {
@@ -1156,8 +1099,8 @@
             "name": "Oboka One Golf",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["DF235", "A08+"]],
-                "EDDF25C": [["DF234", "A08+"]]
+                "EDDF25L": ["DF235"],
+                "EDDF25C": ["DF234"]
             },
             "body": ["DF133", ["DF136", "A36+"], "ESUPI", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
@@ -1175,7 +1118,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["^DF980", "A08+"], ["VFM", "S200-"], ["DF172", "A25+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
+            "body": ["^DF980", ["VFM", "S200-"], ["DF172", "A25+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1190,7 +1133,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["DF980", "A08+|S200-"], ["DF979", "A14+|S200-"], ["DF996", "A19+|S230-"], ["DF995", "A24+|S230-"], ["DF172", "A27+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
+            "body": [["DF980", "S200-"], ["DF979", "A14+|S200-"], ["DF996", "A19+|S230-"], ["DF995", "A24+|S230-"], ["DF172", "A27+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1205,7 +1148,7 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["^DF999", "A08+"], ["VFM", "S200-"], ["DF172", "A25+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
+            "body": ["^DF999", ["VFM", "S200-"], ["DF172", "A25+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1218,8 +1161,8 @@
             "name": "Oboka One November",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], ["DF165", "S220-"]],
-                "EDDF25C": [["^DF134", "A08+"], ["DF162", "S220-"]]
+                "EDDF25L": ["^DF135", ["DF165", "S220-"]],
+                "EDDF25C": ["^DF134", ["DF162", "S220-"]]
             },
             "body": ["DF166", "DF164", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
@@ -1236,7 +1179,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], "XAMUB", "MASIR", "RAVKI", "DITAM"],
+            "body": [["DF160", "S220-"], "XAMUB", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1250,7 +1193,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
+            "body": [["DF158", "S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR", "ODAGA", "KUSOM", "GUBAX", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1264,7 +1207,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197", "A08+"], ["DF156", "S220-"], "DF164", "KUPIP", "MASIR", "RAVKI", "DITAM"],
+            "body": ["DF197", ["DF156", "S220-"], "DF164", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1278,7 +1221,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MASIR", "RAVKI", "DITAM"],
+            "body": [["DF160", "S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
@@ -1293,58 +1236,12 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["DF999", "A08+|S200-"], ["DF998", "A13+|S200-"], ["DF996", "A19+|S230-"], ["DF995", "A24+|S230-"], ["DF172", "A27+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
+            "body": [["DF999", "S200-"], ["DF998", "A13+|S200-"], ["DF996", "A19+|S230-"], ["DF995", "A24+|S230-"], ["DF172", "A27+"], "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM"],
             "exitPoints": {
                 "OBOKA": ["OBOKA"]
             },
             "draw": [
                 ["DF999", "DF998", "DF996", "DF995", "DF172", "PABVI", "SIVDO", "KUPIP", "MASIR", "RAVKI", "DITAM", "OBOKA"]
-            ]
-        },
-        "RATIM5S": {
-            "icao": "RATIM5S",
-            "name": "Ratim Five Sierra",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "RATIM": ["RATIM"]
-            },
-            "draw": [
-                ["DF158", "DF159", "AMTIX", "AKONI", "RATIM"]
-            ]
-        },
-        "RATIM6D": {
-            "icao": "RATIM6D",
-            "name": "Ratim Six Delta",
-            "rwy": {
-                "EDDF07C": [],
-                "EDDF07R": []
-            },
-            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF153", "AMTIX", "AKONI"],
-            "exitPoints": {
-                "RATIM": ["RATIM"]
-            },
-            "draw": [
-                ["DF152", "DF150", "DF153", "AMTIX", "AKONI", "RATIM"]
-            ]
-        },
-        "RATIM7F": {
-            "icao": "RATIM7F",
-            "name": "Ratim Seven Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "RATIM": ["RATIM"]
-            },
-            "draw": [
-                ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "RATIM"]
             ]
         },
         "RID3Q": {
@@ -1355,7 +1252,7 @@
                 "EDDF25L": [],
                 "EDDF25C": []
             },
-            "body": [["^_FRD2461.5", "A08+"], ["_RID356009", "S220-"]],
+            "body": ["^_FRD2461.5", ["_RID356009", "S220-"]],
             "exitPoints": {
                 "RID": ["RID"]
             },
@@ -1370,71 +1267,12 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["FR", "A08+"], "^_FRD066006", ["_MTR191016", "S220-"], "_FFM171015"],
+            "body": ["FR", "^_FRD066006", ["_MTR191016", "S220-"], "_FFM171015"],
             "exitPoints": {
                 "RID": ["RID"]
             },
             "draw": [
                 ["FR", "_FRD066006", "_MTR191016", "_FFM171015", "RID"]
-            ]
-        },
-        "ROTEN1A": {
-            "icao": "ROTEN1A",
-            "name": "Roten One Alpha",
-            "rwy": {
-                "EDDF18": [["RID", "A08+|S220-"]]
-            },
-            "body": ["AMTIX", "AKONI"],
-            "exitPoints": {
-                "ROTEN": ["ROTEN"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "ROTEN"]
-            ]
-        },
-        "ROTEN5L": {
-            "icao": "ROTEN5L",
-            "name": "Roten Five Lima",
-            "rwy": {
-                "EDDF18": [["RID", "A08+|S220-"]]
-            },
-            "body": ["AMTIX", "AKONI"],
-            "exitPoints": {
-                "ROTEN": ["ROTEN"]
-            },
-            "draw": [
-                ["RID", "AMTIX", "AKONI", "ROTEN"]
-            ]
-        },
-        "ROTEN7S": {
-            "icao": "ROTEN7S",
-            "name": "Roten Seven Sierra",
-            "rwy": {
-                "EDDF18": []
-            },
-            "body": [["DF158", "S220-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "ROTEN": ["ROTEN"]
-            },
-            "draw": [
-                ["DF158", "DF159", "AMTIX", "AKONI", "ROTEN"]
-            ]
-        },
-        "ROTEN8F": {
-            "icao": "ROTEN8F",
-            "name": "Roten Eight Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI"],
-            "exitPoints": {
-                "ROTEN": ["ROTEN"]
-            },
-            "draw": [
-                ["DF134", "DF141", "DF143"],
-                ["DF135", "DF142", "DF143", "DF137", "DF159", "AMTIX", "AKONI", "ROTEN"]
             ]
         },
         "SOBRA1L": {
@@ -1443,7 +1281,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], "DF198", ["ROSIG", "A90+"], "DONAB"],
+            "body": [["DF160", "S220-"], "DF198", ["ROSIG", "A90+"], "DONAB"],
             "exitPoints": {
                 "SOBRA": ["SOBRA"]
             },
@@ -1451,38 +1289,21 @@
                 ["DF160", "DF198", "ROSIG", "DONAB", "SOBRA"]
             ]
         },
-        "SOBRA4P": {
-            "icao": "SOBRA4P",
-            "name": "Sobra Four Papa",
+        "SOBRA5P": {
+            "icao": "SOBRA5P",
+            "name": "Sobra Five Papa",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"]],
-                "EDDF25C": [["^DF134", "A08+"]]
+                "EDDF25L": ["^DF135"],
+                "EDDF25C": ["^DF134"]
             },
-            "body": ["DF138", "DONAB"],
+            "body": [["DF138", "S220-"], "DONAB"],
             "exitPoints": {
                 "SOBRA": ["SOBRA"]
             },
             "draw": [
                 ["DF134", "DONAB"],
                 ["DF135", "DONAB", "SOBRA"]
-            ]
-        },
-        "SOBRA5F": {
-            "icao": "SOBRA5F",
-            "name": "Sobra Five Foxtrot",
-            "altitude": 5000,
-            "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
-            },
-            "body": ["DF163", "DF201", "DONAB"],
-            "exitPoints": {
-                "SOBRA": ["SOBRA"]
-            },
-            "draw": [
-                ["DF135", "DF142"],
-                ["DF134", "DF141", "DF163", "DF201", "DONAB", "SOBRA"]
             ]
         },
         "SOBRA6D": {
@@ -1492,7 +1313,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["^DF152", "A08+"], ["DF150", "S220-"], "DF157", "RID", ["ROSIG", "A90+"], "DONAB"],
+            "body": ["^DF152", ["DF150", "S220-"], "DF157", "RID", ["ROSIG", "A90+"], "DONAB"],
             "exitPoints": {
                 "SOBRA": ["SOBRA"]
             },
@@ -1504,8 +1325,8 @@
             "icao": "SOBRA6E",
             "name": "Sobra Six Echo",
             "rwy": {
-                "EDDF07C": [["^DF144", "A08+"]],
-                "EDDF07R": [["^DF145", "A08+"]]
+                "EDDF07C": ["^DF144"],
+                "EDDF07R": ["^DF145"]
             },
             "body": [["DF154", "A25+|S220-"], "DF160", "DF198", ["ROSIG", "A90+"], "DONAB"],
             "exitPoints": {
@@ -1516,13 +1337,30 @@
                 ["DF145", "DF154", "DF160", "DF198", "ROSIG", "DONAB", "SOBRA"]
             ]
         },
+        "SOBRA6F": {
+            "icao": "SOBRA6F",
+            "name": "Sobra Six Foxtrot",
+            "altitude": 5000,
+            "rwy": {
+                "EDDF25L": ["^DF135", "DF142"],
+                "EDDF25C": ["^DF134", "DF141"]
+            },
+            "body": [["DF163", "S220-"], "DF201", "DONAB"],
+            "exitPoints": {
+                "SOBRA": ["SOBRA"]
+            },
+            "draw": [
+                ["DF135", "DF142"],
+                ["DF134", "DF141", "DF163", "DF201", "DONAB", "SOBRA"]
+            ]
+        },
         "SOBRA6N": {
             "icao": "SOBRA6N",
             "name": "Sobra Six November",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], ["DF165", "S220-"]],
-                "EDDF25C": [["^DF134", "A08+"], ["DF162", "S220-"]]
+                "EDDF25L": ["^DF135", ["DF165", "S220-"]],
+                "EDDF25C": ["^DF134", ["DF162", "S220-"]]
             },
             "body": ["DF166", "DF201", "DONAB"],
             "exitPoints": {
@@ -1539,7 +1377,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
+            "body": [["RID", "S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
             "exitPoints": {
                 "SULUS": ["SULUS"]
             },
@@ -1554,7 +1392,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["DF149", "A08+|S220-"], "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"],
+            "body": [["DF149", "S220-"], "DF151", "DF169", "AGOLO", "OKTUM", "KOMIB"],
             "exitPoints": {
                 "SULUS": ["SULUS"]
             },
@@ -1568,7 +1406,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["RID", "A08+|S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
+            "body": [["RID", "S220-"], "AMTIX", "AKONI", "GIBSA", "WUR"],
             "exitPoints": {
                 "SULUS": ["SULUS"]
             },
@@ -1582,7 +1420,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"],
+            "body": [["DF158", "S220-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"],
             "exitPoints": {
                 "SULUS": ["SULUS"]
             },
@@ -1595,8 +1433,8 @@
             "name": "Sulus Niner Foxtrot",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], "DF142"],
-                "EDDF25C": [["^DF134", "A08+"], "DF141"]
+                "EDDF25L": ["^DF135", "DF142"],
+                "EDDF25C": ["^DF134", "DF141"]
             },
             "body": ["DF143", ["DF137", "S210-"], ["DF159", "A25+"], "AMTIX", "AKONI", "GIBSA", "WUR"],
             "exitPoints": {
@@ -1630,7 +1468,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["DF980", "A08+|S200-"], ["DF979", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "body": [["DF980", "S200-"], ["DF979", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1645,7 +1483,7 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["DF999", "A08+|S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "body": [["DF999", "S200-"], ["DF998", "A17+|S200-"], ["DF996", "A27+|S230-"], ["DF995", "A35+|S230-"], ["DF994", "A56+|S230-"], ["DF992", "A60+"], "LISKU", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1659,7 +1497,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF158", "A08+|S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR"],
+            "body": [["DF158", "S220-"], ["DF159", "A25+"], "DF168", "TUKRU", "MTR"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1674,7 +1512,7 @@
             "rwy": {
                 "EDDF25L": []
             },
-            "body": [["^DF980", "A08+"], ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "body": ["^DF980", ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1687,8 +1525,8 @@
             "name": "Tobak Five Foxtrot",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["DF235", "A08+"]],
-                "EDDF25C": [["DF234", "A08+"]]
+                "EDDF25L": ["DF235"],
+                "EDDF25C": ["DF234"]
             },
             "body": [["DF233", "A35+"], ["DF132", "A44+"], "TABUM", "TESGA"],
             "exitPoints": {
@@ -1706,7 +1544,7 @@
             "rwy": {
                 "EDDF25C": []
             },
-            "body": [["^DF999", "A08+"], ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "TESGA"],
+            "body": ["^DF999", ["VFM", "S200-"], ["DF180", "A25+"], "ROXAP", ["ADEVO", "A60+"], "LISKU", "TABUM", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1720,7 +1558,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA"],
+            "body": [["DF160", "S220-"], ["DF200", "S250-"], ["PIPIX", "A90+|S250-"], ["VETUX", "A100"], "RUDUS", "MABOB", "TESGA"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1733,8 +1571,8 @@
             "name": "Tobak Seven Golf",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["DF235", "A08+"]],
-                "EDDF25C": [["DF234", "A08+"]]
+                "EDDF25L": ["DF235"],
+                "EDDF25C": ["DF234"]
             },
             "body": ["DF133", ["^DF236", "A35+"], ["DF238", "A44+"], "TABUM", "TESGA"],
             "exitPoints": {
@@ -1751,7 +1589,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197", "A08+|S220-"], ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA", "TOBAK"],
+            "body": [["DF197", "S220-"], ["DF156", "S220-"], "DF164", "KUPIP", "TABUM", "TESGA", "TOBAK"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1764,8 +1602,8 @@
             "name": "Tobak Eight November",
             "altitude": 5000,
             "rwy": {
-                "EDDF25L": [["^DF135", "A08+"], ["DF165", "S220-"]],
-                "EDDF25C": [["^DF134", "A08+"], ["DF162", "S220-"]]
+                "EDDF25L": ["^DF135", ["DF165", "S220-"]],
+                "EDDF25C": ["^DF134", ["DF162", "S220-"]]
             },
             "body": ["DF166", "DF164", "KUPIP", "TABUM", "TESGA"],
             "exitPoints": {
@@ -1784,7 +1622,7 @@
                 "EDDF07C": [],
                 "EDDF07R": []
             },
-            "body": [["DF149", "A08+|S220-"], "MTR"],
+            "body": [["DF149", "S220-"], "MTR"],
             "exitPoints": {
                 "TOBAK": ["TOBAK"]
             },
@@ -1798,7 +1636,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF160", "A08+|S220-"], ["DF200", "S250-"], ["PIPIX", "S250-"], ["GISNO", "S250-"]],
+            "body": [["DF160", "S220-"], ["DF200", "S250-"], ["PIPIX", "S250-"], ["GISNO", "S250-"]],
             "exitPoints": {
                 "ULKIG": ["ULKIG"]
             },
@@ -1812,7 +1650,7 @@
             "rwy": {
                 "EDDF18": []
             },
-            "body": [["DF197", "A08+"], ["DF156", "S220-"], "DF201", "DONAB", "SOBRA"],
+            "body": ["DF197", ["DF156", "S220-"], "DF201", "DONAB", "SOBRA"],
             "exitPoints": {
                 "ULKIG": ["ULKIG"]
             },
@@ -1822,60 +1660,60 @@
         }
     },
     "stars": {
-        "ASPAT2E": {
-            "icao": "ASPAT2E",
-            "name": "Aspat Two Echo",
+        "ASPAT4E": {
+            "icao": "ASPAT4E",
+            "name": "Aspat Four Echo",
             "entryPoints": {
-                "ASPAT": ["ASPAT"]
+                "ASPAT": [["ASPAT", "A280-|A240+"]]
             },
-            "body": ["GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "body": [["GIMAX", "A240-|A220+"], ["SIRIO", "A190-|A170+"], ["TOSTU", "A160-|A140+"], ["LEPSA", "A130-|A120+"], ["PSA", "A110"], "CHA", "DF635", ["DF636", "A80+"], "DF640", "DF641", "DF642", "DF643", ["DF644", "A40+"]],
             "rwy": {
                 "EDDF07R": []
             },
             "draw": [
-                ["ASPAT", "GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
+                ["ASPAT", "GIMAX", "SIRIO", "TOSTU", "LEPSA", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
             ]
         },
-        "ASPAT2W": {
-            "icao": "ASPAT2W",
-            "name": "Aspat Two Whiskey",
+        "ASPAT4W": {
+            "icao": "ASPAT4W",
+            "name": "Aspat Four Whiskey",
             "entryPoints": {
-                "ASPAT": ["ASPAT"]
+                "ASPAT": [["ASPAT", "A280-|A240+"]]
             },
-            "body": ["GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "body": [["GIMAX", "A240-|A220+"], ["SIRIO", "A190-|A170+"], ["TOSTU", "A160-|A140+"], ["LEPSA", "A130-|A120+"], ["PSA", "A110"], "CHA", "DF606", ["DF610", "A80+"], "DF611", "DF612", "DF613", "DF614", "DF615", ["DF616", "A40+"]],
             "rwy": {
                 "EDDF25L": []
             },
             "draw": [
-                ["ASPAT", "GIMAX", "DIDUM", "SIRPO", "LEPSA", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
+                ["ASPAT", "GIMAX", "SIRIO", "TOSTU", "LEPSA", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
             ]
         },
-        "EMPAX2E": {
-            "icao": "EMPAX2E",
-            "name": "Empax Two Echo",
+        "EMPAX3E": {
+            "icao": "EMPAX3E",
+            "name": "Empax Three Echo",
             "entryPoints": {
-                "EMPAX": ["EMPAX"]
+                "EMPAX": [["EMPAX", "A360-|A290+"]]
             },
-            "body": ["NELLI", "KOVAN", "XIBGI", "XINLA", ["XOPMO", "S280-"], ["ADNIS", "S280-"], "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "body": [["NELLI", "A320-|A260+"], ["KOVAN", "A270-|A220+"], ["KISEK", "A240-|A200+"], ["XINLA", "A190-|A160+"], ["XORBO", "A110-|A100+"], ["ADNIS", "A100"], "PSA", "CHA", "DF635", ["DF636", "A80+"], "DF640", "DF641", "DF642", "DF643", ["DF644", "A40+"]],
             "rwy": {
                 "EDDF07R": []
             },
             "draw": [
-                ["EMPAX", "NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
+                ["EMPAX", "NELLI", "KOVAN", "KISEK", "XINLA", "XORBO", "ADNIS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"]
             ]
         },
-        "EMPAX2W": {
-            "icao": "EMPAX2W",
-            "name": "Empax Two Whiskey",
+        "EMPAX3W": {
+            "icao": "EMPAX3W",
+            "name": "Empax Three Whiskey",
             "entryPoints": {
-                "EMPAX": ["EMPAX"]
+                "EMPAX": [["EMPAX", "A360-|A290+"]]
             },
-            "body": ["NELLI", "KOVAN", "XIBGI", "XINLA", ["XOPMO", "S280-"], ["ADNIS", "S280-"], "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "body": [["NELLI", "A320-|A260+"], ["KOVAN", "A270-|A220+"], ["KISEK", "A240-|A200+"], ["XINLA", "A190-|A160+"], ["XORBO", "A110-|A100+"], ["ADNIS", "A100"], "PSA", "CHA", "DF606", ["DF610", "A80+"], "DF611", "DF612", "DF613", "DF614", "DF615", ["DF616", "A40+"]],
             "rwy": {
                 "EDDF25L": []
             },
             "draw": [
-                ["EMPAX", "NELLI", "KOVAN", "XIBGI", "XINLA", "XOPMO", "ADNIS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
+                ["EMPAX", "NELLI", "KOVAN", "KISEK", "XINLA", "XORBO", "ADNIS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"]
             ]
         },
         "KERAX07N": {
@@ -2038,7 +1876,7 @@
             "entryPoints": {
                 "PETIX": ["PETIX"]
             },
-            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644"],
+            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", ["PSA", "A110"], "CHA", "DF635", ["DF636", "A80+"], "DF640", "DF641", "DF642", "DF643", ["DF644", "A40+"]],
             "rwy": {
                 "EDDF07R": []
             },
@@ -2052,7 +1890,7 @@
             "entryPoints": {
                 "PETIX": ["PETIX"]
             },
-            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", "PSA", "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616"],
+            "body": ["ODEGU", "KEPIT", "SUKAD", "REKDI", "OLALI", "INBOS", ["PSA", "A110"], "CHA", "DF606", ["DF610", "A80+"], "DF611", "DF612", "DF613", "DF614", "DF615", ["DF616", "A40+"]],
             "rwy": {
                 "EDDF25L": []
             },
@@ -2532,7 +2370,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 2,
+            "rate": 2.6,
             "airlines": [
                 ["aea", 1],
                 ["dlh/short", 60],
@@ -2545,14 +2383,13 @@
             "origin": "EDDF",
             "destination": "",
             "category": "departure",
-            "route": "EDDF18.DKB6L.DKB",
+            "route": "EDDF18.AKONI1S.AKONI.Z74.HAREM.T104.ANORA",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 5.2,
             "airlines": [
-                ["cfg", 1],
-                ["dlh/cityline", 27],
+                ["dlh/cityline", 33],
                 ["dlh/short", 81]
             ]
         },
@@ -2564,7 +2401,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 3.9,
             "airlines": [
                 ["dlh/short", 81],
                 ["fin", 1],
@@ -2580,7 +2417,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 7,
+            "rate": 9.1,
             "airlines": [
                 ["aca", 1],
                 ["baw", 3],
@@ -2597,24 +2434,11 @@
             "origin": "EDDF",
             "destination": "",
             "category": "departure",
-            "route": "EDDF18.ROTEN7S.ROTEN",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 1,
-            "airlines": [
-                ["dlh/cityline", 27]
-            ]
-        },
-        {
-            "origin": "EDDF",
-            "destination": "",
-            "category": "departure",
             "route": "EDDF18.SOBRA1L.SOBRA.Y180.RUDOT",
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 3,
+            "rate": 3.9,
             "airlines": [
                 ["afr/short", 8],
                 ["baw", 3],
@@ -2631,7 +2455,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 6,
+            "rate": 7.8,
             "airlines": [
                 ["aee", 2],
                 ["amc", 1],
@@ -2662,7 +2486,7 @@
             "altitude": "",
             "speed": "",
             "method": "random",
-            "rate": 6,
+            "rate": 7.8,
             "airlines": [
                 ["cca", 3],
                 ["dlh", 81],
@@ -2680,7 +2504,7 @@
             "altitude": 31000,
             "speed": 280,
             "method": "random",
-            "rate": 4,
+            "rate": 5.2,
             "airlines": [
                 ["afl", 2],
                 ["ana", 1],
@@ -2690,7 +2514,7 @@
                 ["cao", 2],
                 ["cpa", 1],
                 ["dlh/eddf25R", 30],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["hvn", 1],
                 ["kzr", 1]
 
@@ -2704,10 +2528,10 @@
             "altitude": 31000,
             "speed": 280,
             "method": "random",
-            "rate": 1,
+            "rate": 1.3,
             "airlines": [
                 ["dlh/eddf25L", 30],
-                ["gec/eddf25L", 15],
+                ["gec/eddf25L", 3],
                 ["abw/b747", 5]
             ]
         },
@@ -2719,12 +2543,12 @@
             "altitude": 33000,
             "speed": 250,
             "method": "random",
-            "rate": 2.5,
+            "rate": 3.25,
             "airlines": [
                 ["box", 10],
                 ["dlh/eddf25R", 35],
                 ["fin", 1],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["lot", 2],
                 ["sas", 1]
             ]
@@ -2737,10 +2561,10 @@
             "altitude": 33000,
             "speed": 250,
             "method": "random",
-            "rate": 0.5,
+            "rate": 0.65,
             "airlines": [
                 ["dlh/eddf25L", 35],
-                ["gec/eddf25L", 15],
+                ["gec/eddf25L", 3],
                 ["kal/b747", 1],
                 ["tha/a380", 1],
                 ["cca/b747", 3]
@@ -2754,18 +2578,18 @@
             "altitude": 27000,
             "speed": 280,
             "method": "random",
-            "rate": 3,
+            "rate": 3.9,
             "airlines": [
                 ["aee", 1],
                 ["aic", 1],
                 ["aua", 1],
                 ["aza", 1],
-                ["box", 10],
-                ["dlh/eddf25R", 40],
+                ["box", 6],
+                ["dlh/eddf25R", 35],
                 ["eth", 1],
                 ["fcb", 1],
                 ["fdx", 3],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["gfa", 1],
                 ["mgx", 1],
                 ["mld", 1],
@@ -2787,10 +2611,10 @@
             "altitude": 27000,
             "speed": 280,
             "method": "random",
-            "rate": 2,
+            "rate": 2.6,
             "airlines": [
                 ["dlh/eddf25L", 40],
-                ["gec/eddf25L", 15],
+                ["gec/eddf25L", 3],
                 ["sia/a380", 1],
                 ["uae/a380", 1]
             ]
@@ -2803,13 +2627,13 @@
             "altitude": 30000,
             "speed": 250,
             "method": "random",
-            "rate": 2,
+            "rate": 2.6,
             "airlines": [
                 ["box", 10],
                 ["cfg", 4],
                 ["dlh/cityline", 35],
                 ["ezy", 3],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["kzr", 1],
                 ["rot", 2],
                 ["swr", 1]
@@ -2824,9 +2648,9 @@
             "altitude": 30000,
             "speed": 250,
             "method": "random",
-            "rate": 0.5,
+            "rate": 0.65,
             "airlines": [
-                ["gec/eddf25L", 15]
+                ["gec/eddf25L", 3]
 
             ]
         },
@@ -2838,7 +2662,7 @@
             "altitude": 20000,
             "speed": 300,
             "method": "random",
-            "rate": 5,
+            "rate": 6.5,
             "airlines": [
                 ["aca", 1],
                 ["baw", 3],
@@ -2848,7 +2672,7 @@
                 ["dal/long", 3],
                 ["dlh/eddf25R", 40],
                 ["fdx/eddf25R", 3],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["ice", 1],
                 ["klm", 1],
                 ["tui", 2],
@@ -2863,11 +2687,11 @@
             "altitude": 20000,
             "speed": 300,
             "method": "random",
-            "rate": 1,
+            "rate": 1.3,
             "airlines": [
                 ["dlh/eddf25L", 40],
                 ["fdx/eddf25L", 3],
-                ["gec/eddf25L", 15]
+                ["gec/eddf25L", 3]
             ]
         },
         {
@@ -2878,11 +2702,11 @@
             "altitude": 13000,
             "speed": 280,
             "method": "random",
-            "rate": 1,
+            "rate": 1.3,
             "airlines": [
                 ["afr", 8],
                 ["fdx/eddf25R", 3],
-                ["gec/eddf25R", 15]
+                ["gec/eddf25R", 3]
             ]
         },
         {
@@ -2893,7 +2717,7 @@
             "altitude": 14000,
             "speed": 300,
             "method": "random",
-            "rate": 3,
+            "rate": 3.9,
             "airlines": [
                 ["afr", 8],
                 ["baw", 4],
@@ -2901,7 +2725,7 @@
                 ["dlh/eddf25R", 65],
                 ["ein", 2],
                 ["fdx/eddf25R", 3],
-                ["gec/eddf25R", 15]
+                ["gec/eddf25R", 3]
             ]
         },
         {
@@ -2912,11 +2736,11 @@
             "altitude": 14000,
             "speed": 300,
             "method": "random",
-            "rate": 1,
+            "rate": 1.3,
             "airlines": [
                 ["dlh/eddf25L", 65],
                 ["fdx/eddf25L", 3],
-                ["gec/eddf25L", 15]
+                ["gec/eddf25L", 3]
             ]
         },
         {
@@ -2927,12 +2751,12 @@
             "altitude": 18000,
             "speed": 300,
             "method": "random",
-            "rate": 3,
+            "rate": 3.9,
             "airlines": [
                 ["cfg", 4],
                 ["dah", 1],
                 ["dlh/eddf25R", 50],
-                ["gec/eddf25R", 15],
+                ["gec/eddf25R", 3],
                 ["ibe", 1],
                 ["tam", 1],
                 ["tap", 1],
@@ -2947,10 +2771,10 @@
             "altitude": 18000,
             "speed": 300,
             "method": "random",
-            "rate": 0.5,
+            "rate": 0.65,
             "airlines": [
                 ["dlh/eddf25L", 50],
-                ["gec/eddf25L", 15]
+                ["gec/eddf25L", 3]
             ]
         }
     ],

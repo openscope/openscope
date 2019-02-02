@@ -12,34 +12,85 @@ export const COMMAND_CONTEXT = {
 /**
  * Enumeration of key codes used for inputs.
  *
+ * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
+ *
  * @property KEY_CODES
  * @type {Object}
  * @final
  */
 export const KEY_CODES = {
-    // +
-    ADD: 107,
-    // -
-    DASH: 189,
-    DASH_FIREFOX: 173,
-    DIVIDE: 111,
-    DOWN_ARROW: 40,
+
+    ENTER: 'Enter',
+    ESCAPE: 'Escape',
+    TAB: 'Tab',
+    PAGE_UP: 'PageUp',
+    PAGE_DOWN: 'PageDown',
+    // numpad
+    NUM_MULTIPLY: 'NumpadMultiply',
+    NUM_ADD: 'NumpadAdd',
+    NUM_SUBTRACT: 'NumpadSubtract',
+    NUM_DIVIDE: 'NumpadDivide',
+    // arrow keys
+    LEFT_ARROW: 'ArrowLeft',
+    UP_ARROW: 'ArrowUp',
+    RIGHT_ARROW: 'ArrowRight',
+    DOWN_ARROW: 'ArrowDown',
+    // F-Keys
+    F1: 'F1',
+    F2: 'F2',
+    F3: 'F3',
+    F4: 'F4',
+    F5: 'F5',
+    F6: 'F6',
+    F7: 'F7',
+    F8: 'F8',
+    F9: 'F9',
+    F10: 'F10',
+    F11: 'F11',
+    F12: 'F12',
+    // `
+    BAT_TICK: 'Backquote'
+};
+
+/**
+ * Enumeration of key codes used for inputs (for older browsers like IE)
+ *
+ * @property LEGACY_KEY_CODES
+ * @type {Object}
+ * @final
+ */
+export const LEGACY_KEY_CODES = {
+
     ENTER: 13,
-    // =
-    EQUALS: 187,
-    EQUALS_FIREFOX: 61,
-    // esc
     ESCAPE: 27,
-    LEFT_ARROW: 37,
-    MULTIPLY: 106,
+    TAB: 9,
     PAGE_UP: 33,
     PAGE_DOWN: 34,
-    RIGHT_ARROW: 39,
-    SUBTRACT: 109,
-    TAB: 9,
+    // numpad
+    NUM_MULTIPLY: 106,
+    NUM_ADD: 107,
+    NUM_SUBTRACT: 109,
+    NUM_DIVIDE: 111,
+    // arrow keys
+    LEFT_ARROW: 37,
     UP_ARROW: 38,
+    RIGHT_ARROW: 39,
+    DOWN_ARROW: 40,
+    // F-Keys
+    F1: 112,
+    F2: 113,
+    F3: 114,
+    F4: 115,
+    F5: 116,
+    F6: 117,
+    F7: 118,
+    F8: 119,
+    F9: 120,
+    F10: 121,
+    F11: 122,
+    F12: 123,
     // `
-    BAT_TICK: 192
+    BAT_TICK: 220
 };
 
 /**

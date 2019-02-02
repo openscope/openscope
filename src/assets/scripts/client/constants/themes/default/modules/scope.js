@@ -77,6 +77,22 @@ export const SCOPE_THEME = {
     FIX_TEXT: COLOR.BLUE_MEDIUM,
 
     /**
+     * Size to draw halos when size is not specified
+     *
+     * @memberof SCOPE_THEME
+     * @property HALO_DEFAULT_RADIUS_NM
+     */
+    HALO_DEFAULT_RADIUS_NM: 3,
+
+    /**
+     * Maximum size to draw halos when size is not specified
+     *
+     * @memberof SCOPE_THEME
+     * @property HALO_MAX_RADIUS_NM
+     */
+    HALO_MAX_RADIUS_NM: 20,
+
+    /**
      * Color of the range rings shown on the scope around the airport
      *
      * @memberof SCOPE_THEME

@@ -314,14 +314,6 @@ export default class AircraftModel {
 
         /**
          * @for AircraftModel
-         * @property notice
-         * @type {boolean}
-         * @default false
-         */
-        this.notice = false;
-
-        /**
-         * @for AircraftModel
          * @property warning
          * @type {boolean}
          * @default false
@@ -1252,7 +1244,11 @@ export default class AircraftModel {
      */
     taxiToRunway(runwayModel) {
         if (this.isAirborne()) {
-            return [false, 'unable to taxi, we\'re airborne'];
+            return [false, 'unable to taxi, we\'re already airborne'];
+        }
+
+        if (this.flightPhase === FLIGHT_PHASE.TAKEOFF) {
+            return [false, 'unable to taxi, we\'re already taking off'];
         }
 
         if (this.isArrival()) {
@@ -2639,17 +2635,26 @@ export default class AircraftModel {
     }
 
     /**
+     * Return the presence/absence of (any existing) conflict or violation in terms
+     * of separation with another aircraft
+     *
      * @for AircraftModel
-     * @method hasAlerts
+     * @method getAlerts
+     * @return {array} [hasConflict, hasViolation]
      */
-    hasAlerts() {
+    getAlerts() {
         const alert = [false, false];
 
         for (const i in this.conflicts) {
-            const conflict = this.conflicts[i].hasAlerts();
+            const hasConflict = this.conflicts[i].hasConflict();
+            const hasViolation = this.conflicts[i].hasViolation();
 
-            alert[0] = (alert[0] || conflict[0]);
-            alert[1] = (alert[1] || conflict[1]);
+            alert[0] = (alert[0] || hasConflict);
+            alert[1] = (alert[1] || hasViolation);
+
+            if (alert[0] && alert[1]) {
+                return alert;
+            }
         }
 
         return alert;

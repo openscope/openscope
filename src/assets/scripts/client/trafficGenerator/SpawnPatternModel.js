@@ -585,7 +585,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @method getNextDelayValue
      * @param gameTime {number}
-     * @return {number}             Next delay period based on spawn method
+     * @return {number}  Next delay period based on spawn method in seconds
      */
     getNextDelayValue(gameTime = 0) {
         switch (this.method) {

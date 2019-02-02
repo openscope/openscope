@@ -57,6 +57,12 @@ Don't know Javascript?  That's cool, we're always looking for beta testers and/o
 
 We use Google Analytics for gathering data about how our app is used. See [Event Tracking](documentation/event-tracking.md) for more information.
 
+## Credits
+
+OpenScope is supported by the following awesome projects. Thank you!
+
+- [![pullreminders](https://pullreminders.com/badge.svg)](https://pullreminders.com?ref=badge) - Slack integration to improve our PR response time
+
 ## License
 
 [MIT License](LICENSE.md)
