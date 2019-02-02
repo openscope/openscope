@@ -1,4 +1,5 @@
 {
+    "airac": 1902,
     "radio": {
         "twr": "Gatwick Tower",
         "app": "Gatwick Director",
@@ -2285,36 +2286,10 @@
     },
     "spawnPatterns": [
         {
-            "origin": "EGKK",
-            "destination": "",
-            "category": "departure",
-            "route": "EGKK08R.BIG3P.BIG",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.00000001,
-            "airlines": [
-                ["baw/short", 1]
-            ]
-        },
-        {
-            "origin": "EGKK",
-            "destination": "",
-            "category": "departure",
-            "route": "EGKK08L.BIG3W.BIG",
-            "altitude": "",
-            "speed": "",
-            "method": "random",
-            "rate": 0.00000001,
-            "airlines": [
-                ["baw/short", 1]
-            ]
-        },
-        {
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "ADKUV.UL610.BATTY.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26L",
+            "route": "ADKUV.UL610.BATTY.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2460,7 +2435,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26L",
+            "route": "DENUT.UL610.DIBLI.L610.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2492,7 +2467,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "EEL.UN872.PAM.UL980.ABNED.UZ344.AMRIV.Q63.ERING.TIMBA1J.EGKK26L",
+            "route": "EEL.UN872.PAM.UL980.ABNED.UZ344.AMRIV.Q63.ARREK.Y4.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2508,7 +2483,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "EEL.UN872.PAM.UL980.ABNED.UZ344.AMRIV.Q63.ERING.TIMBA1J.EGKK26L",
+            "route": "EEL.UN872.PAM.UL980.ABNED.UZ344.AMRIV.Q63.ARREK.Y4.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2524,7 +2499,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "ETEBO.UL980.ABNED.UZ344.AMRIV.Q63.ERING.TIMBA1J.EGKK26L",
+            "route": "ETEBO.UL980.ABNED.UZ344.AMRIV.Q63.ARREK.Y4.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2561,7 +2536,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "IDRID.UL980.ABNED.UZ344.AMRIV.Q63.ERING.TIMBA1J.EGKK26L",
+            "route": "IDRID.UL980.ABNED.UZ344.AMRIV.Q63.ARREK.Y4.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2590,7 +2565,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "LARDI.N866.BUKUT.P7.SONOG.Y4.ARREK.Q63.ERING.TIMBA1J.EGKK26L",
+            "route": "LARDI.N866.BUKUT.P7.SONOG.Y4.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
@@ -2623,7 +2598,7 @@
             "origin": "",
             "destination": "EGKK",
             "category": "arrival",
-            "route": "LIRSU.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TIMBA1K.EGKK26L",
+            "route": "LIRSU.UL608.DENUT.UL610.DIBLI.L610.TEBRA.TEBRA1G.EGKK26L",
             "altitude": [30000, 37000],
             "speed": 280,
             "method": "random",
