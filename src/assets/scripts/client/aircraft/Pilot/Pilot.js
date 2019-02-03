@@ -1,4 +1,5 @@
 import _ceil from 'lodash/ceil';
+import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import AirportController from '../../airport/AirportController';
@@ -43,8 +44,8 @@ export default class Pilot {
         }
 
         if (!(modeController instanceof ModeController)) {
-            throw new TypeError('Expected modeController to an instance of ' +
-                `ModeController, but received ${typeof modeController}`);
+            throw new TypeError('Expected modeController to an instance of '
+                + `ModeController, but received ${typeof modeController}`);
         }
 
         /**
@@ -410,23 +411,26 @@ export default class Pilot {
     * @return {array} [success of operation, readback]
     */
     cancelHoldingPattern(fixName) {
-        let waypoint = this._fms.currentWaypoint;
-
-        if (!waypoint) {
-            return [false, `unable, '${fixName}' is not on our route`];
-        }
-
-        if (!waypoint.isHoldWaypoint) {
-            return [false, 'not currently holding'];
-        }
+        let holdWaypointModel = _find(this._fms.waypoints, (waypointModel) => waypointModel.isHoldWaypoint);
 
         if (fixName) {
-            waypoint = this._fms.findWaypoint(fixName);
+            holdWaypointModel = this._fms.findWaypoint(fixName);
+
+            if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
+                return [false, {
+                    log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
+                    say: `that must be for somebody else, we weren't given holding over ${fixName}`
+                }];
+            }
         }
 
-        waypoint.deactivateHold();
+        if (!holdWaypointModel) {
+            return [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
+        }
 
-        return [true, `roger, cancelling hold over ${waypoint.getDisplayName()}`];
+        holdWaypointModel.deactivateHold();
+
+        return [true, `roger, we'll disregard the hold at ${holdWaypointModel.getDisplayName()}`];
     }
 
     /**
