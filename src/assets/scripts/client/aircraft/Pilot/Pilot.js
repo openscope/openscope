@@ -534,16 +534,16 @@ export default class Pilot {
     exitHold(fixName) {
         let waypoint = this._fms.currentWaypoint;
 
-        if (fixName) {
-            waypoint = this._fms.findWaypoint(fixName);
-
-            if (!waypoint) {
-                return [false, `unable, '${fixName}' is not on our route`];
-            }
+        if (!waypoint) {
+            return [false, `unable, '${fixName}' is not on our route`];
         }
 
         if (!waypoint.isHoldWaypoint) {
             return [false, 'not currently holding'];
+        }
+
+        if (fixName) {
+            waypoint = this._fms.findWaypoint(fixName);
         }
 
         waypoint.deactivateHold();
@@ -712,7 +712,7 @@ export default class Pilot {
         }
 
         return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, `
-                    + `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
+            + `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
         ];
     }
 
