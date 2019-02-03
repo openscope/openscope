@@ -415,16 +415,15 @@ export default class AirportModel {
         this.perimeter = _head(this.airspace);
         this.ctr_radius = Math.max(
             ..._map(this.perimeter.poly, (vertexPosition) => vlen(
-                    vsub(
-                        vertexPosition.relativePosition,
-                        DynamicPositionModel.calculateRelativePosition(
-                            this.rangeRings.center,
-                            this._positionModel,
-                            this.magneticNorth
-                        )
+                vsub(
+                    vertexPosition.relativePosition,
+                    DynamicPositionModel.calculateRelativePosition(
+                        this.rangeRings.center,
+                        this._positionModel,
+                        this.magneticNorth
                     )
                 )
-            )
+            ))
         );
     }
 
@@ -639,8 +638,8 @@ export default class AirportModel {
             return;
         }
 
-        console.warn('Did not expect a query for runway that applies to aircraft of category ' +
-            `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
+        console.warn('Did not expect a query for runway that applies to aircraft of category '
+            + `'${category}'! Returning the arrival runway (${this.arrivalRunwayModel.name})`);
 
         return this.arrivalRunwayModel;
     }
@@ -766,17 +765,14 @@ export default class AirportModel {
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
-        })
-        // TODO: change to onSuccess and onError handler abstractions
-        .done((data) => {
+        }).done((data) => { // TODO: change to onSuccess and onError handler abstractions
             try {
                 // eslint-disable-next-line no-undef
                 this.parseTerrain(data);
             } catch (e) {
                 throw new Error(e.message);
             }
-        })
-        .fail((jqXHR, textStatus, errorThrown) => {
+        }).fail((jqXHR, textStatus, errorThrown) => {
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
 
             this.loading = false;
@@ -809,9 +805,8 @@ export default class AirportModel {
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
-        })
-        .done((response) => this.onLoadAirportSuccess(response))
-        .fail((...args) => this.onLoadAirportError(...args));
+        }).done((response) => this.onLoadAirportSuccess(response))
+            .fail((...args) => this.onLoadAirportError(...args));
     }
 
     /**
