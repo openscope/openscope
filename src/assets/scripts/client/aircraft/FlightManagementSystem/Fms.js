@@ -456,7 +456,11 @@ export default class Fms {
 
     activateHoldForWaypointName(waypointName, holdParameters) {
         if (!this._routeModel.hasWaypointName(waypointName)) {
-            return [false, `unable to hold at ${waypointName}; it is not on our route!`];
+            // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+            return [false, {
+                log: `unable to hold at ${waypointName}; it is not on our route!`,
+                say: `unable to hold at ${waypointName.toLowerCase()}; it is not on our route!`
+            }];
         }
 
         this._routeModel.activateHoldForWaypointName(waypointName, holdParameters);
@@ -1090,12 +1094,12 @@ export default class Fms {
 
         if (!this._routeModel.isRunwayModelValidForStar(nextRunwayModel)) {
             const readback = {};
-            readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is ` +
-                            `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting ` +
-                            `Runway ${currentArrivalRunway.name} instead`;
-            readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} ` +
-                            `is not valid for the ${this._routeModel.getStarName()} arrival, expecting ` +
-                            `Runway ${currentArrivalRunway.getRadioName()} instead`;
+            readback.log = `unable, according to our charts, Runway ${nextRunwayModel.name} is `
+                            + `not valid for the ${this._routeModel.getStarIcao()} arrival, expecting `
+                            + `Runway ${currentArrivalRunway.name} instead`;
+            readback.say = `unable, according to our charts, Runway ${nextRunwayModel.getRadioName()} `
+                            + `is not valid for the ${this._routeModel.getStarName()} arrival, expecting `
+                            + `Runway ${currentArrivalRunway.getRadioName()} instead`;
 
             return [false, readback];
         }
@@ -1159,8 +1163,8 @@ export default class Fms {
      */
     _verifyRouteContainsMultipleWaypoints() {
         if (this.waypoints.length < 2) {
-            throw new TypeError('Expected flight plan route to have at least two ' +
-                `waypoints, but only found ${this.waypoints.length} waypoints`);
+            throw new TypeError('Expected flight plan route to have at least two '
+                + `waypoints, but only found ${this.waypoints.length} waypoints`);
         }
     }
 }

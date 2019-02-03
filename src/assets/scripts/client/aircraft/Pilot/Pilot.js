@@ -378,8 +378,8 @@ export default class Pilot {
 
         this.hasApproachClearance = false;
 
-        const readback = 'cancel approach clearance, fly present heading, ' +
-            'maintain last assigned altitude and speed';
+        const readback = 'cancel approach clearance, fly present heading, '
+            + 'maintain last assigned altitude and speed';
 
         return [true, readback];
     }
@@ -413,24 +413,28 @@ export default class Pilot {
     cancelHoldingPattern(fixName) {
         let holdWaypointModel = _find(this._fms.waypoints, (waypointModel) => waypointModel.isHoldWaypoint);
 
+        if (!holdWaypointModel) {
+            return [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
+        }
+
         if (fixName) {
             holdWaypointModel = this._fms.findWaypoint(fixName);
 
             if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
                 return [false, {
                     log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
-                    say: `that must be for somebody else, we weren't given holding over ${fixName}`
+                    say: `that must be for somebody else, we weren't given holding over ${fixName.toLowerCase()}`
                 }];
             }
         }
 
-        if (!holdWaypointModel) {
-            return [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
-        }
-
         holdWaypointModel.deactivateHold();
 
-        return [true, `roger, we'll disregard the hold at ${holdWaypointModel.getDisplayName()}`];
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+        return [true, {
+            log: `roger, we'll cancel the hold at ${holdWaypointModel.getDisplayName()}`,
+            say: `roger, we'll cancel the hold at ${holdWaypointModel.name.toLowerCase()}`
+        }];
     }
 
     /**
@@ -454,7 +458,8 @@ export default class Pilot {
      * Climb in accordance with the altitude restrictions, and sets
      * altitude at which the climb will end regardless of fix restrictions.
      *
-     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
      * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
      *
      * @for Pilot
@@ -512,7 +517,8 @@ export default class Pilot {
     /**
      * Descend in accordance with the altitude restrictions
      *
-     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
      * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
      *
      * @for Pilot
@@ -662,10 +668,10 @@ export default class Pilot {
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
 
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum `
+                + `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum `
+                + `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
 
             return [false, readback];
         }
@@ -715,9 +721,13 @@ export default class Pilot {
             return problematicResponse;
         }
 
-        return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, `
-            + `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
-        ];
+        const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
+
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+        return [true, {
+            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()}, ${holdParametersReadback}`,
+            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()}, ${holdParametersReadback}`
+        }];
     }
 
     /**
