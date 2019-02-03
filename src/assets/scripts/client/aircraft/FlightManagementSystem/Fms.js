@@ -485,6 +485,20 @@ export default class Fms {
     }
 
     /**
+     * Return the waypoint that matches the provided name
+     *
+     * @for Fms
+     * @method findWaypoiont
+     * @param waypointName {string} name of the waypoint
+     * @return {WaypointModel}
+     */
+    findWaypoint(waypointName) {
+        const name = waypointName.toUpperCase();
+
+        return _find(this.waypoints, (waypoint) => waypoint.name === name);
+    }
+
+    /**
      * Return the next waypoint having an #altitudeMaximum equal to or less than the specified value
      *
      * This is helpful to see only future waypoints for which a particular altitude is

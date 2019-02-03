@@ -528,18 +528,27 @@ export default class Pilot {
     *
     * @for Pilot
     * @method exitHold
+    * @param fixName {string} name of the fix at which the hold should be canceled (optional)
     * @return {array} [success of operation, readback]
     */
-    exitHold() {
-        const currentWaypoint = this._fms.currentWaypoint;
+    exitHold(fixName) {
+        let waypoint = this._fms.currentWaypoint;
 
-        if (!currentWaypoint.isHoldWaypoint) {
+        if (fixName) {
+            waypoint = this._fms.findWaypoint(fixName);
+
+            if (!waypoint) {
+                return [false, `unable, '${fixName}' is not on our route`];
+            }
+        }
+
+        if (!waypoint.isHoldWaypoint) {
             return [false, 'not currently holding'];
         }
 
-        currentWaypoint.deactivateHold();
+        waypoint.deactivateHold();
 
-        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName()}`];
+        return [true, `roger, cancelling hold over ${waypoint.getDisplayName()}`];
     }
 
     /**
@@ -702,8 +711,8 @@ export default class Pilot {
             return problematicResponse;
         }
 
-        return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, ` +
-            `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
+        return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, `
+                    + `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
         ];
     }
 

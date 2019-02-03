@@ -309,10 +309,13 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runExitHold
      * @param aircraft {AircraftModel}
+     * @param args {array}
      * @return {array} [success of operation, readback]
      */
-    runExitHold(aircraft) {
-        return aircraft.pilot.exitHold();
+    runExitHold(aircraft, args) {
+        const fixName = args[0];
+
+        return aircraft.pilot.exitHold(fixName);
     }
 
     /**
