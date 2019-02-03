@@ -223,34 +223,34 @@ export default class AirportModel {
         };
 
         /**
+         * @for AirportModel
          * @property ctr_radius
          * @type {nunmber}
-         * @default DEFAULT_CTR_RADIUS_KM
          */
-        this.ctr_radius = DEFAULT_CTR_RADIUS_KM;
+        this.ctr_radius = null;
 
         /**
+         * @for AirportModel
          * @property ctr_ceiling
          * @type {nunmber}
-         * @default DEFAULT_CTR_CEILING_FT
          */
-        this.ctr_ceiling = DEFAULT_CTR_CEILING_FT;
+        this.ctr_ceiling = null;
 
         /**
+         * @for AirportModel
          * @property initial_alt
          * @type {nunmber}
-         * @default DEFAULT_INITIAL_ALTITUDE_FT
          */
-        this.initial_alt = DEFAULT_INITIAL_ALTITUDE_FT;
+        this.initial_alt = null;
 
         /**
+         * @for AirportModel
          * @property rangeRings
          * @type {object}
-         * @default DEFAULT_RANGE_RINGS
          */
-        this.rangeRings = DEFAULT_RANGE_RINGS;
+        this.rangeRings = null;
 
-        this.parse(options);
+        this.init(options);
     }
 
     /**
@@ -343,10 +343,10 @@ export default class AirportModel {
 
     /**
      * @for AirportModel
-     * @method parse
+     * @method init
      * @param data {object}
      */
-    parse(data) {
+    init(data) {
         this.name = _get(data, 'name', this.name);
         this.icao = _get(data, 'icao', this.icao).toLowerCase();
         this.level = _get(data, 'level', this.level);
@@ -824,7 +824,7 @@ export default class AirportModel {
         this.loading = false;
         this.loaded = true;
 
-        this.parse(response);
+        this.init(response);
         this.eventBus.trigger(EVENT.AIRPORT_CHANGE, this.data);
         this.set();
     };
@@ -859,7 +859,7 @@ export default class AirportModel {
         this.loading = false;
         this.loaded = true;
 
-        this.parse(response);
+        this.init(response);
         this.set();
     }
 }
