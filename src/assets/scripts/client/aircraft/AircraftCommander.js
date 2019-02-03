@@ -307,15 +307,15 @@ export default class AircraftCommander {
      * Exit holding pattern and resume navigation
      *
      * @for AircraftCommander
-     * @method runExitHold
+     * @method runCancelHoldingPattern
      * @param aircraft {AircraftModel}
      * @param args {array}
      * @return {array} [success of operation, readback]
      */
-    runExitHold(aircraft, args) {
+    runCancelHoldingPattern(aircraft, args) {
         const fixName = args[0];
 
-        return aircraft.pilot.exitHold(fixName);
+        return aircraft.pilot.cancelHoldingPattern(fixName);
     }
 
     /**

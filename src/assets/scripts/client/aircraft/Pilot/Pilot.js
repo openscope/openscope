@@ -183,7 +183,7 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance(aircraftModel);
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
 
@@ -272,7 +272,7 @@ export default class Pilot {
             return [false, response];
         }
 
-        this.exitHold();
+        this.cancelHoldingPattern();
 
         // Build readback
         const readback = {};
@@ -324,7 +324,7 @@ export default class Pilot {
         if (readback[0]) {
             this.hasDepartureClearance = true;
 
-            this.exitHold();
+            this.cancelHoldingPattern();
         }
 
         return readback;
@@ -399,6 +399,34 @@ export default class Pilot {
         this.hasDepartureClearance = false;
 
         return [true, 'roger, understand IFR clearance is cancelled, standing by'];
+    }
+
+    /**
+    * Arm the exit of the holding pattern
+    *
+    * @for Pilot
+    * @method cancelHoldingPattern
+    * @param fixName {string} name of the fix at which the hold should be canceled (optional)
+    * @return {array} [success of operation, readback]
+    */
+    cancelHoldingPattern(fixName) {
+        let waypoint = this._fms.currentWaypoint;
+
+        if (!waypoint) {
+            return [false, `unable, '${fixName}' is not on our route`];
+        }
+
+        if (!waypoint.isHoldWaypoint) {
+            return [false, 'not currently holding'];
+        }
+
+        if (fixName) {
+            waypoint = this._fms.findWaypoint(fixName);
+        }
+
+        waypoint.deactivateHold();
+
+        return [true, `roger, cancelling hold over ${waypoint.getDisplayName()}`];
     }
 
     /**
@@ -521,34 +549,6 @@ export default class Pilot {
         readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
 
         return [true, readback];
-    }
-
-    /**
-    * Arm the exit of the holding pattern
-    *
-    * @for Pilot
-    * @method exitHold
-    * @param fixName {string} name of the fix at which the hold should be canceled (optional)
-    * @return {array} [success of operation, readback]
-    */
-    exitHold(fixName) {
-        let waypoint = this._fms.currentWaypoint;
-
-        if (!waypoint) {
-            return [false, `unable, '${fixName}' is not on our route`];
-        }
-
-        if (!waypoint.isHoldWaypoint) {
-            return [false, 'not currently holding'];
-        }
-
-        if (fixName) {
-            waypoint = this._fms.findWaypoint(fixName);
-        }
-
-        waypoint.deactivateHold();
-
-        return [true, `roger, cancelling hold over ${waypoint.getDisplayName()}`];
     }
 
     /**
@@ -682,7 +682,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -778,7 +778,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypointName(waypointName);
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];

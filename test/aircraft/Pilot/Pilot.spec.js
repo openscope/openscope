@@ -295,14 +295,14 @@ ava('.applyPartialRouteAmendment() grants departure clearance when the route ame
     t.true(departureClearance);
 });
 
-ava('.applyPartialRouteAmendment() calls .exitHold()', (t) => {
+ava('.applyPartialRouteAmendment() calls .cancelHoldingPattern()', (t) => {
     const pilot = buildPilotWithComplexRoute();
-    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(pilot, 'cancelHoldingPattern');
 
     pilot.initiateHoldingPattern('MISEN', holdParametersMock);
     pilot.applyPartialRouteAmendment(amendRouteString);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
@@ -508,14 +508,14 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     ));
 });
 
-ava('.conductInstrumentApproach() calls .exitHold', (t) => {
+ava('.conductInstrumentApproach() calls .cancelHoldingPattern', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
-    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(aircraftModel.pilot, 'cancelHoldingPattern');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
     aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.conductInstrumentApproach() sets #hasApproachClearance to true', (t) => {
@@ -690,21 +690,21 @@ ava('.initiateHoldingPattern() returns correct readback when hold implemented su
     t.deepEqual(result, expectedResult);
 });
 
-ava('.exitHold() returns error response when the aircraft is not holding', (t) => {
+ava('.cancelHoldingPattern() returns error response when the aircraft is not holding', (t) => {
     const expectedResult = [false, 'not currently holding'];
     const pilot = createPilotFixture();
-    const result = pilot.exitHold();
+    const result = pilot.cancelHoldingPattern();
 
     t.deepEqual(result, expectedResult);
 });
 
-ava('.exitHold() returns correct readback when the aircraft is holding', (t) => {
+ava('.cancelHoldingPattern() returns correct readback when the aircraft is holding', (t) => {
     const expectedResult = [true, 'roger, cancelling hold over MISEN'];
     const pilot = createPilotFixture();
 
     pilot._fms.currentWaypoint.activateHold();
 
-    const result = pilot.exitHold();
+    const result = pilot.cancelHoldingPattern();
 
     t.false(pilot._fms.currentWaypoint.isHoldWaypoint);
     t.deepEqual(result, expectedResult);
@@ -846,14 +846,14 @@ ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) =>
     t.true(aircraftModel.pilot._mcp.heading === 3.141592653589793);
 });
 
-ava('.maintainHeading() calls .exitHold()', (t) => {
+ava('.maintainHeading() calls .cancelHoldingPattern()', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(aircraftModel.pilot, 'cancelHoldingPattern');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {
@@ -1010,14 +1010,14 @@ ava('.proceedDirect() sets the correct #_mcp mode', (t) => {
     t.true(pilot._mcp.headingMode === 'LNAV');
 });
 
-ava('.proceedDirect() calls .exitHold()', (t) => {
+ava('.proceedDirect() calls .cancelHoldingPattern()', (t) => {
     const pilot = createPilotFixture();
-    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(pilot, 'cancelHoldingPattern');
 
     pilot._fms.setFlightPhase('HOLD');
     pilot.proceedDirect(waypointNameMock);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.proceedDirect() returns success message when finished', (t) => {

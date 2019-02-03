@@ -74,9 +74,9 @@ export const AIRCRAFT_COMMAND_MAP = {
         functionName: 'runDirect',
         isSystemCommand: false
     },
-    exitHold: {
-        aliases: ['exithold', 'nohold', 'xh'],
-        functionName: 'runExitHold',
+    cancelHold: {
+        aliases: ['exithold', 'cancelhold', 'continue', 'nohold', 'xh'],
+        functionName: 'runCancelHoldingPattern',
         isSystemCommand: false
     },
     expectArrivalRunway: {

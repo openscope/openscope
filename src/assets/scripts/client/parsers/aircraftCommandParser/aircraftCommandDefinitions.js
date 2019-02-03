@@ -209,7 +209,7 @@ const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
         validate: zeroOrOneArgumentValidator,
         parse: noop
     },
-    exitHold: {
+    cancelHold: {
         validate: zeroOrOneArgumentValidator,
         parse: noop
     },
