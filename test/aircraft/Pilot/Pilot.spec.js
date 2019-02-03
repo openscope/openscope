@@ -295,14 +295,14 @@ ava('.applyPartialRouteAmendment() grants departure clearance when the route ame
     t.true(departureClearance);
 });
 
-ava('.applyPartialRouteAmendment() calls .exitHold()', (t) => {
+ava('.applyPartialRouteAmendment() calls .cancelHoldingPattern()', (t) => {
     const pilot = buildPilotWithComplexRoute();
-    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(pilot, 'cancelHoldingPattern');
 
     pilot.initiateHoldingPattern('MISEN', holdParametersMock);
     pilot.applyPartialRouteAmendment(amendRouteString);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.cancelApproachClearance() returns early if #hasApproachClearance is false', (t) => {
@@ -362,6 +362,86 @@ ava('.cancelApproachClearance() sets #hasApproachClearance to false', (t) => {
     aircraftModel.pilot.cancelApproachClearance(aircraftModel);
 
     t.false(aircraftModel.pilot.hasApproachClearance);
+});
+
+ava('.cancelHoldingPattern() returns error response when the aircraft does not have any hold waypoints', (t) => {
+    const pilot = createPilotFixture();
+    const expectedResult = [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
+    const result = pilot.cancelHoldingPattern();
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.cancelHoldingPattern() returns error response when the aircraft has holding, but the specified fix is not on the route', (t) => {
+    const pilot = createPilotFixture();
+    console.log(pilot._fms.waypoints.map(wpm => wpm.name));
+
+    pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
+
+    const expectedResult = [false, {
+        log: 'that must be for somebody else, we weren\'t given holding over ABCDE',
+        say: 'that must be for somebody else, we weren\'t given holding over abcde'
+    }];
+    const result = pilot.cancelHoldingPattern('ABCDE');
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.cancelHoldingPattern() returns error response when the aircraft has holding, but not at the specified fix', (t) => {
+    const pilot = createPilotFixture();
+    console.log(pilot._fms.waypoints.map(wpm => wpm.name));
+
+    pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
+
+    const expectedResult = [false, {
+        log: 'that must be for somebody else, we weren\'t given holding over SUNST',
+        say: 'that must be for somebody else, we weren\'t given holding over sunst'
+    }];
+    const result = pilot.cancelHoldingPattern('SUNST');
+
+    t.deepEqual(result, expectedResult);
+});
+
+ava('.cancelHoldingPattern() calls WaypointModel.deactivateHold() when no hold fix is specified', (t) => {
+    const pilot = createPilotFixture();
+    const currentWaypointModel = pilot._fms.currentWaypoint;
+    const holdWaypointName = 'KEPEC';
+    const holdWaypointModel = pilot._fms.findWaypoint(holdWaypointName);
+    const currentWaypointDeactivateHoldStub = sinon.stub(currentWaypointModel, 'deactivateHold');
+    const holdWaypointDeactivateHoldStub = sinon.stub(holdWaypointModel, 'deactivateHold');
+
+    pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
+
+    const expectedResult = [true, {
+        log: 'roger, we\'ll cancel the hold at KEPEC',
+        say: 'roger, we\'ll cancel the hold at kepec'
+    }];
+    const result = pilot.cancelHoldingPattern();
+
+    t.deepEqual(result, expectedResult);
+    t.true(currentWaypointDeactivateHoldStub.notCalled);
+    t.true(holdWaypointDeactivateHoldStub.calledWithExactly());
+});
+
+ava('.cancelHoldingPattern() calls WaypointModel.deactivateHold() when the fix is specified by the user', (t) => {
+    const pilot = createPilotFixture();
+    const currentWaypointModel = pilot._fms.currentWaypoint;
+    const holdWaypointName = 'KEPEC';
+    const holdWaypointModel = pilot._fms.findWaypoint(holdWaypointName);
+    const currentWaypointDeactivateHoldStub = sinon.stub(currentWaypointModel, 'deactivateHold');
+    const holdWaypointDeactivateHoldStub = sinon.stub(holdWaypointModel, 'deactivateHold');
+
+    pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
+
+    const expectedResult = [true, {
+        log: 'roger, we\'ll cancel the hold at KEPEC',
+        say: 'roger, we\'ll cancel the hold at kepec'
+    }];
+    const result = pilot.cancelHoldingPattern('KEPEC');
+
+    t.deepEqual(result, expectedResult);
+    t.true(currentWaypointDeactivateHoldStub.notCalled);
+    t.true(holdWaypointDeactivateHoldStub.calledWithExactly());
 });
 
 ava('.clearedAsFiled() grants pilot departure clearance and returns the correct response strings', (t) => {
@@ -463,10 +543,10 @@ ava('.conductInstrumentApproach() returns failure message when no runway is prov
 
 ava('.conductInstrumentApproach() returns failure message when assigned altitude is lower than minimum glideslope intercept altitude', (t) => {
     const expectedResult = [false, {
-        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope ' +
-        'intercept altitude, request climb to 3400',
-        say: 'unable ILS one niner left, our assigned altitude is below the minimum ' +
-        'glideslope intercept altitude, request climb to three thousand four hundred'
+        log: 'unable ILS 19L, our assigned altitude is below the minimum glideslope '
+            + 'intercept altitude, request climb to 3400',
+        say: 'unable ILS one niner left, our assigned altitude is below the minimum '
+            + 'glideslope intercept altitude, request climb to three thousand four hundred'
     }];
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
 
@@ -508,14 +588,14 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     ));
 });
 
-ava('.conductInstrumentApproach() calls .exitHold', (t) => {
+ava('.conductInstrumentApproach() calls .cancelHoldingPattern', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, createNavigationLibraryFixture());
-    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(aircraftModel.pilot, 'cancelHoldingPattern');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
     aircraftModel.pilot.conductInstrumentApproach(aircraftModel, approachTypeMock, runwayModelMock);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.conductInstrumentApproach() sets #hasApproachClearance to true', (t) => {
@@ -675,16 +755,23 @@ ava('.goAround() returns a success message', (t) => {
 });
 
 ava('.initiateHoldingPattern() returns error response when specified fix is not in the route', (t) => {
-    const expectedResult = [false, 'unable to hold at COWBY; it is not on our route!'];
     const pilot = createPilotFixture();
+    const expectedResult = [false, {
+        log: 'unable to hold at COWBY; it is not on our route!',
+        say: 'unable to hold at cowby; it is not on our route!'
+    }];
     const result = pilot.initiateHoldingPattern('COWBY', holdParametersMock);
+    console.log(result);
 
     t.deepEqual(result, expectedResult);
 });
 
 ava('.initiateHoldingPattern() returns correct readback when hold implemented successfully', (t) => {
-    const expectedResult = [true, 'hold east of KEPEC, right turns, 1min legs'];
     const pilot = createPilotFixture();
+    const expectedResult = [true, {
+        log: 'hold east of KEPEC, right turns, 1min legs',
+        say: 'hold east of kepec, right turns, 1min legs'
+    }];
     const result = pilot.initiateHoldingPattern('KEPEC', holdParametersMock);
 
     t.deepEqual(result, expectedResult);
@@ -695,7 +782,7 @@ ava('.maintainAltitude() returns early responding that they are unable to mainta
     const nextAltitudeMock = 90000;
     const shouldExpediteMock = false;
     const shouldUseSoftCeilingMock = true;
-    const mcp = aircraftModel.mcp;
+    const { mcp } = aircraftModel;
     const expectedAltitude = mcp.altitude;
     const expectedResult = [
         false,
@@ -826,14 +913,14 @@ ava('.maintainHeading() sets the #mcp with the correct modes and values', (t) =>
     t.true(aircraftModel.pilot._mcp.heading === 3.141592653589793);
 });
 
-ava('.maintainHeading() calls .exitHold()', (t) => {
+ava('.maintainHeading() calls .cancelHoldingPattern()', (t) => {
     const aircraftModel = new AircraftModel(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
-    const exitHoldSpy = sinon.spy(aircraftModel.pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(aircraftModel.pilot, 'cancelHoldingPattern');
 
     aircraftModel.pilot._fms.setFlightPhase('HOLD');
     aircraftModel.pilot.maintainHeading(aircraftModel, nextHeadingDegreesMock, null, false);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {
@@ -990,14 +1077,14 @@ ava('.proceedDirect() sets the correct #_mcp mode', (t) => {
     t.true(pilot._mcp.headingMode === 'LNAV');
 });
 
-ava('.proceedDirect() calls .exitHold()', (t) => {
+ava('.proceedDirect() calls .cancelHoldingPattern()', (t) => {
     const pilot = createPilotFixture();
-    const exitHoldSpy = sinon.spy(pilot, 'exitHold');
+    const cancelHoldingPatternSpy = sinon.spy(pilot, 'cancelHoldingPattern');
 
     pilot._fms.setFlightPhase('HOLD');
     pilot.proceedDirect(waypointNameMock);
 
-    t.true(exitHoldSpy.calledWithExactly());
+    t.true(cancelHoldingPatternSpy.calledWithExactly());
 });
 
 ava('.proceedDirect() returns success message when finished', (t) => {

@@ -304,6 +304,21 @@ export default class AircraftCommander {
     }
 
     /**
+     * Exit holding pattern and resume navigation
+     *
+     * @for AircraftCommander
+     * @method runCancelHoldingPattern
+     * @param aircraft {AircraftModel}
+     * @param args {array}
+     * @return {array} [success of operation, readback]
+     */
+    runCancelHoldingPattern(aircraft, args) {
+        const fixName = args[0];
+
+        return aircraft.pilot.cancelHoldingPattern(fixName);
+    }
+
+    /**
      * Skip forward to a particular fix that already exists further along the aircraft's route
      *
      * @for AircraftCommander

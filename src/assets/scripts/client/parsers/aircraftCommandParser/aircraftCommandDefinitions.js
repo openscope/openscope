@@ -143,17 +143,11 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    rate: {
-        validate: singleArgumentValidator,
-        // calling method is expecting an array with values that will get spread later, thus we purposly
-        // return an array here
-        parse: (args) => [convertStringToNumber(args)]
-    },
-    expectArrivalRunway: {
+    direct: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    direct: {
+    expectArrivalRunway: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -170,11 +164,17 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    route: {
+    rate: {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+    reroute: {
         validate: singleArgumentValidator,
         parse: noop
     },
-    reroute: {
+    route: {
         validate: singleArgumentValidator,
         parse: noop
     },
@@ -206,6 +206,10 @@ const SINGLE_ARG_AIRCRAFT_COMMANDS = {
  */
 const CUSTOM_ARG_AIRCRAFT_COMMANDS = {
     taxi: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
+    },
+    cancelHold: {
         validate: zeroOrOneArgumentValidator,
         parse: noop
     },

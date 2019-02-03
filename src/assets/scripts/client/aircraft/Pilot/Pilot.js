@@ -1,4 +1,5 @@
 import _ceil from 'lodash/ceil';
+import _find from 'lodash/find';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import AirportController from '../../airport/AirportController';
@@ -43,8 +44,8 @@ export default class Pilot {
         }
 
         if (!(modeController instanceof ModeController)) {
-            throw new TypeError('Expected modeController to an instance of ' +
-                `ModeController, but received ${typeof modeController}`);
+            throw new TypeError('Expected modeController to an instance of '
+                + `ModeController, but received ${typeof modeController}`);
         }
 
         /**
@@ -183,7 +184,7 @@ export default class Pilot {
         }
 
         this.cancelApproachClearance(aircraftModel);
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._mcp.setHeadingFieldValue(correctedHeading);
         this._mcp.setHeadingHold();
 
@@ -272,7 +273,7 @@ export default class Pilot {
             return [false, response];
         }
 
-        this.exitHold();
+        this.cancelHoldingPattern();
 
         // Build readback
         const readback = {};
@@ -324,7 +325,7 @@ export default class Pilot {
         if (readback[0]) {
             this.hasDepartureClearance = true;
 
-            this.exitHold();
+            this.cancelHoldingPattern();
         }
 
         return readback;
@@ -377,8 +378,8 @@ export default class Pilot {
 
         this.hasApproachClearance = false;
 
-        const readback = 'cancel approach clearance, fly present heading, ' +
-            'maintain last assigned altitude and speed';
+        const readback = 'cancel approach clearance, fly present heading, '
+            + 'maintain last assigned altitude and speed';
 
         return [true, readback];
     }
@@ -402,6 +403,41 @@ export default class Pilot {
     }
 
     /**
+    * Arm the exit of the holding pattern
+    *
+    * @for Pilot
+    * @method cancelHoldingPattern
+    * @param fixName {string} name of the fix at which the hold should be canceled (optional)
+    * @return {array} [success of operation, readback]
+    */
+    cancelHoldingPattern(fixName) {
+        let holdWaypointModel = _find(this._fms.waypoints, (waypointModel) => waypointModel.isHoldWaypoint);
+
+        if (!holdWaypointModel) {
+            return [false, 'that must be for somebody else, we weren\'t given any holding instructions'];
+        }
+
+        if (fixName) {
+            holdWaypointModel = this._fms.findWaypoint(fixName);
+
+            if (!holdWaypointModel || !holdWaypointModel.isHoldWaypoint) {
+                return [false, {
+                    log: `that must be for somebody else, we weren't given holding over ${fixName.toUpperCase()}`,
+                    say: `that must be for somebody else, we weren't given holding over ${fixName.toLowerCase()}`
+                }];
+            }
+        }
+
+        holdWaypointModel.deactivateHold();
+
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+        return [true, {
+            log: `roger, we'll cancel the hold at ${holdWaypointModel.getDisplayName()}`,
+            say: `roger, we'll cancel the hold at ${holdWaypointModel.name.toLowerCase()}`
+        }];
+    }
+
+    /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
      * @for Pilot
@@ -422,7 +458,8 @@ export default class Pilot {
      * Climb in accordance with the altitude restrictions, and sets
      * altitude at which the climb will end regardless of fix restrictions.
      *
-     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
      * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
      *
      * @for Pilot
@@ -480,7 +517,8 @@ export default class Pilot {
     /**
      * Descend in accordance with the altitude restrictions
      *
-     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/media/Climb_Descend_Via_FAQ.pdf
+     * https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs470/pbn/
+     *      media/Climb_Descend_Via_FAQ.pdf
      * https://www.faa.gov/documentLibrary/media/Notice/N7110.584.pdf
      *
      * @for Pilot
@@ -521,24 +559,6 @@ export default class Pilot {
         readback.say = `descend via STAR and maintain ${radio_altitude(nextAltitude)}`;
 
         return [true, readback];
-    }
-
-    /**
-    * Arm the exit of the holding pattern
-    *
-    * @for Pilot
-    * @method exitHold
-    */
-    exitHold() {
-        const currentWaypoint = this._fms.currentWaypoint;
-
-        if (!currentWaypoint.isHoldWaypoint) {
-            return [false, 'not currently holding'];
-        }
-
-        currentWaypoint.deactivateHold();
-
-        return [true, `roger, cancelling hold over ${currentWaypoint.getDisplayName}`];
     }
 
     /**
@@ -648,10 +668,10 @@ export default class Pilot {
         if (aircraftModel.mcp.altitude < minimumGlideslopeInterceptAltitude) {
             const readback = {};
 
-            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
-            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum ` +
-                `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
+            readback.log = `unable ILS ${runwayModel.name}, our assigned altitude is below the minimum `
+                + `glideslope intercept altitude, request climb to ${minimumGlideslopeInterceptAltitude}`;
+            readback.say = `unable ILS ${radio_runway(runwayModel.name)}, our assigned altitude is below the minimum `
+                + `glideslope intercept altitude, request climb to ${radio_altitude(minimumGlideslopeInterceptAltitude)}`;
 
             return [false, readback];
         }
@@ -672,7 +692,7 @@ export default class Pilot {
             return verticalGuidance;
         }
 
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._fms.setArrivalRunway(runwayModel);
         this.hasApproachClearance = true;
 
@@ -701,9 +721,13 @@ export default class Pilot {
             return problematicResponse;
         }
 
-        return [true, `hold ${cardinalDirectionFromFix} of ${fixName}, ` +
-            `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`
-        ];
+        const holdParametersReadback = `${holdParameters.turnDirection} turns, ${holdParameters.legLength} legs`;
+
+        // force lower-case in verbal readback to get speech synthesis to pronounce the fix instead of speling it
+        return [true, {
+            log: `hold ${cardinalDirectionFromFix} of ${fixName.toUpperCase()}, ${holdParametersReadback}`,
+            say: `hold ${cardinalDirectionFromFix} of ${fixName.toLowerCase()}, ${holdParametersReadback}`
+        }];
     }
 
     /**
@@ -768,7 +792,7 @@ export default class Pilot {
         }
 
         this._fms.skipToWaypointName(waypointName);
-        this.exitHold();
+        this.cancelHoldingPattern();
         this._mcp.setHeadingLnav();
 
         return [true, `proceed direct ${waypointName}`];
