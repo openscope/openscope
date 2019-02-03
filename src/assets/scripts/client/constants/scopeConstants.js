@@ -25,3 +25,16 @@ export const DATA_BLOCK_POSITION_MAP = {
     7: 315,
     5: 'ctr'
 };
+
+/**
+ * Acceptable lengths for vector lines (PTL lines)
+ *
+ * @enum VECTOR_LENGTHS
+ * @type object
+ */
+export const VECTOR_LENGTHS = {
+    1: 1,
+    2: 2,
+    4: 4,
+    8: 8
+};

@@ -12,7 +12,7 @@ import { DECIMAL_RADIX } from '../utilities/unitConverters';
 import {
     DATA_BLOCK_DIRECTION_LENGTH_SEPARATOR,
     DATA_BLOCK_POSITION_MAP
-} from '../constants/scopeCommandConstants';
+} from '../constants/scopeConstants';
 import { THEME } from '../constants/themes';
 
 // TODO: abstract these to an appropriate constants file
