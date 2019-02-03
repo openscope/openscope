@@ -82,6 +82,24 @@ export const EVENT = {
     PAUSE_UPDATE_LOOP: 'pause-update-loop',
 
     /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_DECREASE_LENGTH
+     * @type {string}
+     */
+    PTL_DECREASE_LENGTH: 'ptl-decrease-length',
+
+    /**
+     * Increase the length of the PTL lines on the scope
+     *
+     * @memberof EVENT
+     * @property PTL_INCREASE_LENGTH
+     * @type {string}
+     */
+    PTL_INCREASE_LENGTH: 'ptl-increase-length',
+
+    /**
      * Remove an aircraft from the sim
      *
      * Usually as a result of the `del` user command

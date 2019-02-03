@@ -29,10 +29,11 @@ export const DATA_BLOCK_POSITION_MAP = {
 /**
  * Acceptable lengths for vector lines (PTL lines)
  *
- * @enum VECTOR_LENGTHS
+ * @enum PTL_LENGTHS
  * @type object
  */
-export const VECTOR_LENGTHS = {
+export const PTL_LENGTHS = {
+    0: 0,
     1: 1,
     2: 2,
     4: 4,

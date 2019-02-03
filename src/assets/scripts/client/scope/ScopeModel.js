@@ -4,8 +4,9 @@ import _isNil from 'lodash/isNil';
 import RadarTargetCollection from './RadarTargetCollection';
 import EventBus from '../lib/EventBus';
 import { EVENT } from '../constants/eventNames';
-import { DECIMAL_RADIX } from '../utilities/unitConverters';
+import { PTL_LENGTHS } from '../constants/scopeConstants';
 import { THEME } from '../constants/themes';
+import { DECIMAL_RADIX } from '../utilities/unitConverters';
 
 /**
  * Scope belonging to a Player
@@ -26,7 +27,18 @@ export default class ScopeModel {
          * @type {EventBus}
          * @private
          */
-        this._eventBus = EventBus;
+        this._eventBus = null;
+
+        /**
+         * Length of PTL lines (aka "vector lines") for all aircraft
+         *
+         * @for ScopeModel
+         * @property _ptlLength
+         * @type {number} length in minutes
+         * @default 0
+         * @private
+         */
+        this._ptlLength = 0;
 
         // TODO: Use this!
         /**
@@ -50,7 +62,7 @@ export default class ScopeModel {
          * @type {object}
          * @private
          */
-        this._theme = THEME.DEFAULT;
+        this._theme = null;
 
         /**
          * Collection of all radar targets observed by this scope
@@ -58,24 +70,43 @@ export default class ScopeModel {
          * @for ScopeModel
          * @property radarTargetCollection
          * @type {RadarTargetCollection}
-         * @private
          */
         this.radarTargetCollection = null;
 
-        this._init()
+        this.init()
             .enable();
     }
+
+    // ------------------------------ LIFECYCLE ------------------------------
 
     /**
      * Complete initialization tasks
      *
      * @for ScopeModel
-     * @method _init
-     * @private
+     * @method init
      * @chainable
      */
-    _init() {
+    init() {
+        this._eventBus = EventBus;
+        this._theme = THEME.DEFAULT;
         this.radarTargetCollection = new RadarTargetCollection(this._theme);
+
+        return this;
+    }
+
+    /**
+     * Reset the instance to its empty state
+     *
+     * @for ScopeModel
+     * @method _reset
+     * @chainable
+     */
+    reset() {
+        this._eventBus = null;
+        this._ptlLength = 0;
+        this._sectorCollection = null;
+        this._theme = null;
+        this.radarTargetCollection = null;
 
         return this;
     }
@@ -99,6 +130,12 @@ export default class ScopeModel {
     disable() {
         this._eventBus.off(EVENT.SET_THEME, this._setTheme);
     }
+
+    _setupHandlers() {
+        this._onPtlDecreaseLengthHandler = this.decreasePtlLength.bind(this);
+    }
+
+    // ------------------------------ PUBLIC ------------------------------
 
     /**
      * Accept a pending handoff from another sector
@@ -126,6 +163,64 @@ export default class ScopeModel {
 
         return radarTargetModel.amendAltitude(altitude);
     }
+
+    /**
+     * Decrease the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
+     * @method decreasePtlLength
+     */
+    decreasePtlLength() {
+        switch (this._ptlLength) {
+            case 1:
+                this._ptlLength = PTL_LENGTHS['0'];
+
+                break;
+            case 2:
+                this._ptlLength = PTL_LENGTHS['1'];
+
+                break;
+            case 4:
+                this._ptlLength = PTL_LENGTHS['2'];
+
+                break;
+            case 8:
+                this._ptlLength = PTL_LENGTHS['4'];
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Decrease the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
+     * @method increasePtlLength
+     */
+    increasePtlLength() {
+        switch (this._ptlLength) {
+            case 0:
+                this._ptlLength = PTL_LENGTHS['1'];
+
+                break;
+            case 1:
+
+                this._ptlLength = PTL_LENGTHS['2'];
+                break;
+            case 2:
+
+                this._ptlLength = PTL_LENGTHS['4'];
+                break;
+            case 4:
+
+                this._ptlLength = PTL_LENGTHS['8'];
+
+                break;
+            default:
+                break;
+    };
 
     /**
      * Initiate a handoff to another sector
@@ -207,6 +302,21 @@ export default class ScopeModel {
     }
 
     /**
+     * Set the length of the PTL lines for all aircraft
+     *
+     * @for ScopeModel
+     * @method setPtlLength
+     * @param {number} length - length of PTL line, in minutes
+     */
+    setPtlLength(length) {
+        if (!_has(PTL_LENGTHS, length)) {
+            return;
+        }
+
+        this._ptlLength = length;
+    }
+
+    /**
      * Amend the scratchpad for a given `RadarTargetModel`
      *
      * @for ScopeModel
@@ -249,6 +359,8 @@ export default class ScopeModel {
 
         return radarTargetModel.setHalo(radius);
     }
+
+    // ------------------------------ PRIVATE ------------------------------
 
     /**
      * Change theme to the specified name
