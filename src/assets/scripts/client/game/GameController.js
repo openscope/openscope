@@ -349,7 +349,7 @@ class GameController {
     /**
      * @for GameController
      * @method game_paused
-     * @return
+     * @return {boolean}
      */
     game_paused() {
         return !this.game.focused || TimeKeeper.isPaused;
@@ -358,7 +358,7 @@ class GameController {
     /**
      * @for GameController
      * @method game_speedup
-     * @return
+     * @return {number}
      */
     game_speedup() {
         return !this.game_paused() ? TimeKeeper.simulationRate : 0;
@@ -367,11 +367,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_timeout
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return gameTimeout
+     * @return {array} gameTimeout
      */
     game_timeout(functionToCall, delay, that, data) {
         const timerDelay = TimeKeeper.accumulatedDeltaTime + delay;
@@ -385,11 +385,11 @@ class GameController {
     /**
      * @for GameController
      * @method game_interval
-     * @param func {function}
-     * @param delay {number}
+     * @param func {function} called when timeout is triggered
+     * @param delay {number} in seconds
      * @param that
      * @param data
-     * @return to
+     * @return {array} to
      */
     game_interval(func, delay, that, data) {
         const to = [func, TimeKeeper.accumulatedDeltaTime + delay, data, delay, true, that];
@@ -480,7 +480,7 @@ class GameController {
                 willRemoveTimerFromList = true;
 
                 if (shouldRepeat) {
-                    timeout[1] += delayInterval;
+                    timeout[1] = delayFireTime + delayInterval;
                     willRemoveTimerFromList = false;
                 }
             }
