@@ -180,7 +180,7 @@ export default class AppController {
         this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
-        this.changelogController = new ChangelogController(this.$element, this.contentQueue);
+        this.changelogController = new ChangelogController(this.contentQueue);
 
         this.updateViewControls();
     }

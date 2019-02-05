@@ -3,31 +3,6 @@ import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 /**
- * A div template for the changelog for the container.
- * Compare to the container elements for option selection and airport switching.
- *
- * @property CHANGELOG_CONTAINER
- * @final
- */
-const CHANGELOG_CONTAINER = '<div class="changelog-container nice-scrollbar"></div>';
-
-/**
- * The HTML element for the changelog entries themselves.
- *
- * @property CHANGELOG_CONTENT
- * @final
- */
-const CHANGELOG_CONTENT = '<p class="changelog"></p>';
-
-/**
- * HTML element that allows the changelog to be dismissed.
- *
- * @property CHANGELOG_DISMISS
- * @final
- */
-const CHANGELOG_DISMISS = '<a class="dismiss-changelog">Dismiss</a>';
-
-/**
  * The controller class for the in-game changelog.
  *
  * @class ChangelogController
@@ -35,18 +10,9 @@ const CHANGELOG_DISMISS = '<a class="dismiss-changelog">Dismiss</a>';
 export default class ChangelogController {
     /**
      * @constructor
-     * @param {JQuery|HTMLElement} $element
      * @param {ContentQueue} contentQueue
      */
-    constructor($element, contentQueue) {
-        /**
-         * Root DOM element
-         *
-         * @property $element
-         * @type {JQuery|HTMLElement}
-         */
-        this.$element = $element;
-
+    constructor(contentQueue) {
         /**
          * The content queue, used to load in the changelog data
          *
@@ -56,12 +22,12 @@ export default class ChangelogController {
         this.contentQueue = contentQueue;
 
         /**
-         * Our changelog container element
+         * The DOM element that displays the version above the changelog
          *
-         * @property $changelogContainer
+         * @property $changelogVersion
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogContainer = $(CHANGELOG_CONTAINER);
+        this.$changelogVersion = $(SELECTORS.DOM_SELECTORS.CHANGELOG_VERSION);
 
         /**
          * Changelog data element - where the text goes
@@ -69,7 +35,7 @@ export default class ChangelogController {
          * @property $changelogData
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogData = $(CHANGELOG_CONTENT);
+        this.$changelogData = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTENT);
 
         /**
          * The link at the bottom of the container to
@@ -78,16 +44,16 @@ export default class ChangelogController {
          * @property $changelogDismiss
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogDismiss = $(CHANGELOG_DISMISS);
+        this.$changelogDismiss = $(SELECTORS.DOM_SELECTORS.CHANGELOG_DISMISS);
 
         /**
          * Toggle selector for the changelog
          * You know, the button thing
          *
-         * @property $changelogTrigger
+         * @property $changelogToggle
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogTrigger = $(SELECTORS.DOM_SELECTORS.CHANGELOG_TOGGLE);
+        this.$changelogToggle = $(SELECTORS.DOM_SELECTORS.CHANGELOG_TOGGLE);
 
         /**
          * A string representation of the actual changelog.
@@ -105,15 +71,6 @@ export default class ChangelogController {
          */
         this.version = null;
 
-        /**
-         * A boolean flag, to determine whether or not
-         * we've loaded the changelog
-         *
-         * @property isLoaded
-         * @type {Boolean}
-         */
-        this.isLoaded = false;
-
         this._setupHandlers()
             .enable();
     }
@@ -129,7 +86,7 @@ export default class ChangelogController {
     _setupHandlers() {
         this._onChangelogToggleHandler = this._onChangelogToggle.bind(this);
 
-        this.$changelogTrigger.on('click', this._onChangelogToggleHandler);
+        this.$changelogToggle.on('click', this._onChangelogToggleHandler);
         this.$changelogDismiss.on('click', this._onChangelogToggleHandler);
 
         return this;
@@ -145,10 +102,8 @@ export default class ChangelogController {
         this.content = '<p>Loading...</p>';
         this.version = window.GLOBAL.VERSION;
 
+        this.$changelogVersion.text(`openScope ATC simulator version ${this.version}`);
         this.$changelogData.html(this.content);
-        this.$changelogContainer.append(this.$changelogData);
-        this.$changelogContainer.append(this.$changelogDismiss);
-        this.$element.append(this.$changelogContainer);
 
         this.loadChangelogContent();
     }
@@ -161,7 +116,6 @@ export default class ChangelogController {
      * @private
      */
     _onChangelogToggle() {
-        console.log('toggled changelog recieved')
         this.$changelogContainer.toggleClass(SELECTORS.CLASSNAMES.CHANGELOG_VISIBLE);
     }
 
@@ -170,10 +124,10 @@ export default class ChangelogController {
      * and if the changelog should display on load.
      *
      * @for ChangelogController
-     * @method _shouldToggleOnStart
+     * @method _shouldShowOnLoad
      * @returns {Boolean} if the user has not played this version
      */
-    _shouldToggleOnStart() {
+    _shouldShowOnLoad() {
         const lastPlayedVersion = localStorage[STORAGE_KEY.ATC_LAST_VERSION];
         const currentVersion = this.version;
         const shouldDisplayChangelog = lastPlayedVersion !== currentVersion;
@@ -186,7 +140,7 @@ export default class ChangelogController {
     }
 
     /**
-     * Calls a changelog loader asynchronously. Calls `load_complete` when
+     * Calls a changelog loader asynchronously. Calls `onLoadComplete` when
      * the changelog data is successfully loaded. Stores data in
      * `this.content`.
      *
@@ -200,23 +154,25 @@ export default class ChangelogController {
         };
         const changelogPromise = this.contentQueue.add(options);
 
-        changelogPromise.done((data, textStatus, jqXHR) => {
-            this.content = data.changelog;
-            this.load_complete();
-        });
+        changelogPromise.done(this.onLoadComplete);
     }
 
     /**
-     * Called when the changelog is loaded (the promise was resolved).
+     * Called when the changelog is loaded (the promise was resolved) as the
+     * callback from the deferred promise.
      *
      * @for ChangelogController
-     * @method load_complete
+     * @method onLoadComplete
+     * @param {Object} data
+     * @param {String} textStatus
+     * @param {XMLHttpRequest} jqXHR
      */
-    load_complete() {
+    onLoadComplete(data, textStatus, jqXHR) {
+        this.content = data.changelog;
         this.isLoaded = true;
         this.$changelogData.html(this.content);
 
-        if (this._shouldToggleOnStart()) {
+        if (this._shouldShowOnLoad()) {
             this._onChangelogToggle();
         }
     }
