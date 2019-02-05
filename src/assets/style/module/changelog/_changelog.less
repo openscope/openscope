@@ -1,27 +1,20 @@
 .changelog-container {
-    width: fit-content;
-    height: auto;
-    // LESS itself tries to evaluate calc(), using ~"" here to prevent that
-    max-height: ~"calc(85% - 2.3em - 20px)";
-    max-width: 600px;
-    margin: auto;
-    padding: 0px 10px 0px 10px;
+    width: 480px;
+    margin-left: -240px;
+    padding: 12px 15px;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: @dark-06;
+    top: 20%;
+    left: 50%;
+    background-color: @dark;
     color: @light-gray;
     font-size: 12px;
-    overflow-y: auto;
-    border: 6px solid @blue-medium;
-    border-radius: 8px;
-    box-sizing: border-box;
-    box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
+    font-family: inherit;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    border-radius: 1px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 6px @blue-medium;
     pointer-events: none;
+    transition: opacity 0.5s ease;
     z-index: 200;
 }
 
@@ -41,4 +34,9 @@
 .changelog-container .dismiss-changelog {
     color: @light-gray;
     text-align: center;
+}
+
+.changelog a {
+    color: @light-gray;
+    text-decoration: underline;
 }

@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { changelogContent } from './changelogContent';
 import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -29,10 +28,6 @@ const CHANGELOG_CONTENT = '<p class="changelog"></p>';
 const CHANGELOG_DISMISS = '<a class="dismiss-changelog">Dismiss</a>';
 
 /**
- * Dismisses the changelog
- */
-
-/**
  * The controller class for the in-game changelog.
  *
  * @class ChangelogController
@@ -40,8 +35,10 @@ const CHANGELOG_DISMISS = '<a class="dismiss-changelog">Dismiss</a>';
 export default class ChangelogController {
     /**
      * @constructor
+     * @param {JQuery|HTMLElement} $element
+     * @param {ContentQueue} contentQueue
      */
-    constructor($element) {
+    constructor($element, contentQueue) {
         /**
          * Root DOM element
          *
@@ -49,6 +46,14 @@ export default class ChangelogController {
          * @type {JQuery|HTMLElement}
          */
         this.$element = $element;
+
+        /**
+         * The content queue, used to load in the changelog data
+         *
+         * @property contentQueue
+         * @type {ContentQueue}
+         */
+        this.contentQueue = contentQueue;
 
         /**
          * Our changelog container element
@@ -82,7 +87,7 @@ export default class ChangelogController {
          * @property $changelogTrigger
          * @type {JQuery|HTMLElement}
          */
-        this.$changelogTrigger = $(SELECTORS.CLASSNAMES.CHANGELOG_TOGGLE);
+        this.$changelogTrigger = $(SELECTORS.DOM_SELECTORS.CHANGELOG_TOGGLE);
 
         /**
          * A string representation of the actual changelog.
@@ -99,6 +104,15 @@ export default class ChangelogController {
          * @type {String}
          */
         this.version = null;
+
+        /**
+         * A boolean flag, to determine whether or not
+         * we've loaded the changelog
+         *
+         * @property isLoaded
+         * @type {Boolean}
+         */
+        this.isLoaded = false;
 
         this._setupHandlers()
             .enable();
@@ -128,7 +142,7 @@ export default class ChangelogController {
      * @method enable
      */
     enable() {
-        this.content = changelogContent;
+        this.content = '<p>Loading...</p>';
         this.version = window.GLOBAL.VERSION;
 
         this.$changelogData.html(this.content);
@@ -136,9 +150,7 @@ export default class ChangelogController {
         this.$changelogContainer.append(this.$changelogDismiss);
         this.$element.append(this.$changelogContainer);
 
-        if (this._shouldToggleOnStart()) {
-            this._onChangelogToggle();
-        }
+        this.loadChangelogContent();
     }
 
     /**
@@ -149,6 +161,7 @@ export default class ChangelogController {
      * @private
      */
     _onChangelogToggle() {
+        console.log('toggled changelog recieved')
         this.$changelogContainer.toggleClass(SELECTORS.CLASSNAMES.CHANGELOG_VISIBLE);
     }
 
@@ -170,5 +183,41 @@ export default class ChangelogController {
         }
 
         return shouldDisplayChangelog;
+    }
+
+    /**
+     * Calls a changelog loader asynchronously. Calls `load_complete` when
+     * the changelog data is successfully loaded. Stores data in
+     * `this.content`.
+     *
+     * @for ChangelogController
+     * @method loadChangelogContent
+     */
+    loadChangelogContent() {
+        const options = {
+            url: 'assets/changelog.json',
+            immediate: true
+        };
+        const changelogPromise = this.contentQueue.add(options);
+
+        changelogPromise.done((data, textStatus, jqXHR) => {
+            this.content = data.changelog;
+            this.load_complete();
+        });
+    }
+
+    /**
+     * Called when the changelog is loaded (the promise was resolved).
+     *
+     * @for ChangelogController
+     * @method load_complete
+     */
+    load_complete() {
+        this.isLoaded = true;
+        this.$changelogData.html(this.content);
+
+        if (this._shouldToggleOnStart()) {
+            this._onChangelogToggle();
+        }
     }
 }

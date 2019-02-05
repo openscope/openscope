@@ -6,6 +6,7 @@ import AirlineController from './airline/AirlineController';
 import AirportController from './airport/AirportController';
 import CanvasController from './canvas/CanvasController';
 import AirportInfoController from './info/AirportInfoController';
+import ChangelogController from './changelog/ChangelogController';
 import ContentQueue from './contentQueue/ContentQueue';
 import EventTracker from './EventTracker';
 import GameController from './game/GameController';
@@ -55,6 +56,7 @@ export default class AppController {
         this.aircraftCommander = null;
         this.inputController = null;
         this.canvasController = null;
+        this.changelogController = null;
 
         return this._init()
             .setupHandlers()
@@ -178,6 +180,7 @@ export default class AppController {
         this.aircraftCommander = new AircraftCommander(this.aircraftController, this.aircraftController.onRequestToChangeTransponderCode);
         this.inputController = new InputController(this.$element, this.aircraftCommander, this.aircraftController, this.scopeModel);
         this.airportInfoController = new AirportInfoController(this.$element);
+        this.changelogController = new ChangelogController(this.$element, this.contentQueue);
 
         this.updateViewControls();
     }

@@ -5,6 +5,7 @@ module.exports = function(gulp, config) {
     const path = require('path');
     const jsonmin = require('gulp-jsonmin');
     const merge = require('merge-stream');
+    const changelog = require('./copyChangelog');
     const OPTIONS = config;
 
     const jsonMinify = () => gulp.src([
@@ -24,12 +25,18 @@ module.exports = function(gulp, config) {
         return merge(fonts, images);
     };
 
+    const copyChangelog = () => {
+        return changelog();
+    }
+
     gulp.task(OPTIONS.TASKS.JSON.MINIFY, gulp.series(jsonMinify));
     gulp.task(OPTIONS.TASKS.COPY.AIRPORTS, gulp.series(copyAirportFiles));
     gulp.task(OPTIONS.TASKS.COPY.STATIC, gulp.series(copyStatic));
+    gulp.task(OPTIONS.TASKS.COPY.CHANGELOG, gulp.series(copyChangelog));
     gulp.task(OPTIONS.TASKS.COPY.DIST, gulp.series(
             OPTIONS.TASKS.COPY.STATIC,
             OPTIONS.TASKS.COPY.AIRPORTS,
+            OPTIONS.TASKS.COPY.CHANGELOG,
             OPTIONS.TASKS.JSON.MINIFY
         )
     );
