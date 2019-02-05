@@ -22,6 +22,14 @@ export default class ChangelogController {
         this.contentQueue = contentQueue;
 
         /**
+         * The DOM of the changelog container, containing version, data, and dismiss.
+         *
+         * @property $changelogContainer
+         * @type {JQuery|HTMLElement}
+         */
+        this.$changelogContainer = $(SELECTORS.DOM_SELECTORS.CHANGELOG_CONTAINER);
+
+        /**
          * The DOM element that displays the version above the changelog
          *
          * @property $changelogVersion
@@ -154,7 +162,11 @@ export default class ChangelogController {
         };
         const changelogPromise = this.contentQueue.add(options);
 
-        changelogPromise.done(this.onLoadComplete);
+        changelogPromise.done((data, textStatus, jqXHR) => {
+            this.content = data.changelog;
+
+            this.onLoadComplete();
+        });
     }
 
     /**
@@ -163,12 +175,8 @@ export default class ChangelogController {
      *
      * @for ChangelogController
      * @method onLoadComplete
-     * @param {Object} data
-     * @param {String} textStatus
-     * @param {XMLHttpRequest} jqXHR
      */
-    onLoadComplete(data, textStatus, jqXHR) {
-        this.content = data.changelog;
+    onLoadComplete() {
         this.isLoaded = true;
         this.$changelogData.html(this.content);
 
