@@ -110,7 +110,7 @@ export default class ChangelogController {
         this.content = '<p>Loading...</p>';
         this.version = window.GLOBAL.VERSION;
 
-        this.$changelogVersion.text(`openScope ATC simulator version ${this.version}`);
+        this.$changelogVersion.text(`openScope v${this.version}`);
         this.$changelogData.html(this.content);
 
         this.loadChangelogContent();
@@ -163,8 +163,12 @@ export default class ChangelogController {
         const changelogPromise = this.contentQueue.add(options);
 
         changelogPromise.done((data, textStatus, jqXHR) => {
-            this.content = data.changelog;
+            let loadedContent = data.changelog;
 
+            // Strip out the version, as it's already in the title
+            loadedContent = loadedContent.split('</h1>')[1];
+
+            this.content = loadedContent;
             this.onLoadComplete();
         });
     }
