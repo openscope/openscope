@@ -6,6 +6,7 @@
 
 ### Bugfixes
 - [#1305](https://github.com/openscope/openscope/issues/1305) - Fix range rings center is undefined
+- [#1312](https://github.com/openscope/openscope/issues/1312) - Fix KRDU arrival descent problems to some extent
 
 
 ### Enhancements & Refactors
